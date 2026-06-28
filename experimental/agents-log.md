@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 fibers are split good-pair images
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that a `b=2` fixed-anchor residual fiber is
+  exactly the set of good-pair interpolation locators that split into `q`
+  distinct available roots.
+- **How it is useful:** Replaces residual `q`-subset enumeration by a two-root
+  interpolation and split-locator image, sharpening the remaining M1 good-pair
+  ledger.
+- **What to do next:** Study the split-locator image condition globally and
+  charge its good-pair domain in the all-line residue-packing argument.
+
 ### 2026-06-28 - M1 b=2 good pairs interpolate residual locators
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

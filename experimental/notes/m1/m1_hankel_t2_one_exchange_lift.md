@@ -3689,6 +3689,45 @@ enumerated `b=2` residual candidate: solving the displayed `2 x 2` system
 against a fixed origin locator must reconstruct the candidate locator exactly.
 The current largest `F_7^*` scan still has no `b(U,W)=2` produced anchor.
 
+## The b=2 Fiber Is the Split Image of Good-Pair Interpolation
+
+The interpolation map gives an exact parametrization after imposing the
+ordinary split-locator condition.  For each good pair `e={x,y}`, let
+`L_e=L_{x,y}` be the interpolated monic degree-`q` locator from
+(PF2-good-interp), and put
+
+```text
+Split(e) = { roots of L_e in D' }.
+```
+
+Then the fixed-anchor residual fiber is exactly
+
+```text
+F(U,W)
+ =
+{ Split(e) :
+  e is a good pair,
+  |Split(e)|=q,
+  ell_{Split(e)}=L_e }.                          (PF2-good-image)
+```
+
+Indeed, if `R in F(U,W)`, the degree-gap lemma gives a good pair
+`e subset R`, and (PF2-good-interp) reconstructs `ell_R`, so `R` appears in
+the displayed image.  Conversely, if `L_e` splits as the locator of a
+`q`-subset of `D'`, then `L_e in K(U,W)` because it is the origin locator plus
+a residual direction, so that root set is a residual support in `F(U,W)`.
+
+Thus the `b=2` fixed-anchor problem is no longer a search over all
+`q`-subsets.  It is a two-root interpolation problem followed by the single
+question of whether the interpolated monic locator splits completely over the
+available domain.
+
+The verifier now computes this image over all good pairs, checks that every
+split image is an enumerated residual candidate, that every residual candidate
+appears in the image, and that the image-pair count agrees with the owned
+good-pair incidence count.  The current largest `F_7^*` scan still has no
+`b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

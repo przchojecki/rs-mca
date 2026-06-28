@@ -6650,6 +6650,71 @@ def analyze_case(
                                                         ),
                                                     )
                                                 )
+
+                                            def interpolate_good_pair_locator(
+                                                pair: tuple[int, int],
+                                            ) -> tuple[
+                                                tuple[tuple[int, ...], ...],
+                                                tuple[int, ...],
+                                                tuple[int, ...],
+                                            ]:
+                                                interpolation_matrix = tuple(
+                                                    tuple(
+                                                        polynomial_eval_mod(
+                                                            vector,
+                                                            domain[root],
+                                                            p,
+                                                        )
+                                                        for vector in (
+                                                            direction_basis
+                                                        )
+                                                    )
+                                                    for root in pair
+                                                )
+                                                origin_values = tuple(
+                                                    polynomial_eval_mod(
+                                                        residual_locator,
+                                                        domain[root],
+                                                        p,
+                                                    )
+                                                    for root in pair
+                                                )
+                                                interpolation_coeffs = (
+                                                    solve_square_mod(
+                                                        interpolation_matrix,
+                                                        tuple(
+                                                            (-value) % p
+                                                            for value in (
+                                                                origin_values
+                                                            )
+                                                        ),
+                                                        p,
+                                                    )
+                                                )
+                                                reconstructed_locator = tuple(
+                                                    (
+                                                        residual_locator[index]
+                                                        + sum(
+                                                            coeff * vector[index]
+                                                            for (
+                                                                coeff,
+                                                                vector,
+                                                            ) in zip(
+                                                                interpolation_coeffs,
+                                                                direction_basis,
+                                                            )
+                                                        )
+                                                    )
+                                                    % p
+                                                    for index in range(
+                                                        residual_size
+                                                    )
+                                                ) + (1,)
+                                                return (
+                                                    interpolation_matrix,
+                                                    interpolation_coeffs,
+                                                    reconstructed_locator,
+                                                )
                                             pair_owner: dict[
                                                 tuple[int, int],
                                                 tuple[int, ...],
@@ -6660,6 +6725,9 @@ def analyze_case(
                                             candidate_base_occupancy_max = 0
                                             candidate_fiber_occupancy_max = 0
                                             zero_good_candidate_count = 0
+                                            residual_candidate_set = set(
+                                                residual_candidates
+                                            )
                                             for candidate in residual_candidates:
                                                 candidate_locator = cached_locator(
                                                     candidate
@@ -6714,59 +6782,13 @@ def analyze_case(
                                                     ):
                                                         continue
                                                     candidate_good_pairs += 1
-                                                    interpolation_matrix = tuple(
-                                                        tuple(
-                                                            polynomial_eval_mod(
-                                                                vector,
-                                                                domain[root],
-                                                                p,
-                                                            )
-                                                            for vector in (
-                                                                direction_basis
-                                                            )
-                                                        )
-                                                        for root in pair
+                                                    (
+                                                        interpolation_matrix,
+                                                        interpolation_coeffs,
+                                                        reconstructed_locator,
+                                                    ) = interpolate_good_pair_locator(
+                                                        pair
                                                     )
-                                                    origin_values = tuple(
-                                                        polynomial_eval_mod(
-                                                            residual_locator,
-                                                            domain[root],
-                                                            p,
-                                                        )
-                                                        for root in pair
-                                                    )
-                                                    interpolation_coeffs = (
-                                                        solve_square_mod(
-                                                            interpolation_matrix,
-                                                            tuple(
-                                                                (-value) % p
-                                                                for value in (
-                                                                    origin_values
-                                                                )
-                                                            ),
-                                                            p,
-                                                        )
-                                                    )
-                                                    reconstructed_locator = tuple(
-                                                        (
-                                                            residual_locator[index]
-                                                            + sum(
-                                                                coeff
-                                                                * vector[index]
-                                                                for (
-                                                                    coeff,
-                                                                    vector,
-                                                                ) in zip(
-                                                                    interpolation_coeffs,
-                                                                    direction_basis,
-                                                                )
-                                                            )
-                                                        )
-                                                        % p
-                                                        for index in range(
-                                                            residual_size
-                                                        )
-                                                    ) + (1,)
                                                     if (
                                                         reconstructed_locator
                                                         != candidate_locator
@@ -7184,6 +7206,162 @@ def analyze_case(
                                                         ),
                                                         max_shadow_size=(
                                                             projective_max_direction_shadow_size
+                                                        ),
+                                                    )
+                                                )
+                                            split_image_candidates: set[
+                                                tuple[int, ...]
+                                            ] = set()
+                                            split_image_pair_count = 0
+                                            for pair in projective_good_pairs:
+                                                (
+                                                    interpolation_matrix,
+                                                    interpolation_coeffs,
+                                                    interpolated_locator,
+                                                ) = interpolate_good_pair_locator(
+                                                    pair
+                                                )
+                                                interpolated_vector = hankel_apply(
+                                                    filtered_sequence,
+                                                    interpolated_locator,
+                                                    residual_size,
+                                                    p,
+                                                )
+                                                if any(interpolated_vector):
+                                                    raise AssertionError(
+                                                        projective_local_error(
+                                                            "good-pair-image-"
+                                                            "kernel-failed",
+                                                            pair=list(pair),
+                                                            matrix=[
+                                                                list(row)
+                                                                for row in (
+                                                                    interpolation_matrix
+                                                                )
+                                                            ],
+                                                            coeffs=list(
+                                                                interpolation_coeffs
+                                                            ),
+                                                            locator=list(
+                                                                interpolated_locator
+                                                            ),
+                                                            hankel_vector=list(
+                                                                interpolated_vector
+                                                            ),
+                                                        )
+                                                    )
+                                                split_roots = tuple(
+                                                    root
+                                                    for root in available_roots
+                                                    if not polynomial_eval_mod(
+                                                        interpolated_locator,
+                                                        domain[root],
+                                                        p,
+                                                    )
+                                                )
+                                                split_candidate = (
+                                                    len(split_roots)
+                                                    == residual_size
+                                                    and cached_locator(
+                                                        split_roots
+                                                    )
+                                                    == interpolated_locator
+                                                )
+                                                owner = pair_owner.get(pair)
+                                                if split_candidate:
+                                                    split_image_pair_count += 1
+                                                    split_image_candidates.add(
+                                                        split_roots
+                                                    )
+                                                    if (
+                                                        split_roots
+                                                        not in residual_candidate_set
+                                                    ):
+                                                        raise AssertionError(
+                                                            projective_local_error(
+                                                                "good-pair-"
+                                                                "split-image-"
+                                                                "missing-"
+                                                                "candidate",
+                                                                pair=list(pair),
+                                                                split_roots=list(
+                                                                    split_roots
+                                                                ),
+                                                                locator=list(
+                                                                    interpolated_locator
+                                                                ),
+                                                            )
+                                                        )
+                                                    if owner != split_roots:
+                                                        raise AssertionError(
+                                                            projective_local_error(
+                                                                "good-pair-"
+                                                                "split-image-"
+                                                                "owner-"
+                                                                "failed",
+                                                                pair=list(pair),
+                                                                split_roots=list(
+                                                                    split_roots
+                                                                ),
+                                                                owner=(
+                                                                    list(owner)
+                                                                    if owner
+                                                                    is not None
+                                                                    else None
+                                                                ),
+                                                            )
+                                                        )
+                                                elif owner is not None:
+                                                    raise AssertionError(
+                                                        projective_local_error(
+                                                            "good-pair-owned-"
+                                                            "image-nonsplit-"
+                                                            "failed",
+                                                            pair=list(pair),
+                                                            owner=list(owner),
+                                                            split_roots=list(
+                                                                split_roots
+                                                            ),
+                                                            locator=list(
+                                                                interpolated_locator
+                                                            ),
+                                                        )
+                                                    )
+                                            if (
+                                                split_image_candidates
+                                                != residual_candidate_set
+                                            ):
+                                                raise AssertionError(
+                                                    projective_local_error(
+                                                        "good-pair-split-"
+                                                        "image-surjectivity-"
+                                                        "failed",
+                                                        image=[
+                                                            list(candidate)
+                                                            for candidate in sorted(
+                                                                split_image_candidates
+                                                            )
+                                                        ],
+                                                        candidates=[
+                                                            list(candidate)
+                                                            for candidate in sorted(
+                                                                residual_candidate_set
+                                                            )
+                                                        ],
+                                                    )
+                                                )
+                                            if split_image_pair_count != len(
+                                                pair_owner
+                                            ):
+                                                raise AssertionError(
+                                                    projective_local_error(
+                                                        "good-pair-split-"
+                                                        "image-count-failed",
+                                                        split_image_pair_count=(
+                                                            split_image_pair_count
+                                                        ),
+                                                        owned_pair_count=len(
+                                                            pair_owner
                                                         ),
                                                     )
                                                 )
