@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 bounded residual direction has projective root closure
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Combines the projective-shadow formula with the
+  elementary root bound for nonzero degree-`<q` directions to prove
+  `|Z_b^{dir}| <= ((|F|^b-1)/(|F|-1)) binom(min(N,q-1),b)`, and records the
+  resulting explicit DMB closure bound.
+- **How it is useful:** Shows that fixed anchors with bounded residual
+  direction dimension are polynomially controlled in the polynomial-field
+  window, reducing the residual M1 task to controlling the frequency of such
+  fixed-divisor kernels and classifying unbounded or persistent direction
+  families.
+- **What to do next:** Sharpen the coarse projective root-count ledger for
+  actual M1 fixed-divisor kernels, or prove structural exclusions for
+  high-dimensional residual direction spaces.
+
 ### 2026-06-28 - M1 bad direction subsets are absorbed multi-root defects
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

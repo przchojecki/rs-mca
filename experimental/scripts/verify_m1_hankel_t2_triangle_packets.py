@@ -174,6 +174,8 @@ rank-defect packing bound on bad b-subsets.
 It also identifies those bad b-subsets with the projective root shadows of the
 residual direction space and with absorbed multi-root fixed-divisor rank
 defects.
+It then checks the resulting projective root-count bound for the bad-subset
+ledger.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -433,6 +435,12 @@ def projective_span_representatives_mod(
             tuple((value * inverse_pivot) % p for value in vector)
         )
     return tuple(sorted(representatives))
+
+
+def binomial_or_zero(n: int, k: int) -> int:
+    if n < 0 or k < 0 or k > n:
+        return 0
+    return math.comb(n, k)
 
 
 def hankel_divisor_matrix_mod(
@@ -4692,6 +4700,67 @@ def analyze_case(
                                                             fixed_divisor_bad_subsets
                                                         )
                                                     ],
+                                                }
+                                            )
+                                        projective_direction_count = (
+                                            (p**residual_direction_dim - 1)
+                                            // (p - 1)
+                                        )
+                                        per_direction_root_subsets = (
+                                            binomial_or_zero(
+                                                min(
+                                                    len(available_roots),
+                                                    residual_size - 1,
+                                                ),
+                                                residual_direction_dim,
+                                            )
+                                        )
+                                        projective_root_count_bound = (
+                                            projective_direction_count
+                                            * per_direction_root_subsets
+                                        )
+                                        if (
+                                            len(bad_direction_subsets)
+                                            > projective_root_count_bound
+                                        ):
+                                            raise AssertionError(
+                                                {
+                                                    "kind": (
+                                                        "productive-"
+                                                        if productive
+                                                        else ""
+                                                    )
+                                                    + "marked-core-deficit-"
+                                                    "anchor-direction-mds-"
+                                                    "projective-root-count-"
+                                                    "bound-failed",
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "unmarked_core": list(
+                                                        unmarked_core
+                                                    ),
+                                                    "marked_count": marked_count,
+                                                    "core_deficit": core_deficit,
+                                                    "anchor": list(anchor),
+                                                    "direction_dim": (
+                                                        residual_direction_dim
+                                                    ),
+                                                    "bad_subset_count": len(
+                                                        bad_direction_subsets
+                                                    ),
+                                                    "projective_direction_count": (
+                                                        projective_direction_count
+                                                    ),
+                                                    "per_direction_root_subsets": (
+                                                        per_direction_root_subsets
+                                                    ),
+                                                    "bound": (
+                                                        projective_root_count_bound
+                                                    ),
                                                 }
                                             )
                                         for left, right in itertools.combinations(

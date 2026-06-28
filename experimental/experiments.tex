@@ -4653,6 +4653,32 @@ this into \(H_{q,q+d-b}(s)(\ell_W\ell_C Q_C)=0\).  Thus the abstract
 rank-defect ledger, the projective root-shadow ledger, and the absorbed
 fixed-divisor Hankel ledger are the same object; the verifier now checks all
 three descriptions together.
+This also gives a universal bounded-dimension closure.  Since each nonzero
+direction has degree \(<q\), it has at most \(q-1\) roots, and
+\(|{\bf P}(V(U,W))|=(|F|^b-1)/(|F|-1)\).  Hence
+\[
+  |Z_b^{\rm dir}(U,W)|
+  \le
+  { |F|^b-1\over |F|-1}
+  \binom{\min(N,q-1)}{b}.
+\]
+Combining this with the direction-packing inequality gives, with
+\[
+  Z_b^{\max}
+  =
+  { |F|^b-1\over |F|-1}
+  \binom{\min(N,q-1)}{b},
+\]
+\[
+  |F(U,W)|\binom qb
+  \le
+  \binom Nb + Z_b^{\max}\binom{N-b}{q-b}.
+\]
+Thus bounded residual direction dimension is polynomially controlled in the
+polynomial-field window; sharper M1 work must either prove smaller root-shadow
+ledgers for the actual fixed-divisor kernels or classify the unbounded/persistent
+direction families.  The verifier now checks this projective root-count bound
+whenever the direction-MDS bad-set audit is triggered.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

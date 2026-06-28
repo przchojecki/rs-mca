@@ -2792,6 +2792,55 @@ descriptions whenever the `0<b<q` direction-MDS audit is triggered.  The current
 largest `F_7^*` scan still has no positive-dimensional produced residual
 anchors.
 
+## Projective Root Counts Close Bounded Residual Direction
+
+The projective-shadow formula gives a universal bad-set bound.  Since every
+nonzero direction `Q in V(U,W)` has `deg Q<q`, it has at most `q-1` roots in
+the field, hence at most `min(|D'|,q-1)` roots in the available domain.  Also
+
+```text
+|P(V(U,W))| = (|F|^b-1)/(|F|-1).
+```
+
+Therefore
+
+```text
+|Z_b^{dir}(U,W)|
+ <= ((|F|^b-1)/(|F|-1)) binom(min(|D'|,q-1),b).  (PRC)
+```
+
+Combining (PRC) with (DMB), and writing
+
+```text
+Z_b^max=((|F|^b-1)/(|F|-1)) binom(min(N,q-1),b),
+```
+
+gives the explicit fixed-anchor residual-fiber closure
+
+```text
+|F(U,W)| binom(q,b)
+ <= binom(N,b)-Z_b^{dir}(U,W)
+    + |Z_b^{dir}(U,W)| binom(N-b,q-b)
+ <= binom(N,b)+Z_b^max binom(N-b,q-b).           (BRC)
+```
+
+Thus fixed anchors with bounded residual direction dimension are polynomially
+controlled in the polynomial-field window: for fixed `b` and `|F|<=n^A`, the
+bad-subset term is `n^{O_{A,b}(1)}`.  The remaining M1 difficulty is not an
+unstructured positive-dimensional residual fiber; it is to control how often
+such bounded-`b` fixed-divisor kernels occur after quotient-periodic, tangent,
+and aperiodic ledgers are charged, and to classify any unbounded-`b` or
+persistent family.
+
+This bound is intentionally coarse compared with the direction-MDS case.  Its
+role is to turn bounded residual direction into an explicit polynomial
+fallback, while sharper work can try to prove MDS behavior or much smaller
+root-shadow ledgers for the actual M1 kernels.
+
+The verifier now checks the inequality (PRC) whenever it constructs the
+direction-MDS bad-set ledger.  The current largest `F_7^*` scan still has
+`b(U,W)=0` for all produced residual anchors.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix
