@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 boundary aliases are scalar fits
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Refines the boundary-alias criterion for terminal
+  sparse packets: a disjoint candidate locator `ell_Z` aliases the branch mode
+  set `Y` exactly when the deletion-tree scalars satisfy
+  `c_X(y;C) ell_Z(y)=mu` for all `y in Y`.
+- **How it is useful:** Converts the endpoint moment ambiguity into a concrete
+  scalar-cut interpolation problem on the terminal deletion tree.  The current
+  `F_7^*` audit checks `4320` boundary candidates and finds the same
+  `4200/120` histogram for scalar fits as for moment aliases.
+- **What to do next:** Use the scalar-fit form to bound or charge boundary
+  aliases, especially by proving that persistent fits force quotient-periodic,
+  tangent, or lower-core structure.
+
 ### 2026-06-28 - M1 terminal packet boundary aliases
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

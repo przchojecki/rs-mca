@@ -1244,6 +1244,33 @@ Then the alias amplitudes on `Z` are `-mu omega_z`.  This follows from the
 one-dimensionality of the Vandermonde kernel, and gives a concrete
 branch-amplitude test for the boundary obstruction.
 
+For terminal branch packets this has an even more useful scalar-cut form.  In
+(MP),
+
+```text
+a_y = c_X(y;C) / d_Y(y),
+d_Y(y)=prod_{u in Y, u!=y} (y-u).
+```
+
+If `Z` is disjoint from `Y` and `ell_Z(X)=prod_{z in Z}(X-z)`, then
+
+```text
+P_{Y union Z}'(y)=d_Y(y) ell_Z(y).
+```
+
+Therefore the disjoint `Z`-alias condition is equivalent to
+
+```text
+c_X(y;C) ell_Z(y) = mu        for every y in Y.        (SF)
+```
+
+In words: a boundary alias is exactly a constant-product fit of the first-row
+exit scalars against a candidate disjoint locator.  This cancels the internal
+Vandermonde denominators of the true branch packet and leaves only the scalar
+cuts produced by the deletion tree.  Thus the boundary endpoint is no longer a
+generic Prony ambiguity; it is a finite squarefree-locator interpolation
+problem for the explicit scalars `c_X(y;C)`.
+
 For the `t=2` terminal audit this says exactly what the data show:
 mode-size-`2` packets are locator-recoverable, while mode-size-`3` packets are
 maximal-window boundary packets.  Therefore a proof of M1 cannot use rank
@@ -1255,7 +1282,9 @@ equal-size aliases in the `F_7^*`, mode-size-`3` boundary packets and checks
 that any such alias would have to be disjoint, as the Vandermonde argument
 predicts.  In the largest current audit, only `120` of the `4320` boundary
 packets admit such an alias; the other `4200` are support-identifiable among
-domain `3`-sets despite lacking the formal Prony recovery moment.
+domain `3`-sets despite lacking the formal Prony recovery moment.  The same
+audit checks (SF) directly: the constant-product scalar fits have exactly the
+same `4200/120` histogram as the moment aliases.
 
 ## Root-Marked Slice Is One Row
 
