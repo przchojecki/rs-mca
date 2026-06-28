@@ -182,6 +182,9 @@ field-size-free bad-subset bound.
 When full-field probing certifies genuine persistence, it checks that the
 persistent branch has an endpoint defect and residual direction dimension at
 least two.
+Conversely, residual direction dimension at least two forces every available
+root to be a one-root bad slice, hence forces the one-root pencil into the
+persistent branch for produced anchors in the usual field-size range.
 For two-dimensional residual direction spaces, it identifies the bad pairs as
 projective evaluation fibers.
 For each fixed collapsed anchor base, it audits the sparse-representation
@@ -4963,6 +4966,96 @@ def analyze_case(
                                                     ),
                                                 }
                                             )
+                                        if residual_direction_dim >= 2:
+                                            if root_slice_bad_roots != set(
+                                                available_roots
+                                            ):
+                                                raise AssertionError(
+                                                    {
+                                                        "kind": (
+                                                            "productive-"
+                                                            if productive
+                                                            else ""
+                                                        )
+                                                        + "marked-core-"
+                                                        "deficit-anchor-"
+                                                        "direction-mds-"
+                                                        "root-slice-full-"
+                                                        "failed",
+                                                        "p": p,
+                                                        "k": k,
+                                                        "syndrome": list(syn),
+                                                        "fixed_roots": list(
+                                                            fixed_roots
+                                                        ),
+                                                        "unmarked_core": list(
+                                                            unmarked_core
+                                                        ),
+                                                        "marked_count": (
+                                                            marked_count
+                                                        ),
+                                                        "core_deficit": (
+                                                            core_deficit
+                                                        ),
+                                                        "anchor": list(anchor),
+                                                        "direction_dim": (
+                                                            residual_direction_dim
+                                                        ),
+                                                        "available_roots": list(
+                                                            available_roots
+                                                        ),
+                                                        "root_slice_bad_roots": (
+                                                            sorted(
+                                                                root_slice_bad_roots
+                                                            )
+                                                        ),
+                                                    }
+                                                )
+                                            if (
+                                                p >= residual_size
+                                                and not root_slice_persistent
+                                            ):
+                                                raise AssertionError(
+                                                    {
+                                                        "kind": (
+                                                            "productive-"
+                                                            if productive
+                                                            else ""
+                                                        )
+                                                        + "marked-core-"
+                                                        "deficit-anchor-"
+                                                        "direction-mds-"
+                                                        "persistence-"
+                                                        "equivalence-failed",
+                                                        "p": p,
+                                                        "k": k,
+                                                        "syndrome": list(syn),
+                                                        "fixed_roots": list(
+                                                            fixed_roots
+                                                        ),
+                                                        "unmarked_core": list(
+                                                            unmarked_core
+                                                        ),
+                                                        "marked_count": (
+                                                            marked_count
+                                                        ),
+                                                        "core_deficit": (
+                                                            core_deficit
+                                                        ),
+                                                        "anchor": list(anchor),
+                                                        "direction_dim": (
+                                                            residual_direction_dim
+                                                        ),
+                                                        "available_roots": list(
+                                                            available_roots
+                                                        ),
+                                                        "root_slice_bad_roots": (
+                                                            sorted(
+                                                                root_slice_bad_roots
+                                                            )
+                                                        ),
+                                                    }
+                                                )
                                         if residual_direction_dim == 2:
                                             projective_eval_base_roots: set[
                                                 int

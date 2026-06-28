@@ -2992,6 +2992,47 @@ The verifier checks this when full-field probing certifies persistence
 and residual direction dimension at least two.  The current largest `F_7^*`
 scan has no certified persistent produced anchor.
 
+## Higher Residual Direction Is the Persistent One-Root Branch
+
+The converse direction is simpler and completes the local dictionary.  If
+`b(U,W)>=2`, then every available root is one-root bad:
+
+```text
+Z_1(U,W)=D'.                                      (HRD)
+```
+
+Indeed, for any `x in D'`, evaluation at `x` is a linear map
+
+```text
+Dir K(U,W) -> F,        Q |-> Q(x).
+```
+
+Its domain has dimension at least `2` and its codomain has dimension `1`, so it
+has a nonzero kernel.  Thus some nonzero residual direction vanishes at `x`,
+which is exactly the one-root bad-slice condition.
+
+For a produced anchor, `D'` contains the produced residual support `R` of size
+`q`, so `|D'|>=q`.  If the one-root pencil were nonpersistent, the finite
+branch would give `|Z_1(U,W)|<=q-1`, contradicting (HRD).  Hence, when
+`|F|>q-1`, a produced anchor satisfies
+
+```text
+one-root absorbed pencil is persistent
+    iff
+b(U,W)>=2.                                       (PEQ)
+```
+
+The forward implication is (PHD), and the reverse implication is (HRD) plus the
+finite/persistent dichotomy.  Thus the residual-anchor problem has no remaining
+gap between the one-root absorbed-pencil language and the residual-direction
+language: after the finite one-root branch is closed, the surviving branch is
+precisely the higher-dimensional fixed-divisor residual direction space.
+
+The verifier now checks (HRD) whenever `b(U,W)>=2`, and in the usual field-size
+range it also checks that such anchors lie in the persistent one-root branch.
+The current largest `F_7^*` scan has no positive-dimensional produced residual
+anchor.
+
 ## Two-Dimensional Residual Directions Are Projective Fibers
 
 The first surviving persistent case after (PHD) is `b(U,W)=2`.  In that case

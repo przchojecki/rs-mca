@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 higher residual direction equals persistent one-root
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that `b(U,W)>=2` makes every available root
+  one-root-bad, so for produced anchors in the usual `|F|>q-1` range the
+  one-root absorbed pencil is persistent exactly when `b(U,W)>=2`.
+- **How it is useful:** Collapses the remaining one-root persistent branch and
+  the higher-dimensional residual-direction branch into the same object.  This
+  removes a bookkeeping split from the fixed-anchor M1 residual route.
+- **What to do next:** Work on the first surviving case `b(U,W)=2` by bounding
+  projective evaluation fibers and separating quotient-periodic from aperiodic
+  fibers.
+
 ### 2026-06-28 - M1 projective fibers give exact bad-pair counts
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
