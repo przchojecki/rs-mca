@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 lower-alias chart admissibility audit
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED-LOCAL.
+- **What is being added:** Tightens the lower-alias union statement to make
+  the retained defect-degree, root-free, degree-of-numerator, and coprimality
+  conditions explicit.
+- **How it is useful:** Prevents the aggregate lower-alias bound from being
+  read as accepting every defect in the ambient projective space; only the
+  fixed-degree chart's admissible candidates are aliases.
+- **What to do next:** Keep using the corrected retained-defect formulation
+  when connecting alias bounds to active primitive-class counting.
+
 ### 2026-06-28 - M1 full primitive aliases lift from direction aliases
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

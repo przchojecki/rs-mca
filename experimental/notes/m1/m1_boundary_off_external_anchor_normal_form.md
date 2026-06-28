@@ -15609,11 +15609,18 @@ B_2=(B_1A_R-L_D R)/Q_1.                            (LowerAliasUnion)
 The retained aliases are exactly the defects for which, with `e_2=deg A_R`,
 
 ```text
-e_2<e_1,        e_1+e_2>n,
+e_2<e_1,        deg R < e_1+e_2-n,
 ```
 
-and `(Q_2,B_2)` satisfies the root-free and primitive conditions of
-Corollary 40.154.
+and `(Q_2,B_2)` satisfies the retained degree, root-free, and primitive
+conditions of Corollary 40.154.  Equivalently, after forming
+
+```text
+B_2=(B_1A_R-L_D R)/Q_1,
+```
+
+one keeps exactly those defects for which `A_R` is root-free on `D`,
+`deg B_2<e_2`, and `gcd(A_R,B_2)=1`.
 
 Consequently, over `F_q`, the total number of lower-degree primitive direction
 aliases of the fixed direction is at most
@@ -15646,7 +15653,9 @@ d=e_1+e_2-n <= e_1+(e_1-1)-n = D_low.
 ```
 
 Hence its defect lies in `F[X]_<D_low`, and the lower chart gives exactly
-(LowerAliasUnion).  Conversely, any retained defect in that union is a lower
+(LowerAliasUnion), with `deg R<e_1+e_2-n` and the retained degree, root-free,
+and primitive conditions inherited from Corollary 40.154.  Conversely, any
+defect in the displayed union satisfying those retained conditions is a lower
 alias by Corollary 40.154.  The defect is unique up to scalar because
 `L_D R=B_1Q_2-B_2Q_1` for fixed `(Q_1,B_1)` and projective `(Q_2,B_2)`.
 Counting projective defects over `F_q` gives (LowerAliasCount).
