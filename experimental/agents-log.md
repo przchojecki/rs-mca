@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 split-support partial absorption
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** Proves that absorbing any subset `E` of packet
+  modes into the anchor gives the predicted smaller sparse packet on
+  `Y\E`; proper absorptions remain nonzero and full absorption is the active
+  split-support equation.
+- **How it is useful:** Gives an induction-ready split-support object for M1:
+  modes can be moved into the anchor without leaving the packet category or
+  creating hidden zero collapses.
+- **What to do next:** Use the partial-absorption structure to bound families
+  of split-support certificates, especially by charging large families to
+  quotient-periodic, tangent, or lower-core kernels.
+
 ### 2026-06-28 - M1 anchor-base packets are split-support certificates
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

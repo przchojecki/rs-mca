@@ -1683,6 +1683,41 @@ The verifier checks (SS) and (SB) for every produced packet.  In the largest
 root-marked split-boundary checks; the productive subaudit contributes
 `32400` split supports and `69120` split-boundary checks.
 
+## Partial Mode Absorption Is Lossless
+
+The split-support certificate is stable when packet modes are absorbed into
+the anchor.  With `A`, `Y`, and `a_y` as above, let `E subset Y` and put
+
+```text
+A_E=A union E,        Y_E=Y\E,        ell_E(X)=prod_{e in E}(X-e).
+```
+
+Then
+
+```text
+H_{tau+m-|E|,|A_E|}(s)ell_{A_E}
+ = (sum_{y in Y_E} a_y ell_E(y) y^i)_{0<=i<=tau+m-|E|-1}.      (PA)
+```
+
+If `E` is a proper subset of `Y`, the right side is nonzero because the
+remaining amplitudes `a_y ell_E(y)` are nonzero.  If `E=Y`, the right side is
+zero and (PA) is exactly the active support equation for `A union Y`.
+
+Proof: multiply the sparse moment sequence by `ell_E`.  Each absorbed mode in
+`E` is killed, and each remaining mode `y` is multiplied by the nonzero scalar
+`ell_E(y)`.  The available row window loses exactly `|E|` rows.
+
+Thus the split-support packet has no hidden intermediate collapse: every
+proper partial absorption remains a smaller nonzero sparse packet, and full
+absorption is precisely the active split-support relation.  This gives an
+inductive object for M1: one may move packet modes into the anchor one subset
+at a time without leaving the split-support packet category.
+
+The verifier checks (PA) for every nonempty subset of modes of every produced
+packet.  In the largest `F_7^*` audit this gives `120960` partial-absorption
+checks, of which `86400` are proper nonzero absorptions.  The productive
+subaudit contributes `114480` absorptions, of which `82080` are proper.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a

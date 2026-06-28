@@ -4283,6 +4283,19 @@ a deletion-tree artifact.  The verifier checks this in the largest \(F_7^*\)
 audit with \(34560\) split-support checks and \(73440\) root-marked
 split-boundary checks, including \(32400\) productive supports and \(69120\)
 productive boundaries.
+The certificate is stable under partial mode absorption.  For
+\(E\subset Y\), \(A_E=A\cup E\), and \(Y_E=Y\setminus E\),
+\[
+  H_{\tau+m-|E|,|A_E|}(s)\ell_{A_E}
+  =
+  \left(\sum_{y\in Y_E}a_y\ell_E(y)y^i\right)_
+        {0\le i\le\tau+m-|E|-1}.
+\]
+Every proper absorption is nonzero, while \(E=Y\) is exactly the active
+support equation.  The verifier checks this for all nonempty mode subsets; in
+the largest \(F_7^*\) audit this is \(120960\) absorption checks, with
+\(86400\) proper nonzero checks, and \(114480\) productive absorptions with
+\(82080\) proper.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

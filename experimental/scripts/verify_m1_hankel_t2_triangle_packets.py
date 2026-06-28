@@ -112,6 +112,8 @@ forces the common (|A|-1)-core into the same Hankel kernel.
 It checks the reversible split-support certificate: for collapsed anchor
 base A and packet modes Y, the total support A union Y is active and every
 one-mode deletion has the expected nonzero root-marked boundary vector.
+It also checks that absorbing any subset of packet modes into the anchor gives
+the predicted smaller sparse packet, with no proper-subset zero collapse.
 Equivalently, it records support-unique boundary packets as those with no
 equal-size visible alias.
 The full-domain visible endpoint count is then support-unique labels plus one
@@ -480,6 +482,10 @@ def analyze_case(
     terminal_tree_productive_anchor_split_support_checks = 0
     terminal_tree_anchor_split_boundary_checks = 0
     terminal_tree_productive_anchor_split_boundary_checks = 0
+    terminal_tree_anchor_split_absorption_checks = 0
+    terminal_tree_productive_anchor_split_absorption_checks = 0
+    terminal_tree_anchor_split_proper_absorption_checks = 0
+    terminal_tree_productive_anchor_split_proper_absorption_checks = 0
     terminal_tree_mode_rank_checks = 0
     terminal_tree_productive_mode_rank_checks = 0
     terminal_tree_mode_peeling_checks = 0
@@ -659,6 +665,10 @@ def analyze_case(
             nonlocal terminal_tree_productive_anchor_split_support_checks
             nonlocal terminal_tree_anchor_split_boundary_checks
             nonlocal terminal_tree_productive_anchor_split_boundary_checks
+            nonlocal terminal_tree_anchor_split_absorption_checks
+            nonlocal terminal_tree_productive_anchor_split_absorption_checks
+            nonlocal terminal_tree_anchor_split_proper_absorption_checks
+            nonlocal terminal_tree_productive_anchor_split_proper_absorption_checks
             nonlocal terminal_tree_mode_rank_checks
             nonlocal terminal_tree_productive_mode_rank_checks
             nonlocal terminal_tree_mode_peeling_checks
@@ -919,6 +929,10 @@ def analyze_case(
                 nonlocal terminal_tree_productive_anchor_split_support_checks
                 nonlocal terminal_tree_anchor_split_boundary_checks
                 nonlocal terminal_tree_productive_anchor_split_boundary_checks
+                nonlocal terminal_tree_anchor_split_absorption_checks
+                nonlocal terminal_tree_productive_anchor_split_absorption_checks
+                nonlocal terminal_tree_anchor_split_proper_absorption_checks
+                nonlocal terminal_tree_productive_anchor_split_proper_absorption_checks
 
                 if not current_core:
                     return (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -1983,6 +1997,61 @@ def analyze_case(
                                         "peeled_roots": list(subset),
                                         "peeled_core": list(peeled_core),
                                         "peeled_vector": list(peeled_vector),
+                                        "expected": peeled_expected,
+                                    }
+                                )
+                            absorbed_anchor = tuple(
+                                sorted((*anchor_base, *subset))
+                            )
+                            absorbed_vector = hankel_apply(
+                                syn,
+                                cached_locator(absorbed_anchor),
+                                row_count,
+                                p,
+                            )
+                            terminal_tree_anchor_split_absorption_checks += 1
+                            if productive_children >= 2:
+                                terminal_tree_productive_anchor_split_absorption_checks += (
+                                    1
+                                )
+                            if subset_size < mode_count:
+                                terminal_tree_anchor_split_proper_absorption_checks += (
+                                    1
+                                )
+                                if productive_children >= 2:
+                                    terminal_tree_productive_anchor_split_proper_absorption_checks += (
+                                        1
+                                    )
+                            if absorbed_vector != tuple(peeled_expected) or (
+                                subset_size < mode_count
+                                and not any(absorbed_vector)
+                            ):
+                                raise AssertionError(
+                                    {
+                                        "kind": (
+                                            "terminal-branch-anchor-split-"
+                                            "absorption-failed"
+                                        ),
+                                        "p": p,
+                                        "k": k,
+                                        "syndrome": list(syn),
+                                        "fixed_roots": list(fixed_roots),
+                                        "current_fixed": list(current_fixed),
+                                        "current_core": list(current_core),
+                                        "anchor_base": list(anchor_base),
+                                        "absorbed_roots": list(subset),
+                                        "absorbed_anchor": list(
+                                            absorbed_anchor
+                                        ),
+                                        "remaining_roots": [
+                                            root_index
+                                            for root_index in sorted(
+                                                child_root_indices - subset_set
+                                            )
+                                        ],
+                                        "absorbed_vector": list(
+                                            absorbed_vector
+                                        ),
                                         "expected": peeled_expected,
                                     }
                                 )
@@ -4105,6 +4174,18 @@ def analyze_case(
         "terminal_tree_productive_anchor_split_boundary_checks": (
             terminal_tree_productive_anchor_split_boundary_checks
         ),
+        "terminal_tree_anchor_split_absorption_checks": (
+            terminal_tree_anchor_split_absorption_checks
+        ),
+        "terminal_tree_productive_anchor_split_absorption_checks": (
+            terminal_tree_productive_anchor_split_absorption_checks
+        ),
+        "terminal_tree_anchor_split_proper_absorption_checks": (
+            terminal_tree_anchor_split_proper_absorption_checks
+        ),
+        "terminal_tree_productive_anchor_split_proper_absorption_checks": (
+            terminal_tree_productive_anchor_split_proper_absorption_checks
+        ),
         "terminal_tree_mode_rank_checks": terminal_tree_mode_rank_checks,
         "terminal_tree_productive_mode_rank_checks": (
             terminal_tree_productive_mode_rank_checks
@@ -4529,6 +4610,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_anchor_split_support_checks']} "
             f"anchor_split_boundaries="
             f"{result['terminal_tree_anchor_split_boundary_checks']} "
+            f"anchor_split_absorptions="
+            f"{result['terminal_tree_anchor_split_absorption_checks']} "
             f"max_nonzero_terminal_tree_mode_size="
             f"{result['max_nonzero_terminal_tree_mode_size']} "
             f"max_nonzero_terminal_tree_mode_rank_size="
