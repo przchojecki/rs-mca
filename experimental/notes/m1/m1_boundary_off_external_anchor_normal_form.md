@@ -8507,6 +8507,91 @@ annihilator is nonzero, common vanishing of all its polynomials at `beta` is
 equivalent to vanishing of their gcd.  If the annihilator is zero, the
 orthogonal complement of `W_{mu,nu,s}` is zero, hence `W_{mu,nu,s}=F_q^D`.
 
+## Corollary 40.65: Short-Window Paired Anchors Have The Same Dual Test
+
+Let `D subset F_q`, let `1<=h<=|D|`, and keep the paired moment notation of
+Corollary 40.62.  Define the truncated moment map
+
+```text
+M_h(q)=( sum_{x in D} q_x x^b )_{0<=b<h} in F_q^h
+```
+
+and the paired short-multiplier value space
+
+```text
+W_{mu,nu,s}
+={ (mu_x C_u(x)+nu_x C_v(x))_{x in D} :
+   deg C_u<s, deg C_v<s } subset F_q^D.
+```
+
+Define the short-window polynomial annihilator
+
+```text
+Ann_{mu,nu,s}^{(h)}
+={ P in F_q[X]_{<h} :
+   sum_{x in D} P(x) mu_x x^a = 0 and
+   sum_{x in D} P(x) nu_x x^a = 0,        0<=a<s }.
+```
+
+Then, for any `beta in F_q`, the paired truncated anchor identity
+
+```text
+(1,beta,...,beta^{h-1}) in M_h(W_{mu,nu,s})
+```
+
+holds if and only if
+
+```text
+P(beta)=0        for every P in Ann_{mu,nu,s}^{(h)}.        (ShortDualAnchorTest)
+```
+
+Consequently, if `Ann_{mu,nu,s}^{(h)}` is nonzero and
+
+```text
+G_{mu,nu,s}^{(h)}=gcd( P : P in Ann_{mu,nu,s}^{(h)} ),
+```
+
+then the non-domain paired anchors in the short window are exactly the roots
+of `G_{mu,nu,s}^{(h)}` in `F_q\D`, and their number is at most
+`deg G_{mu,nu,s}^{(h)}`.  If `Ann_{mu,nu,s}^{(h)}=0`, then
+`M_h(W_{mu,nu,s})=F_q^h`, so every `beta in F_q` passes the truncated paired
+moment test.
+
+The scalar version is obtained by deleting the `nu` equations and the
+multiplier `C_v`, and the shifted paired version is obtained by replacing
+`(mu_x,nu_x)` with `(x mu_x,x nu_x)`.  For `h=|D|`, Corollary 40.64 is the
+same statement transported through the full Vandermonde isomorphism and
+written in Lagrange coordinates.
+
+Thus the genuinely short-window bottom-anchor search is also a common-gcd
+problem: count non-domain roots of a concrete degree-`<h` low-moment
+annihilator space.  This is the direct dual target for proving or falsifying
+the anchor-span route of Corollary 40.61.
+
+### Proof
+
+The dual of `F_q^h` is identified with polynomials
+
+```text
+P(X)=p_0+p_1X+...+p_{h-1}X^{h-1}
+```
+
+by pairing `P` with a moment vector `m=(m_b)` as `sum_b p_b m_b`.  Such a
+polynomial annihilates `M_h(W_{mu,nu,s})` if and only if
+
+```text
+sum_{x in D} P(x)(mu_x C_u(x)+nu_x C_v(x))=0
+```
+
+for every `deg C_u,deg C_v<s`, which is equivalent to the displayed moment
+conditions defining `Ann_{mu,nu,s}^{(h)}`.
+
+A vector belongs to a subspace of `F_q^h` if and only if every functional
+annihilating that subspace also annihilates the vector.  Applying this to
+`(1,beta,...,beta^{h-1})` gives exactly `P(beta)=0` for every polynomial in
+the annihilator.  The common-gcd and zero-annihilator consequences are
+immediate.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -11317,6 +11402,9 @@ interpolation degree tests and rules out non-domain anchors in windows
 Corollary 40.64 gives a dual common-zero test for full-domain paired anchors;
 it reduces their count to a common-gcd degree but does not bound that degree
 in the actual M1 instances.
+Corollary 40.65 gives the corresponding short-window dual test; it reduces
+short-window anchor counting to a degree-`<h` common-gcd problem but does not
+bound that gcd in the actual M1 instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

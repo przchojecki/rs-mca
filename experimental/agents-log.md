@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 short-window paired dual anchor test
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM / AUDIT.
+- **What is being added:** The paired dual anchor test is extended to the
+  genuinely short window `h<|D|`: a truncated anchor vector lies in the
+  moment image of the short-multiplier space iff every degree-`<h` polynomial
+  annihilating the `mu` and `nu` weighted moments through order `s-1` vanishes
+  at the anchor.
+- **How it is useful:** This makes the active M1 bottom-anchor search a
+  common-gcd problem for an explicit degree-`<h` annihilator space, without
+  relying on the full-domain Lagrange specialization.
+- **What to do next:** Bound or falsify the common gcd of this short-window
+  annihilator in actual M1 bottom families.
+
 ### 2026-06-28 - M1 full-domain paired dual anchor test
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

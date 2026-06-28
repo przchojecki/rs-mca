@@ -2582,6 +2582,24 @@ Then a non-domain \(\beta\) is a paired anchor iff every such \(P\) vanishes at
 are exactly the non-domain roots of its common gcd.  Thus the full-domain
 paired anchor count is reduced to bounding one explicit low-moment common
 divisor.
+The same duality works in the genuinely short window \(h<|D|\).  Let
+\[
+  M_h(q)=\left(\sum_{x\in D}q_xx^b\right)_{0\le b<h}
+\]
+and let \(W_{\mu,\nu,s}\) be the paired short-multiplier value space above.
+Then
+\[
+  (1,\beta,\ldots,\beta^{h-1})\in M_h(W_{\mu,\nu,s})
+\]
+if and only if every \(P\in F_q[X]_{<h}\) satisfying
+\[
+  \sum_{x\in D}P(x)\mu_xx^a=\sum_{x\in D}P(x)\nu_xx^a=0
+  \qquad(0\le a<s)
+\]
+also satisfies \(P(\beta)=0\).  Therefore short-window paired anchors are the
+non-domain roots of the common gcd of this degree-\(<h\) annihilator space,
+unless the annihilator is zero and the truncated moment map is already
+surjective.
 In the common two-denominator case \(M_{\min}=\{D_1,D_2\}\), writing
 \(C=\gcd(D_1,D_2)\), \(D_i=C E_i\), and \(e_i=\deg E_i\), the quotient
 denominators \(E_1,E_2\) are automatically coprime and
