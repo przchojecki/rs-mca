@@ -2832,6 +2832,32 @@ to the \(j\)-point complement fiber
 This uses only that \(X-\beta\) is invertible modulo \(Q_{\rm prim}\).  Thus
 the root-anchor excess is a degree-dropped complement-packing target after
 the actual domain root has been charged.
+The fixed-support multiplicity itself has no further hidden branch.  For an
+\(a\)-support \(T\),
+\[
+  |\operatorname{Mu}_T(Y)|>1
+  \quad\Longleftrightarrow\quad
+  \phi_h|_T\in \RS[F,T,k]\ \text{and}\ Y|_T\in\RS[F,T,k],
+\]
+and then \(\operatorname{Mu}_T(Y)=F\).  Hence, with
+\[
+  \operatorname{DoubleColl}_h(Y,a)
+  =\{T: |T|=a,\ \phi_h|_T\in\RS[F,T,k],\
+              Y|_T\in\RS[F,T,k]\},
+\]
+the root-anchor excess ledger satisfies
+\[
+  E_{\rm root}(Y,a)=a\sum_{|T|=a}(m_T(Y)-1)_+
+  \le a(q-1)|\operatorname{DoubleColl}_h(Y,a)|.
+\]
+Consequently
+\[
+  R_{\rm comp}(Y,a)\le (j+1)U_{\rm comp}
+    +a(q-1)|\operatorname{DoubleColl}_h(Y,a)|.
+\]
+The weighted one-exchange ledger is therefore reduced to ordinary
+small-complement packing plus a double-collapse support count where both the
+one-row generator and the received word are base-code on the same support.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

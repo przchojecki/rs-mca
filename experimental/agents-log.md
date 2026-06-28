@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 weighted excess reduces to double-collapse supports
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Fixed-support coefficient multiplicity is
+  classified exactly: it is larger than one precisely when both the one-row
+  generator and the received word restrict to `RS_k` on the same `a`-support.
+  The root-anchor excess then satisfies
+  `E_root=a sum_T (m_T-1)_+ <= a(q-1)|DoubleColl_h(Y,a)|`.
+- **How it is useful:** This converts the weighted one-exchange complement
+  ledger into unweighted small-complement packing plus a named
+  double-collapse support count.
+- **What to do next:** Bound `DoubleColl_h(Y,a)` by combining the
+  generator-collapse complement fiber with ordinary locator/list bounds for
+  `Y`.
+
 ### 2026-06-28 - M1 root-anchor fibers descend after deleting the root
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

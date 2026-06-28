@@ -11963,6 +11963,140 @@ L_{C_0 union {beta}} in F L_D M B_prim^{-1}
 
 so `C_0 union {beta} in Comp_[M]`.  These two constructions are inverse.
 
+## Corollary 40.105: Root-Anchor Excess Is Exactly Double-Collapse Support Excess
+
+Keep the notation of Corollaries 40.102--40.104, and write `q=|F|`.  Define
+
+```text
+List_k(Y,a)
+ = { T subset D : |T|=a,        Y|_T in RS[F,T,k] },
+DoubleColl_h(Y,a)=GenColl cap List_k(Y,a).
+```
+
+For every `a`-support `T`,
+
+```text
+|Mu_T(Y)|>1        if and only if        T in DoubleColl_h(Y,a),
+```
+
+and in that case `Mu_T(Y)=F`.  If `T in GenColl\List_k(Y,a)`, then
+`Mu_T(Y)=emptyset`; if `T notin GenColl`, then `|Mu_T(Y)|<=1`.
+
+Moreover, for every `T in GenColl`, the projective collapse multiplier
+`[N_T]` with
+
+```text
+L_{D\T} in F L_D N_T B_prim^{-1}        mod Q_prim,
+deg N_T < ell+1,
+```
+
+is unique and coprime to `Q_prim`.  If `m_T(Y)>1`, then for every
+`beta in T`, the core `T\{beta}` is exceptional with projective multiplier
+
+```text
+[(X-beta)N_T].
+```
+
+Consequently the root-anchor excess ledger from Corollary 40.103 satisfies
+the exact identity
+
+```text
+E_root(Y,a)=a sum_{|T|=a} (m_T(Y)-1)_+.             (DoubleCollapseStar)
+```
+
+In particular,
+
+```text
+E_root(Y,a) <= a(q-1) |DoubleColl_h(Y,a)|.          (DoubleCollapseBound)
+```
+
+Combining this with Corollary 40.103, the weighted one-exchange complement
+ledger is reduced to the unweighted `(j+1)`-complement packing ledger plus
+the double-collapse support ledger:
+
+```text
+R_comp(Y,a) <= (j+1) U_comp
+               + a(q-1) |DoubleColl_h(Y,a)|.       (WeightedToDoubleCollapse)
+```
+
+Thus same-support coefficient multiplicity is not a separate weighted
+phenomenon: after root-anchor descent it is exactly the support star of those
+`a`-sets on which both the one-row generator and the received word restrict
+to the base Reed-Solomon code.
+
+### Proof
+
+If `T in GenColl`, choose `P in F[X]_<k` with `P=phi_h` on `T`.  Then
+
+```text
+mu in Mu_T(Y)        if and only if        Y-mu P in RS[F,T,k].
+```
+
+Since `P` itself is in `RS[F,T,k]`, this condition is either true for every
+`mu`, namely when `Y|_T in RS[F,T,k]`, or false for every `mu`.  If
+`T notin GenColl`, Corollary 40.102 gives `|Mu_T(Y)|<=1`.  This proves the
+double-collapse classification of `Mu_T(Y)`.
+
+For uniqueness of `[N_T]`, let `C_0=D\T`, and suppose `N_1,N_2` both satisfy
+the displayed complement condition.  Then for nonzero scalars `c_1,c_2`,
+
+```text
+L_{C_0} == c_i L_D N_i B_prim^{-1}        mod Q_prim.
+```
+
+Multiplying by `B_prim L_D^{-1}` gives
+
+```text
+c_2 N_1 == c_1 N_2        mod Q_prim.
+```
+
+Both sides have degree at most `ell<deg Q_prim`, so the congruence is a
+polynomial identity, and `[N_1]=[N_2]`.
+
+The same congruence also shows that `N_T` is coprime to `Q_prim`: if a common
+factor `H` divided `N_T` and `Q_prim`, then reducing
+`L_{C_0} == c L_D N_T B_prim^{-1}` modulo `H` would force
+`L_{C_0}B_prim==0 mod H`, impossible because `Q_prim` is root-free on `D` and
+`gcd(B_prim,Q_prim)=1`.
+
+Now assume `m_T(Y)>1`.  Then `|Mu_T(Y)|>1`, so `T in DoubleColl_h(Y,a)` by
+the first paragraph.  For any `beta in T`, put
+
+```text
+C_beta=(D\T) union {beta}.
+```
+
+Since `L_{C_beta}=(X-beta)L_{D\T}`, the complement condition for `N_T`
+implies
+
+```text
+L_{C_beta} in F L_D (X-beta)N_T B_prim^{-1}
+        mod Q_prim.
+```
+
+The multiplier `(X-beta)N_T` has degree at most `ell+1` and is coprime to
+`Q_prim`, because `Q_prim(beta)!=0`.  Hence `C_beta in Comp_[(X-beta)N_T]`,
+so the core `T\{beta}` is exceptional with that projective multiplier.
+
+It remains to count the excess ledger.  A positive summand in `E_root(Y,a)`
+has the form
+
+```text
+([M], C, beta),        beta in C,        M(beta)=0,
+T=D\(C\{beta}),        m_T(Y)>1.
+```
+
+The first paragraph gives `T in DoubleColl_h(Y,a)`.  Corollary 40.103 and the
+uniqueness just proved force `[M]=[(X-beta)N_T]`.  Conversely, the preceding
+paragraph constructs exactly one such summand for every pair
+`(T,beta)` with `m_T(Y)>1` and `beta in T`.  Therefore each support `T`
+with positive excess contributes exactly `a` copies of `(m_T(Y)-1)_+`, which
+proves (DoubleCollapseStar).
+
+Finally `m_T(Y)<=|Mu_T(Y)|<=q`, and positive excess can occur only on
+`DoubleColl_h(Y,a)`.  This proves (DoubleCollapseBound), and substituting the
+bound into (RootAnchorLedger) gives (WeightedToDoubleCollapse).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -14901,6 +15035,10 @@ to be an actual root of the one-exchange multiplier; hence weighted excess
 beyond the trivial `j+1` adjacent supports is root-anchored.
 Corollary 40.104 then cancels that actual root and identifies the
 root-anchor fiber with a degree-dropped `j`-complement residue fiber.
+Corollary 40.105 identifies the endpoint of this local accounting: the
+root-anchor excess is exactly the support-star excess of double-collapse
+supports where both the one-row generator and the received word restrict to
+`RS_k`, giving a weighted-to-double-collapse ledger bound.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
