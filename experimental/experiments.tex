@@ -2372,6 +2372,19 @@ and the residual ledger is
 Conversely, after common domain-root slices are charged, vanishing of all
 full-column minors for one of these four maps is exactly a remaining
 low-degree root-free half-window recurrence for that family.
+These cutoff minors are genuine M1 structure, not a formal consequence of
+having local syndrome moments.  If \(|D|=n\ge s+1\), there is a nonzero
+weight vector \((\mu_x)\) whose first \(s\) moments vanish.  For
+\(w_a=\sum_{x\in D}\mu_xx^a\), the constant polynomial \(Q=1\) is root-free
+and lies in \(\ker H_{s,m-1}(w)\) for every \(m\ge1\).  Taking \(u=v=w\) and
+\(s=s_c=t+r_{hw}\) makes \(Q=1\) lie in all four cutoff kernels
+\[
+  A_u(m),\quad A_v(m),\quad A_{uv}(m),\quad A_{Suv}(m).
+\]
+By absorbing the nonzero parity-check scalars, these moment data are local
+Reed-Solomon syndrome data.  Hence a proof of the four cutoff minors must use
+active M1 geometry or quotient/aperiodic structure; row counts and local
+syndrome normalization alone cannot supply it.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

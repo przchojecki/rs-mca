@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 cutoff-minor obstruction is syndrome-realizable
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM / AUDIT.
+- **What is being added:** A guardrail for the four cutoff-minor target: if
+  `|D|>=s+1`, one can choose nonzero local syndrome weights whose first `s`
+  moments vanish, making the root-free constant polynomial `1` lie in all
+  four cutoff kernels simultaneously.
+- **How it is useful:** This shows the cutoff-minor route cannot be closed by
+  row counts, moment expansions, or generic syndrome normalization alone; it
+  must use active M1 geometry or quotient/aperiodic structure.
+- **What to do next:** Look for the missing active-M1 input that prevents this
+  constant-recurrence obstruction in the actual noncontained line setting.
+
 ### 2026-06-28 - M1 four cutoff minors close half-window route
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -9157,6 +9157,86 @@ Corollary 40.71 gives a root-free element of `ker A_F(m)`, and Corollary 40.69
 identifies this with `deg D_F<m`.  Hence, once fixed-root pieces are removed,
 rank failure is exactly the low-degree half-window residual.
 
+## Corollary 40.73: The Cutoff-Minor Target Is Extra M1 Structure
+
+The four cutoff-minor conditions in Corollary 40.72 are not consequences of
+the Hankel or local syndrome formalism alone.
+
+Let `D subset F_q` have size `n`, fix `s>=1`, and assume
+
+```text
+n>=s+1.
+```
+
+Then there is a nonzero weight vector `(mu_x)_{x in D}` such that
+
+```text
+sum_{x in D} mu_x x^a=0,        0<=a<s.
+```
+
+For the local moment sequence
+
+```text
+w_a=sum_{x in D} mu_x x^a,
+```
+
+the constant polynomial `Q=1` is root-free on `D` and lies in
+
+```text
+ker H_{s,m-1}(w)
+```
+
+for every `m>=1`.  Consequently, at a half-window cutoff with
+`s_c=t+r_hw`, if `n>=s_c+1` and one sets `u=v=w` with the first `s_c` moments
+vanishing, then `Q=1` lies in all four cutoff kernels
+
+```text
+A_u(m),        A_v(m),        A_uv(m),        A_Suv(m)
+```
+
+for every `m>=1`.  In particular all four full-column minor targets of
+Corollary 40.72 can fail simultaneously for local moment data, with a
+root-free low-degree recurrence.
+
+Moreover this obstruction is realizable by local Reed-Solomon syndrome data:
+after absorbing the nonzero parity-check column scalars as in Corollary 40.68,
+choose the supported word values `y_x=mu_x/lambda_x`.
+
+Thus the cutoff-minor route cannot be closed by row counts, moment expansions,
+or generic syndrome normalization alone.  Any proof of the four minors in the
+actual M1 problem must use the active noncontained line geometry, quotient or
+aperiodic restrictions, or another structural input beyond arbitrary local
+syndrome windows.
+
+This does not construct an active noncontained M1 counterexample; it only
+shows that the scanner-ready minor targets of Corollary 40.72 are genuine
+M1-specific obligations.
+
+### Proof
+
+The `s` displayed moment conditions are homogeneous linear equations in the
+`n>=s+1` unknowns `mu_x`, so they have a nonzero solution.  For the resulting
+moment sequence, `w_0,...,w_{s-1}` all vanish.  Therefore
+
+```text
+H_{s,m-1}(w)1 = 0
+```
+
+for every `m>=1`.  The polynomial `1` has no root in `D`.
+
+At the cutoff, the scalar maps use `H_{s_c,m-1}(u)` and
+`H_{s_c,m-1}(v)`, while the ordinary paired map uses the first `s_c-1` rows
+of both `u` and `v`.  The shifted paired map uses rows
+
+```text
+w_1,...,w_{s_c-1}.
+```
+
+All these entries vanish when the first `s_c` moments vanish and `u=v=w`, so
+`Q=1` lies in all four kernels.  Corollary 40.68 supplies the syndrome
+realization by choosing supported word coefficients with
+`lambda_x y_x=mu_x`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -11991,6 +12071,10 @@ not prove the resulting injectivity in the actual M1 instances.
 Corollary 40.72 packages that injectivity target as four explicit full-column
 Hankel minor tests at the first half-window cutoff; it does not prove those
 minors are nonzero in the actual M1 instances.
+Corollary 40.73 shows those cutoff minor targets are extra M1 structure by
+constructing syndrome-realizable local moment data where all four fail via the
+root-free constant recurrence; it does not construct an active noncontained
+M1 counterexample.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
