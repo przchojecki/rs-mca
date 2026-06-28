@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 budget-two external-anchor packets are disjoint
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Closes the root-free part of the residual-budget
+  two branch: for fixed complement-side root set `S`, all linear external
+  anchor fibers are disjoint and have total size at most `binom(n,j+v)`.
+- **How it is useful:** Turns the budget-two external-anchor residual into a
+  single small-complement packet after deletion and twisting, rather than a
+  field-size anchor multiplicity.
+- **What to do next:** Analyze the remaining budget-two constant/support-side
+  root-slice branch and the budget-three linear/quadratic twist branch.
+
 ### 2026-06-28 - M1 small residual budgets classify root-free types
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

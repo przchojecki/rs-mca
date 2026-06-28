@@ -14215,6 +14215,62 @@ specializations `R<=1`, `R=2`, and `R=3`.  A nonconstant linear root-free
 factor over `F` is projectively `X-beta` with `beta notin D`; the coprimality
 condition excludes roots of `Q_0`.
 
+## Corollary 40.134: Budget-Two External-Anchor Packets Are Disjoint
+
+Keep the setup of Corollary 40.131.  Fix
+
+```text
+S subset D,        |S|=s<=u,        v=u-s,
+```
+
+and assume the residual budget is
+
+```text
+r_v=e_0-t+v=2.
+```
+
+Let `A_S` be any set of projective linear classes `[H]` such that
+
+```text
+deg H=1,        H(alpha)!=0 for every alpha in D,
+[L_S H] in P_u^x(Q_0).
+```
+
+For `[H] in A_S`, define
+
+```text
+F_H={ C in Comp_{u,[L_S H]}(Q_0,B_0) : S subset C }.
+```
+
+Then the sets `F_H` are pairwise disjoint and
+
+```text
+sum_{[H] in A_S} |F_H| <= binom(n,j+v).           (BudgetTwoAnchorPacket)
+```
+
+Projectively, each nonconstant `H` is `X-beta` with `beta notin D` and
+`H` coprime to `Q_0`; distinct finite anchors give distinct packets.  Thus
+the root-free part of the residual-budget-two branch is fully charged by one
+external-anchor packet after deleting the complement-side roots `S`.
+
+### Proof
+
+Since `r_v=2` and `deg H=1`, Corollary 40.132 forces the residual multiplier
+`N` in the commuting normal form to be constant.  Corollary 40.131 gives a
+bijection
+
+```text
+F_H <-> { C_0 in Comp_{v,[1]}(Q_0,B_H) : C_0 cap S=empty },
+```
+
+where `B_H==B_0H^{-1} mod Q_0`.  Forgetting the restriction
+`C_0 cap S=empty` only enlarges the target.  By Corollary 40.130, with fixed
+residual `N=1`, the fibers `Comp_{v,[1]}(Q_0,B_H)` are pairwise disjoint as
+`[H]` varies and have total size at most `binom(n,j+v)`.  Pulling back through
+the displayed bijections proves (BudgetTwoAnchorPacket).  The final anchor
+description is the linear case of Corollary 40.133 together with the
+injectivity from Corollary 40.129.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -17248,6 +17304,9 @@ factor of degree `d` lowers the residual multiplier budget by `d`.
 Corollary 40.133 spells out the first low-budget consequences: no nonconstant
 root-free factor at residual budget one, only one external anchor at budget
 two, and only linear or quadratic root-free twists at budget three.
+Corollary 40.134 closes the root-free budget-two packet: after deleting the
+complement roots, all external-anchor fibers for fixed `S` and residual
+budget two are disjoint and have total size at most `binom(n,j+v)`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
