@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 non-standard scalar strata are enlarged residue lines
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** In the complementary range `n-s>k+deg Q`, scalar
+  rational-supercode strata are exact degree-`deg Q` residue-line data over
+  the enlarged code dimension `K=n-s-deg Q`, cut by the affine return slice
+  requiring the enlarged-code explanation to lie back in `F[X]_<k` after the
+  quotient part is restored.
+- **How it is useful:** This classifies the remaining scalar cutoff case
+  instead of leaving it as an opaque supercode-list obstruction.
+- **What to do next:** Bound the return-slice incidence or show that large
+  return-slice families force quotient-periodic, paired, or endpoint-global
+  structure.
+
 ### 2026-06-28 - M1 scalar standard-degree strata are residue lines
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

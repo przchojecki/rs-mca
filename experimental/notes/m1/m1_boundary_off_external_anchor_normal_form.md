@@ -10155,6 +10155,163 @@ congruent to `yB_f mod Q`.  The converse and containment equivalence follow
 by reversing these identities.  The original slope `z=0` has no reciprocal
 parameter, so it remains the only exception.
 
+## Corollary 40.83: Non-Standard Scalar Strata Are Enlarged Residue Lines With A Return Slice
+
+Keep the notation of Corollary 40.81, and assume the complementary
+non-standard range
+
+```text
+1 <= e=deg Q,        n-s > k+e.
+```
+
+Put
+
+```text
+K=n-s-e,        so K>k.
+```
+
+Then the scalar rational-supercode stratum is an exact degree-`e` residue-line
+datum over the enlarged code `RS[F,D,K]`, together with an affine slice forcing
+the explaining enlarged-code polynomial to return to the original
+degree-`<k` code after the global quotient part is restored.
+
+First suppose `Qg in RS[F,D,n-s]`, represented by `P_g`, and divide
+
+```text
+P_g=Q H_g+R_g,        deg H_g<K,        deg R_g<e.
+```
+
+Put
+
+```text
+E=Q,        B_g=-R_g,        w_g=Qf.
+```
+
+Then a finite slope `z` is explained in the original `Qg` scalar stratum on a
+support `S` if and only if there exists `C'_z in F[X]_<K` such that
+
+```text
+Q C'_z + z B_g = w_g        on S,                  (EnlargedQg)
+```
+
+and the return-to-base condition holds:
+
+```text
+C'_z + z H_g in F[X]_<k.                           (ReturnQg)
+```
+
+Under this equivalence the original explaining codeword is
+
+```text
+C_z=C'_z+zH_g.
+```
+
+Thus the remaining non-standard `Qg` scalar branch is not an arbitrary
+supercode list: it is a degree-`e` residue-line datum over dimension `K`,
+cut by the affine return slice (ReturnQg).
+
+Similarly, suppose `Qf in RS[F,D,n-s]`, represented by `P_f`, and divide
+
+```text
+P_f=Q H_f+R_f,        deg H_f<K,        deg R_f<e.
+```
+
+Put
+
+```text
+E=Q,        B_f=-R_f,        w_f=Qg.
+```
+
+For a nonzero original slope `z`, put `y=1/z`.  Then `z` is explained in the
+original `Qf` scalar stratum on a support `S` if and only if there exists
+`C'_y in F[X]_<K` such that
+
+```text
+Q C'_y + y B_f = w_f        on S,                  (EnlargedQf)
+```
+
+and the return-to-base condition holds:
+
+```text
+C'_y + y H_f in F[X]_<k.                           (ReturnQf)
+```
+
+The original explaining codeword is then
+
+```text
+C_z=z(C'_y+yH_f).
+```
+
+The original zero slope remains outside this reciprocal enlarged-residue
+parametrization.
+
+### Proof
+
+Since `deg P_g,deg P_f<n-s=K+e`, Euclidean division by `Q` gives the displayed
+quotients of degree `<K` and remainders of degree `<e`.
+
+In the `Qg` case, `P_g=Qg` on `D`, so
+
+```text
+g=H_g+R_g/Q        on D.
+```
+
+If the original slope `z` is explained by `C_z in F[X]_<k` on `S`, set
+
+```text
+C'_z=C_z-zH_g.
+```
+
+Then `deg C'_z<K`, because `deg C_z<k<K` and `deg H_g<K`.  Also
+`C'_z+zH_g=C_z`, giving (ReturnQg).  Multiplying the identity
+`C_z=f+zg` on `S` by `Q` and substituting `P_g=QH_g+R_g` gives
+
+```text
+Q(C_z-zH_g)-zR_g = Qf        on S,
+```
+
+which is (EnlargedQg).
+
+Conversely, if `C'_z` satisfies (EnlargedQg) and (ReturnQg), put
+`C_z=C'_z+zH_g`.  Then `deg C_z<k`, and (EnlargedQg) gives
+
+```text
+Q C_z-z(QH_g+R_g)=Qf        on S.
+```
+
+Since `QH_g+R_g=P_g=Qg` on `D` and `Q` is root-free on `D`, this is exactly
+`C_z=f+zg` on `S`.
+
+The `Qf` case is the reciprocal version.  If a nonzero original slope `z` is
+explained by `C_z`, put `y=1/z` and
+
+```text
+C'_y=C_z/z-yH_f.
+```
+
+Then `deg C'_y<K`, and
+
+```text
+C'_y+yH_f=C_z/z in F[X]_<k,
+```
+
+which is (ReturnQf).  The equality `f+zg=C_z` on `S` is equivalent to
+
+```text
+P_f+zQg=Q C_z        on S.
+```
+
+After dividing by `z` and substituting `P_f=QH_f+R_f`, this becomes
+
+```text
+Q(C_z/z-yH_f)-yR_f=Qg        on S,
+```
+
+which is (EnlargedQf).  Reversing the construction, (EnlargedQf) and
+(ReturnQf) give `D_y=C'_y+yH_f in F[X]_<k`; with `z=1/y`,
+`C_z=zD_y` has degree `<k` and explains the original slope.  The case `z=0`
+has no reciprocal parameter, so it remains separate.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -13019,6 +13176,9 @@ explained scalar slopes, with only the zero-slope exception in the `Qf` case.
 Corollary 40.82 shows that in the standard-degree range `n-s<=k+deg Q`, these
 exact constrained scalar lists are ordinary lower-degree residue-line data
 after subtracting a global quotient part of the scalar endpoint.
+Corollary 40.83 classifies the complementary range `n-s>k+deg Q` as the same
+residue-line datum over the enlarged dimension `K=n-s-deg Q`, cut by an
+explicit affine return-to-`RS[F,D,k]` slice.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
