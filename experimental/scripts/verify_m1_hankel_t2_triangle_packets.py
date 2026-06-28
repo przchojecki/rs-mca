@@ -82,6 +82,8 @@ Whenever the packet length is long enough, it also checks the nonzero
 moment-Hankel determinant certificate for that sparse packet.
 It checks that applying the locator of any subset of branch modes peels off
 exactly those modes, with no proper-subset zero collapse.
+It also recovers the unique monic minimal annihilator from visible moments and
+checks that it is exactly the branch-mode locator.
 
 It also checks the full-top zero-syndrome lemma: if all j+1 complements
 U\\{x} inside one (j+1)-top set U are active, then the combined syndrome is
@@ -183,6 +185,39 @@ def determinant_mod(matrix: Sequence[Sequence[int]], p: int) -> int:
                     rows[row][entry] - factor * rows[column][entry]
                 ) % p
     return determinant % p
+
+
+def solve_square_mod(
+    matrix: Sequence[Sequence[int]],
+    rhs: Sequence[int],
+    p: int,
+) -> tuple[int, ...]:
+    rows = [list(row) + [rhs[index] % p] for index, row in enumerate(matrix)]
+    size = len(rows)
+    for column in range(size):
+        pivot = next(
+            (row for row in range(column, size) if rows[row][column] % p),
+            None,
+        )
+        if pivot is None:
+            raise ValueError("singular matrix")
+        if pivot != column:
+            rows[column], rows[pivot] = rows[pivot], rows[column]
+        pivot_value = rows[column][column] % p
+        inverse_pivot = pow(pivot_value, -1, p)
+        for entry in range(column, size + 1):
+            rows[column][entry] = rows[column][entry] * inverse_pivot % p
+        for row in range(size):
+            if row == column:
+                continue
+            factor = rows[row][column] % p
+            if not factor:
+                continue
+            for entry in range(column, size + 1):
+                rows[row][entry] = (
+                    rows[row][entry] - factor * rows[column][entry]
+                ) % p
+    return tuple(row[-1] % p for row in rows)
 
 
 def augmented_consistent(rows: Sequence[tuple[int, int, int]], p: int) -> bool:
@@ -369,6 +404,8 @@ def analyze_case(
     terminal_tree_productive_mode_rank_checks = 0
     terminal_tree_mode_peeling_checks = 0
     terminal_tree_productive_mode_peeling_checks = 0
+    terminal_tree_mode_annihilator_checks = 0
+    terminal_tree_productive_mode_annihilator_checks = 0
     terminal_tree_multiflag_cores = 0
     iterated_boundary_defect_histogram: Counter[int] = Counter()
     fixed_root_filtration_defect_histogram: Counter[int] = Counter()
@@ -390,6 +427,9 @@ def analyze_case(
     terminal_tree_mode_peeling_histogram: Counter[int] = Counter()
     terminal_tree_productive_mode_peeling_histogram: Counter[int] = Counter()
     terminal_tree_mode_peeling_subset_size_histogram: Counter[int] = Counter()
+    terminal_tree_mode_annihilator_histogram: Counter[int] = Counter()
+    terminal_tree_productive_mode_annihilator_histogram: Counter[int] = Counter()
+    terminal_tree_mode_annihilator_size_histogram: Counter[int] = Counter()
     terminal_tree_multiflag_core_histogram: Counter[int] = Counter()
     max_active = 0
     max_edges = 0
@@ -440,6 +480,7 @@ def analyze_case(
     max_nonzero_terminal_tree_mode_rank_checks = 0
     max_nonzero_terminal_tree_mode_rank_size = 0
     max_nonzero_terminal_tree_mode_peeling_checks = 0
+    max_nonzero_terminal_tree_mode_annihilator_checks = 0
     max_nonzero_terminal_tree_multiflag_cores = 0
     one_exchange_edges = 0
     star_triangles = 0
@@ -485,6 +526,8 @@ def analyze_case(
             nonlocal terminal_tree_productive_mode_rank_checks
             nonlocal terminal_tree_mode_peeling_checks
             nonlocal terminal_tree_productive_mode_peeling_checks
+            nonlocal terminal_tree_mode_annihilator_checks
+            nonlocal terminal_tree_productive_mode_annihilator_checks
             nonlocal terminal_tree_multiflag_cores
             nonlocal max_nonzero_terminal_bottom_supports
             nonlocal max_nonzero_terminal_support_bound_slack
@@ -498,6 +541,7 @@ def analyze_case(
             nonlocal max_nonzero_terminal_tree_mode_rank_checks
             nonlocal max_nonzero_terminal_tree_mode_rank_size
             nonlocal max_nonzero_terminal_tree_mode_peeling_checks
+            nonlocal max_nonzero_terminal_tree_mode_annihilator_checks
             nonlocal max_nonzero_terminal_tree_multiflag_cores
 
             terminal_supports: set[tuple[int, ...]] = set()
@@ -674,9 +718,11 @@ def analyze_case(
                 int,
                 int,
                 int,
+                int,
+                int,
             ]:
                 if not current_core:
-                    return (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+                    return (1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
                 current_values = [domain[index] for index in current_fixed]
                 diff_syn = iterated_root_difference_syndrome(
                     syn,
@@ -788,6 +834,8 @@ def analyze_case(
                 max_mode_rank_size = 0
                 mode_peeling_count = 0
                 productive_mode_peeling_count = 0
+                mode_annihilator_count = 0
+                productive_mode_annihilator_count = 0
                 for deleted_root_index, boundary_core, scalar in nonzero_children:
                     (
                         child_count,
@@ -802,6 +850,8 @@ def analyze_case(
                         child_max_mode_rank_size,
                         child_mode_peeling_checks,
                         child_productive_mode_peeling_checks,
+                        child_mode_annihilator_checks,
+                        child_productive_mode_annihilator_checks,
                     ) = terminal_deletion_tree(
                         (*current_fixed, deleted_root_index),
                         boundary_core,
@@ -832,6 +882,10 @@ def analyze_case(
                     mode_peeling_count += child_mode_peeling_checks
                     productive_mode_peeling_count += (
                         child_productive_mode_peeling_checks
+                    )
+                    mode_annihilator_count += child_mode_annihilator_checks
+                    productive_mode_annihilator_count += (
+                        child_productive_mode_annihilator_checks
                     )
                 if len(child_results) >= 2:
                     child_root_indices = {
@@ -996,6 +1050,50 @@ def analyze_case(
                                     ),
                                 }
                             )
+                        if 2 * mode_count <= len(lower_vector):
+                            rhs = tuple(
+                                (-lower_vector[row + mode_count]) % p
+                                for row in range(mode_count)
+                            )
+                            recovered = (
+                                solve_square_mod(moment_matrix, rhs, p) + (1,)
+                            )
+                            mode_locator = cached_locator(
+                                tuple(sorted(child_root_indices))
+                            )
+                            mode_annihilator_count += 1
+                            terminal_tree_mode_annihilator_size_histogram[
+                                mode_count
+                            ] += 1
+                            if productive_children >= 2:
+                                productive_mode_annihilator_count += 1
+                            if recovered != mode_locator:
+                                raise AssertionError(
+                                    {
+                                        "kind": (
+                                            "terminal-branch-mode-"
+                                            "annihilator-recovery-failed"
+                                        ),
+                                        "p": p,
+                                        "k": k,
+                                        "syndrome": list(syn),
+                                        "fixed_roots": list(fixed_roots),
+                                        "current_fixed": list(current_fixed),
+                                        "current_core": list(current_core),
+                                        "exit_roots": [
+                                            root_index
+                                            for (
+                                                root_index,
+                                                _count,
+                                                _core,
+                                                _scalar,
+                                            ) in child_results
+                                        ],
+                                        "lower_core": list(lower_core),
+                                        "recovered": list(recovered),
+                                        "mode_locator": list(mode_locator),
+                                    }
+                                )
                     for subset_size in range(1, mode_count + 1):
                         for subset in itertools.combinations(
                             sorted(child_root_indices),
@@ -1138,6 +1236,8 @@ def analyze_case(
                     max_mode_rank_size,
                     mode_peeling_count,
                     productive_mode_peeling_count,
+                    mode_annihilator_count,
+                    productive_mode_annihilator_count,
                 )
 
             tree_recursion_defects = 0
@@ -1150,6 +1250,8 @@ def analyze_case(
             audit_productive_mode_rank_checks = 0
             audit_mode_peeling_checks = 0
             audit_productive_mode_peeling_checks = 0
+            audit_mode_annihilator_checks = 0
+            audit_productive_mode_annihilator_checks = 0
             audit_multiflag_cores = 0
             for core in active_cores:
                 if not core:
@@ -1167,6 +1269,8 @@ def analyze_case(
                     max_mode_rank_size,
                     mode_peeling_count,
                     productive_mode_peeling_count,
+                    mode_annihilator_count,
+                    productive_mode_annihilator_count,
                 ) = terminal_deletion_tree(
                     fixed_roots,
                     core,
@@ -1189,6 +1293,10 @@ def analyze_case(
                 terminal_tree_productive_mode_peeling_checks += (
                     productive_mode_peeling_count
                 )
+                terminal_tree_mode_annihilator_checks += mode_annihilator_count
+                terminal_tree_productive_mode_annihilator_checks += (
+                    productive_mode_annihilator_count
+                )
                 audit_branch_vertices += branch_count
                 audit_branch_pairs += branch_pair_count
                 audit_productive_branch_pairs += productive_branch_pair_count
@@ -1198,6 +1306,10 @@ def analyze_case(
                 audit_productive_mode_rank_checks += productive_mode_rank_count
                 audit_mode_peeling_checks += mode_peeling_count
                 audit_productive_mode_peeling_checks += productive_mode_peeling_count
+                audit_mode_annihilator_checks += mode_annihilator_count
+                audit_productive_mode_annihilator_checks += (
+                    productive_mode_annihilator_count
+                )
                 if tree_count > 1:
                     terminal_tree_multiflag_cores += 1
                     audit_multiflag_cores += 1
@@ -1277,6 +1389,10 @@ def analyze_case(
                         max_nonzero_terminal_tree_mode_peeling_checks,
                         mode_peeling_count,
                     )
+                    max_nonzero_terminal_tree_mode_annihilator_checks = max(
+                        max_nonzero_terminal_tree_mode_annihilator_checks,
+                        mode_annihilator_count,
+                    )
             terminal_tree_recursion_defect_histogram[tree_recursion_defects] += 1
             terminal_tree_branch_vertex_histogram[audit_branch_vertices] += 1
             terminal_tree_branch_pair_histogram[audit_branch_pairs] += 1
@@ -1294,6 +1410,12 @@ def analyze_case(
             terminal_tree_mode_peeling_histogram[audit_mode_peeling_checks] += 1
             terminal_tree_productive_mode_peeling_histogram[
                 audit_productive_mode_peeling_checks
+            ] += 1
+            terminal_tree_mode_annihilator_histogram[
+                audit_mode_annihilator_checks
+            ] += 1
+            terminal_tree_productive_mode_annihilator_histogram[
+                audit_productive_mode_annihilator_checks
             ] += 1
             terminal_tree_multiflag_core_histogram[audit_multiflag_cores] += 1
             if any(syn):
@@ -2885,6 +3007,12 @@ def analyze_case(
         "terminal_tree_productive_mode_peeling_checks": (
             terminal_tree_productive_mode_peeling_checks
         ),
+        "terminal_tree_mode_annihilator_checks": (
+            terminal_tree_mode_annihilator_checks
+        ),
+        "terminal_tree_productive_mode_annihilator_checks": (
+            terminal_tree_productive_mode_annihilator_checks
+        ),
         "terminal_tree_multiflag_cores": terminal_tree_multiflag_cores,
         "max_iterated_boundary_chain_length": max_iterated_boundary_chain_length,
         "max_nonzero_iterated_boundary_active_cores": (
@@ -2942,6 +3070,9 @@ def analyze_case(
         ),
         "max_nonzero_terminal_tree_mode_peeling_checks": (
             max_nonzero_terminal_tree_mode_peeling_checks
+        ),
+        "max_nonzero_terminal_tree_mode_annihilator_checks": (
+            max_nonzero_terminal_tree_mode_annihilator_checks
         ),
         "max_nonzero_terminal_tree_multiflag_cores": (
             max_nonzero_terminal_tree_multiflag_cores
@@ -3082,6 +3213,15 @@ def analyze_case(
         "terminal_tree_mode_peeling_subset_size_histogram": dict(
             sorted(terminal_tree_mode_peeling_subset_size_histogram.items())
         ),
+        "terminal_tree_mode_annihilator_histogram": dict(
+            sorted(terminal_tree_mode_annihilator_histogram.items())
+        ),
+        "terminal_tree_productive_mode_annihilator_histogram": dict(
+            sorted(terminal_tree_productive_mode_annihilator_histogram.items())
+        ),
+        "terminal_tree_mode_annihilator_size_histogram": dict(
+            sorted(terminal_tree_mode_annihilator_size_histogram.items())
+        ),
         "terminal_tree_multiflag_core_histogram": dict(
             sorted(terminal_tree_multiflag_core_histogram.items())
         ),
@@ -3165,6 +3305,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['max_nonzero_terminal_tree_mode_rank_size']} "
             f"max_nonzero_terminal_tree_mode_peeling="
             f"{result['max_nonzero_terminal_tree_mode_peeling_checks']} "
+            f"max_nonzero_terminal_tree_mode_annihilator="
+            f"{result['max_nonzero_terminal_tree_mode_annihilator_checks']} "
             f"max_nonzero_full_support_slack="
             f"{result['max_nonzero_full_support_ledger_slack']} "
             f"max_nonzero_top_active={result['max_nonzero_top_active_members']}"

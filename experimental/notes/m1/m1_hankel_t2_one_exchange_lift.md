@@ -1153,6 +1153,43 @@ deterministic smaller sparse packet, and only deleting all modes gives the
 annihilating locator.  This is the local "lossless frontier shift" promised by
 the fixed-root filtration, now visible inside the terminal packet itself.
 
+## Visible Packets Have Unique Minimal Annihilator
+
+With one more visible moment, the packet determines its branch-mode locator.
+Assume the packet (MP) is visible through `g_0,...,g_{2m-1}`.  The monic
+degree-`m` annihilator
+
+```text
+P(X)=X^m+b_{m-1}X^{m-1}+...+b_0
+```
+
+is recovered by the nonsingular moment system
+
+```text
+sum_{h=0}^{m-1} b_h g_{r+h} = -g_{r+m},       0<=r<m.      (MA)
+```
+
+Moreover `P(X)=prod_{y in Y}(X-y)`, and no nonzero polynomial of degree
+`<m` annihilates the visible packet.
+
+Proof: the coefficient matrix in (MA) is the rank-certificate matrix `M_Y`,
+so (RC) makes the solution unique.  The solution satisfies
+
+```text
+0 = sum_{h=0}^m p_h g_{r+h}
+  = sum_{y in Y} a_y y^r P(y),       0<=r<m,
+```
+
+where `p_m=1`.  Since the Vandermonde matrix on `Y` is invertible and all
+`a_y` are nonzero, `P(y)=0` for every `y in Y`.  Thus the monic degree-`m`
+polynomial `P` is exactly the branch-mode locator.  The same rank certificate
+also rules out a lower-degree annihilator: otherwise the first `m` shifted
+moment columns would be linearly dependent.
+
+This converts a visible productive terminal packet into a recoverable object:
+its mode set is intrinsic to the lower-boundary moments, not auxiliary
+branching data.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a
@@ -1556,6 +1593,11 @@ The lossless peeling identity (PL) is also checked on every nonempty subset of
 each branch mode set.  In the largest case this gives `120960` peeling checks:
 `73440` peel one mode, `43200` peel two modes, and `4320` peel all three
 modes.  The productive branch packets account for `114480` of these checks.
+The minimal-annihilator recovery (MA) is checked whenever `2m` moments are
+visible.  In the largest case this recovers the locator for all `30240`
+mode-size-`2` packets, including all `28080` productive size-`2` packets; the
+mode-size-`3` packets need one additional moment beyond the current `t=2`
+window.
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an

@@ -3963,6 +3963,16 @@ They also peel losslessly.  If \(E\subseteq Y\) and
 Every proper peel is nonzero, while \(E=Y\) gives exactly the active
 annihilator for \(C\).  Thus the terminal packet has no hidden premature
 zero-boundary collapse inside its mode set.
+With one more visible moment, the packet determines its branch-mode locator.
+If \(g_0,\ldots,g_{2m-1}\) are visible, then the nonsingular system
+\[
+  \sum_{h=0}^{m-1} b_h g_{r+h}=-g_{r+m},\qquad 0\le r<m,
+\]
+recovers the unique monic annihilator
+\[
+  X^m+b_{m-1}X^{m-1}+\cdots+b_0=\prod_{y\in Y}(X-y).
+\]
+No lower-degree nonzero polynomial annihilates the visible packet.
 This residual also has additive one-exchange descent.  If
 \(C_y=R\cup\{y\}\) and \(C_z=R\cup\{z\}\) are two root-marked cores in the
 same fixed-root slice, then both are active for
@@ -4082,6 +4092,9 @@ All \(34560\) of these packets have enough visible moments for the nonzero
 rank-certificate determinant check, again with sizes \(2\) and \(3\) as above.
 The lossless peeling identity is checked on \(120960\) nonempty mode subsets;
 \(114480\) of these are productive-packet peels.
+Minimal-annihilator recovery is checked whenever \(2m\) moments are visible:
+in the largest case this recovers all \(30240\) mode-size-\(2\) locators,
+including all \(28080\) productive size-\(2\) packets.
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

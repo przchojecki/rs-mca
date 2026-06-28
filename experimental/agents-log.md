@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 visible packets recover their mode locator
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Proves that once `2m` moments of a terminal sparse
+  packet are visible, the nonsingular moment system recovers the unique monic
+  degree-`m` annihilator, namely the branch-mode locator.
+- **How it is useful:** Makes visible productive terminal packets intrinsic:
+  their mode set is recoverable from the lower-boundary moments, and no
+  lower-degree recurrence collapse can explain them.
+- **What to do next:** Extend visibility or rank/minor control to higher-mode
+  productive packets, then charge recoverable packets to quotient-periodic,
+  tangent, or aperiodic sparse-moment ledgers.
+
 ### 2026-06-28 - M1 sparse packets peel losslessly
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
