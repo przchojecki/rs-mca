@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 one-row cutoff packing criterion
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** The primitive one-row packing bound is specialized
+  to the MCA cutoff threshold `a=k+t`: packing applies exactly when
+  `deg(Q_prim)<=t-1`, and the one-coefficient charge exactly when
+  `deg(Q_prim)<=t-j-1`.
+- **How it is useful:** This turns the one-row scalar residual into explicit
+  cutoff inequalities and shows where primitive compression can make the
+  residual chargeable in the M1 parameter ledger.
+- **What to do next:** Determine whether quotient-periodic or aperiodic
+  structure forces `deg(Q_prim)<t` in the remaining scalar cutoff cases.
+
 ### 2026-06-28 - M1 one-row primitive-degree packing bound
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

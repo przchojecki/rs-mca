@@ -10929,6 +10929,93 @@ the family `{T_mu}` has pairwise intersections of size `<d_prim`, so no
 gives (OneRowPack).  If `2a-n>=d_prim`, any two `a`-supports would have
 intersection at least `d_prim`, so at most one coefficient can occur.
 
+## Corollary 40.92: The One-Row Cutoff Charge Is Controlled By e_prim<t
+
+Specialize Corollary 40.91 to the scalar half-window cutoff from
+Corollary 40.85, and use the MCA agreement threshold attached to a
+`j`-point complement:
+
+```text
+a=n-j=k+t,        t=r-j.
+```
+
+Assume the one-row case `L=1`, and let `e_prim=deg Q_prim` be the primitive
+denominator degree from Corollary 40.90.  Then the one-row primitive packing
+dimension is
+
+```text
+d_prim=k+e_prim+1.
+```
+
+Consequently:
+
+1. the support-packing bound (OneRowPack) applies exactly in the range
+
+   ```text
+   e_prim <= t-1;
+   ```
+
+2. the one-coefficient pairwise-intersection charge applies exactly in the
+   range
+
+   ```text
+   e_prim <= t-j-1;
+   ```
+
+3. in the polynomial endpoint `e_prim=0`, the packing bound applies for every
+   `t>=1`, and the one-coefficient charge applies for `t>=j+1`.
+
+For a positive one-row short denominator before primitive compression, the
+unreduced degree is
+
+```text
+e=j-r_hw-1,
+```
+
+so `e_prim<=j-r_hw-1`.  Thus unreduced sufficient conditions are
+
+```text
+j-r_hw <= t        for packing,
+2j-r_hw <= t       for one-coefficient charging.
+```
+
+Any common factor between `Q` and `B` improves these inequalities by replacing
+`e` with the smaller `e_prim`.
+
+### Proof
+
+The identity `a=n-j=k+t` follows from `r=n-k` and `t=r-j`.  Therefore
+
+```text
+d_prim<=a
+iff
+k+e_prim+1 <= k+t
+iff
+e_prim <= t-1,
+```
+
+which is the packing range in Corollary 40.91.
+
+For the pairwise-intersection range,
+
+```text
+2a-n = 2(k+t)-(k+j+t)=k+t-j.
+```
+
+Thus
+
+```text
+2a-n>=d_prim
+iff
+k+t-j >= k+e_prim+1
+iff
+e_prim <= t-j-1.
+```
+
+The polynomial endpoint statements set `e_prim=0`.  Finally, in the positive
+one-row branch `L=K-k=j-r_hw-e=1`, so `e=j-r_hw-1`; Corollary 40.90 gives
+`e_prim<=e`, yielding the two sufficient unreduced criteria.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -13823,6 +13910,9 @@ one-row scalar parameters have supports intersecting in fewer than
 `k+deg(Q_prim)+1` points, hence the coefficient set is bounded by
 `binom(n,d_prim)/binom(a,d_prim)` when `d_prim<=a` and by one coefficient in
 the pairwise-intersection range.
+Corollary 40.92 translates this into the scalar cutoff variables: the one-row
+packing charge is available exactly when `deg(Q_prim)<=t-1`, and the
+one-coefficient charge when `deg(Q_prim)<=t-j-1`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
