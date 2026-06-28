@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 common-factor route minimum
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM / AUDIT.
+- **What is being added:** The bottom common-factor residual-window estimates
+  are plugged back into the M1 ladder bottleneck.  In the multiplicative-domain
+  case the residual ledger is refined to
+  `min(BCF_0, Charge(P_pre)+RFArrBudget_hw)+2h`, where `BCF_0` is the sum of
+  root-free common-factor window charges over the four bottom kernels.
+- **How it is useful:** This turns the current M1 route into two explicit
+  parallel structural targets: prove small common-factor residual windows in
+  the bottom kernels, or prove a small root-free half-window tail arrangement
+  together with the chosen pre-half charge.
+- **What to do next:** Attack one of these structural targets in the actual
+  M1 kernels, rather than adding further abstract ledgers.
+
 ### 2026-06-27 - M1 boundary-off external-anchor normal form
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

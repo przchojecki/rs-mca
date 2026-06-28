@@ -7804,6 +7804,86 @@ of the nested root-free polynomial spaces gives
 over those families and applying Corollary 40.43 gives the displayed
 mixed-ladder ledger.
 
+## Corollary 40.57: Common-Factor Bottom Windows Refine The Two-Route Minimum
+
+Keep the notation of Corollaries 40.44--40.56, and assume the
+multiplicative-domain setting `0 notin D` of Corollary 40.45.  For each of the
+four bottom residual families
+
+```text
+F in { u, v, (u,v), (S u,S v) },
+```
+
+let `K_0(F)` be the corresponding bottom recurrence kernel from Corollary
+40.48.  Define its common-factor bottom-window charge by
+
+```text
+b_F=0
+```
+
+if `K_0(F)=0` or if `gcd(K_0(F))` has a root in `D`, and otherwise by
+
+```text
+b_F = RFPhi_D( h-deg gcd(K_0(F)) ).
+```
+
+Put
+
+```text
+BCF_0 = sum_F b_F.
+```
+
+After the fixed-root/root-slice short recurrence pieces have been charged, the
+root-free residual part of the ladder can be closed with the refined ledger
+
+```text
+min( BCF_0, Charge(P_pre) + RFArrBudget_hw ) + 2h.      (CFRouteMin)
+```
+
+Here `Charge(P_pre)` is any admissible charge for the pre-half-window residual
+families, as in Corollary 40.44.  Thus the same M1 ladder has two concrete
+residual targets:
+
+1. a bottom common-factor target, which asks for small residual windows
+   `h-deg gcd(K_0(F))` in the four bottom kernels;
+2. a half-window denominator target, which asks for a small root-free tail
+   arrangement, for example through the common-core criteria of Corollaries
+   40.46--40.47, together with whatever pre-half charge is used.
+
+In particular, if every nonzero bottom family whose common factor is
+root-free on `D` has
+
+```text
+h-deg gcd(K_0(F)) <= L,
+```
+
+then `BCF_0<=4 RFPhi_D(L)` and the bottom route alone gives the ledger
+`4 RFPhi_D(L)+2h`, independently of the half-window arrangement.
+
+### Proof
+
+For each bottom family, Corollary 40.56 gives the bound
+
+```text
+|K_0(F)^rf| <= b_F.
+```
+
+The cases `K_0(F)=0` and `gcd(K_0(F))` having a domain root both contribute
+zero root-free classes by definition and by Corollary 40.56.  Summing over the
+four bottom families gives
+
+```text
+Charge(B_0) <= BCF_0.
+```
+
+Substitute this into the bottom side of Corollary 40.44.  On the split side,
+replace the raw half-window arrangement budget by the root-free multiplier
+budget `RFArrBudget_hw` from Corollary 40.45, since all remaining residual
+certificates are root-free after the fixed-root/root-slice pieces have been
+charged.  The finite frontier term is still the `2h` charge from Corollary
+40.11.  This proves (CFRouteMin), and the fixed-`L` consequence follows from
+monotonicity of `RFPhi_D(m)`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -10589,6 +10669,10 @@ does not prove the bottom kernels have maximal common factors.
 Corollary 40.56 bounds bottom kernels by the residual quotient window after a
 common factor is removed; it does not prove those residual windows are small in
 the M1 instances.
+Corollary 40.57 refines the ladder bottleneck by substituting the
+common-factor bottom-window charge and the root-free half-window arrangement
+charge into the two-route minimum; it does not prove either route satisfies
+the required M1 reserve bound in the actual instances.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

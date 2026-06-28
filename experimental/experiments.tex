@@ -2439,6 +2439,25 @@ discarding common factors with domain roots, the bottom route closes with
 \[
   4\,\mathrm{RFPhi}_D(L)+2h.
 \]
+This common-factor bottom route now plugs directly into the ladder bottleneck.
+If
+\[
+  BCF_0=\sum_F b_F,\qquad
+  b_F=
+  \begin{cases}
+  0,&K_0(F)=0\text{ or }\gcd(K_0(F))\text{ has a root in }D,\\
+  \mathrm{RFPhi}_D(h-\deg\gcd(K_0(F))),&\text{otherwise},
+  \end{cases}
+\]
+then, after fixed-root/root-slice pieces have been charged, the multiplicative
+domain residual ledger can be taken to be
+\[
+  \min\{BCF_0,\ \mathrm{Charge}(P_{\rm pre})+
+  \mathrm{RFArrBudget}_{hw}\}+2h.
+\]
+Thus the current M1 residual route is reduced to two parallel structural
+targets: small bottom common-factor residual windows, or a small root-free
+half-window tail arrangement together with the chosen pre-half charge.
 In the common two-denominator case \(M_{\min}=\{D_1,D_2\}\), writing
 \(C=\gcd(D_1,D_2)\), \(D_i=C E_i\), and \(e_i=\deg E_i\), the quotient
 denominators \(E_1,E_2\) are automatically coprime and
