@@ -4392,6 +4392,33 @@ while for \(Y\ne\emptyset\) it is the sparse packet
 \]
 which is nonzero.  Thus the internal split-support recursion has only zero
 descent faces and marked sparse-packet faces, with additive row shift.
+This gives a compact closure criterion.  For \(1\le m\le\tau+1\), let
+\(\mathcal C_m^{\le\tau+1}(s)\) be the split-support certificates of mode
+size \(m\) whose total support has at most \(\tau+1\) marked exits, and let
+\[
+  \mathrm{Core}_r(s)
+  =\{U(S)=S\setminus M(S): S\text{ active and }|M(S)|=r\}.
+\]
+Then the preceding fixed-total-support factorization and canonical
+marked-core fiber bound give
+\[
+|\mathcal C_m^{\le\tau+1}(s)|
+\le
+\sum_{r=m}^{\tau}\binom{r}{m} |\mathrm{Core}_r(s)|
++\binom{\tau+1}{m}
+  \sum_{U\in\mathrm{Core}_{\tau+1}(s)}
+     \left\lfloor {n-|U| \over \tau+1}\right\rfloor .
+\]
+Indeed, for fixed \(S\) there are exactly \(\binom{|M(S)|}{m}\)
+certificates; for fixed \(U\) and \(r\le\tau\) the full marked face recovers
+the marked support uniquely, while for \(r=\tau+1\) the possible marked
+supports over \(U\) are disjoint and matching-bounded.  Hence, for fixed
+\(\tau\), polynomial bounds for the canonical core ledgers
+\(\mathrm{Core}_r(s)\), \(r\le\tau+1\), imply a polynomial bound for this
+whole split-support branch.  Any remaining super-polynomial obstruction must
+come from too many canonical unmarked cores or from active supports with more
+than \(\tau+1\) marked exits, not from repeated internal faces of one
+split-support cube.
 For fixed \(A\) and \(m\), this also gives a fixed-anchor fiber bound.  If
 \(m\le\tau\), the first \(2m\) moments recover the mode locator and
 amplitudes uniquely.  At the boundary \(m=\tau+1\), two supports in one

@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 split-support closes under canonical core counts
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL-CLOSURE.
+- **What is being added:** Adds a canonical core closure criterion: the number
+  of split-support certificates with marked frontier size at most `tau+1` is
+  bounded by the canonical unmarked core ledgers, with uniqueness below the
+  boundary and matching-bounded fibers at the boundary.
+- **How it is useful:** Turns the two-color normal form into a summable M1
+  target.  Once canonical unmarked cores are charged to lower-core,
+  quotient-periodic, tangent, or aperiodic ledgers, this split-support branch
+  is polynomial for fixed `tau`.
+- **What to do next:** Prove or falsify polynomial bounds for the canonical
+  core ledgers `Core_r(s)`, and separately look for active supports with more
+  than `tau+1` marked exits.
+
 ### 2026-06-28 - M1 split-support faces have two-color normal form
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

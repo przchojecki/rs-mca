@@ -2067,6 +2067,60 @@ The verifier audits the three pieces of this classification directly:
 faces in the largest `F_7^*` audit, together with the shifted-frontier root
 checks above.
 
+## Canonical Core Closure Criterion
+
+The two-color classification turns the remaining local counting problem into
+a canonical-core ledger.  For `1<=m<=tau+1`, let
+`Cert_m^{<=tau+1}(s)` be the set of split-support certificates of mode size
+`m` whose total active support `S` has at most `tau+1` marked exits.  Thus a
+certificate is equivalently a pair `(S,Y)` with
+
+```text
+Y subset M(S),        |Y|=m,        |M(S)|<=tau+1,
+```
+
+with the amplitudes forced by the marked-exit formula.  For `r>=0`, define
+the canonical core ledger
+
+```text
+Core_r(s)
+ = { U : U=U(S)=S\M(S) for some active S with |M(S)|=r }.
+```
+
+Then
+
+```text
+|Cert_m^{<=tau+1}(s)|
+ <= sum_{r=m}^{tau} binom(r,m) |Core_r(s)|
+    + binom(tau+1,m)
+      sum_{U in Core_{tau+1}(s)} floor((n-|U|)/(tau+1)).        (CC)
+```
+
+Proof: group certificates by the canonical unmarked core `U` and the marked
+count `r=|M(S)|`.  For a fixed active support `S`, the fixed-total-support
+factorization gives exactly `binom(r,m)` mode-size `m` certificates.  If
+`r<=tau`, the canonical marked-core fiber theorem says that a fixed `U`
+supports at most one full marked support `S`, because the full marked face is
+an `r`-sparse representation visible through `2r` moments.  If `r=tau+1`,
+the boundary fiber over `U` is a disjoint matching, hence has size at most
+`floor((n-|U|)/(tau+1))`.  Summing these two cases proves (CC).
+
+Consequently, for fixed `tau`, the split-support packet family with marked
+frontier size at most `tau+1` is polynomial once the canonical core ledgers
+`Core_r(s)` are polynomial.  More explicitly, if
+`|Core_r(s)|<=n^B` for all `r<=tau+1`, then (CC) gives
+
+```text
+|Cert_m^{<=tau+1}(s)| <= O_tau(n^{B+1}).
+```
+
+Thus this local branch of M1 has a clean closure target: prove that the
+canonical unmarked cores are already charged to lower-core, quotient-periodic,
+tangent, or aperiodic ledgers.  Any remaining super-polynomial split-support
+obstruction must either create too many such canonical cores or produce active
+supports with more than `tau+1` marked exits; it cannot come from repeated
+internal faces of the same split-support cube.
+
 ## Fixed Anchors Have Matching-Bounded Fibers
 
 Fix the collapsed anchor base `A` and the mode size `m`.  Then
