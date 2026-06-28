@@ -5160,6 +5160,20 @@ width \(q-h=A_0+c-1\), and
   \sum_{\substack{C\subset ev_A^{-1}(\lambda)\\ |C|=h}}
     |F_{\lambda,C}(A)|.
 \]
+In particular, taking \(A_0=0\), \(c=w+1\), and \(h=q-w\) gives the
+constant-width form
+\[
+  \sum_{A\in\mathcal A_2}|F(A)|
+  \le
+  {2\over (w+1)q}\sum_{A\in\mathcal A_2}|I_A^{\mathrm{gen},w}|
+  +\sum_{A\in\mathcal A_2}\sum_{x\in B_0^*(A)}|F_x(A)|
+  +\sum_{A\in\mathcal A_2}\sum_\lambda
+    \sum_{\substack{C\subset ev_A^{-1}(\lambda)\\ |C|=q-w}}
+      |F_{\lambda,C}(A)|.
+\]
+Thus, for fixed \(w\), the \(b=2\) branch is reduced to a generic
+determinant-gate count with a \(2/((w+1)q)\) saving, one-root common-base
+quotient fibers, and width-\(w\) projective-fiber quotient-line fibers.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

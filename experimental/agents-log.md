@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 constant-width cutoff corollary
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Specializes the `b=2` cutoff ledger to
+  `A_0=0`, `c=w+1`, giving a fixed-width reduction: generic determinant
+  gates carry a `2/((w+1)q)` saving, while the exceptional terms are one-root
+  common-base fibers and width-`w` projective-fiber quotient-line fibers.
+- **How it is useful:** Presents the current `b=2` endpoint in the form most
+  useful for global M1 charging: choose fixed `w`, then bound one generic
+  saved term plus bounded-width quotient ledgers.
+- **What to do next:** Prove polynomial bounds for the generic saved
+  determinant-gate count and the fixed-width quotient-line ledgers.
+
 ### 2026-06-28 - M1 b=2 near-fiber ledger descends to quotient lines
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

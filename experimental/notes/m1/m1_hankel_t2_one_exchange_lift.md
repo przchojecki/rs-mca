@@ -4310,6 +4310,54 @@ locator by the dominant slice locator, checks that the quotient locator is the
 complement support, and checks that the projective-fiber direction descends to
 the corresponding fixed-divisor Hankel kernel.
 
+## Constant-Width b=2 Corollary
+
+The cutoff theorem has a useful fixed-width specialization.  Fix an integer
+`w` with `0<=w<q`, and set
+
+```text
+A_0=0,        c=w+1,        h=q-w.
+```
+
+Then every residual support is in one of three classes:
+
+1. `a_A(R)=0` and `e_A(R)>=w+1` (generic);
+2. `a_A(R)>0` (base-touching);
+3. `a_A(R)=0` and `e_A(R)<=w` (near one projective fiber).
+
+Let
+
+```text
+I_A^{gen,w}={ e in I_A : pi_A(e) is generic for this choice }.
+```
+
+The cutoff ledger gives
+
+```text
+sum_{A in A_2} |F(A)|
+ <=
+  2/((w+1)q) sum_{A in A_2} |I_A^{gen,w}|
+  + sum_{A in A_2} sum_{x in B_0^*(A)} |F_x(A)|
+  + sum_{A in A_2} sum_lambda
+      sum_{C subset ev_A^{-1}(lambda), |C|=q-w}
+        |F_{lambda,C}(A)|.                     (PF2-width-w-ledger)
+```
+
+Here `F_x(A)` is the one-root common-base quotient fiber from
+(PF2-base-ledger), and `F_{lambda,C}(A)` is the width-`w` quotient-line fiber
+from (PF2-near-ledger).  Thus for each fixed `w`, the `b=2` branch is reduced
+to:
+
+1. a generic split determinant-gate count with explicit saving
+   `2/((w+1)q)`;
+2. one-root common-base fixed-divisor fibers;
+3. width-`w` projective-fiber quotient-line fibers.
+
+This is often the most convenient form for the global M1 argument: choose `w`
+as a small constant to keep all non-generic quotient ledgers bounded-width,
+then prove that the saved generic determinant-gate mass is polynomial after
+the remaining aperiodic/quotient-periodic charges.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix
