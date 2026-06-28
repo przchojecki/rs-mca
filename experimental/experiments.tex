@@ -3368,6 +3368,24 @@ degree-\(h\) alias exists exactly when
   B_Q=(B_1S_Q-L_D)/Q_1,\qquad \gcd(S_Q,B_Q)=1.
 \]
 Then the unique lower alias is \((S_Q,B_Q)\).
+More generally, fixed-direction aliases of degree \(e_2\) have a
+defect-quotient chart.  Put \(d=e_1+e_2-n\); if \(d\le0\) there is no
+nontrivial alias.  For \(d>0\), let
+\[
+  A_R=\operatorname{rem}_{Q_1}(L_D R B_1^{-1}),\qquad \deg R<d.
+\]
+If \(e_2<e_1\), aliases are retained candidates
+\[
+  Q_2=A_R,\qquad B_2=(B_1A_R-L_D R)/Q_1.
+\]
+If \(e_2\ge e_1\), they are retained candidates
+\[
+  Q_2=A_R+Q_1H,\qquad B_2=(B_1Q_2-L_D R)/Q_1,\qquad
+  \deg H\le e_2-e_1.
+\]
+Over \(\F_q\), this gives at most \((q^d-1)/(q-1)\) projective alias
+directions when \(e_2<e_1\), and at most
+\((q^{2e_2-n+1}-1)/(q-1)\) when \(e_2\ge e_1\).
 The common-core and two-denominator formulas persist verbatim after this
 root-free replacement.  With \(C=\gcd(D:D\in M_{\min})\), \(\gamma=\deg C\),
 and \(E_D=D/C\),

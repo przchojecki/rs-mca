@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 fixed-direction aliases have a defect-quotient chart
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Parameterizes all high-degree primitive direction
+  aliases of a fixed `(Q_1,B_1)` and fixed denominator degree `e_2` by a short
+  defect `R` plus, when `e_2>=e_1`, a quotient polynomial `H`.
+- **How it is useful:** Turns the high-degree finite-domain alias obstruction
+  into an explicit low-dimensional chart and gives finite-field projective
+  bounds depending on `d=e_1+e_2-n`.
+- **What to do next:** Combine this chart with active-class constraints or
+  Hankel incidence equations to rule out most chart parameters.
+
 ### 2026-06-28 - M1 first lower aliases have an exact remainder test
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

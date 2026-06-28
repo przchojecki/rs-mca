@@ -15475,6 +15475,104 @@ B_1S_Q-B_QQ_1=L_D,
 so `B_1/Q_1=B_Q/S_Q` on `D`, and `(S_Q,B_Q)` is an admissible primitive
 alias.  Uniqueness is Corollary 40.152.
 
+## Corollary 40.154: Fixed-Direction Aliases Have A Defect-Quotient Chart
+
+Keep the setup of Corollary 40.151, fix a positive-degree primitive direction
+`(Q_1,B_1)` of denominator degree `e_1`, and fix a target alias denominator
+degree `e_2`.  Put
+
+```text
+d=e_1+e_2-n.
+```
+
+If `d<=0`, then there are no nontrivial primitive direction aliases of degree
+`e_2`.  Assume `d>0`, and let
+
+```text
+A_R = rem_{Q_1}(L_D R B_1^{-1})
+```
+
+be the degree-`<e_1` remainder modulo `Q_1`.
+
+If `e_2<e_1`, every alias of degree `e_2` is represented by a nonzero
+defect
+
+```text
+R in F[X]_<d
+```
+
+with
+
+```text
+Q_2=A_R,
+        B_2=(B_1A_R-L_D R)/Q_1.                    (LowerChart)
+```
+
+If `e_2>=e_1`, every alias of degree `e_2` is represented by a nonzero defect
+`R in F[X]_<d` and a quotient polynomial
+
+```text
+H in F[X]_{<=e_2-e_1}
+```
+
+with
+
+```text
+Q_2=A_R+Q_1H,
+        B_2=(B_1Q_2-L_D R)/Q_1.                    (UpperChart)
+```
+
+In both cases the represented pair is retained exactly when `deg Q_2=e_2`,
+`Q_2` is root-free on `D`, `gcd(Q_2,B_2)=1`, and either `e_2>0` with
+`deg B_2<e_2`, or `e_2=0` with the polynomial-direction convention
+`B_2=0`; these conditions are also sufficient.
+
+Consequently, if `F=F_q`, the number of projective primitive direction aliases
+of fixed degree `e_2` for the fixed direction `(Q_1,B_1)` is at most
+
+```text
+(q^d-1)/(q-1)                         if e_2<e_1,
+(q^(2e_2-n+1)-1)/(q-1)                if e_2>=e_1.       (AliasChartCount)
+```
+
+The first bound specializes to Corollary 40.152 when `d=1`.
+
+### Proof
+
+The case `d<=0` is the `R=0` alternative in Corollary 40.151.  Assume `d>0`.
+Corollary 40.151 says that any nontrivial alias has a nonzero defect
+`R in F[X]_<d` and satisfies
+
+```text
+Q_2 == A_R        mod Q_1.
+```
+
+If `e_2<e_1`, then the degree-`e_2` polynomial `Q_2` is already its own
+remainder modulo `Q_1`, giving (LowerChart).  If `e_2>=e_1`, write the
+division decomposition as `Q_2=A_R+Q_1H`; the degree bound on `Q_2` forces
+`deg H<=e_2-e_1`, giving (UpperChart).  In both cases the displayed formula
+for `B_2` is exactly (AliasDefect) solved for `B_2`.
+
+Conversely, any retained pair from either chart satisfies
+
+```text
+B_1Q_2-B_2Q_1=L_D R,
+```
+
+so it has the same divided direction on `D`; the retained conditions are
+precisely the degree, root-free, and primitive requirements.
+
+For the finite-field count, quotient by simultaneous scalar multiplication of
+the chart parameters.  In the lower chart the parameter vector space has
+dimension `d`.  In the upper chart it has dimension
+
+```text
+d+(e_2-e_1+1)=2e_2-n+1.
+```
+
+The admissible aliases form a subset of the corresponding projective
+parameter space, proving (AliasChartCount).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -18570,6 +18668,9 @@ Corollary 40.153 gives the corresponding exact existence test: compute
 `S_Q == L_D B_1^{-1} mod Q_1`; the lower first-layer alias exists precisely
 when this forced remainder has the right degree, avoids `D`, and is coprime
 to its forced numerator.
+Corollary 40.154 extends this to all fixed-degree aliases of a fixed primitive
+direction by a defect-quotient chart, giving projective finite-field bounds
+in terms of `d=e_1+e_2-n` and the quotient degree.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
