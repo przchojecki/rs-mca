@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 split domain roots are drop-or-slice data
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Stratifies split in-domain multiplier roots in a
+  fixed complement fiber: roots in the complement lower exchange depth after
+  deletion, while roots outside the complement remain as explicit
+  fixed-root/root-slice data on the support side.
+- **How it is useful:** Makes the `D\\C` residual from the complement-root
+  descent exact, reducing split domain-root factors to lower-depth ledgers and
+  root-slice charges before the external/irreducible multiplier pieces are
+  attacked.
+- **What to do next:** Analyze the remaining non-split multiplier pieces:
+  external roots and irreducible bounded-degree factors.
+
 ### 2026-06-28 - M1 higher exchange coefficient cores charge to U_u
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

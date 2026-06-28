@@ -13767,6 +13767,100 @@ where the last equality is the standard factorial identity with `a=n-j`.
 This proves the displayed q-free bound.  The case `r_u<=0` follows from
 `r_I<=1` and the same identity with the extra factor `1/binom(j+u,u)`.
 
+## Corollary 40.127: Split Domain Roots Are Drop-Or-Slice Data
+
+Keep the notation of Corollary 40.122.  Let `1<=u<=t`, let
+`[M] in P_u^x(Q_0)`, and suppose a squarefree in-domain divisor has been
+chosen:
+
+```text
+R subset D,        [M]=[L_R N].
+```
+
+For `C in Comp_{u,[M]}(Q_0,B_0)`, put
+
+```text
+S=C cap R,        T=R\S,        s=|S|.
+```
+
+If `s<=u`, then `[L_TN] in P_{u-s}^x(Q_0)`, and deleting the complement-side
+roots `S` gives
+
+```text
+C_0=C\S in Comp_{u-s,[L_TN]}(Q_0,B_0),
+C_0 cap R=empty,
+T subset D\C_0.                                  (DomainRootDropSlice)
+```
+
+Conversely, if `R=S disjoint_union T`, `|S|=s<=u`, and
+
+```text
+C_0 in Comp_{u-s,[L_TN]}(Q_0,B_0),
+C_0 cap (S union T)=empty,
+[L_S L_T N] in P_u^x(Q_0),
+```
+
+then
+
+```text
+C=C_0 disjoint_union S
+```
+
+lies in `Comp_{u,[L_RN]}(Q_0,B_0)` and satisfies `C cap R=S`.
+
+If `s>u`, then for every `u`-element subset `S_0 subset S`, deleting `S_0`
+lands at core depth:
+
+```text
+C_0=C\S_0 in Comp_{0,[L_{R\S_0}N]}(Q_0,B_0),
+|C_0|=j.                                          (DomainRootCoreSlice)
+```
+
+Thus every chosen split in-domain multiplier factor has only two roles in the
+fixed-class ledger.  Roots lying in the complement are depth drops, while
+roots outside the complement are carried forward as explicit fixed support
+roots, i.e. root-slice data on `D\C_0`.  After this stratification, the
+non-split part of the multiplier is external roots plus irreducible
+bounded-degree factors, together with any core-depth residue left when the
+exchange depth has been exhausted.
+
+### Proof
+
+Because `[M] in P_u^x(Q_0)` and `Q_0` is root-free on `D`, the classes of
+`L_S`, `L_T`, and `N` are all coprime to `Q_0`.  Also
+
+```text
+deg(L_TN) < r_u-s = r_{u-s}.
+```
+
+Hence `[L_TN] in P_{u-s}^x(Q_0)` when `s<=u`.
+
+If `C in Comp_{u,[M]}` and `S=C cap R`, write
+
+```text
+C=C_0 disjoint_union S.
+```
+
+Then `L_C=L_{C_0}L_S` and, up to projective scaling,
+
+```text
+L_{C_0}L_S in F L_D L_S L_T N B_0^{-1}        mod Q_0.
+```
+
+Cancelling the invertible class of `L_S` modulo `Q_0` gives
+`C_0 in Comp_{u-s,[L_TN]}(Q_0,B_0)`.  Since `S` was exactly `C cap R`, the
+reduced complement is disjoint from `R`, and every point of `T=R\S` lies in
+`D\C_0`.
+
+The converse is the same argument in reverse: multiply the defining
+congruence for `C_0` by `L_S`.  The disjointness assumptions give
+`|C|=j+u` and `C cap R=S`.
+
+If `s>u`, choose `S_0 subset S` with `|S_0|=u`.  The same cancellation gives
+the displayed depth-zero complement with multiplier `L_{R\S_0}N`.  Its degree
+is `<r_u-u=r_0`, so this case can occur only when the corresponding core-depth
+multiplier space is nonempty.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -16779,6 +16873,9 @@ exchange depth permits stripping.
 Corollary 40.126 lifts the unweighted `U_u` complement ledger to weighted
 coefficient-core incidence: every repeated `(a-u)` core has complement in
 `U_u`, and the resulting fixed-class count is still at most `binom(n,j)`.
+Corollary 40.127 stratifies split in-domain multiplier factors: complement
+roots lower exchange depth, while support-side roots become explicit
+fixed-root/root-slice data.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
