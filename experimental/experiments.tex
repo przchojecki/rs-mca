@@ -4354,6 +4354,20 @@ Thus marked roots form nonzero packet faces, while unmarked roots form a zero
 descent cube.  In the largest \(F_7^*\) audit the verifier checks \(4320\)
 unmarked zero faces over \(21600\) produced total supports; the productive
 subaudit checks \(2160\) such faces.
+The two cubes are compatible.  If \(E\subseteq U(S)\) and
+\(Y\subseteq M(S)\) are nonempty, deleting \(E\) first keeps each
+\(y\in Y\) marked with scalar \(b_y(S)/\ell_E(y)\), so
+\[
+  H_{\tau+|E|+|Y|,|S|-|E|-|Y|}(s)\ell_{S\setminus(E\cup Y)}
+  =
+  \left(\sum_{y\in Y}
+    {b_y(S)y^i\over
+      \ell_E(y)\prod_{z\in Y,\ z\ne y}(y-z)}\right)_
+      {0\le i\le\tau+|E|+|Y|-1}.
+\]
+Thus unmarked deletion shifts depth additively and only rescales the marked
+packet.  The largest \(F_7^*\) audit checks \(12960\) mixed faces, with
+\(6480\) productive mixed faces.
 For fixed \(A\) and \(m\), this also gives a fixed-anchor fiber bound.  If
 \(m\le\tau\), the first \(2m\) moments recover the mode locator and
 amplitudes uniquely.  At the boundary \(m=\tau+1\), two supports in one

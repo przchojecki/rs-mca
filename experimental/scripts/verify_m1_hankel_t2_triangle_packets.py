@@ -126,6 +126,9 @@ support fibers: below the boundary they are unique, while boundary fibers are
 matching-bounded.
 It also audits the dual zero cube: every nonempty subset of unmarked roots
 descends to a deeper zero Hankel kernel.
+The marked and unmarked cubes are also audited together: deleting unmarked
+roots first shifts the row depth additively and rescales the marked sparse
+packet without loss.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -539,6 +542,12 @@ def analyze_case(
     terminal_tree_productive_unmarked_zero_cube_face_checks = 0
     terminal_tree_unmarked_zero_cube_max_unmarked_roots = 0
     terminal_tree_productive_unmarked_zero_cube_max_unmarked_roots = 0
+    terminal_tree_mixed_marked_zero_cube_support_checks = 0
+    terminal_tree_productive_mixed_marked_zero_cube_support_checks = 0
+    terminal_tree_mixed_marked_zero_cube_face_checks = 0
+    terminal_tree_productive_mixed_marked_zero_cube_face_checks = 0
+    terminal_tree_mixed_marked_zero_cube_max_deleted_unmarked_roots = 0
+    terminal_tree_productive_mixed_marked_zero_cube_max_deleted_unmarked_roots = 0
     terminal_tree_anchor_fiber_checks = 0
     terminal_tree_productive_anchor_fiber_checks = 0
     terminal_tree_anchor_fiber_labels = 0
@@ -762,6 +771,12 @@ def analyze_case(
             nonlocal terminal_tree_productive_unmarked_zero_cube_face_checks
             nonlocal terminal_tree_unmarked_zero_cube_max_unmarked_roots
             nonlocal terminal_tree_productive_unmarked_zero_cube_max_unmarked_roots
+            nonlocal terminal_tree_mixed_marked_zero_cube_support_checks
+            nonlocal terminal_tree_productive_mixed_marked_zero_cube_support_checks
+            nonlocal terminal_tree_mixed_marked_zero_cube_face_checks
+            nonlocal terminal_tree_productive_mixed_marked_zero_cube_face_checks
+            nonlocal terminal_tree_mixed_marked_zero_cube_max_deleted_unmarked_roots
+            nonlocal terminal_tree_productive_mixed_marked_zero_cube_max_deleted_unmarked_roots
             nonlocal terminal_tree_anchor_fiber_checks
             nonlocal terminal_tree_productive_anchor_fiber_checks
             nonlocal terminal_tree_anchor_fiber_labels
@@ -911,6 +926,44 @@ def analyze_case(
                     for root_index in candidate_modes:
                         root = domain[root_index]
                         denominator = 1
+                        for other_root_index in candidate_modes:
+                            if other_root_index == root_index:
+                                continue
+                            denominator = (
+                                denominator
+                                * (root - domain[other_root_index])
+                            ) % p
+                        amplitude = (
+                            marked_roots[root_index]
+                            * pow(denominator, -1, p)
+                        ) % p
+                        total += amplitude * pow(root, row, p)
+                    expected.append(total % p)
+                return candidate_anchor, expected
+
+            def mixed_marked_subset_packet(
+                total_support: tuple[int, ...],
+                deleted_unmarked: tuple[int, ...],
+                candidate_modes: tuple[int, ...],
+                marked_roots: dict[int, int],
+            ) -> tuple[tuple[int, ...], list[int]]:
+                removed = set(deleted_unmarked) | set(candidate_modes)
+                candidate_anchor = tuple(
+                    index for index in total_support if index not in removed
+                )
+                expected = []
+                for row in range(
+                    t + len(deleted_unmarked) + len(candidate_modes)
+                ):
+                    total = 0
+                    for root_index in candidate_modes:
+                        root = domain[root_index]
+                        denominator = 1
+                        for deleted_index in deleted_unmarked:
+                            denominator = (
+                                denominator
+                                * (root - domain[deleted_index])
+                            ) % p
                         for other_root_index in candidate_modes:
                             if other_root_index == root_index:
                                 continue
@@ -3306,6 +3359,163 @@ def analyze_case(
                 productive_unmarked_zero_cube_max_unmarked_roots,
             )
 
+            def audit_mixed_marked_zero_cubes(
+                supports: set[tuple[int, ...]],
+                productive: bool,
+            ) -> tuple[int, int, int]:
+                support_checks = 0
+                face_checks = 0
+                max_deleted_unmarked = 0
+                for total_support in sorted(supports):
+                    marked_roots = marked_roots_for_split_support(
+                        total_support
+                    )
+                    marked_root_indices = sorted(marked_roots)
+                    unmarked_roots = tuple(
+                        index
+                        for index in total_support
+                        if index not in set(marked_roots)
+                    )
+                    support_checks += 1
+                    for deleted_count in range(1, len(unmarked_roots) + 1):
+                        for deleted_unmarked in itertools.combinations(
+                            unmarked_roots,
+                            deleted_count,
+                        ):
+                            max_deleted_unmarked = max(
+                                max_deleted_unmarked,
+                                deleted_count,
+                            )
+                            for mode_count in range(
+                                1,
+                                len(marked_root_indices) + 1,
+                            ):
+                                for candidate_modes in itertools.combinations(
+                                    marked_root_indices,
+                                    mode_count,
+                                ):
+                                    candidate_anchor, expected = (
+                                        mixed_marked_subset_packet(
+                                            total_support,
+                                            deleted_unmarked,
+                                            candidate_modes,
+                                            marked_roots,
+                                        )
+                                    )
+                                    anchor_vector = hankel_apply(
+                                        syn,
+                                        cached_locator(candidate_anchor),
+                                        (
+                                            t
+                                            + len(deleted_unmarked)
+                                            + mode_count
+                                        ),
+                                        p,
+                                    )
+                                    if anchor_vector != tuple(expected):
+                                        raise AssertionError(
+                                            {
+                                                "kind": (
+                                                    "productive-"
+                                                    if productive
+                                                    else ""
+                                                )
+                                                + "mixed-marked-zero-"
+                                                "cube-face-failed",
+                                                "p": p,
+                                                "k": k,
+                                                "syndrome": list(syn),
+                                                "fixed_roots": list(
+                                                    fixed_roots
+                                                ),
+                                                "total_split_support": list(
+                                                    total_support
+                                                ),
+                                                "deleted_unmarked": list(
+                                                    deleted_unmarked
+                                                ),
+                                                "candidate_modes": list(
+                                                    candidate_modes
+                                                ),
+                                                "candidate_anchor": list(
+                                                    candidate_anchor
+                                                ),
+                                                "anchor_vector": list(
+                                                    anchor_vector
+                                                ),
+                                                "expected": expected,
+                                            }
+                                        )
+                                    if not any(anchor_vector):
+                                        raise AssertionError(
+                                            {
+                                                "kind": (
+                                                    "productive-"
+                                                    if productive
+                                                    else ""
+                                                )
+                                                + "mixed-marked-zero-"
+                                                "cube-face-zero",
+                                                "p": p,
+                                                "k": k,
+                                                "syndrome": list(syn),
+                                                "fixed_roots": list(
+                                                    fixed_roots
+                                                ),
+                                                "total_split_support": list(
+                                                    total_support
+                                                ),
+                                                "deleted_unmarked": list(
+                                                    deleted_unmarked
+                                                ),
+                                                "candidate_modes": list(
+                                                    candidate_modes
+                                                ),
+                                                "candidate_anchor": list(
+                                                    candidate_anchor
+                                                ),
+                                            }
+                                        )
+                                    face_checks += 1
+                return support_checks, face_checks, max_deleted_unmarked
+
+            (
+                mixed_marked_zero_cube_support_checks,
+                mixed_marked_zero_cube_face_checks,
+                mixed_marked_zero_cube_max_deleted_unmarked_roots,
+            ) = audit_mixed_marked_zero_cubes(
+                total_split_supports,
+                productive=False,
+            )
+            (
+                productive_mixed_marked_zero_cube_support_checks,
+                productive_mixed_marked_zero_cube_face_checks,
+                productive_mixed_marked_zero_cube_max_deleted_unmarked_roots,
+            ) = audit_mixed_marked_zero_cubes(
+                productive_total_split_supports,
+                productive=True,
+            )
+            terminal_tree_mixed_marked_zero_cube_support_checks += (
+                mixed_marked_zero_cube_support_checks
+            )
+            terminal_tree_productive_mixed_marked_zero_cube_support_checks += (
+                productive_mixed_marked_zero_cube_support_checks
+            )
+            terminal_tree_mixed_marked_zero_cube_face_checks += (
+                mixed_marked_zero_cube_face_checks
+            )
+            terminal_tree_productive_mixed_marked_zero_cube_face_checks += (
+                productive_mixed_marked_zero_cube_face_checks
+            )
+            terminal_tree_mixed_marked_zero_cube_max_deleted_unmarked_roots = max(
+                terminal_tree_mixed_marked_zero_cube_max_deleted_unmarked_roots,
+                mixed_marked_zero_cube_max_deleted_unmarked_roots,
+            )
+            terminal_tree_productive_mixed_marked_zero_cube_max_deleted_unmarked_roots = max(
+                terminal_tree_productive_mixed_marked_zero_cube_max_deleted_unmarked_roots,
+                productive_mixed_marked_zero_cube_max_deleted_unmarked_roots,
+            )
+
             def audit_anchor_split_fibers(
                 fibers: dict[
                     tuple[int, tuple[int, ...]],
@@ -5280,6 +5490,24 @@ def analyze_case(
         "terminal_tree_productive_unmarked_zero_cube_max_unmarked_roots": (
             terminal_tree_productive_unmarked_zero_cube_max_unmarked_roots
         ),
+        "terminal_tree_mixed_marked_zero_cube_support_checks": (
+            terminal_tree_mixed_marked_zero_cube_support_checks
+        ),
+        "terminal_tree_productive_mixed_marked_zero_cube_support_checks": (
+            terminal_tree_productive_mixed_marked_zero_cube_support_checks
+        ),
+        "terminal_tree_mixed_marked_zero_cube_face_checks": (
+            terminal_tree_mixed_marked_zero_cube_face_checks
+        ),
+        "terminal_tree_productive_mixed_marked_zero_cube_face_checks": (
+            terminal_tree_productive_mixed_marked_zero_cube_face_checks
+        ),
+        "terminal_tree_mixed_marked_zero_cube_max_deleted_unmarked_roots": (
+            terminal_tree_mixed_marked_zero_cube_max_deleted_unmarked_roots
+        ),
+        "terminal_tree_productive_mixed_marked_zero_cube_max_deleted_unmarked_roots": (
+            terminal_tree_productive_mixed_marked_zero_cube_max_deleted_unmarked_roots
+        ),
         "terminal_tree_anchor_fiber_checks": (
             terminal_tree_anchor_fiber_checks
         ),
@@ -5740,6 +5968,8 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_marked_core_fiber_max_size']} "
             f"unmarked_zero_cube_faces="
             f"{result['terminal_tree_unmarked_zero_cube_face_checks']} "
+            f"mixed_cube_faces="
+            f"{result['terminal_tree_mixed_marked_zero_cube_face_checks']} "
             f"anchor_fiber_checks="
             f"{result['terminal_tree_anchor_fiber_checks']} "
             f"anchor_fiber_max="

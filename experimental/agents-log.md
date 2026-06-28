@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 mixed marked-unmarked faces are lossless
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE AUDIT.
+- **What is being added:** For `E subset U(S)` and `Y subset M(S)`, deleting
+  the unmarked roots `E` shifts the row depth by `|E|` and rescales marked
+  packet amplitudes by `1/ell_E(y)`, with no loss of nonzero marked faces.
+- **How it is useful:** Unifies the nonzero marked-exit cube and zero
+  unmarked-root cube into a two-color additive-depth object, matching the M1
+  goal of avoiding multiplicative frontier loss.
+- **What to do next:** Use the two-color cube normal form to bound canonical
+  unmarked cores carrying many marked exits, or charge them to lower-core,
+  tangent, quotient-periodic, or aperiodic ledgers.
+
 ### 2026-06-28 - M1 unmarked roots form zero descent cubes
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

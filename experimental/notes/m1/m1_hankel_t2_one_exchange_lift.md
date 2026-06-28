@@ -1919,6 +1919,57 @@ produced total supports and `4320` unmarked zero faces, with maximum unmarked
 count `1`.  The productive subaudit checks `19440` supports and `2160`
 unmarked zero faces, again with maximum unmarked count `1`.
 
+## Mixed Marked-Unmarked Faces Are Lossless
+
+The marked and unmarked cubes are compatible.  Let `E subset U(S)` and
+`Y subset M(S)` be nonempty.  Put
+
+```text
+A_{E,Y}=S\(E union Y),        ell_E(X)=prod_{e in E}(X-e).
+```
+
+First delete the unmarked set `E`.  By (UZ), `S\E` is active at row
+`tau+|E|`.  For `y in M(S)`, the boundary of `S\E` at `y` is still a nonzero
+geometric vector.  Indeed, if
+
+```text
+H_{tau+|E|+1,|A_{E,{y}}|}(s)ell_{A_{E,{y}}}
+  = c_{E,y}(1,y,...,y^{tau+|E|}),
+```
+
+then multiplying by `ell_E` recovers the original marked boundary:
+
+```text
+c_{E,y} ell_E(y)=b_y(S).
+```
+
+Since `E` is disjoint from `M(S)`, `ell_E(y) != 0`, so
+
+```text
+c_{E,y}=b_y(S)/ell_E(y) != 0.
+```
+
+Applying the marked-exit reconstruction inside the active support `S\E` gives
+
+```text
+H_{tau+|E|+|Y|,|A_{E,Y}|}(s)ell_{A_{E,Y}}
+ = (sum_{y in Y}
+      b_y(S) y^i / (ell_E(y) prod_{z in Y,z!=y}(y-z)))
+     _{0<=i<=tau+|E|+|Y|-1}.                 (MZ)
+```
+
+The right side is nonzero by the Vandermonde minor on `Y`.  Thus deleting
+unmarked roots shifts the row depth additively and only rescales the marked
+packet amplitudes; it does not create a multiplicative loss or destroy marked
+faces.  The full split-support object is a two-color cube: unmarked directions
+are zero descents, marked directions are nonzero sparse packets, and mixed
+faces are the same packets after the exact zero-depth shift.
+
+The verifier audits (MZ) for every produced total support, every nonempty
+unmarked subset, and every nonempty marked subset.  In the largest `F_7^*`
+audit, it checks `12960` mixed marked-unmarked faces, with maximum deleted
+unmarked count `1`.  The productive subaudit checks `6480` mixed faces.
+
 ## Fixed Anchors Have Matching-Bounded Fibers
 
 Fix the collapsed anchor base `A` and the mode size `m`.  Then
