@@ -2581,6 +2581,57 @@ set.  In the largest `F_7^*` audit, it checks `51840` anchors and `259200`
 one-root residual slices, with `0` bad root-slice labels and maximum bad
 root-slice count `0` per anchor; the productive subaudit has the same counts.
 
+## One-Dimensional Residual Kernels Are Root-Slice Packings
+
+The first positive-dimensional residual-kernel case has a sharper structure
+than the general hyperplane-arrangement bound.  Suppose `b(U,W)=1`, so the
+affine residual kernel is a line
+
+```text
+K(U,W)=P_0 + lambda Q,        lambda in F,
+```
+
+with a nonzero direction `Q in F[X]_{<q}`.  Let
+
+```text
+Z_Q={x in D' : Q(x)=0},     z=|Z_Q|.
+```
+
+Because `deg Q<q`, one has `z<=q-1`.  If `R_lambda` and `R_mu` are two
+distinct squarefree residual supports in the fiber, then
+
+```text
+ell_{R_lambda}-ell_{R_mu}=(lambda-mu)Q.
+```
+
+Hence every shared residual root of `R_lambda` and `R_mu` lies in `Z_Q`.
+Equivalently, outside `Z_Q` the residual supports are pairwise disjoint.  Since
+each residual support has at least `q-z` roots outside `Z_Q`, incidence counting
+outside `Z_Q` gives
+
+```text
+|F(U,W)| <= floor((|D'|-z)/(q-z)).                  (LKB)
+```
+
+For `q>1`, the same direction identifies the one-root bad slices:
+
+```text
+Z_Q = {x in D' : H_{q,q+d-1}(s)(ell_W (X-x)Q_x)=0
+               for some nonzero deg Q_x<q-1 }.
+```
+
+Indeed the root slice has a nonzero direction if and only if the unique
+direction `Q` is divisible by `X-x`.  Thus dimension-one residual kernels are
+already ordinary root-slice packings; their only overlap reservoir is the
+fixed-root set `Z_Q`.
+
+This is stronger than (DKB) at `b=1`: instead of the coarse `1+|D'|` bound, it
+gives the disjoint-packing bound after the roots of the single direction
+polynomial have been charged.  The verifier now extracts the unique direction
+whenever `b(U,W)=1`, checks that its domain roots match the bad one-root slices,
+and asserts (LKB).  In the current largest `F_7^*` audit no produced anchor has
+`b(U,W)=1`; all produced anchors still have `b(U,W)=0`.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

@@ -167,6 +167,8 @@ residual fiber.
 It also audits the endpoint-rank test forced by persistent moving kernels for
 each produced deficit anchor, and checks that endpoint defects are contained in
 the filtered residual-kernel direction space.
+When that residual direction space is one-dimensional, it extracts the unique
+direction polynomial and checks the resulting root-slice packing bound.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -332,6 +334,73 @@ def matrix_rank_mod(matrix: Sequence[Sequence[int]], p: int) -> int:
         if rank == row_count:
             break
     return rank
+
+
+def right_kernel_basis_mod(
+    matrix: Sequence[Sequence[int]],
+    p: int,
+) -> tuple[tuple[int, ...], ...]:
+    column_count = len(matrix[0]) if matrix else 0
+    rows = [list(row) for row in matrix if any(value % p for value in row)]
+    if not rows:
+        return tuple(
+            tuple(1 if index == column else 0 for index in range(column_count))
+            for column in range(column_count)
+        )
+    row_count = len(rows)
+    rank = 0
+    pivot_columns: list[int] = []
+    for column in range(column_count):
+        pivot = next(
+            (
+                row
+                for row in range(rank, row_count)
+                if rows[row][column] % p
+            ),
+            None,
+        )
+        if pivot is None:
+            continue
+        rows[rank], rows[pivot] = rows[pivot], rows[rank]
+        inverse_pivot = pow(rows[rank][column] % p, -1, p)
+        for entry in range(column, column_count):
+            rows[rank][entry] = rows[rank][entry] * inverse_pivot % p
+        for row in range(row_count):
+            if row == rank:
+                continue
+            factor = rows[row][column] % p
+            if not factor:
+                continue
+            for entry in range(column, column_count):
+                rows[row][entry] = (
+                    rows[row][entry] - factor * rows[rank][entry]
+                ) % p
+        pivot_columns.append(column)
+        rank += 1
+        if rank == row_count:
+            break
+    pivot_set = set(pivot_columns)
+    basis = []
+    for free_column in range(column_count):
+        if free_column in pivot_set:
+            continue
+        vector = [0] * column_count
+        vector[free_column] = 1
+        for pivot_row, pivot_column in enumerate(pivot_columns):
+            vector[pivot_column] = (-rows[pivot_row][free_column]) % p
+        basis.append(tuple(vector))
+    return tuple(basis)
+
+
+def polynomial_eval_mod(
+    coeffs: Sequence[int],
+    value: int,
+    p: int,
+) -> int:
+    result = 0
+    for coeff in reversed(coeffs):
+        result = (result * value + coeff) % p
+    return result
 
 
 def solve_square_mod(
@@ -669,6 +738,12 @@ def analyze_case(
     terminal_tree_productive_deficit_anchor_residual_fiber_max_size = 0
     terminal_tree_deficit_anchor_residual_fiber_max_direction = 0
     terminal_tree_productive_deficit_anchor_residual_fiber_max_direction = 0
+    terminal_tree_deficit_anchor_line_kernel_checks = 0
+    terminal_tree_productive_deficit_anchor_line_kernel_checks = 0
+    terminal_tree_deficit_anchor_line_kernel_max_direction_roots = 0
+    terminal_tree_productive_deficit_anchor_line_kernel_max_direction_roots = 0
+    terminal_tree_deficit_anchor_line_kernel_max_sharp_bound = 0
+    terminal_tree_productive_deficit_anchor_line_kernel_max_sharp_bound = 0
     terminal_tree_deficit_anchor_root_slice_checks = 0
     terminal_tree_productive_deficit_anchor_root_slice_checks = 0
     terminal_tree_deficit_anchor_root_slice_labels = 0
@@ -964,6 +1039,12 @@ def analyze_case(
             nonlocal terminal_tree_productive_deficit_anchor_residual_fiber_max_size
             nonlocal terminal_tree_deficit_anchor_residual_fiber_max_direction
             nonlocal terminal_tree_productive_deficit_anchor_residual_fiber_max_direction
+            nonlocal terminal_tree_deficit_anchor_line_kernel_checks
+            nonlocal terminal_tree_productive_deficit_anchor_line_kernel_checks
+            nonlocal terminal_tree_deficit_anchor_line_kernel_max_direction_roots
+            nonlocal terminal_tree_productive_deficit_anchor_line_kernel_max_direction_roots
+            nonlocal terminal_tree_deficit_anchor_line_kernel_max_sharp_bound
+            nonlocal terminal_tree_productive_deficit_anchor_line_kernel_max_sharp_bound
             nonlocal terminal_tree_deficit_anchor_root_slice_checks
             nonlocal terminal_tree_productive_deficit_anchor_root_slice_checks
             nonlocal terminal_tree_deficit_anchor_root_slice_labels
@@ -3364,6 +3445,9 @@ def analyze_case(
                 int,
                 int,
                 int,
+                int,
+                int,
+                int,
             ]:
                 fibers: dict[
                     tuple[int, tuple[int, ...]],
@@ -3411,6 +3495,9 @@ def analyze_case(
                 deficit_anchor_residual_fiber_labels = 0
                 deficit_anchor_residual_fiber_max_size = 0
                 deficit_anchor_residual_fiber_max_direction = 0
+                deficit_anchor_line_kernel_checks = 0
+                deficit_anchor_line_kernel_max_direction_roots = 0
+                deficit_anchor_line_kernel_max_sharp_bound = 0
                 deficit_anchor_root_slice_checks = 0
                 deficit_anchor_root_slice_labels = 0
                 deficit_anchor_root_slice_bad_labels = 0
@@ -4166,6 +4253,147 @@ def analyze_case(
                                                 ),
                                             }
                                         )
+                                    if residual_direction_dim == 1:
+                                        line_kernel_basis = right_kernel_basis_mod(
+                                            moment_matrix,
+                                            p,
+                                        )
+                                        if len(line_kernel_basis) != 1:
+                                            raise AssertionError(
+                                                {
+                                                    "kind": (
+                                                        "productive-"
+                                                        if productive
+                                                        else ""
+                                                    )
+                                                    + "marked-core-deficit-"
+                                                    "anchor-line-kernel-basis-"
+                                                    "failed",
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "unmarked_core": list(
+                                                        unmarked_core
+                                                    ),
+                                                    "marked_count": marked_count,
+                                                    "core_deficit": core_deficit,
+                                                    "anchor": list(anchor),
+                                                    "basis": [
+                                                        list(vector)
+                                                        for vector in (
+                                                            line_kernel_basis
+                                                        )
+                                                    ],
+                                                }
+                                            )
+                                        line_direction = line_kernel_basis[0]
+                                        direction_roots = {
+                                            root
+                                            for root in available_roots
+                                            if not polynomial_eval_mod(
+                                                line_direction,
+                                                domain[root],
+                                                p,
+                                            )
+                                        }
+                                        if (
+                                            residual_size > 1
+                                            and direction_roots
+                                            != root_slice_bad_roots
+                                        ):
+                                            raise AssertionError(
+                                                {
+                                                    "kind": (
+                                                        "productive-"
+                                                        if productive
+                                                        else ""
+                                                    )
+                                                    + "marked-core-deficit-"
+                                                    "anchor-line-kernel-root-"
+                                                    "slice-failed",
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "unmarked_core": list(
+                                                        unmarked_core
+                                                    ),
+                                                    "marked_count": marked_count,
+                                                    "core_deficit": core_deficit,
+                                                    "anchor": list(anchor),
+                                                    "line_direction": list(
+                                                        line_direction
+                                                    ),
+                                                    "direction_roots": sorted(
+                                                        direction_roots
+                                                    ),
+                                                    "root_slice_bad_roots": sorted(
+                                                        root_slice_bad_roots
+                                                    ),
+                                                }
+                                            )
+                                        direction_root_count = len(
+                                            direction_roots
+                                        )
+                                        line_kernel_bound = (
+                                            len(available_roots)
+                                            - direction_root_count
+                                        ) // (
+                                            residual_size
+                                            - direction_root_count
+                                        )
+                                        deficit_anchor_line_kernel_checks += 1
+                                        deficit_anchor_line_kernel_max_direction_roots = max(
+                                            deficit_anchor_line_kernel_max_direction_roots,
+                                            direction_root_count,
+                                        )
+                                        deficit_anchor_line_kernel_max_sharp_bound = max(
+                                            deficit_anchor_line_kernel_max_sharp_bound,
+                                            line_kernel_bound,
+                                        )
+                                        if (
+                                            len(residual_candidates)
+                                            > line_kernel_bound
+                                        ):
+                                            raise AssertionError(
+                                                {
+                                                    "kind": (
+                                                        "productive-"
+                                                        if productive
+                                                        else ""
+                                                    )
+                                                    + "marked-core-deficit-"
+                                                    "anchor-line-kernel-bound-"
+                                                    "failed",
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "unmarked_core": list(
+                                                        unmarked_core
+                                                    ),
+                                                    "marked_count": marked_count,
+                                                    "core_deficit": core_deficit,
+                                                    "anchor": list(anchor),
+                                                    "line_direction": list(
+                                                        line_direction
+                                                    ),
+                                                    "direction_roots": sorted(
+                                                        direction_roots
+                                                    ),
+                                                    "candidate_count": len(
+                                                        residual_candidates
+                                                    ),
+                                                    "bound": line_kernel_bound,
+                                                }
+                                            )
                                     residual_bound = sum(
                                         math.comb(len(available_roots), size)
                                         for size in range(
@@ -4491,6 +4719,9 @@ def analyze_case(
                     deficit_anchor_residual_fiber_labels,
                     deficit_anchor_residual_fiber_max_size,
                     deficit_anchor_residual_fiber_max_direction,
+                    deficit_anchor_line_kernel_checks,
+                    deficit_anchor_line_kernel_max_direction_roots,
+                    deficit_anchor_line_kernel_max_sharp_bound,
                     deficit_anchor_root_slice_checks,
                     deficit_anchor_root_slice_labels,
                     deficit_anchor_root_slice_bad_labels,
@@ -4525,6 +4756,9 @@ def analyze_case(
                 deficit_anchor_residual_fiber_labels,
                 deficit_anchor_residual_fiber_max_size,
                 deficit_anchor_residual_fiber_max_direction,
+                deficit_anchor_line_kernel_checks,
+                deficit_anchor_line_kernel_max_direction_roots,
+                deficit_anchor_line_kernel_max_sharp_bound,
                 deficit_anchor_root_slice_checks,
                 deficit_anchor_root_slice_labels,
                 deficit_anchor_root_slice_bad_labels,
@@ -4561,6 +4795,9 @@ def analyze_case(
                 productive_deficit_anchor_residual_fiber_labels,
                 productive_deficit_anchor_residual_fiber_max_size,
                 productive_deficit_anchor_residual_fiber_max_direction,
+                productive_deficit_anchor_line_kernel_checks,
+                productive_deficit_anchor_line_kernel_max_direction_roots,
+                productive_deficit_anchor_line_kernel_max_sharp_bound,
                 productive_deficit_anchor_root_slice_checks,
                 productive_deficit_anchor_root_slice_labels,
                 productive_deficit_anchor_root_slice_bad_labels,
@@ -4735,6 +4972,28 @@ def analyze_case(
             terminal_tree_productive_deficit_anchor_residual_fiber_max_direction = max(
                 terminal_tree_productive_deficit_anchor_residual_fiber_max_direction,
                 productive_deficit_anchor_residual_fiber_max_direction,
+            )
+            terminal_tree_deficit_anchor_line_kernel_checks += (
+                deficit_anchor_line_kernel_checks
+            )
+            terminal_tree_productive_deficit_anchor_line_kernel_checks += (
+                productive_deficit_anchor_line_kernel_checks
+            )
+            terminal_tree_deficit_anchor_line_kernel_max_direction_roots = max(
+                terminal_tree_deficit_anchor_line_kernel_max_direction_roots,
+                deficit_anchor_line_kernel_max_direction_roots,
+            )
+            terminal_tree_productive_deficit_anchor_line_kernel_max_direction_roots = max(
+                terminal_tree_productive_deficit_anchor_line_kernel_max_direction_roots,
+                productive_deficit_anchor_line_kernel_max_direction_roots,
+            )
+            terminal_tree_deficit_anchor_line_kernel_max_sharp_bound = max(
+                terminal_tree_deficit_anchor_line_kernel_max_sharp_bound,
+                deficit_anchor_line_kernel_max_sharp_bound,
+            )
+            terminal_tree_productive_deficit_anchor_line_kernel_max_sharp_bound = max(
+                terminal_tree_productive_deficit_anchor_line_kernel_max_sharp_bound,
+                productive_deficit_anchor_line_kernel_max_sharp_bound,
             )
             terminal_tree_deficit_anchor_root_slice_checks += (
                 deficit_anchor_root_slice_checks
@@ -7417,6 +7676,24 @@ def analyze_case(
         "terminal_tree_productive_deficit_anchor_residual_fiber_max_direction": (
             terminal_tree_productive_deficit_anchor_residual_fiber_max_direction
         ),
+        "terminal_tree_deficit_anchor_line_kernel_checks": (
+            terminal_tree_deficit_anchor_line_kernel_checks
+        ),
+        "terminal_tree_productive_deficit_anchor_line_kernel_checks": (
+            terminal_tree_productive_deficit_anchor_line_kernel_checks
+        ),
+        "terminal_tree_deficit_anchor_line_kernel_max_direction_roots": (
+            terminal_tree_deficit_anchor_line_kernel_max_direction_roots
+        ),
+        "terminal_tree_productive_deficit_anchor_line_kernel_max_direction_roots": (
+            terminal_tree_productive_deficit_anchor_line_kernel_max_direction_roots
+        ),
+        "terminal_tree_deficit_anchor_line_kernel_max_sharp_bound": (
+            terminal_tree_deficit_anchor_line_kernel_max_sharp_bound
+        ),
+        "terminal_tree_productive_deficit_anchor_line_kernel_max_sharp_bound": (
+            terminal_tree_productive_deficit_anchor_line_kernel_max_sharp_bound
+        ),
         "terminal_tree_deficit_anchor_root_slice_checks": (
             terminal_tree_deficit_anchor_root_slice_checks
         ),
@@ -8017,6 +8294,10 @@ def print_summary(results: Sequence[dict[str, object]]) -> None:
             f"{result['terminal_tree_deficit_anchor_residual_fiber_max_size']} "
             f"deficit_anchor_residual_dim_max="
             f"{result['terminal_tree_deficit_anchor_residual_fiber_max_direction']} "
+            f"deficit_anchor_line_kernels="
+            f"{result['terminal_tree_deficit_anchor_line_kernel_checks']} "
+            f"deficit_anchor_line_kernel_root_max="
+            f"{result['terminal_tree_deficit_anchor_line_kernel_max_direction_roots']} "
             f"deficit_anchor_root_slices="
             f"{result['terminal_tree_deficit_anchor_root_slice_checks']} "
             f"deficit_anchor_root_slice_bad="

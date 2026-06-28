@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 line residual kernels are root-slice packings
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that if a fixed deficit anchor has residual
+  direction dimension `b(U,W)=1`, then the unique direction polynomial `Q`
+  contains every possible overlap root between two residual supports, yielding
+  `|F(U,W)| <= floor((|D'|-z)/(q-z))` with `z=|{x in D':Q(x)=0}|`.
+- **How it is useful:** Sharpens the first positive-dimensional residual-kernel
+  obstruction from a coarse hyperplane-arrangement count to an explicit
+  root-slice packing.  Dimension-one residual kernels are therefore charged by
+  the fixed-root/root-slice ledger, not treated as unstructured multiplicity.
+- **What to do next:** Extend this root-slice stratification from `b=1` to
+  higher-dimensional residual direction spaces, or classify the higher
+  directions via quotient-periodic and aperiodic M1 structure.
+
 ### 2026-06-28 - M1 endpoint defects are residual directions
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

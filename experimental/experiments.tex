@@ -4579,6 +4579,21 @@ fiber obeys
 The verifier audits the one-root case: in the largest \(F_7^*\) audit it
 checks \(51840\) anchors and \(259200\) one-root residual slices, with no bad
 root-slice labels and the same productive counts.
+The first positive-dimensional case is sharper than the general arrangement
+bound.  If the residual-kernel direction space has dimension one, write the
+affine kernel as \(P_0+\lambda Q\) with \(0\ne Q\in F[X]_{<q}\), and let
+\(Z_Q=\{x\in D':Q(x)=0\}\), \(z=|Z_Q|\).  For two distinct residual supports
+\(R_\lambda,R_\mu\), the difference
+\(\ell_{R_\lambda}-\ell_{R_\mu}=(\lambda-\mu)Q\); hence all their common roots
+lie in \(Z_Q\).  Counting incidences outside \(Z_Q\) gives
+\[
+  |F(U,W)|\le \left\lfloor {|D'|-z\over q-z}\right\rfloor ,
+\]
+and, for \(q>1\), \(Z_Q\) is exactly the one-root bad-slice set.  Thus a
+one-dimensional residual kernel is already a root-slice packing, not a new
+unstructured multiplicity source.  The verifier now extracts this unique
+direction and asserts the bound whenever \(b(U,W)=1\); in the current largest
+\(F_7^*\) audit no produced anchor has \(b(U,W)=1\).
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[
