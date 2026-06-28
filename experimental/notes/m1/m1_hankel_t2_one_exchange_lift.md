@@ -3281,6 +3281,57 @@ a zero of the whole residual direction space, and every projective fiber is cut
 out by the nonzero direction `bP-aQ`.  The current largest `F_7^*` scan has no
 `b(U,W)=2` produced anchor.
 
+## Small b=2 Root-Shadow Height Forces Packing
+
+The previous section turns concentration into a fixed-divisor root-shadow
+problem.  There is an exact packing consequence.  In the `b=2` notation, put
+
+```text
+h=max(|B_0|, max_lambda |ev^{-1}(lambda)|).
+```
+
+Thus `h` is the largest available-root set cut out either by the common base
+locus or by one nonzero projective direction `bP-aQ`.  When a residual support
+exists, `h>=1`, and every residual support `R` satisfies
+
+```text
+a(R)<=h,        r_lambda(R)<=h for all lambda.
+```
+
+Substituting `A=M=h` into (PF2-conc) gives a uniform lower bound
+
+```text
+g(R) >= gamma_2(q,h),
+```
+
+where, with `L=q-h`,
+
+```text
+gamma_2(q,h)
+ =
+binom(L,2)
+ - ( floor(L/h) binom(h,2)
+     + binom(L mod h,2) ).
+```
+
+Therefore, if `gamma_2(q,h)>0`, the cross-fiber packing bound gives
+
+```text
+|F(U,W)| <= floor(G_tot/gamma_2(q,h)).            (PF2-height)
+```
+
+In particular, `gamma_2(q,h)>0` exactly when `h<q/2`: after removing at most
+`h` base-locus roots, the remaining `q-h` roots cannot all fit inside one
+projective fiber of capacity `h`, so every residual support contains at least
+one good cross-fiber pair.  Hence the only `b=2` residual branch not closed by
+good-pair packing must contain a fixed-divisor slice with at least `q/2`
+available roots.  The problem has moved from diffuse two-dimensional residual
+kernel multiplicity to a large fixed-divisor root-shadow ledger.
+
+The verifier now checks (PF2-height) whenever `b(U,W)=2`, using the same base
+locus and projective fibers as the exact bad-pair audit.  The current largest
+`F_7^*` scan has no `b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

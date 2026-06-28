@@ -4820,6 +4820,25 @@ heavy subset \(C\) in \(B_0\) or in one projective fiber gives a divisor
 \]
 The remaining \(b=2\) M1 task is therefore to bound these fixed-root and
 projective-fiber slice ledgers.
+This gives a root-shadow-height closure.  Put
+\[
+  h=\max(|B_0|,\max_\lambda |ev^{-1}(\lambda)|).
+\]
+When a residual support exists, \(h\ge1\).  Every residual support has
+\(a(R)\le h\) and \(r_\lambda(R)\le h\), hence with \(L=q-h\)
+\[
+  g(R)\ge
+  \gamma_2(q,h):=
+  \binom L2-
+  \left(\left\lfloor {L\over h}\right\rfloor\binom h2
+  +\binom{L\bmod h}{2}\right).
+\]
+If \(\gamma_2(q,h)>0\), then
+\[
+  |F(U,W)|\le \left\lfloor {G_{\rm tot}\over \gamma_2(q,h)}\right\rfloor .
+\]
+In particular the unclosed \(b=2\) branch requires a fixed-divisor slice of
+height at least \(q/2\); small root shadows are packing-bounded.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

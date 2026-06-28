@@ -190,6 +190,9 @@ projective evaluation fibers and checks the resulting cross-fiber good-pair
 packing bound.
 It also computes support-level base/fiber occupancy and checks the resulting
 concentration lower bound for good pairs.
+Equivalently, it checks the global root-shadow-height bound: if the largest
+base locus or projective fiber has height h, every residual support has the
+good-pair lower bound forced by h.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -464,6 +467,20 @@ def capped_pair_cluster_bound(total: int, cap: int) -> int:
     return (
         full_blocks * math.comb(cap, 2)
         + math.comb(remainder, 2)
+    )
+
+
+def b2_good_pair_lower_from_slice_height(
+    residual_size: int,
+    slice_height: int,
+) -> int:
+    nonbase_lower_count = max(residual_size - slice_height, 0)
+    return (
+        math.comb(nonbase_lower_count, 2)
+        - capped_pair_cluster_bound(
+            nonbase_lower_count,
+            slice_height,
+        )
     )
 
 
@@ -5447,6 +5464,12 @@ def analyze_case(
                                                 ),
                                                 default=0,
                                             )
+                                            projective_root_shadow_height = max(
+                                                len(
+                                                    projective_eval_base_roots
+                                                ),
+                                                max_projective_fiber_size,
+                                            )
                                             if (
                                                 max_projective_fiber_size
                                                 > residual_size - 1
@@ -5884,6 +5907,112 @@ def analyze_case(
                                                             ),
                                                             "lower_bound": (
                                                                 concentration_good_pair_lower
+                                                            ),
+                                                        }
+                                                    )
+                                                slice_height_good_pair_lower = (
+                                                    b2_good_pair_lower_from_slice_height(
+                                                        residual_size,
+                                                        projective_root_shadow_height,
+                                                    )
+                                                )
+                                                if (
+                                                    candidate_good_pair_min
+                                                    is not None
+                                                    and candidate_good_pair_min
+                                                    < slice_height_good_pair_lower
+                                                ):
+                                                    raise AssertionError(
+                                                        {
+                                                            "kind": (
+                                                                "productive-"
+                                                                if productive
+                                                                else ""
+                                                            )
+                                                            + "marked-core-"
+                                                            "deficit-anchor-"
+                                                            "direction-mds-"
+                                                            "projective-"
+                                                            "slice-height-"
+                                                            "lower-bound-"
+                                                            "failed",
+                                                            "p": p,
+                                                            "k": k,
+                                                            "syndrome": list(syn),
+                                                            "fixed_roots": list(
+                                                                fixed_roots
+                                                            ),
+                                                            "unmarked_core": list(
+                                                                unmarked_core
+                                                            ),
+                                                            "marked_count": (
+                                                                marked_count
+                                                            ),
+                                                            "core_deficit": (
+                                                                core_deficit
+                                                            ),
+                                                            "anchor": list(anchor),
+                                                            "candidate_good_pair_min": (
+                                                                candidate_good_pair_min
+                                                            ),
+                                                            "root_shadow_height": (
+                                                                projective_root_shadow_height
+                                                            ),
+                                                            "lower_bound": (
+                                                                slice_height_good_pair_lower
+                                                            ),
+                                                        }
+                                                    )
+                                                if (
+                                                    slice_height_good_pair_lower
+                                                    and len(residual_candidates)
+                                                    > len(projective_good_pairs)
+                                                    // slice_height_good_pair_lower
+                                                ):
+                                                    raise AssertionError(
+                                                        {
+                                                            "kind": (
+                                                                "productive-"
+                                                                if productive
+                                                                else ""
+                                                            )
+                                                            + "marked-core-"
+                                                            "deficit-anchor-"
+                                                            "direction-mds-"
+                                                            "projective-"
+                                                            "slice-height-"
+                                                            "bound-failed",
+                                                            "p": p,
+                                                            "k": k,
+                                                            "syndrome": list(syn),
+                                                            "fixed_roots": list(
+                                                                fixed_roots
+                                                            ),
+                                                            "unmarked_core": list(
+                                                                unmarked_core
+                                                            ),
+                                                            "marked_count": (
+                                                                marked_count
+                                                            ),
+                                                            "core_deficit": (
+                                                                core_deficit
+                                                            ),
+                                                            "anchor": list(anchor),
+                                                            "residual_candidates": (
+                                                                len(
+                                                                    residual_candidates
+                                                                )
+                                                            ),
+                                                            "good_pair_count": (
+                                                                len(
+                                                                    projective_good_pairs
+                                                                )
+                                                            ),
+                                                            "root_shadow_height": (
+                                                                projective_root_shadow_height
+                                                            ),
+                                                            "lower_bound": (
+                                                                slice_height_good_pair_lower
                                                             ),
                                                         }
                                                     )

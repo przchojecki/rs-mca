@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 small root shadows force packing
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves a root-shadow-height packing bound for the
+  `b=2` residual branch: if the largest base locus or projective fiber has
+  height `h`, then every residual support has at least `gamma_2(q,h)`
+  cross-fiber good pairs, giving `|F(U,W)|<=floor(G_tot/gamma_2(q,h))` when
+  this lower bound is positive.
+- **How it is useful:** Shows that the only `b=2` branch not closed by
+  good-pair packing requires a fixed-divisor slice of height at least `q/2`,
+  turning the remaining obstruction into a large root-shadow ledger.
+- **What to do next:** Bound or classify half-size fixed-divisor root shadows
+  in the actual M1 Hankel-pencil kernels.
+
 ### 2026-06-28 - M1 b=2 concentration gives fixed-divisor slices
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
