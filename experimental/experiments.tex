@@ -2171,7 +2171,13 @@ pre-half-window residuals, the cutoff overlap multiplier ledgers, and the
 cutoff family multiplier ledgers are charged, the only remaining finite frontier
 charge is the bottom finite parameter set
 \(E_{r_0,>b}\cup\Theta_{r_0,>b}\), of size at most \(2h\) on the remaining
-ledger.
+ledger.  Equivalently, apart from the pre-half-window longer-Pade residual
+families, the current consumable upper ledger is
+\[
+  \mathrm{HybridOverlap}_{hw}+\mathrm{FamilyBudget}_{hw}+2h.
+\]
+This is an upper ledger rather than a sharp disjoint count: the family budget
+is paid after the overlap charges and may shrink in a finer accounting.
 Equivalently, the full three-shift common-image branch is endpoint-only.  If
 \(\mathrm{GCI}\) denotes the monic split core locators satisfying some
 three-shift common-image line, then

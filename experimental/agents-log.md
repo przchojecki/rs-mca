@@ -338,11 +338,11 @@ Keep entries concise and link to the relevant files.
   bounded by the minimum of its family-lcm multiplier count and its endpoint-row
   rank count, so large lcm degree and genuine endpoint-row cuts are independent
   savings mechanisms.  The refined mixed-ladder closure now records the final
-  consumable ledger: after pre-half residuals, cutoff overlap multiplier
-  ledgers, and cutoff family multiplier ledgers are charged, the only remaining
-  finite
-  frontier charge is the bottom set `E_{r_0,>b} union Theta_{r_0,>b}`, of size
-  at most `2h`.
+  consumable upper ledger: after pre-half residuals, the non-prehalf part is
+  charged by `HybridOverlap_hw + FamilyBudget_hw + 2h`, where the final `2h`
+  is the bottom finite frontier set `E_{r_0,>b} union Theta_{r_0,>b}`.  This is
+  an upper ledger, since the family budget is paid after overlap charges and
+  may shrink under sharper disjoint accounting.
   The common-image three-shift ledger now has the analogous sliding-window
   reduction: for an image line `[y]`, the allowed deeper residuals form a space
   `W_y` of dimension at most one, nonzero only on the `q+1` extended geometric

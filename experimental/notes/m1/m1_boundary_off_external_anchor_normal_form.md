@@ -5469,7 +5469,8 @@ residual ledgers, the cutoff primitive denominators and their allowed
 multipliers, and the cutoff overlap ledgers.  Corollary 40.24 below refines
 the latter into at most five half-window primitive/multiplier ledgers, and
 Corollary 40.25 sharpens those overlap ledgers to lcms of the cutoff family
-primitive denominators.
+primitive denominators.  Corollary 40.30 packages the refined cutoff ledger
+as a single consumable mixed-ladder upper bound.
 
 ### Proof
 
@@ -5981,6 +5982,76 @@ Phi(d_S-eps_uS),       Phi(d_S-eps_vS).
 
 A set bounded by two quantities is bounded by their minimum.  Summing these
 termwise minima over the active overlap systems gives (HybridOverlap).
+
+## Corollary 40.30: Mixed-Ladder Closure With A Hybrid Cutoff Ledger
+
+Keep the mixed-ladder notation of Corollary 40.23 and work over `F_q`.  Put
+
+```text
+Phi(m)=(q^m-1)/(q-1)        for m>=0.
+```
+
+If `R_hw` is nonempty, define
+
+```text
+FamilyBudget_hw = sum_{F active} Phi(h-delta_F)
+```
+
+with the four active cutoff residual families `F in {u,v,(u,v),(Su,Sv)}` as
+in Corollary 40.18, and define `HybridOverlap_hw` by the right-hand side of
+(HybridOverlap) in Corollary 40.29.  If `R_hw` is empty, set both budgets to
+zero.
+
+After the fixed-root/root-slice short recurrence pieces and the pre-half-window
+root-free recurrence families have been charged, the whole half-window cutoff
+part is charged by at most
+
+```text
+HybridOverlap_hw + FamilyBudget_hw
+```
+
+projective root-free certificate-denominator classes.  After those denominator
+charges, all four short frontier checks hold at every depth in `R`, and the
+remaining finite fixed-kernel and consecutive common-image frontier ledgers
+close after charging only
+
+```text
+E_{r_0,>b} union Theta_{r_0,>b},
+```
+
+of total size at most `2h` on the remaining ledger.
+
+Thus, apart from the pre-half-window longer-Pade residual families, the mixed
+frontier ladder has the explicit consumable upper ledger
+
+```text
+HybridOverlap_hw + FamilyBudget_hw + 2h.             (HybridMixedLedger)
+```
+
+There is still no `|R_hw|` multiplier, no projective image-line multiplier, and
+no hidden cross-family overlap term.  The displayed bound is intentionally an
+upper ledger: the family budget is paid after overlap charges and may be
+smaller in a sharper disjoint accounting.
+
+### Proof
+
+The pre-half-window depths are exactly the depths where Corollary 40.8 does
+not put the root-free residuals into the half-window Pade range; these are
+charged by hypothesis.  If `R_hw` is empty, no half-window denominator charge
+is needed.
+
+Assume `R_hw` is nonempty.  Corollary 40.29 charges the five cutoff overlap
+systems by `HybridOverlap_hw`.  After those overlap charges, Corollary 40.22
+makes the remaining half-window tail family-disjoint.  Corollary 40.18 then
+charges the remaining family-labelled tail by `FamilyBudget_hw`.  This removes
+all root-free residuals in the half-window tail.
+
+Thus no uncharged root-free residual from Corollary 40.7 remains at any depth
+in `R`.  Corollary 40.15 gives closure of the finite fixed-kernel and
+consecutive common-image frontier ledgers from the bottom systems
+`E_{r_0,>b} union Theta_{r_0,>b}`, and Corollary 40.4 bounds their total size
+by `2h` on the remaining ledger.  Summing the displayed charges gives
+(HybridMixedLedger).
 
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
@@ -8687,6 +8758,8 @@ a cutoff-overlap projective budget; it does not prove the rank defects are
 absent or that the resulting budget is below the final M1 reserve. Corollary
 40.29 combines the rank budget with the lcm multiplier budget by termwise
 minima; it does not prove either savings mechanism is always strong enough.
+Corollary 40.30 packages these terms into a mixed-ladder upper ledger; it does
+not prove the pre-half residuals are small or that this upper ledger is sharp.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
