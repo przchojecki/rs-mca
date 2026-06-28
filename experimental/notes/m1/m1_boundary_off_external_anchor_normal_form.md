@@ -10548,6 +10548,80 @@ put `y=1/z` and `R_y=C_z/z-yP_f`; then `R_y=g` on `S` and
 `R_y+yP_f` a degree-`<k` polynomial; multiplying by `z=1/y` gives the original
 explaining codeword.
 
+## Corollary 40.87: Short Scalar Return Slices Have Effective Dimension At Most k+1
+
+Consider either a positive short scalar cutoff branch from Corollary 40.85 or
+the constant scalar cutoff branch from Corollary 40.86.  Let
+
+```text
+K=k+L,        L>0,
+tau_K:F[X]_<K -> F^L
+```
+
+be the high-tail projection.  Let `H` denote the quotient part whose high tail
+controls the return condition: `H_g` or `H_f` in the positive-degree case, and
+the endpoint representative `P_g` or `P_f` in the constant case.  Put
+
+```text
+h=tau_K(H).
+```
+
+If `h=0`, the return condition forces the enlarged witness polynomial itself
+to lie in `F[X]_<k`; the branch collapses to the base-dimension datum described
+above.
+
+If `h!=0`, define the high-tail line subspace
+
+```text
+W_h={ A in F[X]_<K : tau_K(A) in F h }.
+```
+
+Then
+
+```text
+dim W_h = k+1,        codim_{F[X]_<K} W_h = L-1.
+```
+
+Every surviving enlarged witness polynomial in the short scalar branch lies in
+`W_h`, and for each fixed scalar parameter `lambda` (`lambda=z` in the `Qg`
+case and `lambda=y=1/z` in the reciprocal `Qf` case) the corresponding return
+slice
+
+```text
+tau_K(A)=-lambda h
+```
+
+is an affine translate of `F[X]_<k`, hence has dimension `k`.
+
+Thus the remaining short scalar obstruction is never a full `K`-dimensional
+enlarged-code list: it is a `k+1` dimensional high-tail-line subcode, with a
+fixed-parameter slice of dimension `k`.  The only short layer with no
+high-tail codimension saving is the one-row case `L=1`; for every `L>=2`,
+the line condition imposes at least one independent high-tail equation.
+
+### Proof
+
+The high-tail projection is surjective with kernel `F[X]_<k`, so
+
+```text
+dim ker tau_K = k.
+```
+
+If `h=0`, the equations in Corollaries 40.84 and 40.86 reduce to
+`tau_K(A)=0`, i.e. `A in F[X]_<k`.
+
+If `h!=0`, then `Fh` is a one-dimensional subspace of `F^L`.  Therefore
+
+```text
+W_h=tau_K^{-1}(Fh)
+```
+
+has dimension `k+1` and codimension `L-1` in the `K`-dimensional space
+`F[X]_<K`.  For fixed `lambda`, the equation
+`tau_K(A)=-lambda h` cuts out one fiber of `tau_K`, hence an affine translate
+of the kernel `F[X]_<k`.  The membership assertions are exactly the high-tail
+equations from Corollaries 40.84 and 40.86.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -13423,6 +13497,9 @@ strata of positive denominator degree are exactly the range
 `1<=deg Q<j-r_hw`, with high-tail window length `j-r_hw-deg Q`.
 Corollary 40.86 isolates the remaining constant scalar cutoff case as a
 supercode endpoint high-tail branch, not a positive-degree residue-line datum.
+Corollary 40.87 packages all short scalar return slices as effective
+dimension-`k+1` high-tail-line subcodes of the enlarged code, with codimension
+`L-1` in a high-tail window of length `L`.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

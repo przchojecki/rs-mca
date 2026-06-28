@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 short scalar return slices have dimension k+1
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** All positive short and constant scalar return
+  slices with nonzero controlling high tail lie in a subspace
+  `W_h={A: tau_K(A) in Fh}` of dimension `k+1`; each fixed parameter is an
+  affine `k`-dimensional fiber.
+- **How it is useful:** This makes the remaining short scalar obstruction an
+  effective `k+1` dimensional high-tail-line list inside the enlarged code,
+  with codimension `L-1` unless the high-tail window has length one.
+- **What to do next:** Focus the short scalar analysis on the one-row tail
+  layer `L=1` and on bounding list intersections with `W_h` for `L>=2`.
+
 ### 2026-06-28 - M1 constant scalar cutoff branch is high-tail supercode list
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
