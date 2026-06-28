@@ -11016,6 +11016,74 @@ The polynomial endpoint statements set `e_prim=0`.  Finally, in the positive
 one-row branch `L=K-k=j-r_hw-e=1`, so `e=j-r_hw-1`; Corollary 40.90 gives
 `e_prim<=e`, yielding the two sufficient unreduced criteria.
 
+## Corollary 40.93: The Unpacked One-Row Residual Has Primitive Degree At Least t
+
+Keep the scalar cutoff hypotheses of Corollary 40.92, and work after applying
+the primitive packing charge of Corollary 40.91.
+
+The constant one-row branch is always covered by the support-packing charge
+for `t>=1`.  In a positive one-row branch, write
+
+```text
+e=deg Q=j-r_hw-1,
+G=gcd(Q,B),        g=deg G,
+e_prim=deg(Q/G)=e-g.
+```
+
+Then:
+
+1. the branch is covered by the support-packing charge if and only if
+
+   ```text
+   g >= j-r_hw-t;
+   ```
+
+2. the branch is covered by the one-coefficient charge if and only if
+
+   ```text
+   g >= 2j-r_hw-t;
+   ```
+
+3. every positive one-row branch not covered by the support-packing charge
+   satisfies
+
+   ```text
+   t <= e_prim <= j-r_hw-1,
+   g <= j-r_hw-t-1.
+   ```
+
+Thus the scalar one-row residual left for genuine M1 aperiodic residue packing
+is exactly the primitive high-denominator range `e_prim>=t`; constant branches
+and sufficiently nonprimitive positive branches have already been charged.
+
+### Proof
+
+The constant branch has `e_prim=0`, so Corollary 40.92 applies its packing
+charge whenever `0<=t-1`, i.e. `t>=1`.
+
+For a positive one-row branch, Corollary 40.92 says that packing applies
+exactly when
+
+```text
+e_prim=e-g <= t-1.
+```
+
+Since `e=j-r_hw-1`, this is equivalent to
+
+```text
+g >= e-t+1 = j-r_hw-t.
+```
+
+The same substitution in the one-coefficient condition
+`e_prim<=t-j-1` gives
+
+```text
+g >= e-(t-j-1) = 2j-r_hw-t.
+```
+
+If the packing charge does not apply, then `e_prim>=t`; also
+`e_prim<=e=j-r_hw-1` and `g=e-e_prim<=j-r_hw-t-1`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -13913,6 +13981,10 @@ the pairwise-intersection range.
 Corollary 40.92 translates this into the scalar cutoff variables: the one-row
 packing charge is available exactly when `deg(Q_prim)<=t-1`, and the
 one-coefficient charge when `deg(Q_prim)<=t-j-1`.
+Corollary 40.93 gives the resulting residual split: after this charge, the
+only positive one-row scalar residual has primitive denominator degree at least
+`t`; constant and sufficiently nonprimitive positive branches are already
+covered.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

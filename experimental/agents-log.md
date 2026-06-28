@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 one-row residual has primitive degree at least t
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** After primitive packing, the constant one-row
+  branch is charged and any remaining positive one-row scalar branch has
+  `deg(Q_prim)>=t`; equivalently the packing charge applies iff
+  `deg gcd(Q,B)>=j-r_hw-t`.
+- **How it is useful:** This identifies the exact scalar one-row residual
+  left for genuine M1 aperiodic residue-packing input: primitive
+  high-denominator branches only.
+- **What to do next:** Attack the `deg(Q_prim)>=t` residual using quotient
+  periodicity or all-line aperiodic residue-packing estimates.
+
 ### 2026-06-28 - M1 one-row cutoff packing criterion
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
