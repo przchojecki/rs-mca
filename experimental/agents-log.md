@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 sparse packets have rank certificates
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / EXACT FINITE VERIFICATION.
+- **What is being added:** Proves that any visible terminal sparse mode packet
+  carries a nonzero moment-Hankel determinant equal to the product of the mode
+  coefficients times the squared Vandermonde product.
+- **How it is useful:** Shows productive terminal packets are
+  determinant-nondegenerate sparse moment objects, giving a concrete rank/minor
+  obstruction for the next M1 bound rather than only a sparse expansion.
+- **What to do next:** Attack the determinant-nondegenerate sparse packet locus
+  by rank/minor ledgers, inverse Littlewood-Offord input, or
+  quotient-periodic/tangent charges.
+
 ### 2026-06-28 - M1 branch vertices are sparse mode packets
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

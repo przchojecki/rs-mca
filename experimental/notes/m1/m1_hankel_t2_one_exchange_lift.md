@@ -1098,6 +1098,37 @@ therefore the two-mode shadow of a stronger fact: terminal multiflag mass is
 carried by productive sparse mode packets inside lower fixed-root Hankel
 kernels.
 
+## Sparse Packets Have Rank Certificates
+
+When the packet window is long enough, the mode count is detected by a single
+Hankel minor.  In the notation of (MP), assume `m<=tau+1` and form
+
+```text
+M_Y = (g_{r+s})_{0<=r,s<m}.
+```
+
+Then
+
+```text
+det M_Y =
+  (product_{y in Y} a_y)
+  (product_{y<z in Y} (z-y)^2).                 (RC)
+```
+
+In particular `det M_Y != 0`, since all exit scalars are nonzero and the
+roots in `Y` are distinct.
+
+Proof: write `V=(y^r)_{0<=r<m, y in Y}` and
+`A=diag(a_y)`.  The moment formula (MP) gives `M_Y=V A V^T`.  Taking
+determinants gives (RC), because `det V` is the Vandermonde product.
+
+Thus a visible terminal branch packet is not merely a formal sparse
+representation: it carries a nonzero rank-`m` minor on the lower-boundary
+sequence.  For the M1 route this isolates productive terminal multiplicity
+inside determinant-nondegenerate sparse moment packets; any remaining bound
+can now attack these rank certificates or show they lie in quotient-periodic
+or tangent ledgers.
+
 ## Root-Marked Slice Is One Row
 
 The zero-boundary subkernel in the fixed-root difference form is cut out by a
@@ -1492,6 +1523,11 @@ size `2` and `4320` have mode size `3`.  Of these, `32400` are productive
 mode packets.  Among nonzero syndromes the maximum mode size is `3`, and one
 terminal tree contains at most `4` mode packets, all of which can be
 productive.
+The rank-certificate formula (RC) is checked on the same packets.  In the
+largest case all `34560` mode packets have enough visible moments for the
+nonzero determinant check; the rank sizes are again `30240` of size `2` and
+`4320` of size `3`, and all `32400` productive packets pass the determinant
+certificate.
 
 The `F_7,k=2,j=2` scan is the first exact top-packet check in this file.  It
 finds twenty top triangles, all on the zero combined syndrome.  This is not an
