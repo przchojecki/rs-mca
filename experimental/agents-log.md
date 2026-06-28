@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 local-contained-free one-row residual is q-free
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** If the local-contained double-collapse supports
+  are absent or already charged, then the one-exchange one-row residual has
+  no field-size factor:
+  `|Mu_h(Y,a)| <= ((j+2)/(j+1)) binom(n,j) <= 2 binom(n,j)`.
+- **How it is useful:** This isolates the exact source of q-multiplicity and
+  gives a q-free bound for the aperiodic/local-contained-free one-row branch.
+- **What to do next:** Prove that the double-collapse locus is contained in
+  the tangent/quotient-periodic charge ledger, or bound it separately.
+
 ### 2026-06-28 - M1 one-row residual has a two-ledger closure criterion
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

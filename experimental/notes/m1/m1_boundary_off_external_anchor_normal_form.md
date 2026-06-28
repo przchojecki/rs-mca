@@ -12183,6 +12183,70 @@ Substituting this identity into (WeightedToDoubleCollapse), and then
 substituting the result into the weighted complement coefficient bound
 (WeightedComplementLedger), gives (TwoLedgerOneRow).
 
+## Corollary 40.107: The Local-Contained-Free One-Row Residual Is q-Free
+
+Keep the notation of Corollary 40.106.  Suppose the local-contained
+double-collapse supports have been charged away, in the precise sense that
+
+```text
+DoubleColl_h(Y,a)=emptyset.
+```
+
+Equivalently, no `a`-support `T` simultaneously satisfies
+
+```text
+phi_h|_T in RS[F,T,k],        Y|_T in RS[F,T,k].
+```
+
+Then the one-exchange scalar one-row coefficient set satisfies the q-free
+bound
+
+```text
+|Mu_h(Y,a)|
+ <= ( binom(n,j+1) + (j+1)U_comp ) / (n-j).        (LCFreeOneRow)
+```
+
+In particular, using only the disjointness of the one-exchange complement
+fibers,
+
+```text
+U_comp <= binom(n,j+1),
+```
+
+and hence
+
+```text
+|Mu_h(Y,a)| <= ((j+2)/(j+1)) binom(n,j)
+             <= 2 binom(n,j).                     (LCFreeQFree)
+```
+
+Thus the only source of field-size multiplicity in the one-exchange one-row
+residual is the local-contained double-collapse locus.  After that locus is
+charged, the remaining one-row residual is controlled by ordinary
+small-complement residue packing with no factor of `q`.
+
+### Proof
+
+If `DoubleColl_h(Y,a)=emptyset`, then `D_int(Y,a)=0` by
+Corollary 40.106.  Substituting this into (TwoLedgerOneRow) gives
+(LCFreeOneRow).
+
+The fibers `Comp_[M]` are disjoint by Corollaries 40.99 and 40.100, and each
+is a subset of the collection of all `(j+1)`-subsets of `D`.  Therefore
+`U_comp<=binom(n,j+1)`.  Substituting this into (LCFreeOneRow) gives
+
+```text
+|Mu_h(Y,a)| <= ((j+2) binom(n,j+1))/(n-j).
+```
+
+Finally
+
+```text
+binom(n,j+1)=((n-j)/(j+1)) binom(n,j),
+```
+
+which proves the displayed q-free bounds.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -15128,6 +15192,10 @@ supports where both the one-row generator and the received word restrict to
 Corollary 40.106 packages the result as a two-ledger closure criterion:
 bound the unweighted `(j+1)` complement residue packing ledger and the
 `j`-complement double-collapse intersection ledger.
+Corollary 40.107 gives the q-free consequence after the local-contained
+double-collapse locus is charged: the one-exchange one-row coefficient set is
+then bounded by `2 binom(n,j)` using only disjointness of the complement
+residue fibers.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
