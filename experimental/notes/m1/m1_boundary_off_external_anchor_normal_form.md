@@ -11377,6 +11377,50 @@ sum_I r_I
 
 Combining this with (CoreCount) proves (CorePack).
 
+## Corollary 40.98: Exceptional One-Exchange Multipliers Are Primitive Modulo Q_prim
+
+Keep the notation and hypotheses of Corollary 40.96.  If
+`M in V_I^{ell}` is nonzero, then
+
+```text
+gcd(M,Q_prim)=1.
+```
+
+Consequently `M` is invertible in the quotient ring `F[X]/(Q_prim)`, and the
+exceptional-core condition can be written as
+
+```text
+L_I in F B_prim M^{-1}        mod Q_prim.           (InvertibleCoreLanding)
+```
+
+Thus `Exc_ell(Q_prim,B_prim)` is controlled by primitive, invertible
+low-degree multiplier residues modulo `Q_prim`; there is no separate branch
+where the one-exchange multiplier shares a factor with the primitive
+denominator.
+
+### Proof
+
+By definition of `V_I^{ell}`, there is a scalar `c in F` such that
+
+```text
+L_I M == c B_prim        mod Q_prim.                (E)
+```
+
+First `c!=0` for nonzero `M`: if `c=0`, then `Q_prim` divides `L_I M`.
+Since `Q_prim` is root-free on `D`, it is coprime to `L_I`; hence
+`Q_prim` divides `M`.  But `deg M<=ell+1<e_prim=deg Q_prim`, so `M=0`, a
+contradiction.
+
+Now let `H=gcd(M,Q_prim)`.  Reducing (E) modulo `H` gives
+
+```text
+c B_prim == 0        mod H.
+```
+
+Since `c!=0` and `gcd(B_prim,Q_prim)=1`, this forces `H=1`.  Therefore
+`M` is invertible modulo `Q_prim`, and multiplying (E) by `M^{-1}` gives
+(InvertibleCoreLanding).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -14292,6 +14336,9 @@ Corollary 40.97 converts this into a packing-with-exceptions ledger:
 one-row coefficients are bounded by
 `(binom(n,a-1)+(n-a)|Exc_ell|)/a`, where `Exc_ell` is the set of cores
 supporting a nonzero projective multiplier certificate.
+Corollary 40.98 shows that those exceptional multipliers are automatically
+coprime to `Q_prim`; equivalently the exceptional cores land in residue lines
+`F B_prim M^{-1}` modulo `Q_prim` for invertible low-degree multipliers.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

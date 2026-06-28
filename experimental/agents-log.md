@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 one-exchange multipliers are primitive modulo Q
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Any nonzero exceptional one-exchange multiplier
+  `M` is coprime to `Q_prim`; hence exceptional cores satisfy
+  `L_I in F B_prim M^{-1} mod Q_prim` for an invertible low-degree
+  multiplier.
+- **How it is useful:** This removes a possible shared-factor branch from the
+  one-row residual and makes the exceptional core ledger a clean residue-line
+  landing problem modulo the primitive denominator.
+- **What to do next:** Bound these invertible low-degree multiplier residue
+  lines, or identify quotient-periodic families among them.
+
 ### 2026-06-28 - M1 one-row coefficients pack apart from multiplier cores
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
