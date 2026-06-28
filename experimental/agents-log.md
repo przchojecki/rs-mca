@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 low one-coefficient cutoff has no multiplicity loss
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Combines the cutoff active-ledger reduction with
+  the one-coefficient fixed-class range: if `1<=E<=t-j` and `2E<=n`, then
+  `|Lambda(A_{<=E})| <= |Ev(A_{<=E})|`.
+- **How it is useful:** Identifies a genuinely lossless low-denominator
+  subrange of M1 where both finite-domain alias multiplicity and fixed-class
+  coefficient multiplicity vanish.
+- **What to do next:** Bound or classify the divided evaluation image in this
+  low range using aperiodic or Hankel incidence constraints.
+
 ### 2026-06-28 - M1 cutoff active ledgers reduce to divided evaluations
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -15885,6 +15885,47 @@ For the active ledger, Corollary 40.148 gives
 
 Combining this with (EvalFiberToClass) proves (EvalFiberLedger).
 
+## Corollary 40.159: The Low One-Coefficient Cutoff Has No Multiplicity Loss
+
+Keep the scalar-cutoff notation of Corollary 40.148, so `a=k+t=n-j`.  Let
+`A_{<=E}` be as in Corollary 40.158, and assume
+
+```text
+1<=E<=t-j,        2E<=n.                            (LowOneCoeffRange)
+```
+
+Then
+
+```text
+|Lambda(A_{<=E})| <= |Ev(A_{<=E})|.                 (OneCoeffEvalLedger)
+```
+
+Equivalently, in this low primitive-denominator range, the active ledger has
+neither finite-domain primitive-alias multiplicity nor fixed-class coefficient
+multiplicity.  Each divided evaluation datum accounts for at most one
+support-wise noncontained coefficient contribution.
+
+In particular, if `t>j` and `2(t-j)<=n`, then the whole positive-degree range
+
+```text
+1<=deg Q<=t-j
+```
+
+is reduced to divided evaluation counting with unit multiplicity.
+
+### Proof
+
+By `2E<=n`, Corollary 40.158 has `M_q(E)=1`, so
+
+```text
+|Lambda(A_{<=E})| <= W_E |Ev(A_{<=E})|.
+```
+
+By `E<=t-j`, every positive denominator degree `e<=E` lies in the
+one-coefficient range of Corollary 40.148, where `W(e)<=1`.  Hence
+`W_E<=1`, proving (OneCoeffEvalLedger).  The final statement is the special
+choice `E=t-j`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -18996,6 +19037,9 @@ Corollary 40.158 converts that into an active-ledger reduction: below a
 denominator cutoff `E`, primitive classes are bounded by divided evaluation
 data times the explicit multiplier `M_q(E)`, and the coefficient ledger gains
 only the fixed-class weight `W_E`.
+Corollary 40.159 identifies the fully lossless low range: if
+`E<=t-j` and `2E<=n`, then the cutoff active ledger is bounded directly by
+the number of divided evaluation data.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
