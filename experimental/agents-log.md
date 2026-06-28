@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 b=2 good-pair images descend by two roots
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that every interpolated good-pair locator
+  factors as `ell_e M_e`, where `M_e` is a degree-`q-2` quotient satisfying the
+  absorbed fixed-divisor Hankel identity.
+- **How it is useful:** Reduces the remaining `b=2` split-image test to a
+  two-root absorbed quotient-locator problem of width `q-2`.
+- **What to do next:** Use this lower-width quotient form to connect the
+  good-pair endpoint with fixed-root, quotient-periodic, and aperiodic M1
+  ledgers.
+
 ### 2026-06-28 - M1 b=2 split-image fibers are good-pair sets
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -3774,6 +3774,40 @@ preimages of each candidate under the split-good-pair image, and checks that
 the two counts agree support by support.  The current largest `F_7^*` scan
 still has no `b(U,W)=2` produced anchor.
 
+## Good-Pair Images Descend to Two-Root Quotient Locators
+
+The split condition in (PF2-good-image) has a lower-width form.  Since
+`L_e` is constructed to vanish at the good pair `e={x,y}`, one has a unique
+monic quotient
+
+```text
+L_e=ell_e M_e,        deg M_e=q-2.               (PF2-good-quot)
+```
+
+Moreover `L_e in K(U,W)`, so after absorbing the good pair into the fixed
+anchor, the quotient satisfies the two-root fixed-divisor Hankel identity
+
+```text
+H_{q,q+d-2}(s)(ell_W ell_e M_e)=0.              (PF2-good-quot-kernel)
+```
+
+Thus `L_e` splits as a residual support if and only if `M_e` splits as a
+squarefree degree-`q-2` locator on `D'\e`.  In that case
+
+```text
+roots_{D'}(L_e)=e union roots_{D'\e}(M_e).
+```
+
+The remaining `b=2` split-image test is therefore a two-root absorbed
+quotient-locator test of width `q-2`, not a fresh degree-`q` residual search.
+This is the fixed-divisor form of the good-pair endpoint.
+
+The verifier divides every interpolated good-pair locator by `ell_e`, checks
+the quotient reconstruction, verifies (PF2-good-quot-kernel), and checks that
+splitting of `L_e` is equivalent to splitting of the quotient `M_e` on the
+available roots away from `e`.  The current largest `F_7^*` scan still has no
+`b(U,W)=2` produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

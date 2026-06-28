@@ -7228,6 +7228,81 @@ def analyze_case(
                                                 ) = interpolate_good_pair_locator(
                                                     pair
                                                 )
+                                                pair_locator = cached_locator(
+                                                    pair
+                                                )
+                                                pair_quotient_locator = (
+                                                    divide_by_polynomial_exact_mod(
+                                                        interpolated_locator,
+                                                        pair_locator,
+                                                        p,
+                                                    )
+                                                )
+                                                reconstructed_from_quotient = (
+                                                    multiply_polynomials_mod(
+                                                        pair_locator,
+                                                        pair_quotient_locator,
+                                                        p,
+                                                    )
+                                                )
+                                                if (
+                                                    reconstructed_from_quotient
+                                                    != interpolated_locator
+                                                ):
+                                                    raise AssertionError(
+                                                        projective_local_error(
+                                                            "good-pair-"
+                                                            "quotient-"
+                                                            "reconstruction-"
+                                                            "failed",
+                                                            pair=list(pair),
+                                                            quotient=list(
+                                                                pair_quotient_locator
+                                                            ),
+                                                            reconstructed=list(
+                                                                reconstructed_from_quotient
+                                                            ),
+                                                            locator=list(
+                                                                interpolated_locator
+                                                            ),
+                                                        )
+                                                    )
+                                                pair_filtered_sequence = tuple(
+                                                    sum(
+                                                        pair_locator[offset]
+                                                        * filtered_sequence[
+                                                            index + offset
+                                                        ]
+                                                        for offset in range(
+                                                            len(pair_locator)
+                                                        )
+                                                    )
+                                                    % p
+                                                    for index in range(
+                                                        2 * residual_size - 2
+                                                    )
+                                                )
+                                                quotient_vector = hankel_apply(
+                                                    pair_filtered_sequence,
+                                                    pair_quotient_locator,
+                                                    residual_size,
+                                                    p,
+                                                )
+                                                if any(quotient_vector):
+                                                    raise AssertionError(
+                                                        projective_local_error(
+                                                            "good-pair-"
+                                                            "quotient-kernel-"
+                                                            "failed",
+                                                            pair=list(pair),
+                                                            quotient=list(
+                                                                pair_quotient_locator
+                                                            ),
+                                                            quotient_vector=list(
+                                                                quotient_vector
+                                                            ),
+                                                        )
+                                                    )
                                                 interpolated_vector = hankel_apply(
                                                     filtered_sequence,
                                                     interpolated_locator,
@@ -7266,6 +7341,16 @@ def analyze_case(
                                                         p,
                                                     )
                                                 )
+                                                quotient_roots = tuple(
+                                                    root
+                                                    for root in available_roots
+                                                    if root not in pair
+                                                    and not polynomial_eval_mod(
+                                                        pair_quotient_locator,
+                                                        domain[root],
+                                                        p,
+                                                    )
+                                                )
                                                 split_candidate = (
                                                     len(split_roots)
                                                     == residual_size
@@ -7274,6 +7359,56 @@ def analyze_case(
                                                     )
                                                     == interpolated_locator
                                                 )
+                                                quotient_split_candidate = (
+                                                    len(quotient_roots)
+                                                    == residual_size - 2
+                                                    and cached_locator(
+                                                        quotient_roots
+                                                    )
+                                                    == pair_quotient_locator
+                                                )
+                                                if (
+                                                    split_candidate
+                                                    != quotient_split_candidate
+                                                ):
+                                                    raise AssertionError(
+                                                        projective_local_error(
+                                                            "good-pair-"
+                                                            "quotient-split-"
+                                                            "equivalence-"
+                                                            "failed",
+                                                            pair=list(pair),
+                                                            split_roots=list(
+                                                                split_roots
+                                                            ),
+                                                            quotient_roots=list(
+                                                                quotient_roots
+                                                            ),
+                                                            locator=list(
+                                                                interpolated_locator
+                                                            ),
+                                                            quotient=list(
+                                                                pair_quotient_locator
+                                                            ),
+                                                        )
+                                                    )
+                                                if split_candidate and tuple(
+                                                    sorted((*pair, *quotient_roots))
+                                                ) != split_roots:
+                                                    raise AssertionError(
+                                                        projective_local_error(
+                                                            "good-pair-"
+                                                            "quotient-roots-"
+                                                            "failed",
+                                                            pair=list(pair),
+                                                            split_roots=list(
+                                                                split_roots
+                                                            ),
+                                                            quotient_roots=list(
+                                                                quotient_roots
+                                                            ),
+                                                        )
+                                                    )
                                                 owner = pair_owner.get(pair)
                                                 if split_candidate:
                                                     split_image_pair_count += 1
