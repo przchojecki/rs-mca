@@ -341,14 +341,15 @@ Keep entries concise and link to the relevant files.
   the endpoint-pair residual is contained in each one-sided overlap space, so
   the rank budget for the cutoff-overlap union omits it as a fifth independent
   summand and subtracts the ordinary and shifted two-row intersections.  The
-  refined mixed-ladder closure now records the final
+  refined mixed-ladder closure now records the sharper
   consumable upper ledger: after pre-half residuals, the non-prehalf part is
-  charged by `HybridOverlap_hw + FamilyBudget_hw + 2h`, where the final `2h`
+  charged by `OverlapSep_hw + FamilyBudget_hw + 2h`, where
+  `OverlapSep_hw=min(HybridOverlap_hw,UnionRankOverlap_hw)` and the final `2h`
   is the bottom finite frontier set `E_{r_0,>b} union Theta_{r_0,>b}`.  This is
   an upper ledger, since the family budget is paid after overlap charges and
   may shrink under sharper disjoint accounting.  The accounting is now split
   from raw denominator counting: the unlabelled half-window tail is still
-  bounded by `FamilyBudget_hw` alone, while `HybridOverlap_hw` is a separation
+  bounded by `FamilyBudget_hw` alone, while `OverlapSep_hw` is a separation
   charge used to remove cross-family intersections before invoking the
   family-disjoint closure.
   The common-image three-shift ledger now has the analogous sliding-window
