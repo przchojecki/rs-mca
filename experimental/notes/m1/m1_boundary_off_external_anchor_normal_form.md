@@ -15361,6 +15361,63 @@ quotient `B_2` has degree `<e_2`, and (AliasDefect) gives equality of
 `e_1+e_2=n+1`, the inequality `deg R<1` forces `R in F^*`, giving the final
 projective residue-class statement.
 
+## Corollary 40.152: The First Alias Layer Is One-Sided Rigid
+
+Keep the setup of Corollary 40.151.  Fix a positive-degree primitive direction
+`(Q_1,B_1)` of denominator degree `e_1>0`, and put
+
+```text
+e_2=n+1-e_1.
+```
+
+Assume
+
+```text
+0<=e_2<e_1.
+```
+
+Then there is at most one projective primitive direction `(Q_2,B_2)` of
+denominator degree `e_2` such that
+
+```text
+B_2/Q_2 = B_1/Q_1        on D.
+```
+
+Equivalently, in the first possible alias layer, the lower-degree side of a
+fixed higher-degree primitive direction is either absent or uniquely
+determined up to scalar.  If full primitive residue-line data
+`(Q_i,B_i,w_i)` also have the same divided target `w_i/Q_i` on `D`, then the
+corresponding lower-degree full datum is also unique on `D`.
+
+### Proof
+
+Any nontrivial alias in this layer has `e_1+e_2=n+1`, so Corollary 40.151 gives
+a nonzero constant defect `R=c in F^*` and
+
+```text
+Q_2 == c L_D B_1^{-1}        mod Q_1.              (FirstLayerCongruence)
+```
+
+Since `deg Q_2=e_2<e_1=deg Q_1`, reduction modulo `Q_1` does not change
+`Q_2`.  Hence the projective class `[Q_2]` is forced to be the single residue
+class
+
+```text
+[L_D B_1^{-1} mod Q_1]
+```
+
+provided that residue has degree `e_2`; otherwise no such denominator exists.
+Once `[Q_2]` is fixed, the defect formula
+
+```text
+B_2=(B_1Q_2-cL_D)/Q_1
+```
+
+determines `[B_2]` as well, and the primitive and root-free conditions only
+decide whether the candidate is admissible.  Finally, if the divided targets
+also agree, then `w_2/Q_2=w_1/Q_1` on `D` forces `w_2` on `D` after `Q_2` is
+fixed.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -18449,6 +18506,9 @@ low/mid-degree aliases.
 Corollary 40.151 rewrites the remaining high-degree direction aliases as
 domain-defect congruences `B_1Q_2-B_2Q_1=L_D R`; for fixed `(Q_1,B_1)`, the
 defect `R` gives a modular denominator class modulo `Q_1`.
+Corollary 40.152 shows that the first alias layer is one-sided rigid: below
+the fixed denominator degree, the possible alias direction is unique if it
+exists.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

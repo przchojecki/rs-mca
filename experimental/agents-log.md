@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 first alias layer is one-sided rigid
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Proves that in the first high-degree alias layer
+  `e_1+e_2=n+1`, if `e_2<e_1`, then a fixed primitive direction
+  `(Q_1,B_1)` has at most one projective primitive alias of denominator degree
+  `e_2`.
+- **How it is useful:** Turns the nearest finite-domain alias obstruction into
+  an existence problem for a single lower-degree candidate rather than a
+  family of candidates.
+- **What to do next:** Analyze when the forced residue
+  `L_D B_1^{-1} mod Q_1` has the required degree, root-freeness, and
+  coprimality properties.
+
 ### 2026-06-28 - M1 high-degree direction aliases are defect congruences
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
