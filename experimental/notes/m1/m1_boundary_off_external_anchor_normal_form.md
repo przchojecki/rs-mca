@@ -6953,6 +6953,77 @@ ambient union counted in Corollary 40.34, so its size is at most
 `ArrBudget_hw`; this gives the second inequality.  Substituting this sharper
 tail charge into Corollary 40.36 gives (RootFreeRawMixedLedger).
 
+## Corollary 40.46: Root-Free Residual Dimension Gives A Smaller Tail Target
+
+Keep the notation of Corollaries 40.41 and 40.45, and assume `0 notin D`.
+Let
+
+```text
+r_tail=max(0,h-gamma-e_min).
+```
+
+If `r_tail<=L`, then the root-free raw half-window arrangement satisfies
+
+```text
+RFArrBudget_hw <= s RFPhi_D(L) <= 4 RFPhi_D(L),    (RootFreeResidualTail)
+```
+
+and the direct mixed-ladder ledger is bounded by
+
+```text
+4 RFPhi_D(L) + 2h.                                 (RootFreeResidualMixedLedger)
+```
+
+Thus the same structural target as Corollary 40.41,
+
+```text
+gamma+e_min>=h-L,
+```
+
+now pays only for root-free multipliers of residual dimension `L`, rather than
+all projective multipliers of that dimension.
+
+In particular,
+
+```text
+RFPhi_D(1)=1,
+RFPhi_D(2)=q+1-n.
+```
+
+Hence residual dimension `L=1` gives ledger at most `4+2h`, and residual
+dimension `L=2` gives ledger at most `4(q+1-n)+2h`.  For the full
+multiplicative domain `n=q-1`, the latter is at most `8+2h`.
+
+### Proof
+
+As in Corollary 40.37, divisibility-dominated active denominators and duplicate
+denominators do not change the divisor union.  The same is true after imposing
+the root-free condition, because divisibility by a larger denominator still
+implies divisibility by the smaller one and root-freeness is a property of the
+final product.  Thus we may work with the distinct minimal antichain `M_min`.
+
+After factoring the common core `C`, each distinct divisibility-minimal
+denominator contributes a root-free multiplier ledger of projective size
+
+```text
+RFPhi_D(h-gamma-deg(D/C)).
+```
+
+Since `deg(D/C)>=e_min`, this parameter is at most `r_tail`, and hence at most
+`L`.  The sets of root-free multipliers of degree `<m` are nested in `m`, so
+each family contributes at most `RFPhi_D(L)`.  There are `s<=4` surviving
+minimal denominator families, giving (RootFreeResidualTail).  Adding the
+bottom finite frontier charge `2h` gives (RootFreeResidualMixedLedger).
+
+The explicit values follow from (RootFreePhi).  For `m=1`, only nonzero
+constants occur, giving one projective class.  For `m=2`,
+
+```text
+RFPhi_D(2)=((q^2-1)-n(q-1))/(q-1)=q+1-n.
+```
+
+Substitution gives the two displayed ledgers.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which

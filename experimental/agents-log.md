@@ -377,7 +377,11 @@ Keep entries concise and link to the relevant files.
   multiplicative-domain case, the raw arrangement now has a root-free
   multiplier sharpening: each projective multiplier count `Phi(m)` can be
   replaced by the exact full-support MDS count `RFPhi_D(m)`, giving
-  `RFArrBudget_hw<=ArrBudget_hw` and direct ledger `RFArrBudget_hw+2h`.  Since
+  `RFArrBudget_hw<=ArrBudget_hw` and direct ledger `RFArrBudget_hw+2h`.
+  Consequently the residual-tail criterion improves to
+  `RFArrBudget_hw<=4RFPhi_D(L)` when `gamma+e_min>=h-L`; in particular
+  `RFPhi_D(1)=1` and `RFPhi_D(2)=q+1-n`, giving ledgers `4+2h` and
+  `4(q+1-n)+2h` respectively.  Since
   the named overlap systems are subsets of the same `TailUnion_hw`, the
   separation charge `OverlapSep_hw`, defined as the minimum of
   `SideHybridOverlap_hw` and `UnionRankOverlap_hw`, is now a structural

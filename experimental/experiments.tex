@@ -2283,6 +2283,17 @@ raw-tail ledger may be sharpened to
   \mathrm{RFArrBudget}_{hw}+2h
 \]
 whenever this root-free multiplier count is being used.
+Accordingly, the residual-tail criterion also improves: if
+\(r_{\mathrm{tail}}=\max(0,h-\gamma-e_{\min})\le L\), then
+\[
+  \mathrm{RFArrBudget}_{hw}\le 4\,\mathrm{RFPhi}_D(L),
+  \qquad
+  \mathrm{RFArrBudget}_{hw}+2h\le 4\,\mathrm{RFPhi}_D(L)+2h.
+\]
+For instance \(\mathrm{RFPhi}_D(1)=1\) and
+\(\mathrm{RFPhi}_D(2)=q+1-n\).  Thus residual dimension one gives
+\(4+2h\), while residual dimension two gives \(4(q+1-n)+2h\), and only
+\(8+2h\) on the full multiplicative domain \(n=q-1\).
 In the common two-denominator case \(M_{\min}=\{D_1,D_2\}\), writing
 \(C=\gcd(D_1,D_2)\), \(D_i=C E_i\), and \(e_i=\deg E_i\), the quotient
 denominators \(E_1,E_2\) are automatically coprime and
