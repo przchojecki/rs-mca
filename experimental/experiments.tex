@@ -4721,6 +4721,19 @@ hierarchy with a field-size-free bound; only the persistent one-root absorbed
 pencil remains, and that branch is the moving-kernel endpoint obstruction
 described below.  The verifier checks this finite-branch implication together
 with the direction-MDS audit.
+Moreover, when \(|F|>q-1\), full-field rank defect of the one-root pencil is
+genuine persistence: all maximal minors have degree at most \(q-1\).  For a
+produced anchor, such persistence forces endpoint defect and in fact
+\[
+  b(U,W)\ge 2 .
+\]
+The endpoint defect follows from the moving-kernel coefficient ladder.  If
+\(b(U,W)=1\), the unique residual direction \(Q\) has degree \(<q\), so its
+available root set has size at most \(q-1\); but persistence makes every
+available root one-root-bad, while the produced residual support gives at least
+\(q\) available roots.  Thus the remaining persistent obstruction is genuinely
+higher-dimensional, not a line-kernel case.  The verifier checks this whenever
+full-field probing certifies persistence.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 persistent one-root pencils force higher direction
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Shows that, when full-field probing certifies a
+  genuinely persistent one-root absorbed pencil, a produced deficit anchor has
+  endpoint defect and residual direction dimension at least `2`.
+- **How it is useful:** Rules out the line-kernel case for the remaining
+  persistent one-root obstruction.  After the finite branch is closed, the only
+  surviving one-root absorbed obstruction must be a genuinely
+  higher-dimensional fixed-divisor residual direction space.
+- **What to do next:** Classify persistent moving-kernel certificates with
+  `b(U,W)>=2`, or charge them to quotient-periodic, tangent, or aperiodic M1
+  structure.
+
 ### 2026-06-28 - M1 nonpersistent one-root pencils close higher bad ledgers
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

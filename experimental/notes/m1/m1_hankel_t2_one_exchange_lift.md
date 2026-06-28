@@ -2942,6 +2942,56 @@ branch it asserts `|Z_1(U,W)|<=q-1` and then checks
 triggered.  The current largest `F_7^*` scan lies in the finite branch with
 `Z_1(U,W)=empty`.
 
+## Persistent One-Root Pencils Are Genuinely Higher-Dimensional
+
+Assume `|F|>q-1`, as in the smooth RS setting where a produced residual
+support of size `q` lies in `D' subset F^*`.  If the one-root absorbed pencil
+is rank-defective for every `x in F`, then it is genuinely persistent: every
+maximal minor has degree at most `q-1`, so a nonzero minor cannot vanish on all
+of `F`.
+
+For a produced deficit anchor, such a persistent one-root pencil forces
+
+```text
+e(U,W)>0,        b(U,W)>=2.                       (PHD)
+```
+
+The endpoint defect `e(U,W)>0` is the moving-kernel endpoint consequence:
+persistence gives a nonzero polynomial family `Q_z(X)` with
+
+```text
+H_{q,q+d-1}(s)(ell_W (X-z)Q_z(X))=0,
+```
+
+and the top coefficient of `Q_z` is a nonzero kernel of the endpoint map
+`R -> H_{q,q+d-1}(s)(ell_W R)`.
+
+The endpoint-prefix inclusion gives `e(U,W)<=b(U,W)`, hence `b(U,W)>0`.  It
+remains to rule out `b(U,W)=1`.  In that case the residual direction space is
+spanned by a single nonzero polynomial `Q` of degree `<q`.  The line-kernel
+root-slice theorem identifies the one-root bad set with
+
+```text
+Z_Q={x in D' : Q(x)=0},
+```
+
+so `|Z_1(U,W)|<=q-1`.  But a genuinely persistent one-root pencil makes every
+available root bad, so `Z_1(U,W)=D'`.  Since the anchor is produced, it has a
+residual support `R subset D'` with `|R|=q`, hence `|D'|>=q`, a contradiction.
+Thus `b(U,W)>=2`.
+
+Consequently, after the finite one-root branch is closed, the only remaining
+persistent absorbed obstruction is not a line-kernel phenomenon.  It must
+produce a genuinely higher-dimensional fixed-divisor residual direction space.
+This sharpens the next M1 target: classify or exclude persistent one-root
+moving kernels with `b(U,W)>=2` after quotient-periodic, tangent, and aperiodic
+charges.
+
+The verifier checks this when full-field probing certifies persistence
+(`|F|>q-1`): certified persistent one-root pencils must have endpoint defect
+and residual direction dimension at least two.  The current largest `F_7^*`
+scan has no certified persistent produced anchor.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

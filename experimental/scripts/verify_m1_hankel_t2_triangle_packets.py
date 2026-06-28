@@ -179,6 +179,9 @@ ledger, and that every higher bad subset is contained in the one-root bad-slice
 ledger.
 In the nonpersistent one-root pencil branch, it checks the resulting
 field-size-free bad-subset bound.
+When full-field probing certifies genuine persistence, it checks that the
+persistent branch has an endpoint defect and residual direction dimension at
+least two.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -4399,6 +4402,85 @@ def analyze_case(
                                                 "marked_count": marked_count,
                                                 "core_deficit": core_deficit,
                                                 "anchor": list(anchor),
+                                                "endpoint_defect": (
+                                                    endpoint_defect
+                                                ),
+                                                "residual_direction_dim": (
+                                                    residual_direction_dim
+                                                ),
+                                            }
+                                        )
+                                    root_slice_persistence_certified = (
+                                        residual_size > 1
+                                        and root_slice_persistent
+                                        and p >= residual_size
+                                    )
+                                    if (
+                                        root_slice_persistence_certified
+                                        and endpoint_defect == 0
+                                    ):
+                                        raise AssertionError(
+                                            {
+                                                "kind": (
+                                                    "productive-"
+                                                    if productive
+                                                    else ""
+                                                )
+                                                + "marked-core-deficit-"
+                                                "anchor-persistent-root-slice-"
+                                                "endpoint-failed",
+                                                "p": p,
+                                                "k": k,
+                                                "syndrome": list(syn),
+                                                "fixed_roots": list(
+                                                    fixed_roots
+                                                ),
+                                                "unmarked_core": list(
+                                                    unmarked_core
+                                                ),
+                                                "marked_count": marked_count,
+                                                "core_deficit": core_deficit,
+                                                "anchor": list(anchor),
+                                                "root_slice_bad_roots": sorted(
+                                                    root_slice_bad_roots
+                                                ),
+                                                "endpoint_defect": (
+                                                    endpoint_defect
+                                                ),
+                                            }
+                                        )
+                                    if (
+                                        root_slice_persistence_certified
+                                        and residual_direction_dim < 2
+                                    ):
+                                        raise AssertionError(
+                                            {
+                                                "kind": (
+                                                    "productive-"
+                                                    if productive
+                                                    else ""
+                                                )
+                                                + "marked-core-deficit-"
+                                                "anchor-persistent-root-slice-"
+                                                "higher-direction-failed",
+                                                "p": p,
+                                                "k": k,
+                                                "syndrome": list(syn),
+                                                "fixed_roots": list(
+                                                    fixed_roots
+                                                ),
+                                                "unmarked_core": list(
+                                                    unmarked_core
+                                                ),
+                                                "marked_count": marked_count,
+                                                "core_deficit": core_deficit,
+                                                "anchor": list(anchor),
+                                                "available_roots": list(
+                                                    available_roots
+                                                ),
+                                                "root_slice_bad_roots": sorted(
+                                                    root_slice_bad_roots
+                                                ),
                                                 "endpoint_defect": (
                                                     endpoint_defect
                                                 ),
