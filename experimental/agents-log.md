@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 base collision landings dualize to complements
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Dualizes high-degree base collision certificates
+  `L_I M in F B_0 mod Q_0` to small-complement fibers
+  `L_C in F L_D M B_0^{-1} mod Q_0`, with disjoint multiplier fibers for
+  exchange depth `u<=t`.
+- **How it is useful:** Turns the hard high-degree fixed-class residual into
+  explicit primitive small-complement ledgers and separates the first
+  unpacked one-exchange layer into core, domain-anchor, repeated-root, and
+  external-anchor landing types.
+- **What to do next:** Bound these complement fibers or show that the active
+  M1 geometry only admits quotient-periodic/contained instances.
+
 ### 2026-06-28 - M1 high-degree base collisions give residue landings
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

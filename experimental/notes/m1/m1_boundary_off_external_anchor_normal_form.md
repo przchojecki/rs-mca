@@ -12995,6 +12995,100 @@ This proves the displayed degree bound.  If `e_0=t+1` and `u=1`, then
 `deg M<2`; after scaling, `M` is either constant or linear, giving the stated
 core or finite-anchor landing.
 
+## Corollary 40.118: Base Collision Landings Dualize To Small-Complement Fibers
+
+Keep the setup of Corollary 40.117 at the scalar cutoff `a=k+t`, and let two
+exact threshold witnesses have
+
+```text
+|S_1|=|S_2|=a,        |S_1 cap S_2|=a-u.
+```
+
+Put `I=S_1 cap S_2`, `C=D\I`, so `|C|=j+u`, and write
+
+```text
+r_u=e_0-t+u.
+```
+
+Then the collision certificate can be chosen with
+
+```text
+M in F[X]_<r_u,        gcd(M,Q_0)=1,
+```
+
+and the complement `C` lies in the small-complement residue fiber
+
+```text
+Comp_{u,[M]}(Q_0,B_0)
+ = { C' subset D : |C'|=j+u,
+      L_{C'} in F L_D M B_0^{-1}        mod Q_0 }.       (BaseCompFiber)
+```
+
+Here `L_D=prod_{alpha in D}(X-alpha)`, and the inverse of `B_0` is taken in
+`F[X]/(Q_0)`.  Thus every high-degree base-class coefficient collision is
+carried by a primitive small-complement residue-line fiber indexed by a
+low-degree invertible multiplier.
+
+Moreover, if `u<=t`, then these fibers are disjoint as `[M]` varies in
+`P(F[X]_<r_u)` with `gcd(M,Q_0)=1`: a fixed complement `C` belongs to at most
+one projective multiplier fiber.
+
+In the first unpacked base layer `e_0=t+1` and at one-exchange scale `u=1`,
+the multiplier has degree `<2`.  Therefore every collision certificate is one
+of the following:
+
+1. a core complement landing, with `M` constant;
+2. a domain-anchor landing `M=X-beta` with `beta in C`;
+3. a repeated-domain-root landing `M=X-beta` with `beta in D\C`;
+4. an external-anchor landing `M=X-beta` with `beta notin D`.
+
+The root `beta` cannot be a root of `Q_0`, because `gcd(M,Q_0)=1`.
+
+### Proof
+
+Corollary 40.117 gives a nonzero `M` with `deg M<r_u` and
+
+```text
+L_I M == c B_0        mod Q_0
+```
+
+for some `c in F^*`.  Since `Q_0` is root-free on `D`, `L_I` is invertible
+modulo `Q_0`; since `gcd(B_0,Q_0)=1`, the displayed congruence forces
+`gcd(M,Q_0)=1`.
+
+Because `L_D=L_I L_C`, multiply the displayed congruence by `L_C` and by the
+inverse of `B_0` modulo `Q_0`:
+
+```text
+L_D M B_0^{-1} == c L_C        mod Q_0.
+```
+
+This is exactly the membership condition `C in Comp_{u,[M]}(Q_0,B_0)`.
+
+For disjointness, suppose `u<=t` and the same complement `C` lies in the
+fibers for `[M]` and `[N]`.  Then for nonzero scalars `c,d`,
+
+```text
+L_C == c L_D M B_0^{-1}
+     == d L_D N B_0^{-1}        mod Q_0.
+```
+
+Multiplying by the invertible class `B_0 L_D^{-1}` gives
+
+```text
+cM == dN        mod Q_0.
+```
+
+Since `deg(cM-dN)<r_u=e_0-t+u<=e_0=deg Q_0`, this congruence is a polynomial
+identity, so `[M]=[N]`.
+
+Finally, when `e_0=t+1` and `u=1`, `r_u=2`.  A nonzero polynomial of degree
+`<2` is projectively either constant or `X-beta` for a unique `beta in F`.
+The cases according to `beta in C`, `beta in D\C`, and `beta notin D` are the
+listed all-domain anchor, repeated-domain-root, and external-anchor landing
+types in the original overlap certificate `L_I(X-beta) in F B_0 mod Q_0`.
+The coprimality already proved excludes roots of `Q_0`.
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -15978,6 +16072,10 @@ support-packing charge and the one-coefficient range is `e_0<=t-j`.
 Corollary 40.117 converts collisions in the remaining high-degree range into
 short quotient-residue landing certificates; in the first unpacked base layer,
 one-exchange collisions are only core or finite-anchor landings.
+Corollary 40.118 dualizes these certificates to small-complement residue
+fibers, proves projective multiplier disjointness for exchange depth `u<=t`,
+and separates the first unpacked one-exchange layer into core, domain-anchor,
+repeated-root, and external-anchor landing types.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger
