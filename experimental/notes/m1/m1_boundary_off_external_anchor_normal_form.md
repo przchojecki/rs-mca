@@ -12247,6 +12247,95 @@ binom(n,j+1)=((n-j)/(j+1)) binom(n,j),
 
 which proves the displayed q-free bounds.
 
+## Corollary 40.108: The Support-Wise Noncontained One-Row Residual Is q-Free
+
+Keep the notation of Corollary 40.107.  Let `Mu_h^nc(Y,a)` be the set of
+coefficients `mu` for which there exist `A_0 in F[X]_<k` and an `a`-support
+`T subset D` such that
+
+```text
+A_0+mu phi_h = Y        on T,
+```
+
+and the one-row line is support-wise noncontained on `T`, meaning
+
+```text
+not ( phi_h|_T in RS[F,T,k] and Y|_T in RS[F,T,k] ).
+```
+
+Equivalently, the chosen support `T` is not in `DoubleColl_h(Y,a)`.  Then
+
+```text
+|Mu_h^nc(Y,a)|
+ <= ( binom(n,j+1) + j U_comp ) / (n-j).           (NCOneRowLedger)
+```
+
+In particular, since the exceptional complement fibers are disjoint,
+
+```text
+|Mu_h^nc(Y,a)| <= binom(n,j).                      (NCOneRowQFree)
+```
+
+Thus the support-wise noncontained one-exchange one-row residual is already
+q-free.  The field-size multiplicity isolated in Corollaries 40.105--40.107
+belongs entirely to supports on which both endpoints of the local one-row
+line are base-code, hence to the local-contained charge ledger rather than to
+the noncontained M1 slope count.
+
+### Proof
+
+For each `mu in Mu_h^nc(Y,a)`, choose one witnessing noncontained
+`a`-support `T_mu`.  For each `(a-1)`-core `I subset D`, put
+
+```text
+r_I^nc=|{ mu in Mu_h^nc(Y,a) : I subset T_mu }|.
+```
+
+As before,
+
+```text
+sum_{|I|=a-1} r_I^nc = a |Mu_h^nc(Y,a)|.           (NCCount)
+```
+
+If `I notin Exc_ell(Q_prim,B_prim)`, then the subtraction argument of
+Corollary 40.94 gives `r_I^nc<=1`.
+
+Now let `I in Exc_ell`, and put `C=D\I`, so `|C|=j+1`.  Every chosen
+`a`-support containing `I` has the form
+
+```text
+T_beta=I union {beta}
+```
+
+for a unique `beta in C`.  Since the chosen supports are noncontained, none
+of the `T_beta` lies in `DoubleColl_h(Y,a)`.  Corollary 40.105 therefore gives
+`|Mu_{T_beta}(Y)|<=1` for each `beta`.  Hence
+
+```text
+r_I^nc <= j+1        for every I in Exc_ell.
+```
+
+Therefore
+
+```text
+a |Mu_h^nc(Y,a)|
+ <= (binom(n,a-1)-|Exc_ell|) + (j+1)|Exc_ell|
+ = binom(n,a-1) + j |Exc_ell|.
+```
+
+Using `a=n-j`, `binom(n,a-1)=binom(n,j+1)`, and
+`|Exc_ell|=U_comp` from Corollaries 40.99 and 40.100 proves
+(NCOneRowLedger).
+
+Finally `U_comp<=binom(n,j+1)`, because the complement fibers are disjoint
+subsets of all `(j+1)`-subsets of `D`.  Substitution gives
+
+```text
+|Mu_h^nc(Y,a)| <= ((j+1) binom(n,j+1))/(n-j)=binom(n,j),
+```
+
+which proves (NCOneRowQFree).
+
 ## Corollary 41: The Global Common-Image Ledger Is Endpoint-Only
 
 Let `GCI` be the set of monic degree-`c` split core locators `L` for which
@@ -15196,6 +15285,10 @@ Corollary 40.107 gives the q-free consequence after the local-contained
 double-collapse locus is charged: the one-exchange one-row coefficient set is
 then bounded by `2 binom(n,j)` using only disjointness of the complement
 residue fibers.
+Corollary 40.108 sharpens this for the actual support-wise noncontained
+object: by choosing noncontained witnesses, same-support multiplicity never
+contributes, and the one-exchange one-row noncontained coefficient set is
+bounded by `binom(n,j)` without assuming the double-collapse locus is empty.
 Corollary 41 packages the common-image branch into endpoint-type ledgers; it
 does not prove the endpoint rank hypotheses needed for the displayed
 `(q+2)binom(n,b)` bound. Corollary 42 packages the globally full core ledger

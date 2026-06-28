@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 support-wise noncontained one-row residual is q-free
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_boundary_off_external_anchor_normal_form.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / PROOF-PROGRAM.
+- **What is being added:** Defines the support-wise noncontained one-row
+  coefficient set `Mu_h^nc(Y,a)` and proves
+  `|Mu_h^nc(Y,a)| <= (binom(n,j+1)+jU_comp)/(n-j) <= binom(n,j)`.
+- **How it is useful:** This removes the remaining q-factor from the actual
+  noncontained one-exchange one-row branch; double-collapse multiplicity is
+  shown to belong only to locally contained supports.
+- **What to do next:** Promote this as the one-row noncontained closure inside
+  the broader M1 residue-line packing program, then attack higher-exchange or
+  non-one-row residuals.
+
 ### 2026-06-28 - M1 local-contained-free one-row residual is q-free
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
