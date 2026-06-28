@@ -4633,6 +4633,26 @@ than \(b\) available roots.  Via the divisible-kernel identity, this rewrites
 the bad-subset ledger as a projective fixed-divisor root-count ledger.
 The verifier checks this projective-shadow identity together with the
 direction-MDS packing audit.
+Equivalently, the same bad \(b\)-subsets are exactly absorbed multi-root
+rank defects.  For \(C\subset D'\), \(|C|=b\), put
+\[
+  h^{W,C}_i=\sum_a(\ell_W\ell_C)_a s_{i+a},
+  \qquad
+  A_C(U,W)=(h^{W,C}_{i+j})_{0\le i<q,\ 0\le j<q-b}.
+\]
+Then
+\[
+  C\in Z_b^{\rm dir}(U,W)
+  \quad\Longleftrightarrow\quad
+  \operatorname{rank} A_C(U,W)<q-b .
+\]
+The proof is just divisibility in the direction polynomial:
+a nonzero \(Q\in V(U,W)\) vanishes on \(C\) iff
+\(Q=\ell_C Q_C\), \(\deg Q_C<q-b\), and the divisible-kernel identity turns
+this into \(H_{q,q+d-b}(s)(\ell_W\ell_C Q_C)=0\).  Thus the abstract
+rank-defect ledger, the projective root-shadow ledger, and the absorbed
+fixed-divisor Hankel ledger are the same object; the verifier now checks all
+three descriptions together.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[

@@ -2745,6 +2745,53 @@ packing.  The current largest `F_7^*` scan still has no positive-dimensional
 produced residual anchors, so the equality check is installed as a future-case
 audit rather than triggered by the present data.
 
+## Bad Direction Subsets Are Absorbed Multi-Root Rank Defects
+
+The same bad `b`-subsets also have a direct absorbed-Hankel test.  For
+`C subset D'`, `|C|=b`, put
+
+```text
+E_C = ell_W ell_C,
+h^{W,C}_i = sum_a (E_C)_a s_{i+a}.
+```
+
+Let
+
+```text
+A_C(U,W)= (h^{W,C}_{i+j})_{0<=i<q, 0<=j<q-b},
+```
+
+a `q x (q-b)` matrix.  Then
+
+```text
+C in Z_b^{dir}(U,W)
+    iff
+rank A_C(U,W) < q-b.                            (AMR)
+```
+
+Indeed, `C` is direction-bad exactly when there is a nonzero
+`Q in Dir K(U,W)` vanishing on every root of `C`.  Since the roots of `C` are
+distinct and `deg Q<q`, this is equivalent to `Q=ell_C Q_C` with
+`deg Q_C<q-b`.  By (DKI), this is equivalent to
+
+```text
+H_{q,q+d-b}(s)(ell_W ell_C Q_C)=0,
+```
+
+which is exactly the existence of a nonzero right kernel vector for
+`A_C(U,W)`.  The converse is the same implication read backward.
+
+Thus the DMB bad-set term can be computed without first constructing the
+evaluation matroid of `Dir K(U,W)`: it is precisely the multi-root absorbed
+fixed-divisor rank-defect ledger.  This generalizes the one-root absorbed
+matrix below and is the scanner-ready form for fixed-root, quotient-periodic,
+and aperiodic charges.
+
+The verifier now checks (AMR) against the evaluation-rank and projective-shadow
+descriptions whenever the `0<b<q` direction-MDS audit is triggered.  The current
+largest `F_7^*` scan still has no positive-dimensional produced residual
+anchors.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

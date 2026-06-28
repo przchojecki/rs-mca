@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-28 - M1 bad direction subsets are absorbed multi-root defects
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/scripts/verify_m1_hankel_t2_triangle_packets.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / AUDIT.
+- **What is being added:** Proves that a bad `b`-subset in the direction-MDS
+  residual-kernel theorem is equivalently a rank defect of the absorbed
+  multi-root matrix `A_C(U,W)` built from the fixed divisor `ell_W ell_C`.
+- **How it is useful:** Identifies the evaluation-rank, projective-root-shadow,
+  and fixed-divisor Hankel descriptions of the DMB bad-set term.  This makes the
+  residual obstruction directly usable by fixed-root, quotient-periodic, and
+  aperiodic M1 ledgers.
+- **What to do next:** Use the absorbed multi-root matrices to bound or
+  classify projective direction root shadows for positive-dimensional residual
+  anchors.
+
 ### 2026-06-28 - M1 bad direction subsets are projective root shadows
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

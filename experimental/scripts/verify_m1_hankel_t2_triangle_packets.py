@@ -172,7 +172,8 @@ direction polynomial and checks the resulting root-slice packing bound.
 For higher positive residual direction dimension, it audits the direction-MDS
 rank-defect packing bound on bad b-subsets.
 It also identifies those bad b-subsets with the projective root shadows of the
-residual direction space.
+residual direction space and with absorbed multi-root fixed-divisor rank
+defects.
 For each fixed collapsed anchor base, it audits the sparse-representation
 fiber: below the boundary the mode support is unique, while at the boundary
 distinct supports are disjoint and obey the matching bound.
@@ -432,6 +433,28 @@ def projective_span_representatives_mod(
             tuple((value * inverse_pivot) % p for value in vector)
         )
     return tuple(sorted(representatives))
+
+
+def hankel_divisor_matrix_mod(
+    syn: Sequence[int],
+    divisor_locator: Sequence[int],
+    row_count: int,
+    column_count: int,
+    p: int,
+) -> tuple[tuple[int, ...], ...]:
+    columns = tuple(
+        hankel_apply(
+            syn,
+            shift_locator(divisor_locator, column),
+            row_count,
+            p,
+        )
+        for column in range(column_count)
+    )
+    return tuple(
+        tuple(columns[column][row] for column in range(column_count))
+        for row in range(row_count)
+    )
 
 
 def solve_square_mod(
@@ -4587,6 +4610,86 @@ def analyze_case(
                                                         list(item)
                                                         for item in sorted(
                                                             projective_bad_subsets
+                                                        )
+                                                    ],
+                                                }
+                                            )
+                                        fixed_divisor_bad_subsets: set[
+                                            tuple[int, ...]
+                                        ] = set()
+                                        fixed_divisor_width = (
+                                            residual_size
+                                            - residual_direction_dim
+                                        )
+                                        for subset in itertools.combinations(
+                                            available_roots,
+                                            residual_direction_dim,
+                                        ):
+                                            subset_divisor_locator = (
+                                                multiply_polynomials_mod(
+                                                    anchor_locator,
+                                                    cached_locator(subset),
+                                                    p,
+                                                )
+                                            )
+                                            fixed_divisor_matrix = (
+                                                hankel_divisor_matrix_mod(
+                                                    syn,
+                                                    subset_divisor_locator,
+                                                    residual_size,
+                                                    fixed_divisor_width,
+                                                    p,
+                                                )
+                                            )
+                                            if (
+                                                matrix_rank_mod(
+                                                    fixed_divisor_matrix,
+                                                    p,
+                                                )
+                                                < fixed_divisor_width
+                                            ):
+                                                fixed_divisor_bad_subsets.add(
+                                                    subset
+                                                )
+                                        if (
+                                            fixed_divisor_bad_subsets
+                                            != bad_direction_subsets
+                                        ):
+                                            raise AssertionError(
+                                                {
+                                                    "kind": (
+                                                        "productive-"
+                                                        if productive
+                                                        else ""
+                                                    )
+                                                    + "marked-core-deficit-"
+                                                    "anchor-direction-mds-"
+                                                    "fixed-divisor-failed",
+                                                    "p": p,
+                                                    "k": k,
+                                                    "syndrome": list(syn),
+                                                    "fixed_roots": list(
+                                                        fixed_roots
+                                                    ),
+                                                    "unmarked_core": list(
+                                                        unmarked_core
+                                                    ),
+                                                    "marked_count": marked_count,
+                                                    "core_deficit": core_deficit,
+                                                    "anchor": list(anchor),
+                                                    "direction_dim": (
+                                                        residual_direction_dim
+                                                    ),
+                                                    "bad_subsets": [
+                                                        list(item)
+                                                        for item in sorted(
+                                                            bad_direction_subsets
+                                                        )
+                                                    ],
+                                                    "fixed_divisor_bad_subsets": [
+                                                        list(item)
+                                                        for item in sorted(
+                                                            fixed_divisor_bad_subsets
                                                         )
                                                     ],
                                                 }
