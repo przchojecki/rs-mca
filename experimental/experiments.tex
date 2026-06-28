@@ -5264,6 +5264,17 @@ quotient-line ledgers.  Iterating over the disjoint canonical tree gives an
 endpoint consisting only of lower-dimensional leaves, spread determinant-gate
 ledgers with these occupancy savings, and bounded-width quotient-line ledgers
 for concentrated profiles.
+Each bounded-width quotient-line ledger is itself a one-dimensional
+root-slice packing.  For a quotient line of width \(j\) with direction
+\(Q'\ne0\), let \(Z=\{x:Q'(x)=0\}\) on the remaining canonical domain,
+\(z=|Z|\), and \(N\) be the domain size.  Distinct quotient supports can
+intersect only inside \(Z\), so
+\[
+  |F_{\lambda,C}^{can}|\le
+  \left\lfloor {N-z\over j-z}\right\rfloor .
+\]
+Thus concentrated no-base profiles descend to fixed-width root-slice packing
+ledgers; the remaining new \(b=2\) term is the spread determinant-gate count.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

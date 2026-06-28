@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 b=2 quotient-line packings
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Shows that every bounded-width projective-fiber
+  quotient-line ledger in the canonical occupancy-cutoff tree is a
+  one-dimensional root-slice packing with bound
+  `floor((N-z)/(j-z))`.
+- **How it is useful:** Converts the concentrated no-base branch from a named
+  quotient-line leftover into an already understood fixed-width root-slice
+  packing ledger.
+- **What to do next:** Focus the remaining `b=2` work on spread
+  determinant-gate counts across canonical peeled anchors.
+
 ### 2026-06-29 - M1 b=2 canonical occupancy-cutoff tree
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

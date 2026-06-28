@@ -4761,6 +4761,51 @@ lower-dimensional leaves, spread no-base determinant-gate ledgers with
 occupancy savings chosen node-by-node, and bounded-width projective-fiber
 quotient-line ledgers for the concentrated no-base profiles.
 
+## Quotient-Line Ledgers Are Root-Slice Packings
+
+The bounded-width quotient-line terms in (PF2-canon-occ-tree) are not a new
+type of residual object.  Fix one canonical node `S`, one descended projective
+fiber `lambda`, and one dominant subset `C` with `|C|=q_S-j`, `j>=1`.
+The quotient line has the form
+
+```text
+L_{S,C}/ell_C + span(Q'_{S,lambda,C}),        deg Q'_{S,lambda,C}<j,
+```
+
+on the remaining canonical domain `D_{S,C}`.  Let
+
+```text
+Z_{S,lambda,C}={x in D_{S,C} : Q'_{S,lambda,C}(x)=0},
+z_{S,lambda,C}=|Z_{S,lambda,C}|,        N_{S,C}=|D_{S,C}|.
+```
+
+Since `Q'_{S,lambda,C}` is nonzero of degree `<j`, one has
+`z_{S,lambda,C}<=j-1`.  If two quotient supports `R_1,R_2` in this line are
+distinct, then
+
+```text
+ell_{R_1}-ell_{R_2}=alpha Q'_{S,lambda,C},        alpha != 0.
+```
+
+Thus any common root of `R_1` and `R_2` lies in `Z_{S,lambda,C}`.  Outside
+`Z_{S,lambda,C}`, the quotient supports are pairwise disjoint, and every
+support contributes at least `j-z_{S,lambda,C}` roots outside this set.
+Therefore
+
+```text
+|F_{S,lambda,C}^{can}|
+ <= floor((N_{S,C}-z_{S,lambda,C})/(j-z_{S,lambda,C})).
+                                                        (PF2-quot-line-pack)
+```
+
+The roots in `Z_{S,lambda,C}` are exactly the one-root bad slices of the
+quotient line, by the same divisible-kernel identity as in the `b=1`
+residual-kernel packing.  Consequently every bounded-width quotient-line
+ledger in (PF2-canon-occ-tree) is an ordinary root-slice packing ledger.  The
+remaining genuinely new `b=2` work is the spread determinant-gate count; the
+concentrated quotient-line branch has descended to fixed-width root-slice
+packings.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
