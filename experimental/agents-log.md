@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 b=2 width-zero ledger
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Specializes the fixed-width `b=2` cutoff to
+  `w=0` and uses the projective-fiber degree gap to remove the near-fiber
+  quotient-line term entirely.
+- **How it is useful:** Reduces the current `b=2` endpoint to two terms: a
+  no-base split determinant-gate count with explicit `2/q` saving and the
+  one-root common-base fixed-divisor quotient ledger.
+- **What to do next:** Prove polynomial bounds for the no-base determinant
+  gates and the one-root common-base quotient ledger in the all-line M1
+  residue-packing setting.
+
 ### 2026-06-28 - M1 b=2 constant-width cutoff corollary
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

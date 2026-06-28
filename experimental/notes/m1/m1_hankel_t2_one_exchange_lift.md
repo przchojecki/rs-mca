@@ -4358,6 +4358,50 @@ as a small constant to keep all non-generic quotient ledgers bounded-width,
 then prove that the saved generic determinant-gate mass is polynomial after
 the remaining aperiodic/quotient-periodic charges.
 
+## Width-Zero b=2 Ledger
+
+The fixed-width corollary is especially sharp at `w=0`.  Put
+
+```text
+A_0=0,        c=1,        h=q.
+```
+
+The near-fiber term is empty.  Indeed, a near-fiber support with `w=0` would
+have no base roots and all `q` roots inside a single non-base projective fiber.
+But every projective fiber is contained in the zero set of a nonzero residual
+direction of degree `<q`; the earlier degree-gap lemma gives
+
+```text
+|ev_A^{-1}(lambda)|<q,
+```
+
+so such a support cannot exist.
+
+Let
+
+```text
+I_A^{nb}={ e in I_A : pi_A(e) cap B_0 = empty }.
+```
+
+Then (PF2-width-w-ledger) becomes the two-term bound
+
+```text
+sum_{A in A_2} |F(A)|
+ <=
+  (2/q) sum_{A in A_2} |I_A^{nb}|
+  + sum_{A in A_2} sum_{x in B_0^*(A)} |F_x(A)|.  (PF2-width-zero)
+```
+
+Equivalently, after the degree-gap exclusion, the `b=2` branch has only:
+
+1. no-base split determinant gates, paid with an explicit `2/q` saving;
+2. one-root common-base fixed-divisor quotient fibers.
+
+This is a stronger endpoint than the general fixed-width form whenever the
+one-root base quotient ledger can be charged globally.  It removes the
+projective-fiber quotient-line term completely by using the same degree gap
+that eliminated zero-good supports.
+
 ## Bad Root Slices Are Absorbed-Anchor Rank Defects
 
 The preceding bad-root condition has an equivalent absorbed-anchor form.  Fix

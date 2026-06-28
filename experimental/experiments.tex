@@ -5174,6 +5174,19 @@ constant-width form
 Thus, for fixed \(w\), the \(b=2\) branch is reduced to a generic
 determinant-gate count with a \(2/((w+1)q)\) saving, one-root common-base
 quotient fibers, and width-\(w\) projective-fiber quotient-line fibers.
+At \(w=0\), the projective-fiber quotient-line term is empty by the degree
+gap: it would require \(q\) roots in one non-base projective fiber, but every
+such fiber is the zero set of a nonzero degree-\(<q\) residual direction.
+Thus
+\[
+  \sum_{A\in\mathcal A_2}|F(A)|
+  \le
+  {2\over q}\sum_{A\in\mathcal A_2}|I_A^{\mathrm{nb}}|
+  +\sum_{A\in\mathcal A_2}\sum_{x\in B_0^*(A)}|F_x(A)|,
+\]
+where \(I_A^{\mathrm{nb}}\) is the split-good-pair domain whose image support
+avoids \(B_0\).  Hence the width-zero endpoint is a no-base determinant-gate
+term with a \(2/q\) saving plus the one-root common-base quotient ledger.
 Equivalently, for each available root \(x\) the bad-slice test is the failure
 of full column rank for the absorbed-anchor matrix
 \[
