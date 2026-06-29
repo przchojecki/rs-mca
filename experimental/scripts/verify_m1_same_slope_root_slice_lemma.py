@@ -56,8 +56,9 @@ packet intersection gate, support-class palette, endpoint palette, and
 repeated-endpoint gate, double-root endpoint certificate, raw-coefficient
 endpoint certificate, endpoint-discriminant certificate, Hankel-minor
 discriminant certificate, Plucker-minor discriminant certificate,
-Plucker-chart decomposition, Plucker-chart row recurrence, endpoint-charge
-corollary, and packet-count corollary.
+Plucker-chart decomposition, Plucker-chart row recurrence, overlapping
+Plucker-chart recurrence, endpoint-charge corollary, and packet-count
+corollary.
 """
 
 from __future__ import annotations
@@ -3258,6 +3259,88 @@ def assert_plucker_chart_decomposition(
             assert vec_rank([row0, row1, row2], p) <= 1
 
 
+def assert_overlapping_plucker_chart_recurrence(
+    a_rows: tuple[int, int, int, int],
+    b_rows: tuple[int, int, int, int],
+    p: int,
+) -> None:
+    p0, r0_minor, s0 = adjacent_plucker_minors(a_rows, b_rows, 0, p)
+    p1, r1_minor, s1 = adjacent_plucker_minors(a_rows, b_rows, 1, p)
+    if (s0 * s0 - 4 * p0 * r0_minor) % p != 0:
+        return
+    if (s1 * s1 - 4 * p1 * r1_minor) % p != 0:
+        return
+    if p0 == 0:
+        return
+
+    row0 = (a_rows[0], b_rows[0])
+    row1 = (a_rows[1], b_rows[1])
+    row2 = (a_rows[2], b_rows[2])
+    row3 = (a_rows[3], b_rows[3])
+    lambda0 = (s0 * pow((2 * p0) % p, -1, p)) % p
+
+    expected_row2 = (
+        (2 * lambda0 * row1[0] - lambda0 * lambda0 * row0[0]) % p,
+        (2 * lambda0 * row1[1] - lambda0 * lambda0 * row0[1]) % p,
+    )
+    assert row2 == expected_row2, (
+        p,
+        a_rows,
+        b_rows,
+        (p0, r0_minor, s0),
+        lambda0,
+        expected_row2,
+    )
+    assert p1 == (p0 * lambda0 * lambda0) % p, (
+        p,
+        a_rows,
+        b_rows,
+        (p0, r0_minor, s0),
+        (p1, r1_minor, s1),
+        lambda0,
+    )
+
+    if lambda0 == 0:
+        assert vec_is_zero(row2), (p, a_rows, b_rows, lambda0)
+        assert (p1, r1_minor, s1) == (0, 0, 0), (
+            p,
+            a_rows,
+            b_rows,
+            (p1, r1_minor, s1),
+        )
+        assert vec_rank([row1, row2, row3], p) <= 1
+        return
+
+    lambda1 = (s1 * pow((2 * p1) % p, -1, p)) % p
+    expected_row3 = (
+        (2 * lambda1 * row2[0] - lambda1 * lambda1 * row1[0]) % p,
+        (2 * lambda1 * row2[1] - lambda1 * lambda1 * row1[1]) % p,
+    )
+    substituted_row3 = (
+        (
+            -2 * lambda1 * lambda0 * lambda0 * row0[0]
+            + (4 * lambda0 * lambda1 - lambda1 * lambda1) * row1[0]
+        )
+        % p,
+        (
+            -2 * lambda1 * lambda0 * lambda0 * row0[1]
+            + (4 * lambda0 * lambda1 - lambda1 * lambda1) * row1[1]
+        )
+        % p,
+    )
+    assert row3 == expected_row3 == substituted_row3, (
+        p,
+        a_rows,
+        b_rows,
+        (p0, r0_minor, s0),
+        (p1, r1_minor, s1),
+        lambda0,
+        lambda1,
+        expected_row3,
+        substituted_row3,
+    )
+
+
 def quadratic_character(value: int, p: int) -> int:
     value %= p
     if value == 0:
@@ -5876,6 +5959,41 @@ def check_boundary_core_square_norm_hankel_minor_discriminants() -> None:
                     double_root,
                     prime,
                 ) == 0
+            assert_overlapping_plucker_chart_recurrence(a_rows, b_rows, prime)
+
+        for sample_idx in range(180):
+            while True:
+                row0 = (rng.randrange(prime), rng.randrange(prime))
+                row1 = (rng.randrange(prime), rng.randrange(prime))
+                if det2(row0, row1, prime) != 0:
+                    break
+            lambda0 = 0 if sample_idx % 9 == 0 else 1 + rng.randrange(prime - 1)
+            row2 = (
+                (2 * lambda0 * row1[0] - lambda0 * lambda0 * row0[0]) % prime,
+                (2 * lambda0 * row1[1] - lambda0 * lambda0 * row0[1]) % prime,
+            )
+            if lambda0 == 0:
+                row3 = vec_scalar_mul(rng.randrange(prime), row1, prime)
+            else:
+                lambda1 = rng.randrange(prime)
+                row3 = (
+                    (2 * lambda1 * row2[0] - lambda1 * lambda1 * row1[0]) % prime,
+                    (2 * lambda1 * row2[1] - lambda1 * lambda1 * row1[1]) % prime,
+                )
+            a_rows = (row0[0], row1[0], row2[0], row3[0])
+            b_rows = (row0[1], row1[1], row2[1], row3[1])
+            assert_overlapping_plucker_chart_recurrence(a_rows, b_rows, prime)
+            for index in (0, 1):
+                assert quadratic_discriminant(
+                    hankel_minor_poly(a_rows, b_rows, index, prime),
+                    prime,
+                ) == 0
+                assert_plucker_chart_decomposition(
+                    a_rows,
+                    b_rows,
+                    index,
+                    prime,
+                )
 
 
 def check_boundary_core_square_norm_endpoint_charge() -> None:
