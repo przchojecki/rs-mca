@@ -5829,6 +5829,37 @@ Together with the active skip-ball bound, this gives
 Thus fixed surplus leaves only polynomially many fully absorbed tail
 certificates; the remaining issue is the lifting multiplicity from each
 collapsed certificate back to its admissible tail thickenings.
+This lifting multiplicity factors exactly.  Define
+\[
+  L_{S,\lambda}^{tail}=
+  \begin{cases}
+    T(h_\lambda,r_\lambda),& z_{S,\lambda}^{\perp}>0,\\
+    T(h_\lambda,r_\lambda)-1,& z_{S,\lambda}^{\perp}=0.
+  \end{cases}
+\]
+Then
+\[
+  FixedRootTail_S
+  =
+  \sum_{\lambda:h_\lambda>q_S/2}
+  L_{S,\lambda}^{tail}
+  \left(1+\left\lfloor
+    {s_S\over r_\lambda-z_{S,\lambda}^{\perp}}
+  \right\rfloor\right).
+\]
+If \(s_0\le\sigma\), the packing factor is at most \(\sigma+1\).  With
+\[
+  TailLift(A)=
+  \sum_{\substack{S\in Tree_2(A)\\F_S^{can}\ne\emptyset}}
+  \sum_{\lambda:h_\lambda>q_S/2}L_{S,\lambda}^{tail},
+\]
+the fixed-surplus endpoint sharpens to
+\[
+  |F(A)|\le (\sigma+1)TailLift(A)+O_\sigma(q^{\sigma+2}).
+\]
+Thus the exact remaining target in this branch is polynomial control of
+\(TailLift(A)\), or a classification of the collapsed absorbed certificates
+with large low-complement lift multiplicity.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

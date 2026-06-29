@@ -6139,6 +6139,68 @@ multiplicity from a collapsed absorbed certificate back to its admissible
 tail thickenings, not from the number of absorbed kernels or from their
 packing factors.
 
+## Exact Collapsed Tail-Lift Factorization
+
+The residual lifting multiplicity can be isolated exactly.  For a
+half-height fiber put
+
+```text
+L_{S,lambda}^{tail}
+ =
+ T(h_lambda,r_lambda),       if z_{S,lambda}^{perp}>0,
+ T(h_lambda,r_lambda)-1,     if z_{S,lambda}^{perp}=0.
+```
+
+Equivalently, `L_{S,lambda}^{tail}` is the number of admissible thickening
+sets `E` for which `B_tail(E)` is nonempty.  Since the primitive packing
+factor is independent of `E`, (PF2-tail-expanded) and
+(PF2-tail-full-abs) give the exact collapsed factorization
+
+```text
+FixedRootTail_S
+ =
+ sum_{lambda:h_lambda>q_S/2}
+   L_{S,lambda}^{tail}
+   (1+floor(s_S/(r_lambda-z_{S,lambda}^{perp}))).       (PF2-tail-lift-factor)
+```
+
+Thus the fixed-root tail consists of a collapsed absorbed packing factor
+times an internal tail-lift multiplicity.  In fixed-surplus regimes the
+packing factor is uniformly bounded:
+
+```text
+1+floor(s_S/(r_lambda-z_{S,lambda}^{perp})) <= s_0+1,
+```
+
+so, with
+
+```text
+TailLift(A)=
+ sum_{S in active Tree_2(A)}
+ sum_{lambda:h_lambda>q_S/2} L_{S,lambda}^{tail},
+```
+
+one has
+
+```text
+sum_{S in Tree_2(A)} FixedRootTail_S
+ <= (s_0+1) TailLift(A).                       (PF2-tail-lift-bound)
+```
+
+Combining this with (PF2-fixed-surplus-endpoint) yields the sharpened
+fixed-surplus endpoint
+
+```text
+|F(A)| <= (sigma+1) TailLift(A) + O_sigma(q^{sigma+2}),
+        whenever s_0<=sigma.                  (PF2-tail-lift-endpoint)
+```
+
+This is now the exact residual target for the fixed-surplus canonical `b=2`
+branch: prove that `TailLift(A)` is polynomial, or classify the collapsed
+absorbed certificates for which the low-complement lift multiplicity
+`L_{S,lambda}^{tail}` is large.  The previous reductions show that no other
+part of this branch can contribute a super-polynomial term.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

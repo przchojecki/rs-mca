@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 exact tail-lift factorization
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Factors `FixedRootTail_S` exactly into the
+  collapsed absorbed packing factor times a tail-lift multiplicity
+  `L_{S,lambda}^{tail}`.
+- **How it is useful:** Sharpens the fixed-surplus endpoint to
+  `|F(A)| <= (sigma+1)TailLift(A)+O_sigma(q^(sigma+2))`, making
+  `TailLift(A)` the precise remaining target for this M1 branch.
+- **What to do next:** Prove polynomial bounds for `TailLift(A)` or classify
+  collapsed absorbed certificates with large low-complement lift multiplicity.
+
 ### 2026-06-29 - M1 collapsed absorbed tail certificates
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
