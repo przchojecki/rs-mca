@@ -30,7 +30,7 @@ a natural follow-on for anyone whose stack has Sage/Magma.
 | 0 | foundational gate / A.1 acceptance | **done** |
 | 1 | field construction | **done** |
 | 2 | domain construction | **done** |
-| 3 | locator splitting | pending |
+| 3 | locator splitting | **done** |
 | 4 | interpolation | pending |
 | 5 | degree bound | pending |
 | 6 | agreement count | pending |
@@ -50,6 +50,15 @@ a natural follow-on for anyone whose stack has Sage/Magma.
   not merely assumed but constructible and unique in its 2-part. A deterministic
   order-512 generator is found; the 512 powers are distinct, close (`h^512 = 1`),
   contain `1`, exclude `0`, and the generator has order exactly 512 (`h^256 != 1`).
+- **Locator splitting.** A monic locator `L_T(X) = prod_{x in T}(X - x)` is built over
+  `GF(17^32)` on a runnable support `T` of 6 distinct `H`-points (the genuine
+  "split squarefree locator" object of the F1/M1 program). Verified: degree `|T|`
+  and monic; vanishes on all of `T` and on none of 6 disjoint `H`-points; all roots
+  simple (derivative `L' != 0` on `T` ⇒ squarefree split, no gcd needed); Vieta ties
+  the coefficient prefix to the elementary-symmetric / prefix map `Phi`
+  (`[X^5] = -e_1`, `[X^0] = e_6`); negative control catches a doubled root
+  (`L` and `L'` both vanish). Extension-field polynomial arithmetic is done locally
+  (`pmul`/`pderiv`) since `galoistools` is prime-field only.
 
 ## Honest scope / limits
 

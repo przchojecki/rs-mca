@@ -19,7 +19,7 @@ GF(p^32); we construct the extension field ourselves, ~one screen of code.)
 A.3 CHECKLIST COVERAGE (this file grows one item per loop iteration):
   [x] field construction
   [x] domain construction
-  [ ] locator splitting
+  [x] locator splitting
   [ ] interpolation
   [ ] degree bound
   [ ] agreement count
@@ -128,6 +128,40 @@ def find_subgroup_generator(order=512):
     raise RuntimeError("no order-%d generator found in search bound" % order)
 
 
+# --- polynomials OVER GF(17^32): coeff lists are themselves field elements,
+# stored low-degree-first ([] = zero coeff).  galoistools is prime-field only,
+# so these extension-field polynomial ops are done here. -----------------------
+def fneg(a):
+    return fsub(ZERO, a)
+
+
+def pmul(a, b):
+    res = [ZERO] * (len(a) + len(b) - 1)
+    for i, ai in enumerate(a):
+        if ai == ZERO:
+            continue
+        for j, bj in enumerate(b):
+            res[i + j] = fadd(res[i + j], fmul(ai, bj))
+    return res
+
+
+def pderiv(a):
+    if len(a) <= 1:
+        return [ZERO]
+    return [fmul(int_to_elem(i), a[i]) for i in range(1, len(a))]
+
+
+_H_GEN = None
+
+
+def H_generator():
+    """Memoized deterministic order-512 generator (the domain anchor)."""
+    global _H_GEN
+    if _H_GEN is None:
+        _H_GEN = find_subgroup_generator(512)
+    return _H_GEN
+
+
 # ----------------------------------------------------------------------------
 # Checks.  Each returns (status, details) where status is True/False (PASS/FAIL)
 # for an implemented check, or None for a PENDING (not-yet-covered) item.
@@ -187,7 +221,7 @@ def check_domain_construction():
     d.append(f"v2(17^32 - 1) = {v2}  => 512=2^9 divides Q-1 exactly: {v2 == 9}")
     d.append(f"1024 | Q-1 ? {(Q - 1) % 1024 == 0}  (expect False: 512 is full 2-Sylow)")
     ok &= (v2 == 9)
-    h, witness = find_subgroup_generator(512)
+    h, witness = H_generator()
     d.append(f"order-512 generator found (from base-17 element {witness})")
     # build H, check 512 distinct, closure, and that it's a subgroup of F*.
     pts, cur = [], ONE
@@ -207,6 +241,63 @@ def check_domain_construction():
     return ok, d
 
 
+def check_locator_splitting():
+    """A.3: locator splitting.  Build a split squarefree locator L_T(X)=prod_{x in T}(X-x)
+    over GF(17^32) on a runnable support T subset H, and verify it really splits.
+
+    This is the genuine 'split squarefree locator' object of the F1/M1 program
+    (cf. the a=265 'split squarefree degree-247 locator'); here |T| is small and
+    RUNNABLE -- this checks the locator ALGEBRA, not any enumeration over H."""
+    d = []
+    ok = True
+    h, _ = H_generator()
+    # support T = six distinct domain points h^0..h^5
+    T, cur = [], ONE
+    for _ in range(6):
+        T.append(cur)
+        cur = fmul(cur, h)
+    # monic locator over GF(17^32), low-degree-first
+    L = [ONE]
+    for x in T:
+        L = pmul(L, [fneg(x), ONE])            # times (X - x)
+    deg_ok = (len(L) - 1 == 6) and (L[-1] == ONE)
+    d.append(f"deg L_T = {len(L) - 1} (expect 6), monic : {deg_ok}")
+    ok &= deg_ok
+    # splits over F: vanishes exactly on T (and on no other tested H point)
+    on_support = all(feval(L, x) == ZERO for x in T)
+    others, cur = [], T[-1]
+    for _ in range(6):
+        cur = fmul(cur, h)
+        others.append(cur)
+    off_support = all(feval(L, y) != ZERO for y in others)
+    d.append(f"L_T vanishes on all 6 support points : {on_support}")
+    d.append(f"L_T nonzero on 6 disjoint H points    : {off_support}")
+    ok &= on_support and off_support
+    # squarefree / all-roots-simple via the derivative test (no gcd needed):
+    Lp = pderiv(L)
+    simple = all(feval(Lp, x) != ZERO for x in T)
+    d.append(f"all roots simple => squarefree split (L' != 0 on T) : {simple}")
+    ok &= simple
+    # Vieta: the coefficient prefix IS the elementary-symmetric / prefix map Phi
+    e1 = ZERO
+    for x in T:
+        e1 = fadd(e1, x)
+    prod = ONE
+    for x in T:
+        prod = fmul(prod, x)
+    vieta_top = (L[5] == fneg(e1))             # [X^5] = -e_1
+    vieta_const = (L[0] == prod)               # [X^0] = (-1)^6 prod = prod
+    d.append(f"Vieta [X^5] = -sum(roots) (= -e_1 = prefix Phi_1) : {vieta_top}")
+    d.append(f"Vieta [X^0] = prod(roots) (= e_6)                 : {vieta_const}")
+    ok &= vieta_top and vieta_const
+    # negative control: a repeated factor is NOT split-squarefree and is caught.
+    Ldup = pmul(L, [fneg(T[0]), ONE])          # double the root T[0]
+    caught = (feval(Ldup, T[0]) == ZERO) and (feval(pderiv(Ldup), T[0]) == ZERO)
+    d.append(f"negative control: doubled root caught (L,L' both vanish) : {caught}")
+    ok &= caught
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop iteration"]
 
@@ -216,7 +307,7 @@ CHECKS = [
     ("foundational gate / A.1 acceptance", check_gate_and_acceptance),
     ("field construction",                 check_field_construction),
     ("domain construction",                check_domain_construction),
-    ("locator splitting",                  _pending),
+    ("locator splitting",                  check_locator_splitting),
     ("interpolation",                      _pending),
     ("degree bound",                       _pending),
     ("agreement count",                    _pending),
