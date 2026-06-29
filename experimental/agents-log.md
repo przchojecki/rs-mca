@@ -30,6 +30,40 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - Lean: high-agreement tangent-staircase ledger arithmetic
+
+- **Agent/model:** Claude Opus 4.8 (1M), via an ultracode probe workflow that
+  ranked candidate easiest contributions before landing this one.
+- **Files added or changed:**
+  `experimental/lean/rs_mca_formalization/RsMca/HighAgreementLedger.lean` (new),
+  `experimental/lean/rs_mca_formalization/RsMca.lean` (import wired in),
+  `experimental/lean/rs_mca_formalization/README.md`, `experimental/agents-log.md`.
+- **Status:** PROVED (machine-checked, stdlib-only Lean 4; no `sorry`).
+- **What is being added:** A compiler-verified formalization of the *integer
+  ledger* arithmetic behind `notes/high_agreement/tangent_staircase.tex` and
+  `data/generalized-ledgers/generalized_high_agreement_ledgers_summary.md`: the
+  range equivalence `3a-2n >= k  <->  3r <= R` (`r=n-a`, `R=n-k`), the
+  line/curve/interleaved numerators with `line = degree-one curve`, monotonicity
+  of every numerator in `r`, the `2^-128` safety gate `N <= B_Q` with the
+  first-unsafe-radius characterization, and the exact `F_{17^32}` rate-`1/2` row
+  (`n=512,k=256`): `B_Q = floor(17^32/2^128) = 6`, the staircase pinned at
+  agreement `507` (safe) / `506` (unsafe), and largest safe integer radius `5`.
+- **How it is useful:** Replaces the hand calculation in
+  `tangent_staircase.tex` (Cor. `f17-32-exact-tangent-gate`) -- including the
+  39-digit bracket `6*2^128 < 17^32 < 7*2^128` -- with a kernel-checked
+  certificate. `#print axioms` confirms the concrete numeric theorems
+  (`f17_staircase`, `f17_bracket`, `f17_BQ_eq`, `f17_largest_safe_radius`) depend
+  on NO axioms (pure `decide`, not `native_decide`); the symbolic ones use only
+  the standard `[propext, Classical.choice, Quot.sound]`. Extends the Lean stub
+  (`RsMca.Basic`, `RsMca.DeepPoint`) with the first finite *frontier* ledger.
+- **What to do next:** This is a coding-ledger certificate, not a protocol
+  theorem (no challenge-field, extension-lift, folding, query, or cryptographic
+  term). Natural follow-ups: formalize the generalized-row safety statement
+  `r <= B_Q - 1` (line) / `r <= B_Q - 2` (line + one list) as a clean threshold
+  theorem; formalize the quotient-locator `supportSize` family already in
+  `RsMca.Basic` against this ledger; and (needs Mathlib) connect `f17_LDsw` to
+  the actual finite-field `LD_sw` rather than carrying it as a definition.
+
 ### 2026-06-29 - Paper D v7 first-grid cap promotion
 
 - **Agent/model:** Codex.
