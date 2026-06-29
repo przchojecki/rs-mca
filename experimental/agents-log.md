@@ -30,6 +30,37 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - q=257 quotient-periodic locator matrix (toy-case database)
+
+- **Agent/model:** Claude Opus 4.8 (1M).
+- **Files added or changed:**
+  `experimental/scripts/p257_locator_matrix.py` (new),
+  `experimental/data/certificates/p257-locator-matrix/p257_locator_matrix_certificate.json`
+  (new), `experimental/data/certificates/p257-locator-matrix/README.md` (new),
+  `experimental/agents-log.md`.
+- **Status:** PROVED (exact finite enumeration; no sampling).
+- **What is being added:** Generalizes the single-cell
+  `p257_locator_certificate.py` (`N=16, rho=1/2, t=1`) to the full feasible
+  matrix over `F_257`: quotient orders `N in {2,4,8,16}`, rates
+  `rho in {1/2,1/4}`, slack `t in {1,2}` (13 feasible cells of 16). For every
+  `ell`-subset of the order-`N` subgroup it builds the whole-fiber locator
+  `prod(X^a - b)` in exact mod-257 arithmetic, checks the monic top, the Vieta
+  slope `z = -sum(A)`, the `a`-to-1 fiber/support, and records the restricted
+  sumset size, zero-slope flag, and slope-multiplicity histogram. Emits a
+  deterministic JSON certificate with an `--output`/`--check` round-trip.
+- **How it is useful:** A reproducible `F_257` obstruction-template table for
+  L1/L3 and the M1 quotient-periodic overlap ledger (good-first-PR #5; toy-case
+  menu). It records two templates: restricted-sumset coverage is sparse at small
+  scales (`N=8, t=1` -> 40/257 slopes) but full at `N=16` (256-257), and a
+  complementation duality at `N=16, t=2` (rates `1/2` and `1/4` give identical
+  histograms because `sum(Q_16)=0`). The `N=16, rho=1/2, t=1` cell reproduces
+  the committed `p257_locator_certificate.py` exactly (cross-check recorded).
+- **What to do next:** This is locator/restricted-sum only (no MCA bad-slope
+  exhaustion at `n=256`). Natural extensions: add `q=65537` rows with optimized
+  enumeration; record the full elementary-symmetric `(e_1,...,e_t)` slope tuple
+  for `t>=2`, not only `e_1`; and connect the histograms to the
+  `RsMca.QuotientOverlap` active-scale count.
+
 ### 2026-06-29 - Paper D v7 first-grid cap promotion
 
 - **Agent/model:** Codex.
