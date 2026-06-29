@@ -77,9 +77,10 @@ Keep entries concise and link to the relevant files.
   line-packet ledger, while nonconstant square norm has only the quadratic
   norm-filter Fourier coefficient as a possible large term.  The
   positive-parity square-norm branch gets the genus-free norm-outside bound
-  `(e-2)|D|+O_e(sqrt(p))`; only the negative-parity square-norm branch remains
-  a slope-line obstruction, and even there the mixed-domain count collapses to
-  one-root sums.  Its only cover-level power is the explicit one-root square
+  `(e-2)|D|+O_e(sqrt(p))` and is the `(e-2)`-coset slope-line square-map
+  packet.  Only the negative-parity square-norm branch remains a slope-line
+  obstruction, and even there the mixed-domain count collapses to one-root
+  sums.  Its only cover-level power is the explicit one-root square
   branch, which is fixed-root or rational because `deg(r_+)<=2`; the
   negative root-square sign cancels the main one-root term, while the positive
   sign is the two-coset square-map packet `chi(h)^2=chi(alpha)^(-1)` and gives

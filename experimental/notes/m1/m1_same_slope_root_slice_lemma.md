@@ -2242,6 +2242,20 @@ epsilon=+1  =>  N_R^{+,-}(D)
  <= (e-2)|D| + C_e sqrt(p) + O_e(1).                (RKSQ+)
 ```
 
+This positive-parity square-norm branch is also explicit slope-line geometry.
+Write `N_R=gamma M^2` with `M` reduced.  Then `N_R(z) in D` is
+
+```text
+chi(M(z))^2 = chi(gamma)^{-1}.                      (RKSQPARAM)
+```
+
+Because `chi^{e/2}(gamma)=+1`, the right side lies in the square subgroup of
+the quotient group and (RKSQPARAM) cuts out exactly two quotient-character
+classes of the degree-one parameter `M`.  The norm-outside slopes are the
+remaining `e-2` classes.  Thus (RKSQ+) is not merely an estimate: after
+deleting zeros, poles, and charged constant-norm cases, it is the
+`(e-2)`-coset rational square-map packet on the slope line.
+
 For `e=2` this gives no main term, in agreement with the index-two
 sheet-symmetry closure below.  If `epsilon=-1`, the norm filter alone gives
 the full slope-line main term
@@ -2621,8 +2635,9 @@ index-two branch away from the two square gates:
 ```
 
 The positive-parity square-norm line is the genus-free norm-outside injection
-(RKSQ+).  The negative-parity square-norm lines use the collapse to one-root
-sums (RKSQNEG) and the degree-two one-root square gate (RKSQROOT).  The
+(RKSQ+) and the slope-line square-map packet (RKSQPARAM).  The
+negative-parity square-norm lines use the collapse to one-root sums (RKSQNEG)
+and the degree-two one-root square gate (RKSQROOT).  The
 genus-one line uses that genus-one covers have no genuine cover-level power
 branch after the norm exceptions.  The rational cubic line is exactly the
 rational cubic coefficient ledger (RKCUBBD).  The split-square line is the

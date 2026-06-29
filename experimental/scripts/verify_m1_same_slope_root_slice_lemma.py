@@ -51,7 +51,7 @@ norm-pushforward obstruction for cover-level power terms, including the
 anti-ratio square-class reduction and the genus-one exclusion for genuine
 cubic anti-ratio powers, plus the rational-cubic coefficient ledger and final
 classified per-core bound, including the negative square-norm collapse to
-one-root sums and the two-coset rational square-map packet.
+one-root sums and the square-map coset packets.
 """
 
 from __future__ import annotations
@@ -4641,6 +4641,33 @@ def check_boundary_core_square_norm_parity_ledger() -> None:
         assert positive_parity_slope_coefficient * index == index - 2
         assert negative_parity_slope_coefficient * index == index
         assert positive_parity_slope_coefficient <= negative_parity_slope_coefficient
+
+        square_constants = [
+            constant_class
+            for constant_class in range(index)
+            if (index // 2 * constant_class) % index == 0
+        ]
+        for constant_class in square_constants:
+            inside_classes = [
+                parameter_class
+                for parameter_class in range(index)
+                if (2 * parameter_class + constant_class) % index == 0
+            ]
+            outside_classes = [
+                parameter_class
+                for parameter_class in range(index)
+                if parameter_class not in inside_classes
+            ]
+            assert len(inside_classes) == 2, (
+                index,
+                constant_class,
+                inside_classes,
+            )
+            assert len(outside_classes) == index - 2, (
+                index,
+                constant_class,
+                outside_classes,
+            )
 
 
 def check_boundary_core_negative_square_norm_collapse() -> None:
