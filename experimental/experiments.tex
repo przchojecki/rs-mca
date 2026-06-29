@@ -1608,6 +1608,32 @@ core is a ruled determinant branch.  After fixed-slope root slices are charged,
 any core with three or more residual one-exchange anchors is therefore ruled
 but not same-slope; non-ruled cores contribute at most one unordered
 one-exchange edge.
+
+The ruled determinant branch also has a local dichotomy.  If
+\[
+  \det(a_X-y a_0,\ b_X-y b_0)\equiv0,
+\]
+then either there is a fixed finite slope \(z_0\) with
+\[
+  a_y+z_0 b_y=0\qquad\text{for every }y,
+\]
+or \(b_y=0\) for every \(y\), or all four vectors
+\[
+  a_X,\ a_0,\ b_X,\ b_0
+\]
+lie in a single output line.  In the last case write
+\[
+  a_y=\alpha(y)c,\qquad b_y=\beta(y)c .
+\]
+After the fixed-slope cases are removed, \(\alpha\) and \(\beta\) are not
+proportional, and the active finite-slope map
+\[
+  y\longmapsto -\alpha(y)/\beta(y)
+\]
+is injective on the anchors with \(\beta(y)\ne0\).  Hence a ruled core that
+survives fixed-slope charging is not a same-slope multiplicity source: it is a
+rank-one moving-slope branch with at most one anchor per finite slope.
+
 Consequently, after fixed-slope root slices and ruled determinant cores are
 removed, the residual \(t=2\) one-exchange graph has maximum degree at most
 \(j\): each locator has only \(j\) possible \((j-1)\)-cores, and each non-ruled

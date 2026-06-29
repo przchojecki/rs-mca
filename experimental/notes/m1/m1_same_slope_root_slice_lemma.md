@@ -1,6 +1,6 @@
 # M1 Same-Slope One-Exchange Root-Slice Lemma
 
-**Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / AUDIT.
+**Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / RULED-CORE DICHOTOMY / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -151,6 +151,100 @@ supporting three or more residual one-exchange anchors must be ruled but not
 same-slope.  Non-ruled cores contribute at most one unordered one-exchange edge
 through that core.
 
+## Ruled-Core Dichotomy
+
+The ruled determinant branch itself has a sharp local classification.  Let
+
+```text
+a(y)=a_X-y a_0,        b(y)=b_X-y b_0        in F^2
+```
+
+and suppose
+
+```text
+det(a(y),b(y)) == 0        as a polynomial in y.       (RULED)
+```
+
+Then one of the following holds.
+
+1. **Fixed finite slope.** There is `z_0 in F` such that
+
+   ```text
+   a(y)+z_0 b(y)=0        for every y.
+   ```
+
+   Every active anchor on this core has the same finite slope `z_0`, so two
+   such anchors force the fixed-slope root slice already proved above.
+
+2. **Inactive direction.** `b(y)=0` for every `y`.  This gives no active finite
+   slope anchors because the active filter requires `b(y) != 0`.
+
+3. **Rank-one moving slope.** All four vectors
+   `a_X,a_0,b_X,b_0` lie in one output line.  Thus for some nonzero
+   `c in F^2`,
+
+   ```text
+   a(y)=alpha(y)c,        b(y)=beta(y)c
+   ```
+
+   with affine scalar functions `alpha,beta`.  If this branch is not fixed
+   finite slope, then `alpha` and `beta` are not proportional, and the active
+   slope map
+
+   ```text
+   y |-> z(y)=-alpha(y)/beta(y),        beta(y) != 0,
+   ```
+
+   is injective.
+
+Consequently a ruled determinant core that survives the active filter and the
+fixed-slope root-slice charge is necessarily a rank-one moving-slope core, and
+it contributes at most one anchor to each finite slope.
+
+### Proof
+
+Let `V=F^2`.  If the affine pencil `a(y)` spans `V`, choose a basis in which
+`a(y)=u-yv` with `u,v` independent.  Write
+
+```text
+b(y)=(alpha-y gamma)u+(beta-y delta)v.
+```
+
+The identity `det(a(y),b(y)) == 0` gives
+
+```text
+beta + y(alpha-delta) - y^2 gamma == 0,
+```
+
+hence `beta=gamma=0` and `delta=alpha`.  Therefore `b(y)=alpha a(y)` for all
+`y`.  If `alpha != 0` this is the fixed finite slope `z_0=-alpha^(-1)`; if
+`alpha=0` it is the inactive direction branch.
+
+The same argument with `a` and `b` interchanged applies when `b(y)` spans `V`;
+then either `a(y)=-z_0 b(y)` for a fixed finite slope `z_0`, or `a(y)=0`, which
+is the fixed slope `z_0=0` on all active anchors.
+
+It remains to consider the case where neither pencil spans `V`.  If their
+images lay in two distinct output lines, the determinant would be a nonzero
+constant multiple of the product of two nonzero affine scalar functions, which
+cannot vanish identically.  Thus either one pencil is identically zero, already
+covered above, or both images lie in the same output line.  This is the
+rank-one case.
+
+In the rank-one case write `a(y)=alpha(y)c` and `b(y)=beta(y)c`.  If
+`alpha` and `beta` are proportional and `beta` is not identically zero, then
+all active anchors have one fixed finite slope.  If they are not proportional
+and two active anchors `y_1,y_2` have the same slope, then
+
+```text
+alpha(y_1) beta(y_2) = alpha(y_2) beta(y_1).
+```
+
+For affine `alpha,beta`, the left-minus-right expression is
+`(y_2-y_1)(alpha_0 beta_X-alpha_X beta_0)`, whose second factor is nonzero
+exactly because the two affine functions are not proportional.  Hence
+`y_1=y_2`, proving injectivity.
+
 ## Non-Ruled One-Exchange Degree Bound
 
 Let `A_nr` be a residual `t=2` active locator family after fixed-slope root
@@ -216,11 +310,13 @@ packet/two-exchange structure.
 ## Non-Claims
 
 This lemma does not bound the remaining different-slope one-exchange graph, the
-ruled determinant branch, the two-exchange packet-edge ledger, or the
+rank-one moving-slope ruled branch, the two-exchange packet-edge ledger, or the
 one-outside boundary image.  It only proves that same-slope one-exchange
-collisions belong to the fixed-slope root-slice ledger and that non-ruled
-`t=2` one-exchange cores have at most two determinant anchors, giving the
-local max-degree bound and average-collinearity corollary above.
+collisions belong to the fixed-slope root-slice ledger, classifies the ruled
+determinant core into fixed-slope, inactive, and rank-one moving-slope cases,
+and shows that non-ruled `t=2` one-exchange cores have at most two determinant
+anchors, giving the local max-degree bound and average-collinearity corollary
+above.
 
 ## Verification
 
@@ -233,4 +329,5 @@ python3 experimental/scripts/verify_m1_same_slope_root_slice_lemma.py
 checks the subtraction identity over sampled small prime fields and exhaustively
 checks the row-wise linear-map implication in small dimensions.  It also checks
 the quadratic determinant formula (DET2) and the "three roots imply ruled"
-criterion in sampled small prime fields.
+criterion in sampled small prime fields, then stress-tests the ruled-core
+dichotomy and the injectivity of the residual rank-one moving-slope branch.

@@ -38,6 +38,50 @@ def det2(u: tuple[int, int], v: tuple[int, int], p: int) -> int:
     return (u[0] * v[1] - u[1] * v[0]) % p
 
 
+def vec_sub(u: tuple[int, int], v: tuple[int, int], p: int) -> tuple[int, int]:
+    return ((u[0] - v[0]) % p, (u[1] - v[1]) % p)
+
+
+def vec_scalar_mul(a: int, u: tuple[int, int], p: int) -> tuple[int, int]:
+    return ((a * u[0]) % p, (a * u[1]) % p)
+
+
+def vec_is_zero(u: tuple[int, int]) -> bool:
+    return u[0] == 0 and u[1] == 0
+
+
+def vec_rank(vectors: list[tuple[int, int]], p: int) -> int:
+    nonzero = [v for v in vectors if not vec_is_zero(v)]
+    if not nonzero:
+        return 0
+    pivot = nonzero[0]
+    if all(det2(pivot, v, p) == 0 for v in nonzero[1:]):
+        return 1
+    return 2
+
+
+def eval_pencil(
+    v_x: tuple[int, int], v_0: tuple[int, int], y: int, p: int
+) -> tuple[int, int]:
+    return vec_sub(v_x, vec_scalar_mul(y, v_0, p), p)
+
+
+def slope_for_active_pair(
+    a_y: tuple[int, int], b_y: tuple[int, int], p: int
+) -> int | None:
+    if vec_is_zero(b_y):
+        return None
+    if b_y[0] != 0:
+        z = (-a_y[0] * pow(b_y[0], -1, p)) % p
+    else:
+        z = (-a_y[1] * pow(b_y[1], -1, p)) % p
+    assert (
+        (a_y[0] + z * b_y[0]) % p == 0
+        and (a_y[1] + z * b_y[1]) % p == 0
+    ), (p, a_y, b_y, z)
+    return z
+
+
 def check_difference_identity() -> None:
     for p in (5, 7, 17, 31):
         for deg_r in range(0, 7):
@@ -111,6 +155,104 @@ def check_t2_determinant_gate() -> None:
                 assert len(roots) <= 2, (p, roots, (coeff_0, coeff_1, coeff_2))
 
 
+def is_ruled_pencil(
+    a_x: tuple[int, int],
+    a_0: tuple[int, int],
+    b_x: tuple[int, int],
+    b_0: tuple[int, int],
+    p: int,
+) -> bool:
+    coeff_0 = det2(a_x, b_x, p)
+    coeff_1 = (-(det2(a_0, b_x, p) + det2(a_x, b_0, p))) % p
+    coeff_2 = det2(a_0, b_0, p)
+    return coeff_0 == coeff_1 == coeff_2 == 0
+
+
+def fixed_finite_slope(
+    a_x: tuple[int, int],
+    a_0: tuple[int, int],
+    b_x: tuple[int, int],
+    b_0: tuple[int, int],
+    p: int,
+) -> int | None:
+    for z in range(p):
+        if vec_is_zero(vec_sub(a_x, vec_scalar_mul(-z % p, b_x, p), p)) and vec_is_zero(
+            vec_sub(a_0, vec_scalar_mul(-z % p, b_0, p), p)
+        ):
+            return z
+    return None
+
+
+def check_ruled_core_dichotomy() -> None:
+    rng = Random(20260630)
+    for p in (3, 5, 7, 17, 31):
+        exhaustive_vectors = list(product(range(p), repeat=2))
+        samples: list[
+            tuple[
+                tuple[int, int],
+                tuple[int, int],
+                tuple[int, int],
+                tuple[int, int],
+            ]
+        ] = []
+        if p == 3:
+            samples = [
+                (a_x, a_0, b_x, b_0)
+                for a_x in exhaustive_vectors
+                for a_0 in exhaustive_vectors
+                for b_x in exhaustive_vectors
+                for b_0 in exhaustive_vectors
+            ]
+        else:
+            for _ in range(3000):
+                samples.append(
+                    (
+                        (rng.randrange(p), rng.randrange(p)),
+                        (rng.randrange(p), rng.randrange(p)),
+                        (rng.randrange(p), rng.randrange(p)),
+                        (rng.randrange(p), rng.randrange(p)),
+                    )
+                )
+
+        for a_x, a_0, b_x, b_0 in samples:
+            if not is_ruled_pencil(a_x, a_0, b_x, b_0, p):
+                continue
+
+            z_fixed = fixed_finite_slope(a_x, a_0, b_x, b_0, p)
+            b_inactive = vec_is_zero(b_x) and vec_is_zero(b_0)
+            output_rank = vec_rank([a_x, a_0, b_x, b_0], p)
+            assert z_fixed is not None or b_inactive or output_rank <= 1, (
+                p,
+                a_x,
+                a_0,
+                b_x,
+                b_0,
+                output_rank,
+            )
+
+            if z_fixed is None and not b_inactive:
+                seen: dict[int, int] = {}
+                for y in range(p):
+                    a_y = eval_pencil(a_x, a_0, y, p)
+                    b_y = eval_pencil(b_x, b_0, y, p)
+                    if vec_is_zero(b_y):
+                        continue
+                    assert det2(a_y, b_y, p) == 0
+                    z = slope_for_active_pair(a_y, b_y, p)
+                    assert z is not None
+                    assert z not in seen, (
+                        p,
+                        a_x,
+                        a_0,
+                        b_x,
+                        b_0,
+                        seen.get(z),
+                        y,
+                        z,
+                    )
+                    seen[z] = y
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -176,6 +318,7 @@ def main() -> None:
     check_difference_identity()
     check_row_implication()
     check_t2_determinant_gate()
+    check_ruled_core_dichotomy()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     print("same-slope root-slice lemma verifier passed")
