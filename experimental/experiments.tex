@@ -5542,6 +5542,25 @@ Consequently
 This is the histogram-optimized post-charge endpoint; the coarser
 \(OccHalf_S(R_S)\) follows by replacing the histogram by the trivial
 half-height fiber-count bound.
+There is a useful canonical cutoff.  If the node is nonempty, set
+\[
+  s_S=N_S-q_S,\qquad R_S^{bal}=\min(u_S+1,s_S+1).
+\]
+For this choice, the wide histogram tail has no surplus factor:
+\[
+  HOcc_S(R_S^{bal})
+  \le \left\lfloor {N_S\over \lfloor q_S/2\rfloor+1}\right\rfloor .
+\]
+Indeed, if \(s_S\ge u_S\) then the wide histogram sum is empty; otherwise
+\(r\ge s_S+1\) gives \(1+\lfloor s_S/r\rfloor=1\), and only the disjoint
+half-height fiber count remains.  Hence
+\[
+  PostCore_S^*
+  \le BWPrim_S(R_S^{bal})
+     +\left\lfloor {N_S\over \lfloor q_S/2\rfloor+1}\right\rfloor ,
+\]
+where \(BWPrim_S(R_S^{bal})\) contains only denominators
+\(r_\lambda\le\min(u_S,s_S)\).
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

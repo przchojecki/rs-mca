@@ -5566,6 +5566,58 @@ post-charge endpoint available from the current local analysis: all remaining
 uncharged half-height information is encoded in a finite node-local histogram
 minimization.
 
+## Surplus-Balanced Primitive Cutoff
+
+The optimized endpoint has a canonical cutoff choice that removes all surplus
+weight from the wide side.  If `N_S<q_S`, then the canonical quotient fiber at
+node `S` is empty.  Otherwise put
+
+```text
+s_S=N_S-q_S,        R_S^{bal}=min(u_S+1,s_S+1).
+```
+
+For `R=R_S^{bal}`, the histogram tail in (PF2-short-hist) satisfies
+
+```text
+HOcc_S(R_S^{bal})
+ <=
+ 0,                                             if B_S nonempty or s_S>=u_S,
+
+ #{lambda : h_lambda>q_S/2 and r_lambda>=s_S+1},
+                                                otherwise.
+```
+
+In particular,
+
+```text
+HOcc_S(R_S^{bal})
+ <= floor(N_S/(floor(q_S/2)+1)).                (PF2-balanced-occ)
+```
+
+Indeed, if `s_S>=u_S`, then `R_S^{bal}=u_S+1` and the sum in `HOcc` is empty.
+If `s_S<u_S`, then every retained wide denominator has `r>=s_S+1`, so
+`1+floor(s_S/r)=1`; only the number of retained half-height fibers remains,
+and those fibers are disjoint and each has size at least `floor(q_S/2)+1`.
+
+Thus (PF2-postcharge-opt) has the explicit surplus-balanced specialization
+
+```text
+PostCore_S^*
+ <= BWPrim_S(R_S^{bal})
+    + floor(N_S/(floor(q_S/2)+1)).              (PF2-balanced-core)
+```
+
+The bounded-width part now contains only denominators
+
+```text
+r_lambda <= min(u_S,s_S).
+```
+
+Consequently, after fixed-root tails and primitive denominators of width at
+most the node surplus have been charged, the remaining root-free half-height
+contribution is at most the bare count of disjoint half-height fibers.  This
+removes the surplus factor from the final uncharged occupancy term.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

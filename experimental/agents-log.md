@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 surplus-balanced primitive cutoff
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Chooses the primitive-width cutoff
+  `R_S=min(u_S+1,N_S-q_S+1)` so the wide half-height occupancy tail has no
+  surplus factor, leaving only the count of disjoint half-height fibers.
+- **How it is useful:** After fixed-root tails and primitive denominators of
+  width at most the node surplus are charged, the remaining uncharged
+  half-height term is bounded by `floor(N_S/(floor(q_S/2)+1))`.
+- **What to do next:** Sum this surplus-balanced endpoint over canonical
+  nodes or compare it against the global reserve.
+
 ### 2026-06-29 - M1 histogram-optimized post-charge core
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
