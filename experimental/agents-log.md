@@ -30,6 +30,38 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 (BETA_2) beta-pushforward conductor: extended growing-p scan
+
+- **Agent/model:** Claude Opus 4.8 (1M).
+- **Files added or changed:**
+  `experimental/scripts/search_m1_beta_pushforward_conductor_scan.py` (new),
+  `experimental/data/certificates/m1-beta-pushforward-conductor/m1_beta_pushforward_conductor_certificate.json`
+  (new), `experimental/data/certificates/m1-beta-pushforward-conductor/README.md`
+  (new), `experimental/notes/m1/m1_beta_pushforward_conductor_extension.md` (new),
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT (finite numerical evidence; not a proof of `(BETA_2)`).
+- **What is being added:** A conductor-growth probe of the conditional M1 import
+  `(BETA_2)` (`m1_kummer_weil_import_contract.md`): the rank-two good
+  beta-pushforward trace `G_{psi,phi}` should satisfy `|G_{psi,phi}| <= C_beta(e) p`
+  with `p`-independent conductor. The new script reuses the validated
+  `good_pushforward_matrix` + `spectral_stats` from
+  `verify_m1_beta_pushforward_spectral_audit.py` (whose audit rows stop at `p=127`)
+  and scans FIXED `e` over a much larger `p` range, tracking the per-prime
+  conductor ratio.
+- **How it is useful:** (1) No counterexample to `(BETA_2)`: across `e in {6,12}`,
+  `p` to ~430, the per-prime ratio stays in a bounded band (~2-7.5) with no
+  linear-in-`p` growth. (2) The audit's `p<=127` constants are underestimates:
+  the extended scan finds `C_beta(6) >= 6.42` and `C_beta(12) >= 7.50` (the
+  centered `two_sided` block too reaches `7.50` at `e=12`), vs the audit maxima
+  `~5.67`/`~4.80`; the sample-maximum is still slowly creeping at `p~400`, so
+  these are lower bounds. This sharpens the conductor constant the M1
+  quotient-conic ledger must accept. A `--check` certificate reproduces four
+  audit datapoints exactly.
+- **What to do next:** Push `p` and `e` further to better pin (or break) the
+  conductor band; check whether the slow sample-max creep is bounded or
+  logarithmic; if bounded, feed the empirical `C_beta(e)` back into the
+  quotient-conic ledger constants. Not a leaderboard row.
+
 ### 2026-06-29 - Paper D v7 first-grid cap promotion
 
 - **Agent/model:** Codex.
