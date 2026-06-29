@@ -5860,6 +5860,29 @@ the fixed-surplus endpoint sharpens to
 Thus the exact remaining target in this branch is polynomial control of
 \(TailLift(A)\), or a classification of the collapsed absorbed certificates
 with large low-complement lift multiplicity.
+There is an immediate polynomial regime.  Fix \(d\ge0\).  If
+\(h_\lambda-r_\lambda\le2d+2\), then
+\[
+  L_{S,\lambda}^{tail}\le T(h_\lambda,r_\lambda)
+  \le\sum_{e=0}^d\binom{h_\lambda}{e}
+  \le (d+1)q_S^d.
+\]
+Let \(TailLift_{>d}(A)\) be the part of \(TailLift(A)\) supported on
+\(h_\lambda-r_\lambda\ge2d+3\).  The collapsed-certificate count gives
+\[
+  TailLift(A)\le TailLift_{>d}(A)
+  +(d+1)\left(1+\left\lceil{s_0\over2}\right\rceil\right)
+  (s_0+2)q^{s_0+d+1}.
+\]
+Thus, for fixed \(\sigma,d\),
+\[
+  |F(A)|\le (\sigma+1)TailLift_{>d}(A)
+  +O_{\sigma,d}(q^{\sigma+d+1}+q^{\sigma+2})
+  \qquad (s_0\le\sigma).
+\]
+The only remaining non-polynomial tail risk is therefore the deep-tail
+subledger \(h_\lambda-r_\lambda\ge2d+3\), where the dominant projective fiber
+exceeds its complement width by an unbounded amount.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

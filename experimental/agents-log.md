@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 deep-tail residual split
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Splits `TailLift(A)` into a polynomial
+  near-threshold part with `h_lambda-r_lambda<=2d+2` and a residual deep-tail
+  part `TailLift_{>d}(A)`.
+- **How it is useful:** Shows that fixed-surplus M1 is reduced to classifying
+  or bounding deep collapsed absorbed certificates where the dominant
+  projective fiber exceeds its complement width by an unbounded amount.
+- **What to do next:** Attack the deep-tail certificates, looking for
+  quotient-periodic, tangent/fixed-root, or aperiodic-packing structure.
+
 ### 2026-06-29 - M1 exact tail-lift factorization
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

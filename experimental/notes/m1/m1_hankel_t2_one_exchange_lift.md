@@ -6201,6 +6201,62 @@ absorbed certificates for which the low-complement lift multiplicity
 `L_{S,lambda}^{tail}` is large.  The previous reductions show that no other
 part of this branch can contribute a super-polynomial term.
 
+## Near-Threshold Tail Lifts Are Polynomial
+
+The exact tail-lift factorization has a useful immediate consequence: only
+deep half-height fibers can create a large lift multiplicity.  Fix an integer
+`d>=0`.  If a half-height fiber satisfies
+
+```text
+h_lambda-r_lambda<=2d+2,
+```
+
+then
+
+```text
+floor((h_lambda-r_lambda-1)/2)<=d,
+```
+
+and hence
+
+```text
+L_{S,lambda}^{tail}
+ <= T(h_lambda,r_lambda)
+ <= sum_{e=0}^{d} binom(h_lambda,e)
+ <= (d+1) q_S^d.                               (PF2-tail-near-bound)
+```
+
+Let `TailLift_{>d}(A)` be the part of `TailLift(A)` supported on collapsed
+absorbed certificates with
+
+```text
+h_lambda-r_lambda>=2d+3.
+```
+
+The collapsed-certificate count (PF2-collapsed-tail-fixed) gives
+
+```text
+TailLift(A)
+ <= TailLift_{>d}(A)
+    +(d+1)(1+ceil(s_0/2))(s_0+2) q^{s_0+d+1}.  (PF2-tail-deep-split)
+```
+
+Consequently, for fixed `sigma` and fixed `d`,
+
+```text
+|F(A)|
+ <= (sigma+1) TailLift_{>d}(A)
+    + O_{sigma,d}(q^{sigma+d+1}+q^{sigma+2}),
+        whenever s_0<=sigma.                  (PF2-deep-tail-endpoint)
+```
+
+Thus the remaining fixed-surplus obstruction is not all tail lifting.  It is
+the deep-tail subledger where the dominant projective fiber exceeds its
+complement width by an unbounded amount.  If one can prove that these deep
+collapsed absorbed certificates are quotient-periodic, tangent/fixed-root
+degenerate, or otherwise polynomially liftable, then the fixed-surplus
+canonical `b=2` branch closes.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
