@@ -12,6 +12,7 @@ ROOT-CORE DOMAIN KUMMER FILTER /
 SQUARE-MAP PACKET INTERSECTION GATE /
 SQUARE-NORM ENDPOINT PALETTE /
 SQUARE-NORM REPEATED-ENDPOINT GATE /
+SQUARE-NORM DOUBLE-ROOT CERTIFICATE /
 SQUARE-NORM ENDPOINT-CHARGE COROLLARY /
 SQUARE-MAP PACKET-COUNT COROLLARY /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
@@ -2464,6 +2465,29 @@ This is stronger than merely saying that endpoints are roots of `B_R` and
 algebraic locus that can be charged separately from generic norm-boundary
 roots.
 
+Equivalently, every finite endpoint has a first-derivative certificate.  Write
+`bar B_R,bar Q_R` for the reduced numerator and denominator.  Since the
+characteristic is odd in the root-core applications and the reduced degrees
+are at most two, a finite point `z_0` is a repeated zero of the reduced norm
+if and only if
+
+```text
+bar B_R(z_0)=0,        bar B_R'(z_0)=0,        bar Q_R(z_0)!=0,
+```
+
+and it is a repeated pole if and only if
+
+```text
+bar Q_R(z_0)=0,        bar Q_R'(z_0)=0,        bar B_R(z_0)!=0.       (RKSQDR)
+```
+
+Thus finite square-norm packet endpoints are not arbitrary points in the root
+image of the degree-two norm boundary.  They lie in the projection of the
+double-root systems `(bar B_R,bar B_R')` or `(bar Q_R,bar Q_R')`.  This is the
+form needed for a global endpoint-support charge: as the active root core
+varies, the exceptional support image is controlled by discriminant-zero
+certificates, not by generic roots of moving quadratics.
+
 The finite endpoints themselves are not residual live mixed-domain slopes.
 Let `z_0` be a finite endpoint of the reduced square norm.
 
@@ -3002,9 +3026,9 @@ per-core classified bound (RKCLASS), including the positive-parity square-norm
 norm-filter bound and the negative-parity one-root collapse, and gives the
 local max-degree bound and average-collinearity corollary above, including the
 packet-level higher-exchange ledger substitution, and extracts the
-square-norm repeated-endpoint gate (RKSQREP), the finite endpoint-charge
-corollary (RKSQEPCH), and square-map packet-count corollary (RKSQCOUNT) from
-the support palette.
+square-norm repeated-endpoint gate (RKSQREP), the double-root endpoint
+certificate (RKSQDR), the finite endpoint-charge corollary (RKSQEPCH), and
+square-map packet-count corollary (RKSQCOUNT) from the support palette.
 
 ## Verification
 
@@ -3057,5 +3081,6 @@ square-norm Fourier term, and the cover-term norm-pushforward obstruction
 classified per-core bound (RKCLASS), the degree-one square-map packet
 intersection gate (RKSQINT), the finite support-class palette (RKSQPAL), and
 the square-norm endpoint palette (RKSQEND), the repeated-endpoint gate
-(RKSQREP), the finite endpoint-charge corollary (RKSQEPCH), and the
-packet-count corollary (RKSQCOUNT).
+(RKSQREP), the double-root endpoint certificate (RKSQDR), the finite
+endpoint-charge corollary (RKSQEPCH), and the packet-count corollary
+(RKSQCOUNT).

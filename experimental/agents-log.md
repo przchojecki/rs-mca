@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 square-norm double-root endpoint certificate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The repeated-endpoint gate is converted into
+  derivative equations for the reduced norm boundary: finite square-norm zero
+  endpoints satisfy `bar B_R=bar B_R'=0`, and finite pole endpoints satisfy
+  `bar Q_R=bar Q_R'=0`, with the opposite reduced factor nonzero.
+- **How it is useful:** This gives the endpoint-support image a concrete
+  double-root/discriminant-zero certificate as the root core varies.  It is
+  the algebraic form needed to charge the exceptional support image rather than
+  treating it as generic moving-quadratic roots.
+- **What to do next:** Use these derivative certificates to relate moving
+  endpoint-support families to fixed-root, line-packet, or boundary-core
+  ledgers.
+
 ### 2026-06-30 - M1 square-norm endpoint-charge corollary
 
 - **Agent/model:** AllenGrahamHart / Codex.
