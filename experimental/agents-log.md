@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 critical-tail fixed-surplus closure criterion
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Packages the preceding reductions into a closure
+  criterion: polynomial control of `TailLift_crit(d,B)` implies a polynomial
+  bound for the fixed-surplus canonical `b=2` branch.
+- **How it is useful:** Turns the long half-height analysis into one
+  paper-ready target and one corresponding counterexample shape.
+- **What to do next:** Prove the critical-tail ledger is polynomial, or
+  construct a genuine critical collapsed absorbed certificate family that
+  avoids the existing quotient-periodic, tangent, fixed-root, and aperiodic
+  charges.
+
 ### 2026-06-29 - M1 critical deep-entropy tail endpoint
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

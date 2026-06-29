@@ -6349,6 +6349,40 @@ A proof that these critical certificates are quotient-periodic, tangent or
 fixed-root degenerate, or aperiodically packable would close this branch up to
 the displayed polynomial remainder.
 
+## Critical-Tail Criterion for Fixed-Surplus Closure
+
+The reductions above can be packaged as a single closure criterion.  Fix
+constants `sigma,d,B`.  Suppose that for every fixed-anchor canonical `b=2`
+problem with initial surplus `s_0<=sigma`, the critical deep-entropy lift
+ledger satisfies a polynomial bound
+
+```text
+TailLift_{crit(d,B)}(A) <= C_{sigma,d,B} q^{K_{sigma,d,B}},
+```
+
+or more generally is charged to quotient-periodic, tangent, fixed-root, or
+aperiodic ledgers already known to be polynomial in the same window.  Then
+(PF2-critical-tail-endpoint) gives
+
+```text
+|F(A)| <= C'_{sigma,d,B} q^{K'_{sigma,d,B}}.
+                                                        (PF2-critical-closure)
+```
+
+Thus the fixed-surplus canonical `b=2` M1 branch has been reduced to a single
+paper-ready target: prove polynomial control of the critical collapsed
+absorbed certificates.  All other terms in the branch have already been
+converted into lower-dimensional leaves, diffuse determinant-gate capacity,
+root-free half-height post-core, polynomially many collapsed absorbed
+certificates, or polynomial tail-lift regimes.
+
+Equivalently, a counterexample to this fixed-surplus route must now exhibit a
+family of collapsed absorbed certificates with bounded initial surplus,
+unbounded depth `h_lambda-r_lambda`, entropy exponent above `B log_2 q`, and
+super-polynomial lift multiplicity that is not quotient-periodic, tangent,
+fixed-root, or aperiodically packable.  This is the current sharp local target
+left by the canonical half-height analysis.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
