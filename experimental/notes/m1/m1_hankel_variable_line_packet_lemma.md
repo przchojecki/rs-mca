@@ -69,7 +69,9 @@ The full-plane charge used here is supplied by
 `m1_same_slope_root_slice_lemma.md`: three non-collinear same-slope points in
 the elementary two-root plane force the lifted
 `H_{t+2,j-2}(u+zv)ell_R=0` Hankel core.  Fixed-root lines are the one-exchange
-root slices through `R union {x}`.
+root slices through `R union {x}`.  The same note classifies every remaining
+affine two-root line as fixed-sum or nondegenerate product-Mobius after the
+fixed-root case is charged.
 
 ## Lemma
 

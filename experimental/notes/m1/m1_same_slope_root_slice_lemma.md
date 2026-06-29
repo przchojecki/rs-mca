@@ -186,6 +186,51 @@ fixed `(j-2)` core is contained in an affine line in the elementary `(s,p)`
 plane.  This is the line-packet residual treated by
 `m1_hankel_variable_line_packet_lemma.md`.
 
+## Two-Root Line Classification
+
+The residual affine lines in the elementary two-root plane have only the
+expected forms.  Let
+
+```text
+A s + B p + C = 0,        (A,B) != (0,0),
+```
+
+be an affine line in `(s,p)=(x+y,xy)`.
+
+If `B=0`, then the line is a fixed-sum packet
+
+```text
+x+y=s_0,        s_0=-C/A,
+```
+
+with involution `x |-> s_0-x`.
+
+If `B != 0`, write
+
+```text
+c=-A/B,        beta=-C/B,        mu=c^2+beta.
+```
+
+Then the line equation is equivalent to
+
+```text
+(x-c)(y-c)=mu.
+```
+
+If `mu=0`, every split pair on the line contains the fixed root `c`; this is
+the fixed-root line already charged by the one-exchange root-slice ledger
+through `R union {c}`.  If `mu != 0`, the line is a product-Mobius packet with
+involution
+
+```text
+x |-> c + mu/(x-c).
+```
+
+Thus after full-plane and fixed-root line charges, the only same-slope
+two-exchange line packets left are fixed-sum and nondegenerate product-Mobius
+packets.  These are exactly the two models used in
+`m1_hankel_variable_line_packet_lemma.md`.
+
 ## The `t=2` Determinant Gate
 
 In the `t=2` Hankel window there is a second elementary one-exchange
@@ -733,7 +778,8 @@ proves that
 same-slope one-exchange collisions belong to the fixed-slope root-slice ledger,
 that such root slices lift to `(t+1,j-1)` Hankel cores,
 that non-collinear same-slope two-exchange planes lift to `(t+2,j-2)` Hankel
-cores,
+cores, that residual two-root lines are fixed-root, fixed-sum, or
+product-Mobius packets,
 classifies the ruled determinant core into fixed-slope, inactive, and rank-one
 moving-slope cases for abstract affine pencils, proves the Hankel shift
 collapse that eliminates the moving-slope ruled residual, shows that star
@@ -754,10 +800,10 @@ python3 experimental/scripts/verify_m1_same_slope_root_slice_lemma.py
 checks the subtraction identity over sampled small prime fields and exhaustively
 checks the row-wise linear-map implication in small dimensions.  It checks the
 higher-slack lift identity (LIFT), the two-exchange full-plane lift (PLIFT),
-the quadratic determinant formula (DET2), and the "three roots imply ruled"
-criterion in sampled small prime fields, then stress-tests the abstract
-ruled-core dichotomy and the Hankel ruled-core collapse.  It also checks the
-Johnson-graph star/top triangle classification, the top-packet lift identity
-(TOP1), the distinct-slope implication (TOPK), and the top-packet edge/triangle
-compression ledger.  The same verifier also checks the boundary-off
-external-anchor corollary over sampled small domains.
+the two-root line classification, the quadratic determinant formula (DET2),
+and the "three roots imply ruled" criterion in sampled small prime fields, then
+stress-tests the abstract ruled-core dichotomy and the Hankel ruled-core
+collapse.  It also checks the Johnson-graph star/top triangle classification,
+the top-packet lift identity (TOP1), the distinct-slope implication (TOPK), and
+the top-packet edge/triangle compression ledger.  The same verifier also checks
+the boundary-off external-anchor corollary over sampled small domains.

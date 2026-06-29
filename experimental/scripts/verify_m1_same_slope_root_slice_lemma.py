@@ -317,6 +317,100 @@ def check_two_exchange_full_plane_lift() -> None:
                         assert all(value == 0 for value in lifted_rows)
 
 
+def check_two_root_line_classification() -> None:
+    for p in (3, 5, 7, 11, 17):
+        pairs = [(x, y) for x in range(p) for y in range(x + 1, p)]
+        for a in range(p):
+            for b in range(p):
+                if a == 0 and b == 0:
+                    continue
+                for c0 in range(p):
+                    line_pairs = [
+                        (x, y)
+                        for x, y in pairs
+                        if (a * ((x + y) % p) + b * ((x * y) % p) + c0) % p
+                        == 0
+                    ]
+
+                    if b == 0:
+                        s0 = (-c0 * pow(a, -1, p)) % p
+                        assert all((x + y) % p == s0 for x, y in line_pairs), (
+                            p,
+                            a,
+                            b,
+                            c0,
+                            s0,
+                            line_pairs,
+                        )
+                        assert all(((s0 - x) % p) == y for x, y in line_pairs) or all(
+                            ((s0 - y) % p) == x for x, y in line_pairs
+                        )
+                        for x, y in pairs:
+                            in_model = (x + y) % p == s0
+                            in_line = (
+                                a * ((x + y) % p) + b * ((x * y) % p) + c0
+                            ) % p == 0
+                            assert in_model == in_line, (
+                                p,
+                                a,
+                                b,
+                                c0,
+                                x,
+                                y,
+                                in_model,
+                                in_line,
+                            )
+                        continue
+
+                    center = (-a * pow(b, -1, p)) % p
+                    beta = (-c0 * pow(b, -1, p)) % p
+                    mu = (center * center + beta) % p
+
+                    if mu == 0:
+                        assert all(
+                            x == center or y == center for x, y in line_pairs
+                        ), (p, a, b, c0, center, beta, mu, line_pairs)
+                    else:
+                        for x, y in line_pairs:
+                            assert ((x - center) * (y - center)) % p == mu, (
+                                p,
+                                a,
+                                b,
+                                c0,
+                                center,
+                                beta,
+                                mu,
+                                x,
+                                y,
+                            )
+                            assert x != center and y != center
+                            assert (center + mu * pow((x - center) % p, -1, p)) % p == y
+                            assert (center + mu * pow((y - center) % p, -1, p)) % p == x
+
+                    # Conversely, every split pair satisfying the displayed
+                    # model satisfies the original affine line.
+                    for x, y in pairs:
+                        if b == 0:
+                            in_model = (x + y) % p == s0
+                        elif mu == 0:
+                            in_model = x == center or y == center
+                        else:
+                            in_model = ((x - center) * (y - center)) % p == mu
+                        in_line = (
+                            a * ((x + y) % p) + b * ((x * y) % p) + c0
+                        ) % p == 0
+                        assert in_model == in_line, (
+                            p,
+                            a,
+                            b,
+                            c0,
+                            x,
+                            y,
+                            in_model,
+                            in_line,
+                        )
+
+
 def check_t2_determinant_gate() -> None:
     rng = Random(20260629)
     for p in (5, 7, 17, 31):
@@ -798,6 +892,7 @@ def main() -> None:
     check_row_implication()
     check_higher_slack_root_slice_lift()
     check_two_exchange_full_plane_lift()
+    check_two_root_line_classification()
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()
     check_hankel_ruled_core_collapse()

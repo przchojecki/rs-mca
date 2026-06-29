@@ -76,7 +76,10 @@ Keep entries concise and link to the relevant files.
   A two-exchange full-plane lift is also proved: three non-collinear
   same-slope points in a two-root plane force the lifted
   `H_{t+2,j-2}(u+zv)ell_R=0` core, so residual same-slope two-exchange
-  components are line packets after full planes are charged.
+  components are line packets after full planes are charged.  Those affine
+  two-root lines are classified as fixed-root, fixed-sum, or product-Mobius;
+  after fixed-root charging, the residual variable-line models are exactly
+  fixed-sum and nondegenerate product-Mobius packets.
   The same Hankel shift collapse classifies the one-outside external-anchor
   ruled branch: after fixed-slope boundary slices are charged, each shadow has
   at most two active non-ruled external anchors.
@@ -95,7 +98,8 @@ Keep entries concise and link to the relevant files.
   one-outside ruled branch is no longer a separate unclassified residual; it
   is either inactive or charged to the lifted fixed-slope boundary root-slice
   ledger.  The variable-line packet note's `full-plane removed` hypothesis is
-  now backed by a proved `(t+2,j-2)` Hankel lift.
+  now backed by a proved `(t+2,j-2)` Hankel lift and an explicit classification
+  of the residual affine line packets.
 - **What to do next:** Bound the remaining different-slope one-exchange or
   two-exchange codegree ledgers after quotient-periodic, tangent/contained,
   and root-slice charges.
