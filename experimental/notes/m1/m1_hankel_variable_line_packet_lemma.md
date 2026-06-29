@@ -536,6 +536,34 @@ Thus the current one-outside task is lower-dimensional than the shadow-image
 form: after the lifted boundary-core charges, it is enough for this branch to
 bound the boundary-core image, with only an `n^2` bookkeeping loss.
 
+There is also a fixed-domain-core form.  For each `(j-2)`-core `R`, the
+combined shadow-fiber and fixed-anchor fiber reductions make the residual
+one-outside incidences over `R` a bipartite graph of maximum degree two on both
+the external-anchor side and the domain-anchor side.  Hence, if `Root_off` is
+the image of active `(j-2)`-cores that support at least one residual
+boundary-core vertex, then
+
+```text
+|Core_off| <= 2(n-j+2) |Root_off|.
+```
+
+Substituting this into (PC-core), a hypothesis
+
+```text
+|Root_off| <= n^B_R
+```
+
+gives the alternative closure estimate
+
+```text
+sum_L r_L
+  <= n^B_Q + 2 n^B_E + n^(B_T+4) + 4 n^(B_R+3).    (PC-root)
+```
+
+This is coarser in the crude exponent than bounding `Core_off` directly, but
+it identifies the remaining object as a domain-core image with all
+external-anchor and domain-anchor multiplicities already removed.
+
 ## Use In M1
 
 The lemma identifies what the all-line M1 proof still has to do in this branch.
@@ -567,5 +595,7 @@ boundary-core image inside the quotient-aware residue-line ledger.  The closure
 criterion makes the exponent bookkeeping explicit: any polynomial estimates for
 the active codegree and the boundary-core image close the non-fixed line-packet
 branch up to fixed `n^2`/`n^4` bookkeeping losses after the boundary-core
-root-slice charges.  Without those charges, the older shadow-image form remains
-a valid but slightly coarser `n^3` boundary loss.
+root-slice charges.  A polynomial estimate for the active boundary-root image
+also closes the branch with an `n^3` boundary loss.  Without those charges, the
+older shadow-image form remains a valid but slightly coarser `n^3` boundary
+loss.

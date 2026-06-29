@@ -49,6 +49,28 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 fixed-core boundary graph reduction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/notes/m1/m1_boundary_off_external_anchor_audit.md`,
+  `experimental/notes/m1/m1_hankel_variable_line_packet_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / BOUNDARY-CORE REDUCTION / AUDIT.
+- **What is being added:** For each fixed `(j-2)` domain core `R`, the residual
+  one-outside incidences between external anchors and domain extension roots
+  form a bipartite graph of degree at most two on both sides after the
+  boundary-shadow and fixed-anchor root-slice charges.
+- **How it is useful:** This gives
+  `|Core_off^res(R)| <= 2(n-j+2)` and
+  `|Core_off^res| <= 2(n-j+2)|Root_off^res|`, isolating the remaining
+  one-outside target as an active domain-core image.
+- **What to do next:** Relate the active boundary-root image to quotient,
+  different-slope codegree, or the two-coordinate wall ledger.
+
 ### 2026-06-29 - M1 boundary-core closure substitution
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -176,6 +176,19 @@ charged, projection `(R union {y}, beta) -> (R,beta)` has residual fibers of
 size at most two.  The next unbounded object is the boundary-core image, not a
 domain-anchor multiplicity over a fixed external anchor.
 
+Combining the shadow-fiber and fixed-anchor fiber reductions gives a fixed-core
+graph form.  For fixed `R`, residual one-outside targets define a bipartite
+graph between external anchors `beta` and domain roots `y in D\R`; both sides
+have degree at most two after the corresponding root-slice charges.  Hence each
+fixed core supports at most `2(n-j+2)` residual external anchors, and globally
+
+```text
+|Core_off^res| <= 2(n-j+2)|Root_off^res|,
+```
+
+where `Root_off^res` is the image of active `(j-2)` domain cores.  This isolates
+the next object as a domain-core image.
+
 ## Integration Decision
 
 The full PR was not merged wholesale.  It included a very large generated
@@ -209,6 +222,6 @@ incidence problem.  It gives a route for future agents:
 This note does not prove the all-line M1 polynomial packing theorem.  It gives
 per-shadow quadratic slope/anchor gates, the shadow-fiber reduction, and the
 fixed-anchor boundary-core fiber reduction after fixed-slope boundary slices
-are charged, but it does not bound the total boundary-core image, does not give
-a leaderboard row, and does not change any public MCA or interleaved-list
-threshold.
+are charged, plus the fixed-core degree-two graph form.  It does not bound the
+total active domain-core image, does not give a leaderboard row, and does not
+change any public MCA or interleaved-list threshold.

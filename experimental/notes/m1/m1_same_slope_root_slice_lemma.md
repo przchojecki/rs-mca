@@ -1532,6 +1532,45 @@ incidence bound
 This still does not bound the boundary-core image itself; it identifies the
 next lower-dimensional object that must be controlled or charged.
 
+There is a fixed-core graph form which combines the two boundary fiber
+reductions.  Fix `R subset D` with `|R|=j-2`, and let `G_R` be the residual
+one-outside boundary graph whose left vertices are external anchors `beta` and
+whose right vertices are domain anchors `y in D\R`; put an edge
+
+```text
+beta -- y
+```
+
+when `R union {y,beta}` is a residual active one-outside target.  After the
+fixed-slope boundary root slices and the one-outside lifted boundary-core root
+slices have both been charged, every vertex of `G_R` has degree at most two.
+
+Indeed, fixing `y` is the boundary-shadow fiber result for the shadow
+`S=R union {y}`: at most two external anchors remain, and their finite slopes
+are distinct.  Fixing `beta` is the fixed-anchor boundary-core fiber result
+above: at most two domain anchors remain, again with distinct finite slopes.
+Thus `G_R` is a graph of maximum degree two on both sides.
+
+Let `Core_off^res(R)` be the left vertex image and let
+`E_off^res(R)` be the edge set.  Since every left vertex is incident to an
+edge,
+
+```text
+|Core_off^res(R)| <= |E_off^res(R)| <= 2 |D\R| = 2(n-j+2).       (RCORE)
+```
+
+Equivalently, if `Root_off^res` is the image of `(j-2)`-domain cores `R` that
+support at least one residual boundary-core vertex, then
+
+```text
+|Core_off^res| <= 2(n-j+2) |Root_off^res|.          (ROOTCORE)
+```
+
+This is not yet a global M1 bound, because the active core image
+`Root_off^res` still has to be charged or bounded.  It does, however, remove
+uncontrolled external-anchor multiplicity over each fixed core and isolates the
+next object as a domain-core image.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -1663,7 +1702,8 @@ image with fibers of size at most two and a rank-one scalar Hankel
 anchor-recovery condition plus equivalent quadratic slope and anchor gates,
 identifies the conic-secant form of the remaining shadow target, reduces fixed
 external-anchor one-root fibers to the boundary-core image after lifted
-boundary-core root-slice charges, and gives the local max-degree bound and
+boundary-core root-slice charges, packages each fixed-domain-core boundary
+incidence as a bidegree-two graph, and gives the local max-degree bound and
 average-collinearity corollary above, including the packet-level
 higher-exchange ledger substitution.
 
@@ -1694,4 +1734,4 @@ compression ledger.  It checks the simultaneous kernel root-slice recursion
 also checks the boundary-off external-anchor corollary and boundary-shadow
 fiber reduction over sampled small domains, including the rank-one
 anchor-recovery, quadratic slope-gate, conic-secant anchor-gate, and
-fixed-anchor boundary-core fiber criteria.
+fixed-anchor boundary-core fiber and fixed-core graph criteria.

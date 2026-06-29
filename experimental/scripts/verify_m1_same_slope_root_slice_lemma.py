@@ -22,9 +22,10 @@ are checked by finite-field linear algebra.  The arbitrary moving-rank fiber
 dimension drop is checked by the same affine-preimage calculation, and the
 residual exchange-degree corollary is checked on small split-support graphs.
 The boundary shadow-fiber, rank-one anchor-recovery, quadratic slope-gate,
-conic-secant anchor-gate, and fixed-anchor boundary-core fiber reductions are
-checked on sampled small-field instances, and the average-ledger and
-boundary-core closure substitutions are checked as exact rational inequalities.
+conic-secant anchor-gate, fixed-anchor boundary-core fiber, and fixed-core
+graph reductions are checked on sampled small-field instances, and the
+average-ledger and boundary-core closure substitutions are checked as exact
+rational inequalities.
 """
 
 from __future__ import annotations
@@ -2606,6 +2607,37 @@ def check_boundary_core_closure_substitution() -> None:
                     core_term,
                     crude_bound,
                 )
+
+            right_vertices = n - j + 2
+            for root_count in range(0, 25):
+                max_core_from_roots = 2 * right_vertices * root_count
+                assert max_core_from_roots <= 2 * n * root_count, (
+                    n,
+                    j,
+                    root_count,
+                    max_core_from_roots,
+                )
+                root_term = 2 * coefficient * max_core_from_roots
+                crude_root_bound = 4 * n**3 * root_count
+                assert root_term <= crude_root_bound, (
+                    n,
+                    j,
+                    root_count,
+                    root_term,
+                    crude_root_bound,
+                )
+
+            for left_vertices in range(0, 25):
+                for edge_count in range(left_vertices, 50):
+                    if edge_count > 2 * right_vertices:
+                        continue
+                    assert left_vertices <= 2 * right_vertices, (
+                        n,
+                        j,
+                        left_vertices,
+                        right_vertices,
+                        edge_count,
+                    )
 
 
 def main() -> None:
