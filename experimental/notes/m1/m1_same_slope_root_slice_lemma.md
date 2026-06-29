@@ -1,7 +1,7 @@
 # M1 Same-Slope One-Exchange Root-Slice Lemma
 
 **Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / RULED-CORE DICHOTOMY /
-TRIANGLE CLASSIFICATION / AUDIT.
+TRIANGLE CLASSIFICATION / TOP-PACKET LIFT / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -313,6 +313,85 @@ T_1=U\{y},        T_2=U\{x},        T_3=U\{a}.
 This is the top-packet case.  The two cases are mutually exclusive for
 distinct sets, and no other value of `eps_x=eps_y` is possible.
 
+## Top-Packet Lift to a Common `t=1` Kernel
+
+The top-packet branch has its own exact lift.  Let `U` be a `(j+1)`-set and,
+for `x in U`, put
+
+```text
+T_x=U\{x},        ell_U=(X-x)ell_{T_x}.
+```
+
+For any syndrome vector `w`, the Hankel rows obey
+
+```text
+H_{1,j+1}(w) ell_U
+ =
+ row_1(H_{2,j}(w) ell_{T_x})
+ - x row_0(H_{2,j}(w) ell_{T_x}).                 (TOP1)
+```
+
+Consequently, if `T_x` contributes a finite slope `z`, so that
+
+```text
+(H_{2,j}(u)+zH_{2,j}(v))ell_{T_x}=0,
+```
+
+then the lifted top locator satisfies
+
+```text
+(H_{1,j+1}(u)+zH_{1,j+1}(v))ell_U=0.             (TOP2)
+```
+
+If two top-packet members `T_x` and `T_y` contribute distinct slopes
+`z_x != z_y`, then
+
+```text
+H_{1,j+1}(u)ell_U=0,        H_{1,j+1}(v)ell_U=0.  (TOPK)
+```
+
+Thus every residual top-packet edge after fixed-slope charging lies over a
+common lifted `t=1` Hankel kernel.  In particular, after star triangles have
+been charged to ruled cores, every residual one-exchange triangle is a
+top-packet triangle whose top locator satisfies (TOPK).
+
+### Proof
+
+Write `ell_{T_x}=p_0+p_1X+...+p_jX^j`.  Since
+
+```text
+ell_U=(X-x)ell_{T_x},
+```
+
+the coefficient of `X^b` in `ell_U` is `p_{b-1}-x p_b`, with
+`p_{-1}=p_{j+1}=0`.  Therefore
+
+```text
+H_{1,j+1}(w)ell_U
+ = sum_{b=0}^{j+1} w_b(p_{b-1}-x p_b)
+ = sum_{b=0}^j w_{b+1}p_b - x sum_{b=0}^j w_b p_b,
+```
+
+which is (TOP1).  Applying (TOP1) to `w=u+zv` gives (TOP2).
+
+Now suppose `T_x` and `T_y` contribute distinct slopes `z_x` and `z_y`.  By
+(TOP2),
+
+```text
+A+z_xB=0,        A+z_yB=0,
+```
+
+where
+
+```text
+A=H_{1,j+1}(u)ell_U,        B=H_{1,j+1}(v)ell_U.
+```
+
+Subtracting gives `(z_x-z_y)B=0`, hence `B=0`, and then `A=0`.  This proves
+(TOPK).  After fixed-slope charging, any residual one-exchange edge has
+different slopes by the root-slice lemma, so the final residual statement
+follows.
+
 ## Non-Ruled One-Exchange Degree Bound
 
 Let `A_nr` be a residual `t=2` active locator family after fixed-slope root
@@ -383,7 +462,8 @@ packet-edge ledger, or the one-outside boundary image.  It only proves that
 same-slope one-exchange collisions belong to the fixed-slope root-slice ledger,
 classifies the ruled determinant core into fixed-slope, inactive, and rank-one
 moving-slope cases, shows that star triangles are exactly ruled-core events
-while non-ruled `t=2` one-exchange cores have at most two determinant anchors,
+while residual top-packet edges lift to a common `t=1` Hankel kernel, shows
+that non-ruled `t=2` one-exchange cores have at most two determinant anchors,
 and gives the local max-degree bound and average-collinearity corollary above.
 
 ## Verification
@@ -399,4 +479,5 @@ checks the row-wise linear-map implication in small dimensions.  It also checks
 the quadratic determinant formula (DET2) and the "three roots imply ruled"
 criterion in sampled small prime fields, then stress-tests the ruled-core
 dichotomy, the injectivity of the residual rank-one moving-slope branch, and
-the Johnson-graph star/top triangle classification.
+the Johnson-graph star/top triangle classification.  Finally, it checks the
+top-packet lift identity (TOP1) and the distinct-slope implication (TOPK).

@@ -34,6 +34,17 @@ def dot(row: tuple[int, ...], vec: list[int], p: int) -> int:
     return sum(a * b for a, b in zip(row, vec)) % p
 
 
+def hankel1(row: list[int], poly: list[int], p: int) -> int:
+    return sum(row[i] * poly[i] for i in range(len(poly))) % p
+
+
+def hankel2(row: list[int], poly: list[int], p: int) -> tuple[int, int]:
+    return (
+        sum(row[i] * poly[i] for i in range(len(poly))) % p,
+        sum(row[i + 1] * poly[i] for i in range(len(poly))) % p,
+    )
+
+
 def det2(u: tuple[int, int], v: tuple[int, int], p: int) -> int:
     return (u[0] * v[1] - u[1] * v[0]) % p
 
@@ -285,6 +296,52 @@ def check_one_exchange_triangle_classification() -> None:
                     assert all(support == packet - {root} for support, root in zip(tri, deleted))
 
 
+def check_top_packet_lifted_kernel() -> None:
+    rng = Random(20260630)
+    for p in (5, 7, 17, 31):
+        for degree in range(0, 8):
+            samples: list[list[int]] = []
+            if p**degree <= 10_000:
+                samples = [list(coeffs) + [1] for coeffs in product(range(p), repeat=degree)]
+            else:
+                samples = [[rng.randrange(p) for _ in range(degree)] + [1] for _ in range(300)]
+
+            for ell_t in samples:
+                for _ in range(25):
+                    x = rng.randrange(p)
+                    row = [rng.randrange(p) for _ in range(degree + 2)]
+                    ell_u = mul_x_minus_y(ell_t, x, p)
+                    lifted = hankel1(row, ell_u, p)
+                    row_0, row_1 = hankel2(row, ell_t, p)
+                    assert lifted == (row_1 - x * row_0) % p, (
+                        p,
+                        degree,
+                        ell_t,
+                        x,
+                        row,
+                        lifted,
+                        row_0,
+                        row_1,
+                    )
+
+                    u_row = [rng.randrange(p) for _ in range(degree + 2)]
+                    v_row = [rng.randrange(p) for _ in range(degree + 2)]
+                    for z in range(p):
+                        combined = [(u_row[i] + z * v_row[i]) % p for i in range(degree + 2)]
+                        h0, h1 = hankel2(combined, ell_t, p)
+                        if h0 == 0 and h1 == 0:
+                            assert hankel1(combined, ell_u, p) == 0
+
+        for a in range(p):
+            for b in range(p):
+                for z1 in range(p):
+                    for z2 in range(p):
+                        if z1 == z2:
+                            continue
+                        if (a + z1 * b) % p == 0 and (a + z2 * b) % p == 0:
+                            assert a == 0 and b == 0, (p, a, b, z1, z2)
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -352,6 +409,7 @@ def main() -> None:
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()
     check_one_exchange_triangle_classification()
+    check_top_packet_lifted_kernel()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     print("same-slope root-slice lemma verifier passed")

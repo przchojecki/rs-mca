@@ -1651,6 +1651,31 @@ therefore top-packet triangles.  After only fixed-slope charging, residual
 stars can occur only in the rank-one moving-slope branch, with distinct finite
 slopes on the three anchors.
 
+Top packets then lift losslessly to a \(t=1\) Hankel kernel.  If
+\[
+  T_x=U\setminus\{x\},\qquad \ell_U=(X-x)\ell_{T_x},
+\]
+then for every syndrome vector \(w\),
+\[
+  H_{1,j+1}(w)\ell_U
+  =
+  {\rm row}_1\bigl(H_{2,j}(w)\ell_{T_x}\bigr)
+  -x\,{\rm row}_0\bigl(H_{2,j}(w)\ell_{T_x}\bigr).
+\]
+Thus a \(t=2\) incidence for \(T_x\) at slope \(z\) implies
+\[
+  (H_{1,j+1}(u)+zH_{1,j+1}(v))\ell_U=0.
+\]
+If two members of the same top packet have distinct slopes, subtracting the
+two lifted scalar equations gives
+\[
+  H_{1,j+1}(u)\ell_U=H_{1,j+1}(v)\ell_U=0.
+\]
+Therefore every residual top-packet edge after fixed-slope charging lies over a
+common lifted \(t=1\) kernel.  This turns the top-packet triangle residual into
+a higher-slack kernel target rather than a fresh one-exchange multiplicity
+phenomenon.
+
 Consequently, after fixed-slope root slices and ruled determinant cores are
 removed, the residual \(t=2\) one-exchange graph has maximum degree at most
 \(j\): each locator has only \(j\) possible \((j-1)\)-cores, and each non-ruled

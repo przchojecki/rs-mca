@@ -68,8 +68,9 @@ Keep entries concise and link to the relevant files.
   slope, inactive direction, or rank-one moving-slope branches; the last branch
   has injective active slope map.  One-exchange triangles are classified as
   either star triangles through a `(j-1)` core or top-packet triangles inside a
-  `(j+1)` set.  The resulting non-ruled degree bound is also inserted into the
-  existing average-collinearity max-codegree ledger.
+  `(j+1)` set, and residual top-packet edges with distinct slopes lift to a
+  common `t=1` Hankel kernel.  The resulting non-ruled degree bound is also
+  inserted into the existing average-collinearity max-codegree ledger.
 - **How it is useful:** After fixed-slope root slices are charged, the
   residual one-exchange graph has only different-slope edges, and after ruled
   determinant cores are separated, each core contributes at most one unordered
@@ -78,7 +79,8 @@ Keep entries concise and link to the relevant files.
   `(1-p_z)/(M p_z)+4jQ/M`.  Ruled cores that remain after fixed-slope charging
   are isolated as rank-one moving-slope objects rather than unresolved
   same-slope multiplicity, and after ruled cores are charged residual
-  one-exchange triangles must be top-packet triangles.
+  one-exchange triangles must be top-packet triangles lying over the lifted
+  `t=1` kernel target from the all-line Hankel audit.
 - **What to do next:** Bound the remaining different-slope one-exchange or
   two-exchange codegree ledgers after quotient-periodic, tangent/contained,
   and root-slice charges.
