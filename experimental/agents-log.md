@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 width-one first-root fixed-divisor injection
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Gives the exact first-root identity for the
+  width-one co-small cube and embeds every nonempty width-one flag into a
+  one-root absorbed fixed-divisor slice with unchanged surplus and unchanged
+  bounded complement.
+- **How it is useful:** Converts the width-one obstruction into the already
+  exposed fixed-root/root-slice ledger interface; polynomial control of that
+  ledger closes width-one without a separate super-polynomial term.
+- **What to do next:** Prove or import the fixed-surplus one-root
+  fixed-root/root-slice bound for these near-constant width-one slices.
+
 ### 2026-06-29 - M1 width-one lossless shadow descent
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

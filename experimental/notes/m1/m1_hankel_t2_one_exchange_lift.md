@@ -7457,6 +7457,87 @@ exceptional set `O`.  This is the width-one analogue of the lossless frontier
 shift: the per-rung operation is deletion inside one fixed root shadow, not the
 creation of a fresh projective-packing problem.
 
+## Width-One Cubes Inject Into One-Root Fixed-Divisor Slices
+
+The previous partition is also the exact interface with the fixed-root ledger.
+For a width-one maximal shadow at `S`, define the local width-one flag count
+
+```text
+R1Flag(S,A)=sum_{e=1}^a binom(q_S-1,e),
+        a=floor((q_S-2)/2).
+```
+
+If `a=0`, this count is empty.  Assume `a>=1` in the displayed first-root
+formula below.
+
+For `x in Z`, let
+
+```text
+Z_{>x}={y in Z : y>x}
+```
+
+with respect to the ambient root order, and define the first-root slice
+
+```text
+FR_x^{r1}(S,A)
+ =
+ { F subset Z_{>x} : |F|<=a-1 }.
+```
+
+Then the canonical first-root partition gives the exact identity
+
+```text
+R1Flag(S,A)
+ =
+ sum_{x in Z} #FR_x^{r1}(S,A)
+ =
+ sum_{x in Z} sum_{f=0}^{a-1} binom(|Z_{>x}|,f).  (PF2-r1-first-root-sum)
+```
+
+Each summand on the right is a one-root fixed-divisor slice.  Indeed, after
+absorbing the first root `x`, the divided direction is
+
+```text
+A^x=A/(X-x)=c ell_{Z\{x}},
+```
+
+with parameters
+
+```text
+q^x=q_S-1,        r^x=1,        s^x=s_S,
+O^x=O.                                            (PF2-r1-one-root-params)
+```
+
+For `F in FR_x^{r1}(S,A)`, the descendant obtained by then absorbing `F` is
+
+```text
+A^{x,F}=A/ell_{ {x} union F }
+       =c ell_{Z\({x} union F)}.                 (PF2-r1-fixedroot-dir)
+```
+
+This is exactly the same descendant as the original width-one flag
+`E={x} union F`; the root `x` has merely been exposed first as a fixed divisor.
+Thus the map
+
+```text
+E |-> (min E, E\{min E})
+```
+
+embeds the whole width-one cube into the disjoint union of one-root absorbed
+fixed-divisor slice families, with the same surplus and the same bounded
+exceptional complement.  Consequently a fixed-surplus theorem charging these
+one-root width-one slices to the fixed-root/root-slice ledger gives
+
+```text
+sum_{S,A width-one} R1Flag(S,A)
+ <= FixedRootOneRoot_{r1}(A),                    (PF2-r1-fixedroot-charge)
+```
+
+where the right-hand side denotes the corresponding already-exposed one-root
+fixed-divisor ledger.  In particular, once that ledger is polynomial after the
+quotient-periodic, tangent, fixed-root, and aperiodic charges, the width-one
+co-small cube contributes no separate super-polynomial term to M1.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

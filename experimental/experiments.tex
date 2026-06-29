@@ -6363,6 +6363,32 @@ partition
 charges every nonempty width-one flag to a unique first absorbed root.  Thus
 the width-one cube is a fixed-root flag over one near-constant pencil, not a
 fresh moving-denominator problem at each rung.
+This is exactly the interface with the one-root fixed-divisor ledger.  If
+\[
+  R1Flag(S,A)=\sum_{e=1}^a\binom{q_S-1}{e},
+  \qquad a=\lfloor(q_S-2)/2\rfloor,
+\]
+then the case \(a=0\) is empty, while for \(a\ge1\), writing
+\(Z_{>x}=\{y\in Z:y>x\}\),
+\[
+  R1Flag(S,A)
+  =
+  \sum_{x\in Z}\sum_{f=0}^{a-1}\binom{|Z_{>x}|}{f}.
+\]
+After exposing the first root \(x\), the divided direction is
+\[
+  A^x=A/(X-x)=c\ell_{Z\setminus\{x\}},
+  \qquad q^x=q_S-1,\quad r^x=1,\quad s^x=s_S,\quad O^x=O.
+\]
+For every remaining \(F\subset Z_{>x}\), the descendant is
+\[
+  A^{x,F}=A/\ell_{\{x\}\cup F}
+  =c\ell_{Z\setminus(\{x\}\cup F)}.
+\]
+Thus the whole width-one cube injects into disjoint one-root absorbed
+fixed-divisor slices with unchanged surplus and unchanged bounded complement.
+Polynomial control of those one-root fixed-root/root-slice ledgers closes the
+width-one branch without a separate super-polynomial term.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots
