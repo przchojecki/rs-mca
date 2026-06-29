@@ -58,8 +58,8 @@ endpoint certificate, endpoint-discriminant certificate, Hankel-minor
 discriminant certificate, Plucker-minor discriminant certificate,
 Plucker-chart decomposition, Plucker-chart row recurrence, Hankel square
 factorization, endpoint slope map, overlapping Plucker-chart recurrence,
-endpoint-pair inversion, endpoint-charge corollary, and packet-count
-corollary.
+endpoint-pair inversion, diagonal endpoint collapse, endpoint-charge
+corollary, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -3487,6 +3487,32 @@ def assert_overlapping_plucker_chart_recurrence(
         lambda1,
         recovered_lambda1,
     )
+    if z0 == z1:
+        assert lambda1 == lambda0, (
+            p,
+            a_rows,
+            b_rows,
+            z0,
+            lambda0,
+            lambda1,
+        )
+        h0_poly = hankel_minor_poly(a_rows, b_rows, 0, p)
+        h1_poly = hankel_minor_poly(a_rows, b_rows, 1, p)
+        scaled_h0 = {
+            degree: (lambda0 * lambda0 * coeff) % p
+            for degree, coeff in h0_poly.items()
+            if (lambda0 * lambda0 * coeff) % p != 0
+        }
+        assert h1_poly == scaled_h0, (
+            p,
+            a_rows,
+            b_rows,
+            z0,
+            lambda0,
+            h0_poly,
+            h1_poly,
+            scaled_h0,
+        )
 
 
 def quadratic_character(value: int, p: int) -> int:
@@ -6123,7 +6149,7 @@ def check_boundary_core_square_norm_hankel_minor_discriminants() -> None:
             if lambda0 == 0:
                 row3 = vec_scalar_mul(rng.randrange(prime), row1, prime)
             else:
-                lambda1 = rng.randrange(prime)
+                lambda1 = lambda0 if sample_idx % 11 == 1 else rng.randrange(prime)
                 row3 = (
                     (2 * lambda1 * row2[0] - lambda1 * lambda1 * row1[0]) % prime,
                     (2 * lambda1 * row2[1] - lambda1 * lambda1 * row1[1]) % prime,

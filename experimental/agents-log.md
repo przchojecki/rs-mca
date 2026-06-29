@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 diagonal endpoint collapse
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** In the nondegenerate overlapping Plucker chart, if
+  the finite `H_0` and `H_1` endpoints coincide, endpoint-pair inversion
+  forces `lambda_1=lambda_0`, hence `H_1=lambda_0^2 H_0`.
+- **How it is useful:** Coincident finite zero/pole endpoints are therefore
+  constant-norm packets, not residual nonconstant square-norm packets.  This
+  removes the diagonal endpoint-pair branch from the M1 square-norm ledger.
+- **What to do next:** Count only off-diagonal finite endpoint pairs in the
+  nonconstant square-norm branch, with projective-infinity cases handled by
+  the same chart formulas.
+
 ### 2026-06-30 - M1 overlapping endpoint-pair inversion
 
 - **Agent/model:** AllenGrahamHart / Codex.
