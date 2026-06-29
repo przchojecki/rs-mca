@@ -54,8 +54,9 @@ classified per-core bound, including the negative square-norm collapse to
 one-root sums, the square-map coset packets, and the degree-one square-map
 packet intersection gate, support-class palette, endpoint palette, and
 repeated-endpoint gate, double-root endpoint certificate, raw-coefficient
-endpoint certificate, endpoint-discriminant certificate, endpoint-charge
-corollary, and packet-count corollary.
+endpoint certificate, endpoint-discriminant certificate, Hankel-minor
+discriminant certificate, endpoint-charge corollary, and packet-count
+corollary.
 """
 
 from __future__ import annotations
@@ -3106,6 +3107,35 @@ def quadratic_double_root(poly: Poly1, p: int) -> int | None:
     return (-c1 * pow((2 * c2) % p, -1, p)) % p
 
 
+def hankel_minor_coefficients(
+    a_rows: tuple[int, int, int, int],
+    b_rows: tuple[int, int, int, int],
+    index: int,
+    p: int,
+) -> tuple[int, int, int]:
+    assert index in (0, 1)
+    h0 = (a_rows[index] * a_rows[index + 2] - a_rows[index + 1] ** 2) % p
+    h1 = (
+        a_rows[index] * b_rows[index + 2]
+        + a_rows[index + 2] * b_rows[index]
+        - 2 * a_rows[index + 1] * b_rows[index + 1]
+    ) % p
+    h2 = (b_rows[index] * b_rows[index + 2] - b_rows[index + 1] ** 2) % p
+    return h0, h1, h2
+
+
+def hankel_minor_poly(
+    a_rows: tuple[int, int, int, int],
+    b_rows: tuple[int, int, int, int],
+    index: int,
+    p: int,
+) -> Poly1:
+    return poly1_from_terms(
+        tuple(enumerate(hankel_minor_coefficients(a_rows, b_rows, index, p))),
+        p,
+    )
+
+
 def quadratic_character(value: int, p: int) -> int:
     value %= p
     if value == 0:
@@ -5616,6 +5646,93 @@ def check_boundary_core_square_norm_endpoint_discriminant_certificate() -> None:
                 )
 
 
+def check_boundary_core_square_norm_hankel_minor_discriminants() -> None:
+    rng = Random(20260805)
+    for prime in (5, 7, 11, 17, 19):
+        for _ in range(1200):
+            a_rows = tuple(rng.randrange(prime) for _ in range(4))
+            b_rows = tuple(rng.randrange(prime) for _ in range(4))
+            c_polys = tuple(
+                poly1_from_terms(((0, a_rows[idx]), (1, b_rows[idx])), prime)
+                for idx in range(4)
+            )
+            q_poly = poly1_sub(
+                poly1_mul(c_polys[0], c_polys[2], prime),
+                poly1_mul(c_polys[1], c_polys[1], prime),
+                prime,
+            )
+            b_poly = poly1_sub(
+                poly1_mul(c_polys[1], c_polys[3], prime),
+                poly1_mul(c_polys[2], c_polys[2], prime),
+                prime,
+            )
+
+            for index, expected_poly in ((0, q_poly), (1, b_poly)):
+                minor_poly = hankel_minor_poly(a_rows, b_rows, index, prime)
+                assert minor_poly == expected_poly, (
+                    prime,
+                    index,
+                    a_rows,
+                    b_rows,
+                    minor_poly,
+                    expected_poly,
+                )
+                h0, h1, h2 = hankel_minor_coefficients(
+                    a_rows,
+                    b_rows,
+                    index,
+                    prime,
+                )
+                assert (h1 * h1 - 4 * h0 * h2) % prime == quadratic_discriminant(
+                    expected_poly,
+                    prime,
+                ), (
+                    prime,
+                    index,
+                    a_rows,
+                    b_rows,
+                    (h0, h1, h2),
+                    expected_poly,
+                )
+                double_root = quadratic_double_root(expected_poly, prime)
+                if h2 % prime == 0:
+                    assert double_root is None, (
+                        prime,
+                        index,
+                        a_rows,
+                        b_rows,
+                        expected_poly,
+                        double_root,
+                    )
+                    continue
+                if quadratic_discriminant(expected_poly, prime) != 0:
+                    assert double_root is None, (
+                        prime,
+                        index,
+                        a_rows,
+                        b_rows,
+                        expected_poly,
+                        double_root,
+                    )
+                    continue
+                expected_root = (-h1 * pow((2 * h2) % prime, -1, prime)) % prime
+                assert double_root == expected_root, (
+                    prime,
+                    index,
+                    a_rows,
+                    b_rows,
+                    expected_poly,
+                    double_root,
+                    expected_root,
+                )
+                assert eval_poly1(expected_poly, double_root, prime) == 0
+                assert eval_poly1(
+                    poly1_derivative(expected_poly, prime),
+                    double_root,
+                    prime,
+                ) == 0
+
+
 def check_boundary_core_square_norm_endpoint_charge() -> None:
     rng = Random(20260801)
     for prime in (5, 7, 11, 17):
@@ -6057,6 +6174,7 @@ def main() -> None:
     check_boundary_core_square_norm_double_root_certificate()
     check_boundary_core_square_norm_raw_endpoint_certificate()
     check_boundary_core_square_norm_endpoint_discriminant_certificate()
+    check_boundary_core_square_norm_hankel_minor_discriminants()
     check_boundary_core_square_norm_endpoint_charge()
     check_boundary_core_square_map_packet_count()
     check_boundary_core_classified_per_core_bound()

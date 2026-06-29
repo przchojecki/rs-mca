@@ -2373,6 +2373,19 @@ live finite endpoint forces \(b_1^2-4b_0b_2=0\) or \(q_1^2-4q_0q_2=0\); when
 the quadratic coefficient is nonzero the endpoint slope is
 \(-b_1/(2b_2)\) or \(-q_1/(2q_2)\).  Hence moving square-norm supports are
 controlled by raw quadratic discriminants.
+In the recurrence rows \(c_i(z)=a_i+zb_i\), these quadratics are the adjacent
+Hankel minors
+\[
+  H_i(z)=c_i(z)c_{i+2}(z)-c_{i+1}(z)^2,
+\]
+with coefficients
+\[
+  h_{i,0}=a_i a_{i+2}-a_{i+1}^2,\quad
+  h_{i,1}=a_i b_{i+2}+a_{i+2}b_i-2a_{i+1}b_{i+1},\quad
+  h_{i,2}=b_i b_{i+2}-b_{i+1}^2.
+\]
+Thus pole endpoints force the discriminant of \(H_0=Q_R\) to vanish, and zero
+endpoints force the discriminant of \(H_1=B_R\) to vanish.
 The finite endpoints are also ledger charges rather than residual live slopes.
 If \(B_R(z_0)=0\) and \(Q_R(z_0)\ne0\), then
 \(p_R(z_0)=B_R(z_0)/Q_R(z_0)=0\), so the recovered locator lies on the

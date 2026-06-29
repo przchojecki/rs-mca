@@ -15,6 +15,7 @@ SQUARE-NORM REPEATED-ENDPOINT GATE /
 SQUARE-NORM DOUBLE-ROOT CERTIFICATE /
 SQUARE-NORM RAW-COEFFICIENT ENDPOINT CERTIFICATE /
 SQUARE-NORM RAW-ENDPOINT DISCRIMINANT CERTIFICATE /
+SQUARE-NORM HANKEL-MINOR DISCRIMINANT CERTIFICATE /
 SQUARE-NORM ENDPOINT-CHARGE COROLLARY /
 SQUARE-MAP PACKET-COUNT COROLLARY /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
@@ -2537,6 +2538,41 @@ Thus a moving square-norm endpoint-support family forces the discriminant of
 one of the raw recurrence quadratics to vanish.  The endpoint slope itself is
 then a rational function of the quadratic coefficients, not a free parameter.
 
+The discriminants are explicit Hankel-minor expressions in the fixed-core row
+data.  Write `c_i(z)=a_i+z b_i`.  For any adjacent triple `i,i+1,i+2`, put
+
+```text
+H_i(z)=c_i(z)c_{i+2}(z)-c_{i+1}(z)^2
+     =h_{i,0}+h_{i,1}z+h_{i,2}z^2,
+```
+
+where
+
+```text
+h_{i,0}=a_i a_{i+2}-a_{i+1}^2,
+h_{i,1}=a_i b_{i+2}+a_{i+2} b_i-2a_{i+1}b_{i+1},
+h_{i,2}=b_i b_{i+2}-b_{i+1}^2.                  (RKSQHCOEFF)
+```
+
+Then
+
+```text
+Q_R=H_0,        B_R=H_1,
+Delta_{H_i}=h_{i,1}^2-4h_{i,0}h_{i,2}.           (RKSQHDISC)
+```
+
+Thus finite square-norm pole endpoints force `Delta_{H_0}=0`, while finite
+square-norm zero endpoints force `Delta_{H_1}=0`.  If `h_{i,2}!=0`, the
+corresponding endpoint slope is
+
+```text
+z_i=-h_{i,1}/(2h_{i,2}).
+```
+
+The endpoint-support image is therefore controlled by the vanishing of two
+explicit binary-Hankel discriminants in the active root-core row data.  This is
+the form that can be fed into a global core-image charge.
+
 The finite endpoints themselves are not residual live mixed-domain slopes.
 Let `z_0` be a finite endpoint of the reduced square norm.
 
@@ -3078,8 +3114,9 @@ packet-level higher-exchange ledger substitution, and extracts the
 square-norm repeated-endpoint gate (RKSQREP), the double-root endpoint
 certificate (RKSQDR), the raw-coefficient endpoint certificate (RKSQRAW), the
 raw-endpoint discriminant certificate (RKSQDISC), the finite endpoint-charge
-corollary (RKSQEPCH), and square-map packet-count corollary (RKSQCOUNT) from
-the support palette.
+Hankel-minor discriminant certificate (RKSQHCOEFF/RKSQHDISC), the finite
+endpoint-charge corollary (RKSQEPCH), and square-map packet-count corollary
+(RKSQCOUNT) from the support palette.
 
 ## Verification
 
@@ -3134,5 +3171,6 @@ intersection gate (RKSQINT), the finite support-class palette (RKSQPAL), and
 the square-norm endpoint palette (RKSQEND), the repeated-endpoint gate
 (RKSQREP), the double-root endpoint certificate (RKSQDR), the raw-coefficient
 endpoint certificate (RKSQRAW), the raw-endpoint discriminant certificate
-(RKSQDISC), the finite endpoint-charge corollary (RKSQEPCH), and the
-packet-count corollary (RKSQCOUNT).
+(RKSQDISC), the Hankel-minor discriminant certificate
+(RKSQHCOEFF/RKSQHDISC), the finite endpoint-charge corollary (RKSQEPCH), and
+the packet-count corollary (RKSQCOUNT).

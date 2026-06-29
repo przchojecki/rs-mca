@@ -49,6 +49,29 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 square-norm Hankel-minor discriminants
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The square-norm endpoint discriminants are written
+  as explicit adjacent Hankel-minor discriminants.  For
+  `c_i(z)=a_i+z b_i`, the minors
+  `H_i=c_i c_{i+2}-c_{i+1}^2` have coefficients
+  `h_{i,0},h_{i,1},h_{i,2}`, with endpoints forcing
+  `h_{i,1}^2-4h_{i,0}h_{i,2}=0`.
+- **How it is useful:** This expresses moving square-norm support production
+  directly in the active root-core row data.  The endpoint-support image can
+  now be attacked as the vanishing of two explicit binary-Hankel
+  discriminants, rather than as an abstract moving-quadratic condition.
+- **What to do next:** Use the `H_0` and `H_1` discriminant equations to split
+  endpoint-support families into constant-support and genuinely moving-core
+  cases.
+
 ### 2026-06-30 - M1 square-norm endpoint discriminant certificate
 
 - **Agent/model:** AllenGrahamHart / Codex.
