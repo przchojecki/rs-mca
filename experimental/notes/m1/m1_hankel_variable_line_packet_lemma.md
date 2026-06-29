@@ -476,6 +476,32 @@ In the rate-half positive-slack range the high-agreement corollary gives
 Substituting these two crude polynomial bounds and the four displayed
 hypotheses into (RL-HA) proves (PC).
 
+There is an equivalent boundary-shadow version using the one-outside
+shadow-fiber reduction from `m1_same_slope_root_slice_lemma.md`.  After
+fixed-slope boundary root slices have been charged, let `Shadow_off` be the
+domain-shadow image of `Boundary_off`.  The projection fiber bound gives
+
+```text
+|Boundary_off| <= 2 |Shadow_off|.
+```
+
+Thus the boundary hypothesis `|Boundary_off| <= n^B_O` in the criterion may be
+replaced by
+
+```text
+|Shadow_off| <= n^B_S,
+```
+
+at the cost of only a constant factor:
+
+```text
+sum_L r_L
+  <= n^B_Q + 2 n^B_E + n^(B_T+4) + 2 n^(B_S+3).
+```
+
+So the remaining one-outside task can be phrased as a polynomial bound for the
+shadow image rather than for all external anchors over those shadows.
+
 ## Use In M1
 
 The lemma identifies what the all-line M1 proof still has to do in this branch.
@@ -503,7 +529,7 @@ The high-agreement corollary removes the zero-lower class whenever
 `a>(n+1)/2`, hence throughout the positive-slack rate-half window
 `k>=n/2`, `t>=1`.  In that range, after quotient and contained/tangent charges,
 the next M1 step is exactly to bound the active codegree and one-outside target
-image inside the quotient-aware residue-line ledger.  The closure criterion
-makes the exponent bookkeeping explicit: any polynomial estimates for those
-two live residual objects close the non-fixed line-packet branch up to a
-fixed `n^3`/`n^4` bookkeeping loss.
+shadow image inside the quotient-aware residue-line ledger.  The closure
+criterion makes the exponent bookkeeping explicit: any polynomial estimates for
+the active codegree and the boundary shadow image close the non-fixed
+line-packet branch up to a fixed `n^3`/`n^4` bookkeeping loss.

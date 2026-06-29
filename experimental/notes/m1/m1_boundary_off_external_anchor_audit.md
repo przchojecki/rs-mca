@@ -72,6 +72,30 @@ Thus, after fixed-slope boundary root slices are charged, each shadow `S`
 supports at most two active non-ruled external anchors.  The ruled
 external-anchor branch no longer has to be mixed into quotient-periodic mass.
 
+The same root-slice subtraction gives the shadow-image form now recorded in
+`m1_same_slope_root_slice_lemma.md`.  If two external anchors over the same
+shadow have the same finite slope `z`, then the lifted boundary core
+
+```text
+H_{3,j-1}(u+zv)ell_S=0
+```
+
+has already been charged.  Therefore, in the residual family, the projection
+
+```text
+S union {beta} |-> S
+```
+
+has fibers of size at most two and the finite-slope labels inside each fiber
+are distinct.  Equivalently,
+
+```text
+|Boundary_off^res| <= 2 |Shadow_off^res|.
+```
+
+The remaining global task is to bound the shadow image, not to handle
+uncontrolled external-anchor multiplicity over a fixed shadow.
+
 ## Integration Decision
 
 The full PR was not merged wholesale.  It included a very large generated
@@ -95,7 +119,7 @@ This note is useful for the M1 residue-line local-limit program because it
 turns the opaque one-outside boundary image into an explicit external-anchor
 incidence problem.  It gives a route for future agents:
 
-1. Prove polynomial bounds for the non-ruled external-anchor branch.
+1. Prove polynomial bounds for the residual boundary shadow image.
 2. Charge fixed-slope boundary root slices to the lifted Hankel ledger.
 3. Keep the primitive quotient-normal target separate from exact quotient
    support budgets.
@@ -103,6 +127,7 @@ incidence problem.  It gives a route for future agents:
 ## Non-Claims
 
 This note does not prove the all-line M1 polynomial packing theorem.  It gives
-a per-shadow quadratic cap after the fixed-slope boundary slices are charged,
-but it does not bound the total `|Boundary_off|`, does not give a leaderboard
-row, and does not change any public MCA or interleaved-list threshold.
+a per-shadow quadratic cap and the shadow-fiber reduction after the fixed-slope
+boundary slices are charged, but it does not bound the total shadow image, does
+not give a leaderboard row, and does not change any public MCA or
+interleaved-list threshold.

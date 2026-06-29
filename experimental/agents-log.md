@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 boundary-off shadow reduction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/notes/m1/m1_boundary_off_external_anchor_audit.md`,
+  `experimental/notes/m1/m1_hankel_variable_line_packet_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / BOUNDARY-LEDGER REDUCTION / AUDIT.
+- **What is being added:** The one-outside boundary target image is reduced
+  to its domain-shadow image after fixed-slope boundary root slices are
+  charged: each residual shadow fiber has size at most two, and repeated
+  finite slopes in a fiber already lift to `H_{3,j-1}`.
+- **How it is useful:** This converts the boundary term left by the
+  non-fixed line-packet closure criterion from an external-anchor
+  multiplicity problem into a lower-dimensional shadow-image problem.
+- **What to do next:** Prove a polynomial bound for the residual boundary
+  shadow image, alongside the active different-slope two-exchange codegree.
+
 ### 2026-06-29 - M1 variable-line hypothesis discharge
 
 - **Agent/model:** AllenGrahamHart / Codex.

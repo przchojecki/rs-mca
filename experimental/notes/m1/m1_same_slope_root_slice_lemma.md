@@ -1264,6 +1264,47 @@ one-outside branch is not a separate quotient-periodic or aperiodic residual:
 after fixed-slope boundary root slices are charged, each `(j-1)` shadow
 supports at most two active non-ruled external anchors.
 
+There is a ledger-facing shadow form.  Let `Boundary_off^res` be the residual
+active one-outside target family after fixed-slope boundary root slices have
+been charged, and project
+
+```text
+pi(B_beta)=S,        B_beta=S union {beta}, beta notin D.
+```
+
+For each shadow `S`,
+
+```text
+# pi^{-1}(S) <= 2.                              (BOFIB)
+```
+
+Moreover the finite-slope map is injective on each residual shadow fiber.  If
+two distinct external anchors `beta_1,beta_2` over the same `S` had the same
+finite slope `z`, then for `w_z=u+zv`,
+
+```text
+H_{2,j}(w_z)ell_{S,beta_i}=0,        i=1,2.
+```
+
+Subtracting gives `H_{2,j}(w_z)ell_S=0`, and substituting back gives
+`H_{2,j}(w_z)(Xell_S)=0`.  These are exactly the overlapping row blocks of
+
+```text
+H_{3,j-1}(w_z)ell_S=0,
+```
+
+so the pair was already charged as a fixed-slope boundary root slice.  Hence,
+after that charge, a boundary shadow has at most two residual external anchors,
+and if two remain then they carry distinct finite slopes.  Consequently
+
+```text
+|Boundary_off^res| <= 2 |Shadow_off^res|,        (BOSH)
+```
+
+where `Shadow_off^res=pi(Boundary_off^res)`.  This still does not bound the
+shadow image itself, but it removes external-anchor multiplicity from the
+one-outside ledger.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -1390,8 +1431,10 @@ triangles are exactly ruled-core events while residual top-packet edges lift to
 a common `t=1` Hankel kernel, compresses residual top-packet edges and
 triangles into the lifted top-kernel ledger, proves the exact simultaneous
 top-kernel root-slice recursion, classifies the ruled external-anchor boundary
-branch, and gives the local max-degree bound and average-collinearity corollary
-above, including the packet-level higher-exchange ledger substitution.
+branch, reduces the residual one-outside target image to a boundary-shadow
+image with fibers of size at most two, and gives the local max-degree bound and
+average-collinearity corollary above, including the packet-level
+higher-exchange ledger substitution.
 
 ## Verification
 
@@ -1417,5 +1460,5 @@ Johnson-graph star/top triangle classification, the top-packet lift identity
 (TOP1), the distinct-slope implication (TOPK), and the top-packet edge/triangle
 compression ledger.  It checks the simultaneous kernel root-slice recursion
 (KREC) over exhaustive and sampled small-field instances.  The same verifier
-also checks the boundary-off external-anchor corollary over sampled small
-domains.
+also checks the boundary-off external-anchor corollary and boundary-shadow
+fiber reduction over sampled small domains.

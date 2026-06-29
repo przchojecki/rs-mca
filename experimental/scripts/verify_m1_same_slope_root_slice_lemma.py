@@ -21,7 +21,9 @@ extension formula, and general affine subpacket one-root and two-root fibers
 are checked by finite-field linear algebra.  The arbitrary moving-rank fiber
 dimension drop is checked by the same affine-preimage calculation, and the
 residual exchange-degree corollary is checked on small split-support graphs.
-The average-ledger substitutions are checked as exact rational inequalities.
+The boundary shadow-fiber reduction is checked on sampled small-field
+instances, and the average-ledger substitutions are checked as exact rational
+inequalities.
 """
 
 from __future__ import annotations
@@ -1983,16 +1985,18 @@ def check_boundary_off_external_anchor_corollary() -> None:
                 ]
 
             for u_seq, v_seq in samples:
-                external_roots = [
-                    beta
-                    for beta in external
-                    if det2(
-                        hankel_core_value(u_seq, beta, p),
-                        hankel_core_value(v_seq, beta, p),
-                        p,
-                    )
-                    == 0
-                ]
+                external_roots = []
+                active_by_slope: dict[int, list[int]] = {}
+                for beta in external:
+                    a_beta = hankel_core_value(u_seq, beta, p)
+                    b_beta = hankel_core_value(v_seq, beta, p)
+                    if det2(a_beta, b_beta, p) != 0:
+                        continue
+                    external_roots.append(beta)
+                    z = slope_for_active_pair(a_beta, b_beta, p)
+                    if z is not None:
+                        active_by_slope.setdefault(z, []).append(beta)
+
                 ruled = all(
                     det2(
                         hankel_core_value(u_seq, beta, p),
@@ -2013,15 +2017,28 @@ def check_boundary_off_external_anchor_corollary() -> None:
                         v_seq,
                         external_roots,
                     )
+                    active_targets = [
+                        beta for betas in active_by_slope.values() for beta in betas
+                    ]
+                    assert len(active_targets) <= 2, (
+                        p,
+                        d_size,
+                        u_seq,
+                        v_seq,
+                        active_targets,
+                    )
+                    assert all(
+                        len(betas) == 1 for betas in active_by_slope.values()
+                    ), (
+                        p,
+                        d_size,
+                        u_seq,
+                        v_seq,
+                        active_by_slope,
+                    )
                     continue
 
-                active_slopes: set[int] = set()
-                for beta in external:
-                    a_beta = hankel_core_value(u_seq, beta, p)
-                    b_beta = hankel_core_value(v_seq, beta, p)
-                    z = slope_for_active_pair(a_beta, b_beta, p)
-                    if z is not None:
-                        active_slopes.add(z)
+                active_slopes: set[int] = set(active_by_slope)
 
                 assert len(active_slopes) <= 1, (
                     p,
@@ -2040,6 +2057,41 @@ def check_boundary_off_external_anchor_corollary() -> None:
                             (a_beta[0] + z0 * b_beta[0]) % p == 0
                             and (a_beta[1] + z0 * b_beta[1]) % p == 0
                         ), (p, d_size, u_seq, v_seq, beta, z0, a_beta, b_beta)
+
+                # Ruled active branches are fixed-slope and therefore charged
+                # to the boundary root-slice ledger; they leave no residual
+                # external-anchor fiber to count here.
+
+            # The same-slope boundary root-slice implication is checked for
+            # every sampled pair, regardless of whether the determinant is
+            # ruled.  If two external anchors over one shadow have the same
+            # active finite slope, the lifted H_{3,j-1} shadow rows vanish.
+            for u_seq, v_seq in samples:
+                active_by_slope: dict[int, list[int]] = {}
+                for beta in external:
+                    a_beta = hankel_core_value(u_seq, beta, p)
+                    b_beta = hankel_core_value(v_seq, beta, p)
+                    if det2(a_beta, b_beta, p) != 0:
+                        continue
+                    z = slope_for_active_pair(a_beta, b_beta, p)
+                    if z is not None:
+                        active_by_slope.setdefault(z, []).append(beta)
+
+                for z, betas in active_by_slope.items():
+                    if len(betas) < 2:
+                        continue
+                    lifted = tuple(
+                        (u_seq[idx] + z * v_seq[idx]) % p for idx in range(3)
+                    )
+                    assert lifted == (0, 0, 0), (
+                        p,
+                        d_size,
+                        u_seq,
+                        v_seq,
+                        z,
+                        betas,
+                        lifted,
+                    )
 
 
 def check_nonruled_degree_bound() -> None:
