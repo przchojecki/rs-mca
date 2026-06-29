@@ -14,6 +14,7 @@ SQUARE-NORM ENDPOINT PALETTE /
 SQUARE-NORM REPEATED-ENDPOINT GATE /
 SQUARE-NORM DOUBLE-ROOT CERTIFICATE /
 SQUARE-NORM RAW-COEFFICIENT ENDPOINT CERTIFICATE /
+SQUARE-NORM RAW-ENDPOINT DISCRIMINANT CERTIFICATE /
 SQUARE-NORM ENDPOINT-CHARGE COROLLARY /
 SQUARE-MAP PACKET-COUNT COROLLARY /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
@@ -2508,6 +2509,34 @@ raw recurrence coefficient equations `(B_R,B_R')` and `(Q_R,Q_R')`; no
 separate bookkeeping of cancelled common factors is needed for finite
 square-norm endpoints.
 
+Since `B_R` and `Q_R` have degree at most two, these raw equations have a
+one-scalar discriminant form.  Write
+
+```text
+B_R(z)=b_0+b_1 z+b_2 z^2,        Q_R(z)=q_0+q_1 z+q_2 z^2.
+```
+
+Then a finite zero endpoint can occur only when
+
+```text
+Delta_B=b_1^2-4 b_0 b_2=0,        B_R nonconstant,        Q_R(z_B)!=0,
+```
+
+where the repeated root is `z_B=-b_1/(2b_2)` if `b_2!=0`, and
+there is no finite double root for a nonzero degree-one polynomial in odd
+characteristic.  If `B_R` is identically zero, that is the fixed-zero-root
+branch already charged before the residual mixed-domain ledger.  Thus the
+live finite zero endpoint is the quadratic double-root slope.  The pole
+endpoint has the identical certificate with `Q_R`:
+
+```text
+Delta_Q=q_1^2-4 q_0 q_2=0,        Q_R nonconstant,        B_R(z_Q)!=0.  (RKSQDISC)
+```
+
+Thus a moving square-norm endpoint-support family forces the discriminant of
+one of the raw recurrence quadratics to vanish.  The endpoint slope itself is
+then a rational function of the quadratic coefficients, not a free parameter.
+
 The finite endpoints themselves are not residual live mixed-domain slopes.
 Let `z_0` be a finite endpoint of the reduced square norm.
 
@@ -3048,8 +3077,9 @@ local max-degree bound and average-collinearity corollary above, including the
 packet-level higher-exchange ledger substitution, and extracts the
 square-norm repeated-endpoint gate (RKSQREP), the double-root endpoint
 certificate (RKSQDR), the raw-coefficient endpoint certificate (RKSQRAW), the
-finite endpoint-charge corollary (RKSQEPCH), and square-map packet-count
-corollary (RKSQCOUNT) from the support palette.
+raw-endpoint discriminant certificate (RKSQDISC), the finite endpoint-charge
+corollary (RKSQEPCH), and square-map packet-count corollary (RKSQCOUNT) from
+the support palette.
 
 ## Verification
 
@@ -3103,5 +3133,6 @@ classified per-core bound (RKCLASS), the degree-one square-map packet
 intersection gate (RKSQINT), the finite support-class palette (RKSQPAL), and
 the square-norm endpoint palette (RKSQEND), the repeated-endpoint gate
 (RKSQREP), the double-root endpoint certificate (RKSQDR), the raw-coefficient
-endpoint certificate (RKSQRAW), the finite endpoint-charge corollary
-(RKSQEPCH), and the packet-count corollary (RKSQCOUNT).
+endpoint certificate (RKSQRAW), the raw-endpoint discriminant certificate
+(RKSQDISC), the finite endpoint-charge corollary (RKSQEPCH), and the
+packet-count corollary (RKSQCOUNT).

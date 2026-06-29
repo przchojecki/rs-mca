@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 square-norm endpoint discriminant certificate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The raw finite endpoint equations are converted
+  into a scalar discriminant certificate.  Writing
+  `B_R=b_0+b_1 z+b_2 z^2` and `Q_R=q_0+q_1 z+q_2 z^2`, live finite endpoints
+  force `b_1^2-4b_0b_2=0` or `q_1^2-4q_0q_2=0`, with endpoint slope
+  `-b_1/(2b_2)` or `-q_1/(2q_2)` when the quadratic coefficient is nonzero.
+- **How it is useful:** This turns moving square-norm support production into
+  discriminant-zero equations in the raw recurrence coefficients, so the
+  endpoint-support image is a scalar condition on the active root core rather
+  than a free moving-root choice.
+- **What to do next:** Use these discriminant equations to separate constant
+  endpoint-support families from genuinely moving square-norm supports.
+
 ### 2026-06-30 - M1 square-norm raw endpoint certificate
 
 - **Agent/model:** AllenGrahamHart / Codex.

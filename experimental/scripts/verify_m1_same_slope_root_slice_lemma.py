@@ -54,7 +54,8 @@ classified per-core bound, including the negative square-norm collapse to
 one-root sums, the square-map coset packets, and the degree-one square-map
 packet intersection gate, support-class palette, endpoint palette, and
 repeated-endpoint gate, double-root endpoint certificate, raw-coefficient
-endpoint certificate, endpoint-charge corollary, and packet-count corollary.
+endpoint certificate, endpoint-discriminant certificate, endpoint-charge
+corollary, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -3087,6 +3088,24 @@ def raw_square_norm_endpoint_points(
     return zero_points, pole_points
 
 
+def quadratic_coefficients(poly: Poly1) -> tuple[int, int, int]:
+    return poly.get(0, 0), poly.get(1, 0), poly.get(2, 0)
+
+
+def quadratic_discriminant(poly: Poly1, p: int) -> int:
+    c0, c1, c2 = quadratic_coefficients(poly)
+    return (c1 * c1 - 4 * c0 * c2) % p
+
+
+def quadratic_double_root(poly: Poly1, p: int) -> int | None:
+    c0, c1, c2 = quadratic_coefficients(poly)
+    if c2 % p == 0:
+        return None
+    if (c1 * c1 - 4 * c0 * c2) % p != 0:
+        return None
+    return (-c1 * pow((2 * c2) % p, -1, p)) % p
+
+
 def quadratic_character(value: int, p: int) -> int:
     value %= p
     if value == 0:
@@ -5483,6 +5502,120 @@ def check_boundary_core_square_norm_raw_endpoint_certificate() -> None:
                 assert eval_poly1(numerator, root, prime) != 0
 
 
+def check_boundary_core_square_norm_endpoint_discriminant_certificate() -> None:
+    rng = Random(20260804)
+    for prime in (5, 7, 11, 17):
+        polys = [
+            poly1_from_list(list(coeffs), prime)
+            for coeffs in product(range(prime), repeat=3)
+        ]
+        polys = [poly for poly in polys if poly]
+        if prime <= 5:
+            pairs = [
+                (numerator, denominator)
+                for numerator in polys
+                for denominator in polys
+            ]
+        else:
+            pairs = [(rng.choice(polys), rng.choice(polys)) for _ in range(1200)]
+
+        linear_bases = [
+            poly1_from_list([constant, slope], prime)
+            for constant in range(prime)
+            for slope in range(prime)
+        ]
+        linear_bases = [poly for poly in linear_bases if poly]
+        for _ in range(240):
+            gamma_num = rng.randrange(1, prime)
+            gamma_den = rng.randrange(1, prime)
+            numerator_base = rng.choice(linear_bases)
+            denominator_base = rng.choice(linear_bases)
+            numerator = {
+                degree: (gamma_num * coeff) % prime
+                for degree, coeff in poly1_mul(
+                    numerator_base,
+                    numerator_base,
+                    prime,
+                ).items()
+            }
+            denominator = {
+                degree: (gamma_den * coeff) % prime
+                for degree, coeff in poly1_mul(
+                    denominator_base,
+                    denominator_base,
+                    prime,
+                ).items()
+            }
+            pairs.append((numerator, denominator))
+            pairs.append((numerator, {0: gamma_den}))
+            pairs.append(({0: gamma_num}, denominator))
+
+        for numerator, denominator in pairs:
+            if not degree_two_square_endpoint_gate(numerator, denominator, prime):
+                continue
+            raw_zero_points, raw_pole_points = raw_square_norm_endpoint_points(
+                numerator,
+                denominator,
+                prime,
+            )
+            numerator_root = quadratic_double_root(numerator, prime)
+            denominator_root = quadratic_double_root(denominator, prime)
+
+            if numerator_root is not None and eval_poly1(
+                denominator,
+                numerator_root,
+                prime,
+            ) != 0:
+                assert quadratic_discriminant(numerator, prime) == 0, (
+                    prime,
+                    numerator,
+                    denominator,
+                    raw_zero_points,
+                )
+                assert raw_zero_points == {numerator_root}, (
+                    prime,
+                    numerator,
+                    denominator,
+                    raw_zero_points,
+                    numerator_root,
+                )
+            else:
+                assert not raw_zero_points, (
+                    prime,
+                    numerator,
+                    denominator,
+                    raw_zero_points,
+                    numerator_root,
+                )
+
+            if denominator_root is not None and eval_poly1(
+                numerator,
+                denominator_root,
+                prime,
+            ) != 0:
+                assert quadratic_discriminant(denominator, prime) == 0, (
+                    prime,
+                    numerator,
+                    denominator,
+                    raw_pole_points,
+                )
+                assert raw_pole_points == {denominator_root}, (
+                    prime,
+                    numerator,
+                    denominator,
+                    raw_pole_points,
+                    denominator_root,
+                )
+            else:
+                assert not raw_pole_points, (
+                    prime,
+                    numerator,
+                    denominator,
+                    raw_pole_points,
+                    denominator_root,
+                )
+
+
 def check_boundary_core_square_norm_endpoint_charge() -> None:
     rng = Random(20260801)
     for prime in (5, 7, 11, 17):
@@ -5923,6 +6056,7 @@ def main() -> None:
     check_boundary_core_square_norm_repeated_endpoint_gate()
     check_boundary_core_square_norm_double_root_certificate()
     check_boundary_core_square_norm_raw_endpoint_certificate()
+    check_boundary_core_square_norm_endpoint_discriminant_certificate()
     check_boundary_core_square_norm_endpoint_charge()
     check_boundary_core_square_map_packet_count()
     check_boundary_core_classified_per_core_bound()
