@@ -16,6 +16,7 @@ SQUARE-NORM DOUBLE-ROOT CERTIFICATE /
 SQUARE-NORM RAW-COEFFICIENT ENDPOINT CERTIFICATE /
 SQUARE-NORM RAW-ENDPOINT DISCRIMINANT CERTIFICATE /
 SQUARE-NORM HANKEL-MINOR DISCRIMINANT CERTIFICATE /
+SQUARE-NORM PLUCKER-MINOR DISCRIMINANT CERTIFICATE /
 SQUARE-NORM ENDPOINT-CHARGE COROLLARY /
 SQUARE-MAP PACKET-COUNT COROLLARY /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
@@ -2573,6 +2574,26 @@ The endpoint-support image is therefore controlled by the vanishing of two
 explicit binary-Hankel discriminants in the active root-core row data.  This is
 the form that can be fed into a global core-image charge.
 
+There is also a rank-minor form.  Define the three row-pair minors
+
+```text
+P_i = a_i b_{i+1}-a_{i+1}b_i,
+R_i = a_{i+1}b_{i+2}-a_{i+2}b_{i+1},
+S_i = a_i b_{i+2}-a_{i+2}b_i.
+```
+
+Then direct expansion gives
+
+```text
+Delta_{H_i}=S_i^2-4P_iR_i.                         (RKSQPL)
+```
+
+Thus a finite square-norm endpoint forces the three adjacent Plucker minors
+of the two row triples to lie on the conic `S_i^2=4P_iR_i`.  The fully
+rank-one case `P_i=R_i=S_i=0` is the proportional-row degeneracy; every other
+endpoint-support family must satisfy a genuine conic relation among these
+three minors.  This is the minor-level form of the endpoint-support charge.
+
 The finite endpoints themselves are not residual live mixed-domain slopes.
 Let `z_0` be a finite endpoint of the reduced square norm.
 
@@ -3113,10 +3134,11 @@ local max-degree bound and average-collinearity corollary above, including the
 packet-level higher-exchange ledger substitution, and extracts the
 square-norm repeated-endpoint gate (RKSQREP), the double-root endpoint
 certificate (RKSQDR), the raw-coefficient endpoint certificate (RKSQRAW), the
-raw-endpoint discriminant certificate (RKSQDISC), the finite endpoint-charge
-Hankel-minor discriminant certificate (RKSQHCOEFF/RKSQHDISC), the finite
-endpoint-charge corollary (RKSQEPCH), and square-map packet-count corollary
-(RKSQCOUNT) from the support palette.
+raw-endpoint discriminant certificate (RKSQDISC), the Hankel-minor
+discriminant certificate (RKSQHCOEFF/RKSQHDISC), the Plucker-minor
+discriminant certificate (RKSQPL), the finite endpoint-charge corollary
+(RKSQEPCH), and square-map packet-count corollary (RKSQCOUNT) from the support
+palette.
 
 ## Verification
 
@@ -3172,5 +3194,6 @@ the square-norm endpoint palette (RKSQEND), the repeated-endpoint gate
 (RKSQREP), the double-root endpoint certificate (RKSQDR), the raw-coefficient
 endpoint certificate (RKSQRAW), the raw-endpoint discriminant certificate
 (RKSQDISC), the Hankel-minor discriminant certificate
-(RKSQHCOEFF/RKSQHDISC), the finite endpoint-charge corollary (RKSQEPCH), and
-the packet-count corollary (RKSQCOUNT).
+(RKSQHCOEFF/RKSQHDISC), the Plucker-minor discriminant certificate (RKSQPL),
+the finite endpoint-charge corollary (RKSQEPCH), and the packet-count
+corollary (RKSQCOUNT).

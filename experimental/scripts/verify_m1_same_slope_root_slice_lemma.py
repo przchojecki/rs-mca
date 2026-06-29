@@ -55,8 +55,8 @@ one-root sums, the square-map coset packets, and the degree-one square-map
 packet intersection gate, support-class palette, endpoint palette, and
 repeated-endpoint gate, double-root endpoint certificate, raw-coefficient
 endpoint certificate, endpoint-discriminant certificate, Hankel-minor
-discriminant certificate, endpoint-charge corollary, and packet-count
-corollary.
+discriminant certificate, Plucker-minor discriminant certificate,
+endpoint-charge corollary, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -3136,6 +3136,22 @@ def hankel_minor_poly(
     )
 
 
+def adjacent_plucker_minors(
+    a_rows: tuple[int, int, int, int],
+    b_rows: tuple[int, int, int, int],
+    index: int,
+    p: int,
+) -> tuple[int, int, int]:
+    assert index in (0, 1)
+    row0 = (a_rows[index], b_rows[index])
+    row1 = (a_rows[index + 1], b_rows[index + 1])
+    row2 = (a_rows[index + 2], b_rows[index + 2])
+    p01 = det2(row0, row1, p)
+    p12 = det2(row1, row2, p)
+    p02 = det2(row0, row2, p)
+    return p01, p12, p02
+
+
 def quadratic_character(value: int, p: int) -> int:
     value %= p
     if value == 0:
@@ -5692,6 +5708,23 @@ def check_boundary_core_square_norm_hankel_minor_discriminants() -> None:
                     a_rows,
                     b_rows,
                     (h0, h1, h2),
+                    expected_poly,
+                )
+                p01, p12, p02 = adjacent_plucker_minors(
+                    a_rows,
+                    b_rows,
+                    index,
+                    prime,
+                )
+                assert (p02 * p02 - 4 * p01 * p12) % prime == quadratic_discriminant(
+                    expected_poly,
+                    prime,
+                ), (
+                    prime,
+                    index,
+                    a_rows,
+                    b_rows,
+                    (p01, p12, p02),
                     expected_poly,
                 )
                 double_root = quadratic_double_root(expected_poly, prime)
