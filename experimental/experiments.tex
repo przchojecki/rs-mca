@@ -5799,6 +5799,36 @@ Therefore each tail packing factor is exactly
 \]
 The residual tail difficulty is consequently the multiplicity of the absorbed
 bad-root certificates, not an additional packing loss after absorption.
+Moreover the fully absorbed kernel no longer depends on the tail subset
+\(E\).  For fixed \(S,\lambda\), every admissible tail summand collapses to
+the same absorbed certificate
+\[
+  A^{abs}_{S,\lambda}=
+  S\cup D_{S,\lambda}\cup Z_{S,\lambda}^{\perp},
+  \qquad
+  Q^{abs}_{S,\lambda}=
+  {R_{S,\lambda}\over \ell_{Z_{S,\lambda}^{\perp}}},
+  \qquad
+  w^{abs}_{S,\lambda}=r_\lambda-z_{S,\lambda}^{\perp}.
+\]
+The number of such collapsed certificates is polynomial in fixed surplus.
+Indeed, at an active node the half-height fibers are disjoint and each has
+size at least \(h_{0,S}=\lfloor q_S/2\rfloor+1\), so
+\[
+  |\{\lambda:|D_{S,\lambda}|>q_S/2\}|
+  \le \left\lfloor {N_S\over h_{0,S}}\right\rfloor
+  \le 1+\left\lceil {s_0\over2}\right\rceil .
+\]
+Together with the active skip-ball bound, this gives
+\[
+  \#\{A^{abs}_{S,\lambda}:S\in Tree_2(A),\ F_S^{can}\ne\emptyset\}
+  \le
+  \left(1+\left\lceil {s_0\over2}\right\rceil\right)
+  (s_0+2)q^{s_0+1}.
+\]
+Thus fixed surplus leaves only polynomially many fully absorbed tail
+certificates; the remaining issue is the lifting multiplicity from each
+collapsed certificate back to its admissible tail thickenings.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

@@ -6086,6 +6086,59 @@ factor has already descended to the same root-free primitive form that was
 bounded above, but now on fully absorbed domains and with the displayed
 absorbed certificate multiplicity.
 
+## Collapsed Absorbed Tail Certificates Are Polynomial
+
+Full absorption also removes the dependence of the final kernel on the
+thickening subset `E`.  For fixed `S` and `lambda`, every admissible tail
+summand collapses to the same absorbed fixed-divisor certificate
+
+```text
+A_{S,lambda}^{abs}=S union D_{S,lambda}
+                   union Z_{S,lambda}^{perp},
+Q_{S,lambda}^{abs}=R_{S,lambda}/ell_{Z_{S,lambda}^{perp}},
+w_{S,lambda}^{abs}=r_lambda-z_{S,lambda}^{perp}.
+```
+
+The fully absorbed direction `Q_{S,lambda}^{abs}` is root-free on the fully
+absorbed domain, and its surplus is `s_S` by (PF2-full-abs-surplus).  Thus the
+large binomial family of tail choices `E` does not produce a large family of
+distinct lower-width kernels after full absorption; it produces one collapsed
+absorbed certificate for the half-height fiber `D_{S,lambda}`.  The remaining
+work is to charge or lift the pre-absorption certificate multiplicity inside
+that fixed absorbed certificate.
+
+The number of such collapsed certificates is polynomial in fixed-surplus
+regimes.  At an active node `S`, the half-height fibers are disjoint subsets
+of `D_S^{can}`, each of size at least
+
+```text
+h0_S=floor(q_S/2)+1.
+```
+
+Therefore
+
+```text
+#{lambda : |D_{S,lambda}|>q_S/2}
+ <= floor(N_S/h0_S)
+ <= 1+ceil(s_S/h0_S)
+ <= 1+ceil(s_0/2).                              (PF2-collapsed-per-node)
+```
+
+Combining this per-node bound with the active skip-ball count
+(PF2-active-skipball) gives
+
+```text
+#{collapsed absorbed tail certificates over active Tree_2(A)}
+ <= (1+ceil(s_0/2))(s_0+2) q^{s_0+1}.          (PF2-collapsed-tail-fixed)
+```
+
+Consequently, in fixed-slack regimes the fixed-root tail has only
+polynomially many fully absorbed lower-width certificates.  Any remaining
+super-polynomial behavior would have to come from the internal lifting
+multiplicity from a collapsed absorbed certificate back to its admissible
+tail thickenings, not from the number of absorbed kernels or from their
+packing factors.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

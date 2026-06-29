@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 collapsed absorbed tail certificates
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Shows that after full absorption all tail
+  thickenings over a fixed half-height fiber collapse to one absorbed
+  lower-width certificate, and that fixed surplus gives only
+  `O_sigma(q^(sigma+1))` such certificates.
+- **How it is useful:** Separates the fixed-root tail into polynomially many
+  absorbed kernels plus the remaining internal lifting multiplicity of each
+  certificate.
+- **What to do next:** Bound or charge the lifting multiplicity from a
+  collapsed absorbed certificate to its admissible tail thickenings.
+
 ### 2026-06-29 - M1 full absorption of fixed-root tails
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
