@@ -275,6 +275,26 @@ outside-domain and active filters can only shrink the resulting root count.
 Thus the residual non-line boundary-core problem is a quartic
 Kummer/discriminant trace over the domain roots.
 
+The case where `Disc_R(y)` is identically zero is also already classified.  In
+odd characteristic, coefficient comparison gives either
+
+```text
+F_R(s,p)=lambda L(s,p)^2
+```
+
+for an affine line `L`, or
+
+```text
+F_R(s,p)=lambda(s^2-4p).
+```
+
+The first case is exactly a fixed-sum, fixed-root, or product-Mobius
+line-packet branch.  The second restricts to
+`lambda(beta-y)^2` on the mixed boundary slice, so it contributes only
+`beta=y`, which is removed by the outside-domain/distinct-root filters.  Thus,
+after line-packet and fixed-root charges, the remaining conic target has a
+nonzero quartic discriminant.
+
 ## Integration Decision
 
 The full PR was not merged wholesale.  It included a very large generated
@@ -311,5 +331,5 @@ fixed-anchor boundary-core fiber reduction after fixed-slope boundary slices
 are charged, plus the fixed-core degree-two graph form and the non-fixed
 line-packet mixed-trace formulas, and the quadratic/discriminant anchor gate.
 It does not bound the total active domain-core image or prove the needed
-quartic character-sum cancellation, does not give a leaderboard row, and does
-not change any public MCA or interleaved-list threshold.
+nonzero quartic character-sum cancellation, does not give a leaderboard row,
+and does not change any public MCA or interleaved-list threshold.

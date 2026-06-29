@@ -49,6 +49,29 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 boundary discriminant degeneracy discharge
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/notes/m1/m1_boundary_off_external_anchor_audit.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / BOUNDARY-CORE REDUCTION / AUDIT.
+- **What is being added:** The identically-zero quartic discriminant case in
+  the fixed-core boundary conic is classified: over odd characteristic the
+  elementary determinant is either a scalar affine-line square or a scalar
+  multiple of the envelope conic `s^2-4p`.
+- **How it is useful:** Scalar line squares are already fixed-sum, fixed-root,
+  or product-Mobius line-packet branches, while the envelope contributes only
+  `beta=y` on the mixed boundary slice and is removed by the
+  outside-domain/distinct-root filters.  Thus the live conic target has a
+  nonzero quartic discriminant after existing charges.
+- **What to do next:** Prove cancellation or a polynomial image bound for the
+  remaining nonzero quartic discriminant trace with quotient and active
+  filters imposed.
+
 ### 2026-06-29 - M1 boundary-core discriminant gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

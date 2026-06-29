@@ -1732,6 +1732,34 @@ remove roots from this count.  Consequently the uncharged boundary-core conic
 target is a concrete quartic Kummer/discriminant trace over `D\R`, rather than
 a separate bidegree-incidence problem.
 
+The identically-zero discriminant case is not a new residual branch.  In odd
+characteristic, if `Disc_R(y)` is the zero polynomial, then the elementary
+conic is one of the following two types:
+
+```text
+F_R(s,p)=lambda L(s,p)^2
+```
+
+for an affine line `L`, or
+
+```text
+F_R(s,p)=lambda(s^2-4p).                         (ENV)
+```
+
+This follows by comparing the five coefficients of `Disc_R(y)` with zero.
+The first case is already the affine line-packet branch: by the two-root line
+classification, `L=0` is fixed-sum, fixed-root, or nondegenerate
+product-Mobius.  The second case restricts to
+
+```text
+F_R(beta+y,beta y)=lambda(beta-y)^2,
+```
+
+so its mixed boundary roots have `beta=y`; these are removed by the
+outside-domain/distinct-root filters.  Hence after line-packet and fixed-root
+charges, the live conic boundary-core target has a nonzero quartic
+discriminant.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -1869,8 +1897,9 @@ identifies that determinant as the pullback of the ordinary two-root elementary
 determinant, identifies the mixed-domain trace of each surviving non-fixed
 line packet as the escaped-root graph of the fixed-sum or product-Mobius
 involution, reduces the complementary fixed-core conic trace to the quartic
-discriminant gate above, and gives the local max-degree bound and average-collinearity
-corollary above, including the packet-level
+discriminant gate above, classifies the identically-zero discriminant case as
+line-packet or envelope-filtered, and gives the local max-degree bound and
+average-collinearity corollary above, including the packet-level
 higher-exchange ledger substitution.
 
 ## Verification
@@ -1902,4 +1931,5 @@ fiber reduction over sampled small domains, including the rank-one
 anchor-recovery, quadratic slope-gate, conic-secant anchor-gate, and
 fixed-anchor boundary-core fiber, fixed-core graph, and bidegree determinant
 pullback criteria, the mixed-domain line-packet trace formulas, and the
-boundary-core quadratic/discriminant anchor gate.
+boundary-core quadratic/discriminant anchor gate and its zero-discriminant
+classification.

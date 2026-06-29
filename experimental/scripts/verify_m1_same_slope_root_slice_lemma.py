@@ -30,6 +30,8 @@ The mixed-domain trace formulas for fixed-sum and product-Mobius line packets
 are checked against direct elementary-plane incidence.
 The boundary-core quadratic anchor gate and quartic discriminant root count are
 checked in sampled odd prime fields.
+The identically-zero discriminant case is checked by exhaustive small-field
+classification into scalar affine-line squares or the envelope conic s^2-4p.
 """
 
 from __future__ import annotations
@@ -2700,6 +2702,36 @@ def quadratic_root_count(a_coeff: int, b_coeff: int, c_coeff: int, p: int) -> in
     return p
 
 
+def elementary_tuple_to_poly(coeffs: tuple[int, int, int, int, int, int], p: int) -> Poly2:
+    f_20, f_11, f_02, f_10, f_01, f_00 = coeffs
+    terms = {
+        (2, 0): f_20,
+        (1, 1): f_11,
+        (0, 2): f_02,
+        (1, 0): f_10,
+        (0, 1): f_01,
+        (0, 0): f_00,
+    }
+    return {monomial: coeff % p for monomial, coeff in terms.items() if coeff % p != 0}
+
+
+def scalar_line_square_tuple(a_coeff: int, b_coeff: int, c_coeff: int, scale: int, p: int) -> tuple[int, int, int, int, int, int]:
+    # L(s,p)=a_coeff*p+b_coeff*s+c_coeff.
+    return (
+        (scale * b_coeff * b_coeff) % p,
+        (scale * 2 * a_coeff * b_coeff) % p,
+        (scale * a_coeff * a_coeff) % p,
+        (scale * 2 * b_coeff * c_coeff) % p,
+        (scale * 2 * a_coeff * c_coeff) % p,
+        (scale * c_coeff * c_coeff) % p,
+    )
+
+
+def envelope_tuple(scale: int, p: int) -> tuple[int, int, int, int, int, int]:
+    # scale*(s^2-4p).
+    return (scale % p, 0, 0, 0, (-4 * scale) % p, 0)
+
+
 def eval_boundary_core_vectors(
     vectors: tuple[tuple[int, int], tuple[int, int], tuple[int, int]],
     beta: int,
@@ -2858,6 +2890,51 @@ def check_boundary_core_bidegree_determinant() -> None:
                         == 0
                         for beta in range(p)
                     ), (p, elementary_poly, y)
+
+
+def check_boundary_discriminant_degeneracy_classification() -> None:
+    for p in (3, 5, 7):
+        charged_zero_discriminant: set[tuple[int, int, int, int, int, int]] = set()
+        for scale in range(p):
+            charged_zero_discriminant.add(envelope_tuple(scale, p))
+            for a_coeff, b_coeff, c_coeff in product(range(p), repeat=3):
+                charged_zero_discriminant.add(
+                    scalar_line_square_tuple(a_coeff, b_coeff, c_coeff, scale, p)
+                )
+
+        for coeffs in product(range(p), repeat=6):
+            elementary_poly = elementary_tuple_to_poly(coeffs, p)
+            anchor_a, anchor_b, anchor_c = boundary_anchor_quadratic_coeffs(
+                elementary_poly,
+                p,
+            )
+            anchor_disc = boundary_anchor_discriminant(anchor_a, anchor_b, anchor_c, p)
+            if anchor_disc:
+                continue
+            assert coeffs in charged_zero_discriminant, (
+                p,
+                coeffs,
+                anchor_a,
+                anchor_b,
+                anchor_c,
+            )
+
+        for coeffs in charged_zero_discriminant:
+            elementary_poly = elementary_tuple_to_poly(coeffs, p)
+            anchor_a, anchor_b, anchor_c = boundary_anchor_quadratic_coeffs(
+                elementary_poly,
+                p,
+            )
+            anchor_disc = boundary_anchor_discriminant(anchor_a, anchor_b, anchor_c, p)
+            assert not anchor_disc, (p, coeffs, anchor_disc)
+
+        for scale in range(p):
+            elementary_poly = elementary_tuple_to_poly(envelope_tuple(scale, p), p)
+            for beta in range(p):
+                for y in range(p):
+                    expected = (scale * (beta - y) * (beta - y)) % p
+                    got = eval_poly2(elementary_poly, (beta + y) % p, (beta * y) % p, p)
+                    assert got == expected, (p, scale, beta, y, got, expected)
 
 
 def check_nonruled_degree_bound() -> None:
@@ -3067,6 +3144,7 @@ def main() -> None:
     check_boundary_shadow_conic_secant_duality()
     check_boundary_fixed_anchor_core_fibers()
     check_boundary_core_bidegree_determinant()
+    check_boundary_discriminant_degeneracy_classification()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     check_boundary_core_closure_substitution()
