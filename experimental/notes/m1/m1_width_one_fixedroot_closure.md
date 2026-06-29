@@ -557,6 +557,75 @@ continues with the next residual coefficient.  In either case, the first gate
 is the canonical place to start a falsification-first search for large
 rank-test complements.
 
+## Residual Gate Chain and Node GCD
+
+The later residual coefficients have the same elementary-symmetric form.  Put
+
+```text
+u_0(lambda)=1,
+u_i(lambda)=(-1)^i [X^{q-1-i}](M+lambda N),      1<=i<=q-1,
+u_i(lambda)=0,                                   i>q-1,
+o_0(lambda)=1.
+```
+
+For `0<=r<=q+s`, define
+
+```text
+G_r(lambda)
+ =
+ e_r(D)-sum_{j=0}^{s+1} o_j(lambda) u_{r-j}(lambda),
+```
+
+where `u_i=0` for `i<0` and `e_r(D)=0` for `r>|D|`.  The tail recursion is
+exactly the assertion that
+
+```text
+G_r(lambda) == 0        for 0<=r<=s+1.           (W1-tail-gates)
+```
+
+The remaining factorization test is
+
+```text
+G_r(lambda)=0        for s+2<=r<=q+s.            (W1-gate-chain)
+```
+
+Indeed, the coefficient of `X^{q+s-r}` in
+
+```text
+ell_D(X)-E_lambda(X)(M+lambda N)
+```
+
+is `(-1)^r G_r(lambda)`.  Hence the residual vector from the previous section
+is exactly the gate chain `(G_{s+2},...,G_{q+s})`, written in symmetric
+coordinates.  Every `G_r` has degree at most `s+2`: the factor
+`o_j(lambda)` has degree at most `j`, while `u_{r-j}(lambda)` is constant,
+affine-linear, or zero.
+
+If `N!=0`, the gate chain is not identically zero.  Otherwise all gates would
+vanish as polynomial identities in `lambda`, giving the factorization
+
+```text
+ell_D=E_lambda(M+lambda N)
+```
+
+for every `lambda` over an algebraic closure, and hence infinitely many
+distinct monic degree-`q-1` divisors of the fixed squarefree polynomial
+`ell_D`.
+
+Consequently the scalar candidate set at a large node is the zero set of the
+single nonzero node polynomial
+
+```text
+P_node(lambda)=gcd(G_{s+2},G_{s+3},...,G_{q+s}),     (W1-node-gcd)
+```
+
+with zero gates omitted from the gcd.  This polynomial has degree at most
+`s+2`, and its roots are exactly the scalar parameters passing the full
+bounded-complement rank test.  The rank-test exclusion can therefore be stated
+as a concrete node-gcd problem: after the standard charges, no node with
+`q/log Q -> infinity` should have a split complement arising from a root of
+this fixed-degree polynomial.
+
 ## Fixed-Surplus Closure Criterion
 
 Now sum over active canonical nodes with initial surplus `s_0<=sigma`.  Let

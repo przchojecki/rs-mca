@@ -1771,6 +1771,24 @@ The equation \(G_{s+2}(\lambda)=0\) is exactly the coefficient of
 single fixed-degree polynomial gate; if it is nonzero, there are at most
 \(s+2\) scalar candidates at the node before later residual equations are
 checked.
+More generally, with \(u_0=o_0=1\), \(u_i=(-1)^ic_i(\lambda)\), and
+\(u_i=0\) for \(i>q-1\), define
+\[
+  G_r(\lambda)
+  =
+  e_r(D)-\sum_{j=0}^{s+1}o_j(\lambda)u_{r-j}(\lambda).
+\]
+The tail recursion is \(G_r\equiv0\) for \(0\le r\le s+1\), while the full
+factorization test is
+\[
+  G_r(\lambda)=0,\qquad s+2\le r\le q+s.
+\]
+The coefficient of \(X^{q+s-r}\) in
+\(\ell_D-E_\lambda(M+\lambda N)\) is \((-1)^rG_r(\lambda)\), and every gate
+has degree at most \(s+2\).  Since \(N\ne0\) prevents the whole chain from
+vanishing identically, the scalar candidate set is the root set of the single
+nonzero node gcd \(\gcd(G_{s+2},\ldots,G_{q+s})\), again of degree at most
+\(s+2\).
 
 Consequently, in fixed surplus \(s_0\le\sigma\), small nodes are polynomial by
 the active-tree bound, and on \(q_S>s_S+2\) there is at most one width-one

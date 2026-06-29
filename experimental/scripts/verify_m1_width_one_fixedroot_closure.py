@@ -62,6 +62,22 @@ def first_gate(e_d: list[int], u_values: list[int], o_values: list[int], s: int,
     return (e_d[s + 2] - rhs) % p
 
 
+def gate_value(
+    e_d: list[int],
+    u_values: list[int],
+    o_values: list[int],
+    r_index: int,
+    s: int,
+    p: int,
+) -> int:
+    rhs = 0
+    for j in range(0, s + 2):
+        u_index = r_index - j
+        if 0 <= u_index < len(u_values):
+            rhs = (rhs + o_values[j] * u_values[u_index]) % p
+    return (e_d[r_index] - rhs) % p
+
+
 def check_tail_recovers_complement() -> None:
     for p in (7, 11, 17, 23):
         for s in range(0, 4):
@@ -139,6 +155,94 @@ def check_first_gate_is_residual_coefficient() -> None:
                     )
 
 
+def check_residual_gate_chain() -> None:
+    rng = Random(20260709)
+    for p in (7, 11, 17, 23):
+        for s in range(0, 4):
+            for q in range(s + 3, min(p - s, s + 7)):
+                domain = list(range(q + s))
+                ell_d = locator(domain, p)
+                e_d = elementary(domain, q + s, p)
+
+                for _ in range(120):
+                    ell_l = [rng.randrange(p) for _ in range(q - 1)] + [1]
+                    coeffs = high_coefficients(ell_l, q - 1, q - 1, p)
+                    u_values = [1]
+                    u_values.extend(((-1) ** i * coeffs[i - 1]) % p for i in range(1, q))
+                    o_values = tail_recursion(e_d, u_values + [0] * (s + 2), s, p)
+                    ell_o = complement_from_o(o_values, s, p)
+                    residual = [
+                        (a - b) % p
+                        for a, b in zip(ell_d, poly_mul(ell_o, ell_l, p))
+                    ]
+
+                    for r_index in range(0, s + 2):
+                        assert gate_value(e_d, u_values, o_values, r_index, s, p) == 0, (
+                            p,
+                            s,
+                            q,
+                            r_index,
+                            ell_l,
+                        )
+
+                    for r_index in range(s + 2, q + s + 1):
+                        gate = gate_value(e_d, u_values, o_values, r_index, s, p)
+                        residual_coeff = residual[q + s - r_index] % p
+                        signed_gate = (((-1) ** r_index) * gate) % p
+                        assert residual_coeff == signed_gate, (
+                            p,
+                            s,
+                            q,
+                            r_index,
+                            residual_coeff,
+                            signed_gate,
+                        )
+
+
+def check_gate_chain_candidate_set() -> None:
+    rng = Random(20260710)
+    for p in (7, 11, 17):
+        for s in range(0, 3):
+            for q in range(s + 3, min(p - s, s + 6)):
+                domain = list(range(q + s))
+                ell_d = locator(domain, p)
+                e_d = elementary(domain, q + s, p)
+                m_poly = [rng.randrange(p) for _ in range(q - 1)] + [1]
+                n_poly = [rng.randrange(p) for _ in range(q - 1)] + [0]
+
+                gate_roots: set[int] = set()
+                factor_roots: set[int] = set()
+                nonzero_gate_seen = False
+
+                for lam in range(p):
+                    ell_l = [(m_poly[i] + lam * n_poly[i]) % p for i in range(q)]
+                    coeffs = high_coefficients(ell_l, q - 1, q - 1, p)
+                    u_values = [1]
+                    u_values.extend(((-1) ** i * coeffs[i - 1]) % p for i in range(1, q))
+                    o_values = tail_recursion(e_d, u_values + [0] * (s + 2), s, p)
+                    ell_o = complement_from_o(o_values, s, p)
+                    gates = [
+                        gate_value(e_d, u_values, o_values, r_index, s, p)
+                        for r_index in range(s + 2, q + s + 1)
+                    ]
+                    if any(gate != 0 for gate in gates):
+                        nonzero_gate_seen = True
+                    if all(gate == 0 for gate in gates):
+                        gate_roots.add(lam)
+                    if poly_mul(ell_o, ell_l, p) == ell_d:
+                        factor_roots.add(lam)
+
+                assert gate_roots == factor_roots, (
+                    p,
+                    s,
+                    q,
+                    gate_roots,
+                    factor_roots,
+                )
+                if any(value % p != 0 for value in n_poly):
+                    assert nonzero_gate_seen, (p, s, q, m_poly, n_poly)
+
+
 def check_gate_degree_bound() -> None:
     # Interpolate the first gate along random monic affine pencils and verify
     # that finite differences of order s+3 vanish, as degree <= s+2 predicts.
@@ -178,6 +282,8 @@ def check_gate_degree_bound() -> None:
 def main() -> None:
     check_tail_recovers_complement()
     check_first_gate_is_residual_coefficient()
+    check_residual_gate_chain()
+    check_gate_chain_candidate_set()
     check_gate_degree_bound()
     print("M1 width-one fixed-root verifier passed")
 

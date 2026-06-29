@@ -120,14 +120,17 @@ Keep entries concise and link to the relevant files.
   `G_{s+2}(lambda)=e_{s+2}(D)-u_{s+2}(lambda)-sum_j u_j(lambda)o_{s+2-j}(lambda)`.
   This gate is the coefficient of `X^{q-2}` in
   `ell_D-E_lambda(M+lambda N)`, up to sign, and has degree at most `s+2`.
+  The same update packages all later coefficients as a gate chain
+  `G_r(lambda)=e_r(D)-sum_j o_j(lambda)u_{r-j}(lambda)`, whose common roots
+  are the roots of the nonzero node gcd `gcd(G_{s+2},...,G_{q+s})`.
 - **How it is useful:** A width-one survivor must pass this fixed-degree
-  scalar gate before the later residual equations.  If the gate is nonzero,
-  it leaves at most `s+2` scalar candidates at the node; if it vanishes
-  identically, that is a named algebraic degeneracy for the next proof or
-  counterexample search.
-- **What to do next:** Analyze when `G_{s+2}` can vanish identically after the
-  standard M1 charges, or use it as the first filter in rank-test
-  falsification scans.
+  scalar gate chain.  Since `N!=0` prevents every residual gate from vanishing
+  identically, the scalar candidate set at each node is controlled by one
+  nonzero degree-`<=s+2` polynomial; this makes the rank-test exclusion a
+  concrete node-gcd problem.
+- **What to do next:** Analyze when the node gcd can have a split complement
+  root with `q/log Q -> infinity` after the standard M1 charges, or use the
+  gate chain as the first filter in rank-test falsification scans.
 
 ### 2026-06-29 - M1 width-one rank-test logarithmic exclusion
 
