@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 fixed-surplus half-height baseline bound
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Extracts the fixed-surplus corollary of the
+  skip-ball envelope: the residual base-free half-height baseline is bounded
+  by `(1+ceil(s0/2))(s0+1)q^s0`.
+- **How it is useful:** Closes this half-height baseline as a polynomial
+  terminal ledger in fixed-slack M1 regimes after the other explicit ledgers
+  have been separated.
+- **What to do next:** Attack the remaining non-polynomial risks in the
+  fixed-root, bounded-width primitive, diffuse, and lower-dimensional ledgers.
+
 ### 2026-06-29 - M1 base-free half-height skip-ball envelope
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

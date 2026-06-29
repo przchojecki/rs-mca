@@ -5781,6 +5781,44 @@ on all depths of the canonical tree.  In fixed-surplus regimes this is a
 polynomial-size terminal ledger; in general it isolates the only remaining
 combinatorial growth parameter as the number of skipped base roots.
 
+## Fixed-Surplus Half-Height Baseline Is Polynomial
+
+The skip-ball envelope gives a clean polynomial bound in the low-slack regimes
+listed in the M1 guide.  Since `B_0^*(A)` is contained in the zero set of a
+nonzero degree-`<q` residual direction at a `b=2` root node, one has
+`b_0<=q-1`.  Moreover every node counted in `Tree_2(A)` has `q_S>=2`, so
+
+```text
+1+ceil((s_0-ell)/(floor(q_S/2)+1))
+ <= 1+ceil((s_0-ell)/2)
+ <= 1+ceil(s_0/2).
+```
+
+Therefore, for `b_0>0`, (PF2-skipball-core) implies
+
+```text
+sum_{S in Tree_2(A), B_S=empty}
+  (1+ceil(s_S/(floor(q_S/2)+1)))
+
+ <=
+ (1+ceil(s_0/2))
+ sum_{ell=0}^{min(s_0,b_0-1)} binom(b_0-1,ell)
+ <=
+ (1+ceil(s_0/2))(s_0+1) q^{s_0}.              (PF2-fixed-surplus-core)
+```
+
+For `b_0=0` the same final bound holds from the singleton case in
+(PF2-skipball-core), since `1+ceil(s_0/(floor(q/2)+1))` is at most the right
+side of (PF2-fixed-surplus-core).  Thus if the initial surplus is bounded by
+a fixed constant `sigma`, the entire residual base-free half-height baseline is
+`O_sigma(q^sigma)`.  In particular, for fixed slack `t=1,2,3` this part of
+the M1 half-height obstruction is polynomial-size after the fixed-root tails,
+bounded-width primitive denominators, diffuse determinant gates, and
+lower-dimensional terminal leaves have been separated.  The remaining
+non-polynomial risk is therefore not a depth compounding of the root-free
+half-height baseline, but the still-explicit ledgers outside this terminal
+fixed-surplus core.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

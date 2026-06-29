@@ -5639,6 +5639,27 @@ and activity forces \(\ell\le s_0\).  Therefore
 \]
 So the residual root-free half-height baseline is supported on a terminal
 skip ball of radius \(s_0\), not on every level of the peeling tree.
+Consequently this baseline is polynomial in every fixed-surplus regime.  Since
+\(b_0\le q-1\) at a \(b=2\) root node and every node in \(Tree_2(A)\) has
+\(q_S\ge2\),
+\[
+  1+\left\lceil {s_0-\ell\over \lfloor q_S/2\rfloor+1}\right\rceil
+  \le 1+\left\lceil {s_0\over2}\right\rceil .
+\]
+Hence, for \(b_0>0\),
+\[
+ \sum_{\substack{S\in Tree_2(A)\\ B_S=\emptyset}}
+ \left(1+\left\lceil {s_S\over \lfloor q_S/2\rfloor+1}\right\rceil\right)
+ \le
+ \left(1+\left\lceil {s_0\over2}\right\rceil\right)
+ \sum_{\ell=0}^{\min(s_0,b_0-1)}\binom{b_0-1}{\ell}
+ \le
+ \left(1+\left\lceil {s_0\over2}\right\rceil\right)(s_0+1)q^{s_0},
+\]
+with the \(b_0=0\) case satisfying the same final bound by the singleton
+bound above.  Thus for fixed initial surplus the residual base-free
+half-height baseline is a polynomial terminal ledger after the fixed-root,
+bounded-width, diffuse, and lower-dimensional terms have been separated.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots
