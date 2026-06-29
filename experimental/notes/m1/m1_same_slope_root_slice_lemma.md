@@ -11,6 +11,7 @@ ROOT-CORE SLOPE COVER /
 ROOT-CORE DOMAIN KUMMER FILTER /
 SQUARE-MAP PACKET INTERSECTION GATE /
 SQUARE-NORM ENDPOINT PALETTE /
+SQUARE-NORM REPEATED-ENDPOINT GATE /
 SQUARE-MAP PACKET-COUNT COROLLARY /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
 
@@ -2433,6 +2434,35 @@ the root-core recurrence chart.  Choosing a different square root of `N_R`
 only rescales or inverts the degree-one parameter, so by (RKSQPAL) it does not
 create new slope packets beyond the same finite support palette.
 
+The degree-two norm also gives a sharper algebraic gate for this endpoint
+image.  Replace `B_R,Q_R` by the reduced numerator and denominator
+`bar B_R,bar Q_R` of `B_R/Q_R`.  Since both have degree at most two, a
+nonconstant square-norm branch is equivalent to
+
+```text
+bar B_R = gamma_0 L_0^2   or   bar B_R constant,
+bar Q_R = gamma_1 L_1^2   or   bar Q_R constant,
+```
+
+with at least one nonconstant factor and with the degree imbalance equal to
+`0` or `+-2`.  Equivalently, every finite zero or pole of the reduced norm has
+valuation `+-2`, and the point at infinity has valuation `0` or `+-2`.
+Thus no simple reduced root can occur in the square-norm exception:
+
+```text
+B_R/Q_R nonconstant square
+  => every finite endpoint is a repeated root of bar B_R or bar Q_R.   (RKSQREP)
+```
+
+In coefficient terms, after cancellation each nonconstant reduced quadratic
+has zero discriminant, while reduced degree-one factors are forbidden.  Thus
+the square-norm packet image is supported on repeated-root/discriminant-zero
+norm-boundary loci, plus the two infinity cases coming from degree imbalance.
+This is stronger than merely saying that endpoints are roots of `B_R` and
+`Q_R`: it identifies the exceptional endpoint image as a low-codimension
+algebraic locus that can be charged separately from generic norm-boundary
+roots.
+
 This gives the counting form needed by the global ledger.  Let `S` be any
 finite family of square-map packets
 
@@ -2941,7 +2971,8 @@ per-core classified bound (RKCLASS), including the positive-parity square-norm
 norm-filter bound and the negative-parity one-root collapse, and gives the
 local max-degree bound and average-collinearity corollary above, including the
 packet-level higher-exchange ledger substitution, and extracts the
-square-map packet-count corollary (RKSQCOUNT) from the support palette.
+square-norm repeated-endpoint gate (RKSQREP) and square-map packet-count
+corollary (RKSQCOUNT) from the support palette.
 
 ## Verification
 
@@ -2993,5 +3024,5 @@ square-norm Fourier term, and the cover-term norm-pushforward obstruction
 (RKANTIGENUS), plus the rational cubic coefficient ledger (RKCUBBD) and the
 classified per-core bound (RKCLASS), the degree-one square-map packet
 intersection gate (RKSQINT), the finite support-class palette (RKSQPAL), and
-the square-norm endpoint palette (RKSQEND), and the packet-count corollary
-(RKSQCOUNT).
+the square-norm endpoint palette (RKSQEND), the repeated-endpoint gate
+(RKSQREP), and the packet-count corollary (RKSQCOUNT).

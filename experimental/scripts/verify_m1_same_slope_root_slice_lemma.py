@@ -53,7 +53,7 @@ cubic anti-ratio powers, plus the rational-cubic coefficient ledger and final
 classified per-core bound, including the negative square-norm collapse to
 one-root sums, the square-map coset packets, and the degree-one square-map
 packet intersection gate, support-class palette, endpoint palette, and
-packet-count corollary.
+repeated-endpoint gate, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -2987,6 +2987,38 @@ def finite_square_packet(
     return frozenset(packet)
 
 
+def degree_two_square_endpoint_gate(
+    numerator: Poly1,
+    denominator: Poly1,
+    p: int,
+) -> bool:
+    assert 0 <= poly1_degree(numerator) <= 2
+    assert 0 <= poly1_degree(denominator) <= 2
+    exponents, infinity_exponent = rational_divisor_exponents(
+        numerator,
+        denominator,
+        p,
+    )
+    if not exponents and infinity_exponent == 0:
+        return False
+    if infinity_exponent not in {-2, 0, 2}:
+        return False
+    zero_count = 1 if infinity_exponent > 0 else 0
+    pole_count = 1 if infinity_exponent < 0 else 0
+    for factor, exponent in exponents.items():
+        if exponent not in {-2, 2}:
+            return False
+        # Degree-two norms can only have square endpoints at finite linear
+        # factors; a reduced irreducible quadratic is a simple conjugate pair.
+        if len(factor) != 2:
+            return False
+        if exponent > 0:
+            zero_count += 1
+        else:
+            pole_count += 1
+    return zero_count == 1 and pole_count == 1
+
+
 def quadratic_character(value: int, p: int) -> int:
     value %= p
     if value == 0:
@@ -5079,6 +5111,97 @@ def check_boundary_core_square_norm_endpoint_palette() -> None:
                         )
 
 
+def check_boundary_core_square_norm_repeated_endpoint_gate() -> None:
+    rng = Random(20260731)
+    for prime in (5, 7, 11, 17):
+        polys = [
+            poly1_from_list(list(coeffs), prime)
+            for coeffs in product(range(prime), repeat=3)
+        ]
+        polys = [poly for poly in polys if poly]
+        if prime <= 5:
+            pairs = [
+                (numerator, denominator)
+                for numerator in polys
+                for denominator in polys
+            ]
+        else:
+            pairs = [(rng.choice(polys), rng.choice(polys)) for _ in range(1200)]
+
+        linear_bases = [
+            poly1_from_list([constant, slope], prime)
+            for constant in range(prime)
+            for slope in range(prime)
+        ]
+        linear_bases = [poly for poly in linear_bases if poly]
+        for _ in range(240):
+            gamma_num = rng.randrange(1, prime)
+            gamma_den = rng.randrange(1, prime)
+            numerator_base = rng.choice(linear_bases)
+            denominator_base = rng.choice(linear_bases)
+            numerator_square = poly1_mul(numerator_base, numerator_base, prime)
+            denominator_square = poly1_mul(denominator_base, denominator_base, prime)
+            numerator = {
+                degree: (gamma_num * coeff) % prime
+                for degree, coeff in numerator_square.items()
+            }
+            denominator = {
+                degree: (gamma_den * coeff) % prime
+                for degree, coeff in denominator_square.items()
+            }
+            pairs.append((numerator, denominator))
+            pairs.append((numerator, {0: gamma_den}))
+            pairs.append(({0: gamma_num}, denominator))
+
+        for numerator, denominator in pairs:
+            square_nonconstant = rational_square_divisor(
+                numerator,
+                denominator,
+                prime,
+            ) and not rational_constant_divisor(numerator, denominator, prime)
+            endpoint_gate = degree_two_square_endpoint_gate(
+                numerator,
+                denominator,
+                prime,
+            )
+            assert endpoint_gate == square_nonconstant, (
+                prime,
+                numerator,
+                denominator,
+                endpoint_gate,
+                square_nonconstant,
+                rational_divisor_exponents(numerator, denominator, prime),
+            )
+            if not endpoint_gate:
+                continue
+            exponents, infinity_exponent = rational_divisor_exponents(
+                numerator,
+                denominator,
+                prime,
+            )
+            assert infinity_exponent in {-2, 0, 2}, (
+                prime,
+                numerator,
+                denominator,
+                infinity_exponent,
+            )
+            for factor, exponent in exponents.items():
+                assert len(factor) == 2, (
+                    prime,
+                    numerator,
+                    denominator,
+                    factor,
+                    exponent,
+                )
+                assert exponent in {-2, 2}, (
+                    prime,
+                    numerator,
+                    denominator,
+                    factor,
+                    exponent,
+                )
+
+
 def check_boundary_core_square_map_packet_count() -> None:
     rng = Random(20260730)
     for prime in (5, 7, 11, 17, 19):
@@ -5422,6 +5545,7 @@ def main() -> None:
     check_boundary_core_square_map_packet_intersection_gate()
     check_boundary_core_square_map_support_palette()
     check_boundary_core_square_norm_endpoint_palette()
+    check_boundary_core_square_norm_repeated_endpoint_gate()
     check_boundary_core_square_map_packet_count()
     check_boundary_core_classified_per_core_bound()
     check_nonruled_degree_bound()
