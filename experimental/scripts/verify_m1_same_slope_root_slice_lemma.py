@@ -17,6 +17,7 @@ It also checks the t=2 determinant-gate formula.
 
 from __future__ import annotations
 
+from fractions import Fraction
 from itertools import product
 from random import Random
 
@@ -146,11 +147,37 @@ def check_nonruled_degree_bound() -> None:
             assert len(edges) <= core_count, (n, j, len(edges), core_count)
 
 
+def check_average_collinearity_corollary() -> None:
+    # For t=2 the existing average-collinearity ledger reads
+    # B_2^max(A) = (1-p_z)/(M p_z) + (4/M) Gamma_1(A) Q.
+    # The non-ruled degree bound Gamma_1(A) <= j gives (AVG1).
+    for q in (5, 7, 17, 31):
+        p_z = Fraction(q * q - 1, q**4)
+        for locator_degree in range(1, 8):
+            for m_size in (1, 2, 5, 25, 100):
+                for gamma_1 in range(locator_degree + 1):
+                    ledger = (
+                        Fraction(1, 1) - p_z
+                    ) / (m_size * p_z) + Fraction(4 * gamma_1 * q, m_size)
+                    stated_bound = (
+                        Fraction(1, 1) - p_z
+                    ) / (m_size * p_z) + Fraction(4 * locator_degree * q, m_size)
+                    assert ledger <= stated_bound, (
+                        q,
+                        locator_degree,
+                        m_size,
+                        gamma_1,
+                        ledger,
+                        stated_bound,
+                    )
+
+
 def main() -> None:
     check_difference_identity()
     check_row_implication()
     check_t2_determinant_gate()
     check_nonruled_degree_bound()
+    check_average_collinearity_corollary()
     print("same-slope root-slice lemma verifier passed")
 
 

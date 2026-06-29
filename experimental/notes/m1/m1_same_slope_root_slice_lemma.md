@@ -184,6 +184,35 @@ core supports at most one unordered edge.  Thus high one-exchange codegree in
 the `t=2` all-line Hankel branch can only come from fixed-slope root slices or
 ruled determinant cores.
 
+## Average-Collinearity Ledger Corollary
+
+The degree bound plugs directly into the average support-collinearity ledger in
+`experimental/notes/m1/m1_average_support_collinearity.md`.  To avoid a
+notation clash with the locator degree `j`, write the line-field size as `Q`.
+For `t=2`, the max-codegree bound in that ledger is
+
+```text
+B_2^max(A) = (1 - p_z)/(M p_z) + (4/M) Gamma_1(A) Q,
+        p_z = Q^(-2)(1 - Q^(-2)),     M=|A|.
+```
+
+Therefore the non-ruled residual family satisfies
+
+```text
+B_2^max(A_nr) <= (1 - p_z)/(M p_z) + 4jQ/M.      (AVG1)
+```
+
+Consequently, in any parameter regime where `M p_z -> infinity` and
+`M/(jQ) -> infinity`, the non-ruled one-exchange part contributes
+`o(1)` to the missing-slope density in the average-collinearity ledger.  In the
+usual heuristic scale `p_z ~ Q^(-2)`, this means the two visible average-ledger
+requirements are `M >> Q^2` and `M >> jQ`.
+
+This does not prove the worst-case M1 packing theorem.  It identifies the
+remaining average-ledger obstruction after this local reduction: small residual
+family size, fixed-slope root slices, ruled determinant cores, or higher
+packet/two-exchange structure.
+
 ## Non-Claims
 
 This lemma does not bound the remaining different-slope one-exchange graph, the
@@ -191,7 +220,7 @@ ruled determinant branch, the two-exchange packet-edge ledger, or the
 one-outside boundary image.  It only proves that same-slope one-exchange
 collisions belong to the fixed-slope root-slice ledger and that non-ruled
 `t=2` one-exchange cores have at most two determinant anchors, giving the
-local max-degree bound above.
+local max-degree bound and average-collinearity corollary above.
 
 ## Verification
 

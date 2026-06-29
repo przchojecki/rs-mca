@@ -64,12 +64,14 @@ Keep entries concise and link to the relevant files.
   two extensions through a common `(j-1)` core imply
   `L_z ell_R=L_z(X ell_R)=0`.  In the `t=2` gate, anchors through the same
   core also satisfy a quadratic determinant equation, so three anchors force a
-  ruled determinant branch.
+  ruled determinant branch.  The resulting non-ruled degree bound is also
+  inserted into the existing average-collinearity max-codegree ledger.
 - **How it is useful:** After fixed-slope root slices are charged, the
   residual one-exchange graph has only different-slope edges, and after ruled
   determinant cores are separated, each core contributes at most one unordered
   one-exchange edge; consequently the residual `t=2` one-exchange graph has
-  maximum degree at most `j`.
+  maximum degree at most `j` and average-ledger error term at most
+  `(1-p_z)/(M p_z)+4jQ/M`.
 - **What to do next:** Bound the remaining different-slope one-exchange or
   two-exchange codegree ledgers after quotient-periodic, tangent/contained,
   and root-slice charges.

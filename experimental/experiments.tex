@@ -1614,6 +1614,22 @@ removed, the residual \(t=2\) one-exchange graph has maximum degree at most
 core supplies at most one neighbor.  In particular the unordered residual edge
 count is at most \(j|A|/2\), and also at most \(\binom{|D|}{j-1}\) by counting
 cores.
+Plugging this into the average support-collinearity ledger
+\path{experimental/notes/m1/m1_average_support_collinearity.md}, and writing
+the line-field size as \(Q\), gives for the non-ruled residual family \(A_{\rm
+nr}\), \(M=|A_{\rm nr}|\),
+\[
+  B_2^{\max}(A_{\rm nr})
+  \le
+  \frac{1-p_z}{M p_z}+\frac{4jQ}{M},
+  \qquad
+  p_z=Q^{-2}(1-Q^{-2}).
+\]
+Thus this branch contributes \(o(1)\) to the average missing-slope density
+whenever \(M p_z\to\infty\) and \(M/(jQ)\to\infty\).  The remaining M1
+obstruction must come from small residual family size, root-slice or ruled-core
+charges, or higher packet/two-exchange structure; this is not yet a worst-case
+packing theorem.
 
 \subsection{M1: variable-line packet reduction}
 
