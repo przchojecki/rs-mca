@@ -42,6 +42,9 @@ The certificate records:
   the `B_Q=0`, threshold-pinned, and exact-range-safe regimes;
 - exact `k=2^40` prize-rate power-of-two denominator boundaries:
   `166,168,169,170` bits for rates `1/2,1/4,1/8,1/16`.
+  The certificate also records the complementary official power-of-two
+  ranges through bit `255` that require lower-agreement theory, and the exact
+  minimum `k` this compiler would need to pin `Q=2^255`.
 
 It does not prove lower-agreement M1, quotient floors, extension transfer, L2,
 or any protocol ledger that consumes extra list/curve/query/folding terms.

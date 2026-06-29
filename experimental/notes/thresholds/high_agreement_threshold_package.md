@@ -203,9 +203,22 @@ rho=1/8:  lambda_max = 169
 rho=1/16: lambda_max = 170
 ```
 
-Above those power-of-two sizes, the tangent theorem still proves safety through
-its exact high-agreement range, but the later threshold belongs to the
-lower-agreement quotient/local-limit program.
+Within the official power-of-two field range `2^128 <= Q < 2^256`, this splits
+the max-dimension prize envelope as follows.
+
+```text
+rho=1/2:  pinned bits 128..166; lower-agreement bits 167..255
+rho=1/4:  pinned bits 128..168; lower-agreement bits 169..255
+rho=1/8:  pinned bits 128..169; lower-agreement bits 170..255
+rho=1/16: pinned bits 128..170; lower-agreement bits 171..255
+```
+
+Above the pinned power-of-two sizes, the tangent theorem still proves safety
+through its exact high-agreement range, but the later threshold belongs to the
+lower-agreement quotient/local-limit program. The certificate records the exact
+minimum `k` that would be needed for this same compiler to pin the largest
+official power-of-two field `Q=2^255`; in all four rates this exceeds the prize
+limit `k <= 2^40`.
 
 This is only the single-line/MCA/CA compiler. If a protocol consumes an extra
 same-denominator list term, curve term, query term, folding term, or crypto

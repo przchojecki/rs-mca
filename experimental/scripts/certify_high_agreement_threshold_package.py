@@ -240,6 +240,12 @@ def floor_log2(value: int) -> int:
     return value.bit_length() - 1
 
 
+def ceil_div(numer: int, denom: int) -> int:
+    if denom <= 0:
+        raise ValueError("ceil_div requires a positive denominator")
+    return -(-numer // denom)
+
+
 def exact_range_min_agreement(n: int, k: int) -> int:
     """Smallest integer a satisfying 3a - 2n >= k."""
     return (2 * n + k + 2) // 3
@@ -393,7 +399,7 @@ def prize_rate_probes() -> list[CompilerProbe]:
     k = 1 << 40
     for rho_num, rho_den in [(1, 2), (1, 4), (1, 8), (1, 16)]:
         n = k * rho_den // rho_num
-        for bits in [96, 128, 160, 192, 256]:
+        for bits in [96, 128, 160, 192, 255]:
             out.append(
                 CompilerProbe(
                     label=f"rho={rho_num}/{rho_den}, k=2^40, Q=2^{bits}",
@@ -408,6 +414,7 @@ def prize_rate_probes() -> list[CompilerProbe]:
 def prize_rate_boundary_rows() -> list[dict[str, Any]]:
     """Exact single-line compiler boundaries at the max prize dimension."""
     k = 1 << 40
+    largest_official_power2_bits = 255
     rows: list[dict[str, Any]] = []
     for d in [2, 4, 8, 16]:
         n = d * k
@@ -415,6 +422,12 @@ def prize_rate_boundary_rows() -> list[dict[str, Any]]:
         max_q_pinned = (1 << TARGET) * (r_line + 1) - 1
         max_power2_bits = TARGET + floor_log2(r_line)
         first_power2_bits_beyond = max_power2_bits + 1
+        min_k_to_pin_largest_power2 = ceil_div(
+            3 * (1 << (largest_official_power2_bits - TARGET)),
+            d - 1,
+        )
+        unresolved_min = first_power2_bits_beyond
+        unresolved_max = largest_official_power2_bits
         checks = {
             "rate_denominator": d in [2, 4, 8, 16],
             "n_matches_rate": n == d * k,
@@ -422,6 +435,12 @@ def prize_rate_boundary_rows() -> list[dict[str, Any]]:
             "max_power2_inside_interval": (1 << max_power2_bits) <= max_q_pinned,
             "next_power2_outside_interval": (1 << first_power2_bits_beyond)
             > max_q_pinned,
+            "official_power2_upper_is_exclusive": (1 << largest_official_power2_bits)
+            < (1 << 256),
+            "largest_official_power2_not_pinned_at_kmax": (1 << largest_official_power2_bits)
+            > max_q_pinned,
+            "min_k_for_largest_official_power2_exceeds_prize_kmax": min_k_to_pin_largest_power2
+            > k,
         }
         rows.append(
             {
@@ -429,10 +448,26 @@ def prize_rate_boundary_rows() -> list[dict[str, Any]]:
                 "k": k,
                 "n": n,
                 "line_exact_radius": r_line,
+                "official_field_bound": "|F| < 2^256",
+                "official_power2_bits": {
+                    "smallest_relevant": TARGET,
+                    "largest_allowed": largest_official_power2_bits,
+                },
                 "pinned_denominator_min": 1 << TARGET,
                 "pinned_denominator_max": max_q_pinned,
                 "max_power2_field_bits_pinned": max_power2_bits,
                 "first_power2_field_bits_beyond_pinned": first_power2_bits_beyond,
+                "pinned_power2_bit_interval": {
+                    "min": TARGET,
+                    "max": max_power2_bits,
+                    "count": max_power2_bits - TARGET + 1,
+                },
+                "requires_lower_agreement_power2_bit_interval": {
+                    "min": unresolved_min,
+                    "max": unresolved_max,
+                    "count": unresolved_max - unresolved_min + 1,
+                },
+                "min_k_to_pin_largest_official_power2_field": min_k_to_pin_largest_power2,
                 "checks": checks,
             }
         )

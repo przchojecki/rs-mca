@@ -414,17 +414,17 @@
         "threshold_pinned": false
       },
       {
-        "budget": 340282366920938463463374607431768211456,
+        "budget": 170141183460469231731687303715884105728,
         "checks": {
           "budget_exceeds_exact_range": true,
           "exact_range_numerator_within_budget": true
         },
         "compiler_applies": false,
         "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
-        "denominator": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
+        "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
         "first_unsafe_radius": null,
         "k": 1099511627776,
-        "label": "rho=1/2, k=2^40, Q=2^256",
+        "label": "rho=1/2, k=2^40, Q=2^255",
         "largest_safe_integer_radius": null,
         "line_exact_radius": 366503875925,
         "n": 2199023255552,
@@ -515,17 +515,17 @@
         "threshold_pinned": false
       },
       {
-        "budget": 340282366920938463463374607431768211456,
+        "budget": 170141183460469231731687303715884105728,
         "checks": {
           "budget_exceeds_exact_range": true,
           "exact_range_numerator_within_budget": true
         },
         "compiler_applies": false,
         "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
-        "denominator": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
+        "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
         "first_unsafe_radius": null,
         "k": 1099511627776,
-        "label": "rho=1/4, k=2^40, Q=2^256",
+        "label": "rho=1/4, k=2^40, Q=2^255",
         "largest_safe_integer_radius": null,
         "line_exact_radius": 1099511627776,
         "n": 4398046511104,
@@ -616,17 +616,17 @@
         "threshold_pinned": false
       },
       {
-        "budget": 340282366920938463463374607431768211456,
+        "budget": 170141183460469231731687303715884105728,
         "checks": {
           "budget_exceeds_exact_range": true,
           "exact_range_numerator_within_budget": true
         },
         "compiler_applies": false,
         "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
-        "denominator": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
+        "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
         "first_unsafe_radius": null,
         "k": 1099511627776,
-        "label": "rho=1/8, k=2^40, Q=2^256",
+        "label": "rho=1/8, k=2^40, Q=2^255",
         "largest_safe_integer_radius": null,
         "line_exact_radius": 2565527131477,
         "n": 8796093022208,
@@ -717,17 +717,17 @@
         "threshold_pinned": false
       },
       {
-        "budget": 340282366920938463463374607431768211456,
+        "budget": 170141183460469231731687303715884105728,
         "checks": {
           "budget_exceeds_exact_range": true,
           "exact_range_numerator_within_budget": true
         },
         "compiler_applies": false,
         "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
-        "denominator": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
+        "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
         "first_unsafe_radius": null,
         "k": 1099511627776,
-        "label": "rho=1/16, k=2^40, Q=2^256",
+        "label": "rho=1/16, k=2^40, Q=2^255",
         "largest_safe_integer_radius": null,
         "line_exact_radius": 5497558138880,
         "n": 17592186044416,
@@ -739,70 +739,146 @@
     "prize_rate_k_2^40_power2_boundaries": [
       {
         "checks": {
+          "largest_official_power2_not_pinned_at_kmax": true,
           "line_range_formula": true,
           "max_power2_inside_interval": true,
+          "min_k_for_largest_official_power2_exceeds_prize_kmax": true,
           "n_matches_rate": true,
           "next_power2_outside_interval": true,
+          "official_power2_upper_is_exclusive": true,
           "rate_denominator": true
         },
         "first_power2_field_bits_beyond_pinned": 167,
         "k": 1099511627776,
         "line_exact_radius": 366503875925,
         "max_power2_field_bits_pinned": 166,
+        "min_k_to_pin_largest_official_power2_field": 510423550381407695195061911147652317184,
         "n": 2199023255552,
+        "official_field_bound": "|F| < 2^256",
+        "official_power2_bits": {
+          "largest_allowed": 255,
+          "smallest_relevant": 128
+        },
         "pinned_denominator_max": 124714806385797237264661731367431734082260755808255,
         "pinned_denominator_min": 340282366920938463463374607431768211456,
+        "pinned_power2_bit_interval": {
+          "count": 39,
+          "max": 166,
+          "min": 128
+        },
+        "requires_lower_agreement_power2_bit_interval": {
+          "count": 89,
+          "max": 255,
+          "min": 167
+        },
         "rho": "1/2"
       },
       {
         "checks": {
+          "largest_official_power2_not_pinned_at_kmax": true,
           "line_range_formula": true,
           "max_power2_inside_interval": true,
+          "min_k_for_largest_official_power2_exceeds_prize_kmax": true,
           "n_matches_rate": true,
           "next_power2_outside_interval": true,
+          "official_power2_upper_is_exclusive": true,
           "rate_denominator": true
         },
         "first_power2_field_bits_beyond_pinned": 169,
         "k": 1099511627776,
         "line_exact_radius": 1099511627776,
         "max_power2_field_bits_pinned": 168,
+        "min_k_to_pin_largest_official_power2_field": 170141183460469231731687303715884105728,
         "n": 4398046511104,
+        "official_field_bound": "|F| < 2^256",
+        "official_power2_bits": {
+          "largest_allowed": 255,
+          "smallest_relevant": 128
+        },
         "pinned_denominator_max": 374144419157051429427064255638831827639350499213311,
         "pinned_denominator_min": 340282366920938463463374607431768211456,
+        "pinned_power2_bit_interval": {
+          "count": 41,
+          "max": 168,
+          "min": 128
+        },
+        "requires_lower_agreement_power2_bit_interval": {
+          "count": 87,
+          "max": 255,
+          "min": 169
+        },
         "rho": "1/4"
       },
       {
         "checks": {
+          "largest_official_power2_not_pinned_at_kmax": true,
           "line_range_formula": true,
           "max_power2_inside_interval": true,
+          "min_k_for_largest_official_power2_exceeds_prize_kmax": true,
           "n_matches_rate": true,
           "next_power2_outside_interval": true,
+          "official_power2_upper_is_exclusive": true,
           "rate_denominator": true
         },
         "first_power2_field_bits_beyond_pinned": 170,
         "k": 1099511627776,
         "line_exact_radius": 2565527131477,
         "max_power2_field_bits_pinned": 169,
+        "min_k_to_pin_largest_official_power2_field": 72917650054486813599294558735378902455,
         "n": 8796093022208,
+        "official_field_bound": "|F| < 2^256",
+        "official_power2_bits": {
+          "largest_allowed": 255,
+          "smallest_relevant": 128
+        },
         "pinned_denominator_max": 873003644699219531384948365718168640146098217811967,
         "pinned_denominator_min": 340282366920938463463374607431768211456,
+        "pinned_power2_bit_interval": {
+          "count": 42,
+          "max": 169,
+          "min": 128
+        },
+        "requires_lower_agreement_power2_bit_interval": {
+          "count": 86,
+          "max": 255,
+          "min": 170
+        },
         "rho": "1/8"
       },
       {
         "checks": {
+          "largest_official_power2_not_pinned_at_kmax": true,
           "line_range_formula": true,
           "max_power2_inside_interval": true,
+          "min_k_for_largest_official_power2_exceeds_prize_kmax": true,
           "n_matches_rate": true,
           "next_power2_outside_interval": true,
+          "official_power2_upper_is_exclusive": true,
           "rate_denominator": true
         },
         "first_power2_field_bits_beyond_pinned": 171,
         "k": 1099511627776,
         "line_exact_radius": 5497558138880,
         "max_power2_field_bits_pinned": 170,
+        "min_k_to_pin_largest_official_power2_field": 34028236692093846346337460743176821146,
         "n": 17592186044416,
+        "official_field_bound": "|F| < 2^256",
+        "official_power2_bits": {
+          "largest_allowed": 255,
+          "smallest_relevant": 128
+        },
         "pinned_denominator_max": 1870722095783896017667637524340305639767025423220735,
         "pinned_denominator_min": 340282366920938463463374607431768211456,
+        "pinned_power2_bit_interval": {
+          "count": 43,
+          "max": 170,
+          "min": 128
+        },
+        "requires_lower_agreement_power2_bit_interval": {
+          "count": 85,
+          "max": 255,
+          "min": 171
+        },
         "rho": "1/16"
       }
     ],

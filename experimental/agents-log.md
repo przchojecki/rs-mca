@@ -69,6 +69,11 @@ Keep entries concise and link to the relevant files.
   scanner replay at the decisive rows: `a=506` is unsafe with numerator `7`,
   while `a=507,508,512` are safe with numerators `6,5,1`. The scanner report was
   refreshed to the current Paper D v7 status label.
+- **Update:** The compiler boundary rows now spell out the official
+  `|F| < 2^256` power-of-two envelope. At `k=2^40`, they record the pinned bit
+  intervals `128..166`, `128..168`, `128..169`, `128..170`, the complementary
+  lower-agreement ranges through bit `255`, and the exact `k` this compiler
+  would need to pin `Q=2^255`.
 - **What to do next:** Use this certificate as the compact reproduction
   artifact when promoting the high-agreement finite-row theorem or building a
   broader threshold certificate generator for multiple protocol ledgers.
