@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 full absorption of fixed-root tails
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Fully absorbs the bad-root set
+  `E union Z_perp` of each fixed-root tail summand, preserving surplus and
+  identifying the packing factor with a root-free primitive lower-width
+  packing.
+- **How it is useful:** Separates the remaining tail problem into absorbed
+  certificate multiplicity versus packing; after full absorption there is no
+  additional hidden packing loss in the fixed-root tail.
+- **What to do next:** Bound the multiplicity of absorbed bad-root
+  certificates or charge it to an existing fixed-root/root-slice theorem.
+
 ### 2026-06-29 - M1 fixed-root tail absorbed one-root form
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

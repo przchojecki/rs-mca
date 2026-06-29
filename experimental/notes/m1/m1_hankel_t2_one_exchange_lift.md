@@ -6037,6 +6037,55 @@ surplus-preserving one-root absorbed fixed-divisor ledgers.  This is the
 precise form in which a fixed-root/root-slice theorem or induction on the
 absorbed width would close the branch.
 
+## Full Bad-Root Absorption Leaves a Root-Free Primitive Packing
+
+The one-root absorbed form can be iterated inside a single tail summand without
+changing the surplus.  With `B_tail(E)` as above, put
+
+```text
+z=z_{S,lambda}^{perp},        B=B_tail(E),
+Q_{S,lambda,E}^{B}=Q'_{S,lambda,E}/ell_B
+                  = R_{S,lambda}/ell_{Z_{S,lambda}^{perp}}.
+```
+
+The fully absorbed quotient width and domain size are
+
+```text
+j_B=j-|B|=r_lambda-z,
+N_B=N_{S,C}-|B|=N_S-h_lambda-z.
+```
+
+Thus
+
+```text
+N_B-j_B=N_S-q_S=s_S.                           (PF2-full-abs-surplus)
+```
+
+Moreover `Q_{S,lambda,E}^{B}` has no roots on the fully absorbed domain.
+All roots in the original half-height fiber have been removed by `C union E`,
+and all remaining roots of `R_{S,lambda}` outside that fiber are precisely
+`Z_{S,lambda}^{perp}`, which have also been absorbed.  Hence the packing
+factor in each tail summand is exactly the root-free primitive packing on the
+fully absorbed domain:
+
+```text
+B_{S,lambda}^{prim}
+ =
+floor(N_B/j_B)
+ =
+1+floor(s_S/(r_lambda-z_{S,lambda}^{perp})).
+                                                        (PF2-tail-full-abs)
+```
+
+Consequently the fixed-root tail has no hidden packing loss after all its
+bad roots are absorbed.  It is a sum of root-free primitive lower-width
+packings with unchanged surplus, indexed by nonempty absorbed bad-root
+certificates `B_tail(E)`.  The remaining tail problem is therefore a
+certificate-counting or fixed-root-ledger problem: the individual packing
+factor has already descended to the same root-free primitive form that was
+bounded above, but now on fully absorbed domains and with the displayed
+absorbed certificate multiplicity.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
