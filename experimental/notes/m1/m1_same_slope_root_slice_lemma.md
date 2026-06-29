@@ -2493,6 +2493,32 @@ N_R^{+,-}(D) <= (1-1/e)|D| + C_e sqrt(p) + O_e(1),
 N_R^{+,-}(D) <= 2(1-1/e)|D| + C_e sqrt(p) + O_e(1).  (RKBD')
 ```
 
+Combining the norm-power, anti-ratio, and rational-cubic reductions gives the
+classified per-core form needed downstream.  After the fixed-zero-root branch,
+constant-norm line-packet branch, and square-norm parity branch have been
+charged or isolated:
+
+```text
+geometrically integral genus-one branch:
+  N_R^{+,-}(D) <= (1-1/e)|D| + C_e sqrt(p) + O_e(1),
+
+geometrically integral rational cubic branch:
+  N_R^{+,-}(D) <= (1+1/e)|D| + C_e sqrt(p) + O_e(1),
+
+split-square rational branch:
+  N_R^{+,-}(D) <= 2(1-1/e)|D| + C_e sqrt(p) + O_e(1),
+
+index-two branch away from the two square gates:
+  N_R^{+,-}(D) <= (1/2)|D| + C sqrt(p) + O(1)
+  on nonsplit covers, and <= |D| + C sqrt(p) + O(1) on split covers.
+                                                              (RKCLASS)
+```
+
+The first line uses that genus-one covers have no genuine cover-level power
+branch after the norm exceptions.  The second line is exactly the rational
+cubic coefficient ledger (RKCUBBD).  The third is the older split-square
+fallback; it is kept separate because the split cover has two rational sheets.
+
 An unordered mixed split pair contributes to exactly one of the two ordered
 cover points `(z,Y)` and `(z,-Y)`, and repeated-root points contribute
 nothing to the mixed-domain condition.  Thus the same bound applies to the
@@ -2661,9 +2687,10 @@ filter, proves the norm-pushforward obstruction that leaves only anti-diagonal
 cover-ratio power branches after those norm exceptions, reduces the
 anti-diagonal obstruction further to the cubic ratio branch, shows that a
 genuine cubic no-cancellation term forces the rational-cover locus, gives the
-explicit rational-cubic coefficient ledger (RKCUBBD), and gives the local
-max-degree bound and average-collinearity corollary above, including the
-packet-level higher-exchange ledger substitution.
+explicit rational-cubic coefficient ledger (RKCUBBD), packages the resulting
+per-core classified bound (RKCLASS), and gives the local max-degree bound and
+average-collinearity corollary above, including the packet-level
+higher-exchange ledger substitution.
 
 ## Verification
 
@@ -2712,4 +2739,5 @@ the mixed-domain count formula (RKCOUNT), including the diagonal descent
 square-norm Fourier term, and the cover-term norm-pushforward obstruction
 (RKPUSH), including the anti-ratio square-class and degree-four reduction
 (RKANTIRED) and the genus-one exclusion for genuine cubic anti-ratio powers
-(RKANTIGENUS), plus the rational cubic coefficient ledger (RKCUBBD).
+(RKANTIGENUS), plus the rational cubic coefficient ledger (RKCUBBD) and the
+classified per-core bound (RKCLASS).

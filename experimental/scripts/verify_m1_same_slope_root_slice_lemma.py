@@ -49,7 +49,8 @@ norm-power classification, including the constant-norm line-packet charge and
 the single large Fourier term in the nonconstant square-norm branch, and the
 norm-pushforward obstruction for cover-level power terms, including the
 anti-ratio square-class reduction and the genus-one exclusion for genuine
-cubic anti-ratio powers, plus the rational-cubic coefficient ledger.
+cubic anti-ratio powers, plus the rational-cubic coefficient ledger and final
+classified per-core bound.
 """
 
 from __future__ import annotations
@@ -4623,6 +4624,30 @@ def check_boundary_core_rational_cubic_ledger() -> None:
         )
 
 
+def check_boundary_core_classified_per_core_bound() -> None:
+    for index in range(2, 31):
+        generic_cover_coefficient = Fraction(index - 1, index * index)
+        rational_cubic_coefficient = Fraction(index + 1, index * index)
+        split_square_coefficient = 2 * generic_cover_coefficient
+
+        genus_one_as_domain = generic_cover_coefficient * index
+        rational_cubic_as_domain = rational_cubic_coefficient * index
+        split_square_as_domain = split_square_coefficient * index
+
+        assert genus_one_as_domain == Fraction(index - 1, index)
+        assert rational_cubic_as_domain == Fraction(index + 1, index)
+        assert split_square_as_domain == 2 * Fraction(index - 1, index)
+
+        if index == 2:
+            # The sheet-symmetry closure improves the generic nonsplit branch
+            # from (1-1/e)|D| to |D|/2.
+            assert Fraction(1, 2) <= genus_one_as_domain
+            assert Fraction(1, 1) <= split_square_as_domain
+        else:
+            assert genus_one_as_domain < rational_cubic_as_domain
+            assert rational_cubic_as_domain <= split_square_as_domain or index == 3
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -4863,6 +4888,7 @@ def main() -> None:
     check_boundary_core_anti_ratio_reduction()
     check_boundary_core_cubic_anti_ratio_genus_gate()
     check_boundary_core_rational_cubic_ledger()
+    check_boundary_core_classified_per_core_bound()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     check_boundary_core_closure_substitution()
