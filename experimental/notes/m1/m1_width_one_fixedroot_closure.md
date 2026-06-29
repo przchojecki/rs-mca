@@ -235,6 +235,57 @@ large-width counterexamples to the width-one closure criterion are exactly
 large one-root slice counterexamples; the width-one cube has no additional
 reservoir of growth once those slices are polynomially controlled.
 
+## Explicit One-Root Width-One Ledger
+
+The one-root ledger needed by the closure criterion can be written without a
+new primitive.  For an active node `S`, write
+
+```text
+D_S=D_S^{can},        V_S=span(P_S,Q_S),
+q_S+s_S=|D_S|,        a_S=floor((q_S-2)/2).
+```
+
+Let `W1Large(A_0)` be the set of pairs `(S,O)` such that
+
+```text
+S is active,        q_S>s_S+2,
+O subset D_S,       |O|=s_S+1,
+ell_{D_S\O} in V_S.
+```
+
+For `(S,O) in W1Large(A_0)`, put `Z_{S,O}=D_S\O`.  The unique-range argument
+implies that for each fixed large node `S` there is at most one such
+complement `O`.  Order `Z_{S,O}` by the ambient root order and define
+
+```text
+M_{S,O,x}^{r1}
+ =
+ sum_{f=0}^{a_S-1} binom(|{y in Z_{S,O}: y>x}|, f),
+        x in Z_{S,O}.
+```
+
+The explicit width-one one-root ledger is
+
+```text
+FR_1^{r1}(A_0)
+ =
+ sum_{(S,O) in W1Large(A_0)}
+ sum_{x in Z_{S,O}} M_{S,O,x}^{r1}.             (W1-explicit-ledger)
+```
+
+By (W1-first-root), this is exactly the large-node width-one flag contribution:
+
+```text
+WO_1^{large}(A_0)=FR_1^{r1}(A_0).               (W1-ledger-identity)
+```
+
+Thus `FR_1^{r1}` is not an additional assumption; it is the width-one subledger
+of the one-root fixed-divisor/root-slice ledger, written directly in terms of
+bounded complements passing the rank test.  Future fixed-root work can attack
+this explicit sum by proving that the corresponding first-root slices are
+quotient-periodic, tangent, fixed-root/root-slice degenerate, or aperiodically
+packable.
+
 ## Fixed-Surplus Closure Criterion
 
 Now sum over active canonical nodes with initial surplus `s_0<=sigma`.  Let
@@ -273,11 +324,11 @@ width-one cube to the one-root fixed-divisor ledger.  Consequently
 
 ```text
 WO_1(A_0)
- <= FixedRootOneRoot_{r1}(A_0)+O_sigma(Q^{sigma+1}).  (W1-global)
+ <= FR_1^{r1}(A_0)+O_sigma(Q^{sigma+1}).        (W1-global)
 ```
 
 Thus, in fixed surplus, the width-one critical-tail branch is closed once the
-corresponding one-root fixed-root/root-slice ledger is polynomial.  The
-remaining target is not another width-one packing problem; it is to prove or
-import the fixed-surplus bound for `FixedRootOneRoot_{r1}` after the standard
-quotient-periodic, tangent, fixed-root, and aperiodic charges.
+explicit one-root ledger `FR_1^{r1}` is polynomial.  The remaining target is
+not another width-one packing problem; it is to prove or import the
+fixed-surplus bound for this one-root fixed-divisor/root-slice subledger after
+the standard quotient-periodic, tangent, fixed-root, and aperiodic charges.

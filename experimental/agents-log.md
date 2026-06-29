@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Keep first-grid rows separate from exact-threshold
   claims. The missing safe-side work remains the L1/M1/F1/M2 completion package.
 
+### 2026-06-29 - M1 explicit width-one one-root ledger
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_width_one_fixedroot_closure.md`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / DEFINITIONAL-REDUCTION / AUDIT.
+- **What is being added:** The accepted width-one closure note now defines the
+  explicit large-node one-root ledger `FR_1^{r1}` as a sum over rank-test
+  bounded complements and first roots, and proves it is exactly the large-node
+  width-one flag contribution.
+- **How it is useful:** Replaces the placeholder fixed-root target by the
+  concrete identity `WO_1(A_0) <= FR_1^{r1}(A_0)+O_sigma(Q^{sigma+1})`, making
+  the remaining width-one M1 subproblem directly falsifiable or chargeable.
+- **What to do next:** Prove a polynomial fixed-surplus bound for `FR_1^{r1}`
+  using quotient-periodic, tangent, fixed-root/root-slice, or aperiodic
+  mechanisms.
+
 ### 2026-06-29 - PR #136 width-one fixed-root closure
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

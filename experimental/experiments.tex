@@ -1643,17 +1643,37 @@ one gets
 Thus a large width-one cube already produces a large one-root slice; it cannot
 hide as a many-first-root averaging phenomenon.
 
+The remaining one-root ledger is explicit.  Let \(\mathrm{W1Large}(A_0)\) be
+the set of active large-node pairs \((S,O)\) with \(q_S>s_S+2\),
+\(|O|=s_S+1\), and \(\ell_{D_S^{can}\setminus O}\in V_S\).  Put
+\(Z_{S,O}=D_S^{can}\setminus O\),
+\(a_S=\lfloor(q_S-2)/2\rfloor\), and
+\[
+  M^{\mathrm{r1}}_{S,O,x}
+  =
+  \sum_{f=0}^{a_S-1}
+    \binom{|\{y\in Z_{S,O}:y>x\}|}{f}.
+\]
+Then
+\[
+  FR^{\mathrm{r1}}_1(A_0)
+  =
+  \sum_{(S,O)\in \mathrm{W1Large}(A_0)}
+  \sum_{x\in Z_{S,O}} M^{\mathrm{r1}}_{S,O,x}
+\]
+is exactly the large-node width-one flag contribution.
+
 Consequently, in fixed surplus \(s_0\le\sigma\), small nodes are polynomial by
 the active-tree bound, and on \(q_S>s_S+2\) there is at most one width-one
 shadow per node.  The local closure criterion is
 \[
   WO_1(A_0)
-  \le FixedRootOneRoot_{r1}(A_0)+O_\sigma(Q^{\sigma+1}),
+  \le FR^{\mathrm{r1}}_1(A_0)+O_\sigma(Q^{\sigma+1}),
 \]
 where \(Q\) is the initial quotient width.  This closes the width-one
-critical-tail branch only after a polynomial bound for the displayed one-root
-fixed-root/root-slice ledger is proved or imported.  It is not the final
-all-line M1 theorem and does not add a leaderboard row.
+critical-tail branch only after a polynomial bound for the displayed explicit
+one-root fixed-root/root-slice subledger is proved or imported.  It is not the
+final all-line M1 theorem and does not add a leaderboard row.
 
 \subsection{Challenge-map pullbacks and public status corrections}
 
