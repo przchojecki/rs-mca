@@ -194,6 +194,20 @@ largest pinned bit-size is
 lambda_max = 128 + floor(log2(floor((d-1)k/3))).
 ```
 
+Equivalently, the inverse boundary for a fixed power-of-two field size is exact:
+
+```text
+Q=2^lambda is pinned at rate rho=1/d
+iff
+k >= ceil(3 * 2^(lambda-128) / (d-1)).
+```
+
+This is just the integer condition
+`2^(lambda-128) <= floor((d-1)k/3)` written as a minimum dimension. It is useful
+because it tells an agent whether a proposed prize row is already solved by the
+high-agreement compiler or must be sent to the lower-agreement quotient/local
+limit program.
+
 At the maximal prize dimension `k=2^40`, this gives:
 
 ```text
@@ -245,6 +259,12 @@ python3 experimental/scripts/certify_high_agreement_threshold_package.py \
 
 python3 experimental/scripts/certify_high_agreement_threshold_package.py \
   --classify-row 2199023255552 1099511627776 2^192
+
+python3 experimental/scripts/certify_high_agreement_threshold_package.py \
+  --classify-prize-power2 2 2^40 166
+
+python3 experimental/scripts/certify_high_agreement_threshold_package.py \
+  --classify-prize-power2 2 2^40 167
 ```
 
 The committed JSON is intentionally small and exact-integer based. It is a

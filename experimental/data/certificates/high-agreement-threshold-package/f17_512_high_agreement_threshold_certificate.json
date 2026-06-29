@@ -736,10 +736,12 @@
         "threshold_pinned": false
       }
     ],
+    "power2_inverse_boundary": "for rate rho=1/d and Q=2^lambda with lambda>=128, the high-agreement compiler pins the threshold exactly iff k >= ceil(3*2^(lambda-128)/(d-1))",
     "prize_rate_k_2^40_power2_boundaries": [
       {
         "checks": {
           "largest_official_power2_not_pinned_at_kmax": true,
+          "largest_power2_probe_agrees": true,
           "line_range_formula": true,
           "max_power2_inside_interval": true,
           "min_k_for_largest_official_power2_exceeds_prize_kmax": true,
@@ -750,6 +752,34 @@
         },
         "first_power2_field_bits_beyond_pinned": 167,
         "k": 1099511627776,
+        "largest_official_power2_probe": {
+          "budget": 170141183460469231731687303715884105728,
+          "checks": {
+            "denominator_is_power2": true,
+            "inverse_boundary_agrees_with_classifier": true,
+            "line_radius_formula": true,
+            "min_k_equivalence": true,
+            "n_matches_rate": true,
+            "rate_denominator_valid": true
+          },
+          "classifier_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+          "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
+          "field_bits": 255,
+          "first_unsafe_integer_radius": null,
+          "inverse_condition": "k >= ceil(3*2^(lambda-target_bits)/(d-1))",
+          "inverse_status": "REQUIRES_LOWER_AGREEMENT_THEORY",
+          "k": 1099511627776,
+          "k_meets_inverse_boundary": false,
+          "largest_safe_integer_radius": null,
+          "line_exact_radius": 366503875925,
+          "min_k_to_pin": 510423550381407695195061911147652317184,
+          "n": 2199023255552,
+          "rate": "1/2",
+          "rate_denominator": 2,
+          "safe_through_exact_radius": 366503875925,
+          "target_bits": 128,
+          "threshold_pinned": false
+        },
         "line_exact_radius": 366503875925,
         "max_power2_field_bits_pinned": 166,
         "min_k_to_pin_largest_official_power2_field": 510423550381407695195061911147652317184,
@@ -776,6 +806,7 @@
       {
         "checks": {
           "largest_official_power2_not_pinned_at_kmax": true,
+          "largest_power2_probe_agrees": true,
           "line_range_formula": true,
           "max_power2_inside_interval": true,
           "min_k_for_largest_official_power2_exceeds_prize_kmax": true,
@@ -786,6 +817,34 @@
         },
         "first_power2_field_bits_beyond_pinned": 169,
         "k": 1099511627776,
+        "largest_official_power2_probe": {
+          "budget": 170141183460469231731687303715884105728,
+          "checks": {
+            "denominator_is_power2": true,
+            "inverse_boundary_agrees_with_classifier": true,
+            "line_radius_formula": true,
+            "min_k_equivalence": true,
+            "n_matches_rate": true,
+            "rate_denominator_valid": true
+          },
+          "classifier_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+          "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
+          "field_bits": 255,
+          "first_unsafe_integer_radius": null,
+          "inverse_condition": "k >= ceil(3*2^(lambda-target_bits)/(d-1))",
+          "inverse_status": "REQUIRES_LOWER_AGREEMENT_THEORY",
+          "k": 1099511627776,
+          "k_meets_inverse_boundary": false,
+          "largest_safe_integer_radius": null,
+          "line_exact_radius": 1099511627776,
+          "min_k_to_pin": 170141183460469231731687303715884105728,
+          "n": 4398046511104,
+          "rate": "1/4",
+          "rate_denominator": 4,
+          "safe_through_exact_radius": 1099511627776,
+          "target_bits": 128,
+          "threshold_pinned": false
+        },
         "line_exact_radius": 1099511627776,
         "max_power2_field_bits_pinned": 168,
         "min_k_to_pin_largest_official_power2_field": 170141183460469231731687303715884105728,
@@ -812,6 +871,7 @@
       {
         "checks": {
           "largest_official_power2_not_pinned_at_kmax": true,
+          "largest_power2_probe_agrees": true,
           "line_range_formula": true,
           "max_power2_inside_interval": true,
           "min_k_for_largest_official_power2_exceeds_prize_kmax": true,
@@ -822,6 +882,34 @@
         },
         "first_power2_field_bits_beyond_pinned": 170,
         "k": 1099511627776,
+        "largest_official_power2_probe": {
+          "budget": 170141183460469231731687303715884105728,
+          "checks": {
+            "denominator_is_power2": true,
+            "inverse_boundary_agrees_with_classifier": true,
+            "line_radius_formula": true,
+            "min_k_equivalence": true,
+            "n_matches_rate": true,
+            "rate_denominator_valid": true
+          },
+          "classifier_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+          "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
+          "field_bits": 255,
+          "first_unsafe_integer_radius": null,
+          "inverse_condition": "k >= ceil(3*2^(lambda-target_bits)/(d-1))",
+          "inverse_status": "REQUIRES_LOWER_AGREEMENT_THEORY",
+          "k": 1099511627776,
+          "k_meets_inverse_boundary": false,
+          "largest_safe_integer_radius": null,
+          "line_exact_radius": 2565527131477,
+          "min_k_to_pin": 72917650054486813599294558735378902455,
+          "n": 8796093022208,
+          "rate": "1/8",
+          "rate_denominator": 8,
+          "safe_through_exact_radius": 2565527131477,
+          "target_bits": 128,
+          "threshold_pinned": false
+        },
         "line_exact_radius": 2565527131477,
         "max_power2_field_bits_pinned": 169,
         "min_k_to_pin_largest_official_power2_field": 72917650054486813599294558735378902455,
@@ -848,6 +936,7 @@
       {
         "checks": {
           "largest_official_power2_not_pinned_at_kmax": true,
+          "largest_power2_probe_agrees": true,
           "line_range_formula": true,
           "max_power2_inside_interval": true,
           "min_k_for_largest_official_power2_exceeds_prize_kmax": true,
@@ -858,6 +947,34 @@
         },
         "first_power2_field_bits_beyond_pinned": 171,
         "k": 1099511627776,
+        "largest_official_power2_probe": {
+          "budget": 170141183460469231731687303715884105728,
+          "checks": {
+            "denominator_is_power2": true,
+            "inverse_boundary_agrees_with_classifier": true,
+            "line_radius_formula": true,
+            "min_k_equivalence": true,
+            "n_matches_rate": true,
+            "rate_denominator_valid": true
+          },
+          "classifier_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+          "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
+          "field_bits": 255,
+          "first_unsafe_integer_radius": null,
+          "inverse_condition": "k >= ceil(3*2^(lambda-target_bits)/(d-1))",
+          "inverse_status": "REQUIRES_LOWER_AGREEMENT_THEORY",
+          "k": 1099511627776,
+          "k_meets_inverse_boundary": false,
+          "largest_safe_integer_radius": null,
+          "line_exact_radius": 5497558138880,
+          "min_k_to_pin": 34028236692093846346337460743176821146,
+          "n": 17592186044416,
+          "rate": "1/16",
+          "rate_denominator": 16,
+          "safe_through_exact_radius": 5497558138880,
+          "target_bits": 128,
+          "threshold_pinned": false
+        },
         "line_exact_radius": 5497558138880,
         "max_power2_field_bits_pinned": 170,
         "min_k_to_pin_largest_official_power2_field": 34028236692093846346337460743176821146,

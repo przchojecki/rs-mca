@@ -385,6 +385,87 @@ def exact_threshold(
     }
 
 
+def prize_power2_boundary(
+    rate_denominator: int,
+    k: int,
+    field_bits: int,
+    target_bits: int = TARGET,
+) -> dict[str, Any]:
+    """Classify the rate 1/d, Q=2^lambda high-agreement compiler frontier."""
+    if rate_denominator <= 1:
+        raise ValueError("rate_denominator must be at least 2")
+    if k <= 0:
+        raise ValueError("k must be positive")
+    if field_bits < 0:
+        raise ValueError("field_bits must be nonnegative")
+
+    n = rate_denominator * k
+    denominator = 1 << field_bits
+    gate = exact_threshold(n, k, denominator, target_bits)
+    line_radius = radius_line_range(n, k)
+
+    if field_bits < target_bits:
+        min_k_to_pin = None
+        k_meets_inverse_boundary = False
+        inverse_status = "ZERO_BUDGET_BELOW_TARGET"
+        inverse_predicts_pinned = False
+        inverse_condition = "lambda < target_bits, so B_Q=0"
+    else:
+        power_budget = 1 << (field_bits - target_bits)
+        min_k_to_pin = ceil_div(3 * power_budget, rate_denominator - 1)
+        k_meets_inverse_boundary = k >= min_k_to_pin
+        inverse_status = (
+            "PINNED_BY_HIGH_AGREEMENT_COMPILER"
+            if k_meets_inverse_boundary
+            else "REQUIRES_LOWER_AGREEMENT_THEORY"
+        )
+        inverse_predicts_pinned = k_meets_inverse_boundary
+        inverse_condition = (
+            "k >= ceil(3*2^(lambda-target_bits)/(d-1))"
+        )
+
+    classifier_pinned = gate["compiler_status"] == "PINNED_THRESHOLD_IN_EXACT_RANGE"
+    checks = {
+        "rate_denominator_valid": rate_denominator in [2, 4, 8, 16],
+        "n_matches_rate": n == rate_denominator * k,
+        "denominator_is_power2": denominator == 1 << field_bits,
+        "line_radius_formula": line_radius == ((rate_denominator - 1) * k) // 3,
+        "inverse_boundary_agrees_with_classifier": classifier_pinned
+        == inverse_predicts_pinned,
+    }
+    if field_bits >= target_bits:
+        checks["min_k_equivalence"] = (
+            k_meets_inverse_boundary
+            == ((1 << (field_bits - target_bits)) <= line_radius)
+        )
+    else:
+        checks["zero_budget_matches_classifier"] = (
+            gate["compiler_status"] == "NO_SAFE_RADIUS"
+        )
+
+    return {
+        "rate": f"1/{rate_denominator}",
+        "rate_denominator": rate_denominator,
+        "k": k,
+        "n": n,
+        "field_bits": field_bits,
+        "denominator": denominator,
+        "target_bits": target_bits,
+        "budget": gate["budget"],
+        "line_exact_radius": line_radius,
+        "inverse_condition": inverse_condition,
+        "min_k_to_pin": min_k_to_pin,
+        "k_meets_inverse_boundary": k_meets_inverse_boundary,
+        "inverse_status": inverse_status,
+        "classifier_status": gate["compiler_status"],
+        "threshold_pinned": gate["threshold_pinned"],
+        "largest_safe_integer_radius": gate.get("largest_safe_integer_radius"),
+        "first_unsafe_integer_radius": gate.get("first_unsafe_integer_radius"),
+        "safe_through_exact_radius": gate.get("safe_through_exact_radius"),
+        "checks": checks,
+    }
+
+
 @dataclass(frozen=True)
 class CompilerProbe:
     label: str
@@ -422,10 +503,10 @@ def prize_rate_boundary_rows() -> list[dict[str, Any]]:
         max_q_pinned = (1 << TARGET) * (r_line + 1) - 1
         max_power2_bits = TARGET + floor_log2(r_line)
         first_power2_bits_beyond = max_power2_bits + 1
-        min_k_to_pin_largest_power2 = ceil_div(
-            3 * (1 << (largest_official_power2_bits - TARGET)),
-            d - 1,
+        largest_power2_probe = prize_power2_boundary(
+            d, k, largest_official_power2_bits
         )
+        min_k_to_pin_largest_power2 = largest_power2_probe["min_k_to_pin"]
         unresolved_min = first_power2_bits_beyond
         unresolved_max = largest_official_power2_bits
         checks = {
@@ -441,6 +522,10 @@ def prize_rate_boundary_rows() -> list[dict[str, Any]]:
             > max_q_pinned,
             "min_k_for_largest_official_power2_exceeds_prize_kmax": min_k_to_pin_largest_power2
             > k,
+            "largest_power2_probe_agrees": largest_power2_probe[
+                "inverse_status"
+            ]
+            == "REQUIRES_LOWER_AGREEMENT_THEORY",
         }
         rows.append(
             {
@@ -468,6 +553,7 @@ def prize_rate_boundary_rows() -> list[dict[str, Any]]:
                     "count": unresolved_max - unresolved_min + 1,
                 },
                 "min_k_to_pin_largest_official_power2_field": min_k_to_pin_largest_power2,
+                "largest_official_power2_probe": largest_power2_probe,
                 "checks": checks,
             }
         )
@@ -589,6 +675,11 @@ def build_certificate() -> dict[str, Any]:
                 "larger B_Q proves safety throughout the exact tangent range "
                 "but does not locate the later threshold"
             ),
+            "power2_inverse_boundary": (
+                "for rate rho=1/d and Q=2^lambda with lambda>=128, "
+                "the high-agreement compiler pins the threshold exactly iff "
+                "k >= ceil(3*2^(lambda-128)/(d-1))"
+            ),
             "examples": compiler_examples,
             "prize_rate_k_2^40_power2_boundaries": boundary_rows,
         },
@@ -610,6 +701,9 @@ def build_certificate() -> dict[str, Any]:
         all_checks.extend(example.get("checks", {}).values())
     for row in boundary_rows:
         all_checks.extend(row.get("checks", {}).values())
+        all_checks.extend(
+            row["largest_official_power2_probe"].get("checks", {}).values()
+        )
     all_checks.append(
         certificate["f17_512_endpoint_bridge"]["safe_endpoint"][
             "endpoint_formulas_agree"
@@ -688,6 +782,35 @@ def print_row_classification(n: int, k: int, denominator: int, target_bits: int)
         print("  no safe integer radius")
 
 
+def print_prize_power2_classification(
+    rate_denominator: int,
+    k: int,
+    field_bits: int,
+    target_bits: int,
+) -> None:
+    probe = prize_power2_boundary(rate_denominator, k, field_bits, target_bits)
+    print("High-agreement prize-rate power-of-two boundary")
+    print(f"  rho=1/{rate_denominator}")
+    print(f"  k={k}")
+    print(f"  n={probe['n']}")
+    print(f"  Q=2^{field_bits}")
+    print(f"  target=2^-{target_bits}")
+    print(f"  B_Q={probe['budget']}")
+    print(f"  exact line radius floor((n-k)/3)={probe['line_exact_radius']}")
+    print(f"  inverse condition: {probe['inverse_condition']}")
+    if probe["min_k_to_pin"] is not None:
+        print(f"  min k to pin this field size={probe['min_k_to_pin']}")
+    print(f"  inverse status={probe['inverse_status']}")
+    print(f"  classifier status={probe['classifier_status']}")
+    if probe["classifier_status"] == "PINNED_THRESHOLD_IN_EXACT_RANGE":
+        print(f"  safe r<={probe['largest_safe_integer_radius']}")
+        print(f"  unsafe r={probe['first_unsafe_integer_radius']}")
+    elif probe["classifier_status"] == "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT":
+        print(f"  safe through r={probe['safe_through_exact_radius']}")
+    else:
+        print("  no safe integer radius")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--write", type=Path, help="write deterministic JSON certificate")
@@ -697,6 +820,12 @@ def main() -> int:
         nargs=3,
         metavar=("N", "K", "Q"),
         help="classify a row by exact integers; Q accepts forms like 2^192 or 17^32",
+    )
+    parser.add_argument(
+        "--classify-prize-power2",
+        nargs=3,
+        metavar=("D", "K", "LAMBDA"),
+        help="classify rate 1/D, dimension K, and field denominator Q=2^LAMBDA",
     )
     parser.add_argument("--target", type=int, default=TARGET, help="security target bits")
     parser.add_argument("--json", action="store_true", help="print JSON to stdout")
@@ -710,6 +839,15 @@ def main() -> int:
         else:
             print_row_classification(n, k, denominator, args.target)
         return 0 if all(gate.get("checks", {}).values()) else 1
+
+    if args.classify_prize_power2:
+        d, k, field_bits = (parse_int(part) for part in args.classify_prize_power2)
+        probe = prize_power2_boundary(d, k, field_bits, args.target)
+        if args.json:
+            print(normalized_json(probe), end="")
+        else:
+            print_prize_power2_classification(d, k, field_bits, args.target)
+        return 0 if all(probe.get("checks", {}).values()) else 1
 
     if args.check:
         ok = check_certificate(args.check)

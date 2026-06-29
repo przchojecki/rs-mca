@@ -23,6 +23,14 @@ python3 experimental/scripts/certify_high_agreement_threshold_package.py \
   --classify-row 512 256 17^32
 ```
 
+Classify an official rate-`1/d` power-of-two field row using the inverse
+boundary:
+
+```sh
+python3 experimental/scripts/certify_high_agreement_threshold_package.py \
+  --classify-prize-power2 2 2^40 166
+```
+
 The certificate records:
 
 - `open-proximity.tex` SHA-256 and line anchors for the official line family,
@@ -45,6 +53,8 @@ The certificate records:
   The certificate also records the complementary official power-of-two
   ranges through bit `255` that require lower-agreement theory, and the exact
   minimum `k` this compiler would need to pin `Q=2^255`.
+- the exact inverse criterion
+  `k >= ceil(3*2^(lambda-128)/(d-1))` for rate `1/d`, `Q=2^lambda`.
 
 It does not prove lower-agreement M1, quotient floors, extension transfer, L2,
 or any protocol ledger that consumes extra list/curve/query/folding terms.

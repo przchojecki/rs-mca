@@ -286,6 +286,13 @@ power-of-two field denominators only through bits \(166,168,169,170\) for rates
 \(|F|<2^{256}\), the higher bit ranges \(167..255\), \(169..255\), \(170..255\),
 and \(171..255\) are not threshold-pinned by this high-agreement theorem.  They
 remain in the lower-agreement quotient/local-limit part of the program.
+Equivalently, for a rate \(1/d\) row and a power-of-two field denominator
+\(Q=2^\lambda\) with \(\lambda\ge128\), this compiler pins the threshold exactly
+if and only if
+\[
+  k\ge
+  \left\lceil \frac{3\cdot 2^{\lambda-128}}{d-1}\right\rceil .
+\]
 
 \section{Scanner Attachment}
 \label{sec:scanner}

@@ -74,6 +74,10 @@ Keep entries concise and link to the relevant files.
   intervals `128..166`, `128..168`, `128..169`, `128..170`, the complementary
   lower-agreement ranges through bit `255`, and the exact `k` this compiler
   would need to pin `Q=2^255`.
+- **Update:** The package now records and exposes the inverse power-of-two
+  boundary: for rate `1/d` and `Q=2^lambda`, the high-agreement compiler pins
+  exactly when `k >= ceil(3*2^(lambda-128)/(d-1))`. The script has a
+  `--classify-prize-power2` mode for this criterion.
 - **What to do next:** Use this certificate as the compact reproduction
   artifact when promoting the high-agreement finite-row theorem or building a
   broader threshold certificate generator for multiple protocol ledgers.
