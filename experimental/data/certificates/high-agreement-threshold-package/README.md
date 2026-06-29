@@ -25,6 +25,8 @@ python3 experimental/scripts/certify_high_agreement_threshold_package.py \
 
 The certificate records:
 
+- `open-proximity.tex` SHA-256 and line anchors for the official line family,
+  MCA event, grand-challenge rates/field range, and line-decoding denominator;
 - `floor(17^32 / 2^128) = 6`;
 - affine and projective denominator checks;
 - explicit finite support-wise MCA, finite no-loss CA, and projective

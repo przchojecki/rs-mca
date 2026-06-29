@@ -34,6 +34,22 @@ projective denominator: |P^1(F)| = |F| + 1
 target:                 2^-128
 ```
 
+It also records source anchors into the reconstructed
+`open-proximity.tex` file:
+
+```text
+line family:                  F_lines
+grand challenge rates:        1/2, 1/4, 1/8, 1/16
+official field-size range:    |F| < 2^256
+MCA event:                    exists S=S_gamma with |S| >= (1-delta)n
+support-wise noncontainment:  Delta_S((f_1,f_2),C^{equiv 2}) > 0
+line-decoding implication:    epsilon_mca(C,delta) <= a/|F|
+```
+
+The JSON certificate stores the source file's SHA-256 hash and the line number
+of each anchor. This is only a local-source audit; it does not replace review
+against later upstream revisions of the external survey.
+
 The endpoint convention is closed-ball: if the first unsafe integer radius is
 `r0`, then the real safe interval is `[0,r0/n)`. The supremum `r0/n` is not
 attained.

@@ -12,6 +12,7 @@ recorded in tex/slackMCA_v4.tex and experimental/notes/high_agreement/.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from dataclasses import dataclass
 from fractions import Fraction
@@ -23,6 +24,7 @@ TARGET = 128
 F17_Q = 17**32
 F17_N = 512
 F17_K = 256
+OPEN_PROXIMITY = Path("open-proximity.tex")
 
 
 def parse_int(text: str) -> int:
@@ -34,6 +36,69 @@ def parse_int(text: str) -> int:
         base, exp = clean.split("**", 1)
         return int(base) ** int(exp)
     return int(clean, 10)
+
+
+def source_anchor(path: Path, label: str, needle: str) -> dict[str, Any]:
+    lines = path.read_text(encoding="utf-8").splitlines()
+    for index, line in enumerate(lines, start=1):
+        if needle in line:
+            return {"label": label, "line": index, "needle": needle}
+    raise ValueError(f"missing source anchor {label!r}: {needle!r}")
+
+
+def source_audit() -> dict[str, Any]:
+    data = OPEN_PROXIMITY.read_bytes()
+    anchors = [
+        source_anchor(
+            OPEN_PROXIMITY,
+            "support_set_agreement_size",
+            r"\abs{S}\ge (1-\delta)n",
+        ),
+        source_anchor(
+            OPEN_PROXIMITY,
+            "line_family",
+            r"\calF_{\mathrm{lines}}",
+        ),
+        source_anchor(
+            OPEN_PROXIMITY,
+            "grand_challenge_rates",
+            r"\rho(C):=\frac{k}{\abs{L}}\in\set{\frac12,\frac14,\frac18,\frac1{16}}",
+        ),
+        source_anchor(
+            OPEN_PROXIMITY,
+            "grand_challenge_field_range",
+            r"\abs{\F}<2^{256}",
+        ),
+        source_anchor(
+            OPEN_PROXIMITY,
+            "mca_error_definition",
+            r"\epsmca(C,\delta):=\max_{f_1,f_2\in(\F^s)^n}",
+        ),
+        source_anchor(
+            OPEN_PROXIMITY,
+            "support_wise_exists_same_support",
+            r"\exists S=S_\gamma\subseteq[n]",
+        ),
+        source_anchor(
+            OPEN_PROXIMITY,
+            "support_wise_noncontainment",
+            r"\Delta_S((f_1,f_2),C^{\equiv2})>0",
+        ),
+        source_anchor(
+            OPEN_PROXIMITY,
+            "line_decoding_to_mca_denominator",
+            r"\epsmca(C,\delta)\le \frac{a}{\abs{\F}}",
+        ),
+    ]
+    return {
+        "path": str(OPEN_PROXIMITY),
+        "sha256": hashlib.sha256(data).hexdigest(),
+        "anchors": anchors,
+        "checks": {
+            "source_present": OPEN_PROXIMITY.exists(),
+            "all_anchors_found": len(anchors) == 8,
+        },
+    }
 
 
 def budget(denominator: int, target_bits: int = TARGET) -> int:
@@ -289,6 +354,7 @@ def build_certificate() -> dict[str, Any]:
         )
 
     boundary_rows = prize_rate_boundary_rows()
+    official_source = source_audit()
     variant_rows = [
         variant_row("finite_supportwise_mca", F17_Q, finite["safe_line_numerator"]),
         variant_row("finite_no_loss_ca", F17_Q, finite["safe_line_numerator"]),
@@ -317,6 +383,7 @@ def build_certificate() -> dict[str, Any]:
             "q_chal": F17_Q,
         },
         "definition_freeze": {
+            "official_source": official_source,
             "object": "finite-slope support-wise MCA / LD_sw",
             "bridge": "epsilon_mca(C,delta)=LD_sw(C,ceil((1-delta)n))/q_line",
             "agreement": "a=n-r",
@@ -366,6 +433,7 @@ def build_certificate() -> dict[str, Any]:
     }
 
     all_checks = list(row_checks.values())
+    all_checks.extend(official_source["checks"].values())
     all_checks.extend(finite.get("checks", {}).values())
     all_checks.extend(projective.get("checks", {}).values())
     for row in variant_rows:

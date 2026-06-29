@@ -8,6 +8,56 @@
     "closed_real_radius_rule": "r(delta)=floor(delta*n)",
     "endpoint": "the supremal real transition radius is not attained when the first unsafe integer radius is reached",
     "object": "finite-slope support-wise MCA / LD_sw",
+    "official_source": {
+      "anchors": [
+        {
+          "label": "support_set_agreement_size",
+          "line": 99,
+          "needle": "\\abs{S}\\ge (1-\\delta)n"
+        },
+        {
+          "label": "line_family",
+          "line": 105,
+          "needle": "\\calF_{\\mathrm{lines}}"
+        },
+        {
+          "label": "grand_challenge_rates",
+          "line": 143,
+          "needle": "\\rho(C):=\\frac{k}{\\abs{L}}\\in\\set{\\frac12,\\frac14,\\frac18,\\frac1{16}}"
+        },
+        {
+          "label": "grand_challenge_field_range",
+          "line": 153,
+          "needle": "\\abs{\\F}<2^{256}"
+        },
+        {
+          "label": "mca_error_definition",
+          "line": 599,
+          "needle": "\\epsmca(C,\\delta):=\\max_{f_1,f_2\\in(\\F^s)^n}"
+        },
+        {
+          "label": "support_wise_exists_same_support",
+          "line": 602,
+          "needle": "\\exists S=S_\\gamma\\subseteq[n]"
+        },
+        {
+          "label": "support_wise_noncontainment",
+          "line": 604,
+          "needle": "\\Delta_S((f_1,f_2),C^{\\equiv2})>0"
+        },
+        {
+          "label": "line_decoding_to_mca_denominator",
+          "line": 792,
+          "needle": "\\epsmca(C,\\delta)\\le \\frac{a}{\\abs{\\F}}"
+        }
+      ],
+      "checks": {
+        "all_anchors_found": true,
+        "source_present": true
+      },
+      "path": "open-proximity.tex",
+      "sha256": "9ee33d8734181678fe07a9f2a2a44df6d5c773abfb45f67eac2f82ded000edbf"
+    },
     "projective_denominator": "|P^1(F)|=|F|+1"
   },
   "f17_512_affine": {
