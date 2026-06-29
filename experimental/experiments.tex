@@ -5458,6 +5458,31 @@ half-height core is therefore only
 plus the separately charged fixed-root tail.  Thus the final primitive
 half-height obstruction is a global count of root-free primitive directions,
 not a binomial-tail multiplicity.
+This core is automatically base-free.  If \(x\in B_S\), then
+\(P_S(x)=Q_S(x)=0\), hence every \(Q_{S,\lambda}\) vanishes at \(x\); after
+dividing by the non-base fiber locator, \(R_{S,\lambda}(x)=0\).  Therefore
+\(B_S\subseteq Z_{S,\lambda}^{\perp}\), and \(z_{S,\lambda}^{\perp}=0\)
+forces \(B_S=\emptyset\).  At a base-free node, let
+\[
+  u_S=\lfloor(q_S-1)/2\rfloor,\qquad
+  m_{S,r}^{hh}=\#\{\lambda: |D_{S,\lambda}|=q_S-r\}.
+\]
+The half-height fibers are disjoint, so
+\[
+  \sum_{r=1}^{u_S}m_{S,r}^{hh}(q_S-r)\le N_S,
+\]
+and
+\[
+  PrimHalf_S^{rf}\le
+  \sum_{r=1}^{u_S}
+  m_{S,r}^{hh}\left(1+\left\lfloor {N_S-q_S\over r}\right\rfloor\right).
+\]
+In particular, after all bounded-width denominators \(r<R\) have been
+charged, the remaining root-free primitive core is at most
+\[
+  \left\lfloor {N_S\over \lfloor q_S/2\rfloor+1}\right\rfloor
+  \left(1+\left\lfloor {N_S-q_S\over R}\right\rfloor\right).
+\]
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

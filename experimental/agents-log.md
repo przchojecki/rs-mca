@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 root-free primitive occupancy bound
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Shows that the root-free primitive half-height
+  core can occur only at base-free canonical nodes, then bounds it by the
+  half-height projective-fiber occupancy histogram.
+- **How it is useful:** Reduces the final uncharged half-height branch to a
+  purely node-combinatorial occupancy count after base, fixed-root, and
+  bounded-width primitive charges.
+- **What to do next:** Combine this node occupancy bound with the canonical
+  tree ledger to control the global M1 contribution.
+
 ### 2026-06-29 - M1 fixed-root charging removes primitive tail
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -5391,6 +5391,68 @@ the remaining primitive half-height problem is no longer a binomial-tail
 problem.  It is the global count of root-free primitive half-height directions
 with weight `1+floor((N_S-q_S)/r_lambda)`.
 
+## Root-Free Primitive Core Is Base-Free and Occupancy-Controlled
+
+The root-free primitive core has no hidden base-locus contribution.  If
+`x in B_S`, then `P_S(x)=Q_S(x)=0`, so every projective-shadow direction
+
+```text
+Q_{S,lambda}=bP_S-aQ_S
+```
+
+vanishes at `x`.  Since `x` is not in any non-base fiber `D_{S,lambda}`, the
+factorization `Q_{S,lambda}=ell_{D_{S,lambda}} R_{S,lambda}` gives
+`R_{S,lambda}(x)=0`.  Hence
+
+```text
+B_S subset Z_{S,lambda}^{perp}
+```
+
+for every non-base projective fiber `lambda`.  In particular,
+`z_{S,lambda}^{perp}=0` forces `B_S=empty`.  Thus the uncharged root-free
+primitive half-height core only occurs at canonical nodes whose descended base
+locus has vanished.
+
+At such a base-free node put
+
+```text
+u_S=floor((q_S-1)/2),
+m_{S,r}^{hh}=#{lambda : |D_{S,lambda}|=q_S-r},        1<=r<=u_S.
+```
+
+The half-height fibers are disjoint subsets of `D_S^{can}`, so
+
+```text
+sum_{r=1}^{u_S} m_{S,r}^{hh}(q_S-r) <= N_S.    (PF2-hh-occupancy)
+```
+
+Combining this with (PF2-prim-rf-core) gives the node-level occupancy bound
+
+```text
+PrimHalf_S^{rf}
+ <=
+ sum_{r=1}^{u_S}
+   m_{S,r}^{hh} (1+floor((N_S-q_S)/r)).        (PF2-prim-occupancy)
+```
+
+This bound depends only on the projective-fiber height histogram of the
+base-free canonical node.  Equivalently, for any cutoff `1<=R<=u_S+1`, if the
+bounded-width core `r<R` has been charged separately, then the remaining
+root-free primitive core satisfies
+
+```text
+PrimHalf_S^{rf}(r>=R)
+ <=
+ floor(N_S/(floor(q_S/2)+1))
+ (1+floor((N_S-q_S)/R)).                       (PF2-prim-occ-cut)
+```
+
+The reason is that every half-height fiber has size at least
+`floor(q_S/2)+1`, while `r>=R` makes the surplus weight at most
+`1+floor((N_S-q_S)/R)`.  Thus after base, fixed-root, and bounded-width
+primitive charges, no algebraic multiplicity remains in the half-height
+branch beyond this explicit occupancy count.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
