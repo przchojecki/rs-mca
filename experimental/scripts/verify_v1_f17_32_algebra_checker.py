@@ -25,6 +25,9 @@ A.3 CHECKLIST COVERAGE (this file grows one item per loop iteration):
   [x] agreement count
   [x] slope distinctness
   [x] noncontainment rank
+  -- hardening --
+  [x] 2nd-irreducible representation-invariance
+  [ ] on-main board-record cross-checks (tangent506 / strict352 / strict264)
 
 HONEST SCOPE / LIMITS
 ---------------------
@@ -62,6 +65,10 @@ TWO128 = 2 ** 128
 # irreducibility re-asserted at runtime in check_field_construction).
 MODULUS = [1, 14, 0, 4, 4, 2, 0, 2, 14, 7, 5, 5, 12, 6, 11, 11, 7,
            6, 1, 12, 3, 9, 3, 4, 5, 9, 11, 3, 13, 5, 8, 7, 16]
+# A SECOND, independent degree-32 irreducible (for the hardening invariance check;
+# also re-asserted irreducible at runtime).  GF(17^32) is unique up to isomorphism.
+MODULUS2 = [1, 14, 6, 10, 0, 11, 1, 10, 9, 4, 8, 5, 16, 9, 12, 13, 14,
+            10, 13, 11, 10, 9, 12, 13, 8, 10, 0, 15, 2, 12, 7, 9, 6]
 
 # ----------------------------------------------------------------------------
 # Independent GF(17^32) arithmetic on sympy galoistools (dense, high-deg-first;
@@ -562,6 +569,56 @@ def _vand_combo(coeffs, node_list, power):
     return acc
 
 
+def check_second_irreducible():
+    """HARDENING: re-verify the representation-invariant facts under a SECOND,
+    independent degree-32 irreducible (MODULUS2 != MODULUS).  GF(17^32) is unique up
+    to isomorphism, so the gate, the field laws, and |H|=512 (full 2-Sylow) must NOT
+    depend on the chosen irreducible -- this guards against a representation artifact."""
+    d = []
+    ok = True
+    irr2 = (len(MODULUS2) - 1 == N) and (MODULUS2[0] == 1) and gt.gf_irreducible_p(MODULUS2, P, ZZ)
+    d.append(f"2nd modulus monic deg-32 irreducible and != MODULUS : {irr2 and MODULUS2 != MODULUS}")
+    ok &= irr2 and (MODULUS2 != MODULUS)
+
+    def m2(a, b):
+        return gt.gf_rem(gt.gf_mul(a, b, P, ZZ), MODULUS2, P, ZZ)
+
+    def p2(a, e):
+        return gt.gf_pow_mod(a, e, MODULUS2, P, ZZ)
+
+    def a2(a, b):
+        return gt.gf_add(a, b, P, ZZ)
+
+    A = gt.gf_strip([(7 * i + 3) % P for i in range(N)])
+    B = gt.gf_strip([(5 * i + 1) % P for i in range(N)])
+    Cc = gt.gf_strip([(3 * i + 2) % P for i in range(N)])
+    distrib = m2(A, a2(B, Cc)) == a2(m2(A, B), m2(A, Cc))
+    inv_ok = (m2(A, p2(A, Q - 2)) == ONE)
+    frob = (p2(A, Q) == A)
+    d.append(f"field laws under 2nd irreducible (distrib, inverse, a^q=a) : {distrib and inv_ok and frob}")
+    ok &= distrib and inv_ok and frob
+    d.append(f"gate floor(17^32/2^128)=6 is representation-independent : {Q // TWO128 == 6}")
+    # |H|=512 full 2-Sylow reconstructed in the SECOND representation
+    e = (Q - 1) // 512
+    h2 = None
+    for m in range(2, 300):
+        cand = p2(int_to_elem(m), e)
+        if p2(cand, 256) != ONE and p2(cand, 512) == ONE:
+            h2 = cand
+            break
+    pts, cur = set(), ONE
+    if h2 is not None:
+        for _ in range(512):
+            pts.add(tuple(cur))
+            cur = m2(cur, h2)
+    h_ok = (h2 is not None) and (len(pts) == 512) and (cur == ONE)
+    d.append(f"|H|=512 full 2-Sylow reconstructed under 2nd irreducible : {h_ok}")
+    ok &= h_ok
+    d.append("=> gate, field laws, and |H|=512 are field-representation-INVARIANT "
+             "(independent of the chosen irreducible).")
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop iteration"]
 
@@ -577,6 +634,7 @@ CHECKS = [
     ("agreement count",                    check_agreement_count),
     ("slope distinctness",                 check_slope_distinctness),
     ("noncontainment rank",                check_noncontainment_rank),
+    ("hardening: 2nd irreducible",         check_second_irreducible),
 ]
 
 

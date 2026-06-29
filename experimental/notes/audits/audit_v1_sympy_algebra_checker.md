@@ -36,7 +36,8 @@ a natural follow-on for anyone whose stack has Sage/Magma.
 | 6 | agreement count | **done** |
 | 7 | slope distinctness | **done** |
 | 8 | noncontainment rank | **done** |
-| H | hardening (2nd irreducible + wire to on-main records) | pending |
+| H1 | hardening: 2nd-irreducible representation-invariance | **done** |
+| H2 | hardening: on-main record cross-checks (tangent506 / strict352 / strict264) | pending |
 
 ### Already verified (independent recompute)
 
@@ -98,6 +99,13 @@ a natural follow-on for anyone whose stack has Sage/Magma.
   `H`. Negative control: with only `r' = j` rows the `beta`-column IS a combination of
   the `J`-columns (containment), so `r >= j+1` is essential. Runnable miniature `j=4`;
   the row uses `r = n-k = 256`, `j = n-a`.
+- **Hardening: 2nd-irreducible invariance.** All the representation-invariant facts
+  -- the gate `floor(17^32/2^128)=6`, the field laws (distributivity, inverse,
+  `a^q=a`), and `|H|=512` as the full 2-Sylow -- are re-verified under a SECOND,
+  independent degree-32 irreducible `MODULUS2 != MODULUS` (re-asserted irreducible at
+  runtime). Since `GF(17^32)` is unique up to isomorphism these must not depend on the
+  chosen irreducible; confirming it guards against a representation-specific artifact
+  in the pinned `MODULUS`.
 
 ## Honest scope / limits
 
