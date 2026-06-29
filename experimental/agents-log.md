@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 canonical half-height short kernels
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Shows that every canonical `b=2` max-height node
+  outside the diffuse `h_S<=q_S/2` regime carries a nonzero projective-shadow
+  direction divisible by its large fiber, leaving a quotient kernel of width
+  `q_S-h_S<q_S/2`.
+- **How it is useful:** Converts the hard half-height term in the canonical
+  M1 capacity endpoint into an explicit short fixed-divisor/root-slice
+  certificate rather than an unstructured large-shadow exception.
+- **What to do next:** Count these short projective-shadow quotient kernels
+  globally across the canonical base-peeling tree, or charge them to existing
+  fixed-divisor/root-slice ledgers.
+
 ### 2026-06-29 - M1 b=2 two-regime height saving
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

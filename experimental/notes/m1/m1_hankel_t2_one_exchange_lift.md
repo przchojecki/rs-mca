@@ -5044,6 +5044,51 @@ residual width.  The only max-height nodes not covered by this automatic
 `q_S^{-2}` saving are the half-height projective-shadow nodes, precisely the
 large fixed-divisor shadows isolated earlier.
 
+## Canonical Half-Height Shadows Are Short Quotient Kernels
+
+The exceptional case in (PF2-two-regime) is still structured.  Fix a canonical
+node `S in Tree_2(A)` with `h_S>q_S/2`, and choose a projective fiber
+`lambda=[a:b]` such that
+
+```text
+C=D_{S,lambda},        |C|=h_S.
+```
+
+Define the corresponding projective-shadow direction by
+
+```text
+Q_{S,lambda}=bP_S-aQ_S.
+```
+
+This direction is nonzero because `span(P_S,Q_S)` has dimension two, and it
+vanishes on the whole non-base fiber `C`.  Hence
+
+```text
+Q_{S,lambda}=ell_C R_{S,lambda},
+deg R_{S,lambda}<q_S-h_S<q_S/2.                (PF2-canon-half-kernel)
+```
+
+By the same divisible-kernel identity used in the quotient-line packing
+ledger, `R_{S,lambda}` is a fixed-divisor Hankel kernel for the absorbed
+canonical anchor `S union C`.  Equivalently, the projective fiber responsible
+for the non-diffuse height profile is a short quotient-residue direction of
+width `q_S-h_S`.
+
+Thus the two regimes have different remaining tasks.  If `h_S<=q_S/2`, the
+node pays the automatic `4G_S^{can}/q_S^2` determinant-gate saving.  If
+`h_S>q_S/2`, then
+
+```text
+G_S^{can}/Phi_{q_S}(h_S)=G_S^{can}/(h_S(q_S-h_S)),
+```
+
+and the complementary factor `q_S-h_S` is exactly the width of the short
+quotient kernel in (PF2-canon-half-kernel).  The remaining M1 problem after
+the canonical capacity reduction is therefore not an arbitrary large-shadow
+case: it is to count these canonical short projective-shadow quotient kernels,
+or to charge them to the existing fixed-divisor/root-slice ledgers, across the
+base-peeling tree.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

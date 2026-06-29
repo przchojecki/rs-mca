@@ -5337,6 +5337,21 @@ The denominator has a two-regime lower bound: \(\Phi_q(h)\ge q(q-h)/2\), so
 is \(\Phi_q(h)=h(q-h)\).  Hence diffuse-height canonical nodes pay at most
 \(4G_S^{can}/q_S^2\), and the only nodes outside this automatic quadratic
 saving are the half-height projective-shadow nodes.
+These exceptional nodes are short quotient-kernel certificates.  If
+\(\lambda=[a:b]\) is a fiber with
+\(|D_{S,\lambda}|=h_S>q_S/2\), then
+\[
+  Q_{S,\lambda}=bP_S-aQ_S
+  =\ell_{D_{S,\lambda}}R_{S,\lambda},\qquad
+  \deg R_{S,\lambda}<q_S-h_S<q_S/2 .
+\]
+By the divisible-kernel identity, \(R_{S,\lambda}\) is the fixed-divisor
+Hankel kernel for the absorbed canonical anchor
+\(S\cup D_{S,\lambda}\).  Thus the non-diffuse term
+\(G_S^{can}/(h_S(q_S-h_S))\) is attached to a canonical short
+projective-shadow quotient direction of width \(q_S-h_S\); the remaining
+global task is to count or charge these short directions across the
+base-peeling tree.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots
