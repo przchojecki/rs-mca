@@ -173,6 +173,37 @@ with the first root exposed as a fixed divisor.  Therefore the whole width-one
 cube embeds into the disjoint union of one-root absorbed fixed-divisor
 root-slice families, preserving surplus and the bounded complement.
 
+## Large Cubes Have Large One-Root Witnesses
+
+The first-root partition also gives a counterexample-first form: a large
+width-one cube cannot be hidden by spreading thinly across many roots.  Put
+
+```text
+M_x=# { F subset Z_{>x} : |F|<=a-1 }.
+```
+
+Then (W1-first-root) gives
+
+```text
+max_{x in Z} M_x >= R1Flag(A)/(q-1).            (W1-root-witness)
+```
+
+When `a>=1`, equivalently `q>=4`, `R1Flag(A)>=binom(q-1,a)`.  The
+central-binomial lower bound gives
+
+```text
+max_{x in Z} M_x >= 2^{q-1}/(2q^2).             (W1-root-witness-exp)
+```
+
+Indeed, with `n=q-1`, the level `a=floor((q-2)/2)=floor((n-1)/2)` is central
+or one step below central, so `binom(n,a)>=2^n/(2(n+1))`; dividing by
+`q-1<=q` gives the displayed bound.
+
+Thus any fixed-surplus counterexample with `q` larger than a constant multiple
+of `log Q` already produces a super-polynomial one-root absorbed slice.  The
+remaining obstruction is therefore visible at a single fixed root; it is not a
+depth-multiplicative or many-root averaging phenomenon.
+
 ## Fixed-Surplus Closure Criterion
 
 Now sum over active canonical nodes with initial surplus `s_0<=sigma`.  Let

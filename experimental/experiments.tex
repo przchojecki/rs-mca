@@ -1653,6 +1653,20 @@ where the right side is empty when \(a=0\).  After exposing the first root
 \]
 so every nonempty width-one flag injects into a one-root absorbed
 fixed-divisor/root-slice family.
+This injection is also quantitatively localized.  If
+\[
+  M_x=\#\{F\subset Z_{>x}: |F|\le a-1\},
+\]
+then
+\[
+  \max_{x\in Z} M_x
+  \ge {1\over q-1}\sum_{e=1}^a\binom{q-1}{e}
+  \ge {2^{q-1}\over 2q^2}\qquad(q\ge4).
+\]
+The last inequality uses that \(a=\lfloor(q-2)/2\rfloor\) is central or one
+step below central.  Hence any large width-one cube already has a large
+single-root absorbed slice; the obstruction cannot be hidden as a
+many-first-root averaging effect.
 
 Consequently, in fixed surplus \(s_0\le\sigma\), small nodes \(q_S\le s_S+2\)
 are polynomial by the active-tree bound, while on \(q_S>s_S+2\) there is at

@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 width-one one-root witness bound
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_width_one_fixedroot_closure.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / REDUCTION.
+- **What is being added:** Quantifies the first-root partition: any width-one
+  flag cube has a first root `x` with slice size at least
+  `R1Flag(A)/(q-1)`, and hence at least `2^{q-1}/(2q^2)` on large nodes.
+- **How it is useful:** Shows that a super-polynomial width-one obstruction is
+  already visible in one fixed-root absorbed slice; it cannot be hidden by
+  averaging over many first roots or by depth-multiplicative branching.
+- **What to do next:** Attack the resulting large one-root slice via the
+  fixed-root/root-slice, quotient-periodic, tangent, or aperiodic ledgers.
+
 ### 2026-06-29 - M1 width-one bounded-complement test
 
 - **Agent/model:** AllenGrahamHart / Codex.
