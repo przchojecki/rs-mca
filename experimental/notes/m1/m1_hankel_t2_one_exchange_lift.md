@@ -5270,6 +5270,64 @@ splits into:
 3. the low-complement binomial tail already displayed in
    (PF2-short-primitive-tail).
 
+## Primitive Tail Has a Center-Gap Saving
+
+The low-complement tail in (PF2-short-primitive-tail) is a binomial lower tail
+with a visible gap from the center.  Since `q_S=h_lambda+r_lambda`,
+
+```text
+floor((q_S-1)/2)-r_lambda
+ =
+floor((h_lambda-r_lambda-1)/2).
+```
+
+Thus, writing
+
+```text
+T(h,r)=sum_{e=0}^{floor((h-r-1)/2)} binom(h,e),
+```
+
+the primitive-tail term is exactly `T(h_lambda,r_lambda)`.  Put
+
+```text
+theta(h,r)=floor((h-r-1)/2)/h < 1/2.
+```
+
+The standard binomial-tail estimates give
+
+```text
+T(h,r) <= (h+1) 2^{h H_2(theta(h,r))},          (PF2-tail-entropy)
+T(h,r) <= 2^h exp(-(r+1)^2/(2h)).               (PF2-tail-gauss)
+```
+
+Indeed, the entropy bound is the usual maximal-binomial-coefficient bound for
+a lower tail below `h/2`.  For the Gaussian form, if `B` is binomial
+`Bin(h,1/2)`, then `T(h,r)=2^h Pr[B<=floor((h-r-1)/2)]`; the cutoff is at
+least `(r+1)/2` below the mean `h/2`, and Hoeffding gives the displayed
+exponential saving.
+
+Consequently, after the perpendicular fixed-root defects have been charged,
+the root-free primitive short branch admits an explicit width cutoff.  Let
+`Short_S^{rf}` denote the contribution of primitive half-height fibers with
+`z_{S,lambda}^{perp}=0`.  For any integer `R>=1`,
+
+```text
+Short_S^{rf}
+ <=
+ sum_{lambda: h_lambda>q_S/2, r_lambda<R}
+   (1+floor((N_S-q_S)/r_lambda)) T(h_lambda,r_lambda)
+ +
+ sum_{lambda: h_lambda>q_S/2, r_lambda>=R}
+   (1+floor((N_S-q_S)/R))
+   2^{h_lambda} exp(-R^2/(2h_lambda)).          (PF2-tail-cutoff)
+```
+
+Thus wide primitive denominators carry a quantitative center-gap saving in the
+number of possible thickenings.  The only root-free primitive short kernels
+not helped by this tail estimate are the bounded-width denominators
+`r_lambda<R`; those are now isolated as the narrow primitive core of the
+half-height M1 obstruction.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

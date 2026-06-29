@@ -5420,6 +5420,28 @@ with positive denominator because
 \(z_{S,\lambda}^{\perp}\le r_\lambda-1\).  In the root-free primitive case it
 is \(1+\lfloor(N_S-q_S)/r_\lambda\rfloor\); every loss in the denominator is
 accounted for by an explicit perpendicular fixed-root/root-slice defect.
+The low-complement multiplicity is a lower binomial tail with a gap from the
+center:
+\[
+  \sum_{e=0}^{\lfloor(q_S-1)/2\rfloor-r_\lambda}\binom{h_\lambda}{e}
+  =
+  \sum_{e=0}^{\lfloor(h_\lambda-r_\lambda-1)/2\rfloor}
+  \binom{h_\lambda}{e}.
+\]
+If
+\(\theta=\lfloor(h_\lambda-r_\lambda-1)/2\rfloor/h_\lambda\), then
+\[
+  T(h_\lambda,r_\lambda)
+  \le (h_\lambda+1)2^{h_\lambda\Htwo(\theta)}
+  \quad\text{and}\quad
+  T(h_\lambda,r_\lambda)
+  \le 2^{h_\lambda}\exp\!\left(-{(r_\lambda+1)^2\over2h_\lambda}\right).
+\]
+Hence, after perpendicular fixed-root defects are charged, the root-free
+primitive branch splits at any cutoff \(R\): denominators
+\(r_\lambda<R\) form a bounded-width primitive core, while
+\(r_\lambda\ge R\) have the Gaussian tail saving above and packing factor at
+most \(1+\lfloor(N_S-q_S)/R\rfloor\).
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

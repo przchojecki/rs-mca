@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 primitive tail center-gap saving
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / ANALYTIC BOUND / REDUCTION.
+- **What is being added:** Rewrites the low-complement multiplicity as the
+  binomial lower tail `T(h,r)=sum_{e<=floor((h-r-1)/2)} binom(h,e)` and records
+  entropy and Hoeffding bounds, including a cutoff split for root-free
+  primitive denominators.
+- **How it is useful:** Quantifies the saving for wide primitive
+  half-height denominators and isolates bounded-width root-free denominators
+  as the remaining narrow primitive core of the M1 half-height obstruction.
+- **What to do next:** Combine this tail saving with a global count of
+  primitive half-height kernels, and handle the bounded-width core by
+  fixed-divisor/root-slice methods.
+
 ### 2026-06-29 - M1 primitive half-height surplus form
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
