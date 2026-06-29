@@ -1549,6 +1549,38 @@ slices and top packets.  These reductions define a promising M1 proof program,
 but they do not yet prove the desired uniform polynomial bound on residual
 aperiodic slope images.
 
+\subsection{M1: same-slope one-exchange root slices}
+
+The first local reduction in the all-line Hankel packet is elementary and
+proved in \path{experimental/notes/m1/m1_same_slope_root_slice_lemma.md}.  Let
+\[
+  L_z=H_{t,j}(u)+zH_{t,j}(v)
+\]
+be the finite-slope landing map.  Fix a \((j-1)\)-core \(R\), and write
+\[
+  T_y=R\cup\{y\},\qquad \ell_{T_y}=(X-y)\ell_R .
+\]
+If two distinct one-exchange extensions \(T_{y_1}\) and \(T_{y_2}\) satisfy
+\[
+  L_z\ell_{T_{y_1}}=L_z\ell_{T_{y_2}}=0,
+\]
+then subtracting gives
+\[
+  (y_2-y_1)L_z\ell_R=0.
+\]
+Thus \(L_z\ell_R=0\), and substituting into either endpoint equation gives
+\[
+  L_z(X\ell_R)=0.
+\]
+Consequently
+\[
+  L_z\ell_{T_y}=0\qquad\text{for every }y.
+\]
+So every same-slope one-exchange edge lies in the full fixed-slope root slice
+with core \(R\).  After fixed-slope root slices have been charged, the residual
+one-exchange graph has only different-slope edges.  This is a local reduction,
+not a bound for the remaining different-slope codegree.
+
 \subsection{M1: variable-line packet reduction}
 
 The follow-up variable-line packet note isolates a local reduction inside the

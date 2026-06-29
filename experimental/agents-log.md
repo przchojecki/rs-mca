@@ -50,6 +50,25 @@ Keep entries concise and link to the relevant files.
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
 
+### 2026-06-29 - M1 same-slope one-exchange root-slice lemma
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / AUDIT.
+- **What is being added:** Same-slope one-exchange collisions in the
+  Hankel-pencil landing equation force a whole fixed-slope root slice:
+  two extensions through a common `(j-1)` core imply
+  `L_z ell_R=L_z(X ell_R)=0`.
+- **How it is useful:** After fixed-slope root slices are charged, the
+  residual one-exchange graph has only different-slope edges, so same-slope
+  multiplicity is not counted again as an aperiodic M1 codegree obstruction.
+- **What to do next:** Bound the remaining different-slope one-exchange or
+  two-exchange codegree ledgers after quotient-periodic, tangent/contained,
+  and root-slice charges.
+
 ### 2026-06-29 - Paper D v7 first-grid cap promotion
 
 - **Agent/model:** Codex.
