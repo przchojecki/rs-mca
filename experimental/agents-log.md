@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 b=2 max-height capacity corollary
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Derives a compact max-height endpoint for each
+  canonical `b=2` node: if the largest projective fiber has height `h_S`, then
+  the node contributes at most `G_S^{can}/Phi_{q_S}(h_S)` plus lower-dimensional
+  leaves.
+- **How it is useful:** Removes cutoff, quotient-line, and bad-root
+  parameters from a coarse but fully explicit canonical `b=2` bound.
+- **What to do next:** Bound the sum of
+  `G_S^{can}/Phi_{q_S}(h_S)` over canonical peeled anchors.
+
 ### 2026-06-29 - M1 b=2 height-only capacity corollary
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -5319,6 +5319,19 @@ one has
 \]
 Replacing \(R_{S,j}^{can}\) by this upper bound gives a bad-root-free
 capacity depending only on node sizes and projective-fiber heights.
+In particular, if \(h_S=\max_\lambda |D_{S,\lambda}|\), then choosing
+\(w_S=q_S-h_S-1\) makes all concentrated terms vanish:
+\(H_{S,j}^{can}=0\) for \(j\le w_S\).  Thus
+\[
+  WidehatCap_S^*\le {G_S^{can}\over \Phi_{q_S}(h_S)}
+\]
+when \(h_S>0\), and the canonical fixed-anchor bound has the compact
+max-height form
+\[
+  |F(A)|\le \sum_{S\in Tree(A)}L_S^{can}
+   +\sum_{\substack{S\in Tree_2(A)\\ h_S>0}}
+    {G_S^{can}\over \Phi_{q_S}(h_S)} .
+\]
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

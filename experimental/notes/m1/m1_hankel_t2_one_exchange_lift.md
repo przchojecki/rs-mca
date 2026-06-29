@@ -4951,6 +4951,54 @@ one-root bad-slice parameter from the displayed `b=2` capacity bound, which is
 useful when one wants a global estimate before proving sharper root-slice
 bad-root cancellation.
 
+## Max-Height Corollary for Canonical Nodes
+
+There is an even simpler height-only consequence.  For `S in Tree_2(A)`, put
+
+```text
+h_S=max_lambda |D_{S,lambda}|.
+```
+
+If `h_S=0`, the no-base term at this node is empty.  Otherwise the degree gap
+gives `1<=h_S<=q_S-1`.  Since every no-base quotient support at node `S` has
+all projective fibers of size at most `h_S`, the exact occupancy bound gives
+
+```text
+g_S(R)>=Phi_{q_S}(h_S)
+```
+
+for every no-base support `R` at the node.  Equivalently, in the cutoff
+language choose
+
+```text
+w_S=q_S-h_S-1.
+```
+
+Then `H_{S,j}^{can}=0` for every `j<=w_S`, because a subset of size
+`q_S-j>h_S` cannot fit inside one projective fiber.  Hence the height-only
+capacity has no concentrated term at this cutoff and
+
+```text
+WidehatCap_S^* <= G_S^{can}/Phi_{q_S}(h_S).     (PF2-max-height-node)
+```
+
+Combining this with (PF2-canon-height-cap) yields the compact fixed-anchor
+bound
+
+```text
+|F(A)|
+ <=
+  sum_{S in Tree(A)} LowerDim_S^can
+  + sum_{S in Tree_2(A), h_S>0}
+      G_S^{can}/Phi_{q_S}(h_S).                (PF2-canon-height-simple)
+```
+
+This is weaker than the optimized cutoff when low-width root-slice packings
+are cheap, but it has no cutoff, bad-root, or quotient-line parameters.  The
+remaining global `b=2` question is reduced to bounding canonical node
+cross-fiber capacities relative to their maximum projective-fiber heights,
+together with the explicit lower-dimensional leaves.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
