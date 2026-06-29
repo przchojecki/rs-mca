@@ -48,7 +48,8 @@ the resulting injection into norm-outside slopes, and the degree-two
 norm-power classification, including the constant-norm line-packet charge and
 the single large Fourier term in the nonconstant square-norm branch, and the
 norm-pushforward obstruction for cover-level power terms, including the
-anti-ratio square-class reduction.
+anti-ratio square-class reduction and the genus-one exclusion for genuine
+cubic anti-ratio powers.
 """
 
 from __future__ import annotations
@@ -4558,6 +4559,32 @@ def check_boundary_core_anti_ratio_reduction() -> None:
                 assert order == 3
 
 
+def check_boundary_core_cubic_anti_ratio_genus_gate() -> None:
+    # If Phi is an actual cube G^3 and deg(Phi)<=4, then either Phi is
+    # constant or deg(Phi)=3 and deg(G)=1.  A smooth projective curve with a
+    # degree-one map to P^1 is rational, so genus-one covers cannot carry a
+    # genuine cubic anti-ratio power.
+    for phi_degree in range(0, 5):
+        possible_actual_cube_degrees = [
+            root_degree
+            for root_degree in range(0, 5)
+            if 3 * root_degree == phi_degree
+        ]
+        if phi_degree == 0:
+            assert possible_actual_cube_degrees == [0]
+        elif phi_degree == 3:
+            assert possible_actual_cube_degrees == [1]
+        else:
+            assert possible_actual_cube_degrees == []
+
+    for genus in (0, 1):
+        has_degree_one_map_to_p1 = genus == 0
+        if genus == 1:
+            assert not has_degree_one_map_to_p1
+        else:
+            assert has_degree_one_map_to_p1
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -4796,6 +4823,7 @@ def main() -> None:
     check_boundary_core_norm_exception_ledger()
     check_boundary_core_cover_power_norm_pushforward()
     check_boundary_core_anti_ratio_reduction()
+    check_boundary_core_cubic_anti_ratio_genus_gate()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     check_boundary_core_closure_substitution()

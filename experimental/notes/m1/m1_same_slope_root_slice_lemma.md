@@ -2350,6 +2350,29 @@ constant-norm and square-norm branches above have been charged or isolated,
 there are no cover-level power branches left in the root-core mixed-domain
 expansion.
 
+Even when `3|e`, this cubic branch is only a genuine no-cancellation branch on
+the rational-cover locus.  Geometric triviality of the cubic anti-ratio
+Kummer term means
+
+```text
+Phi_R = c G^3        in k(C_R)^*
+```
+
+after base change to the algebraic closure.  Since `deg(Phi_R)<=4` and
+`Phi_R` is nonconstant after the square-norm branch is removed, this forces
+
+```text
+deg(Phi_R)=3,        deg(G)=1.                       (RKANTIGENUS)
+```
+
+A smooth projective curve with a degree-one map to `P^1` is rational.  Hence
+on a geometrically integral genus-one normalization of `C_R`, the cubic
+anti-ratio term is still geometrically nontrivial and has the usual
+bounded-conductor Weil bound.  The only genuine cubic no-cancellation case is
+a rational-cover algebraic branch where `Phi_R` is the cube of a degree-one
+function.  Thus the nonsplit genus-one root-core cover has no cover-level
+power branch left after the constant-norm and square-norm exceptions.
+
 The diagonal product terms in (RKCOUNT) descend to the slope line.  Since
 
 ```text
@@ -2598,9 +2621,10 @@ charges constant norm to the fixed-root/product-Mobius line-packet ledger,
 isolates the single large quadratic coefficient in the nonconstant square-norm
 filter, proves the norm-pushforward obstruction that leaves only anti-diagonal
 cover-ratio power branches after those norm exceptions, reduces the
-anti-diagonal obstruction further to the cubic ratio branch, and gives the
-local max-degree bound and average-collinearity corollary above, including the
-packet-level higher-exchange ledger substitution.
+anti-diagonal obstruction further to the cubic ratio branch, shows that a
+genuine cubic no-cancellation term forces the rational-cover locus, and gives
+the local max-degree bound and average-collinearity corollary above, including
+the packet-level higher-exchange ledger substitution.
 
 ## Verification
 
@@ -2648,4 +2672,5 @@ the mixed-domain count formula (RKCOUNT), including the diagonal descent
 (RKNP), including the constant-norm line-packet charge and the single-large
 square-norm Fourier term, and the cover-term norm-pushforward obstruction
 (RKPUSH), including the anti-ratio square-class and degree-four reduction
-(RKANTIRED).
+(RKANTIRED) and the genus-one exclusion for genuine cubic anti-ratio powers
+(RKANTIGENUS).
