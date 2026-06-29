@@ -16,7 +16,8 @@ It also checks the two-exchange full-plane lift, t=2 determinant-gate formula,
 ruled-core collapse, triangle classification, and top-packet lift identities.
 The simultaneous top-kernel recursion is checked by the same padded-row
 identity applied to both syndrome rows.  Rank-defect hyperplane fibers are
-checked by the affine-linear one-root extension formula.
+checked by the affine-linear one-root extension formula, and general affine
+subpacket fibers are checked by finite-field linear algebra.
 """
 
 from __future__ import annotations
@@ -110,6 +111,51 @@ def vec_rank(vectors: list[tuple[int, int]], p: int) -> int:
     if all(det2(pivot, v, p) == 0 for v in nonzero[1:]):
         return 1
     return 2
+
+
+def matrix_rank(rows: list[list[int]], p: int) -> int:
+    if not rows:
+        return 0
+    matrix = [[entry % p for entry in row] for row in rows]
+    width = len(matrix[0])
+    rank = 0
+    for col in range(width):
+        pivot = None
+        for row_idx in range(rank, len(matrix)):
+            if matrix[row_idx][col] % p != 0:
+                pivot = row_idx
+                break
+        if pivot is None:
+            continue
+        matrix[rank], matrix[pivot] = matrix[pivot], matrix[rank]
+        inv = pow(matrix[rank][col], -1, p)
+        matrix[rank] = [(value * inv) % p for value in matrix[rank]]
+        for row_idx in range(len(matrix)):
+            if row_idx == rank:
+                continue
+            factor = matrix[row_idx][col] % p
+            if factor == 0:
+                continue
+            matrix[row_idx] = [
+                (matrix[row_idx][idx] - factor * matrix[rank][idx]) % p
+                for idx in range(width)
+            ]
+        rank += 1
+        if rank == len(matrix):
+            break
+    return rank
+
+
+def in_linear_span(vector: tuple[int, ...], directions: list[list[int]], p: int) -> bool:
+    rank = matrix_rank(directions, p)
+    return matrix_rank(directions + [list(vector)], p) == rank
+
+
+def in_affine_subspace(
+    point: tuple[int, ...], base: list[int], directions: list[list[int]], p: int
+) -> bool:
+    diff = tuple((point[idx] - base[idx]) % p for idx in range(len(point)))
+    return in_linear_span(diff, directions, p)
 
 
 def eval_pencil(
@@ -809,6 +855,89 @@ def check_hyperplane_one_root_fiber_dichotomy() -> None:
                             core,
                             coeffs,
                             constant,
+                            passing_roots,
+                        )
+
+
+def check_affine_subpacket_one_root_fiber_dichotomy() -> None:
+    rng = Random(20260708)
+
+    for p in (5, 7, 11, 17):
+        for h_exchange in range(1, 6):
+            if p ** (h_exchange - 1) <= 1500:
+                cores = [
+                    list(coeffs) + [1]
+                    for coeffs in product(range(p), repeat=h_exchange - 1)
+                ]
+            else:
+                cores = [
+                    [rng.randrange(p) for _ in range(h_exchange - 1)] + [1]
+                    for _ in range(180)
+                ]
+
+            affine_subspaces: list[tuple[list[int], list[list[int]]]] = []
+            for rank in range(h_exchange + 1):
+                base = [rng.randrange(p) for _ in range(h_exchange)]
+                coordinate_directions = []
+                for axis in range(rank):
+                    direction = [0] * h_exchange
+                    direction[axis] = 1
+                    coordinate_directions.append(direction)
+                affine_subspaces.append((base, coordinate_directions))
+
+                for _ in range(24):
+                    base = [rng.randrange(p) for _ in range(h_exchange)]
+                    directions = [
+                        [rng.randrange(p) for _ in range(h_exchange)]
+                        for _ in range(rank)
+                    ]
+                    affine_subspaces.append((base, directions))
+
+            for core in cores:
+                direction_vector = tuple(core[m] % p for m in range(h_exchange))
+                for base, directions in affine_subspaces:
+                    passing_roots: list[int] = []
+                    for y in range(p):
+                        point = tuple(mul_x_minus_y(core, y, p)[:-1])
+                        if in_affine_subspace(point, base, directions, p):
+                            passing_roots.append(y)
+
+                    if len(passing_roots) >= 2:
+                        assert in_linear_span(direction_vector, directions, p), (
+                            p,
+                            h_exchange,
+                            core,
+                            base,
+                            directions,
+                            passing_roots,
+                            direction_vector,
+                        )
+                        assert len(passing_roots) == p, (
+                            p,
+                            h_exchange,
+                            core,
+                            base,
+                            directions,
+                            passing_roots,
+                        )
+                        for y in range(p):
+                            point = tuple(mul_x_minus_y(core, y, p)[:-1])
+                            assert in_affine_subspace(point, base, directions, p), (
+                                p,
+                                h_exchange,
+                                core,
+                                base,
+                                directions,
+                                y,
+                                point,
+                            )
+                    else:
+                        assert len(passing_roots) <= 1, (
+                            p,
+                            h_exchange,
+                            core,
+                            base,
+                            directions,
                             passing_roots,
                         )
 
@@ -1541,6 +1670,7 @@ def main() -> None:
     check_affine_span_packet_normal_form()
     check_fixed_root_hyperplane_criterion()
     check_hyperplane_one_root_fiber_dichotomy()
+    check_affine_subpacket_one_root_fiber_dichotomy()
     check_two_root_line_classification()
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()

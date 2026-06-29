@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 affine-subpacket fiber dichotomy
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / AUDIT.
+- **What is being added:** The one-root fiber dichotomy is extended from
+  coefficient hyperplanes to every affine rank-defect packet `A=c_*+W`: a
+  fixed one-root fiber meets `A` in at most one point unless the whole fiber
+  lies in `A`.
+- **How it is useful:** After full one-root fibers are charged to the lifted
+  root-slice ledger, residual affine rank-defect packets have no one-exchange
+  edges.  This pushes the lossless packet filtration beyond codimension-one
+  hyperplanes and removes another possible source of hidden same-slope
+  clustering.
+- **What to do next:** Use the edge-free residual affine packets as the input
+  to the remaining different-slope and two-exchange ledgers.
 
 ### 2026-06-29 - M1 coefficient-hyperplane fiber dichotomy
 
