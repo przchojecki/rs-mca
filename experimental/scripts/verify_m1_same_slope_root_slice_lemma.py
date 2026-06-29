@@ -2506,6 +2506,23 @@ def boundary_core_bidegree_coeffs(
     return out
 
 
+def elementary_two_root_det_coeffs(
+    u_vectors: tuple[tuple[int, int], tuple[int, int], tuple[int, int]],
+    v_vectors: tuple[tuple[int, int], tuple[int, int], tuple[int, int]],
+    p: int,
+) -> Poly2:
+    basis: tuple[Poly2, Poly2, Poly2] = (
+        {(0, 1): 1},
+        {(1, 0): (-1) % p},
+        {(0, 0): 1},
+    )
+    out: Poly2 = {}
+    for i, u_vec in enumerate(u_vectors):
+        for j, v_vec in enumerate(v_vectors):
+            poly_add_scaled(out, poly_mul(basis[i], basis[j], p), det2(u_vec, v_vec, p), p)
+    return out
+
+
 def eval_boundary_core_vectors(
     vectors: tuple[tuple[int, int], tuple[int, int], tuple[int, int]],
     beta: int,
@@ -2531,17 +2548,26 @@ def check_boundary_core_bidegree_determinant() -> None:
         ]
         for u_vectors, v_vectors in samples:
             poly = boundary_core_bidegree_coeffs(u_vectors, v_vectors, p)
+            elementary_poly = elementary_two_root_det_coeffs(u_vectors, v_vectors, p)
             assert all(beta_deg <= 2 and y_deg <= 2 for beta_deg, y_deg in poly), (
                 p,
                 u_vectors,
                 v_vectors,
                 poly,
             )
+            assert all(s_deg + p_deg <= 2 for s_deg, p_deg in elementary_poly), (
+                p,
+                u_vectors,
+                v_vectors,
+                elementary_poly,
+            )
             for beta in range(p):
                 for y in range(p):
                     c_vec = eval_boundary_core_vectors(u_vectors, beta, y, p)
                     d_vec = eval_boundary_core_vectors(v_vectors, beta, y, p)
                     direct = det2(c_vec, d_vec, p)
+                    s_value = (beta + y) % p
+                    p_value = (beta * y) % p
                     assert eval_poly2(poly, beta, y, p) == direct, (
                         p,
                         u_vectors,
@@ -2549,6 +2575,17 @@ def check_boundary_core_bidegree_determinant() -> None:
                         beta,
                         y,
                         poly,
+                        direct,
+                    )
+                    assert eval_poly2(elementary_poly, s_value, p_value, p) == direct, (
+                        p,
+                        u_vectors,
+                        v_vectors,
+                        beta,
+                        y,
+                        s_value,
+                        p_value,
+                        elementary_poly,
                         direct,
                     )
                     assert eval_poly2(poly, beta, y, p) == eval_poly2(poly, y, beta, p), (
@@ -2559,6 +2596,17 @@ def check_boundary_core_bidegree_determinant() -> None:
                         y,
                         poly,
                     )
+                    for alpha in (beta, y):
+                        fixed_root_p = (alpha * s_value - alpha * alpha) % p
+                        assert fixed_root_p == p_value, (
+                            p,
+                            alpha,
+                            beta,
+                            y,
+                            s_value,
+                            p_value,
+                            fixed_root_p,
+                        )
 
 
 def check_nonruled_degree_bound() -> None:

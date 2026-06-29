@@ -210,6 +210,24 @@ vector.  The fixed-shadow and fixed-anchor quadratics are the two coordinate
 specializations of this same determinant.  Thus the remaining boundary-core
 image is a concrete bidegree-two incidence target.
 
+Equivalently, if
+
+```text
+F_R(s,p)=det(U_2-sU_1+pU_0, V_2-sV_1+pV_0),
+```
+
+then
+
+```text
+Delta_R(beta,y)=F_R(beta+y,beta y).
+```
+
+So the boundary-core target is the mixed-domain slice of the ordinary two-root
+elementary determinant curve.  Fixing either coordinate is the fixed-root line
+`p=alpha s-alpha^2` in the `(s,p)` plane; after those root-slice charges, any
+positive-dimensional same-slope component is one of the already classified
+fixed-sum or nondegenerate product-Mobius line packets.
+
 ## Integration Decision
 
 The full PR was not merged wholesale.  It included a very large generated

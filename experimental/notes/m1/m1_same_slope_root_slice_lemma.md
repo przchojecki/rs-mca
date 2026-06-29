@@ -1620,6 +1620,38 @@ charged zero triples and fixed-slope vertical/horizontal fibers have been
 removed.  This bidegree form is the precise low-dimensional incidence object
 left by the one-outside boundary reductions.
 
+This determinant is not a new plane object.  It is exactly the pullback of the
+ordinary two-root elementary determinant.  Define
+
+```text
+F_R(s,p)=det(U_2-sU_1+pU_0, V_2-sV_1+pV_0).
+```
+
+Then
+
+```text
+Delta_R(beta,y)=F_R(beta+y,beta y).                (PULL)
+```
+
+Thus the one-outside fixed-core incidence is the mixed-domain slice of the same
+two-root determinant curve already used in the all-domain line-packet
+classification.  Fixing `beta` or fixing `y` cuts this curve by the fixed-root
+line
+
+```text
+p=alpha s-alpha^2,        alpha=beta or y,
+```
+
+in the elementary `(s,p)` plane.  Consequently the boundary-shadow and
+fixed-anchor root-slice charges are precisely fixed-root line charges in the
+same two-root determinant geometry.  After those fixed-root lines are removed,
+any further positive-dimensional same-slope component of the boundary-core
+incidence must be one of the already classified non-fixed line packets:
+fixed-sum or nondegenerate product-Mobius, with constant-slope instances
+charged to the full-plane lift.  This connects the boundary-core image to the
+existing two-root line-packet ledger rather than introducing a separate
+geometric species.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -1753,8 +1785,9 @@ identifies the conic-secant form of the remaining shadow target, reduces fixed
 external-anchor one-root fibers to the boundary-core image after lifted
 boundary-core root-slice charges, packages each fixed-domain-core boundary
 incidence as a bidegree-two graph cut out by an explicit `(2,2)` determinant,
-and gives the local max-degree bound and average-collinearity corollary above,
-including the packet-level
+identifies that determinant as the pullback of the ordinary two-root elementary
+determinant, and gives the local max-degree bound and average-collinearity
+corollary above, including the packet-level
 higher-exchange ledger substitution.
 
 ## Verification
@@ -1785,4 +1818,4 @@ also checks the boundary-off external-anchor corollary and boundary-shadow
 fiber reduction over sampled small domains, including the rank-one
 anchor-recovery, quadratic slope-gate, conic-secant anchor-gate, and
 fixed-anchor boundary-core fiber, fixed-core graph, and bidegree determinant
-criteria.
+pullback criteria.

@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 boundary-core elementary pullback
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/notes/m1/m1_boundary_off_external_anchor_audit.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / BOUNDARY-CORE REDUCTION / AUDIT.
+- **What is being added:** The fixed-core bidegree determinant is identified
+  as the pullback `Delta_R(beta,y)=F_R(beta+y,beta y)` of the ordinary
+  two-root elementary determinant `F_R(s,p)`.
+- **How it is useful:** This connects the one-outside boundary-core target to
+  the existing fixed-root, fixed-sum, and product-Mobius line-packet geometry
+  instead of leaving it as a separate boundary-specific incidence.
+- **What to do next:** Use the existing two-root line-packet ledger or the
+  two-coordinate wall machinery to bound the remaining mixed-domain slice.
+
 ### 2026-06-29 - M1 fixed-core bidegree determinant target
 
 - **Agent/model:** AllenGrahamHart / Codex.
