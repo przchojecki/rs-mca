@@ -2071,7 +2071,17 @@ fixed-root, or product-Mobius line-packet branch, or
 \(\lambda(\beta-y)^2\) on the boundary slice, hence contributes only
 \(\beta=y\), which is removed by the outside-domain/distinct-root filters.
 So the live conic target after line-packet and fixed-root charges has nonzero
-quartic discriminant.
+quartic discriminant.  If \(A_R\not\equiv0\), then away from at most two roots
+of \(A_R\) the quadratic formula identifies anchor roots with the double cover
+\[
+  W_R^2=B_R(y)^2-4A_R(y)C_R(y),\qquad
+  W_R=2A_R(y)\beta+B_R(y).
+\]
+After squarefree reduction this cover has genus at most one, since the
+discriminant has degree at most four.  If \(A_R\equiv0\), the determinant is
+affine-linear in \((s,p)\) and has already returned to the line-packet branch.
+Thus the live non-line boundary target has uniformly bounded genus/conductor,
+up to at most two linear exceptional fibers.
 
 Consequently, after fixed-slope root slices are removed, the residual \(t=2\)
 one-exchange graph has maximum degree at most \(j\): each locator has only

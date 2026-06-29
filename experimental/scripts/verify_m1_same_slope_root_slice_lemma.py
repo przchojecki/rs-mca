@@ -32,6 +32,8 @@ The boundary-core quadratic anchor gate and quartic discriminant root count are
 checked in sampled odd prime fields.
 The identically-zero discriminant case is checked by exhaustive small-field
 classification into scalar affine-line squares or the envelope conic s^2-4p.
+For nonzero discriminant gates, the verifier also checks the bounded double
+cover parametrization W=2A beta+B outside the at-most-two A=0 fibers.
 """
 
 from __future__ import annotations
@@ -2783,6 +2785,30 @@ def check_boundary_core_bidegree_determinant() -> None:
                 elementary_poly,
                 anchor_disc,
             )
+            if anchor_disc:
+                disc_degree = max(anchor_disc)
+                cover_genus_bound = max(0, (disc_degree - 1) // 2)
+                assert cover_genus_bound <= 1, (
+                    p,
+                    elementary_poly,
+                    anchor_disc,
+                    cover_genus_bound,
+                )
+                if anchor_a:
+                    exceptional_y = [
+                        y for y in range(p) if eval_poly1(anchor_a, y, p) == 0
+                    ]
+                    assert len(exceptional_y) <= 2, (
+                        p,
+                        elementary_poly,
+                        anchor_a,
+                        exceptional_y,
+                    )
+                else:
+                    assert not any(
+                        monomial in elementary_poly
+                        for monomial in ((2, 0), (1, 1), (0, 2))
+                    ), (p, elementary_poly, anchor_a)
             for beta in range(p):
                 for y in range(p):
                     c_vec = eval_boundary_core_vectors(u_vectors, beta, y, p)
@@ -2890,6 +2916,37 @@ def check_boundary_core_bidegree_determinant() -> None:
                         == 0
                         for beta in range(p)
                     ), (p, elementary_poly, y)
+                if anchor_disc and a_value != 0:
+                    disc_value = eval_poly1(anchor_disc, y, p)
+                    cover_points = [
+                        w for w in range(p) if (w * w - disc_value) % p == 0
+                    ]
+                    cover_from_roots = sorted(
+                        (2 * a_value * beta + b_value) % p for beta in roots
+                    )
+                    assert cover_from_roots == sorted(cover_points), (
+                        p,
+                        elementary_poly,
+                        y,
+                        a_value,
+                        b_value,
+                        c_value,
+                        disc_value,
+                        roots,
+                        cover_points,
+                        cover_from_roots,
+                    )
+                    inv_2a = pow((2 * a_value) % p, -1, p)
+                    for w in cover_points:
+                        beta = ((-b_value + w) * inv_2a) % p
+                        assert beta in roots, (
+                            p,
+                            elementary_poly,
+                            y,
+                            w,
+                            beta,
+                            roots,
+                        )
 
 
 def check_boundary_discriminant_degeneracy_classification() -> None:

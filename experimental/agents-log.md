@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 boundary quartic bounded cover
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/notes/m1/m1_boundary_off_external_anchor_audit.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / BOUNDARY-CORE REDUCTION / AUDIT.
+- **What is being added:** After zero-discriminant cases are charged, the live
+  boundary-core quartic target is identified with the double cover
+  `W_R^2=Disc_R(y)` via `W_R=2A_R(y)beta+B_R(y)`, away from at most two
+  linear exceptional fibers where `A_R(y)=0`.
+- **How it is useful:** Since `deg Disc_R<=4`, the squarefree normalization
+  has genus at most one.  This turns the remaining non-line boundary-core
+  task into a uniformly bounded genus-zero/genus-one Kummer trace rather than
+  an unstructured bidegree incidence.
+- **What to do next:** Prove the required nonzero quartic Kummer/character-sum
+  cancellation after quotient, outside-domain, and active filters.
+
 ### 2026-06-29 - M1 boundary discriminant degeneracy discharge
 
 - **Agent/model:** AllenGrahamHart / Codex.

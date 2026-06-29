@@ -295,6 +295,22 @@ line-packet branch.  The second restricts to
 after line-packet and fixed-root charges, the remaining conic target has a
 nonzero quartic discriminant.
 
+The live nonzero-discriminant target is a bounded double-cover problem.  If
+`A_R` is identically zero, then `F_R` is affine-linear and has already returned
+to the line-packet branch.  Otherwise `A_R` has at most two roots.  Away from
+those roots, anchor roots are in bijection with
+
+```text
+W_R^2=Disc_R(y),
+```
+
+through `W_R=2A_R(y)beta+B_R(y)` and
+`beta=(-B_R(y)+W_R)/(2A_R(y))`.  Since `deg Disc_R<=4`, the squarefree
+normalization has genus at most one.  The roots of `A_R` contribute only at
+most two linear exceptional fibers before the outside-domain and active
+filters.  Thus the remaining analytic target is a uniform genus-zero/genus-one
+Kummer trace.
+
 ## Integration Decision
 
 The full PR was not merged wholesale.  It included a very large generated
