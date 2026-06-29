@@ -58,7 +58,8 @@ endpoint certificate, endpoint-discriminant certificate, Hankel-minor
 discriminant certificate, Plucker-minor discriminant certificate,
 Plucker-chart decomposition, Plucker-chart row recurrence, Hankel square
 factorization, endpoint slope map, overlapping Plucker-chart recurrence,
-endpoint-charge corollary, and packet-count corollary.
+endpoint-pair inversion, endpoint-charge corollary, and packet-count
+corollary.
 """
 
 from __future__ import annotations
@@ -3435,6 +3436,56 @@ def assert_overlapping_plucker_chart_recurrence(
         lambda1,
         expected_row3,
         substituted_row3,
+    )
+
+    l0_slope = (row1[1] - lambda0 * row0[1]) % p
+    l1_slope = (row2[1] - lambda1 * row1[1]) % p
+    if l0_slope == 0 or l1_slope == 0:
+        return
+
+    z0 = ((lambda0 * row0[0] - row1[0]) * pow(l0_slope, -1, p)) % p
+    z1 = ((lambda1 * row1[0] - row2[0]) * pow(l1_slope, -1, p)) % p
+    c0_z0 = (row0[0] + z0 * row0[1]) % p
+    c1_z0 = (row1[0] + z0 * row1[1]) % p
+    c0_z1 = (row0[0] + z1 * row0[1]) % p
+    c1_z1 = (row1[0] + z1 * row1[1]) % p
+    assert c0_z0 != 0, (
+        p,
+        a_rows,
+        b_rows,
+        lambda0,
+        lambda1,
+        z0,
+    )
+    recovered_lambda0 = (c1_z0 * pow(c0_z0, -1, p)) % p
+    assert recovered_lambda0 == lambda0, (
+        p,
+        a_rows,
+        b_rows,
+        z0,
+        lambda0,
+        recovered_lambda0,
+    )
+    assert c1_z1 != 0, (
+        p,
+        a_rows,
+        b_rows,
+        lambda0,
+        lambda1,
+        z1,
+    )
+    recovered_lambda1 = (
+        2 * lambda0 - lambda0 * lambda0 * c0_z1 * pow(c1_z1, -1, p)
+    ) % p
+    assert recovered_lambda1 == lambda1, (
+        p,
+        a_rows,
+        b_rows,
+        z0,
+        z1,
+        lambda0,
+        lambda1,
+        recovered_lambda1,
     )
 
 

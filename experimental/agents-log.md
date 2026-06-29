@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 overlapping endpoint-pair inversion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** In the nondegenerate overlapping Plucker chart,
+  a finite `H_0` endpoint recovers `lambda_0=c_1(z_0)/c_0(z_0)`, and a finite
+  `H_1` endpoint then recovers
+  `lambda_1=2lambda_0-lambda_0^2 c_0(z_1)/c_1(z_1)`.
+- **How it is useful:** For a fixed adjacent row basis, an ordered finite
+  zero/pole endpoint pair supports at most one nondegenerate square-norm
+  Plucker packet, turning this branch into an injective endpoint-pair count
+  after the charged degeneracies are removed.
+- **What to do next:** Use this injectivity to bound simultaneous finite
+  endpoint pairs across admissible row bases or identify the remaining basis
+  variation as quotient/template structure.
+
 ### 2026-06-30 - M1 Plucker-chart endpoint slope map
 
 - **Agent/model:** AllenGrahamHart / Codex.
