@@ -6117,8 +6117,44 @@ and therefore, for fixed \(\sigma,d,B\),
   +O_{\sigma,d,B}(q^{\sigma+d+1}+q^{\sigma+B+2}+q^{\sigma+2})
   \qquad(s_0\le\sigma).
 \]
-This is the sharper residual target after fixed-root/full-star charges: control
-the locally weighted root-free flag ledger, not an ambient \(q\)-multiple of it.
+This is a sharper sufficient top-level target after fixed-root/full-star
+charges: control the locally weighted root-free flag ledger, not an ambient
+\(q\)-multiple of it.
+There is also an exact canonical version.  Define
+\[
+\begin{aligned}
+PerpTailStar_{\mathrm{crit}(d,B)}(A)
+&=\sum_{\substack{(S,\lambda)\ {\rm critical}\\Z_{S,\lambda}^{\perp}\ne\emptyset}}
+  \sum_{e=0}^a\binom{h_\lambda}{e},\\
+CanRFFlag_{\mathrm{crit}(d,B)}(A)
+&=\sum_{\substack{(S,\lambda)\ {\rm critical}\\Z_{S,\lambda}^{\perp}=\emptyset}}
+  \sum_{e=1}^a\binom{h_\lambda}{e}.
+\end{aligned}
+\]
+Then
+\[
+  TailLift_{\mathrm{crit}(d,B)}(A)
+  =PerpTailStar_{\mathrm{crit}(d,B)}(A)
+   +CanRFFlag_{\mathrm{crit}(d,B)}(A).
+\]
+For the root-free summands, fix the ambient order on \(D_{S,\lambda}\).  Each
+nonempty thickening \(E\) has a unique increasing enumeration
+\(E=\{x_1<\cdots<x_e\}\), and absorbing an initial segment gives
+\[
+  Q^{(x_1,\ldots,x_m)}_{S,\lambda,E}
+  =\ell_{E\setminus\{x_1,\ldots,x_m\}}R_{S,\lambda},\quad
+  q^{P_m}=q_S-m,\quad h^{P_m}=h_\lambda-m,\quad r^{P_m}=r_\lambda,\quad
+  s^{P_m}=s_S.
+\]
+Thus the root-free descent has a canonical increasing-flag partition: each
+tail thickening follows one path through the recursion, and no multiplicative
+branching factor is introduced by iterating the descent.  Moreover
+\[
+  CanRFFlag_{\mathrm{crit}(d,B)}(A)
+  \le WRFFlag_{\mathrm{crit}(d,B)}(A),
+\]
+so the weighted ledger is a sufficient top-level proxy for the sharper exact
+canonical residual.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

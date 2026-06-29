@@ -6843,9 +6843,77 @@ Substitution into (PF2-critical-tail-endpoint) gives, for fixed `sigma,d,B`,
 Thus the post-star residual no longer carries an ambient one-root factor.
 The old bound (PF2-post-star-tail) follows from
 `a+1<=h<=q` and `h<=q` on critical summands, but the weighted form is the
-sharper target: after perpendicular full-star charges, the only remaining
-uncontrolled object is the locally weighted root-free flag ledger
+sharper top-level sufficient target: after perpendicular full-star charges,
+it is enough to control the locally weighted root-free flag ledger
 `WRFFlag_{crit(d,B)}(A)`.
+
+## Root-Free Tail Lifts Have a Canonical Increasing-Flag Partition
+
+The weighted post-star bound is still an upper bound.  The actual post-star
+tail has an exact lossless partition once the first absorbed root is chosen
+canonically.
+
+For a critical certificate with `Z` nonempty, put
+
+```text
+PerpTailStar_{crit(d,B)}(A)
+ =
+ sum_{(S,lambda) critical, Z nonempty}
+   sum_{e=0}^a binom(h,e).
+```
+
+For a critical root-free certificate, fix the ambient order on
+`D_{S,lambda}` and put
+
+```text
+CanRFFlag_{crit(d,B)}(A)
+ =
+ sum_{(S,lambda) critical, Z empty}
+   sum_{e=1}^a binom(h,e).
+```
+
+Then the critical tail-lift ledger splits exactly as
+
+```text
+TailLift_{crit(d,B)}(A)
+ = PerpTailStar_{crit(d,B)}(A)+CanRFFlag_{crit(d,B)}(A).
+                                                        (PF2-exact-post-star-tail)
+```
+
+Indeed, the first term is exactly the part of `L_{S,lambda}^{tail}` with a
+perpendicular root in every bad-root set.  In the root-free case `Z=empty`,
+every nonempty admissible thickening `E` has a unique increasing enumeration
+
+```text
+E={x_1<...<x_e},        1<=e<=a.
+```
+
+Absorbing the initial segment `P_m=(x_1,...,x_m)` gives
+
+```text
+Q_{S,lambda,E}^{P_m}=ell_{E\{x_1,...,x_m}}R_{S,lambda},
+q^{P_m}=q_S-m,        h^{P_m}=h-m,        r^{P_m}=r,
+s^{P_m}=s_S,
+```
+
+exactly as in (PF2-rootfree-flag-dir)--(PF2-rootfree-flag-depth).  The order
+condition is only a canonical partition of the original tail choices: each
+root-free thickening contributes to one increasing flag and to no other.
+Thus iterating the root-free descent does not introduce a branching factor at
+successive rungs.  The remaining root-free object is the sharp canonical flag
+count `CanRFFlag_{crit(d,B)}(A)`, with the convenient top-level domination
+
+```text
+CanRFFlag_{crit(d,B)}(A)
+ <= WRFFlag_{crit(d,B)}(A).                    (PF2-canonical-rf-weighted)
+```
+
+Consequently, after charging `PerpTailStar_{crit(d,B)}(A)` by the
+fixed-root/full-star ledgers, polynomial control of the canonical increasing
+root-free flag ledger is exactly the residual M1 task in this critical-tail
+branch.  A proof may work with the sharper exact object
+`CanRFFlag_{crit(d,B)}(A)`, while the weighted ledger
+`WRFFlag_{crit(d,B)}(A)` remains a sufficient top-level proxy.
 
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 

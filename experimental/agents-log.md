@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 canonical root-free flag partition
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Refines the weighted post-star criterion by
+  splitting `TailLift_crit` exactly into perpendicular tail stars and a
+  canonical increasing root-free flag ledger; each root-free thickening follows
+  a unique increasing absorbed-root path through the descent.
+- **How it is useful:** Makes the no-multiplicative-loss mechanism explicit:
+  iterating the root-free descent partitions the original tail choices instead
+  of creating independent branching at each rung.
+- **What to do next:** Charge the perpendicular tail stars through fixed-root
+  ledgers and prove polynomial control of the canonical root-free flag ledger,
+  using the weighted ledger as a sufficient top-level proxy when convenient.
+
 ### 2026-06-29 - M1 weighted post-star critical criterion
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
