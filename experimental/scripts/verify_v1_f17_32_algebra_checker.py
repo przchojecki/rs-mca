@@ -22,7 +22,7 @@ A.3 CHECKLIST COVERAGE (this file grows one item per loop iteration):
   [x] locator splitting
   [x] interpolation
   [x] degree bound
-  [ ] agreement count
+  [x] agreement count
   [ ] slope distinctness
   [ ] noncontainment rank
 
@@ -410,6 +410,48 @@ def check_degree_bound():
     return ok, d
 
 
+def check_agreement_count():
+    """A.3: agreement count.  For a received word w on H and a codeword P (deg<k),
+    agreement(w,P) = #{x in H : w(x) = P(x)} -- the quantity LD_sw / the bad-slope
+    machinery counts.  On a runnable analog with the real |H|=512 (small k), plant a
+    word agreeing with P on a chosen set of size a and verify the count is exactly a,
+    that the error locator has degree n-a, and the MDS consequence for a 2nd codeword.
+    Scope: counts agreement for GIVEN codewords; does NOT enumerate the LD_sw list."""
+    d = []
+    ok = True
+    h, _ = H_generator()
+    n, k = 512, 5
+    H = []
+    cur = ONE
+    for _ in range(n):
+        H.append(cur)
+        cur = fmul(cur, h)
+    P = [int_to_elem(v) for v in (1, 2, 3, 4, 5)]          # planted codeword, deg<k
+    cw = [feval(P, x) for x in H]                          # its codeword values
+    a = 300                                                # planted agreement (> (n+k)/2)
+    w = [cw[i] if i < a else fadd(cw[i], ONE) for i in range(n)]  # corrupt the last n-a
+    # (1) exact agreement count
+    agree = sum(1 for i in range(n) if w[i] == cw[i])
+    d.append(f"agreement(w, P) = {agree} (planted a={a}) : {agree == a}")
+    ok &= (agree == a)
+    # (2) error locator: vanishes exactly on the n-a disagreement points (degree n-a)
+    n_err = sum(1 for i in range(n) if w[i] != cw[i])
+    d.append(f"#disagreements = {n_err} = n-a = {n - a} (error-locator degree) : {n_err == n - a}")
+    ok &= (n_err == n - a)
+    # (3) unique-decoding regime: a > (n+k)/2 => P is the unique codeword within n-a errors
+    d.append(f"a={a} > (n+k)/2={ (n + k) / 2 } => unique-decoding regime : {a > (n + k) / 2}")
+    ok &= (a > (n + k) / 2)
+    # (4) MDS consequence: a DISTINCT codeword agrees with w on < a points
+    P2 = [int_to_elem(v) for v in (7, 1, 4, 1, 5)]
+    cw2 = [feval(P2, x) for x in H]
+    agree2 = sum(1 for i in range(n) if w[i] == cw2[i])
+    d.append(f"distinct codeword agrees with w on {agree2} < a={a} (MDS-consistent) : {agree2 < a}")
+    ok &= (P != P2) and (agree2 < a)
+    d.append("scope: agreement for GIVEN codewords on the real 512-domain analog; "
+             "NOT the agreement-a codeword LIST (the infeasible LD_sw count).")
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop iteration"]
 
@@ -422,7 +464,7 @@ CHECKS = [
     ("locator splitting",                  check_locator_splitting),
     ("interpolation",                      check_interpolation),
     ("degree bound",                       check_degree_bound),
-    ("agreement count",                    _pending),
+    ("agreement count",                    check_agreement_count),
     ("slope distinctness",                 _pending),
     ("noncontainment rank",                _pending),
 ]

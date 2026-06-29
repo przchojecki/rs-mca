@@ -33,7 +33,7 @@ a natural follow-on for anyone whose stack has Sage/Magma.
 | 3 | locator splitting | **done** |
 | 4 | interpolation | **done** |
 | 5 | degree bound | **done** |
-| 6 | agreement count | pending |
+| 6 | agreement count | **done** |
 | 7 | slope distinctness | pending |
 | 8 | noncontainment rank | pending |
 
@@ -73,6 +73,13 @@ a natural follow-on for anyone whose stack has Sage/Magma.
   tight (Singleton achieved). This is the agreement bound underpinning the staircase
   and the meaning of noncontainment. Row in miniature: `k=256` ⇒ distinct codewords
   agree on `<= 255` points, minimum distance `n-k+1 = 257`.
+- **Agreement count.** For a received word `w` on the real 512-point domain and a
+  planted codeword `P` (deg `<k`), `agreement(w,P) = #{x in H : w(x)=P(x)}` is exactly
+  the planted `a` (here `a=300`); the disagreement set has size `n-a` (= error-locator
+  degree); `a > (n+k)/2` puts it in the unique-decoding regime; and a distinct codeword
+  agrees with `w` on `< a` points (MDS-consistent, observed 2). This is the agreement
+  quantity LD_sw counts. **Scope:** agreement for GIVEN codewords -- NOT the
+  agreement-`a` codeword *list* (the infeasible LD_sw enumeration).
 
 ## Honest scope / limits
 
