@@ -9,6 +9,7 @@ FIBER-COUNTING COROLLARY / BOUNDARY-CORE SLOPE-FIBER INJECTION /
 BOUNDARY QUARTIC KUMMER GATE / ROOT-CORE RECURRENCE CHART /
 ROOT-CORE SLOPE COVER /
 ROOT-CORE DOMAIN KUMMER FILTER /
+SQUARE-MAP PACKET INTERSECTION GATE /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
@@ -2330,6 +2331,50 @@ with `2|D|+O_e(1)` points after deleting zeros, poles, and charged fixed-root
 fibers.  This identifies the last large square-norm subbranch as explicit
 coset geometry in a degree-one parameter, not an uncontrolled Kummer failure.
 
+These square-map packets have a clean overlap gate.  Let `M_1,M_2` be
+nonconstant degree-one rational functions on the slope line, and let `chi`
+have order `e`.  If
+
+```text
+sum_z chi^a(M_1(z)) chi^b(M_2(z))
+```
+
+has a geometrically trivial Kummer summand with `0<a,b<e`, then exactly one of
+the following quotient-Mobius relations holds:
+
+```text
+M_2 = lambda M_1       and       a+b == 0 mod e,
+M_2 = lambda/M_1       and       a-b == 0 mod e.        (RKSQINT)
+```
+
+Indeed, a degree-one rational function has one zero and one pole on `P^1`.
+If the divisor of `M_1^a M_2^b` is divisible by `e`, then any zero or pole
+belonging to only one of the two functions would carry valuation `+-a` or
+`+-b`, impossible modulo `e`.  Hence the two zero-pole supports coincide.
+If the orientations agree then `M_2/M_1` is constant and divisibility requires
+`a+b==0`; if the orientations are reversed then `M_1M_2` is constant and
+divisibility requires `a-b==0`.
+
+Consequently, two quotient-class packets pulled back by degree-one parameters
+have only the expected product-density intersection, up to `O_e(sqrt p)`,
+unless their parameters are quotient-parallel or quotient-inverse as in
+(RKSQINT).  For two square-map packets this gives
+
+```text
+|P(M_1,kappa_1) cap P(M_2,kappa_2)|
+  = 4e^{-2} p + O_e(sqrt p)
+```
+
+off the parallel/inverse relations, where
+`P(M,kappa)={z: chi(M(z))^2=kappa}` with zeros and poles deleted.  On the
+parallel or inverse relations the intersection is again a single explicit
+quotient-class packet in one degree-one parameter; in particular a two-coset
+square-map packet intersects any parallel/inverse two-coset square-map packet
+in at most `2|D|+O_e(1)` slopes.  Thus the square-norm and one-root-square
+branches create structured slope-coset packets whose large overlaps are
+exactly the quotient-parallel/inverse cases, not hidden high-energy Kummer
+families.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -2866,4 +2911,5 @@ square-norm Fourier term, and the cover-term norm-pushforward obstruction
 (RKPUSH), including the anti-ratio square-class and degree-four reduction
 (RKANTIRED) and the genus-one exclusion for genuine cubic anti-ratio powers
 (RKANTIGENUS), plus the rational cubic coefficient ledger (RKCUBBD) and the
-classified per-core bound (RKCLASS).
+classified per-core bound (RKCLASS), and the degree-one square-map packet
+intersection gate (RKSQINT).

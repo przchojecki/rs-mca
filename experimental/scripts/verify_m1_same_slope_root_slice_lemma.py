@@ -51,7 +51,8 @@ norm-pushforward obstruction for cover-level power terms, including the
 anti-ratio square-class reduction and the genus-one exclusion for genuine
 cubic anti-ratio powers, plus the rational-cubic coefficient ledger and final
 classified per-core bound, including the negative square-norm collapse to
-one-root sums and the square-map coset packets.
+one-root sums, the square-map coset packets, and the degree-one square-map
+packet intersection gate.
 """
 
 from __future__ import annotations
@@ -2892,6 +2893,37 @@ def rational_eval(numerator: Poly1, denominator: Poly1, value: int, p: int) -> i
     return (eval_poly1(numerator, value, p) * pow(denominator_value, -1, p)) % p
 
 
+MobiusMap = tuple[int, int, int, int]
+P1Point = int | None
+
+
+def normalized_mobius_maps(p: int) -> list[MobiusMap]:
+    maps: set[MobiusMap] = set()
+    for a_coeff, b_coeff, c_coeff, d_coeff in product(range(p), repeat=4):
+        if (a_coeff * d_coeff - b_coeff * c_coeff) % p == 0:
+            continue
+        entries = (a_coeff, b_coeff, c_coeff, d_coeff)
+        first_nonzero = next(entry for entry in entries if entry % p != 0)
+        scale = pow(first_nonzero, -1, p)
+        maps.add(tuple((entry * scale) % p for entry in entries))
+    return sorted(maps)
+
+
+def linear_zero_on_p1(linear_coeff: int, constant_coeff: int, p: int) -> P1Point:
+    if linear_coeff % p == 0:
+        assert constant_coeff % p != 0
+        return None
+    return (-constant_coeff * pow(linear_coeff, -1, p)) % p
+
+
+def mobius_zero_pole(mobius_map: MobiusMap, p: int) -> tuple[P1Point, P1Point]:
+    a_coeff, b_coeff, c_coeff, d_coeff = mobius_map
+    zero = linear_zero_on_p1(a_coeff, b_coeff, p)
+    pole = linear_zero_on_p1(c_coeff, d_coeff, p)
+    assert zero != pole
+    return zero, pole
+
+
 def quadratic_character(value: int, p: int) -> int:
     value %= p
     if value == 0:
@@ -4729,6 +4761,86 @@ def check_boundary_core_negative_square_norm_collapse() -> None:
             assert root_degree in (0, 1)
 
 
+def check_boundary_core_square_map_packet_intersection_gate() -> None:
+    rng = Random(20260727)
+    for prime in (5, 7, 11, 17, 19):
+        maps = normalized_mobius_maps(prime)
+        if prime <= 7:
+            map_pairs = [(left, right) for left in maps for right in maps]
+        else:
+            map_pairs = [
+                (rng.choice(maps), rng.choice(maps))
+                for _ in range(5000)
+            ]
+        indices = [index for index in range(2, 13) if (prime - 1) % index == 0]
+
+        for first_map, second_map in map_pairs:
+            first_zero, first_pole = mobius_zero_pole(first_map, prime)
+            second_zero, second_pole = mobius_zero_pole(second_map, prime)
+            parallel = first_zero == second_zero and first_pole == second_pole
+            inverse_parallel = first_zero == second_pole and first_pole == second_zero
+            assert not (parallel and inverse_parallel), (
+                prime,
+                first_map,
+                second_map,
+            )
+
+            for index in indices:
+                large_square_packet_term_seen = False
+                for left_power in range(1, index):
+                    for right_power in range(1, index):
+                        divisor_exponents = {
+                            first_zero: left_power,
+                            first_pole: -left_power,
+                        }
+                        divisor_exponents[second_zero] = (
+                            divisor_exponents.get(second_zero, 0) + right_power
+                        )
+                        divisor_exponents[second_pole] = (
+                            divisor_exponents.get(second_pole, 0) - right_power
+                        )
+                        degenerate = all(
+                            exponent % index == 0
+                            for exponent in divisor_exponents.values()
+                        )
+                        expected = (
+                            parallel and (left_power + right_power) % index == 0
+                        ) or (
+                            inverse_parallel
+                            and (left_power - right_power) % index == 0
+                        )
+                        assert degenerate == expected, (
+                            prime,
+                            index,
+                            first_map,
+                            second_map,
+                            left_power,
+                            right_power,
+                            degenerate,
+                            expected,
+                            parallel,
+                            inverse_parallel,
+                        )
+                        if (
+                            index % 2 == 0
+                            and left_power % 2 == 0
+                            and right_power % 2 == 0
+                            and degenerate
+                        ):
+                            large_square_packet_term_seen = True
+
+                # The Fourier expansion of a square-map packet uses only even
+                # quotient powers.  Therefore a nonparallel/noninverse pair has
+                # no geometrically trivial mixed term in the packet intersection.
+                if index % 2 == 0 and not (parallel or inverse_parallel):
+                    assert not large_square_packet_term_seen, (
+                        prime,
+                        index,
+                        first_map,
+                        second_map,
+                    )
+
+
 def check_boundary_core_classified_per_core_bound() -> None:
     for index in range(2, 31):
         generic_cover_coefficient = Fraction(index - 1, index * index)
@@ -5006,6 +5118,7 @@ def main() -> None:
     check_boundary_core_rational_cubic_ledger()
     check_boundary_core_square_norm_parity_ledger()
     check_boundary_core_negative_square_norm_collapse()
+    check_boundary_core_square_map_packet_intersection_gate()
     check_boundary_core_classified_per_core_bound()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()

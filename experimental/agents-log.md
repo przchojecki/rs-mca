@@ -49,6 +49,30 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 square-map packet intersection gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The square-norm and one-root-square branches are
+  now given a degree-one packet-overlap gate: two quotient-class packets pulled
+  back by degree-one slope parameters have a geometrically trivial mixed
+  character term only when the parameters are scalar-parallel or scalar-inverse,
+  with the corresponding exponent relation.  Off those relations, square-map
+  packets have product-density intersection up to `O_e(sqrt(p))`; on those
+  relations their intersection is again an explicit quotient-class packet.
+- **How it is useful:** This turns the explicit square-map branches isolated in
+  the root-core recurrence chart into structured slope-coset packets with a
+  usable overlap/energy ledger, rather than leaving their overlaps as possible
+  hidden Kummer failures.
+- **What to do next:** Use the packet-overlap gate when summing square-norm
+  branches over active `(j-2)` root cores or when isolating quotient-parallel
+  packet families for a downstream M1 ledger.
+
 ### 2026-06-29 - M1 boundary root-core recurrence chart
 
 - **Agent/model:** AllenGrahamHart / Codex.
