@@ -7364,6 +7364,51 @@ after quotient-periodic, tangent, fixed-root, and aperiodic charges, no
 base-free descended `b=2` pencil should contain a nonzero direction with the
 maximal possible `q_S-1` roots on its remaining canonical domain.
 
+## Width-One Maximal Shadows Are Near-Constant Projective Maps
+
+The maximal-root formulation also identifies the projective geometry of the
+remaining obstruction.  Let `S` be base-free and let `A in V_S` be a
+width-one maximal-root direction.  Put
+
+```text
+Z=Z_S(A),        O=D_S^{can}\Z.
+```
+
+Then
+
+```text
+|Z|=q_S-1,        |O|=s_S+1.
+```
+
+Choose `B in V_S` independent of `A`.  Base-freeness gives `B(x)!=0` for
+every `x in Z`, so the projective evaluation map is constant on the large
+fiber:
+
+```text
+[A(x):B(x)]=[0:1]        for every x in Z.      (PF2-r1-near-constant)
+```
+
+For `y in O`, one has `A(y)!=0`, hence `[A(y):B(y)]!=[0:1]`.  Consequently
+every cross-fiber good pair involving the large fiber is exactly a pair
+`{x,y}` with `x in Z` and `y in O`, and the good-pair capacity at the node
+splits as
+
+```text
+G_S^{can}
+ =
+ |Z| |O|
+ + (number of good pairs inside O)
+ =
+ (q_S-1)(s_S+1)+G_O,        0<=G_O<=binom(s_S+1,2).  (PF2-r1-good-cap)
+```
+
+Thus in fixed-surplus regimes the projective map attached to a width-one
+obstruction is constant on all but boundedly many remaining roots, and all
+nonconstant projective information is confined to the exceptional complement
+`O`.  This is the precise near-constant pencil that must be excluded or
+charged: it is not a diffuse aperiodic image, but a maximal root shadow plus
+a bounded exceptional projective profile.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 width-one near-constant pencil
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Shows that a width-one maximal root-shadow
+  direction makes the descended projective evaluation map constant on
+  `q_S-1` roots, with all nonconstant projective information confined to the
+  bounded complement of size `s_S+1`.
+- **How it is useful:** Recasts the first low-width obstruction as a
+  near-constant pencil rather than a diffuse aperiodic image, and gives the
+  exact good-pair capacity split `(q_S-1)(s_S+1)+G_O`.
+- **What to do next:** Exclude or charge near-constant base-free pencils via
+  quotient-periodic, tangent/fixed-root, or aperiodic mechanisms.
+
 ### 2026-06-29 - M1 width-one maximal root-shadow criterion
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
