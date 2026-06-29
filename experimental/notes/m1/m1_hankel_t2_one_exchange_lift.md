@@ -5089,6 +5089,50 @@ case: it is to count these canonical short projective-shadow quotient kernels,
 or to charge them to the existing fixed-divisor/root-slice ledgers, across the
 base-peeling tree.
 
+## Diffuse-Plus-Short Canonical Endpoint
+
+The preceding half-height interpretation can be built directly into the
+canonical endpoint.  At each canonical `b=2` node choose the half-width cutoff
+
+```text
+w_S^sh=ceil(q_S/2)-1,        m_S^sh=q_S-w_S^sh-1=floor(q_S/2).
+```
+
+Then `m_S^sh<=q_S/2`, so (PF2-Phi-linear) gives
+
+```text
+Phi_{q_S}(m_S^sh)>=q_S^2/4.                    (PF2-half-cut-save)
+```
+
+All concentrated quotient-line ledgers selected by this cutoff have
+`1<=j<=w_S^sh`, hence `j<q_S/2`; they are exactly short
+fixed-divisor/root-slice ledgers.  Define
+
+```text
+Short_S^{can}=
+  sum_{1<=j<q_S/2} R_{S,j}^{can}.
+```
+
+Choosing `w_S=w_S^sh` in (PF2-canon-capacity), or equivalently in
+(PF2-canon-opt-cap), gives the explicit endpoint
+
+```text
+|F(A)|
+ <=
+  sum_{S in Tree(A)} LowerDim_S^can
+  + sum_{S in Tree_2(A)} 4G_S^{can}/q_S^2
+  + sum_{S in Tree_2(A)} Short_S^{can}.        (PF2-canon-diffuse-short)
+```
+
+Thus the canonical `b=2` branch has a clean dichotomy: the spread part is
+paid with a uniform quadratic determinant-gate saving, and every
+non-diffuse projective-fiber profile has been moved to a short quotient-line
+root-slice packing ledger.  In particular, if a node has `h_S>q_S/2` and
+`r_S=q_S-h_S`, then `r_S<q_S/2`; the maximal projective fiber
+`D_{S,lambda}` is one of the width-`r_S` summands of `Short_S^{can}` with
+the certificate (PF2-canon-half-kernel).  No separate half-height exception
+remains in this endpoint.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

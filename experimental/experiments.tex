@@ -5352,6 +5352,25 @@ Hankel kernel for the absorbed canonical anchor
 projective-shadow quotient direction of width \(q_S-h_S\); the remaining
 global task is to count or charge these short directions across the
 base-peeling tree.
+Equivalently, choose at every canonical \(b=2\) node the half-width cutoff
+\[
+  w_S^{sh}=\lceil q_S/2\rceil-1,\qquad
+  q_S-w_S^{sh}-1=\lfloor q_S/2\rfloor .
+\]
+Then the spread term pays at most \(4G_S^{can}/q_S^2\), and every concentrated
+profile has width \(j<q_S/2\).  With
+\[
+  Short_S^{can}=\sum_{1\le j<q_S/2}R_{S,j}^{can},
+\]
+the canonical endpoint becomes
+\[
+  |F(A)|\le \sum_{S\in Tree(A)}L_S^{can}
+   +\sum_{S\in Tree_2(A)} {4G_S^{can}\over q_S^2}
+   +\sum_{S\in Tree_2(A)} Short_S^{can}.
+\]
+Thus all non-diffuse projective-fiber profiles are explicit short
+quotient-line root-slice ledgers, while the remaining spread determinant-gate
+term has a uniform quadratic saving.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

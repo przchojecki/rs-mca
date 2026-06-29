@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 diffuse-plus-short canonical endpoint
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Chooses the half-width occupancy cutoff at every
+  canonical `b=2` node to obtain an endpoint with a uniform
+  `4G_S^{can}/q_S^2` spread term plus only short `j<q_S/2`
+  quotient-line root-slice ledgers.
+- **How it is useful:** Removes the half-height projective-shadow case as a
+  separate exception: every non-diffuse profile is now an explicit short
+  fixed-divisor/root-slice ledger, while the residual spread term has
+  quadratic saving.
+- **What to do next:** Prove a global M1 bound for the sum of the short
+  quotient-line ledgers and the quadratically saved diffuse capacities across
+  canonical nodes.
+
 ### 2026-06-29 - M1 canonical half-height short kernels
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
