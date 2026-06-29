@@ -5,7 +5,8 @@ FULL ELEMENTARY PACKET LIFT / RULED-CORE DICHOTOMY / RULED-CORE COLLAPSE /
 HIGHER-SLACK LIFT / TRIANGLE CLASSIFICATION / TOP-PACKET LIFT /
 TOP-PACKET LEDGER / SIMULTANEOUS KERNEL RECURSION / HYPERPLANE-FIBER
 REDUCTION / AFFINE-FIBER REDUCTION / MOVING-FIBER DIMENSION DROP /
-FIBER-COUNTING COROLLARY / RESIDUAL-DEGREE COROLLARY / AUDIT.
+FIBER-COUNTING COROLLARY / BOUNDARY-CORE SLOPE-FIBER INJECTION /
+RESIDUAL-DEGREE COROLLARY / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -1687,6 +1688,36 @@ charged to the full-plane lift.  This connects the boundary-core image to the
 existing two-root line-packet ledger rather than introducing a separate
 geometric species.
 
+The same observation also removes hidden slope multiplicity from the
+remaining fixed-core conic branch.  Fix a finite slope `z` and put
+
+```text
+W_m=U_m+zV_m,        0<=m<=2.
+```
+
+The same-slope equations on the elementary plane are
+
+```text
+W_2-sW_1+pW_0=0,                                  (ZFIB)
+```
+
+a pair of affine-linear equations in `(s,p)`.  Hence their common zero set is
+empty, one point, an affine line, or the whole elementary plane.  If two
+distinct boundary-core points over the same fixed `R` have the same finite
+slope `z` and have distinct elementary coordinates `(s,p)`, then (ZFIB)
+contains the affine line through them.  If that line is a fixed-root line, it
+is charged by the boundary/root-slice ledger.  If it is non-fixed, the
+two-root line classification makes it fixed-sum or product-Mobius, and the
+constant-slope line-collapse above charges it to the full-plane lift.  If the
+whole plane is killed, it is exactly the two-exchange full-plane lift.
+
+Thus, after fixed-root, constant-slope non-fixed line-packet, and full-plane
+charges have been removed, the finite-slope label is injective on the live
+boundary-core conic points for each fixed `R`.  Counting live boundary-core
+slopes is therefore the same as counting live points of the quartic anchor
+gate below, up to the already charged branches and the filters which only
+remove points.
+
 For such a surviving line packet the mixed boundary-core trace is explicit:
 fixed-sum packets contribute only pairs `beta=s_0-y`, while product-Mobius
 packets contribute only pairs `beta=c+mu/(y-c)`.  Hence, over a fixed core
@@ -1924,9 +1955,12 @@ line packet as the escaped-root graph of the fixed-sum or product-Mobius
 involution, reduces the complementary fixed-core conic trace to the quartic
 discriminant gate above, classifies the identically-zero discriminant case as
 line-packet or envelope-filtered, identifies the nonzero-discriminant target
-with a genus-at-most-one double cover up to two linear exceptions, and gives
-the local max-degree bound and average-collinearity corollary above, including the packet-level
-higher-exchange ledger substitution.
+with a genus-at-most-one double cover up to two linear exceptions, proves that
+same finite-slope multiplicity on the live boundary-core conic has already
+returned to a fixed-root line, a constant-slope non-fixed line packet, or the
+full-plane lift, and gives the local max-degree bound and average-collinearity
+corollary above, including the packet-level higher-exchange ledger
+substitution.
 
 ## Verification
 
@@ -1959,4 +1993,6 @@ fixed-anchor boundary-core fiber, fixed-core graph, and bidegree determinant
 pullback criteria, the mixed-domain line-packet trace formulas, and the
 boundary-core quadratic/discriminant anchor gate and its zero-discriminant
 classification, and the bounded-cover parametrization of the live quartic
-target.
+target.  It also checks the elementary same-slope fiber alternatives for
+fixed-core boundary conics: empty, point, affine line, or full plane, with
+multi-point fibers returning to the charged line/plane ledgers.

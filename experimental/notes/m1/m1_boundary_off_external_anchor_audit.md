@@ -6,7 +6,8 @@ Source PR: #131, AllenGrahamHart.
 
 Updated by PR #138, AllenGrahamHart / Codex.
 
-Status: PROVED-LOCAL / RULED-BRANCH CLASSIFIED / PROOF-PROGRAM / AUDIT.
+Status: PROVED-LOCAL / RULED-BRANCH CLASSIFIED / BOUNDARY-CORE SLOPE-FIBER /
+PROOF-PROGRAM / AUDIT.
 
 ## Claim Distilled
 
@@ -227,6 +228,21 @@ elementary determinant curve.  Fixing either coordinate is the fixed-root line
 `p=alpha s-alpha^2` in the `(s,p)` plane; after those root-slice charges, any
 positive-dimensional same-slope component is one of the already classified
 fixed-sum or nondegenerate product-Mobius line packets.
+
+There is no additional same-slope multiplicity hidden on the complementary
+conic.  For a fixed finite slope `z`, the two coordinates of
+
+```text
+(U_2+zV_2)-s(U_1+zV_1)+p(U_0+zV_0)
+```
+
+are affine-linear in `(s,p)`, so the same-slope fiber in the elementary plane
+is empty, one point, an affine line, or the whole plane.  A two-point fiber
+therefore lies on a constant-slope affine line.  Fixed-root lines are already
+boundary/root-slice charges; non-fixed lines are fixed-sum or product-Mobius
+packets, and the constant-slope collapse charges them to the full-plane lift.
+Thus, after those charges, the finite-slope label is injective on each live
+fixed-core boundary conic.
 
 On those surviving non-fixed packets the mixed-domain slice is a graph, not a
 new incidence surface.  A fixed-sum packet `x+y=s_0` contributes only

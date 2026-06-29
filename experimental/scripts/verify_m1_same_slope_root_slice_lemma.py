@@ -34,6 +34,8 @@ The identically-zero discriminant case is checked by exhaustive small-field
 classification into scalar affine-line squares or the envelope conic s^2-4p.
 For nonzero discriminant gates, the verifier also checks the bounded double
 cover parametrization W=2A beta+B outside the at-most-two A=0 fibers.
+Finally, the fixed-core same-slope fibers in the elementary two-root plane are
+checked to be only empty, points, affine lines, or the full plane.
 """
 
 from __future__ import annotations
@@ -1588,6 +1590,72 @@ def check_nonfixed_line_constant_slope_collapse() -> None:
                 0,
             ) and value_on_line(rows, s_2, p_2, p) == (0, 0):
                 assert rows == (0, 0, 0, 0), (p, rows, center, mu, s_1, s_2)
+
+
+def check_boundary_core_same_slope_fibers() -> None:
+    def value_on_plane(
+        rows: tuple[int, int, int, int],
+        s_value: int,
+        p_value: int,
+        prime: int,
+    ) -> tuple[int, int]:
+        d_0, d_1, d_2, d_3 = rows
+        return (
+            (d_2 - s_value * d_1 + p_value * d_0) % prime,
+            (d_3 - s_value * d_2 + p_value * d_1) % prime,
+        )
+
+    for p in (3, 5, 7, 11):
+        all_points = [(s_value, p_value) for s_value in range(p) for p_value in range(p)]
+        for rows in product(range(p), repeat=4):
+            killed = [
+                point
+                for point in all_points
+                if value_on_plane(rows, point[0], point[1], p) == (0, 0)
+            ]
+            rank = affine_rank(killed, p)
+            assert len(killed) in (0, 1, p, p * p), (p, rows, killed, rank)
+            if len(killed) == 0:
+                assert rank == -1, (p, rows, killed, rank)
+            elif len(killed) == 1:
+                assert rank == 0, (p, rows, killed, rank)
+            elif len(killed) == p:
+                assert rank == 1, (p, rows, killed, rank)
+                first, second = killed[0], killed[1]
+                assert all(
+                    affine_plane_det(first, second, point, p) == 0 for point in killed
+                ), (p, rows, killed)
+                line_points = [
+                    point
+                    for point in all_points
+                    if affine_plane_det(first, second, point, p) == 0
+                ]
+                assert sorted(line_points) == sorted(killed), (
+                    p,
+                    rows,
+                    killed,
+                    line_points,
+                )
+            else:
+                assert rank == 2, (p, rows, killed, rank)
+                assert rows == (0, 0, 0, 0), (p, rows)
+
+    rng = Random(20260716)
+    for p in (17, 31):
+        all_points = [(s_value, p_value) for s_value in range(p) for p_value in range(p)]
+        for _ in range(1000):
+            rows = tuple(rng.randrange(p) for _ in range(4))
+            killed = [
+                point
+                for point in all_points
+                if value_on_plane(rows, point[0], point[1], p) == (0, 0)
+            ]
+            rank = affine_rank(killed, p)
+            assert len(killed) in (0, 1, p, p * p), (p, rows, killed, rank)
+            if len(killed) == p:
+                assert rank == 1, (p, rows, killed, rank)
+            if len(killed) == p * p:
+                assert rows == (0, 0, 0, 0), (p, rows)
 
 
 def check_t2_determinant_gate() -> None:
@@ -3188,6 +3256,7 @@ def main() -> None:
     check_residual_exchange_degree_bound()
     check_two_root_line_classification()
     check_nonfixed_line_constant_slope_collapse()
+    check_boundary_core_same_slope_fibers()
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()
     check_hankel_ruled_core_collapse()

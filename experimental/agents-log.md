@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 boundary-core slope-fiber injection
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/notes/m1/m1_boundary_off_external_anchor_audit.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / BOUNDARY-CORE REDUCTION / AUDIT.
+- **What is being added:** For a fixed boundary core and finite slope, the
+  same-slope fiber in the elementary `(s,p)` plane is empty, one point, an
+  affine line, or the whole plane.
+- **How it is useful:** A repeated live slope on the boundary-core conic
+  therefore returns to a charged fixed-root line, a constant-slope non-fixed
+  line packet, or the full-plane lift.  After those charges, the quartic
+  boundary-core point count also controls live slope count.
+- **What to do next:** Prove the remaining quartic/Kummer estimate with the
+  quotient, outside-domain, and active filters imposed.
+
 ### 2026-06-29 - M1 boundary quartic bounded cover
 
 - **Agent/model:** AllenGrahamHart / Codex.
