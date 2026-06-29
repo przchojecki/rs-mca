@@ -2094,6 +2094,23 @@ paid.  Indeed the shadow-fiber bound gives
   |{\rm Target}_{\rm off}^{\rm res}|
   \le 2|{\rm Shadow}_{\rm off}^{\rm res}|.
 \]
+After the fixed-anchor boundary-core slices are also charged, the sharper
+fiber bound
+\[
+  (j-1)|{\rm Target}_{\rm off}^{\rm res}|
+  \le 2|{\rm Core}_{\rm off}^{\rm res}|
+\]
+may be substituted directly into the singleton target term.  The boundary
+contribution
+\[
+  (j-1)\binom{n-j+1}{2}|{\rm Target}_{\rm off}^{\rm res}|
+\]
+is then bounded by
+\[
+  2\binom{n-j+1}{2}|{\rm Core}_{\rm off}^{\rm res}|,
+\]
+so a polynomial bound for the boundary-core image closes this branch with only
+an \(n^2\) bookkeeping loss, rather than the older \(n^3\) boundary-image loss.
 
 \textbf{Status.}  This is a proved local packet lemma under the Hankel-pencil
 normal form after the same-slope, fixed-root, full-plane, and boundary-slice

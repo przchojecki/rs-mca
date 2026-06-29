@@ -23,8 +23,8 @@ dimension drop is checked by the same affine-preimage calculation, and the
 residual exchange-degree corollary is checked on small split-support graphs.
 The boundary shadow-fiber, rank-one anchor-recovery, quadratic slope-gate,
 conic-secant anchor-gate, and fixed-anchor boundary-core fiber reductions are
-checked on sampled small-field instances, and the average-ledger substitutions
-are checked as exact rational inequalities.
+checked on sampled small-field instances, and the average-ledger and
+boundary-core closure substitutions are checked as exact rational inequalities.
 """
 
 from __future__ import annotations
@@ -2572,6 +2572,42 @@ def check_average_collinearity_corollary() -> None:
                     )
 
 
+def check_boundary_core_closure_substitution() -> None:
+    # In the rate-half variable-line closure ledger, the one-outside term is
+    # (j-1) binom(n-j+1,2) |Boundary_off|.  The fixed-anchor boundary-core
+    # fiber reduction gives (j-1)|Boundary_off| <= 2|Core_off|, hence the
+    # substitution by 2 binom(n-j+1,2)|Core_off|.
+    for n in range(3, 21):
+        for j in range(2, n + 1):
+            coefficient = comb(n - j + 1, 2)
+            for boundary_size in range(0, 25):
+                for core_size in range(0, 50):
+                    if (j - 1) * boundary_size > 2 * core_size:
+                        continue
+                    boundary_term = (j - 1) * coefficient * boundary_size
+                    core_term = 2 * coefficient * core_size
+                    assert boundary_term <= core_term, (
+                        n,
+                        j,
+                        boundary_size,
+                        core_size,
+                        boundary_term,
+                        core_term,
+                    )
+
+            for exponent in range(0, 6):
+                max_core = n**exponent
+                core_term = 2 * coefficient * max_core
+                crude_bound = 2 * n ** (exponent + 2)
+                assert core_term <= crude_bound, (
+                    n,
+                    j,
+                    exponent,
+                    core_term,
+                    crude_bound,
+                )
+
+
 def main() -> None:
     check_difference_identity()
     check_row_implication()
@@ -2601,6 +2637,7 @@ def main() -> None:
     check_boundary_fixed_anchor_core_fibers()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
+    check_boundary_core_closure_substitution()
     print("same-slope root-slice lemma verifier passed")
 
 

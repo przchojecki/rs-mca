@@ -502,6 +502,40 @@ sum_L r_L
 So the remaining one-outside task can be phrased as a polynomial bound for the
 shadow image rather than for all external anchors over those shadows.
 
+The fixed-anchor boundary-core reduction in the same note gives a sharper
+version after the one-outside lifted boundary-core root slices have also been
+charged.  Let `Core_off` be the image of pairs `(R,beta)` with
+`|R|=j-2`, `R subset D`, and `beta notin D` arising from residual one-outside
+targets.  The fiber bound is
+
+```text
+(j-1)|Boundary_off| <= 2 |Core_off|.               (BCORE)
+```
+
+Substituting (BCORE) into (RL-HA) replaces the one-outside term by
+
+```text
+2 binom(n-j+1,2) |Core_off|.
+```
+
+Consequently, in the same rate-half positive-slack range, the boundary
+hypothesis can instead be replaced by
+
+```text
+|Core_off| <= n^B_C,
+```
+
+giving the closure estimate
+
+```text
+sum_L r_L
+  <= n^B_Q + 2 n^B_E + n^(B_T+4) + 2 n^(B_C+2).     (PC-core)
+```
+
+Thus the current one-outside task is lower-dimensional than the shadow-image
+form: after the lifted boundary-core charges, it is enough for this branch to
+bound the boundary-core image, with only an `n^2` bookkeeping loss.
+
 ## Use In M1
 
 The lemma identifies what the all-line M1 proof still has to do in this branch.
@@ -529,7 +563,9 @@ The high-agreement corollary removes the zero-lower class whenever
 `a>(n+1)/2`, hence throughout the positive-slack rate-half window
 `k>=n/2`, `t>=1`.  In that range, after quotient and contained/tangent charges,
 the next M1 step is exactly to bound the active codegree and one-outside target
-shadow image inside the quotient-aware residue-line ledger.  The closure
+boundary-core image inside the quotient-aware residue-line ledger.  The closure
 criterion makes the exponent bookkeeping explicit: any polynomial estimates for
-the active codegree and the boundary shadow image close the non-fixed
-line-packet branch up to a fixed `n^3`/`n^4` bookkeeping loss.
+the active codegree and the boundary-core image close the non-fixed line-packet
+branch up to fixed `n^2`/`n^4` bookkeeping losses after the boundary-core
+root-slice charges.  Without those charges, the older shadow-image form remains
+a valid but slightly coarser `n^3` boundary loss.

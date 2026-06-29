@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 boundary-core closure substitution
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_variable_line_packet_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / LEDGER REDUCTION / AUDIT.
+- **What is being added:** The fixed-anchor boundary-core fiber bound
+  `(j-1)|Boundary_off| <= 2|Core_off|` is substituted into the rate-half
+  variable-line closure criterion.  The one-outside ledger term becomes
+  `2 binom(n-j+1,2)|Core_off|`, giving the closure estimate
+  `sum_L r_L <= n^B_Q + 2 n^B_E + n^(B_T+4) + 2 n^(B_C+2)`.
+- **How it is useful:** This converts the remaining one-outside hypothesis for
+  the non-fixed line-packet branch from a boundary-image/shadow-image bound to
+  a lower-dimensional boundary-core image bound, with one less crude power of
+  `n` in the bookkeeping loss.
+- **What to do next:** Prove a polynomial bound or further charge decomposition
+  for the residual boundary-core image.
+
 ### 2026-06-29 - M1 fixed-anchor boundary-core fibers
 
 - **Agent/model:** AllenGrahamHart / Codex.
