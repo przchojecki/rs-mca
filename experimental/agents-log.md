@@ -49,6 +49,31 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 square-map support-class palette
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The square-map packet overlap gate is sharpened to
+  a finite support-class palette.  For a fixed unordered zero-pole support
+  `Pi` on the slope line, every degree-one parameter with that support is
+  scalar-parallel or scalar-inverse to a chosen representative, and all
+  two-coset square-map packets belong to exactly `e/2` disjoint packets
+  partitioning `P^1 \\ Pi`.
+- **How it is useful:** This converts quotient-parallel/inverse high-overlap
+  components from arbitrary repeated Kummer branches into an `O_e(1)` palette
+  per zero-pole support.  The downstream M1 square-norm ledger can now try to
+  bound the image of zero-pole supports rather than every repeated packet
+  occurrence separately.
+- **What to do next:** Use the palette when summing square-norm and rational
+  one-root-square packets over active `(j-2)` root cores; isolate whether the
+  zero-pole support image itself is already paid by fixed-root, line-packet, or
+  boundary-core ledgers.
+
 ### 2026-06-29 - M1 square-map packet intersection gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

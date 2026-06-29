@@ -52,7 +52,7 @@ anti-ratio square-class reduction and the genus-one exclusion for genuine
 cubic anti-ratio powers, plus the rational-cubic coefficient ledger and final
 classified per-core bound, including the negative square-norm collapse to
 one-root sums, the square-map coset packets, and the degree-one square-map
-packet intersection gate.
+packet intersection gate and support-class palette.
 """
 
 from __future__ import annotations
@@ -2924,6 +2924,31 @@ def mobius_zero_pole(mobius_map: MobiusMap, p: int) -> tuple[P1Point, P1Point]:
     return zero, pole
 
 
+def eval_mobius(mobius_map: MobiusMap, value: int, p: int) -> int | None:
+    a_coeff, b_coeff, c_coeff, d_coeff = mobius_map
+    denominator = (c_coeff * value + d_coeff) % p
+    if denominator == 0:
+        return None
+    return ((a_coeff * value + b_coeff) * pow(denominator, -1, p)) % p
+
+
+def finite_square_packet(
+    mobius_map: MobiusMap,
+    packet_class: int,
+    index: int,
+    log_table: dict[int, int],
+    p: int,
+) -> frozenset[int]:
+    packet: set[int] = set()
+    for value in range(p):
+        image = eval_mobius(mobius_map, value, p)
+        if image is None or image == 0:
+            continue
+        if (2 * (log_table[image] % index) - packet_class) % index == 0:
+            packet.add(value)
+    return frozenset(packet)
+
+
 def quadratic_character(value: int, p: int) -> int:
     value %= p
     if value == 0:
@@ -4841,6 +4866,95 @@ def check_boundary_core_square_map_packet_intersection_gate() -> None:
                     )
 
 
+def check_boundary_core_square_map_support_palette() -> None:
+    rng = Random(20260728)
+    for prime in (5, 7, 11, 17):
+        maps = normalized_mobius_maps(prime)
+        log_table = discrete_log_table(prime)
+        support_groups: dict[frozenset[P1Point], list[MobiusMap]] = {}
+        for mobius_map in maps:
+            zero, pole = mobius_zero_pole(mobius_map, prime)
+            support_groups.setdefault(frozenset((zero, pole)), []).append(mobius_map)
+
+        if prime <= 7:
+            selected_groups = list(support_groups.items())
+        else:
+            all_groups = list(support_groups.items())
+            selected_groups = [rng.choice(all_groups) for _ in range(80)]
+
+        for support, group in selected_groups:
+            assert len(support) == 2, (prime, support, group)
+            finite_open = {
+                value
+                for value in range(prime)
+                if value not in support
+            }
+            indices = [index for index in range(2, 13) if (prime - 1) % index == 0]
+            for index in indices:
+                if index % 2:
+                    continue
+                packet_classes = list(range(0, index, 2))
+                representative = group[0]
+                palette = {
+                    packet_class: finite_square_packet(
+                        representative,
+                        packet_class,
+                        index,
+                        log_table,
+                        prime,
+                    )
+                    for packet_class in packet_classes
+                }
+                distinct_packets = set(palette.values())
+                assert len(distinct_packets) == index // 2, (
+                    prime,
+                    support,
+                    index,
+                    palette,
+                )
+                assert set().union(*distinct_packets) == finite_open, (
+                    prime,
+                    support,
+                    index,
+                    finite_open,
+                    distinct_packets,
+                )
+                for first_class in packet_classes:
+                    for second_class in packet_classes:
+                        if first_class == second_class:
+                            continue
+                        assert not palette[first_class] & palette[second_class], (
+                            prime,
+                            support,
+                            index,
+                            first_class,
+                            second_class,
+                            palette[first_class],
+                            palette[second_class],
+                        )
+
+                for mobius_map in group:
+                    seen_packets = {
+                        finite_square_packet(
+                            mobius_map,
+                            packet_class,
+                            index,
+                            log_table,
+                            prime,
+                        )
+                        for packet_class in packet_classes
+                    }
+                    assert seen_packets == distinct_packets, (
+                        prime,
+                        support,
+                        index,
+                        representative,
+                        mobius_map,
+                        seen_packets,
+                        distinct_packets,
+                    )
+
+
 def check_boundary_core_classified_per_core_bound() -> None:
     for index in range(2, 31):
         generic_cover_coefficient = Fraction(index - 1, index * index)
@@ -5119,6 +5233,7 @@ def main() -> None:
     check_boundary_core_square_norm_parity_ledger()
     check_boundary_core_negative_square_norm_collapse()
     check_boundary_core_square_map_packet_intersection_gate()
+    check_boundary_core_square_map_support_palette()
     check_boundary_core_classified_per_core_bound()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()

@@ -2375,6 +2375,37 @@ branches create structured slope-coset packets whose large overlaps are
 exactly the quotient-parallel/inverse cases, not hidden high-energy Kummer
 families.
 
+The same gate gives a finite palette for each high-overlap class.  A
+quotient-parallel or quotient-inverse relation is exactly equality of the
+unordered zero-pole support
+
+```text
+Pi(M)={zero(M), pole(M)} subset P^1.
+```
+
+Fix such a support `Pi={alpha,beta}` and choose one parameter `M_Pi` with
+`div(M_Pi)=alpha-beta`.  Every other degree-one parameter with support `Pi`
+is either `lambda M_Pi` or `lambda/M_Pi`.  Therefore its square-map packet
+
+```text
+{ z : chi(M(z))^2 = kappa }
+```
+
+is one of the packets
+
+```text
+P_Pi(theta)={ z : chi(M_Pi(z))^2 = theta },
+        theta in (Z/eZ)^2.                           (RKSQPAL)
+```
+
+There are exactly `e/2` such packets, they are disjoint on
+`P^1\Pi`, and they partition `P^1\Pi`.  Thus a whole quotient-parallel/inverse
+high-overlap component contributes at most `e/2` distinct square-map slope
+sets; any further occurrences are duplicate multiplicity of this finite
+palette, not new slope growth.  Equivalently, the global square-map branch can
+be summed by first bounding the image of zero-pole supports `Pi`, then paying
+only an `O_e(1)` palette factor per support.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -2911,5 +2942,5 @@ square-norm Fourier term, and the cover-term norm-pushforward obstruction
 (RKPUSH), including the anti-ratio square-class and degree-four reduction
 (RKANTIRED) and the genus-one exclusion for genuine cubic anti-ratio powers
 (RKANTIGENUS), plus the rational cubic coefficient ledger (RKCUBBD) and the
-classified per-core bound (RKCLASS), and the degree-one square-map packet
-intersection gate (RKSQINT).
+classified per-core bound (RKCLASS), the degree-one square-map packet
+intersection gate (RKSQINT), and the finite support-class palette (RKSQPAL).
