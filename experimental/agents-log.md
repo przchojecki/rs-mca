@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 critical deep-entropy tail endpoint
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Combines the near-threshold and entropy-small
+  splits to reduce fixed-surplus M1 to
+  `TailLift_crit(d,B)`, supported on collapsed absorbed certificates that are
+  both deep and entropy-large.
+- **How it is useful:** Gives a single explicit residual target for this
+  canonical `b=2` branch, with all other exposed ledgers polynomially bounded
+  in fixed-surplus regimes.
+- **What to do next:** Prove critical deep-entropy certificates are
+  quotient-periodic, tangent/fixed-root degenerate, or aperiodically packable.
+
 ### 2026-06-29 - M1 entropy-small tail-lift split
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

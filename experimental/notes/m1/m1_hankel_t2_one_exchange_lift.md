@@ -6312,6 +6312,43 @@ structural theorem forcing quotient-periodic, tangent/fixed-root, or
 aperiodic control on these entropy-large certificates would close the
 fixed-surplus canonical `b=2` branch.
 
+## Critical Deep-Entropy Tail Certificates Are the Final Local Target
+
+Combining the fixed-depth and entropy splits gives a single residual subledger.
+For fixed `d>=0` and `B>=0`, let `TailLift_{crit(d,B)}(A)` be the part of
+`TailLift(A)` supported on collapsed absorbed certificates satisfying both
+
+```text
+h_lambda-r_lambda>=2d+3,
+E_{S,lambda}>B log_2 q.
+```
+
+Every non-critical certificate is either near-threshold, hence covered by
+(PF2-tail-deep-split), or entropy-small, hence covered by
+(PF2-tail-entropy-split).  Therefore
+
+```text
+TailLift(A)
+ <= TailLift_{crit(d,B)}(A)
+    +O_{s_0,d,B}(q^{s_0+d+1}+q^{s_0+B+2}).    (PF2-critical-tail-split)
+```
+
+Combining this with (PF2-tail-lift-endpoint) gives
+
+```text
+|F(A)|
+ <= (sigma+1) TailLift_{crit(d,B)}(A)
+    +O_{sigma,d,B}(q^{sigma+d+1}+q^{sigma+B+2}+q^{sigma+2}),
+        whenever s_0<=sigma.                  (PF2-critical-tail-endpoint)
+```
+
+Thus, for the fixed-surplus canonical `b=2` branch, every previously exposed
+source of growth has been reduced to one explicit local object: collapsed
+absorbed tail certificates that are simultaneously deep and entropy-large.
+A proof that these critical certificates are quotient-periodic, tangent or
+fixed-root degenerate, or aperiodically packable would close this branch up to
+the displayed polynomial remainder.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

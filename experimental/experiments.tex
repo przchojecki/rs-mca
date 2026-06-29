@@ -5911,6 +5911,25 @@ Hence, for fixed \(\sigma,B\),
 \]
 So the remaining obstruction may be restricted to entropy-large collapsed
 absorbed certificates, not all deep-tail certificates.
+Combining the depth and entropy splits gives one critical residual ledger.
+Let \(TailLift_{\mathrm{crit}(d,B)}(A)\) be supported on certificates with
+\[
+  h_\lambda-r_\lambda\ge2d+3,
+  \qquad E_{S,\lambda}>B\log_2 q.
+\]
+Every non-critical certificate is either near-threshold or entropy-small, so
+\[
+  TailLift(A)\le TailLift_{\mathrm{crit}(d,B)}(A)
+  +O_{s_0,d,B}(q^{s_0+d+1}+q^{s_0+B+2}).
+\]
+Consequently, for fixed \(\sigma,d,B\),
+\[
+  |F(A)|\le(\sigma+1)TailLift_{\mathrm{crit}(d,B)}(A)
+  +O_{\sigma,d,B}(q^{\sigma+d+1}+q^{\sigma+B+2}+q^{\sigma+2})
+  \qquad (s_0\le\sigma).
+\]
+Thus the fixed-surplus canonical \(b=2\) branch is reduced to collapsed
+absorbed certificates that are simultaneously deep and entropy-large.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots
