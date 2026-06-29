@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 residual exchange-degree bound
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / GRAPH-DEGREE COROLLARY / AUDIT.
+- **What is being added:** The moving-fiber count is converted into a local
+  residual graph bound: after full moving `r`-root fibers are charged, the
+  residual `r`-exchange graph inside one affine packet has maximum degree at
+  most `binom(h,r)(|F|^(r-1)-1)`.
+- **How it is useful:** This is the codegree-facing form of the packet
+  filtration.  It gives zero residual one-exchange degree, the line-packet
+  ceiling for two-exchange moves, and a uniform local degree input for higher
+  exchange ledgers.
+- **What to do next:** Feed this local degree bound into the remaining
+  different-slope and average-collinearity ledgers after quotient and
+  tangent/contained filters.
+
 ### 2026-06-29 - M1 moving-fiber finite-field count
 
 - **Agent/model:** AllenGrahamHart / Codex.

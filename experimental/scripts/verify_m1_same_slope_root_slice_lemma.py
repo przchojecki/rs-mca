@@ -19,7 +19,8 @@ identity applied to both syndrome rows.  Rank-defect hyperplane fibers are
 checked by the affine-linear one-root extension formula, and general affine
 subpacket one-root and two-root fibers are checked by finite-field linear
 algebra.  The arbitrary moving-rank fiber dimension drop is checked by the
-same affine-preimage calculation.
+same affine-preimage calculation, and the residual exchange-degree corollary
+is checked on small split-support graphs.
 """
 
 from __future__ import annotations
@@ -55,6 +56,13 @@ def mul_monic_factor(poly: list[int], coeffs: tuple[int, ...], p: int) -> list[i
         for m, factor_coeff in enumerate(coeffs):
             out[i + m] = (out[i + m] + factor_coeff * coeff) % p
     return out
+
+
+def locator_from_roots(roots: tuple[int, ...], p: int) -> list[int]:
+    poly = [1]
+    for root in roots:
+        poly = mul_x_minus_y(poly, root, p)
+    return poly
 
 
 def shifted_core(poly: list[int], shift: int, total_shift: int) -> list[int]:
@@ -1213,6 +1221,87 @@ def check_general_moving_fiber_dimension_drop() -> None:
                             )
 
 
+def check_residual_exchange_degree_bound() -> None:
+    rng = Random(20260711)
+
+    for p in (5, 7):
+        domain = tuple(range(p))
+        for h_exchange in range(1, min(5, p)):
+            supports = list(combinations(domain, h_exchange))
+            for moving_rank in range(1, min(4, h_exchange + 1)):
+                all_parameters = list(product(range(p), repeat=moving_rank))
+                affine_subspaces: list[tuple[list[int], list[list[int]]]] = []
+                for rank in range(h_exchange + 1):
+                    base = [rng.randrange(p) for _ in range(h_exchange)]
+                    directions = []
+                    for axis in range(rank):
+                        direction = [0] * h_exchange
+                        direction[axis] = 1
+                        directions.append(direction)
+                    affine_subspaces.append((base, directions))
+
+                    for _ in range(5):
+                        base = [rng.randrange(p) for _ in range(h_exchange)]
+                        directions = [
+                            [rng.randrange(p) for _ in range(h_exchange)]
+                            for _ in range(rank)
+                        ]
+                        affine_subspaces.append((base, directions))
+
+                for base, directions in affine_subspaces:
+                    def coeff_in_packet(coeffs: tuple[int, ...]) -> bool:
+                        return in_affine_subspace(coeffs, base, directions, p)
+
+                    def full_fiber(common_roots: tuple[int, ...]) -> bool:
+                        core = locator_from_roots(common_roots, p)
+                        for parameters in all_parameters:
+                            coeffs = tuple(
+                                mul_monic_factor(core, parameters, p)[:-1]
+                            )
+                            if not coeff_in_packet(coeffs):
+                                return False
+                        return True
+
+                    active_supports: list[tuple[int, ...]] = []
+                    for support in supports:
+                        coeffs = tuple(locator_from_roots(support, p)[:-1])
+                        if not coeff_in_packet(coeffs):
+                            continue
+                        charged = False
+                        for common_roots in combinations(
+                            support, h_exchange - moving_rank
+                        ):
+                            if full_fiber(tuple(common_roots)):
+                                charged = True
+                                break
+                        if not charged:
+                            active_supports.append(support)
+
+                    active_set = set(active_supports)
+                    degree_bound = comb(h_exchange, moving_rank) * (
+                        p ** (moving_rank - 1) - 1
+                    )
+                    for support in active_supports:
+                        neighbors: set[tuple[int, ...]] = set()
+                        support_set = set(support)
+                        for other in active_set:
+                            if other == support:
+                                continue
+                            if len(support_set & set(other)) == h_exchange - moving_rank:
+                                neighbors.add(other)
+                        assert len(neighbors) <= degree_bound, (
+                            p,
+                            h_exchange,
+                            moving_rank,
+                            base,
+                            directions,
+                            support,
+                            len(neighbors),
+                            degree_bound,
+                            sorted(neighbors),
+                        )
+
+
 def check_two_root_line_classification() -> None:
     for p in (3, 5, 7, 11, 17):
         pairs = [(x, y) for x in range(p) for y in range(x + 1, p)]
@@ -1944,6 +2033,7 @@ def main() -> None:
     check_affine_subpacket_one_root_fiber_dichotomy()
     check_affine_subpacket_two_root_fiber_dichotomy()
     check_general_moving_fiber_dimension_drop()
+    check_residual_exchange_degree_bound()
     check_two_root_line_classification()
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()
