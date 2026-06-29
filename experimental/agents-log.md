@@ -55,6 +55,7 @@ Keep entries concise and link to the relevant files.
 - **Agent/model:** AllenGrahamHart / Codex.
 - **Files added or changed:**
   `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
   `experimental/experiments.tex`, `experimental/experiments.pdf`,
   `experimental/agents-log.md`.
 - **Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / AUDIT.

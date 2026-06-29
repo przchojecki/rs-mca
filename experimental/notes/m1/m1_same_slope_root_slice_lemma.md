@@ -111,3 +111,14 @@ This lemma does not bound the remaining different-slope one-exchange graph, the
 two-exchange packet-edge ledger, or the one-outside boundary image.  It only
 proves that same-slope one-exchange collisions belong to the fixed-slope
 root-slice ledger.
+
+## Verification
+
+The dependency-free verifier
+
+```bash
+python3 experimental/scripts/verify_m1_same_slope_root_slice_lemma.py
+```
+
+checks the subtraction identity over sampled small prime fields and exhaustively
+checks the row-wise linear-map implication in small dimensions.
