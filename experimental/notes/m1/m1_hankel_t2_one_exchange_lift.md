@@ -6497,6 +6497,77 @@ that such high-multiplicity one-root slices are quotient-periodic,
 tangent/fixed-root degenerate, or aperiodically packable; finding a primitive
 family of them would be a genuine obstruction to the present M1 route.
 
+## Root-Free Top Slices Descend Losslessly
+
+The root-free part of the preceding witness has an exact depth recursion.  This
+is the local form of the desired additive, rather than multiplicative, behavior
+across tail rungs.
+
+Assume `Z_{S,lambda}^{perp}=empty` and `a>=1`.  Fix a fiber root
+`x in D_{S,lambda}` and restrict to the top one-root slice
+`Theta_a(S,lambda;x)`.  Every member has the form
+
+```text
+E={x} disjoint_union E',        |E'|=a-1,
+```
+
+and the one-root absorbed direction is
+
+```text
+Q_{S,lambda,E}^{x}
+ = Q'_{S,lambda,E}/(X-x)
+ = ell_{E'} R_{S,lambda}.                       (PF2-rootfree-desc-dir)
+```
+
+Put
+
+```text
+q^x=q_S-1,        h^x=h_lambda-1,        r^x=r_lambda,
+a^x=floor((h^x-r^x-1)/2).
+```
+
+Then
+
+```text
+q^x=h^x+r^x,        h^x-r^x=h_lambda-r_lambda-1.  (PF2-rootfree-depth-shift)
+```
+
+The absorbed top slice is a tail slice in this descended root-free primitive
+problem.  Its new tail level is
+
+```text
+e^x=|E'|=a-1,
+```
+
+and the parity of the old gap gives the exact position
+
+```text
+a^x-e^x =
+ 0,        if h_lambda-r_lambda is odd,
+ 1,        if h_lambda-r_lambda is even.        (PF2-rootfree-level-shift)
+```
+
+Thus one-root absorption of a fiber root lowers the depth gap by exactly one
+and moves the slice to the top level or one level below the top in the
+descended problem; it does not create a new independent binomial reservoir.
+
+The surplus is also unchanged.  For `j=r_lambda+a`, the quotient domain before
+absorbing `x` has size `N_{S,C}=N_S-q_S+j`.  After absorption the width is
+`j-1` and the domain size is `N_{S,C}-1`, so
+
+```text
+(N_{S,C}-1)-(j-1)=N_S-q_S=s_S.                 (PF2-rootfree-surplus-shift)
+```
+
+Finally, root-freeness is preserved off the descended fiber:
+`Z_{S,lambda}^{perp}=empty` says that `R_{S,lambda}` has no roots on
+`D_S^{can}\D_{S,lambda}`, and the descended outside domain is the same set.
+Consequently a primitive root-free critical top slice is literally the same
+root-free tail problem one residual degree lower, with the same surplus and
+with half-height gap reduced by one.  Any multiplicative loss along such a
+chain would therefore have to come from re-counting the same descended
+one-root slices, not from the tail recursion itself.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

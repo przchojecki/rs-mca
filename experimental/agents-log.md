@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 root-free top-slice descent
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Shows that a root-free critical top one-root slice
+  descends losslessly after absorbing the fixed fiber root: the residual
+  degree and half-height fiber height both drop by one, the surplus is
+  preserved, and the slice lands at the top level or one level below top in
+  the descended primitive tail problem.
+- **How it is useful:** Gives a structural additive-recursion invariant for
+  the M1 critical tail, separating true fixed-root/perpendicular defects from
+  the root-free tail chain.
+- **What to do next:** Use the descent to rule out repeated re-counting of the
+  same root-free top slices, or connect any surviving chain to
+  quotient-periodic, tangent/fixed-root, or aperiodic ledgers.
+
 ### 2026-06-29 - M1 top-level critical-tail witness sharpening
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
