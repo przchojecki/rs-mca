@@ -2,8 +2,9 @@
 """Verify the M1 width-one fixed-root algebra in small fields.
 
 This checks the bounded-complement tail recursion and the first residual gate
-from experimental/notes/m1/m1_width_one_fixedroot_closure.md.  The gate is the
-first product coefficient not forced by the tail readout.
+from experimental/notes/m1/m1_width_one_fixedroot_closure.md.  It also checks
+the residual gate chain and the large-node uniqueness of width-one slopes in
+sampled base-free pencils.
 """
 
 from __future__ import annotations
@@ -18,6 +19,13 @@ def poly_mul(a: list[int], b: list[int], p: int) -> list[int]:
         for j, bj in enumerate(b):
             out[i + j] = (out[i + j] + ai * bj) % p
     return out
+
+
+def poly_eval(poly: list[int], x_value: int, p: int) -> int:
+    value = 0
+    for coeff in reversed(poly):
+        value = (value * x_value + coeff) % p
+    return value
 
 
 def locator(roots: list[int], p: int) -> list[int]:
@@ -243,6 +251,48 @@ def check_gate_chain_candidate_set() -> None:
                     assert nonzero_gate_seen, (p, s, q, m_poly, n_poly)
 
 
+def check_large_node_width_one_uniqueness() -> None:
+    rng = Random(20260711)
+    for p in (7, 11, 17, 23):
+        for s in range(0, 4):
+            for q in range(s + 3, min(p - s, s + 7)):
+                domain = list(range(q + s))
+                for _ in range(240):
+                    m_poly = [rng.randrange(p) for _ in range(q - 1)] + [1]
+                    n_poly = [rng.randrange(p) for _ in range(q - 1)] + [0]
+                    if all(value % p == 0 for value in n_poly):
+                        continue
+                    if any(
+                        poly_eval(m_poly, x_value, p) == 0
+                        and poly_eval(n_poly, x_value, p) == 0
+                        for x_value in domain
+                    ):
+                        continue
+
+                    width_one_lambdas: list[int] = []
+                    for lam in range(p):
+                        ell_l = [
+                            (m_poly[i] + lam * n_poly[i]) % p
+                            for i in range(q)
+                        ]
+                        roots = [
+                            x_value
+                            for x_value in domain
+                            if poly_eval(ell_l, x_value, p) == 0
+                        ]
+                        if len(roots) == q - 1:
+                            width_one_lambdas.append(lam)
+
+                    assert len(width_one_lambdas) <= 1, (
+                        p,
+                        s,
+                        q,
+                        m_poly,
+                        n_poly,
+                        width_one_lambdas,
+                    )
+
+
 def check_gate_degree_bound() -> None:
     # Interpolate the first gate along random monic affine pencils and verify
     # that finite differences of order s+3 vanish, as degree <= s+2 predicts.
@@ -284,6 +334,7 @@ def main() -> None:
     check_first_gate_is_residual_coefficient()
     check_residual_gate_chain()
     check_gate_chain_candidate_set()
+    check_large_node_width_one_uniqueness()
     check_gate_degree_bound()
     print("M1 width-one fixed-root verifier passed")
 

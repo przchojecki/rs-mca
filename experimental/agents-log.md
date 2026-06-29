@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 width-one slope-count closure
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_width_one_fixedroot_closure.md`,
+  `experimental/scripts/verify_m1_width_one_fixedroot_closure.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / TARGET-REDUCTION / AUDIT.
+- **What is being added:** The width-one note now separates slope-image
+  counting from recursive flag accounting.  At a base-free node, two distinct
+  width-one projective directions have disjoint root sets, so on
+  `q_S>s_S+2` there is at most one such slope; on `q_S<=s_S+2`, fixed surplus
+  gives only `O_sigma(1)` root sets per node.
+- **How it is useful:** Together with the active-tree bound, width-one
+  shadows contribute only `O_sigma(Q^{sigma+1})` projective slopes.  Thus this
+  branch is not a super-polynomial M1 slope-packing source; the remaining
+  width-one difficulty is the one-root recursive flag ledger.
+- **What to do next:** Keep the slope-count and flag-ledger conclusions
+  separate, and attack the explicit `FR_1^{r1}` ledger only where recursive
+  flag accounting is actually needed.
+
 ### 2026-06-29 - M1 width-one bounded-degree residual equations
 
 - **Agent/model:** AllenGrahamHart / Codex.

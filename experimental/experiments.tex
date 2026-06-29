@@ -1790,6 +1790,22 @@ vanishing identically, the scalar candidate set is the root set of the single
 nonzero node gcd \(\gcd(G_{s+2},\ldots,G_{q+s})\), again of degree at most
 \(s+2\).
 
+For the slope-image count itself, width one is already polynomial in fixed
+surplus.  At a base-free node, two distinct projective width-one directions
+have disjoint root sets in \(D_S\); otherwise both basis directions vanish at a
+common domain point.  Hence two such directions force
+\[
+  2(q_S-1)\le q_S+s_S,
+\]
+so on \(q_S>s_S+2\) there is at most one width-one projective slope.  On
+\(q_S\le s_S+2\), fixed surplus gives only \(O_\sigma(1)\) possible root sets
+per node.  The active-tree bound therefore gives
+\[
+  \#\{\hbox{width-one projective slopes}\}=O_\sigma(Q^{\sigma+1}).
+\]
+Thus width-one shadows are not a super-polynomial slope-packing source; the
+large cube below is a recursive flag-ledger issue.
+
 Consequently, in fixed surplus \(s_0\le\sigma\), small nodes are polynomial by
 the active-tree bound, and on \(q_S>s_S+2\) there is at most one width-one
 shadow per node.  The local closure criterion is

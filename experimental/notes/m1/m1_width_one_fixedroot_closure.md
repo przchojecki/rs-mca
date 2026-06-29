@@ -626,6 +626,53 @@ as a concrete node-gcd problem: after the standard charges, no node with
 `q/log Q -> infinity` should have a split complement arising from a root of
 this fixed-degree polynomial.
 
+## Width-One Slope-Count Closure
+
+There is a sharper conclusion for the slope-image count itself.  The
+exponential width-one cube is a recursive flag-ledger issue, not a source of
+many projective slopes.
+
+At a base-free node, let
+
+```text
+W1Slope_S={ [A] in P(V_S) : |Z(A)|=q_S-1 }.
+```
+
+If `[A]` and `[B]` are two distinct elements of `W1Slope_S`, then their root
+sets in `D_S` are disjoint.  Indeed, a common root `x` would give
+`A(x)=B(x)=0`; since `A,B` span the two-dimensional pencil, every element of
+`V_S` would vanish at `x`, contradicting base-freeness.  Hence
+
+```text
+2(q_S-1)<=|D_S|=q_S+s_S
+```
+
+whenever two distinct width-one projective directions exist.  Thus, on the
+large range `q_S>s_S+2`, there is at most one width-one projective slope at
+the node.
+
+On the complementary range `q_S<=s_S+2`, fixed surplus gives
+`q_S+s_S<=2sigma+2`.  A width-one projective direction is determined by its
+`q_S-1` roots in `D_S`, so
+
+```text
+#W1Slope_S <= binom(2sigma+2,sigma+1)
+```
+
+for every small node.  Since the active canonical tree has size at most
+`(s_0+2)Q^{s_0+1}`, the total number of width-one projective slopes in fixed
+surplus is
+
+```text
+O_sigma(Q^{sigma+1}).                              (W1-slope-count)
+```
+
+This is the direct M1 slope-packing consequence: width-one shadows cannot by
+themselves create super-polynomially many bad slopes.  The later
+`FR_1^{r1}` discussion is still needed for recursive flag accounting, because
+a single surviving width-one slope carries the large descendant cube
+`b(q_S)`.
+
 ## Fixed-Surplus Closure Criterion
 
 Now sum over active canonical nodes with initial surplus `s_0<=sigma`.  Let
