@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 Plucker-chart endpoint slope map
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The signed-square Hankel factor gives an explicit
+  finite endpoint formula
+  `z_i=(lambda_i a_i-a_{i+1})/(b_{i+1}-lambda_i b_i)`, with the denominator
+  zero case forced to the projective endpoint at infinity; the reverse chart
+  has the symmetric formula.
+- **How it is useful:** For fixed adjacent row basis, the moving
+  square-norm endpoint image is a projective line map in one Plucker
+  parameter.  This should make later endpoint-support counts sharper than
+  treating endpoints as generic quadratic roots.
+- **What to do next:** Combine the slope map with the overlapping
+  two-parameter recurrence to count surviving finite endpoint pairs.
+
 ### 2026-06-30 - M1 Plucker-chart Hankel square factorization
 
 - **Agent/model:** AllenGrahamHart / Codex.

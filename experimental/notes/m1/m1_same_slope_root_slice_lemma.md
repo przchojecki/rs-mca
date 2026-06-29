@@ -20,6 +20,7 @@ SQUARE-NORM PLUCKER-MINOR DISCRIMINANT CERTIFICATE /
 SQUARE-NORM PLUCKER-CHART DECOMPOSITION /
 SQUARE-NORM PLUCKER-CHART ROW RECURRENCE /
 SQUARE-NORM PLUCKER-CHART HANKEL SQUARE FACTORIZATION /
+SQUARE-NORM PLUCKER-CHART ENDPOINT SLOPE MAP /
 SQUARE-NORM OVERLAPPING PLUCKER-CHART RECURRENCE /
 SQUARE-NORM ENDPOINT-CHARGE COROLLARY /
 SQUARE-MAP PACKET-COUNT COROLLARY /
@@ -2673,6 +2674,32 @@ quadratic: after choosing a nonzero Plucker chart, its double endpoint is the
 zero of an explicit row-linear form, with the constant-linear case moving the
 double endpoint to infinity in the projective degree-two normalization.
 
+Equivalently, finite endpoints are fractional-linear images of the chart
+parameter.  On `P_i!=0`, if
+
+```text
+b_{i+1}-lambda_i b_i != 0,
+```
+
+then the finite double endpoint is
+
+```text
+z_i=(lambda_i a_i-a_{i+1})/(b_{i+1}-lambda_i b_i).       (RKSQZ)
+```
+
+If `b_{i+1}-lambda_i b_i=0`, then `a_{i+1}-lambda_i a_i!=0` because
+`P_i!=0`, so there is no finite root of the linear factor and the double
+endpoint is the point at infinity.  The reverse chart has the symmetric finite
+endpoint formula
+
+```text
+z_i=(mu_i a_{i+2}-a_{i+1})/(b_{i+1}-mu_i b_{i+2}).
+```
+
+Thus, for fixed adjacent row basis, the moving endpoint image is a projective
+line map in the single Plucker parameter; it is not an arbitrary quadratic
+root image.
+
 The two adjacent endpoint conditions overlap rigidly.  Suppose the Plucker
 conics for `i=0` and `i=1` both hold, and suppose `P_0!=0`.  Let
 `lambda_0=S_0/(2P_0)`.  Then
@@ -3242,9 +3269,10 @@ raw-endpoint discriminant certificate (RKSQDISC), the Hankel-minor
 discriminant certificate (RKSQHCOEFF/RKSQHDISC), the Plucker-minor
 discriminant certificate (RKSQPL), the Plucker-chart decomposition
 (RKSQPLCH), the Plucker-chart row recurrence (RKSQROW), the Hankel square
-factorization (RKSQSQ), the overlapping Plucker-chart recurrence (RKSQOV),
-the finite endpoint-charge corollary (RKSQEPCH), and square-map packet-count
-corollary (RKSQCOUNT) from the support palette.
+factorization (RKSQSQ), the endpoint slope map (RKSQZ), the overlapping
+Plucker-chart recurrence (RKSQOV), the finite endpoint-charge corollary
+(RKSQEPCH), and square-map packet-count corollary (RKSQCOUNT) from the support
+palette.
 
 ## Verification
 
@@ -3302,6 +3330,7 @@ endpoint certificate (RKSQRAW), the raw-endpoint discriminant certificate
 (RKSQDISC), the Hankel-minor discriminant certificate
 (RKSQHCOEFF/RKSQHDISC), the Plucker-minor discriminant certificate (RKSQPL),
 the Plucker-chart decomposition (RKSQPLCH), the Plucker-chart row recurrence
-(RKSQROW), the Hankel square factorization (RKSQSQ), the overlapping
-Plucker-chart recurrence (RKSQOV), the finite endpoint-charge corollary
-(RKSQEPCH), and the packet-count corollary (RKSQCOUNT).
+(RKSQROW), the Hankel square factorization (RKSQSQ), the endpoint slope map
+(RKSQZ), the overlapping Plucker-chart recurrence (RKSQOV), the finite
+endpoint-charge corollary (RKSQEPCH), and the packet-count corollary
+(RKSQCOUNT).

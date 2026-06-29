@@ -57,8 +57,8 @@ repeated-endpoint gate, double-root endpoint certificate, raw-coefficient
 endpoint certificate, endpoint-discriminant certificate, Hankel-minor
 discriminant certificate, Plucker-minor discriminant certificate,
 Plucker-chart decomposition, Plucker-chart row recurrence, Hankel square
-factorization, overlapping Plucker-chart recurrence, endpoint-charge
-corollary, and packet-count corollary.
+factorization, endpoint slope map, overlapping Plucker-chart recurrence,
+endpoint-charge corollary, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -3223,8 +3223,31 @@ def assert_plucker_chart_decomposition(
         )
         if linear.get(1, 0) != 0:
             root = (-linear.get(0, 0) * pow(linear[1], -1, p)) % p
+            slope_map_root = (
+                (lam * row0[0] - row1[0])
+                * pow((row1[1] - lam * row0[1]) % p, -1, p)
+            ) % p
+            assert root == slope_map_root, (
+                p,
+                index,
+                a_rows,
+                b_rows,
+                lam,
+                root,
+                slope_map_root,
+            )
             assert eval_poly1(minor_poly, root, p) == 0
             assert eval_poly1(poly1_derivative(minor_poly, p), root, p) == 0
+        else:
+            assert linear.get(0, 0) != 0, (
+                p,
+                index,
+                a_rows,
+                b_rows,
+                (p01, p12, p02),
+                lam,
+                linear,
+            )
     else:
         assert p02 == 0, (p, index, a_rows, b_rows, (p01, p12, p02))
         if p12 != 0:
@@ -3293,8 +3316,31 @@ def assert_plucker_chart_decomposition(
         )
         if linear.get(1, 0) != 0:
             root = (-linear.get(0, 0) * pow(linear[1], -1, p)) % p
+            slope_map_root = (
+                (mu * row2[0] - row1[0])
+                * pow((row1[1] - mu * row2[1]) % p, -1, p)
+            ) % p
+            assert root == slope_map_root, (
+                p,
+                index,
+                a_rows,
+                b_rows,
+                mu,
+                root,
+                slope_map_root,
+            )
             assert eval_poly1(minor_poly, root, p) == 0
             assert eval_poly1(poly1_derivative(minor_poly, p), root, p) == 0
+        else:
+            assert linear.get(0, 0) != 0, (
+                p,
+                index,
+                a_rows,
+                b_rows,
+                (p01, p12, p02),
+                mu,
+                linear,
+            )
     else:
         assert p02 == 0, (p, index, a_rows, b_rows, (p01, p12, p02))
         if p01 != 0:
