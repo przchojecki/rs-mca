@@ -666,6 +666,72 @@ two-exchange line packets left are fixed-sum and nondegenerate product-Mobius
 packets.  These are exactly the two models used in
 `m1_hankel_variable_line_packet_lemma.md`.
 
+## Non-Fixed Line-Packet Constant-Slope Collapse
+
+In the `t=2` Hankel setting, the two non-fixed line models cannot be
+constant-slope residuals.  Fix a `(j-2)` core `R`, a finite slope `z`, and put
+`w_z=u+zv`.  Write the four shifted scalar landing rows as
+
+```text
+d_i=row_i(H_{4,j-2}(w_z)ell_R),        0<=i<=3.
+```
+
+For a two-root locator
+
+```text
+T_{s,p}=R union {x,y},        s=x+y,        p=xy,
+```
+
+the killed equation is
+
+```text
+H_{2,j}(w_z)ell_{T_{s,p}}
+ =
+ (d_2-sd_1+pd_0,  d_3-sd_2+pd_1).        (TLIN)
+```
+
+First consider a fixed-sum line `s=s_0`.  If (TLIN) vanishes for every point
+on this affine line, as a polynomial in the free coordinate `p`, then
+
+```text
+(d_0,d_1)=0,        (d_2,d_3)=s_0(d_1,d_2).
+```
+
+The Hankel overlap forces `d_0=d_1=d_2=d_3=0`, hence
+
+```text
+H_{4,j-2}(w_z)ell_R=0.                         (FSCOLL)
+```
+
+So a constant-slope fixed-sum line is already charged to the full-plane
+`(t+2,j-2)` Hankel lift.
+
+Now consider a product-Mobius line
+
+```text
+(x-c)(y-c)=mu,        mu != 0,
+```
+
+equivalently `p=cs-c^2+mu`.  If (TLIN) vanishes for every point of this line,
+then
+
+```text
+(d_1,d_2)=c(d_0,d_1),
+(d_2,d_3)=(c^2-mu)(d_0,d_1).
+```
+
+The first relation gives `d_1=cd_0` and `d_2=c^2d_0`; comparing with the first
+coordinate of the second relation gives `mu d_0=0`.  Since `mu != 0`, all
+four `d_i` vanish, so again `H_{4,j-2}(w_z)ell_R=0`.
+
+Therefore, after full two-root planes and fixed-root lines have been charged,
+no surviving fixed-sum or nondegenerate product-Mobius line packet is killed
+at one finite slope.  Consequently the active finite-slope map on every
+surviving non-fixed line packet is injective: if two distinct packet points had
+the same slope `z`, the affine-linear function (TLIN) restricted to the line
+would vanish at two points and hence on the whole line, contradicting the
+collapse just proved.
+
 ## The `t=2` Determinant Gate
 
 In the `t=2` Hankel window there is a second elementary one-exchange
@@ -1314,6 +1380,9 @@ proves the two-root fiber dichotomy for affine rank-defect packets, and shows
 the general moving-fiber dimension drop and finite-field fiber-counting
 corollary, gives the residual exchange-degree corollary, and shows that
 residual two-root lines are fixed-root, fixed-sum, or product-Mobius packets,
+proves that constant-slope non-fixed two-root lines collapse to the full-plane
+Hankel lift and hence surviving non-fixed line packets have injective slope
+maps,
 classifies the ruled determinant core into fixed-slope, inactive, and rank-one
 moving-slope cases for abstract affine pencils, proves the Hankel shift
 collapse that eliminates the moving-slope ruled residual, shows that star
@@ -1341,7 +1410,8 @@ criterion, the hyperplane one-root fiber dichotomy, the quadratic determinant
 formula (DET2), the affine-subpacket one-root and two-root fiber dichotomies,
 the general moving-fiber dimension drop and counting corollary, and the
 residual exchange-degree and average-ledger corollaries, and the "three roots
-imply ruled" criterion in sampled small prime fields, then stress-tests the abstract
+imply ruled" criterion in sampled small prime fields.  It checks the
+constant-slope non-fixed two-root line collapse, then stress-tests the abstract
 ruled-core dichotomy and the Hankel ruled-core collapse.  It also checks the
 Johnson-graph star/top triangle classification, the top-packet lift identity
 (TOP1), the distinct-slope implication (TOPK), and the top-packet edge/triangle

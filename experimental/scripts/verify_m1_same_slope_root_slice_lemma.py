@@ -13,15 +13,15 @@ Consequently any linear row that kills both endpoint locators also kills
 ell_R; substituting back then kills X ell_R.  This script checks that
 identity exactly in small prime fields and stress-tests the row implication.
 It also checks the two-exchange full-plane lift, t=2 determinant-gate formula,
-ruled-core collapse, triangle classification, and top-packet lift identities.
-The simultaneous top-kernel recursion is checked by the same padded-row
-identity applied to both syndrome rows.  Rank-defect hyperplane fibers are
-checked by the affine-linear one-root extension formula, and general affine
-subpacket one-root and two-root fibers are checked by finite-field linear
-algebra.  The arbitrary moving-rank fiber dimension drop is checked by the
-same affine-preimage calculation, and the residual exchange-degree corollary
-is checked on small split-support graphs.  The average-ledger substitutions
-are checked as exact rational inequalities.
+ruled-core collapse, non-fixed two-root line constant-slope collapse, triangle
+classification, and top-packet lift identities.  The simultaneous top-kernel
+recursion is checked by the same padded-row identity applied to both syndrome
+rows.  Rank-defect hyperplane fibers are checked by the affine-linear one-root
+extension formula, and general affine subpacket one-root and two-root fibers
+are checked by finite-field linear algebra.  The arbitrary moving-rank fiber
+dimension drop is checked by the same affine-preimage calculation, and the
+residual exchange-degree corollary is checked on small split-support graphs.
+The average-ledger substitutions are checked as exact rational inequalities.
 """
 
 from __future__ import annotations
@@ -1397,6 +1397,87 @@ def check_two_root_line_classification() -> None:
                         )
 
 
+def check_nonfixed_line_constant_slope_collapse() -> None:
+    def pair_equal(left: tuple[int, int], right: tuple[int, int], p: int) -> bool:
+        return left[0] % p == right[0] % p and left[1] % p == right[1] % p
+
+    def value_on_line(
+        rows: tuple[int, int, int, int], s_value: int, p_value: int, prime: int
+    ) -> tuple[int, int]:
+        d_0, d_1, d_2, d_3 = rows
+        return (
+            (d_2 - s_value * d_1 + p_value * d_0) % prime,
+            (d_3 - s_value * d_2 + p_value * d_1) % prime,
+        )
+
+    for p in (5, 7, 11):
+        for rows in product(range(p), repeat=4):
+            v_0 = (rows[0], rows[1])
+            v_1 = (rows[1], rows[2])
+            v_2 = (rows[2], rows[3])
+
+            for fixed_sum in range(p):
+                constant_fixed_sum = v_0 == (0, 0) and pair_equal(
+                    v_2, vec_scalar_mul(fixed_sum, v_1, p), p
+                )
+                if constant_fixed_sum:
+                    assert rows == (0, 0, 0, 0), (p, rows, fixed_sum)
+                    assert all(
+                        value_on_line(rows, fixed_sum, p_value, p) == (0, 0)
+                        for p_value in range(p)
+                    )
+
+            for center in range(p):
+                for mu in range(1, p):
+                    constant_product = pair_equal(
+                        v_1, vec_scalar_mul(center, v_0, p), p
+                    ) and pair_equal(
+                        v_2,
+                        vec_scalar_mul((center * center - mu) % p, v_0, p),
+                        p,
+                    )
+                    if constant_product:
+                        assert rows == (0, 0, 0, 0), (p, rows, center, mu)
+                        assert all(
+                            value_on_line(
+                                rows,
+                                s_value,
+                                (center * s_value - center * center + mu) % p,
+                                p,
+                            )
+                            == (0, 0)
+                            for s_value in range(p)
+                        )
+
+    # Sample the two-zero implication directly on larger fields: if the
+    # affine-linear restriction vanishes at two distinct line parameters, it
+    # vanishes identically, so the collapse above must force all rows to zero.
+    rng = Random(20260710)
+    for p in (17, 31):
+        for _ in range(1000):
+            rows = tuple(rng.randrange(p) for _ in range(4))
+            fixed_sum = rng.randrange(p)
+            p_1 = rng.randrange(p)
+            p_2 = (p_1 + 1 + rng.randrange(p - 1)) % p
+            if value_on_line(rows, fixed_sum, p_1, p) == (
+                0,
+                0,
+            ) and value_on_line(rows, fixed_sum, p_2, p) == (0, 0):
+                assert rows == (0, 0, 0, 0), (p, rows, fixed_sum, p_1, p_2)
+
+            center = rng.randrange(p)
+            mu = 1 + rng.randrange(p - 1)
+            s_1 = rng.randrange(p)
+            s_2 = (s_1 + 1 + rng.randrange(p - 1)) % p
+            p_1 = (center * s_1 - center * center + mu) % p
+            p_2 = (center * s_2 - center * center + mu) % p
+            if value_on_line(rows, s_1, p_1, p) == (
+                0,
+                0,
+            ) and value_on_line(rows, s_2, p_2, p) == (0, 0):
+                assert rows == (0, 0, 0, 0), (p, rows, center, mu, s_1, s_2)
+
+
 def check_t2_determinant_gate() -> None:
     rng = Random(20260629)
     for p in (5, 7, 17, 31):
@@ -2087,6 +2168,7 @@ def main() -> None:
     check_general_moving_fiber_dimension_drop()
     check_residual_exchange_degree_bound()
     check_two_root_line_classification()
+    check_nonfixed_line_constant_slope_collapse()
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()
     check_hankel_ruled_core_collapse()

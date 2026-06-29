@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 non-fixed line-packet collapse
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / LINE-PACKET REDUCTION / AUDIT.
+- **What is being added:** In the `t=2` Hankel setting, a fixed-sum or
+  nondegenerate product-Mobius two-root line packet that is constant at one
+  finite slope forces the full-plane lift `H_{4,j-2}(u+zv)ell_R=0`.
+- **How it is useful:** After fixed-root and full-plane charges, every
+  surviving non-fixed line packet has injective finite-slope map.  This
+  removes the extra variable-slope hypothesis from the local variable-line
+  packet reduction.
+- **What to do next:** Use this injective packet branch together with the
+  different-slope two-exchange and one-outside boundary ledgers.
+
 ### 2026-06-29 - M1 affine packet average ledger
 
 - **Agent/model:** AllenGrahamHart / Codex.
