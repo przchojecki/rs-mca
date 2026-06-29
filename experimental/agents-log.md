@@ -71,7 +71,9 @@ Keep entries concise and link to the relevant files.
   traces involving `B_R/Q_R` and `Theta_R`; for index-two domains the
   remaining one-root cover terms cancel by sheet symmetry.  On the open cover,
   the outside-root condition factors through the slope-line norm `B_R/Q_R`,
-  and mixed points inject into the norm-outside slope set.
+  and mixed points inject into the norm-outside slope set.  The degree-two
+  norm-power exceptions are classified as constant norm or quadratic
+  square-norm.
 - **How it is useful:** The denominator-zero solvable case is exactly a
   fixed-root line or the full-plane lift, both already charged.  Thus the
   residual non-line root-core target is a one-variable slope-cover problem
@@ -82,7 +84,8 @@ Keep entries concise and link to the relevant files.
   diagonal product terms removed from the genuinely cover-level workload and
   the quadratic-residue case reduced entirely to `P^1` Kummer sums.  The norm
   filter isolates the outside-root dependence on the slope line and gives a
-  genus-free fallback bound from the rational map `B_R/Q_R`.
+  genus-free fallback bound from the rational map `B_R/Q_R`, with explicit
+  noncancellation branches.
 - **What to do next:** Use this recurrence chart when attacking the active
   `(j-2)` root-core image after quotient, tangent, fixed-root, and full-plane
   charges.

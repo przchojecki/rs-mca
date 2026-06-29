@@ -2166,6 +2166,30 @@ N_R^{+,-}(D) <= Z_R^{norm-out}
  <= (e-1)|D| + C_e sqrt(p) + O_e(1).                 (RKNOUTBD)
 ```
 
+The exceptional norm-power branch is explicit because `B_R` and `Q_R` have
+degree at most two.  For a nonprincipal quotient character `chi^a`, put
+`m=e/gcd(e,a)`.  The `P^1` term `chi^a(B_R/Q_R)` is geometrically trivial
+only when
+
+```text
+div(B_R/Q_R) == 0 mod m.                             (RKNPOW)
+```
+
+If `m>=3`, all finite and infinite valuations of the degree-two rational
+function have absolute value at most two, so (RKNPOW) forces every valuation to
+be zero.  Thus `B_R/Q_R` is constant.  If `m=2`, (RKNPOW) says exactly that
+the reduced rational function `B_R/Q_R` is a square up to scalar.  Consequently:
+
+```text
+nonquadratic norm-power branch  =>  B_R/Q_R constant,
+quadratic norm-power branch     =>  B_R/Q_R square up to scalar.       (RKNP)
+```
+
+For odd index `e`, the only nonprincipal norm-power exception is therefore
+constant norm.  For even `e`, the only additional nonconstant exception is the
+quadratic square-norm branch.  These are slope-line algebraic branches, not
+new cover-level conductor sources.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -2434,9 +2458,10 @@ nonprincipal power branches are removed, descends the diagonal pair terms in
 that mixed-domain expansion to bounded-support `P^1` Kummer sums, closes the
 index-two mixed-domain cover-level terms by sheet-symmetry cancellation,
 factors the outside-root test through the slope-line norm `B_R/Q_R`, obtains
-the genus-free norm-outside fallback bound (RKNOUTBD), and gives the local
-max-degree bound and average-collinearity corollary above, including the
-packet-level higher-exchange ledger substitution.
+the genus-free norm-outside fallback bound (RKNOUTBD), classifies the
+degree-two norm-power exceptions as constant norm or quadratic square norm, and
+gives the local max-degree bound and average-collinearity corollary above,
+including the packet-level higher-exchange ledger substitution.
 
 ## Verification
 
@@ -2480,4 +2505,5 @@ classification, quartic degree bound, split-root cover criterion, and exact
 finite-field subgroup-character expansion for the domain/outside filter and
 the mixed-domain count formula (RKCOUNT), including the diagonal descent
 (RKDIAG), index-two cancellation formula (RK2), and norm-filter identity
-(RKNORM) with norm-outside injection (RKNINJ).
+(RKNORM) with norm-outside injection (RKNINJ) and degree-two norm-power gate
+(RKNP).

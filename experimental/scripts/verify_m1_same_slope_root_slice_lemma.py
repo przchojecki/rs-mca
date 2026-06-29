@@ -44,7 +44,8 @@ character expansion and aggregate mixed-domain counts on sampled finite-field
 covers, including the diagonal descent to the slope line and the index-two
 sheet-symmetry cancellation formula.  The verifier also checks the norm-filter
 identity that moves the outside-root condition to B_R/Q_R on the slope line,
-and the resulting injection into norm-outside slopes.
+the resulting injection into norm-outside slopes, and the degree-two
+norm-power classification.
 """
 
 from __future__ import annotations
@@ -2825,6 +2826,60 @@ def kummer_support_size(poly: Poly1, index: int, char_power: int, p: int) -> int
     return support
 
 
+def rational_divisor_exponents(
+    numerator: Poly1,
+    denominator: Poly1,
+    p: int,
+) -> tuple[dict[tuple[int, ...], int], int]:
+    assert numerator and denominator
+    exponents: dict[tuple[int, ...], int] = {}
+    for factor, multiplicity in factor_poly1_monic(numerator, p).items():
+        exponents[factor] = exponents.get(factor, 0) + multiplicity
+    for factor, multiplicity in factor_poly1_monic(denominator, p).items():
+        exponents[factor] = exponents.get(factor, 0) - multiplicity
+    exponents = {
+        factor: exponent for factor, exponent in exponents.items() if exponent != 0
+    }
+    infinity_exponent = poly1_degree(denominator) - poly1_degree(numerator)
+    return exponents, infinity_exponent
+
+
+def rational_power_degenerate(
+    numerator: Poly1,
+    denominator: Poly1,
+    order: int,
+    p: int,
+) -> bool:
+    exponents, infinity_exponent = rational_divisor_exponents(
+        numerator,
+        denominator,
+        p,
+    )
+    return infinity_exponent % order == 0 and all(
+        exponent % order == 0 for exponent in exponents.values()
+    )
+
+
+def rational_constant_divisor(numerator: Poly1, denominator: Poly1, p: int) -> bool:
+    exponents, infinity_exponent = rational_divisor_exponents(
+        numerator,
+        denominator,
+        p,
+    )
+    return infinity_exponent == 0 and not exponents
+
+
+def rational_square_divisor(numerator: Poly1, denominator: Poly1, p: int) -> bool:
+    exponents, infinity_exponent = rational_divisor_exponents(
+        numerator,
+        denominator,
+        p,
+    )
+    return infinity_exponent % 2 == 0 and all(
+        exponent % 2 == 0 for exponent in exponents.values()
+    )
+
+
 def quadratic_character(value: int, p: int) -> int:
     value %= p
     if value == 0:
@@ -4010,6 +4065,102 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                 )
 
 
+def check_boundary_core_norm_power_gate() -> None:
+    rng = Random(20260720)
+    for prime in (5, 7, 11):
+        polys = [
+            poly1_from_list(list(coeffs), prime)
+            for coeffs in product(range(prime), repeat=3)
+        ]
+        polys = [poly for poly in polys if poly]
+        pairs: list[tuple[Poly1, Poly1]] = []
+        if prime == 5:
+            pairs.extend(
+                (numerator, denominator)
+                for numerator in polys
+                for denominator in polys
+            )
+        else:
+            for _ in range(800):
+                pairs.append((rng.choice(polys), rng.choice(polys)))
+
+        linear_bases = [
+            poly1_from_list([constant, slope], prime)
+            for constant in range(prime)
+            for slope in range(prime)
+        ]
+        linear_bases = [poly for poly in linear_bases if poly]
+        for scale in range(1, prime):
+            for numerator_base in linear_bases[: min(len(linear_bases), 25)]:
+                numerator_base_square = poly1_mul(
+                    numerator_base,
+                    numerator_base,
+                    prime,
+                )
+                numerator_square = {
+                    degree: (scale * coeff) % prime
+                    for degree, coeff in numerator_base_square.items()
+                }
+                for denominator_base in linear_bases[: min(len(linear_bases), 25)]:
+                    denominator_square = poly1_mul(
+                        denominator_base,
+                        denominator_base,
+                        prime,
+                    )
+                    pairs.append((numerator_square, denominator_square))
+            for denominator in polys[: min(len(polys), 40)]:
+                numerator = {
+                    degree: (scale * coeff) % prime
+                    for degree, coeff in denominator.items()
+                }
+                pairs.append((numerator, denominator))
+
+        indices = [index for index in range(2, prime) if (prime - 1) % index == 0]
+        for numerator, denominator in pairs:
+            assert poly1_degree(numerator) <= 2, (prime, numerator)
+            assert poly1_degree(denominator) <= 2, (prime, denominator)
+            constant_branch = rational_constant_divisor(numerator, denominator, prime)
+            square_branch = rational_square_divisor(numerator, denominator, prime)
+            assert constant_branch <= square_branch, (
+                prime,
+                numerator,
+                denominator,
+                constant_branch,
+                square_branch,
+            )
+            for index in indices:
+                for char_power in range(1, index):
+                    order = index // gcd(index, char_power)
+                    degenerate = rational_power_degenerate(
+                        numerator,
+                        denominator,
+                        order,
+                        prime,
+                    )
+                    if order >= 3:
+                        assert degenerate == constant_branch, (
+                            prime,
+                            index,
+                            char_power,
+                            order,
+                            numerator,
+                            denominator,
+                            degenerate,
+                            constant_branch,
+                        )
+                    elif order == 2:
+                        assert degenerate == square_branch, (
+                            prime,
+                            index,
+                            char_power,
+                            order,
+                            numerator,
+                            denominator,
+                            degenerate,
+                            square_branch,
+                        )
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -4244,6 +4395,7 @@ def main() -> None:
     check_boundary_quartic_kummer_power_gate()
     check_boundary_core_slope_recurrence_gate()
     check_boundary_core_slope_cover_kummer_filter()
+    check_boundary_core_norm_power_gate()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     check_boundary_core_closure_substitution()
