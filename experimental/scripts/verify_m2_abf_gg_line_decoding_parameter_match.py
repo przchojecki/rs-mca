@@ -188,8 +188,38 @@ def extract_report(name: str, path: str, expected_sha256: str) -> Dict[str, Any]
     }
 
 
+def source_commit_present() -> bool:
+    """Return True iff the PR #96 source commit is available in this clone."""
+    try:
+        run_git(["cat-file", "-e", f"{SOURCE_COMMIT}^{{commit}}"])
+        return True
+    except AssertionError:
+        return False
+
+
 def build_report() -> Dict[str, Any]:
-    run_git(["cat-file", "-e", f"{SOURCE_COMMIT}^{{commit}}"])
+    # Source-conditioned audit: it needs the PR #96 commit and the committed ABF
+    # PDF text extracts.  In a clean clone neither is present, so skip gracefully
+    # (with fetch instructions) instead of crashing.  When the material IS present
+    # the full parameter-match check below runs unchanged.
+    missing_extracts = [
+        spec["path"]
+        for spec in TEXT_EXTRACTS.values()
+        if not (ROOT / spec["path"]).exists()
+    ]
+    if not source_commit_present() or missing_extracts:
+        return {
+            "status": "SKIPPED",
+            "proof_status": "AUDIT / SOURCE-CONDITIONED / PARAMETER-MATCH",
+            "theorem_problem_id": "M2 ABF/GG line-decoding parameter match",
+            "reason": (
+                "source material for this source-conditioned audit is absent in "
+                "this clone (PR #96 commit and/or ABF PDF text extracts); fetch it "
+                f"with `{FETCH_COMMAND}` to run the full parameter-match check."
+            ),
+            "source_commit_present": source_commit_present(),
+            "missing_extracts": missing_extracts,
+        }
 
     extracts = {
         name: extract_report(name, spec["path"], spec["sha256"])
@@ -263,6 +293,11 @@ def build_report() -> Dict[str, Any]:
 
 
 def print_human(report: Dict[str, Any]) -> None:
+    if report.get("status") == "SKIPPED":
+        print("m2_abf_gg_line_decoding_parameter_match: SKIPPED")
+        print(f"status={report['proof_status']}")
+        print(f"reason={report['reason']}")
+        return
     source = report["source"]
     parameter = report["parameter_match"]
     print("m2_abf_gg_line_decoding_parameter_match: PASS")

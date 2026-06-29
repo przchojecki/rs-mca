@@ -30,6 +30,47 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - Repair broken TeX audit/inventory tooling (clean-clone reproducibility)
+
+- **Agent/model:** Claude Opus 4.8 (1M).
+- **Files added or changed:** path-root fix (`parents[1]` -> `parents[2]`) in 18
+  scripts under `experimental/scripts/`:
+  `backmatter_structure_inventory.py`, `bibkey_drift_audit.py`,
+  `cross_citation_phrase_audit.py`, `display_math_inventory.py`,
+  `domain_convention_audit.py`, `field_ledger_vocabulary_audit.py`,
+  `frontier_problem_inventory.py`, `latex_package_inventory.py`,
+  `proof_environment_inventory.py`, `readme_script_layer_inventory.py`,
+  `result_environment_inventory.py`, `section_structure_inventory.py`,
+  `security_mode_label_audit.py`, `table_environment_inventory.py`,
+  `tex_citation_integrity_audit.py`, `tex_macro_definition_audit.py`,
+  `tex_reference_integrity_audit.py`, `topmatter_metadata_inventory.py`;
+  plus `experimental/scripts/verify_m2_abf_gg_line_decoding_parameter_match.py`
+  (graceful skip) and `experimental/notes/audits/a1_paperA_finite_verification_crosswalk.md`
+  (command-log fix).
+- **Status:** AUDIT (tooling repair; no math claim added or changed).
+- **What is being added:** These scripts computed their repo root as
+  `Path(__file__).resolve().parents[1]`, correct when they lived at
+  `experimental/<script>.py` but broken after the move to
+  `experimental/scripts/<script>.py` (now `parents[1]` is `experimental/`,
+  not the repo root), so every paper/`agents.md` path resolved under a
+  nonexistent `experimental/tex/`. Fixed to `parents[2]`. The source-conditioned
+  M2 verifier now skips gracefully (clear reason + fetch command, exit 0) when
+  the PR #96 commit and ABF PDF extracts are absent in a clean clone, instead of
+  raising `AssertionError`. The A1 crosswalk command log now uses `python3` and
+  the real `experimental/scripts/` paths.
+- **How it is useful:** Restores the A2 citation/label/inventory audit tooling
+  (cross-citation, tex citation/reference/macro integrity, structure/topmatter
+  inventories, etc.) from 9/28 passing to 27/28; makes the verifier suite
+  clean-clone reproducible. Result: 18 scripts that emitted `FileNotFoundError`
+  now run and produce their audit output.
+- **What to do next:** (1) Version drift, left for a maintainer decision: these
+  scripts still target older paper versions (`tex/cs25_cap_v4.tex`,
+  `tex/slackMCA_v3.tex`, `tex/snarks_v4.tex`) rather than the `agents.md`
+  canonical `v5/v4/v5`; bumping is a content choice, not a path bug.
+  (2) `verify_m1_beta_pushforward_spectral_audit.py` is correct but slow
+  (~37s); not modified. (3) Optionally add the `verify_paperA_finite.py`
+  single-script driver the A1 note references.
+
 ### 2026-06-29 - Paper D v7 first-grid cap promotion
 
 - **Agent/model:** Codex.

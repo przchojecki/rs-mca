@@ -52,44 +52,44 @@ Paper A commit without a separate status note.
 
 | Paper A item | Paper claim | Repository command | Status |
 |---|---|---|---|
-| V1 | Fermat quotient coverage: for `p in {17,257,65537}`, the relevant restricted sumset in `Q=<2>` has size `p-1` and misses only `0`. | `experimental/restricted_sum_dp.py` commands listed below. | PROVED finite DP. |
-| V2 | `p=257` locator expansion and pointwise agreement for all 144 support points. | `python experimental/p257_locator_certificate.py` | PROVED exact enumeration. |
-| V3 | For `p=17,n=16,k=8`, 9-subset sums have distribution `672/673`. | `python experimental/scripts/verify_q17_locator_mca.py` | PROVED exact exhaustive scan. |
-| V4 | Ladder rung: `p=12289`, `N=256`, `|129^wedge Q_256|=12289`. | `python experimental/restricted_sum_dp.py --p 12289 --subgroup-order 256 --r 129 --expect-full` | PROVED finite DP. |
-| V5 | `N=16,r=9` cyclotomic family count `3280` and reductions at six primes. | `python experimental/sieve_mechanism_certificate.py` | PROVED exact formal/enumerated certificate. |
-| Deployed-field arithmetic around Paper A main theorem (a) | BabyBear, KoalaBear, and `3*2^30+1` DSH divisor inequalities. | `python experimental/deployed_dsh_certificate.py` | PROVED integer arithmetic certificate. |
-| Extension/tower arithmetic | Fermat/Proth full-density and Goldilocks density prerequisites. | `python experimental/extension_full_density_certificate.py`; `python experimental/goldilocks_density_certificate.py` | PROVED arithmetic certificates for stated scope. |
+| V1 | Fermat quotient coverage: for `p in {17,257,65537}`, the relevant restricted sumset in `Q=<2>` has size `p-1` and misses only `0`. | `experimental/scripts/restricted_sum_dp.py` commands listed below. | PROVED finite DP. |
+| V2 | `p=257` locator expansion and pointwise agreement for all 144 support points. | `python3 experimental/scripts/p257_locator_certificate.py` | PROVED exact enumeration. |
+| V3 | For `p=17,n=16,k=8`, 9-subset sums have distribution `672/673`. | `python3 experimental/scripts/verify_q17_locator_mca.py` | PROVED exact exhaustive scan. |
+| V4 | Ladder rung: `p=12289`, `N=256`, `|129^wedge Q_256|=12289`. | `python3 experimental/scripts/restricted_sum_dp.py --p 12289 --subgroup-order 256 --r 129 --expect-full` | PROVED finite DP. |
+| V5 | `N=16,r=9` cyclotomic family count `3280` and reductions at six primes. | `python3 experimental/scripts/sieve_mechanism_certificate.py` | PROVED exact formal/enumerated certificate. |
+| Deployed-field arithmetic around Paper A main theorem (a) | BabyBear, KoalaBear, and `3*2^30+1` DSH divisor inequalities. | `python3 experimental/scripts/deployed_dsh_certificate.py` | PROVED integer arithmetic certificate. |
+| Extension/tower arithmetic | Fermat/Proth full-density and Goldilocks density prerequisites. | `python3 experimental/scripts/extension_full_density_certificate.py`; `python3 experimental/scripts/goldilocks_density_certificate.py` | PROVED arithmetic certificates for stated scope. |
 
 ## Reproducible command log
 
-Run from the repository root. Replace `python` with the local bundled Python
-executable if needed.
+Run from the repository root with `python3` (all scripts live in
+`experimental/scripts/`).
 
 ```bash
-python experimental/deployed_dsh_certificate.py
-python experimental/p257_locator_certificate.py
-python experimental/sieve_mechanism_certificate.py
-python experimental/extension_full_density_certificate.py
-python experimental/goldilocks_density_certificate.py
-python experimental/scripts/verify_q17_locator_mca.py
+python3 experimental/scripts/deployed_dsh_certificate.py
+python3 experimental/scripts/p257_locator_certificate.py
+python3 experimental/scripts/sieve_mechanism_certificate.py
+python3 experimental/scripts/extension_full_density_certificate.py
+python3 experimental/scripts/goldilocks_density_certificate.py
+python3 experimental/scripts/verify_q17_locator_mca.py
 ```
 
 V1 Fermat quotient coverage uses the quotient subgroup `Q=<2>`, whose order is
 `2M` for `p=2^M+1`. These are the exact commands rerun:
 
 ```bash
-python experimental/restricted_sum_dp.py --p 17 --subgroup-order 8 --r 5 --expect-size 16
-python experimental/restricted_sum_dp.py --p 17 --subgroup-order 8 --r 3 --expect-size 16
-python experimental/restricted_sum_dp.py --p 257 --subgroup-order 16 --r 9 --expect-size 256
-python experimental/restricted_sum_dp.py --p 257 --subgroup-order 16 --r 5 --expect-size 256
-python experimental/restricted_sum_dp.py --p 65537 --subgroup-order 32 --r 17 --expect-size 65536
-python experimental/restricted_sum_dp.py --p 65537 --subgroup-order 32 --r 9 --expect-size 65536
+python3 experimental/scripts/restricted_sum_dp.py --p 17 --subgroup-order 8 --r 5 --expect-size 16
+python3 experimental/scripts/restricted_sum_dp.py --p 17 --subgroup-order 8 --r 3 --expect-size 16
+python3 experimental/scripts/restricted_sum_dp.py --p 257 --subgroup-order 16 --r 9 --expect-size 256
+python3 experimental/scripts/restricted_sum_dp.py --p 257 --subgroup-order 16 --r 5 --expect-size 256
+python3 experimental/scripts/restricted_sum_dp.py --p 65537 --subgroup-order 32 --r 17 --expect-size 65536
+python3 experimental/scripts/restricted_sum_dp.py --p 65537 --subgroup-order 32 --r 9 --expect-size 65536
 ```
 
 V4 ladder rung:
 
 ```bash
-python experimental/restricted_sum_dp.py --p 12289 --subgroup-order 256 --r 129 --expect-full
+python3 experimental/scripts/restricted_sum_dp.py --p 12289 --subgroup-order 256 --r 129 --expect-full
 ```
 
 ## Verification notes
@@ -105,7 +105,7 @@ python experimental/restricted_sum_dp.py --p 12289 --subgroup-order 256 --r 129 
 - `p257_locator_certificate.py` checks the actual locator mechanism, not just
   a count: all `11440` subsets are examined, all supports have size `144`, and
   all expanded locator identities pass.
-- `q17_locator_mca/verify_q17_locator_mca.py` contains the V3 distribution as
+- `experimental/scripts/verify_q17_locator_mca.py` contains the V3 distribution as
   the `N=16`, `rho=1/2`, slack-one case: one slope has `672` supports and the
   other sixteen slopes have `673`, totaling `binom(16,9)=11440`.
 - The extension and Goldilocks certificates are arithmetic support for Paper A

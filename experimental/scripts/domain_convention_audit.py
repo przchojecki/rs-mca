@@ -177,7 +177,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
-    root = Path(__file__).resolve().parents[1]
+    root = Path(__file__).resolve().parents[2]
     cert = payload(scan(root))
     if args.format == "json":
         print(json.dumps(cert, indent=2, sort_keys=True))
