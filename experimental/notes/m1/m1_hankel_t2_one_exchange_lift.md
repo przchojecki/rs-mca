@@ -7128,6 +7128,42 @@ exclusion/classification target: fixed residual denominator width and large
 quotient width are incompatible with polynomial M1 bounds once such a
 certificate survives the standard charges.
 
+## Log-Width Low-Width Critical Flags Are Polynomial
+
+The logarithmic-width exception in the preceding section is harmless in
+fixed-surplus regimes.  Fix constants `sigma,R_0,L`, and let
+
+```text
+CanRFFlag_{crit(d,B),<R_0,log L}(A)
+```
+
+be the part of `CanRFFlag_{crit(d,B),<R_0}(A)` supported on root-free critical
+certificates with
+
+```text
+q_S <= L log_2 q.
+```
+
+Each such certificate contributes at most the full subset count of its fiber:
+
+```text
+sum_{e=1}^a binom(h,e) <= 2^h <= 2^{q_S} <= q^L.
+```
+
+The number of collapsed absorbed tail certificates over the active canonical
+tree is bounded by (PF2-collapsed-tail-fixed).  Hence, whenever `s_0<=sigma`,
+
+```text
+CanRFFlag_{crit(d,B),<R_0,log L}(A)
+ <= (1+ceil(sigma/2))(sigma+2) q^{sigma+1+L}.  (PF2-low-width-log-poly)
+```
+
+Thus the low-width side is now cleanly separated.  Logarithmic quotient-width
+certificates are already polynomial by size alone; any remaining low-width
+obstruction to M1 must have `q_S >> log q` and therefore must be structurally
+excluded or charged by the quotient-periodic, tangent/fixed-root, or
+aperiodic mechanisms.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

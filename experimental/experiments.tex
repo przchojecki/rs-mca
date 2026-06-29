@@ -6254,6 +6254,20 @@ Since the canonical root-free flag ledger contains this top level, a single
 uncharged low-width critical certificate with \(q_S\gg\log q\) already exceeds
 any fixed polynomial budget.  Thus low residual width must be structurally
 excluded or charged; it cannot be handled by merely counting certificates.
+The logarithmic exception is polynomial.  If \(s_0\le\sigma\) and the
+low-width ledger is restricted further to \(q_S\le L\log_2 q\), then each
+certificate contributes at most \(2^{q_S}\le q^L\), while
+(PF2-collapsed-tail-fixed) gives at most
+\((1+\lceil\sigma/2\rceil)(\sigma+2)q^{\sigma+1}\) collapsed certificates.
+Therefore
+\[
+  CanRFFlag_{\mathrm{crit}(d,B),<R_0,\log L}(A)
+  \le
+  (1+\lceil\sigma/2\rceil)(\sigma+2)q^{\sigma+1+L}.
+\]
+So after the logarithmic-width part is discarded as polynomial, the low-width
+M1 task is exactly to exclude or charge fixed residual-width certificates at
+large quotient width.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

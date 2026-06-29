@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 logarithmic low-width closure
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Shows that the low-width critical root-free ledger
+  restricted to `q_S <= L log_2 q` is polynomial, using the existing collapsed
+  certificate count and the trivial bound `2^h <= q^L`.
+- **How it is useful:** Completes the low-width split: logarithmic quotient
+  widths are harmless, while large quotient-width fixed-denominator
+  certificates must be structurally excluded or charged.
+- **What to do next:** Attack the remaining low-width, large-quotient-width
+  certificates via quotient-periodic, tangent/fixed-root, or aperiodic
+  classification.
+
 ### 2026-06-29 - M1 low-width critical exclusion threshold
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
