@@ -489,6 +489,116 @@ def check_full_elementary_packet_lift() -> None:
                                     )
 
 
+def check_affine_span_packet_normal_form() -> None:
+    rng = Random(20260705)
+
+    for p in (5, 7, 17):
+        for h_exchange in range(1, 5):
+            for rank in range(0, h_exchange + 1):
+                base = [rng.randrange(p) for _ in range(h_exchange)]
+                directions: list[list[int]] = []
+                for axis in range(rank):
+                    vector = [0] * h_exchange
+                    vector[axis] = 1
+                    directions.append(vector)
+
+                affine_points = [tuple(base)]
+                for vector in directions:
+                    affine_points.append(
+                        tuple((base[i] + vector[i]) % p for i in range(h_exchange))
+                    )
+
+                for out_dim in range(1, 5):
+                    vectors = [
+                        [rng.randrange(p) for _ in range(out_dim)]
+                        for _ in range(h_exchange + 1)
+                    ]
+
+                    def eval_affine(point: tuple[int, ...]) -> list[int]:
+                        out = vectors[h_exchange][:]
+                        for m, coeff in enumerate(point):
+                            out = [
+                                (value + coeff * vectors[m][idx]) % p
+                                for idx, value in enumerate(out)
+                            ]
+                        return out
+
+                    killed_points = [eval_affine(point) for point in affine_points]
+                    if not all(
+                        value == 0
+                        for killed in killed_points
+                        for value in killed
+                    ):
+                        continue
+
+                    base_equation = eval_affine(tuple(base))
+                    assert all(value == 0 for value in base_equation), (
+                        p,
+                        h_exchange,
+                        rank,
+                        out_dim,
+                        base,
+                        vectors,
+                    )
+                    for vector in directions:
+                        direction_equation = [0] * out_dim
+                        for m, coeff in enumerate(vector):
+                            direction_equation = [
+                                (value + coeff * vectors[m][idx]) % p
+                                for idx, value in enumerate(direction_equation)
+                            ]
+                        assert all(value == 0 for value in direction_equation), (
+                            p,
+                            h_exchange,
+                            rank,
+                            out_dim,
+                            vector,
+                            vectors,
+                        )
+
+                    # The whole affine span is killed, not only the sampled
+                    # spanning points.
+                    for theta in product(range(p), repeat=rank):
+                        point = base[:]
+                        for coeff, vector in zip(theta, directions):
+                            point = [
+                                (point[i] + coeff * vector[i]) % p
+                                for i in range(h_exchange)
+                            ]
+                        assert all(value == 0 for value in eval_affine(tuple(point))), (
+                            p,
+                            h_exchange,
+                            rank,
+                            out_dim,
+                            theta,
+                            point,
+                            vectors,
+                        )
+
+    # In the h=2 elementary plane, every proper nontrivial affine span is a
+    # line As+Bp+C=0.
+    for p in (5, 7, 11, 17):
+        for p1 in product(range(p), repeat=2):
+            for p2 in product(range(p), repeat=2):
+                if p1 == p2:
+                    continue
+                a = (p1[1] - p2[1]) % p
+                b = (p2[0] - p1[0]) % p
+                c0 = (-(a * p1[0] + b * p1[1])) % p
+                assert (a, b) != (0, 0)
+                assert (a * p1[0] + b * p1[1] + c0) % p == 0
+                assert (a * p2[0] + b * p2[1] + c0) % p == 0
+
+                for point in product(range(p), repeat=2):
+                    determinant = (
+                        (p2[0] - p1[0]) * (point[1] - p1[1])
+                        - (p2[1] - p1[1]) * (point[0] - p1[0])
+                    ) % p
+                    in_span = determinant == 0
+                    in_line = (a * point[0] + b * point[1] + c0) % p == 0
+                    assert in_span == in_line, (p, p1, p2, point, a, b, c0)
+
+
 def check_two_root_line_classification() -> None:
     for p in (3, 5, 7, 11, 17):
         pairs = [(x, y) for x in range(p) for y in range(x + 1, p)]
@@ -1214,6 +1324,7 @@ def main() -> None:
     check_higher_slack_root_slice_lift()
     check_two_exchange_full_plane_lift()
     check_full_elementary_packet_lift()
+    check_affine_span_packet_normal_form()
     check_two_root_line_classification()
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()

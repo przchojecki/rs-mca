@@ -262,6 +262,65 @@ ladder, while lower-rank packets are the true residual objects to classify.
 This is the general form of the lossless residual-depth frontier shift used by
 the top-packet recursion below.
 
+## Affine-Span Normal Form for Rank-Defect Packets
+
+The lower-rank residual packets also have an exact normal form.  Keep the
+`h`-exchange notation above and write
+
+```text
+V_m=L_z(X^m ell_R),        0<=m<=h.
+```
+
+Let `C subset F^h` be a set of coefficient points satisfying
+
+```text
+L_z ell_{R,c}=0        for every c in C.
+```
+
+Let `A=aff(C)=c_*+W` be its affine span, with direction subspace
+`W subset F^h`.  Then the equations on `C` are equivalent to
+
+```text
+V_h+sum_{m=0}^{h-1} c_{*,m} V_m=0,               (ASP0)
+sum_{m=0}^{h-1} w_m V_m=0        for every w in W.   (ASPD)
+```
+
+Consequently
+
+```text
+L_z ell_{R,c}=0        for every c in A.          (ASPA)
+```
+
+So a same-slope packet is always a whole formal affine subpacket in elementary
+coefficient space, not just a finite accidental set of killed points.
+
+Choose coordinates so that the rank `r=dim W` directions of `W` are written as
+columns of an `h x r` matrix `B`, and write `c(theta)=c_*+B theta`.  Then the
+packet identity is
+
+```text
+L_z ell_{R,c(theta)}
+ =
+ (V_h+sum_m c_{*,m}V_m)
+ + sum_{a=1}^r theta_a (sum_m B_{m,a}V_m).        (ASPC)
+```
+
+Thus rank `r` packets impose exactly `r+1` independent affine-span equations
+on the shifted Hankel landing vectors.  The full-rank lift above is the case
+`r=h`, where these equations force every `V_m` to vanish.  After the full-rank
+charge, every remaining same-slope `h`-exchange packet lies in a proper affine
+subspace of coefficient space, and the next classification problem is to bound
+or charge those rank-defect affine subpackets.
+
+For `h=2`, a proper nontrivial affine span is exactly a line
+
+```text
+A s+B p+C=0
+```
+
+in the two-root elementary plane.  The next section classifies the split-root
+points on such a line as fixed-root, fixed-sum, or product-Mobius packets.
+
 ## Two-Root Line Classification
 
 The residual affine lines in the elementary two-root plane have only the
@@ -912,8 +971,9 @@ same-slope one-exchange collisions belong to the fixed-slope root-slice ledger,
 that such root slices lift to `(t+1,j-1)` Hankel cores,
 that non-collinear same-slope two-exchange planes lift to `(t+2,j-2)` Hankel
 cores, that full affine-rank `h`-exchange elementary packets lift to
-`(t+h,j-h)` Hankel cores, that residual two-root lines are fixed-root,
-fixed-sum, or
+`(t+h,j-h)` Hankel cores, identifies the affine-span normal form for
+rank-defect elementary packets, and shows that residual two-root lines are
+fixed-root, fixed-sum, or
 product-Mobius packets,
 classifies the ruled determinant core into fixed-slope, inactive, and rank-one
 moving-slope cases for abstract affine pencils, proves the Hankel shift
@@ -937,8 +997,9 @@ checks the subtraction identity over sampled small prime fields and exhaustively
 checks the row-wise linear-map implication in small dimensions.  It checks the
 higher-slack lift identity (LIFT), the two-exchange full-plane lift (PLIFT),
 the full elementary packet lift (HLIFT), the two-root line classification, the
-quadratic determinant formula (DET2), and the "three roots imply ruled"
-criterion in sampled small prime fields, then stress-tests the abstract
+affine-span normal form for rank-defect packets, the quadratic determinant
+formula (DET2), and the "three roots imply ruled" criterion in sampled small
+prime fields, then stress-tests the abstract
 ruled-core dichotomy and the Hankel ruled-core collapse.  It also checks the
 Johnson-graph star/top triangle classification, the top-packet lift identity
 (TOP1), the distinct-slope implication (TOPK), and the top-packet edge/triangle

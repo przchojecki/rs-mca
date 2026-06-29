@@ -83,8 +83,11 @@ Keep entries concise and link to the relevant files.
   generalized to full affine-rank `h`-exchange packets: `h+1` affinely
   independent same-slope coefficient points force the lifted
   `H_{t+h,j-h}(u+zv)ell_R=0` core, and the simultaneous `K_{r,d}(u,v)` version
-  lifts full-rank packets to `K_{r+h,d-h}(u,v)`.  The residual affine
-  two-root lines are classified as fixed-root, fixed-sum, or product-Mobius;
+  lifts full-rank packets to `K_{r+h,d-h}(u,v)`.  The complementary
+  affine-span normal form identifies every lower-rank killed packet as the
+  whole affine subpacket `c_*+W` cut out by the corresponding base and
+  direction equations on the shifted Hankel landing vectors.  The residual
+  affine two-root lines are classified as fixed-root, fixed-sum, or product-Mobius;
   after fixed-root charging, the residual variable-line models are exactly
   fixed-sum and nondegenerate product-Mobius packets.
   The same Hankel shift collapse classifies the one-outside external-anchor
@@ -111,7 +114,10 @@ Keep entries concise and link to the relevant files.
   clustering inside `K_top` is charged additively to the next simultaneous
   Hankel kernel rather than treated as a new multiplicative loss source.  The
   full `h`-exchange lift extends that lossless frontier shift from edges and
-  planes to arbitrary full affine-rank elementary packets.
+  planes to arbitrary full affine-rank elementary packets.  The rank-defect
+  normal form makes the remaining same-slope packet classification explicit:
+  after full-rank charges, only lower-dimensional affine coefficient packets
+  remain.
 - **What to do next:** Bound the remaining different-slope one-exchange or
   two-exchange codegree ledgers, the isolated simultaneous top-kernel family,
   and the one-outside boundary image after quotient-periodic,
