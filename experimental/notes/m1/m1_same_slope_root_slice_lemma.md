@@ -6,7 +6,7 @@ HIGHER-SLACK LIFT / TRIANGLE CLASSIFICATION / TOP-PACKET LIFT /
 TOP-PACKET LEDGER / SIMULTANEOUS KERNEL RECURSION / HYPERPLANE-FIBER
 REDUCTION / AFFINE-FIBER REDUCTION / MOVING-FIBER DIMENSION DROP /
 FIBER-COUNTING COROLLARY / BOUNDARY-CORE SLOPE-FIBER INJECTION /
-RESIDUAL-DEGREE COROLLARY / AUDIT.
+BOUNDARY QUARTIC KUMMER GATE / RESIDUAL-DEGREE COROLLARY / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -1816,6 +1816,58 @@ boundary-core problem is a uniformly bounded genus-zero/genus-one Kummer
 trace, not a family whose conductor grows with the Hankel depth or with the
 core.
 
+The full multiplicative-subgroup version has an exact Kummer nontriviality
+gate.  Assume now that the ambient field is `F_p`, `p` odd, and that
+`D <= F_p^*` has index `e`.  Let `chi` be a character of order `e` with
+kernel `D`, and extend characters by zero.  For a fixed live core, ignore the
+already charged fixed-root fibers and the at most two `A_R(y)=0` exceptional
+linear fibers.  The unfiltered full-subgroup anchor count satisfies
+
+```text
+N_R(D) = |D| + (1/e) sum_{a=0}^{e-1} S_a + O(1),
+S_a    = sum_{y in F_p^*} chi^a(y) chi_2(Disc_R(y)).       (KEXP)
+```
+
+The actual boundary-core target over `D\R`, with outside-domain and active
+filters imposed, is bounded above by this full-subgroup count because those
+conditions only delete candidate points.
+
+Let `ell=lcm(e,2)`, and choose a character `omega` of order `ell` with
+`chi=omega^{ell/e}` and `chi_2=omega^{ell/2}`.  Then
+
+```text
+S_a = sum_{y in F_p^*} omega(y^{a ell/e} Disc_R(y)^{ell/2}).   (KCOMB)
+```
+
+Thus the only way this full-subgroup Kummer term can be geometrically
+trivial is the explicit power-divisor gate
+
+```text
+div(y^{a ell/e} Disc_R(y)^{ell/2}) == 0 mod ell.              (KPOW)
+```
+
+Equivalently, every nonzero finite root of `Disc_R` has even multiplicity,
+and
+
+```text
+a ell/e + (ell/2) ord_0(Disc_R) == 0 mod ell.
+```
+
+The condition at infinity then follows from degree zero of the divisor.  If
+(KPOW) fails, the rational function in (KCOMB) is not an `ell`-th power over
+`\overline{F}_p(y)`.  The standard one-dimensional Kummer-Weil bound on
+`P^1` then gives
+
+```text
+|S_a| <= (R_a-2) sqrt(p) <= 4 sqrt(p),
+```
+
+because the zero-pole support is contained in `y=0`, `y=infinity`, and the
+at most four geometric roots of `Disc_R`.  Hence every non-power term has
+depth-independent conductor.  Failure of cancellation is not hidden in the
+quartic cover; it is exactly the monomial-square discriminant gate (KPOW),
+which is now a concrete algebraic branch to charge or exclude.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -1958,9 +2010,10 @@ line-packet or envelope-filtered, identifies the nonzero-discriminant target
 with a genus-at-most-one double cover up to two linear exceptions, proves that
 same finite-slope multiplicity on the live boundary-core conic has already
 returned to a fixed-root line, a constant-slope non-fixed line packet, or the
-full-plane lift, and gives the local max-degree bound and average-collinearity
-corollary above, including the packet-level higher-exchange ledger
-substitution.
+full-plane lift, gives the exact full-subgroup quartic character expansion
+and its Kummer power-divisor gate, and gives the local max-degree bound and
+average-collinearity corollary above, including the packet-level
+higher-exchange ledger substitution.
 
 ## Verification
 
@@ -1995,4 +2048,7 @@ boundary-core quadratic/discriminant anchor gate and its zero-discriminant
 classification, and the bounded-cover parametrization of the live quartic
 target.  It also checks the elementary same-slope fiber alternatives for
 fixed-core boundary conics: empty, point, affine line, or full plane, with
-multi-point fibers returning to the charged line/plane ledgers.
+multi-point fibers returning to the charged line/plane ledgers.  Finally, it
+checks the degree-four Kummer power gate for the full-subgroup quartic
+character terms on structured monomial-square discriminants and random
+quartics over small prime fields.

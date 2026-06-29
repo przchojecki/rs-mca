@@ -36,13 +36,15 @@ For nonzero discriminant gates, the verifier also checks the bounded double
 cover parametrization W=2A beta+B outside the at-most-two A=0 fibers.
 Finally, the fixed-core same-slope fibers in the elementary two-root plane are
 checked to be only empty, points, affine lines, or the full plane.
+The full-subgroup quartic Kummer gate is checked by factoring degree-four
+discriminants and testing the exact lcm(e,2)-power degeneracy condition.
 """
 
 from __future__ import annotations
 
 from fractions import Fraction
 from itertools import combinations, product
-from math import comb
+from math import comb, gcd
 from random import Random
 
 
@@ -2672,6 +2674,143 @@ def poly1_from_terms(terms: tuple[tuple[int, int], ...], p: int) -> Poly1:
     return out
 
 
+def poly1_degree(poly: Poly1) -> int:
+    return max(poly, default=-1)
+
+
+def poly1_to_list(poly: Poly1) -> list[int]:
+    degree = poly1_degree(poly)
+    return [poly.get(idx, 0) for idx in range(degree + 1)]
+
+
+def poly1_from_list(coeffs: list[int], p: int) -> Poly1:
+    return {idx: coeff % p for idx, coeff in enumerate(coeffs) if coeff % p != 0}
+
+
+def poly1_monic(poly: Poly1, p: int) -> Poly1:
+    degree = poly1_degree(poly)
+    assert degree >= 0
+    inv_lead = pow(poly[degree], -1, p)
+    return {idx: (coeff * inv_lead) % p for idx, coeff in poly.items()}
+
+
+def poly1_divmod(dividend: Poly1, divisor: Poly1, p: int) -> tuple[Poly1, Poly1]:
+    divisor_degree = poly1_degree(divisor)
+    assert divisor_degree >= 0
+    divisor_lead_inv = pow(divisor[divisor_degree], -1, p)
+    remainder = poly1_to_list(dividend)
+    quotient = [0] * max(0, poly1_degree(dividend) - divisor_degree + 1)
+    divisor_coeffs = poly1_to_list(divisor)
+    while len(remainder) >= len(divisor_coeffs) and any(remainder):
+        degree_gap = len(remainder) - len(divisor_coeffs)
+        coeff = (remainder[-1] * divisor_lead_inv) % p
+        quotient[degree_gap] = coeff
+        for idx, divisor_coeff in enumerate(divisor_coeffs):
+            remainder[degree_gap + idx] = (
+                remainder[degree_gap + idx] - coeff * divisor_coeff
+            ) % p
+        while remainder and remainder[-1] == 0:
+            remainder.pop()
+    return poly1_from_list(quotient, p), poly1_from_list(remainder, p)
+
+
+_MONIC_POLY_CACHE: dict[tuple[int, int], list[Poly1]] = {}
+
+
+def monic_polys_of_degree(degree: int, p: int) -> list[Poly1]:
+    key = (degree, p)
+    if key not in _MONIC_POLY_CACHE:
+        _MONIC_POLY_CACHE[key] = [
+            poly1_from_list(list(coeffs) + [1], p)
+            for coeffs in product(range(p), repeat=degree)
+        ]
+    return _MONIC_POLY_CACHE[key]
+
+
+def factor_poly1_monic(poly: Poly1, p: int) -> dict[tuple[int, ...], int]:
+    if not poly:
+        return {}
+    remaining = poly1_monic(poly, p)
+    factors: dict[tuple[int, ...], int] = {}
+    for root in range(p):
+        linear = poly1_from_list([(-root) % p, 1], p)
+        while poly1_degree(remaining) >= 1 and eval_poly1(remaining, root, p) == 0:
+            quotient, remainder = poly1_divmod(remaining, linear, p)
+            assert not remainder, (p, remaining, linear, remainder)
+            key = tuple(poly1_to_list(linear))
+            factors[key] = factors.get(key, 0) + 1
+            remaining = quotient
+    if poly1_degree(remaining) == 4:
+        for candidate in monic_polys_of_degree(2, p):
+            if poly1_mul(candidate, candidate, p) == remaining:
+                key = tuple(poly1_to_list(candidate))
+                factors[key] = factors.get(key, 0) + 2
+                remaining = {}
+                break
+    if poly1_degree(remaining) > 0:
+        key = tuple(poly1_to_list(poly1_monic(remaining, p)))
+        factors[key] = factors.get(key, 0) + 1
+    return factors
+
+
+def primitive_root(p: int) -> int:
+    factors = [
+        prime
+        for prime in range(2, p)
+        if (p - 1) % prime == 0 and all(prime % d for d in range(2, prime))
+    ]
+    for candidate in range(2, p):
+        if all(pow(candidate, (p - 1) // factor, p) != 1 for factor in factors):
+            return candidate
+    raise AssertionError(f"no primitive root found for {p}")
+
+
+def discrete_log_table(p: int) -> dict[int, int]:
+    generator = primitive_root(p)
+    table: dict[int, int] = {}
+    value = 1
+    for exponent in range(p - 1):
+        table[value] = exponent
+        value = (value * generator) % p
+    return table
+
+
+def kummer_power_degenerate(poly: Poly1, index: int, char_power: int, p: int) -> bool:
+    assert poly
+    order = 2 * index // gcd(index, 2)
+    y_factor = (0, 1)
+    factors = factor_poly1_monic(poly, p)
+    zero_multiplicity = factors.get(y_factor, 0)
+    zero_exponent = char_power * (order // index) + zero_multiplicity * (order // 2)
+    if zero_exponent % order != 0:
+        return False
+    for factor, multiplicity in factors.items():
+        if factor == y_factor:
+            continue
+        if (multiplicity * (order // 2)) % order != 0:
+            return False
+    return True
+
+
+def kummer_support_size(poly: Poly1, index: int, char_power: int, p: int) -> int:
+    order = 2 * index // gcd(index, 2)
+    y_factor = (0, 1)
+    factors = factor_poly1_monic(poly, p)
+    support = 0
+    total_exponent_degree = char_power * (order // index)
+    for factor, multiplicity in factors.items():
+        factor_degree = len(factor) - 1
+        exponent = multiplicity * (order // 2)
+        if factor == y_factor:
+            exponent += char_power * (order // index)
+        if exponent % order != 0:
+            support += factor_degree
+        total_exponent_degree += factor_degree * multiplicity * (order // 2)
+    if total_exponent_degree % order != 0:
+        support += 1
+    return support
+
+
 def quadratic_character(value: int, p: int) -> int:
     value %= p
     if value == 0:
@@ -3062,6 +3201,60 @@ def check_boundary_discriminant_degeneracy_classification() -> None:
                     assert got == expected, (p, scale, beta, y, got, expected)
 
 
+def check_boundary_quartic_kummer_power_gate() -> None:
+    rng = Random(20260717)
+    cases: dict[int, list[Poly1]] = {}
+    for p in (5, 7, 11):
+        polynomials: list[Poly1] = []
+        for scale in range(1, p):
+            for degree in range(0, 3):
+                samples = [
+                    poly1_from_list(list(coeffs) + [1], p)
+                    for coeffs in product(range(p), repeat=degree)
+                ]
+                for base in samples[: min(len(samples), 40)]:
+                    square = poly1_mul(base, base, p)
+                    polynomials.append(
+                        {deg: (scale * coeff) % p for deg, coeff in square.items()}
+                    )
+                    y_square = {
+                        deg + 1: (scale * coeff) % p for deg, coeff in square.items()
+                    }
+                    if poly1_degree(y_square) <= 4:
+                        polynomials.append(y_square)
+        polynomials.extend(
+            poly1_from_list([rng.randrange(p) for _ in range(5)], p)
+            for _ in range(500)
+        )
+        cases[p] = [poly for poly in polynomials if poly]
+
+    for p, polynomials in cases.items():
+        polynomials = [poly for poly in polynomials if poly]
+        log_table = discrete_log_table(p)
+        indices = [index for index in range(1, p) if (p - 1) % index == 0]
+        for poly in polynomials:
+            assert poly1_degree(poly) <= 4, (p, poly)
+            for index in indices:
+                order = 2 * index // gcd(index, 2)
+                for char_power in range(index):
+                    support = kummer_support_size(poly, index, char_power, p)
+                    assert support <= 6, (p, index, char_power, poly, support)
+                    degenerate = kummer_power_degenerate(poly, index, char_power, p)
+                    if not degenerate:
+                        continue
+                    values = set()
+                    for y in range(1, p):
+                        disc_value = eval_poly1(poly, y, p)
+                        if disc_value == 0:
+                            continue
+                        exponent = (
+                            char_power * (order // index) * log_table[y]
+                            + (order // 2) * log_table[disc_value]
+                        ) % order
+                        values.add(exponent)
+                    assert len(values) <= 1, (p, index, char_power, poly, values)
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -3271,6 +3464,7 @@ def main() -> None:
     check_boundary_fixed_anchor_core_fibers()
     check_boundary_core_bidegree_determinant()
     check_boundary_discriminant_degeneracy_classification()
+    check_boundary_quartic_kummer_power_gate()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     check_boundary_core_closure_substitution()

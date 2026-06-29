@@ -2096,6 +2096,28 @@ discriminant has degree at most four.  If \(A_R\equiv0\), the determinant is
 affine-linear in \((s,p)\) and has already returned to the line-packet branch.
 Thus the live non-line boundary target has uniformly bounded genus/conductor,
 up to at most two linear exceptional fibers.
+There is also an exact full-subgroup Kummer gate.  If \(D\le\F_p^*\) has index
+\(e\), \(\chi\) has kernel \(D\), and \(\ell=\operatorname{lcm}(e,2)\), then
+away from the charged fixed-root fibers and the at most two \(A_R=0\)
+exceptions the full-subgroup count expands as
+\[
+  N_R(D)
+  = |D|+\frac1e\sum_{a=0}^{e-1}
+      \sum_{y\in\F_p^*}\chi^a(y)\chi_2(\operatorname{Disc}_R(y))+O(1).
+\]
+Combining \(\chi\) and \(\chi_2\) through a character of order \(\ell\), the
+\(a\)-term is geometrically trivial only if
+\[
+  \operatorname{div}\!\left(y^{a\ell/e}\operatorname{Disc}_R(y)^{\ell/2}\right)
+  \equiv 0 \pmod{\ell}.
+\]
+Equivalently, all nonzero roots of \(\operatorname{Disc}_R\) have even multiplicity and the
+zero-root parity matches \(a\).  If this power gate fails, the standard
+one-dimensional Kummer-Weil bound on \(\mathbb P^1\) has support contained in
+the four discriminant roots plus \(0\) and \(\infty\), so the term has
+depth-independent conductor and is bounded by \(4\sqrt p\).  Thus any
+no-cancellation boundary quartic is an explicit monomial-square discriminant
+branch, not a hidden growing-conductor family.
 
 Consequently, after fixed-slope root slices are removed, the residual \(t=2\)
 one-exchange graph has maximum degree at most \(j\): each locator has only

@@ -7,7 +7,7 @@ Source PR: #131, AllenGrahamHart.
 Updated by PR #138, AllenGrahamHart / Codex.
 
 Status: PROVED-LOCAL / RULED-BRANCH CLASSIFIED / BOUNDARY-CORE SLOPE-FIBER /
-PROOF-PROGRAM / AUDIT.
+BOUNDARY QUARTIC KUMMER GATE / PROOF-PROGRAM / AUDIT.
 
 ## Claim Distilled
 
@@ -326,6 +326,29 @@ normalization has genus at most one.  The roots of `A_R` contribute only at
 most two linear exceptional fibers before the outside-domain and active
 filters.  Thus the remaining analytic target is a uniform genus-zero/genus-one
 Kummer trace.
+
+For the full multiplicative-subgroup upper bound this trace has an exact
+character expansion.  If `D <= F_p^*` has index `e` and `chi` has kernel `D`,
+then away from the charged fixed-root fibers and the at most two `A_R=0`
+exceptions,
+
+```text
+N_R(D)=|D|+(1/e) sum_a sum_{y in F_p^*} chi^a(y) chi_2(Disc_R(y)) + O(1).
+```
+
+Writing `ell=lcm(e,2)` and combining `chi` with `chi_2`, the `a`-term is
+geometrically trivial only when
+
+```text
+div(y^{a ell/e} Disc_R(y)^{ell/2}) == 0 mod ell.
+```
+
+Equivalently, every nonzero root of `Disc_R` has even multiplicity and the
+zero-root parity matches `a`.  Otherwise the standard one-dimensional
+Kummer-Weil input has support contained in the four discriminant roots plus
+`0` and `infinity`, giving a depth-independent `4 sqrt(p)` term.  Thus the
+boundary quartic cannot hide a growing conductor; any no-cancellation case is
+the explicit monomial-square discriminant gate above.
 
 ## Integration Decision
 

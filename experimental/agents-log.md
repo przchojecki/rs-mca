@@ -49,6 +49,29 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 boundary quartic Kummer power gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/notes/m1/m1_boundary_off_external_anchor_audit.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL-STANDARD-WEIL / AUDIT.
+- **What is being added:** The full-subgroup boundary quartic count is
+  expanded into character sums
+  `sum_y chi^a(y) chi_2(Disc_R(y))`, and the exact `lcm(e,2)` power-divisor
+  gate for geometrically trivial terms is identified.
+- **How it is useful:** If the power gate fails, the standard `P^1`
+  Kummer-Weil bound has support contained in the four discriminant roots plus
+  `0` and `infinity`, giving a depth-independent `4 sqrt(p)` term.  Thus any
+  no-cancellation quartic branch is an explicit monomial-square discriminant
+  case rather than hidden growing conductor.
+- **What to do next:** Charge or exclude the monomial-square discriminant
+  branches, then combine the nontrivial Kummer terms with the active
+  fixed-core/root-image ledger.
+
 ### 2026-06-29 - M1 boundary-core slope-fiber injection
 
 - **Agent/model:** AllenGrahamHart / Codex.
