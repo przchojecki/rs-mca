@@ -82,7 +82,8 @@ Keep entries concise and link to the relevant files.
   one-root sums.  Its only cover-level power is the explicit one-root square
   branch, which is fixed-root or rational because `deg(r_+)<=2`; the
   negative root-square sign cancels the main one-root term, while the positive
-  sign gives the `2|D|` rational branch.  Pushing divisors down by the
+  sign is the two-coset square-map packet `chi(h)^2=chi(alpha)^(-1)` and gives
+  the `2|D|` rational branch.  Pushing divisors down by the
   slope-cover norm shows that, after those norm exceptions, the only
   cover-level power branches left are the anti-diagonal ratio terms
   `chi^a(r_+/r_-)`; the anti-ratio has degree at most four and the same

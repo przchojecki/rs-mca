@@ -51,7 +51,7 @@ norm-pushforward obstruction for cover-level power terms, including the
 anti-ratio square-class reduction and the genus-one exclusion for genuine
 cubic anti-ratio powers, plus the rational-cubic coefficient ledger and final
 classified per-core bound, including the negative square-norm collapse to
-one-root sums.
+one-root sums and the two-coset rational square-map packet.
 """
 
 from __future__ import annotations
@@ -4676,6 +4676,23 @@ def check_boundary_core_negative_square_norm_collapse() -> None:
             index,
             large_one_root_powers,
         )
+
+        square_constants = [
+            constant_class
+            for constant_class in range(index)
+            if (index // 2 * constant_class) % index == 0
+        ]
+        for constant_class in square_constants:
+            solution_classes = [
+                h_class
+                for h_class in range(index)
+                if (2 * h_class + constant_class) % index == 0
+            ]
+            assert len(solution_classes) == 2, (
+                index,
+                constant_class,
+                solution_classes,
+            )
 
     # If r_+ is an actual square and deg(r_+)<=2, then it is constant or its
     # square root has degree one, forcing a rational cover.

@@ -2295,6 +2295,27 @@ delta=-1  =>  N_R^{+,-}(D) <= C_e sqrt(p) + O_e(1),
 delta=+1  =>  N_R^{+,-}(D) <= 2|D| + C_e sqrt(p) + O_e(1).  (RKSQROOTSGN)
 ```
 
+The positive-sign case has a concrete normal form.  Because the square-root
+`H` has degree one, use `h=H` as a rational parameter on the normalized cover.
+Then
+
+```text
+r_+(h)=alpha h^2,        chi^{e/2}(alpha)=+1.
+```
+
+The condition `r_+(h) in D` is
+
+```text
+chi(h)^2 = chi(alpha)^{-1}.                         (RKSQPARAM)
+```
+
+Since the right side has trivial quadratic quotient character, this equation
+has exactly two quotient-character classes of `h`.  Thus the positive
+one-root-square branch is precisely a two-coset rational square-map packet,
+with `2|D|+O_e(1)` points after deleting zeros, poles, and charged fixed-root
+fibers.  This identifies the last large square-norm subbranch as explicit
+coset geometry in a degree-one parameter, not an uncontrolled Kummer failure.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -2581,7 +2602,8 @@ negative-parity square-norm rational one-root-square branch:
   if chi^{e/2}(alpha)=-1:
     N_R^{+,-}(D) <= C_e sqrt(p) + O_e(1),
   if chi^{e/2}(alpha)=+1:
-    N_R^{+,-}(D) <= 2|D| + C_e sqrt(p) + O_e(1),
+    N_R^{+,-}(D) <= 2|D| + C_e sqrt(p) + O_e(1)
+    and the branch is the two-coset packet chi(h)^2=chi(alpha)^{-1},
 
 geometrically integral genus-one branch:
   N_R^{+,-}(D) <= (1-1/e)|D| + C_e sqrt(p) + O_e(1),
