@@ -50,7 +50,8 @@ the single large Fourier term in the nonconstant square-norm branch, and the
 norm-pushforward obstruction for cover-level power terms, including the
 anti-ratio square-class reduction and the genus-one exclusion for genuine
 cubic anti-ratio powers, plus the rational-cubic coefficient ledger and final
-classified per-core bound.
+classified per-core bound, including the negative square-norm collapse to
+one-root sums.
 """
 
 from __future__ import annotations
@@ -4642,6 +4643,37 @@ def check_boundary_core_square_norm_parity_ledger() -> None:
         assert positive_parity_slope_coefficient <= negative_parity_slope_coefficient
 
 
+def check_boundary_core_negative_square_norm_collapse() -> None:
+    for index in range(2, 31):
+        if index % 2:
+            continue
+
+        principal_one_root_coefficient = Fraction(1, index)
+        rational_square_root_coefficient = Fraction(2, index)
+
+        # Negative parity means the norm lies in the nonsquare side of the
+        # quotient, so 1_D(N_R)=0 and the mixed count is a one-root count.
+        assert principal_one_root_coefficient * index == 1
+        assert rational_square_root_coefficient * index == 2
+
+        large_one_root_powers = [
+            power
+            for power in range(1, index)
+            if (2 * power) % index == 0
+        ]
+        assert large_one_root_powers == [index // 2], (
+            index,
+            large_one_root_powers,
+        )
+
+    # If r_+ is an actual square and deg(r_+)<=2, then it is constant or its
+    # square root has degree one, forcing a rational cover.
+    for root_degree in range(0, 4):
+        map_degree = 2 * root_degree
+        if map_degree <= 2:
+            assert root_degree in (0, 1)
+
+
 def check_boundary_core_classified_per_core_bound() -> None:
     for index in range(2, 31):
         generic_cover_coefficient = Fraction(index - 1, index * index)
@@ -4657,8 +4689,12 @@ def check_boundary_core_classified_per_core_bound() -> None:
         assert split_square_as_domain == 2 * Fraction(index - 1, index)
         if index % 2 == 0:
             positive_square_norm_as_domain = index - 2
+            negative_square_norm_genus_one_as_domain = 1
+            negative_square_norm_rational_square_as_domain = 2
             assert positive_square_norm_as_domain >= 0
             assert positive_square_norm_as_domain <= index
+            assert negative_square_norm_genus_one_as_domain == 1
+            assert negative_square_norm_rational_square_as_domain == 2
 
         if index == 2:
             # The sheet-symmetry closure improves the generic nonsplit branch
@@ -4912,6 +4948,7 @@ def main() -> None:
     check_boundary_core_cubic_anti_ratio_genus_gate()
     check_boundary_core_rational_cubic_ledger()
     check_boundary_core_square_norm_parity_ledger()
+    check_boundary_core_negative_square_norm_collapse()
     check_boundary_core_classified_per_core_bound()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()

@@ -2255,6 +2255,43 @@ so the negative-parity square-norm case is the only surviving slope-line
 square-norm obstruction and must be handled by the cover-level `r_+` sums or
 by a further algebraic charge.
 
+In fact the negative-parity branch removes all pair terms.  Since
+`chi^{e/2}(N_R)=-1`, the norm can never lie in `D` on the open slope line.
+Thus `1_D(N_R)=0` there, and (RKNORMEXP) collapses to
+
+```text
+N_R^{+,-}(D)
+ = e^{-1}|C_R^x| + e^{-1} sum_{a=1}^{e-1} S_a^+ + O(1).       (RKSQNEG)
+```
+
+For a one-root term `S_a^+`, norm pushforward gives the necessary condition
+`div(N_R^a)==0 mod e`.  In the negative square-norm branch this can occur only
+for `a=e/2`; all other nonprincipal one-root terms are nontrivial
+bounded-conductor cover sums.  Hence the only remaining no-cancellation term
+is the explicit quadratic one-root square branch
+
+```text
+r_+ is a square in k(C_R)^*.                              (RKSQROOT)
+```
+
+Moreover `deg(r_+)<=2`, because its finite zeros project into the at-most-two
+roots of `B_R`.  If `r_+` is a nonconstant square, its square root has degree
+one, so the normalized cover is rational.  If `r_+` is constant, this is a
+fixed-root branch.  Therefore the negative-parity square-norm branch has no
+genuine cover-level power term on genus-one root-core covers after fixed-root
+charging; its genus-one bound is
+
+```text
+N_R^{+,-}(D) <= |D| + C_e sqrt(p) + O_e(1).              (RKSQGENUS)
+```
+
+On the rational one-root-square branch, the single large quadratic coefficient
+gives the safe bound
+
+```text
+N_R^{+,-}(D) <= 2|D| + C_e sqrt(p) + O_e(1).             (RKSQRAT)
+```
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -2527,11 +2564,18 @@ N_R^{+,-}(D) <= 2(1-1/e)|D| + C_e sqrt(p) + O_e(1).  (RKBD')
 Combining the norm-power, anti-ratio, and rational-cubic reductions gives the
 classified per-core form needed downstream.  After the fixed-zero-root branch
 and constant-norm line-packet branch have been charged, and after the
-negative-parity square-norm branch has been separately isolated:
+negative-parity rational one-root-square subbranch has been separately
+isolated:
 
 ```text
 positive-parity square-norm branch:
   N_R^{+,-}(D) <= (e-2)|D| + C_e sqrt(p) + O_e(1),
+
+negative-parity square-norm genus-one branch:
+  N_R^{+,-}(D) <= |D| + C_e sqrt(p) + O_e(1),
+
+negative-parity square-norm rational one-root-square branch:
+  N_R^{+,-}(D) <= 2|D| + C_e sqrt(p) + O_e(1),
 
 geometrically integral genus-one branch:
   N_R^{+,-}(D) <= (1-1/e)|D| + C_e sqrt(p) + O_e(1),
@@ -2549,11 +2593,13 @@ index-two branch away from the two square gates:
 ```
 
 The positive-parity square-norm line is the genus-free norm-outside injection
-(RKSQ+).  The genus-one line uses that genus-one covers have no genuine
-cover-level power branch after the norm exceptions.  The rational cubic line
-is exactly the rational cubic coefficient ledger (RKCUBBD).  The split-square
-line is the older split-square fallback; it is kept separate because the split
-cover has two rational sheets.
+(RKSQ+).  The negative-parity square-norm lines use the collapse to one-root
+sums (RKSQNEG) and the degree-two one-root square gate (RKSQROOT).  The
+genus-one line uses that genus-one covers have no genuine cover-level power
+branch after the norm exceptions.  The rational cubic line is exactly the
+rational cubic coefficient ledger (RKCUBBD).  The split-square line is the
+older split-square fallback; it is kept separate because the split cover has
+two rational sheets.
 
 An unordered mixed split pair contributes to exactly one of the two ordered
 cover points `(z,Y)` and `(z,-Y)`, and repeated-root points contribute
@@ -2725,9 +2771,9 @@ anti-diagonal obstruction further to the cubic ratio branch, shows that a
 genuine cubic no-cancellation term forces the rational-cover locus, gives the
 explicit rational-cubic coefficient ledger (RKCUBBD), packages the resulting
 per-core classified bound (RKCLASS), including the positive-parity square-norm
-norm-filter bound, and gives the local max-degree bound and average-collinearity
-corollary above, including the packet-level higher-exchange ledger
-substitution.
+norm-filter bound and the negative-parity one-root collapse, and gives the
+local max-degree bound and average-collinearity corollary above, including the
+packet-level higher-exchange ledger substitution.
 
 ## Verification
 
