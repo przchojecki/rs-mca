@@ -5696,6 +5696,48 @@ In particular,
 Thus the whole root-free half-height post-core is \(O_\sigma(q^\sigma)\)
 when \(s_0\le\sigma\) is fixed; fixed-root tails, diffuse capacity, and
 lower-dimensional leaves are the remaining ledgers.
+The active canonical tree itself is also polynomial in fixed surplus.  If
+\(Active(A)\) denotes the canonical nodes with nonempty residual fiber, then
+activity implies \(\operatorname{skip}(S)\le s_0\).  Writing
+\(B_0^*(A)=\{x_1<\cdots<x_{b_0}\}\), a nonempty node with maximum \(x_m\) and
+\(\operatorname{skip}(S)=\ell\) is determined by the \(\ell\) skipped roots
+among \(x_1,\ldots,x_{m-1}\).  Hence
+\[
+  |Active(A)|
+  \le
+  1+\sum_{\ell=0}^{\min(s_0,b_0-1)}
+      \sum_{m=\ell+1}^{b_0}\binom{m-1}{\ell}
+  \le
+  \sum_{j=0}^{s_0+1}\binom{b_0}{j}
+  \le (s_0+2)q^{s_0+1}.
+\]
+For an active \(b=2\) node, \(q_S\ge2\), \(N_S=q_S+s_S\), and
+\(0\le s_S\le s_0\), while \(G_S^{can}\le\binom{N_S}{2}\).  Therefore
+\[
+  \sum_{S\in Tree_2(A)}{4G_S^{can}\over q_S^2}
+  \le 2\left(1+{s_0\over2}\right)^2(s_0+2)q^{s_0+1}.
+\]
+The lower-dimensional leaves are polynomial as well: \(b=0\) leaves contribute
+at most \(1\), and \(b=1\) leaves satisfy
+\[
+  |F_S^{can}(A)|\le
+  \left\lfloor {N_S-z_S\over q_S-z_S}\right\rfloor
+  \le N_S\le q+s_0.
+\]
+Thus
+\[
+  \sum_{S\in Tree(A)}L_S^{can}
+  \le (q+s_0)(s_0+2)q^{s_0+1}.
+\]
+Combining these bounds with the post-charge endpoint and the fixed-surplus
+post-core bound gives
+\[
+  |F(A)|\le \sum_{S\in Tree_2(A)}FixedRootTail_S
+  +O_\sigma(q^{\sigma+2})
+  \qquad (s_0\le\sigma).
+\]
+So, in fixed-slack regimes, this canonical \(b=2\) branch is reduced to the
+explicit fixed-root/root-slice tail ledger up to a polynomial remainder.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

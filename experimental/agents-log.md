@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 fixed-surplus active-tree endpoint
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Uses the surplus skip-ball to bound the active
+  canonical tree by `(s0+2)q^(s0+1)`, then bounds the diffuse capacity and
+  lower-dimensional terminal ledgers in fixed-surplus regimes.
+- **How it is useful:** Reduces the fixed-surplus canonical `b=2` M1 endpoint
+  to the displayed fixed-root/root-slice tail ledger plus a polynomial
+  remainder.
+- **What to do next:** Prove or import the needed fixed-root/root-slice tail
+  charge to complete this fixed-surplus branch.
+
 ### 2026-06-29 - M1 fixed-surplus root-free half-height core
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

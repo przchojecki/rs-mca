@@ -5874,6 +5874,87 @@ regimes.  What remains outside this root-free post-core is exactly the
 already-displayed collection of fixed-root tails, diffuse determinant-gate
 capacity, and lower-dimensional terminal ledgers.
 
+## Fixed-Surplus Active Tree and Diffuse Ledgers Are Polynomial
+
+The same skip bookkeeping controls the remaining non-fixed-root terms in the
+post-charge endpoint.  Let `Active(A)` be the set of canonical nodes with
+`F_S^{can}(A)` nonempty.  Every active node has `N_S>=q_S`, so
+(PF2-surplus-skip) gives `skip(S)<=s_0`.
+
+Write the ordered base locus as
+
+```text
+B_0^*(A)={x_1<...<x_{b_0}}.
+```
+
+A nonempty node with maximum `x_m` and `skip(S)=ell` is determined by the
+`ell` skipped roots among `x_1,...,x_{m-1}`.  Therefore
+
+```text
+#Active(A)
+ <=
+ 1+sum_{ell=0}^{min(s_0,b_0-1)}
+     sum_{m=ell+1}^{b_0} binom(m-1,ell)
+ =
+ 1+sum_{ell=0}^{min(s_0,b_0-1)} binom(b_0,ell+1)
+ <=
+ sum_{j=0}^{s_0+1} binom(b_0,j)
+ <= (s_0+2) q^{s_0+1}.                         (PF2-active-skipball)
+```
+
+Thus the whole active canonical tree is polynomial-size in fixed-surplus
+regimes, not merely its base-free leaves.
+
+This immediately controls the diffuse determinant-gate capacity in
+(PF2-postcharge-opt).  For an active `b=2` node, `q_S>=2`,
+`N_S=q_S+s_S`, and `0<=s_S<=s_0`.  Since
+`G_S^{can}<=binom(N_S,2)`,
+
+```text
+4G_S^{can}/q_S^2
+ <= 2(N_S/q_S)^2
+ <= 2(1+s_0/2)^2.
+```
+
+Consequently
+
+```text
+sum_{S in Tree_2(A)} 4G_S^{can}/q_S^2
+ <= 2(1+s_0/2)^2 (s_0+2) q^{s_0+1}.          (PF2-diffuse-fixed)
+```
+
+The lower-dimensional terminal ledger is also polynomial on the same active
+tree.  At a `b=0` terminal leaf the contribution is at most `1`.  At a
+`b=1` terminal leaf, the root-slice packing bound gives
+
+```text
+|F_S^{can}(A)| <= floor((N_S-z_S)/(q_S-z_S)) <= N_S <= q+s_0,
+```
+
+because `z_S<=q_S-1`.  Hence
+
+```text
+sum_{S in Tree(A)} LowerDim_S^{can}
+ <= (q+s_0)(s_0+2) q^{s_0+1}.                 (PF2-terminal-fixed)
+```
+
+Combining (PF2-postcharge-opt), (PF2-postcore-fixed),
+(PF2-diffuse-fixed), and (PF2-terminal-fixed) gives the fixed-surplus M1
+endpoint
+
+```text
+|F(A)|
+ <=
+ sum_{S in Tree_2(A)} FixedRootTail_S
+ + O_sigma(q^{sigma+2}),        whenever s_0<=sigma.   (PF2-fixed-surplus-endpoint)
+```
+
+Thus in fixed-slack regimes the canonical `b=2` branch has been reduced to
+the explicitly displayed fixed-root/root-slice tail ledger, up to a polynomial
+remainder.  There is no remaining super-polynomial source from tree depth,
+diffuse determinant gates, lower-dimensional leaves, bounded-width primitive
+directions, or the root-free half-height occupancy core.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
