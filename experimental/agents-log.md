@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 b=2 optimized canonical capacity
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Optimizes the canonical `b=2` capacity endpoint
+  over the free occupancy cutoff at each node, defining
+  `Cap_S^*=min_w Cap_S(w)`.
+- **How it is useful:** Replaces an arbitrary cutoff parameter by the best
+  local tradeoff between spread determinant-gate capacity and concentrated
+  root-slice packing ledgers.
+- **What to do next:** Bound the optimized capacities `Cap_S^*` globally over
+  canonical peeled anchors.
+
 ### 2026-06-29 - M1 b=2 canonical capacity endpoint
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

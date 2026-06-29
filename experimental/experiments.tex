@@ -5289,6 +5289,24 @@ counts all ambient cross-fiber good pairs, and
 \(b=2\) endpoint can be written using only lower-dimensional leaves, the
 explicit node capacities \(G_S^{can}/\Phi_{q_S}(q_S-w_S-1)\), and the
 fixed-width root-slice packing floors for the concentrated quotient lines.
+Since the cutoff is free at each node, define
+\[
+  R_{S,j}^{can}=\sum_{\lambda,C}
+    \left\lfloor {N_{S,C}-z_{S,\lambda,C}\over j-z_{S,\lambda,C}}\right\rfloor
+\]
+over width-\(j\) quotient-line slices, and set
+\[
+  Cap_S^*=\min_{0\le w\le q_S-2}
+  \left(
+    {G_S^{can}\over \Phi_{q_S}(q_S-w-1)}
+    +\sum_{j=1}^w R_{S,j}^{can}
+  \right).
+\]
+The optimized canonical endpoint is then
+\[
+  |F(A)|\le \sum_{S\in Tree(A)}L_S^{can}
+  +\sum_{S\in Tree_2(A)} Cap_S^* .
+\]
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

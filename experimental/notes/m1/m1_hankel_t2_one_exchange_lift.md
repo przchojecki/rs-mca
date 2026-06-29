@@ -4848,6 +4848,50 @@ packing ledger.  Thus the canonical `b=2` branch has been reduced to explicit
 node capacities, lower-dimensional leaves, and root-slice bad-root counts; no
 split determinant-gate set remains as an unexpanded object in this endpoint.
 
+## Optimized Canonical Capacity Choice
+
+The cutoff in (PF2-canon-capacity) is free at each canonical `b=2` node, so it
+can be optimized locally.  Define the width-`j` quotient-line packing capacity
+at node `S` by
+
+```text
+R_{S,j}^{can}
+ =
+ sum_lambda sum_{C subset D_{S,lambda}, |C|=q_S-j}
+   floor((N_{S,C}-z_{S,lambda,C})/(j-z_{S,lambda,C})).
+```
+
+For `0<=w<=q_S-2`, put
+
+```text
+Cap_S(w)
+ =
+  G_S^{can}/Phi_{q_S}(q_S-w-1)
+  + sum_{j=1}^{w} R_{S,j}^{can}.
+```
+
+Since (PF2-canon-capacity) holds for every choice of the node cutoffs, choose
+for each node a minimizing cutoff
+
+```text
+Cap_S^*=min_{0<=w<=q_S-2} Cap_S(w).
+```
+
+Then the whole canonical `b=2` fixed-anchor fiber satisfies
+
+```text
+|F(A)|
+ <=
+  sum_{S in Tree(A)} LowerDim_S^can
+  + sum_{S in Tree_2(A)} Cap_S^*.              (PF2-canon-opt-cap)
+```
+
+This is the sharpest endpoint available from the current occupancy-cutoff
+decomposition.  A node with cheap low-width root-slice packings can choose
+larger `w` and gain a stronger spread coefficient; a node with expensive
+root-slice shadows can choose `w=0` and fall back to the sharp `1/(q_S-1)`
+no-base determinant-gate capacity.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
