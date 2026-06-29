@@ -957,3 +957,11 @@ Keep entries concise and link to the relevant files.
   configs → 10 distinct field slopes, injectivity `z_i-z_j=(c_i-c_j)*M(alpha)!=0` checked
   pairwise; dedup control collapses to 1 at an `M`-root. Faithful to deep-point bridge /
   moving-root tangent floor. Verifier exits 0: 8 PASS, 1 PENDING. Next (last): noncontainment rank.
+- **Iteration 7 (commit c2e3370):** A.3 item 8 **noncontainment rank** -- the strict264
+  certificate. Retained slope is noncontained iff `beta`-col of the Vandermonde at
+  `J u {beta}` is independent of the `j` support cols, i.e. `(j+1)x(j+1)` Vandermonde
+  (rows deg `0..j`) nonsingular (needs `r >= j+1`). Certified two ways (Vandermonde det
+  `!= 0`, and `field_solve` reconstruction), `beta = x` a deep point. Negative control:
+  `r'=j` rows ⇒ `beta`-col is a combo of `J`-cols (containment), so `r >= j+1` essential.
+  **Verifier exits 0: 9 PASS, 0 PENDING -- all 8 A.3 items covered.** Next: HARDENING
+  (2nd-irreducible cross-check + wire to on-`main` records), then terminate.
