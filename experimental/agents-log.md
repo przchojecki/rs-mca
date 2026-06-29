@@ -37,6 +37,8 @@ Keep entries concise and link to the relevant files.
   `experimental/scripts/certify_high_agreement_threshold_package.py`,
   `experimental/notes/thresholds/high_agreement_threshold_package.md`,
   `experimental/notes/thresholds/f17_32_finite_mca_threshold.tex`,
+  `experimental/notes/certificate_scanner/outputs/f17_512_mca_only.report.json`,
+  `experimental/notes/certificate_scanner/outputs/f17_512_mca_only.report.md`,
   `experimental/data/certificates/high-agreement-threshold-package/README.md`,
   `experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json`,
   `experimental/agents-log.md`.
@@ -63,6 +65,10 @@ Keep entries concise and link to the relevant files.
   and records local `open-proximity.tex` source anchors for the official line
   family, support-wise MCA event, challenge rates/field range, and
   line-decoding denominator.
+- **Update:** The certificate now also hashes and audits the committed pure-MCA
+  scanner replay at the decisive rows: `a=506` is unsafe with numerator `7`,
+  while `a=507,508,512` are safe with numerators `6,5,1`. The scanner report was
+  refreshed to the current Paper D v7 status label.
 - **What to do next:** Use this certificate as the compact reproduction
   artifact when promoting the high-agreement finite-row theorem or building a
   broader threshold certificate generator for multiple protocol ledgers.

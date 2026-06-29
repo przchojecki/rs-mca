@@ -28,6 +28,8 @@ The certificate records:
 - `open-proximity.tex` SHA-256 and line anchors for the official line family,
   MCA event, grand-challenge rates/field range, and line-decoding denominator;
 - `floor(17^32 / 2^128) = 6`;
+- hashes and decisive-row checks for the committed pure-MCA scanner replay
+  `experimental/notes/certificate_scanner/outputs/f17_512_mca_only.report.json`;
 - affine and projective denominator checks;
 - explicit finite support-wise MCA, finite no-loss CA, and projective
   denominator audit;

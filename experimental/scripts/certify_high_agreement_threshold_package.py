@@ -25,6 +25,15 @@ F17_Q = 17**32
 F17_N = 512
 F17_K = 256
 OPEN_PROXIMITY = Path("open-proximity.tex")
+SCANNER_CONFIG = Path(
+    "experimental/notes/certificate_scanner/examples/f17_512_mca_only.json"
+)
+SCANNER_JSON = Path(
+    "experimental/notes/certificate_scanner/outputs/f17_512_mca_only.report.json"
+)
+SCANNER_MD = Path(
+    "experimental/notes/certificate_scanner/outputs/f17_512_mca_only.report.md"
+)
 
 
 def parse_int(text: str) -> int:
@@ -36,6 +45,10 @@ def parse_int(text: str) -> int:
         base, exp = clean.split("**", 1)
         return int(base) ** int(exp)
     return int(clean, 10)
+
+
+def sha256_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def source_anchor(path: Path, label: str, needle: str) -> dict[str, Any]:
@@ -97,6 +110,118 @@ def source_audit() -> dict[str, Any]:
         "checks": {
             "source_present": OPEN_PROXIMITY.exists(),
             "all_anchors_found": len(anchors) == 8,
+        },
+    }
+
+
+def scanner_replay_audit() -> dict[str, Any]:
+    """Audit the committed pure-MCA scanner output against the threshold rows."""
+    cfg = json.loads(SCANNER_CONFIG.read_text())
+    report = json.loads(SCANNER_JSON.read_text())
+    scans = {scan["a"]: scan for scan in report["scans"]}
+    expected_rows = {
+        506: {
+            "r": 6,
+            "numerator": 7,
+            "safe": False,
+            "unsafe": True,
+            "verdict": "UNSAFE_BY_PROVED_LOWER_BOUND",
+        },
+        507: {
+            "r": 5,
+            "numerator": 6,
+            "safe": True,
+            "unsafe": False,
+            "verdict": "SAFE_BY_PROVED_UPPER_BOUND",
+        },
+        508: {
+            "r": 4,
+            "numerator": 5,
+            "safe": True,
+            "unsafe": False,
+            "verdict": "SAFE_BY_PROVED_UPPER_BOUND",
+        },
+        512: {
+            "r": 0,
+            "numerator": 1,
+            "safe": True,
+            "unsafe": False,
+            "verdict": "SAFE_BY_PROVED_UPPER_BOUND",
+        },
+    }
+
+    row_checks = {
+        "config_is_pure_mca": (
+            cfg["protocol"].get("include_line_term") is True
+            and cfg["protocol"].get("include_interleaved_list_term") is False
+            and cfg["protocol"].get("curve_degrees") == []
+            and cfg["protocol"].get("line_sampler") == "finite"
+        ),
+        "config_target_is_128": int(cfg["security"]["lambda"]) == TARGET,
+        "config_row_matches_f17": int(cfg["row"]["n"]) == F17_N
+        and int(cfg["row"]["k"]) == F17_K,
+        "report_row_matches_f17": (
+            report["row"]["n"] == F17_N
+            and report["row"]["k"] == F17_K
+            and report["row"]["q_gen"] == F17_Q
+            and report["row"]["q_line"] == F17_Q
+            and report["row"]["q_chal"] == F17_Q
+        ),
+        "report_budget_is_6": report["row"]["budget_q_line"] == 6 and report["row"]["budget_q_chal"] == 6,
+    }
+
+    replay_rows: dict[str, Any] = {}
+    for a, expected in expected_rows.items():
+        scan = scans.get(a)
+        if scan is None:
+            replay_rows[str(a)] = {"present": False, "checks": {"present": False}}
+            continue
+        exact = scan["ledgers"]["tangent_high_agreement"]["finite_line_exact"]
+        combined = scan["combined_protocol"]
+        checks = {
+            "present": True,
+            "r_matches": scan["r"] == expected["r"],
+            "sigma_matches": scan["sigma"] == a - F17_K,
+            "exact_numerator_matches": exact["numerator"] == expected["numerator"],
+            "denominator_matches": exact["denominator"] == F17_Q,
+            "safe_flag_matches": exact["safe_at_target"] is expected["safe"],
+            "unsafe_flag_matches": exact["unsafe_at_target"] is expected["unsafe"],
+            "combined_verdict_matches": combined["verdict"] == expected["verdict"],
+            "combined_has_no_unknown_terms": combined["unknown_terms"] == [],
+        }
+        replay_rows[str(a)] = {
+            "r": scan["r"],
+            "sigma": scan["sigma"],
+            "finite_line_numerator": exact["numerator"],
+            "safe_at_target": exact["safe_at_target"],
+            "unsafe_at_target": exact["unsafe_at_target"],
+            "combined_verdict": combined["verdict"],
+            "checks": checks,
+        }
+
+    all_row_checks = [
+        value for row in replay_rows.values() for value in row["checks"].values()
+    ]
+    return {
+        "status": "AUDIT",
+        "purpose": "replay committed pure finite-slope MCA scanner output at the threshold rows",
+        "scanner_config": {
+            "path": str(SCANNER_CONFIG),
+            "sha256": sha256_file(SCANNER_CONFIG),
+        },
+        "scanner_json_report": {
+            "path": str(SCANNER_JSON),
+            "sha256": sha256_file(SCANNER_JSON),
+        },
+        "scanner_markdown_report": {
+            "path": str(SCANNER_MD),
+            "sha256": sha256_file(SCANNER_MD),
+        },
+        "row_checks": row_checks,
+        "threshold_rows": replay_rows,
+        "checks": {
+            "row_and_protocol_checks_passed": all(row_checks.values()),
+            "threshold_row_checks_passed": all(all_row_checks),
         },
     }
 
@@ -355,6 +480,7 @@ def build_certificate() -> dict[str, Any]:
 
     boundary_rows = prize_rate_boundary_rows()
     official_source = source_audit()
+    scanner_replay = scanner_replay_audit()
     variant_rows = [
         variant_row("finite_supportwise_mca", F17_Q, finite["safe_line_numerator"]),
         variant_row("finite_no_loss_ca", F17_Q, finite["safe_line_numerator"]),
@@ -384,6 +510,7 @@ def build_certificate() -> dict[str, Any]:
         },
         "definition_freeze": {
             "official_source": official_source,
+            "pure_mca_scanner_replay": scanner_replay,
             "object": "finite-slope support-wise MCA / LD_sw",
             "bridge": "epsilon_mca(C,delta)=LD_sw(C,ceil((1-delta)n))/q_line",
             "agreement": "a=n-r",
@@ -434,6 +561,10 @@ def build_certificate() -> dict[str, Any]:
 
     all_checks = list(row_checks.values())
     all_checks.extend(official_source["checks"].values())
+    all_checks.extend(scanner_replay["checks"].values())
+    all_checks.extend(scanner_replay["row_checks"].values())
+    for row in scanner_replay["threshold_rows"].values():
+        all_checks.extend(row["checks"].values())
     all_checks.extend(finite.get("checks", {}).values())
     all_checks.extend(projective.get("checks", {}).values())
     for row in variant_rows:
@@ -495,6 +626,11 @@ def print_summary(cert: dict[str, Any]) -> None:
         f"[0,{aff['closed_real_safe_interval']['right_open_supremum']['display']})"
     )
     print(f"  projective denominator budget={proj['budget']} (same threshold)")
+    replay = cert["definition_freeze"]["pure_mca_scanner_replay"]
+    print(
+        "  pure MCA scanner replay: "
+        f"{'PASS' if all(replay['checks'].values()) else 'FAIL'}"
+    )
     print(f"  row checks passed: {cert['all_checks_passed']}")
 
 

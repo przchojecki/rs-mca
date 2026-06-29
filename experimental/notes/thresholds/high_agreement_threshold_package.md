@@ -50,6 +50,13 @@ The JSON certificate stores the source file's SHA-256 hash and the line number
 of each anchor. This is only a local-source audit; it does not replace review
 against later upstream revisions of the external survey.
 
+It also stores SHA-256 hashes and decisive-row checks for the committed
+pure-MCA scanner replay
+`experimental/notes/certificate_scanner/outputs/f17_512_mca_only.report.json`.
+The replay is audited only at the rows needed by the threshold package:
+`a=506` is unsafe with numerator `7`, while `a=507,508,512` are safe with
+finite-line numerators `6,5,1`.
+
 The endpoint convention is closed-ball: if the first unsafe integer radius is
 `r0`, then the real safe interval is `[0,r0/n)`. The supremum `r0/n` is not
 attained.

@@ -58,7 +58,112 @@
       "path": "open-proximity.tex",
       "sha256": "9ee33d8734181678fe07a9f2a2a44df6d5c773abfb45f67eac2f82ded000edbf"
     },
-    "projective_denominator": "|P^1(F)|=|F|+1"
+    "projective_denominator": "|P^1(F)|=|F|+1",
+    "pure_mca_scanner_replay": {
+      "checks": {
+        "row_and_protocol_checks_passed": true,
+        "threshold_row_checks_passed": true
+      },
+      "purpose": "replay committed pure finite-slope MCA scanner output at the threshold rows",
+      "row_checks": {
+        "config_is_pure_mca": true,
+        "config_row_matches_f17": true,
+        "config_target_is_128": true,
+        "report_budget_is_6": true,
+        "report_row_matches_f17": true
+      },
+      "scanner_config": {
+        "path": "experimental/notes/certificate_scanner/examples/f17_512_mca_only.json",
+        "sha256": "2730fa041dc131b62b31fb88a2a5ed0b9de6f17e5e3f5d442575e7e8f64ef57b"
+      },
+      "scanner_json_report": {
+        "path": "experimental/notes/certificate_scanner/outputs/f17_512_mca_only.report.json",
+        "sha256": "0fc406ca94f02dbee4ab120735c2a5758fce5e51a6321f6d3d551edc9bd41f50"
+      },
+      "scanner_markdown_report": {
+        "path": "experimental/notes/certificate_scanner/outputs/f17_512_mca_only.report.md",
+        "sha256": "2f23160a71296c59971ea7675943baf5be608bd4483ef70550ed844d698484cd"
+      },
+      "status": "AUDIT",
+      "threshold_rows": {
+        "506": {
+          "checks": {
+            "combined_has_no_unknown_terms": true,
+            "combined_verdict_matches": true,
+            "denominator_matches": true,
+            "exact_numerator_matches": true,
+            "present": true,
+            "r_matches": true,
+            "safe_flag_matches": true,
+            "sigma_matches": true,
+            "unsafe_flag_matches": true
+          },
+          "combined_verdict": "UNSAFE_BY_PROVED_LOWER_BOUND",
+          "finite_line_numerator": 7,
+          "r": 6,
+          "safe_at_target": false,
+          "sigma": 250,
+          "unsafe_at_target": true
+        },
+        "507": {
+          "checks": {
+            "combined_has_no_unknown_terms": true,
+            "combined_verdict_matches": true,
+            "denominator_matches": true,
+            "exact_numerator_matches": true,
+            "present": true,
+            "r_matches": true,
+            "safe_flag_matches": true,
+            "sigma_matches": true,
+            "unsafe_flag_matches": true
+          },
+          "combined_verdict": "SAFE_BY_PROVED_UPPER_BOUND",
+          "finite_line_numerator": 6,
+          "r": 5,
+          "safe_at_target": true,
+          "sigma": 251,
+          "unsafe_at_target": false
+        },
+        "508": {
+          "checks": {
+            "combined_has_no_unknown_terms": true,
+            "combined_verdict_matches": true,
+            "denominator_matches": true,
+            "exact_numerator_matches": true,
+            "present": true,
+            "r_matches": true,
+            "safe_flag_matches": true,
+            "sigma_matches": true,
+            "unsafe_flag_matches": true
+          },
+          "combined_verdict": "SAFE_BY_PROVED_UPPER_BOUND",
+          "finite_line_numerator": 5,
+          "r": 4,
+          "safe_at_target": true,
+          "sigma": 252,
+          "unsafe_at_target": false
+        },
+        "512": {
+          "checks": {
+            "combined_has_no_unknown_terms": true,
+            "combined_verdict_matches": true,
+            "denominator_matches": true,
+            "exact_numerator_matches": true,
+            "present": true,
+            "r_matches": true,
+            "safe_flag_matches": true,
+            "sigma_matches": true,
+            "unsafe_flag_matches": true
+          },
+          "combined_verdict": "SAFE_BY_PROVED_UPPER_BOUND",
+          "finite_line_numerator": 1,
+          "r": 0,
+          "safe_at_target": true,
+          "sigma": 256,
+          "unsafe_at_target": false
+        }
+      }
+    }
   },
   "f17_512_affine": {
     "applies": true,
