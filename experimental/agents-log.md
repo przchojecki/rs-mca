@@ -75,7 +75,10 @@ Keep entries concise and link to the relevant files.
   norm-power exceptions are classified as constant norm or quadratic
   square-norm; constant norm is charged to the fixed-root/product-Mobius
   line-packet ledger, while nonconstant square norm has only the quadratic
-  norm-filter Fourier coefficient as a possible large term.
+  norm-filter Fourier coefficient as a possible large term.  Pushing divisors
+  down by the slope-cover norm shows that, after those norm exceptions, the
+  only cover-level power branches left are the anti-diagonal ratio terms
+  `chi^a(r_+/r_-)`.
 - **How it is useful:** The denominator-zero solvable case is exactly a
   fixed-root line or the full-plane lift, both already charged.  Thus the
   residual non-line root-core target is a one-variable slope-cover problem
@@ -89,6 +92,8 @@ Keep entries concise and link to the relevant files.
   genus-free fallback bound from the rational map `B_R/Q_R`, with explicit
   noncancellation branches.  The constant-norm exception is not new geometry,
   and the square-norm exception is now reduced to one explicit parity branch.
+  The norm-pushforward obstruction localizes the remaining cover-level
+  obstruction to anti-norm ratio terms.
 - **What to do next:** Use this recurrence chart when attacking the active
   `(j-2)` root-core image after quotient, tangent, fixed-root, and full-plane
   charges.

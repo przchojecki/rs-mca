@@ -2266,6 +2266,45 @@ The principal contribution in (RKCOUNT) is
 ((e-1)/e^2) |C_R^x| + O(1).
 ```
 
+The norm map also filters possible cover-level power branches.  Let
+`pi:C_R->P^1_z` be the slope projection and put
+
+```text
+F_{a,b}=r_+^a r_-^b.
+```
+
+If the Kummer summand `chi^a(r_+)chi^b(r_-)` is geometrically trivial on
+`C_R^x`, then `div_C(F_{a,b})` is divisible by `e`.  Pushing forward by
+`pi` gives the necessary slope-line condition
+
+```text
+div_{P^1}(N_R^{a+b}) == 0 mod e,       N_R=B_R/Q_R.       (RKPUSH)
+```
+
+Indeed, `Norm_{C_R/P^1}(r_+)=Norm_{C_R/P^1}(r_-)=N_R`, so
+`Norm(F_{a,b})=N_R^{a+b}`.  Thus with
+`m=e/gcd(e,a+b)`, the same degree-two classification applies to every
+cover-level term:
+
+```text
+a+b not 0 mod e, m>=3  =>  N_R constant,
+a+b not 0 mod e, m=2   =>  N_R square up to scalar.      (RKPCLASS)
+```
+
+After the constant-norm line-packet branch and the square-norm parity branch
+above have been charged or isolated, every one-root term `S_a^+` with
+`a!=0` and every pair term with `a+b!=0 mod e` is therefore a genuinely
+nontrivial bounded-conductor Kummer sum on the cover.  The only cover-level
+power branches not seen by norm pushforward are the anti-norm ratio terms
+
+```text
+a+b == 0 mod e,       chi^a(r_+/r_-).                  (RKANTI)
+```
+
+For `e=2` these are exactly the diagonal terms handled below by sheet
+symmetry and descent to `P^1`.  For `e>2`, (RKANTI) is the remaining
+cover-level power target in this root-core reduction.
+
 The diagonal product terms in (RKCOUNT) descend to the slope line.  Since
 
 ```text
@@ -2512,8 +2551,10 @@ the genus-free norm-outside fallback bound (RKNOUTBD), classifies the
 degree-two norm-power exceptions as constant norm or quadratic square norm,
 charges constant norm to the fixed-root/product-Mobius line-packet ledger,
 isolates the single large quadratic coefficient in the nonconstant square-norm
-filter, and gives the local max-degree bound and average-collinearity corollary
-above, including the packet-level higher-exchange ledger substitution.
+filter, proves the norm-pushforward obstruction that leaves only anti-diagonal
+cover-ratio power branches after those norm exceptions, and gives the local
+max-degree bound and average-collinearity corollary above, including the
+packet-level higher-exchange ledger substitution.
 
 ## Verification
 
@@ -2559,4 +2600,5 @@ the mixed-domain count formula (RKCOUNT), including the diagonal descent
 (RKDIAG), index-two cancellation formula (RK2), and norm-filter identity
 (RKNORM) with norm-outside injection (RKNINJ) and degree-two norm-power gate
 (RKNP), including the constant-norm line-packet charge and the single-large
-square-norm Fourier term.
+square-norm Fourier term, and the cover-term norm-pushforward obstruction
+(RKPUSH).

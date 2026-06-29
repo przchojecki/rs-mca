@@ -46,7 +46,8 @@ sheet-symmetry cancellation formula.  The verifier also checks the norm-filter
 identity that moves the outside-root condition to B_R/Q_R on the slope line,
 the resulting injection into norm-outside slopes, and the degree-two
 norm-power classification, including the constant-norm line-packet charge and
-the single large Fourier term in the nonconstant square-norm branch.
+the single large Fourier term in the nonconstant square-norm branch, and the
+norm-pushforward obstruction for cover-level power terms.
 """
 
 from __future__ import annotations
@@ -4357,6 +4358,105 @@ def check_boundary_core_norm_exception_ledger() -> None:
                 )
 
 
+def check_boundary_core_cover_power_norm_pushforward() -> None:
+    rng = Random(20260722)
+    for prime in (11, 17, 29):
+        polys = [
+            poly1_from_list(list(coeffs), prime)
+            for coeffs in product(range(prime), repeat=3)
+        ]
+        polys = [poly for poly in polys if poly]
+        linear_bases = [
+            poly1_from_list([constant, slope], prime)
+            for constant in range(prime)
+            for slope in range(prime)
+        ]
+        linear_bases = [poly for poly in linear_bases if poly]
+
+        pairs: list[tuple[str, Poly1, Poly1]] = []
+        for _ in range(60):
+            denominator = rng.choice(polys)
+            gamma = rng.randrange(1, prime)
+            numerator = {
+                degree: (gamma * coeff) % prime
+                for degree, coeff in denominator.items()
+            }
+            pairs.append(("constant", numerator, denominator))
+        for _ in range(100):
+            numerator_base = rng.choice(linear_bases)
+            denominator_base = rng.choice(linear_bases)
+            gamma = rng.randrange(1, prime)
+            numerator = {
+                degree: (gamma * coeff) % prime
+                for degree, coeff in poly1_mul(
+                    numerator_base,
+                    numerator_base,
+                    prime,
+                ).items()
+            }
+            denominator = poly1_mul(denominator_base, denominator_base, prime)
+            if not rational_constant_divisor(numerator, denominator, prime):
+                pairs.append(("square", numerator, denominator))
+        while len(pairs) < 360:
+            numerator = rng.choice(polys)
+            denominator = rng.choice(polys)
+            if rational_constant_divisor(numerator, denominator, prime):
+                continue
+            if rational_square_divisor(numerator, denominator, prime):
+                continue
+            pairs.append(("generic", numerator, denominator))
+
+        indices = [index for index in range(2, 10) if (prime - 1) % index == 0]
+        for branch, numerator, denominator in pairs:
+            constant_branch = rational_constant_divisor(numerator, denominator, prime)
+            square_branch = rational_square_divisor(numerator, denominator, prime)
+            assert (branch == "constant") == constant_branch, (
+                prime,
+                branch,
+                numerator,
+                denominator,
+                constant_branch,
+            )
+            assert square_branch == (branch in {"constant", "square"}), (
+                prime,
+                branch,
+                numerator,
+                denominator,
+                square_branch,
+            )
+            for index in indices:
+                surviving_sums: set[int] = set()
+                for left_power in range(index):
+                    for right_power in range(index):
+                        exponent_sum = (left_power + right_power) % index
+                        order = index // gcd(index, exponent_sum)
+                        norm_pushforward_allows_power = rational_power_degenerate(
+                            numerator,
+                            denominator,
+                            order,
+                            prime,
+                        )
+                        if norm_pushforward_allows_power:
+                            surviving_sums.add(exponent_sum)
+                if branch == "constant":
+                    expected_sums = set(range(index))
+                elif branch == "square":
+                    expected_sums = {0}
+                    if index % 2 == 0:
+                        expected_sums.add(index // 2)
+                else:
+                    expected_sums = {0}
+                assert surviving_sums == expected_sums, (
+                    prime,
+                    branch,
+                    index,
+                    numerator,
+                    denominator,
+                    surviving_sums,
+                    expected_sums,
+                )
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -4593,6 +4693,7 @@ def main() -> None:
     check_boundary_core_slope_cover_kummer_filter()
     check_boundary_core_norm_power_gate()
     check_boundary_core_norm_exception_ledger()
+    check_boundary_core_cover_power_norm_pushforward()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     check_boundary_core_closure_substitution()
