@@ -42,6 +42,45 @@ A=c ell_Z,        c != 0.                         (W1-shadow)
 Equivalently, width-one certificates are exactly co-small projective fibers in
 the descended two-dimensional pencil.
 
+## Bounded-Complement Rank Test
+
+The maximal-shadow condition can be tested on the bounded complement.  For
+
+```text
+O subset D,        |O|=s+1,
+```
+
+put
+
+```text
+L_O=ell_{D\O}.
+```
+
+Then `O` supports a width-one certificate if and only if
+
+```text
+L_O in V.                                            (W1-rank-test)
+```
+
+Indeed, if `L_O in V`, then `L_O` has exactly the root set `D\O` on `D`,
+which has size `q-1`, so it gives a width-one maximal shadow.  Conversely,
+every width-one direction satisfies (W1-shadow), hence is proportional to
+`L_O` for `O=D\Z(A)`.
+
+Equivalently, after choosing any coefficient basis of `F[X]_{<q}`, the rows
+`P,Q,L_O` have rank at most two.  Thus all `3 x 3` coefficient minors vanish.
+In fixed surplus this is a polynomial family of tests over the active tree:
+
+```text
+sum_{S in Active(A_0)} binom(|D_S^{can}|,s_S+1)
+ <= (s_0+2) Q^{s_0+1} binom(Q+s_0,s_0+1),      (W1-test-count)
+```
+
+using the active-node bound and `|D_S^{can}|<=Q+s_0`, `s_S<=s_0`.  A passing
+test may still carry a large co-small flag cube, but the possible complements
+are now a bounded-complement algebraic search problem rather than an
+unstructured family of projective directions.
+
 ## Near-Constant Pencil
 
 Choose `B in V` independent of `A`.  Since the node is base-free, `B(x)!=0`

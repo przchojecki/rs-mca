@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 width-one bounded-complement test
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_width_one_fixedroot_closure.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The compact width-one note now records the
+  bounded-complement rank test: for `|O|=s+1`, `O` supports a width-one
+  certificate exactly when `ell_{D^can\\O}` lies in the descended
+  two-dimensional direction space, equivalently by vanishing `3 x 3`
+  coefficient minors.
+- **How it is useful:** Makes the width-one obstruction scanner-ready and shows
+  that in fixed surplus the possible complements form only
+  `(s_0+2)Q^{s_0+1} binom(Q+s_0,s_0+1)` algebraic tests before the
+  fixed-root closure charge is applied.
+- **What to do next:** Use the rank-test formulation to falsify or certify
+  surviving near-constant pencils, then charge passing tests through the
+  one-root fixed-divisor ledger.
+
 ### 2026-06-29 - M1 width-one fixed-root closure
 
 - **Agent/model:** AllenGrahamHart / Codex.
