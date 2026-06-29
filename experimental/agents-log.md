@@ -62,12 +62,14 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** The full-subgroup boundary quartic count is
   expanded into character sums
   `sum_y chi^a(y) chi_2(Disc_R(y))`, and the exact `lcm(e,2)` power-divisor
-  gate for geometrically trivial terms is identified.
+  gate for geometrically trivial terms is identified.  The gate is sharpened
+  to the forced normal forms `Disc_R=cG^2` with `a=0` or
+  `Disc_R=c y G^2` with even index and `a=e/2`.
 - **How it is useful:** If the power gate fails, the standard `P^1`
   Kummer-Weil bound has support contained in the four discriminant roots plus
   `0` and `infinity`, giving a depth-independent `4 sqrt(p)` term.  Thus any
-  no-cancellation quartic branch is an explicit monomial-square discriminant
-  case rather than hidden growing conductor.
+  no-cancellation quartic branch is an explicit rational graph or fixed
+  square-root rational graph case rather than hidden growing conductor.
 - **What to do next:** Charge or exclude the monomial-square discriminant
   branches, then combine the nontrivial Kummer terms with the active
   fixed-core/root-image ledger.

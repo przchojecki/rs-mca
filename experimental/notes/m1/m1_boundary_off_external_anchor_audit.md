@@ -344,11 +344,26 @@ div(y^{a ell/e} Disc_R(y)^{ell/2}) == 0 mod ell.
 ```
 
 Equivalently, every nonzero root of `Disc_R` has even multiplicity and the
-zero-root parity matches `a`.  Otherwise the standard one-dimensional
-Kummer-Weil input has support contained in the four discriminant roots plus
-`0` and `infinity`, giving a depth-independent `4 sqrt(p)` term.  Thus the
-boundary quartic cannot hide a growing conductor; any no-cancellation case is
-the explicit monomial-square discriminant gate above.
+zero-root parity matches `a`.  Hence the squarefree part of any
+no-cancellation quartic is only `1` or `y`:
+
+```text
+Disc_R(y)=cG(y)^2
+```
+
+or
+
+```text
+Disc_R(y)=c y G(y)^2.
+```
+
+The first case forces the principal subgroup character `a=0`; the second
+forces even index and the quadratic subgroup character `a=e/2`.  Otherwise
+the standard one-dimensional Kummer-Weil input has support contained in the
+four discriminant roots plus `0` and `infinity`, giving a depth-independent
+`4 sqrt(p)` term.  Thus the boundary quartic cannot hide a growing conductor;
+any no-cancellation case is an explicit rational graph or fixed square-root
+rational graph branch.
 
 ## Integration Decision
 

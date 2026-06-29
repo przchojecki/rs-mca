@@ -1853,10 +1853,24 @@ and
 a ell/e + (ell/2) ord_0(Disc_R) == 0 mod ell.
 ```
 
-The condition at infinity then follows from degree zero of the divisor.  If
-(KPOW) fails, the rational function in (KCOMB) is not an `ell`-th power over
-`\overline{F}_p(y)`.  The standard one-dimensional Kummer-Weil bound on
-`P^1` then gives
+The condition at infinity then follows from degree zero of the divisor.  Thus
+the squarefree part of a no-cancellation quartic is forced to be monomial:
+
+```text
+Disc_R(y)=c G(y)^2
+```
+
+or
+
+```text
+Disc_R(y)=c y G(y)^2.                             (KMON)
+```
+
+The character label is forced as well.  In the first case `a=0`.  In the
+second case `e` must be even and `a=e/2`.  Therefore no other subgroup
+Fourier term can be geometrically trivial.  If (KPOW) fails, the rational
+function in (KCOMB) is not an `ell`-th power over `\overline{F}_p(y)`.  The
+standard one-dimensional Kummer-Weil bound on `P^1` then gives
 
 ```text
 |S_a| <= (R_a-2) sqrt(p) <= 4 sqrt(p),
@@ -1867,6 +1881,27 @@ at most four geometric roots of `Disc_R`.  Hence every non-power term has
 depth-independent conductor.  Failure of cancellation is not hidden in the
 quartic cover; it is exactly the monomial-square discriminant gate (KPOW),
 which is now a concrete algebraic branch to charge or exclude.
+
+In that branch the cover is explicitly genus zero.  If
+`Disc_R=cG^2`, then either `c` is a nonsquare and there are no nonsingular
+ambient anchor roots, or `c=d^2` and the two sheets are
+
+```text
+W_R=+-dG(y),
+beta=(-B_R(y)+-dG(y))/(2A_R(y)).
+```
+
+If `Disc_R=c y G^2`, then the cover is pulled back from the fixed square-root
+cover `t^2=c y`; after adjoining `t`, the sheets are
+
+```text
+W_R=+-t G(y),
+beta=(-B_R(y)+-t G(y))/(2A_R(y)).
+```
+
+Thus the entire no-cancellation locus is a rational graph or a fixed
+square-root rational graph, plus the already isolated `A_R=0` exceptions.
+It is not an additional high-conductor Kummer family.
 
 ## Residual One-Exchange Degree Bound
 

@@ -3242,6 +3242,27 @@ def check_boundary_quartic_kummer_power_gate() -> None:
                     degenerate = kummer_power_degenerate(poly, index, char_power, p)
                     if not degenerate:
                         continue
+                    factors = factor_poly1_monic(poly, p)
+                    zero_parity = factors.get((0, 1), 0) % 2
+                    if zero_parity == 0:
+                        assert char_power == 0, (p, index, char_power, poly, factors)
+                    else:
+                        assert index % 2 == 0 and char_power == index // 2, (
+                            p,
+                            index,
+                            char_power,
+                            poly,
+                            factors,
+                        )
+                    for factor, multiplicity in factors.items():
+                        if factor != (0, 1):
+                            assert multiplicity % 2 == 0, (
+                                p,
+                                index,
+                                char_power,
+                                poly,
+                                factors,
+                            )
                     values = set()
                     for y in range(1, p):
                         disc_value = eval_poly1(poly, y, p)
