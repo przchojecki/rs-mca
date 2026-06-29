@@ -5228,6 +5228,48 @@ half-height projective fibers.  Its only multiplicity is the low-complement
 tail of choices `E` inside such a fiber, times the single primitive root-slice
 packing factor attached to the half-height kernel `R_{S,lambda}`.
 
+## Primitive Half-Height Packing Is a Surplus Term
+
+The primitive factor in (PF2-short-primitive-tail) has an exact surplus form.
+Since `h_lambda=q_S-r_lambda`,
+
+```text
+B_{S,lambda}^{prim}
+ =
+floor((N_S-h_lambda-z_{S,lambda}^{perp})
+      /(r_lambda-z_{S,lambda}^{perp}))
+ =
+1+floor((N_S-q_S)/(r_lambda-z_{S,lambda}^{perp})).
+                                                        (PF2-prim-surplus)
+```
+
+Here the denominator is positive because
+`z_{S,lambda}^{perp}<=r_lambda-1`.  Thus the large half-height fiber itself
+does not create a large root-slice packing factor.  After the primitive
+half-height kernel and its perpendicular bad roots are fixed, the only source
+of additional multiplicity is the canonical node surplus `N_S-q_S`.
+
+In particular, if the primitive kernel has no perpendicular roots on the
+remaining canonical domain, then
+
+```text
+B_{S,lambda}^{prim}=1+floor((N_S-q_S)/r_lambda).
+                                                        (PF2-prim-rootfree)
+```
+
+If `z_{S,lambda}^{perp}>0`, each root counted by
+`Z_{S,lambda}^{perp}` is a one-root absorbed fixed-divisor slice for the
+anchor `S union D_{S,lambda}`.  Peeling those roots reduces the denominator
+from `r_lambda` to `r_lambda-z_{S,lambda}^{perp}` and leaves the same surplus
+term.  Consequently the unresolved primitive half-height contribution in M1
+splits into:
+
+1. root-free primitive kernels, with denominator `r_lambda`;
+2. explicit perpendicular fixed-root/root-slice defects, which account for
+   every loss in that denominator;
+3. the low-complement binomial tail already displayed in
+   (PF2-short-primitive-tail).
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

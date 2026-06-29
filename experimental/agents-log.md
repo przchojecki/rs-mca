@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 primitive half-height surplus form
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Rewrites the primitive half-height packing factor
+  exactly as `1+floor((N_S-q_S)/(r_lambda-z_perp))`, with root-free case
+  `1+floor((N_S-q_S)/r_lambda)`.
+- **How it is useful:** Shows that large half-height fibers do not by
+  themselves create a large packing factor; after primitive direction and
+  perpendicular bad-root defects are fixed, only canonical node surplus
+  remains.
+- **What to do next:** Bound the low-complement tails and root-free primitive
+  half-height kernels globally, with perpendicular roots charged to the
+  fixed-root/root-slice ledgers.
+
 ### 2026-06-29 - M1 short ledger primitive half-height tails
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
