@@ -18,6 +18,7 @@ SQUARE-NORM RAW-ENDPOINT DISCRIMINANT CERTIFICATE /
 SQUARE-NORM HANKEL-MINOR DISCRIMINANT CERTIFICATE /
 SQUARE-NORM PLUCKER-MINOR DISCRIMINANT CERTIFICATE /
 SQUARE-NORM PLUCKER-CHART DECOMPOSITION /
+SQUARE-NORM PLUCKER-CHART ROW RECURRENCE /
 SQUARE-NORM ENDPOINT-CHARGE COROLLARY /
 SQUARE-MAP PACKET-COUNT COROLLARY /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
@@ -2615,6 +2616,36 @@ independent, while `(a_i,b_i)` has zero determinant with both of them; hence
 zero-row/fully-proportional degeneracy and the nonzero Plucker chart
 (RKSQPLCH).  The latter is the only genuinely moving minor-conic case.
 
+The nonzero chart also has a row-level recurrence form.  Write
+
+```text
+r_j=(a_j,b_j).
+```
+
+If `P_i!=0`, then `r_i,r_{i+1}` are a basis, so
+`r_{i+2}=alpha r_i+beta r_{i+1}`.  The minors give
+
+```text
+beta=S_i/P_i=2lambda_i,        alpha=-R_i/P_i=-lambda_i^2.
+```
+
+Therefore the moving chart is equivalently
+
+```text
+r_{i+2}=2lambda_i r_{i+1}-lambda_i^2 r_i.          (RKSQROW)
+```
+
+On the reverse chart `R_i!=0`, with `mu_i=S_i/(2R_i)`, the same argument gives
+
+```text
+r_i=2mu_i r_{i+1}-mu_i^2 r_{i+2}.
+```
+
+Thus, after the zero-row and proportional degeneracies are charged, the
+endpoint-support row triples are not a two-dimensional conic family in the
+row data: they are one-parameter second-order recurrences in the adjacent
+row basis.
+
 The finite endpoints themselves are not residual live mixed-domain slopes.
 Let `z_0` be a finite endpoint of the reduced square norm.
 
@@ -3158,8 +3189,9 @@ certificate (RKSQDR), the raw-coefficient endpoint certificate (RKSQRAW), the
 raw-endpoint discriminant certificate (RKSQDISC), the Hankel-minor
 discriminant certificate (RKSQHCOEFF/RKSQHDISC), the Plucker-minor
 discriminant certificate (RKSQPL), the Plucker-chart decomposition
-(RKSQPLCH), the finite endpoint-charge corollary (RKSQEPCH), and square-map
-packet-count corollary (RKSQCOUNT) from the support palette.
+(RKSQPLCH), the Plucker-chart row recurrence (RKSQROW), the finite
+endpoint-charge corollary (RKSQEPCH), and square-map packet-count corollary
+(RKSQCOUNT) from the support palette.
 
 ## Verification
 
@@ -3216,5 +3248,6 @@ the square-norm endpoint palette (RKSQEND), the repeated-endpoint gate
 endpoint certificate (RKSQRAW), the raw-endpoint discriminant certificate
 (RKSQDISC), the Hankel-minor discriminant certificate
 (RKSQHCOEFF/RKSQHDISC), the Plucker-minor discriminant certificate (RKSQPL),
-the Plucker-chart decomposition (RKSQPLCH), the finite endpoint-charge
-corollary (RKSQEPCH), and the packet-count corollary (RKSQCOUNT).
+the Plucker-chart decomposition (RKSQPLCH), the Plucker-chart row recurrence
+(RKSQROW), the finite endpoint-charge corollary (RKSQEPCH), and the
+packet-count corollary (RKSQCOUNT).

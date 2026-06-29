@@ -56,8 +56,8 @@ packet intersection gate, support-class palette, endpoint palette, and
 repeated-endpoint gate, double-root endpoint certificate, raw-coefficient
 endpoint certificate, endpoint-discriminant certificate, Hankel-minor
 discriminant certificate, Plucker-minor discriminant certificate,
-Plucker-chart decomposition, endpoint-charge corollary, and packet-count
-corollary.
+Plucker-chart decomposition, Plucker-chart row recurrence, endpoint-charge
+corollary, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -3185,6 +3185,19 @@ def assert_plucker_chart_decomposition(
             (p01, p12, p02),
             lam,
         )
+        expected_row2 = (
+            (2 * lam * row1[0] - lam * lam * row0[0]) % p,
+            (2 * lam * row1[1] - lam * lam * row0[1]) % p,
+        )
+        assert row2 == expected_row2, (
+            p,
+            index,
+            a_rows,
+            b_rows,
+            (p01, p12, p02),
+            lam,
+            expected_row2,
+        )
     else:
         assert p02 == 0, (p, index, a_rows, b_rows, (p01, p12, p02))
         if p12 != 0:
@@ -3216,6 +3229,19 @@ def assert_plucker_chart_decomposition(
             b_rows,
             (p01, p12, p02),
             mu,
+        )
+        expected_row0 = (
+            (2 * mu * row1[0] - mu * mu * row2[0]) % p,
+            (2 * mu * row1[1] - mu * mu * row2[1]) % p,
+        )
+        assert row0 == expected_row0, (
+            p,
+            index,
+            a_rows,
+            b_rows,
+            (p01, p12, p02),
+            mu,
+            expected_row0,
         )
     else:
         assert p02 == 0, (p, index, a_rows, b_rows, (p01, p12, p02))

@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 Plucker-chart row recurrence
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** On the nonzero Plucker chart `P_i!=0`, the
+  endpoint conic is rewritten as the row recurrence
+  `r_{i+2}=2lambda_i r_{i+1}-lambda_i^2 r_i`, with the symmetric reverse
+  recurrence on `R_i!=0`.
+- **How it is useful:** This turns the residual moving endpoint-support chart
+  from a generic conic condition into a one-parameter adjacent-row recurrence,
+  which is a sharper local normal form for M1 residue-line packing.
+- **What to do next:** Study overlapping endpoint charts for `i=0,1` to see
+  whether simultaneous zero and pole endpoint production forces a bounded
+  recurrence packet or a previously charged degeneracy.
+
 ### 2026-06-30 - M1 square-norm Plucker-chart decomposition
 
 - **Agent/model:** AllenGrahamHart / Codex.
