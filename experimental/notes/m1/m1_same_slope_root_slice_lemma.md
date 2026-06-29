@@ -1571,6 +1571,55 @@ This is not yet a global M1 bound, because the active core image
 uncontrolled external-anchor multiplicity over each fixed core and isolates the
 next object as a domain-core image.
 
+Finally, the fixed-core graph is cut out by one explicit bidegree-two
+determinant.  For a fixed `(j-2)`-core `R`, set
+
+```text
+U_m=H_{2,j}(u)(X^m ell_R),        V_m=H_{2,j}(v)(X^m ell_R),     0<=m<=2.
+```
+
+For roots `beta,y` put
+
+```text
+C_R(beta,y)
+  = U_2-(beta+y)U_1+beta y U_0,
+D_R(beta,y)
+  = V_2-(beta+y)V_1+beta y V_0.
+```
+
+Then
+
+```text
+C_R(beta,y)=H_{2,j}(u)((X-beta)(X-y)ell_R),
+D_R(beta,y)=H_{2,j}(v)((X-beta)(X-y)ell_R).
+```
+
+The fixed-core boundary determinant is therefore
+
+```text
+Delta_R(beta,y)=det(C_R(beta,y),D_R(beta,y)).       (BIDET)
+```
+
+It is symmetric in `beta,y` and has bidegree at most `(2,2)`.  Its vertical
+specialization `Delta_R(beta, -)` is the fixed-anchor quadratic
+`Delta_{R,beta}(y)` above; its horizontal specialization `Delta_R(-,y)` is the
+boundary-shadow quadratic for `S=R union {y}`.  Thus the two fiber reductions
+are exactly the statement that all residual vertical and horizontal fibers of
+the bidegree `(2,2)` curve (BIDET) have size at most two after the corresponding
+root-slice charges.
+
+The residual fixed-core target can consequently be stated as
+
+```text
+beta in F\D,        y in D\R,
+Delta_R(beta,y)=0, D_R(beta,y) != 0,
+```
+
+with the finite slope recovered from `C_R(beta,y)+zD_R(beta,y)=0`, after
+charged zero triples and fixed-slope vertical/horizontal fibers have been
+removed.  This bidegree form is the precise low-dimensional incidence object
+left by the one-outside boundary reductions.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -1703,8 +1752,9 @@ anchor-recovery condition plus equivalent quadratic slope and anchor gates,
 identifies the conic-secant form of the remaining shadow target, reduces fixed
 external-anchor one-root fibers to the boundary-core image after lifted
 boundary-core root-slice charges, packages each fixed-domain-core boundary
-incidence as a bidegree-two graph, and gives the local max-degree bound and
-average-collinearity corollary above, including the packet-level
+incidence as a bidegree-two graph cut out by an explicit `(2,2)` determinant,
+and gives the local max-degree bound and average-collinearity corollary above,
+including the packet-level
 higher-exchange ledger substitution.
 
 ## Verification
@@ -1734,4 +1784,5 @@ compression ledger.  It checks the simultaneous kernel root-slice recursion
 also checks the boundary-off external-anchor corollary and boundary-shadow
 fiber reduction over sampled small domains, including the rank-one
 anchor-recovery, quadratic slope-gate, conic-secant anchor-gate, and
-fixed-anchor boundary-core fiber and fixed-core graph criteria.
+fixed-anchor boundary-core fiber, fixed-core graph, and bidegree determinant
+criteria.

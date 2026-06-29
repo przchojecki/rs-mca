@@ -23,9 +23,9 @@ dimension drop is checked by the same affine-preimage calculation, and the
 residual exchange-degree corollary is checked on small split-support graphs.
 The boundary shadow-fiber, rank-one anchor-recovery, quadratic slope-gate,
 conic-secant anchor-gate, fixed-anchor boundary-core fiber, and fixed-core
-graph reductions are checked on sampled small-field instances, and the
-average-ledger and boundary-core closure substitutions are checked as exact
-rational inequalities.
+graph reductions are checked on sampled small-field instances, including the
+fixed-core bidegree determinant normal form.  The average-ledger and
+boundary-core closure substitutions are checked as exact rational inequalities.
 """
 
 from __future__ import annotations
@@ -2461,6 +2461,106 @@ def check_boundary_fixed_anchor_core_fibers() -> None:
                     )
 
 
+Poly2 = dict[tuple[int, int], int]
+
+
+def poly_add_scaled(target: Poly2, source: Poly2, scale: int, p: int) -> None:
+    for monomial, coeff in source.items():
+        target[monomial] = (target.get(monomial, 0) + scale * coeff) % p
+        if target[monomial] == 0:
+            del target[monomial]
+
+
+def poly_mul(left: Poly2, right: Poly2, p: int) -> Poly2:
+    out: Poly2 = {}
+    for (bi, yi), left_coeff in left.items():
+        for (bj, yj), right_coeff in right.items():
+            monomial = (bi + bj, yi + yj)
+            out[monomial] = (out.get(monomial, 0) + left_coeff * right_coeff) % p
+            if out[monomial] == 0:
+                del out[monomial]
+    return out
+
+
+def eval_poly2(poly: Poly2, beta: int, y: int, p: int) -> int:
+    return sum(
+        coeff * pow(beta, beta_deg, p) * pow(y, y_deg, p)
+        for (beta_deg, y_deg), coeff in poly.items()
+    ) % p
+
+
+def boundary_core_bidegree_coeffs(
+    u_vectors: tuple[tuple[int, int], tuple[int, int], tuple[int, int]],
+    v_vectors: tuple[tuple[int, int], tuple[int, int], tuple[int, int]],
+    p: int,
+) -> Poly2:
+    basis: tuple[Poly2, Poly2, Poly2] = (
+        {(1, 1): 1},
+        {(1, 0): (-1) % p, (0, 1): (-1) % p},
+        {(0, 0): 1},
+    )
+    out: Poly2 = {}
+    for i, u_vec in enumerate(u_vectors):
+        for j, v_vec in enumerate(v_vectors):
+            poly_add_scaled(out, poly_mul(basis[i], basis[j], p), det2(u_vec, v_vec, p), p)
+    return out
+
+
+def eval_boundary_core_vectors(
+    vectors: tuple[tuple[int, int], tuple[int, int], tuple[int, int]],
+    beta: int,
+    y: int,
+    p: int,
+) -> tuple[int, int]:
+    coeffs = ((beta * y) % p, (-(beta + y)) % p, 1)
+    return (
+        sum(coeffs[idx] * vectors[idx][0] for idx in range(3)) % p,
+        sum(coeffs[idx] * vectors[idx][1] for idx in range(3)) % p,
+    )
+
+
+def check_boundary_core_bidegree_determinant() -> None:
+    rng = Random(20260715)
+    for p in (5, 7, 11, 17, 31):
+        samples = [
+            (
+                tuple((rng.randrange(p), rng.randrange(p)) for _ in range(3)),
+                tuple((rng.randrange(p), rng.randrange(p)) for _ in range(3)),
+            )
+            for _ in range(2000)
+        ]
+        for u_vectors, v_vectors in samples:
+            poly = boundary_core_bidegree_coeffs(u_vectors, v_vectors, p)
+            assert all(beta_deg <= 2 and y_deg <= 2 for beta_deg, y_deg in poly), (
+                p,
+                u_vectors,
+                v_vectors,
+                poly,
+            )
+            for beta in range(p):
+                for y in range(p):
+                    c_vec = eval_boundary_core_vectors(u_vectors, beta, y, p)
+                    d_vec = eval_boundary_core_vectors(v_vectors, beta, y, p)
+                    direct = det2(c_vec, d_vec, p)
+                    assert eval_poly2(poly, beta, y, p) == direct, (
+                        p,
+                        u_vectors,
+                        v_vectors,
+                        beta,
+                        y,
+                        poly,
+                        direct,
+                    )
+                    assert eval_poly2(poly, beta, y, p) == eval_poly2(poly, y, beta, p), (
+                        p,
+                        u_vectors,
+                        v_vectors,
+                        beta,
+                        y,
+                        poly,
+                    )
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -2667,6 +2767,7 @@ def main() -> None:
     check_boundary_shadow_quadratic_gate()
     check_boundary_shadow_conic_secant_duality()
     check_boundary_fixed_anchor_core_fibers()
+    check_boundary_core_bidegree_determinant()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     check_boundary_core_closure_substitution()

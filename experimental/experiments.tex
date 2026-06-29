@@ -2010,6 +2010,24 @@ domain roots \(y\in D\setminus R\) form a bipartite graph of degree at most two
 on both sides.  Hence each fixed \(R\) supports at most \(2(n-j+2)\) residual
 external anchors.  Thus the next boundary object is the lower-dimensional
 boundary-core image, or still further the active \((j-2)\)-core image.
+For fixed \(R\), write
+\[
+  U_m=H_{2,j}(u)(X^m\ell_R),\qquad
+  V_m=H_{2,j}(v)(X^m\ell_R),\qquad 0\le m\le2 .
+\]
+Then the remaining fixed-core incidence is cut out by the symmetric bidegree
+\((2,2)\) determinant
+\[
+  \Delta_R(\beta,y)=
+  \det\!\left(
+    U_2-(\beta+y)U_1+\beta y U_0,\,
+    V_2-(\beta+y)V_1+\beta y V_0
+  \right).
+\]
+The fixed-shadow and fixed-anchor quadratics are the two coordinate
+specializations of this same determinant.  Thus the active core image is a
+concrete bidegree-two incidence target, not an uncontrolled external-anchor
+search.
 
 Consequently, after fixed-slope root slices are removed, the residual \(t=2\)
 one-exchange graph has maximum degree at most \(j\): each locator has only

@@ -189,6 +189,27 @@ fixed core supports at most `2(n-j+2)` residual external anchors, and globally
 where `Root_off^res` is the image of active `(j-2)` domain cores.  This isolates
 the next object as a domain-core image.
 
+For fixed `R`, this graph is cut out by an explicit bidegree `(2,2)`
+determinant.  With
+
+```text
+U_m=H_{2,j}(u)(X^m ell_R),        V_m=H_{2,j}(v)(X^m ell_R),
+```
+
+put
+
+```text
+Delta_R(beta,y)
+ = det(U_2-(beta+y)U_1+beta y U_0,
+       V_2-(beta+y)V_1+beta y V_0).
+```
+
+Then `Delta_R(beta,y)=0` is exactly the rank-one boundary landing condition for
+`(X-beta)(X-y)ell_R`; the active filter is the nonvanishing of the second
+vector.  The fixed-shadow and fixed-anchor quadratics are the two coordinate
+specializations of this same determinant.  Thus the remaining boundary-core
+image is a concrete bidegree-two incidence target.
+
 ## Integration Decision
 
 The full PR was not merged wholesale.  It included a very large generated
@@ -223,5 +244,6 @@ This note does not prove the all-line M1 polynomial packing theorem.  It gives
 per-shadow quadratic slope/anchor gates, the shadow-fiber reduction, and the
 fixed-anchor boundary-core fiber reduction after fixed-slope boundary slices
 are charged, plus the fixed-core degree-two graph form.  It does not bound the
-total active domain-core image, does not give a leaderboard row, and does not
-change any public MCA or interleaved-list threshold.
+total active domain-core image or prove a bidegree-incidence point count, does
+not give a leaderboard row, and does not change any public MCA or
+interleaved-list threshold.

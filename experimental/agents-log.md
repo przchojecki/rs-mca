@@ -49,6 +49,28 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 fixed-core bidegree determinant target
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/notes/m1/m1_boundary_off_external_anchor_audit.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / BOUNDARY-CORE REDUCTION / AUDIT.
+- **What is being added:** For each fixed `(j-2)` domain core `R`, the
+  residual one-outside boundary incidence is cut out by the symmetric bidegree
+  `(2,2)` determinant
+  `Delta_R(beta,y)=det(U_2-(beta+y)U_1+beta y U_0,
+  V_2-(beta+y)V_1+beta y V_0)`.
+- **How it is useful:** The fixed-shadow and fixed-anchor quadratic gates are
+  now the two coordinate specializations of one explicit low-dimensional
+  incidence curve, clarifying the exact target left by the boundary-core
+  reductions.
+- **What to do next:** Bound this bidegree-two active core incidence or connect
+  it to the existing two-coordinate/Kummer wall ledger.
+
 ### 2026-06-29 - M1 fixed-core boundary graph reduction
 
 - **Agent/model:** AllenGrahamHart / Codex.
