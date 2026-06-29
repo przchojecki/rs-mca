@@ -5512,6 +5512,36 @@ and hence
 Thus, after lower-dimensional, fixed-root, bounded-width primitive, and
 diffuse charges, the remaining half-height term is only the base-free
 occupancy count \(OccHalf_S(R_S)\).
+Keeping the height histogram gives a sharper local optimization.  For
+\(1\le R\le u_S+1\), set
+\[
+  HOcc_S(R)=
+  \begin{cases}
+    0, & B_S\ne\emptyset,\\[1mm]
+    \displaystyle
+    \sum_{r=R}^{u_S}
+      m_{S,r}^{hh}\left(1+\left\lfloor {N_S-q_S\over r}\right\rfloor\right),
+      & B_S=\emptyset,
+  \end{cases}
+\]
+with empty sum when \(R=u_S+1\).  Then
+\[
+  Short_S^{can}\le FixedRootTail_S+BWPrim_S(R)+HOcc_S(R),
+\]
+and the cutoff can be optimized locally:
+\[
+  PostCore_S^*=\min_{1\le R\le u_S+1}\bigl(BWPrim_S(R)+HOcc_S(R)\bigr).
+\]
+Consequently
+\[
+  |F(A)|\le \sum_{S\in Tree(A)}L_S^{can}
+   +\sum_{S\in Tree_2(A)}{4G_S^{can}\over q_S^2}
+   +\sum_{S\in Tree_2(A)}FixedRootTail_S
+   +\sum_{S\in Tree_2(A)}PostCore_S^* .
+\]
+This is the histogram-optimized post-charge endpoint; the coarser
+\(OccHalf_S(R_S)\) follows by replacing the histogram by the trivial
+half-height fiber-count bound.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

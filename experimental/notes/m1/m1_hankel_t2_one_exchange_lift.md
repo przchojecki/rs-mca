@@ -5510,6 +5510,62 @@ fixed-root, bounded-width, and diffuse estimates, the only remaining
 unexpanded half-height term is the occupancy count `OccHalf_S(R_S)`, which is
 purely combinatorial at each canonical node.
 
+## Histogram-Optimized Post-Charge Core
+
+The occupancy term in (PF2-postcharge-endpoint) can be sharpened by keeping
+the half-height height histogram instead of replacing it by the coarsest
+fiber-count bound.  For `1<=R<=u_S+1`, define
+
+```text
+HOcc_S(R)
+ =
+ 0,                                             if B_S nonempty,
+
+ sum_{r=R}^{u_S}
+   m_{S,r}^{hh} (1+floor((N_S-q_S)/r)),         if B_S empty,
+```
+
+with the convention that the sum is empty when `R=u_S+1`.  Then the same
+partition of root-free primitive directions gives
+
+```text
+Short_S^{can}
+ <= FixedRootTail_S + BWPrim_S(R) + HOcc_S(R). (PF2-short-hist)
+```
+
+Indeed, the root-free primitive directions with `r<R` are counted exactly by
+`BWPrim_S(R)`.  The root-free directions with `r>=R` are a subfamily of the
+half-height fibers counted by `m_{S,r}^{hh}`, and each has surplus weight
+`1+floor((N_S-q_S)/r)`.  If `B_S` is nonempty, the root-free subfamily is
+empty by the base-free lemma, so `HOcc_S(R)=0` is valid.
+
+Thus the cutoff can be optimized locally.  Put
+
+```text
+PostCore_S^*
+ =
+ min_{1<=R<=u_S+1} (BWPrim_S(R)+HOcc_S(R)).
+```
+
+Substituting the minimizing cutoff into (PF2-short-hist) and then into
+(PF2-canon-diffuse-short) gives
+
+```text
+|F(A)|
+ <=
+  sum_{S in Tree(A)} LowerDim_S^can
+  + sum_{S in Tree_2(A)} 4G_S^{can}/q_S^2
+  + sum_{S in Tree_2(A)} FixedRootTail_S
+  + sum_{S in Tree_2(A)} PostCore_S^*.         (PF2-postcharge-opt)
+```
+
+The coarser `OccHalf_S(R)` term is recovered from `HOcc_S(R)` by bounding the
+number of half-height fibers by `floor(N_S/(floor(q_S/2)+1))` and every wide
+surplus denominator by `R`.  The optimized form is therefore the strongest
+post-charge endpoint available from the current local analysis: all remaining
+uncharged half-height information is encoded in a finite node-local histogram
+minimization.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

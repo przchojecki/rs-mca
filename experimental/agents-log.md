@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 histogram-optimized post-charge core
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Replaces the coarse post-charge occupancy term by
+  a node-local histogram minimization `PostCore_S^*` over primitive-width
+  cutoffs.
+- **How it is useful:** Keeps bounded-width root-free primitive directions
+  exact and charges only the wide remainder to the half-height fiber
+  histogram, giving the sharpest current post-charge endpoint.
+- **What to do next:** Sum or bound the optimized node-local core over the
+  canonical tree.
+
 ### 2026-06-29 - M1 post-charge diffuse-occupancy endpoint
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
