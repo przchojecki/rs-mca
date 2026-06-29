@@ -102,6 +102,31 @@ floor((17^32 + 1) / 2^128) = 6.
 So the projective-line version has the same `5/6` integer-radius transition,
 with denominator `|F|+1`.
 
+## Variant Denominator Audit
+
+The promoted high-agreement theorem identifies three line numerators in the
+exact range:
+
+```text
+LD_sw(C,a) = LD_ca(C,a) = LD_sw,proj(C,a) = r+1.
+```
+
+The certificate keeps their denominators separate:
+
+```text
+finite support-wise MCA: denominator |F|
+finite no-loss CA:       denominator |F|
+projective support-wise: denominator |P^1(F)| = |F| + 1
+```
+
+For the `F_17^32` row all three denominators have budget `6` at target
+`2^-128`, so all three variants have the same safe/unsafe grid transition:
+
+```text
+a = 506, r = 6: numerator 7, unsafe;
+a = 507, r = 5: numerator 6, safe.
+```
+
 ## Row-Independent Compiler
 
 For a single theorem-backed line/MCA/CA numerator, define

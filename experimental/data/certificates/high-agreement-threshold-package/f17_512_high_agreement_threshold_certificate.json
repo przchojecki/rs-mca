@@ -111,6 +111,43 @@
     "threshold_pinned": true,
     "unsafe_line_numerator": 7
   },
+  "f17_512_variant_denominator_audit": {
+    "rows": [
+      {
+        "budget": 6,
+        "denominator": 2367911594760467245844106297320951247361,
+        "denominator_note": "projective slopes use |F|+1; affine/no-loss finite variants use |F|",
+        "label": "finite_supportwise_mca",
+        "safe_numerator": 6,
+        "safe_probability_le_target": true,
+        "unsafe_numerator": 7,
+        "unsafe_probability_gt_target": true
+      },
+      {
+        "budget": 6,
+        "denominator": 2367911594760467245844106297320951247361,
+        "denominator_note": "projective slopes use |F|+1; affine/no-loss finite variants use |F|",
+        "label": "finite_no_loss_ca",
+        "safe_numerator": 6,
+        "safe_probability_le_target": true,
+        "unsafe_numerator": 7,
+        "unsafe_probability_gt_target": true
+      },
+      {
+        "budget": 6,
+        "denominator": 2367911594760467245844106297320951247362,
+        "denominator_note": "projective slopes use |F|+1; affine/no-loss finite variants use |F|",
+        "label": "projective_supportwise_mca",
+        "safe_numerator": 6,
+        "safe_probability_le_target": true,
+        "unsafe_numerator": 7,
+        "unsafe_probability_gt_target": true
+      }
+    ],
+    "safe_agreement": 507,
+    "source": "tex/slackMCA_v4.tex, theorem B-high-agreement-line-staircase",
+    "unsafe_agreement": 506
+  },
   "proof_input": {
     "formula": "LD_sw(C,a)=r+1=n-a+1 when r=n-a <= floor((n-k)/3)",
     "nonclaim": "this certificate does not prove lower-agreement M1, quotient floors, extension transfer, or L2",

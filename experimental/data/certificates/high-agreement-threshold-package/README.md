@@ -27,6 +27,8 @@ The certificate records:
 
 - `floor(17^32 / 2^128) = 6`;
 - affine and projective denominator checks;
+- explicit finite support-wise MCA, finite no-loss CA, and projective
+  denominator audit;
 - exact tangent-range entry `a >= 427`;
 - pure finite-slope support-wise MCA threshold `a=506/507`;
 - exact M2 endpoint bridge checks

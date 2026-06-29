@@ -86,6 +86,20 @@ def bridge_probe(n: int, denominator: int, r: int, numerator: int) -> dict[str, 
     }
 
 
+def variant_row(label: str, denominator: int, numerator: int) -> dict[str, Any]:
+    target_den = 1 << TARGET
+    return {
+        "label": label,
+        "denominator": denominator,
+        "budget": budget(denominator),
+        "safe_numerator": numerator,
+        "unsafe_numerator": numerator + 1,
+        "safe_probability_le_target": numerator * target_den <= denominator,
+        "unsafe_probability_gt_target": (numerator + 1) * target_den > denominator,
+        "denominator_note": "projective slopes use |F|+1; affine/no-loss finite variants use |F|",
+    }
+
+
 def exact_threshold(
     n: int,
     k: int,
@@ -275,6 +289,11 @@ def build_certificate() -> dict[str, Any]:
         )
 
     boundary_rows = prize_rate_boundary_rows()
+    variant_rows = [
+        variant_row("finite_supportwise_mca", F17_Q, finite["safe_line_numerator"]),
+        variant_row("finite_no_loss_ca", F17_Q, finite["safe_line_numerator"]),
+        variant_row("projective_supportwise_mca", F17_Q + 1, projective["safe_line_numerator"]),
+    ]
     certificate = {
         "status": "PROVED-COMPILER-ARITHMETIC / AUDIT",
         "proof_input": {
@@ -312,6 +331,12 @@ def build_certificate() -> dict[str, Any]:
         },
         "f17_512_affine": finite,
         "f17_512_projective": projective,
+        "f17_512_variant_denominator_audit": {
+            "source": "tex/slackMCA_v4.tex, theorem B-high-agreement-line-staircase",
+            "safe_agreement": finite["first_safe_agreement"],
+            "unsafe_agreement": finite["last_unsafe_agreement"],
+            "rows": variant_rows,
+        },
         "f17_512_endpoint_bridge": {
             "source": "experimental/notes/m2/m2_line_decoding_mca_bridge.md",
             "safe_endpoint": bridge_probe(
@@ -343,6 +368,10 @@ def build_certificate() -> dict[str, Any]:
     all_checks = list(row_checks.values())
     all_checks.extend(finite.get("checks", {}).values())
     all_checks.extend(projective.get("checks", {}).values())
+    for row in variant_rows:
+        all_checks.append(row["budget"] == finite["budget"])
+        all_checks.append(row["safe_probability_le_target"])
+        all_checks.append(row["unsafe_probability_gt_target"])
     for example in compiler_examples:
         all_checks.extend(example.get("checks", {}).values())
     for row in boundary_rows:
