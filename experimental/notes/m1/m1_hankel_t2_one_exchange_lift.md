@@ -4892,6 +4892,65 @@ larger `w` and gain a stronger spread coefficient; a node with expensive
 root-slice shadows can choose `w=0` and fall back to the sharp `1/(q_S-1)`
 no-base determinant-gate capacity.
 
+## Bad-Root-Free Quotient-Line Majorant
+
+The optimized endpoint can be made independent of the bad-root counts
+`z_{S,lambda,C}` at the cost of a coarser but purely height-based bound.  Put
+
+```text
+N_S=|D_S^{can}|,
+H_{S,j}^{can}=sum_lambda binom(|D_{S,lambda}|,q_S-j).
+```
+
+For a width-`j` quotient line, `|C|=q_S-j`, so the remaining quotient domain
+has size
+
+```text
+N_{S,C}=N_S-q_S+j.
+```
+
+Since the quotient direction has degree `<j`, its bad-root count satisfies
+`0<=z_{S,lambda,C}<=j-1`.  Therefore, writing `t=j-z_{S,lambda,C}`,
+
+```text
+floor((N_{S,C}-z_{S,lambda,C})/(j-z_{S,lambda,C}))
+ = floor(1+(N_{S,C}-j)/t)
+ <= N_{S,C}-j+1
+ = N_S-q_S+1.                                  (PF2-quot-line-unif)
+```
+
+Thus
+
+```text
+R_{S,j}^{can} <= (N_S-q_S+1) H_{S,j}^{can}.     (PF2-R-unif)
+```
+
+Define the height-only capacity
+
+```text
+WidehatCap_S(w)
+ =
+  G_S^{can}/Phi_{q_S}(q_S-w-1)
+  + (N_S-q_S+1) sum_{j=1}^{w} H_{S,j}^{can},
+
+WidehatCap_S^*=min_{0<=w<=q_S-2} WidehatCap_S(w).
+```
+
+Then (PF2-canon-opt-cap) gives the bad-root-free endpoint
+
+```text
+|F(A)|
+ <=
+  sum_{S in Tree(A)} LowerDim_S^can
+  + sum_{S in Tree_2(A)} WidehatCap_S^*.        (PF2-canon-height-cap)
+```
+
+This form is weaker than the exact optimized capacity, but it depends only on
+canonical node sizes and projective-fiber heights.  It removes the last
+one-root bad-slice parameter from the displayed `b=2` capacity bound, which is
+useful when one wants a global estimate before proving sharper root-slice
+bad-root cancellation.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

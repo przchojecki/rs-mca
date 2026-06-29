@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 b=2 height-only capacity corollary
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Derives a bad-root-free majorant for the optimized
+  canonical capacity: each width-`j` quotient-line packing floor is bounded by
+  `N_S-q_S+1`, so the concentrated term depends only on projective-fiber
+  subset counts `H_{S,j}^{can}`.
+- **How it is useful:** Provides a fully explicit height-count endpoint for
+  the canonical `b=2` branch before any sharper root-slice bad-root
+  cancellation is proved.
+- **What to do next:** Bound the resulting height-only capacities globally
+  over canonical peeled anchors, or replace them by sharper root-slice counts
+  where available.
+
 ### 2026-06-29 - M1 b=2 optimized canonical capacity
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -5307,6 +5307,18 @@ The optimized canonical endpoint is then
   |F(A)|\le \sum_{S\in Tree(A)}L_S^{can}
   +\sum_{S\in Tree_2(A)} Cap_S^* .
 \]
+There is also a height-only corollary.  Since a width-\(j\) quotient direction
+has fewer than \(j\) roots, each quotient-line packing floor is at most
+\(N_S-q_S+1\), independent of its bad-root count.  Hence, with
+\[
+  H_{S,j}^{can}=\sum_\lambda \binom{|D_{S,\lambda}|}{q_S-j},
+\]
+one has
+\[
+  R_{S,j}^{can}\le (N_S-q_S+1)H_{S,j}^{can}.
+\]
+Replacing \(R_{S,j}^{can}\) by this upper bound gives a bad-root-free
+capacity depending only on node sizes and projective-fiber heights.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots
