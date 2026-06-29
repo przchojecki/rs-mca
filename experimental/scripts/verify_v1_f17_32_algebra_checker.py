@@ -1,0 +1,258 @@
+#!/usr/bin/env python3
+"""Verifier 1 (towards-prize.md A.3): independent high-level algebra checker
+for the board row C = RS[F_17^32, H, 256], n=512, k=256, rho=1/2.
+
+WHY THIS EXISTS
+---------------
+towards-prize.md A.3 asks for *two independent* verifiers that must agree:
+  - Verifier 1: a high-level algebra verifier (Sage / Magma / PARI suggested);
+  - Verifier 2: a low-level arithmetic verifier (Rust / C++ / minimal Python).
+The 134 `verify_*.py` scripts in this repo are the bespoke exact-integer stack
+they are meant to be cross-checked *against*, not an independent re-implementation.
+
+Sage / PARI-GP / Magma are not assumed present.  This verifier therefore builds
+F_17^32 on top of sympy's `galoistools` finite-field primitives -- a code path
+entirely independent of the repo's hand-rolled arithmetic, which is exactly what
+"two verifiers must agree" requires.  (sympy ships a native GF(p) but no turnkey
+GF(p^32); we construct the extension field ourselves, ~one screen of code.)
+
+A.3 CHECKLIST COVERAGE (this file grows one item per loop iteration):
+  [x] field construction
+  [x] domain construction
+  [ ] locator splitting
+  [ ] interpolation
+  [ ] degree bound
+  [ ] agreement count
+  [ ] slope distinctness
+  [ ] noncontainment rank
+
+HONEST SCOPE / LIMITS
+---------------------
+  * This verifier cross-checks the *algebra and the exact-integer gates*
+    independently.  It does NOT brute-force the bad-slope counts over
+    binom(512, .) -- that enumeration is infeasible for every verifier on
+    this row, and no safety/threshold status is asserted here.
+  * The pinned irreducible below is an *independent* choice (not yet the frozen
+    A.1 field polynomial), so the isomorphism-invariant facts (gate arithmetic,
+    |H|=512 = full 2-Sylow, field laws) are checked now; certificate-*hash*
+    agreement, which needs the frozen basis, is a later hardening item.
+  * sympy `galoistools` is pure-Python: fine for field laws, the gate, and the
+    handful of certificate slopes; not for mass enumeration.
+
+Run:  python3 experimental/scripts/verify_v1_f17_32_algebra_checker.py
+Exit non-zero iff any *implemented* check fails.
+"""
+from __future__ import annotations
+
+from sympy.polys.domains import ZZ
+from sympy.polys import galoistools as gt
+
+# ----------------------------------------------------------------------------
+# Row parameters (frozen board row)
+# ----------------------------------------------------------------------------
+P = 17
+N = 32                       # extension degree
+Q = P ** N                   # |F_17^32|
+K = 256                      # RS dimension
+N_CODE = 512                 # block length = |H|
+RHO = (K, N_CODE)            # 1/2
+TWO128 = 2 ** 128
+
+# Independently pinned degree-32 irreducible over F_17 (reproducible;
+# irreducibility re-asserted at runtime in check_field_construction).
+MODULUS = [1, 14, 0, 4, 4, 2, 0, 2, 14, 7, 5, 5, 12, 6, 11, 11, 7,
+           6, 1, 12, 3, 9, 3, 4, 5, 9, 11, 3, 13, 5, 8, 7, 16]
+
+# ----------------------------------------------------------------------------
+# Independent GF(17^32) arithmetic on sympy galoistools (dense, high-deg-first;
+# [] is the zero element).
+# ----------------------------------------------------------------------------
+ONE = [1]
+ZERO: list = []
+
+
+def fadd(a, b):
+    return gt.gf_add(a, b, P, ZZ)
+
+
+def fsub(a, b):
+    return gt.gf_sub(a, b, P, ZZ)
+
+
+def fmul(a, b):
+    return gt.gf_rem(gt.gf_mul(a, b, P, ZZ), MODULUS, P, ZZ)
+
+
+def fpow(a, e):
+    return gt.gf_pow_mod(a, e, MODULUS, P, ZZ)
+
+
+def finv(a):
+    # Fermat inverse in F_17^32: a^(q-2).
+    return fpow(a, Q - 2)
+
+
+def feval(coeffs, x):
+    """Horner-free eval of poly given low-degree-first coeff list `coeffs`."""
+    acc, xp = ZERO, ONE
+    for c in coeffs:
+        acc = fadd(acc, fmul(c, xp))
+        xp = fmul(xp, x)
+    return acc
+
+
+def int_to_elem(m):
+    """Canonical field element for a non-negative integer (base-17 digits)."""
+    if m == 0:
+        return ZERO
+    digits = []
+    while m:
+        digits.append(m % P)
+        m //= P
+    return gt.gf_strip(list(reversed(digits)))
+
+
+def find_subgroup_generator(order=512):
+    """Deterministic generator of the unique order-`order` subgroup of F*.
+    Requires `order` a power of 2 dividing Q-1 (true here: 512 = 2^9)."""
+    assert (order & (order - 1)) == 0, "order must be a power of two"
+    e = (Q - 1) // order
+    half = order // 2
+    m = 2
+    while m < 10_000:
+        r = int_to_elem(m)
+        cand = fpow(r, e)
+        if fpow(cand, half) != ONE and fpow(cand, order) == ONE:
+            return cand, m
+        m += 1
+    raise RuntimeError("no order-%d generator found in search bound" % order)
+
+
+# ----------------------------------------------------------------------------
+# Checks.  Each returns (status, details) where status is True/False (PASS/FAIL)
+# for an implemented check, or None for a PENDING (not-yet-covered) item.
+# ----------------------------------------------------------------------------
+def check_gate_and_acceptance():
+    """A.1 acceptance checklist + the bad-slope bridge gate (exact integers)."""
+    d = []
+    q_line = Q
+    floor_q = q_line // TWO128
+    ok = True
+    d.append(f"q_line = 17^32 = {q_line}")
+    d.append(f"2^128  = {TWO128}")
+    d.append(f"floor(q_line / 2^128) = {floor_q}  (expect 6)")
+    ok &= (floor_q == 6)
+    d.append(f"7 * 2^128 > q_line : {7 * TWO128 > q_line}  (expect True)")
+    ok &= (7 * TWO128 > q_line)
+    d.append(f"6 * 2^128 < q_line : {6 * TWO128 < q_line}  (expect True)")
+    ok &= (6 * TWO128 < q_line)
+    # gate consequence: LD_sw >= 7  <=>  emca = LD_sw/q_line > 2^-128
+    d.append("=> LD_sw(C,a) >= 7  iff  emca(C,delta) > 2^-128  (a-independent gate)")
+    d.append(f"n={N_CODE}, k={K}, rho={RHO[0]}/{RHO[1]}")
+    ok &= (N_CODE == 512 and K == 256 and 2 * K == N_CODE)
+    return ok, d
+
+
+def check_field_construction():
+    """A.3: field construction.  Independent GF(17^32) on galoistools."""
+    d = []
+    ok = True
+    # (a) modulus is a genuine degree-32 irreducible over F_17.
+    deg_ok = (len(MODULUS) - 1 == N) and (MODULUS[0] == 1)
+    irr_ok = gt.gf_irreducible_p(MODULUS, P, ZZ)
+    d.append(f"modulus monic degree-32 : {deg_ok}")
+    d.append(f"modulus irreducible over F_17 : {irr_ok}")
+    ok &= deg_ok and irr_ok
+    # (b) field laws on sample elements: distributivity, inverse, Frobenius.
+    a = int_to_elem(3); b = int_to_elem(17 + 5); c = int_to_elem(17 ** 4 + 2)
+    distrib = fmul(a, fadd(b, c)) == fadd(fmul(a, b), fmul(a, c))
+    d.append(f"distributivity a*(b+c)=ab+ac : {distrib}")
+    inv_ok = (fmul(a, finv(a)) == ONE) and (fmul(c, finv(c)) == ONE)
+    d.append(f"multiplicative inverse a*a^-1=1 : {inv_ok}")
+    # Frobenius: x^17 is additive and (a)^(q)=a (Fermat in the field).
+    frob_fixes = fpow(a, Q) == a
+    d.append(f"Frobenius / field order a^q = a : {frob_fixes}")
+    ok &= distrib and inv_ok and frob_fixes
+    return ok, d
+
+
+def check_domain_construction():
+    """A.3: domain construction.  H = order-512 subgroup; |H|=512 full 2-Sylow."""
+    d = []
+    ok = True
+    # 2-adic valuation of Q-1 -> 512 = 2^9 is the FULL 2-Sylow (and 1024 is not).
+    v2, t = 0, Q - 1
+    while t % 2 == 0:
+        t //= 2; v2 += 1
+    d.append(f"v2(17^32 - 1) = {v2}  => 512=2^9 divides Q-1 exactly: {v2 == 9}")
+    d.append(f"1024 | Q-1 ? {(Q - 1) % 1024 == 0}  (expect False: 512 is full 2-Sylow)")
+    ok &= (v2 == 9)
+    h, witness = find_subgroup_generator(512)
+    d.append(f"order-512 generator found (from base-17 element {witness})")
+    # build H, check 512 distinct, closure, and that it's a subgroup of F*.
+    pts, cur = [], ONE
+    for _ in range(512):
+        pts.append(tuple(cur))
+        cur = fmul(cur, h)
+    distinct = len(set(pts)) == 512
+    closes = (cur == ONE)                       # h^512 = 1
+    has_one = tuple(ONE) in set(pts)
+    no_zero = tuple(ZERO) not in set(pts)
+    d.append(f"|H| = 512 distinct points : {distinct}")
+    d.append(f"H closes (h^512 = 1) : {closes}")
+    d.append(f"1 in H : {has_one} ;  0 not in H : {no_zero}")
+    # exact order 512 (no smaller): h^256 != 1
+    d.append(f"generator order exactly 512 (h^256 != 1) : {fpow(h, 256) != ONE}")
+    ok &= distinct and closes and has_one and no_zero and (fpow(h, 256) != ONE)
+    return ok, d
+
+
+def _pending():
+    return None, ["PENDING -- added in a later loop iteration"]
+
+
+# Ordered A.3 coverage registry.  PENDING items are filled in priority order.
+CHECKS = [
+    ("foundational gate / A.1 acceptance", check_gate_and_acceptance),
+    ("field construction",                 check_field_construction),
+    ("domain construction",                check_domain_construction),
+    ("locator splitting",                  _pending),
+    ("interpolation",                      _pending),
+    ("degree bound",                       _pending),
+    ("agreement count",                    _pending),
+    ("slope distinctness",                 _pending),
+    ("noncontainment rank",                _pending),
+]
+
+
+def main():
+    print("=" * 74)
+    print("Verifier 1 (A.3) -- independent algebra checker  C = RS[F_17^32, H, 256]")
+    print("independent stack: sympy.galoistools (NOT the repo's bespoke arithmetic)")
+    print("=" * 74)
+    failed = 0
+    done = 0
+    pending = 0
+    for title, fn in CHECKS:
+        status, details = fn()
+        if status is None:
+            tag = "PENDING"
+            pending += 1
+        elif status:
+            tag = "PASS"
+            done += 1
+        else:
+            tag = "FAIL"
+            failed += 1
+        print(f"\n[{tag:7}] {title}")
+        for line in details:
+            print(f"          {line}")
+    print("\n" + "-" * 74)
+    print(f"implemented PASS: {done}   FAIL: {failed}   PENDING: {pending}")
+    print("-" * 74)
+    if failed:
+        raise SystemExit(1)
+
+
+if __name__ == "__main__":
+    main()
