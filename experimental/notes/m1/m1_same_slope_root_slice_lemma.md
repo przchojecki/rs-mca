@@ -10,6 +10,7 @@ BOUNDARY QUARTIC KUMMER GATE / ROOT-CORE RECURRENCE CHART /
 ROOT-CORE SLOPE COVER /
 ROOT-CORE DOMAIN KUMMER FILTER /
 SQUARE-MAP PACKET INTERSECTION GATE /
+SQUARE-NORM ENDPOINT PALETTE /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
@@ -2406,6 +2407,31 @@ palette, not new slope growth.  Equivalently, the global square-map branch can
 be summed by first bounding the image of zero-pole supports `Pi`, then paying
 only an `O_e(1)` palette factor per support.
 
+For the square-norm branch this support is not an additional parameter.  If
+the reduced norm satisfies
+
+```text
+N_R(z)=B_R(z)/Q_R(z)=gamma M(z)^2
+```
+
+with `M` nonconstant of degree one, then
+
+```text
+div(N_R)=2 div(M).                                  (RKSQEND)
+```
+
+Thus `Pi(M)` is exactly the support of the nonzero divisor of `N_R`, with the
+orientation remembered by the signs of the valuations.  Equivalently, after
+removing common factors from `B_R` and `Q_R`, the numerator and denominator are
+scalar multiples of squares of linear forms on `P^1`, and their two roots are
+the zero and pole endpoints of the palette.  Finite zero endpoints lie among
+the at-most-two roots of `B_R`; finite pole endpoints lie among the at-most-two
+roots of `Q_R`, with infinity included when the degrees differ.  Hence the
+square-norm packet palette is indexed by the bounded norm-boundary divisor of
+the root-core recurrence chart.  Choosing a different square root of `N_R`
+only rescales or inverts the degree-one parameter, so by (RKSQPAL) it does not
+create new slope packets beyond the same finite support palette.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -2943,4 +2969,5 @@ square-norm Fourier term, and the cover-term norm-pushforward obstruction
 (RKANTIRED) and the genus-one exclusion for genuine cubic anti-ratio powers
 (RKANTIGENUS), plus the rational cubic coefficient ledger (RKCUBBD) and the
 classified per-core bound (RKCLASS), the degree-one square-map packet
-intersection gate (RKSQINT), and the finite support-class palette (RKSQPAL).
+intersection gate (RKSQINT), the finite support-class palette (RKSQPAL), and
+the square-norm endpoint palette (RKSQEND).

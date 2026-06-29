@@ -52,7 +52,7 @@ anti-ratio square-class reduction and the genus-one exclusion for genuine
 cubic anti-ratio powers, plus the rational-cubic coefficient ledger and final
 classified per-core bound, including the negative square-norm collapse to
 one-root sums, the square-map coset packets, and the degree-one square-map
-packet intersection gate and support-class palette.
+packet intersection gate, support-class palette, and endpoint palette.
 """
 
 from __future__ import annotations
@@ -2924,6 +2924,43 @@ def mobius_zero_pole(mobius_map: MobiusMap, p: int) -> tuple[P1Point, P1Point]:
     return zero, pole
 
 
+def p1_linear_factor(point: P1Point, p: int) -> tuple[int, ...] | None:
+    if point is None:
+        return None
+    return tuple(poly1_to_list(poly1_from_list([(-point) % p, 1], p)))
+
+
+def p1_divisor_exponent(
+    exponents: dict[tuple[int, ...], int],
+    infinity_exponent: int,
+    point: P1Point,
+    p: int,
+) -> int:
+    factor = p1_linear_factor(point, p)
+    if factor is None:
+        return infinity_exponent
+    return exponents.get(factor, 0)
+
+
+def mobius_square_norm(
+    mobius_map: MobiusMap,
+    gamma: int,
+    p: int,
+) -> tuple[Poly1, Poly1]:
+    a_coeff, b_coeff, c_coeff, d_coeff = mobius_map
+    numerator_linear = poly1_from_list([b_coeff, a_coeff], p)
+    denominator_linear = poly1_from_list([d_coeff, c_coeff], p)
+    numerator_square = poly1_mul(numerator_linear, numerator_linear, p)
+    denominator_square = poly1_mul(denominator_linear, denominator_linear, p)
+    numerator = {
+        degree: (gamma * coeff) % p
+        for degree, coeff in numerator_square.items()
+        if (gamma * coeff) % p != 0
+    }
+    assert numerator and denominator_square
+    return numerator, denominator_square
+
+
 def eval_mobius(mobius_map: MobiusMap, value: int, p: int) -> int | None:
     a_coeff, b_coeff, c_coeff, d_coeff = mobius_map
     denominator = (c_coeff * value + d_coeff) % p
@@ -4955,6 +4992,92 @@ def check_boundary_core_square_map_support_palette() -> None:
                     )
 
 
+def check_boundary_core_square_norm_endpoint_palette() -> None:
+    rng = Random(20260729)
+    for prime in (5, 7, 11, 17, 19):
+        maps = normalized_mobius_maps(prime)
+        if prime <= 7:
+            selected_maps = maps
+        else:
+            selected_maps = [rng.choice(maps) for _ in range(300)]
+
+        p1_points: list[P1Point] = list(range(prime)) + [None]
+        for mobius_map in selected_maps:
+            zero, pole = mobius_zero_pole(mobius_map, prime)
+            for gamma in (1, primitive_root(prime), prime - 1):
+                if gamma % prime == 0:
+                    continue
+                numerator, denominator = mobius_square_norm(
+                    mobius_map,
+                    gamma,
+                    prime,
+                )
+                assert rational_square_divisor(numerator, denominator, prime), (
+                    prime,
+                    mobius_map,
+                    gamma,
+                    numerator,
+                    denominator,
+                )
+                exponents, infinity_exponent = rational_divisor_exponents(
+                    numerator,
+                    denominator,
+                    prime,
+                )
+                boundary_support = {
+                    point
+                    for point in p1_points
+                    if p1_divisor_exponent(
+                        exponents,
+                        infinity_exponent,
+                        point,
+                        prime,
+                    )
+                    != 0
+                }
+                assert boundary_support == {zero, pole}, (
+                    prime,
+                    mobius_map,
+                    gamma,
+                    zero,
+                    pole,
+                    boundary_support,
+                    exponents,
+                    infinity_exponent,
+                )
+                for point in p1_points:
+                    exponent = p1_divisor_exponent(
+                        exponents,
+                        infinity_exponent,
+                        point,
+                        prime,
+                    )
+                    if point == zero:
+                        assert exponent == 2, (
+                            prime,
+                            mobius_map,
+                            gamma,
+                            point,
+                            exponent,
+                        )
+                    elif point == pole:
+                        assert exponent == -2, (
+                            prime,
+                            mobius_map,
+                            gamma,
+                            point,
+                            exponent,
+                        )
+                    else:
+                        assert exponent == 0, (
+                            prime,
+                            mobius_map,
+                            gamma,
+                            point,
+                            exponent,
+                        )
+
+
 def check_boundary_core_classified_per_core_bound() -> None:
     for index in range(2, 31):
         generic_cover_coefficient = Fraction(index - 1, index * index)
@@ -5234,6 +5357,7 @@ def main() -> None:
     check_boundary_core_negative_square_norm_collapse()
     check_boundary_core_square_map_packet_intersection_gate()
     check_boundary_core_square_map_support_palette()
+    check_boundary_core_square_norm_endpoint_palette()
     check_boundary_core_classified_per_core_bound()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()

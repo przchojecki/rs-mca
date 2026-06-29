@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 square-norm endpoint palette
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The square-map support palette is tied back to the
+  root-core recurrence data.  If the reduced square norm is
+  `B_R/Q_R=gamma M^2` with `M` degree one, then `div(B_R/Q_R)=2 div(M)`, so
+  the palette support is exactly the zero/pole boundary of the norm divisor.
+- **How it is useful:** The square-norm packets are now indexed by the bounded
+  norm-boundary endpoints coming from the roots of `B_R`, roots of `Q_R`, and
+  infinity, rather than by arbitrary square-root choices.  This gives the
+  downstream M1 ledger a concrete endpoint image to charge when summing
+  square-norm palettes over active root cores.
+- **What to do next:** Relate the norm-boundary endpoint image to already
+  isolated fixed-root, denominator-zero, line-packet, or boundary-core ledgers.
+
 ### 2026-06-29 - M1 square-map support-class palette
 
 - **Agent/model:** AllenGrahamHart / Codex.
