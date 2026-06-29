@@ -2190,6 +2190,56 @@ constant norm.  For even `e`, the only additional nonconstant exception is the
 quadratic square-norm branch.  These are slope-line algebraic branches, not
 new cover-level conductor sources.
 
+The constant-norm branch is already part of the line-packet ledger.  If
+`B_R/Q_R=gamma` on the open slope line, then the recovered elementary
+coefficient satisfies
+
+```text
+p_R(z)=gamma.
+```
+
+Thus every live formal two-root extension lies on the elementary line
+`p=gamma`.  For `gamma=0` this is the fixed-root line already charged by the
+root-slice ledger.  For `gamma!=0` it is the product-Mobius packet
+
+```text
+x y = gamma,                                           (RKCONST)
+```
+
+namely the center-zero case of `(x-c)(y-c)=mu`.  Therefore the nonquadratic
+norm-power exception introduces no new root-core geometry: it returns to the
+existing non-fixed line-packet ledger after the fixed-root case is removed.
+
+The remaining square-norm branch has only one possible large norm-filter
+coefficient.  Suppose `e` is even and the reduced nonconstant norm has the
+form
+
+```text
+B_R/Q_R = gamma M(z)^2
+```
+
+as a divisor on `P^1`.  Then in (RKNOUT) all nonprincipal terms are
+bounded-support `P^1` Kummer sums except the quadratic quotient character
+`chi^{e/2}`.  On the open set `Q_RB_RM != 0`,
+
+```text
+chi^{e/2}(B_R/Q_R)=chi^{e/2}(gamma)=epsilon in {+1,-1}.
+```
+
+Consequently
+
+```text
+Z_R^{norm-out}
+ = ((e-1-epsilon)/e) #{z:Q_RB_R != 0}
+   + O_e(sqrt(p)) + O_e(1).                         (RKSQOUT)
+```
+
+If `epsilon=+1`, the quadratic part of the norm filter saves an additional
+`|D|` worth of slopes.  If `epsilon=-1`, the norm filter alone gives no
+proportional saving; this is the only surviving slope-line square-norm
+obstruction and must be handled by the cover-level `r_+` sums or by a further
+algebraic charge.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -2459,9 +2509,11 @@ that mixed-domain expansion to bounded-support `P^1` Kummer sums, closes the
 index-two mixed-domain cover-level terms by sheet-symmetry cancellation,
 factors the outside-root test through the slope-line norm `B_R/Q_R`, obtains
 the genus-free norm-outside fallback bound (RKNOUTBD), classifies the
-degree-two norm-power exceptions as constant norm or quadratic square norm, and
-gives the local max-degree bound and average-collinearity corollary above,
-including the packet-level higher-exchange ledger substitution.
+degree-two norm-power exceptions as constant norm or quadratic square norm,
+charges constant norm to the fixed-root/product-Mobius line-packet ledger,
+isolates the single large quadratic coefficient in the nonconstant square-norm
+filter, and gives the local max-degree bound and average-collinearity corollary
+above, including the packet-level higher-exchange ledger substitution.
 
 ## Verification
 
@@ -2506,4 +2558,5 @@ finite-field subgroup-character expansion for the domain/outside filter and
 the mixed-domain count formula (RKCOUNT), including the diagonal descent
 (RKDIAG), index-two cancellation formula (RK2), and norm-filter identity
 (RKNORM) with norm-outside injection (RKNINJ) and degree-two norm-power gate
-(RKNP).
+(RKNP), including the constant-norm line-packet charge and the single-large
+square-norm Fourier term.

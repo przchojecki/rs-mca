@@ -45,7 +45,8 @@ covers, including the diagonal descent to the slope line and the index-two
 sheet-symmetry cancellation formula.  The verifier also checks the norm-filter
 identity that moves the outside-root condition to B_R/Q_R on the slope line,
 the resulting injection into norm-outside slopes, and the degree-two
-norm-power classification.
+norm-power classification, including the constant-norm line-packet charge and
+the single large Fourier term in the nonconstant square-norm branch.
 """
 
 from __future__ import annotations
@@ -2880,6 +2881,12 @@ def rational_square_divisor(numerator: Poly1, denominator: Poly1, p: int) -> boo
     )
 
 
+def rational_eval(numerator: Poly1, denominator: Poly1, value: int, p: int) -> int:
+    denominator_value = eval_poly1(denominator, value, p)
+    assert denominator_value != 0
+    return (eval_poly1(numerator, value, p) * pow(denominator_value, -1, p)) % p
+
+
 def quadratic_character(value: int, p: int) -> int:
     value %= p
     if value == 0:
@@ -4161,6 +4168,195 @@ def check_boundary_core_norm_power_gate() -> None:
                         )
 
 
+def check_boundary_core_norm_exception_ledger() -> None:
+    rng = Random(20260721)
+    for prime in (17, 29, 41):
+        log_table = discrete_log_table(prime)
+        indices = [index for index in range(2, 9) if (prime - 1) % index == 0]
+        polys = [
+            poly1_from_list(list(coeffs), prime)
+            for coeffs in product(range(prime), repeat=3)
+        ]
+        polys = [poly for poly in polys if poly]
+
+        constant_pairs: list[tuple[int, Poly1, Poly1]] = []
+        for _ in range(120):
+            denominator = rng.choice(polys)
+            gamma = rng.randrange(1, prime)
+            numerator = {
+                degree: (gamma * coeff) % prime
+                for degree, coeff in denominator.items()
+            }
+            constant_pairs.append((gamma, numerator, denominator))
+
+        square_pairs: list[tuple[int, Poly1, Poly1]] = []
+        linear_bases = [
+            poly1_from_list([constant, slope], prime)
+            for constant in range(prime)
+            for slope in range(prime)
+        ]
+        linear_bases = [poly for poly in linear_bases if poly]
+        for _ in range(240):
+            numerator_base = rng.choice(linear_bases)
+            denominator_base = rng.choice(linear_bases)
+            gamma = rng.randrange(1, prime)
+            numerator = {
+                degree: (gamma * coeff) % prime
+                for degree, coeff in poly1_mul(
+                    numerator_base,
+                    numerator_base,
+                    prime,
+                ).items()
+            }
+            denominator = poly1_mul(denominator_base, denominator_base, prime)
+            if rational_constant_divisor(numerator, denominator, prime):
+                continue
+            assert rational_square_divisor(numerator, denominator, prime), (
+                prime,
+                numerator,
+                denominator,
+            )
+            square_pairs.append((gamma, numerator, denominator))
+
+        for gamma, numerator, denominator in constant_pairs:
+            assert rational_constant_divisor(numerator, denominator, prime)
+            for z_value in range(prime):
+                if eval_poly1(denominator, z_value, prime) == 0:
+                    continue
+                assert rational_eval(numerator, denominator, z_value, prime) == gamma
+            # This is the elementary line p=gamma.  With roots x,y, it is the
+            # center-zero product-Mobius packet xy=gamma.
+            for x_value in range(1, prime):
+                y_value = (gamma * pow(x_value, -1, prime)) % prime
+                assert (x_value * y_value) % prime == gamma
+            for index in indices:
+                open_size = sum(
+                    1
+                    for z_value in range(prime)
+                    if eval_poly1(numerator, z_value, prime) != 0
+                    and eval_poly1(denominator, z_value, prime) != 0
+                )
+                direct_norm_out = sum(
+                    1
+                    for z_value in range(prime)
+                    if eval_poly1(numerator, z_value, prime) != 0
+                    and eval_poly1(denominator, z_value, prime) != 0
+                    and abs(
+                        subgroup_indicator_via_characters(
+                            rational_eval(numerator, denominator, z_value, prime),
+                            index,
+                            log_table,
+                        )
+                    )
+                    < 0.5
+                )
+                if log_table[gamma] % index == 0:
+                    assert direct_norm_out == 0, (prime, index, gamma)
+                else:
+                    assert direct_norm_out == open_size, (
+                        prime,
+                        index,
+                        gamma,
+                        direct_norm_out,
+                        open_size,
+                    )
+
+        for gamma, numerator, denominator in square_pairs:
+            for index in indices:
+                degenerate_powers: list[int] = []
+                for char_power in range(1, index):
+                    order = index // gcd(index, char_power)
+                    if rational_power_degenerate(
+                        numerator,
+                        denominator,
+                        order,
+                        prime,
+                    ):
+                        degenerate_powers.append(char_power)
+                if index % 2:
+                    assert not degenerate_powers, (
+                        prime,
+                        index,
+                        numerator,
+                        denominator,
+                        degenerate_powers,
+                    )
+                    continue
+                assert degenerate_powers == [index // 2], (
+                    prime,
+                    index,
+                    numerator,
+                    denominator,
+                    degenerate_powers,
+                )
+
+                open_values = [
+                    rational_eval(numerator, denominator, z_value, prime)
+                    for z_value in range(prime)
+                    if eval_poly1(numerator, z_value, prime) != 0
+                    and eval_poly1(denominator, z_value, prime) != 0
+                ]
+                open_size = len(open_values)
+                epsilon = 1 if (log_table[gamma] % 2 == 0) else -1
+                quadratic_sum = sum(
+                    subgroup_character_value(value, index // 2, index, log_table)
+                    for value in open_values
+                )
+                assert abs(quadratic_sum.real - epsilon * open_size) < 1e-8, (
+                    prime,
+                    index,
+                    gamma,
+                    quadratic_sum,
+                    epsilon,
+                    open_size,
+                )
+                assert abs(quadratic_sum.imag) < 1e-8, (
+                    prime,
+                    index,
+                    gamma,
+                    quadratic_sum,
+                )
+
+                direct_norm_out = sum(
+                    1
+                    for value in open_values
+                    if abs(
+                        subgroup_indicator_via_characters(
+                            value,
+                            index,
+                            log_table,
+                        )
+                    )
+                    < 0.5
+                )
+                residual_sum = sum(
+                    sum(
+                        subgroup_character_value(value, char_power, index, log_table)
+                        for value in open_values
+                    )
+                    for char_power in range(1, index)
+                    if char_power != index // 2
+                )
+                expansion = (
+                    (1 - Fraction(1, index)) * open_size
+                    - Fraction(epsilon * open_size, index)
+                    - residual_sum / index
+                )
+                assert abs(expansion.real - direct_norm_out) < 1e-8, (
+                    prime,
+                    index,
+                    gamma,
+                    direct_norm_out,
+                    expansion,
+                )
+                assert abs(expansion.imag) < 1e-8, (
+                    prime,
+                    index,
+                    gamma,
+                    expansion,
+                )
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -4396,6 +4592,7 @@ def main() -> None:
     check_boundary_core_slope_recurrence_gate()
     check_boundary_core_slope_cover_kummer_filter()
     check_boundary_core_norm_power_gate()
+    check_boundary_core_norm_exception_ledger()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     check_boundary_core_closure_substitution()

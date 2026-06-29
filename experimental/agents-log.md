@@ -73,7 +73,9 @@ Keep entries concise and link to the relevant files.
   the outside-root condition factors through the slope-line norm `B_R/Q_R`,
   and mixed points inject into the norm-outside slope set.  The degree-two
   norm-power exceptions are classified as constant norm or quadratic
-  square-norm.
+  square-norm; constant norm is charged to the fixed-root/product-Mobius
+  line-packet ledger, while nonconstant square norm has only the quadratic
+  norm-filter Fourier coefficient as a possible large term.
 - **How it is useful:** The denominator-zero solvable case is exactly a
   fixed-root line or the full-plane lift, both already charged.  Thus the
   residual non-line root-core target is a one-variable slope-cover problem
@@ -85,7 +87,8 @@ Keep entries concise and link to the relevant files.
   the quadratic-residue case reduced entirely to `P^1` Kummer sums.  The norm
   filter isolates the outside-root dependence on the slope line and gives a
   genus-free fallback bound from the rational map `B_R/Q_R`, with explicit
-  noncancellation branches.
+  noncancellation branches.  The constant-norm exception is not new geometry,
+  and the square-norm exception is now reduced to one explicit parity branch.
 - **What to do next:** Use this recurrence chart when attacking the active
   `(j-2)` root-core image after quotient, tangent, fixed-root, and full-plane
   charges.
