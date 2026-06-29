@@ -2,7 +2,8 @@
 
 **Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / TWO-EXCHANGE PLANE LIFT /
 RULED-CORE DICHOTOMY / RULED-CORE COLLAPSE / HIGHER-SLACK LIFT /
-TRIANGLE CLASSIFICATION / TOP-PACKET LIFT / TOP-PACKET LEDGER / AUDIT.
+TRIANGLE CLASSIFICATION / TOP-PACKET LIFT / TOP-PACKET LEDGER /
+SIMULTANEOUS KERNEL RECURSION / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -656,6 +657,63 @@ The top-packet branch is therefore reduced to the lifted `t=1` kernel family
 `K_top(u,v)` plus this one-dimensional slope label.  It is not an independent
 two-row `t=2` residual phenomenon.
 
+## Simultaneous Top-Kernel Root-Slice Recursion
+
+The lifted top-kernel family has the same lossless root-slice recursion.  For
+`r>=1` and locator size `d`, define
+
+```text
+K_{r,d}(u,v)
+ =
+ { U subset D : |U|=d,
+   H_{r,d}(u)ell_U=0 and H_{r,d}(v)ell_U=0 }.
+```
+
+Thus `K_top(u,v)=K_{1,j+1}(u,v)`.  Fix a `(d-1)`-core `R` and write
+
+```text
+U_y=R union {y},        ell_{U_y}=(X-y)ell_R.
+```
+
+If two distinct extensions through `R` lie in `K_{r,d}(u,v)`, then for both
+`w in {u,v}`,
+
+```text
+H_{r,d}(w)ell_{U_{y_1}}=H_{r,d}(w)ell_{U_{y_2}}=0.
+```
+
+Subtracting gives the padded equation
+
+```text
+H_{r,d}(w)ell_R=0,
+```
+
+and substituting back gives
+
+```text
+H_{r,d}(w)(Xell_R)=0.
+```
+
+These two padded blocks are exactly the first `r` and last `r` rows of
+
+```text
+H_{r+1,d-1}(w)ell_R=0.
+```
+
+Therefore
+
+```text
+R in K_{r+1,d-1}(u,v).                            (KREC)
+```
+
+In particular, every one-exchange collision inside the lifted top-kernel
+family is charged to the next simultaneous Hankel kernel.  After such
+`K_{r+1,d-1}` root slices have been charged, the residual part of
+`K_{r,d}(u,v)` has no one-exchange edges.  This is the top-kernel version of
+the residual-depth frontier shift: the shift is an identity, so this source of
+depth recursion is additive by construction rather than a new multiplicative
+loss at level `r`.
+
 ## Boundary-Off External-Anchor Corollary
 
 The same one-exchange algebra also applies to one-outside boundary targets.
@@ -772,9 +830,9 @@ family size, fixed-slope root slices, or higher packet/two-exchange structure.
 
 ## Non-Claims
 
-This lemma does not bound the lifted top-kernel family `K_top(u,v)`, the
-two-exchange packet-edge ledger, or the full one-outside boundary image.  It only
-proves that
+This lemma does not bound the isolated lifted top-kernel family `K_top(u,v)`,
+the two-exchange packet-edge ledger, or the full one-outside boundary image.  It
+only proves that
 same-slope one-exchange collisions belong to the fixed-slope root-slice ledger,
 that such root slices lift to `(t+1,j-1)` Hankel cores,
 that non-collinear same-slope two-exchange planes lift to `(t+2,j-2)` Hankel
@@ -785,9 +843,10 @@ moving-slope cases for abstract affine pencils, proves the Hankel shift
 collapse that eliminates the moving-slope ruled residual, shows that star
 triangles are exactly ruled-core events while residual top-packet edges lift to
 a common `t=1` Hankel kernel, compresses residual top-packet edges and
-triangles into the lifted top-kernel ledger, classifies the ruled
-external-anchor boundary branch, and gives the local max-degree bound and
-average-collinearity corollary above.
+triangles into the lifted top-kernel ledger, proves the exact simultaneous
+top-kernel root-slice recursion, classifies the ruled external-anchor boundary
+branch, and gives the local max-degree bound and average-collinearity corollary
+above.
 
 ## Verification
 
@@ -805,5 +864,7 @@ and the "three roots imply ruled" criterion in sampled small prime fields, then
 stress-tests the abstract ruled-core dichotomy and the Hankel ruled-core
 collapse.  It also checks the Johnson-graph star/top triangle classification,
 the top-packet lift identity (TOP1), the distinct-slope implication (TOPK), and
-the top-packet edge/triangle compression ledger.  The same verifier also checks
-the boundary-off external-anchor corollary over sampled small domains.
+the top-packet edge/triangle compression ledger.  It checks the simultaneous
+kernel root-slice recursion (KREC) over exhaustive and sampled small-field
+instances.  The same verifier also checks the boundary-off external-anchor
+corollary over sampled small domains.

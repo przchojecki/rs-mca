@@ -14,6 +14,8 @@ ell_R; substituting back then kills X ell_R.  This script checks that
 identity exactly in small prime fields and stress-tests the row implication.
 It also checks the two-exchange full-plane lift, t=2 determinant-gate formula,
 ruled-core collapse, triangle classification, and top-packet lift identities.
+The simultaneous top-kernel recursion is checked by the same padded-row
+identity applied to both syndrome rows.
 """
 
 from __future__ import annotations
@@ -745,6 +747,155 @@ def check_top_packet_compression_ledger() -> None:
             )
 
 
+def check_simultaneous_kernel_root_slice_recursion() -> None:
+    rng = Random(20260703)
+
+    # Exhaustive small row check: if two extensions through the same core are
+    # killed by an r-row Hankel block, the core is killed by the lifted
+    # (r+1)-row block.
+    p = 3
+    for r_rows in range(1, 3):
+        for core_degree in range(0, 3):
+            row_len = r_rows + core_degree + 1
+            for coeffs in product(range(p), repeat=core_degree):
+                ell_r = list(coeffs) + [1]
+                core_pad = ell_r + [0]
+                x_core = [0] + ell_r
+                for y1, y2 in combinations(range(p), 2):
+                    ext1 = mul_x_minus_y(ell_r, y1, p)
+                    ext2 = mul_x_minus_y(ell_r, y2, p)
+                    for row in product(range(p), repeat=row_len):
+                        rows1 = hankel_values(list(row), ext1, r_rows, p)
+                        rows2 = hankel_values(list(row), ext2, r_rows, p)
+                        if all(value == 0 for value in rows1 + rows2):
+                            core_rows = hankel_values(list(row), core_pad, r_rows, p)
+                            x_rows = hankel_values(list(row), x_core, r_rows, p)
+                            lifted = hankel_values(list(row), ell_r, r_rows + 1, p)
+                            assert all(value == 0 for value in core_rows), (
+                                p,
+                                r_rows,
+                                core_degree,
+                                ell_r,
+                                y1,
+                                y2,
+                                row,
+                            )
+                            assert all(value == 0 for value in x_rows), (
+                                p,
+                                r_rows,
+                                core_degree,
+                                ell_r,
+                                y1,
+                                y2,
+                                row,
+                            )
+                            assert all(value == 0 for value in lifted), (
+                                p,
+                                r_rows,
+                                core_degree,
+                                ell_r,
+                                y1,
+                                y2,
+                                row,
+                                lifted,
+                            )
+
+    # Sampled two-row simultaneous check for K_{r,d}(u,v).
+    for p in (5, 7, 17, 31):
+        for r_rows in range(1, 5):
+            for core_degree in range(0, 6):
+                samples: list[list[int]]
+                if p**core_degree <= 10_000:
+                    samples = [
+                        list(coeffs) + [1]
+                        for coeffs in product(range(p), repeat=core_degree)
+                    ]
+                else:
+                    samples = [
+                        [rng.randrange(p) for _ in range(core_degree)] + [1]
+                        for _ in range(250)
+                    ]
+
+                for ell_r in samples:
+                    core_pad = ell_r + [0]
+                    x_core = [0] + ell_r
+                    for _ in range(40):
+                        y1, y2 = rng.sample(range(p), 2)
+                        ext1 = mul_x_minus_y(ell_r, y1, p)
+                        ext2 = mul_x_minus_y(ell_r, y2, p)
+                        rows = [
+                            [rng.randrange(p) for _ in range(r_rows + core_degree + 1)]
+                            for _ in range(2)
+                        ]
+
+                        both_extensions_killed = True
+                        for row in rows:
+                            rows1 = hankel_values(row, ext1, r_rows, p)
+                            rows2 = hankel_values(row, ext2, r_rows, p)
+                            core_rows = hankel_values(row, core_pad, r_rows, p)
+                            x_rows = hankel_values(row, x_core, r_rows, p)
+                            lifted = hankel_values(row, ell_r, r_rows + 1, p)
+
+                            # Row-block identities behind KREC.
+                            assert rows1 == [
+                                (x_rows[i] - y1 * core_rows[i]) % p
+                                for i in range(r_rows)
+                            ], (p, r_rows, core_degree, ell_r, y1, row)
+                            assert rows2 == [
+                                (x_rows[i] - y2 * core_rows[i]) % p
+                                for i in range(r_rows)
+                            ], (p, r_rows, core_degree, ell_r, y2, row)
+                            assert core_rows == lifted[:-1], (
+                                p,
+                                r_rows,
+                                core_degree,
+                                ell_r,
+                                row,
+                            )
+                            assert x_rows == lifted[1:], (
+                                p,
+                                r_rows,
+                                core_degree,
+                                ell_r,
+                                row,
+                            )
+
+                            if not all(value == 0 for value in rows1 + rows2):
+                                both_extensions_killed = False
+
+                        if both_extensions_killed:
+                            for row in rows:
+                                lifted = hankel_values(row, ell_r, r_rows + 1, p)
+                                assert all(value == 0 for value in lifted), (
+                                    p,
+                                    r_rows,
+                                    core_degree,
+                                    ell_r,
+                                    y1,
+                                    y2,
+                                    row,
+                                    lifted,
+                                )
+
+    # Combinatorial residual: if no (d-1)-core supports two d-sets, then there
+    # are no one-exchange edges left in the residual K_{r,d} family.
+    for n in range(3, 9):
+        points = tuple(range(n))
+        for d_size in range(1, n):
+            supports = [frozenset(c) for c in combinations(points, d_size)]
+            selected: list[frozenset[int]] = []
+            used_cores: set[frozenset[int]] = set()
+            for support in supports:
+                cores = {frozenset(core) for core in combinations(support, d_size - 1)}
+                if used_cores.isdisjoint(cores):
+                    selected.append(support)
+                    used_cores.update(cores)
+
+            assert all(
+                len(a & b) != d_size - 1 for a, b in combinations(selected, 2)
+            ), (n, d_size, selected)
+
+
 def check_boundary_off_external_anchor_corollary() -> None:
     rng = Random(20260701)
     for p in (5, 7, 11, 17, 31):
@@ -899,6 +1050,7 @@ def main() -> None:
     check_one_exchange_triangle_classification()
     check_top_packet_lifted_kernel()
     check_top_packet_compression_ledger()
+    check_simultaneous_kernel_root_slice_recursion()
     check_boundary_off_external_anchor_corollary()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()

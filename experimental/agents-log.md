@@ -73,6 +73,9 @@ Keep entries concise and link to the relevant files.
   `(j+1)` set, and residual top-packet edges with distinct slopes lift to a
   common `t=1` Hankel kernel.  The top-packet edge and triangle ledgers then
   compress into the simultaneous lifted `t=1` top-kernel family `K_top(u,v)`.
+  One-exchange collisions inside the simultaneous top-kernel family are also
+  shown to recurse losslessly: two `K_{r,d}(u,v)` extensions through a common
+  `(d-1)` core force that core into `K_{r+1,d-1}(u,v)`.
   A two-exchange full-plane lift is also proved: three non-collinear
   same-slope points in a two-root plane force the lifted
   `H_{t+2,j-2}(u+zv)ell_R=0` core, so residual same-slope two-exchange
@@ -99,10 +102,14 @@ Keep entries concise and link to the relevant files.
   is either inactive or charged to the lifted fixed-slope boundary root-slice
   ledger.  The variable-line packet note's `full-plane removed` hypothesis is
   now backed by a proved `(t+2,j-2)` Hankel lift and an explicit classification
-  of the residual affine line packets.
+  of the residual affine line packets.  The top-kernel recursion records the
+  residual-depth frontier shift as an exact identity, so one-exchange
+  clustering inside `K_top` is charged additively to the next simultaneous
+  Hankel kernel rather than treated as a new multiplicative loss source.
 - **What to do next:** Bound the remaining different-slope one-exchange or
-  two-exchange codegree ledgers after quotient-periodic, tangent/contained,
-  and root-slice charges.
+  two-exchange codegree ledgers, the isolated simultaneous top-kernel family,
+  and the one-outside boundary image after quotient-periodic,
+  tangent/contained, and root-slice charges.
 
 ### 2026-06-29 - Paper D v7 first-grid cap promotion
 

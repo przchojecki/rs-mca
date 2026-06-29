@@ -1758,6 +1758,31 @@ so the remaining slope label is the scalar ratio
 \(\rho_x(u)+z\rho_x(v)=0\), \(\rho_x(v)\ne0\).  Thus top-packet edges and
 triangles are charged to the lifted \(t=1\) top-kernel family.
 
+The top-kernel family also has an exact root-slice recursion.  More generally,
+for \(r\ge1\) and locator size \(d\), put
+\[
+  K_{r,d}(u,v)
+  =
+  \{\,U\subset D:\ |U|=d,\
+      H_{r,d}(u)\ell_U=H_{r,d}(v)\ell_U=0\,\}.
+\]
+If \(U_{y_i}=R\cup\{y_i\}\in K_{r,d}(u,v)\) for two distinct anchors through
+the same \((d-1)\)-core \(R\), then the same subtraction argument applied
+separately to \(u\) and \(v\) gives
+\[
+  H_{r,d}(w)\ell_R=H_{r,d}(w)(X\ell_R)=0,
+  \qquad w\in\{u,v\}.
+\]
+These are exactly the first \(r\) and last \(r\) rows of
+\[
+  H_{r+1,d-1}(w)\ell_R=0.
+\]
+Hence \(R\in K_{r+1,d-1}(u,v)\).  So one-exchange collisions inside the lifted
+top-kernel ledger are charged losslessly to the next simultaneous Hankel
+kernel; after those root slices are paid, the residual \(K_{r,d}\) family has
+no one-exchange edges.  This records the residual-depth frontier shift as an
+identity rather than a multiplicative loss source.
+
 The same Hankel shift also classifies the one-outside external-anchor ruled
 branch from the boundary-off audit.  For a shadow \(S\subset D\), \(|S|=j-1\),
 and an external anchor \(\beta\notin D\),
