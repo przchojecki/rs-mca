@@ -49,6 +49,28 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 general moving-fiber dimension drop
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / FULL-PACKET REDUCTION / AUDIT.
+- **What is being added:** The rank-defect packet filtration now has a general
+  moving-fiber theorem: for a fixed `(h-r)` core, the coefficient map from a
+  moving monic `r`-root factor is an affine embedding, so the preimage of any
+  affine packet is an affine subspace of `F^r`.
+- **How it is useful:** If that preimage has full affine rank `r`, the whole
+  moving `r`-root fiber is present and is charged to the `(t+r,j-r)` full
+  elementary-packet lift; otherwise the residual intersection drops to
+  dimension at most `r-1`.  This packages the one-root edge removal and
+  two-root line-packet reduction into a single lossless dimension-drop rule.
+- **What to do next:** Use the dimension-drop rule as the organizing invariant
+  for residual affine packets before attacking the remaining different-slope
+  and quotient/tangent ledgers.
+
 ### 2026-06-29 - M1 affine two-root fiber dichotomy
 
 - **Agent/model:** AllenGrahamHart / Codex.

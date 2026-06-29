@@ -4,7 +4,7 @@
 FULL ELEMENTARY PACKET LIFT / RULED-CORE DICHOTOMY / RULED-CORE COLLAPSE /
 HIGHER-SLACK LIFT / TRIANGLE CLASSIFICATION / TOP-PACKET LIFT /
 TOP-PACKET LEDGER / SIMULTANEOUS KERNEL RECURSION / HYPERPLANE-FIBER
-REDUCTION / AFFINE-FIBER REDUCTION / TWO-ROOT-FIBER REDUCTION / AUDIT.
+REDUCTION / AFFINE-FIBER REDUCTION / MOVING-FIBER DIMENSION DROP / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -520,6 +520,59 @@ equivalently the lifted `(t+2,j-2)` Hankel core on `ell_R Q_e`.  After those
 full planes are charged, every residual affine rank-defect packet has only
 line-packet intersections on each fixed two-root fiber.  For `h=2`, this is
 precisely the residual two-root line classification below.
+
+## General Moving-Fiber Dimension Drop
+
+The one-root and two-root statements are the first cases of a uniform
+moving-fiber rule.  Fix `1<=r<=h` and a monic `(h-r)`-root factor
+
+```text
+Q(X)=X^{h-r}+e_{h-r-1}X^{h-r-1}+...+e_0,
+```
+
+with `e_{h-r}=1` and `e_i=0` outside `0<=i<=h-r`.  Let
+
+```text
+B_a(X)=X^r+a_{r-1}X^{r-1}+...+a_0,        a in F^r,
+P_a(X)=B_a(X)Q(X)
+      =X^h+c_{h-1}(a)X^{h-1}+...+c_0(a).
+```
+
+Then the coefficient map `a |-> c(a)` is the affine embedding
+
+```text
+c_m(a)=e_{m-r}+sum_{i=0}^{r-1} a_i e_{m-i},       0<=m<h.  (RFIB)
+```
+
+Its direction vectors
+
+```text
+d_i=(e_{m-i})_{0<=m<h},        0<=i<r,             (RDIR)
+```
+
+are linearly independent: a relation among them would make
+`(sum_i a_i X^i)Q(X)=0`, hence `sum_i a_i X^i=0`.
+
+Let `A=c_*+W subset F^h` be an affine rank-defect packet.  The intersection
+of `A` with the moving `r`-root fiber is the preimage of `A` under this affine
+embedding, hence an affine subspace of `F^r`.  If this preimage has full
+affine rank `r` -- equivalently, if it contains `r+1` affinely independent
+parameter points -- then every direction `d_i` lies in `W`, and the whole
+moving `r`-root fiber lies in `A`.  Otherwise the intersection has affine rank
+at most `r-1`.
+
+In the killed same-slope Hankel setting, the full-fiber case is exactly the
+full elementary-packet lift with moving size `r`:
+
+```text
+L_z(X^i ell_R Q)=0        for 0<=i<=r,
+```
+
+equivalently the lifted `(t+r,j-r)` Hankel core on `ell_R Q`.  Therefore,
+after all full moving `r`-root fibers are charged, residual affine
+rank-defect packets meet each fixed `r`-root fiber only in lower-dimensional
+affine subpackets.  This is the general lossless dimension drop behind the
+one-root edge removal and the two-root line-packet reduction.
 
 ## Two-Root Line Classification
 
@@ -1176,7 +1229,8 @@ rank-defect elementary packets, gives the fixed-root criterion for
 codimension-one coefficient hyperplanes, proves the one-root fiber dichotomy
 for coefficient hyperplanes and then for all affine rank-defect packets,
 proves the two-root fiber dichotomy for affine rank-defect packets, and shows
-that residual two-root lines are fixed-root, fixed-sum, or
+the general moving-fiber dimension drop, and shows that residual two-root
+lines are fixed-root, fixed-sum, or
 product-Mobius packets,
 classifies the ruled determinant core into fixed-slope, inactive, and rank-one
 moving-slope cases for abstract affine pencils, proves the Hankel shift
@@ -1203,7 +1257,7 @@ the full elementary packet lift (HLIFT), the two-root line classification, the
 affine-span normal form for rank-defect packets, the fixed-root hyperplane
 criterion, the hyperplane one-root fiber dichotomy, the quadratic determinant
 formula (DET2), the affine-subpacket one-root and two-root fiber dichotomies,
-and the "three roots imply ruled"
+the general moving-fiber dimension drop, and the "three roots imply ruled"
 criterion in sampled small prime fields, then stress-tests the abstract
 ruled-core dichotomy and the Hankel ruled-core collapse.  It also checks the
 Johnson-graph star/top triangle classification, the top-packet lift identity

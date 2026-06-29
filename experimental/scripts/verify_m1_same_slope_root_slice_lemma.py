@@ -18,7 +18,8 @@ The simultaneous top-kernel recursion is checked by the same padded-row
 identity applied to both syndrome rows.  Rank-defect hyperplane fibers are
 checked by the affine-linear one-root extension formula, and general affine
 subpacket one-root and two-root fibers are checked by finite-field linear
-algebra.
+algebra.  The arbitrary moving-rank fiber dimension drop is checked by the
+same affine-preimage calculation.
 """
 
 from __future__ import annotations
@@ -157,6 +158,17 @@ def in_affine_subspace(
 ) -> bool:
     diff = tuple((point[idx] - base[idx]) % p for idx in range(len(point)))
     return in_linear_span(diff, directions, p)
+
+
+def affine_rank(points: list[tuple[int, ...]], p: int) -> int:
+    if not points:
+        return -1
+    base = points[0]
+    differences = [
+        [(point[idx] - base[idx]) % p for idx in range(len(base))]
+        for point in points[1:]
+    ]
+    return matrix_rank(differences, p)
 
 
 def eval_pencil(
@@ -1067,6 +1079,130 @@ def check_affine_subpacket_two_root_fiber_dichotomy() -> None:
                         )
 
 
+def check_general_moving_fiber_dimension_drop() -> None:
+    rng = Random(20260710)
+
+    for p in (5, 7):
+        for h_exchange in range(1, 6):
+            for moving_rank in range(1, h_exchange + 1):
+                core_degree = h_exchange - moving_rank
+                if p**core_degree <= 80:
+                    cores = [
+                        list(coeffs) + [1]
+                        for coeffs in product(range(p), repeat=core_degree)
+                    ]
+                else:
+                    cores = [
+                        [rng.randrange(p) for _ in range(core_degree)] + [1]
+                        for _ in range(12)
+                    ]
+
+                all_parameters = list(product(range(p), repeat=moving_rank))
+                affine_subspaces: list[tuple[list[int], list[list[int]]]] = []
+                for rank in range(h_exchange + 1):
+                    base = [rng.randrange(p) for _ in range(h_exchange)]
+                    coordinate_directions = []
+                    for axis in range(rank):
+                        direction = [0] * h_exchange
+                        direction[axis] = 1
+                        coordinate_directions.append(direction)
+                    affine_subspaces.append((base, coordinate_directions))
+
+                    for _ in range(6):
+                        base = [rng.randrange(p) for _ in range(h_exchange)]
+                        directions = [
+                            [rng.randrange(p) for _ in range(h_exchange)]
+                            for _ in range(rank)
+                        ]
+                        affine_subspaces.append((base, directions))
+
+                for core in cores:
+                    def core_coeff(index: int) -> int:
+                        if 0 <= index < len(core):
+                            return core[index] % p
+                        return 0
+
+                    base_vector = tuple(
+                        core_coeff(m - moving_rank) for m in range(h_exchange)
+                    )
+                    fiber_directions = [
+                        tuple(core_coeff(m - idx) for m in range(h_exchange))
+                        for idx in range(moving_rank)
+                    ]
+                    fiber_rank = matrix_rank(
+                        [list(vec) for vec in fiber_directions], p
+                    )
+                    assert fiber_rank == moving_rank, (
+                        p,
+                        h_exchange,
+                        moving_rank,
+                        core,
+                        fiber_directions,
+                    )
+
+                    for base, directions in affine_subspaces:
+                        passing_parameters: list[tuple[int, ...]] = []
+                        for parameters in all_parameters:
+                            point = tuple(
+                                mul_monic_factor(core, parameters, p)[:-1]
+                            )
+                            formula_point = tuple(
+                                (
+                                    base_vector[m]
+                                    + sum(
+                                        parameters[idx] * fiber_directions[idx][m]
+                                        for idx in range(moving_rank)
+                                    )
+                                )
+                                % p
+                                for m in range(h_exchange)
+                            )
+                            assert point == formula_point, (
+                                p,
+                                h_exchange,
+                                moving_rank,
+                                core,
+                                parameters,
+                                point,
+                                formula_point,
+                            )
+                            if in_affine_subspace(point, base, directions, p):
+                                passing_parameters.append(parameters)
+
+                        rank = affine_rank(passing_parameters, p)
+                        if rank == moving_rank:
+                            for direction in fiber_directions:
+                                assert in_linear_span(direction, directions, p), (
+                                    p,
+                                    h_exchange,
+                                    moving_rank,
+                                    core,
+                                    base,
+                                    directions,
+                                    direction,
+                                )
+                            assert len(passing_parameters) == p**moving_rank, (
+                                p,
+                                h_exchange,
+                                moving_rank,
+                                core,
+                                base,
+                                directions,
+                                len(passing_parameters),
+                            )
+                        else:
+                            assert rank <= moving_rank - 1, (
+                                p,
+                                h_exchange,
+                                moving_rank,
+                                core,
+                                base,
+                                directions,
+                                passing_parameters,
+                                rank,
+                            )
+
+
 def check_two_root_line_classification() -> None:
     for p in (3, 5, 7, 11, 17):
         pairs = [(x, y) for x in range(p) for y in range(x + 1, p)]
@@ -1797,6 +1933,7 @@ def main() -> None:
     check_hyperplane_one_root_fiber_dichotomy()
     check_affine_subpacket_one_root_fiber_dichotomy()
     check_affine_subpacket_two_root_fiber_dichotomy()
+    check_general_moving_fiber_dimension_drop()
     check_two_root_line_classification()
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()
