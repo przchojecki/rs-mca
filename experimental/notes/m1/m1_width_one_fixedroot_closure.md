@@ -626,6 +626,46 @@ as a concrete node-gcd problem: after the standard charges, no node with
 `q/log Q -> infinity` should have a split complement arising from a root of
 this fixed-degree polynomial.
 
+## Split-Root Filter for Node-GCD Roots
+
+The split condition gives an additional base-free filter on the node-gcd roots.
+Let
+
+```text
+Lambda_split={ lambda : ell_D=E_lambda(M+lambda N) }.
+```
+
+For `lambda in Lambda_split`, the factor `M+lambda N` is a monic divisor of
+the squarefree split polynomial `ell_D`.  Hence
+
+```text
+M+lambda N=ell_{Z_lambda}
+```
+
+for a unique subset `Z_lambda subset D` of size `q-1`.
+
+If `lambda != mu` in `Lambda_split`, then the root sets `Z_lambda` and
+`Z_mu` are disjoint.  Indeed, if `x in Z_lambda cap Z_mu`, then
+
+```text
+M(x)+lambda N(x)=M(x)+mu N(x)=0,
+```
+
+so `N(x)=0` and then `M(x)=0`.  Since `M` and `N` span the two-dimensional
+pencil `V`, every direction in `V` vanishes at `x`, contradicting the
+base-free hypothesis.
+
+Thus the true split roots of the node gcd satisfy the sharper packing bound
+
+```text
+#Lambda_split <= floor((q+s)/(q-1)).              (W1-split-root-pack)
+```
+
+This bound is independent of the degree `s+2` of the node gcd.  The gcd is
+still useful as the algebraic scalar equation, but the split-root filter says
+that its roots cannot all be genuine width-one split complements unless their
+large root shadows are disjoint in `D`.
+
 ## Width-One Slope-Count Closure
 
 There is a sharper conclusion for the slope-image count itself.  The

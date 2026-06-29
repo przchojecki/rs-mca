@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 width-one split-root node-gcd filter
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_width_one_fixedroot_closure.md`,
+  `experimental/scripts/verify_m1_width_one_fixedroot_closure.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / TARGET-REDUCTION / AUDIT.
+- **What is being added:** The node-gcd candidate set is refined by a
+  split-root packing filter: at a base-free node, distinct scalar
+  factorizations `ell_D=E_lambda(M+lambda N)` have disjoint degree-`q-1`
+  root shadows in `D`, so the genuine split node-gcd roots are bounded by
+  `floor((q+s)/(q-1))`.
+- **How it is useful:** The bounded-degree gcd remains the scalar algebraic
+  equation, but true width-one split complements cannot form a dense root set
+  of that equation.  This explains algebraically why the width-one branch does
+  not produce a super-polynomial M1 slope-packing source.
+- **What to do next:** Use the node-gcd equation for falsification searches,
+  but apply the split-root filter before interpreting gcd roots as genuine
+  width-one slopes.
+
 ### 2026-06-29 - M1 width-one slope-count closure
 
 - **Agent/model:** AllenGrahamHart / Codex.

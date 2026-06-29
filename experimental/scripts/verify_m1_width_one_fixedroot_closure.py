@@ -10,6 +10,7 @@ sampled base-free pencils.
 from __future__ import annotations
 
 from itertools import combinations, product
+from math import floor
 from random import Random
 
 
@@ -251,6 +252,60 @@ def check_gate_chain_candidate_set() -> None:
                     assert nonzero_gate_seen, (p, s, q, m_poly, n_poly)
 
 
+def check_split_node_roots_are_disjoint() -> None:
+    rng = Random(20260712)
+    for p in (7, 11, 17, 23):
+        for s in range(0, 4):
+            for q in range(s + 3, min(p - s, s + 7)):
+                domain = list(range(q + s))
+                for _ in range(240):
+                    m_poly = [rng.randrange(p) for _ in range(q - 1)] + [1]
+                    n_poly = [rng.randrange(p) for _ in range(q - 1)] + [0]
+                    if all(value % p == 0 for value in n_poly):
+                        continue
+                    if any(
+                        poly_eval(m_poly, x_value, p) == 0
+                        and poly_eval(n_poly, x_value, p) == 0
+                        for x_value in domain
+                    ):
+                        continue
+
+                    split_roots: list[tuple[int, set[int]]] = []
+                    for lam in range(p):
+                        ell_l = [
+                            (m_poly[i] + lam * n_poly[i]) % p
+                            for i in range(q)
+                        ]
+                        roots = {
+                            x_value
+                            for x_value in domain
+                            if poly_eval(ell_l, x_value, p) == 0
+                        }
+                        if len(roots) == q - 1:
+                            split_roots.append((lam, roots))
+
+                    assert len(split_roots) <= floor((q + s) / (q - 1)), (
+                        p,
+                        s,
+                        q,
+                        m_poly,
+                        n_poly,
+                        split_roots,
+                    )
+                    for (lam_a, roots_a), (lam_b, roots_b) in combinations(
+                        split_roots, 2
+                    ):
+                        assert roots_a.isdisjoint(roots_b), (
+                            p,
+                            s,
+                            q,
+                            lam_a,
+                            lam_b,
+                            roots_a,
+                            roots_b,
+                        )
+
+
 def check_large_node_width_one_uniqueness() -> None:
     rng = Random(20260711)
     for p in (7, 11, 17, 23):
@@ -334,6 +389,7 @@ def main() -> None:
     check_first_gate_is_residual_coefficient()
     check_residual_gate_chain()
     check_gate_chain_candidate_set()
+    check_split_node_roots_are_disjoint()
     check_large_node_width_one_uniqueness()
     check_gate_degree_bound()
     print("M1 width-one fixed-root verifier passed")

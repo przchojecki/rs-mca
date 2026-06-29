@@ -1789,6 +1789,15 @@ has degree at most \(s+2\).  Since \(N\ne0\) prevents the whole chain from
 vanishing identically, the scalar candidate set is the root set of the single
 nonzero node gcd \(\gcd(G_{s+2},\ldots,G_{q+s})\), again of degree at most
 \(s+2\).
+The split roots of this gcd obey a sharper base-free packing filter.  If
+\(\lambda\ne\mu\) both give factorizations
+\(\ell_D=E_\lambda(M+\lambda N)=E_\mu(M+\mu N)\), then the two monic
+degree-\(q-1\) divisors \(M+\lambda N\) and \(M+\mu N\) have disjoint root sets
+in \(D\); a common root would force \(M\) and \(N\) both to vanish there.
+Therefore the genuine split node-gcd roots satisfy
+\[
+  \#\Lambda_{\rm split}\le \left\lfloor {q+s\over q-1}\right\rfloor .
+\]
 
 For the slope-image count itself, width one is already polynomial in fixed
 surplus.  At a base-free node, two distinct projective width-one directions
