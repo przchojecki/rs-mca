@@ -52,7 +52,8 @@ anti-ratio square-class reduction and the genus-one exclusion for genuine
 cubic anti-ratio powers, plus the rational-cubic coefficient ledger and final
 classified per-core bound, including the negative square-norm collapse to
 one-root sums, the square-map coset packets, and the degree-one square-map
-packet intersection gate, support-class palette, and endpoint palette.
+packet intersection gate, support-class palette, endpoint palette, and
+packet-count corollary.
 """
 
 from __future__ import annotations
@@ -5078,6 +5079,69 @@ def check_boundary_core_square_norm_endpoint_palette() -> None:
                         )
 
 
+def check_boundary_core_square_map_packet_count() -> None:
+    rng = Random(20260730)
+    for prime in (5, 7, 11, 17, 19):
+        maps = normalized_mobius_maps(prime)
+        log_table = discrete_log_table(prime)
+        indices = [index for index in range(2, 13) if (prime - 1) % index == 0]
+        for index in indices:
+            if index % 2:
+                continue
+            packet_classes = list(range(0, index, 2))
+            for _ in range(80):
+                family_size = rng.randint(1, min(20, len(maps)))
+                selected_maps = [rng.choice(maps) for _ in range(family_size)]
+                support_set: set[frozenset[P1Point]] = set()
+                packet_sets: set[frozenset[int]] = set()
+                for mobius_map in selected_maps:
+                    support_set.add(frozenset(mobius_zero_pole(mobius_map, prime)))
+                    # Repeated roots, parallel maps, and inverse maps should
+                    # only create multiplicity inside the support palette.
+                    for packet_class in rng.sample(
+                        packet_classes,
+                        rng.randint(1, len(packet_classes)),
+                    ):
+                        packet_sets.add(
+                            finite_square_packet(
+                                mobius_map,
+                                packet_class,
+                                index,
+                                log_table,
+                                prime,
+                            )
+                        )
+                assert len(packet_sets) <= (index // 2) * len(support_set), (
+                    prime,
+                    index,
+                    len(packet_sets),
+                    len(support_set),
+                    packet_sets,
+                    support_set,
+                )
+
+            # A square-norm branch N=gamma M^2 carries a single zero-pole
+            # support, hence at most e/2 distinct square-map packets.
+            for mobius_map in rng.sample(maps, min(80, len(maps))):
+                support = frozenset(mobius_zero_pole(mobius_map, prime))
+                packets = {
+                    finite_square_packet(
+                        mobius_map,
+                        packet_class,
+                        index,
+                        log_table,
+                        prime,
+                    )
+                    for packet_class in packet_classes
+                }
+                assert len(packets) == index // 2, (
+                    prime,
+                    index,
+                    support,
+                    packets,
+                )
+
+
 def check_boundary_core_classified_per_core_bound() -> None:
     for index in range(2, 31):
         generic_cover_coefficient = Fraction(index - 1, index * index)
@@ -5358,6 +5422,7 @@ def main() -> None:
     check_boundary_core_square_map_packet_intersection_gate()
     check_boundary_core_square_map_support_palette()
     check_boundary_core_square_norm_endpoint_palette()
+    check_boundary_core_square_map_packet_count()
     check_boundary_core_classified_per_core_bound()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()

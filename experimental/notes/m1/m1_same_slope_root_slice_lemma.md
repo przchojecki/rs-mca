@@ -11,6 +11,7 @@ ROOT-CORE SLOPE COVER /
 ROOT-CORE DOMAIN KUMMER FILTER /
 SQUARE-MAP PACKET INTERSECTION GATE /
 SQUARE-NORM ENDPOINT PALETTE /
+SQUARE-MAP PACKET-COUNT COROLLARY /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
@@ -2432,6 +2433,27 @@ the root-core recurrence chart.  Choosing a different square root of `N_R`
 only rescales or inverts the degree-one parameter, so by (RKSQPAL) it does not
 create new slope packets beyond the same finite support palette.
 
+This gives the counting form needed by the global ledger.  Let `S` be any
+finite family of square-map packets
+
+```text
+P(M,kappa)={z: chi(M(z))^2=kappa}
+```
+
+with degree-one parameters `M`.  Let `Pi(S)` be the set of unordered zero-pole
+supports of the parameters appearing in `S`.  Then the number of distinct
+packet slope sets in `S` is at most
+
+```text
+(e/2) |Pi(S)|.                                      (RKSQCOUNT)
+```
+
+Moreover, for each nonconstant square-norm branch `B_R/Q_R=gamma M^2`, the set
+`Pi(S)` has size one: it is the zero-pole support of the reduced norm divisor.
+Thus repeated square roots, quotient-parallel parameters, or quotient-inverse
+parameters can create multiplicity inside a fixed packet palette, but they
+cannot create new slope-set growth beyond the endpoint support image.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -2918,7 +2940,8 @@ explicit rational-cubic coefficient ledger (RKCUBBD), packages the resulting
 per-core classified bound (RKCLASS), including the positive-parity square-norm
 norm-filter bound and the negative-parity one-root collapse, and gives the
 local max-degree bound and average-collinearity corollary above, including the
-packet-level higher-exchange ledger substitution.
+packet-level higher-exchange ledger substitution, and extracts the
+square-map packet-count corollary (RKSQCOUNT) from the support palette.
 
 ## Verification
 
@@ -2970,4 +2993,5 @@ square-norm Fourier term, and the cover-term norm-pushforward obstruction
 (RKANTIGENUS), plus the rational cubic coefficient ledger (RKCUBBD) and the
 classified per-core bound (RKCLASS), the degree-one square-map packet
 intersection gate (RKSQINT), the finite support-class palette (RKSQPAL), and
-the square-norm endpoint palette (RKSQEND).
+the square-norm endpoint palette (RKSQEND), and the packet-count corollary
+(RKSQCOUNT).

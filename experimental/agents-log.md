@@ -49,6 +49,28 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 square-map packet-count corollary
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The square-map support palette is converted into
+  an explicit counting corollary: a finite family of degree-one square-map
+  packets has at most `(e/2)` distinct slope sets per unordered zero-pole
+  support, and a single nonconstant square-norm branch contributes only one
+  such support.
+- **How it is useful:** This gives the downstream M1 ledger a direct packet
+  count to use when summing square-norm and one-root-square branches over root
+  cores; repeated square roots or parallel/inverse parameters are multiplicity
+  inside a fixed endpoint palette, not new slope growth.
+- **What to do next:** Bound the image of endpoint supports produced by active
+  root-core recurrences or charge that image to fixed-root, line-packet, and
+  boundary-core ledgers.
+
 ### 2026-06-29 - M1 square-norm endpoint palette
 
 - **Agent/model:** AllenGrahamHart / Codex.
