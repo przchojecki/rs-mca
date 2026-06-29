@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 Plucker-chart Hankel square factorization
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** On a nonzero Plucker endpoint chart, the adjacent
+  Hankel minor factors as a signed square:
+  `H_i=-(c_{i+1}-lambda_i c_i)^2`, with the symmetric reverse-chart formula
+  `H_i=-(c_{i+1}-mu_i c_{i+2})^2`.
+- **How it is useful:** This replaces a generic discriminant-zero endpoint
+  condition by an explicit row-linear double-endpoint form, which is a sharper
+  object for later M1 residue-line packing and endpoint-support counts.
+- **What to do next:** Use the linear endpoint forms in overlapping charts to
+  bound how many distinct finite endpoints can survive after fixed-root and
+  quotient charges.
+
 ### 2026-06-30 - M1 overlapping Plucker-chart recurrence
 
 - **Agent/model:** AllenGrahamHart / Codex.

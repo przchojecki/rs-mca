@@ -56,9 +56,9 @@ packet intersection gate, support-class palette, endpoint palette, and
 repeated-endpoint gate, double-root endpoint certificate, raw-coefficient
 endpoint certificate, endpoint-discriminant certificate, Hankel-minor
 discriminant certificate, Plucker-minor discriminant certificate,
-Plucker-chart decomposition, Plucker-chart row recurrence, overlapping
-Plucker-chart recurrence, endpoint-charge corollary, and packet-count
-corollary.
+Plucker-chart decomposition, Plucker-chart row recurrence, Hankel square
+factorization, overlapping Plucker-chart recurrence, endpoint-charge
+corollary, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -3167,6 +3167,7 @@ def assert_plucker_chart_decomposition(
     row0 = (a_rows[index], b_rows[index])
     row1 = (a_rows[index + 1], b_rows[index + 1])
     row2 = (a_rows[index + 2], b_rows[index + 2])
+    minor_poly = hankel_minor_poly(a_rows, b_rows, index, p)
 
     if p01 != 0:
         lam = (p02 * pow((2 * p01) % p, -1, p)) % p
@@ -3199,6 +3200,31 @@ def assert_plucker_chart_decomposition(
             lam,
             expected_row2,
         )
+        linear = poly1_from_terms(
+            (
+                (0, row1[0] - lam * row0[0]),
+                (1, row1[1] - lam * row0[1]),
+            ),
+            p,
+        )
+        signed_square = {
+            degree: (-coeff) % p
+            for degree, coeff in poly1_mul(linear, linear, p).items()
+            if (-coeff) % p != 0
+        }
+        assert minor_poly == signed_square, (
+            p,
+            index,
+            a_rows,
+            b_rows,
+            minor_poly,
+            signed_square,
+            lam,
+        )
+        if linear.get(1, 0) != 0:
+            root = (-linear.get(0, 0) * pow(linear[1], -1, p)) % p
+            assert eval_poly1(minor_poly, root, p) == 0
+            assert eval_poly1(poly1_derivative(minor_poly, p), root, p) == 0
     else:
         assert p02 == 0, (p, index, a_rows, b_rows, (p01, p12, p02))
         if p12 != 0:
@@ -3244,6 +3270,31 @@ def assert_plucker_chart_decomposition(
             mu,
             expected_row0,
         )
+        linear = poly1_from_terms(
+            (
+                (0, row1[0] - mu * row2[0]),
+                (1, row1[1] - mu * row2[1]),
+            ),
+            p,
+        )
+        signed_square = {
+            degree: (-coeff) % p
+            for degree, coeff in poly1_mul(linear, linear, p).items()
+            if (-coeff) % p != 0
+        }
+        assert minor_poly == signed_square, (
+            p,
+            index,
+            a_rows,
+            b_rows,
+            minor_poly,
+            signed_square,
+            mu,
+        )
+        if linear.get(1, 0) != 0:
+            root = (-linear.get(0, 0) * pow(linear[1], -1, p)) % p
+            assert eval_poly1(minor_poly, root, p) == 0
+            assert eval_poly1(poly1_derivative(minor_poly, p), root, p) == 0
     else:
         assert p02 == 0, (p, index, a_rows, b_rows, (p01, p12, p02))
         if p01 != 0:
