@@ -1594,6 +1594,63 @@ defects and contained/tangent ledgers have been paid.
 normal form and its non-fixed variable-line hypotheses.  It is not the final
 all-line M1 theorem and does not add a leaderboard row.
 
+\subsection{M1: width-one fixed-root closure}
+
+The width-one critical-tail branch has a compact fixed-root reduction.  At a
+base-free canonical \(b=2\) node, let
+\[
+  V=\langle P,Q\rangle\subset F[X]_{<q},\qquad |D^{can}|=q+s.
+\]
+A root-free width-one certificate is a direction \(A\in V\) whose root shadow
+on \(D^{can}\) has maximal size \(q-1\).  Writing \(Z=Z(A)\) and
+\(O=D^{can}\setminus Z\), one has
+\[
+  A=c\ell_Z,\qquad |Z|=q-1,\qquad |O|=s+1.
+\]
+For any independent \(B\in V\), base-freeness gives \(B(x)\ne0\) on \(Z\), so
+the projective map is constant on the large fiber:
+\[
+  [A(x):B(x)]=[0:1]\quad(x\in Z).
+\]
+All nonconstant projective information is confined to \(O\), and the good-pair
+capacity splits as
+\[
+  G^{can}=(q-1)(s+1)+G_O,\qquad 0\le G_O\le\binom{s+1}{2}.
+\]
+
+This large cube descends losslessly.  If \(P_m\subset Z\), then
+\[
+  A^{P_m}=A/\ell_{P_m}=c\ell_{Z\setminus P_m},\qquad
+  D^{can}\setminus P_m=(Z\setminus P_m)\sqcup O,
+\]
+so the descended width is still one and the bounded complement is unchanged.
+With \(a=\lfloor(q-2)/2\rfloor\), the co-small flag cube has the first-root
+partition
+\[
+  \sum_{e=1}^a\binom{q-1}{e}
+  =
+  \sum_{x\in Z}\sum_{f=0}^{a-1}\binom{|Z_{>x}|}{f},
+\]
+where the right side is empty when \(a=0\).  After exposing the first root
+\(x\), the divided direction \(A^x=A/(X-x)\) has parameters
+\[
+  q^x=q-1,\qquad r^x=1,\qquad s^x=s,\qquad O^x=O,
+\]
+so every nonempty width-one flag injects into a one-root absorbed
+fixed-divisor/root-slice family.
+
+Consequently, in fixed surplus \(s_0\le\sigma\), small nodes \(q_S\le s_S+2\)
+are polynomial by the active-tree bound, while on \(q_S>s_S+2\) there is at
+most one width-one shadow per node.  Thus
+\[
+  WO_1(A_0)
+  \le FixedRootOneRoot_{r1}(A_0)+O_\sigma(Q^{\sigma+1}),
+\]
+where \(Q\) is the initial quotient width.  A polynomial fixed-surplus bound
+for the displayed one-root fixed-root/root-slice ledger closes the width-one
+critical-tail branch; this is still a local closure criterion, not the final
+all-line M1 theorem.
+
 \subsection{Challenge-map pullbacks and public status corrections}
 
 The adjacent-ledger update adds the missing pullback rule from slope ledgers to

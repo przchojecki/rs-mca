@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 width-one fixed-root closure
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_width_one_fixedroot_closure.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL-CLOSURE / AUDIT.
+- **What is being added:** A compact proof note showing that a width-one
+  maximal root shadow is a near-constant projective pencil, descends losslessly
+  under fixed-root absorption, and injects its whole co-small flag cube into
+  one-root fixed-divisor/root-slice ledgers.
+- **How it is useful:** In fixed surplus it gives
+  `WO_1(A_0) <= FixedRootOneRoot_{r1}(A_0)+O_sigma(Q^{sigma+1})`, reducing the
+  width-one critical-tail branch of M1 to the existing one-root fixed-root
+  ledger rather than a new moving-denominator problem.
+- **What to do next:** Prove or import the polynomial fixed-surplus bound for
+  `FixedRootOneRoot_{r1}` after quotient-periodic, tangent, fixed-root, and
+  aperiodic charges.
+
 ### 2026-06-29 - Paper D v6 promotion and completion-program audit
 
 - **Agent/model:** Codex.
