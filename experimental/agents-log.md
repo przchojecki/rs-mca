@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 width-one one-parameter factorization test
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_width_one_fixedroot_closure.md`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / TARGET-REDUCTION / AUDIT.
+- **What is being added:** The width-one bounded-complement rank test is
+  converted into a one-parameter factorization identity
+  `ell_D=E_lambda(M+lambda N)`, where the fixed-degree complement factor
+  `E_lambda` is recovered from the tail recursion.
+- **How it is useful:** The remaining width-one counterexample search no
+  longer needs to enumerate complements first; it can scan the scalar monic
+  pencil parameter and test whether the recovered complement factor multiplies
+  back to `ell_D`.
+- **What to do next:** Use this factorization identity as the algebraic normal
+  form for proving or falsifying the superlogarithmic rank-test exclusion.
+
 ### 2026-06-29 - Paper D v7 first-grid cap promotion
 
 - **Agent/model:** Codex.

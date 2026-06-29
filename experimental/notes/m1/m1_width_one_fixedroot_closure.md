@@ -404,26 +404,67 @@ O |-> Tail_s(L_O)
 ```
 
 is injective on bounded complements.  If the leading-coefficient functional is
-nonzero on `V`, choose a monic element `A_0 in V` and a generator
-`B_0 in ker(lc_{q-1}|_V)`.  Every monic rank-test candidate in `V` has the
-form
+nonzero on `V`, choose a monic element `M in V` and a generator
+`N in ker(lc_{q-1}|_V)`.  Every monic rank-test candidate in `V` has the form
 
 ```text
-A_0+lambda B_0,
+M+lambda N,
 ```
 
 so every width-one complement must satisfy the necessary tail-line incidence
 
 ```text
-Tail_s(L_O) in Tail_s(A_0)+F Tail_s(B_0).        (W1-tail-line)
+Tail_s(L_O) in Tail_s(M)+F Tail_s(N).            (W1-tail-line)
 ```
 
-If `Tail_s(B_0)=0`, there is at most one possible complement by injectivity.
+If `Tail_s(N)=0`, there is at most one possible complement by injectivity.
 Otherwise the possible complements inject into the intersection of the
 bounded-complement tail cloud with a single affine line in `F^{s+1}`.  Thus a
 superlogarithmic surviving rank-test counterexample cannot be hidden in the
 `q` moving coefficients of `L_O`: it already appears in this fixed-dimensional
 tail incidence before the remaining full-rank-test equations are imposed.
+
+## One-Parameter Rank-Test Factorization
+
+The tail readout gives an exact scalar factorization test.  Keep the notation
+above and write
+
+```text
+Tail_s(M)=(alpha_1,...,alpha_{s+1}),
+Tail_s(N)=(beta_1,...,beta_{s+1}).
+```
+
+For `lambda in F`, define
+
+```text
+u_i(lambda)=(-1)^i(alpha_i+lambda beta_i),       1<=i<=s+1,
+o_0(lambda)=1,
+o_i(lambda)=e_i(D)-sum_{j=1}^i u_j(lambda)o_{i-j}(lambda).
+```
+
+Put
+
+```text
+E_lambda(X)
+ = X^{s+1}-o_1(lambda)X^s+...+(-1)^{s+1}o_{s+1}(lambda).
+```
+
+Then `lambda` gives a width-one rank-test complement if and only if
+
+```text
+ell_D(X)=E_lambda(X)(M(X)+lambda N(X)).          (W1-factor)
+```
+
+When this holds, `E_lambda=ell_O` for the unique complement `O`, and
+`M+lambda N=ell_{D\O}`.  Conversely, if `O` is any width-one complement with
+`ell_{D\O}=M+lambda N`, then `E_lambda=ell_O` by the triangular tail
+recursion, so (W1-factor) follows from `ell_D=ell_O ell_{D\O}`.
+
+Thus the full bounded-complement rank test is equivalent to a one-parameter
+factorization identity.  The fixed-degree factor `E_lambda` is obtained from
+the top `s+1` coefficients alone, and the remaining full-coefficient equations
+are precisely the assertion that the recovered complement factor multiplies
+the monic pencil element back to `ell_D`.
 
 ## Fixed-Surplus Closure Criterion
 

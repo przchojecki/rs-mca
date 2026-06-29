@@ -1707,15 +1707,36 @@ recursion
 \]
 Thus \(\operatorname{Tail}_s(L_O)\) recovers \(\ell_O\), hence \(O\), and the
 bounded-complement tail map is injective.  If the leading coefficient is
-nonzero on \(V\), the monic slice of \(V\) is \(A_0+\lambda B_0\); every
+nonzero on \(V\), the monic slice of \(V\) is \(M+\lambda N\); every
 rank-test witness must satisfy
 \[
   \operatorname{Tail}_s(L_O)
-  \in \operatorname{Tail}_s(A_0)+F\,\operatorname{Tail}_s(B_0).
+  \in \operatorname{Tail}_s(M)+F\,\operatorname{Tail}_s(N).
 \]
 So any superlogarithmic counterexample is already visible as a point of a
 fixed-dimensional bounded-complement tail cloud lying on one affine line,
 before the remaining full coefficient equations are checked.
+Equivalently, write
+\(\operatorname{Tail}_s(M)=(\alpha_i)\) and
+\(\operatorname{Tail}_s(N)=(\beta_i)\).  For each \(\lambda\), define
+\[
+  u_i(\lambda)=(-1)^i(\alpha_i+\lambda\beta_i),\qquad
+  o_i(\lambda)=e_i(D)-\sum_{j=1}^i u_j(\lambda)o_{i-j}(\lambda),
+  \quad o_0=1,
+\]
+and
+\[
+  E_\lambda(X)
+  =
+  X^{s+1}-o_1(\lambda)X^s+\cdots+(-1)^{s+1}o_{s+1}(\lambda).
+\]
+Then \(\lambda\) gives a width-one rank-test complement if and only if
+\[
+  \ell_D(X)=E_\lambda(X)\bigl(M(X)+\lambda N(X)\bigr).
+\]
+So the bounded-complement rank test is a one-parameter factorization identity:
+the fixed-degree complement factor is recovered from the tail, and the
+remaining equations are exactly the full product identity.
 
 Consequently, in fixed surplus \(s_0\le\sigma\), small nodes are polynomial by
 the active-tree bound, and on \(q_S>s_S+2\) there is at most one width-one
