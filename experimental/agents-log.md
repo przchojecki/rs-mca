@@ -946,3 +946,8 @@ Keep entries concise and link to the relevant files.
   `(k-1)`-root locator agree on exactly `k-1` of 512 pts -- Singleton/MDS bound,
   shown tight. Row: `k=256` ⇒ agree `<=255`, min dist 257. Verifier exits 0 (~1.1s):
   6 PASS, 3 PENDING. Next: agreement count.
+- **Iteration 5 (commit 057bf9b):** A.3 item 6 **agreement count**. `agreement(w,P)=
+  #{x in H: w(x)=P(x)}` on the real 512-domain: planted `a=300` recovered exactly;
+  `#disagreements = n-a = 212` (error-locator degree); `a>(n+k)/2` ⇒ unique-decoding;
+  distinct codeword agrees on `<a` (MDS, 2). Scope: agreement for GIVEN codewords,
+  not the LD_sw list. Verifier exits 0: 7 PASS, 2 PENDING. Next: slope distinctness.
