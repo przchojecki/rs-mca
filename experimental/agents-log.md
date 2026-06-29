@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 entropy-small tail-lift split
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Uses the entropy bound for the low-complement tail
+  to show certificates with `h H_2(theta) <= B log_2 q` contribute only a
+  polynomial amount to `TailLift(A)`.
+- **How it is useful:** Refines the remaining fixed-surplus M1 obstruction
+  from all deep tails to entropy-large collapsed absorbed certificates.
+- **What to do next:** Classify or bound entropy-large collapsed absorbed
+  certificates via quotient-periodic, tangent/fixed-root, or aperiodic
+  structure.
+
 ### 2026-06-29 - M1 deep-tail residual split
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

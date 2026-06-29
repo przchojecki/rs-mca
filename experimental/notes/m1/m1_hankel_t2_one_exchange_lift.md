@@ -6257,6 +6257,61 @@ collapsed absorbed certificates are quotient-periodic, tangent/fixed-root
 degenerate, or otherwise polynomially liftable, then the fixed-surplus
 canonical `b=2` branch closes.
 
+## Entropy-Small Tail Lifts Are Polynomial
+
+The entropy estimate gives a sharper scalar target than a fixed-depth cutoff.
+For each half-height certificate put
+
+```text
+theta_{S,lambda}=
+ floor((h_lambda-r_lambda-1)/2)/h_lambda,
+E_{S,lambda}=h_lambda H_2(theta_{S,lambda}).
+```
+
+Then (PF2-tail-entropy) says
+
+```text
+L_{S,lambda}^{tail} <= (h_lambda+1) 2^{E_{S,lambda}}.
+```
+
+Fix a real `B>=0` and let `TailLift_{ent>B}(A)` be the part of `TailLift(A)`
+supported on collapsed absorbed certificates with
+
+```text
+E_{S,lambda}>B log_2 q.
+```
+
+On the complementary entropy-small certificates, `h_lambda<=q` gives
+
+```text
+L_{S,lambda}^{tail} <= (q+1) q^B.
+```
+
+Using the collapsed-certificate count (PF2-collapsed-tail-fixed),
+
+```text
+TailLift(A)
+ <= TailLift_{ent>B}(A)
+    +(q+1) q^B (1+ceil(s_0/2))(s_0+2) q^{s_0+1}.
+                                                        (PF2-tail-entropy-split)
+```
+
+Thus, for fixed `sigma` and fixed `B`,
+
+```text
+|F(A)|
+ <= (sigma+1) TailLift_{ent>B}(A)
+    + O_{sigma,B}(q^{sigma+B+2}+q^{sigma+2}),
+        whenever s_0<=sigma.                  (PF2-entropy-tail-endpoint)
+```
+
+The exact remaining obstruction can therefore be narrowed further: it is not
+every deep-tail lift, but only collapsed absorbed certificates whose binomial
+tail has entropy exponent larger than a chosen multiple of `log q`.  Any
+structural theorem forcing quotient-periodic, tangent/fixed-root, or
+aperiodic control on these entropy-large certificates would close the
+fixed-surplus canonical `b=2` branch.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

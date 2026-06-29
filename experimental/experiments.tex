@@ -5883,6 +5883,34 @@ Thus, for fixed \(\sigma,d\),
 The only remaining non-polynomial tail risk is therefore the deep-tail
 subledger \(h_\lambda-r_\lambda\ge2d+3\), where the dominant projective fiber
 exceeds its complement width by an unbounded amount.
+The entropy estimate gives a sharper scalar split.  Put
+\[
+  \theta_{S,\lambda}
+  ={ \lfloor(h_\lambda-r_\lambda-1)/2\rfloor\over h_\lambda},
+  \qquad
+  E_{S,\lambda}=h_\lambda H_2(\theta_{S,\lambda}).
+\]
+For fixed \(B\ge0\), let \(TailLift_{\mathrm{ent}>B}(A)\) be supported on
+certificates with \(E_{S,\lambda}>B\log_2 q\).  On the complement,
+\[
+  L_{S,\lambda}^{tail}\le (h_\lambda+1)2^{E_{S,\lambda}}
+  \le (q+1)q^B.
+\]
+Together with the collapsed-certificate count,
+\[
+  TailLift(A)\le TailLift_{\mathrm{ent}>B}(A)
+  +(q+1)q^B
+  \left(1+\left\lceil{s_0\over2}\right\rceil\right)
+  (s_0+2)q^{s_0+1}.
+\]
+Hence, for fixed \(\sigma,B\),
+\[
+  |F(A)|\le(\sigma+1)TailLift_{\mathrm{ent}>B}(A)
+  +O_{\sigma,B}(q^{\sigma+B+2}+q^{\sigma+2})
+  \qquad (s_0\le\sigma).
+\]
+So the remaining obstruction may be restricted to entropy-large collapsed
+absorbed certificates, not all deep-tail certificates.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots
