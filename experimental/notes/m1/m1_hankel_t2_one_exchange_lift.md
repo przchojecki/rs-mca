@@ -6644,6 +6644,83 @@ come from the original top-level flag family itself, or from a later
 quotient-periodic, tangent, fixed-root, or aperiodic obstruction; it cannot be
 produced by multiplying an independent loss at each absorbed root.
 
+## Perpendicular Top Slices Are Fixed-Root Full Stars
+
+The complementary case in the one-root witness is already a fixed-root charge.
+Assume `Z=Z_{S,lambda}^{perp}` is nonempty and keep
+`a=floor((h-r-1)/2)`.  For any perpendicular root `z in Z`, every top-level
+tail thickening `E subset D_{S,lambda}` with `|E|=a` has
+
+```text
+z in B_tail(E).
+```
+
+Thus `Theta_a(S,lambda;z)` is the full top star
+
+```text
+Theta_a(S,lambda;z)
+ =
+ {E subset D_{S,lambda}: |E|=a},
+#Theta_a(S,lambda;z)=binom(h,a).               (PF2-perp-full-star)
+```
+
+This is not a diffuse root-free family: all its members share the same
+absorbed root `z`.  Writing
+
+```text
+R_{S,lambda}=(X-z)R^z_{S,lambda},
+```
+
+the absorbed directions are
+
+```text
+Q_{S,lambda,E}^{z}
+ = Q'_{S,lambda,E}/(X-z)
+ = ell_E R^z_{S,lambda}.                       (PF2-perp-desc-dir)
+```
+
+They form a fixed-level tail family for the fixed-root descended primitive
+problem with parameters
+
+```text
+q^z=q_S-1,        h^z=h_lambda,        r^z=r_lambda-1,
+e^z=a,            s^z=s_S.
+```
+
+Indeed
+
+```text
+q^z=h^z+r^z,        h^z-r^z=h_lambda-r_lambda+1. (PF2-perp-depth-shift)
+```
+
+The new top level is
+
+```text
+a^z=floor((h^z-r^z-1)/2)=floor((h_lambda-r_lambda)/2),
+```
+
+so
+
+```text
+a^z-e^z =
+ 0,        if h_lambda-r_lambda is odd,
+ 1,        if h_lambda-r_lambda is even.        (PF2-perp-level-shift)
+```
+
+The surplus is again unchanged, because before absorbing `z` the quotient
+width is `j=r_lambda+a` and the domain size is `N_{S,C}=N_S-q_S+j`, while
+after absorption they are `j-1` and `N_{S,C}-1`:
+
+```text
+(N_{S,C}-1)-(j-1)=N_S-q_S=s_S.                 (PF2-perp-surplus-shift)
+```
+
+Consequently every perpendicular entropy-large top witness is a full-star
+fixed-root absorbed slice.  After perpendicular fixed-root stars are charged,
+the only remaining critical top-slice mechanism is the root-free flag
+recursion above; the perpendicular branch cannot produce a separate
+aperiodic tail reservoir.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 perpendicular top-slice full stars
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Splits off the perpendicular-root branch of the
+  critical one-root witness: any perpendicular bad root lies in every top
+  thickening, so the witness is a full-star fixed-root absorbed slice with
+  unchanged surplus and descended parameters `q-1,h,r-1`.
+- **How it is useful:** Separates fixed-root/perpendicular critical witnesses
+  from the root-free flag recursion, leaving a cleaner M1 critical-tail target
+  after fixed-root stars are charged.
+- **What to do next:** Apply fixed-root, absorbed-rank, or aperiodic ledgers
+  to the full-star slice families, then focus the residual on root-free flags.
+
 ### 2026-06-29 - M1 iterated root-free tail flags
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
