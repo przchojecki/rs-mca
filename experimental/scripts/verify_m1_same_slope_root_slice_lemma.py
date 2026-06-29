@@ -18,7 +18,7 @@ It also checks the t=2 determinant-gate formula.
 from __future__ import annotations
 
 from fractions import Fraction
-from itertools import product
+from itertools import combinations, product
 from random import Random
 
 
@@ -253,6 +253,38 @@ def check_ruled_core_dichotomy() -> None:
                     seen[z] = y
 
 
+def check_one_exchange_triangle_classification() -> None:
+    for n in range(3, 9):
+        points = tuple(range(n))
+        for j in range(1, n):
+            supports = [frozenset(c) for c in combinations(points, j)]
+            for tri in combinations(supports, 3):
+                if not all(len(a & b) == j - 1 for a, b in combinations(tri, 2)):
+                    continue
+
+                common = set(tri[0])
+                union = set()
+                for support in tri:
+                    common &= set(support)
+                    union |= set(support)
+
+                star = len(common) == j - 1
+                top = len(union) == j + 1
+                assert star != top, (n, j, tri, common, union)
+
+                if star:
+                    core = frozenset(common)
+                    anchors = [next(iter(support - core)) for support in tri]
+                    assert len(set(anchors)) == 3, (n, j, tri, core, anchors)
+                    assert all(support == core | {anchor} for support, anchor in zip(tri, anchors))
+
+                if top:
+                    packet = frozenset(union)
+                    deleted = [next(iter(packet - support)) for support in tri]
+                    assert len(set(deleted)) == 3, (n, j, tri, packet, deleted)
+                    assert all(support == packet - {root} for support, root in zip(tri, deleted))
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -319,6 +351,7 @@ def main() -> None:
     check_row_implication()
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()
+    check_one_exchange_triangle_classification()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     print("same-slope root-slice lemma verifier passed")

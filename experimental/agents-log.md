@@ -66,8 +66,10 @@ Keep entries concise and link to the relevant files.
   core also satisfy a quadratic determinant equation, so three anchors force a
   ruled determinant branch.  Ruled cores are classified into fixed finite
   slope, inactive direction, or rank-one moving-slope branches; the last branch
-  has injective active slope map.  The resulting non-ruled degree bound is also
-  inserted into the existing average-collinearity max-codegree ledger.
+  has injective active slope map.  One-exchange triangles are classified as
+  either star triangles through a `(j-1)` core or top-packet triangles inside a
+  `(j+1)` set.  The resulting non-ruled degree bound is also inserted into the
+  existing average-collinearity max-codegree ledger.
 - **How it is useful:** After fixed-slope root slices are charged, the
   residual one-exchange graph has only different-slope edges, and after ruled
   determinant cores are separated, each core contributes at most one unordered
@@ -75,7 +77,8 @@ Keep entries concise and link to the relevant files.
   maximum degree at most `j` and average-ledger error term at most
   `(1-p_z)/(M p_z)+4jQ/M`.  Ruled cores that remain after fixed-slope charging
   are isolated as rank-one moving-slope objects rather than unresolved
-  same-slope multiplicity.
+  same-slope multiplicity, and after ruled cores are charged residual
+  one-exchange triangles must be top-packet triangles.
 - **What to do next:** Bound the remaining different-slope one-exchange or
   two-exchange codegree ledgers after quotient-periodic, tangent/contained,
   and root-slice charges.

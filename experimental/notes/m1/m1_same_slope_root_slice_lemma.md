@@ -1,6 +1,7 @@
 # M1 Same-Slope One-Exchange Root-Slice Lemma
 
-**Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / RULED-CORE DICHOTOMY / AUDIT.
+**Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / RULED-CORE DICHOTOMY /
+TRIANGLE CLASSIFICATION / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -245,6 +246,73 @@ For affine `alpha,beta`, the left-minus-right expression is
 exactly because the two affine functions are not proportional.  Hence
 `y_1=y_2`, proving injectivity.
 
+## One-Exchange Triangle Classification
+
+There is also no third combinatorial source of one-exchange triangles.  Let
+`T_1,T_2,T_3` be distinct `j`-sets with
+
+```text
+|T_i cap T_h|=j-1        for every i != h.
+```
+
+Then exactly one of the following holds.
+
+1. **Star triangle.** The three sets share a common `(j-1)`-core:
+
+   ```text
+   T_i=R union {y_i},        |R|=j-1.
+   ```
+
+2. **Top-packet triangle.** The three sets lie in a common `(j+1)`-set:
+
+   ```text
+   T_i=U \ {x_i},        |U|=j+1.
+   ```
+
+Consequently, in the `t=2` active determinant graph, every star triangle is a
+three-anchor event through one `(j-1)` core.  By (DET2), such a core is ruled.
+After ruled determinant cores have been charged or removed, every residual
+one-exchange triangle is therefore a top-packet triangle.  After only
+fixed-slope root-slice charging, a residual star triangle can occur only inside
+the rank-one moving-slope ruled branch above, and its three anchors have three
+distinct finite slopes.
+
+### Proof
+
+Put `A=T_1 cap T_2`, so `|A|=j-1`, and write
+
+```text
+T_1=A union {x},        T_2=A union {y},        x != y.
+```
+
+Let `eps_x` and `eps_y` indicate whether `x` and `y` lie in `T_3`, and put
+`m=|T_3 cap A|`.  Since `T_3` is adjacent to both `T_1` and `T_2`,
+
+```text
+m+eps_x=j-1,        m+eps_y=j-1.
+```
+
+Thus `eps_x=eps_y`.
+
+If `eps_x=eps_y=0`, then `m=j-1`, so `A subset T_3` and
+`T_3=A union {z}` for some `z` distinct from `x,y`.  This is the star case.
+
+If `eps_x=eps_y=1`, then `m=j-2`, so `T_3` is obtained from `A` by deleting
+one element `a` and adjoining both `x` and `y`.  With
+
+```text
+U=A union {x,y},
+```
+
+one has
+
+```text
+T_1=U\{y},        T_2=U\{x},        T_3=U\{a}.
+```
+
+This is the top-packet case.  The two cases are mutually exclusive for
+distinct sets, and no other value of `eps_x=eps_y` is possible.
+
 ## Non-Ruled One-Exchange Degree Bound
 
 Let `A_nr` be a residual `t=2` active locator family after fixed-slope root
@@ -310,13 +378,13 @@ packet/two-exchange structure.
 ## Non-Claims
 
 This lemma does not bound the remaining different-slope one-exchange graph, the
-rank-one moving-slope ruled branch, the two-exchange packet-edge ledger, or the
-one-outside boundary image.  It only proves that same-slope one-exchange
-collisions belong to the fixed-slope root-slice ledger, classifies the ruled
-determinant core into fixed-slope, inactive, and rank-one moving-slope cases,
-and shows that non-ruled `t=2` one-exchange cores have at most two determinant
-anchors, giving the local max-degree bound and average-collinearity corollary
-above.
+rank-one moving-slope ruled branch, top-packet triangles, the two-exchange
+packet-edge ledger, or the one-outside boundary image.  It only proves that
+same-slope one-exchange collisions belong to the fixed-slope root-slice ledger,
+classifies the ruled determinant core into fixed-slope, inactive, and rank-one
+moving-slope cases, shows that star triangles are exactly ruled-core events
+while non-ruled `t=2` one-exchange cores have at most two determinant anchors,
+and gives the local max-degree bound and average-collinearity corollary above.
 
 ## Verification
 
@@ -330,4 +398,5 @@ checks the subtraction identity over sampled small prime fields and exhaustively
 checks the row-wise linear-map implication in small dimensions.  It also checks
 the quadratic determinant formula (DET2) and the "three roots imply ruled"
 criterion in sampled small prime fields, then stress-tests the ruled-core
-dichotomy and the injectivity of the residual rank-one moving-slope branch.
+dichotomy, the injectivity of the residual rank-one moving-slope branch, and
+the Johnson-graph star/top triangle classification.
