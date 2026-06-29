@@ -16,6 +16,13 @@ python3 experimental/scripts/certify_high_agreement_threshold_package.py \
   --check experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json
 ```
 
+Classify an arbitrary single-line high-agreement row:
+
+```sh
+python3 experimental/scripts/certify_high_agreement_threshold_package.py \
+  --classify-row 512 256 17^32
+```
+
 The certificate records:
 
 - `floor(17^32 / 2^128) = 6`;

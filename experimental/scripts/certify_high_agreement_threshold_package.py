@@ -25,6 +25,17 @@ F17_N = 512
 F17_K = 256
 
 
+def parse_int(text: str) -> int:
+    clean = text.strip().replace(" ", "")
+    if "^" in clean:
+        base, exp = clean.split("^", 1)
+        return int(base) ** int(exp)
+    if "**" in clean:
+        base, exp = clean.split("**", 1)
+        return int(base) ** int(exp)
+    return int(clean, 10)
+
+
 def budget(denominator: int, target_bits: int = TARGET) -> int:
     return denominator // (1 << target_bits)
 
@@ -390,12 +401,47 @@ def print_summary(cert: dict[str, Any]) -> None:
     print(f"  row checks passed: {cert['all_checks_passed']}")
 
 
+def print_row_classification(n: int, k: int, denominator: int, target_bits: int) -> None:
+    gate = exact_threshold(n, k, denominator, target_bits)
+    print("High-agreement single-line compiler classification")
+    print(f"  n={n}")
+    print(f"  k={k}")
+    print(f"  Q={denominator}")
+    print(f"  target=2^-{target_bits}")
+    print(f"  B_Q=floor(Q/2^{target_bits})={gate['budget']}")
+    print(f"  exact line radius floor((n-k)/3)={gate['line_exact_radius']}")
+    print(f"  status={gate['compiler_status']}")
+    if gate["compiler_status"] == "PINNED_THRESHOLD_IN_EXACT_RANGE":
+        print(f"  safe r<={gate['largest_safe_integer_radius']}")
+        print(f"  unsafe r={gate['first_unsafe_integer_radius']}")
+    elif gate["compiler_status"] == "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT":
+        print(f"  safe through r={gate['safe_through_exact_radius']}")
+    else:
+        print("  no safe integer radius")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--write", type=Path, help="write deterministic JSON certificate")
     parser.add_argument("--check", type=Path, help="check an existing certificate")
+    parser.add_argument(
+        "--classify-row",
+        nargs=3,
+        metavar=("N", "K", "Q"),
+        help="classify a row by exact integers; Q accepts forms like 2^192 or 17^32",
+    )
+    parser.add_argument("--target", type=int, default=TARGET, help="security target bits")
     parser.add_argument("--json", action="store_true", help="print JSON to stdout")
     args = parser.parse_args()
+
+    if args.classify_row:
+        n, k, denominator = (parse_int(part) for part in args.classify_row)
+        gate = exact_threshold(n, k, denominator, args.target)
+        if args.json:
+            print(normalized_json(gate), end="")
+        else:
+            print_row_classification(n, k, denominator, args.target)
+        return 0 if all(gate.get("checks", {}).values()) else 1
 
     if args.check:
         ok = check_certificate(args.check)

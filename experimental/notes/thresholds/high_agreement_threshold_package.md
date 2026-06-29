@@ -175,6 +175,17 @@ python3 experimental/scripts/certify_high_agreement_threshold_package.py \
   --check experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json
 ```
 
+To classify a new single-line high-agreement row without regenerating the
+package certificate, run for example:
+
+```text
+python3 experimental/scripts/certify_high_agreement_threshold_package.py \
+  --classify-row 512 256 17^32
+
+python3 experimental/scripts/certify_high_agreement_threshold_package.py \
+  --classify-row 2199023255552 1099511627776 2^192
+```
+
 The committed JSON is intentionally small and exact-integer based. It is a
 certificate for the finite-row/compiler arithmetic, not for lower-agreement M1,
 quotient floors, extension-line transfer, or L2.

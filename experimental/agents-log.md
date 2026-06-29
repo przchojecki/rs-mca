@@ -57,7 +57,8 @@ Keep entries concise and link to the relevant files.
   where the exact tangent theorem proves safety through its range but does not
   locate the later threshold. For `k=2^40` prize rows, it records the exact
   power-of-two denominator bit boundaries `166,168,169,170` for rates
-  `1/2,1/4,1/8,1/16`.
+  `1/2,1/4,1/8,1/16`, and the script exposes a reusable `--classify-row`
+  exact-integer mode for new rows.
 - **What to do next:** Use this certificate as the compact reproduction
   artifact when promoting the high-agreement finite-row theorem or building a
   broader threshold certificate generator for multiple protocol ledgers.
