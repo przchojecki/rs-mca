@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 low-width critical exclusion threshold
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Proves that a root-free critical certificate with
+  fixed residual width `r<R_0` contributes at least
+  `2^{q_S-R_0}/(q+1)^{R_0+1}` through its top binomial level.
+- **How it is useful:** Shows the narrow side of the width-stratified M1
+  endpoint is an exclusion/classification problem: uncharged fixed-width
+  certificates at large quotient width cannot coexist with a polynomial MCA
+  bound.
+- **What to do next:** Prove that low-width root-free critical certificates
+  are quotient-periodic, tangent/fixed-root, or aperiodically charged, except
+  possibly in logarithmic-width terminal regimes.
+
 ### 2026-06-29 - M1 dyadic top-packet saving criterion
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

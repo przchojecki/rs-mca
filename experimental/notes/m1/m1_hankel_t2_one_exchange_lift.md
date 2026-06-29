@@ -7079,6 +7079,55 @@ small-width denominators separately, and prove that aperiodic wide
 root-free top packets have at most `O(R)` multiplicity per polynomial-size
 ambient ledger.
 
+## Low-Width Critical Flags Are Exclusion Targets
+
+The narrow side of the cutoff is not a soft counting problem.  Fix a residual
+width cutoff `R_0`.  For a root-free critical certificate with `r<R_0`, put
+again
+
+```text
+h=q_S-r,        a=floor((h-r-1)/2).
+```
+
+Let `m=floor(h/2)`.  Since `r<R_0`, the top level `a` is within `R_0` of the
+central binomial level:
+
+```text
+0<=m-a<=R_0.
+```
+
+Using the elementary central-binomial lower bound
+`binom(h,m)>=2^h/(h+1)` and stepping at most `R_0` places away from the
+center gives
+
+```text
+binom(h,a) >= 2^h/(h+1)^{R_0+1}
+           >= 2^{q_S-R_0}/(q+1)^{R_0+1}.       (PF2-low-width-central)
+```
+
+The exact canonical root-free ledger contains the top level, so a single
+uncharged root-free critical certificate of width `<R_0` contributes at least
+the right side of (PF2-low-width-central) to
+`CanRFFlag_{crit(d,B),<R_0}(A)`.
+
+Consequently, for any fixed exponent `K`, a bound
+
+```text
+CanRFFlag_{crit(d,B),<R_0}(A) <= C q^K
+```
+
+forces every uncharged width-`<R_0` root-free critical certificate to have
+
+```text
+q_S = O_{C,K,R_0}(log q),
+```
+
+or else to be removed by a quotient-periodic, tangent, fixed-root, or
+aperiodic charge.  Thus the low-width side of the critical-tail program is an
+exclusion/classification target: fixed residual denominator width and large
+quotient width are incompatible with polynomial M1 bounds once such a
+certificate survives the standard charges.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
