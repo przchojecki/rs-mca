@@ -12,8 +12,8 @@ then
 Consequently any linear row that kills both endpoint locators also kills
 ell_R; substituting back then kills X ell_R.  This script checks that
 identity exactly in small prime fields and stress-tests the row implication.
-It also checks the t=2 determinant-gate formula, ruled-core collapse, triangle
-classification, and top-packet lift identities.
+It also checks the two-exchange full-plane lift, t=2 determinant-gate formula,
+ruled-core collapse, triangle classification, and top-packet lift identities.
 """
 
 from __future__ import annotations
@@ -29,6 +29,15 @@ def mul_x_minus_y(poly: list[int], y: int, p: int) -> list[int]:
     for i, coeff in enumerate(poly):
         out[i] = (out[i] - y * coeff) % p
         out[i + 1] = (out[i + 1] + coeff) % p
+    return out
+
+
+def mul_x2_minus_sx_plus_c(poly: list[int], s: int, c: int, p: int) -> list[int]:
+    out = [0] * (len(poly) + 2)
+    for i, coeff in enumerate(poly):
+        out[i] = (out[i] + c * coeff) % p
+        out[i + 1] = (out[i + 1] - s * coeff) % p
+        out[i + 2] = (out[i + 2] + coeff) % p
     return out
 
 
@@ -56,6 +65,12 @@ def hankel_values(row: list[int], poly: list[int], num_rows: int, p: int) -> lis
 
 def det2(u: tuple[int, int], v: tuple[int, int], p: int) -> int:
     return (u[0] * v[1] - u[1] * v[0]) % p
+
+
+def affine_plane_det(
+    a: tuple[int, int], b: tuple[int, int], c: tuple[int, int], p: int
+) -> int:
+    return ((b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])) % p
 
 
 def vec_sub(u: tuple[int, int], v: tuple[int, int], p: int) -> tuple[int, int]:
@@ -190,6 +205,115 @@ def check_higher_slack_root_slice_lift() -> None:
                         lifted_rows,
                     )
                     if all(value == 0 for value in core_rows + x_rows):
+                        assert all(value == 0 for value in lifted_rows)
+
+
+def check_two_exchange_full_plane_lift() -> None:
+    rng = Random(20260702)
+
+    for p in (5, 7, 17, 31):
+        for core_degree in range(0, 6):
+            samples: list[list[int]] = []
+            if p**core_degree <= 10_000:
+                samples = [
+                    list(coeffs) + [1]
+                    for coeffs in product(range(p), repeat=core_degree)
+                ]
+            else:
+                samples = [
+                    [rng.randrange(p) for _ in range(core_degree)] + [1]
+                    for _ in range(300)
+                ]
+
+            for ell_r in samples:
+                core_pad = ell_r + [0, 0]
+                x_core = [0] + ell_r + [0]
+                x2_core = [0, 0] + ell_r
+
+                for _ in range(40):
+                    s = rng.randrange(p)
+                    c = rng.randrange(p)
+                    direct = mul_x2_minus_sx_plus_c(ell_r, s, c, p)
+                    expected = [
+                        (x2_core[i] - s * x_core[i] + c * core_pad[i]) % p
+                        for i in range(len(core_pad))
+                    ]
+                    assert direct == expected, (p, core_degree, ell_r, s, c)
+
+    # Exhaustive row-linear check in small dimensions: a nonzero affine-linear
+    # equation on F_p^2 cannot contain a non-collinear triple of zeros.
+    p = 5
+    points = [(s, c) for s in range(p) for c in range(p)]
+    for core_degree in range(0, 3):
+        for coeffs in product(range(p), repeat=core_degree):
+            ell_r = list(coeffs) + [1]
+            core_pad = ell_r + [0, 0]
+            x_core = [0] + ell_r + [0]
+            x2_core = [0, 0] + ell_r
+
+            for row in product(range(p), repeat=len(core_pad)):
+                coeff_x2 = dot(row, x2_core, p)
+                coeff_x = dot(row, x_core, p)
+                coeff_0 = dot(row, core_pad, p)
+                zeros = {
+                    point
+                    for point in points
+                    if (coeff_x2 - point[0] * coeff_x + point[1] * coeff_0) % p
+                    == 0
+                }
+                has_noncollinear_triple = any(
+                    affine_plane_det(triple[0], triple[1], triple[2], p) != 0
+                    for triple in combinations(zeros, 3)
+                )
+                if not has_noncollinear_triple:
+                    continue
+
+                assert coeff_0 == 0, (core_degree, ell_r, row)
+                assert coeff_x == 0, (core_degree, ell_r, row)
+                assert coeff_x2 == 0, (core_degree, ell_r, row)
+
+    # Hankel row-block lift: the three padded equations are exactly the
+    # row blocks 0..t-1, 1..t, and 2..t+1 of H_{t+2,j-2}.
+    for p in (5, 7, 17, 31):
+        for t_rows in range(1, 5):
+            for core_degree in range(0, 5):
+                samples = [
+                    [rng.randrange(p) for _ in range(core_degree)] + [1]
+                    for _ in range(100)
+                ]
+                for ell_r in samples:
+                    row = [rng.randrange(p) for _ in range(t_rows + len(ell_r) + 1)]
+                    core_pad = ell_r + [0, 0]
+                    x_core = [0] + ell_r + [0]
+                    x2_core = [0, 0] + ell_r
+
+                    core_rows = hankel_values(row, core_pad, t_rows, p)
+                    x_rows = hankel_values(row, x_core, t_rows, p)
+                    x2_rows = hankel_values(row, x2_core, t_rows, p)
+                    lifted_rows = hankel_values(row, ell_r, t_rows + 2, p)
+
+                    assert core_rows == lifted_rows[:-2], (
+                        p,
+                        t_rows,
+                        core_degree,
+                        ell_r,
+                        row,
+                    )
+                    assert x_rows == lifted_rows[1:-1], (
+                        p,
+                        t_rows,
+                        core_degree,
+                        ell_r,
+                        row,
+                    )
+                    assert x2_rows == lifted_rows[2:], (
+                        p,
+                        t_rows,
+                        core_degree,
+                        ell_r,
+                        row,
+                    )
+                    if all(value == 0 for value in core_rows + x_rows + x2_rows):
                         assert all(value == 0 for value in lifted_rows)
 
 
@@ -673,6 +797,7 @@ def main() -> None:
     check_difference_identity()
     check_row_implication()
     check_higher_slack_root_slice_lift()
+    check_two_exchange_full_plane_lift()
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()
     check_hankel_ruled_core_collapse()

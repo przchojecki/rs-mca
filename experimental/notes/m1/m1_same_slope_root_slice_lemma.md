@@ -1,8 +1,8 @@
 # M1 Same-Slope One-Exchange Root-Slice Lemma
 
-**Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / RULED-CORE DICHOTOMY /
-RULED-CORE COLLAPSE / HIGHER-SLACK LIFT / TRIANGLE CLASSIFICATION /
-TOP-PACKET LIFT / TOP-PACKET LEDGER / AUDIT.
+**Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / TWO-EXCHANGE PLANE LIFT /
+RULED-CORE DICHOTOMY / RULED-CORE COLLAPSE / HIGHER-SLACK LIFT /
+TRIANGLE CLASSIFICATION / TOP-PACKET LIFT / TOP-PACKET LEDGER / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -138,6 +138,53 @@ second padded equation gives rows `1,...,t`.  Thus every same-slope
 one-exchange root slice is charged to the lifted `(t+1,j-1)` Hankel core with
 the same finite slope.  It is not a new residual `t`-level aperiodic
 multiplicity.
+
+## Two-Exchange Full-Plane Lift
+
+There is an exact two-exchange analogue.  Fix a `(j-2)`-set `R`, and write a
+formal two-root locator through `R` in elementary coordinates
+
+```text
+T_{s,p}:        ell_{T_{s,p}}=(X^2-sX+p)ell_R.
+```
+
+For a fixed finite slope `z`, put again `L_z=H_{t,j}(u)+zH_{t,j}(v)`.  The
+same-slope equation on this two-root plane is affine-linear in `(s,p)`:
+
+```text
+L_z ell_{T_{s,p}}
+ =
+ L_z(X^2 ell_R) - s L_z(X ell_R) + p L_z(ell_R).       (PLANE)
+```
+
+If three affinely non-collinear elementary points `(s_i,p_i)` satisfy
+
+```text
+L_z ell_{T_{s_i,p_i}}=0,        i=1,2,3,
+```
+
+then all three coefficient vectors vanish:
+
+```text
+L_z ell_R=0,        L_z(X ell_R)=0,        L_z(X^2 ell_R)=0.   (PLIFT0)
+```
+
+Equivalently,
+
+```text
+H_{t+2,j-2}(u+zv)ell_R=0.                         (PLIFT)
+```
+
+Indeed, the three padded equations in (PLIFT0) give respectively the row
+blocks `0,...,t-1`, `1,...,t`, and `2,...,t+1` of (PLIFT).
+
+Thus a same-slope two-exchange family through `R` that contains a
+non-collinear triple is a full two-root plane and is charged to the lifted
+`(t+2,j-2)` Hankel-core ledger.  After fixed-slope root slices and full-plane
+lifts have been charged, any residual same-slope two-exchange family through a
+fixed `(j-2)` core is contained in an affine line in the elementary `(s,p)`
+plane.  This is the line-packet residual treated by
+`m1_hankel_variable_line_packet_lemma.md`.
 
 ## The `t=2` Determinant Gate
 
@@ -685,6 +732,8 @@ two-exchange packet-edge ledger, or the full one-outside boundary image.  It onl
 proves that
 same-slope one-exchange collisions belong to the fixed-slope root-slice ledger,
 that such root slices lift to `(t+1,j-1)` Hankel cores,
+that non-collinear same-slope two-exchange planes lift to `(t+2,j-2)` Hankel
+cores,
 classifies the ruled determinant core into fixed-slope, inactive, and rank-one
 moving-slope cases for abstract affine pencils, proves the Hankel shift
 collapse that eliminates the moving-slope ruled residual, shows that star
@@ -704,10 +753,11 @@ python3 experimental/scripts/verify_m1_same_slope_root_slice_lemma.py
 
 checks the subtraction identity over sampled small prime fields and exhaustively
 checks the row-wise linear-map implication in small dimensions.  It checks the
-higher-slack lift identity (LIFT), the quadratic determinant formula (DET2) and
-the "three roots imply ruled" criterion in sampled small prime fields, then
-stress-tests the abstract ruled-core dichotomy and the Hankel ruled-core
-collapse.  It also checks the Johnson-graph star/top triangle classification,
-the top-packet lift identity (TOP1), the distinct-slope implication (TOPK), and
-the top-packet edge/triangle compression ledger.  The same verifier also checks
-the boundary-off external-anchor corollary over sampled small domains.
+higher-slack lift identity (LIFT), the two-exchange full-plane lift (PLIFT),
+the quadratic determinant formula (DET2), and the "three roots imply ruled"
+criterion in sampled small prime fields, then stress-tests the abstract
+ruled-core dichotomy and the Hankel ruled-core collapse.  It also checks the
+Johnson-graph star/top triangle classification, the top-packet lift identity
+(TOP1), the distinct-slope implication (TOPK), and the top-packet edge/triangle
+compression ledger.  The same verifier also checks the boundary-off
+external-anchor corollary over sampled small domains.

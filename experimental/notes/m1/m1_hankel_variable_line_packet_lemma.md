@@ -65,6 +65,12 @@ quotient-periodic locators have been charged, and put `m_L=|A_L|`.  Finally let
 root-slice, full-plane, and fixed-root line slopes have been removed, and put
 `r_L=|R_L|`.
 
+The full-plane charge used here is supplied by
+`m1_same_slope_root_slice_lemma.md`: three non-collinear same-slope points in
+the elementary two-root plane force the lifted
+`H_{t+2,j-2}(u+zv)ell_R=0` Hankel core.  Fixed-root lines are the one-exchange
+root slices through `R union {x}`.
+
 ## Lemma
 
 For every non-fixed variable line packet as above,

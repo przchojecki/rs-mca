@@ -73,6 +73,10 @@ Keep entries concise and link to the relevant files.
   `(j+1)` set, and residual top-packet edges with distinct slopes lift to a
   common `t=1` Hankel kernel.  The top-packet edge and triangle ledgers then
   compress into the simultaneous lifted `t=1` top-kernel family `K_top(u,v)`.
+  A two-exchange full-plane lift is also proved: three non-collinear
+  same-slope points in a two-root plane force the lifted
+  `H_{t+2,j-2}(u+zv)ell_R=0` core, so residual same-slope two-exchange
+  components are line packets after full planes are charged.
   The same Hankel shift collapse classifies the one-outside external-anchor
   ruled branch: after fixed-slope boundary slices are charged, each shadow has
   at most two active non-ruled external anchors.
@@ -90,7 +94,8 @@ Keep entries concise and link to the relevant files.
   counts bounded by `binom(j+1,2)|K_top|` and `binom(j+1,3)|K_top|`.  The
   one-outside ruled branch is no longer a separate unclassified residual; it
   is either inactive or charged to the lifted fixed-slope boundary root-slice
-  ledger.
+  ledger.  The variable-line packet note's `full-plane removed` hypothesis is
+  now backed by a proved `(t+2,j-2)` Hankel lift.
 - **What to do next:** Bound the remaining different-slope one-exchange or
   two-exchange codegree ledgers after quotient-periodic, tangent/contained,
   and root-slice charges.
