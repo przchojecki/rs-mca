@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 post-star critical flag criterion
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Packages the critical top-slice split into two
+  explicit ledgers: `PerpStar_crit`, the perpendicular fixed-root full-star
+  contribution, and `RFFlag_crit`, the root-free flag contribution, with
+  `TailLift_crit <= q(PerpStar_crit+RFFlag_crit)`.
+- **How it is useful:** Gives the current sharp residual target for this M1
+  branch: after fixed-root/full-star charges, polynomial control of
+  `RFFlag_crit` closes the fixed-surplus critical-tail route.
+- **What to do next:** Prove the root-free flag ledger is quotient-periodic,
+  tangent/fixed-root degenerate, or aperiodically packable, or construct a
+  primitive counterexample family.
+
 ### 2026-06-29 - M1 perpendicular top-slice full stars
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

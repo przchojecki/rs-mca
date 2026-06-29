@@ -6056,6 +6056,38 @@ The surplus identity remains
 So perpendicular entropy-large witnesses are full-star fixed-root absorbed
 slices; after those are charged, the root-free flag recursion is the only
 remaining critical top-slice mechanism.
+Equivalently, define
+\[
+\begin{aligned}
+PerpStar_{\mathrm{crit}(d,B)}(A)
+&=\sum_{\substack{(S,\lambda)\ {\rm critical}\\Z_{S,\lambda}^{\perp}\ne\emptyset}}
+  \binom{h_\lambda}{a},\\
+RFFlag_{\mathrm{crit}(d,B)}(A)
+&=\sum_{\substack{(S,\lambda)\ {\rm critical}\\Z_{S,\lambda}^{\perp}=\emptyset}}
+  \binom{h_\lambda-1}{a-1}.
+\end{aligned}
+\]
+Then
+\[
+  RootTail_{\mathrm{crit}(d,B)}(A)
+  =PerpStar_{\mathrm{crit}(d,B)}(A)+RFFlag_{\mathrm{crit}(d,B)}(A),
+\]
+and
+\[
+  TailLift_{\mathrm{crit}(d,B)}(A)
+  \le q\bigl(PerpStar_{\mathrm{crit}(d,B)}(A)
+             +RFFlag_{\mathrm{crit}(d,B)}(A)\bigr).
+\]
+Thus, for fixed \(\sigma,d,B\),
+\[
+  |F(A)|\le(\sigma+1)q(PerpStar_{\mathrm{crit}(d,B)}(A)
+  +RFFlag_{\mathrm{crit}(d,B)}(A))
+  +O_{\sigma,d,B}(q^{\sigma+d+1}+q^{\sigma+B+2}+q^{\sigma+2})
+  \qquad(s_0\le\sigma).
+\]
+After the perpendicular full stars are charged to fixed-root/root-slice
+ledgers, the remaining critical-tail target is exactly the root-free flag
+ledger \(RFFlag_{\mathrm{crit}(d,B)}\).
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

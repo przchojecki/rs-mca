@@ -6721,6 +6721,65 @@ the only remaining critical top-slice mechanism is the root-free flag
 recursion above; the perpendicular branch cannot produce a separate
 aperiodic tail reservoir.
 
+## Post-Star Critical Residual Is the Root-Free Flag Ledger
+
+The preceding two sections give an explicit post-star form of the critical
+tail.  For a critical collapsed certificate `(S,lambda)`, write again
+
+```text
+h=h_lambda,        r=r_lambda,
+a=floor((h-r-1)/2),        Z=Z_{S,lambda}^{perp}.
+```
+
+Choose a deterministic root `z_*(S,lambda) in Z` when `Z` is nonempty.  Define
+the perpendicular full-star ledger and the root-free flag ledger by
+
+```text
+PerpStar_{crit(d,B)}(A)
+ =
+ sum_{(S,lambda) critical, Z nonempty} binom(h,a),
+
+RFFlag_{crit(d,B)}(A)
+ =
+ sum_{(S,lambda) critical, Z empty} binom(h-1,a-1).
+```
+
+The second sum is well-defined on the critical ledger because `a>=1`.  The
+single-root witness formula gives the exact identity
+
+```text
+RootTail_{crit(d,B)}(A)
+ = PerpStar_{crit(d,B)}(A)+RFFlag_{crit(d,B)}(A).  (PF2-post-star-root)
+```
+
+Together with (PF2-root-tail-reduction),
+
+```text
+TailLift_{crit(d,B)}(A)
+ <= q (PerpStar_{crit(d,B)}(A)+RFFlag_{crit(d,B)}(A)).
+                                                        (PF2-post-star-tail)
+```
+
+Substituting this into (PF2-critical-tail-endpoint) gives, for fixed
+`sigma,d,B`,
+
+```text
+|F(A)|
+ <= (sigma+1)q(PerpStar_{crit(d,B)}(A)+RFFlag_{crit(d,B)}(A))
+    +O_{sigma,d,B}(q^{sigma+d+1}+q^{sigma+B+2}+q^{sigma+2}),
+        whenever s_0<=sigma.                  (PF2-post-star-endpoint)
+```
+
+Thus fixed-surplus canonical `b=2` M1 is reduced to two named top-slice
+objects: perpendicular full stars, which are fixed-root absorbed slices by
+(PF2-perp-full-star)--(PF2-perp-surplus-shift), and root-free flags, whose
+rung-by-rung descent is lossless by (PF2-rootfree-flag-dir)--(PF2-rootfree-flag-level).
+After the perpendicular full stars are charged to fixed-root/root-slice
+ledgers, polynomial control of `RFFlag_{crit(d,B)}(A)` alone closes this
+critical-tail route.  Conversely, any counterexample left by the current
+analysis must be a bounded-surplus, entropy-large, root-free flag family that
+survives the quotient-periodic, tangent, fixed-root, and aperiodic charges.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
