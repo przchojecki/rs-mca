@@ -38,11 +38,15 @@ The certificate records:
 - `floor(17^32 / 2^128) = 6`;
 - hashes and decisive-row checks for the committed pure-MCA scanner replay
   `experimental/notes/certificate_scanner/outputs/f17_512_mca_only.report.json`;
+- hashes and decisive-row checks for the committed line-plus-one-list scanner
+  replay `experimental/notes/certificate_scanner/outputs/f17_512.report.json`,
+  which shifts the coding threshold to `a=507/508`;
 - affine and projective denominator checks;
 - explicit finite support-wise MCA, finite no-loss CA, and projective
   denominator audit;
 - exact tangent-range entry `a >= 427`;
 - pure finite-slope support-wise MCA threshold `a=506/507`;
+- same-denominator line-plus-one-list coding threshold `a=507/508`;
 - exact M2 endpoint bridge checks
   `epsilon_mca(C,delta)=LD_sw(C,ceil((1-delta)n))/|F|`;
 - closed endpoint language `[0,6/512)`;

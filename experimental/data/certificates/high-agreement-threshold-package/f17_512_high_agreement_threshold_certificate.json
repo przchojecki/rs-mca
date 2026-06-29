@@ -7,6 +7,75 @@
     "closed_integer_radius": "r=n-a",
     "closed_real_radius_rule": "r(delta)=floor(delta*n)",
     "endpoint": "the supremal real transition radius is not attained when the first unsafe integer radius is reached",
+    "line_plus_list_scanner_replay": {
+      "checks": {
+        "row_and_protocol_checks_passed": true,
+        "threshold_row_checks_passed": true
+      },
+      "purpose": "replay committed line-plus-one-list scanner output at the shifted threshold rows",
+      "row_checks": {
+        "config_is_line_plus_one_list": true,
+        "config_row_matches_f17": true,
+        "config_target_is_128": true,
+        "report_budget_is_6": true,
+        "report_row_matches_f17": true
+      },
+      "scanner_config": {
+        "path": "experimental/notes/certificate_scanner/examples/f17_512.json",
+        "sha256": "af20e750d35ec4af280a287c7cc5b814a3c5721e5dcd4caff165a0f126463822"
+      },
+      "scanner_json_report": {
+        "path": "experimental/notes/certificate_scanner/outputs/f17_512.report.json",
+        "sha256": "e0e4c50e4ff5b9cb0b53445769202b648d3b89263e62ad29ad6a2e3a943ba0e1"
+      },
+      "scanner_markdown_report": {
+        "path": "experimental/notes/certificate_scanner/outputs/f17_512.report.md",
+        "sha256": "a0d2af456b18e237d0b49461d399d302e62f406c17e0d39f6f9b1bc48ae367c9"
+      },
+      "status": "AUDIT",
+      "threshold_rows": {
+        "507": {
+          "checks": {
+            "budget_comparison_matches": true,
+            "combined_has_no_unknown_terms": true,
+            "combined_verdict_matches": true,
+            "common_denominator_matches": true,
+            "line_numerator_matches": true,
+            "list_numerator_matches": true,
+            "present": true,
+            "r_matches": true,
+            "sigma_matches": true,
+            "total_numerator_matches": true
+          },
+          "combined_verdict": "UNSAFE_BY_PROVED_LOWER_BOUND",
+          "line_numerator": 6,
+          "list_numerator": 1,
+          "r": 5,
+          "sigma": 251,
+          "total_numerator": 7
+        },
+        "508": {
+          "checks": {
+            "budget_comparison_matches": true,
+            "combined_has_no_unknown_terms": true,
+            "combined_verdict_matches": true,
+            "common_denominator_matches": true,
+            "line_numerator_matches": true,
+            "list_numerator_matches": true,
+            "present": true,
+            "r_matches": true,
+            "sigma_matches": true,
+            "total_numerator_matches": true
+          },
+          "combined_verdict": "SAFE_BY_PROVED_UPPER_BOUND",
+          "line_numerator": 5,
+          "list_numerator": 1,
+          "r": 4,
+          "sigma": 252,
+          "total_numerator": 6
+        }
+      }
+    },
     "object": "finite-slope support-wise MCA / LD_sw",
     "official_source": {
       "anchors": [
@@ -265,6 +334,24 @@
     "safe_line_numerator": 6,
     "threshold_pinned": true,
     "unsafe_line_numerator": 7
+  },
+  "f17_512_same_denominator_line_plus_list": {
+    "budget": 6,
+    "checks": {
+      "safe_agreement_matches_radius": true,
+      "safe_total_within_budget": true,
+      "unsafe_agreement_matches_radius": true,
+      "unsafe_total_exceeds_budget": true
+    },
+    "first_safe_agreement": 508,
+    "first_unsafe_integer_radius": 5,
+    "largest_safe_integer_radius": 4,
+    "last_unsafe_agreement": 507,
+    "list_numerator": 1,
+    "safe_total_numerator": 6,
+    "same_denominator": 2367911594760467245844106297320951247361,
+    "source": "experimental/notes/high_agreement/current_row_protocol_ledger.tex",
+    "unsafe_total_numerator": 7
   },
   "f17_512_variant_denominator_audit": {
     "rows": [

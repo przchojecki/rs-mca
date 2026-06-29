@@ -34,6 +34,15 @@ SCANNER_JSON = Path(
 SCANNER_MD = Path(
     "experimental/notes/certificate_scanner/outputs/f17_512_mca_only.report.md"
 )
+PROTOCOL_SCANNER_CONFIG = Path(
+    "experimental/notes/certificate_scanner/examples/f17_512.json"
+)
+PROTOCOL_SCANNER_JSON = Path(
+    "experimental/notes/certificate_scanner/outputs/f17_512.report.json"
+)
+PROTOCOL_SCANNER_MD = Path(
+    "experimental/notes/certificate_scanner/outputs/f17_512.report.md"
+)
 
 
 def parse_int(text: str) -> int:
@@ -216,6 +225,122 @@ def scanner_replay_audit() -> dict[str, Any]:
         "scanner_markdown_report": {
             "path": str(SCANNER_MD),
             "sha256": sha256_file(SCANNER_MD),
+        },
+        "row_checks": row_checks,
+        "threshold_rows": replay_rows,
+        "checks": {
+            "row_and_protocol_checks_passed": all(row_checks.values()),
+            "threshold_row_checks_passed": all(all_row_checks),
+        },
+    }
+
+
+def protocol_scanner_replay_audit() -> dict[str, Any]:
+    """Audit the committed line-plus-one-list scanner output at the threshold."""
+    cfg = json.loads(PROTOCOL_SCANNER_CONFIG.read_text())
+    report = json.loads(PROTOCOL_SCANNER_JSON.read_text())
+    scans = {scan["a"]: scan for scan in report["scans"]}
+    expected_rows = {
+        507: {
+            "r": 5,
+            "line_numerator": 6,
+            "list_numerator": 1,
+            "total_numerator": 7,
+            "verdict": "UNSAFE_BY_PROVED_LOWER_BOUND",
+        },
+        508: {
+            "r": 4,
+            "line_numerator": 5,
+            "list_numerator": 1,
+            "total_numerator": 6,
+            "verdict": "SAFE_BY_PROVED_UPPER_BOUND",
+        },
+    }
+
+    row_checks = {
+        "config_is_line_plus_one_list": (
+            cfg["protocol"].get("include_line_term") is True
+            and cfg["protocol"].get("include_interleaved_list_term") is True
+            and int(cfg["protocol"].get("implementation_interleaving_nu")) == 1
+            and cfg["protocol"].get("curve_degrees") == []
+            and cfg["protocol"].get("line_sampler") == "finite"
+        ),
+        "config_target_is_128": int(cfg["security"]["lambda"]) == TARGET,
+        "config_row_matches_f17": int(cfg["row"]["n"]) == F17_N
+        and int(cfg["row"]["k"]) == F17_K,
+        "report_row_matches_f17": (
+            report["row"]["n"] == F17_N
+            and report["row"]["k"] == F17_K
+            and report["row"]["q_gen"] == F17_Q
+            and report["row"]["q_line"] == F17_Q
+            and report["row"]["q_chal"] == F17_Q
+        ),
+        "report_budget_is_6": report["row"]["budget_q_line"] == 6
+        and report["row"]["budget_q_chal"] == 6,
+    }
+
+    replay_rows: dict[str, Any] = {}
+    for a, expected in expected_rows.items():
+        scan = scans.get(a)
+        if scan is None:
+            replay_rows[str(a)] = {"present": False, "checks": {"present": False}}
+            continue
+        terms = {
+            item["name"]: item
+            for item in scan["combined_protocol"]["terms_upper"]
+        }
+        line = terms.get("finite_line_exact", {})
+        list_term = terms.get("interleaved_list_unique", {})
+        total = line.get("numerator", 0) + list_term.get("numerator", 0)
+        checks = {
+            "present": True,
+            "r_matches": scan["r"] == expected["r"],
+            "sigma_matches": scan["sigma"] == a - F17_K,
+            "line_numerator_matches": line.get("numerator")
+            == expected["line_numerator"],
+            "list_numerator_matches": list_term.get("numerator")
+            == expected["list_numerator"],
+            "total_numerator_matches": total == expected["total_numerator"],
+            "common_denominator_matches": line.get("denominator") == F17_Q
+            and list_term.get("denominator") == F17_Q,
+            "budget_comparison_matches": (
+                (total <= 6)
+                == (expected["verdict"] == "SAFE_BY_PROVED_UPPER_BOUND")
+            ),
+            "combined_verdict_matches": scan["combined_protocol"]["verdict"]
+            == expected["verdict"],
+            "combined_has_no_unknown_terms": scan["combined_protocol"][
+                "unknown_terms"
+            ]
+            == [],
+        }
+        replay_rows[str(a)] = {
+            "r": scan["r"],
+            "sigma": scan["sigma"],
+            "line_numerator": line.get("numerator"),
+            "list_numerator": list_term.get("numerator"),
+            "total_numerator": total,
+            "combined_verdict": scan["combined_protocol"]["verdict"],
+            "checks": checks,
+        }
+
+    all_row_checks = [
+        value for row in replay_rows.values() for value in row["checks"].values()
+    ]
+    return {
+        "status": "AUDIT",
+        "purpose": "replay committed line-plus-one-list scanner output at the shifted threshold rows",
+        "scanner_config": {
+            "path": str(PROTOCOL_SCANNER_CONFIG),
+            "sha256": sha256_file(PROTOCOL_SCANNER_CONFIG),
+        },
+        "scanner_json_report": {
+            "path": str(PROTOCOL_SCANNER_JSON),
+            "sha256": sha256_file(PROTOCOL_SCANNER_JSON),
+        },
+        "scanner_markdown_report": {
+            "path": str(PROTOCOL_SCANNER_MD),
+            "sha256": sha256_file(PROTOCOL_SCANNER_MD),
         },
         "row_checks": row_checks,
         "threshold_rows": replay_rows,
@@ -602,6 +727,7 @@ def build_certificate() -> dict[str, Any]:
     boundary_rows = prize_rate_boundary_rows()
     official_source = source_audit()
     scanner_replay = scanner_replay_audit()
+    protocol_replay = protocol_scanner_replay_audit()
     variant_rows = [
         variant_row("finite_supportwise_mca", F17_Q, finite["safe_line_numerator"]),
         variant_row("finite_no_loss_ca", F17_Q, finite["safe_line_numerator"]),
@@ -632,6 +758,7 @@ def build_certificate() -> dict[str, Any]:
         "definition_freeze": {
             "official_source": official_source,
             "pure_mca_scanner_replay": scanner_replay,
+            "line_plus_list_scanner_replay": protocol_replay,
             "object": "finite-slope support-wise MCA / LD_sw",
             "bridge": "epsilon_mca(C,delta)=LD_sw(C,ceil((1-delta)n))/q_line",
             "agreement": "a=n-r",
@@ -667,6 +794,24 @@ def build_certificate() -> dict[str, Any]:
                 finite["unsafe_line_numerator"],
             ),
         },
+        "f17_512_same_denominator_line_plus_list": {
+            "source": "experimental/notes/high_agreement/current_row_protocol_ledger.tex",
+            "same_denominator": F17_Q,
+            "budget": finite["budget"],
+            "list_numerator": 1,
+            "largest_safe_integer_radius": 4,
+            "first_unsafe_integer_radius": 5,
+            "first_safe_agreement": 508,
+            "last_unsafe_agreement": 507,
+            "safe_total_numerator": 6,
+            "unsafe_total_numerator": 7,
+            "checks": {
+                "safe_total_within_budget": 6 <= finite["budget"],
+                "unsafe_total_exceeds_budget": 7 > finite["budget"],
+                "safe_agreement_matches_radius": F17_N - 4 == 508,
+                "unsafe_agreement_matches_radius": F17_N - 5 == 507,
+            },
+        },
         "row_checks": row_checks,
         "row_independent_compiler": {
             "statement": (
@@ -690,6 +835,10 @@ def build_certificate() -> dict[str, Any]:
     all_checks.extend(scanner_replay["checks"].values())
     all_checks.extend(scanner_replay["row_checks"].values())
     for row in scanner_replay["threshold_rows"].values():
+        all_checks.extend(row["checks"].values())
+    all_checks.extend(protocol_replay["checks"].values())
+    all_checks.extend(protocol_replay["row_checks"].values())
+    for row in protocol_replay["threshold_rows"].values():
         all_checks.extend(row["checks"].values())
     all_checks.extend(finite.get("checks", {}).values())
     all_checks.extend(projective.get("checks", {}).values())
@@ -721,6 +870,11 @@ def build_certificate() -> dict[str, Any]:
         certificate["f17_512_endpoint_bridge"]["first_unsafe_endpoint"][
             "unsafe_at_2^-128"
         ]
+    )
+    all_checks.extend(
+        certificate["f17_512_same_denominator_line_plus_list"][
+            "checks"
+        ].values()
     )
     certificate["all_checks_passed"] = all(bool(x) for x in all_checks)
     return certificate

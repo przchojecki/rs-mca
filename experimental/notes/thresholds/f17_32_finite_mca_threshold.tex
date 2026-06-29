@@ -313,7 +313,10 @@ the \(506/507\) row, and the row-independent compiler condition
         B_Q=\lfloor Q/2^{128}\rfloor\le \left\lfloor\frac{n-k}{3}\right\rfloor .
 \]
 It also records hashes and decisive-row checks for the committed pure-MCA
-scanner replay described below.
+scanner replay described below, and separately for the same-denominator
+line-plus-one-list scanner replay.  The latter is a protocol-coding ledger, not
+the pure MCA threshold: at \(a=507\) it has numerator \(6+1=7\), while at
+\(a=508\) it has numerator \(5+1=6\).
 
 The reproducibility attachment is generated from the repository root by running
 \texttt{python3} on

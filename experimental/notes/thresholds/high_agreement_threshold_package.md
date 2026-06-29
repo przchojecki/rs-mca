@@ -57,6 +57,12 @@ The replay is audited only at the rows needed by the threshold package:
 `a=506` is unsafe with numerator `7`, while `a=507,508,512` are safe with
 finite-line numerators `6,5,1`.
 
+The certificate separately audits the committed line-plus-one-list scanner
+replay `experimental/notes/certificate_scanner/outputs/f17_512.report.json`.
+That replay checks the theorem-backed same-denominator protocol shift:
+at `a=507`, the line numerator `6` plus list numerator `1` is unsafe, while
+at `a=508`, the line numerator `5` plus list numerator `1` is safe.
+
 The endpoint convention is closed-ball: if the first unsafe integer radius is
 `r0`, then the real safe interval is `[0,r0/n)`. The supremum `r0/n` is not
 attained.
@@ -237,6 +243,13 @@ limit `k <= 2^40`.
 This is only the single-line/MCA/CA compiler. If a protocol consumes an extra
 same-denominator list term, curve term, query term, folding term, or crypto
 term, that term must be added in its own ledger.
+
+For the current row, the certificate records the simplest such same-denominator
+shift. A single line/MCA/CA term plus one interleaved-list term over
+`17^32` has total numerator `r+2`, so the largest safe integer radius is `4`
+and the first unsafe integer radius is `5`. Equivalently, the pure MCA threshold
+is `a=506/507`, while the line-plus-one-list coding ledger shifts to
+`a=507/508`.
 
 ## Reproduction
 

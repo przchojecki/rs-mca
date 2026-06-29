@@ -78,6 +78,10 @@ Keep entries concise and link to the relevant files.
   boundary: for rate `1/d` and `Q=2^lambda`, the high-agreement compiler pins
   exactly when `k >= ceil(3*2^(lambda-128)/(d-1))`. The script has a
   `--classify-prize-power2` mode for this criterion.
+- **Update:** The certificate now separately audits the committed
+  line-plus-one-list scanner replay. It records the same-denominator coding
+  shift from the pure MCA `a=506/507` transition to the line-plus-list
+  `a=507/508` transition.
 - **What to do next:** Use this certificate as the compact reproduction
   artifact when promoting the high-agreement finite-row theorem or building a
   broader threshold certificate generator for multiple protocol ledgers.
