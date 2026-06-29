@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - High-agreement threshold package certificate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/certify_high_agreement_threshold_package.py`,
+  `experimental/notes/thresholds/high_agreement_threshold_package.md`,
+  `experimental/notes/thresholds/f17_32_finite_mca_threshold.tex`,
+  `experimental/data/certificates/high-agreement-threshold-package/README.md`,
+  `experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-COMPILER-ARITHMETIC / AUDIT.
+- **What is being added:** A deterministic exact-integer certificate for the
+  finite `F_17^32`, `n=512`, `k=256` high-agreement threshold and the
+  row-independent single-line compiler gate. It checks the affine/projective
+  denominators, `floor(17^32/2^128)=6`, the tangent range `a>=427`, the
+  `506/507` transition, and the closed endpoint convention.
+- **How it is useful:** This directly packages the current top priority from
+  `towards-prize.md`: finite-row threshold packaging and the compiler theorem
+  condition `B_Q <= floor((n-k)/3)`. It separates the pure support-wise MCA
+  threshold from any protocol ledger that also consumes list, curve, query, or
+  folding terms.
+- **What to do next:** Use this certificate as the compact reproduction
+  artifact when promoting the high-agreement finite-row theorem or building a
+  broader threshold certificate generator for multiple protocol ledgers.
+
 ### 2026-06-29 - Paper D v7 first-grid cap promotion
 
 - **Agent/model:** Codex.

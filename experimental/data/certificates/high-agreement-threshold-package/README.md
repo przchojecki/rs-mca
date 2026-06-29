@@ -1,0 +1,29 @@
+# High-Agreement Threshold Package Certificate
+
+Status: PROVED-COMPILER-ARITHMETIC / AUDIT.
+
+This directory contains the deterministic JSON certificate for the
+`F_17^32`, `n=512`, `k=256` high-agreement threshold row and the
+row-independent single-line compiler gate.
+
+Generate and check it from the repository root:
+
+```sh
+python3 experimental/scripts/certify_high_agreement_threshold_package.py \
+  --write experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json
+
+python3 experimental/scripts/certify_high_agreement_threshold_package.py \
+  --check experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json
+```
+
+The certificate records:
+
+- `floor(17^32 / 2^128) = 6`;
+- affine and projective denominator checks;
+- exact tangent-range entry `a >= 427`;
+- pure finite-slope support-wise MCA threshold `a=506/507`;
+- closed endpoint language `[0,6/512)`;
+- row-independent compiler examples for prize rates at `k=2^40`.
+
+It does not prove lower-agreement M1, quotient floors, extension transfer, L2,
+or any protocol ledger that consumes extra list/curve/query/folding terms.

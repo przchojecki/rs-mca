@@ -283,6 +283,22 @@ so the compiler applies with substantial room.
 \section{Scanner Attachment}
 \label{sec:scanner}
 
+The exact threshold arithmetic and endpoint convention are also packaged as a
+small deterministic certificate.  From the repository root run
+\[
+\texttt{python3 experimental/scripts/certify\_high\_agreement\_threshold\_package.py}
+\]
+or check the committed JSON certificate under
+\[
+\texttt{experimental/data/certificates/high-agreement-threshold-package/}
+\]
+with the script's \texttt{--check} option.  This certificate records the
+finite-slope and projective-slope denominators, the closed endpoint convention,
+the \(506/507\) row, and the row-independent compiler condition
+\[
+        B_Q=\lfloor Q/2^{128}\rfloor\le \left\lfloor\frac{n-k}{3}\right\rfloor .
+\]
+
 The reproducibility attachment is generated from the repository root by running
 \texttt{python3} on
 \path{experimental/notes/certificate_scanner/certificate_scanner.py} with input

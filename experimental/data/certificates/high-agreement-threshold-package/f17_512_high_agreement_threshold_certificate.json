@@ -1,0 +1,293 @@
+{
+  "all_checks_passed": true,
+  "definition_freeze": {
+    "affine_denominator": "q_line=|F|",
+    "agreement": "a=n-r",
+    "closed_integer_radius": "r=n-a",
+    "closed_real_radius_rule": "r(delta)=floor(delta*n)",
+    "endpoint": "the supremal real transition radius is not attained when the first unsafe integer radius is reached",
+    "object": "finite-slope support-wise MCA / LD_sw",
+    "projective_denominator": "|P^1(F)|=|F|+1"
+  },
+  "f17_512_affine": {
+    "applies": true,
+    "budget": 6,
+    "checks": {
+      "exact_agreement_inside_tangent_range": true,
+      "safe_grid_numerator_within_budget": true,
+      "safe_probability_le_target": true,
+      "unsafe_grid_numerator_exceeds_budget": true,
+      "unsafe_probability_gt_target": true
+    },
+    "closed_real_safe_interval": {
+      "endpoint_attained": false,
+      "left_closed": true,
+      "right_open_supremum": {
+        "denominator": 256,
+        "display": "3/256",
+        "numerator": 3
+      }
+    },
+    "exact_range_min_agreement": 427,
+    "first_safe_agreement": 507,
+    "first_unsafe_integer_radius": 6,
+    "largest_safe_integer_radius": 5,
+    "last_unsafe_agreement": 506,
+    "line_exact_radius": 85,
+    "safe_line_numerator": 6,
+    "unsafe_line_numerator": 7
+  },
+  "f17_512_projective": {
+    "applies": true,
+    "budget": 6,
+    "checks": {
+      "exact_agreement_inside_tangent_range": true,
+      "safe_grid_numerator_within_budget": true,
+      "safe_probability_le_target": true,
+      "unsafe_grid_numerator_exceeds_budget": true,
+      "unsafe_probability_gt_target": true
+    },
+    "closed_real_safe_interval": {
+      "endpoint_attained": false,
+      "left_closed": true,
+      "right_open_supremum": {
+        "denominator": 256,
+        "display": "3/256",
+        "numerator": 3
+      }
+    },
+    "exact_range_min_agreement": 427,
+    "first_safe_agreement": 507,
+    "first_unsafe_integer_radius": 6,
+    "largest_safe_integer_radius": 5,
+    "last_unsafe_agreement": 506,
+    "line_exact_radius": 85,
+    "safe_line_numerator": 6,
+    "unsafe_line_numerator": 7
+  },
+  "proof_input": {
+    "formula": "LD_sw(C,a)=r+1=n-a+1 when r=n-a <= floor((n-k)/3)",
+    "nonclaim": "this certificate does not prove lower-agreement M1, quotient floors, extension transfer, or L2",
+    "source": "tex/slackMCA_v4.tex, theorem B-high-agreement-line-staircase",
+    "theorem": "high-agreement tangent line staircase"
+  },
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "k": 256,
+    "n": 512,
+    "q_chal": 2367911594760467245844106297320951247361,
+    "q_gen": 2367911594760467245844106297320951247361,
+    "q_line": 2367911594760467245844106297320951247361,
+    "q_projective": 2367911594760467245844106297320951247362,
+    "rho": "1/2"
+  },
+  "row_checks": {
+    "affine_budget_bracket": true,
+    "affine_threshold_applies": true,
+    "exact_line_range_radius_is_85": true,
+    "exact_range_min_agreement_is_427": true,
+    "floor_17_32_over_2_128_is_6": true,
+    "projective_budget_bracket": true,
+    "projective_budget_same_as_affine": true,
+    "projective_threshold_applies": true
+  },
+  "row_independent_compiler": {
+    "examples": [
+      {
+        "budget": 1,
+        "compiler_applies": true,
+        "denominator": 340282366920938463463374607431768211456,
+        "first_unsafe_radius": 1,
+        "k": 1099511627776,
+        "label": "rho=1/2, k=2^40, Q=2^128",
+        "largest_safe_integer_radius": 0,
+        "line_exact_radius": 366503875925,
+        "n": 2199023255552,
+        "reason": null
+      },
+      {
+        "budget": 4294967296,
+        "compiler_applies": true,
+        "denominator": 1461501637330902918203684832716283019655932542976,
+        "first_unsafe_radius": 4294967296,
+        "k": 1099511627776,
+        "label": "rho=1/2, k=2^40, Q=2^160",
+        "largest_safe_integer_radius": 4294967295,
+        "line_exact_radius": 366503875925,
+        "n": 2199023255552,
+        "reason": null
+      },
+      {
+        "budget": 18446744073709551616,
+        "compiler_applies": false,
+        "denominator": 6277101735386680763835789423207666416102355444464034512896,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/2, k=2^40, Q=2^192",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 366503875925,
+        "n": 2199023255552,
+        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+      },
+      {
+        "budget": 340282366920938463463374607431768211456,
+        "compiler_applies": false,
+        "denominator": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/2, k=2^40, Q=2^256",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 366503875925,
+        "n": 2199023255552,
+        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+      },
+      {
+        "budget": 1,
+        "compiler_applies": true,
+        "denominator": 340282366920938463463374607431768211456,
+        "first_unsafe_radius": 1,
+        "k": 1099511627776,
+        "label": "rho=1/4, k=2^40, Q=2^128",
+        "largest_safe_integer_radius": 0,
+        "line_exact_radius": 1099511627776,
+        "n": 4398046511104,
+        "reason": null
+      },
+      {
+        "budget": 4294967296,
+        "compiler_applies": true,
+        "denominator": 1461501637330902918203684832716283019655932542976,
+        "first_unsafe_radius": 4294967296,
+        "k": 1099511627776,
+        "label": "rho=1/4, k=2^40, Q=2^160",
+        "largest_safe_integer_radius": 4294967295,
+        "line_exact_radius": 1099511627776,
+        "n": 4398046511104,
+        "reason": null
+      },
+      {
+        "budget": 18446744073709551616,
+        "compiler_applies": false,
+        "denominator": 6277101735386680763835789423207666416102355444464034512896,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/4, k=2^40, Q=2^192",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 1099511627776,
+        "n": 4398046511104,
+        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+      },
+      {
+        "budget": 340282366920938463463374607431768211456,
+        "compiler_applies": false,
+        "denominator": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/4, k=2^40, Q=2^256",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 1099511627776,
+        "n": 4398046511104,
+        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+      },
+      {
+        "budget": 1,
+        "compiler_applies": true,
+        "denominator": 340282366920938463463374607431768211456,
+        "first_unsafe_radius": 1,
+        "k": 1099511627776,
+        "label": "rho=1/8, k=2^40, Q=2^128",
+        "largest_safe_integer_radius": 0,
+        "line_exact_radius": 2565527131477,
+        "n": 8796093022208,
+        "reason": null
+      },
+      {
+        "budget": 4294967296,
+        "compiler_applies": true,
+        "denominator": 1461501637330902918203684832716283019655932542976,
+        "first_unsafe_radius": 4294967296,
+        "k": 1099511627776,
+        "label": "rho=1/8, k=2^40, Q=2^160",
+        "largest_safe_integer_radius": 4294967295,
+        "line_exact_radius": 2565527131477,
+        "n": 8796093022208,
+        "reason": null
+      },
+      {
+        "budget": 18446744073709551616,
+        "compiler_applies": false,
+        "denominator": 6277101735386680763835789423207666416102355444464034512896,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/8, k=2^40, Q=2^192",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 2565527131477,
+        "n": 8796093022208,
+        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+      },
+      {
+        "budget": 340282366920938463463374607431768211456,
+        "compiler_applies": false,
+        "denominator": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/8, k=2^40, Q=2^256",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 2565527131477,
+        "n": 8796093022208,
+        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+      },
+      {
+        "budget": 1,
+        "compiler_applies": true,
+        "denominator": 340282366920938463463374607431768211456,
+        "first_unsafe_radius": 1,
+        "k": 1099511627776,
+        "label": "rho=1/16, k=2^40, Q=2^128",
+        "largest_safe_integer_radius": 0,
+        "line_exact_radius": 5497558138880,
+        "n": 17592186044416,
+        "reason": null
+      },
+      {
+        "budget": 4294967296,
+        "compiler_applies": true,
+        "denominator": 1461501637330902918203684832716283019655932542976,
+        "first_unsafe_radius": 4294967296,
+        "k": 1099511627776,
+        "label": "rho=1/16, k=2^40, Q=2^160",
+        "largest_safe_integer_radius": 4294967295,
+        "line_exact_radius": 5497558138880,
+        "n": 17592186044416,
+        "reason": null
+      },
+      {
+        "budget": 18446744073709551616,
+        "compiler_applies": false,
+        "denominator": 6277101735386680763835789423207666416102355444464034512896,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/16, k=2^40, Q=2^192",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 5497558138880,
+        "n": 17592186044416,
+        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+      },
+      {
+        "budget": 340282366920938463463374607431768211456,
+        "compiler_applies": false,
+        "denominator": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/16, k=2^40, Q=2^256",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 5497558138880,
+        "n": 17592186044416,
+        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+      }
+    ],
+    "statement": "if B_Q=floor(Q/2^128) and 1 <= B_Q <= floor((n-k)/3), then a single line/MCA/CA grid threshold is safe for r<=B_Q-1 and unsafe at r=B_Q"
+  },
+  "status": "PROVED-COMPILER-ARITHMETIC / AUDIT",
+  "target": "2^-128"
+}
