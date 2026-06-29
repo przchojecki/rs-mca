@@ -34,7 +34,7 @@ a natural follow-on for anyone whose stack has Sage/Magma.
 | 4 | interpolation | **done** |
 | 5 | degree bound | **done** |
 | 6 | agreement count | **done** |
-| 7 | slope distinctness | pending |
+| 7 | slope distinctness | **done** |
 | 8 | noncontainment rank | pending |
 
 ### Already verified (independent recompute)
@@ -80,6 +80,14 @@ a natural follow-on for anyone whose stack has Sage/Magma.
   agrees with `w` on `< a` points (MDS-consistent, observed 2). This is the agreement
   quantity LD_sw counts. **Scope:** agreement for GIVEN codewords -- NOT the
   agreement-`a` codeword *list* (the infeasible LD_sw enumeration).
+- **Slope distinctness (dedup).** A bad slope is a deep-point image `z = P(alpha)`; a
+  moving family `P_i = P0 + c_i*M` gives slopes `z_i = P0(alpha) + c_i*M(alpha)`. With
+  `alpha` outside `H` (a genuine deep point: `alpha^512 != 1`, here `alpha = x`) and
+  `M(alpha) != 0`, ten configs give ten **distinct** field slopes, with the injectivity
+  reason `z_i - z_j = (c_i - c_j)*M(alpha) != 0` checked pairwise; the dedup negative
+  control collapses all ten to one slope at a root of `M`. So a bad-slope *count* is a
+  count of distinct field elements, not inflated by duplicates -- faithful to the
+  deep-point bridge / moving-root tangent floor. Scope: dedup, not an LD_sw count.
 
 ## Honest scope / limits
 

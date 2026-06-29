@@ -23,7 +23,7 @@ A.3 CHECKLIST COVERAGE (this file grows one item per loop iteration):
   [x] interpolation
   [x] degree bound
   [x] agreement count
-  [ ] slope distinctness
+  [x] slope distinctness
   [ ] noncontainment rank
 
 HONEST SCOPE / LIMITS
@@ -452,6 +452,54 @@ def check_agreement_count():
     return ok, d
 
 
+def check_slope_distinctness():
+    """A.3: slope distinctness (the dedup property).  A bad slope is a deep-point image
+    z = P(alpha); a moving family P_i = P0 + c_i*M gives slopes z_i = P0(alpha)+c_i*M(alpha).
+    With alpha outside H (a genuine deep point) and M(alpha) != 0, distinct configs give
+    pairwise-DISTINCT field slopes -- so a bad-slope COUNT is a count of distinct field
+    elements, not inflated by duplicates.  Negative control: at a root of M the slopes
+    collapse to one (dedup).  Faithful to the deep-point bridge / moving-root tangent
+    floor; this is slope DEDUP, not an LD_sw count."""
+    d = []
+    ok = True
+    k = 5
+    # deep point alpha OUTSIDE H (nonzero constants all lie in H since 16 | 512, so use x...)
+    bump = 16
+    alpha = int_to_elem(bump)
+    while fpow(alpha, 512) == ONE:
+        bump += 1
+        alpha = int_to_elem(bump)
+    d.append(f"deep point alpha (base-17 elt {bump}) outside H (alpha^512 != 1) : {fpow(alpha, 512) != ONE}")
+    P0 = [int_to_elem(v) for v in (1, 1, 1, 1, 1)]        # base deg<k poly
+    M = [int_to_elem(v) for v in (0, 1, 0, 0, 0)]         # moving direction M(X)=X
+    Ma = feval(M, alpha)
+    d.append(f"moving direction M(alpha) != 0 : {Ma != ZERO}")
+    ok &= (Ma != ZERO)
+    cs = [int_to_elem(c) for c in range(1, 11)]           # 10 distinct configs
+    slopes = [feval([fadd(P0[j], fmul(c, M[j])) for j in range(k)], alpha) for c in cs]
+    n_distinct = len({tuple(z) for z in slopes})
+    d.append(f"{len(cs)} moving-root configs give {n_distinct} DISTINCT slopes : {n_distinct == len(cs)}")
+    ok &= (n_distinct == len(cs))
+    # injectivity reason: z_i - z_j = (c_i - c_j) * M(alpha), nonzero for distinct configs
+    inj = True
+    for i in range(len(cs)):
+        for j in range(i + 1, len(cs)):
+            lhs = fsub(slopes[i], slopes[j])
+            rhs = fmul(fsub(cs[i], cs[j]), Ma)
+            if lhs != rhs or lhs == ZERO:
+                inj = False
+    d.append(f"slope injectivity z_i - z_j = (c_i - c_j)*M(alpha) != 0 : {inj}")
+    ok &= inj
+    # dedup negative control: at a root of M the configs collapse to ONE slope
+    slopes_root = [feval([fadd(P0[j], fmul(c, M[j])) for j in range(k)], ZERO) for c in cs]
+    collapsed = (len({tuple(z) for z in slopes_root}) == 1)
+    d.append(f"dedup control: at an M-root the {len(cs)} configs collapse to 1 slope : {collapsed}")
+    ok &= collapsed
+    d.append("scope: distinctness/dedup of deep-image bad slopes on a runnable family; "
+             "NOT an LD_sw count.")
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop iteration"]
 
@@ -465,7 +513,7 @@ CHECKS = [
     ("interpolation",                      check_interpolation),
     ("degree bound",                       check_degree_bound),
     ("agreement count",                    check_agreement_count),
-    ("slope distinctness",                 _pending),
+    ("slope distinctness",                 check_slope_distinctness),
     ("noncontainment rank",                _pending),
 ]
 
