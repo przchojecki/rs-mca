@@ -365,6 +365,25 @@ four discriminant roots plus `0` and `infinity`, giving a depth-independent
 any no-cancellation case is an explicit rational graph or fixed square-root
 rational graph branch.
 
+Thus the full-subgroup quartic branch has a closed per-core estimate.  If the
+power gate never occurs, the live fixed-core boundary count over `D` is at
+most
+
+```text
+|D| + 4 sqrt(p) + O(1).
+```
+
+In general there is at most one geometrically trivial Fourier term, so the
+bound becomes
+
+```text
+2|D| + 4 sqrt(p) + O(1).
+```
+
+The outside-domain and active filters only delete points, and the same-slope
+fiber injection in `m1_same_slope_root_slice_lemma.md` converts the point
+bound into the same live slope bound for the fixed core.
+
 ## Integration Decision
 
 The full PR was not merged wholesale.  It included a very large generated

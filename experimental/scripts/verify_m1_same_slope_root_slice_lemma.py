@@ -3236,12 +3236,14 @@ def check_boundary_quartic_kummer_power_gate() -> None:
             assert poly1_degree(poly) <= 4, (p, poly)
             for index in indices:
                 order = 2 * index // gcd(index, 2)
+                degenerate_powers: list[int] = []
                 for char_power in range(index):
                     support = kummer_support_size(poly, index, char_power, p)
                     assert support <= 6, (p, index, char_power, poly, support)
                     degenerate = kummer_power_degenerate(poly, index, char_power, p)
                     if not degenerate:
                         continue
+                    degenerate_powers.append(char_power)
                     factors = factor_poly1_monic(poly, p)
                     zero_parity = factors.get((0, 1), 0) % 2
                     if zero_parity == 0:
@@ -3274,6 +3276,12 @@ def check_boundary_quartic_kummer_power_gate() -> None:
                         ) % order
                         values.add(exponent)
                     assert len(values) <= 1, (p, index, char_power, poly, values)
+                assert len(degenerate_powers) <= 1, (
+                    p,
+                    index,
+                    poly,
+                    degenerate_powers,
+                )
 
 
 def check_nonruled_degree_bound() -> None:

@@ -1903,6 +1903,27 @@ Thus the entire no-cancellation locus is a rational graph or a fixed
 square-root rational graph, plus the already isolated `A_R=0` exceptions.
 It is not an additional high-conductor Kummer family.
 
+Consequently the full-subgroup quartic branch has a closed per-core bound.
+Let `N_R^{live}(D)` denote the live non-line fixed-core boundary points with
+`y in D`, after fixed-root lines, non-fixed constant-slope lines, full-plane
+lifts, and the at most two `A_R=0` exceptional fibers have been removed.  The
+standard `P^1` Kummer input gives
+
+```text
+N_R^{live}(D) <= |D| + 4 sqrt(p) + O(1)       if (KPOW) never occurs,
+N_R^{live}(D) <= 2|D| + 4 sqrt(p) + O(1)      in general.      (KBD)
+```
+
+Indeed, the character expansion (KEXP) has the principal term `|D|`.  By
+(KMON), at most one Fourier term can be geometrically trivial: either the
+principal term for `Disc_R=cG^2`, or the quadratic subgroup term `a=e/2` for
+`Disc_R=c y G^2`.  That single term contributes at most another `|D|+O(1)`.
+All remaining terms are bounded by `4 sqrt(p)`, and the prefactor `1/e` in
+(KEXP) keeps their total contribution below `4 sqrt(p)`.  The deleted
+outside-domain, distinct-root, and active filters only reduce the count, and
+the previous same-slope fiber injection turns this point bound into the same
+bound for live boundary-core slopes over the fixed core.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root

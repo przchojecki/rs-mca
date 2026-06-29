@@ -69,10 +69,11 @@ Keep entries concise and link to the relevant files.
   Kummer-Weil bound has support contained in the four discriminant roots plus
   `0` and `infinity`, giving a depth-independent `4 sqrt(p)` term.  Thus any
   no-cancellation quartic branch is an explicit rational graph or fixed
-  square-root rational graph case rather than hidden growing conductor.
-- **What to do next:** Charge or exclude the monomial-square discriminant
-  branches, then combine the nontrivial Kummer terms with the active
-  fixed-core/root-image ledger.
+  square-root rational graph case rather than hidden growing conductor.  Since
+  at most one Fourier term is geometrically trivial, the full-subgroup fixed
+  core has live count at most `2|D|+4 sqrt(p)+O(1)`.
+- **What to do next:** Combine this fixed-core quartic bound with the active
+  fixed-core/root-image ledger and quotient/tangent charges.
 
 ### 2026-06-29 - M1 boundary-core slope-fiber injection
 
