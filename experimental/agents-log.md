@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 post-charge diffuse-occupancy endpoint
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Combines the diffuse, fixed-root-tail,
+  bounded-width primitive, and occupancy reductions into a single canonical
+  post-charge endpoint for the `b=2` M1 branch.
+- **How it is useful:** Makes the remaining unexpanded half-height term
+  explicit: after the standard charges, only a base-free node occupancy count
+  `OccHalf_S(R_S)` remains.
+- **What to do next:** Sum the post-charge endpoint over the canonical tree
+  and compare the occupancy term against the global M1 reserve.
+
 ### 2026-06-29 - M1 root-free primitive occupancy bound
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

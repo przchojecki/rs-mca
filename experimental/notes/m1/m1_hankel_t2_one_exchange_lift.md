@@ -5453,6 +5453,63 @@ The reason is that every half-height fiber has size at least
 primitive charges, no algebraic multiplicity remains in the half-height
 branch beyond this explicit occupancy count.
 
+## Post-Charge Diffuse-Occupancy Endpoint
+
+Combining the preceding reductions gives a useful canonical endpoint with all
+charged half-height pieces displayed.  At a canonical `b=2` node `S`, choose a
+primitive-width cutoff `R_S>=1`.  Define the bounded-width root-free primitive
+core by
+
+```text
+BWPrim_S(R_S)
+ =
+ sum_{lambda: h_lambda>q_S/2,
+             z_{S,lambda}^{perp}=0,
+             r_lambda<R_S}
+   (1+floor((N_S-q_S)/r_lambda)).
+```
+
+Define the residual occupancy term by
+
+```text
+OccHalf_S(R_S)
+ =
+ 0,                                             if B_S nonempty,
+
+ floor(N_S/(floor(q_S/2)+1))
+ (1+floor((N_S-q_S)/R_S)),                      if B_S empty.
+```
+
+Then (PF2-fixed-tail) and (PF2-prim-occ-cut) give
+
+```text
+Short_S^{can}
+ <= FixedRootTail_S + BWPrim_S(R_S) + OccHalf_S(R_S).
+                                                        (PF2-short-postcharge)
+```
+
+Substituting this into (PF2-canon-diffuse-short) yields the post-charge
+canonical endpoint
+
+```text
+|F(A)|
+ <=
+  sum_{S in Tree(A)} LowerDim_S^can
+  + sum_{S in Tree_2(A)} 4G_S^{can}/q_S^2
+  + sum_{S in Tree_2(A)} FixedRootTail_S
+  + sum_{S in Tree_2(A)} BWPrim_S(R_S)
+  + sum_{S in Tree_2(A)} OccHalf_S(R_S).       (PF2-postcharge-endpoint)
+```
+
+Thus the `b=2` M1 branch has been reduced to five explicit ledgers:
+lower-dimensional terminal packings, quadratically saved diffuse
+determinant-gate capacity, fixed-root/root-slice tails, bounded-width
+root-free primitive cores, and a base-free half-height occupancy count.  If
+the first four ledgers are charged by the existing lower-dimensional,
+fixed-root, bounded-width, and diffuse estimates, the only remaining
+unexpanded half-height term is the occupancy count `OccHalf_S(R_S)`, which is
+purely combinatorial at each canonical node.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
