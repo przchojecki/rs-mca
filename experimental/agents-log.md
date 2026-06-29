@@ -30,6 +30,43 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 two-coordinate wall: stdlib reimplementation + extended scan
+
+- **Agent/model:** Claude Opus 4.8 (1M).
+- **Files added or changed:**
+  `experimental/scripts/search_m1_two_coordinate_wall_stdlib.py` (new),
+  `experimental/data/certificates/m1-two-coordinate-wall-stdlib/m1_two_coordinate_wall_certificate.json`
+  (new), `experimental/data/certificates/m1-two-coordinate-wall-stdlib/README.md`
+  (new), `experimental/notes/m1/m1_two_coordinate_wall_stdlib_extension.md` (new),
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT (finite numerical evidence; not a proof of the
+  `4p` bound).
+- **What is being added:** A pure-stdlib (no numpy) reimplementation and
+  extension of the slack-two depth-two M1 two-coordinate Kummer-wall scan
+  (`search_m1_remaining_two_coordinate_wall.py`, which needs numpy and was capped
+  at `p<=500`). The character sum `S_{a,b,0,d}` is computed as the 3D finite
+  Fourier transform of the joint discrete-log histogram
+  `Count[dlog u % e][dlog v % e][dlog A % h]`, which runs in this environment and
+  is faster than the numpy matmul-per-`d` original. It reproduces the published
+  grid exactly (453 cases, 596304 tuples, 0 violations of `4p`, max
+  `3.2173609608`; diagonal max `3.9771715522`) and then extends it.
+- **How it is useful:** Executes the explicit next step of
+  `m1_remaining_two_coordinate_wall_experiment.md` ("push the ratio above
+  `3.2173609608`"). The extended scan finds a **new asymmetric-nonresonant
+  maximum `3.3516589468` at `(p=601, e=20, (4,7,0,1))`** (line monodromies
+  `(8,14,16)`; ramified, nonreciprocal, nonresonant), independently verified by
+  direct summation. So the published `3.2173609608` was not the supremum; any
+  conjectured constant in `(3.2173609608, 3.3516589468)` is refuted, while the
+  conjectured `|S| <= 4p` `(KW_2)`-replacement bound still holds (0 violations
+  across `p<=1500`, `>4.2M` tuples). This sharpens the conditional `(KW_2)`
+  import target for the M1 keystone (the conductor argument for `C_2^anr` must
+  accommodate ratios up to at least `3.3516589468`).
+- **What to do next:** Push the asymmetric-nonresonant `p`/`e` grid further and
+  the near-`4p` equal-line diagonal family (published max `3.977`) to larger `p`
+  to test whether the diagonal ledger `4p+3sqrt(p)` is ever approached/crossed;
+  feed the `(601,20)` extremizer into the equal-line-diagonal / line-conic
+  conductor analysis. Not a leaderboard row.
+
 ### 2026-06-29 - Paper D v7 first-grid cap promotion
 
 - **Agent/model:** Codex.

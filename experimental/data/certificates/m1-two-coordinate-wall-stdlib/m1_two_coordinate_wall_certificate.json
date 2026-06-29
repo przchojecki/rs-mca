@@ -1,0 +1,55 @@
+{
+  "conjectured_bound": "|S_{a,b,0,d}| <= 4 p on the ramified-nonreciprocal asymmetric-nonresonant class C_2^anr",
+  "cross_checked_datapoints": {
+    "extension_max_601_20_4_7_0_1": 3.3516589468,
+    "published_max_197_14_6_1_0_17": 3.2173609608
+  },
+  "diagonal_grid_n20_p500": {
+    "argmax": {
+      "best_mono": [
+        10,
+        10,
+        10
+      ],
+      "best_tuple": [
+        5,
+        5,
+        0,
+        6
+      ],
+      "e": 21,
+      "h": 42,
+      "p": 421
+    },
+    "max_ratio": 3.9771715522,
+    "reproduces_published_max": true,
+    "violation_total_4p": 0
+  },
+  "method": "3D discrete-log histogram + finite Fourier transform; pure stdlib (cmath); no numpy",
+  "object": "M1 slack-two depth-two two-coordinate character sum |S_{a,b,0,d}| vs 4p",
+  "report_grid_nonres_p500_e24": {
+    "argmax": {
+      "best_mono": [
+        26,
+        16,
+        20
+      ],
+      "best_tuple": [
+        13,
+        8,
+        0,
+        11
+      ],
+      "e": 14,
+      "h": 28,
+      "p": 197
+    },
+    "case_count": 453,
+    "max_ratio": 3.2173609608,
+    "reproduces_published_numpy": true,
+    "scanned_total": 596304,
+    "violation_total_4p": 0
+  },
+  "status": "EXPERIMENTAL",
+  "theorem_id": "M1 two-coordinate Kummer wall (m1_remaining_two_coordinate_wall_experiment.md, m1_kummer_weil_import_contract.md (KW_2))"
+}
