@@ -7409,6 +7409,54 @@ nonconstant projective information is confined to the exceptional complement
 charged: it is not a diffuse aperiodic image, but a maximal root shadow plus
 a bounded exceptional projective profile.
 
+## Width-One Flags Descend Along the Same Root Shadow
+
+The flag cube carried by a width-one maximal shadow has no new denominator
+geometry at lower rungs.  Keep the notation of the previous section and write
+
+```text
+A=c ell_Z,        |Z|=q_S-1,        O=D_S^{can}\Z.
+```
+
+Let `P_m subset Z` have size `m`.  In the fixed-root slice obtained by
+absorbing the roots in `P_m`, the divided direction is
+
+```text
+A^{P_m}=A/ell_{P_m}=c ell_{Z\P_m}.
+```
+
+The descended canonical domain is `D_S^{can}\P_m`, and its complement to the
+new root shadow is still exactly `O`:
+
+```text
+D_S^{can}\P_m = (Z\P_m) disjoint union O,
+q^{P_m}=q_S-m,
+|Z\P_m|=q^{P_m}-1,
+r^{P_m}=1.                                      (PF2-r1-shadow-descent)
+```
+
+Thus every rung of a width-one flag is again a width-one maximal-root shadow
+with the same bounded exceptional complement.  The quotient polynomial remains
+the constant `c`; only roots of the large fiber have been removed.  In
+particular, the width-one cube is a lossless fixed-root flag over one
+near-constant pencil, not a source of new moving quotient denominators.
+
+The canonical first-root partition makes the non-overlap explicit.  Put
+`a=floor((q_S-2)/2)` and order `Z` by the ambient root order.  Then
+
+```text
+{E subset Z : 1<=|E|<=a}
+ =
+ disjoint union_{x in Z}
+ { {x} union F : F subset {y in Z : y>x}, |F|<=a-1 }.  (PF2-r1-first-root-partition)
+```
+
+Every nonempty flag in the co-small cube is therefore charged to a unique first
+absorbed root and then continues inside the same width-one shadow with the same
+exceptional set `O`.  This is the width-one analogue of the lossless frontier
+shift: the per-rung operation is deletion inside one fixed root shadow, not the
+creation of a fresh projective-packing problem.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

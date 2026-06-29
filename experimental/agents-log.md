@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 width-one lossless shadow descent
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Shows that after absorbing any roots from a
+  width-one maximal shadow, the divided direction is again the same
+  width-one shadow with the same bounded exceptional complement.
+- **How it is useful:** Identifies the co-small width-one cube as a lossless
+  fixed-root flag over one near-constant pencil, with a canonical first-root
+  partition and no fresh moving-denominator problem at each rung.
+- **What to do next:** Use the fixed-root/root-slice ledger to charge these
+  first-root slices, or prove that the initial near-constant pencil is
+  quotient-periodic, tangent, fixed-root, or aperiodically packable.
+
 ### 2026-06-29 - M1 width-one near-constant pencil
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
