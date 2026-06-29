@@ -903,3 +903,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+## 2026-06-29 — Lane V: independent algebra checker (A.3 Verifier 1), PR #148, loop iter 1
+
+- **Who/where:** Claude Opus 4.8, branch `allen/v1-sympy-algebra-checker`, PR #148
+  (independent Lane-V verification; does not touch Papers A-D or other lanes).
+- **What:** Started `towards-prize.md` A.3 Verifier 1 — the independent high-level
+  algebra verifier for `C = RS[F_17^32, H, 256]` — which was effectively unbuilt
+  (the lone `.sage` file is a prime-field `GF(p)` toy that disclaims any RS/MCA
+  assertion). Sage/PARI/Magma absent in-env, so the field is built on
+  `sympy.galoistools` (native `GF(p)` only; `GF(p^32)` hand-rolled) — a code path
+  independent of the repo's bespoke arithmetic, satisfying A.3's "two verifiers
+  must agree."
+- **Iteration 1 (commit 71e2275):** `experimental/scripts/verify_v1_f17_32_algebra_checker.py`
+  + `experimental/notes/audits/audit_v1_sympy_algebra_checker.md`. Covers the
+  foundational gate / A.1 acceptance (`floor(17^32/2^128)=6`,
+  `6*2^128 < 17^32 < 7*2^128`), field construction (modulus re-asserted
+  irreducible; distributivity, inverse, `a^q=a`), and domain construction
+  (`v2(17^32-1)=9` ⇒ `|H|=512` is the FULL 2-Sylow of `F_17^32*`; 512 distinct
+  points closing at `h^512=1`). Verifier exits 0; 3 implemented PASS, 6 PENDING.
+- **Loop plan (4-min cadence):** one A.3 item per commit on PR #148, priority
+  order locator splitting → interpolation → degree bound → agreement count →
+  slope distinctness → noncontainment rank → hardening (2nd-irreducible
+  cross-check + wire to on-`main` records `tangent506`/`strict352`/`strict264`).
+  Verify-first each commit; stop and flag when covered+hardened (no padding).
