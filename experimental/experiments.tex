@@ -5561,6 +5561,24 @@ half-height fiber count remains.  Hence
 \]
 where \(BWPrim_S(R_S^{bal})\) contains only denominators
 \(r_\lambda\le\min(u_S,s_S)\).
+The bare half-height count is itself a surplus ledger.  With
+\(h_{0,S}=\lfloor q_S/2\rfloor+1\) and \(s_S=N_S-q_S\ge0\),
+\[
+  \left\lfloor {N_S\over h_{0,S}}\right\rfloor
+  =
+  1+\left\lfloor {s_S+\lceil q_S/2\rceil-1\over h_{0,S}}\right\rfloor
+  \le 1+\left\lceil {s_S\over h_{0,S}}\right\rceil
+  \le 1+\left\lceil {2s_S\over q_S}\right\rceil .
+\]
+Hence
+\[
+  PostCore_S^*
+  \le BWPrim_S(R_S^{bal})
+     +1+\left\lceil {N_S-q_S\over \lfloor q_S/2\rfloor+1}\right\rceil .
+\]
+After fixed-root tails and primitive denominators of width at most the node
+surplus have been charged, the uncharged half-height core is therefore a
+one-per-node term plus a surplus-over-half-width term.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

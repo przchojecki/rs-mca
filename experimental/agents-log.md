@@ -30,6 +30,22 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 bare half-height occupancy surplus ledger
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Rewrites the remaining bare half-height fiber
+  count as `1+ceil((N_S-q_S)/(floor(q_S/2)+1))`, up to the exact floor form.
+- **How it is useful:** Shows that after the surplus-balanced cutoff, the
+  uncharged half-height core is only a one-per-node term plus a
+  surplus-over-half-width ledger.
+- **What to do next:** Charge the one-per-node and surplus-over-half-width
+  terms over the canonical tree.
+
 ### 2026-06-29 - M1 surplus-balanced primitive cutoff
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

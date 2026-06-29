@@ -5618,6 +5618,49 @@ most the node surplus have been charged, the remaining root-free half-height
 contribution is at most the bare count of disjoint half-height fibers.  This
 removes the surplus factor from the final uncharged occupancy term.
 
+## Bare Half-Height Occupancy Is a Surplus Ledger
+
+The remaining fiber-count term in (PF2-balanced-core) is itself controlled by
+node surplus.  Put
+
+```text
+h0_S=floor(q_S/2)+1,        s_S=N_S-q_S>=0.
+```
+
+Then
+
+```text
+floor(N_S/h0_S)
+ =
+1+floor((s_S+q_S-h0_S)/h0_S)
+ =
+1+floor((s_S+ceil(q_S/2)-1)/h0_S).             (PF2-bare-occ-exact)
+```
+
+In particular,
+
+```text
+floor(N_S/h0_S) <= 1+ceil(s_S/h0_S)
+                 <= 1+ceil(2s_S/q_S).          (PF2-bare-occ-surplus)
+```
+
+Thus, after the surplus-balanced cutoff, the uncharged half-height occupancy
+has one baseline slot at a nonempty node, and every additional half-height
+fiber consumes at least `h0_S` extra available roots beyond the quotient width
+`q_S`.  Combining (PF2-balanced-core) and (PF2-bare-occ-surplus) gives
+
+```text
+PostCore_S^*
+ <= BWPrim_S(R_S^{bal})
+    + 1+ceil((N_S-q_S)/(floor(q_S/2)+1)).       (PF2-balanced-surplus-core)
+```
+
+Equivalently, once fixed-root tails and primitive denominators of width at
+most the node surplus are charged, the remaining node-local half-height core
+is a one-per-node term plus a surplus-over-half-width term.  This is the form
+needed for a global canonical-tree charge: no field-size or binomial
+multiplicity remains in the uncharged half-height branch.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
