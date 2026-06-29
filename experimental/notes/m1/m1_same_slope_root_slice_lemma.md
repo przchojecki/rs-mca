@@ -2285,11 +2285,14 @@ charging; its genus-one bound is
 N_R^{+,-}(D) <= |D| + C_e sqrt(p) + O_e(1).              (RKSQGENUS)
 ```
 
-On the rational one-root-square branch, the single large quadratic coefficient
-gives the safe bound
+On the rational one-root-square branch, there is one final sign.  If
+`r_+=alpha H^2`, put `delta=chi^{e/2}(alpha)`.  The large part of
+`S_{e/2}^+` is `delta |C_R^x|`, and it enters (RKSQNEG) with the positive
+coefficient `e^{-1}`.  Hence
 
 ```text
-N_R^{+,-}(D) <= 2|D| + C_e sqrt(p) + O_e(1).             (RKSQRAT)
+delta=-1  =>  N_R^{+,-}(D) <= C_e sqrt(p) + O_e(1),
+delta=+1  =>  N_R^{+,-}(D) <= 2|D| + C_e sqrt(p) + O_e(1).  (RKSQROOTSGN)
 ```
 
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
@@ -2575,7 +2578,10 @@ negative-parity square-norm genus-one branch:
   N_R^{+,-}(D) <= |D| + C_e sqrt(p) + O_e(1),
 
 negative-parity square-norm rational one-root-square branch:
-  N_R^{+,-}(D) <= 2|D| + C_e sqrt(p) + O_e(1),
+  if chi^{e/2}(alpha)=-1:
+    N_R^{+,-}(D) <= C_e sqrt(p) + O_e(1),
+  if chi^{e/2}(alpha)=+1:
+    N_R^{+,-}(D) <= 2|D| + C_e sqrt(p) + O_e(1),
 
 geometrically integral genus-one branch:
   N_R^{+,-}(D) <= (1-1/e)|D| + C_e sqrt(p) + O_e(1),

@@ -4649,12 +4649,23 @@ def check_boundary_core_negative_square_norm_collapse() -> None:
             continue
 
         principal_one_root_coefficient = Fraction(1, index)
-        rational_square_root_coefficient = Fraction(2, index)
+        negative_square_root_coefficient = Fraction(0, index)
+        positive_square_root_coefficient = Fraction(2, index)
 
         # Negative parity means the norm lies in the nonsquare side of the
         # quotient, so 1_D(N_R)=0 and the mixed count is a one-root count.
         assert principal_one_root_coefficient * index == 1
-        assert rational_square_root_coefficient * index == 2
+        assert negative_square_root_coefficient * index == 0
+        assert positive_square_root_coefficient * index == 2
+        for sign in (-1, 1):
+            signed_coefficient = principal_one_root_coefficient + Fraction(
+                sign,
+                index,
+            )
+            if sign == -1:
+                assert signed_coefficient == negative_square_root_coefficient
+            else:
+                assert signed_coefficient == positive_square_root_coefficient
 
         large_one_root_powers = [
             power
@@ -4690,11 +4701,13 @@ def check_boundary_core_classified_per_core_bound() -> None:
         if index % 2 == 0:
             positive_square_norm_as_domain = index - 2
             negative_square_norm_genus_one_as_domain = 1
-            negative_square_norm_rational_square_as_domain = 2
+            negative_square_norm_rational_square_negative_sign_as_domain = 0
+            negative_square_norm_rational_square_positive_sign_as_domain = 2
             assert positive_square_norm_as_domain >= 0
             assert positive_square_norm_as_domain <= index
             assert negative_square_norm_genus_one_as_domain == 1
-            assert negative_square_norm_rational_square_as_domain == 2
+            assert negative_square_norm_rational_square_negative_sign_as_domain == 0
+            assert negative_square_norm_rational_square_positive_sign_as_domain == 2
 
         if index == 2:
             # The sheet-symmetry closure improves the generic nonsplit branch

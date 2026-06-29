@@ -80,9 +80,11 @@ Keep entries concise and link to the relevant files.
   `(e-2)|D|+O_e(sqrt(p))`; only the negative-parity square-norm branch remains
   a slope-line obstruction, and even there the mixed-domain count collapses to
   one-root sums.  Its only cover-level power is the explicit one-root square
-  branch, which is fixed-root or rational because `deg(r_+)<=2`.  Pushing
-  divisors down by the slope-cover norm shows that, after those norm
-  exceptions, the only cover-level power branches left are the anti-diagonal ratio terms
+  branch, which is fixed-root or rational because `deg(r_+)<=2`; the
+  negative root-square sign cancels the main one-root term, while the positive
+  sign gives the `2|D|` rational branch.  Pushing divisors down by the
+  slope-cover norm shows that, after those norm exceptions, the only
+  cover-level power branches left are the anti-diagonal ratio terms
   `chi^a(r_+/r_-)`; the anti-ratio has degree at most four and the same
   square class as `B_R/Q_R`, so after square-norm is isolated only the cubic
   anti-ratio branch can remain.  A genuine cubic anti-ratio power forces a
@@ -105,8 +107,8 @@ Keep entries concise and link to the relevant files.
   genus-free fallback bound from the rational map `B_R/Q_R`, with explicit
   noncancellation branches.  The constant-norm exception is not new geometry,
   and the square-norm exception is now split into a bounded positive-parity
-  branch plus a negative-parity one-root ledger with only a rational/fixed-root
-  square obstruction.
+  branch plus a negative-parity one-root ledger whose rational/fixed-root
+  square obstruction has an explicit sign split.
   The norm-pushforward obstruction localizes the remaining cover-level
   obstruction to anti-norm ratio terms, and the anti-ratio square-class
   reduction removes every noncubic order after square-norm is isolated.  The
