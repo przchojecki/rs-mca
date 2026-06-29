@@ -71,8 +71,10 @@ Keep entries concise and link to the relevant files.
   Hankel core is fixed finite slope.  One-exchange triangles are classified as
   either star triangles through a `(j-1)` core or top-packet triangles inside a
   `(j+1)` set, and residual top-packet edges with distinct slopes lift to a
-  common `t=1` Hankel kernel.  The resulting residual degree bound is also
-  inserted into the existing average-collinearity max-codegree ledger.
+  common `t=1` Hankel kernel.  The top-packet edge and triangle ledgers then
+  compress into the simultaneous lifted `t=1` top-kernel family `K_top(u,v)`.
+  The resulting residual degree bound is also inserted into the existing
+  average-collinearity max-codegree ledger.
 - **How it is useful:** After fixed-slope root slices are charged, the
   residual one-exchange graph has only different-slope edges and the charged
   same-slope mass is explicitly assigned to the higher-slack Hankel ledger.
@@ -81,7 +83,8 @@ Keep entries concise and link to the relevant files.
   consequently the residual `t=2` one-exchange graph has maximum degree at most
   `j` and average-ledger error term at most `(1-p_z)/(M p_z)+4jQ/M`.  Residual
   one-exchange triangles must be top-packet triangles lying over the lifted
-  `t=1` kernel target from the all-line Hankel audit.
+  `t=1` kernel target from the all-line Hankel audit, with edge and triangle
+  counts bounded by `binom(j+1,2)|K_top|` and `binom(j+1,3)|K_top|`.
 - **What to do next:** Bound the remaining different-slope one-exchange or
   two-exchange codegree ledgers after quotient-periodic, tangent/contained,
   and root-slice charges.

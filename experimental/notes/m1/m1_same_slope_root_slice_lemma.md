@@ -2,7 +2,7 @@
 
 **Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / RULED-CORE DICHOTOMY /
 RULED-CORE COLLAPSE / HIGHER-SLACK LIFT / TRIANGLE CLASSIFICATION /
-TOP-PACKET LIFT / AUDIT.
+TOP-PACKET LIFT / TOP-PACKET LEDGER / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -491,6 +491,79 @@ Subtracting gives `(z_x-z_y)B=0`, hence `B=0`, and then `A=0`.  This proves
 different slopes by the root-slice lemma, so the final residual statement
 follows.
 
+## Top-Packet Compression Ledger
+
+The previous lift also turns residual top-packet triangles into a named
+higher-slack ledger.  Define the simultaneous lifted top-kernel family
+
+```text
+K_top(u,v)
+ =
+ { U subset D : |U|=j+1,
+   H_{1,j+1}(u)ell_U=0 and H_{1,j+1}(v)ell_U=0 }.
+```
+
+Let `A_res` be a residual `t=2` active locator family after fixed-slope
+root slices have been charged.  For `U` of size `j+1`, write
+
+```text
+A_U={ x in U : U\{x} in A_res }.
+```
+
+If `|A_U|>=2`, then every two members of this packet form a residual
+one-exchange edge, hence have distinct slopes.  By (TOPK), such a packet
+satisfies `U in K_top(u,v)`.
+
+Therefore residual top-packet edges inject into
+
+```text
+{ (U,{x,y}) : U in K_top(u,v), x,y in U, x != y },
+```
+
+via the union map `{U\{x},U\{y}} |-> (U,{x,y})`.  In particular
+
+```text
+E_top(A_res) <= binom(j+1,2) |K_top(u,v)|.        (TE)
+```
+
+Likewise, every residual one-exchange triangle is a top-packet triangle after
+star triangles have been charged to ruled cores, so residual triangles inject
+into
+
+```text
+{ (U,{x,y,z}) : U in K_top(u,v), x,y,z in U distinct },
+```
+
+and hence
+
+```text
+Tri_1(A_res) <= binom(j+1,3) |K_top(u,v)|.        (TT)
+```
+
+Inside a lifted top packet the `t=2` slope equation is only scalar.  For
+`U in K_top(u,v)` and `x in U`, put
+
+```text
+rho_x(w)=row_0(H_{2,j}(w)ell_{U\{x}}).
+```
+
+Since `H_{1,j+1}(w)ell_U=0`, identity (TOP1) gives
+
+```text
+H_{2,j}(w)ell_{U\{x}} = rho_x(w) (1,x),
+        w in {u,v}.
+```
+
+Thus the active finite slope on `U\{x}` is determined by the scalar ratio
+
+```text
+rho_x(u)+z rho_x(v)=0,        rho_x(v) != 0.
+```
+
+The top-packet branch is therefore reduced to the lifted `t=1` kernel family
+`K_top(u,v)` plus this one-dimensional slope label.  It is not an independent
+two-row `t=2` residual phenomenon.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -557,16 +630,18 @@ family size, fixed-slope root slices, or higher packet/two-exchange structure.
 
 ## Non-Claims
 
-This lemma does not bound top-packet triangles, the two-exchange packet-edge
-ledger, or the one-outside boundary image.  It only proves that
+This lemma does not bound the lifted top-kernel family `K_top(u,v)`, the
+two-exchange packet-edge ledger, or the one-outside boundary image.  It only
+proves that
 same-slope one-exchange collisions belong to the fixed-slope root-slice ledger,
 that such root slices lift to `(t+1,j-1)` Hankel cores,
 classifies the ruled determinant core into fixed-slope, inactive, and rank-one
 moving-slope cases for abstract affine pencils, proves the Hankel shift
 collapse that eliminates the moving-slope ruled residual, shows that star
 triangles are exactly ruled-core events while residual top-packet edges lift to
-a common `t=1` Hankel kernel, and gives the local max-degree bound and
-average-collinearity corollary above.
+a common `t=1` Hankel kernel, compresses residual top-packet edges and
+triangles into the lifted top-kernel ledger, and gives the local max-degree
+bound and average-collinearity corollary above.
 
 ## Verification
 
@@ -582,4 +657,5 @@ higher-slack lift identity (LIFT), the quadratic determinant formula (DET2) and
 the "three roots imply ruled" criterion in sampled small prime fields, then
 stress-tests the abstract ruled-core dichotomy and the Hankel ruled-core
 collapse.  It also checks the Johnson-graph star/top triangle classification,
-the top-packet lift identity (TOP1), and the distinct-slope implication (TOPK).
+the top-packet lift identity (TOP1), the distinct-slope implication (TOPK), and
+the top-packet edge/triangle compression ledger.

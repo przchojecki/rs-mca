@@ -20,6 +20,7 @@ from __future__ import annotations
 
 from fractions import Fraction
 from itertools import combinations, product
+from math import comb
 from random import Random
 
 
@@ -436,6 +437,21 @@ def check_top_packet_lifted_kernel() -> None:
                         if h0 == 0 and h1 == 0:
                             assert hankel1(combined, ell_u, p) == 0
 
+                    # If the lifted t=1 scalar vanishes, the t=2 vector is
+                    # compressed to the scalar row0 times (1,x).
+                    h0, h1 = hankel2(row, ell_t, p)
+                    if lifted == 0:
+                        assert h1 == (x * h0) % p, (
+                            p,
+                            degree,
+                            ell_t,
+                            x,
+                            row,
+                            lifted,
+                            h0,
+                            h1,
+                        )
+
         for a in range(p):
             for b in range(p):
                 for z1 in range(p):
@@ -444,6 +460,71 @@ def check_top_packet_lifted_kernel() -> None:
                             continue
                         if (a + z1 * b) % p == 0 and (a + z2 * b) % p == 0:
                             assert a == 0 and b == 0, (p, a, b, z1, z2)
+
+
+def check_top_packet_compression_ledger() -> None:
+    # Model the top-packet compression after star triangles and fixed-slope
+    # root slices have been charged.  A packet with at least two active
+    # deletions maps to one lifted top kernel U, and edges/triangles are then
+    # bounded by choosing pairs/triples of deleted roots inside U.
+    for n in range(3, 10):
+        points = tuple(range(n))
+        for j in range(1, n):
+            packets = [frozenset(c) for c in combinations(points, j + 1)]
+            edge_keys: set[tuple[frozenset[int], frozenset[int]]] = set()
+            triangle_keys: set[tuple[frozenset[int], frozenset[int]]] = set()
+
+            for packet in packets:
+                roots = tuple(sorted(packet))
+                for mask in range(1 << len(roots)):
+                    active = [roots[i] for i in range(len(roots)) if mask & (1 << i)]
+                    if len(active) < 2:
+                        continue
+
+                    local_edges = {
+                        frozenset(pair) for pair in combinations(active, 2)
+                    }
+                    assert len(local_edges) <= comb(j + 1, 2), (
+                        n,
+                        j,
+                        packet,
+                        active,
+                        local_edges,
+                    )
+                    for deleted_pair in local_edges:
+                        edge_keys.add((packet, deleted_pair))
+
+                    local_triangles = {
+                        frozenset(triple) for triple in combinations(active, 3)
+                    }
+                    assert len(local_triangles) <= comb(j + 1, 3), (
+                        n,
+                        j,
+                        packet,
+                        active,
+                        local_triangles,
+                    )
+                    for deleted_triple in local_triangles:
+                        triangle_keys.add((packet, deleted_triple))
+
+                    # The union of any top-packet edge recovers packet U.
+                    for x, y in combinations(active, 2):
+                        t_x = packet - {x}
+                        t_y = packet - {y}
+                        assert t_x | t_y == packet, (n, j, packet, x, y, t_x, t_y)
+
+            assert len(edge_keys) <= len(packets) * comb(j + 1, 2), (
+                n,
+                j,
+                len(edge_keys),
+                len(packets),
+            )
+            assert len(triangle_keys) <= len(packets) * comb(j + 1, 3), (
+                n,
+                j,
+                len(triangle_keys),
+                len(packets),
+            )
 
 
 def check_nonruled_degree_bound() -> None:
@@ -516,6 +597,7 @@ def main() -> None:
     check_hankel_ruled_core_collapse()
     check_one_exchange_triangle_classification()
     check_top_packet_lifted_kernel()
+    check_top_packet_compression_ledger()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     print("same-slope root-slice lemma verifier passed")

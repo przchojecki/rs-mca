@@ -1694,6 +1694,32 @@ common lifted \(t=1\) kernel.  This turns the top-packet triangle residual into
 a higher-slack kernel target rather than a fresh one-exchange multiplicity
 phenomenon.
 
+Writing
+\[
+  K_{\rm top}(u,v)
+  =
+  \{\,U\subset D:\ |U|=j+1,\
+      H_{1,j+1}(u)\ell_U=H_{1,j+1}(v)\ell_U=0\,\},
+\]
+the top-packet branch has the explicit compression ledger
+\[
+  E_{\rm top}(A_{\rm res})
+  \le \binom{j+1}{2}|K_{\rm top}(u,v)|,\qquad
+  {\rm Tri}_1(A_{\rm res})
+  \le \binom{j+1}{3}|K_{\rm top}(u,v)|.
+\]
+Indeed a residual top edge recovers its union \(U\), and (because residual
+one-exchange edges have distinct slopes) the lift above forces
+\(U\in K_{\rm top}(u,v)\).  Inside such a packet,
+\[
+  H_{2,j}(w)\ell_{U\setminus\{x\}}
+  =
+  \rho_x(w)(1,x),\qquad w\in\{u,v\},
+\]
+so the remaining slope label is the scalar ratio
+\(\rho_x(u)+z\rho_x(v)=0\), \(\rho_x(v)\ne0\).  Thus top-packet edges and
+triangles are charged to the lifted \(t=1\) top-kernel family.
+
 Consequently, after fixed-slope root slices are removed, the residual \(t=2\)
 one-exchange graph has maximum degree at most \(j\): each locator has only
 \(j\) possible \((j-1)\)-cores, and each core supplies at most one residual
