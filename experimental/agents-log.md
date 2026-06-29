@@ -62,11 +62,14 @@ Keep entries concise and link to the relevant files.
   formal two-root extensions are recovered by a length-four Hankel recurrence.
   Off the denominator `Q_R(z)=c_0c_2-c_1^2`, the coefficients `(s,p)` are
   unique rational functions of `z`, and the split-root condition is a quartic
-  numerator in `z`.
+  numerator in `z`.  Equivalently, after charged denominator-zero cases are
+  removed, residual split slopes are filtered points on the bounded cover
+  `Y^2=Theta_R(z)` with `deg Theta_R<=4`.
 - **How it is useful:** The denominator-zero solvable case is exactly a
   fixed-root line or the full-plane lift, both already charged.  Thus the
-  residual non-line root-core target is a one-variable slope discriminant
-  problem with explicit domain/outside filters.
+  residual non-line root-core target is a one-variable slope-cover problem
+  of genus at most one after squarefree reduction, with explicit
+  domain/outside filters.
 - **What to do next:** Use this recurrence chart when attacking the active
   `(j-2)` root-core image after quotient, tangent, fixed-root, and full-plane
   charges.

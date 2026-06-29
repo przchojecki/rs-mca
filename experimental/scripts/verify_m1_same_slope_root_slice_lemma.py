@@ -2663,6 +2663,12 @@ def poly1_mul(left: Poly1, right: Poly1, p: int) -> Poly1:
     return out
 
 
+def poly1_sub(left: Poly1, right: Poly1, p: int) -> Poly1:
+    out = dict(left)
+    poly1_add_scaled(out, right, -1, p)
+    return out
+
+
 def eval_poly1(poly: Poly1, value: int, p: int) -> int:
     return sum(coeff * pow(value, degree, p) for degree, coeff in poly.items()) % p
 
@@ -3304,11 +3310,66 @@ def check_boundary_core_slope_recurrence_gate() -> None:
                 v_vectors,
                 prime,
             )
+            c_polys = tuple(
+                poly1_from_terms(((0, a_rows[idx]), (1, b_rows[idx])), prime)
+                for idx in range(4)
+            )
+            q_poly = poly1_sub(
+                poly1_mul(c_polys[0], c_polys[2], prime),
+                poly1_mul(c_polys[1], c_polys[1], prime),
+                prime,
+            )
+            s_num_poly = poly1_sub(
+                poly1_mul(c_polys[0], c_polys[3], prime),
+                poly1_mul(c_polys[1], c_polys[2], prime),
+                prime,
+            )
+            p_num_poly = poly1_sub(
+                poly1_mul(c_polys[1], c_polys[3], prime),
+                poly1_mul(c_polys[2], c_polys[2], prime),
+                prime,
+            )
+            theta_poly = poly1_sub(
+                poly1_mul(s_num_poly, s_num_poly, prime),
+                poly1_mul(
+                    poly1_from_terms(((0, 4),), prime),
+                    poly1_mul(q_poly, p_num_poly, prime),
+                    prime,
+                ),
+                prime,
+            )
+            assert poly1_degree(q_poly) <= 2, (prime, a_rows, b_rows, q_poly)
+            assert poly1_degree(s_num_poly) <= 2, (
+                prime,
+                a_rows,
+                b_rows,
+                s_num_poly,
+            )
+            assert poly1_degree(p_num_poly) <= 2, (
+                prime,
+                a_rows,
+                b_rows,
+                p_num_poly,
+            )
+            assert poly1_degree(theta_poly) <= 4, (
+                prime,
+                a_rows,
+                b_rows,
+                theta_poly,
+            )
             for z_value in range(prime):
                 c = tuple(
                     (a_rows[idx] + z_value * b_rows[idx]) % prime for idx in range(4)
                 )
                 denominator = (c[0] * c[2] - c[1] * c[1]) % prime
+                assert eval_poly1(q_poly, z_value, prime) == denominator, (
+                    prime,
+                    a_rows,
+                    b_rows,
+                    z_value,
+                    q_poly,
+                    denominator,
+                )
                 solutions: list[tuple[int, int]] = []
                 for s_value in range(prime):
                     for p_value in range(prime):
@@ -3339,6 +3400,24 @@ def check_boundary_core_slope_recurrence_gate() -> None:
                     theta = (
                         s_num * s_num - 4 * denominator * p_num
                     ) % prime
+                    assert eval_poly1(s_num_poly, z_value, prime) == s_num, (
+                        prime,
+                        z_value,
+                        s_num_poly,
+                        s_num,
+                    )
+                    assert eval_poly1(p_num_poly, z_value, prime) == p_num, (
+                        prime,
+                        z_value,
+                        p_num_poly,
+                        p_num,
+                    )
+                    assert eval_poly1(theta_poly, z_value, prime) == theta, (
+                        prime,
+                        z_value,
+                        theta_poly,
+                        theta,
+                    )
                     assert (
                         denominator
                         * denominator
@@ -3351,6 +3430,21 @@ def check_boundary_core_slope_recurrence_gate() -> None:
                         s_value,
                         p_value,
                         theta,
+                    )
+                    split_count = quadratic_root_count(
+                        1,
+                        -s_value,
+                        p_value,
+                        prime,
+                    )
+                    assert split_count == 1 + quadratic_character(theta, prime), (
+                        prime,
+                        z_value,
+                        s_value,
+                        p_value,
+                        denominator,
+                        theta,
+                        split_count,
                     )
                     assert (
                         eval_poly2(elementary_poly, s_value, p_value, prime) == 0

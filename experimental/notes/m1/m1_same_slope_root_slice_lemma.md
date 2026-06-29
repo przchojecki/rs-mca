@@ -7,6 +7,7 @@ TOP-PACKET LEDGER / SIMULTANEOUS KERNEL RECURSION / HYPERPLANE-FIBER
 REDUCTION / AFFINE-FIBER REDUCTION / MOVING-FIBER DIMENSION DROP /
 FIBER-COUNTING COROLLARY / BOUNDARY-CORE SLOPE-FIBER INJECTION /
 BOUNDARY QUARTIC KUMMER GATE / ROOT-CORE RECURRENCE CHART /
+ROOT-CORE SLOPE COVER /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
@@ -2002,6 +2003,42 @@ set is a fixed-root line in the elementary `(s,p)` plane, which is already in
 the fixed-root/root-slice ledger.  The residual non-line root-core target
 therefore lives in the `Q_R(z) != 0` recurrence chart.
 
+This chart is a bounded cover of the slope line, not a growing-depth source.
+Let
+
+```text
+A_R(z)=c_0c_3-c_1c_2,        B_R(z)=c_1c_3-c_2^2,
+Theta_R(z)=A_R(z)^2-4Q_R(z)B_R(z).
+```
+
+Since every `c_i(z)` is linear in `z`, the three polynomials `Q_R,A_R,B_R`
+have degree at most two, and `Theta_R` has degree at most four.  On
+`Q_R(z) != 0`, a split ordered lift with roots `r_1,r_2` gives
+
+```text
+y=Q_R(z)(r_1-r_2),        y^2=Theta_R(z),
+```
+
+and conversely a point `(z,y)` on `Y^2=Theta_R(z)` gives the formal roots
+
+```text
+r_1,r_2=(s_R(z) +/- y/Q_R(z))/2.
+```
+
+Thus, after the denominator-zero fixed-root/full-plane cases have been
+charged, residual split root-core slopes are filtered points on the cover
+
+```text
+C_R:        Y^2=Theta_R(z).
+```
+
+After squarefree reduction this cover has genus at most one.  If `Theta_R`
+is a square, the roots are rational functions of `z`; otherwise the usual
+Kummer-Weil estimate on `P^1` has conductor bounded by the four finite branch
+points and infinity, independent of `j`, depth, or the ambient domain.  The
+requirements that one root lie in `D\R`, the other outside `D`, and the
+extension be active are deleting filters on this bounded-cover chart.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -2147,7 +2184,8 @@ returned to a fixed-root line, a constant-slope non-fixed line packet, or the
 full-plane lift, gives the exact full-subgroup quartic character expansion
 and its Kummer power-divisor gate, closes the non-line fixed-core conic branch
 with the ledger multiplier (KROOT), identifies the slope-side root-core
-recurrence chart and its quartic discriminant numerator, and gives the local
+recurrence chart and its quartic discriminant numerator, realizes the residual
+split slopes as a genus-at-most-one cover of the slope line, and gives the local
 max-degree bound and average-collinearity corollary above, including the
 packet-level higher-exchange ledger substitution.
 
@@ -2189,4 +2227,4 @@ checks the degree-four Kummer power gate for the full-subgroup quartic
 character terms on structured monomial-square discriminants and random
 quartics over small prime fields, and checks the slope-side recurrence chart
 for fixed root cores, including its denominator-zero fixed-root/full-plane
-classification.
+classification, quartic degree bound, and split-root cover criterion.
