@@ -1720,6 +1720,35 @@ so the remaining slope label is the scalar ratio
 \(\rho_x(u)+z\rho_x(v)=0\), \(\rho_x(v)\ne0\).  Thus top-packet edges and
 triangles are charged to the lifted \(t=1\) top-kernel family.
 
+The same Hankel shift also classifies the one-outside external-anchor ruled
+branch from the boundary-off audit.  For a shadow \(S\subset D\), \(|S|=j-1\),
+and an external anchor \(\beta\notin D\),
+\[
+  \ell_{S,\beta}=(X-\beta)\ell_S .
+\]
+The \(t=2\) determinant gate is again quadratic in \(\beta\).  If it is
+nonzero, at most two external anchors pass.  If it vanishes identically, then
+with
+\[
+  c_i(w)={\rm row}_i(H_{3,j-1}(w)\ell_S)
+\]
+one has
+\[
+  H_{2,j}(w)\ell_{S,\beta}
+  =
+  (c_1(w)-\beta c_0(w),\ c_2(w)-\beta c_1(w)).
+\]
+The same recurrence argument as above forces the ruled external-anchor branch
+to be inactive or fixed finite slope.  In the fixed-slope case it is a boundary
+root slice and lifts to
+\[
+  H_{3,j-1}(u+z_0v)\ell_S=0.
+\]
+Thus, after fixed-slope boundary slices are charged, each shadow \(S\) supports
+at most two active non-ruled external anchors.  This classifies the ruled
+\({\rm Boundary}_{\rm off}\) branch locally, but it is not yet a global bound
+for the one-outside target image.
+
 Consequently, after fixed-slope root slices are removed, the residual \(t=2\)
 one-exchange graph has maximum degree at most \(j\): each locator has only
 \(j\) possible \((j-1)\)-cores, and each core supplies at most one residual
@@ -2183,8 +2212,13 @@ Therefore the Hankel landing matrix
 has columns affine-linear in \(\beta\), and the rank-one condition is cut out
 by quadratic minors in \(\beta\).  Thus, for fixed \(S\), either a nonzero
 quadratic minor gives at most two external anchors, or all minors vanish
-identically and the branch is a ruled rank-one pencil.  This is recorded as
-PROVED-LOCAL / PROOF-PROGRAM / AUDIT, not as a proof of M1.
+identically and the branch is a ruled rank-one pencil.  The later
+same-slope/root-slice note now classifies this ruled \(t=2\) Hankel branch:
+it is inactive or fixed finite slope, and the fixed-slope case lifts to a
+boundary root-slice core \(H_{3,j-1}(u+z_0v)\ell_S=0\).  Therefore after
+fixed-slope boundary slices are charged, each shadow has at most two active
+non-ruled external anchors.  This is recorded as PROVED-LOCAL /
+RULED-BRANCH CLASSIFIED / PROOF-PROGRAM / AUDIT, not as a proof of M1.
 
 \subsection{\(a=507\) adjacent bridge route cut}
 

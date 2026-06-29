@@ -527,6 +527,87 @@ def check_top_packet_compression_ledger() -> None:
             )
 
 
+def check_boundary_off_external_anchor_corollary() -> None:
+    rng = Random(20260701)
+    for p in (5, 7, 11, 17, 31):
+        for d_size in range(1, min(p - 1, 7)):
+            domain = set(range(d_size))
+            external = [x for x in range(p) if x not in domain]
+            assert len(external) >= 2
+
+            samples: list[tuple[tuple[int, int, int], tuple[int, int, int]]] = []
+            if p <= 7:
+                triples = list(product(range(p), repeat=3))
+                samples = [(u_seq, v_seq) for u_seq in triples for v_seq in triples]
+            else:
+                samples = [
+                    (
+                        (rng.randrange(p), rng.randrange(p), rng.randrange(p)),
+                        (rng.randrange(p), rng.randrange(p), rng.randrange(p)),
+                    )
+                    for _ in range(4000)
+                ]
+
+            for u_seq, v_seq in samples:
+                external_roots = [
+                    beta
+                    for beta in external
+                    if det2(
+                        hankel_core_value(u_seq, beta, p),
+                        hankel_core_value(v_seq, beta, p),
+                        p,
+                    )
+                    == 0
+                ]
+                ruled = all(
+                    det2(
+                        hankel_core_value(u_seq, beta, p),
+                        hankel_core_value(v_seq, beta, p),
+                        p,
+                    )
+                    == 0
+                    for beta in range(p)
+                )
+
+                if len(external_roots) >= 3:
+                    assert ruled, (p, d_size, u_seq, v_seq, external_roots)
+                if not ruled:
+                    assert len(external_roots) <= 2, (
+                        p,
+                        d_size,
+                        u_seq,
+                        v_seq,
+                        external_roots,
+                    )
+                    continue
+
+                active_slopes: set[int] = set()
+                for beta in external:
+                    a_beta = hankel_core_value(u_seq, beta, p)
+                    b_beta = hankel_core_value(v_seq, beta, p)
+                    z = slope_for_active_pair(a_beta, b_beta, p)
+                    if z is not None:
+                        active_slopes.add(z)
+
+                assert len(active_slopes) <= 1, (
+                    p,
+                    d_size,
+                    u_seq,
+                    v_seq,
+                    external,
+                    active_slopes,
+                )
+                if active_slopes:
+                    z0 = next(iter(active_slopes))
+                    for beta in range(p):
+                        a_beta = hankel_core_value(u_seq, beta, p)
+                        b_beta = hankel_core_value(v_seq, beta, p)
+                        assert (
+                            (a_beta[0] + z0 * b_beta[0]) % p == 0
+                            and (a_beta[1] + z0 * b_beta[1]) % p == 0
+                        ), (p, d_size, u_seq, v_seq, beta, z0, a_beta, b_beta)
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -598,6 +679,7 @@ def main() -> None:
     check_one_exchange_triangle_classification()
     check_top_packet_lifted_kernel()
     check_top_packet_compression_ledger()
+    check_boundary_off_external_anchor_corollary()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     print("same-slope root-slice lemma verifier passed")

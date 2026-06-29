@@ -564,6 +564,56 @@ The top-packet branch is therefore reduced to the lifted `t=1` kernel family
 `K_top(u,v)` plus this one-dimensional slope label.  It is not an independent
 two-row `t=2` residual phenomenon.
 
+## Boundary-Off External-Anchor Corollary
+
+The same one-exchange algebra also applies to one-outside boundary targets.
+Let `S subset D` have size `j-1`, and let `beta in F\D` be an external anchor.
+Write the formal one-outside locator as
+
+```text
+B_beta=S union {beta},        ell_{S,beta}=(X-beta)ell_S.
+```
+
+For the `t=2` Hankel landing vectors
+
+```text
+a_beta=H(u)ell_{S,beta},        b_beta=H(v)ell_{S,beta}        in F^2,
+```
+
+the determinant gate is again a quadratic polynomial in the anchor:
+
+```text
+Delta_S(beta)=det(a_beta,b_beta).
+```
+
+If `Delta_S` is not identically zero, then at most two external anchors
+`beta in F\D` pass the rank-one landing condition.  If three external anchors
+pass, then `Delta_S` vanishes identically on `F`, and the Hankel shift collapse
+above applies with `y` replaced by the external coordinate `beta`.  Hence the
+ruled external-anchor branch is either inactive,
+
+```text
+b_beta=0        for every beta,
+```
+
+or fixed finite slope,
+
+```text
+a_beta+z_0 b_beta=0        for every beta.
+```
+
+In the fixed finite-slope case the same subtraction argument gives
+
+```text
+(H_{2,j}(u)+z_0H_{2,j}(v))ell_S=0,
+(H_{2,j}(u)+z_0H_{2,j}(v))(Xell_S)=0,
+```
+
+equivalently the lifted `H_{3,j-1}(u+z_0v)ell_S=0` core.  Thus the ruled
+one-outside branch is not a separate quotient-periodic or aperiodic residual:
+after fixed-slope boundary root slices are charged, each `(j-1)` shadow
+supports at most two active non-ruled external anchors.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -631,7 +681,7 @@ family size, fixed-slope root slices, or higher packet/two-exchange structure.
 ## Non-Claims
 
 This lemma does not bound the lifted top-kernel family `K_top(u,v)`, the
-two-exchange packet-edge ledger, or the one-outside boundary image.  It only
+two-exchange packet-edge ledger, or the full one-outside boundary image.  It only
 proves that
 same-slope one-exchange collisions belong to the fixed-slope root-slice ledger,
 that such root slices lift to `(t+1,j-1)` Hankel cores,
@@ -640,8 +690,9 @@ moving-slope cases for abstract affine pencils, proves the Hankel shift
 collapse that eliminates the moving-slope ruled residual, shows that star
 triangles are exactly ruled-core events while residual top-packet edges lift to
 a common `t=1` Hankel kernel, compresses residual top-packet edges and
-triangles into the lifted top-kernel ledger, and gives the local max-degree
-bound and average-collinearity corollary above.
+triangles into the lifted top-kernel ledger, classifies the ruled
+external-anchor boundary branch, and gives the local max-degree bound and
+average-collinearity corollary above.
 
 ## Verification
 
@@ -658,4 +709,5 @@ the "three roots imply ruled" criterion in sampled small prime fields, then
 stress-tests the abstract ruled-core dichotomy and the Hankel ruled-core
 collapse.  It also checks the Johnson-graph star/top triangle classification,
 the top-packet lift identity (TOP1), the distinct-slope implication (TOPK), and
-the top-packet edge/triangle compression ledger.
+the top-packet edge/triangle compression ledger.  The same verifier also checks
+the boundary-off external-anchor corollary over sampled small domains.

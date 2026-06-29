@@ -73,6 +73,9 @@ Keep entries concise and link to the relevant files.
   `(j+1)` set, and residual top-packet edges with distinct slopes lift to a
   common `t=1` Hankel kernel.  The top-packet edge and triangle ledgers then
   compress into the simultaneous lifted `t=1` top-kernel family `K_top(u,v)`.
+  The same Hankel shift collapse classifies the one-outside external-anchor
+  ruled branch: after fixed-slope boundary slices are charged, each shadow has
+  at most two active non-ruled external anchors.
   The resulting residual degree bound is also inserted into the existing
   average-collinearity max-codegree ledger.
 - **How it is useful:** After fixed-slope root slices are charged, the
@@ -84,7 +87,10 @@ Keep entries concise and link to the relevant files.
   `j` and average-ledger error term at most `(1-p_z)/(M p_z)+4jQ/M`.  Residual
   one-exchange triangles must be top-packet triangles lying over the lifted
   `t=1` kernel target from the all-line Hankel audit, with edge and triangle
-  counts bounded by `binom(j+1,2)|K_top|` and `binom(j+1,3)|K_top|`.
+  counts bounded by `binom(j+1,2)|K_top|` and `binom(j+1,3)|K_top|`.  The
+  one-outside ruled branch is no longer a separate unclassified residual; it
+  is either inactive or charged to the lifted fixed-slope boundary root-slice
+  ledger.
 - **What to do next:** Bound the remaining different-slope one-exchange or
   two-exchange codegree ledgers after quotient-periodic, tangent/contained,
   and root-slice charges.
