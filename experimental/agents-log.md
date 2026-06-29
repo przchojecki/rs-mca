@@ -940,3 +940,9 @@ Keep entries concise and link to the relevant files.
   independent Lagrange interpolant agrees at a fresh point; a disjoint `k`-node set
   recovers the same message (uniqueness = decode-from-any-`k`). Verifier exits 0:
   5 PASS, 4 PENDING. Next: degree bound.
+- **Iteration 4 (commit 171f342):** A.3 item 5 **degree bound / MDS**. On
+  `RS[GF(17^32), H, k]` (real `|H|=512`, small `k`): nonzero deg-`(k-1)` poly has
+  exactly `k-1` roots in `H`; two distinct deg-`<k` codewords with difference a
+  `(k-1)`-root locator agree on exactly `k-1` of 512 pts -- Singleton/MDS bound,
+  shown tight. Row: `k=256` ⇒ agree `<=255`, min dist 257. Verifier exits 0 (~1.1s):
+  6 PASS, 3 PENDING. Next: agreement count.
