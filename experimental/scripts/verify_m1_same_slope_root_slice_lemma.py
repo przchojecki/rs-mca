@@ -43,6 +43,20 @@ def mul_x2_minus_sx_plus_c(poly: list[int], s: int, c: int, p: int) -> list[int]
     return out
 
 
+def mul_monic_factor(poly: list[int], coeffs: tuple[int, ...], p: int) -> list[int]:
+    h = len(coeffs)
+    out = [0] * (len(poly) + h)
+    for i, coeff in enumerate(poly):
+        out[i + h] = (out[i + h] + coeff) % p
+        for m, factor_coeff in enumerate(coeffs):
+            out[i + m] = (out[i + m] + factor_coeff * coeff) % p
+    return out
+
+
+def shifted_core(poly: list[int], shift: int, total_shift: int) -> list[int]:
+    return [0] * shift + poly + [0] * (total_shift - shift)
+
+
 def dot(row: tuple[int, ...], vec: list[int], p: int) -> int:
     return sum(a * b for a, b in zip(row, vec)) % p
 
@@ -317,6 +331,162 @@ def check_two_exchange_full_plane_lift() -> None:
                     )
                     if all(value == 0 for value in core_rows + x_rows + x2_rows):
                         assert all(value == 0 for value in lifted_rows)
+
+
+def check_full_elementary_packet_lift() -> None:
+    rng = Random(20260704)
+
+    cases = [
+        (5, range(1, 4), range(1, 3), range(0, 4), 8),
+        (7, range(1, 4), range(1, 3), range(0, 3), 6),
+        (17, range(1, 3), range(1, 3), range(0, 3), 4),
+        (5, range(4, 5), range(1, 2), range(0, 3), 2),
+    ]
+
+    for p, h_values, t_values, degree_values, trials in cases:
+        for h_exchange in h_values:
+            simplex_points = [tuple([0] * h_exchange)]
+            for axis in range(h_exchange):
+                point = [0] * h_exchange
+                point[axis] = 1
+                simplex_points.append(tuple(point))
+
+            for t_rows in t_values:
+                for core_degree in degree_values:
+                    if p**core_degree <= 500:
+                        samples = [
+                            list(coeffs) + [1]
+                            for coeffs in product(range(p), repeat=core_degree)
+                        ]
+                    else:
+                        samples = [
+                            [rng.randrange(p) for _ in range(core_degree)] + [1]
+                            for _ in range(40)
+                        ]
+
+                    for ell_r in samples:
+                        row_len = t_rows + len(ell_r) + h_exchange - 1
+                        shifts = [
+                            shifted_core(ell_r, shift, h_exchange)
+                            for shift in range(h_exchange + 1)
+                        ]
+
+                        for _ in range(trials):
+                            rows = [
+                                [rng.randrange(p) for _ in range(row_len)]
+                                for _ in range(2)
+                            ]
+
+                            for row in rows:
+                                shift_values = [
+                                    hankel_values(row, shift_poly, t_rows, p)
+                                    for shift_poly in shifts
+                                ]
+                                lifted = hankel_values(
+                                    row, ell_r, t_rows + h_exchange, p
+                                )
+
+                                for shift in range(h_exchange + 1):
+                                    assert shift_values[shift] == lifted[
+                                        shift : shift + t_rows
+                                    ], (
+                                        p,
+                                        h_exchange,
+                                        t_rows,
+                                        core_degree,
+                                        ell_r,
+                                        shift,
+                                        row,
+                                    )
+
+                                simplex_values: list[list[int]] = []
+                                for coeffs in simplex_points:
+                                    direct = mul_monic_factor(ell_r, coeffs, p)
+                                    expected = shifts[h_exchange][:]
+                                    for m, coeff in enumerate(coeffs):
+                                        expected = [
+                                            (value + coeff * shifts[m][idx]) % p
+                                            for idx, value in enumerate(expected)
+                                        ]
+                                    assert direct == expected, (
+                                        p,
+                                        h_exchange,
+                                        ell_r,
+                                        coeffs,
+                                        direct,
+                                        expected,
+                                    )
+
+                                    direct_rows = hankel_values(row, direct, t_rows, p)
+                                    affine_rows = shift_values[h_exchange][:]
+                                    for m, coeff in enumerate(coeffs):
+                                        affine_rows = [
+                                            (value + coeff * shift_values[m][idx]) % p
+                                            for idx, value in enumerate(affine_rows)
+                                        ]
+                                    assert direct_rows == affine_rows, (
+                                        p,
+                                        h_exchange,
+                                        t_rows,
+                                        core_degree,
+                                        ell_r,
+                                        coeffs,
+                                        row,
+                                    )
+                                    simplex_values.append(direct_rows)
+
+                                if all(
+                                    value == 0
+                                    for rows_at_point in simplex_values
+                                    for value in rows_at_point
+                                ):
+                                    assert all(
+                                        value == 0
+                                        for block in shift_values
+                                        for value in block
+                                    ), (
+                                        p,
+                                        h_exchange,
+                                        t_rows,
+                                        core_degree,
+                                        ell_r,
+                                        row,
+                                        shift_values,
+                                    )
+                                    assert all(value == 0 for value in lifted), (
+                                        p,
+                                        h_exchange,
+                                        t_rows,
+                                        core_degree,
+                                        ell_r,
+                                        row,
+                                        lifted,
+                                    )
+
+                            both_rows_kill_simplex = True
+                            for row in rows:
+                                for coeffs in simplex_points:
+                                    direct = mul_monic_factor(ell_r, coeffs, p)
+                                    if any(hankel_values(row, direct, t_rows, p)):
+                                        both_rows_kill_simplex = False
+                                        break
+                                if not both_rows_kill_simplex:
+                                    break
+
+                            if both_rows_kill_simplex:
+                                for row in rows:
+                                    lifted = hankel_values(
+                                        row, ell_r, t_rows + h_exchange, p
+                                    )
+                                    assert all(value == 0 for value in lifted), (
+                                        p,
+                                        h_exchange,
+                                        t_rows,
+                                        core_degree,
+                                        ell_r,
+                                        row,
+                                        lifted,
+                                    )
 
 
 def check_two_root_line_classification() -> None:
@@ -1043,6 +1213,7 @@ def main() -> None:
     check_row_implication()
     check_higher_slack_root_slice_lift()
     check_two_exchange_full_plane_lift()
+    check_full_elementary_packet_lift()
     check_two_root_line_classification()
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()

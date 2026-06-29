@@ -1,9 +1,9 @@
 # M1 Same-Slope One-Exchange Root-Slice Lemma
 
 **Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / TWO-EXCHANGE PLANE LIFT /
-RULED-CORE DICHOTOMY / RULED-CORE COLLAPSE / HIGHER-SLACK LIFT /
-TRIANGLE CLASSIFICATION / TOP-PACKET LIFT / TOP-PACKET LEDGER /
-SIMULTANEOUS KERNEL RECURSION / AUDIT.
+FULL ELEMENTARY PACKET LIFT / RULED-CORE DICHOTOMY / RULED-CORE COLLAPSE /
+HIGHER-SLACK LIFT / TRIANGLE CLASSIFICATION / TOP-PACKET LIFT /
+TOP-PACKET LEDGER / SIMULTANEOUS KERNEL RECURSION / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -186,6 +186,81 @@ lifts have been charged, any residual same-slope two-exchange family through a
 fixed `(j-2)` core is contained in an affine line in the elementary `(s,p)`
 plane.  This is the line-packet residual treated by
 `m1_hankel_variable_line_packet_lemma.md`.
+
+## Full Elementary Packet Lift
+
+The same argument works in every exchange dimension.  Fix `h>=1` and a
+`(j-h)`-core `R`.  Write a formal `h`-root factor in coefficient coordinates as
+
+```text
+P_c(X)=X^h+c_{h-1}X^{h-1}+...+c_0,
+        c=(c_0,...,c_{h-1}) in F^h,
+```
+
+and put
+
+```text
+ell_{R,c}=P_c(X)ell_R.
+```
+
+For a fixed finite slope `z`, the landing map is affine-linear in `c`:
+
+```text
+L_z ell_{R,c}
+ =
+ L_z(X^h ell_R)+sum_{m=0}^{h-1} c_m L_z(X^m ell_R).   (HPKT)
+```
+
+If `h+1` affinely independent coefficient points
+`c^{(0)},...,c^{(h)}` satisfy
+
+```text
+L_z ell_{R,c^{(i)}}=0        for 0<=i<=h,
+```
+
+then all coefficient vectors in (HPKT) vanish:
+
+```text
+L_z(X^m ell_R)=0        for 0<=m<=h.              (HLIFT0)
+```
+
+Equivalently,
+
+```text
+H_{t+h,j-h}(u+zv)ell_R=0.                         (HLIFT)
+```
+
+Indeed, the padded equation `L_z(X^m ell_R)=0` gives rows
+`m,...,m+t-1` of (HLIFT), and the row blocks for `0<=m<=h` cover exactly
+`0,...,t+h-1`.
+
+Thus a same-slope `h`-exchange packet whose elementary coefficient points have
+full affine span is not a new residual packet.  It is charged losslessly to the
+lifted `(t+h,j-h)` Hankel-core ledger.  The root-slice lift is the case `h=1`,
+and the two-exchange full-plane lift is the case `h=2`.
+
+There is also a simultaneous-kernel version.  With
+
+```text
+K_{r,d}(u,v)
+ =
+ { U subset D : |U|=d,
+   H_{r,d}(u)ell_U=0 and H_{r,d}(v)ell_U=0 },
+```
+
+if `h+1` affinely independent `h`-exchange extensions through a fixed
+`(d-h)`-core `R` lie in `K_{r,d}(u,v)`, then applying (HLIFT) separately to
+`u` and `v` gives
+
+```text
+R in K_{r+h,d-h}(u,v).                            (KHLIFT)
+```
+
+Consequently residual simultaneous-kernel packets can be organized by affine
+rank: full-rank elementary packets move to the next `h` levels of the Hankel
+ladder, while lower-rank packets are the true residual objects to classify.
+This is the general form of the lossless residual-depth frontier shift used by
+the top-packet recursion below.
 
 ## Two-Root Line Classification
 
@@ -836,7 +911,9 @@ only proves that
 same-slope one-exchange collisions belong to the fixed-slope root-slice ledger,
 that such root slices lift to `(t+1,j-1)` Hankel cores,
 that non-collinear same-slope two-exchange planes lift to `(t+2,j-2)` Hankel
-cores, that residual two-root lines are fixed-root, fixed-sum, or
+cores, that full affine-rank `h`-exchange elementary packets lift to
+`(t+h,j-h)` Hankel cores, that residual two-root lines are fixed-root,
+fixed-sum, or
 product-Mobius packets,
 classifies the ruled determinant core into fixed-slope, inactive, and rank-one
 moving-slope cases for abstract affine pencils, proves the Hankel shift
@@ -859,12 +936,13 @@ python3 experimental/scripts/verify_m1_same_slope_root_slice_lemma.py
 checks the subtraction identity over sampled small prime fields and exhaustively
 checks the row-wise linear-map implication in small dimensions.  It checks the
 higher-slack lift identity (LIFT), the two-exchange full-plane lift (PLIFT),
-the two-root line classification, the quadratic determinant formula (DET2),
-and the "three roots imply ruled" criterion in sampled small prime fields, then
-stress-tests the abstract ruled-core dichotomy and the Hankel ruled-core
-collapse.  It also checks the Johnson-graph star/top triangle classification,
-the top-packet lift identity (TOP1), the distinct-slope implication (TOPK), and
-the top-packet edge/triangle compression ledger.  It checks the simultaneous
-kernel root-slice recursion (KREC) over exhaustive and sampled small-field
-instances.  The same verifier also checks the boundary-off external-anchor
-corollary over sampled small domains.
+the full elementary packet lift (HLIFT), the two-root line classification, the
+quadratic determinant formula (DET2), and the "three roots imply ruled"
+criterion in sampled small prime fields, then stress-tests the abstract
+ruled-core dichotomy and the Hankel ruled-core collapse.  It also checks the
+Johnson-graph star/top triangle classification, the top-packet lift identity
+(TOP1), the distinct-slope implication (TOPK), and the top-packet edge/triangle
+compression ledger.  It checks the simultaneous kernel root-slice recursion
+(KREC) over exhaustive and sampled small-field instances.  The same verifier
+also checks the boundary-off external-anchor corollary over sampled small
+domains.

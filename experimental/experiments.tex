@@ -1620,7 +1620,30 @@ equivalently
 Thus full two-exchange planes are charged to the lifted
 \((t+2,j-2)\) Hankel ledger.  After fixed-root lines and full planes are
 removed, any residual same-slope two-exchange component through \(R\) is a
-line packet in the \((s,p)\)-plane.  Such lines are exactly the expected
+line packet in the \((s,p)\)-plane.
+
+The full-plane statement is the \(h=2\) case of a general elementary-packet
+lift.  For a \((j-h)\)-core \(R\), write
+\[
+  \ell_{R,c}=(X^h+c_{h-1}X^{h-1}+\cdots+c_0)\ell_R,
+  \qquad c\in F^h.
+\]
+For fixed finite slope \(z\), the map \(c\mapsto L_z\ell_{R,c}\) is
+affine-linear.  Hence if \(h+1\) affinely independent coefficient points are
+killed at the same slope, then
+\[
+  L_z(X^m\ell_R)=0,\qquad 0\le m\le h.
+\]
+These \(h+1\) padded equations are exactly the row blocks of
+\[
+  H_{t+h,j-h}(u+zv)\ell_R=0.
+\]
+Thus every full affine-rank same-slope \(h\)-exchange packet is charged
+losslessly to the lifted \((t+h,j-h)\) Hankel-core ledger.  Applying the same
+argument separately to \(u\) and \(v\) gives the simultaneous-kernel version:
+full affine-rank packets in \(K_{r,d}(u,v)\) lift to \(K_{r+h,d-h}(u,v)\).
+
+The residual two-root lines are exactly the expected
 models: if
 \[
   As+Bp+C=0
