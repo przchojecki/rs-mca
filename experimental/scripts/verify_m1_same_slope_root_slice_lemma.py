@@ -1201,6 +1201,16 @@ def check_general_moving_fiber_dimension_drop() -> None:
                                 passing_parameters,
                                 rank,
                             )
+                            assert len(passing_parameters) <= p ** (moving_rank - 1), (
+                                p,
+                                h_exchange,
+                                moving_rank,
+                                core,
+                                base,
+                                directions,
+                                len(passing_parameters),
+                                rank,
+                            )
 
 
 def check_two_root_line_classification() -> None:

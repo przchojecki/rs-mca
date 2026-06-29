@@ -4,7 +4,8 @@
 FULL ELEMENTARY PACKET LIFT / RULED-CORE DICHOTOMY / RULED-CORE COLLAPSE /
 HIGHER-SLACK LIFT / TRIANGLE CLASSIFICATION / TOP-PACKET LIFT /
 TOP-PACKET LEDGER / SIMULTANEOUS KERNEL RECURSION / HYPERPLANE-FIBER
-REDUCTION / AFFINE-FIBER REDUCTION / MOVING-FIBER DIMENSION DROP / AUDIT.
+REDUCTION / AFFINE-FIBER REDUCTION / MOVING-FIBER DIMENSION DROP /
+FIBER-COUNTING COROLLARY / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -573,6 +574,28 @@ after all full moving `r`-root fibers are charged, residual affine
 rank-defect packets meet each fixed `r`-root fiber only in lower-dimensional
 affine subpackets.  This is the general lossless dimension drop behind the
 one-root edge removal and the two-root line-packet reduction.
+
+## Finite-Field Fiber Counting Corollary
+
+Over a finite field `F` with `|F|=Q_F`, the preceding dimension drop has an
+immediate counting form.  Fix `r`, a fixed `(h-r)` core `Q`, and an affine
+rank-defect packet `A=c_*+W`.  If the moving `r`-root fiber over `Q` has not
+been charged as a full fiber, then
+
+```text
+# { a in F^r : coeff(B_a Q) in A } <= Q_F^{r-1}.     (RCOUNT)
+```
+
+Indeed, the parameter set is an affine subspace of `F^r` of rank at most
+`r-1`.  Split-root, distinct-root, domain-root, noncontainment, quotient, or
+tangent filters can only shrink this formal count.
+
+Thus every fixed `(h-r)` core contributes at most `Q_F^{r-1}` residual formal
+same-slope `r`-exchange parameters after the full moving-fiber charge.  For
+`r=1` this recovers the residual no-one-exchange-edge statement; for `r=2` it
+recovers the line-packet ceiling.  The corollary is not an all-line M1 bound
+by itself, but it is the finite-field counting input supplied by the
+rank-defect packet filtration.
 
 ## Two-Root Line Classification
 
@@ -1229,8 +1252,8 @@ rank-defect elementary packets, gives the fixed-root criterion for
 codimension-one coefficient hyperplanes, proves the one-root fiber dichotomy
 for coefficient hyperplanes and then for all affine rank-defect packets,
 proves the two-root fiber dichotomy for affine rank-defect packets, and shows
-the general moving-fiber dimension drop, and shows that residual two-root
-lines are fixed-root, fixed-sum, or
+the general moving-fiber dimension drop and finite-field fiber-counting
+corollary, and shows that residual two-root lines are fixed-root, fixed-sum, or
 product-Mobius packets,
 classifies the ruled determinant core into fixed-slope, inactive, and rank-one
 moving-slope cases for abstract affine pencils, proves the Hankel shift
@@ -1257,8 +1280,9 @@ the full elementary packet lift (HLIFT), the two-root line classification, the
 affine-span normal form for rank-defect packets, the fixed-root hyperplane
 criterion, the hyperplane one-root fiber dichotomy, the quadratic determinant
 formula (DET2), the affine-subpacket one-root and two-root fiber dichotomies,
-the general moving-fiber dimension drop, and the "three roots imply ruled"
-criterion in sampled small prime fields, then stress-tests the abstract
+the general moving-fiber dimension drop and counting corollary, and the
+"three roots imply ruled" criterion in sampled small prime fields, then
+stress-tests the abstract
 ruled-core dichotomy and the Hankel ruled-core collapse.  It also checks the
 Johnson-graph star/top triangle classification, the top-packet lift identity
 (TOP1), the distinct-slope implication (TOPK), and the top-packet edge/triangle
