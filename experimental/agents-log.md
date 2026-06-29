@@ -65,13 +65,15 @@ Keep entries concise and link to the relevant files.
   numerator in `z`.  Equivalently, after charged denominator-zero cases are
   removed, residual split slopes are filtered points on the bounded cover
   `Y^2=Theta_R(z)` with `deg Theta_R<=4`.  The subgroup domain/outside filter
-  expands into Kummer traces of `r_+^a r_-^b` on this same cover.
+  expands into Kummer traces of `r_+^a r_-^b` on this same cover, and the
+  fixed-zero-root branch `B_R=0` is charged to the fixed-root line `p=0`.
 - **How it is useful:** The denominator-zero solvable case is exactly a
   fixed-root line or the full-plane lift, both already charged.  Thus the
   residual non-line root-core target is a one-variable slope-cover problem
   of genus at most one after squarefree reduction.  The filter has bounded
   zero-pole support, so non-power character terms have depth-independent
-  conductor under the standard Kummer-Weil input.
+  conductor under the standard Kummer-Weil input, giving an explicit per-core
+  mixed-domain bound once nonprincipal power branches are absent.
 - **What to do next:** Use this recurrence chart when attacking the active
   `(j-2)` root-core image after quotient, tangent, fixed-root, and full-plane
   charges.

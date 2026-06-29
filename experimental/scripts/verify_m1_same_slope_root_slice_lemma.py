@@ -40,7 +40,8 @@ The full-subgroup quartic Kummer gate is checked by factoring degree-four
 discriminants and testing the exact lcm(e,2)-power degeneracy condition.
 The slope-side fixed-core recurrence chart is checked by direct finite-field
 linear algebra, and its domain/outside subgroup filter is checked by direct
-character expansion on sampled finite-field covers.
+character expansion and aggregate mixed-domain counts on sampled finite-field
+covers.
 """
 
 from __future__ import annotations
@@ -3593,6 +3594,17 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                     theta_zero_slopes,
                 )
 
+            aggregate: dict[int, dict[str, object]] = {}
+            for index in indices:
+                aggregate[index] = {
+                    "direct": 0,
+                    "expanded": 0j,
+                    "open_direct": 0,
+                    "open_points": 0,
+                    "plus_sums": [0j for _ in range(index)],
+                    "pair_sums": [[0j for _ in range(index)] for _ in range(index)],
+                }
+
             plus_zero_points = 0
             minus_zero_points = 0
             for z_value in range(prime):
@@ -3634,6 +3646,16 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                         plus_zero_points += 1
                     if r_minus == 0:
                         minus_zero_points += 1
+                    if not b_poly:
+                        assert r_plus == 0 or r_minus == 0, (
+                            prime,
+                            a_rows,
+                            b_rows,
+                            z_value,
+                            y_value,
+                            r_plus,
+                            r_minus,
+                        )
 
                     for index in indices:
                         plus_in_domain = (
@@ -3654,6 +3676,33 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                             log_table,
                         )
                         expanded = char_plus * (1 - char_minus)
+                        aggregate[index]["direct"] += direct
+                        aggregate[index]["expanded"] += expanded
+                        if r_plus != 0 and r_minus != 0:
+                            aggregate[index]["open_direct"] += direct
+                            aggregate[index]["open_points"] += 1
+                            plus_sums = aggregate[index]["plus_sums"]
+                            pair_sums = aggregate[index]["pair_sums"]
+                            assert isinstance(plus_sums, list)
+                            assert isinstance(pair_sums, list)
+                            for plus_power in range(index):
+                                plus_value = subgroup_character_value(
+                                    r_plus,
+                                    plus_power,
+                                    index,
+                                    log_table,
+                                )
+                                plus_sums[plus_power] += plus_value
+                                for minus_power in range(index):
+                                    pair_sums[plus_power][minus_power] += (
+                                        plus_value
+                                        * subgroup_character_value(
+                                            r_minus,
+                                            minus_power,
+                                            index,
+                                            log_table,
+                                        )
+                                    )
                         assert abs(expanded.imag) < 1e-8, (
                             prime,
                             index,
@@ -3674,7 +3723,69 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                             expanded,
                         )
 
-            if q_poly and theta_poly and b_poly:
+            for index in indices:
+                data = aggregate[index]
+                assert abs(complex(data["expanded"]).imag) < 1e-8, (
+                    prime,
+                    index,
+                    a_rows,
+                    b_rows,
+                    data,
+                )
+                assert abs(complex(data["expanded"]).real - int(data["direct"])) < 1e-8, (
+                    prime,
+                    index,
+                    a_rows,
+                    b_rows,
+                    data,
+                )
+                plus_sums = data["plus_sums"]
+                pair_sums = data["pair_sums"]
+                assert isinstance(plus_sums, list)
+                assert isinstance(pair_sums, list)
+                open_expansion = sum(plus_sums) / index - sum(
+                    sum(row) for row in pair_sums
+                ) / (index * index)
+                assert abs(open_expansion.imag) < 1e-8, (
+                    prime,
+                    index,
+                    a_rows,
+                    b_rows,
+                    open_expansion,
+                    data,
+                )
+                assert abs(open_expansion.real - int(data["open_direct"])) < 1e-8, (
+                    prime,
+                    index,
+                    a_rows,
+                    b_rows,
+                    open_expansion,
+                    data,
+                )
+                principal = (
+                    int(data["open_points"]) / index
+                    - int(data["open_points"]) / (index * index)
+                )
+                expected_principal = (index - 1) * int(data["open_points"]) / (
+                    index * index
+                )
+                assert abs(principal - expected_principal) < 1e-12, (
+                    prime,
+                    index,
+                    data,
+                    principal,
+                    expected_principal,
+                )
+                if not b_poly:
+                    assert int(data["open_points"]) == 0, (
+                        prime,
+                        a_rows,
+                        b_rows,
+                        index,
+                        data,
+                    )
+
+            if b_poly:
                 assert plus_zero_points <= 2, (
                     prime,
                     a_rows,

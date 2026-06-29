@@ -2090,6 +2090,63 @@ on this bounded divisor support.  Hence the domain/outside filter introduces
 no multiplicative depth loss: it leaves a finite list of bounded-degree power
 branches plus bounded-conductor genus-zero/genus-one character sums.
 
+This gives a per-core mixed-domain ledger whenever those power branches are
+absent.  First remove the fixed-zero-root case: if `B_R` is identically zero,
+then on `Q_R(z) != 0` one has `p_R(z)=0`, so every formal two-root extension
+has root `0`.  This is the fixed-root line `p=0` in the elementary plane and
+is already charged by the fixed-root/root-slice ledger.  Hence in the residual
+mixed-domain branch we may assume `B_R` is nonzero; then the points with
+`r_+=0` or `r_-=0` lie over the at-most-two roots of `B_R` and contribute only
+`O(1)` exceptional cover points.
+
+Let `C_R^x` be the open cover points with `Q_R != 0` and
+`r_+ r_- != 0`.  Put
+
+```text
+S_a^+    = sum_{C_R^x} chi^a(r_+),
+S_{a,b}  = sum_{C_R^x} chi^a(r_+) chi^b(r_-).
+```
+
+The ordered mixed-domain count is exactly
+
+```text
+N_R^{+,-}(D)
+ = e^{-1} sum_a S_a^+
+   - e^{-2} sum_{a,b} S_{a,b}
+   + O(1).                                             (RKCOUNT)
+```
+
+The principal contribution in (RKCOUNT) is
+
+```text
+((e-1)/e^2) |C_R^x| + O(1).
+```
+
+If no nonprincipal `chi^a(r_+)` or `chi^a(r_+)chi^b(r_-)` term is
+geometrically trivial on `C_R`, the standard curve Kummer-Weil input gives
+
+```text
+N_R^{+,-}(D)
+ <= ((e-1)/e^2) |C_R^x| + C_e sqrt(p) + O_e(1).       (RKBD)
+```
+
+Since the squarefree cover has genus at most one, Hasse gives
+`|C_R^x|<=p+O(sqrt p)` on each geometrically integral nonsplit cover branch
+(with conjugate or no-point degeneracies only smaller), while the split-square
+rational branch has `|C_R^x|<=2p+O(1)`.  Therefore (RKBD) gives, respectively,
+
+```text
+N_R^{+,-}(D) <= (1-1/e)|D| + C_e sqrt(p) + O_e(1),
+N_R^{+,-}(D) <= 2(1-1/e)|D| + C_e sqrt(p) + O_e(1).  (RKBD')
+```
+
+An unordered mixed split pair contributes to exactly one of the two ordered
+cover points `(z,Y)` and `(z,-Y)`, and repeated-root points contribute
+nothing to the mixed-domain condition.  Thus the same bound applies to the
+residual mixed root-core slopes over this fixed core.  This is still a
+per-core statement: the global M1 task remains to charge or bound the active
+`(j-2)` root-core image.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -2237,9 +2294,11 @@ and its Kummer power-divisor gate, closes the non-line fixed-core conic branch
 with the ledger multiplier (KROOT), identifies the slope-side root-core
 recurrence chart and its quartic discriminant numerator, realizes the residual
 split slopes as a genus-at-most-one cover of the slope line, pushes the
-domain/outside filter to bounded-conductor Kummer traces on that cover, and
-gives the local max-degree bound and average-collinearity corollary above,
-including the packet-level higher-exchange ledger substitution.
+domain/outside filter to bounded-conductor Kummer traces on that cover, derives
+the per-core mixed-domain Kummer bound (RKBD) after fixed-zero-root and
+nonprincipal power branches are removed, and gives the local max-degree bound
+and average-collinearity corollary above, including the packet-level
+higher-exchange ledger substitution.
 
 ## Verification
 
@@ -2280,4 +2339,5 @@ character terms on structured monomial-square discriminants and random
 quartics over small prime fields, and checks the slope-side recurrence chart
 for fixed root cores, including its denominator-zero fixed-root/full-plane
 classification, quartic degree bound, split-root cover criterion, and exact
-finite-field subgroup-character expansion for the domain/outside filter.
+finite-field subgroup-character expansion for the domain/outside filter and
+the mixed-domain count formula (RKCOUNT).

@@ -2219,6 +2219,33 @@ the remaining support is at infinity and at the at-most-four branch points of
 standard curve Kummer-Weil bound with conductor independent of depth.  The only
 no-cancellation cases are explicit power-divisor congruences for
 \(r_+^a r_-^b\) on this bounded divisor support.
+If \(B_R\equiv0\), then \(p_R=0\) on \(Q_R\ne0\), so every formal two-root
+extension has the fixed root \(0\); this is the fixed-root line \(p=0\) and is
+already charged.  Otherwise the zero-root points lie over the at most two
+roots of \(B_R\).  On the open cover \(C_R^\times\), where
+\(Q_Rr_+r_-\ne0\), define
+\[
+  S_a^+=\sum_{C_R^\times}\chi^a(r_+),\qquad
+  S_{a,b}=\sum_{C_R^\times}\chi^a(r_+)\chi^b(r_-).
+\]
+The ordered mixed-domain count has the exact expansion
+\[
+  N_R^{+,-}(D)=
+  \frac1e\sum_a S_a^+ - \frac1{e^2}\sum_{a,b}S_{a,b}+O(1).
+\]
+Its principal contribution is \(((e-1)/e^2)|C_R^\times|+O(1)\).  If no
+nonprincipal term is geometrically trivial, the standard curve Kummer-Weil
+input gives
+\[
+  N_R^{+,-}(D)
+  \le \frac{e-1}{e^2}|C_R^\times|+C_e\sqrt p+O_e(1).
+\]
+Thus a geometrically integral nonsplit quartic-cover branch has at most
+\((1-1/e)|D|+C_e\sqrt p+O_e(1)\) points, with conjugate or no-point
+degeneracies only smaller, while the split-square rational branch has at most
+\(2(1-1/e)|D|+C_e\sqrt p+O_e(1)\).  Each unordered mixed split pair
+contributes to exactly one ordered sheet, and repeated roots contribute
+nothing to the mixed-domain condition.
 
 Consequently, after fixed-slope root slices are removed, the residual \(t=2\)
 one-exchange graph has maximum degree at most \(j\): each locator has only
