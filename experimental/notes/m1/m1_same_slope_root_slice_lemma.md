@@ -151,13 +151,47 @@ supporting three or more residual one-exchange anchors must be ruled but not
 same-slope.  Non-ruled cores contribute at most one unordered one-exchange edge
 through that core.
 
+## Non-Ruled One-Exchange Degree Bound
+
+Let `A_nr` be a residual `t=2` active locator family after fixed-slope root
+slices and ruled determinant cores have been charged or removed.  Let
+`G_1(A_nr)` be its one-exchange graph:
+
+```text
+T ~ T'        iff        |T cap T'|=j-1.
+```
+
+Then every vertex has one-exchange degree at most `j`:
+
+```text
+Gamma_1(A_nr) <= j.                              (DEG1)
+```
+
+Indeed, a locator `T` has exactly `j` possible `(j-1)` cores `R=T\{y}`.  For
+each such core, the non-ruled determinant gate leaves at most two anchors in
+total.  Since one of them is the anchor defining `T`, there is at most one
+neighbor of `T` through that core.  Summing over the `j` cores gives (DEG1).
+
+Equivalently, if `E_1(A_nr)` denotes unordered one-exchange edges, then
+
+```text
+E_1(A_nr) <= j |A_nr| / 2,
+E_1(A_nr) <= binom(|D|,j-1).                     (EDGE1)
+```
+
+The second bound counts cores directly: after ruled cores are removed, each
+core supports at most one unordered edge.  Thus high one-exchange codegree in
+the `t=2` all-line Hankel branch can only come from fixed-slope root slices or
+ruled determinant cores.
+
 ## Non-Claims
 
 This lemma does not bound the remaining different-slope one-exchange graph, the
 ruled determinant branch, the two-exchange packet-edge ledger, or the
 one-outside boundary image.  It only proves that same-slope one-exchange
 collisions belong to the fixed-slope root-slice ledger and that non-ruled
-`t=2` one-exchange cores have at most two determinant anchors.
+`t=2` one-exchange cores have at most two determinant anchors, giving the
+local max-degree bound above.
 
 ## Verification
 

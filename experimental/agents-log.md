@@ -68,7 +68,8 @@ Keep entries concise and link to the relevant files.
 - **How it is useful:** After fixed-slope root slices are charged, the
   residual one-exchange graph has only different-slope edges, and after ruled
   determinant cores are separated, each core contributes at most one unordered
-  one-exchange edge.
+  one-exchange edge; consequently the residual `t=2` one-exchange graph has
+  maximum degree at most `j`.
 - **What to do next:** Bound the remaining different-slope one-exchange or
   two-exchange codegree ledgers after quotient-periodic, tangent/contained,
   and root-slice charges.

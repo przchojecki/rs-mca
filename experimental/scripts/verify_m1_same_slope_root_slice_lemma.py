@@ -110,10 +110,47 @@ def check_t2_determinant_gate() -> None:
                 assert len(roots) <= 2, (p, roots, (coeff_0, coeff_1, coeff_2))
 
 
+def check_nonruled_degree_bound() -> None:
+    # Model only the combinatorics after ruled cores are removed: each
+    # (j-1)-core has at most two anchors, hence at most one edge.
+    for n in range(3, 9):
+        points = tuple(range(n))
+        for j in range(1, n):
+            supports = [
+                frozenset(i for i, bit in enumerate(bits) if bit)
+                for bits in product((0, 1), repeat=n)
+                if sum(bits) == j
+            ]
+            index = {support: i for i, support in enumerate(supports)}
+            edges: set[tuple[int, int]] = set()
+            core_count = 0
+            for core_bits in product((0, 1), repeat=n):
+                if sum(core_bits) != j - 1:
+                    continue
+                core = frozenset(i for i, bit in enumerate(core_bits) if bit)
+                anchors = [x for x in points if x not in core]
+                # Non-ruled worst case: choose at most two anchors.
+                chosen = anchors[:2]
+                if len(chosen) == 2:
+                    a = index[core | {chosen[0]}]
+                    b = index[core | {chosen[1]}]
+                    edges.add(tuple(sorted((a, b))))
+                core_count += 1
+
+            degrees = [0] * len(supports)
+            for a, b in edges:
+                degrees[a] += 1
+                degrees[b] += 1
+            assert max(degrees, default=0) <= j, (n, j, max(degrees))
+            assert len(edges) <= j * len(supports) // 2, (n, j, len(edges))
+            assert len(edges) <= core_count, (n, j, len(edges), core_count)
+
+
 def main() -> None:
     check_difference_identity()
     check_row_implication()
     check_t2_determinant_gate()
+    check_nonruled_degree_bound()
     print("same-slope root-slice lemma verifier passed")
 
 
