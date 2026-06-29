@@ -934,3 +934,9 @@ Keep entries concise and link to the relevant files.
   map `Phi` (`[X^5]=-e_1`, `[X^0]=e_6`), and a doubled-root negative control.
   Added local extension-field poly ops (`pmul`/`pderiv`) since `galoistools` is
   prime-field only. Verifier exits 0: 4 PASS, 5 PENDING. Next: interpolation.
+- **Iteration 3 (commit a5940e1):** A.3 item 4 **interpolation**. RS encode/decode on
+  a runnable `GF(17^32)` RS analog: Vandermonde solve via field Gauss-Jordan
+  (`field_solve`, new reusable solver) recovers a deg-`<k` message exactly; an
+  independent Lagrange interpolant agrees at a fresh point; a disjoint `k`-node set
+  recovers the same message (uniqueness = decode-from-any-`k`). Verifier exits 0:
+  5 PASS, 4 PENDING. Next: degree bound.
