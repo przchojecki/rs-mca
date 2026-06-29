@@ -22,6 +22,8 @@ The certificate records:
 - affine and projective denominator checks;
 - exact tangent-range entry `a >= 427`;
 - pure finite-slope support-wise MCA threshold `a=506/507`;
+- exact M2 endpoint bridge checks
+  `epsilon_mca(C,delta)=LD_sw(C,ceil((1-delta)n))/|F|`;
 - closed endpoint language `[0,6/512)`;
 - row-independent compiler examples for prize rates at `k=2^40`.
 

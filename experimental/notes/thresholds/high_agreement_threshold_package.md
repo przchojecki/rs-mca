@@ -38,6 +38,22 @@ The endpoint convention is closed-ball: if the first unsafe integer radius is
 `r0`, then the real safe interval is `[0,r0/n)`. The supremum `r0/n` is not
 attained.
 
+The local M2 bridge used here is the exact finite-length identity from
+`experimental/notes/m2/m2_line_decoding_mca_bridge.md`:
+
+```text
+epsilon_mca(C,delta) = LD_sw(C,ceil((1-delta)n)) / |F|.
+```
+
+For closed grid radii this agrees with the convention above, since
+
+```text
+ceil((1-delta)n) = n - floor(delta n).
+```
+
+The certificate checks this equality at the safe endpoint `delta=5/512` and
+the first unsafe endpoint `delta=6/512`.
+
 ## Finite Row
 
 For
@@ -61,6 +77,13 @@ finite-slope support-wise MCA verdict is
 ```text
 a = 506, r = 6: LD_sw = 7, unsafe;
 a = 507, r = 5: LD_sw = 6, safe.
+```
+
+Equivalently, by the exact M2 bridge,
+
+```text
+epsilon_mca(C,5/512) = 6 / 17^32 <= 2^-128,
+epsilon_mca(C,6/512) = 7 / 17^32 >  2^-128.
 ```
 
 Thus the largest safe integer radius is `5/512`, the first unsafe integer

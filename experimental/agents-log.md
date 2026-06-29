@@ -45,7 +45,9 @@ Keep entries concise and link to the relevant files.
   finite `F_17^32`, `n=512`, `k=256` high-agreement threshold and the
   row-independent single-line compiler gate. It checks the affine/projective
   denominators, `floor(17^32/2^128)=6`, the tangent range `a>=427`, the
-  `506/507` transition, and the closed endpoint convention.
+  `506/507` transition, the exact M2 endpoint bridge
+  `epsilon_mca(C,delta)=LD_sw(C,ceil((1-delta)n))/|F|`, and the closed endpoint
+  convention.
 - **How it is useful:** This directly packages the current top priority from
   `towards-prize.md`: finite-row threshold packaging and the compiler theorem
   condition `B_Q <= floor((n-k)/3)`. It separates the pure support-wise MCA

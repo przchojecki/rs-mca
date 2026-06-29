@@ -3,6 +3,7 @@
   "definition_freeze": {
     "affine_denominator": "q_line=|F|",
     "agreement": "a=n-r",
+    "bridge": "epsilon_mca(C,delta)=LD_sw(C,ceil((1-delta)n))/q_line",
     "closed_integer_radius": "r=n-a",
     "closed_real_radius_rule": "r(delta)=floor(delta*n)",
     "endpoint": "the supremal real transition radius is not attained when the first unsafe integer radius is reached",
@@ -36,6 +37,47 @@
     "line_exact_radius": 85,
     "safe_line_numerator": 6,
     "unsafe_line_numerator": 7
+  },
+  "f17_512_endpoint_bridge": {
+    "first_unsafe_endpoint": {
+      "agreement_from_ceil": 506,
+      "agreement_from_closed_radius": 506,
+      "delta": {
+        "denominator": 256,
+        "display": "3/256",
+        "numerator": 3
+      },
+      "endpoint_formulas_agree": true,
+      "epsilon_fraction": {
+        "denominator": 2367911594760467245844106297320951247361,
+        "display": "7/2367911594760467245844106297320951247361",
+        "numerator": 7
+      },
+      "ld_sw_numerator": 7,
+      "r": 6,
+      "safe_at_2^-128": false,
+      "unsafe_at_2^-128": true
+    },
+    "safe_endpoint": {
+      "agreement_from_ceil": 507,
+      "agreement_from_closed_radius": 507,
+      "delta": {
+        "denominator": 512,
+        "display": "5/512",
+        "numerator": 5
+      },
+      "endpoint_formulas_agree": true,
+      "epsilon_fraction": {
+        "denominator": 2367911594760467245844106297320951247361,
+        "display": "6/2367911594760467245844106297320951247361",
+        "numerator": 6
+      },
+      "ld_sw_numerator": 6,
+      "r": 5,
+      "safe_at_2^-128": true,
+      "unsafe_at_2^-128": false
+    },
+    "source": "experimental/notes/m2/m2_line_decoding_mca_bridge.md"
   },
   "f17_512_projective": {
     "applies": true,

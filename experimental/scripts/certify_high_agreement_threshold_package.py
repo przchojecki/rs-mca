@@ -46,6 +46,29 @@ def frac_dict(value: Fraction) -> dict[str, int | str]:
     }
 
 
+def ceil_fraction(value: Fraction) -> int:
+    return -(-value.numerator // value.denominator)
+
+
+def bridge_probe(n: int, denominator: int, r: int, numerator: int) -> dict[str, Any]:
+    """Check the closed-radius endpoint bridge for one grid radius."""
+    delta = Fraction(r, n)
+    agreement_from_floor = n - (delta.numerator * n // delta.denominator)
+    agreement_from_ceil = ceil_fraction((1 - delta) * n)
+    target_den = 1 << TARGET
+    return {
+        "r": r,
+        "delta": frac_dict(delta),
+        "agreement_from_closed_radius": agreement_from_floor,
+        "agreement_from_ceil": agreement_from_ceil,
+        "endpoint_formulas_agree": agreement_from_floor == agreement_from_ceil,
+        "ld_sw_numerator": numerator,
+        "epsilon_fraction": frac_dict(Fraction(numerator, denominator)),
+        "safe_at_2^-128": numerator * target_den <= denominator,
+        "unsafe_at_2^-128": numerator * target_den > denominator,
+    }
+
+
 def exact_threshold(
     n: int,
     k: int,
@@ -188,6 +211,7 @@ def build_certificate() -> dict[str, Any]:
         },
         "definition_freeze": {
             "object": "finite-slope support-wise MCA / LD_sw",
+            "bridge": "epsilon_mca(C,delta)=LD_sw(C,ceil((1-delta)n))/q_line",
             "agreement": "a=n-r",
             "closed_integer_radius": "r=n-a",
             "closed_real_radius_rule": "r(delta)=floor(delta*n)",
@@ -200,6 +224,21 @@ def build_certificate() -> dict[str, Any]:
         },
         "f17_512_affine": finite,
         "f17_512_projective": projective,
+        "f17_512_endpoint_bridge": {
+            "source": "experimental/notes/m2/m2_line_decoding_mca_bridge.md",
+            "safe_endpoint": bridge_probe(
+                F17_N,
+                F17_Q,
+                finite["largest_safe_integer_radius"],
+                finite["safe_line_numerator"],
+            ),
+            "first_unsafe_endpoint": bridge_probe(
+                F17_N,
+                F17_Q,
+                finite["first_unsafe_integer_radius"],
+                finite["unsafe_line_numerator"],
+            ),
+        },
         "row_checks": row_checks,
         "row_independent_compiler": {
             "statement": (
@@ -214,6 +253,24 @@ def build_certificate() -> dict[str, Any]:
     all_checks = list(row_checks.values())
     all_checks.extend(finite.get("checks", {}).values())
     all_checks.extend(projective.get("checks", {}).values())
+    all_checks.append(
+        certificate["f17_512_endpoint_bridge"]["safe_endpoint"][
+            "endpoint_formulas_agree"
+        ]
+    )
+    all_checks.append(
+        certificate["f17_512_endpoint_bridge"]["first_unsafe_endpoint"][
+            "endpoint_formulas_agree"
+        ]
+    )
+    all_checks.append(
+        certificate["f17_512_endpoint_bridge"]["safe_endpoint"]["safe_at_2^-128"]
+    )
+    all_checks.append(
+        certificate["f17_512_endpoint_bridge"]["first_unsafe_endpoint"][
+            "unsafe_at_2^-128"
+        ]
+    )
     certificate["all_checks_passed"] = all(bool(x) for x in all_checks)
     return certificate
 
