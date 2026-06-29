@@ -505,6 +505,58 @@ Ruling out such roots after the standard quotient-periodic, tangent,
 fixed-root/root-slice, and aperiodic charges is the sharpened algebraic form of
 the logarithmic rank-test exclusion.
 
+## First Residual Gate
+
+The first coefficient not forced by the tail recursion is explicit.  Write
+
+```text
+M(lambda)=M+lambda N
+ = X^{q-1}+c_1(lambda)X^{q-2}+...+c_{s+2}(lambda)X^{q-s-3}+...
+```
+
+and put
+
+```text
+u_i(lambda)=(-1)^i c_i(lambda),        1<=i<=s+2.
+```
+
+The tail recursion defines `o_i(lambda)=e_i(O_lambda)` for `1<=i<=s+1`.  The
+next elementary-symmetric identity for `D=Z_lambda disjoint union O_lambda` is
+
+```text
+e_{s+2}(D)
+ =
+ u_{s+2}(lambda)
+ + sum_{j=1}^{s+1} u_j(lambda)o_{s+2-j}(lambda).     (W1-gate0)
+```
+
+Equivalently, define the first residual gate
+
+```text
+G_{s+2}(lambda)
+ =
+ e_{s+2}(D)-u_{s+2}(lambda)
+ -sum_{j=1}^{s+1} u_j(lambda)o_{s+2-j}(lambda).       (W1-first-gate)
+```
+
+Then `G_{s+2}(lambda)=0` is exactly the coefficient of `X^{q-2}` in
+
+```text
+R_lambda(X)=ell_D(X)-E_lambda(X)(M+lambda N),
+```
+
+up to the harmless sign `(-1)^{s+2}`.  Since `u_j(lambda)` is affine-linear
+and `o_i(lambda)` has degree at most `i`, the gate has degree at most `s+2`.
+
+Thus the first obstruction after tail readout is a single concrete
+degree-`<=s+2` polynomial.  If it is not identically zero, then at this node
+there are at most `s+2` scalar candidates even before the later residual
+coefficients are imposed.  If it vanishes identically, the width-one witness
+has passed a specific fixed-degree algebraic degeneracy, and the proof search
+continues with the next residual coefficient.  In either case, the first gate
+is the canonical place to start a falsification-first search for large
+rank-test complements.
+
 ## Fixed-Surplus Closure Criterion
 
 Now sum over active canonical nodes with initial surplus `s_0<=sigma`.  Let

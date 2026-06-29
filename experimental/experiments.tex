@@ -1751,6 +1751,26 @@ monic degree-\(q-1\) divisors of the fixed squarefree polynomial \(\ell_D\).
 Thus any surviving witness is a common root of a long vector of fixed-degree
 univariate residual equations.  This is the sharpened algebraic form of the
 logarithmic rank-test exclusion.
+The first residual equation is explicit.  If
+\[
+  M+\lambda N
+  =X^{q-1}+c_1(\lambda)X^{q-2}+\cdots+c_{s+2}(\lambda)X^{q-s-3}+\cdots
+\]
+and \(u_i(\lambda)=(-1)^ic_i(\lambda)\), then after the tail recursion the
+next coefficient is
+\[
+  G_{s+2}(\lambda)
+  =
+  e_{s+2}(D)-u_{s+2}(\lambda)
+  -\sum_{j=1}^{s+1}u_j(\lambda)o_{s+2-j}(\lambda).
+\]
+The equation \(G_{s+2}(\lambda)=0\) is exactly the coefficient of
+\(X^{q-2}\) in
+\(\ell_D-E_\lambda(M+\lambda N)\), up to the sign \((-1)^{s+2}\), and
+\(\deg_\lambda G_{s+2}\le s+2\).  Thus the first post-tail obstruction is a
+single fixed-degree polynomial gate; if it is nonzero, there are at most
+\(s+2\) scalar candidates at the node before later residual equations are
+checked.
 
 Consequently, in fixed surplus \(s_0\le\sigma\), small nodes are polynomial by
 the active-tree bound, and on \(q_S>s_S+2\) there is at most one width-one

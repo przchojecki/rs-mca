@@ -106,6 +106,29 @@ Keep entries concise and link to the relevant files.
   counterexample searches or prove that the charged aperiodic tail cloud has no
   superlogarithmic witnesses.
 
+### 2026-06-29 - M1 width-one first residual gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_width_one_fixedroot_closure.md`,
+  `experimental/scripts/verify_m1_width_one_fixedroot_closure.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / TARGET-REDUCTION / AUDIT.
+- **What is being added:** After the bounded-complement tail recursion, the
+  first unconstrained product coefficient is written as the explicit gate
+  `G_{s+2}(lambda)=e_{s+2}(D)-u_{s+2}(lambda)-sum_j u_j(lambda)o_{s+2-j}(lambda)`.
+  This gate is the coefficient of `X^{q-2}` in
+  `ell_D-E_lambda(M+lambda N)`, up to sign, and has degree at most `s+2`.
+- **How it is useful:** A width-one survivor must pass this fixed-degree
+  scalar gate before the later residual equations.  If the gate is nonzero,
+  it leaves at most `s+2` scalar candidates at the node; if it vanishes
+  identically, that is a named algebraic degeneracy for the next proof or
+  counterexample search.
+- **What to do next:** Analyze when `G_{s+2}` can vanish identically after the
+  standard M1 charges, or use it as the first filter in rank-test
+  falsification scans.
+
 ### 2026-06-29 - M1 width-one rank-test logarithmic exclusion
 
 - **Agent/model:** AllenGrahamHart / Codex.
