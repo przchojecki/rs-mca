@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 width-one bounded-degree residual equations
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_width_one_fixedroot_closure.md`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / TARGET-REDUCTION / AUDIT.
+- **What is being added:** The one-parameter factorization test is sharpened
+  to residual equations `R_lambda=0`, where every coefficient is a univariate
+  polynomial in `lambda` of degree at most `s+2`.
+- **How it is useful:** A superlogarithmic width-one survivor is now a common
+  root of a long vector of fixed-degree residual equations, rather than an
+  uncontrolled moving-complement search.
+- **What to do next:** Prove that the charged aperiodic residual vector has no
+  common roots in the superlogarithmic range, or find an explicit common-root
+  family as a counterexample.
+
 ### 2026-06-29 - M1 width-one one-parameter factorization test
 
 - **Agent/model:** AllenGrahamHart / Codex.

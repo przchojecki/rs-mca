@@ -466,6 +466,45 @@ the top `s+1` coefficients alone, and the remaining full-coefficient equations
 are precisely the assertion that the recovered complement factor multiplies
 the monic pencil element back to `ell_D`.
 
+## Bounded-Degree Residual Equations
+
+The factorization identity is a fixed-degree univariate common-root problem.
+Let
+
+```text
+R_lambda(X)=ell_D(X)-E_lambda(X)(M(X)+lambda N(X)).
+```
+
+By construction, the leading coefficient and the next `s+1` coefficients of
+`R_lambda` vanish identically in `lambda`, so
+
+```text
+deg_X R_lambda <= q-2.
+```
+
+Moreover each coefficient of `R_lambda` is a polynomial in `lambda` of degree
+at most `s+2`.  This follows by induction from the recursion above:
+`u_i(lambda)` is affine-linear, `o_i(lambda)` has degree at most `i`, and
+multiplication by the affine-linear factor `M+lambda N` raises degree by at
+most one.
+
+Thus, for a fixed large node, width-one rank-test witnesses are exactly the
+common roots of at most `q-1` univariate residual equations, each of degree at
+most `s+2`.  If `N!=0`, not all of these residual equations can vanish
+identically: otherwise (W1-factor) would hold as a polynomial identity in
+`lambda`, giving infinitely many distinct monic degree-`q-1` divisors
+`M+lambda N` of the fixed squarefree polynomial `ell_D` over an algebraic
+closure.  Hence at least one residual equation is nonzero, and the scalar
+candidate set at the node is contained in the root set of a degree-`<=s+2`
+polynomial.
+
+The M1 obstruction is therefore not an uncontrolled moving-complement search.
+After the monic slice is chosen, a superlogarithmic width-one survivor must be
+a scalar common root of a long residual vector of bounded-degree equations.
+Ruling out such roots after the standard quotient-periodic, tangent,
+fixed-root/root-slice, and aperiodic charges is the sharpened algebraic form of
+the logarithmic rank-test exclusion.
+
 ## Fixed-Surplus Closure Criterion
 
 Now sum over active canonical nodes with initial surplus `s_0<=sigma`.  Let

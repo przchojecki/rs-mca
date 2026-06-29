@@ -1737,6 +1737,20 @@ Then \(\lambda\) gives a width-one rank-test complement if and only if
 So the bounded-complement rank test is a one-parameter factorization identity:
 the fixed-degree complement factor is recovered from the tail, and the
 remaining equations are exactly the full product identity.
+Equivalently, with
+\[
+  R_\lambda(X)
+  =
+  \ell_D(X)-E_\lambda(X)\bigl(M(X)+\lambda N(X)\bigr),
+\]
+the leading coefficient and next \(s+1\) coefficients vanish identically, so
+\(\deg_X R_\lambda\le q-2\).  Each remaining coefficient is a polynomial in
+\(\lambda\) of degree at most \(s+2\).  If \(N\ne0\), these residual equations
+cannot all vanish identically, since that would give infinitely many distinct
+monic degree-\(q-1\) divisors of the fixed squarefree polynomial \(\ell_D\).
+Thus any surviving witness is a common root of a long vector of fixed-degree
+univariate residual equations.  This is the sharpened algebraic form of the
+logarithmic rank-test exclusion.
 
 Consequently, in fixed surplus \(s_0\le\sigma\), small nodes are polynomial by
 the active-tree bound, and on \(q_S>s_S+2\) there is at most one width-one
