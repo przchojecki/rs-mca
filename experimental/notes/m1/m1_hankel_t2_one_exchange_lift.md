@@ -4999,6 +4999,51 @@ remaining global `b=2` question is reduced to bounding canonical node
 cross-fiber capacities relative to their maximum projective-fiber heights,
 together with the explicit lower-dimensional leaves.
 
+## Two-Regime Max-Height Saving
+
+The denominator in (PF2-canon-height-simple) has a simple useful lower bound.
+Since every projective-fiber part has size at most `h`, the extremal square
+sum satisfies
+
+```text
+sum parts^2 <= h q.
+```
+
+Therefore
+
+```text
+Phi_q(h) >= q(q-h)/2.                           (PF2-Phi-linear)
+```
+
+In particular, if `h<=q/2`, then
+
+```text
+Phi_q(h) >= q^2/4.
+```
+
+If `h>q/2`, the exact formula has only one full `h`-block:
+
+```text
+Phi_q(h)=h(q-h).                                (PF2-Phi-half)
+```
+
+Thus each canonical node in (PF2-canon-height-simple) falls into one of two
+regimes:
+
+```text
+h_S<=q_S/2:
+  G_S^{can}/Phi_{q_S}(h_S) <= 4 G_S^{can}/q_S^2,
+
+h_S>q_S/2:
+  G_S^{can}/Phi_{q_S}(h_S) = G_S^{can}/(h_S(q_S-h_S)).
+                                                        (PF2-two-regime)
+```
+
+The diffuse-height nodes therefore receive a uniform quadratic saving in the
+residual width.  The only max-height nodes not covered by this automatic
+`q_S^{-2}` saving are the half-height projective-shadow nodes, precisely the
+large fixed-divisor shadows isolated earlier.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

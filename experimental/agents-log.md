@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 b=2 two-regime height saving
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Extracts a two-regime bound from the max-height
+  endpoint: nodes with `h_S<=q_S/2` pay at most `4G_S^{can}/q_S^2`, while
+  nodes with `h_S>q_S/2` have exact denominator `h_S(q_S-h_S)`.
+- **How it is useful:** Shows that diffuse projective-fiber nodes get an
+  automatic quadratic saving; the remaining hard case is exactly the
+  half-height projective-shadow regime.
+- **What to do next:** Bound the half-height shadow nodes or charge them to
+  fixed-divisor/root-slice ledgers globally.
+
 ### 2026-06-29 - M1 b=2 max-height capacity corollary
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

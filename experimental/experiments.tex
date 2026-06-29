@@ -5332,6 +5332,11 @@ max-height form
    +\sum_{\substack{S\in Tree_2(A)\\ h_S>0}}
     {G_S^{can}\over \Phi_{q_S}(h_S)} .
 \]
+The denominator has a two-regime lower bound: \(\Phi_q(h)\ge q(q-h)/2\), so
+\(\Phi_q(h)\ge q^2/4\) for \(h\le q/2\), while for \(h>q/2\) the exact value
+is \(\Phi_q(h)=h(q-h)\).  Hence diffuse-height canonical nodes pay at most
+\(4G_S^{can}/q_S^2\), and the only nodes outside this automatic quadratic
+saving are the half-height projective-shadow nodes.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots
