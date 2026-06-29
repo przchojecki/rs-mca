@@ -26,7 +26,9 @@ The certificate records:
   `epsilon_mca(C,delta)=LD_sw(C,ceil((1-delta)n))/|F|`;
 - closed endpoint language `[0,6/512)`;
 - row-independent compiler examples for prize rates at `k=2^40`, including
-  the `B_Q=0`, threshold-pinned, and exact-range-safe regimes.
+  the `B_Q=0`, threshold-pinned, and exact-range-safe regimes;
+- exact `k=2^40` prize-rate power-of-two denominator boundaries:
+  `166,168,169,170` bits for rates `1/2,1/4,1/8,1/16`.
 
 It does not prove lower-agreement M1, quotient floors, extension transfer, L2,
 or any protocol ledger that consumes extra list/curve/query/folding terms.

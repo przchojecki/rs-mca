@@ -132,6 +132,33 @@ The threshold-pinning regime is therefore exactly
 1 <= B_Q <= floor((n-k)/3)
 ```
 
+Equivalently, for a rate `rho=1/d` prize row with `n=dk`, the exact
+single-line threshold is pinned precisely when
+
+```text
+2^128 <= Q <= 2^128 * (floor((d-1)k/3) + 1) - 1.
+```
+
+When `floor((d-1)k/3)>0`, for power-of-two denominators `Q=2^lambda` the
+largest pinned bit-size is
+
+```text
+lambda_max = 128 + floor(log2(floor((d-1)k/3))).
+```
+
+At the maximal prize dimension `k=2^40`, this gives:
+
+```text
+rho=1/2:  lambda_max = 166
+rho=1/4:  lambda_max = 168
+rho=1/8:  lambda_max = 169
+rho=1/16: lambda_max = 170
+```
+
+Above those power-of-two sizes, the tangent theorem still proves safety through
+its exact high-agreement range, but the later threshold belongs to the
+lower-agreement quotient/local-limit program.
+
 This is only the single-line/MCA/CA compiler. If a protocol consumes an extra
 same-denominator list term, curve term, query term, folding term, or crypto
 term, that term must be added in its own ledger.

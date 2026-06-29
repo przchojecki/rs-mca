@@ -33,6 +33,12 @@ def radius_line_range(n: int, k: int) -> int:
     return (n - k) // 3
 
 
+def floor_log2(value: int) -> int:
+    if value <= 0:
+        raise ValueError("floor_log2 is defined only for positive integers")
+    return value.bit_length() - 1
+
+
 def exact_range_min_agreement(n: int, k: int) -> int:
     """Smallest integer a satisfying 3a - 2n >= k."""
     return (2 * n + k + 2) // 3
@@ -184,6 +190,40 @@ def prize_rate_probes() -> list[CompilerProbe]:
     return out
 
 
+def prize_rate_boundary_rows() -> list[dict[str, Any]]:
+    """Exact single-line compiler boundaries at the max prize dimension."""
+    k = 1 << 40
+    rows: list[dict[str, Any]] = []
+    for d in [2, 4, 8, 16]:
+        n = d * k
+        r_line = radius_line_range(n, k)
+        max_q_pinned = (1 << TARGET) * (r_line + 1) - 1
+        max_power2_bits = TARGET + floor_log2(r_line)
+        first_power2_bits_beyond = max_power2_bits + 1
+        checks = {
+            "rate_denominator": d in [2, 4, 8, 16],
+            "n_matches_rate": n == d * k,
+            "line_range_formula": r_line == ((d - 1) * k) // 3,
+            "max_power2_inside_interval": (1 << max_power2_bits) <= max_q_pinned,
+            "next_power2_outside_interval": (1 << first_power2_bits_beyond)
+            > max_q_pinned,
+        }
+        rows.append(
+            {
+                "rho": f"1/{d}",
+                "k": k,
+                "n": n,
+                "line_exact_radius": r_line,
+                "pinned_denominator_min": 1 << TARGET,
+                "pinned_denominator_max": max_q_pinned,
+                "max_power2_field_bits_pinned": max_power2_bits,
+                "first_power2_field_bits_beyond_pinned": first_power2_bits_beyond,
+                "checks": checks,
+            }
+        )
+    return rows
+
+
 def build_certificate() -> dict[str, Any]:
     finite = exact_threshold(F17_N, F17_K, F17_Q)
     projective = exact_threshold(F17_N, F17_K, F17_Q + 1)
@@ -223,6 +263,7 @@ def build_certificate() -> dict[str, Any]:
             }
         )
 
+    boundary_rows = prize_rate_boundary_rows()
     certificate = {
         "status": "PROVED-COMPILER-ARITHMETIC / AUDIT",
         "proof_input": {
@@ -284,6 +325,7 @@ def build_certificate() -> dict[str, Any]:
                 "but does not locate the later threshold"
             ),
             "examples": compiler_examples,
+            "prize_rate_k_2^40_power2_boundaries": boundary_rows,
         },
     }
 
@@ -292,6 +334,8 @@ def build_certificate() -> dict[str, Any]:
     all_checks.extend(projective.get("checks", {}).values())
     for example in compiler_examples:
         all_checks.extend(example.get("checks", {}).values())
+    for row in boundary_rows:
+        all_checks.extend(row.get("checks", {}).values())
     all_checks.append(
         certificate["f17_512_endpoint_bridge"]["safe_endpoint"][
             "endpoint_formulas_agree"

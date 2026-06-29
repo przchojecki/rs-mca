@@ -544,6 +544,76 @@
         "threshold_pinned": false
       }
     ],
+    "prize_rate_k_2^40_power2_boundaries": [
+      {
+        "checks": {
+          "line_range_formula": true,
+          "max_power2_inside_interval": true,
+          "n_matches_rate": true,
+          "next_power2_outside_interval": true,
+          "rate_denominator": true
+        },
+        "first_power2_field_bits_beyond_pinned": 167,
+        "k": 1099511627776,
+        "line_exact_radius": 366503875925,
+        "max_power2_field_bits_pinned": 166,
+        "n": 2199023255552,
+        "pinned_denominator_max": 124714806385797237264661731367431734082260755808255,
+        "pinned_denominator_min": 340282366920938463463374607431768211456,
+        "rho": "1/2"
+      },
+      {
+        "checks": {
+          "line_range_formula": true,
+          "max_power2_inside_interval": true,
+          "n_matches_rate": true,
+          "next_power2_outside_interval": true,
+          "rate_denominator": true
+        },
+        "first_power2_field_bits_beyond_pinned": 169,
+        "k": 1099511627776,
+        "line_exact_radius": 1099511627776,
+        "max_power2_field_bits_pinned": 168,
+        "n": 4398046511104,
+        "pinned_denominator_max": 374144419157051429427064255638831827639350499213311,
+        "pinned_denominator_min": 340282366920938463463374607431768211456,
+        "rho": "1/4"
+      },
+      {
+        "checks": {
+          "line_range_formula": true,
+          "max_power2_inside_interval": true,
+          "n_matches_rate": true,
+          "next_power2_outside_interval": true,
+          "rate_denominator": true
+        },
+        "first_power2_field_bits_beyond_pinned": 170,
+        "k": 1099511627776,
+        "line_exact_radius": 2565527131477,
+        "max_power2_field_bits_pinned": 169,
+        "n": 8796093022208,
+        "pinned_denominator_max": 873003644699219531384948365718168640146098217811967,
+        "pinned_denominator_min": 340282366920938463463374607431768211456,
+        "rho": "1/8"
+      },
+      {
+        "checks": {
+          "line_range_formula": true,
+          "max_power2_inside_interval": true,
+          "n_matches_rate": true,
+          "next_power2_outside_interval": true,
+          "rate_denominator": true
+        },
+        "first_power2_field_bits_beyond_pinned": 171,
+        "k": 1099511627776,
+        "line_exact_radius": 5497558138880,
+        "max_power2_field_bits_pinned": 170,
+        "n": 17592186044416,
+        "pinned_denominator_max": 1870722095783896017667637524340305639767025423220735,
+        "pinned_denominator_min": 340282366920938463463374607431768211456,
+        "rho": "1/16"
+      }
+    ],
     "statement": "for B_Q=floor(Q/2^128), B_Q=0 gives no safe integer radius; 1 <= B_Q <= floor((n-k)/3) pins the threshold at r=B_Q; larger B_Q proves safety throughout the exact tangent range but does not locate the later threshold"
   },
   "status": "PROVED-COMPILER-ARITHMETIC / AUDIT",
