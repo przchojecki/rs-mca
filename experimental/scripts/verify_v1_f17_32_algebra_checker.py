@@ -24,7 +24,7 @@ A.3 CHECKLIST COVERAGE (this file grows one item per loop iteration):
   [x] degree bound
   [x] agreement count
   [x] slope distinctness
-  [ ] noncontainment rank
+  [x] noncontainment rank
 
 HONEST SCOPE / LIMITS
 ---------------------
@@ -500,6 +500,68 @@ def check_slope_distinctness():
     return ok, d
 
 
+def check_noncontainment_rank():
+    """A.3: noncontainment rank certificate (the strict264 mechanism).  A retained
+    slope is genuinely noncontained iff the beta-column of the Vandermonde at nodes
+    J u {beta} is independent of the j support columns -- i.e. the (j+1)x(j+1)
+    Vandermonde (rows = degrees 0..j) is nonsingular, which needs redundancy r >= j+1.
+    Certified two independent ways (Vandermonde determinant and field_solve), with the
+    r'=j deficiency as the negative control.  Runnable miniature (j=4); the row uses
+    r=n-k=256, j=n-a -- not verified by enumeration."""
+    d = []
+    ok = True
+    h, _ = H_generator()
+    j = 4
+    J, cur = [], ONE
+    for _ in range(j):
+        J.append(cur)
+        cur = fmul(cur, h)
+    beta = int_to_elem(17)                                # = x : a deep point (beta not in D)
+    nodes = J + [beta]
+    distinct = (len({tuple(z) for z in nodes}) == j + 1)
+    beta_deep = (fpow(beta, 512) != ONE)
+    d.append(f"nodes J u {{beta}} distinct ({j + 1}) and beta outside H (deep) : {distinct and beta_deep}")
+    ok &= distinct and beta_deep
+    # (A) independent full-rank certificate: Vandermonde determinant prod(node_b - node_a)
+    det = ONE
+    for b_ in range(j + 1):
+        for a_ in range(b_):
+            det = fmul(det, fsub(nodes[b_], nodes[a_]))
+    d.append(f"Vandermonde det = prod(node_b - node_a) != 0 => full column rank {j + 1} : {det != ZERO}")
+    ok &= (det != ZERO)
+    # (B) noncontainment: (j+1)x(j+1) Vandermonde nonsingular, solution reconstructs RHS
+    Wfull = [[fpow(nodes[l], i) for l in range(j + 1)] for i in range(j + 1)]
+    rhs = [int_to_elem(v) for v in (2, 3, 5, 7, 11)]
+    try:
+        sol = field_solve(Wfull, rhs)
+        recon_ok = all(_vand_combo(sol, nodes, i) == rhs[i] for i in range(j + 1))
+        nonsing = True
+    except ValueError:
+        nonsing, recon_ok = False, False
+    d.append(f"(j+1)x(j+1) Vandermonde nonsingular & solves => beta-col indep of J-cols "
+             f"(noncontainment) : {nonsing and recon_ok}")
+    ok &= nonsing and recon_ok
+    # (C) negative control: with only r'=j rows, beta-col IS a combo of the J-cols
+    VJ = [[fpow(J[l], i) for l in range(j)] for i in range(j)]
+    beta_restr = [fpow(beta, i) for i in range(j)]
+    lam = field_solve(VJ, beta_restr)
+    dep_ok = all(_vand_combo(lam, J, i) == beta_restr[i] for i in range(j))
+    d.append(f"negative control: with only j rows beta-col = combo of J-cols (containment) "
+             f"=> r >= j+1 essential : {dep_ok}")
+    ok &= dep_ok
+    d.append("scope: noncontainment rank certificate on a runnable support (j=4); the row "
+             "uses r=n-k=256, j=n-a -- checked in miniature, not by enumeration.")
+    return ok, d
+
+
+def _vand_combo(coeffs, node_list, power):
+    """sum_l coeffs[l] * node_list[l]^power  (column combination in a Vandermonde)."""
+    acc = ZERO
+    for l in range(len(node_list)):
+        acc = fadd(acc, fmul(coeffs[l], fpow(node_list[l], power)))
+    return acc
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop iteration"]
 
@@ -514,7 +576,7 @@ CHECKS = [
     ("degree bound",                       check_degree_bound),
     ("agreement count",                    check_agreement_count),
     ("slope distinctness",                 check_slope_distinctness),
-    ("noncontainment rank",                _pending),
+    ("noncontainment rank",                check_noncontainment_rank),
 ]
 
 

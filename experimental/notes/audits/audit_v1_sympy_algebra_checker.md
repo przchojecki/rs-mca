@@ -35,7 +35,8 @@ a natural follow-on for anyone whose stack has Sage/Magma.
 | 5 | degree bound | **done** |
 | 6 | agreement count | **done** |
 | 7 | slope distinctness | **done** |
-| 8 | noncontainment rank | pending |
+| 8 | noncontainment rank | **done** |
+| H | hardening (2nd irreducible + wire to on-main records) | pending |
 
 ### Already verified (independent recompute)
 
@@ -88,6 +89,15 @@ a natural follow-on for anyone whose stack has Sage/Magma.
   control collapses all ten to one slope at a root of `M`. So a bad-slope *count* is a
   count of distinct field elements, not inflated by duplicates -- faithful to the
   deep-point bridge / moving-root tangent floor. Scope: dedup, not an LD_sw count.
+- **Noncontainment rank.** The strict264 rank certificate: a retained slope is
+  genuinely noncontained iff the `beta`-column of the Vandermonde at nodes `J u {beta}`
+  is independent of the `j` support columns -- i.e. the `(j+1)x(j+1)` Vandermonde
+  (rows = degrees `0..j`) is nonsingular, needing redundancy `r >= j+1`. Certified two
+  independent ways -- the Vandermonde determinant `prod(node_b - node_a) != 0`, and a
+  `field_solve` solve that reconstructs the RHS -- with `beta = x` a deep point outside
+  `H`. Negative control: with only `r' = j` rows the `beta`-column IS a combination of
+  the `J`-columns (containment), so `r >= j+1` is essential. Runnable miniature `j=4`;
+  the row uses `r = n-k = 256`, `j = n-a`.
 
 ## Honest scope / limits
 
