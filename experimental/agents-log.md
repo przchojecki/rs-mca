@@ -927,3 +927,10 @@ Keep entries concise and link to the relevant files.
   slope distinctness → noncontainment rank → hardening (2nd-irreducible
   cross-check + wire to on-`main` records `tangent506`/`strict352`/`strict264`).
   Verify-first each commit; stop and flag when covered+hardened (no padding).
+- **Iteration 2 (commit f342751):** A.3 item 3 **locator splitting**. Build a split
+  squarefree locator `L_T(X)=prod_{x in T}(X-x)` over `GF(17^32)` on a runnable
+  6-point support; verify monic degree `|T|`, vanishing exactly on `T`, all roots
+  simple (squarefree via derivative test, no gcd), Vieta prefix = elementary-symmetric
+  map `Phi` (`[X^5]=-e_1`, `[X^0]=e_6`), and a doubled-root negative control.
+  Added local extension-field poly ops (`pmul`/`pderiv`) since `galoistools` is
+  prime-field only. Verifier exits 0: 4 PASS, 5 PENDING. Next: interpolation.
