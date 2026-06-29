@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Keep first-grid rows separate from exact-threshold
   claims. The missing safe-side work remains the L1/M1/F1/M2 completion package.
 
+### 2026-06-29 - M1 width-one rank-test logarithmic exclusion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_width_one_fixedroot_closure.md`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / TARGET-REDUCTION / AUDIT.
+- **What is being added:** The explicit width-one one-root ledger is rewritten
+  as the order-free weighted rank-test sum
+  `FR_1^{r1}(U)=sum_{(S,O) in U} b(q_S)`, where
+  `b(q)=sum_{e=1}^{floor((q-2)/2)} binom(q-1,e)`.
+- **How it is useful:** Polynomial fixed-surplus control of the width-one
+  ledger is reduced to a logarithmic exclusion target: after the standard
+  charges, no surviving bounded-complement rank-test witness should have
+  `q_S/log Q -> infinity`.
+- **What to do next:** Attack that rank-test exclusion directly, or search for
+  a counterexample sequence of complements `O` with `ell_{D_S\O} in V_S` and
+  superlogarithmic `q_S`.
+
 ### 2026-06-29 - M1 explicit width-one one-root ledger
 
 - **Agent/model:** AllenGrahamHart / Codex.

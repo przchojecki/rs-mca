@@ -286,6 +286,79 @@ this explicit sum by proving that the corresponding first-root slices are
 quotient-periodic, tangent, fixed-root/root-slice degenerate, or aperiodically
 packable.
 
+## Rank-Test Logarithmic Exclusion Criterion
+
+The previous display also removes the artificial dependence on the chosen root
+order.  For any selected surviving subledger
+`U(A_0) subset W1Large(A_0)`, define
+
+```text
+b(q)=sum_{e=1}^{floor((q-2)/2)} binom(q-1,e).
+```
+
+Then the first-root partition gives the order-free identity
+
+```text
+sum_{x in Z_{S,O}} M_{S,O,x}^{r1}=b(q_S),
+```
+
+and hence
+
+```text
+FR_1^{r1}(U)=sum_{(S,O) in U(A_0)} b(q_S).       (W1-weighted-rank)
+```
+
+In particular, the width-one one-root ledger is a weighted count of surviving
+bounded-complement rank-test witnesses.  The weights satisfy, for `q>=4`,
+
+```text
+2^{q-1}/(2q) <= b(q) <= 2^{q-1}.                (W1-weight-bounds)
+```
+
+The upper bound is trivial.  For the lower bound, the central level
+`a=floor((q-2)/2)` contributes at least
+`binom(q-1,a)>=2^{q-1}/(2q)`.
+
+Let
+
+```text
+q_*(U)=max { q_S : (S,O) in U(A_0), q_S>=4 },
+```
+
+with `q_*(U)=0` if the set is empty.  Since `#U(A_0)` is at most the active
+tree size,
+
+```text
+FR_1^{r1}(U) <= C_sigma Q^{sigma+1} 2^{q_*(U)-1}.  (W1-log-sufficient)
+```
+
+Thus a logarithmic rank-test exclusion
+
+```text
+q_*(U) <= K log_2 Q + O_sigma(1)
+```
+
+implies a polynomial fixed-surplus bound for the selected width-one subledger.
+Conversely, if a polynomial bound
+
+```text
+FR_1^{r1}(U) <= C Q^B
+```
+
+holds for a fixed-surplus family, then every surviving witness with `q_S>=4`
+satisfies
+
+```text
+q_S <= B log_2 Q + log_2(2Cq_S)+1.              (W1-log-necessary)
+```
+
+So polynomiality of the explicit one-root width-one ledger is equivalent,
+up to the already polynomial active-tree factor, to excluding surviving
+rank-test complements with `q_S/log Q -> infinity`.  A counterexample-first
+search therefore only has to find a sequence of bounded complements `O` with
+`ell_{D_S\O} in V_S` and superlogarithmic `q_S` after the standard
+quotient-periodic, tangent, fixed-root/root-slice, and aperiodic charges.
+
 ## Fixed-Surplus Closure Criterion
 
 Now sum over active canonical nodes with initial surplus `s_0<=sigma`.  Let

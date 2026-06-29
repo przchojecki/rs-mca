@@ -1662,6 +1662,35 @@ Then
   \sum_{x\in Z_{S,O}} M^{\mathrm{r1}}_{S,O,x}
 \]
 is exactly the large-node width-one flag contribution.
+Equivalently, if
+\[
+  b(q)=\sum_{e=1}^{\lfloor(q-2)/2\rfloor}\binom{q-1}{e},
+\]
+then any surviving subledger \(U\subseteq \mathrm{W1Large}(A_0)\) satisfies
+\[
+  FR^{\mathrm{r1}}_1(U)
+  =
+  \sum_{(S,O)\in U} b(q_S).
+\]
+For \(q\ge4\),
+\[
+  \frac{2^{q-1}}{2q}\le b(q)\le 2^{q-1},
+\]
+so, with \(q_*(U)=\max\{q_S:(S,O)\in U,\ q_S\ge4\}\),
+\[
+  FR^{\mathrm{r1}}_1(U)
+  \le C_\sigma Q^{\sigma+1}2^{q_*(U)-1}.
+\]
+Hence a logarithmic rank-test exclusion \(q_*(U)\le K\log_2 Q+O_\sigma(1)\)
+gives a polynomial fixed-surplus bound for the width-one subledger.
+Conversely, any bound \(FR^{\mathrm{r1}}_1(U)\le C Q^B\) forces every
+surviving witness to satisfy
+\[
+  q_S\le B\log_2 Q+\log_2(2Cq_S)+1.
+\]
+Thus the remaining width-one target is a concrete rank-test exclusion problem:
+after the standard charges, rule out bounded complements
+\(\ell_{D_S^{can}\setminus O}\in V_S\) with \(q_S/\log Q\to\infty\).
 
 Consequently, in fixed surplus \(s_0\le\sigma\), small nodes are polynomial by
 the active-tree bound, and on \(q_S>s_S+2\) there is at most one width-one
