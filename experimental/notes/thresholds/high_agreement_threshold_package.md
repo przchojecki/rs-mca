@@ -110,17 +110,26 @@ For a single theorem-backed line/MCA/CA numerator, define
 B_Q = floor(Q / 2^128).
 ```
 
-If
+There are three integer-budget regimes.
 
 ```text
-1 <= B_Q <= floor((n-k)/3),
+B_Q = 0:
+  no integer radius is safe; even r=0 has numerator 1.
+
+1 <= B_Q <= floor((n-k)/3):
+  the threshold is pinned:
+  r <= B_Q - 1  is safe,
+  r =  B_Q      is unsafe.
+
+B_Q > floor((n-k)/3):
+  the exact tangent theorem proves safety throughout the high-agreement
+  range r <= floor((n-k)/3), but it does not locate the later threshold.
 ```
 
-then the high-agreement theorem pins the grid threshold:
+The threshold-pinning regime is therefore exactly
 
 ```text
-r <= B_Q - 1  is safe,
-r =  B_Q      is unsafe.
+1 <= B_Q <= floor((n-k)/3)
 ```
 
 This is only the single-line/MCA/CA compiler. If a protocol consumes an extra

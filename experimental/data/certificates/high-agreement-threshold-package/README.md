@@ -25,7 +25,8 @@ The certificate records:
 - exact M2 endpoint bridge checks
   `epsilon_mca(C,delta)=LD_sw(C,ceil((1-delta)n))/|F|`;
 - closed endpoint language `[0,6/512)`;
-- row-independent compiler examples for prize rates at `k=2^40`.
+- row-independent compiler examples for prize rates at `k=2^40`, including
+  the `B_Q=0`, threshold-pinned, and exact-range-safe regimes.
 
 It does not prove lower-agreement M1, quotient floors, extension transfer, L2,
 or any protocol ledger that consumes extra list/curve/query/folding terms.

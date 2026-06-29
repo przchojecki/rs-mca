@@ -75,16 +75,47 @@ def exact_threshold(
     denominator: int,
     target_bits: int = TARGET,
 ) -> dict[str, Any]:
-    """Return exact finite-line threshold data if the compiler gate applies."""
+    """Classify the high-agreement single-line compiler regime."""
     b = budget(denominator, target_bits)
     r_line = radius_line_range(n, k)
-    applies = 1 <= b <= r_line
-    if not applies:
+    two = 1 << target_bits
+
+    if b == 0:
         return {
             "applies": False,
+            "threshold_pinned": True,
+            "compiler_status": "NO_SAFE_RADIUS",
             "budget": b,
             "line_exact_radius": r_line,
-            "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)",
+            "first_unsafe_integer_radius": 0,
+            "first_unsafe_agreement": n,
+            "unsafe_line_numerator": 1,
+            "closed_real_safe_interval": {
+                "left_closed": False,
+                "right_open_supremum": frac_dict(Fraction(0, 1)),
+                "endpoint_attained": False,
+            },
+            "reason": "floor(Q/2^lambda)=0, so the radius-zero numerator already exceeds target",
+            "checks": {
+                "zero_budget": b == 0,
+                "radius_zero_unsafe": two > denominator,
+            },
+        }
+
+    if b > r_line:
+        return {
+            "applies": False,
+            "threshold_pinned": False,
+            "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+            "budget": b,
+            "line_exact_radius": r_line,
+            "safe_through_exact_radius": r_line,
+            "first_safe_agreement_in_exact_range": n - r_line,
+            "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+            "checks": {
+                "budget_exceeds_exact_range": b > r_line,
+                "exact_range_numerator_within_budget": r_line + 1 <= b,
+            },
         }
 
     first_unsafe_radius = b
@@ -95,7 +126,6 @@ def exact_threshold(
 
     safe_num = largest_safe_integer_radius + 1
     unsafe_num = first_unsafe_radius + 1
-    two = 1 << target_bits
 
     checks = {
         "safe_grid_numerator_within_budget": safe_num <= b,
@@ -108,6 +138,8 @@ def exact_threshold(
 
     return {
         "applies": True,
+        "threshold_pinned": True,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
         "budget": b,
         "line_exact_radius": r_line,
         "exact_range_min_agreement": exact_range_min_agreement(n, k),
@@ -140,7 +172,7 @@ def prize_rate_probes() -> list[CompilerProbe]:
     k = 1 << 40
     for rho_num, rho_den in [(1, 2), (1, 4), (1, 8), (1, 16)]:
         n = k * rho_den // rho_num
-        for bits in [128, 160, 192, 256]:
+        for bits in [96, 128, 160, 192, 256]:
             out.append(
                 CompilerProbe(
                     label=f"rho={rho_num}/{rho_den}, k=2^40, Q=2^{bits}",
@@ -181,8 +213,12 @@ def build_certificate() -> dict[str, Any]:
                 "budget": budget(probe.denominator),
                 "line_exact_radius": radius_line_range(probe.n, probe.k),
                 "compiler_applies": bool(gate["applies"]),
+                "compiler_status": gate["compiler_status"],
+                "threshold_pinned": bool(gate["threshold_pinned"]),
                 "first_unsafe_radius": gate.get("first_unsafe_integer_radius"),
                 "largest_safe_integer_radius": gate.get("largest_safe_integer_radius"),
+                "safe_through_exact_radius": gate.get("safe_through_exact_radius"),
+                "checks": gate.get("checks", {}),
                 "reason": gate.get("reason"),
             }
         )
@@ -242,9 +278,10 @@ def build_certificate() -> dict[str, Any]:
         "row_checks": row_checks,
         "row_independent_compiler": {
             "statement": (
-                "if B_Q=floor(Q/2^128) and 1 <= B_Q <= floor((n-k)/3), "
-                "then a single line/MCA/CA grid threshold is safe for "
-                "r<=B_Q-1 and unsafe at r=B_Q"
+                "for B_Q=floor(Q/2^128), B_Q=0 gives no safe integer radius; "
+                "1 <= B_Q <= floor((n-k)/3) pins the threshold at r=B_Q; "
+                "larger B_Q proves safety throughout the exact tangent range "
+                "but does not locate the later threshold"
             ),
             "examples": compiler_examples,
         },
@@ -253,6 +290,8 @@ def build_certificate() -> dict[str, Any]:
     all_checks = list(row_checks.values())
     all_checks.extend(finite.get("checks", {}).values())
     all_checks.extend(projective.get("checks", {}).values())
+    for example in compiler_examples:
+        all_checks.extend(example.get("checks", {}).values())
     all_checks.append(
         certificate["f17_512_endpoint_bridge"]["safe_endpoint"][
             "endpoint_formulas_agree"

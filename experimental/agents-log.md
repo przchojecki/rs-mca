@@ -52,7 +52,10 @@ Keep entries concise and link to the relevant files.
   `towards-prize.md`: finite-row threshold packaging and the compiler theorem
   condition `B_Q <= floor((n-k)/3)`. It separates the pure support-wise MCA
   threshold from any protocol ledger that also consumes list, curve, query, or
-  folding terms.
+  folding terms. The row-independent classifier also separates the `B_Q=0`
+  no-safe-radius case, the threshold-pinned case, and the large-denominator case
+  where the exact tangent theorem proves safety through its range but does not
+  locate the later threshold.
 - **What to do next:** Use this certificate as the compact reproduction
   artifact when promoting the high-agreement finite-row theorem or building a
   broader threshold certificate generator for multiple protocol ledgers.

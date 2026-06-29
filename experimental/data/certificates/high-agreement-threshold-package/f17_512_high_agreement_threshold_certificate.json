@@ -29,6 +29,7 @@
         "numerator": 3
       }
     },
+    "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
     "exact_range_min_agreement": 427,
     "first_safe_agreement": 507,
     "first_unsafe_integer_radius": 6,
@@ -36,6 +37,7 @@
     "last_unsafe_agreement": 506,
     "line_exact_radius": 85,
     "safe_line_numerator": 6,
+    "threshold_pinned": true,
     "unsafe_line_numerator": 7
   },
   "f17_512_endpoint_bridge": {
@@ -98,6 +100,7 @@
         "numerator": 3
       }
     },
+    "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
     "exact_range_min_agreement": 427,
     "first_safe_agreement": 507,
     "first_unsafe_integer_radius": 6,
@@ -105,6 +108,7 @@
     "last_unsafe_agreement": 506,
     "line_exact_radius": 85,
     "safe_line_numerator": 6,
+    "threshold_pinned": true,
     "unsafe_line_numerator": 7
   },
   "proof_input": {
@@ -136,8 +140,35 @@
   "row_independent_compiler": {
     "examples": [
       {
+        "budget": 0,
+        "checks": {
+          "radius_zero_unsafe": true,
+          "zero_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "NO_SAFE_RADIUS",
+        "denominator": 79228162514264337593543950336,
+        "first_unsafe_radius": 0,
+        "k": 1099511627776,
+        "label": "rho=1/2, k=2^40, Q=2^96",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 366503875925,
+        "n": 2199023255552,
+        "reason": "floor(Q/2^lambda)=0, so the radius-zero numerator already exceeds target",
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
+      },
+      {
         "budget": 1,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
         "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
         "denominator": 340282366920938463463374607431768211456,
         "first_unsafe_radius": 1,
         "k": 1099511627776,
@@ -145,11 +176,21 @@
         "largest_safe_integer_radius": 0,
         "line_exact_radius": 366503875925,
         "n": 2199023255552,
-        "reason": null
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
       },
       {
         "budget": 4294967296,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
         "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
         "denominator": 1461501637330902918203684832716283019655932542976,
         "first_unsafe_radius": 4294967296,
         "k": 1099511627776,
@@ -157,11 +198,18 @@
         "largest_safe_integer_radius": 4294967295,
         "line_exact_radius": 366503875925,
         "n": 2199023255552,
-        "reason": null
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
       },
       {
         "budget": 18446744073709551616,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
         "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
         "denominator": 6277101735386680763835789423207666416102355444464034512896,
         "first_unsafe_radius": null,
         "k": 1099511627776,
@@ -169,11 +217,18 @@
         "largest_safe_integer_radius": null,
         "line_exact_radius": 366503875925,
         "n": 2199023255552,
-        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 366503875925,
+        "threshold_pinned": false
       },
       {
         "budget": 340282366920938463463374607431768211456,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
         "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
         "denominator": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
         "first_unsafe_radius": null,
         "k": 1099511627776,
@@ -181,11 +236,40 @@
         "largest_safe_integer_radius": null,
         "line_exact_radius": 366503875925,
         "n": 2199023255552,
-        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 366503875925,
+        "threshold_pinned": false
+      },
+      {
+        "budget": 0,
+        "checks": {
+          "radius_zero_unsafe": true,
+          "zero_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "NO_SAFE_RADIUS",
+        "denominator": 79228162514264337593543950336,
+        "first_unsafe_radius": 0,
+        "k": 1099511627776,
+        "label": "rho=1/4, k=2^40, Q=2^96",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 1099511627776,
+        "n": 4398046511104,
+        "reason": "floor(Q/2^lambda)=0, so the radius-zero numerator already exceeds target",
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
       },
       {
         "budget": 1,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
         "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
         "denominator": 340282366920938463463374607431768211456,
         "first_unsafe_radius": 1,
         "k": 1099511627776,
@@ -193,11 +277,21 @@
         "largest_safe_integer_radius": 0,
         "line_exact_radius": 1099511627776,
         "n": 4398046511104,
-        "reason": null
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
       },
       {
         "budget": 4294967296,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
         "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
         "denominator": 1461501637330902918203684832716283019655932542976,
         "first_unsafe_radius": 4294967296,
         "k": 1099511627776,
@@ -205,11 +299,18 @@
         "largest_safe_integer_radius": 4294967295,
         "line_exact_radius": 1099511627776,
         "n": 4398046511104,
-        "reason": null
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
       },
       {
         "budget": 18446744073709551616,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
         "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
         "denominator": 6277101735386680763835789423207666416102355444464034512896,
         "first_unsafe_radius": null,
         "k": 1099511627776,
@@ -217,11 +318,18 @@
         "largest_safe_integer_radius": null,
         "line_exact_radius": 1099511627776,
         "n": 4398046511104,
-        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 1099511627776,
+        "threshold_pinned": false
       },
       {
         "budget": 340282366920938463463374607431768211456,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
         "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
         "denominator": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
         "first_unsafe_radius": null,
         "k": 1099511627776,
@@ -229,11 +337,40 @@
         "largest_safe_integer_radius": null,
         "line_exact_radius": 1099511627776,
         "n": 4398046511104,
-        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 1099511627776,
+        "threshold_pinned": false
+      },
+      {
+        "budget": 0,
+        "checks": {
+          "radius_zero_unsafe": true,
+          "zero_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "NO_SAFE_RADIUS",
+        "denominator": 79228162514264337593543950336,
+        "first_unsafe_radius": 0,
+        "k": 1099511627776,
+        "label": "rho=1/8, k=2^40, Q=2^96",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 2565527131477,
+        "n": 8796093022208,
+        "reason": "floor(Q/2^lambda)=0, so the radius-zero numerator already exceeds target",
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
       },
       {
         "budget": 1,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
         "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
         "denominator": 340282366920938463463374607431768211456,
         "first_unsafe_radius": 1,
         "k": 1099511627776,
@@ -241,11 +378,21 @@
         "largest_safe_integer_radius": 0,
         "line_exact_radius": 2565527131477,
         "n": 8796093022208,
-        "reason": null
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
       },
       {
         "budget": 4294967296,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
         "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
         "denominator": 1461501637330902918203684832716283019655932542976,
         "first_unsafe_radius": 4294967296,
         "k": 1099511627776,
@@ -253,11 +400,18 @@
         "largest_safe_integer_radius": 4294967295,
         "line_exact_radius": 2565527131477,
         "n": 8796093022208,
-        "reason": null
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
       },
       {
         "budget": 18446744073709551616,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
         "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
         "denominator": 6277101735386680763835789423207666416102355444464034512896,
         "first_unsafe_radius": null,
         "k": 1099511627776,
@@ -265,11 +419,18 @@
         "largest_safe_integer_radius": null,
         "line_exact_radius": 2565527131477,
         "n": 8796093022208,
-        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 2565527131477,
+        "threshold_pinned": false
       },
       {
         "budget": 340282366920938463463374607431768211456,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
         "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
         "denominator": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
         "first_unsafe_radius": null,
         "k": 1099511627776,
@@ -277,11 +438,40 @@
         "largest_safe_integer_radius": null,
         "line_exact_radius": 2565527131477,
         "n": 8796093022208,
-        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 2565527131477,
+        "threshold_pinned": false
+      },
+      {
+        "budget": 0,
+        "checks": {
+          "radius_zero_unsafe": true,
+          "zero_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "NO_SAFE_RADIUS",
+        "denominator": 79228162514264337593543950336,
+        "first_unsafe_radius": 0,
+        "k": 1099511627776,
+        "label": "rho=1/16, k=2^40, Q=2^96",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 5497558138880,
+        "n": 17592186044416,
+        "reason": "floor(Q/2^lambda)=0, so the radius-zero numerator already exceeds target",
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
       },
       {
         "budget": 1,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
         "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
         "denominator": 340282366920938463463374607431768211456,
         "first_unsafe_radius": 1,
         "k": 1099511627776,
@@ -289,11 +479,21 @@
         "largest_safe_integer_radius": 0,
         "line_exact_radius": 5497558138880,
         "n": 17592186044416,
-        "reason": null
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
       },
       {
         "budget": 4294967296,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
         "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
         "denominator": 1461501637330902918203684832716283019655932542976,
         "first_unsafe_radius": 4294967296,
         "k": 1099511627776,
@@ -301,11 +501,18 @@
         "largest_safe_integer_radius": 4294967295,
         "line_exact_radius": 5497558138880,
         "n": 17592186044416,
-        "reason": null
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
       },
       {
         "budget": 18446744073709551616,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
         "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
         "denominator": 6277101735386680763835789423207666416102355444464034512896,
         "first_unsafe_radius": null,
         "k": 1099511627776,
@@ -313,11 +520,18 @@
         "largest_safe_integer_radius": null,
         "line_exact_radius": 5497558138880,
         "n": 17592186044416,
-        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 5497558138880,
+        "threshold_pinned": false
       },
       {
         "budget": 340282366920938463463374607431768211456,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
         "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
         "denominator": 115792089237316195423570985008687907853269984665640564039457584007913129639936,
         "first_unsafe_radius": null,
         "k": 1099511627776,
@@ -325,10 +539,12 @@
         "largest_safe_integer_radius": null,
         "line_exact_radius": 5497558138880,
         "n": 17592186044416,
-        "reason": "requires 1 <= floor(Q/2^lambda) <= floor((n-k)/3)"
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 5497558138880,
+        "threshold_pinned": false
       }
     ],
-    "statement": "if B_Q=floor(Q/2^128) and 1 <= B_Q <= floor((n-k)/3), then a single line/MCA/CA grid threshold is safe for r<=B_Q-1 and unsafe at r=B_Q"
+    "statement": "for B_Q=floor(Q/2^128), B_Q=0 gives no safe integer radius; 1 <= B_Q <= floor((n-k)/3) pins the threshold at r=B_Q; larger B_Q proves safety throughout the exact tangent range but does not locate the later threshold"
   },
   "status": "PROVED-COMPILER-ARITHMETIC / AUDIT",
   "target": "2^-128"
