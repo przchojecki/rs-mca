@@ -1583,6 +1583,20 @@ not a bound for the remaining different-slope codegree.  The verifier
 \path{experimental/scripts/verify_m1_same_slope_root_slice_lemma.py} checks the
 subtraction identity and its row-wise linear-map consequence in small fields.
 
+The same two padded equations also lift the root slice to a higher-slack
+Hankel core.  With \(w_z=u+zv\), the equations
+\[
+  H_{t,j}(w_z)(\ell_R,0)^T=0,\qquad
+  H_{t,j}(w_z)(0,\ell_R)^T=0
+\]
+are exactly the first \(t\) and last \(t\) rows of
+\[
+  H_{t+1,j-1}(w_z)\ell_R=0.
+\]
+Thus a same-slope root slice is not a fresh \(t\)-level residual multiplicity:
+it belongs to the lifted \((t+1,j-1)\) Hankel-core ledger at the same finite
+slope.
+
 In the \(t=2\) Hankel window the same one-exchange core has a quadratic
 determinant gate.  Put
 \[

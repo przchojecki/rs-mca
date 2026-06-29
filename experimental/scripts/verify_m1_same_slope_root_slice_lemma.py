@@ -45,6 +45,13 @@ def hankel2(row: list[int], poly: list[int], p: int) -> tuple[int, int]:
     )
 
 
+def hankel_values(row: list[int], poly: list[int], num_rows: int, p: int) -> list[int]:
+    return [
+        sum(row[a + i] * poly[i] for i in range(len(poly))) % p
+        for a in range(num_rows)
+    ]
+
+
 def det2(u: tuple[int, int], v: tuple[int, int], p: int) -> int:
     return (u[0] * v[1] - u[1] * v[0]) % p
 
@@ -134,6 +141,54 @@ def check_row_implication() -> None:
                         if dot(row, t1, p) == 0 and dot(row, t2, p) == 0:
                             assert dot(row, core_pad, p) == 0
                             assert dot(row, x_core, p) == 0
+
+
+def check_higher_slack_root_slice_lift() -> None:
+    rng = Random(20260630)
+    for p in (5, 7, 17, 31):
+        for t_rows in range(1, 6):
+            for core_degree in range(0, 6):
+                samples: list[list[int]] = []
+                if p**core_degree <= 10_000:
+                    samples = [
+                        list(coeffs) + [1]
+                        for coeffs in product(range(p), repeat=core_degree)
+                    ]
+                else:
+                    samples = [
+                        [rng.randrange(p) for _ in range(core_degree)] + [1]
+                        for _ in range(300)
+                    ]
+
+                for ell_r in samples:
+                    row = [rng.randrange(p) for _ in range(t_rows + len(ell_r))]
+                    core_pad = ell_r + [0]
+                    x_core = [0] + ell_r
+
+                    core_rows = hankel_values(row, core_pad, t_rows, p)
+                    x_rows = hankel_values(row, x_core, t_rows, p)
+                    lifted_rows = hankel_values(row, ell_r, t_rows + 1, p)
+
+                    assert core_rows == lifted_rows[:-1], (
+                        p,
+                        t_rows,
+                        core_degree,
+                        ell_r,
+                        row,
+                        core_rows,
+                        lifted_rows,
+                    )
+                    assert x_rows == lifted_rows[1:], (
+                        p,
+                        t_rows,
+                        core_degree,
+                        ell_r,
+                        row,
+                        x_rows,
+                        lifted_rows,
+                    )
+                    if all(value == 0 for value in core_rows + x_rows):
+                        assert all(value == 0 for value in lifted_rows)
 
 
 def check_t2_determinant_gate() -> None:
@@ -406,6 +461,7 @@ def check_average_collinearity_corollary() -> None:
 def main() -> None:
     check_difference_identity()
     check_row_implication()
+    check_higher_slack_root_slice_lift()
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()
     check_one_exchange_triangle_classification()

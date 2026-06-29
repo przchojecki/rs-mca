@@ -1,7 +1,7 @@
 # M1 Same-Slope One-Exchange Root-Slice Lemma
 
 **Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / RULED-CORE DICHOTOMY /
-TRIANGLE CLASSIFICATION / TOP-PACKET LIFT / AUDIT.
+HIGHER-SLACK LIFT / TRIANGLE CLASSIFICATION / TOP-PACKET LIFT / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -105,6 +105,38 @@ Thus the one-exchange codegree residual in the all-line Hankel program is
 exactly the different-slope one-exchange ledger after root-slice charging.
 This is useful because it prevents same-slope multiplicity from being counted
 again as an aperiodic residual obstruction.
+
+## Higher-Slack Root-Slice Lift
+
+The fixed-slope root slice is also a genuine higher-slack Hankel core.  Put
+
+```text
+w_z=u+zv.
+```
+
+Let `ell_R` have degree `j-1`, and interpret
+
+```text
+L_z ell_R=0,        L_z(X ell_R)=0
+```
+
+as the two padded `H_{t,j}(w_z)` equations on the coefficient vectors
+
+```text
+(ell_R,0),        (0,ell_R).
+```
+
+Then these two equations are equivalent to
+
+```text
+H_{t+1,j-1}(w_z) ell_R=0.                         (LIFT)
+```
+
+Indeed, the first padded equation gives rows `0,...,t-1` of (LIFT), while the
+second padded equation gives rows `1,...,t`.  Thus every same-slope
+one-exchange root slice is charged to the lifted `(t+1,j-1)` Hankel core with
+the same finite slope.  It is not a new residual `t`-level aperiodic
+multiplicity.
 
 ## The `t=2` Determinant Gate
 
@@ -460,6 +492,7 @@ This lemma does not bound the remaining different-slope one-exchange graph, the
 rank-one moving-slope ruled branch, top-packet triangles, the two-exchange
 packet-edge ledger, or the one-outside boundary image.  It only proves that
 same-slope one-exchange collisions belong to the fixed-slope root-slice ledger,
+that such root slices lift to `(t+1,j-1)` Hankel cores,
 classifies the ruled determinant core into fixed-slope, inactive, and rank-one
 moving-slope cases, shows that star triangles are exactly ruled-core events
 while residual top-packet edges lift to a common `t=1` Hankel kernel, shows
@@ -475,9 +508,10 @@ python3 experimental/scripts/verify_m1_same_slope_root_slice_lemma.py
 ```
 
 checks the subtraction identity over sampled small prime fields and exhaustively
-checks the row-wise linear-map implication in small dimensions.  It also checks
-the quadratic determinant formula (DET2) and the "three roots imply ruled"
-criterion in sampled small prime fields, then stress-tests the ruled-core
-dichotomy, the injectivity of the residual rank-one moving-slope branch, and
-the Johnson-graph star/top triangle classification.  Finally, it checks the
-top-packet lift identity (TOP1) and the distinct-slope implication (TOPK).
+checks the row-wise linear-map implication in small dimensions.  It checks the
+higher-slack lift identity (LIFT), the quadratic determinant formula (DET2) and
+the "three roots imply ruled" criterion in sampled small prime fields, then
+stress-tests the ruled-core dichotomy, the injectivity of the residual rank-one
+moving-slope branch, and the Johnson-graph star/top triangle classification.
+Finally, it checks the top-packet lift identity (TOP1) and the distinct-slope
+implication (TOPK).
