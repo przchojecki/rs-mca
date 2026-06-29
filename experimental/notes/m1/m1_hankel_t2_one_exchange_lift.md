@@ -7320,6 +7320,50 @@ branch has therefore been reduced to polynomially many bounded-complement
 rank tests; the only reason it remains dangerous is that any single passing
 test carries the large co-small flag cube from (PF2-r1-flag-cube).
 
+## Width-One Cubes Are Maximal Root-Shadow Directions
+
+The same condition can be stated without choosing the exceptional complement
+first.  At a base-free canonical `b=2` node `S`, define the root shadow of a
+nonzero direction `A in V_S=span(P_S,Q_S)` by
+
+```text
+Z_S(A)={x in D_S^{can}: A(x)=0}.
+```
+
+Since `deg A<q_S`, every nonzero direction satisfies
+
+```text
+|Z_S(A)|<=q_S-1.                               (PF2-r1-root-shadow-gap)
+```
+
+Then root-free width-one critical cubes at `S` are in bijection with
+projective directions attaining this maximum:
+
+```text
+{width-one cubes at S}
+ <-> { [A] in P(V_S) : |Z_S(A)|=q_S-1 }.       (PF2-r1-max-shadow)
+```
+
+Indeed, a width-one cube gives `A=c ell_{D_S^{can}\O}`, whose zero set has
+size `q_S-1`.  Conversely, if a nonzero direction `A` has `q_S-1` roots on
+`D_S^{can}`, put `O=D_S^{can}\Z_S(A)`.  Then
+
+```text
+|O|=N_S-(q_S-1)=s_S+1,
+```
+
+and the degree gap forces `A=c ell_{Z_S(A)}`.  Since the node is base-free,
+`Z_S(A)` is exactly one non-base projective fiber, and `A` gives the
+root-free width-one cube of the previous section.
+
+Thus the first low-width obstruction is precisely a maximal root-shadow
+direction in the descended two-dimensional pencil.  In the unique range
+`q_S>s_S+2`, there is at most one such projective direction by
+(PF2-r1-unique-range).  Closing the `r=1` branch can therefore be phrased as:
+after quotient-periodic, tangent, fixed-root, and aperiodic charges, no
+base-free descended `b=2` pencil should contain a nonzero direction with the
+maximal possible `q_S-1` roots on its remaining canonical domain.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

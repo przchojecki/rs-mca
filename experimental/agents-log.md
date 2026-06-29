@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 width-one maximal root-shadow criterion
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Rephrases width-one critical cubes as exactly the
+  projective directions in the descended base-free `b=2` pencil with the
+  maximal possible root shadow `q_S-1` on `D_S^{can}`.
+- **How it is useful:** Moves the first low-width obstruction from flag
+  counting to a concrete maximal-root direction exclusion problem, aligned
+  with quotient-periodic, tangent/fixed-root, and aperiodic root-shadow
+  charges.
+- **What to do next:** Prove that charged/aperiodic regimes exclude maximal
+  root-shadow directions, or classify the remaining exceptional pencils.
+
 ### 2026-06-29 - M1 width-one bounded-complement rank test
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
