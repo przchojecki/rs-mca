@@ -5133,6 +5133,101 @@ root-slice packing ledger.  In particular, if a node has `h_S>q_S/2` and
 the certificate (PF2-canon-half-kernel).  No separate half-height exception
 remains in this endpoint.
 
+## Short Ledgers Are Half-Height Kernel Tails
+
+The short quotient-line term in (PF2-canon-diffuse-short) has a sharper
+normal form.  Fix a canonical `b=2` node `S`, a projective fiber `lambda`, and
+write
+
+```text
+h_lambda=|D_{S,lambda}|,        r_lambda=q_S-h_lambda.
+```
+
+If `h_lambda<=q_S/2`, then this fiber contributes nothing to
+`Short_S^{can}`: a short summand has `j<q_S/2`, hence
+`|C|=q_S-j>q_S/2`, so no subset `C subset D_{S,lambda}` of that size exists.
+
+Assume now that `h_lambda>q_S/2`.  Let
+
+```text
+Q_{S,lambda}=ell_{D_{S,lambda}} R_{S,lambda},
+deg R_{S,lambda}<r_lambda.
+```
+
+For any short quotient-line summand choose
+`C subset D_{S,lambda}` with `|C|=q_S-j`, and put
+
+```text
+E=D_{S,lambda}\C,        e=|E|.
+```
+
+Then
+
+```text
+j=r_lambda+e,        Q'_{S,lambda,C}=Q_{S,lambda}/ell_C
+                   =ell_E R_{S,lambda}.       (PF2-short-tail-factor)
+```
+
+Thus a short quotient-line certificate is just an `e`-root thickening of the
+primitive half-height kernel `R_{S,lambda}`.  Moreover `j<q_S/2` is
+equivalent to
+
+```text
+0<=e<=floor((q_S-1)/2)-r_lambda.
+```
+
+Let
+
+```text
+Z_{S,lambda}^{perp}
+ =
+ {x in D_S^{can}\D_{S,lambda} : R_{S,lambda}(x)=0},
+z_{S,lambda}^{perp}=|Z_{S,lambda}^{perp}|.
+```
+
+Because `deg R_{S,lambda}<r_lambda`, one has
+`z_{S,lambda}^{perp}<=r_lambda-1`.  On the quotient domain `D_{S,C}`, the
+zero set of the quotient direction `ell_E R_{S,lambda}` is the disjoint union
+
+```text
+E disjoint_union Z_{S,lambda}^{perp}.
+```
+
+Consequently the root-slice packing floor for this summand is independent of
+the thickening set `E`:
+
+```text
+floor((N_{S,C}-z_{S,lambda,C})/(j-z_{S,lambda,C}))
+ =
+floor((N_S-h_lambda-z_{S,lambda}^{perp})
+      /(r_lambda-z_{S,lambda}^{perp})).        (PF2-short-tail-pack)
+```
+
+Define the primitive half-height packing factor
+
+```text
+B_{S,lambda}^{prim}
+ =
+floor((N_S-h_lambda-z_{S,lambda}^{perp})
+      /(r_lambda-z_{S,lambda}^{perp})).
+```
+
+Then the whole short ledger at node `S` satisfies
+
+```text
+Short_S^{can}
+ <=
+ sum_{lambda: h_lambda>q_S/2}
+   B_{S,lambda}^{prim}
+   sum_{e=0}^{floor((q_S-1)/2)-r_lambda}
+      binom(h_lambda,e).                       (PF2-short-primitive-tail)
+```
+
+Thus the short side of the canonical M1 endpoint is localized on
+half-height projective fibers.  Its only multiplicity is the low-complement
+tail of choices `E` inside such a fiber, times the single primitive root-slice
+packing factor attached to the half-height kernel `R_{S,lambda}`.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

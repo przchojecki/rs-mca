@@ -5371,6 +5371,42 @@ the canonical endpoint becomes
 Thus all non-diffuse projective-fiber profiles are explicit short
 quotient-line root-slice ledgers, while the remaining spread determinant-gate
 term has a uniform quadratic saving.
+The short ledger localizes further.  For a projective fiber
+\(D_{S,\lambda}\) put \(h_\lambda=|D_{S,\lambda}|\) and
+\(r_\lambda=q_S-h_\lambda\).  Fibers with \(h_\lambda\le q_S/2\) contribute
+nothing to \(Short_S^{can}\).  If \(h_\lambda>q_S/2\), write
+\[
+  Q_{S,\lambda}=\ell_{D_{S,\lambda}}R_{S,\lambda},\qquad
+  \deg R_{S,\lambda}<r_\lambda .
+\]
+For a short summand \(C\subset D_{S,\lambda}\), let
+\(E=D_{S,\lambda}\setminus C\).  Then
+\[
+  Q'_{S,\lambda,C}=Q_{S,\lambda}/\ell_C
+  =\ell_E R_{S,\lambda},\qquad j=r_\lambda+|E|.
+\]
+If \(Z_{S,\lambda}^{\perp}\) denotes the roots of \(R_{S,\lambda}\) outside
+\(D_{S,\lambda}\), with size \(z_{S,\lambda}^{\perp}\), then the forced roots
+\(E\) cancel from the quotient-line packing floor:
+\[
+  \left\lfloor {N_{S,C}-z_{S,\lambda,C}\over j-z_{S,\lambda,C}}\right\rfloor
+  =
+  \left\lfloor
+    {N_S-h_\lambda-z_{S,\lambda}^{\perp}
+     \over r_\lambda-z_{S,\lambda}^{\perp}}
+  \right\rfloor .
+\]
+Hence
+\[
+  Short_S^{can}\le
+  \sum_{\lambda:h_\lambda>q_S/2}
+  B_{S,\lambda}^{prim}
+  \sum_{e=0}^{\lfloor(q_S-1)/2\rfloor-r_\lambda}
+  \binom{h_\lambda}{e},
+\]
+where \(B_{S,\lambda}^{prim}\) is the displayed primitive packing floor.
+Thus the short side is only a low-complement tail around primitive half-height
+projective-shadow kernels.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 short ledger primitive half-height tails
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Shows that `Short_S^{can}` receives contributions
+  only from half-height projective fibers, and each short quotient-line
+  summand factors as a low-complement thickening `ell_E R_{S,lambda}` of a
+  primitive half-height kernel.
+- **How it is useful:** Reduces the short side of the canonical M1 endpoint
+  to primitive half-height root-slice packing factors multiplied by explicit
+  binomial low-complement tails.
+- **What to do next:** Bound the primitive half-height packing factors and
+  their low-complement tails globally across the canonical base-peeling tree.
+
 ### 2026-06-29 - M1 diffuse-plus-short canonical endpoint
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
