@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 width-one bounded-complement rank test
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Proves that the root-free width-one branch is
+  base-free and that a bounded exceptional complement `O` supports a width-one
+  cube exactly when `ell_{D_S^{can}\O}` lies in `span(P_S,Q_S)`, equivalently
+  by vanishing of explicit coefficient rank minors.
+- **How it is useful:** Makes the first low-width obstruction scanner-ready
+  and shows there are only polynomially many bounded-complement rank tests in
+  fixed-surplus windows.
+- **What to do next:** Exclude or charge passing width-one rank tests; any
+  single pass still carries the large co-small flag cube.
+
 ### 2026-06-29 - M1 width-one co-small fiber cube
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

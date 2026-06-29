@@ -7271,6 +7271,55 @@ condition that `ell_{D_S^{can}\O}` lies in the descended two-dimensional
 direction space.  Closing the width-one branch therefore means excluding or
 charging this co-small fiber cube.
 
+## Width-One Cubes Have a Bounded-Complement Rank Test
+
+The co-small cube condition is a finite algebraic test on the bounded
+exceptional complement.  First, the root-free width-one branch is base-free:
+if `x in B_S`, then every direction in `span(P_S,Q_S)` vanishes at `x`.
+For a width-one certificate `Q_{S,lambda}=c ell_{D_{S,lambda}}` with
+`Z_{S,lambda}^{perp}=empty`, this is impossible whether `x` lies outside the
+fiber, where the co-small locator is nonzero, or inside the non-base fiber.
+Hence `B_S=empty`.
+
+Now fix a base-free canonical `b=2` node `S` and a subset
+
+```text
+O subset D_S^{can},        |O|=s_S+1.
+```
+
+Put
+
+```text
+L_O=ell_{D_S^{can}\O}.
+```
+
+Then `O` supports a root-free width-one critical cube if and only if the
+coefficient vector of `L_O` lies in the two-dimensional direction space:
+
+```text
+L_O in span(P_S,Q_S).                          (PF2-r1-rank-test)
+```
+
+Equivalently, for any coefficient basis of `F[X]_{<q_S}`, every `3 x 3`
+minor of the matrix with rows `P_S,Q_S,L_O` vanishes.  When this rank test
+holds, `L_O` has no roots on `O`, so its zero set on `D_S^{can}` is exactly
+`D_S^{can}\O`; the previous section gives the width-one cube.  Conversely,
+every width-one cube has `L_O` proportional to `Q_{S,lambda}` and therefore
+passes the test.
+
+Thus, in a fixed-surplus window, the number of possible width-one cube tests
+over the active tree is polynomial:
+
+```text
+sum_{S in Active(A)} binom(N_S,s_S+1)
+ <= (s_0+2) q^{s_0+1} binom(q+s_0,s_0+1).      (PF2-r1-test-count)
+```
+
+using (PF2-active-skipball), `N_S<=q+s_0`, and `s_S<=s_0`.  The width-one
+branch has therefore been reduced to polynomially many bounded-complement
+rank tests; the only reason it remains dangerous is that any single passing
+test carries the large co-small flag cube from (PF2-r1-flag-cube).
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

@@ -6306,6 +6306,24 @@ at most one.  Its flag contribution is exactly
 \]
 Thus the width-one obstruction is a single co-small projective-fiber cube per
 large active node, determined by a bounded exceptional complement.
+This cube has a bounded-complement rank test.  The root-free width-one branch
+is base-free: a common base root would force every direction, including
+\(c\ell_{D_{S,\lambda}}\), to vanish there, contradicting either
+root-freeness outside the fiber or non-base membership inside it.  For a
+base-free node and \(O\subset D_S^{can}\), \(|O|=s_S+1\), put
+\(L_O=\ell_{D_S^{can}\setminus O}\).  Then \(O\) supports a width-one cube
+if and only if
+\[
+  L_O\in \operatorname{span}(P_S,Q_S),
+\]
+equivalently all \(3\times3\) coefficient minors of \(P_S,Q_S,L_O\) vanish.
+In fixed surplus, the number of such tests over the active tree is at most
+\[
+  (s_0+2)q^{s_0+1}\binom{q+s_0}{s_0+1}.
+\]
+Thus width-one is a polynomial family of bounded-complement rank tests, each
+dangerous only because a single passing test carries the large co-small flag
+cube.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots
