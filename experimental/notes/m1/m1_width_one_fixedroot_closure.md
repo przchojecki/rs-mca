@@ -359,6 +359,72 @@ search therefore only has to find a sequence of bounded complements `O` with
 `ell_{D_S\O} in V_S` and superlogarithmic `q_S` after the standard
 quotient-periodic, tangent, fixed-root/root-slice, and aperiodic charges.
 
+## Bounded-Complement Tail Readout
+
+The rank test has one further fixed-surplus compression.  Work at a large node,
+so `q>s+2`, and define the tail map
+
+```text
+Tail_s(X^{q-1}+c_1X^{q-2}+...+c_{s+1}X^{q-s-2}+...)
+   =(c_1,...,c_{s+1}).
+```
+
+For `O subset D`, `|O|=s+1`, write `Z=D\O` and
+
+```text
+L_O=ell_Z=X^{q-1}+c_1X^{q-2}+... .
+```
+
+Then `Tail_s(L_O)` determines `O`.  Indeed, put
+`u_i=e_i(Z)=(-1)^i c_i` for `1<=i<=s+1`.  Since `D=Z disjoint union O`,
+the elementary symmetric functions satisfy
+
+```text
+e_i(D)=sum_{j=0}^i e_j(Z)e_{i-j}(O),       1<=i<=s+1.
+```
+
+Starting from `e_0(O)=1`, this triangular system gives the recursion
+
+```text
+e_i(O)=e_i(D)-sum_{j=1}^i u_j e_{i-j}(O),  1<=i<=s+1.   (W1-tail-rec)
+```
+
+Thus the tail of `L_O` recovers all coefficients of
+
+```text
+ell_O=X^{s+1}-e_1(O)X^s+...+(-1)^{s+1}e_{s+1}(O),
+```
+
+and hence recovers the split complement `O` itself.
+
+Consequently the map
+
+```text
+O |-> Tail_s(L_O)
+```
+
+is injective on bounded complements.  If the leading-coefficient functional is
+nonzero on `V`, choose a monic element `A_0 in V` and a generator
+`B_0 in ker(lc_{q-1}|_V)`.  Every monic rank-test candidate in `V` has the
+form
+
+```text
+A_0+lambda B_0,
+```
+
+so every width-one complement must satisfy the necessary tail-line incidence
+
+```text
+Tail_s(L_O) in Tail_s(A_0)+F Tail_s(B_0).        (W1-tail-line)
+```
+
+If `Tail_s(B_0)=0`, there is at most one possible complement by injectivity.
+Otherwise the possible complements inject into the intersection of the
+bounded-complement tail cloud with a single affine line in `F^{s+1}`.  Thus a
+superlogarithmic surviving rank-test counterexample cannot be hidden in the
+`q` moving coefficients of `L_O`: it already appears in this fixed-dimensional
+tail incidence before the remaining full-rank-test equations are imposed.
+
 ## Fixed-Surplus Closure Criterion
 
 Now sum over active canonical nodes with initial surplus `s_0<=sigma`.  Let

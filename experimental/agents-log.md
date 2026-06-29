@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Keep first-grid rows separate from exact-threshold
   claims. The missing safe-side work remains the L1/M1/F1/M2 completion package.
 
+### 2026-06-29 - M1 width-one bounded-complement tail readout
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_width_one_fixedroot_closure.md`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / TARGET-REDUCTION / AUDIT.
+- **What is being added:** A tail-readout lemma for the explicit width-one
+  rank test: in fixed surplus, the top `s+1` coefficients of
+  `ell_{D\O}` determine the bounded complement `O` by a triangular elementary
+  symmetric recursion.
+- **How it is useful:** Any surviving superlogarithmic width-one rank-test
+  counterexample is already visible as a point of a fixed-dimensional
+  bounded-complement tail cloud lying on the monic affine line of the pencil,
+  before the full coefficient equations are imposed.
+- **What to do next:** Use the tail-line incidence as the first filter in
+  counterexample searches or prove that the charged aperiodic tail cloud has no
+  superlogarithmic witnesses.
+
 ### 2026-06-29 - M1 width-one rank-test logarithmic exclusion
 
 - **Agent/model:** AllenGrahamHart / Codex.

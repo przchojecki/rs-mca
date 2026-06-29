@@ -1691,6 +1691,31 @@ surviving witness to satisfy
 Thus the remaining width-one target is a concrete rank-test exclusion problem:
 after the standard charges, rule out bounded complements
 \(\ell_{D_S^{can}\setminus O}\in V_S\) with \(q_S/\log Q\to\infty\).
+There is also a fixed-surplus tail compression.  At a large node \(q>s+2\),
+let
+\[
+  \operatorname{Tail}_s
+  \bigl(X^{q-1}+c_1X^{q-2}+\cdots+c_{s+1}X^{q-s-2}+\cdots\bigr)
+  =(c_1,\ldots,c_{s+1}).
+\]
+For \(L_O=\ell_{D\setminus O}\), \(Z=D\setminus O\), and
+\(u_i=e_i(Z)=(-1)^ic_i\), the identities \(D=Z\sqcup O\) give the triangular
+recursion
+\[
+  e_i(O)=e_i(D)-\sum_{j=1}^i u_j e_{i-j}(O),
+  \qquad 1\le i\le s+1.
+\]
+Thus \(\operatorname{Tail}_s(L_O)\) recovers \(\ell_O\), hence \(O\), and the
+bounded-complement tail map is injective.  If the leading coefficient is
+nonzero on \(V\), the monic slice of \(V\) is \(A_0+\lambda B_0\); every
+rank-test witness must satisfy
+\[
+  \operatorname{Tail}_s(L_O)
+  \in \operatorname{Tail}_s(A_0)+F\,\operatorname{Tail}_s(B_0).
+\]
+So any superlogarithmic counterexample is already visible as a point of a
+fixed-dimensional bounded-complement tail cloud lying on one affine line,
+before the remaining full coefficient equations are checked.
 
 Consequently, in fixed surplus \(s_0\le\sigma\), small nodes are polynomial by
 the active-tree bound, and on \(q_S>s_S+2\) there is at most one width-one
