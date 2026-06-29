@@ -43,7 +43,8 @@ linear algebra, and its domain/outside subgroup filter is checked by direct
 character expansion and aggregate mixed-domain counts on sampled finite-field
 covers, including the diagonal descent to the slope line and the index-two
 sheet-symmetry cancellation formula.  The verifier also checks the norm-filter
-identity that moves the outside-root condition to B_R/Q_R on the slope line.
+identity that moves the outside-root condition to B_R/Q_R on the slope line,
+and the resulting injection into norm-outside slopes.
 """
 
 from __future__ import annotations
@@ -3603,6 +3604,8 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                     "expanded": 0j,
                     "open_direct": 0,
                     "norm_expanded": 0j,
+                    "norm_outside_slopes": 0,
+                    "norm_outside_expanded": 0j,
                     "open_points": 0,
                     "plus_sums": [0j for _ in range(index)],
                     "pair_sums": [[0j for _ in range(index)] for _ in range(index)],
@@ -3617,6 +3620,21 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                 a_value = eval_poly1(a_poly, z_value, prime)
                 b_value = eval_poly1(b_poly, z_value, prime)
                 theta_value = eval_poly1(theta_poly, z_value, prime)
+                slope_norm_value = None
+                if b_value != 0:
+                    slope_norm_value = b_value * pow(q_value, -1, prime) % prime
+                    for index in indices:
+                        norm_indicator = subgroup_indicator_via_characters(
+                            slope_norm_value,
+                            index,
+                            log_table,
+                        )
+                        norm_outside = log_table[slope_norm_value] % index != 0
+                        if norm_outside:
+                            aggregate[index]["norm_outside_slopes"] += 1
+                        aggregate[index]["norm_outside_expanded"] += (
+                            1 - norm_indicator
+                        )
                 roots_y = [
                     y_value
                     for y_value in range(prime)
@@ -3626,6 +3644,7 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                 inv_2q = pow((2 * q_value) % prime, -1, prime)
                 s_value = a_value * inv_q % prime
                 p_value = b_value * inv_q % prime
+                open_direct_for_slope = {index: 0 for index in indices}
                 for y_value in roots_y:
                     r_plus = (a_value + y_value) * inv_2q % prime
                     r_minus = (a_value - y_value) * inv_2q % prime
@@ -3683,7 +3702,14 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                         aggregate[index]["expanded"] += expanded
                         if r_plus != 0 and r_minus != 0:
                             norm_value = r_plus * r_minus % prime
-                            expected_norm = b_value * pow(q_value, -1, prime) % prime
+                            expected_norm = slope_norm_value
+                            assert expected_norm is not None, (
+                                prime,
+                                z_value,
+                                b_value,
+                                r_plus,
+                                r_minus,
+                            )
                             assert norm_value == expected_norm, (
                                 prime,
                                 z_value,
@@ -3729,6 +3755,7 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                             )
                             aggregate[index]["norm_expanded"] += norm_expanded
                             aggregate[index]["open_direct"] += direct
+                            open_direct_for_slope[index] += direct
                             aggregate[index]["open_points"] += 1
                             plus_sums = aggregate[index]["plus_sums"]
                             pair_sums = aggregate[index]["pair_sums"]
@@ -3770,6 +3797,33 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                             r_minus,
                             direct,
                             expanded,
+                        )
+                for index in indices:
+                    if slope_norm_value is None:
+                        assert open_direct_for_slope[index] == 0, (
+                            prime,
+                            index,
+                            z_value,
+                            b_value,
+                            open_direct_for_slope[index],
+                        )
+                        continue
+                    norm_outside = log_table[slope_norm_value] % index != 0
+                    if norm_outside:
+                        assert open_direct_for_slope[index] <= 1, (
+                            prime,
+                            index,
+                            z_value,
+                            slope_norm_value,
+                            open_direct_for_slope[index],
+                        )
+                    else:
+                        assert open_direct_for_slope[index] == 0, (
+                            prime,
+                            index,
+                            z_value,
+                            slope_norm_value,
+                            open_direct_for_slope[index],
                         )
 
             for index in indices:
@@ -3837,6 +3891,33 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                     abs(complex(data["norm_expanded"]).real - int(data["open_direct"]))
                     < 1e-8
                 ), (
+                    prime,
+                    index,
+                    a_rows,
+                    b_rows,
+                    data,
+                )
+                assert abs(complex(data["norm_outside_expanded"]).imag) < 1e-8, (
+                    prime,
+                    index,
+                    a_rows,
+                    b_rows,
+                    data,
+                )
+                assert (
+                    abs(
+                        complex(data["norm_outside_expanded"]).real
+                        - int(data["norm_outside_slopes"])
+                    )
+                    < 1e-8
+                ), (
+                    prime,
+                    index,
+                    a_rows,
+                    b_rows,
+                    data,
+                )
+                assert int(data["open_direct"]) <= int(data["norm_outside_slopes"]), (
                     prime,
                     index,
                     a_rows,

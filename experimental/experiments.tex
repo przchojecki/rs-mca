@@ -2239,7 +2239,29 @@ remaining cover-level condition is only \(r_+\in D\).  Equivalently,
   =\frac1e\sum_a\sum_{C_R^\times}\chi^a(r_+)(1-1_D(N_R(z)))+O(1),
 \]
 which is the same as the expansion below after reindexing
-\(S_{a+b,b}=\sum\chi^a(r_+)\chi^b(N_R)\).  Now define
+\(S_{a+b,b}=\sum\chi^a(r_+)\chi^b(N_R)\).
+For a fixed slope with \(Q_RB_R\ne0\), the mixed ordered points inject into
+the norm-outside slope set: if \(N_R(z)\in D\), then no mixed point occurs,
+while if \(N_R(z)\notin D\), at most one of the two roots can lie in \(D\).
+Thus
+\[
+  N_R^{+,-}(D)
+  \le Z_R^{\rm norm-out}
+  :=\sum_{Q_RB_R\ne0}\left(1-1_D(B_R/Q_R)\right).
+\]
+The right side has the \(\mathbb P^1\) expansion
+\[
+  Z_R^{\rm norm-out}
+  =(1-1/e)\#\{Q_RB_R\ne0\}
+  -\frac1e\sum_{a=1}^{e-1}\sum_{Q_RB_R\ne0}\chi^a(B_R/Q_R).
+\]
+Hence, unless \(B_R/Q_R\) is a quotient-character power, the standard
+\(\mathbb P^1\) Kummer bound gives
+\[
+  N_R^{+,-}(D)\le (e-1)|D|+C_e\sqrt p+O_e(1).
+\]
+This is cruder than the cover bound below, but it is genus-free; the cover
+sums are only needed for the extra factor-\(e\) saving.  Now define
 \[
   S_a^+=\sum_{C_R^\times}\chi^a(r_+),\qquad
   S_{a,b}=\sum_{C_R^\times}\chi^a(r_+)\chi^b(r_-).

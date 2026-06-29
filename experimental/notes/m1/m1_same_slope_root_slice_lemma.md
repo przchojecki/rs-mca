@@ -2135,6 +2135,41 @@ The second line is the same as (RKCOUNT) after the change of variables
 separate: the outside filter is a bounded-support `P^1` character of
 `B_R/Q_R`, and only the `r_+` factor remains on the cover.
 
+It also gives a genus-free fallback bound.  For a fixed slope with
+`Q_R(z)B_R(z) != 0`, the two sheets have root product `N_R(z)`.  If
+`N_R(z) in D`, then either both roots lie in `D` or neither root lies in `D`,
+so the mixed condition contributes nothing.  If `N_R(z) notin D`, at most one
+of the two roots can lie in `D`, since two domain roots would have product in
+`D`.  Hence the mixed ordered cover points inject into the norm-outside slope
+set
+
+```text
+{ z : Q_R(z)B_R(z) != 0,  N_R(z) notin D }.              (RKNINJ)
+```
+
+That slope set has the exact `P^1` expansion
+
+```text
+Z_R^{norm-out}
+ = sum_{Q_RB_R != 0} (1-1_D(B_R/Q_R))
+
+ = (1-1/e) #{z:Q_RB_R != 0}
+   - e^{-1} sum_{a=1}^{e-1} sum_{Q_RB_R != 0} chi^a(B_R/Q_R).  (RKNOUT)
+```
+
+Every nonprincipal term in (RKNOUT) has zero-pole support contained in the
+roots of `B_R`, `Q_R`, and infinity.  Thus, unless `B_R/Q_R` is a quotient
+character power, the standard `P^1` Kummer bound gives
+
+```text
+N_R^{+,-}(D) <= Z_R^{norm-out}
+ <= (e-1)|D| + C_e sqrt(p) + O_e(1).                 (RKNOUTBD)
+```
+
+This bound is cruder than (RKBD), but it is completely genus-free: it uses only
+the slope-line norm map.  The cover-level sums below are precisely the extra
+input needed to save the missing factor `e`.
+
 Now define
 
 ```text
@@ -2398,9 +2433,10 @@ the per-core mixed-domain Kummer bound (RKBD) after fixed-zero-root and
 nonprincipal power branches are removed, descends the diagonal pair terms in
 that mixed-domain expansion to bounded-support `P^1` Kummer sums, closes the
 index-two mixed-domain cover-level terms by sheet-symmetry cancellation,
-factors the outside-root test through the slope-line norm `B_R/Q_R`, and gives
-the local max-degree bound and average-collinearity corollary above, including
-the packet-level higher-exchange ledger substitution.
+factors the outside-root test through the slope-line norm `B_R/Q_R`, obtains
+the genus-free norm-outside fallback bound (RKNOUTBD), and gives the local
+max-degree bound and average-collinearity corollary above, including the
+packet-level higher-exchange ledger substitution.
 
 ## Verification
 
@@ -2444,4 +2480,4 @@ classification, quartic degree bound, split-root cover criterion, and exact
 finite-field subgroup-character expansion for the domain/outside filter and
 the mixed-domain count formula (RKCOUNT), including the diagonal descent
 (RKDIAG), index-two cancellation formula (RK2), and norm-filter identity
-(RKNORM).
+(RKNORM) with norm-outside injection (RKNINJ).
