@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 dyadic top-packet saving criterion
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** CONDITIONAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Derives a dyadic closure criterion from the
+  width-stratified endpoint: after a low-width cutoff, it is enough to prove
+  `TopRF_[R,2R) <= C R q^K` on each dyadic residual-width bin.
+- **How it is useful:** Makes the remaining wide M1 target exact as a
+  denominator-saving top-packet packing theorem, rather than a vague
+  root-free tail objective.
+- **What to do next:** Prove or falsify the dyadic top-packet saving estimate
+  for aperiodic root-free critical certificates, starting with low-width
+  classifications and then wide denominator bins.
+
 ### 2026-06-29 - M1 width-stratified critical tail endpoint
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

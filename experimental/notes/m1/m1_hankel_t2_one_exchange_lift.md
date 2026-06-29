@@ -7026,6 +7026,59 @@ packets carrying the factor `(q+1)/(R+2)` rather than an ambient one-root
 loss.  Any closure proof can now choose the cutoff `R` to balance a low-width
 classification against a wide-denominator top-packet packing estimate.
 
+## Denominator-Saving Top Packets Close the Critical Tail
+
+The cutoff endpoint gives a concrete sufficient theorem for the wide
+root-free residual.  Fix a base cutoff `R_0>=1`, and for dyadic
+`R=2^i R_0` define
+
+```text
+TopRF_{crit(d,B),[R,2R)}(A)
+ =
+ sum_{(S,lambda) critical, Z empty, R<=r<2R} binom(h,a),
+```
+
+where empty bins are ignored and the last bin is truncated at `q`.  The wide
+part of (PF2-width-stratified-tail) satisfies
+
+```text
+CanRFFlag_{crit(d,B),>=R_0}(A)
+ <=
+ sum_{R dyadic, R_0<=R<=q}
+   ((q+1)/(R+2)) TopRF_{crit(d,B),[R,2R)}(A).
+                                                        (PF2-dyadic-wide-rf)
+```
+
+Consequently the following two inputs close the root-free critical tail in a
+fixed-surplus window:
+
+```text
+CanRFFlag_{crit(d,B),<R_0}(A) <= C q^K,
+
+TopRF_{crit(d,B),[R,2R)}(A) <= C R q^K
+  for every dyadic R in [R_0,q].
+```
+
+Indeed, (PF2-dyadic-wide-rf) gives
+
+```text
+CanRFFlag_{crit(d,B),>=R_0}(A)
+ <= C(q+1)q^K (1+floor(log_2(q/R_0)))
+ <= C' q^{K+2}
+```
+
+for `q>=2`.  Together with the narrow bound and the perpendicular full-star
+charge, (PF2-width-stratified-endpoint) gives a polynomial bound for the
+fixed-surplus canonical `b=2` critical-tail branch.
+
+Thus the remaining wide-denominator theorem need not bound the raw top-packet
+ledger by a constant-power polynomial uniformly in `r`; it is enough to prove
+one denominator of saving on each dyadic width bin.  This is the precise
+residue-packing target suggested by the gap-sensitive reduction: classify
+small-width denominators separately, and prove that aperiodic wide
+root-free top packets have at most `O(R)` multiplicity per polynomial-size
+ambient ledger.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

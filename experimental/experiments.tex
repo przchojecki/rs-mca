@@ -6221,6 +6221,26 @@ Consequently, for fixed \(\sigma,d,B\),
 After perpendicular full-star charges, the residual is therefore a low-width
 root-free classification problem plus a wide-denominator top-packet packing
 problem with factor \((q+1)/(R+2)\), rather than an ambient one-root loss.
+Equivalently, the wide side closes under one denominator of top-packet saving
+on dyadic bins.  Fix \(R_0\ge1\), and for dyadic \(R=2^iR_0\) put
+\[
+TopRF_{\mathrm{crit}(d,B),[R,2R)}(A)
+=\sum_{\substack{(S,\lambda)\ {\rm critical}\\Z_{S,\lambda}^{\perp}=\emptyset\\
+                 R\le r_\lambda<2R}}
+  \binom{h_\lambda}{a}.
+\]
+Then
+\[
+  CanRFFlag_{\mathrm{crit}(d,B),\ge R_0}(A)
+  \le
+  \sum_{\substack{R\ {\rm dyadic}\\R_0\le R\le q}}
+  {q+1\over R+2}TopRF_{\mathrm{crit}(d,B),[R,2R)}(A).
+\]
+Hence if the narrow ledger is \(O(q^K)\) and each dyadic top-packet bin
+satisfies \(TopRF_{\mathrm{crit}(d,B),[R,2R)}(A)\le C Rq^K\), then the full
+canonical root-free critical flag ledger is polynomial.  This is the exact
+denominator-saving target left by the cutoff: low-width classification plus
+one factor of \(R\) saving for wide aperiodic top packets.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots
