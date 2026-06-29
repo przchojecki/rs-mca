@@ -6006,6 +6006,32 @@ The surplus is unchanged:
 Thus root-free critical top slices are the same primitive tail problem one
 residual degree lower, at top level or one below top, not a fresh
 multiplicative reservoir.
+Iterating gives an exact flag bijection.  If
+\(P=(x_1,\ldots,x_m)\subset D_{S,\lambda}\) is an ordered distinct prefix,
+\(0\le m\le a\), then top thickenings containing \(P\) are in bijection with
+sets \(E_m\subset D_{S,\lambda}\setminus P\), \(|E_m|=a-m\), and after
+absorbing \(P\)
+\[
+  Q^P_{S,\lambda,E}=\ell_{E_m}R_{S,\lambda}.
+\]
+The descended parameters are
+\[
+  q^P=q_S-m,\quad h^P=h_\lambda-m,\quad r^P=r_\lambda,\quad s^P=s_S,
+\]
+so the depth gap is lowered by exactly \(m\).  If \(g=h_\lambda-r_\lambda\)
+and \(a^P=\lfloor(h^P-r^P-1)/2\rfloor\), then
+\[
+  a^P-(a-m)=
+  \begin{cases}
+  \lfloor m/2\rfloor,& g\ {\rm odd},\\
+  \lceil m/2\rceil,& g\ {\rm even}.
+  \end{cases}
+\]
+For fixed \(P\) there are exactly \(\binom{h_\lambda-m}{a-m}\) descended
+choices, and altogether the ordered \(m\)-step flags number
+\((a)_m\binom{h_\lambda}{a}\), with \((a)_m\) the falling factorial.  Thus
+rung-by-rung descent only expands the original top-level flag family; it does
+not multiply in an independent loss at each absorbed root.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

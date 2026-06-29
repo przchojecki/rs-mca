@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 iterated root-free tail flags
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Iterates the root-free top-slice descent: an
+  ordered `m`-root prefix gives a bijection to descended tail choices with
+  `q`, `h`, and the depth gap all lowered by `m`, unchanged surplus, and
+  exactly `(a)_m binom(h,a)` ordered flags.
+- **How it is useful:** Turns the additive-recursion claim into an exact flag
+  count, showing that rung-by-rung descent only re-indexes the original
+  top-level binomial family rather than introducing an independent loss at
+  each absorbed root.
+- **What to do next:** Combine this flag invariant with fixed-root or
+  aperiodic charges for any chain that leaves the root-free primitive class.
+
 ### 2026-06-29 - M1 root-free top-slice descent
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

@@ -6568,6 +6568,82 @@ with half-height gap reduced by one.  Any multiplicative loss along such a
 chain would therefore have to come from re-counting the same descended
 one-root slices, not from the tail recursion itself.
 
+## Iterated Root-Free Tail Descent Is a Flag Bijection
+
+The preceding descent can be iterated without changing its bookkeeping.  Keep
+the assumptions `Z_{S,lambda}^{perp}=empty` and `a>=1`.  Let
+`0<=m<=a`, and let
+
+```text
+P=(x_1,...,x_m)
+```
+
+be an ordered list of distinct roots in `D_{S,lambda}`.  Write
+`P_set={x_1,...,x_m}`.  The top thickenings `E` containing `P_set` are in
+bijection with subsets
+
+```text
+E_m subset D_{S,lambda}\P_set,        |E_m|=a-m,
+```
+
+by `E=P_set disjoint_union E_m`.  After absorbing the ordered prefix `P`,
+the descended direction is
+
+```text
+Q_{S,lambda,E}^{P}
+ = Q'_{S,lambda,E}/ell_{P_set}
+ = ell_{E_m}R_{S,lambda}.                       (PF2-rootfree-flag-dir)
+```
+
+The descended parameters are exactly
+
+```text
+q^P=q_S-m,        h^P=h_lambda-m,        r^P=r_lambda,
+e^P=a-m,          s^P=s_S.
+```
+
+Hence
+
+```text
+q^P=h^P+r^P,        h^P-r^P=h_lambda-r_lambda-m, (PF2-rootfree-flag-depth)
+```
+
+and the top level in the descended primitive problem is
+
+```text
+a^P=floor((h^P-r^P-1)/2).
+```
+
+If `g=h_lambda-r_lambda`, then
+
+```text
+a^P-e^P =
+ floor(m/2),        if g is odd,
+ ceil(m/2),         if g is even.              (PF2-rootfree-flag-level)
+```
+
+Thus an `m`-step root-free descent lowers the depth gap by exactly `m`,
+preserves the surplus exactly, and lands at a level whose distance below the
+new top is determined only by `m` and the original parity.  The number of
+descended choices over a fixed ordered prefix is exactly
+
+```text
+binom(h_lambda-m,a-m),
+```
+
+and the total number of ordered `m`-step flags inside the original top slice is
+
+```text
+(a)_m binom(h_lambda,a).
+```
+
+Here `(a)_m=a(a-1)...(a-m+1)`.  This is just the flag expansion of the
+original top-level binomial family: no new factor is introduced by descending
+rung-by-rung.  Consequently, a super-polynomial root-free critical chain must
+come from the original top-level flag family itself, or from a later
+quotient-periodic, tangent, fixed-root, or aperiodic obstruction; it cannot be
+produced by multiplying an independent loss at each absorbed root.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
