@@ -71,7 +71,9 @@ Keep entries concise and link to the relevant files.
   no-cancellation quartic branch is an explicit rational graph or fixed
   square-root rational graph case rather than hidden growing conductor.  Since
   at most one Fourier term is geometrically trivial, the full-subgroup fixed
-  core has live count at most `2|D|+4 sqrt(p)+O(1)`.
+  core has live count at most `2|D|+4 sqrt(p)+O(1)`.  Combining with the
+  graph bound gives the ledger multiplier
+  `min(2(n-j+2), 2|D|+4 sqrt(p)+O(1))` for the non-line conic branch.
 - **What to do next:** Combine this fixed-core quartic bound with the active
   fixed-core/root-image ledger and quotient/tangent charges.
 

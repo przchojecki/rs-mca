@@ -1924,6 +1924,23 @@ outside-domain, distinct-root, and active filters only reduce the count, and
 the previous same-slope fiber injection turns this point bound into the same
 bound for live boundary-core slopes over the fixed core.
 
+For substitution into the boundary-core ledger, combine this with the
+degree-two graph bound (RCORE).  The live non-line conic branch over a fixed
+core satisfies
+
+```text
+N_R^{conic}(D)
+ <= min(2(n-j+2), |D|+4 sqrt(p)+O(1))       if (KPOW) never occurs,
+N_R^{conic}(D)
+ <= min(2(n-j+2), 2|D|+4 sqrt(p)+O(1))      in general.        (KROOT)
+```
+
+The reducible line-packet branch is still handled by the fixed-sum/product-
+Mobius graph ledger above.  Hence the only remaining global boundary-core
+input is the size of the active `(j-2)` root-core image; the fixed-core
+conic geometry itself no longer supplies an uncontrolled multiplicity or
+depth-dependent conductor.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -2067,7 +2084,8 @@ with a genus-at-most-one double cover up to two linear exceptions, proves that
 same finite-slope multiplicity on the live boundary-core conic has already
 returned to a fixed-root line, a constant-slope non-fixed line packet, or the
 full-plane lift, gives the exact full-subgroup quartic character expansion
-and its Kummer power-divisor gate, and gives the local max-degree bound and
+and its Kummer power-divisor gate, closes the non-line fixed-core conic branch
+with the ledger multiplier (KROOT), and gives the local max-degree bound and
 average-collinearity corollary above, including the packet-level
 higher-exchange ledger substitution.
 

@@ -384,6 +384,25 @@ The outside-domain and active filters only delete points, and the same-slope
 fiber injection in `m1_same_slope_root_slice_lemma.md` converts the point
 bound into the same live slope bound for the fixed core.
 
+Combining this with the degree-two graph bound gives the ledger-facing
+conic estimate
+
+```text
+N_R^{conic}(D)
+ <= min(2(n-j+2), |D|+4 sqrt(p)+O(1))
+```
+
+when the power gate is absent, and
+
+```text
+N_R^{conic}(D)
+ <= min(2(n-j+2), 2|D|+4 sqrt(p)+O(1))
+```
+
+in general.  Reducible fixed-sum and product-Mobius line packets remain in the
+separate graph/packet ledger; the non-line fixed-core geometry has no
+remaining uncontrolled multiplicity.
+
 ## Integration Decision
 
 The full PR was not merged wholesale.  It included a very large generated
@@ -419,6 +438,7 @@ per-shadow quadratic slope/anchor gates, the shadow-fiber reduction, and the
 fixed-anchor boundary-core fiber reduction after fixed-slope boundary slices
 are charged, plus the fixed-core degree-two graph form and the non-fixed
 line-packet mixed-trace formulas, and the quadratic/discriminant anchor gate.
-It does not bound the total active domain-core image or prove the needed
-nonzero quartic character-sum cancellation, does not give a leaderboard row,
-and does not change any public MCA or interleaved-list threshold.
+It does not bound the total active domain-core image, does not combine the
+fixed-core quartic estimate with quotient/tangent ledgers into a global M1
+theorem, does not give a leaderboard row, and does not change any public MCA
+or interleaved-list threshold.

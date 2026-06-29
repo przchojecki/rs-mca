@@ -3450,6 +3450,28 @@ def check_boundary_core_closure_substitution() -> None:
                     crude_root_bound,
                 )
 
+            for root_count in range(0, 25):
+                graph_multiplier = 2 * right_vertices
+                for kummer_multiplier in range(0, 4 * n + 10):
+                    conic_multiplier = min(graph_multiplier, kummer_multiplier)
+                    conic_from_roots = conic_multiplier * root_count
+                    assert conic_from_roots <= graph_multiplier * root_count, (
+                        n,
+                        j,
+                        root_count,
+                        graph_multiplier,
+                        kummer_multiplier,
+                        conic_from_roots,
+                    )
+                    assert conic_from_roots <= kummer_multiplier * root_count, (
+                        n,
+                        j,
+                        root_count,
+                        graph_multiplier,
+                        kummer_multiplier,
+                        conic_from_roots,
+                    )
+
             for left_vertices in range(0, 25):
                 for edge_count in range(left_vertices, 50):
                     if edge_count > 2 * right_vertices:
