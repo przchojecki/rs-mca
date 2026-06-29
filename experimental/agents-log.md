@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 gap-sensitive root-free tail bound
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Bounds the exact canonical root-free flag ledger by
+  its top level with coefficient `(h-a+1)/(h-2a+1)`, hence by
+  `((h+1)/(r+2))binom(h,a)` for residual width `r`.
+- **How it is useful:** Replaces the crude ambient or incidence loss by a
+  denominator-width-sensitive cost; wide residual denominators cannot carry a
+  near-ambient root-free loss.
+- **What to do next:** Stratify the remaining canonical root-free ledger by
+  residual width, charging small-width certificates separately and applying
+  top-level packing/aperiodic estimates to the wide-width part.
+
 ### 2026-06-29 - M1 canonical root-free flag partition
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

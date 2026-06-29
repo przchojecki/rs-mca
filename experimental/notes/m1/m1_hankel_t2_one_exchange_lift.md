@@ -6915,6 +6915,56 @@ branch.  A proof may work with the sharper exact object
 `CanRFFlag_{crit(d,B)}(A)`, while the weighted ledger
 `WRFFlag_{crit(d,B)}(A)` remains a sufficient top-level proxy.
 
+## Canonical Root-Free Flags Have a Gap-Sensitive Top Bound
+
+The canonical root-free flag ledger is also controlled by its top level with a
+coefficient depending on the residual denominator width, not on the ambient
+domain.  For a root-free critical certificate put
+
+```text
+g=h-r,        a=floor((g-1)/2).
+```
+
+For `0<=e<a`,
+
+```text
+binom(h,e)/binom(h,e+1)=(e+1)/(h-e)
+ <= a/(h-a+1)=rho < 1.
+```
+
+Therefore the lower tail is bounded by the geometric majorant
+
+```text
+sum_{e=1}^a binom(h,e)
+ <= sum_{e=0}^a binom(h,e)
+ <= ((h-a+1)/(h-2a+1)) binom(h,a).             (PF2-gap-tail-domination)
+```
+
+Since `a=floor((h-r-1)/2)`, one has
+
+```text
+h-2a+1 >= r+2.
+```
+
+Thus the exact canonical root-free residual obeys
+
+```text
+CanRFFlag_{crit(d,B)}(A)
+ <=
+ sum_{(S,lambda) critical, Z empty}
+   ((h-a+1)/(h-2a+1)) binom(h,a)
+ <=
+ sum_{(S,lambda) critical, Z empty}
+   ((h+1)/(r+2)) binom(h,a).                  (PF2-gap-rf-top)
+```
+
+This replaces the crude incidence bound
+`sum_{e=1}^a binom(h,e) <= h binom(h-1,a-1)` whenever the residual width
+`r` is large.  The remaining root-free task can therefore be stratified by
+denominator width: wide residual denominators have only a gap-weighted
+top-level cost, while any counterexample carrying a near-ambient loss must
+come from small-width root-free certificates.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

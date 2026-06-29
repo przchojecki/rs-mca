@@ -6155,6 +6155,30 @@ branching factor is introduced by iterating the descent.  Moreover
 \]
 so the weighted ledger is a sufficient top-level proxy for the sharper exact
 canonical residual.
+The exact canonical ledger also has a denominator-gap top bound.  For a
+root-free critical certificate, put \(g=h_\lambda-r_\lambda\) and
+\(a=\lfloor(g-1)/2\rfloor\).  Since
+\[
+  \frac{\binom{h_\lambda}{e}}{\binom{h_\lambda}{e+1}}
+  =\frac{e+1}{h_\lambda-e}
+  \le\frac{a}{h_\lambda-a+1}\qquad(0\le e<a),
+\]
+the lower tail is geometrically dominated by its top level:
+\[
+  \sum_{e=1}^a\binom{h_\lambda}{e}
+  \le
+  \frac{h_\lambda-a+1}{h_\lambda-2a+1}\binom{h_\lambda}{a}.
+\]
+Moreover \(h_\lambda-2a+1\ge r_\lambda+2\), so
+\[
+  CanRFFlag_{\mathrm{crit}(d,B)}(A)
+  \le
+  \sum_{\substack{(S,\lambda)\ {\rm critical}\\Z_{S,\lambda}^{\perp}=\emptyset}}
+  \frac{h_\lambda+1}{r_\lambda+2}\binom{h_\lambda}{a}.
+\]
+Thus wide residual denominators pay only a gap-weighted top-level cost; a
+counterexample retaining a near-ambient loss must be concentrated in small
+root-free residual widths.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots
