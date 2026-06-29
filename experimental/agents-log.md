@@ -75,8 +75,11 @@ Keep entries concise and link to the relevant files.
   norm-power exceptions are classified as constant norm or quadratic
   square-norm; constant norm is charged to the fixed-root/product-Mobius
   line-packet ledger, while nonconstant square norm has only the quadratic
-  norm-filter Fourier coefficient as a possible large term.  Pushing divisors
-  down by the slope-cover norm shows that, after those norm exceptions, the
+  norm-filter Fourier coefficient as a possible large term.  The
+  positive-parity square-norm branch gets the genus-free norm-outside bound
+  `(e-2)|D|+O_e(sqrt(p))`; only the negative-parity square-norm branch remains
+  a slope-line obstruction.  Pushing divisors down by the slope-cover norm
+  shows that, after those norm exceptions, the
   only cover-level power branches left are the anti-diagonal ratio terms
   `chi^a(r_+/r_-)`; the anti-ratio has degree at most four and the same
   square class as `B_R/Q_R`, so after square-norm is isolated only the cubic
@@ -99,7 +102,8 @@ Keep entries concise and link to the relevant files.
   filter isolates the outside-root dependence on the slope line and gives a
   genus-free fallback bound from the rational map `B_R/Q_R`, with explicit
   noncancellation branches.  The constant-norm exception is not new geometry,
-  and the square-norm exception is now reduced to one explicit parity branch.
+  and the square-norm exception is now split into a bounded positive-parity
+  branch and one explicit negative-parity obstruction.
   The norm-pushforward obstruction localizes the remaining cover-level
   obstruction to anti-norm ratio terms, and the anti-ratio square-class
   reduction removes every noncubic order after square-norm is isolated.  The

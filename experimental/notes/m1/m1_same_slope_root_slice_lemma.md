@@ -2235,10 +2235,25 @@ Z_R^{norm-out}
 ```
 
 If `epsilon=+1`, the quadratic part of the norm filter saves an additional
-`|D|` worth of slopes.  If `epsilon=-1`, the norm filter alone gives no
-proportional saving; this is the only surviving slope-line square-norm
-obstruction and must be handled by the cover-level `r_+` sums or by a further
-algebraic charge.
+`|D|` worth of slopes:
+
+```text
+epsilon=+1  =>  N_R^{+,-}(D)
+ <= (e-2)|D| + C_e sqrt(p) + O_e(1).                (RKSQ+)
+```
+
+For `e=2` this gives no main term, in agreement with the index-two
+sheet-symmetry closure below.  If `epsilon=-1`, the norm filter alone gives
+the full slope-line main term
+
+```text
+epsilon=-1  =>  Z_R^{norm-out}
+ <= e|D| + C_e sqrt(p) + O_e(1),                    (RKSQ-)
+```
+
+so the negative-parity square-norm case is the only surviving slope-line
+square-norm obstruction and must be handled by the cover-level `r_+` sums or
+by a further algebraic charge.
 
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
@@ -2510,11 +2525,14 @@ N_R^{+,-}(D) <= 2(1-1/e)|D| + C_e sqrt(p) + O_e(1).  (RKBD')
 ```
 
 Combining the norm-power, anti-ratio, and rational-cubic reductions gives the
-classified per-core form needed downstream.  After the fixed-zero-root branch,
-constant-norm line-packet branch, and square-norm parity branch have been
-charged or isolated:
+classified per-core form needed downstream.  After the fixed-zero-root branch
+and constant-norm line-packet branch have been charged, and after the
+negative-parity square-norm branch has been separately isolated:
 
 ```text
+positive-parity square-norm branch:
+  N_R^{+,-}(D) <= (e-2)|D| + C_e sqrt(p) + O_e(1),
+
 geometrically integral genus-one branch:
   N_R^{+,-}(D) <= (1-1/e)|D| + C_e sqrt(p) + O_e(1),
 
@@ -2530,10 +2548,12 @@ index-two branch away from the two square gates:
                                                               (RKCLASS)
 ```
 
-The first line uses that genus-one covers have no genuine cover-level power
-branch after the norm exceptions.  The second line is exactly the rational
-cubic coefficient ledger (RKCUBBD).  The third is the older split-square
-fallback; it is kept separate because the split cover has two rational sheets.
+The positive-parity square-norm line is the genus-free norm-outside injection
+(RKSQ+).  The genus-one line uses that genus-one covers have no genuine
+cover-level power branch after the norm exceptions.  The rational cubic line
+is exactly the rational cubic coefficient ledger (RKCUBBD).  The split-square
+line is the older split-square fallback; it is kept separate because the split
+cover has two rational sheets.
 
 An unordered mixed split pair contributes to exactly one of the two ordered
 cover points `(z,Y)` and `(z,-Y)`, and repeated-root points contribute
@@ -2704,9 +2724,10 @@ cover-ratio power branches after those norm exceptions, reduces the
 anti-diagonal obstruction further to the cubic ratio branch, shows that a
 genuine cubic no-cancellation term forces the rational-cover locus, gives the
 explicit rational-cubic coefficient ledger (RKCUBBD), packages the resulting
-per-core classified bound (RKCLASS), and gives the local max-degree bound and
-average-collinearity corollary above, including the packet-level
-higher-exchange ledger substitution.
+per-core classified bound (RKCLASS), including the positive-parity square-norm
+norm-filter bound, and gives the local max-degree bound and average-collinearity
+corollary above, including the packet-level higher-exchange ledger
+substitution.
 
 ## Verification
 

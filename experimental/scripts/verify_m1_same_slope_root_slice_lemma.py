@@ -4622,6 +4622,26 @@ def check_boundary_core_rational_cubic_ledger() -> None:
         assert Fraction(1, index) * index == 1
 
 
+def check_boundary_core_square_norm_parity_ledger() -> None:
+    for index in range(2, 31):
+        if index % 2:
+            continue
+        positive_parity_slope_coefficient = Fraction(index - 2, index)
+        negative_parity_slope_coefficient = Fraction(index, index)
+
+        assert positive_parity_slope_coefficient == Fraction(
+            index - 1 - 1,
+            index,
+        )
+        assert negative_parity_slope_coefficient == Fraction(
+            index - 1 - (-1),
+            index,
+        )
+        assert positive_parity_slope_coefficient * index == index - 2
+        assert negative_parity_slope_coefficient * index == index
+        assert positive_parity_slope_coefficient <= negative_parity_slope_coefficient
+
+
 def check_boundary_core_classified_per_core_bound() -> None:
     for index in range(2, 31):
         generic_cover_coefficient = Fraction(index - 1, index * index)
@@ -4635,10 +4655,15 @@ def check_boundary_core_classified_per_core_bound() -> None:
         assert genus_one_as_domain == Fraction(index - 1, index)
         assert rational_cubic_as_domain == 1
         assert split_square_as_domain == 2 * Fraction(index - 1, index)
+        if index % 2 == 0:
+            positive_square_norm_as_domain = index - 2
+            assert positive_square_norm_as_domain >= 0
+            assert positive_square_norm_as_domain <= index
 
         if index == 2:
             # The sheet-symmetry closure improves the generic nonsplit branch
             # from (1-1/e)|D| to |D|/2.
+            assert index - 2 == 0
             assert Fraction(1, 2) <= genus_one_as_domain
             assert Fraction(1, 1) <= split_square_as_domain
         else:
@@ -4886,6 +4911,7 @@ def main() -> None:
     check_boundary_core_anti_ratio_reduction()
     check_boundary_core_cubic_anti_ratio_genus_gate()
     check_boundary_core_rational_cubic_ledger()
+    check_boundary_core_square_norm_parity_ledger()
     check_boundary_core_classified_per_core_bound()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
