@@ -3,7 +3,8 @@
 **Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / TWO-EXCHANGE PLANE LIFT /
 FULL ELEMENTARY PACKET LIFT / RULED-CORE DICHOTOMY / RULED-CORE COLLAPSE /
 HIGHER-SLACK LIFT / TRIANGLE CLASSIFICATION / TOP-PACKET LIFT /
-TOP-PACKET LEDGER / SIMULTANEOUS KERNEL RECURSION / AUDIT.
+TOP-PACKET LEDGER / SIMULTANEOUS KERNEL RECURSION / HYPERPLANE-FIBER
+REDUCTION / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -372,6 +373,59 @@ p-alpha s+alpha^2=0,
 
 equivalently `(x-alpha)(y-alpha)=0`.  This is exactly the fixed-root line
 removed in the two-root classification below.
+
+## One-Root Fibers of Hyperplane Packets
+
+Every coefficient hyperplane also has a one-root fiber dichotomy.  Keep
+`H(a,b)` as above, and fix a monic `(h-1)`-root factor
+
+```text
+Q_d(X)=X^{h-1}+d_{h-2}X^{h-2}+...+d_0.
+```
+
+Put `d_{h-1}=1` and `d_{-1}=0`.  The one-root extensions through `Q_d` are
+
+```text
+P_y(X)=(X-y)Q_d(X)
+      =X^h+c_{h-1}(y)X^{h-1}+...+c_0(y),
+```
+
+with
+
+```text
+c_m(y)=d_{m-1}-y d_m,        0<=m<h.             (HFIB)
+```
+
+Therefore the hyperplane equation on this fiber is affine-linear in `y`:
+
+```text
+b+sum_m a_m c_m(y)
+ =
+ (b+sum_m a_m d_{m-1}) - y (sum_m a_m d_m).      (HLINE)
+```
+
+Consequently a fixed core `Q_d` has either at most one extension in `H(a,b)`,
+or the whole affine one-root line `{(X-y)Q_d : y in F}` lies in `H(a,b)`.  The
+second case is exactly the pair of lower-degree equations
+
+```text
+sum_m a_m d_m=0,
+b+sum_m a_m d_{m-1}=0.                            (HFULL)
+```
+
+Thus a codimension-one rank-defect packet cannot contain an accidental
+one-exchange edge.  If two same-slope `h`-exchange locators in such a packet
+share an `(h-1)` core, then the whole one-root affine fiber through that core
+is in the packet.  In the Hankel landing problem this full fiber is charged by
+the one-exchange root-slice lift already proved above:
+
+```text
+L_z(ell_R Q_d)=0,        L_z(X ell_R Q_d)=0,
+```
+
+equivalently to the lifted `(t+1,j-1)` Hankel core on `ell_R Q_d`.  After
+these full one-root fibers are charged, the residual part of every
+codimension-one coefficient-hyperplane packet has no one-exchange edges.
 
 ## Two-Root Line Classification
 
@@ -1025,8 +1079,9 @@ that non-collinear same-slope two-exchange planes lift to `(t+2,j-2)` Hankel
 cores, that full affine-rank `h`-exchange elementary packets lift to
 `(t+h,j-h)` Hankel cores, identifies the affine-span normal form for
 rank-defect elementary packets, gives the fixed-root criterion for
-codimension-one coefficient hyperplanes, and shows that residual two-root
-lines are fixed-root, fixed-sum, or
+codimension-one coefficient hyperplanes, proves the one-root fiber dichotomy
+for coefficient hyperplanes, and shows that residual two-root lines are
+fixed-root, fixed-sum, or
 product-Mobius packets,
 classifies the ruled determinant core into fixed-slope, inactive, and rank-one
 moving-slope cases for abstract affine pencils, proves the Hankel shift
@@ -1050,10 +1105,10 @@ checks the subtraction identity over sampled small prime fields and exhaustively
 checks the row-wise linear-map implication in small dimensions.  It checks the
 higher-slack lift identity (LIFT), the two-exchange full-plane lift (PLIFT),
 the full elementary packet lift (HLIFT), the two-root line classification, the
-affine-span normal form for rank-defect packets, the quadratic determinant
-the fixed-root hyperplane criterion, the quadratic determinant formula (DET2),
-and the "three roots imply ruled" criterion in sampled small prime fields, then
-stress-tests the abstract
+affine-span normal form for rank-defect packets, the fixed-root hyperplane
+criterion, the hyperplane one-root fiber dichotomy, the quadratic determinant
+formula (DET2), and the "three roots imply ruled"
+criterion in sampled small prime fields, then stress-tests the abstract
 ruled-core dichotomy and the Hankel ruled-core collapse.  It also checks the
 Johnson-graph star/top triangle classification, the top-packet lift identity
 (TOP1), the distinct-slope implication (TOPK), and the top-packet edge/triangle

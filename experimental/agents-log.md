@@ -50,6 +50,27 @@ Keep entries concise and link to the relevant files.
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
 
+### 2026-06-29 - M1 coefficient-hyperplane fiber dichotomy
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / AUDIT.
+- **What is being added:** A codimension-one coefficient hyperplane now has a
+  one-root fiber dichotomy: along any fixed monic `(h-1)` core, its equation is
+  affine-linear in the new root `y`, so the fiber has at most one extension
+  unless the whole affine one-root line lies in the hyperplane.
+- **How it is useful:** In the killed same-slope packet setting, a full
+  one-root line is exactly a root-slice event and lifts to the `(t+1,j-1)`
+  Hankel core.  After charging these full fibers, residual hyperplane packets
+  have no one-exchange edges, tightening the rank-defect packet filtration.
+- **What to do next:** Use this fiber dichotomy when attacking the remaining
+  non-evaluation hyperplane packets and their different-slope/two-exchange
+  ledgers.
+
 ### 2026-06-29 - M1 same-slope one-exchange root-slice lemma
 
 - **Agent/model:** AllenGrahamHart / Codex.

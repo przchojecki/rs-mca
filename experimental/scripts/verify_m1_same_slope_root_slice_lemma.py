@@ -15,7 +15,8 @@ identity exactly in small prime fields and stress-tests the row implication.
 It also checks the two-exchange full-plane lift, t=2 determinant-gate formula,
 ruled-core collapse, triangle classification, and top-packet lift identities.
 The simultaneous top-kernel recursion is checked by the same padded-row
-identity applied to both syndrome rows.
+identity applied to both syndrome rows.  Rank-defect hyperplane fibers are
+checked by the affine-linear one-root extension formula.
 """
 
 from __future__ import annotations
@@ -714,6 +715,102 @@ def check_fixed_root_hyperplane_criterion() -> None:
                     in_line = (prod - alpha * s + alpha * alpha) % p == 0
                     has_root = x == alpha or y == alpha
                     assert in_line == has_root, (p, alpha, x, y, s, prod)
+
+
+def check_hyperplane_one_root_fiber_dichotomy() -> None:
+    rng = Random(20260707)
+
+    for p in (5, 7, 11, 17):
+        for h_exchange in range(1, 6):
+            if p ** (h_exchange - 1) <= 2000:
+                cores = [
+                    list(coeffs) + [1]
+                    for coeffs in product(range(p), repeat=h_exchange - 1)
+                ]
+            else:
+                cores = [
+                    [rng.randrange(p) for _ in range(h_exchange - 1)] + [1]
+                    for _ in range(400)
+                ]
+
+            hyperplanes: list[tuple[tuple[int, ...], int]] = []
+            if p == 5 and h_exchange <= 3:
+                hyperplanes = [
+                    (coeffs, constant)
+                    for coeffs in product(range(p), repeat=h_exchange)
+                    if any(coeff != 0 for coeff in coeffs)
+                    for constant in range(p)
+                ]
+            else:
+                for _ in range(400):
+                    coeffs = tuple(rng.randrange(p) for _ in range(h_exchange))
+                    if all(coeff == 0 for coeff in coeffs):
+                        coeffs = (1,) + coeffs[1:]
+                    hyperplanes.append((coeffs, rng.randrange(p)))
+
+            for core in cores:
+                for coeffs, constant in hyperplanes:
+                    line_constant = (
+                        constant
+                        + sum(
+                            coeffs[m] * (core[m - 1] if m > 0 else 0)
+                            for m in range(h_exchange)
+                        )
+                    ) % p
+                    line_slope = sum(
+                        coeffs[m] * core[m] for m in range(h_exchange)
+                    ) % p
+
+                    passing_roots: list[int] = []
+                    for y in range(p):
+                        extension = tuple(mul_x_minus_y(core, y, p)[:-1])
+                        formula_value = (line_constant - y * line_slope) % p
+                        direct_value = (
+                            constant
+                            + sum(coeffs[m] * extension[m] for m in range(h_exchange))
+                        ) % p
+                        assert direct_value == formula_value, (
+                            p,
+                            h_exchange,
+                            core,
+                            coeffs,
+                            constant,
+                            y,
+                            extension,
+                            direct_value,
+                            formula_value,
+                        )
+                        if direct_value == 0:
+                            passing_roots.append(y)
+
+                    if len(passing_roots) >= 2:
+                        assert line_constant == 0 and line_slope == 0, (
+                            p,
+                            h_exchange,
+                            core,
+                            coeffs,
+                            constant,
+                            passing_roots,
+                            line_constant,
+                            line_slope,
+                        )
+                        assert len(passing_roots) == p, (
+                            p,
+                            h_exchange,
+                            core,
+                            coeffs,
+                            constant,
+                            passing_roots,
+                        )
+                    else:
+                        assert len(passing_roots) <= 1, (
+                            p,
+                            h_exchange,
+                            core,
+                            coeffs,
+                            constant,
+                            passing_roots,
+                        )
 
 
 def check_two_root_line_classification() -> None:
@@ -1443,6 +1540,7 @@ def main() -> None:
     check_full_elementary_packet_lift()
     check_affine_span_packet_normal_form()
     check_fixed_root_hyperplane_criterion()
+    check_hyperplane_one_root_fiber_dichotomy()
     check_two_root_line_classification()
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()

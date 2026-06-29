@@ -1662,6 +1662,28 @@ nonzero scalar, \((a_0,\ldots,a_{h-1},b)=(1,\alpha,\ldots,\alpha^h)\).  Such
 hyperplanes are charged to the \((h-1)\)-exchange root-slice ledger.  For
 \(h=2\), this is \(p-\alpha s+\alpha^2=0\), equivalently
 \((x-\alpha)(y-\alpha)=0\).
+More generally, every coefficient hyperplane has a one-root fiber dichotomy.
+Fix a monic \((h-1)\)-root factor
+\[
+  Q_d(X)=X^{h-1}+d_{h-2}X^{h-2}+\cdots+d_0
+\]
+and write \(d_{h-1}=1,d_{-1}=0\).  The extension
+\[
+  P_y=(X-y)Q_d
+\]
+has coefficients \(c_m(y)=d_{m-1}-yd_m\), so the hyperplane equation restricts
+to
+\[
+  b+\sum_m a_m c_m(y)
+  =
+  \Bigl(b+\sum_m a_m d_{m-1}\Bigr)-y\sum_m a_m d_m .
+\]
+Thus a fixed \((h-1)\)-core has at most one extension in the hyperplane unless
+the whole affine one-root line lies there.  In the killed same-slope packet
+setting, such a full line is exactly a one-exchange root slice and lifts to the
+\((t+1,j-1)\) Hankel core.  After these full one-root fibers are charged, a
+codimension-one coefficient-hyperplane packet has no residual one-exchange
+edges.
 
 The residual two-root lines are exactly the expected
 models: if
