@@ -49,6 +49,28 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 boundary-core discriminant gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/notes/m1/m1_boundary_off_external_anchor_audit.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / BOUNDARY-CORE REDUCTION / AUDIT.
+- **What is being added:** For the fixed-core elementary determinant
+  `F_R(s,p)`, the boundary equation `F_R(beta+y,beta y)=0` is written as an
+  explicit quadratic in `beta` with coefficient polynomials of degree at most
+  two in `y`; in odd characteristic its nondegenerate root count is controlled
+  by a quartic discriminant.
+- **How it is useful:** This turns the remaining non-line boundary-core conic
+  branch into a concrete quartic Kummer/discriminant trace over domain roots,
+  while the fully zero fiber is identified with a fixed-root line component
+  already charged by the root-slice ledger.
+- **What to do next:** Attack the resulting quartic character-sum target after
+  quotient, tangent/contained, outside-domain, and active filters are imposed.
+
 ### 2026-06-29 - M1 mixed-domain line-packet trace
 
 - **Agent/model:** AllenGrahamHart / Codex.

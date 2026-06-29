@@ -247,6 +247,34 @@ Thus, for a fixed core `R`, every non-fixed line packet contributes at most
 packet partner escapes the domain.  The degenerate `mu=0` case is exactly the
 fixed-root line already charged by the boundary/root-slice ledger.
 
+The remaining conic case can be written as a one-variable discriminant target.
+Write
+
+```text
+F_R(s,p)=f_20 s^2+f_11 sp+f_02 p^2+f_10 s+f_01 p+f_00.
+```
+
+For fixed `y in D\R`,
+
+```text
+F_R(beta+y,beta y)=A_R(y) beta^2+B_R(y) beta+C_R(y),
+```
+
+with
+
+```text
+A_R(y)=f_20+f_11 y+f_02 y^2,
+B_R(y)=f_10+(2f_20+f_01)y+f_11 y^2,
+C_R(y)=f_00+f_10 y+f_20 y^2.
+```
+
+In odd characteristic, nondegenerate fibers are counted by the quartic
+discriminant `Disc_R(y)=B_R(y)^2-4A_R(y)C_R(y)`.  The fully zero quadratic is
+exactly the fixed-root line component `p=y s-y^2`, already charged; the
+outside-domain and active filters can only shrink the resulting root count.
+Thus the residual non-line boundary-core problem is a quartic
+Kummer/discriminant trace over the domain roots.
+
 ## Integration Decision
 
 The full PR was not merged wholesale.  It included a very large generated
@@ -281,7 +309,7 @@ This note does not prove the all-line M1 polynomial packing theorem.  It gives
 per-shadow quadratic slope/anchor gates, the shadow-fiber reduction, and the
 fixed-anchor boundary-core fiber reduction after fixed-slope boundary slices
 are charged, plus the fixed-core degree-two graph form and the non-fixed
-line-packet mixed-trace formulas.  It does not bound the total active
-domain-core image or prove a bidegree-incidence point count, does not give a
-leaderboard row, and does not change any public MCA or interleaved-list
-threshold.
+line-packet mixed-trace formulas, and the quadratic/discriminant anchor gate.
+It does not bound the total active domain-core image or prove the needed
+quartic character-sum cancellation, does not give a leaderboard row, and does
+not change any public MCA or interleaved-list threshold.

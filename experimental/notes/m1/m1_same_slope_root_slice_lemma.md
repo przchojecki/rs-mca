@@ -1693,6 +1693,45 @@ packets contribute only pairs `beta=c+mu/(y-c)`.  Hence, over a fixed core
 `R`, a non-fixed line packet contributes at most `n-j+2` one-outside
 boundary-core pairs, exactly the escaped-root trace of its packet involution.
 
+The complementary conic case has an equally explicit anchor gate.  Write the
+ordinary elementary determinant as
+
+```text
+F_R(s,p)=f_20 s^2+f_11 sp+f_02 p^2+f_10 s+f_01 p+f_00.
+```
+
+For a fixed domain root `y`, the external-anchor equation is the quadratic
+
+```text
+F_R(beta+y,beta y)
+ = A_R(y) beta^2+B_R(y) beta+C_R(y),              (BQ)
+```
+
+where
+
+```text
+A_R(y)=f_20+f_11 y+f_02 y^2,
+B_R(y)=f_10+(2f_20+f_01)y+f_11 y^2,
+C_R(y)=f_00+f_10 y+f_20 y^2.
+```
+
+Thus in odd characteristic the unfiltered number of external-anchor solutions
+over `y` is governed by the quartic discriminant
+
+```text
+Disc_R(y)=B_R(y)^2-4A_R(y)C_R(y).                (BDISC)
+```
+
+If `A_R(y) != 0`, the number of anchor roots in the ambient field is
+`1+chi(Disc_R(y))`, with `chi(0)=0`.  If `A_R(y)=0` but `B_R(y) != 0`, there
+is one anchor root; if `A_R(y)=B_R(y)=0` and `C_R(y) != 0`, there are none.
+The remaining case `A_R(y)=B_R(y)=C_R(y)=0` means that `F_R` vanishes on the
+fixed-root line `p=y s-y^2`, so that fixed-root component is charged by the
+root-slice ledger.  The outside-domain, distinct-root, and active filters only
+remove roots from this count.  Consequently the uncharged boundary-core conic
+target is a concrete quartic Kummer/discriminant trace over `D\R`, rather than
+a separate bidegree-incidence problem.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -1829,7 +1868,8 @@ incidence as a bidegree-two graph cut out by an explicit `(2,2)` determinant,
 identifies that determinant as the pullback of the ordinary two-root elementary
 determinant, identifies the mixed-domain trace of each surviving non-fixed
 line packet as the escaped-root graph of the fixed-sum or product-Mobius
-involution, and gives the local max-degree bound and average-collinearity
+involution, reduces the complementary fixed-core conic trace to the quartic
+discriminant gate above, and gives the local max-degree bound and average-collinearity
 corollary above, including the packet-level
 higher-exchange ledger substitution.
 
@@ -1861,4 +1901,5 @@ also checks the boundary-off external-anchor corollary and boundary-shadow
 fiber reduction over sampled small domains, including the rank-one
 anchor-recovery, quadratic slope-gate, conic-secant anchor-gate, and
 fixed-anchor boundary-core fiber, fixed-core graph, and bidegree determinant
-pullback criteria, and the mixed-domain line-packet trace formulas.
+pullback criteria, the mixed-domain line-packet trace formulas, and the
+boundary-core quadratic/discriminant anchor gate.

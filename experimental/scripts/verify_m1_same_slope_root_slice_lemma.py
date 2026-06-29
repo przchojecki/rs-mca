@@ -28,6 +28,8 @@ fixed-core bidegree determinant normal form.  The average-ledger and
 boundary-core closure substitutions are checked as exact rational inequalities.
 The mixed-domain trace formulas for fixed-sum and product-Mobius line packets
 are checked against direct elementary-plane incidence.
+The boundary-core quadratic anchor gate and quartic discriminant root count are
+checked in sampled odd prime fields.
 """
 
 from __future__ import annotations
@@ -2563,7 +2565,46 @@ def check_boundary_fixed_anchor_core_fibers() -> None:
                     )
 
 
+Poly1 = dict[int, int]
 Poly2 = dict[tuple[int, int], int]
+
+
+def poly1_add_scaled(target: Poly1, source: Poly1, scale: int, p: int) -> None:
+    for degree, coeff in source.items():
+        target[degree] = (target.get(degree, 0) + scale * coeff) % p
+        if target[degree] == 0:
+            del target[degree]
+
+
+def poly1_mul(left: Poly1, right: Poly1, p: int) -> Poly1:
+    out: Poly1 = {}
+    for left_degree, left_coeff in left.items():
+        for right_degree, right_coeff in right.items():
+            degree = left_degree + right_degree
+            out[degree] = (out.get(degree, 0) + left_coeff * right_coeff) % p
+            if out[degree] == 0:
+                del out[degree]
+    return out
+
+
+def eval_poly1(poly: Poly1, value: int, p: int) -> int:
+    return sum(coeff * pow(value, degree, p) for degree, coeff in poly.items()) % p
+
+
+def poly1_from_terms(terms: tuple[tuple[int, int], ...], p: int) -> Poly1:
+    out: Poly1 = {}
+    for degree, coeff in terms:
+        out[degree] = (out.get(degree, 0) + coeff) % p
+        if out[degree] == 0:
+            del out[degree]
+    return out
+
+
+def quadratic_character(value: int, p: int) -> int:
+    value %= p
+    if value == 0:
+        return 0
+    return 1 if pow(value, (p - 1) // 2, p) == 1 else -1
 
 
 def poly_add_scaled(target: Poly2, source: Poly2, scale: int, p: int) -> None:
@@ -2625,6 +2666,40 @@ def elementary_two_root_det_coeffs(
     return out
 
 
+def boundary_anchor_quadratic_coeffs(elementary_poly: Poly2, p: int) -> tuple[Poly1, Poly1, Poly1]:
+    assert all(s_degree + p_degree <= 2 for s_degree, p_degree in elementary_poly)
+    f_20 = elementary_poly.get((2, 0), 0)
+    f_11 = elementary_poly.get((1, 1), 0)
+    f_02 = elementary_poly.get((0, 2), 0)
+    f_10 = elementary_poly.get((1, 0), 0)
+    f_01 = elementary_poly.get((0, 1), 0)
+    f_00 = elementary_poly.get((0, 0), 0)
+    a_poly = poly1_from_terms(((0, f_20), (1, f_11), (2, f_02)), p)
+    b_poly = poly1_from_terms(
+        ((0, f_10), (1, 2 * f_20 + f_01), (2, f_11)),
+        p,
+    )
+    c_poly = poly1_from_terms(((0, f_00), (1, f_10), (2, f_20)), p)
+    return a_poly, b_poly, c_poly
+
+
+def boundary_anchor_discriminant(a_poly: Poly1, b_poly: Poly1, c_poly: Poly1, p: int) -> Poly1:
+    out = poly1_mul(b_poly, b_poly, p)
+    poly1_add_scaled(out, poly1_mul(a_poly, c_poly, p), -4, p)
+    return out
+
+
+def quadratic_root_count(a_coeff: int, b_coeff: int, c_coeff: int, p: int) -> int:
+    if a_coeff % p != 0:
+        discriminant = (b_coeff * b_coeff - 4 * a_coeff * c_coeff) % p
+        return 1 + quadratic_character(discriminant, p)
+    if b_coeff % p != 0:
+        return 1
+    if c_coeff % p != 0:
+        return 0
+    return p
+
+
 def eval_boundary_core_vectors(
     vectors: tuple[tuple[int, int], tuple[int, int], tuple[int, int]],
     beta: int,
@@ -2651,6 +2726,11 @@ def check_boundary_core_bidegree_determinant() -> None:
         for u_vectors, v_vectors in samples:
             poly = boundary_core_bidegree_coeffs(u_vectors, v_vectors, p)
             elementary_poly = elementary_two_root_det_coeffs(u_vectors, v_vectors, p)
+            anchor_a, anchor_b, anchor_c = boundary_anchor_quadratic_coeffs(
+                elementary_poly,
+                p,
+            )
+            anchor_disc = boundary_anchor_discriminant(anchor_a, anchor_b, anchor_c, p)
             assert all(beta_deg <= 2 and y_deg <= 2 for beta_deg, y_deg in poly), (
                 p,
                 u_vectors,
@@ -2662,6 +2742,14 @@ def check_boundary_core_bidegree_determinant() -> None:
                 u_vectors,
                 v_vectors,
                 elementary_poly,
+            )
+            assert all(degree <= 2 for degree in anchor_a), (p, elementary_poly, anchor_a)
+            assert all(degree <= 2 for degree in anchor_b), (p, elementary_poly, anchor_b)
+            assert all(degree <= 2 for degree in anchor_c), (p, elementary_poly, anchor_c)
+            assert all(degree <= 4 for degree in anchor_disc), (
+                p,
+                elementary_poly,
+                anchor_disc,
             )
             for beta in range(p):
                 for y in range(p):
@@ -2690,6 +2778,24 @@ def check_boundary_core_bidegree_determinant() -> None:
                         elementary_poly,
                         direct,
                     )
+                    a_value = eval_poly1(anchor_a, y, p)
+                    b_value = eval_poly1(anchor_b, y, p)
+                    c_value = eval_poly1(anchor_c, y, p)
+                    quad_value = (
+                        a_value * beta * beta + b_value * beta + c_value
+                    ) % p
+                    assert quad_value == direct, (
+                        p,
+                        u_vectors,
+                        v_vectors,
+                        beta,
+                        y,
+                        anchor_a,
+                        anchor_b,
+                        anchor_c,
+                        quad_value,
+                        direct,
+                    )
                     assert eval_poly2(poly, beta, y, p) == eval_poly2(poly, y, beta, p), (
                         p,
                         u_vectors,
@@ -2709,6 +2815,49 @@ def check_boundary_core_bidegree_determinant() -> None:
                             p_value,
                             fixed_root_p,
                         )
+
+            for y in range(p):
+                a_value = eval_poly1(anchor_a, y, p)
+                b_value = eval_poly1(anchor_b, y, p)
+                c_value = eval_poly1(anchor_c, y, p)
+                roots = [
+                    beta
+                    for beta in range(p)
+                    if eval_poly2(
+                        elementary_poly,
+                        (beta + y) % p,
+                        (beta * y) % p,
+                        p,
+                    )
+                    == 0
+                ]
+                expected_root_count = quadratic_root_count(
+                    a_value,
+                    b_value,
+                    c_value,
+                    p,
+                )
+                assert len(roots) == expected_root_count, (
+                    p,
+                    elementary_poly,
+                    y,
+                    a_value,
+                    b_value,
+                    c_value,
+                    roots,
+                    expected_root_count,
+                )
+                if expected_root_count == p:
+                    assert all(
+                        eval_poly2(
+                            elementary_poly,
+                            (beta + y) % p,
+                            (beta * y) % p,
+                            p,
+                        )
+                        == 0
+                        for beta in range(p)
+                    ), (p, elementary_poly, y)
 
 
 def check_nonruled_degree_bound() -> None:
