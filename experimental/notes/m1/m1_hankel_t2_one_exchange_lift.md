@@ -7215,6 +7215,62 @@ absorbed leaf is a width-one constant-direction problem on exactly `s_S+1`
 remaining domain roots.  Hence the fixed-width large-`q_S` obstruction is a
 co-small projective-fiber/fixed-root flag obstruction.
 
+## Width-One Critical Flags Are Co-Small Fiber Cubes
+
+The first low-width case has an exact node-local normal form.  Fix a canonical
+`b=2` node `S` and write the descended projective direction as
+
+```text
+Q_{S,lambda}=bP_S-aQ_S.
+```
+
+A root-free width-one half-height certificate is equivalent to a subset
+
+```text
+O subset D_S^{can},        |O|=s_S+1,
+```
+
+such that the projective line `span(ell_{D_S^{can}\O})` lies in
+`span(P_S,Q_S)`.  In that case
+
+```text
+D_{S,lambda}=D_S^{can}\O,        Q_{S,lambda}=c ell_{D_{S,lambda}},
+        c!=0,        r_lambda=1,        Z_{S,lambda}^{perp}=empty.
+                                                        (PF2-r1-complement)
+```
+
+Conversely, if `r_lambda=1` and `Z_{S,lambda}^{perp}=empty`, then
+`deg R_{S,lambda}<1`, so `R_{S,lambda}=c!=0` and the displayed complement
+description holds with `O=D_S^{can}\D_{S,lambda}`.
+
+Projective fibers at one node are disjoint.  Therefore two distinct width-one
+certificates at the same node would require
+
+```text
+2(q_S-1) <= N_S=q_S+s_S.
+```
+
+Thus if
+
+```text
+q_S>s_S+2,                                      (PF2-r1-unique-range)
+```
+
+there is at most one root-free width-one certificate at `S`.  When it exists,
+its exact canonical flag contribution is the single co-small cube
+
+```text
+sum_{e=1}^{floor((q_S-2)/2)} binom(q_S-1,e).   (PF2-r1-flag-cube)
+```
+
+Consequently, in fixed-surplus large-quotient regimes, the `r=1` obstruction
+is not a family of many collapsed certificates and not a lower residual
+packing problem.  It is one possible co-small projective-fiber flag cube per
+active node, determined by the bounded exceptional complement `O` and the
+condition that `ell_{D_S^{can}\O}` lies in the descended two-dimensional
+direction space.  Closing the width-one branch therefore means excluding or
+charging this co-small fiber cube.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

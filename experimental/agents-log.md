@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 width-one co-small fiber cube
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Identifies every root-free width-one critical
+  certificate with a bounded exceptional complement `O` such that
+  `ell_{D_S^{can}\O}` spans a line in `span(P_S,Q_S)`, and proves uniqueness
+  per node when `q_S>s_S+2`.
+- **How it is useful:** Turns the first low-width obstruction into one possible
+  co-small projective-fiber flag cube per large active node, rather than a
+  diffuse family of collapsed certificates.
+- **What to do next:** Exclude or charge the co-small fiber cube condition,
+  especially by quotient-periodic, tangent/fixed-root, or aperiodic mechanisms.
+
 ### 2026-06-29 - M1 fixed-width absorption normal form
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

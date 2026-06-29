@@ -6288,6 +6288,24 @@ domain is bounded; the large low-width contribution is purely the fixed-root
 flag-lift multiplicity inside the dominant projective fiber.  For \(r=1\),
 \(R_{S,\lambda}\) is constant and \(Q_{S,\lambda}\) is a scalar multiple of
 \(\ell_{D_{S,\lambda}}\).
+More precisely, a root-free width-one certificate at a canonical node \(S\) is
+equivalent to a bounded exceptional complement
+\[
+  O\subset D_S^{can},\qquad |O|=s_S+1,
+\]
+such that \(\operatorname{span}(\ell_{D_S^{can}\setminus O})\subset
+\operatorname{span}(P_S,Q_S)\).  Then
+\[
+  D_{S,\lambda}=D_S^{can}\setminus O,\qquad
+  Q_{S,\lambda}=c\ell_{D_{S,\lambda}},\qquad c\ne0.
+\]
+Two such fibers at the same node are disjoint, so if \(q_S>s_S+2\) there is
+at most one.  Its flag contribution is exactly
+\[
+  \sum_{e=1}^{\lfloor(q_S-2)/2\rfloor}\binom{q_S-1}{e}.
+\]
+Thus the width-one obstruction is a single co-small projective-fiber cube per
+large active node, determined by a bounded exceptional complement.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots
