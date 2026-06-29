@@ -56,7 +56,8 @@ packet intersection gate, support-class palette, endpoint palette, and
 repeated-endpoint gate, double-root endpoint certificate, raw-coefficient
 endpoint certificate, endpoint-discriminant certificate, Hankel-minor
 discriminant certificate, Plucker-minor discriminant certificate,
-endpoint-charge corollary, and packet-count corollary.
+Plucker-chart decomposition, endpoint-charge corollary, and packet-count
+corollary.
 """
 
 from __future__ import annotations
@@ -3152,6 +3153,85 @@ def adjacent_plucker_minors(
     return p01, p12, p02
 
 
+def assert_plucker_chart_decomposition(
+    a_rows: tuple[int, int, int, int],
+    b_rows: tuple[int, int, int, int],
+    index: int,
+    p: int,
+) -> None:
+    p01, p12, p02 = adjacent_plucker_minors(a_rows, b_rows, index, p)
+    if (p02 * p02 - 4 * p01 * p12) % p != 0:
+        return
+
+    row0 = (a_rows[index], b_rows[index])
+    row1 = (a_rows[index + 1], b_rows[index + 1])
+    row2 = (a_rows[index + 2], b_rows[index + 2])
+
+    if p01 != 0:
+        lam = (p02 * pow((2 * p01) % p, -1, p)) % p
+        assert p02 == (2 * p01 * lam) % p, (
+            p,
+            index,
+            a_rows,
+            b_rows,
+            (p01, p12, p02),
+            lam,
+        )
+        assert p12 == (p01 * lam * lam) % p, (
+            p,
+            index,
+            a_rows,
+            b_rows,
+            (p01, p12, p02),
+            lam,
+        )
+    else:
+        assert p02 == 0, (p, index, a_rows, b_rows, (p01, p12, p02))
+        if p12 != 0:
+            assert vec_rank([row1, row2], p) == 2
+            assert vec_is_zero(row0), (
+                p,
+                index,
+                a_rows,
+                b_rows,
+                (p01, p12, p02),
+            )
+        else:
+            assert vec_rank([row0, row1, row2], p) <= 1
+
+    if p12 != 0:
+        mu = (p02 * pow((2 * p12) % p, -1, p)) % p
+        assert p02 == (2 * p12 * mu) % p, (
+            p,
+            index,
+            a_rows,
+            b_rows,
+            (p01, p12, p02),
+            mu,
+        )
+        assert p01 == (p12 * mu * mu) % p, (
+            p,
+            index,
+            a_rows,
+            b_rows,
+            (p01, p12, p02),
+            mu,
+        )
+    else:
+        assert p02 == 0, (p, index, a_rows, b_rows, (p01, p12, p02))
+        if p01 != 0:
+            assert vec_rank([row0, row1], p) == 2
+            assert vec_is_zero(row2), (
+                p,
+                index,
+                a_rows,
+                b_rows,
+                (p01, p12, p02),
+            )
+        else:
+            assert vec_rank([row0, row1, row2], p) <= 1
+
+
 def quadratic_character(value: int, p: int) -> int:
     value %= p
     if value == 0:
@@ -5726,6 +5806,12 @@ def check_boundary_core_square_norm_hankel_minor_discriminants() -> None:
                     b_rows,
                     (p01, p12, p02),
                     expected_poly,
+                )
+                assert_plucker_chart_decomposition(
+                    a_rows,
+                    b_rows,
+                    index,
+                    prime,
                 )
                 double_root = quadratic_double_root(expected_poly, prime)
                 if h2 % prime == 0:

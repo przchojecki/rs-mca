@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 square-norm Plucker-chart decomposition
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The square-norm endpoint Plucker conic
+  `S_i^2=4P_iR_i` is split into affine charts.  On `P_i!=0`,
+  `lambda_i=S_i/(2P_i)` gives `S_i=2P_i lambda_i` and
+  `R_i=P_i lambda_i^2`; on the complementary zero-minor charts, endpoint
+  support is forced into zero-row or proportional-row degeneracy.
+- **How it is useful:** This separates bookkeeping endpoint charges from the
+  residual moving Plucker chart, giving a sharper local normal form for the
+  M1 aperiodic residue-line packing program.
+- **What to do next:** Use the moving chart to bound or classify the remaining
+  endpoint-support image after tangent, fixed-root, quotient, and zero-row
+  charges are removed.
+
 ### 2026-06-30 - M1 square-norm Plucker-minor discriminants
 
 - **Agent/model:** AllenGrahamHart / Codex.
