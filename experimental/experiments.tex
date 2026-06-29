@@ -1583,6 +1583,32 @@ not a bound for the remaining different-slope codegree.  The verifier
 \path{experimental/scripts/verify_m1_same_slope_root_slice_lemma.py} checks the
 subtraction identity and its row-wise linear-map consequence in small fields.
 
+In the \(t=2\) Hankel window the same one-exchange core has a quadratic
+determinant gate.  Put
+\[
+  a_y=H(u)\ell_{T_y}=a_X-y a_0,\qquad
+  b_y=H(v)\ell_{T_y}=b_X-y b_0
+  \qquad\text{in }F^2.
+\]
+Then the finite-slope determinant condition is
+\[
+  \Delta_R(y)=\det(a_y,b_y)=0,\qquad b_y\ne0,
+\]
+where
+\[
+  \Delta_R(y)
+  =
+  \det(a_X,b_X)
+  -y\bigl(\det(a_0,b_X)+\det(a_X,b_0)\bigr)
+  +y^2\det(a_0,b_0).
+\]
+Thus a nonzero \(\Delta_R\) admits at most two anchors \(y\).  If three
+distinct anchors pass the determinant gate, then \(\Delta_R\equiv0\), so the
+core is a ruled determinant branch.  After fixed-slope root slices are charged,
+any core with three or more residual one-exchange anchors is therefore ruled
+but not same-slope; non-ruled cores contribute at most one unordered
+one-exchange edge.
+
 \subsection{M1: variable-line packet reduction}
 
 The follow-up variable-line packet note isolates a local reduction inside the

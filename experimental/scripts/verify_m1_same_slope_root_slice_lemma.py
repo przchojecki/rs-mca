@@ -12,6 +12,7 @@ then
 Consequently any linear row that kills both endpoint locators also kills
 ell_R; substituting back then kills X ell_R.  This script checks that
 identity exactly in small prime fields and stress-tests the row implication.
+It also checks the t=2 determinant-gate formula.
 """
 
 from __future__ import annotations
@@ -30,6 +31,10 @@ def mul_x_minus_y(poly: list[int], y: int, p: int) -> list[int]:
 
 def dot(row: tuple[int, ...], vec: list[int], p: int) -> int:
     return sum(a * b for a, b in zip(row, vec)) % p
+
+
+def det2(u: tuple[int, int], v: tuple[int, int], p: int) -> int:
+    return (u[0] * v[1] - u[1] * v[0]) % p
 
 
 def check_difference_identity() -> None:
@@ -75,9 +80,40 @@ def check_row_implication() -> None:
                             assert dot(row, x_core, p) == 0
 
 
+def check_t2_determinant_gate() -> None:
+    rng = Random(20260629)
+    for p in (5, 7, 17, 31):
+        for _ in range(1000):
+            a_x = (rng.randrange(p), rng.randrange(p))
+            a_0 = (rng.randrange(p), rng.randrange(p))
+            b_x = (rng.randrange(p), rng.randrange(p))
+            b_0 = (rng.randrange(p), rng.randrange(p))
+
+            coeff_0 = det2(a_x, b_x, p)
+            coeff_1 = (-(det2(a_0, b_x, p) + det2(a_x, b_0, p))) % p
+            coeff_2 = det2(a_0, b_0, p)
+
+            roots: list[int] = []
+            for y in range(p):
+                a_y = ((a_x[0] - y * a_0[0]) % p, (a_x[1] - y * a_0[1]) % p)
+                b_y = ((b_x[0] - y * b_0[0]) % p, (b_x[1] - y * b_0[1]) % p)
+                direct = det2(a_y, b_y, p)
+                formula = (coeff_0 + coeff_1 * y + coeff_2 * y * y) % p
+                assert direct == formula, (p, y, direct, formula)
+                if direct == 0:
+                    roots.append(y)
+
+            ruled = coeff_0 == coeff_1 == coeff_2 == 0
+            if len(roots) >= 3:
+                assert ruled, (p, roots, (coeff_0, coeff_1, coeff_2))
+            if not ruled:
+                assert len(roots) <= 2, (p, roots, (coeff_0, coeff_1, coeff_2))
+
+
 def main() -> None:
     check_difference_identity()
     check_row_implication()
+    check_t2_determinant_gate()
     print("same-slope root-slice lemma verifier passed")
 
 

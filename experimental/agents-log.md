@@ -62,10 +62,13 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** Same-slope one-exchange collisions in the
   Hankel-pencil landing equation force a whole fixed-slope root slice:
   two extensions through a common `(j-1)` core imply
-  `L_z ell_R=L_z(X ell_R)=0`.
+  `L_z ell_R=L_z(X ell_R)=0`.  In the `t=2` gate, anchors through the same
+  core also satisfy a quadratic determinant equation, so three anchors force a
+  ruled determinant branch.
 - **How it is useful:** After fixed-slope root slices are charged, the
-  residual one-exchange graph has only different-slope edges, so same-slope
-  multiplicity is not counted again as an aperiodic M1 codegree obstruction.
+  residual one-exchange graph has only different-slope edges, and after ruled
+  determinant cores are separated, each core contributes at most one unordered
+  one-exchange edge.
 - **What to do next:** Bound the remaining different-slope one-exchange or
   two-exchange codegree ledgers after quotient-periodic, tangent/contained,
   and root-slice charges.

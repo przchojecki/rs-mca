@@ -105,12 +105,59 @@ exactly the different-slope one-exchange ledger after root-slice charging.
 This is useful because it prevents same-slope multiplicity from being counted
 again as an aperiodic residual obstruction.
 
+## The `t=2` Determinant Gate
+
+In the `t=2` Hankel window there is a second elementary one-exchange
+separation.  For a fixed `(j-1)`-core `R`, put
+
+```text
+a_y=H(u)ell_{T_y},        b_y=H(v)ell_{T_y}        in F^2.
+```
+
+Since `ell_{T_y}=Xell_R-yell_R`, there are vectors
+`a_X,a_0,b_X,b_0 in F^2` such that
+
+```text
+a_y=a_X-y a_0,        b_y=b_X-y b_0.
+```
+
+The finite-slope determinant gate is
+
+```text
+Delta_R(y)=det(a_y,b_y)=0,        b_y != 0.
+```
+
+The determinant is a polynomial of degree at most two:
+
+```text
+Delta_R(y)
+ =
+ det(a_X,b_X)
+ - y(det(a_0,b_X)+det(a_X,b_0))
+ + y^2 det(a_0,b_0).                              (DET2)
+```
+
+Consequently, if `Delta_R` is not the zero polynomial, at most two anchors
+`y in F` can pass the determinant gate.  If three distinct anchors pass the
+determinant gate, then `Delta_R` vanishes identically and the core `R` lies in
+a ruled determinant branch:
+
+```text
+det(a_y,b_y)=0        for every y in F.
+```
+
+After fixed-slope root slices have been charged, this says that any fixed core
+supporting three or more residual one-exchange anchors must be ruled but not
+same-slope.  Non-ruled cores contribute at most one unordered one-exchange edge
+through that core.
+
 ## Non-Claims
 
 This lemma does not bound the remaining different-slope one-exchange graph, the
-two-exchange packet-edge ledger, or the one-outside boundary image.  It only
-proves that same-slope one-exchange collisions belong to the fixed-slope
-root-slice ledger.
+ruled determinant branch, the two-exchange packet-edge ledger, or the
+one-outside boundary image.  It only proves that same-slope one-exchange
+collisions belong to the fixed-slope root-slice ledger and that non-ruled
+`t=2` one-exchange cores have at most two determinant anchors.
 
 ## Verification
 
@@ -121,4 +168,6 @@ python3 experimental/scripts/verify_m1_same_slope_root_slice_lemma.py
 ```
 
 checks the subtraction identity over sampled small prime fields and exhaustively
-checks the row-wise linear-map implication in small dimensions.
+checks the row-wise linear-map implication in small dimensions.  It also checks
+the quadratic determinant formula (DET2) and the "three roots imply ruled"
+criterion in sampled small prime fields.
