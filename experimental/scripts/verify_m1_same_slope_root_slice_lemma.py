@@ -39,14 +39,16 @@ checked to be only empty, points, affine lines, or the full plane.
 The full-subgroup quartic Kummer gate is checked by factoring degree-four
 discriminants and testing the exact lcm(e,2)-power degeneracy condition.
 The slope-side fixed-core recurrence chart is checked by direct finite-field
-linear algebra.
+linear algebra, and its domain/outside subgroup filter is checked by direct
+character expansion on sampled finite-field covers.
 """
 
 from __future__ import annotations
 
+from cmath import exp
 from fractions import Fraction
 from itertools import combinations, product
-from math import comb, gcd
+from math import comb, gcd, pi
 from random import Random
 
 
@@ -3498,6 +3500,197 @@ def check_boundary_core_slope_recurrence_gate() -> None:
                 ), (prime, c, alpha, solutions)
 
 
+def subgroup_character_value(
+    value: int,
+    power: int,
+    index: int,
+    log_table: dict[int, int],
+) -> complex:
+    if value == 0:
+        return 0j
+    residue = (power * (log_table[value] % index)) % index
+    return exp(2j * pi * residue / index)
+
+
+def subgroup_indicator_via_characters(
+    value: int,
+    index: int,
+    log_table: dict[int, int],
+) -> complex:
+    return sum(
+        subgroup_character_value(value, power, index, log_table)
+        for power in range(index)
+    ) / index
+
+
+def check_boundary_core_slope_cover_kummer_filter() -> None:
+    rng = Random(20260719)
+    for prime in (17, 19, 29):
+        log_table = discrete_log_table(prime)
+        indices = [index for index in range(2, 7) if (prime - 1) % index == 0]
+        samples = [
+            (
+                tuple(rng.randrange(prime) for _ in range(4)),
+                tuple(rng.randrange(prime) for _ in range(4)),
+            )
+            for _ in range(200)
+        ]
+        for a_rows, b_rows in samples:
+            c_polys = tuple(
+                poly1_from_terms(((0, a_rows[idx]), (1, b_rows[idx])), prime)
+                for idx in range(4)
+            )
+            q_poly = poly1_sub(
+                poly1_mul(c_polys[0], c_polys[2], prime),
+                poly1_mul(c_polys[1], c_polys[1], prime),
+                prime,
+            )
+            a_poly = poly1_sub(
+                poly1_mul(c_polys[0], c_polys[3], prime),
+                poly1_mul(c_polys[1], c_polys[2], prime),
+                prime,
+            )
+            b_poly = poly1_sub(
+                poly1_mul(c_polys[1], c_polys[3], prime),
+                poly1_mul(c_polys[2], c_polys[2], prime),
+                prime,
+            )
+            theta_poly = poly1_sub(
+                poly1_mul(a_poly, a_poly, prime),
+                poly1_mul(
+                    poly1_from_terms(((0, 4),), prime),
+                    poly1_mul(q_poly, b_poly, prime),
+                    prime,
+                ),
+                prime,
+            )
+
+            if q_poly:
+                q_zero_slopes = [
+                    z_value
+                    for z_value in range(prime)
+                    if eval_poly1(q_poly, z_value, prime) == 0
+                ]
+                assert len(q_zero_slopes) <= 2, (
+                    prime,
+                    a_rows,
+                    b_rows,
+                    q_poly,
+                    q_zero_slopes,
+                )
+
+            if theta_poly:
+                theta_zero_slopes = [
+                    z_value
+                    for z_value in range(prime)
+                    if eval_poly1(theta_poly, z_value, prime) == 0
+                ]
+                assert len(theta_zero_slopes) <= 4, (
+                    prime,
+                    a_rows,
+                    b_rows,
+                    theta_poly,
+                    theta_zero_slopes,
+                )
+
+            plus_zero_points = 0
+            minus_zero_points = 0
+            for z_value in range(prime):
+                q_value = eval_poly1(q_poly, z_value, prime)
+                if q_value == 0:
+                    continue
+                a_value = eval_poly1(a_poly, z_value, prime)
+                b_value = eval_poly1(b_poly, z_value, prime)
+                theta_value = eval_poly1(theta_poly, z_value, prime)
+                roots_y = [
+                    y_value
+                    for y_value in range(prime)
+                    if y_value * y_value % prime == theta_value
+                ]
+                inv_q = pow(q_value, -1, prime)
+                inv_2q = pow((2 * q_value) % prime, -1, prime)
+                s_value = a_value * inv_q % prime
+                p_value = b_value * inv_q % prime
+                for y_value in roots_y:
+                    r_plus = (a_value + y_value) * inv_2q % prime
+                    r_minus = (a_value - y_value) * inv_2q % prime
+                    assert (r_plus + r_minus) % prime == s_value, (
+                        prime,
+                        z_value,
+                        y_value,
+                        r_plus,
+                        r_minus,
+                        s_value,
+                    )
+                    assert r_plus * r_minus % prime == p_value, (
+                        prime,
+                        z_value,
+                        y_value,
+                        r_plus,
+                        r_minus,
+                        p_value,
+                    )
+                    if r_plus == 0:
+                        plus_zero_points += 1
+                    if r_minus == 0:
+                        minus_zero_points += 1
+
+                    for index in indices:
+                        plus_in_domain = (
+                            r_plus != 0 and log_table[r_plus] % index == 0
+                        )
+                        minus_in_domain = (
+                            r_minus != 0 and log_table[r_minus] % index == 0
+                        )
+                        direct = 1 if plus_in_domain and not minus_in_domain else 0
+                        char_plus = subgroup_indicator_via_characters(
+                            r_plus,
+                            index,
+                            log_table,
+                        )
+                        char_minus = subgroup_indicator_via_characters(
+                            r_minus,
+                            index,
+                            log_table,
+                        )
+                        expanded = char_plus * (1 - char_minus)
+                        assert abs(expanded.imag) < 1e-8, (
+                            prime,
+                            index,
+                            z_value,
+                            y_value,
+                            r_plus,
+                            r_minus,
+                            expanded,
+                        )
+                        assert abs(expanded.real - direct) < 1e-8, (
+                            prime,
+                            index,
+                            z_value,
+                            y_value,
+                            r_plus,
+                            r_minus,
+                            direct,
+                            expanded,
+                        )
+
+            if q_poly and theta_poly and b_poly:
+                assert plus_zero_points <= 2, (
+                    prime,
+                    a_rows,
+                    b_rows,
+                    b_poly,
+                    plus_zero_points,
+                )
+                assert minus_zero_points <= 2, (
+                    prime,
+                    a_rows,
+                    b_rows,
+                    b_poly,
+                    minus_zero_points,
+                )
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -3731,6 +3924,7 @@ def main() -> None:
     check_boundary_discriminant_degeneracy_classification()
     check_boundary_quartic_kummer_power_gate()
     check_boundary_core_slope_recurrence_gate()
+    check_boundary_core_slope_cover_kummer_filter()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     check_boundary_core_closure_substitution()

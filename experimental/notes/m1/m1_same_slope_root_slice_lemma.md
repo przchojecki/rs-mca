@@ -8,6 +8,7 @@ REDUCTION / AFFINE-FIBER REDUCTION / MOVING-FIBER DIMENSION DROP /
 FIBER-COUNTING COROLLARY / BOUNDARY-CORE SLOPE-FIBER INJECTION /
 BOUNDARY QUARTIC KUMMER GATE / ROOT-CORE RECURRENCE CHART /
 ROOT-CORE SLOPE COVER /
+ROOT-CORE DOMAIN KUMMER FILTER /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
@@ -2039,6 +2040,56 @@ points and infinity, independent of `j`, depth, or the ambient domain.  The
 requirements that one root lie in `D\R`, the other outside `D`, and the
 extension be active are deleting filters on this bounded-cover chart.
 
+The domain/outside filter also has bounded conductor.  Assume here that `D`
+is the index-`e` multiplicative subgroup of `F_p^*`, with quotient character
+`chi` of order `e` and kernel `D`, and extend all multiplicative characters
+by `0` at the origin.  On the cover `C_R`, away from the denominator divisor
+`Q_R=0`, put
+
+```text
+r_+(z,Y)=(A_R(z)+Y)/(2Q_R(z)),
+r_-(z,Y)=(A_R(z)-Y)/(2Q_R(z)).
+```
+
+The ordered cover point `(z,Y)` has the plus-root in `D` and the minus-root
+outside `D` exactly when
+
+```text
+1_D(r_+) (1-1_D(r_-)) = 1,
+```
+
+where
+
+```text
+1_D(x)= e^{-1} sum_{a=0}^{e-1} chi^a(x).          (RKEXP)
+```
+
+Thus the filtered root-core count is an explicit finite sum of Kummer traces
+on the genus-at-most-one curve `C_R`:
+
+```text
+sum_{(z,Y) in C_R, Q_R(z) != 0}
+  chi^a(r_+(z,Y)) chi^b(r_-(z,Y)).
+```
+
+The zero-pole support of each `r_+` or `r_-` is bounded independently of
+`j` and of the recursion depth.  Finite poles lie over the at-most-two roots
+of `Q_R`; finite zeros lie over the at-most-two roots of `B_R`, since
+`r_+=0` or `r_-=0` implies `Y=+-A_R` and hence `Q_RB_R=0`.  The remaining
+support is at infinity, and the cover itself has at most four finite branch
+points.  Consequently every non-geometrically-trivial summand in (RKEXP) has
+standard Kummer-Weil size `O_e(sqrt p)` with an absolute conductor constant
+for fixed subgroup index `e`.  The only no-cancellation cases are the explicit
+power-divisor congruences for products
+
+```text
+r_+^a r_-^b
+```
+
+on this bounded divisor support.  Hence the domain/outside filter introduces
+no multiplicative depth loss: it leaves a finite list of bounded-degree power
+branches plus bounded-conductor genus-zero/genus-one character sums.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -2185,9 +2236,10 @@ full-plane lift, gives the exact full-subgroup quartic character expansion
 and its Kummer power-divisor gate, closes the non-line fixed-core conic branch
 with the ledger multiplier (KROOT), identifies the slope-side root-core
 recurrence chart and its quartic discriminant numerator, realizes the residual
-split slopes as a genus-at-most-one cover of the slope line, and gives the local
-max-degree bound and average-collinearity corollary above, including the
-packet-level higher-exchange ledger substitution.
+split slopes as a genus-at-most-one cover of the slope line, pushes the
+domain/outside filter to bounded-conductor Kummer traces on that cover, and
+gives the local max-degree bound and average-collinearity corollary above,
+including the packet-level higher-exchange ledger substitution.
 
 ## Verification
 
@@ -2227,4 +2279,5 @@ checks the degree-four Kummer power gate for the full-subgroup quartic
 character terms on structured monomial-square discriminants and random
 quartics over small prime fields, and checks the slope-side recurrence chart
 for fixed root cores, including its denominator-zero fixed-root/full-plane
-classification, quartic degree bound, and split-root cover criterion.
+classification, quartic degree bound, split-root cover criterion, and exact
+finite-field subgroup-character expansion for the domain/outside filter.

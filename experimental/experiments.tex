@@ -2200,6 +2200,25 @@ are filtered points on a degree-four double cover of the slope line.  Its
 squarefree reduction has genus at most one; if \(\Theta_R\) is a square the
 roots are rational functions of \(z\), and otherwise the standard Kummer-Weil
 bound has depth-independent conductor.
+The domain/outside filter does not change this conductor scale.  If
+\(D=(\mathbb F_p^*)^e\) and \(\chi\) is the quotient character of order \(e\),
+then on the cover, away from \(Q_R=0\),
+\[
+  r_\pm(z,Y)=\frac{A_R(z)\pm Y}{2Q_R(z)},\qquad
+  1_D(x)=\frac1e\sum_{a=0}^{e-1}\chi^a(x),
+\]
+with characters extended by zero at \(x=0\).  Hence the condition
+\(r_+\in D\), \(r_-\notin D\) is an explicit finite sum of Kummer traces
+\[
+  \sum_{(z,Y)} \chi^a(r_+(z,Y))\chi^b(r_-(z,Y))
+\]
+on the same genus-zero/genus-one cover.  The finite poles lie over the at most
+two roots of \(Q_R\); finite zeros lie over the at most two roots of \(B_R\);
+the remaining support is at infinity and at the at-most-four branch points of
+\(\Theta_R\).  Thus every non-power summand has \(O_e(\sqrt p)\) size by the
+standard curve Kummer-Weil bound with conductor independent of depth.  The only
+no-cancellation cases are explicit power-divisor congruences for
+\(r_+^a r_-^b\) on this bounded divisor support.
 
 Consequently, after fixed-slope root slices are removed, the residual \(t=2\)
 one-exchange graph has maximum degree at most \(j\): each locator has only

@@ -64,12 +64,14 @@ Keep entries concise and link to the relevant files.
   unique rational functions of `z`, and the split-root condition is a quartic
   numerator in `z`.  Equivalently, after charged denominator-zero cases are
   removed, residual split slopes are filtered points on the bounded cover
-  `Y^2=Theta_R(z)` with `deg Theta_R<=4`.
+  `Y^2=Theta_R(z)` with `deg Theta_R<=4`.  The subgroup domain/outside filter
+  expands into Kummer traces of `r_+^a r_-^b` on this same cover.
 - **How it is useful:** The denominator-zero solvable case is exactly a
   fixed-root line or the full-plane lift, both already charged.  Thus the
   residual non-line root-core target is a one-variable slope-cover problem
-  of genus at most one after squarefree reduction, with explicit
-  domain/outside filters.
+  of genus at most one after squarefree reduction.  The filter has bounded
+  zero-pole support, so non-power character terms have depth-independent
+  conductor under the standard Kummer-Weil input.
 - **What to do next:** Use this recurrence chart when attacking the active
   `(j-2)` root-core image after quotient, tangent, fixed-root, and full-plane
   charges.
