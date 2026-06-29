@@ -1618,12 +1618,8 @@ where
 \]
 Thus a nonzero \(\Delta_R\) admits at most two anchors \(y\).  If three
 distinct anchors pass the determinant gate, then \(\Delta_R\equiv0\), so the
-core is a ruled determinant branch.  After fixed-slope root slices are charged,
-any core with three or more residual one-exchange anchors is therefore ruled
-but not same-slope; non-ruled cores contribute at most one unordered
-one-exchange edge.
-
-The ruled determinant branch also has a local dichotomy.  If
+core is a ruled determinant branch.  The ruled branch first has the abstract
+affine dichotomy: if
 \[
   \det(a_X-y a_0,\ b_X-y b_0)\equiv0,
 \]
@@ -1639,14 +1635,23 @@ lie in a single output line.  In the last case write
 \[
   a_y=\alpha(y)c,\qquad b_y=\beta(y)c .
 \]
-After the fixed-slope cases are removed, \(\alpha\) and \(\beta\) are not
-proportional, and the active finite-slope map
+For arbitrary affine pencils this last case could be a moving-slope branch, but
+the Hankel shift structure rules it out here.  If
 \[
-  y\longmapsto -\alpha(y)/\beta(y)
+  c_i(w)={\rm row}_i(H_{3,j-1}(w)\ell_R),\qquad i=0,1,2,
 \]
-is injective on the anchors with \(\beta(y)\ne0\).  Hence a ruled core that
-survives fixed-slope charging is not a same-slope multiplicity source: it is a
-rank-one moving-slope branch with at most one anchor per finite slope.
+then
+\[
+  H_{2,j}(w)\ell_{T_y}
+  =
+  (c_1(w)-yc_0(w),\ c_2(w)-yc_1(w)).
+\]
+A common output line imposes two recurrence equations on
+\((c_0(w),c_1(w),c_2(w))\), whose solution space is one-dimensional.  Applying
+this to \(w=u\) and \(w=v\) makes the two Hankel pencils proportional, unless
+\(b_y=0\) identically.  Therefore every active ruled Hankel core is already a
+fixed finite-slope core; after fixed-slope root slices are charged, ruled cores
+contribute no residual one-exchange edges.
 
 The same note also records the exact one-exchange triangle dichotomy in the
 Johnson graph.  Three \(j\)-set locators that are pairwise one-exchange are
@@ -1660,10 +1665,9 @@ or a top-packet triangle
 \]
 Thus every active star triangle is precisely a three-anchor event through one
 \((j-1)\)-core, hence a ruled determinant core by the quadratic gate above.
-After ruled cores are charged or removed, residual one-exchange triangles are
-therefore top-packet triangles.  After only fixed-slope charging, residual
-stars can occur only in the rank-one moving-slope branch, with distinct finite
-slopes on the three anchors.
+Since ruled Hankel cores collapse to fixed-slope or inactive cores, residual
+one-exchange triangles after fixed-slope root-slice charging are therefore
+top-packet triangles.
 
 Top packets then lift losslessly to a \(t=1\) Hankel kernel.  If
 \[
@@ -1690,18 +1694,17 @@ common lifted \(t=1\) kernel.  This turns the top-packet triangle residual into
 a higher-slack kernel target rather than a fresh one-exchange multiplicity
 phenomenon.
 
-Consequently, after fixed-slope root slices and ruled determinant cores are
-removed, the residual \(t=2\) one-exchange graph has maximum degree at most
-\(j\): each locator has only \(j\) possible \((j-1)\)-cores, and each non-ruled
-core supplies at most one neighbor.  In particular the unordered residual edge
-count is at most \(j|A|/2\), and also at most \(\binom{|D|}{j-1}\) by counting
-cores.
+Consequently, after fixed-slope root slices are removed, the residual \(t=2\)
+one-exchange graph has maximum degree at most \(j\): each locator has only
+\(j\) possible \((j-1)\)-cores, and each core supplies at most one residual
+neighbor.  In particular the unordered residual edge count is at most
+\(j|A|/2\), and also at most \(\binom{|D|}{j-1}\) by counting cores.
 Plugging this into the average support-collinearity ledger
 \path{experimental/notes/m1/m1_average_support_collinearity.md}, and writing
-the line-field size as \(Q\), gives for the non-ruled residual family \(A_{\rm
-nr}\), \(M=|A_{\rm nr}|\),
+the line-field size as \(Q\), gives for the residual family \(A_{\rm res}\),
+\(M=|A_{\rm res}|\),
 \[
-  B_2^{\max}(A_{\rm nr})
+  B_2^{\max}(A_{\rm res})
   \le
   \frac{1-p_z}{M p_z}+\frac{4jQ}{M},
   \qquad
@@ -1709,9 +1712,9 @@ nr}\), \(M=|A_{\rm nr}|\),
 \]
 Thus this branch contributes \(o(1)\) to the average missing-slope density
 whenever \(M p_z\to\infty\) and \(M/(jQ)\to\infty\).  The remaining M1
-obstruction must come from small residual family size, root-slice or ruled-core
-charges, or higher packet/two-exchange structure; this is not yet a worst-case
-packing theorem.
+obstruction must come from small residual family size, root-slice charges, or
+higher packet/two-exchange structure; this is not yet a worst-case packing
+theorem.
 
 \subsection{M1: variable-line packet reduction}
 

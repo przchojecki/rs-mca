@@ -12,7 +12,8 @@ then
 Consequently any linear row that kills both endpoint locators also kills
 ell_R; substituting back then kills X ell_R.  This script checks that
 identity exactly in small prime fields and stress-tests the row implication.
-It also checks the t=2 determinant-gate formula.
+It also checks the t=2 determinant-gate formula, ruled-core collapse, triangle
+classification, and top-packet lift identities.
 """
 
 from __future__ import annotations
@@ -319,6 +320,54 @@ def check_ruled_core_dichotomy() -> None:
                     seen[z] = y
 
 
+def hankel_core_value(seq: tuple[int, int, int], y: int, p: int) -> tuple[int, int]:
+    return ((seq[1] - y * seq[0]) % p, (seq[2] - y * seq[1]) % p)
+
+
+def check_hankel_ruled_core_collapse() -> None:
+    rng = Random(20260630)
+    for p in (3, 5, 7, 17, 31):
+        samples: list[tuple[tuple[int, int, int], tuple[int, int, int]]] = []
+        if p <= 7:
+            triples = list(product(range(p), repeat=3))
+            samples = [(u_seq, v_seq) for u_seq in triples for v_seq in triples]
+        else:
+            samples = [
+                (
+                    (rng.randrange(p), rng.randrange(p), rng.randrange(p)),
+                    (rng.randrange(p), rng.randrange(p), rng.randrange(p)),
+                )
+                for _ in range(5000)
+            ]
+
+        for u_seq, v_seq in samples:
+            if any(
+                det2(hankel_core_value(u_seq, y, p), hankel_core_value(v_seq, y, p), p)
+                != 0
+                for y in range(p)
+            ):
+                continue
+
+            active_slopes: set[int] = set()
+            for y in range(p):
+                a_y = hankel_core_value(u_seq, y, p)
+                b_y = hankel_core_value(v_seq, y, p)
+                z = slope_for_active_pair(a_y, b_y, p)
+                if z is not None:
+                    active_slopes.add(z)
+
+            assert len(active_slopes) <= 1, (p, u_seq, v_seq, active_slopes)
+            if active_slopes:
+                z0 = next(iter(active_slopes))
+                for y in range(p):
+                    a_y = hankel_core_value(u_seq, y, p)
+                    b_y = hankel_core_value(v_seq, y, p)
+                    assert (
+                        (a_y[0] + z0 * b_y[0]) % p == 0
+                        and (a_y[1] + z0 * b_y[1]) % p == 0
+                    ), (p, u_seq, v_seq, y, z0, a_y, b_y)
+
+
 def check_one_exchange_triangle_classification() -> None:
     for n in range(3, 9):
         points = tuple(range(n))
@@ -464,6 +513,7 @@ def main() -> None:
     check_higher_slack_root_slice_lift()
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()
+    check_hankel_ruled_core_collapse()
     check_one_exchange_triangle_classification()
     check_top_packet_lifted_kernel()
     check_nonruled_degree_bound()

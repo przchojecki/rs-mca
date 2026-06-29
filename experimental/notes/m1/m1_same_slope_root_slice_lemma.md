@@ -1,7 +1,8 @@
 # M1 Same-Slope One-Exchange Root-Slice Lemma
 
 **Status:** PROVED-LOCAL / ROOT-SLICE REDUCTION / RULED-CORE DICHOTOMY /
-HIGHER-SLACK LIFT / TRIANGLE CLASSIFICATION / TOP-PACKET LIFT / AUDIT.
+RULED-CORE COLLAPSE / HIGHER-SLACK LIFT / TRIANGLE CLASSIFICATION /
+TOP-PACKET LIFT / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -278,6 +279,74 @@ For affine `alpha,beta`, the left-minus-right expression is
 exactly because the two affine functions are not proportional.  Hence
 `y_1=y_2`, proving injectivity.
 
+## Hankel Shift Collapse of Ruled Cores
+
+For the actual Hankel one-exchange pencils, the rank-one moving-slope branch
+from the abstract affine dichotomy cannot occur.  Keep the `(j-1)` core `R`
+and write, for any syndrome vector `w`,
+
+```text
+c_i(w)=row_i(H_{3,j-1}(w)ell_R),        i=0,1,2.
+```
+
+Then
+
+```text
+H_{2,j}(w)ell_{T_y}
+ =
+ (c_1(w)-y c_0(w),  c_2(w)-y c_1(w)).             (SHIFT)
+```
+
+Suppose the determinant core is ruled:
+
+```text
+det(a_y,b_y)=0        for every y.
+```
+
+Then either `b_y=0` for every `y`, or there is a fixed finite slope
+`z_0 in F` such that
+
+```text
+a_y+z_0 b_y=0        for every y.                 (HC)
+```
+
+Thus every active ruled core is already a fixed-slope root-slice core.  After
+fixed-slope root slices have been charged, ruled determinant cores contribute
+no residual one-exchange edges.
+
+### Proof
+
+By the ruled-core dichotomy above, it remains only to eliminate the rank-one
+moving-slope case.  In that case all vectors
+
+```text
+a_X,a_0,b_X,b_0
+```
+
+lie in one output line `C subset F^2`.  Choose a nonzero linear form
+`m=(m_0,m_1)` killing `C`.  For `w=u` and `w=v`, equation (SHIFT) lies in `C`
+for every `y`, so
+
+```text
+m_0(c_1(w)-y c_0(w))+m_1(c_2(w)-y c_1(w))=0
+        for every y.
+```
+
+Therefore
+
+```text
+m_0 c_0(w)+m_1 c_1(w)=0,
+m_0 c_1(w)+m_1 c_2(w)=0.                         (REC)
+```
+
+The two equations (REC) have a one-dimensional solution space in
+`(c_0,c_1,c_2)`, since `m != 0`.  Hence the triples
+`(c_0(u),c_1(u),c_2(u))` and `(c_0(v),c_1(v),c_2(v))` are proportional.  By
+(SHIFT), the affine vector pencils `a_y` and `b_y` are proportional by the same
+constant for every `y`.  If the `v` triple is zero then `b_y=0` for every `y`;
+otherwise the proportionality gives one fixed finite slope `z_0` satisfying
+(HC).  This rules out a genuine moving-slope ruled Hankel core.
+
 ## One-Exchange Triangle Classification
 
 There is also no third combinatorial source of one-exchange triangles.  Let
@@ -303,11 +372,9 @@ Then exactly one of the following holds.
 
 Consequently, in the `t=2` active determinant graph, every star triangle is a
 three-anchor event through one `(j-1)` core.  By (DET2), such a core is ruled.
-After ruled determinant cores have been charged or removed, every residual
-one-exchange triangle is therefore a top-packet triangle.  After only
-fixed-slope root-slice charging, a residual star triangle can occur only inside
-the rank-one moving-slope ruled branch above, and its three anchors have three
-distinct finite slopes.
+Since ruled cores collapse to fixed-slope or inactive Hankel cores, every
+residual one-exchange triangle after fixed-slope root-slice charging is
+therefore a top-packet triangle.
 
 ### Proof
 
@@ -424,11 +491,11 @@ Subtracting gives `(z_x-z_y)B=0`, hence `B=0`, and then `A=0`.  This proves
 different slopes by the root-slice lemma, so the final residual statement
 follows.
 
-## Non-Ruled One-Exchange Degree Bound
+## Residual One-Exchange Degree Bound
 
-Let `A_nr` be a residual `t=2` active locator family after fixed-slope root
-slices and ruled determinant cores have been charged or removed.  Let
-`G_1(A_nr)` be its one-exchange graph:
+Let `A_res` be a residual `t=2` active locator family after fixed-slope root
+slices have been charged or removed.  Let `G_1(A_res)` be its one-exchange
+graph:
 
 ```text
 T ~ T'        iff        |T cap T'|=j-1.
@@ -437,25 +504,28 @@ T ~ T'        iff        |T cap T'|=j-1.
 Then every vertex has one-exchange degree at most `j`:
 
 ```text
-Gamma_1(A_nr) <= j.                              (DEG1)
+Gamma_1(A_res) <= j.                             (DEG1)
 ```
 
 Indeed, a locator `T` has exactly `j` possible `(j-1)` cores `R=T\{y}`.  For
-each such core, the non-ruled determinant gate leaves at most two anchors in
-total.  Since one of them is the anchor defining `T`, there is at most one
-neighbor of `T` through that core.  Summing over the `j` cores gives (DEG1).
+each such core, either `Delta_R` is nonzero, in which case the determinant gate
+leaves at most two anchors in total, or `Delta_R` is ruled, in which case the
+Hankel shift collapse makes the core fixed-slope or inactive.  A ruled active
+core with two anchors would have been charged as a fixed-slope root slice, so
+it contributes no residual edge.  Thus each core supplies at most one residual
+neighbor of `T`.  Summing over the `j` cores gives (DEG1).
 
-Equivalently, if `E_1(A_nr)` denotes unordered one-exchange edges, then
+Equivalently, if `E_1(A_res)` denotes unordered one-exchange edges, then
 
 ```text
-E_1(A_nr) <= j |A_nr| / 2,
-E_1(A_nr) <= binom(|D|,j-1).                     (EDGE1)
+E_1(A_res) <= j |A_res| / 2,
+E_1(A_res) <= binom(|D|,j-1).                    (EDGE1)
 ```
 
-The second bound counts cores directly: after ruled cores are removed, each
-core supports at most one unordered edge.  Thus high one-exchange codegree in
-the `t=2` all-line Hankel branch can only come from fixed-slope root slices or
-ruled determinant cores.
+The second bound counts cores directly: after fixed-slope root slices are
+charged, each core supports at most one unordered residual edge.  Thus high
+one-exchange codegree in the `t=2` all-line Hankel branch can only come from
+the fixed-slope root-slice ledger, not from a separate ruled-core residual.
 
 ## Average-Collinearity Ledger Corollary
 
@@ -469,35 +539,34 @@ B_2^max(A) = (1 - p_z)/(M p_z) + (4/M) Gamma_1(A) Q,
         p_z = Q^(-2)(1 - Q^(-2)),     M=|A|.
 ```
 
-Therefore the non-ruled residual family satisfies
+Therefore the residual family after fixed-slope root-slice charging satisfies
 
 ```text
-B_2^max(A_nr) <= (1 - p_z)/(M p_z) + 4jQ/M.      (AVG1)
+B_2^max(A_res) <= (1 - p_z)/(M p_z) + 4jQ/M.     (AVG1)
 ```
 
 Consequently, in any parameter regime where `M p_z -> infinity` and
-`M/(jQ) -> infinity`, the non-ruled one-exchange part contributes
+`M/(jQ) -> infinity`, the residual one-exchange part contributes
 `o(1)` to the missing-slope density in the average-collinearity ledger.  In the
 usual heuristic scale `p_z ~ Q^(-2)`, this means the two visible average-ledger
 requirements are `M >> Q^2` and `M >> jQ`.
 
 This does not prove the worst-case M1 packing theorem.  It identifies the
 remaining average-ledger obstruction after this local reduction: small residual
-family size, fixed-slope root slices, ruled determinant cores, or higher
-packet/two-exchange structure.
+family size, fixed-slope root slices, or higher packet/two-exchange structure.
 
 ## Non-Claims
 
-This lemma does not bound the remaining different-slope one-exchange graph, the
-rank-one moving-slope ruled branch, top-packet triangles, the two-exchange
-packet-edge ledger, or the one-outside boundary image.  It only proves that
+This lemma does not bound top-packet triangles, the two-exchange packet-edge
+ledger, or the one-outside boundary image.  It only proves that
 same-slope one-exchange collisions belong to the fixed-slope root-slice ledger,
 that such root slices lift to `(t+1,j-1)` Hankel cores,
 classifies the ruled determinant core into fixed-slope, inactive, and rank-one
-moving-slope cases, shows that star triangles are exactly ruled-core events
-while residual top-packet edges lift to a common `t=1` Hankel kernel, shows
-that non-ruled `t=2` one-exchange cores have at most two determinant anchors,
-and gives the local max-degree bound and average-collinearity corollary above.
+moving-slope cases for abstract affine pencils, proves the Hankel shift
+collapse that eliminates the moving-slope ruled residual, shows that star
+triangles are exactly ruled-core events while residual top-packet edges lift to
+a common `t=1` Hankel kernel, and gives the local max-degree bound and
+average-collinearity corollary above.
 
 ## Verification
 
@@ -511,7 +580,6 @@ checks the subtraction identity over sampled small prime fields and exhaustively
 checks the row-wise linear-map implication in small dimensions.  It checks the
 higher-slack lift identity (LIFT), the quadratic determinant formula (DET2) and
 the "three roots imply ruled" criterion in sampled small prime fields, then
-stress-tests the ruled-core dichotomy, the injectivity of the residual rank-one
-moving-slope branch, and the Johnson-graph star/top triangle classification.
-Finally, it checks the top-packet lift identity (TOP1) and the distinct-slope
-implication (TOPK).
+stress-tests the abstract ruled-core dichotomy and the Hankel ruled-core
+collapse.  It also checks the Johnson-graph star/top triangle classification,
+the top-packet lift identity (TOP1), and the distinct-slope implication (TOPK).
