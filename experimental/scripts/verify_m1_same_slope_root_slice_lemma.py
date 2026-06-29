@@ -53,8 +53,8 @@ cubic anti-ratio powers, plus the rational-cubic coefficient ledger and final
 classified per-core bound, including the negative square-norm collapse to
 one-root sums, the square-map coset packets, and the degree-one square-map
 packet intersection gate, support-class palette, endpoint palette, and
-repeated-endpoint gate, double-root endpoint certificate, endpoint-charge
-corollary, and packet-count corollary.
+repeated-endpoint gate, double-root endpoint certificate, raw-coefficient
+endpoint certificate, endpoint-charge corollary, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -3063,6 +3063,30 @@ def finite_double_root_points(poly: Poly1, p: int) -> set[int]:
     }
 
 
+def raw_square_norm_endpoint_points(
+    numerator: Poly1,
+    denominator: Poly1,
+    p: int,
+) -> tuple[set[int], set[int]]:
+    numerator_derivative = poly1_derivative(numerator, p)
+    denominator_derivative = poly1_derivative(denominator, p)
+    zero_points = {
+        point
+        for point in range(p)
+        if eval_poly1(numerator, point, p) == 0
+        and eval_poly1(numerator_derivative, point, p) == 0
+        and eval_poly1(denominator, point, p) != 0
+    }
+    pole_points = {
+        point
+        for point in range(p)
+        if eval_poly1(denominator, point, p) == 0
+        and eval_poly1(denominator_derivative, point, p) == 0
+        and eval_poly1(numerator, point, p) != 0
+    }
+    return zero_points, pole_points
+
+
 def quadratic_character(value: int, p: int) -> int:
     value %= p
     if value == 0:
@@ -5360,6 +5384,105 @@ def check_boundary_core_square_norm_double_root_certificate() -> None:
                 assert eval_poly1(reduced_numerator, root, prime) != 0
 
 
+def check_boundary_core_square_norm_raw_endpoint_certificate() -> None:
+    rng = Random(20260803)
+    for prime in (5, 7, 11, 17):
+        polys = [
+            poly1_from_list(list(coeffs), prime)
+            for coeffs in product(range(prime), repeat=3)
+        ]
+        polys = [poly for poly in polys if poly]
+        if prime <= 5:
+            pairs = [
+                (numerator, denominator)
+                for numerator in polys
+                for denominator in polys
+            ]
+        else:
+            pairs = [(rng.choice(polys), rng.choice(polys)) for _ in range(1200)]
+
+        linear_bases = [
+            poly1_from_list([constant, slope], prime)
+            for constant in range(prime)
+            for slope in range(prime)
+        ]
+        linear_bases = [poly for poly in linear_bases if poly]
+        for _ in range(240):
+            gamma_num = rng.randrange(1, prime)
+            gamma_den = rng.randrange(1, prime)
+            numerator_base = rng.choice(linear_bases)
+            denominator_base = rng.choice(linear_bases)
+            numerator = {
+                degree: (gamma_num * coeff) % prime
+                for degree, coeff in poly1_mul(
+                    numerator_base,
+                    numerator_base,
+                    prime,
+                ).items()
+            }
+            denominator = {
+                degree: (gamma_den * coeff) % prime
+                for degree, coeff in poly1_mul(
+                    denominator_base,
+                    denominator_base,
+                    prime,
+                ).items()
+            }
+            pairs.append((numerator, denominator))
+            pairs.append((numerator, {0: gamma_den}))
+            pairs.append(({0: gamma_num}, denominator))
+
+        for numerator, denominator in pairs:
+            if not degree_two_square_endpoint_gate(numerator, denominator, prime):
+                continue
+            reduced_numerator, reduced_denominator = reduced_finite_norm_parts(
+                numerator,
+                denominator,
+                prime,
+            )
+            reduced_zero_points = finite_double_root_points(
+                reduced_numerator,
+                prime,
+            )
+            reduced_pole_points = finite_double_root_points(
+                reduced_denominator,
+                prime,
+            )
+            raw_zero_points, raw_pole_points = raw_square_norm_endpoint_points(
+                numerator,
+                denominator,
+                prime,
+            )
+            assert raw_zero_points == reduced_zero_points, (
+                prime,
+                numerator,
+                denominator,
+                raw_zero_points,
+                reduced_zero_points,
+                rational_divisor_exponents(numerator, denominator, prime),
+            )
+            assert raw_pole_points == reduced_pole_points, (
+                prime,
+                numerator,
+                denominator,
+                raw_pole_points,
+                reduced_pole_points,
+                rational_divisor_exponents(numerator, denominator, prime),
+            )
+
+            for root in raw_zero_points:
+                assert eval_poly1(numerator, root, prime) == 0
+                assert eval_poly1(poly1_derivative(numerator, prime), root, prime) == 0
+                assert eval_poly1(denominator, root, prime) != 0
+            for root in raw_pole_points:
+                assert eval_poly1(denominator, root, prime) == 0
+                assert (
+                    eval_poly1(poly1_derivative(denominator, prime), root, prime)
+                    == 0
+                )
+                assert eval_poly1(numerator, root, prime) != 0
+
+
 def check_boundary_core_square_norm_endpoint_charge() -> None:
     rng = Random(20260801)
     for prime in (5, 7, 11, 17):
@@ -5799,6 +5922,7 @@ def main() -> None:
     check_boundary_core_square_norm_endpoint_palette()
     check_boundary_core_square_norm_repeated_endpoint_gate()
     check_boundary_core_square_norm_double_root_certificate()
+    check_boundary_core_square_norm_raw_endpoint_certificate()
     check_boundary_core_square_norm_endpoint_charge()
     check_boundary_core_square_map_packet_count()
     check_boundary_core_classified_per_core_bound()

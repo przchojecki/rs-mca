@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 square-norm raw endpoint certificate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The finite square-norm endpoint certificate is
+  moved from reduced norm factors to the raw recurrence coefficients:
+  zero endpoints satisfy `B_R=B_R'=0, Q_R!=0`, and pole endpoints satisfy
+  `Q_R=Q_R'=0, B_R!=0`.
+- **How it is useful:** This removes cancellation bookkeeping from the global
+  endpoint-support charge.  The moving support image can now be controlled
+  directly by double-root equations in the recurrence polynomials `B_R` and
+  `Q_R`.
+- **What to do next:** Use the raw double-root equations to classify which
+  active root-core families can produce moving square-norm packet supports.
+
 ### 2026-06-30 - M1 square-norm double-root endpoint certificate
 
 - **Agent/model:** AllenGrahamHart / Codex.
