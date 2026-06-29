@@ -9,6 +9,14 @@
       "points": 11750,
       "two_sided_ratio": 3.9816513761
     },
+    "p181_e18": {
+      "beta2_ratio": 3.7679558011,
+      "expected_beta2": 3.7679558011,
+      "expected_two_sided": 3.1817736563,
+      "ok": true,
+      "points": 28406,
+      "two_sided_ratio": 3.1817736563
+    },
     "p43_e6": {
       "beta2_ratio": 3.2558139535,
       "expected_beta2": 3.2558139535,
@@ -32,6 +40,14 @@
       "ok": true,
       "points": 4452,
       "two_sided_ratio": 3.397260274
+    },
+    "p97_e24": {
+      "beta2_ratio": 3.6118420031,
+      "expected_beta2": 3.6118420031,
+      "expected_two_sided": 2.4147368394,
+      "ok": true,
+      "points": 8220,
+      "two_sided_ratio": 2.4147368394
     }
   },
   "extended_trend_e6_p151": {

@@ -43,12 +43,16 @@ STATUS = "EXPERIMENTAL"
 THEOREM_ID = "M1 (BETA_2) beta-pushforward conductor (m1_kummer_weil_import_contract.md, m1_beta_pushforward_spectral_audit.md)"
 OBJECT = "max_{psi,phi!=1} |G_{psi,phi}| / p for the good beta-pushforward, fixed e, growing p"
 
-# audit rows reproduced for validation: (p,e) -> (two_sided/p, beta2/p) from EXPECTED_ROWS
+# audit rows reproduced for validation: (p,e) -> (two_sided/p, beta2/p) from EXPECTED_ROWS.
+# The (181,18) and (97,24) anchors are the round-2 fresh quotient orders e=18,24
+# (fast small-p representatives; their large-p sample peaks live in the note).
 AUDIT_DATAPOINTS = {
     (43, 6): (3.0697674419, 3.2558139535),
     (61, 12): (3.7704918033, 5.0163934426),
     (73, 12): (3.3972602740, 5.5068493151),
     (109, 12): (3.9816513761, 5.6717827398),
+    (181, 18): (3.1817736563, 3.7679558011),
+    (97, 24): (2.4147368394, 3.6118420031),
 }
 
 
