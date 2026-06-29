@@ -38,6 +38,8 @@ Finally, the fixed-core same-slope fibers in the elementary two-root plane are
 checked to be only empty, points, affine lines, or the full plane.
 The full-subgroup quartic Kummer gate is checked by factoring degree-four
 discriminants and testing the exact lcm(e,2)-power degeneracy condition.
+The slope-side fixed-core recurrence chart is checked by direct finite-field
+linear algebra.
 """
 
 from __future__ import annotations
@@ -3284,6 +3286,124 @@ def check_boundary_quartic_kummer_power_gate() -> None:
                 )
 
 
+def check_boundary_core_slope_recurrence_gate() -> None:
+    rng = Random(20260718)
+    for prime in (5, 7, 11, 17):
+        samples = [
+            (
+                tuple(rng.randrange(prime) for _ in range(4)),
+                tuple(rng.randrange(prime) for _ in range(4)),
+            )
+            for _ in range(1000)
+        ]
+        for a_rows, b_rows in samples:
+            u_vectors = tuple((a_rows[idx], a_rows[idx + 1]) for idx in range(3))
+            v_vectors = tuple((b_rows[idx], b_rows[idx + 1]) for idx in range(3))
+            elementary_poly = elementary_two_root_det_coeffs(
+                u_vectors,
+                v_vectors,
+                prime,
+            )
+            for z_value in range(prime):
+                c = tuple(
+                    (a_rows[idx] + z_value * b_rows[idx]) % prime for idx in range(4)
+                )
+                denominator = (c[0] * c[2] - c[1] * c[1]) % prime
+                solutions: list[tuple[int, int]] = []
+                for s_value in range(prime):
+                    for p_value in range(prime):
+                        if (
+                            c[2] - s_value * c[1] + p_value * c[0]
+                        ) % prime == 0 and (
+                            c[3] - s_value * c[2] + p_value * c[1]
+                        ) % prime == 0:
+                            solutions.append((s_value, p_value))
+
+                if denominator != 0:
+                    s_num = (c[0] * c[3] - c[1] * c[2]) % prime
+                    p_num = (c[1] * c[3] - c[2] * c[2]) % prime
+                    inv_den = pow(denominator, -1, prime)
+                    s_value = (s_num * inv_den) % prime
+                    p_value = (p_num * inv_den) % prime
+                    assert solutions == [(s_value, p_value)], (
+                        prime,
+                        a_rows,
+                        b_rows,
+                        z_value,
+                        c,
+                        denominator,
+                        solutions,
+                        s_value,
+                        p_value,
+                    )
+                    theta = (
+                        s_num * s_num - 4 * denominator * p_num
+                    ) % prime
+                    assert (
+                        denominator
+                        * denominator
+                        * (s_value * s_value - 4 * p_value)
+                        - theta
+                    ) % prime == 0, (
+                        prime,
+                        c,
+                        denominator,
+                        s_value,
+                        p_value,
+                        theta,
+                    )
+                    assert (
+                        eval_poly2(elementary_poly, s_value, p_value, prime) == 0
+                    ), (
+                        prime,
+                        a_rows,
+                        b_rows,
+                        z_value,
+                        s_value,
+                        p_value,
+                        elementary_poly,
+                    )
+                    continue
+
+                if not solutions:
+                    continue
+                if c == (0, 0, 0, 0):
+                    assert len(solutions) == prime * prime, (
+                        prime,
+                        a_rows,
+                        b_rows,
+                        z_value,
+                        c,
+                        solutions,
+                    )
+                    continue
+                assert c[0] != 0, (prime, a_rows, b_rows, z_value, c, solutions)
+                alpha = (c[1] * pow(c[0], -1, prime)) % prime
+                assert c[2] == c[0] * alpha * alpha % prime, (
+                    prime,
+                    c,
+                    alpha,
+                )
+                assert c[3] == c[0] * pow(alpha, 3, prime) % prime, (
+                    prime,
+                    c,
+                    alpha,
+                )
+                assert len(solutions) == prime, (
+                    prime,
+                    a_rows,
+                    b_rows,
+                    z_value,
+                    c,
+                    alpha,
+                    solutions,
+                )
+                assert all(
+                    (alpha * alpha - s_value * alpha + p_value) % prime == 0
+                    for s_value, p_value in solutions
+                ), (prime, c, alpha, solutions)
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -3516,6 +3636,7 @@ def main() -> None:
     check_boundary_core_bidegree_determinant()
     check_boundary_discriminant_degeneracy_classification()
     check_boundary_quartic_kummer_power_gate()
+    check_boundary_core_slope_recurrence_gate()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     check_boundary_core_closure_substitution()

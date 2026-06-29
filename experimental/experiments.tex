@@ -2153,6 +2153,35 @@ when the power gate is absent, and
 in general.  Reducible fixed-sum and product-Mobius line packets remain in
 the separate graph/packet ledger; the non-line fixed-core geometry has no
 remaining uncontrolled multiplicity.
+The same fixed-core target also has a slope-side recurrence chart.  Write
+\[
+  a_i={\rm row}_i(H_{4,j-2}(u)\ell_R),\qquad
+  b_i={\rm row}_i(H_{4,j-2}(v)\ell_R),\qquad
+  c_i(z)=a_i+zb_i .
+\]
+For \(P(X)=X^2-sX+p\), the equation
+\[
+  H_{2,j}(u+zv)(P\ell_R)=0
+\]
+is exactly
+\[
+  c_2-sc_1+pc_0=0,\qquad c_3-sc_2+pc_1=0 .
+\]
+If \(Q_R(z)=c_0c_2-c_1^2\ne0\), then
+\[
+  s=\frac{c_0c_3-c_1c_2}{Q_R(z)},\qquad
+  p=\frac{c_1c_3-c_2^2}{Q_R(z)},
+\]
+and the split-root condition is governed by the quartic numerator
+\[
+  (c_0c_3-c_1c_2)^2
+  -4(c_0c_2-c_1^2)(c_1c_3-c_2^2).
+\]
+If \(Q_R(z)=0\) and a solution exists, then the four \(c_i\)'s are either all
+zero, giving the full-plane lift, or form a geometric progression
+\(c_i=c_0\alpha^i\), in which case every solution has \(P(\alpha)=0\) and is
+a fixed-root line.  Thus the residual non-line root-core target lives in the
+nonzero-denominator recurrence chart.
 
 Consequently, after fixed-slope root slices are removed, the residual \(t=2\)
 one-exchange graph has maximum degree at most \(j\): each locator has only

@@ -49,6 +49,28 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 boundary root-core recurrence chart
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / BOUNDARY-CORE REDUCTION / AUDIT.
+- **What is being added:** For a fixed `(j-2)` root core and finite slope,
+  formal two-root extensions are recovered by a length-four Hankel recurrence.
+  Off the denominator `Q_R(z)=c_0c_2-c_1^2`, the coefficients `(s,p)` are
+  unique rational functions of `z`, and the split-root condition is a quartic
+  numerator in `z`.
+- **How it is useful:** The denominator-zero solvable case is exactly a
+  fixed-root line or the full-plane lift, both already charged.  Thus the
+  residual non-line root-core target is a one-variable slope discriminant
+  problem with explicit domain/outside filters.
+- **What to do next:** Use this recurrence chart when attacking the active
+  `(j-2)` root-core image after quotient, tangent, fixed-root, and full-plane
+  charges.
+
 ### 2026-06-29 - M1 boundary quartic Kummer power gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

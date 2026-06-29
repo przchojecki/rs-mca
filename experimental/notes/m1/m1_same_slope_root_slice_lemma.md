@@ -6,7 +6,8 @@ HIGHER-SLACK LIFT / TRIANGLE CLASSIFICATION / TOP-PACKET LIFT /
 TOP-PACKET LEDGER / SIMULTANEOUS KERNEL RECURSION / HYPERPLANE-FIBER
 REDUCTION / AFFINE-FIBER REDUCTION / MOVING-FIBER DIMENSION DROP /
 FIBER-COUNTING COROLLARY / BOUNDARY-CORE SLOPE-FIBER INJECTION /
-BOUNDARY QUARTIC KUMMER GATE / RESIDUAL-DEGREE COROLLARY / AUDIT.
+BOUNDARY QUARTIC KUMMER GATE / ROOT-CORE RECURRENCE CHART /
+RESIDUAL-DEGREE COROLLARY / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -1941,6 +1942,66 @@ input is the size of the active `(j-2)` root-core image; the fixed-core
 conic geometry itself no longer supplies an uncontrolled multiplicity or
 depth-dependent conductor.
 
+There is also a slope-side form of the same fixed-core target.  For
+`0<=i<=3`, write
+
+```text
+a_i=row_i(H_{4,j-2}(u)ell_R),        b_i=row_i(H_{4,j-2}(v)ell_R),
+c_i(z)=a_i+z b_i.
+```
+
+For a finite slope `z`, a formal monic two-root factor
+`P(X)=X^2-sX+p` satisfies
+
+```text
+H_{2,j}(u+zv)(P ell_R)=0
+```
+
+if and only if
+
+```text
+c_2-sc_1+pc_0=0,        c_3-sc_2+pc_1=0.          (REC)
+```
+
+Put
+
+```text
+Q_R(z)=c_0c_2-c_1^2.
+```
+
+If `Q_R(z) != 0`, the recurrence coefficients are unique:
+
+```text
+s_R(z)=(c_0c_3-c_1c_2)/Q_R(z),
+p_R(z)=(c_1c_3-c_2^2)/Q_R(z).                    (SREC)
+```
+
+The split-root condition is therefore controlled by the quartic numerator
+
+```text
+Theta_R(z)
+ =(c_0c_3-c_1c_2)^2
+  -4(c_0c_2-c_1^2)(c_1c_3-c_2^2),                (ZDISC)
+```
+
+since `s_R(z)^2-4p_R(z)=Theta_R(z)/Q_R(z)^2`.  Thus, outside charged
+exceptional slopes, the root-core target is a one-variable quartic split test
+in the slope `z`, followed by the filters requiring one recovered root in
+`D\R`, the other outside `D`, and `H_{2,j}(v)(P ell_R) != 0`.
+
+The denominator-zero solvable case is already charged.  If `Q_R(z)=0` and
+(REC) has a solution, then either all four `c_i(z)` vanish, giving the
+full-plane lift `H_{4,j-2}(u+zv)ell_R=0`, or there is a scalar `alpha` with
+
+```text
+c_i(z)=c_0(z) alpha^i,        0<=i<=3,
+```
+
+and every solution `P` of (REC) satisfies `P(alpha)=0`.  Hence the solution
+set is a fixed-root line in the elementary `(s,p)` plane, which is already in
+the fixed-root/root-slice ledger.  The residual non-line root-core target
+therefore lives in the `Q_R(z) != 0` recurrence chart.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -2085,9 +2146,10 @@ same finite-slope multiplicity on the live boundary-core conic has already
 returned to a fixed-root line, a constant-slope non-fixed line packet, or the
 full-plane lift, gives the exact full-subgroup quartic character expansion
 and its Kummer power-divisor gate, closes the non-line fixed-core conic branch
-with the ledger multiplier (KROOT), and gives the local max-degree bound and
-average-collinearity corollary above, including the packet-level
-higher-exchange ledger substitution.
+with the ledger multiplier (KROOT), identifies the slope-side root-core
+recurrence chart and its quartic discriminant numerator, and gives the local
+max-degree bound and average-collinearity corollary above, including the
+packet-level higher-exchange ledger substitution.
 
 ## Verification
 
@@ -2125,4 +2187,6 @@ fixed-core boundary conics: empty, point, affine line, or full plane, with
 multi-point fibers returning to the charged line/plane ledgers.  Finally, it
 checks the degree-four Kummer power gate for the full-subgroup quartic
 character terms on structured monomial-square discriminants and random
-quartics over small prime fields.
+quartics over small prime fields, and checks the slope-side recurrence chart
+for fixed root cores, including its denominator-zero fixed-root/full-plane
+classification.
