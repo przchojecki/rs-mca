@@ -27,7 +27,7 @@ A.3 CHECKLIST COVERAGE (this file grows one item per loop iteration):
   [x] noncontainment rank
   -- hardening --
   [x] 2nd-irreducible representation-invariance
-  [ ] on-main board-record cross-checks (tangent506 / strict352 / strict264)
+  [x] on-main board-record cross-checks (tangent506 / strict352 / strict264)
 
 HONEST SCOPE / LIMITS
 ---------------------
@@ -619,6 +619,58 @@ def check_second_irreducible():
     return ok, d
 
 
+def check_on_main_records():
+    """HARDENING: independently recompute the integer arithmetic behind the on-main
+    board records (site/data/frontier.json) for n=512,k=256,q=17^32 -- the tangent
+    staircase LD_sw(C,a)=513-a (a>=427), the agreement-independent >=7 gate, and that
+    each record's badSlopes is gate-consistent with its safe/unsafe status, with the
+    recorded count and the tangent floor agreeing on the gate.  Scope: recomputes the
+    recorded ARITHMETIC / gates, NOT the slope counts by enumeration."""
+    d = []
+    ok = True
+    gate_ok = (Q // TWO128 == 6) and (6 * TWO128 < Q < 7 * TWO128)
+    d.append(f"gate: floor(17^32/2^128)=6 and 6*2^128 < 17^32 < 7*2^128 : {gate_ok}")
+    ok &= gate_ok
+
+    def tangent(a):
+        return N_CODE + 1 - a                              # LD_sw(C,a) = 513 - a (a >= 427)
+
+    t506, t507 = tangent(506), tangent(507)
+    d.append(f"tangent staircase: LD_sw(C,506)={t506} (unsafe, >=7), "
+             f"LD_sw(C,507)={t507} (safe, <7) : {t506 == 7 and t507 == 6}")
+    ok &= (t506 == 7 and t507 == 6)
+    # (id, agreement a, recorded badSlopes, is_tangent_floor_record, recorded status)
+    records = [
+        ("tangent257-lower-floor",  257, 256,          True,  "unsafe"),
+        ("cycle116",                262, 52747567092,  False, "unsafe"),
+        ("cycle119",                263, 52747567092,  False, "unsafe"),
+        ("strict264-min",           264, 9,            False, "unsafe"),
+        ("strict352-quotient-core", 352, 16,           False, "unsafe"),
+        ("reserve272",              272, 241,          True,  "unsafe"),
+        ("reserve288",              288, 225,          True,  "unsafe"),
+        ("reserve313",              313, 200,          True,  "unsafe"),
+        ("tangent506-exact-gate",   506, 7,            True,  "unsafe"),
+    ]
+    all_ok = True
+    for rid, a, bad, is_tf, status in records:
+        tf = tangent(a)
+        tf_match = (not is_tf) or (bad == tf)             # tangent-floor records: badSlopes == 513-a
+        clears = (bad >= 7)
+        tf_clears = (tf >= 7)
+        gate_status = "unsafe" if clears else "safe"
+        rec_ok = tf_match and (gate_status == status) and (clears == tf_clears)
+        all_ok &= rec_ok
+        tag = "tangent-floor" if is_tf else "mechanism"
+        d.append(f"  {rid}: a={a}, badSlopes={bad} ({tag}); 513-a={tf}; "
+                 f"gate={gate_status}=='{status}' : {rec_ok}")
+    d.append(f"all {len(records)} board records gate-consistent (recorded count & tangent floor "
+             f"agree on the gate) : {all_ok}")
+    ok &= all_ok
+    d.append("scope: recomputes recorded ARITHMETIC/gates (513-a, floor(17^32/2^128)=6, >=7), "
+             "NOT slope counts by enumeration.")
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop iteration"]
 
@@ -635,6 +687,7 @@ CHECKS = [
     ("slope distinctness",                 check_slope_distinctness),
     ("noncontainment rank",                check_noncontainment_rank),
     ("hardening: 2nd irreducible",         check_second_irreducible),
+    ("hardening: on-main records",         check_on_main_records),
 ]
 
 

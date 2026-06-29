@@ -1,6 +1,7 @@
 # Verifier 1 (towards-prize.md A.3): independent algebra checker for the F_17^32 row
 
-- **Status:** IN PROGRESS (coverage grows one A.3 checklist item per commit).
+- **Status:** COMPLETE -- all 8 A.3 checklist items + both hardening checks implemented
+  and passing (verifier exits 0: 11 PASS / 0 PENDING). Flagged for review.
 - **Lane:** V (verification), independent of the M1/F1/L1 proof lanes.
 - **Branch / PR:** `allen/v1-sympy-algebra-checker`.
 - **Script:** `experimental/scripts/verify_v1_f17_32_algebra_checker.py`.
@@ -37,7 +38,10 @@ a natural follow-on for anyone whose stack has Sage/Magma.
 | 7 | slope distinctness | **done** |
 | 8 | noncontainment rank | **done** |
 | H1 | hardening: 2nd-irreducible representation-invariance | **done** |
-| H2 | hardening: on-main record cross-checks (tangent506 / strict352 / strict264) | pending |
+| H2 | hardening: on-main record cross-checks (tangent506 / strict352 / strict264) | **done** |
+
+**Full coverage reached (verifier exits 0: 11 PASS / 0 PENDING).** All 8 A.3 items plus
+both hardening checks (2nd-irreducible invariance; on-`main` board-record arithmetic) pass.
 
 ### Already verified (independent recompute)
 
@@ -106,6 +110,15 @@ a natural follow-on for anyone whose stack has Sage/Magma.
   runtime). Since `GF(17^32)` is unique up to isomorphism these must not depend on the
   chosen irreducible; confirming it guards against a representation-specific artifact
   in the pinned `MODULUS`.
+- **Hardening: on-`main` board records.** Independently recomputes the integer arithmetic
+  behind `site/data/frontier.json` for the row: the tangent staircase `LD_sw(C,a)=513-a`
+  (so `LD_sw(C,506)=7` unsafe, `LD_sw(C,507)=6` safe), the agreement-independent `>=7`
+  gate, and that each record's `badSlopes` is gate-consistent with its `safe/unsafe`
+  status -- with the recorded count and the tangent floor agreeing on the gate. The
+  tangent-floor records (`tangent257`=256, `reserve272/288/313`=241/225/200,
+  `tangent506`=7) match `513-a` exactly; the mechanism records (`cycle116`/`cycle119`
+  =52.7B, `strict264`=9, `strict352`=16) clear the same `>=7` gate. **Scope:** recomputes
+  the recorded *arithmetic/gates*, not the slope counts by enumeration.
 
 ## Honest scope / limits
 
