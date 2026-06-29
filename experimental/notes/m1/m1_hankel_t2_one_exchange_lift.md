@@ -6383,6 +6383,109 @@ super-polynomial lift multiplicity that is not quotient-periodic, tangent,
 fixed-root, or aperiodically packable.  This is the current sharp local target
 left by the canonical half-height analysis.
 
+## Critical Tail Has a Single-Level One-Root Witness
+
+The critical ledger can be localized one step further.  Fix a collapsed
+absorbed certificate `(S,lambda)`, and put
+
+```text
+h=h_lambda,        r=r_lambda,
+a=floor((h-r-1)/2),        Z=Z_{S,lambda}^{perp}.
+```
+
+For `0<=e<=a`, let
+
+```text
+Theta_e(S,lambda)
+ = { E subset D_{S,lambda} : |E|=e and B_tail(E) nonempty }.
+```
+
+For a root `x in D_{S,lambda} union Z`, define the one-root tail slice
+
+```text
+Theta_e(S,lambda;x)
+ = { E in Theta_e(S,lambda) : x in B_tail(E) },
+M_{S,lambda}=max_{e,x} #Theta_e(S,lambda;x).
+```
+
+Each pair `(E,x)` with `x in B_tail(E)` is exactly one of the one-root absorbed
+fixed-divisor directions from (PF2-tail-surplus-preserved), with the same node
+surplus.  The tail multiplicity cannot be spread invisibly across tail levels
+and roots.  For a fixed level `e`, if `Z` is nonempty then every root of `Z`
+belongs to every member of `Theta_e`, so
+
+```text
+#Theta_e(S,lambda) <= M_{S,lambda}.
+```
+
+If `Z` is empty then `e=0` contributes nothing and, for `e>=1`, incidence
+counting gives
+
+```text
+e #Theta_e(S,lambda)
+ = sum_{x in D_{S,lambda}} #Theta_e(S,lambda;x)
+ <= h M_{S,lambda}.
+```
+
+Since `h<=q_S`, summing over the at most `a+1<=q_S` levels gives
+
+```text
+L_{S,lambda}^{tail} <= q_S^2 M_{S,lambda}.      (PF2-tail-root-witness)
+```
+
+Thus the critical tail is controlled by the one-root critical tail-slice
+ledger
+
+```text
+RootTail_{crit(d,B)}(A)
+ =
+ sum_{(S,lambda) critical} M_{S,lambda},
+```
+
+via
+
+```text
+TailLift_{crit(d,B)}(A)
+ <= q^2 RootTail_{crit(d,B)}(A).                (PF2-root-tail-reduction)
+```
+
+Consequently polynomial control of these one-root tail slices is sufficient
+for the fixed-surplus closure criterion above, with only a harmless `q^2`
+loss.  A counterexample cannot merely distribute small lift counts over many
+levels; after the polynomial bound on collapsed certificates, it must create
+large fixed-level bad-root slices.
+
+Entropy-large certificates also force such a slice quantitatively.  The
+standard type bound gives
+
+```text
+binom(h,a) >= 2^{h H_2(a/h)}/(h+1).
+```
+
+If `(S,lambda)` is entropy-large, so
+`h H_2(a/h)>B log_2 q`, then
+
+```text
+binom(h,a) > q^B/(q+1).
+```
+
+For a critical certificate one has `a>=1`, so the top tail level `e=a` is
+nonempty even in the root-free case `Z=empty`.  If `Z` is nonempty, any
+perpendicular root lies in all `binom(h,a)` top-level thickenings.  If
+`Z=empty`, incidence over the `h` fiber roots gives a fiber root lying in at
+least `(a/h)binom(h,a)` top-level thickenings.  Hence in all cases
+
+```text
+M_{S,lambda} >= q^B/(q+1)^2.                   (PF2-entropy-root-witness)
+```
+
+This is the promised counterexample-first form of the critical tail target:
+an entropy-large collapsed certificate is already visible as a large
+single-level one-root absorbed slice.  The remaining proof problem is to show
+that such high-multiplicity one-root slices are quotient-periodic,
+tangent/fixed-root degenerate, or aperiodically packable; finding a primitive
+family of them would be a genuine obstruction to the present M1 route.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

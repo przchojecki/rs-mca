@@ -5944,6 +5944,39 @@ Equivalently, any obstruction to this fixed-surplus route must now be a family
 of critical collapsed absorbed certificates with bounded surplus,
 simultaneous depth and entropy largeness, and super-polynomial lift
 multiplicity outside the existing charged ledgers.
+The critical tail can be localized to one-root slices.  For one collapsed
+certificate set
+\[
+  a=\left\lfloor {h_\lambda-r_\lambda-1\over2}\right\rfloor
+\]
+and let \(M_{S,\lambda}\) be the largest number of same-size admissible tail
+thickenings \(E\) whose bad set \(B_{\rm tail}(E)\) contains one fixed root.
+Level and root incidence counting gives
+\[
+  L_{S,\lambda}^{tail}\le q_S^2M_{S,\lambda}.
+\]
+Hence, with
+\[
+  RootTail_{\mathrm{crit}(d,B)}(A)
+  =\sum_{(S,\lambda)\ {\rm critical}}M_{S,\lambda},
+\]
+one has
+\[
+  TailLift_{\mathrm{crit}(d,B)}(A)
+  \le q^2\,RootTail_{\mathrm{crit}(d,B)}(A).
+\]
+Thus polynomial control of the one-root critical tail-slice ledger also closes
+the fixed-surplus branch.  Conversely, if a critical certificate is
+entropy-large, the type bound
+\[
+  \binom{h_\lambda}{a}\ge 2^{h_\lambda H_2(a/h_\lambda)}/(h_\lambda+1)
+\]
+shows that some top-level one-root slice has size at least
+\[
+  M_{S,\lambda}\ge q^B/(q+1)^2.
+\]
+So an entropy-large tail obstruction must already appear as a large fixed-level
+one-root absorbed slice, not merely as diffuse mass over many tail levels.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

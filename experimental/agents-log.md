@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 critical-tail one-root witness
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Extracts a fixed-level one-root witness from the
+  critical tail ledger: `TailLift_crit` is bounded by `q^2` times a one-root
+  tail-slice ledger, and every entropy-large collapsed certificate contains a
+  top-level one-root slice of size at least `q^B/(q+1)^2`.
+- **How it is useful:** Makes the remaining M1 obstruction more concrete by
+  showing that critical multiplicity cannot be hidden diffusely across tail
+  levels; it must appear in high-multiplicity absorbed root slices.
+- **What to do next:** Classify high-multiplicity one-root tail slices as
+  quotient-periodic, tangent/fixed-root degenerate, or aperiodically packable,
+  or find a primitive family that survives those charges.
+
 ### 2026-06-29 - M1 critical-tail fixed-surplus closure criterion
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
