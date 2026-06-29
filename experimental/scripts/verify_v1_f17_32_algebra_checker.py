@@ -21,7 +21,7 @@ A.3 CHECKLIST COVERAGE (this file grows one item per loop iteration):
   [x] domain construction
   [x] locator splitting
   [x] interpolation
-  [ ] degree bound
+  [x] degree bound
   [ ] agreement count
   [ ] slope distinctness
   [ ] noncontainment rank
@@ -369,6 +369,47 @@ def check_interpolation():
     return ok, d
 
 
+def check_degree_bound():
+    """A.3: degree bound = the MDS / Singleton property.  On a runnable RS analog
+    RS[GF(17^32), H, k] (real |H|=512, small k), a nonzero degree-d polynomial has
+    at most d roots, so two DISTINCT degree-<k codewords agree on at most k-1 of the
+    512 domain points -- the bound underpinning the agreement staircase and the
+    meaning of 'noncontainment'.  Verified in miniature, then stated for the row."""
+    d = []
+    ok = True
+    h, _ = H_generator()
+    k = 5
+    H = []
+    cur = ONE
+    for _ in range(512):
+        H.append(cur)
+        cur = fmul(cur, h)
+    # difference locator D: monic, degree exactly k-1, with k-1 distinct roots in H.
+    roots = H[:k - 1]
+    D = [ONE]
+    for x in roots:
+        D = pmul(D, [fneg(x), ONE])
+    deg_ok = (len(D) - 1 == k - 1)
+    nz_roots = sum(1 for x in H if feval(D, x) == ZERO)
+    d.append(f"nonzero deg-{k - 1} poly has exactly {nz_roots} roots in |H|=512 "
+             f"(<= k-1={k - 1}) : {deg_ok and nz_roots == k - 1}")
+    ok &= deg_ok and (nz_roots == k - 1)
+    # two distinct deg-<k codewords whose difference IS D => agree exactly on roots(D)
+    P1 = [int_to_elem(v) for v in (2, 3, 5, 7, 11)]
+    P2 = [fadd(P1[i], D[i]) for i in range(k)]
+    diff_is_D = all(fsub(P2[i], P1[i]) == D[i] for i in range(k))
+    distinct = (P1 != P2)
+    d.append(f"P2 = P1 + D : distinct, deg < {k}, and P2 - P1 = D : {diff_is_D and distinct}")
+    ok &= diff_is_D and distinct
+    # MDS agreement bound, and it is TIGHT (Singleton achieved)
+    d.append(f"MDS: distinct deg<{k} codewords agree on {nz_roots} of 512 pts "
+             f"(<= k-1={k - 1}, tight) : {nz_roots == k - 1}")
+    ok &= (nz_roots == k - 1)
+    d.append("row in miniature: k=256 => distinct codewords agree <= 255 pts, "
+             "min distance n-k+1 = 257 (MDS).")
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop iteration"]
 
@@ -380,7 +421,7 @@ CHECKS = [
     ("domain construction",                check_domain_construction),
     ("locator splitting",                  check_locator_splitting),
     ("interpolation",                      check_interpolation),
-    ("degree bound",                       _pending),
+    ("degree bound",                       check_degree_bound),
     ("agreement count",                    _pending),
     ("slope distinctness",                 _pending),
     ("noncontainment rank",                _pending),

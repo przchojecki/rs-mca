@@ -32,7 +32,7 @@ a natural follow-on for anyone whose stack has Sage/Magma.
 | 2 | domain construction | **done** |
 | 3 | locator splitting | **done** |
 | 4 | interpolation | **done** |
-| 5 | degree bound | pending |
+| 5 | degree bound | **done** |
 | 6 | agreement count | pending |
 | 7 | slope distinctness | pending |
 | 8 | noncontainment rank | pending |
@@ -66,6 +66,13 @@ a natural follow-on for anyone whose stack has Sage/Magma.
   **disjoint** `k`-node set recovers the same message (uniqueness of the deg-`<k`
   interpolant = RS decode-from-any-`k`-positions). `field_solve` is reused by the
   later noncontainment-rank check.
+- **Degree bound (MDS / Singleton).** On `RS[GF(17^32), H, k]` with the real
+  `|H|=512` and small `k`: a nonzero degree-`(k-1)` polynomial has exactly `k-1`
+  roots in `H`, so two distinct degree-`<k` codewords (built with difference a
+  `(k-1)`-root locator) agree on exactly `k-1` of the 512 points -- the bound is
+  tight (Singleton achieved). This is the agreement bound underpinning the staircase
+  and the meaning of noncontainment. Row in miniature: `k=256` ⇒ distinct codewords
+  agree on `<= 255` points, minimum distance `n-k+1 = 257`.
 
 ## Honest scope / limits
 
