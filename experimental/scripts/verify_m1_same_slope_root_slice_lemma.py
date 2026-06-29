@@ -599,6 +599,123 @@ def check_affine_span_packet_normal_form() -> None:
                     assert in_span == in_line, (p, p1, p2, point, a, b, c0)
 
 
+def fixed_root_hyperplane_alpha(
+    coeffs: tuple[int, ...], constant: int, p: int
+) -> int | None:
+    if coeffs[0] == 0:
+        return None
+    scale = coeffs[0]
+    for alpha in range(p):
+        if all(
+            coeffs[m] == (scale * pow(alpha, m, p)) % p
+            for m in range(len(coeffs))
+        ) and constant == (scale * pow(alpha, len(coeffs), p)) % p:
+            return alpha
+    return None
+
+
+def eval_monic_at(coeffs: tuple[int, ...], alpha: int, p: int) -> int:
+    h = len(coeffs)
+    value = pow(alpha, h, p)
+    for m, coeff in enumerate(coeffs):
+        value = (value + coeff * pow(alpha, m, p)) % p
+    return value
+
+
+def check_fixed_root_hyperplane_criterion() -> None:
+    rng = Random(20260706)
+
+    for p in (5, 7, 11):
+        for h_exchange in range(1, 5):
+            points = list(product(range(p), repeat=h_exchange))
+
+            for alpha in range(p):
+                for scale in range(1, p):
+                    coeffs = tuple(
+                        (scale * pow(alpha, m, p)) % p
+                        for m in range(h_exchange)
+                    )
+                    constant = (scale * pow(alpha, h_exchange, p)) % p
+                    assert fixed_root_hyperplane_alpha(coeffs, constant, p) == alpha
+
+                    hyperplane = [
+                        point
+                        for point in points
+                        if (
+                            constant
+                            + sum(coeffs[m] * point[m] for m in range(h_exchange))
+                        )
+                        % p
+                        == 0
+                    ]
+                    fixed_root = [
+                        point
+                        for point in points
+                        if eval_monic_at(point, alpha, p) == 0
+                    ]
+                    assert set(hyperplane) == set(fixed_root), (
+                        p,
+                        h_exchange,
+                        alpha,
+                        scale,
+                        coeffs,
+                        constant,
+                    )
+
+            for _ in range(80):
+                coeffs = tuple(rng.randrange(p) for _ in range(h_exchange))
+                if all(coeff == 0 for coeff in coeffs):
+                    coeffs = (1,) + coeffs[1:]
+                constant = rng.randrange(p)
+                alpha = fixed_root_hyperplane_alpha(coeffs, constant, p)
+                if alpha is None:
+                    # No finite root alpha has evaluation hyperplane equal to
+                    # this random coefficient hyperplane.
+                    assert all(
+                        tuple(
+                            (coeffs[0] * pow(candidate, m, p)) % p
+                            for m in range(h_exchange)
+                        )
+                        != coeffs
+                        or constant
+                        != (coeffs[0] * pow(candidate, h_exchange, p)) % p
+                        for candidate in range(p)
+                    ), (p, h_exchange, coeffs, constant)
+                    continue
+
+                hyperplane = {
+                    point
+                    for point in points
+                    if (
+                        constant
+                        + sum(coeffs[m] * point[m] for m in range(h_exchange))
+                    )
+                    % p
+                    == 0
+                }
+                fixed_root = {
+                    point for point in points if eval_monic_at(point, alpha, p) == 0
+                }
+                assert hyperplane == fixed_root, (
+                    p,
+                    h_exchange,
+                    coeffs,
+                    constant,
+                    alpha,
+                )
+
+        # h=2 specialization: P=X^2-sX+p has fixed-root line
+        # p-alpha*s+alpha^2=0.
+        for alpha in range(p):
+            for x in range(p):
+                for y in range(p):
+                    s = (x + y) % p
+                    prod = (x * y) % p
+                    in_line = (prod - alpha * s + alpha * alpha) % p == 0
+                    has_root = x == alpha or y == alpha
+                    assert in_line == has_root, (p, alpha, x, y, s, prod)
+
+
 def check_two_root_line_classification() -> None:
     for p in (3, 5, 7, 11, 17):
         pairs = [(x, y) for x in range(p) for y in range(x + 1, p)]
@@ -1325,6 +1442,7 @@ def main() -> None:
     check_two_exchange_full_plane_lift()
     check_full_elementary_packet_lift()
     check_affine_span_packet_normal_form()
+    check_fixed_root_hyperplane_criterion()
     check_two_root_line_classification()
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()

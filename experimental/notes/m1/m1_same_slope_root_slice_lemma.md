@@ -321,6 +321,58 @@ A s+B p+C=0
 in the two-root elementary plane.  The next section classifies the split-root
 points on such a line as fixed-root, fixed-sum, or product-Mobius packets.
 
+## Fixed-Root Hyperplane Criterion
+
+The codimension-one rank-defect packets have a clean root-slice test.  In the
+`h`-exchange coefficient coordinates above, let
+
+```text
+P_c(X)=X^h+c_{h-1}X^{h-1}+...+c_0
+```
+
+and let `H(a,b)` be the affine hyperplane
+
+```text
+b+sum_{m=0}^{h-1} a_m c_m=0,        a=(a_0,...,a_{h-1}) != 0.
+```
+
+Then `H(a,b)` is exactly the coefficient hyperplane of monic `h`-root factors
+containing one fixed finite root `alpha` if and only if there is a scalar
+`lambda != 0` such that
+
+```text
+a_m=lambda alpha^m        for 0<=m<h,
+b=lambda alpha^h.                                      (FROOT)
+```
+
+Indeed, the condition `P_c(alpha)=0` is
+
+```text
+alpha^h+sum_{m=0}^{h-1} alpha^m c_m=0,
+```
+
+which is (FROOT) after multiplying by `lambda`.  Conversely, if (FROOT) holds,
+then `H(a,b)` is exactly `P_c(alpha)=0`.  Every split locator in this
+hyperplane has the fixed root `alpha`, so it factors as
+
+```text
+P_c(X)=(X-alpha)Q(X),
+```
+
+and the whole packet is charged to the `(h-1)`-exchange root-slice ledger
+through the enlarged core `R union {alpha}`.  Thus, after fixed-root
+hyperplanes are charged, the remaining codimension-one rank-defect packets are
+precisely non-evaluation hyperplanes in coefficient space.
+
+For `h=2` and `P=X^2-sX+p`, the criterion gives
+
+```text
+p-alpha s+alpha^2=0,
+```
+
+equivalently `(x-alpha)(y-alpha)=0`.  This is exactly the fixed-root line
+removed in the two-root classification below.
+
 ## Two-Root Line Classification
 
 The residual affine lines in the elementary two-root plane have only the
@@ -972,8 +1024,9 @@ that such root slices lift to `(t+1,j-1)` Hankel cores,
 that non-collinear same-slope two-exchange planes lift to `(t+2,j-2)` Hankel
 cores, that full affine-rank `h`-exchange elementary packets lift to
 `(t+h,j-h)` Hankel cores, identifies the affine-span normal form for
-rank-defect elementary packets, and shows that residual two-root lines are
-fixed-root, fixed-sum, or
+rank-defect elementary packets, gives the fixed-root criterion for
+codimension-one coefficient hyperplanes, and shows that residual two-root
+lines are fixed-root, fixed-sum, or
 product-Mobius packets,
 classifies the ruled determinant core into fixed-slope, inactive, and rank-one
 moving-slope cases for abstract affine pencils, proves the Hankel shift
@@ -998,8 +1051,9 @@ checks the row-wise linear-map implication in small dimensions.  It checks the
 higher-slack lift identity (LIFT), the two-exchange full-plane lift (PLIFT),
 the full elementary packet lift (HLIFT), the two-root line classification, the
 affine-span normal form for rank-defect packets, the quadratic determinant
-formula (DET2), and the "three roots imply ruled" criterion in sampled small
-prime fields, then stress-tests the abstract
+the fixed-root hyperplane criterion, the quadratic determinant formula (DET2),
+and the "three roots imply ruled" criterion in sampled small prime fields, then
+stress-tests the abstract
 ruled-core dichotomy and the Hankel ruled-core collapse.  It also checks the
 Johnson-graph star/top triangle classification, the top-packet lift identity
 (TOP1), the distinct-slope implication (TOPK), and the top-packet edge/triangle
