@@ -1469,6 +1469,69 @@ with `z(beta)` recovered from `h_beta(a)+z h_beta(b)=0`.  This is equivalent
 to the nonzero slope-quadratic target above, but it puts the outside-domain
 condition directly on the root of a quadratic in the external anchor.
 
+The conic-secant target also has a one-root fiber reduction after the external
+anchor is fixed.  Let `R subset D` have size `j-2`, let `beta in F\D`, and set
+
+```text
+P_{R,beta}=(X-beta)ell_R.
+```
+
+For `y in D\R`, the one-outside locator is
+
+```text
+ell_{R,beta,y}=(X-y)P_{R,beta}.
+```
+
+Put
+
+```text
+a_y=H_{2,j}(u)ell_{R,beta,y},        b_y=H_{2,j}(v)ell_{R,beta,y}.
+```
+
+As before, `a_y` and `b_y` are affine-linear in `y`, and the active finite
+slope condition is
+
+```text
+b_y != 0,        det(a_y,b_y)=0.                  (BETADET)
+```
+
+The determinant `Delta_{R,beta}(y)=det(a_y,b_y)` is a quadratic polynomial in
+`y`.  If it is nonzero, then at most two domain anchors `y` over the fixed
+boundary core `(R,beta)` can pass (BETADET).  If it is identically zero, the
+same Hankel ruled-core collapse applies with `P_{R,beta}` in place of the
+all-domain core: the branch is inactive, or it has one fixed finite slope
+`z_0`.  In the fixed-slope case two distinct domain anchors give, by
+subtraction,
+
+```text
+H_{3,j-1}(u+z_0v)P_{R,beta}=0,                    (BETA-LIFT)
+```
+
+so the branch is a one-outside lifted boundary-core root slice.  After these
+fixed-slope boundary-core slices are charged, each `(R,beta)` supports at most
+two residual domain extensions.  Moreover two residual extensions over the
+same `(R,beta)` cannot have the same finite slope, because the same subtraction
+would again give (BETA-LIFT).
+
+Thus the conic-secant boundary image can be pushed one level lower: after the
+one-outside lifted boundary-core charges, projection
+
+```text
+(R union {y}, beta) |-> (R,beta)
+```
+
+has residual fibers of size at most two.  Equivalently, for `j>=2`, if
+`Core_off^res` is the image of all `(j-2)`-domain cores together with their
+external anchor, then the residual one-outside target image satisfies the
+incidence bound
+
+```text
+(j-1)|Boundary_off^res| <= 2 |Core_off^res|.        (BOCORE)
+```
+
+This still does not bound the boundary-core image itself; it identifies the
+next lower-dimensional object that must be controlled or charged.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -1598,9 +1661,11 @@ top-kernel root-slice recursion, classifies the ruled external-anchor boundary
 branch, reduces the residual one-outside target image to a boundary-shadow
 image with fibers of size at most two and a rank-one scalar Hankel
 anchor-recovery condition plus equivalent quadratic slope and anchor gates,
-identifies the conic-secant form of the remaining shadow target, and gives the
-local max-degree bound and average-collinearity corollary above, including the
-packet-level higher-exchange ledger substitution.
+identifies the conic-secant form of the remaining shadow target, reduces fixed
+external-anchor one-root fibers to the boundary-core image after lifted
+boundary-core root-slice charges, and gives the local max-degree bound and
+average-collinearity corollary above, including the packet-level
+higher-exchange ledger substitution.
 
 ## Verification
 
@@ -1628,4 +1693,5 @@ compression ledger.  It checks the simultaneous kernel root-slice recursion
 (KREC) over exhaustive and sampled small-field instances.  The same verifier
 also checks the boundary-off external-anchor corollary and boundary-shadow
 fiber reduction over sampled small domains, including the rank-one
-anchor-recovery, quadratic slope-gate, and conic-secant anchor-gate criteria.
+anchor-recovery, quadratic slope-gate, conic-secant anchor-gate, and
+fixed-anchor boundary-core fiber criteria.

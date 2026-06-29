@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 fixed-anchor boundary-core fibers
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/notes/m1/m1_boundary_off_external_anchor_audit.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / BOUNDARY-SHADOW REDUCTION / AUDIT.
+- **What is being added:** After fixing an external anchor `beta`, the
+  one-root determinant over a `(j-2)` domain core is quadratic in the domain
+  extension root.  Nonzero determinants give at most two residual extensions;
+  identically-zero branches are inactive or fixed-slope and lift to
+  `H_{3,j-1}(u+zv)(X-beta)ell_R=0`.
+- **How it is useful:** This pushes the conic-secant one-outside target down
+  from boundary shadows to a lower-dimensional boundary-core image after the
+  appropriate lifted root-slice charges.
+- **What to do next:** Bound or charge the resulting boundary-core image inside
+  the quotient-aware M1 residue-line ledger.
+
 ### 2026-06-29 - M1 boundary-shadow conic-secant gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

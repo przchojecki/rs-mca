@@ -21,10 +21,10 @@ extension formula, and general affine subpacket one-root and two-root fibers
 are checked by finite-field linear algebra.  The arbitrary moving-rank fiber
 dimension drop is checked by the same affine-preimage calculation, and the
 residual exchange-degree corollary is checked on small split-support graphs.
-The boundary shadow-fiber, rank-one anchor-recovery, quadratic slope-gate, and
-conic-secant anchor-gate reductions are checked on sampled small-field
-instances, and the average-ledger substitutions are checked as exact rational
-inequalities.
+The boundary shadow-fiber, rank-one anchor-recovery, quadratic slope-gate,
+conic-secant anchor-gate, and fixed-anchor boundary-core fiber reductions are
+checked on sampled small-field instances, and the average-ledger substitutions
+are checked as exact rational inequalities.
 """
 
 from __future__ import annotations
@@ -2339,6 +2339,127 @@ def check_boundary_shadow_conic_secant_duality() -> None:
                 assert not anchor_pairs, (p, a_seq, b_seq, anchor_pairs)
 
 
+def check_boundary_fixed_anchor_core_fibers() -> None:
+    rng = Random(20260714)
+    for p in (5, 7, 11, 17, 31):
+        for d_size in range(2, min(p - 1, 7)):
+            domain = set(range(d_size))
+            beta = d_size
+            assert beta not in domain
+
+            if p <= 5:
+                triples = list(product(range(p), repeat=3))
+                samples = [(u_seq, v_seq) for u_seq in triples for v_seq in triples]
+            else:
+                samples = [
+                    (
+                        (rng.randrange(p), rng.randrange(p), rng.randrange(p)),
+                        (rng.randrange(p), rng.randrange(p), rng.randrange(p)),
+                    )
+                    for _ in range(4000)
+                ]
+
+            for u_seq, v_seq in samples:
+                domain_roots: list[int] = []
+                active_by_slope: dict[int, list[int]] = {}
+                for y in domain:
+                    a_y = hankel_core_value(u_seq, y, p)
+                    b_y = hankel_core_value(v_seq, y, p)
+                    if det2(a_y, b_y, p) != 0:
+                        continue
+                    domain_roots.append(y)
+                    z = slope_for_active_pair(a_y, b_y, p)
+                    if z is not None:
+                        active_by_slope.setdefault(z, []).append(y)
+
+                ruled = all(
+                    det2(
+                        hankel_core_value(u_seq, y, p),
+                        hankel_core_value(v_seq, y, p),
+                        p,
+                    )
+                    == 0
+                    for y in range(p)
+                )
+
+                if not ruled:
+                    assert len(domain_roots) <= 2, (
+                        p,
+                        d_size,
+                        beta,
+                        u_seq,
+                        v_seq,
+                        domain_roots,
+                    )
+                    active_targets = [
+                        y for roots in active_by_slope.values() for y in roots
+                    ]
+                    assert len(active_targets) <= 2, (
+                        p,
+                        d_size,
+                        beta,
+                        u_seq,
+                        v_seq,
+                        active_targets,
+                    )
+                    assert all(len(roots) == 1 for roots in active_by_slope.values()), (
+                        p,
+                        d_size,
+                        beta,
+                        u_seq,
+                        v_seq,
+                        active_by_slope,
+                    )
+                    continue
+
+                active_slopes = set(active_by_slope)
+                assert len(active_slopes) <= 1, (
+                    p,
+                    d_size,
+                    beta,
+                    u_seq,
+                    v_seq,
+                    active_slopes,
+                )
+                if active_slopes:
+                    z0 = next(iter(active_slopes))
+                    for y in range(p):
+                        a_y = hankel_core_value(u_seq, y, p)
+                        b_y = hankel_core_value(v_seq, y, p)
+                        assert (
+                            (a_y[0] + z0 * b_y[0]) % p == 0
+                            and (a_y[1] + z0 * b_y[1]) % p == 0
+                        ), (p, d_size, beta, u_seq, v_seq, y, z0, a_y, b_y)
+
+            for u_seq, v_seq in samples:
+                active_by_slope: dict[int, list[int]] = {}
+                for y in domain:
+                    a_y = hankel_core_value(u_seq, y, p)
+                    b_y = hankel_core_value(v_seq, y, p)
+                    if det2(a_y, b_y, p) != 0:
+                        continue
+                    z = slope_for_active_pair(a_y, b_y, p)
+                    if z is not None:
+                        active_by_slope.setdefault(z, []).append(y)
+
+                for z, roots in active_by_slope.items():
+                    if len(roots) < 2:
+                        continue
+                    lifted = tuple(
+                        (u_seq[idx] + z * v_seq[idx]) % p for idx in range(3)
+                    )
+                    assert lifted == (0, 0, 0), (
+                        p,
+                        d_size,
+                        beta,
+                        u_seq,
+                        v_seq,
+                        z,
+                        roots,
+                        lifted,
+                    )
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -2477,6 +2598,7 @@ def main() -> None:
     check_boundary_shadow_anchor_recovery()
     check_boundary_shadow_quadratic_gate()
     check_boundary_shadow_conic_secant_duality()
+    check_boundary_fixed_anchor_core_fibers()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     print("same-slope root-slice lemma verifier passed")

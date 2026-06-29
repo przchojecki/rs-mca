@@ -158,6 +158,24 @@ already charged to the lifted zero core.  The remaining one-outside shadow
 target is therefore a nondegenerate conic-secant incidence: `A_S` is a nonzero
 quadratic with an outside-domain root passing the active filter.
 
+There is a second fiber reduction after the external anchor is fixed.  Let
+`R subset D` have size `j-2`, let `beta notin D`, and put
+`P_{R,beta}=(X-beta)ell_R`.  For a domain extension
+`ell_{R,beta,y}=(X-y)P_{R,beta}`, the determinant
+
+```text
+det(H_{2,j}(u)ell_{R,beta,y}, H_{2,j}(v)ell_{R,beta,y})
+```
+
+is quadratic in `y`.  If it is nonzero, at most two domain anchors lie over
+the fixed boundary core `(R,beta)`.  If it is identically zero, the Hankel
+ruled-core collapse is inactive or fixed finite slope; the fixed-slope case
+lifts to `H_{3,j-1}(u+zv)P_{R,beta}=0` and is charged as a one-outside
+boundary-core root slice.  Hence, after those lifted boundary-core slices are
+charged, projection `(R union {y}, beta) -> (R,beta)` has residual fibers of
+size at most two.  The next unbounded object is the boundary-core image, not a
+domain-anchor multiplicity over a fixed external anchor.
+
 ## Integration Decision
 
 The full PR was not merged wholesale.  It included a very large generated
@@ -189,7 +207,8 @@ incidence problem.  It gives a route for future agents:
 ## Non-Claims
 
 This note does not prove the all-line M1 polynomial packing theorem.  It gives
-per-shadow quadratic slope/anchor gates and the shadow-fiber reduction after
-the fixed-slope boundary slices are charged, but it does not bound the total
-shadow image, does not give a leaderboard row, and does not change any public
-MCA or interleaved-list threshold.
+per-shadow quadratic slope/anchor gates, the shadow-fiber reduction, and the
+fixed-anchor boundary-core fiber reduction after fixed-slope boundary slices
+are charged, but it does not bound the total boundary-core image, does not give
+a leaderboard row, and does not change any public MCA or interleaved-list
+threshold.
