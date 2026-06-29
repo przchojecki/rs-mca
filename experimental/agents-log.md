@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 fixed-width absorption normal form
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Shows that every root-free critical flag with fixed
+  residual width `r<R_0`, after full absorption of its flag roots, descends to
+  the root-free direction `R_{S,lambda}` on a domain of size `s_S+r` and width
+  `r`, with packing factor `1+floor(s_S/r)`.
+- **How it is useful:** Identifies the low-width obstruction as fixed-root
+  flag-lift multiplicity inside a dominant projective fiber, not as a hidden
+  large lower residual-packing problem.
+- **What to do next:** Classify or charge the large fixed-root flag lifts for
+  low-width, large-quotient-width certificates; the `r=1` case is the co-small
+  projective-fiber normal form `Q_{S,lambda}=c ell_{D_{S,lambda}}`.
+
 ### 2026-06-29 - M1 logarithmic low-width closure
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

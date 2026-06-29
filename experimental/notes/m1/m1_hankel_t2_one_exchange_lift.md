@@ -7164,6 +7164,57 @@ obstruction to M1 must have `q_S >> log q` and therefore must be structurally
 excluded or charged by the quotient-periodic, tangent/fixed-root, or
 aperiodic mechanisms.
 
+## Fixed-Width Critical Flags Collapse to Bounded Residual Domains
+
+There is no hidden large residual-packing problem inside the fixed-width
+branch.  Let `(S,lambda)` be a root-free critical certificate with residual
+width
+
+```text
+r=r_lambda<R_0,        Z_{S,lambda}^{perp}=empty.
+```
+
+For any nonempty admissible thickening `E subset D_{S,lambda}`, write
+`e=|E|` and `j=r+e`.  Since the certificate is root-free,
+
+```text
+B_tail(E)=E.
+```
+
+Full absorption of these bad roots gives
+
+```text
+Q_{S,lambda,E}^{E}=R_{S,lambda},        j_E^{abs}=r,
+N_E^{abs}=N_S-h_lambda=s_S+r.            (PF2-fixed-width-full-abs)
+```
+
+The descended direction `R_{S,lambda}` is root-free on the fully absorbed
+domain, and the primitive packing factor is exactly
+
+```text
+floor(N_E^{abs}/j_E^{abs})
+ = floor((s_S+r)/r)
+ = 1+floor(s_S/r)
+ <= s_S+1.                              (PF2-fixed-width-pack)
+```
+
+Thus, in a fixed-surplus window `s_S<=sigma` and at fixed residual width
+`r<R_0`, every fully absorbed residual problem has both bounded width and
+bounded domain size:
+
+```text
+j_E^{abs}<R_0,        N_E^{abs}<=sigma+R_0.
+```
+
+The large quantity in `CanRFFlag_{crit(d,B),<R_0}` is therefore entirely the
+number of fixed-root flag lifts `E` inside the dominant projective fiber.  It
+does not come from a large lower residual packing after full absorption.  In
+the first case `r=1`, this says `R_{S,lambda}` is a nonzero constant,
+`Q_{S,lambda}` is a scalar multiple of `ell_{D_{S,lambda}}`, and every
+absorbed leaf is a width-one constant-direction problem on exactly `s_S+1`
+remaining domain roots.  Hence the fixed-width large-`q_S` obstruction is a
+co-small projective-fiber/fixed-root flag obstruction.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
