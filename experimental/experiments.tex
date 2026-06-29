@@ -5579,6 +5579,33 @@ Hence
 After fixed-root tails and primitive denominators of width at most the node
 surplus have been charged, the uncharged half-height core is therefore a
 one-per-node term plus a surplus-over-half-width term.
+The surplus term has exact canonical bookkeeping.  Fix the canonical order on
+\(B_0^*(A)\).  For a nonempty node \(S\), let \(m(S)=\max S\) and set
+\[
+  b(S)=|\{x\in B_0^*(A):x\le m(S)\}|,\qquad
+  \operatorname{skip}(S)=b(S)-|S|,
+\]
+with \(b(\emptyset)=\operatorname{skip}(\emptyset)=0\).  Since
+\(Old(S)=\{x\in B_0^*(A)\setminus S:x<m(S)\}\), the canonical domain obeys
+\[
+  D_S^{can}=D'\setminus(S\cup Old(S)),\qquad
+  S\cup Old(S)=\{x\in B_0^*(A):x\le m(S)\}.
+\]
+Thus, writing \(s_\emptyset=|D'|-q\),
+\[
+  s_S=N_S-q_S=s_\emptyset-\operatorname{skip}(S).
+\]
+If \(T=S\cup\{x\}\) is a canonical child and \(\gamma_S(x)\) is the number of
+base roots strictly between \(m(S)\) and \(x\) (or strictly before \(x\) when
+\(S=\emptyset\)), then
+\[
+  \operatorname{skip}(T)=\operatorname{skip}(S)+\gamma_S(x),
+  \qquad s_T=s_S-\gamma_S(x).
+\]
+Hence surplus never increases along canonical peeling; skipped older base
+roots debit it one-for-one.  The remaining surplus-over-half-width term is
+therefore an explicit unused-initial-surplus ledger, not a multiplicative
+loss in the tree depth.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

@@ -5661,6 +5661,70 @@ is a one-per-node term plus a surplus-over-half-width term.  This is the form
 needed for a global canonical-tree charge: no field-size or binomial
 multiplicity remains in the uncharged half-height branch.
 
+## Canonical Peeling Debits Surplus Exactly
+
+The surplus term in (PF2-balanced-surplus-core) is not a new multiplicative
+loss along the canonical tree.  It has exact bookkeeping under the same
+canonical order used for base peeling.
+
+For a nonempty canonical node `S`, write `m(S)=max(S)` and define
+
+```text
+b(S)=#{x in B_0^*(A) : x<=m(S)},        skip(S)=b(S)-|S|.
+```
+
+Here `<=` denotes the fixed canonical order.  For `S=empty`, set
+`b(S)=skip(S)=0`.  Since
+
+```text
+Old(S)={x in B_0^*(A)\S : x<m(S)}
+```
+
+and every element of `S` is at most `m(S)`, one has
+
+```text
+S union Old(S)={x in B_0^*(A) : x<=m(S)}.
+```
+
+Thus, with `s_empty=|D'|-q`,
+
+```text
+N_S=|D'|-b(S),        q_S=q-|S|,
+s_S=N_S-q_S=s_empty-skip(S).             (PF2-surplus-skip)
+```
+
+In particular every active canonical node has `skip(S)<=s_empty`; otherwise
+`N_S<q_S` and no quotient support of size `q_S` remains.
+
+If `T=S union {x}` is a canonical child, put
+
+```text
+gap_S(x)=#{y in B_0^*(A) : y<x},             if S=empty,
+gap_S(x)=#{y in B_0^*(A) : m(S)<y<x},        if S nonempty.
+```
+
+Then
+
+```text
+skip(T)=skip(S)+gap_S(x),        s_T=s_S-gap_S(x).
+                                                        (PF2-surplus-debit)
+```
+
+Hence canonical peeling can only decrease node surplus, and it decreases it
+by exactly the number of older base roots skipped when the child is chosen.
+The surplus-over-half-width term left by (PF2-balanced-surplus-core) is
+therefore
+
+```text
+ceil((s_empty-skip(S))/(floor((q-|S|)/2)+1))
+```
+
+at node `S`: every extra half-height occupancy slot is paid from unused
+initial surplus, while skipped canonical base roots debit that reserve
+one-for-one.  The remaining global M1 task is consequently separated into a
+baseline active-node count and this explicit surplus-debit ledger, rather
+than a depth-multiplicative half-height loss.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

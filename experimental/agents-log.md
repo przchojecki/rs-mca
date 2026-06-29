@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 canonical surplus debit identity
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Proves the canonical bookkeeping identity
+  `N_S-q_S=(|D'|-q)-skip(S)` and the child relation
+  `s_T=s_S-gap_S(x)` for base peeling.
+- **How it is useful:** Shows that the surplus-over-half-width term left by
+  the balanced half-height cutoff is an unused-initial-surplus ledger, not a
+  multiplicative loss over tree depth.
+- **What to do next:** Bound the baseline active-node term and combine it
+  with this surplus-debit ledger in the global M1 charge.
+
 ### 2026-06-29 - M1 bare half-height occupancy surplus ledger
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
