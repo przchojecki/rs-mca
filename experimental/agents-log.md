@@ -49,6 +49,28 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 boundary-shadow quadratic gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/notes/m1/m1_boundary_off_external_anchor_audit.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / BOUNDARY-SHADOW REDUCTION / AUDIT.
+- **What is being added:** For each fixed boundary shadow, the recovered-anchor
+  condition is the quadratic slope gate
+  `Q_S(z)=c_1(z)^2-c_0(z)c_2(z)`.  If the gate is nonzero it has at most two
+  candidate finite slopes; if it is identically zero, the line lies on one
+  rank-one cone generator and any recovered anchor is inactive or already
+  charged.
+- **How it is useful:** This sharpens the residual one-outside M1 boundary
+  target from a rank-one shadow incidence into a nonzero quadratic-root shadow
+  problem.
+- **What to do next:** Bound shadows whose nonzero quadratic gate has an
+  outside-domain active recovered root.
+
 ### 2026-06-29 - M1 boundary-shadow anchor recovery
 
 - **Agent/model:** AllenGrahamHart / Codex.

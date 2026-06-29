@@ -120,6 +120,27 @@ Thus the residual shadow-image problem is a scalar rank-one Hankel condition
 on `S`, with the recovered anchor required to lie outside `D` and satisfy the
 usual active filter.
 
+As the finite slope varies, write
+
+```text
+a_i=row_i(H_{3,j-1}(u)ell_S),        b_i=row_i(H_{3,j-1}(v)ell_S),
+c_i(z)=a_i+z b_i.
+```
+
+The recovered-anchor gate is the quadratic
+
+```text
+Q_S(z)=c_1(z)^2-c_0(z)c_2(z).
+```
+
+If `Q_S` is nonzero, the fixed shadow contributes at most two candidate
+slopes/anchors.  If `Q_S=0` as a polynomial, then the line `a+z b` lies on one
+rank-one cone generator.  Any finite recovered anchor is therefore independent
+of `z`, and both `H_{2,j}(u)ell_{S,beta}` and
+`H_{2,j}(v)ell_{S,beta}` vanish, so the active filter removes that branch.
+Thus the remaining boundary-shadow problem is a nonzero quadratic-root
+problem over the shadows.
+
 ## Integration Decision
 
 The full PR was not merged wholesale.  It included a very large generated
@@ -151,7 +172,7 @@ incidence problem.  It gives a route for future agents:
 ## Non-Claims
 
 This note does not prove the all-line M1 polynomial packing theorem.  It gives
-a per-shadow quadratic cap and the shadow-fiber reduction after the fixed-slope
-boundary slices are charged, but it does not bound the total shadow image, does
-not give a leaderboard row, and does not change any public MCA or
+a per-shadow quadratic slope gate and the shadow-fiber reduction after the
+fixed-slope boundary slices are charged, but it does not bound the total shadow
+image, does not give a leaderboard row, and does not change any public MCA or
 interleaved-list threshold.

@@ -21,9 +21,9 @@ extension formula, and general affine subpacket one-root and two-root fibers
 are checked by finite-field linear algebra.  The arbitrary moving-rank fiber
 dimension drop is checked by the same affine-preimage calculation, and the
 residual exchange-degree corollary is checked on small split-support graphs.
-The boundary shadow-fiber and rank-one anchor-recovery reductions are checked
-on sampled small-field instances, and the average-ledger substitutions are
-checked as exact rational inequalities.
+The boundary shadow-fiber, rank-one anchor-recovery, and quadratic slope-gate
+reductions are checked on sampled small-field instances, and the average-ledger
+substitutions are checked as exact rational inequalities.
 """
 
 from __future__ import annotations
@@ -2133,6 +2133,86 @@ def check_boundary_shadow_anchor_recovery() -> None:
                 assert roots == [], (prime, seq, roots)
 
 
+def rank_one_value(seq: tuple[int, int, int], p: int) -> int:
+    return (seq[1] * seq[1] - seq[0] * seq[2]) % p
+
+
+def rank_one_line_coeffs(
+    a_seq: tuple[int, int, int],
+    b_seq: tuple[int, int, int],
+    p: int,
+) -> tuple[int, int, int]:
+    return (
+        rank_one_value(a_seq, p),
+        (
+            2 * a_seq[1] * b_seq[1]
+            - a_seq[0] * b_seq[2]
+            - b_seq[0] * a_seq[2]
+        )
+        % p,
+        rank_one_value(b_seq, p),
+    )
+
+
+def check_boundary_shadow_quadratic_gate() -> None:
+    rng = Random(20260712)
+    for p in (2, 3, 5, 7, 11, 17, 31):
+        if p <= 5:
+            triples = list(product(range(p), repeat=3))
+            samples = [(a_seq, b_seq) for a_seq in triples for b_seq in triples]
+        else:
+            samples = [
+                (
+                    (rng.randrange(p), rng.randrange(p), rng.randrange(p)),
+                    (rng.randrange(p), rng.randrange(p), rng.randrange(p)),
+                )
+                for _ in range(4000)
+            ]
+
+        for a_seq, b_seq in samples:
+            coeffs = rank_one_line_coeffs(a_seq, b_seq, p)
+            candidates: list[tuple[int, int]] = []
+            for z in range(p):
+                c_seq = tuple((a_seq[idx] + z * b_seq[idx]) % p for idx in range(3))
+                if c_seq == (0, 0, 0):
+                    continue
+                if c_seq[0] == 0 or rank_one_value(c_seq, p) != 0:
+                    continue
+                beta = (c_seq[1] * pow(c_seq[0], -1, p)) % p
+                assert hankel_core_value(c_seq, beta, p) == (0, 0), (
+                    p,
+                    a_seq,
+                    b_seq,
+                    z,
+                    c_seq,
+                    beta,
+                )
+                candidates.append((z, beta))
+
+            if coeffs != (0, 0, 0):
+                assert len(candidates) <= 2, (p, a_seq, b_seq, coeffs, candidates)
+                continue
+
+            betas = {beta for _, beta in candidates}
+            assert len(betas) <= 1, (p, a_seq, b_seq, candidates)
+            if betas:
+                beta = next(iter(betas))
+                assert hankel_core_value(a_seq, beta, p) == (0, 0), (
+                    p,
+                    a_seq,
+                    b_seq,
+                    beta,
+                    candidates,
+                )
+                assert hankel_core_value(b_seq, beta, p) == (0, 0), (
+                    p,
+                    a_seq,
+                    b_seq,
+                    beta,
+                    candidates,
+                )
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -2269,6 +2349,7 @@ def main() -> None:
     check_simultaneous_kernel_root_slice_recursion()
     check_boundary_off_external_anchor_corollary()
     check_boundary_shadow_anchor_recovery()
+    check_boundary_shadow_quadratic_gate()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     print("same-slope root-slice lemma verifier passed")

@@ -1350,6 +1350,61 @@ c_1^2=c_0c_2,        c_0 != 0,        c_1/c_0 notin D,          (BRANK)
 with the usual active filter `H_{2,j}(v)ell_{S,c_1/c_0} != 0`.  This is the
 concrete shadow-image target left by the boundary reduction.
 
+There is one more local simplification over each fixed shadow.  Write
+
+```text
+a_i=row_i(H_{3,j-1}(u)ell_S),        b_i=row_i(H_{3,j-1}(v)ell_S),
+c_i(z)=a_i+z b_i,                    0<=i<=2.
+```
+
+Then the rank-one condition (BRANK) is cut out by the quadratic slope
+polynomial
+
+```text
+Q_S(z)=c_1(z)^2-c_0(z)c_2(z).
+```
+
+If `Q_S` is not the zero polynomial, then at most two finite slopes over the
+shadow can pass the recovered-anchor gate, and each such slope has the unique
+anchor `beta(z)=c_1(z)/c_0(z)`.
+
+It remains to understand the degenerate case `Q_S=0` as a polynomial in `z`.
+The affine line
+
+```text
+z |-> (c_0(z),c_1(z),c_2(z)) = a+z b
+```
+
+then lies on the rank-one cone `x_1^2=x_0x_2`.  This forces `a` and `b` to lie
+on one cone generator.  Indeed, the coefficient identities are
+
+```text
+a_1^2=a_0a_2,        b_1^2=b_0b_2,
+2a_1b_1=a_0b_2+b_0a_2.                (BCONE)
+```
+
+If `a_0=0`, then `a_1=0`; when `a_2 != 0`, the polar identity in (BCONE)
+forces `b_0=0`, and then `b_1=0`, so `b` is proportional to `a`.  If
+`a_0 != 0`, write `alpha=a_1/a_0`, so `a_2=alpha^2 a_0`.  When `b_0=0`,
+(BCONE) gives `b=0`.  When `b_0 != 0`, writing `gamma=b_1/b_0`, the polar
+identity becomes `(alpha-gamma)^2=0`, hence `alpha=gamma`, again making `b`
+proportional to `a`.  The same computation is valid in characteristic two.
+
+Thus an identically-zero gate has either no recovered finite anchor
+(`c_0=c_1=0`, the point at infinity), or a single fixed recovered anchor
+`beta` for every nonzero point of the line.  In the latter case
+
+```text
+H_{2,j}(u)ell_{S,beta}=0,        H_{2,j}(v)ell_{S,beta}=0,
+```
+
+so the active filter `H_{2,j}(v)ell_{S,beta} != 0` removes the branch.  The
+zero triples themselves are the already charged lifted boundary root-slice
+core (BZ0).  Therefore every active residual boundary shadow that survives this
+local reduction is governed by a nonzero quadratic slope gate.  The remaining
+boundary task is to bound shadows for which this explicit nonzero quadratic has
+an outside-domain active recovered root.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -1478,8 +1533,8 @@ triangles into the lifted top-kernel ledger, proves the exact simultaneous
 top-kernel root-slice recursion, classifies the ruled external-anchor boundary
 branch, reduces the residual one-outside target image to a boundary-shadow
 image with fibers of size at most two and a rank-one scalar Hankel
-anchor-recovery condition, and gives the local max-degree bound and
-average-collinearity corollary above, including the packet-level
+anchor-recovery condition plus a quadratic slope gate, and gives the local
+max-degree bound and average-collinearity corollary above, including the packet-level
 higher-exchange ledger substitution.
 
 ## Verification
@@ -1508,4 +1563,4 @@ compression ledger.  It checks the simultaneous kernel root-slice recursion
 (KREC) over exhaustive and sampled small-field instances.  The same verifier
 also checks the boundary-off external-anchor corollary and boundary-shadow
 fiber reduction over sampled small domains, including the rank-one
-anchor-recovery criterion.
+anchor-recovery and quadratic slope-gate criteria.
