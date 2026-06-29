@@ -41,7 +41,8 @@ discriminants and testing the exact lcm(e,2)-power degeneracy condition.
 The slope-side fixed-core recurrence chart is checked by direct finite-field
 linear algebra, and its domain/outside subgroup filter is checked by direct
 character expansion and aggregate mixed-domain counts on sampled finite-field
-covers, including the diagonal descent to the slope line.
+covers, including the diagonal descent to the slope line and the index-two
+sheet-symmetry cancellation formula.
 """
 
 from __future__ import annotations
@@ -3823,6 +3824,27 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                         power,
                         pair_sums[power][power],
                         descended,
+                    )
+                if index == 2:
+                    index_two_formula = (
+                        int(data["open_points"]) - pair_sums[1][1]
+                    ) / 4
+                    assert abs(index_two_formula.imag) < 1e-8, (
+                        prime,
+                        a_rows,
+                        b_rows,
+                        data,
+                        index_two_formula,
+                    )
+                    assert (
+                        abs(index_two_formula.real - int(data["open_direct"]))
+                        < 1e-8
+                    ), (
+                        prime,
+                        a_rows,
+                        b_rows,
+                        data,
+                        index_two_formula,
                     )
 
             if b_poly:

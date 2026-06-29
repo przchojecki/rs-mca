@@ -2153,6 +2153,39 @@ depth-dependent genus-one estimate; it is a bounded-support `P^1` Kummer
 problem.  The genuinely cover-level terms are the off-diagonal `S_{a,b}` with
 `a != b`, together with the one-root sums `S_a^+`.
 
+There is a useful index-two closure.  If `e=2`, write `rho=chi` for the
+quadratic quotient character.  The sheet involution gives
+`S_1^+=S_1^-`, so the one-root terms cancel in (RKCOUNT), and on `C_R^x`
+
+```text
+N_R^{+,-}(D)
+ = (1/4) ( |C_R^x| - S_{1,1} ) + O(1)
+
+ = (1/4) |C_R^x|
+   - (1/4) sum_z (1+rho(Theta_R(z))) rho(B_R(z)/Q_R(z))
+   + O(1).                                             (RK2)
+```
+
+Thus for quadratic-residue domains the residual mixed root-core count has no
+genuinely cover-level character terms at all after the fixed-zero-root branch
+is charged.  It is a `P^1` Kummer problem with only two explicit parity gates:
+`B_R/Q_R` a square, or `Theta_R B_R/Q_R` a square, as divisors on the slope
+line.  If neither gate occurs, the standard `P^1` Kummer bound gives
+
+```text
+N_R^{+,-}(D) <= (1/2)|D| + C sqrt(p) + O(1)
+```
+
+on each geometrically integral nonsplit cover branch, and
+
+```text
+N_R^{+,-}(D) <= |D| + C sqrt(p) + O(1)
+```
+
+on the split-square rational branch.  This index-two case therefore has no
+residual genus-one analytic input; only the explicit square-divisor branches
+remain to charge or exclude.
+
 If no nonprincipal `chi^a(r_+)` or `chi^a(r_+)chi^b(r_-)` term is
 geometrically trivial on `C_R`, the standard curve Kummer-Weil input gives
 
@@ -2328,9 +2361,10 @@ split slopes as a genus-at-most-one cover of the slope line, pushes the
 domain/outside filter to bounded-conductor Kummer traces on that cover, derives
 the per-core mixed-domain Kummer bound (RKBD) after fixed-zero-root and
 nonprincipal power branches are removed, descends the diagonal pair terms in
-that mixed-domain expansion to bounded-support `P^1` Kummer sums, and gives the
-local max-degree bound and average-collinearity corollary above, including the
-packet-level higher-exchange ledger substitution.
+that mixed-domain expansion to bounded-support `P^1` Kummer sums, closes the
+index-two mixed-domain cover-level terms by sheet-symmetry cancellation, and
+gives the local max-degree bound and average-collinearity corollary above,
+including the packet-level higher-exchange ledger substitution.
 
 ## Verification
 
@@ -2373,4 +2407,4 @@ for fixed root cores, including its denominator-zero fixed-root/full-plane
 classification, quartic degree bound, split-root cover criterion, and exact
 finite-field subgroup-character expansion for the domain/outside filter and
 the mixed-domain count formula (RKCOUNT), including the diagonal descent
-(RKDIAG).
+(RKDIAG) and index-two cancellation formula (RK2).

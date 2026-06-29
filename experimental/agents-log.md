@@ -68,7 +68,8 @@ Keep entries concise and link to the relevant files.
   expands into Kummer traces of `r_+^a r_-^b` on this same cover, and the
   fixed-zero-root branch `B_R=0` is charged to the fixed-root line `p=0`.
   The diagonal pair terms `S_{a,a}` descend to bounded-support `P^1` Kummer
-  traces involving `B_R/Q_R` and `Theta_R`.
+  traces involving `B_R/Q_R` and `Theta_R`; for index-two domains the
+  remaining one-root cover terms cancel by sheet symmetry.
 - **How it is useful:** The denominator-zero solvable case is exactly a
   fixed-root line or the full-plane lift, both already charged.  Thus the
   residual non-line root-core target is a one-variable slope-cover problem
@@ -76,7 +77,8 @@ Keep entries concise and link to the relevant files.
   zero-pole support, so non-power character terms have depth-independent
   conductor under the standard Kummer-Weil input, giving an explicit per-core
   mixed-domain bound once nonprincipal power branches are absent, with the
-  diagonal product terms removed from the genuinely cover-level workload.
+  diagonal product terms removed from the genuinely cover-level workload and
+  the quadratic-residue case reduced entirely to `P^1` Kummer sums.
 - **What to do next:** Use this recurrence chart when attacking the active
   `(j-2)` root-core image after quotient, tangent, fixed-root, and full-plane
   charges.
