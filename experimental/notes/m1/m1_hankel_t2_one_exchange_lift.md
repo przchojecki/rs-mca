@@ -7538,6 +7538,46 @@ fixed-divisor ledger.  In particular, once that ledger is polynomial after the
 quotient-periodic, tangent, fixed-root, and aperiodic charges, the width-one
 co-small cube contributes no separate super-polynomial term to M1.
 
+## Fixed-Surplus Width-One Closure Reduces to One-Root Slices
+
+The preceding local injection gives a global fixed-surplus closure criterion.
+Fix `sigma` and restrict to active canonical nodes with `s_S<=s_0<=sigma`.
+Let `WO_1(A)` be the total root-free width-one flag contribution over these
+nodes after quotient-periodic, tangent, fixed-root, and aperiodic charges have
+removed the already-accounted cases.
+
+First discard the small-quotient nodes.  If
+
+```text
+q_S<=s_S+2,
+```
+
+then `q_S<=sigma+2`, and the whole local width-one cube is bounded by
+`2^{sigma+2}`.  Since the active tree has size
+
+```text
+#Active(A) <= (s_0+2)q^{s_0+1}                 (PF2-active-skipball)
+```
+
+their total contribution is `O_sigma(q^{sigma+1})`.
+
+On the complementary range `q_S>s_S+2`, (PF2-r1-unique-range) gives at most
+one width-one maximal shadow at each node.  For each such shadow, the
+first-root injection (PF2-r1-fixedroot-charge) embeds its entire co-small flag
+cube into the one-root fixed-divisor slice ledger.  Therefore
+
+```text
+WO_1(A)
+ <= FixedRootOneRoot_{r1}(A)+O_sigma(q^{sigma+1}).
+                                                        (PF2-r1-global-charge)
+```
+
+Thus the width-one branch is now completely separated: bounded quotient-width
+nodes are polynomial by size, while all large width-one cubes are charged
+through one-root fixed-divisor slices with unchanged surplus.  A polynomial
+fixed-surplus bound for `FixedRootOneRoot_{r1}(A)` closes the width-one
+critical-tail obstruction.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

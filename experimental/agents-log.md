@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 fixed-surplus width-one closure criterion
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL-CLOSURE.
+- **What is being added:** Packages the width-one first-root injection into a
+  global fixed-surplus closure criterion: small `q_S` nodes are polynomial by
+  active-tree size, while large `q_S` nodes are unique and inject into the
+  one-root fixed-divisor ledger.
+- **How it is useful:** Reduces the full width-one critical-tail obstruction
+  to `WO_1(A) <= FixedRootOneRoot_{r1}(A)+O_sigma(q^{sigma+1})`, so proving a
+  polynomial one-root fixed-root/root-slice bound closes this branch.
+- **What to do next:** Attack `FixedRootOneRoot_{r1}(A)` directly, or identify
+  quotient-periodic, tangent, fixed-root, and aperiodic mechanisms that charge
+  all large near-constant first-root slices.
+
 ### 2026-06-29 - M1 width-one first-root fixed-divisor injection
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

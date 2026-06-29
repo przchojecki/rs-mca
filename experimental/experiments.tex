@@ -6389,6 +6389,21 @@ Thus the whole width-one cube injects into disjoint one-root absorbed
 fixed-divisor slices with unchanged surplus and unchanged bounded complement.
 Polynomial control of those one-root fixed-root/root-slice ledgers closes the
 width-one branch without a separate super-polynomial term.
+Globally, this gives a fixed-surplus closure criterion.  If \(s_S\le s_0\le
+\sigma\), then nodes with \(q_S\le s_S+2\) have \(q_S\le\sigma+2\), so their
+width-one cubes are \(O_\sigma(1)\) each and the active-node bound
+\[
+  \#Active(A)\le (s_0+2)q^{s_0+1}
+\]
+makes their total contribution \(O_\sigma(q^{\sigma+1})\).  On the range
+\(q_S>s_S+2\), there is at most one width-one shadow per node, and the
+first-root injection charges the whole cube to the one-root fixed-divisor
+ledger.  Hence
+\[
+  WO_1(A)\le FixedRootOneRoot_{r1}(A)+O_\sigma(q^{\sigma+1}).
+\]
+Thus width-one is closed once the corresponding fixed-surplus one-root
+fixed-root/root-slice ledger is polynomial.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots
