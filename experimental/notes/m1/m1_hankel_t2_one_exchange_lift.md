@@ -5328,6 +5328,69 @@ not helped by this tail estimate are the bounded-width denominators
 `r_lambda<R`; those are now isolated as the narrow primitive core of the
 half-height M1 obstruction.
 
+## Fixed-Root Charging Removes the Primitive Tail
+
+The tail estimate is useful for uncharged bookkeeping, but the algebraic
+status of the tail is sharper.  In the notation of
+(PF2-short-tail-factor), the actual quotient-line direction for the summand
+indexed by `E` is
+
+```text
+Q'_{S,lambda,C}=ell_E R_{S,lambda}.
+```
+
+Its bad-root set on the quotient domain is exactly
+
+```text
+E disjoint_union Z_{S,lambda}^{perp}.
+```
+
+Thus a summand is genuinely root-free only when both
+
+```text
+E=empty,        z_{S,lambda}^{perp}=0.
+```
+
+Every summand with `E` nonempty is an explicit fixed-root/root-slice
+thickening of the primitive direction `R_{S,lambda}`.  Every summand with
+`z_{S,lambda}^{perp}>0` has a perpendicular absorbed fixed-root defect.  Hence
+after the fixed-root/root-slice ledgers have been charged, the binomial tail
+does not remain in the primitive M1 obstruction.  The uncharged root-free
+primitive half-height term at node `S` is bounded by
+
+```text
+PrimHalf_S^{rf}
+ =
+ sum_{lambda: h_lambda>q_S/2, z_{S,lambda}^{perp}=0}
+   (1+floor((N_S-q_S)/r_lambda)).              (PF2-prim-rf-core)
+```
+
+More explicitly, the whole short ledger decomposes as
+
+```text
+Short_S^{can}
+ <= PrimHalf_S^{rf} + FixedRootTail_S,
+```
+
+where
+
+```text
+FixedRootTail_S
+ =
+ sum_{lambda: h_lambda>q_S/2, z_{S,lambda}^{perp}>0}
+   B_{S,lambda}^{prim} T(h_lambda,r_lambda)
+ + sum_{lambda: h_lambda>q_S/2, z_{S,lambda}^{perp}=0}
+   B_{S,lambda}^{prim} (T(h_lambda,r_lambda)-1).
+                                                        (PF2-fixed-tail)
+```
+
+Each summand of `FixedRootTail_S` carries a displayed nonempty fixed-root set:
+either a perpendicular root from `Z_{S,lambda}^{perp}` or an omitted fiber root
+from `E`.  Consequently, once those fixed-root/root-slice charges are accepted,
+the remaining primitive half-height problem is no longer a binomial-tail
+problem.  It is the global count of root-free primitive half-height directions
+with weight `1+floor((N_S-q_S)/r_lambda)`.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

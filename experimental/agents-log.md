@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 fixed-root charging removes primitive tail
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Splits `Short_S^{can}` into an uncharged root-free
+  primitive core and an explicit fixed-root tail; every tail term has a
+  nonempty bad-root set `E union Z_perp`.
+- **How it is useful:** Shows that after fixed-root/root-slice charges, the
+  half-height obstruction is not a binomial-tail problem: only root-free
+  primitive directions with weight `1+floor((N_S-q_S)/r_lambda)` remain.
+- **What to do next:** Count the surviving root-free primitive half-height
+  directions globally across canonical nodes.
+
 ### 2026-06-29 - M1 primitive tail center-gap saving
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

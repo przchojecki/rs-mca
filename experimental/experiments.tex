@@ -5442,6 +5442,22 @@ primitive branch splits at any cutoff \(R\): denominators
 \(r_\lambda<R\) form a bounded-width primitive core, while
 \(r_\lambda\ge R\) have the Gaussian tail saving above and packing factor at
 most \(1+\lfloor(N_S-q_S)/R\rfloor\).
+After fixed-root/root-slice charges, this tail simplifies further.  The
+quotient-line direction for the summand indexed by
+\(E=D_{S,\lambda}\setminus C\) is
+\(\ell_E R_{S,\lambda}\), whose bad-root set is
+\(E\sqcup Z_{S,\lambda}^{\perp}\).  Hence every term with
+\(E\ne\emptyset\), or with \(z_{S,\lambda}^{\perp}>0\), is already a
+displayed fixed-root/root-slice thickening.  The uncharged root-free primitive
+half-height core is therefore only
+\[
+  PrimHalf_S^{rf}=
+  \sum_{\lambda:h_\lambda>q_S/2,\ z_{S,\lambda}^{\perp}=0}
+  \left(1+\left\lfloor {N_S-q_S\over r_\lambda}\right\rfloor\right),
+\]
+plus the separately charged fixed-root tail.  Thus the final primitive
+half-height obstruction is a global count of root-free primitive directions,
+not a binomial-tail multiplicity.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots
