@@ -965,3 +965,9 @@ Keep entries concise and link to the relevant files.
   `r'=j` rows ⇒ `beta`-col is a combo of `J`-cols (containment), so `r >= j+1` essential.
   **Verifier exits 0: 9 PASS, 0 PENDING -- all 8 A.3 items covered.** Next: HARDENING
   (2nd-irreducible cross-check + wire to on-`main` records), then terminate.
+- **Iteration 8 (commit 59d8ebe) -- HARDENING 1:** re-verify representation-invariant
+  facts (gate `=6`, field laws, `|H|=512` full 2-Sylow) under a SECOND independent
+  degree-32 irreducible `MODULUS2 != MODULUS`. `GF(17^32)` unique up to isomorphism ⇒
+  these can't depend on the irreducible; guards against a representation artifact.
+  Verifier exits 0 (~1.8s): 10 PASS, 0 PENDING. Remaining hardening: on-`main`
+  record cross-checks (tangent506 / strict352 / strict264), then terminate.
