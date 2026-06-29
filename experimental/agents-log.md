@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 base-free half-height skip-ball envelope
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Shows that base-free half-height nodes are terminal
+  leaves of the canonical base-peeling tree and bounds their residual
+  one-per-node plus surplus ledger by an explicit skip-ball sum.
+- **How it is useful:** Replaces a possible depth-wide half-height baseline
+  with a terminal ledger controlled by the number of skipped base roots and
+  the initial surplus.
+- **What to do next:** Combine the skip-ball envelope with the bounded-width,
+  fixed-root, diffuse, and terminal-leaf ledgers in the global M1 charge.
+
 ### 2026-06-29 - M1 canonical surplus debit identity
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

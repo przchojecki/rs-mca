@@ -5725,6 +5725,62 @@ one-for-one.  The remaining global M1 task is consequently separated into a
 baseline active-node count and this explicit surplus-debit ledger, rather
 than a depth-multiplicative half-height loss.
 
+## Base-Free Half-Height Nodes Have a Skip-Ball Envelope
+
+The preceding surplus debit also bounds the number of places where the
+one-per-node half-height baseline can occur.  Let
+
+```text
+b_0=|B_0^*(A)|,        s_0=|D'|-q.
+```
+
+Assume `s_0>=0`; otherwise `F(A)` is empty.  If `S` is a canonical node with
+`B_S=empty`, then either `S=empty` and `b_0=0`, or `S` contains the largest
+element of `B_0^*(A)`.
+
+Indeed, if `y in B_0^*(A)` is not in `S union Old(S)`, then `y` remains in
+`D_S^{can}`.  Since `P(y)=Q(y)=0` and division by `ell_S` is nonzero at such a
+remaining root, one has `P_S(y)=Q_S(y)=0`, so `y in B_S`.  Thus `B_S=empty`
+forces
+
+```text
+S union Old(S)=B_0^*(A).                       (PF2-basefree-leaf)
+```
+
+Consequently a base-free node is a terminal leaf of the canonical base-peeling
+tree.  If `b_0>0`, such a node is determined by the subset of the first
+`b_0-1` base roots that were skipped before the largest base root was peeled.
+For a node with `ell` skipped roots,
+
+```text
+skip(S)=ell,        |S|=b_0-ell,
+q_S=q-b_0+ell,      s_S=s_0-ell.
+```
+
+Activity forces `ell<=s_0`, by (PF2-surplus-skip).  Hence the whole
+base-free residual half-height baseline has the explicit envelope
+
+```text
+sum_{S in Tree_2(A), B_S=empty}
+  (1+ceil(s_S/(floor(q_S/2)+1)))
+
+ <=
+ 1+ceil(s_0/(floor(q/2)+1)),                         if b_0=0,
+
+ sum_{ell=0}^{min(s_0,b_0-1)}
+   binom(b_0-1,ell)
+   (1+ceil((s_0-ell)/(floor((q-b_0+ell)/2)+1))),     if b_0>0.
+                                                        (PF2-skipball-core)
+```
+
+The actual active-node sum may be smaller, since not every subset in the
+skip ball need occur and not every such node need remain `b=2`.  The point is
+that the uncharged root-free half-height baseline is supported only on a
+terminal skip ball of radius `s_0` inside the ordered base locus, rather than
+on all depths of the canonical tree.  In fixed-surplus regimes this is a
+polynomial-size terminal ledger; in general it isolates the only remaining
+combinatorial growth parameter as the number of skipped base roots.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

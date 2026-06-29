@@ -5606,6 +5606,39 @@ Hence surplus never increases along canonical peeling; skipped older base
 roots debit it one-for-one.  The remaining surplus-over-half-width term is
 therefore an explicit unused-initial-surplus ledger, not a multiplicative
 loss in the tree depth.
+This also gives a terminal skip-ball envelope for the one-per-node term.  Put
+\(b_0=|B_0^*(A)|\) and \(s_0=|D'|-q\).  If \(S\) is base-free, \(B_S=\emptyset\),
+then either \(S=\emptyset\) and \(b_0=0\), or \(S\) contains the largest base
+root.  For if \(y\in B_0^*(A)\setminus(S\cup Old(S))\), then \(y\) remains in
+\(D_S^{can}\) and \(P_S(y)=Q_S(y)=0\), so \(y\in B_S\).  Hence
+\[
+  B_S=\emptyset\quad\Longrightarrow\quad
+  S\cup Old(S)=B_0^*(A).
+\]
+Thus base-free half-height nodes are terminal leaves of the canonical base
+peeling.  If \(b_0>0\), a leaf with \(\ell\) skipped roots has
+\[
+  |S|=b_0-\ell,\qquad q_S=q-b_0+\ell,\qquad s_S=s_0-\ell,
+\]
+and activity forces \(\ell\le s_0\).  Therefore
+\[
+ \sum_{\substack{S\in Tree_2(A)\\ B_S=\emptyset}}
+ \left(1+\left\lceil {s_S\over \lfloor q_S/2\rfloor+1}\right\rceil\right)
+ \le
+ \begin{cases}
+  1+\left\lceil {s_0\over \lfloor q/2\rfloor+1}\right\rceil,
+    & b_0=0,\\[4pt]
+  \displaystyle
+  \sum_{\ell=0}^{\min(s_0,b_0-1)}
+    \binom{b_0-1}{\ell}
+    \left(1+\left\lceil
+      {s_0-\ell\over \lfloor(q-b_0+\ell)/2\rfloor+1}
+    \right\rceil\right),
+    & b_0>0.
+ \end{cases}
+\]
+So the residual root-free half-height baseline is supported on a terminal
+skip ball of radius \(s_0\), not on every level of the peeling tree.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots
