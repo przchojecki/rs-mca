@@ -5819,6 +5819,61 @@ non-polynomial risk is therefore not a depth compounding of the root-free
 half-height baseline, but the still-explicit ledgers outside this terminal
 fixed-surplus core.
 
+## Fixed-Surplus Root-Free Half-Height Core Is Polynomial
+
+The same argument also closes the bounded-width primitive part of the
+root-free half-height core in fixed-surplus regimes.  At any node,
+`BWPrim_S(R)` is zero unless `B_S=empty`, because
+`z_{S,lambda}^{perp}=0` forces `B_S=empty`.  Thus the only nodes contributing
+to `PostCore_S^*` are the base-free terminal leaves counted by
+(PF2-skipball-core).
+
+At such a node put `s_S=N_S-q_S` and `h0_S=floor(q_S/2)+1`.  The fibers
+appearing in `BWPrim_S(R_S^{bal})` are disjoint half-height fibers, so their
+number is at most `floor(N_S/h0_S)`.  Each primitive factor in
+`BWPrim_S(R_S^{bal})` is at most `1+s_S`, since `r_lambda>=1`.  Hence
+
+```text
+BWPrim_S(R_S^{bal})
+ <= floor(N_S/h0_S)(s_S+1)
+ <= (s_S+1)^2.                                 (PF2-bw-fixed-node)
+```
+
+where the last inequality is the bare-occupancy estimate
+(PF2-bare-occ-surplus).  Combining (PF2-balanced-surplus-core),
+(PF2-bw-fixed-node), and the terminal skip-ball parametrization gives the
+explicit fixed-surplus envelope
+
+```text
+sum_{S in Tree_2(A)} PostCore_S^*
+ <=
+ (s_0+1)^2 + 1+ceil(s_0/(floor(q/2)+1)),       if b_0=0,
+
+ sum_{ell=0}^{min(s_0,b_0-1)}
+   binom(b_0-1,ell)
+   ((s_0-ell+1)^2
+    + 1+ceil((s_0-ell)/(floor((q-b_0+ell)/2)+1))),
+                                                        if b_0>0.
+                                                        (PF2-postcore-skipball)
+```
+
+In particular, using `q_S>=2` on `Tree_2(A)` and `b_0<=q-1`,
+
+```text
+sum_{S in Tree_2(A)} PostCore_S^*
+ <=
+ ((s_0+1)^2+1+ceil(s_0/2))(s_0+1) q^{s_0}.
+                                                        (PF2-postcore-fixed)
+```
+
+Therefore the entire root-free half-height post-core in (PF2-postcharge-opt)
+is `O_sigma(q^sigma)` whenever the initial surplus `s_0<=sigma` is fixed.
+This removes bounded-width primitive denominators and the bare half-height
+occupancy baseline as possible super-polynomial sources in the fixed-slack M1
+regimes.  What remains outside this root-free post-core is exactly the
+already-displayed collection of fixed-root tails, diffuse determinant-gate
+capacity, and lower-dimensional terminal ledgers.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

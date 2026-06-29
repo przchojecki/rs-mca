@@ -5660,6 +5660,42 @@ with the \(b_0=0\) case satisfying the same final bound by the singleton
 bound above.  Thus for fixed initial surplus the residual base-free
 half-height baseline is a polynomial terminal ledger after the fixed-root,
 bounded-width, diffuse, and lower-dimensional terms have been separated.
+The bounded-width primitive part of the same root-free half-height core is
+also polynomial for fixed surplus.  At a base-free node, the fibers counted by
+\(BWPrim_S(R_S^{bal})\) are disjoint half-height fibers, so there are at most
+\(\lfloor N_S/(\lfloor q_S/2\rfloor+1)\rfloor\) of them; each has primitive
+weight at most \(s_S+1\).  The bare-occupancy estimate therefore gives
+\[
+  BWPrim_S(R_S^{bal})\le (s_S+1)^2.
+\]
+Combining this node bound with the skip-ball parametrization gives
+\[
+ \sum_{S\in Tree_2(A)}PostCore_S^*
+ \le
+ \begin{cases}
+  (s_0+1)^2+
+  1+\left\lceil {s_0\over\lfloor q/2\rfloor+1}\right\rceil,
+    & b_0=0,\\[4pt]
+  \displaystyle
+  \sum_{\ell=0}^{\min(s_0,b_0-1)}
+    \binom{b_0-1}{\ell}
+    \left((s_0-\ell+1)^2
+      +1+\left\lceil
+        {s_0-\ell\over \lfloor(q-b_0+\ell)/2\rfloor+1}
+      \right\rceil\right),
+    & b_0>0.
+ \end{cases}
+\]
+In particular,
+\[
+ \sum_{S\in Tree_2(A)}PostCore_S^*
+ \le
+ \left((s_0+1)^2+1+\left\lceil {s_0\over2}\right\rceil\right)
+ (s_0+1)q^{s_0}.
+\]
+Thus the whole root-free half-height post-core is \(O_\sigma(q^\sigma)\)
+when \(s_0\le\sigma\) is fixed; fixed-root tails, diffuse capacity, and
+lower-dimensional leaves are the remaining ledgers.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

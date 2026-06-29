@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 fixed-surplus root-free half-height core
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Combines the skip-ball envelope with a node-level
+  occupancy bound `BWPrim_S(R_S^{bal}) <= (s_S+1)^2` to show
+  `sum_S PostCore_S^* = O_sigma(q^sigma)` for fixed initial surplus.
+- **How it is useful:** Removes the root-free half-height post-core, including
+  bounded-width primitive denominators and the bare occupancy baseline, as a
+  possible super-polynomial source in fixed-slack M1 regimes.
+- **What to do next:** Focus on the remaining fixed-root tails, diffuse
+  determinant-gate capacity, and lower-dimensional terminal ledgers.
+
 ### 2026-06-29 - M1 fixed-surplus half-height baseline bound
 
 - **Agent/model:** AllenGrahamHart / Codex audit.
