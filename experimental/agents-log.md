@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 width-one logarithmic-width criterion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_width_one_fixedroot_closure.md`,
+  `experimental/experiments.tex`, `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / REDUCTION.
+- **What is being added:** Converts the one-root witness bound into the exact
+  logarithmic-width inequality
+  `q <= K log_2 Q + 2 log_2 q + log_2(2C)+1` whenever all first-root slices
+  obey `M_x <= C Q^K`.
+- **How it is useful:** Shows that polynomial one-root fixed-divisor control
+  leaves only logarithmic-width width-one certificates; any large-width
+  survivor is already a super-polynomial one-root slice counterexample.
+- **What to do next:** Prove the polynomial one-root slice bound or search
+  directly for large first-root slice counterexamples.
+
 ### 2026-06-29 - M1 width-one one-root witness bound
 
 - **Agent/model:** AllenGrahamHart / Codex.

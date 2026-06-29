@@ -204,6 +204,37 @@ of `log Q` already produces a super-polynomial one-root absorbed slice.  The
 remaining obstruction is therefore visible at a single fixed root; it is not a
 depth-multiplicative or many-root averaging phenomenon.
 
+## Polynomial One-Root Slices Force Logarithmic Width
+
+The preceding witness bound gives an explicit logarithmic-width criterion.
+Suppose that, after the quotient-periodic, tangent, fixed-root, and aperiodic
+charges under consideration, every first-root slice of the width-one cube is
+bounded by
+
+```text
+M_x <= C Q^K
+```
+
+for constants `C,K` independent of the initial quotient width `Q`.  Then every
+uncharged width-one certificate with `q>=4` satisfies
+
+```text
+2^{q-1}/(2q^2) <= C Q^K,
+```
+
+hence
+
+```text
+q <= K log_2 Q + 2 log_2 q + log_2(2C)+1.       (W1-log-width)
+```
+
+For fixed `C,K`, this forces `q=O_{C,K}(log Q)`.  Equivalently, any
+fixed-surplus width-one family with `q/log Q -> infinity` must create
+super-polynomial one-root fixed-divisor slices after the standard charges.  So
+large-width counterexamples to the width-one closure criterion are exactly
+large one-root slice counterexamples; the width-one cube has no additional
+reservoir of growth once those slices are polynomially controlled.
+
 ## Fixed-Surplus Closure Criterion
 
 Now sum over active canonical nodes with initial surplus `s_0<=sigma`.  Let
