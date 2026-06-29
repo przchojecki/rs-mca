@@ -55,6 +55,7 @@ Keep entries concise and link to the relevant files.
 - **Files added or changed:**
   `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
   `experimental/notes/m1/m1_boundary_off_external_anchor_audit.md`,
+  `experimental/notes/m1/m1_hankel_variable_line_packet_lemma.md`,
   `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
   `experimental/experiments.tex`, `experimental/experiments.pdf`,
   `experimental/agents-log.md`.
@@ -75,7 +76,8 @@ Keep entries concise and link to the relevant files.
   graph bound gives the ledger multiplier
   `min(2(n-j+2), 2|D|+4 sqrt(p)+O(1))` for the non-line conic branch.
 - **What to do next:** Combine this fixed-core quartic bound with the active
-  fixed-core/root-image ledger and quotient/tangent charges.
+  fixed-core/root-image ledger and quotient/tangent charges; the variable-line
+  packet note now records this refined boundary-core substitution.
 
 ### 2026-06-29 - M1 boundary-core slope-fiber injection
 

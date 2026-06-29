@@ -564,6 +564,30 @@ This is coarser in the crude exponent than bounding `Core_off` directly, but
 it identifies the remaining object as a domain-core image with all
 external-anchor and domain-anchor multiplicities already removed.
 
+The fixed-core conic analysis in `m1_same_slope_root_slice_lemma.md` refines
+this boundary-core substitution.  After fixed-root lines, non-fixed
+constant-slope line packets, and full-plane lifts have been charged, the
+non-line conic part over a fixed root core satisfies
+
+```text
+N_R^conic(D)
+ <= min(2(n-j+2), |D|+4 sqrt(p)+O(1))
+```
+
+when the quartic power gate is absent, and
+
+```text
+N_R^conic(D)
+ <= min(2(n-j+2), 2|D|+4 sqrt(p)+O(1))
+```
+
+in general, under the standard one-dimensional `P^1` Kummer input.  The
+reducible fixed-sum and product-Mobius packets remain in the graph/packet
+ledger below.  Thus the non-line fixed-core geometry no longer supplies an
+uncontrolled multiplicity; the remaining global input is still the active
+`(j-2)` root-core image, now with this sharper fixed-core multiplier available
+whenever it improves on the degree-two graph bound.
+
 The elementary-pullback form gives a more concrete interpretation inside each
 surviving non-fixed line packet.  For a fixed-sum packet `x+y=s_0`, a
 one-outside boundary-core point over the same core is exactly
