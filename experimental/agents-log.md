@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 variable-line hypothesis discharge
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_variable_line_packet_lemma.md`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / LEDGER-INTEGRATION / AUDIT.
+- **What is being added:** The variable-line packet reduction is updated to
+  consume the constant non-fixed line-packet collapse from
+  `m1_same_slope_root_slice_lemma.md`: after fixed-root and full-plane
+  charges, surviving fixed-sum and product-Mobius packets automatically have
+  injective finite-slope maps.
+- **How it is useful:** This removes an extra local hypothesis from the
+  non-fixed line-packet ledger, so the reduction applies directly to every
+  surviving non-fixed two-root line packet in the `t=2` Hankel branch.
+- **What to do next:** Bound the two live objects left by the closure
+  criterion: active different-slope two-exchange codegree and one-outside
+  boundary target image.
+
 ### 2026-06-29 - M1 non-fixed line-packet collapse
 
 - **Agent/model:** AllenGrahamHart / Codex.
