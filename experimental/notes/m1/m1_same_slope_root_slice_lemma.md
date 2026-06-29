@@ -2373,6 +2373,44 @@ a rational-cover algebraic branch where `Phi_R` is the cube of a degree-one
 function.  Thus the nonsplit genus-one root-core cover has no cover-level
 power branch left after the constant-norm and square-norm exceptions.
 
+The rational cubic branch also has an explicit ledger.  In the anti-diagonal
+sum `S_{a,-a}`, geometric triviality of `chi^a(Phi_R)` can occur only when
+
+```text
+3a == 0 mod e.
+```
+
+Thus there are no such nonprincipal coefficients unless `3|e`, and if `3|e`
+there are exactly two:
+
+```text
+a=e/3,  2e/3.                                      (RKANTICOEFF)
+```
+
+All other one-root, non-anti-diagonal, and anti-diagonal coefficients are
+bounded-conductor Kummer sums after the constant-norm and square-norm
+exceptions above are removed.  Therefore on the rational cubic branch
+
+```text
+N_R^{+,-}(D)
+ <= ((e-1)/e^2)|C_R^x| + (2/e^2)|C_R^x|
+    + C_e sqrt(p) + O_e(1)
+
+ <= ((e+1)/e^2)|C_R^x| + C_e sqrt(p) + O_e(1).       (RKCUBBD)
+```
+
+For a geometrically integral rational normalization, `|C_R^x|<=p+O(1)`, so
+this gives
+
+```text
+N_R^{+,-}(D) <= (1+1/e)|D| + C_e sqrt(p) + O_e(1)
+```
+
+on the rational cubic anti-ratio branch.  This is weaker than the generic
+cover saving but is still a proportional per-core bound and leaves only an
+explicit algebraic rational-cover branch, not an uncontrolled character-sum
+failure.
+
 The diagonal product terms in (RKCOUNT) descend to the slope line.  Since
 
 ```text
@@ -2622,9 +2660,10 @@ isolates the single large quadratic coefficient in the nonconstant square-norm
 filter, proves the norm-pushforward obstruction that leaves only anti-diagonal
 cover-ratio power branches after those norm exceptions, reduces the
 anti-diagonal obstruction further to the cubic ratio branch, shows that a
-genuine cubic no-cancellation term forces the rational-cover locus, and gives
-the local max-degree bound and average-collinearity corollary above, including
-the packet-level higher-exchange ledger substitution.
+genuine cubic no-cancellation term forces the rational-cover locus, gives the
+explicit rational-cubic coefficient ledger (RKCUBBD), and gives the local
+max-degree bound and average-collinearity corollary above, including the
+packet-level higher-exchange ledger substitution.
 
 ## Verification
 
@@ -2673,4 +2712,4 @@ the mixed-domain count formula (RKCOUNT), including the diagonal descent
 square-norm Fourier term, and the cover-term norm-pushforward obstruction
 (RKPUSH), including the anti-ratio square-class and degree-four reduction
 (RKANTIRED) and the genus-one exclusion for genuine cubic anti-ratio powers
-(RKANTIGENUS).
+(RKANTIGENUS), plus the rational cubic coefficient ledger (RKCUBBD).

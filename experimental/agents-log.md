@@ -82,7 +82,9 @@ Keep entries concise and link to the relevant files.
   square class as `B_R/Q_R`, so after square-norm is isolated only the cubic
   anti-ratio branch can remain.  A genuine cubic anti-ratio power forces a
   degree-one cube root, hence a rational cover; genus-one root-core covers
-  have no genuine cover-level power branch after the norm exceptions.
+  have no genuine cover-level power branch after the norm exceptions.  On the
+  rational cubic branch, only the two coefficients `a=e/3,2e/3` can be large,
+  giving the explicit bound `((e+1)/e^2)|C_R^x|+O_e(sqrt(p))`.
 - **How it is useful:** The denominator-zero solvable case is exactly a
   fixed-root line or the full-plane lift, both already charged.  Thus the
   residual non-line root-core target is a one-variable slope-cover problem
@@ -100,7 +102,7 @@ Keep entries concise and link to the relevant files.
   obstruction to anti-norm ratio terms, and the anti-ratio square-class
   reduction removes every noncubic order after square-norm is isolated.  The
   cubic term is now separated into a rational-cover algebraic branch and a
-  nontrivial genus-one Kummer sum.
+  nontrivial genus-one Kummer sum, with a proportional rational-branch ledger.
 - **What to do next:** Use this recurrence chart when attacking the active
   `(j-2)` root-core image after quotient, tangent, fixed-root, and full-plane
   charges.

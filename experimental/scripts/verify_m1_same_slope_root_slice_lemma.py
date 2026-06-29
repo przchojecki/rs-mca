@@ -49,7 +49,7 @@ norm-power classification, including the constant-norm line-packet charge and
 the single large Fourier term in the nonconstant square-norm branch, and the
 norm-pushforward obstruction for cover-level power terms, including the
 anti-ratio square-class reduction and the genus-one exclusion for genuine
-cubic anti-ratio powers.
+cubic anti-ratio powers, plus the rational-cubic coefficient ledger.
 """
 
 from __future__ import annotations
@@ -4585,6 +4585,44 @@ def check_boundary_core_cubic_anti_ratio_genus_gate() -> None:
             assert has_degree_one_map_to_p1
 
 
+def check_boundary_core_rational_cubic_ledger() -> None:
+    for index in range(2, 31):
+        large_anti_diagonal_powers = [
+            power
+            for power in range(1, index)
+            if (3 * power) % index == 0
+        ]
+        if index % 3 == 0:
+            assert large_anti_diagonal_powers == [
+                index // 3,
+                2 * index // 3,
+            ], (index, large_anti_diagonal_powers)
+        else:
+            assert large_anti_diagonal_powers == [], (
+                index,
+                large_anti_diagonal_powers,
+            )
+
+        principal_coefficient = Fraction(index - 1, index * index)
+        large_coefficient = Fraction(
+            len(large_anti_diagonal_powers),
+            index * index,
+        )
+        safe_coefficient = principal_coefficient + large_coefficient
+        if index % 3 == 0:
+            assert safe_coefficient == Fraction(index + 1, index * index)
+        else:
+            assert safe_coefficient == Fraction(index - 1, index * index)
+        assert safe_coefficient <= Fraction(index + 1, index * index)
+
+        # Since |C^x|<=p+O(1) and |D|=(p-1)/e, the cover coefficient
+        # translates to the advertised proportional per-core bound.
+        assert Fraction(index + 1, index * index) * index == Fraction(
+            index + 1,
+            index,
+        )
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -4824,6 +4862,7 @@ def main() -> None:
     check_boundary_core_cover_power_norm_pushforward()
     check_boundary_core_anti_ratio_reduction()
     check_boundary_core_cubic_anti_ratio_genus_gate()
+    check_boundary_core_rational_cubic_ledger()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     check_boundary_core_closure_substitution()
