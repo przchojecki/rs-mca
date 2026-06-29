@@ -2103,6 +2103,41 @@ Let `C_R^x` be the open cover points with `Q_R != 0` and
 `r_+ r_- != 0`.  Put
 
 ```text
+N_R(z)=B_R(z)/Q_R(z)=r_+(z,Y)r_-(z,Y).
+```
+
+Then the outside-domain condition can be moved to the slope line:
+
+```text
+1_D(r_+) (1-1_D(r_-)) = 1_D(r_+) (1-1_D(N_R(z))).        (RKNORM)
+```
+
+Indeed, on `C_R^x` the quotient `r_-=N_R/r_+`; if `r_+ in D`, then
+`r_- in D` is equivalent to `N_R in D`.  Thus slopes with `N_R(z) in D`
+contribute no mixed ordered points at all, and slopes with `N_R(z) notin D`
+contribute exactly the plus-sheet points whose plus-root lies in `D`.  This is
+the clean separation used below: the outside-root filter is a slope-line norm
+filter, while the remaining cover-level condition is only `r_+ in D`.
+
+Equivalently, the character expansion can be reindexed as
+
+```text
+N_R^{+,-}(D)
+ = e^{-1} sum_a sum_{C_R^x} chi^a(r_+) (1-1_D(N_R(z))) + O(1)
+
+ = e^{-1} sum_a S_a^+
+   - e^{-2} sum_{a,b} sum_{C_R^x} chi^a(r_+) chi^b(N_R(z))
+   + O(1).                                           (RKNORMEXP)
+```
+
+The second line is the same as (RKCOUNT) after the change of variables
+`S_{a+b,b}=sum chi^a(r_+)chi^b(N_R)`, but it makes the analytic roles
+separate: the outside filter is a bounded-support `P^1` character of
+`B_R/Q_R`, and only the `r_+` factor remains on the cover.
+
+Now define
+
+```text
 S_a^+    = sum_{C_R^x} chi^a(r_+),
 S_{a,b}  = sum_{C_R^x} chi^a(r_+) chi^b(r_-).
 ```
@@ -2362,9 +2397,10 @@ domain/outside filter to bounded-conductor Kummer traces on that cover, derives
 the per-core mixed-domain Kummer bound (RKBD) after fixed-zero-root and
 nonprincipal power branches are removed, descends the diagonal pair terms in
 that mixed-domain expansion to bounded-support `P^1` Kummer sums, closes the
-index-two mixed-domain cover-level terms by sheet-symmetry cancellation, and
-gives the local max-degree bound and average-collinearity corollary above,
-including the packet-level higher-exchange ledger substitution.
+index-two mixed-domain cover-level terms by sheet-symmetry cancellation,
+factors the outside-root test through the slope-line norm `B_R/Q_R`, and gives
+the local max-degree bound and average-collinearity corollary above, including
+the packet-level higher-exchange ledger substitution.
 
 ## Verification
 
@@ -2407,4 +2443,5 @@ for fixed root cores, including its denominator-zero fixed-root/full-plane
 classification, quartic degree bound, split-root cover criterion, and exact
 finite-field subgroup-character expansion for the domain/outside filter and
 the mixed-domain count formula (RKCOUNT), including the diagonal descent
-(RKDIAG) and index-two cancellation formula (RK2).
+(RKDIAG), index-two cancellation formula (RK2), and norm-filter identity
+(RKNORM).

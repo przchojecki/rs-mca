@@ -42,7 +42,8 @@ The slope-side fixed-core recurrence chart is checked by direct finite-field
 linear algebra, and its domain/outside subgroup filter is checked by direct
 character expansion and aggregate mixed-domain counts on sampled finite-field
 covers, including the diagonal descent to the slope line and the index-two
-sheet-symmetry cancellation formula.
+sheet-symmetry cancellation formula.  The verifier also checks the norm-filter
+identity that moves the outside-root condition to B_R/Q_R on the slope line.
 """
 
 from __future__ import annotations
@@ -3601,6 +3602,7 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                     "direct": 0,
                     "expanded": 0j,
                     "open_direct": 0,
+                    "norm_expanded": 0j,
                     "open_points": 0,
                     "plus_sums": [0j for _ in range(index)],
                     "pair_sums": [[0j for _ in range(index)] for _ in range(index)],
@@ -3680,6 +3682,52 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                         aggregate[index]["direct"] += direct
                         aggregate[index]["expanded"] += expanded
                         if r_plus != 0 and r_minus != 0:
+                            norm_value = r_plus * r_minus % prime
+                            expected_norm = b_value * pow(q_value, -1, prime) % prime
+                            assert norm_value == expected_norm, (
+                                prime,
+                                z_value,
+                                y_value,
+                                norm_value,
+                                expected_norm,
+                            )
+                            norm_in_domain = log_table[norm_value] % index == 0
+                            norm_direct = (
+                                1 if plus_in_domain and not norm_in_domain else 0
+                            )
+                            assert norm_direct == direct, (
+                                prime,
+                                index,
+                                z_value,
+                                y_value,
+                                r_plus,
+                                r_minus,
+                                norm_value,
+                                direct,
+                                norm_direct,
+                            )
+                            char_norm = subgroup_indicator_via_characters(
+                                norm_value,
+                                index,
+                                log_table,
+                            )
+                            norm_expanded = char_plus * (1 - char_norm)
+                            assert abs(norm_expanded.imag) < 1e-8, (
+                                prime,
+                                index,
+                                z_value,
+                                y_value,
+                                norm_expanded,
+                            )
+                            assert abs(norm_expanded.real - direct) < 1e-8, (
+                                prime,
+                                index,
+                                z_value,
+                                y_value,
+                                direct,
+                                norm_expanded,
+                            )
+                            aggregate[index]["norm_expanded"] += norm_expanded
                             aggregate[index]["open_direct"] += direct
                             aggregate[index]["open_points"] += 1
                             plus_sums = aggregate[index]["plus_sums"]
@@ -3776,6 +3824,23 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                     a_rows,
                     b_rows,
                     open_expansion,
+                    data,
+                )
+                assert abs(complex(data["norm_expanded"]).imag) < 1e-8, (
+                    prime,
+                    index,
+                    a_rows,
+                    b_rows,
+                    data,
+                )
+                assert (
+                    abs(complex(data["norm_expanded"]).real - int(data["open_direct"]))
+                    < 1e-8
+                ), (
+                    prime,
+                    index,
+                    a_rows,
+                    b_rows,
                     data,
                 )
                 principal = (

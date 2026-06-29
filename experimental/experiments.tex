@@ -2223,7 +2223,23 @@ If \(B_R\equiv0\), then \(p_R=0\) on \(Q_R\ne0\), so every formal two-root
 extension has the fixed root \(0\); this is the fixed-root line \(p=0\) and is
 already charged.  Otherwise the zero-root points lie over the at most two
 roots of \(B_R\).  On the open cover \(C_R^\times\), where
-\(Q_Rr_+r_-\ne0\), define
+\(Q_Rr_+r_-\ne0\), put
+\[
+  N_R(z)=B_R(z)/Q_R(z)=r_+(z,Y)r_-(z,Y).
+\]
+Then
+\[
+  1_D(r_+)(1-1_D(r_-))=1_D(r_+)(1-1_D(N_R(z))).
+\]
+Indeed, once \(r_+\in D\), the condition \(r_-\in D\) is equivalent to
+\(N_R(z)\in D\).  Thus the outside-root test is a slope-line norm filter; the
+remaining cover-level condition is only \(r_+\in D\).  Equivalently,
+\[
+  N_R^{+,-}(D)
+  =\frac1e\sum_a\sum_{C_R^\times}\chi^a(r_+)(1-1_D(N_R(z)))+O(1),
+\]
+which is the same as the expansion below after reindexing
+\(S_{a+b,b}=\sum\chi^a(r_+)\chi^b(N_R)\).  Now define
 \[
   S_a^+=\sum_{C_R^\times}\chi^a(r_+),\qquad
   S_{a,b}=\sum_{C_R^\times}\chi^a(r_+)\chi^b(r_-).
