@@ -88,6 +88,20 @@ The new extremal example sits at small slack (`d=1`) with line monodromies
 near-`4p` ratios live; so the asymmetric (off-diagonal) wall has its own larger
 near-extremal locus than the published `3.2173609608` row suggested.
 
+## Diagonal (equal-line) family: extended to p <= 3000
+
+The near-`4p` ratios live in the equal-line-monodromy diagonal family
+`S_{a,a,0,d}` (the conditional `C_2^eq`/`C_2^peq` slice, ledger `4p+3sqrt(p)`),
+where the published scan peaked at `3.9771715522` (`p=421`). Extending the
+`n=20` diagonal scan from the published `p <= 1601` to `p <= 3000` (48 cases,
+571332 tuples) finds **0 violations of `4p`**; the maximum stays
+`3.9771715522` at the small prime `p=421`, and the large-`p` diagonal maxima
+settle near `3.91`-`3.93` (e.g. `3.9262` at `p=2141`, `3.9134` at `p=2741`),
+comfortably below `4p` -- indeed below `4p - 3sqrt(p)`. So the diagonal family
+shows no approach to `4p` at larger scale: the `4p` ceiling is not threatened on
+either the asymmetric-nonresonant or the equal-line diagonal side within the
+scanned range. (Reproduce: `--scan --diagonal-n 20 --p-max 3000 --mode remaining`.)
+
 ## Reproduce
 
 ```sh
