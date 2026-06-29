@@ -666,6 +666,41 @@ two-exchange line packets left are fixed-sum and nondegenerate product-Mobius
 packets.  These are exactly the two models used in
 `m1_hankel_variable_line_packet_lemma.md`.
 
+The same normal form also controls mixed-domain boundary traces.  Let `L` be a
+non-fixed affine line in the elementary plane, and fix a `(j-2)` core `R`.
+The mixed trace over `R` is
+
+```text
+Trace_off(L,R)
+ = { (beta,y) in (F\D) x (D\R) : (beta+y,beta y) in L }.
+```
+
+If `L` is the fixed-sum line `s=s_0`, then
+
+```text
+beta=s_0-y.                                      (FS-OFF)
+```
+
+If `L` is the nondegenerate product-Mobius line
+
+```text
+(x-c)(y-c)=mu,        mu != 0,
+```
+
+then
+
+```text
+beta=c+mu/(y-c).                                (PM-OFF)
+```
+
+Thus the mixed boundary trace of every surviving non-fixed line packet is the
+graph of the same involution used by the all-domain packet, restricted to
+domain roots whose partner escapes `D`.  In particular each such line has at
+most `|D\R|=n-j+2` mixed boundary pairs, and its external-anchor image is no
+larger.  If `mu=0`, the line is the fixed-root line `(x-c)(y-c)=0`, and the
+large vertical/horizontal mixed fibers are precisely the fixed-root
+root-slice case already charged.
+
 ## Non-Fixed Line-Packet Constant-Slope Collapse
 
 In the `t=2` Hankel setting, the two non-fixed line models cannot be
@@ -1652,6 +1687,12 @@ charged to the full-plane lift.  This connects the boundary-core image to the
 existing two-root line-packet ledger rather than introducing a separate
 geometric species.
 
+For such a surviving line packet the mixed boundary-core trace is explicit:
+fixed-sum packets contribute only pairs `beta=s_0-y`, while product-Mobius
+packets contribute only pairs `beta=c+mu/(y-c)`.  Hence, over a fixed core
+`R`, a non-fixed line packet contributes at most `n-j+2` one-outside
+boundary-core pairs, exactly the escaped-root trace of its packet involution.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -1786,7 +1827,9 @@ external-anchor one-root fibers to the boundary-core image after lifted
 boundary-core root-slice charges, packages each fixed-domain-core boundary
 incidence as a bidegree-two graph cut out by an explicit `(2,2)` determinant,
 identifies that determinant as the pullback of the ordinary two-root elementary
-determinant, and gives the local max-degree bound and average-collinearity
+determinant, identifies the mixed-domain trace of each surviving non-fixed
+line packet as the escaped-root graph of the fixed-sum or product-Mobius
+involution, and gives the local max-degree bound and average-collinearity
 corollary above, including the packet-level
 higher-exchange ledger substitution.
 
@@ -1818,4 +1861,4 @@ also checks the boundary-off external-anchor corollary and boundary-shadow
 fiber reduction over sampled small domains, including the rank-one
 anchor-recovery, quadratic slope-gate, conic-secant anchor-gate, and
 fixed-anchor boundary-core fiber, fixed-core graph, and bidegree determinant
-pullback criteria.
+pullback criteria, and the mixed-domain line-packet trace formulas.

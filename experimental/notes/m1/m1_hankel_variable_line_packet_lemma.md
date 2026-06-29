@@ -564,6 +564,27 @@ This is coarser in the crude exponent than bounding `Core_off` directly, but
 it identifies the remaining object as a domain-core image with all
 external-anchor and domain-anchor multiplicities already removed.
 
+The elementary-pullback form gives a more concrete interpretation inside each
+surviving non-fixed line packet.  For a fixed-sum packet `x+y=s_0`, a
+one-outside boundary-core point over the same core is exactly
+
+```text
+beta=s_0-y,        y in D\R,        beta notin D.
+```
+
+For a nondegenerate product-Mobius packet `(x-c)(y-c)=mu`, `mu != 0`, it is
+exactly
+
+```text
+beta=c+mu/(y-c),        y in D\R,        beta notin D.
+```
+
+Thus the boundary-core image carried by a non-fixed line packet is the
+escaped-root trace of the same involution used in the singleton
+escape/target lemma.  Over one fixed core and one surviving non-fixed line it
+has size at most `n-j+2`; the degenerate `mu=0` case is the fixed-root line
+already charged before this closure criterion is applied.
+
 ## Use In M1
 
 The lemma identifies what the all-line M1 proof still has to do in this branch.

@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 mixed-domain line-packet trace
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/notes/m1/m1_boundary_off_external_anchor_audit.md`,
+  `experimental/notes/m1/m1_hankel_variable_line_packet_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / BOUNDARY-CORE REDUCTION / AUDIT.
+- **What is being added:** The mixed-domain slice of each surviving non-fixed
+  two-root line packet is made explicit: fixed-sum packets have
+  `beta=s_0-y`, and product-Mobius packets have `beta=c+mu/(y-c)`.
+- **How it is useful:** This shows that boundary-core points on non-fixed
+  packets are escaped-root traces of the same involutions already used in the
+  all-domain line-packet ledger, with at most `n-j+2` pairs per fixed core and
+  line after fixed-root degeneracies are charged.
+- **What to do next:** Use this escaped-root interpretation when attacking the
+  remaining boundary-core/root-image and different-slope two-exchange ledgers.
+
 ### 2026-06-29 - M1 boundary-core elementary pullback
 
 - **Agent/model:** AllenGrahamHart / Codex.

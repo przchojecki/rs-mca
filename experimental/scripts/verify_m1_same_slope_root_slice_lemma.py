@@ -26,6 +26,8 @@ conic-secant anchor-gate, fixed-anchor boundary-core fiber, and fixed-core
 graph reductions are checked on sampled small-field instances, including the
 fixed-core bidegree determinant normal form.  The average-ledger and
 boundary-core closure substitutions are checked as exact rational inequalities.
+The mixed-domain trace formulas for fixed-sum and product-Mobius line packets
+are checked against direct elementary-plane incidence.
 """
 
 from __future__ import annotations
@@ -1310,6 +1312,8 @@ def check_residual_exchange_degree_bound() -> None:
 def check_two_root_line_classification() -> None:
     for p in (3, 5, 7, 11, 17):
         pairs = [(x, y) for x in range(p) for y in range(x + 1, p)]
+        domain = tuple(range(1, (p + 1) // 2))
+        domain_set = set(domain)
         for a in range(p):
             for b in range(p):
                 if a == 0 and b == 0:
@@ -1350,6 +1354,41 @@ def check_two_root_line_classification() -> None:
                                 in_model,
                                 in_line,
                             )
+                        mixed_direct = [
+                            (beta_ext, y)
+                            for y in domain
+                            for beta_ext in range(p)
+                            if beta_ext not in domain_set
+                            and (
+                                a * ((beta_ext + y) % p)
+                                + b * ((beta_ext * y) % p)
+                                + c0
+                            )
+                            % p
+                            == 0
+                        ]
+                        mixed_formula = [
+                            ((s0 - y) % p, y)
+                            for y in domain
+                            if (s0 - y) % p not in domain_set
+                        ]
+                        assert sorted(mixed_direct) == sorted(mixed_formula), (
+                            p,
+                            a,
+                            b,
+                            c0,
+                            s0,
+                            mixed_direct,
+                            mixed_formula,
+                        )
+                        assert len(mixed_direct) <= len(domain), (
+                            p,
+                            a,
+                            b,
+                            c0,
+                            mixed_direct,
+                            domain,
+                        )
                         continue
 
                     center = (-a * pow(b, -1, p)) % p
@@ -1399,6 +1438,69 @@ def check_two_root_line_classification() -> None:
                             in_model,
                             in_line,
                         )
+
+                    mixed_direct = [
+                        (beta_ext, y)
+                        for y in domain
+                        for beta_ext in range(p)
+                        if beta_ext not in domain_set
+                        and (
+                            a * ((beta_ext + y) % p)
+                            + b * ((beta_ext * y) % p)
+                            + c0
+                        )
+                        % p
+                        == 0
+                    ]
+                    if mu == 0:
+                        assert all(
+                            beta_ext == center or y == center
+                            for beta_ext, y in mixed_direct
+                        ), (p, a, b, c0, center, mu, mixed_direct)
+                    else:
+                        mixed_formula = [
+                            (
+                                (
+                                    center
+                                    + mu * pow((y - center) % p, -1, p)
+                                )
+                                % p,
+                                y,
+                            )
+                            for y in domain
+                            if y != center
+                            and (
+                                center + mu * pow((y - center) % p, -1, p)
+                            )
+                            % p
+                            not in domain_set
+                        ]
+                        assert sorted(mixed_direct) == sorted(mixed_formula), (
+                            p,
+                            a,
+                            b,
+                            c0,
+                            center,
+                            mu,
+                            mixed_direct,
+                            mixed_formula,
+                        )
+                        assert len(mixed_direct) <= len(domain), (
+                            p,
+                            a,
+                            b,
+                            c0,
+                            center,
+                            mu,
+                            mixed_direct,
+                            domain,
+                        )
+                        for beta_ext, y in mixed_formula:
+                            assert beta_ext != center
+                            assert (
+                                center
+                                + mu * pow((beta_ext - center) % p, -1, p)
+                            ) % p == y
 
 
 def check_nonfixed_line_constant_slope_collapse() -> None:

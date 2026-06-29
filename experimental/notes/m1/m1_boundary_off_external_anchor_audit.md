@@ -228,6 +228,25 @@ elementary determinant curve.  Fixing either coordinate is the fixed-root line
 positive-dimensional same-slope component is one of the already classified
 fixed-sum or nondegenerate product-Mobius line packets.
 
+On those surviving non-fixed packets the mixed-domain slice is a graph, not a
+new incidence surface.  A fixed-sum packet `x+y=s_0` contributes only
+
+```text
+beta=s_0-y,
+```
+
+and a nondegenerate product-Mobius packet `(x-c)(y-c)=mu`, `mu != 0`,
+contributes only
+
+```text
+beta=c+mu/(y-c).
+```
+
+Thus, for a fixed core `R`, every non-fixed line packet contributes at most
+`|D\R|=n-j+2` one-outside boundary-core pairs, namely the domain roots whose
+packet partner escapes the domain.  The degenerate `mu=0` case is exactly the
+fixed-root line already charged by the boundary/root-slice ledger.
+
 ## Integration Decision
 
 The full PR was not merged wholesale.  It included a very large generated
@@ -261,7 +280,8 @@ incidence problem.  It gives a route for future agents:
 This note does not prove the all-line M1 polynomial packing theorem.  It gives
 per-shadow quadratic slope/anchor gates, the shadow-fiber reduction, and the
 fixed-anchor boundary-core fiber reduction after fixed-slope boundary slices
-are charged, plus the fixed-core degree-two graph form.  It does not bound the
-total active domain-core image or prove a bidegree-incidence point count, does
-not give a leaderboard row, and does not change any public MCA or
-interleaved-list threshold.
+are charged, plus the fixed-core degree-two graph form and the non-fixed
+line-packet mixed-trace formulas.  It does not bound the total active
+domain-core image or prove a bidegree-incidence point count, does not give a
+leaderboard row, and does not change any public MCA or interleaved-list
+threshold.
