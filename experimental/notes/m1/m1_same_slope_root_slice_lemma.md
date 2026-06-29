@@ -1305,6 +1305,51 @@ where `Shadow_off^res=pi(Boundary_off^res)`.  This still does not bound the
 shadow image itself, but it removes external-anchor multiplicity from the
 one-outside ledger.
 
+The shadow condition also has an intrinsic rank-one form.  For a fixed shadow
+`S` and finite slope `z`, put `w_z=u+zv` and
+
+```text
+c_i=row_i(H_{3,j-1}(w_z)ell_S),        0<=i<=2.
+```
+
+An anchor `beta in F` satisfies
+
+```text
+H_{2,j}(w_z)ell_{S,beta}=0
+```
+
+if and only if either
+
+```text
+(c_0,c_1,c_2)=(0,0,0),                         (BZ0)
+```
+
+or
+
+```text
+c_0 != 0,        c_1^2=c_0 c_2,        beta=c_1/c_0.     (BR1)
+```
+
+Indeed, the boundary equation is
+
+```text
+c_1-beta c_0=0,        c_2-beta c_1=0.
+```
+
+If `c_0 != 0`, the first equation forces `beta=c_1/c_0`, and the second is
+exactly `c_1^2=c_0c_2`.  If `c_0=0`, then the first equation forces `c_1=0`,
+and the second forces `c_2=0`.  Thus, away from the already charged lifted
+boundary root-slice core (BZ0), the external anchor over a shadow and slope is
+unique and recovered from the lifted Hankel triple.  The residual one-outside
+shadow image is therefore contained in the rank-one scalar Hankel locus
+
+```text
+c_1^2=c_0c_2,        c_0 != 0,        c_1/c_0 notin D,          (BRANK)
+```
+
+with the usual active filter `H_{2,j}(v)ell_{S,c_1/c_0} != 0`.  This is the
+concrete shadow-image target left by the boundary reduction.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -1432,7 +1477,8 @@ a common `t=1` Hankel kernel, compresses residual top-packet edges and
 triangles into the lifted top-kernel ledger, proves the exact simultaneous
 top-kernel root-slice recursion, classifies the ruled external-anchor boundary
 branch, reduces the residual one-outside target image to a boundary-shadow
-image with fibers of size at most two, and gives the local max-degree bound and
+image with fibers of size at most two and a rank-one scalar Hankel
+anchor-recovery condition, and gives the local max-degree bound and
 average-collinearity corollary above, including the packet-level
 higher-exchange ledger substitution.
 
@@ -1461,4 +1507,5 @@ Johnson-graph star/top triangle classification, the top-packet lift identity
 compression ledger.  It checks the simultaneous kernel root-slice recursion
 (KREC) over exhaustive and sampled small-field instances.  The same verifier
 also checks the boundary-off external-anchor corollary and boundary-shadow
-fiber reduction over sampled small domains.
+fiber reduction over sampled small domains, including the rank-one
+anchor-recovery criterion.

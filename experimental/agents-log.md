@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 boundary-shadow anchor recovery
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/notes/m1/m1_boundary_off_external_anchor_audit.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / BOUNDARY-SHADOW REDUCTION / AUDIT.
+- **What is being added:** A residual one-outside shadow and slope recover
+  their external anchor from the lifted Hankel triple: outside the already
+  charged zero core, the condition is `c_0 != 0`, `c_1^2=c_0 c_2`, and
+  `beta=c_1/c_0`.
+- **How it is useful:** This removes the existential external-anchor
+  quantifier from the boundary-shadow task, turning it into a scalar rank-one
+  Hankel condition plus the recovered-anchor outside-domain and active filters.
+- **What to do next:** Bound the resulting rank-one boundary shadow image in
+  the quotient-aware residue-line ledger.
+
 ### 2026-06-29 - M1 boundary-off shadow reduction
 
 - **Agent/model:** AllenGrahamHart / Codex.

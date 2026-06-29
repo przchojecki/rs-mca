@@ -96,6 +96,30 @@ are distinct.  Equivalently,
 The remaining global task is to bound the shadow image, not to handle
 uncontrolled external-anchor multiplicity over a fixed shadow.
 
+There is also no hidden quantifier over external anchors in that shadow task.
+For a fixed finite slope `z`, write
+
+```text
+c_i=row_i(H_{3,j-1}(u+zv)ell_S),        0<=i<=2.
+```
+
+Then `H_{2,j}(u+zv)ell_{S,beta}=0` for some `beta` iff either the lifted
+boundary core is already zero,
+
+```text
+(c_0,c_1,c_2)=(0,0,0),
+```
+
+or
+
+```text
+c_0 != 0,        c_1^2=c_0c_2,        beta=c_1/c_0.
+```
+
+Thus the residual shadow-image problem is a scalar rank-one Hankel condition
+on `S`, with the recovered anchor required to lie outside `D` and satisfy the
+usual active filter.
+
 ## Integration Decision
 
 The full PR was not merged wholesale.  It included a very large generated

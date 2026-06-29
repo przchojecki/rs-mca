@@ -21,9 +21,9 @@ extension formula, and general affine subpacket one-root and two-root fibers
 are checked by finite-field linear algebra.  The arbitrary moving-rank fiber
 dimension drop is checked by the same affine-preimage calculation, and the
 residual exchange-degree corollary is checked on small split-support graphs.
-The boundary shadow-fiber reduction is checked on sampled small-field
-instances, and the average-ledger substitutions are checked as exact rational
-inequalities.
+The boundary shadow-fiber and rank-one anchor-recovery reductions are checked
+on sampled small-field instances, and the average-ledger substitutions are
+checked as exact rational inequalities.
 """
 
 from __future__ import annotations
@@ -2094,6 +2094,45 @@ def check_boundary_off_external_anchor_corollary() -> None:
                     )
 
 
+def check_boundary_shadow_anchor_recovery() -> None:
+    rng = Random(20260711)
+    cases: list[tuple[int, tuple[int, int, int]]]
+    for p in (3, 5, 7, 11, 17, 31):
+        if p <= 7:
+            cases = [
+                (p, (seq[0], seq[1], seq[2]))
+                for seq in product(range(p), repeat=3)
+            ]
+        else:
+            cases = [
+                (
+                    p,
+                    (rng.randrange(p), rng.randrange(p), rng.randrange(p)),
+                )
+                for _ in range(4000)
+            ]
+
+        for prime, seq in cases:
+            c_0, c_1, c_2 = seq
+            roots = [
+                beta
+                for beta in range(prime)
+                if hankel_core_value(seq, beta, prime) == (0, 0)
+            ]
+            zero_core = seq == (0, 0, 0)
+            rank_one = c_0 != 0 and (c_1 * c_1 - c_0 * c_2) % prime == 0
+
+            if zero_core:
+                assert len(roots) == prime, (prime, seq, roots)
+                continue
+
+            if rank_one:
+                recovered = (c_1 * pow(c_0, -1, prime)) % prime
+                assert roots == [recovered], (prime, seq, recovered, roots)
+            else:
+                assert roots == [], (prime, seq, roots)
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -2229,6 +2268,7 @@ def main() -> None:
     check_top_packet_compression_ledger()
     check_simultaneous_kernel_root_slice_recursion()
     check_boundary_off_external_anchor_corollary()
+    check_boundary_shadow_anchor_recovery()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     print("same-slope root-slice lemma verifier passed")
