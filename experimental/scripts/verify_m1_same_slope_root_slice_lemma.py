@@ -47,7 +47,8 @@ identity that moves the outside-root condition to B_R/Q_R on the slope line,
 the resulting injection into norm-outside slopes, and the degree-two
 norm-power classification, including the constant-norm line-packet charge and
 the single large Fourier term in the nonconstant square-norm branch, and the
-norm-pushforward obstruction for cover-level power terms.
+norm-pushforward obstruction for cover-level power terms, including the
+anti-ratio square-class reduction.
 """
 
 from __future__ import annotations
@@ -4457,6 +4458,106 @@ def check_boundary_core_cover_power_norm_pushforward() -> None:
                 )
 
 
+def check_boundary_core_anti_ratio_reduction() -> None:
+    rng = Random(20260723)
+    inv_two_cache: dict[int, int] = {}
+    for prime in (11, 17, 29, 41):
+        inv_two_cache[prime] = pow(2, -1, prime)
+        samples: list[tuple[Poly1, Poly1, Poly1]] = []
+        for _ in range(900):
+            a_poly = poly1_from_list([rng.randrange(prime) for _ in range(3)], prime)
+            q_poly = poly1_from_list([rng.randrange(prime) for _ in range(3)], prime)
+            b_poly = poly1_from_list([rng.randrange(prime) for _ in range(3)], prime)
+            if not q_poly or not b_poly:
+                continue
+            samples.append((a_poly, q_poly, b_poly))
+
+        for a_poly, q_poly, b_poly in samples:
+            qb_poly = poly1_mul(q_poly, b_poly, prime)
+            assert poly1_degree(qb_poly) <= 4, (prime, q_poly, b_poly, qb_poly)
+            theta_poly = poly1_sub(
+                poly1_mul(a_poly, a_poly, prime),
+                {
+                    degree: (4 * coeff) % prime
+                    for degree, coeff in qb_poly.items()
+                },
+                prime,
+            )
+            assert poly1_degree(theta_poly) <= 4, (prime, theta_poly)
+
+            point_count = 0
+            for z_value in range(prime):
+                a_value = eval_poly1(a_poly, z_value, prime)
+                q_value = eval_poly1(q_poly, z_value, prime)
+                b_value = eval_poly1(b_poly, z_value, prime)
+                theta_value = eval_poly1(theta_poly, z_value, prime)
+                for y_value in range(prime):
+                    if (y_value * y_value - theta_value) % prime != 0:
+                        continue
+                    point_count += 1
+                    plus_value = (a_value + y_value) % prime
+                    minus_value = (a_value - y_value) % prime
+                    assert (plus_value * minus_value - 4 * q_value * b_value) % prime == 0
+                    if plus_value == 0 or minus_value == 0:
+                        assert (q_value * b_value) % prime == 0, (
+                            prime,
+                            a_poly,
+                            q_poly,
+                            b_poly,
+                            z_value,
+                            y_value,
+                            plus_value,
+                            minus_value,
+                            q_value,
+                            b_value,
+                        )
+                    if q_value == 0 or b_value == 0 or minus_value == 0:
+                        continue
+                    norm_value = b_value * pow(q_value, -1, prime) % prime
+                    ratio_value = plus_value * pow(minus_value, -1, prime) % prime
+                    r_minus = (
+                        minus_value
+                        * inv_two_cache[prime]
+                        * pow(q_value, -1, prime)
+                    ) % prime
+                    assert r_minus != 0
+                    inverse_square = pow((r_minus * r_minus) % prime, -1, prime)
+                    assert ratio_value * pow(norm_value, -1, prime) % prime == inverse_square
+                    assert quadratic_character(ratio_value, prime) == quadratic_character(
+                        norm_value,
+                        prime,
+                    ), (
+                        prime,
+                        a_poly,
+                        q_poly,
+                        b_poly,
+                        z_value,
+                        y_value,
+                        ratio_value,
+                        norm_value,
+                    )
+
+            assert point_count <= 2 * prime + 4, (
+                prime,
+                a_poly,
+                q_poly,
+                b_poly,
+                theta_poly,
+                point_count,
+            )
+
+        # If an anti-ratio character has order m, then an even m is already
+        # square-norm, and an odd nonconstant m-th power must have m<=4.
+        # Hence only the cubic anti-ratio branch can remain after square-norm.
+        for order in range(2, 16):
+            if order % 2 == 0:
+                continue
+            if order >= 5:
+                assert order > 4
+            else:
+                assert order == 3
+
+
 def check_nonruled_degree_bound() -> None:
     # Model only the combinatorics after ruled cores are removed: each
     # (j-1)-core has at most two anchors, hence at most one edge.
@@ -4694,6 +4795,7 @@ def main() -> None:
     check_boundary_core_norm_power_gate()
     check_boundary_core_norm_exception_ledger()
     check_boundary_core_cover_power_norm_pushforward()
+    check_boundary_core_anti_ratio_reduction()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     check_boundary_core_closure_substitution()

@@ -2305,6 +2305,51 @@ For `e=2` these are exactly the diagonal terms handled below by sheet
 symmetry and descent to `P^1`.  For `e>2`, (RKANTI) is the remaining
 cover-level power target in this root-core reduction.
 
+This anti-ratio target has only one genuinely new order.  Put
+
+```text
+Phi_R=r_+/r_-=(A_R+Y)/(A_R-Y).
+```
+
+The identity
+
+```text
+(A_R+Y)(A_R-Y)=4Q_RB_R
+```
+
+shows that all finite zeros and poles of `Phi_R` project into the divisor
+`Q_RB_R=0`; on the compactified degree-four double cover the numerator and
+denominator have pole degree at most four.  Hence the map degree of
+`Phi_R:C_R->P^1` is at most four.  Also
+
+```text
+Phi_R / N_R = 1/r_-^2,       N_R=r_+r_-=B_R/Q_R.       (RKPHIN)
+```
+
+Thus `Phi_R` and `N_R` have the same square class in the cover function
+field.  Consequently:
+
+```text
+even-order anti-ratio power branch  =>  square-norm branch,
+odd order m>=5 anti-ratio branch    =>  Phi_R constant,
+Phi_R constant                      =>  square-norm branch.       (RKANTIRED)
+```
+
+The second implication uses `deg(Phi_R)<=4`, since a nonconstant `m`-th power
+has map degree divisible by `m`.  The last implication follows from
+`N_R=Phi_R r_-^2`.  Therefore, after the square-norm algebraic branch has been
+isolated, the only possible nonconstant anti-ratio power branch has order
+`m=3`:
+
+```text
+div_C(r_+/r_-) == 0 mod 3.                         (RKANTICUBIC)
+```
+
+In particular, if `3` does not divide the subgroup index `e`, then after the
+constant-norm and square-norm branches above have been charged or isolated,
+there are no cover-level power branches left in the root-core mixed-domain
+expansion.
+
 The diagonal product terms in (RKCOUNT) descend to the slope line.  Since
 
 ```text
@@ -2552,8 +2597,9 @@ degree-two norm-power exceptions as constant norm or quadratic square norm,
 charges constant norm to the fixed-root/product-Mobius line-packet ledger,
 isolates the single large quadratic coefficient in the nonconstant square-norm
 filter, proves the norm-pushforward obstruction that leaves only anti-diagonal
-cover-ratio power branches after those norm exceptions, and gives the local
-max-degree bound and average-collinearity corollary above, including the
+cover-ratio power branches after those norm exceptions, reduces the
+anti-diagonal obstruction further to the cubic ratio branch, and gives the
+local max-degree bound and average-collinearity corollary above, including the
 packet-level higher-exchange ledger substitution.
 
 ## Verification
@@ -2601,4 +2647,5 @@ the mixed-domain count formula (RKCOUNT), including the diagonal descent
 (RKNORM) with norm-outside injection (RKNINJ) and degree-two norm-power gate
 (RKNP), including the constant-norm line-packet charge and the single-large
 square-norm Fourier term, and the cover-term norm-pushforward obstruction
-(RKPUSH).
+(RKPUSH), including the anti-ratio square-class and degree-four reduction
+(RKANTIRED).

@@ -78,7 +78,9 @@ Keep entries concise and link to the relevant files.
   norm-filter Fourier coefficient as a possible large term.  Pushing divisors
   down by the slope-cover norm shows that, after those norm exceptions, the
   only cover-level power branches left are the anti-diagonal ratio terms
-  `chi^a(r_+/r_-)`.
+  `chi^a(r_+/r_-)`; the anti-ratio has degree at most four and the same
+  square class as `B_R/Q_R`, so after square-norm is isolated only the cubic
+  anti-ratio branch can remain.
 - **How it is useful:** The denominator-zero solvable case is exactly a
   fixed-root line or the full-plane lift, both already charged.  Thus the
   residual non-line root-core target is a one-variable slope-cover problem
@@ -93,7 +95,8 @@ Keep entries concise and link to the relevant files.
   noncancellation branches.  The constant-norm exception is not new geometry,
   and the square-norm exception is now reduced to one explicit parity branch.
   The norm-pushforward obstruction localizes the remaining cover-level
-  obstruction to anti-norm ratio terms.
+  obstruction to anti-norm ratio terms, and the anti-ratio square-class
+  reduction removes every noncubic order after square-norm is isolated.
 - **What to do next:** Use this recurrence chart when attacking the active
   `(j-2)` root-core image after quotient, tangent, fixed-root, and full-plane
   charges.
