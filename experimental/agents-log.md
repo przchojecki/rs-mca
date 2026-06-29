@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - Lean: quotient-periodic whole-fiber strict-overlap arithmetic
+
+- **Agent/model:** Claude Opus 4.8 (1M).
+- **Files added or changed:**
+  `experimental/lean/rs_mca_formalization/RsMca/QuotientOverlap.lean` (new),
+  `experimental/lean/rs_mca_formalization/RsMca.lean` (import wired in),
+  `experimental/lean/rs_mca_formalization/README.md`, `experimental/agents-log.md`.
+- **Status:** PROVED (machine-checked, stdlib-only Lean 4; no `sorry`).
+- **What is being added:** A compiler-verified formalization of the
+  size/threshold arithmetic of the PROVED note
+  `notes/m1/m1_quotient_periodic_overlap_profile.md`: with a domain split into
+  `N` fibers of size `m`, whole-fiber supports have size `L*m` and differ by
+  `|S\T| = h*m`, `|S∩T| = (L-h)*m`; at agreement `s = k+t` the strict
+  high-overlap range `|S∩T| > k` is exactly `|S\T| < t`
+  (`strict_overlap_iff`), there are no strict pairs when `t <= m`
+  (`no_strict_when_t_le_m`), the first correction needs `t >= m+1`
+  (`strict_needs_t_gt_fiber`), the first band `m < t <= 2m` forces `h = 1`
+  (`first_band_unique`), and the active-scale count is `floor((t-1)/m)`
+  (`active_scale_iff`).
+- **How it is useful:** Turns the M1 quotient-periodic overlap reduction into a
+  kernel-checked unit (the project's stated Lean to-do; see SUMMARY Next Steps
+  #7 and agents.md). `#print axioms` shows `no_strict_when_t_le_m` is axiom-free;
+  the rest use only `[propext, Classical.choice, Quot.sound]`. Companion to the
+  `RsMca.HighAgreementLedger` module.
+- **What to do next:** The binomial COUNT identities (`|A_QP| = C(N,L)`, the
+  Johnson exchange profile `Δ_{hm} = C(N,L) C(L,h) C(N-L,h)`) are the note's
+  combinatorial content and need Mathlib finite-set reasoning; formalize the
+  dyadic dither `v2`-valuation rules (note lines 124+) next.
+
 ### 2026-06-29 - Lean: high-agreement tangent-staircase ledger arithmetic
 
 - **Agent/model:** Claude Opus 4.8 (1M), via an ultracode probe workflow that

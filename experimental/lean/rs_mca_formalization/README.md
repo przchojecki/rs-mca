@@ -61,6 +61,26 @@ numeric certificates are proved by kernel `decide` (not `native_decide`) and
 use only `[propext, Classical.choice, Quot.sound]`. This is a coding-ledger
 certificate: it carries `LD_sw` as a definition and adds no protocol error term.
 
+The fourth module, `RsMca.QuotientOverlap`, formalizes the stdlib-only
+size/threshold arithmetic of the whole-fiber strict-overlap reduction
+(`notes/m1/m1_quotient_periodic_overlap_profile.md`): with a domain split into
+`N` fibers of size `m`, a whole-fiber support has size `L*m` and two such
+supports differ by `|S\T| = h*m`, `|S∩T| = (L-h)*m`. At agreement `s = k+t`:
+
+- `strict_overlap_iff` (strict overlap `|S∩T| > k` is exactly `|S\T| < t`);
+- `no_strict_when_t_le_m` / `not_strict_when_t_le_m` (no strict high-overlap
+  pairs when `t <= m`);
+- `strict_needs_t_gt_fiber` (the first correction needs `t >= m+1`) and
+  `first_band_unique` (in the band `m < t <= 2m` only `h = 1` is strict);
+- `active_scale_iff` (an exchange scale `h` is strict-active iff
+  `h <= floor((t-1)/m)`);
+- `fiberSize_dvd_support` (the family is empty unless `m | s`).
+
+All `RsMca.QuotientOverlap` theorems are proved (no `sorry`; `no_strict_when_t_le_m`
+is axiom-free). The binomial COUNT identities (`|A_QP| = C(N,L)`, the Johnson
+exchange profile) are the note's combinatorial content and need `Mathlib`; only
+the size/threshold arithmetic the M1 reduction consumes is certified here.
+
 ## Build
 
 ```sh
