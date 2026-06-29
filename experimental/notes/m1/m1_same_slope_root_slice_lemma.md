@@ -12,6 +12,7 @@ ROOT-CORE DOMAIN KUMMER FILTER /
 SQUARE-MAP PACKET INTERSECTION GATE /
 SQUARE-NORM ENDPOINT PALETTE /
 SQUARE-NORM REPEATED-ENDPOINT GATE /
+SQUARE-NORM ENDPOINT-CHARGE COROLLARY /
 SQUARE-MAP PACKET-COUNT COROLLARY /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
 
@@ -2463,6 +2464,36 @@ This is stronger than merely saying that endpoints are roots of `B_R` and
 algebraic locus that can be charged separately from generic norm-boundary
 roots.
 
+The finite endpoints themselves are not residual live mixed-domain slopes.
+Let `z_0` be a finite endpoint of the reduced square norm.
+
+If `z_0` is a zero endpoint and `Q_R(z_0) != 0`, then
+
+```text
+p_R(z_0)=B_R(z_0)/Q_R(z_0)=0.
+```
+
+Thus the recovered two-root locator lies on the fixed-root line `p=0`, so one
+root is `0`; this is the fixed-root/root-slice charge already removed from
+the residual ledger.  If the same zero endpoint also has `Q_R(z_0)=0`, then it
+is a denominator-zero slope and falls under the denominator-zero alternative:
+the recurrence is either unsolvable, or it is the full-plane lift or a
+fixed-root line.
+
+If `z_0` is a pole endpoint, then `Q_R(z_0)=0`, so it is outside the
+`Q_R != 0` recurrence chart.  Again the denominator-zero alternative says that
+a solvable endpoint is already charged to the full-plane or fixed-root ledger,
+while an unsolvable endpoint produces no formal two-root extension.  Hence
+
+```text
+finite square-norm endpoint
+  => fixed-root/full-plane charged or no live recurrence solution.     (RKSQEPCH)
+```
+
+The endpoint at infinity is the same statement in the reciprocal slope chart.
+Thus the square-map packet is an open slope-line packet whose finite boundary
+points are ledger charges, not additional residual aperiodic slopes.
+
 This gives the counting form needed by the global ledger.  Let `S` be any
 finite family of square-map packets
 
@@ -2971,8 +3002,9 @@ per-core classified bound (RKCLASS), including the positive-parity square-norm
 norm-filter bound and the negative-parity one-root collapse, and gives the
 local max-degree bound and average-collinearity corollary above, including the
 packet-level higher-exchange ledger substitution, and extracts the
-square-norm repeated-endpoint gate (RKSQREP) and square-map packet-count
-corollary (RKSQCOUNT) from the support palette.
+square-norm repeated-endpoint gate (RKSQREP), the finite endpoint-charge
+corollary (RKSQEPCH), and square-map packet-count corollary (RKSQCOUNT) from
+the support palette.
 
 ## Verification
 
@@ -3025,4 +3057,5 @@ square-norm Fourier term, and the cover-term norm-pushforward obstruction
 classified per-core bound (RKCLASS), the degree-one square-map packet
 intersection gate (RKSQINT), the finite support-class palette (RKSQPAL), and
 the square-norm endpoint palette (RKSQEND), the repeated-endpoint gate
-(RKSQREP), and the packet-count corollary (RKSQCOUNT).
+(RKSQREP), the finite endpoint-charge corollary (RKSQEPCH), and the
+packet-count corollary (RKSQCOUNT).

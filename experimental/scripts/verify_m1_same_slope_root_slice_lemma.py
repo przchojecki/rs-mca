@@ -53,7 +53,7 @@ cubic anti-ratio powers, plus the rational-cubic coefficient ledger and final
 classified per-core bound, including the negative square-norm collapse to
 one-root sums, the square-map coset packets, and the degree-one square-map
 packet intersection gate, support-class palette, endpoint palette, and
-repeated-endpoint gate, and packet-count corollary.
+repeated-endpoint gate, endpoint-charge corollary, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -5202,6 +5202,100 @@ def check_boundary_core_square_norm_repeated_endpoint_gate() -> None:
                 )
 
 
+def check_boundary_core_square_norm_endpoint_charge() -> None:
+    rng = Random(20260801)
+    for prime in (5, 7, 11, 17):
+        for _ in range(180):
+            a_rows = tuple(rng.randrange(prime) for _ in range(4))
+            b_rows = tuple(rng.randrange(prime) for _ in range(4))
+            c_polys = tuple(
+                poly1_from_terms(((0, a_rows[idx]), (1, b_rows[idx])), prime)
+                for idx in range(4)
+            )
+            q_poly = poly1_sub(
+                poly1_mul(c_polys[0], c_polys[2], prime),
+                poly1_mul(c_polys[1], c_polys[1], prime),
+                prime,
+            )
+            p_num_poly = poly1_sub(
+                poly1_mul(c_polys[1], c_polys[3], prime),
+                poly1_mul(c_polys[2], c_polys[2], prime),
+                prime,
+            )
+
+            for z_value in range(prime):
+                c = tuple(
+                    (a_rows[idx] + z_value * b_rows[idx]) % prime
+                    for idx in range(4)
+                )
+                denominator = eval_poly1(q_poly, z_value, prime)
+                p_num = eval_poly1(p_num_poly, z_value, prime)
+                solutions: list[tuple[int, int]] = []
+                for s_value in range(prime):
+                    for p_value in range(prime):
+                        if (
+                            c[2] - s_value * c[1] + p_value * c[0]
+                        ) % prime == 0 and (
+                            c[3] - s_value * c[2] + p_value * c[1]
+                        ) % prime == 0:
+                            solutions.append((s_value, p_value))
+
+                if denominator != 0 and p_num == 0:
+                    s_num = (c[0] * c[3] - c[1] * c[2]) % prime
+                    inv_den = pow(denominator, -1, prime)
+                    s_value = (s_num * inv_den) % prime
+                    assert solutions == [(s_value, 0)], (
+                        prime,
+                        a_rows,
+                        b_rows,
+                        z_value,
+                        c,
+                        denominator,
+                        p_num,
+                        solutions,
+                    )
+                    # The recovered polynomial X^2-sX has the fixed root 0.
+                    continue
+
+                if denominator != 0 or not solutions:
+                    continue
+
+                if c == (0, 0, 0, 0):
+                    assert len(solutions) == prime * prime, (
+                        prime,
+                        a_rows,
+                        b_rows,
+                        z_value,
+                        c,
+                        solutions,
+                    )
+                    continue
+
+                assert c[0] != 0, (prime, a_rows, b_rows, z_value, c, solutions)
+                alpha = (c[1] * pow(c[0], -1, prime)) % prime
+                assert c[2] == c[0] * alpha * alpha % prime, (
+                    prime,
+                    c,
+                    alpha,
+                )
+                assert c[3] == c[0] * pow(alpha, 3, prime) % prime, (
+                    prime,
+                    c,
+                    alpha,
+                )
+                for s_value, p_value in solutions:
+                    assert (alpha * alpha - s_value * alpha + p_value) % prime == 0, (
+                        prime,
+                        a_rows,
+                        b_rows,
+                        z_value,
+                        c,
+                        alpha,
+                        s_value,
+                        p_value,
+                    )
+
+
 def check_boundary_core_square_map_packet_count() -> None:
     rng = Random(20260730)
     for prime in (5, 7, 11, 17, 19):
@@ -5546,6 +5640,7 @@ def main() -> None:
     check_boundary_core_square_map_support_palette()
     check_boundary_core_square_norm_endpoint_palette()
     check_boundary_core_square_norm_repeated_endpoint_gate()
+    check_boundary_core_square_norm_endpoint_charge()
     check_boundary_core_square_map_packet_count()
     check_boundary_core_classified_per_core_bound()
     check_nonruled_degree_bound()

@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 square-norm endpoint-charge corollary
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The finite endpoints of the square-norm packet are
+  charged explicitly: a zero endpoint with `Q_R != 0` has `p_R=0` and is a
+  fixed-root line, while a pole endpoint is a denominator-zero slope that is
+  either unsolvable or already in the full-plane/fixed-root charge.
+- **How it is useful:** This makes the square-map packet an open slope-line
+  object whose finite boundary points are existing ledger charges, not extra
+  residual aperiodic slopes.  It narrows the remaining global M1 task to
+  bounding the packet interiors and support image after endpoint charges.
+- **What to do next:** Use the repeated-endpoint and endpoint-charge gates to
+  bound or classify the active endpoint-support image as the root core varies.
+
 ### 2026-06-29 - M1 square-norm repeated-endpoint gate
 
 - **Agent/model:** AllenGrahamHart / Codex.
