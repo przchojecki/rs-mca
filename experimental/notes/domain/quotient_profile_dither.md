@@ -2,10 +2,10 @@
 
 **Status:** AUDIT / EXPERIMENTAL.
 
-This note accompanies `experimental/quotient_profile_dither.py`.  It implements the
-finite-length divisor scan requested by the L3 target in `agents.md`: compare
-exact-rate dimensions `k0=rho*n` against dithered dimensions `k=k0-r` on dyadic
-domains `n=2^m`.
+This note accompanies `experimental/scripts/quotient_profile_dither.py`.  It
+implements the finite-length divisor scan requested by the L3 target in
+`agents.md`: compare exact-rate dimensions `k0=rho*n` against dithered
+dimensions `k=k0-r` on dyadic domains `n=2^m`.
 
 The theorem-backed quantity is the exact-divisibility profile from
 `tex/snarks_v4.tex`:
@@ -36,9 +36,9 @@ dimension.
 Example commands:
 
 ```bash
-python3 experimental/quotient_profile_dither.py --m-min 8 --m-max 12
-python3 experimental/quotient_profile_dither.py --m-min 8 --m-max 12 --format json
-python3 experimental/quotient_profile_dither.py --rates 1/2 --etas 1/64 --max-dither 16
+python3 experimental/scripts/quotient_profile_dither.py --m-min 8 --m-max 12
+python3 experimental/scripts/quotient_profile_dither.py --m-min 8 --m-max 12 --format json
+python3 experimental/scripts/quotient_profile_dither.py --rates 1/2 --etas 1/64 --max-dither 16
 ```
 
 The default scan covers `m=8..20`, rates `1/2,1/4,1/8,1/16`, reserves
@@ -54,14 +54,14 @@ printed profile are absent or budgeted at the scanned finite parameters.
 The script also has a theorem-backed window mode:
 
 ```bash
-python3 experimental/quotient_profile_dither.py \
+python3 experimental/scripts/quotient_profile_dither.py \
   --rates 1/2 --etas 1/64 --m-min 8 --m-max 12 \
   --max-dither 16 --slack-window 1:16
 ```
 
 For each fixed dimension dither `r` and dyadic quotient scale `M`, this mode
 reports the first-exchange whole-fiber quotient ledger proved in
-`experimental/m1_quotient_periodic_overlap_profile.md`:
+`experimental/notes/m1/m1_quotient_periodic_overlap_profile.md`:
 
 ```text
 L_win(r) = {
@@ -109,8 +109,8 @@ The M1 note also proves a general quotient-fiber occupancy formula. For any
 histogram `h=(h_0,...,h_M)` of fiber occupancies, the strict exchange ledger is
 the coefficient of a finite product of one-fiber transition polynomials. The
 current scanner reports the whole-fiber and one-remainder classes explicitly;
-`experimental/m1_occupancy_profile_scan.py` gives the theorem-backed complete
-histogram scanner for small quotient partitions, including the exact
+`experimental/scripts/m1_occupancy_profile_scan.py` gives the theorem-backed
+complete histogram scanner for small quotient partitions, including the exact
 cross-histogram union ledger. This accounts for quotient-fiber content classes
 and their cross-content transitions before any remaining obstruction is treated
 as aperiodic.
@@ -135,7 +135,7 @@ If a target stable gap is supplied, the same mode reports the finite-menu
 covering bound:
 
 ```bash
-python3 experimental/quotient_profile_dither.py \
+python3 experimental/scripts/quotient_profile_dither.py \
   --rates 1/2 --etas 1/64 --m-min 8 --m-max 12 \
   --max-dither 16 --slack-window 1:16 --target-stable-gap 2
 ```
@@ -188,7 +188,7 @@ Adding a menu size turns this into a per-parameter stable-tail lower-bound
 certificate:
 
 ```bash
-python3 experimental/quotient_profile_dither.py \
+python3 experimental/scripts/quotient_profile_dither.py \
   --rates 1/2 --etas 1/64 --m-min 8 --m-max 12 \
   --max-dither 16 --slack-window 5:12 \
   --target-stable-gap 3 --dither-menu-size 2
@@ -260,7 +260,7 @@ If a line-field size is supplied, the scanner also evaluates the stable
 large-scale random-line correction from the M1 note:
 
 ```bash
-python3 experimental/quotient_profile_dither.py \
+python3 experimental/scripts/quotient_profile_dither.py \
   --rates 1/2 --etas 1/64 --m-min 8 --m-max 12 \
   --max-dither 16 --slack-window 1:16 --line-field-size 17
 ```
