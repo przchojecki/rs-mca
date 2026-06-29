@@ -5738,6 +5738,40 @@ post-core bound gives
 \]
 So, in fixed-slack regimes, this canonical \(b=2\) branch is reduced to the
 explicit fixed-root/root-slice tail ledger up to a polynomial remainder.
+This remaining tail has an exact absorbed one-root form.  For a half-height
+fiber \(\lambda\) and a thickening set \(E\subset D_{S,\lambda}\), put
+\[
+  C=D_{S,\lambda}\setminus E,\qquad
+  e=|E|,\qquad j=r_\lambda+e,\qquad
+  B_{\rm tail}(E)=E\sqcup Z_{S,\lambda}^{\perp}.
+\]
+Then
+\[
+  FixedRootTail_S
+  =
+  \sum_{\lambda:h_\lambda>q_S/2}
+  \sum_{\substack{E\ {\rm admissible}\\B_{\rm tail}(E)\ne\emptyset}}
+  B_{S,\lambda}^{prim}.
+\]
+Choose the least root \(x(E)\in B_{\rm tail}(E)\).  Since
+\(Q'_{S,\lambda,E}=\ell_E R_{S,\lambda}\) vanishes at \(x(E)\),
+\[
+  Q'_{S,\lambda,E}=(X-x(E))Q^x_{S,\lambda,E},
+  \qquad \deg Q^x_{S,\lambda,E}<j-1.
+\]
+The root \(x(E)\) is still in the quotient domain, and the same
+divisible-kernel identity used for quotient-line packings makes
+\(Q^x_{S,\lambda,E}\) a one-root absorbed fixed-divisor direction.  The case
+\(j=1\) cannot occur in the tail, so the absorbed residual width \(j-1\) is
+positive.  If \(N_{S,C}=N_S-q_S+j\) is the quotient domain size before
+absorbing \(x(E)\), then
+\[
+  (N_{S,C}-1)-(j-1)=N_S-q_S=s_S.
+\]
+Thus every fixed-root tail summand preserves surplus and lowers the quotient
+width by one after a canonical one-root absorption.  The remaining unclosed
+ledger is therefore a precise one-root absorbed fixed-divisor ledger, not a
+new \(b=2\) reservoir.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

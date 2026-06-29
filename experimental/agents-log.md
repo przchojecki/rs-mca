@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 fixed-root tail absorbed one-root form
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Expands `FixedRootTail_S` over admissible tail
+  thickenings and canonically charges each non-root-free summand to one bad
+  root, producing an absorbed short-kernel direction of width `j-1`.
+- **How it is useful:** Shows the remaining fixed-surplus M1 obstruction is a
+  surplus-preserving one-root absorbed fixed-divisor ledger, suitable for a
+  root-slice theorem or induction on absorbed width.
+- **What to do next:** Prove the absorbed one-root fixed-divisor ledger is
+  polynomial, or identify the persistent absorbed-pencil obstruction.
+
 ### 2026-06-29 - M1 fixed-surplus active-tree endpoint
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

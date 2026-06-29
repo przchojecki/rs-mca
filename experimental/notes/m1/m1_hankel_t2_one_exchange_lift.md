@@ -5955,6 +5955,88 @@ remainder.  There is no remaining super-polynomial source from tree depth,
 diffuse determinant gates, lower-dimensional leaves, bounded-width primitive
 directions, or the root-free half-height occupancy core.
 
+## Fixed-Root Tail Is an Absorbed One-Root Ledger
+
+The remaining tail ledger in (PF2-fixed-surplus-endpoint) has an exact
+one-root absorbed form.  Return to the notation of
+(PF2-short-tail-factor).  For a half-height fiber `lambda` and a thickening
+set `E subset D_{S,lambda}`, put
+
+```text
+C=D_{S,lambda}\E,        e=|E|,        j=r_lambda+e,
+B_tail(E)=E disjoint_union Z_{S,lambda}^{perp}.
+```
+
+The admissible tail range is
+
+```text
+0<=e<=floor((q_S-1)/2)-r_lambda,
+```
+
+and the quotient-line direction is
+
+```text
+Q'_{S,lambda,E}=ell_E R_{S,lambda},        deg Q'_{S,lambda,E}<j.
+```
+
+With this notation, (PF2-fixed-tail) is exactly
+
+```text
+FixedRootTail_S
+ =
+ sum_{lambda:h_lambda>q_S/2}
+ sum_{E admissible, B_tail(E) nonempty}
+   B_{S,lambda}^{prim}.                       (PF2-tail-expanded)
+```
+
+Indeed, if `Z_{S,lambda}^{perp}` is nonempty then all admissible `E` are
+non-root-free, giving the factor `T(h_lambda,r_lambda)`.  If it is empty,
+only `E=empty` is root-free, giving `T(h_lambda,r_lambda)-1`.
+
+Fix once and for all an order on `D_S^{can}` and let
+
+```text
+x(E)=min B_tail(E).
+```
+
+Because `x(E)` is a zero of `Q'_{S,lambda,E}`, there is a nonzero polynomial
+
+```text
+Q_{S,lambda,E}^{x}=Q'_{S,lambda,E}/(X-x(E)),
+        deg Q_{S,lambda,E}^{x}<j-1.
+```
+
+The root `x(E)` lies in the quotient domain `D_{S,C}`: it is either an
+omitted fiber root in `E` or a perpendicular root outside `D_{S,lambda}`.
+By the same divisible-kernel identity used for quotient-line packings,
+divisibility of the quotient direction by `X-x(E)` means that
+`Q_{S,lambda,E}^{x}` is a direction in the one-root absorbed fixed-divisor
+kernel.  Moreover the tail cannot have `j=1`: a nonzero polynomial of degree
+`<1` has no root.  Thus every term of (PF2-tail-expanded) supplies an
+absorbed one-root fixed-divisor direction of positive residual width `j-1`.
+
+The surplus is unchanged by this absorption.  The quotient domain before the
+one-root absorption has size
+
+```text
+N_{S,C}=N_S-q_S+j.
+```
+
+After fixing `x(E)` the domain size is `N_{S,C}-1` and the quotient width is
+`j-1`, so
+
+```text
+(N_{S,C}-1)-(j-1)=N_S-q_S=s_S.                (PF2-tail-surplus-preserved)
+```
+
+Thus every summand of the remaining fixed-root tail is a canonical one-root
+absorbed short-kernel ledger with the same surplus and strictly smaller
+quotient width.  Combining this with (PF2-fixed-surplus-endpoint), the
+fixed-surplus `b=2` branch is now reduced to polynomial terms plus these
+surplus-preserving one-root absorbed fixed-divisor ledgers.  This is the
+precise form in which a fixed-root/root-slice theorem or induction on the
+absorbed width would close the branch.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
