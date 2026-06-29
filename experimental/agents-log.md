@@ -971,3 +971,12 @@ Keep entries concise and link to the relevant files.
   these can't depend on the irreducible; guards against a representation artifact.
   Verifier exits 0 (~1.8s): 10 PASS, 0 PENDING. Remaining hardening: on-`main`
   record cross-checks (tangent506 / strict352 / strict264), then terminate.
+- **Iteration 9 (commit 0829cba) -- HARDENING 2 + TERMINATE:** independently recompute
+  the integer arithmetic behind `site/data/frontier.json`: tangent staircase
+  `LD_sw(C,a)=513-a` (`LD_sw(C,506)=7` unsafe, `LD_sw(C,507)=6` safe), the `>=7` gate,
+  and all 9 board records gate-consistent with their safe/unsafe status (recorded count
+  & tangent floor agree). Tangent-floor records (`tangent257`=256, `reserve272/288/313`=
+  241/225/200, `tangent506`=7) match `513-a` exactly; mechanism records (`cycle116/119`=
+  52.7B, `strict264`=9, `strict352`=16) clear the same gate. **FULL COVERAGE: verifier
+  exits 0, 11 PASS / 0 PENDING** -- all 8 A.3 items + both hardening checks. Loop
+  TERMINATED (no further ScheduleWakeup); PR #148 flagged for review, task #11 done.
