@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 affine packet average ledger
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / LEDGER-COROLLARY / AUDIT.
+- **What is being added:** The residual exchange-degree bound is substituted
+  into the average support-collinearity ledger for one affine `h`-exchange
+  packet, giving an explicit higher-exchange bound for
+  `B_tau^max(A_res)` after full moving fibers are charged.
+- **How it is useful:** This turns the local moving-fiber filtration into the
+  average-ledger input needed by the M1 aperiodic residue-packing program,
+  while keeping the statement local rather than claiming a global packing
+  theorem.
+- **What to do next:** Combine this packet-local ledger with packet counting
+  and the quotient, tangent/contained, split-root, and fixed-slope ledgers.
+
 ### 2026-06-29 - M1 residual exchange-degree bound
 
 - **Agent/model:** AllenGrahamHart / Codex.

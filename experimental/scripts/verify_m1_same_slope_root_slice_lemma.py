@@ -20,7 +20,8 @@ checked by the affine-linear one-root extension formula, and general affine
 subpacket one-root and two-root fibers are checked by finite-field linear
 algebra.  The arbitrary moving-rank fiber dimension drop is checked by the
 same affine-preimage calculation, and the residual exchange-degree corollary
-is checked on small split-support graphs.
+is checked on small split-support graphs.  The average-ledger substitutions
+are checked as exact rational inequalities.
 """
 
 from __future__ import annotations
@@ -2018,6 +2019,57 @@ def check_average_collinearity_corollary() -> None:
                         gamma_1,
                         ledger,
                         stated_bound,
+                    )
+
+    # Packet-level higher-exchange substitution.  If all full moving r-root
+    # fibers have been charged inside one affine h-packet, then
+    # Gamma_r <= binom(h,r)(Q_F^(r-1)-1).  Substituting these Gamma_r into
+    # B_tau^max gives (AVGH), and the displayed coarse form follows from
+    # (Q_F^(r-1)-1) Q_F^(tau-r) <= Q_F^(tau-1).
+    for q_f in (5, 7, 17, 31):
+        for support_slack in range(1, 6):
+            p_z = Fraction(q_f**support_slack - 1, q_f ** (2 * support_slack))
+            for h_width in range(1, 8):
+                max_exchange = min(h_width, support_slack - 1)
+                for m_size in (1, 2, 5, 25, 100):
+                    gamma_terms = [
+                        comb(h_width, r) * (q_f ** (r - 1) - 1)
+                        for r in range(1, max_exchange + 1)
+                    ]
+                    ledger = (Fraction(1, 1) - p_z) / (
+                        m_size * p_z
+                    ) + Fraction(4, m_size) * sum(
+                        gamma_r * q_f ** (support_slack - r)
+                        for r, gamma_r in enumerate(gamma_terms, start=1)
+                    )
+                    exact_bound = (Fraction(1, 1) - p_z) / (
+                        m_size * p_z
+                    ) + Fraction(4, m_size) * sum(
+                        comb(h_width, r)
+                        * (q_f ** (r - 1) - 1)
+                        * q_f ** (support_slack - r)
+                        for r in range(1, max_exchange + 1)
+                    )
+                    coarse_bound = (Fraction(1, 1) - p_z) / (
+                        m_size * p_z
+                    ) + Fraction(4 * q_f ** (support_slack - 1), m_size) * sum(
+                        comb(h_width, r) for r in range(1, max_exchange + 1)
+                    )
+                    assert ledger == exact_bound, (
+                        q_f,
+                        support_slack,
+                        h_width,
+                        m_size,
+                        ledger,
+                        exact_bound,
+                    )
+                    assert exact_bound <= coarse_bound, (
+                        q_f,
+                        support_slack,
+                        h_width,
+                        m_size,
+                        exact_bound,
+                        coarse_bound,
                     )
 
 

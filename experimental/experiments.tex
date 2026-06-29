@@ -1942,6 +1942,24 @@ obstruction must come from small residual family size, root-slice charges, or
 higher packet/two-exchange structure; this is not yet a worst-case packing
 theorem.
 
+The same substitution has a packet-level higher-exchange form.  Inside one
+same-slope affine \(h\)-exchange packet, after full moving \(r\)-root fibers
+have been charged, the residual codegree bound
+\(\Gamma_r\le\binom{h}{r}(Q_F^{r-1}-1)\) gives, for average-ledger support
+slack \(\tau\),
+\[
+  B_\tau^{\max}(A_{\rm res})
+  \le
+  \frac{1-p_z}{M p_z}
+  +\frac{4}{M}\sum_{r=1}^{\min(h,\tau-1)}
+    \binom{h}{r}(Q_F^{r-1}-1)Q_F^{\tau-r},
+  \qquad
+  p_z=Q_F^{-\tau}(1-Q_F^{-\tau}).
+\]
+This is still a local packet ledger input; a global M1 estimate must also
+sum over packet choices and the quotient, tangent/contained, split-root, and
+fixed-slope ledgers.
+
 \subsection{M1: variable-line packet reduction}
 
 The follow-up variable-line packet note isolates a local reduction inside the

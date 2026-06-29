@@ -1262,6 +1262,41 @@ This does not prove the worst-case M1 packing theorem.  It identifies the
 remaining average-ledger obstruction after this local reduction: small residual
 family size, fixed-slope root slices, or higher packet/two-exchange structure.
 
+There is also a packet-level higher-exchange form.  Let the support slack in
+the average-collinearity ledger be `tau`, and let the field size be `Q_F`.
+Suppose `A_res` is contained in one same-slope affine `h`-exchange packet after
+all full moving `r`-root fibers have been charged for
+`1<=r<=min(h,tau-1)`.  Then the residual exchange-degree corollary gives
+
+```text
+Gamma_r(A_res) <= binom(h,r)(Q_F^{r-1}-1),   1<=r<=min(h,tau-1),
+Gamma_r(A_res) = 0,                          r>h.              (GAMH)
+```
+
+Substituting (GAMH) into the same maximum-codegree average ledger yields
+
+```text
+B_tau^max(A_res)
+ <= (1 - p_z)/(M p_z)
+    + (4/M) sum_{r=1}^{min(h,tau-1)}
+        binom(h,r)(Q_F^{r-1}-1) Q_F^{tau-r},
+
+p_z = Q_F^{-tau}(1 - Q_F^{-tau}),    M=|A_res|.                 (AVGH)
+```
+
+In particular,
+
+```text
+B_tau^max(A_res)
+ <= (1 - p_z)/(M p_z)
+    + (4 Q_F^{tau-1}/M) sum_{r=1}^{min(h,tau-1)} binom(h,r).     (AVGHc)
+```
+
+The `r=1` summand is zero, recovering the no residual one-exchange statement
+inside a charged moving-fiber packet.  Formula (AVGH) is still local to a
+single affine packet; a global M1 bound must also sum over packet choices and
+the quotient, tangent/contained, split-root, and fixed-slope ledgers.
+
 ## Non-Claims
 
 This lemma does not bound the isolated lifted top-kernel family `K_top(u,v)`,
@@ -1287,7 +1322,7 @@ a common `t=1` Hankel kernel, compresses residual top-packet edges and
 triangles into the lifted top-kernel ledger, proves the exact simultaneous
 top-kernel root-slice recursion, classifies the ruled external-anchor boundary
 branch, and gives the local max-degree bound and average-collinearity corollary
-above.
+above, including the packet-level higher-exchange ledger substitution.
 
 ## Verification
 
@@ -1305,8 +1340,8 @@ affine-span normal form for rank-defect packets, the fixed-root hyperplane
 criterion, the hyperplane one-root fiber dichotomy, the quadratic determinant
 formula (DET2), the affine-subpacket one-root and two-root fiber dichotomies,
 the general moving-fiber dimension drop and counting corollary, and the
-residual exchange-degree corollary, and the "three roots imply ruled"
-criterion in sampled small prime fields, then stress-tests the abstract
+residual exchange-degree and average-ledger corollaries, and the "three roots
+imply ruled" criterion in sampled small prime fields, then stress-tests the abstract
 ruled-core dichotomy and the Hankel ruled-core collapse.  It also checks the
 Johnson-graph star/top triangle classification, the top-packet lift identity
 (TOP1), the distinct-slope implication (TOPK), and the top-packet edge/triangle
