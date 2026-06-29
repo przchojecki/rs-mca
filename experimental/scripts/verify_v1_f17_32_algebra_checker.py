@@ -20,7 +20,7 @@ A.3 CHECKLIST COVERAGE (this file grows one item per loop iteration):
   [x] field construction
   [x] domain construction
   [x] locator splitting
-  [ ] interpolation
+  [x] interpolation
   [ ] degree bound
   [ ] agreement count
   [ ] slope distinctness
@@ -149,6 +149,29 @@ def pderiv(a):
     if len(a) <= 1:
         return [ZERO]
     return [fmul(int_to_elem(i), a[i]) for i in range(1, len(a))]
+
+
+def field_solve(matrix, rhs):
+    """Solve `matrix @ x = rhs` over GF(17^32) by Gauss-Jordan elimination.
+    Raises ValueError if singular.  (Reused for the noncontainment-rank check.)"""
+    n = len(matrix)
+    M = [row[:] for row in matrix]
+    b = list(rhs)
+    for col in range(n):
+        piv = next((r for r in range(col, n) if M[r][col] != ZERO), None)
+        if piv is None:
+            raise ValueError("singular matrix")
+        M[col], M[piv] = M[piv], M[col]
+        b[col], b[piv] = b[piv], b[col]
+        inv = finv(M[col][col])
+        M[col] = [fmul(x, inv) for x in M[col]]
+        b[col] = fmul(b[col], inv)
+        for r in range(n):
+            if r != col and M[r][col] != ZERO:
+                f = M[r][col]
+                M[r] = [fsub(M[r][j], fmul(f, M[col][j])) for j in range(n)]
+                b[r] = fsub(b[r], fmul(f, b[col]))
+    return b
 
 
 _H_GEN = None
@@ -298,6 +321,54 @@ def check_locator_splitting():
     return ok, d
 
 
+def check_interpolation():
+    """A.3: interpolation.  RS encode/decode on a runnable RS analog over GF(17^32):
+    a degree-<k polynomial is the unique interpolant through any k distinct nodes.
+    Cross-validates a Vandermonde solve against an independent Lagrange interpolant
+    (k small and RUNNABLE; this checks the interpolation algebra, not enumeration)."""
+    d = []
+    ok = True
+    h, _ = H_generator()
+    k = 5
+    nodes, cur = [], ONE
+    for _ in range(k):
+        nodes.append(cur)
+        cur = fmul(cur, h)
+    # secret degree-<k message polynomial (deterministic coeffs, low-degree-first)
+    coeffs = [int_to_elem(v) for v in (3, 17 + 2, 5, 17 * 17 + 1, 11)]
+    vals = [feval(coeffs, x) for x in nodes]               # the RS codeword on `nodes`
+    # (1) Vandermonde solve recovers the message coefficients EXACTLY
+    V = [[fpow(nodes[i], j) for j in range(k)] for i in range(k)]
+    rec = field_solve(V, vals)
+    d.append(f"Vandermonde solve recovers deg<{k} message exactly : {rec == coeffs}")
+    d.append(f"interpolant has {len(rec)} coeffs (deg < k={k})       : {len(rec) == k}")
+    ok &= (rec == coeffs) and (len(rec) == k)
+    # (2) INDEPENDENT Lagrange interpolant agrees with P at a fresh point
+    t = fmul(cur, h)                                       # an H point outside `nodes`
+    lag = ZERO
+    for i in range(k):
+        num, den = ONE, ONE
+        for j in range(k):
+            if j == i:
+                continue
+            num = fmul(num, fsub(t, nodes[j]))
+            den = fmul(den, fsub(nodes[i], nodes[j]))
+        lag = fadd(lag, fmul(vals[i], fmul(num, finv(den))))
+    d.append(f"independent Lagrange value agrees with P at fresh point : {lag == feval(coeffs, t)}")
+    ok &= (lag == feval(coeffs, t))
+    # (3) uniqueness: interpolating from a DISJOINT k-node set yields the same message
+    nodes2, cur2 = [], t
+    for _ in range(k):
+        nodes2.append(cur2)
+        cur2 = fmul(cur2, h)
+    vals2 = [feval(coeffs, x) for x in nodes2]
+    V2 = [[fpow(nodes2[i], j) for j in range(k)] for i in range(k)]
+    rec2 = field_solve(V2, vals2)
+    d.append(f"uniqueness: disjoint node set recovers the same message : {rec2 == coeffs}")
+    ok &= (rec2 == coeffs)
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop iteration"]
 
@@ -308,7 +379,7 @@ CHECKS = [
     ("field construction",                 check_field_construction),
     ("domain construction",                check_domain_construction),
     ("locator splitting",                  check_locator_splitting),
-    ("interpolation",                      _pending),
+    ("interpolation",                      check_interpolation),
     ("degree bound",                       _pending),
     ("agreement count",                    _pending),
     ("slope distinctness",                 _pending),

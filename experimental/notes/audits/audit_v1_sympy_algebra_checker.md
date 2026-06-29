@@ -31,7 +31,7 @@ a natural follow-on for anyone whose stack has Sage/Magma.
 | 1 | field construction | **done** |
 | 2 | domain construction | **done** |
 | 3 | locator splitting | **done** |
-| 4 | interpolation | pending |
+| 4 | interpolation | **done** |
 | 5 | degree bound | pending |
 | 6 | agreement count | pending |
 | 7 | slope distinctness | pending |
@@ -59,6 +59,13 @@ a natural follow-on for anyone whose stack has Sage/Magma.
   (`[X^5] = -e_1`, `[X^0] = e_6`); negative control catches a doubled root
   (`L` and `L'` both vanish). Extension-field polynomial arithmetic is done locally
   (`pmul`/`pderiv`) since `galoistools` is prime-field only.
+- **Interpolation.** On a runnable RS analog over `GF(17^32)` (a degree-`<k`
+  message on `k` distinct `H`-nodes), a Vandermonde solve via field Gauss-Jordan
+  (`field_solve`) recovers the message coefficients exactly; an **independent**
+  Lagrange interpolant agrees with `P` at a fresh point; and interpolating from a
+  **disjoint** `k`-node set recovers the same message (uniqueness of the deg-`<k`
+  interpolant = RS decode-from-any-`k`-positions). `field_solve` is reused by the
+  later noncontainment-rank check.
 
 ## Honest scope / limits
 
