@@ -5951,9 +5951,11 @@ certificate set
 \]
 and let \(M_{S,\lambda}\) be the largest number of same-size admissible tail
 thickenings \(E\) whose bad set \(B_{\rm tail}(E)\) contains one fixed root.
-Level and root incidence counting gives
+The largest slice occurs at the top level \(e=a\): it has size
+\(\binom{h_\lambda}{a}\) if a perpendicular bad root is present, and
+\(\binom{h_\lambda-1}{a-1}\) otherwise.  Hence
 \[
-  L_{S,\lambda}^{tail}\le q_S^2M_{S,\lambda}.
+  L_{S,\lambda}^{tail}\le q_SM_{S,\lambda}.
 \]
 Hence, with
 \[
@@ -5963,7 +5965,7 @@ Hence, with
 one has
 \[
   TailLift_{\mathrm{crit}(d,B)}(A)
-  \le q^2\,RootTail_{\mathrm{crit}(d,B)}(A).
+  \le q\,RootTail_{\mathrm{crit}(d,B)}(A).
 \]
 Thus polynomial control of the one-root critical tail-slice ledger also closes
 the fixed-surplus branch.  Conversely, if a critical certificate is

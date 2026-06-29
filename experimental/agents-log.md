@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 top-level critical-tail witness sharpening
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Sharpens the one-root critical-tail witness:
+  the maximal bad-root slice occurs at the top admissible tail level, giving
+  `TailLift_crit(d,B) <= q RootTail_crit(d,B)` instead of the previous
+  coarser `q^2` loss.
+- **How it is useful:** Preserves one extra power of the field-size budget
+  when reducing M1's critical tail to one-root absorbed slices.
+- **What to do next:** Use the top-level slice formulas to compare
+  high-multiplicity critical slices with absorbed-rank, fixed-root, and
+  aperiodic ledgers.
+
 ### 2026-06-29 - M1 critical-tail one-root witness
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

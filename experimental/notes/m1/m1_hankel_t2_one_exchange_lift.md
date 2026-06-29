@@ -6408,30 +6408,41 @@ Theta_e(S,lambda;x)
 M_{S,lambda}=max_{e,x} #Theta_e(S,lambda;x).
 ```
 
+If there is no nonempty slice, set `M_{S,lambda}=0`; this only occurs in the
+root-free case `Z=empty`, `a=0`, where `L_{S,lambda}^{tail}=0` anyway.  The
+critical ledger has `a>=1`.
+
 Each pair `(E,x)` with `x in B_tail(E)` is exactly one of the one-root absorbed
 fixed-divisor directions from (PF2-tail-surplus-preserved), with the same node
 surplus.  The tail multiplicity cannot be spread invisibly across tail levels
-and roots.  For a fixed level `e`, if `Z` is nonempty then every root of `Z`
-belongs to every member of `Theta_e`, so
+and roots.  In fact the largest slice is already visible at the top admissible
+level `e=a`.  Since `a<h/2`, the binomial coefficients in the admissible range
+are increasing.  If `Z` is nonempty, every root of `Z` belongs to every
+member of `Theta_e`, so
 
 ```text
-#Theta_e(S,lambda) <= M_{S,lambda}.
+M_{S,lambda}=binom(h,a).
 ```
 
-If `Z` is empty then `e=0` contributes nothing and, for `e>=1`, incidence
-counting gives
+If `Z` is empty then `e=0` contributes nothing.  For `e>=1` and a fixed fiber
+root `x`, the number of `e`-subsets containing `x` is `binom(h-1,e-1)`, again
+maximal at `e=a`; hence
 
 ```text
-e #Theta_e(S,lambda)
- = sum_{x in D_{S,lambda}} #Theta_e(S,lambda;x)
- <= h M_{S,lambda}.
+M_{S,lambda}=binom(h-1,a-1)        (a>=1).
 ```
 
-Since `h<=q_S`, summing over the at most `a+1<=q_S` levels gives
+These explicit top-level formulas give the sharper one-root reduction
 
 ```text
-L_{S,lambda}^{tail} <= q_S^2 M_{S,lambda}.      (PF2-tail-root-witness)
+L_{S,lambda}^{tail} <= q_S M_{S,lambda}.        (PF2-tail-root-witness)
 ```
+
+Indeed, if `Z` is nonempty then
+`L_{S,lambda}^{tail}=sum_{e=0}^a binom(h,e)<=(a+1)binom(h,a)<=hM_{S,lambda}`.
+If `Z` is empty then
+`L_{S,lambda}^{tail}=sum_{e=1}^a binom(h,e)<=a binom(h,a)=hM_{S,lambda}`.
+In both cases `h<=q_S`.
 
 Thus the critical tail is controlled by the one-root critical tail-slice
 ledger
@@ -6446,14 +6457,14 @@ via
 
 ```text
 TailLift_{crit(d,B)}(A)
- <= q^2 RootTail_{crit(d,B)}(A).                (PF2-root-tail-reduction)
+ <= q RootTail_{crit(d,B)}(A).                  (PF2-root-tail-reduction)
 ```
 
 Consequently polynomial control of these one-root tail slices is sufficient
-for the fixed-surplus closure criterion above, with only a harmless `q^2`
-loss.  A counterexample cannot merely distribute small lift counts over many
-levels; after the polynomial bound on collapsed certificates, it must create
-large fixed-level bad-root slices.
+for the fixed-surplus closure criterion above, with only one additional
+factor of `q`.  A counterexample cannot merely distribute small lift counts
+over many levels; after the polynomial bound on collapsed certificates, it
+must create large top-level bad-root slices.
 
 Entropy-large certificates also force such a slice quantitatively.  The
 standard type bound gives
