@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 boundary-shadow conic-secant gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/notes/m1/m1_boundary_off_external_anchor_audit.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / BOUNDARY-SHADOW REDUCTION / AUDIT.
+- **What is being added:** The boundary-shadow quadratic slope gate is
+  rewritten as an equivalent anchor gate
+  `A_S(beta)=det(a,b,(1,beta,beta^2))`; residual active one-outside pairs are
+  exactly the nondegenerate conic-secant intersections, with charged zero-core
+  and inactive proportional branches removed.
+- **How it is useful:** This puts the outside-domain condition directly on a
+  quadratic in the external anchor, giving a cleaner target for the remaining
+  M1 boundary-shadow image bound.
+- **What to do next:** Bound the conic-secant shadow image after quotient,
+  tangent/contained, and fixed-slope boundary charges.
+
 ### 2026-06-29 - M1 boundary-shadow quadratic gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

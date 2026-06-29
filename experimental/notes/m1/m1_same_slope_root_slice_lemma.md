@@ -1405,6 +1405,70 @@ local reduction is governed by a nonzero quadratic slope gate.  The remaining
 boundary task is to bound shadows for which this explicit nonzero quadratic has
 an outside-domain active recovered root.
 
+Equivalently, the same obstruction has a conic-secant form in the external
+anchor coordinate.  For `beta in F`, put
+
+```text
+r_beta=(1,beta,beta^2),
+h_beta(c)=(c_1-beta c_0, c_2-beta c_1).
+```
+
+Define the anchor gate
+
+```text
+A_S(beta)=det(a,b,r_beta)
+         =(a_1b_2-a_2b_1)
+          +(a_2b_0-a_0b_2) beta
+          +(a_0b_1-a_1b_0) beta^2.                 (BANCH)
+```
+
+For every `beta`, this is exactly
+
+```text
+A_S(beta)=det(h_beta(a),h_beta(b)).
+```
+
+Thus, if `h_beta(b) != 0`, there is a unique finite slope `z` with
+
+```text
+h_beta(a+z b)=0
+```
+
+if and only if `A_S(beta)=0`; the slope is recovered from any nonzero
+coordinate of `h_beta(b)`.  If the resulting triple `a+z b` is nonzero, it is
+a nonzero multiple of `r_beta`, hence it satisfies (BRANK) and has recovered
+anchor `beta`.  If `a+z b=0`, the pair is the already charged lifted boundary
+core (BZ0).
+
+The degenerate anchor gate is also harmless.  If `A_S` is identically zero,
+then the three displayed coefficients in (BANCH) vanish, so `a` and `b` are
+linearly dependent.  A nonzero common point which is not on the cone gives no
+rank-one recovered anchor; a common point on the finite cone has a fixed
+anchor `beta` and then `h_beta(b)=0`, so the active filter removes it.  The
+remaining proportional zero-triple point is again (BZ0).  Hence no residual
+active one-outside target comes from an identically zero anchor gate.
+
+The two gates are the same projective conic intersection in different affine
+coordinates.  Their formal discriminants agree:
+
+```text
+disc_z(Q_S)=disc_beta(A_S)
+ =(2a_1b_1-a_0b_2-b_0a_2)^2
+   -4(a_1^2-a_0a_2)(b_1^2-b_0b_2).                 (BDISC)
+```
+
+Consequently the residual boundary-shadow image is contained in the explicit
+conic-secant target
+
+```text
+{ S : A_S is nonzero and A_S(beta)=0 for some beta in F\D,
+      h_beta(b) != 0, and a+z(beta)b is not the zero triple },
+```
+
+with `z(beta)` recovered from `h_beta(a)+z h_beta(b)=0`.  This is equivalent
+to the nonzero slope-quadratic target above, but it puts the outside-domain
+condition directly on the root of a quadratic in the external anchor.
+
 ## Residual One-Exchange Degree Bound
 
 Let `A_res` be a residual `t=2` active locator family after fixed-slope root
@@ -1533,9 +1597,10 @@ triangles into the lifted top-kernel ledger, proves the exact simultaneous
 top-kernel root-slice recursion, classifies the ruled external-anchor boundary
 branch, reduces the residual one-outside target image to a boundary-shadow
 image with fibers of size at most two and a rank-one scalar Hankel
-anchor-recovery condition plus a quadratic slope gate, and gives the local
-max-degree bound and average-collinearity corollary above, including the packet-level
-higher-exchange ledger substitution.
+anchor-recovery condition plus equivalent quadratic slope and anchor gates,
+identifies the conic-secant form of the remaining shadow target, and gives the
+local max-degree bound and average-collinearity corollary above, including the
+packet-level higher-exchange ledger substitution.
 
 ## Verification
 
@@ -1563,4 +1628,4 @@ compression ledger.  It checks the simultaneous kernel root-slice recursion
 (KREC) over exhaustive and sampled small-field instances.  The same verifier
 also checks the boundary-off external-anchor corollary and boundary-shadow
 fiber reduction over sampled small domains, including the rank-one
-anchor-recovery and quadratic slope-gate criteria.
+anchor-recovery, quadratic slope-gate, and conic-secant anchor-gate criteria.

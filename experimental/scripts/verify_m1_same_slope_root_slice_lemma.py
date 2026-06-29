@@ -21,9 +21,10 @@ extension formula, and general affine subpacket one-root and two-root fibers
 are checked by finite-field linear algebra.  The arbitrary moving-rank fiber
 dimension drop is checked by the same affine-preimage calculation, and the
 residual exchange-degree corollary is checked on small split-support graphs.
-The boundary shadow-fiber, rank-one anchor-recovery, and quadratic slope-gate
-reductions are checked on sampled small-field instances, and the average-ledger
-substitutions are checked as exact rational inequalities.
+The boundary shadow-fiber, rank-one anchor-recovery, quadratic slope-gate, and
+conic-secant anchor-gate reductions are checked on sampled small-field
+instances, and the average-ledger substitutions are checked as exact rational
+inequalities.
 """
 
 from __future__ import annotations
@@ -2154,6 +2155,22 @@ def rank_one_line_coeffs(
     )
 
 
+def conic_anchor_coeffs(
+    a_seq: tuple[int, int, int],
+    b_seq: tuple[int, int, int],
+    p: int,
+) -> tuple[int, int, int]:
+    return (
+        (a_seq[1] * b_seq[2] - a_seq[2] * b_seq[1]) % p,
+        (a_seq[2] * b_seq[0] - a_seq[0] * b_seq[2]) % p,
+        (a_seq[0] * b_seq[1] - a_seq[1] * b_seq[0]) % p,
+    )
+
+
+def eval_quadratic(coeffs: tuple[int, int, int], x: int, p: int) -> int:
+    return (coeffs[0] + coeffs[1] * x + coeffs[2] * x * x) % p
+
+
 def check_boundary_shadow_quadratic_gate() -> None:
     rng = Random(20260712)
     for p in (2, 3, 5, 7, 11, 17, 31):
@@ -2211,6 +2228,115 @@ def check_boundary_shadow_quadratic_gate() -> None:
                     beta,
                     candidates,
                 )
+
+
+def check_boundary_shadow_conic_secant_duality() -> None:
+    rng = Random(20260713)
+    for p in (2, 3, 5, 7, 11, 17, 31):
+        if p <= 5:
+            triples = list(product(range(p), repeat=3))
+            samples = [(a_seq, b_seq) for a_seq in triples for b_seq in triples]
+        else:
+            samples = [
+                (
+                    (rng.randrange(p), rng.randrange(p), rng.randrange(p)),
+                    (rng.randrange(p), rng.randrange(p), rng.randrange(p)),
+                )
+                for _ in range(4000)
+            ]
+
+        for a_seq, b_seq in samples:
+            q_coeffs = rank_one_line_coeffs(a_seq, b_seq, p)
+            anchor_coeffs = conic_anchor_coeffs(a_seq, b_seq, p)
+            q_disc = (q_coeffs[1] * q_coeffs[1] - 4 * q_coeffs[0] * q_coeffs[2]) % p
+            anchor_disc = (
+                anchor_coeffs[1] * anchor_coeffs[1]
+                - 4 * anchor_coeffs[0] * anchor_coeffs[2]
+            ) % p
+            assert q_disc == anchor_disc, (p, a_seq, b_seq, q_coeffs, anchor_coeffs)
+
+            anchor_roots = [
+                beta
+                for beta in range(p)
+                if eval_quadratic(anchor_coeffs, beta, p) == 0
+            ]
+            if anchor_coeffs != (0, 0, 0):
+                assert len(anchor_roots) <= 2, (
+                    p,
+                    a_seq,
+                    b_seq,
+                    anchor_coeffs,
+                    anchor_roots,
+                )
+            else:
+                assert (
+                    (a_seq[0] * b_seq[1] - a_seq[1] * b_seq[0]) % p == 0
+                    and (a_seq[0] * b_seq[2] - a_seq[2] * b_seq[0]) % p == 0
+                    and (a_seq[1] * b_seq[2] - a_seq[2] * b_seq[1]) % p == 0
+                ), (p, a_seq, b_seq, anchor_coeffs)
+
+            slope_pairs: set[tuple[int, int]] = set()
+            for z in range(p):
+                c_seq = tuple((a_seq[idx] + z * b_seq[idx]) % p for idx in range(3))
+                if c_seq == (0, 0, 0):
+                    continue
+                if c_seq[0] == 0 or rank_one_value(c_seq, p) != 0:
+                    continue
+                beta = (c_seq[1] * pow(c_seq[0], -1, p)) % p
+                if hankel_core_value(b_seq, beta, p) == (0, 0):
+                    continue
+                slope_pairs.add((z, beta))
+
+            anchor_pairs: set[tuple[int, int]] = set()
+            for beta in range(p):
+                h_a = hankel_core_value(a_seq, beta, p)
+                h_b = hankel_core_value(b_seq, beta, p)
+                anchor_value = eval_quadratic(anchor_coeffs, beta, p)
+                assert anchor_value == det2(h_a, h_b, p), (
+                    p,
+                    a_seq,
+                    b_seq,
+                    beta,
+                    anchor_value,
+                    h_a,
+                    h_b,
+                )
+                if h_b == (0, 0) or anchor_value != 0:
+                    continue
+                z = slope_for_active_pair(h_a, h_b, p)
+                assert z is not None, (p, a_seq, b_seq, beta, h_a, h_b)
+                c_seq = tuple((a_seq[idx] + z * b_seq[idx]) % p for idx in range(3))
+                if c_seq == (0, 0, 0):
+                    continue
+                assert hankel_core_value(c_seq, beta, p) == (0, 0), (
+                    p,
+                    a_seq,
+                    b_seq,
+                    beta,
+                    z,
+                    c_seq,
+                )
+                assert c_seq[0] != 0 and rank_one_value(c_seq, p) == 0, (
+                    p,
+                    a_seq,
+                    b_seq,
+                    beta,
+                    z,
+                    c_seq,
+                )
+                anchor_pairs.add((z, beta))
+
+            assert slope_pairs == anchor_pairs, (
+                p,
+                a_seq,
+                b_seq,
+                q_coeffs,
+                anchor_coeffs,
+                slope_pairs,
+                anchor_pairs,
+            )
+            if anchor_coeffs == (0, 0, 0):
+                assert not anchor_pairs, (p, a_seq, b_seq, anchor_pairs)
 
 
 def check_nonruled_degree_bound() -> None:
@@ -2350,6 +2476,7 @@ def main() -> None:
     check_boundary_off_external_anchor_corollary()
     check_boundary_shadow_anchor_recovery()
     check_boundary_shadow_quadratic_gate()
+    check_boundary_shadow_conic_secant_duality()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()
     print("same-slope root-slice lemma verifier passed")

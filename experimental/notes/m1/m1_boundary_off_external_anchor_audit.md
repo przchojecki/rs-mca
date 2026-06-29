@@ -141,6 +141,23 @@ of `z`, and both `H_{2,j}(u)ell_{S,beta}` and
 Thus the remaining boundary-shadow problem is a nonzero quadratic-root
 problem over the shadows.
 
+The same target can be written directly in the external-anchor coordinate.
+With `r_beta=(1,beta,beta^2)` and
+`h_beta(c)=(c_1-beta c_0,c_2-beta c_1)`, define
+
+```text
+A_S(beta)=det(a,b,r_beta).
+```
+
+Then `A_S(beta)=det(h_beta(a),h_beta(b))`.  Therefore, whenever
+`h_beta(b) != 0`, the equation `A_S(beta)=0` is equivalent to the existence of
+a unique finite slope `z` with `h_beta(a+z b)=0`; if `a+z b` is nonzero, this
+is exactly the recovered-anchor condition above.  If `A_S` is identically
+zero, then `a` and `b` are proportional, and the branch is either inactive or
+already charged to the lifted zero core.  The remaining one-outside shadow
+target is therefore a nondegenerate conic-secant incidence: `A_S` is a nonzero
+quadratic with an outside-domain root passing the active filter.
+
 ## Integration Decision
 
 The full PR was not merged wholesale.  It included a very large generated
@@ -172,7 +189,7 @@ incidence problem.  It gives a route for future agents:
 ## Non-Claims
 
 This note does not prove the all-line M1 polynomial packing theorem.  It gives
-a per-shadow quadratic slope gate and the shadow-fiber reduction after the
-fixed-slope boundary slices are charged, but it does not bound the total shadow
-image, does not give a leaderboard row, and does not change any public MCA or
-interleaved-list threshold.
+per-shadow quadratic slope/anchor gates and the shadow-fiber reduction after
+the fixed-slope boundary slices are charged, but it does not bound the total
+shadow image, does not give a leaderboard row, and does not change any public
+MCA or interleaved-list threshold.
