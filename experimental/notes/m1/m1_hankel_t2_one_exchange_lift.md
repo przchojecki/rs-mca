@@ -6780,6 +6780,73 @@ critical-tail route.  Conversely, any counterexample left by the current
 analysis must be a bounded-surplus, entropy-large, root-free flag family that
 survives the quotient-periodic, tangent, fixed-root, and aperiodic charges.
 
+## Critical Lift Has Local Post-Star Weights
+
+The ambient factor `q` in (PF2-post-star-tail) is not intrinsic to the
+post-star split.  It was introduced only by replacing the local fiber size
+`h_lambda` by the ambient domain size.  For a critical collapsed certificate,
+keep the notation
+
+```text
+h=h_lambda,        r=r_lambda,
+a=floor((h-r-1)/2),        Z=Z_{S,lambda}^{perp}.
+```
+
+Define the weighted perpendicular-star and root-free flag ledgers by
+
+```text
+WPerpStar_{crit(d,B)}(A)
+ =
+ sum_{(S,lambda) critical, Z nonempty} (a+1) binom(h,a),
+
+WRFFlag_{crit(d,B)}(A)
+ =
+ sum_{(S,lambda) critical, Z empty} h binom(h-1,a-1).
+```
+
+The root-free summand is again well-defined on the critical ledger because
+`a>=1`.  On one certificate, if `Z` is nonempty then every level
+`0<=e<=a` is a perpendicular full-star slice and
+
+```text
+L_{S,lambda}^{tail}
+ = sum_{e=0}^a binom(h,e)
+ <= (a+1)binom(h,a).
+```
+
+If `Z` is empty then `e=0` contributes no bad-root slice, and
+
+```text
+L_{S,lambda}^{tail}
+ = sum_{e=1}^a binom(h,e)
+ <= a binom(h,a)
+ = h binom(h-1,a-1).
+```
+
+Summing over the critical certificates gives the local post-star lift bound
+
+```text
+TailLift_{crit(d,B)}(A)
+ <= WPerpStar_{crit(d,B)}(A)+WRFFlag_{crit(d,B)}(A).
+                                                        (PF2-weighted-post-star-tail)
+```
+
+Substitution into (PF2-critical-tail-endpoint) gives, for fixed `sigma,d,B`,
+
+```text
+|F(A)|
+ <= (sigma+1)(WPerpStar_{crit(d,B)}(A)+WRFFlag_{crit(d,B)}(A))
+    +O_{sigma,d,B}(q^{sigma+d+1}+q^{sigma+B+2}+q^{sigma+2}),
+        whenever s_0<=sigma.                  (PF2-weighted-post-star-endpoint)
+```
+
+Thus the post-star residual no longer carries an ambient one-root factor.
+The old bound (PF2-post-star-tail) follows from
+`a+1<=h<=q` and `h<=q` on critical summands, but the weighted form is the
+sharper target: after perpendicular full-star charges, the only remaining
+uncontrolled object is the locally weighted root-free flag ledger
+`WRFFlag_{crit(d,B)}(A)`.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a

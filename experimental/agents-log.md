@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 weighted post-star critical criterion
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Sharpens the post-star critical endpoint by
+  replacing the coarse ambient factor `q(PerpStar_crit+RFFlag_crit)` with
+  local weights `(a+1)binom(h,a)` for perpendicular full stars and
+  `h binom(h-1,a-1)` for root-free flags.
+- **How it is useful:** Removes a non-intrinsic one-root loss from the current
+  M1 critical-tail reduction and makes the residual target the locally weighted
+  root-free flag ledger after fixed-root/full-star charges.
+- **What to do next:** Bound the weighted root-free flag ledger by
+  quotient-periodic, tangent/fixed-root, or aperiodic packing mechanisms, or
+  find a primitive counterexample family.
+
 ### 2026-06-29 - M1 post-star critical flag criterion
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

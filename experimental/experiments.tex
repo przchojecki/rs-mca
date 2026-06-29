@@ -6088,6 +6088,37 @@ Thus, for fixed \(\sigma,d,B\),
 After the perpendicular full stars are charged to fixed-root/root-slice
 ledgers, the remaining critical-tail target is exactly the root-free flag
 ledger \(RFFlag_{\mathrm{crit}(d,B)}\).
+The final ambient \(q\) in this post-star endpoint can be replaced by local
+weights.  Define
+\[
+\begin{aligned}
+WPerpStar_{\mathrm{crit}(d,B)}(A)
+&=\sum_{\substack{(S,\lambda)\ {\rm critical}\\Z_{S,\lambda}^{\perp}\ne\emptyset}}
+  (a+1)\binom{h_\lambda}{a},\\
+WRFFlag_{\mathrm{crit}(d,B)}(A)
+&=\sum_{\substack{(S,\lambda)\ {\rm critical}\\Z_{S,\lambda}^{\perp}=\emptyset}}
+  h_\lambda\binom{h_\lambda-1}{a-1}.
+\end{aligned}
+\]
+For one critical certificate, the perpendicular case contributes at most
+\(\sum_{e=0}^a\binom{h_\lambda}{e}\le(a+1)\binom{h_\lambda}{a}\), while the
+root-free case contributes at most
+\(\sum_{e=1}^a\binom{h_\lambda}{e}\le a\binom{h_\lambda}{a}
+=h_\lambda\binom{h_\lambda-1}{a-1}\).  Hence
+\[
+  TailLift_{\mathrm{crit}(d,B)}(A)
+  \le WPerpStar_{\mathrm{crit}(d,B)}(A)
+     +WRFFlag_{\mathrm{crit}(d,B)}(A),
+\]
+and therefore, for fixed \(\sigma,d,B\),
+\[
+  |F(A)|\le(\sigma+1)(WPerpStar_{\mathrm{crit}(d,B)}(A)
+  +WRFFlag_{\mathrm{crit}(d,B)}(A))
+  +O_{\sigma,d,B}(q^{\sigma+d+1}+q^{\sigma+B+2}+q^{\sigma+2})
+  \qquad(s_0\le\sigma).
+\]
+This is the sharper residual target after fixed-root/full-star charges: control
+the locally weighted root-free flag ledger, not an ambient \(q\)-multiple of it.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots
