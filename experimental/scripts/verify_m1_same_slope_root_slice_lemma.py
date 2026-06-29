@@ -41,7 +41,7 @@ discriminants and testing the exact lcm(e,2)-power degeneracy condition.
 The slope-side fixed-core recurrence chart is checked by direct finite-field
 linear algebra, and its domain/outside subgroup filter is checked by direct
 character expansion and aggregate mixed-domain counts on sampled finite-field
-covers.
+covers, including the diagonal descent to the slope line.
 """
 
 from __future__ import annotations
@@ -3743,6 +3743,21 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                 pair_sums = data["pair_sums"]
                 assert isinstance(plus_sums, list)
                 assert isinstance(pair_sums, list)
+                for left_power in range(index):
+                    for right_power in range(index):
+                        assert abs(
+                            pair_sums[left_power][right_power]
+                            - pair_sums[right_power][left_power]
+                        ) < 1e-8, (
+                            prime,
+                            index,
+                            a_rows,
+                            b_rows,
+                            left_power,
+                            right_power,
+                            pair_sums[left_power][right_power],
+                            pair_sums[right_power][left_power],
+                        )
                 open_expansion = sum(plus_sums) / index - sum(
                     sum(row) for row in pair_sums
                 ) / (index * index)
@@ -3783,6 +3798,31 @@ def check_boundary_core_slope_cover_kummer_filter() -> None:
                         b_rows,
                         index,
                         data,
+                    )
+                for power in range(index):
+                    descended = 0j
+                    for z_value in range(prime):
+                        q_value = eval_poly1(q_poly, z_value, prime)
+                        b_value = eval_poly1(b_poly, z_value, prime)
+                        if q_value == 0 or b_value == 0:
+                            continue
+                        theta_value = eval_poly1(theta_poly, z_value, prime)
+                        sheet_count = 1 + quadratic_character(theta_value, prime)
+                        norm_value = b_value * pow(q_value, -1, prime) % prime
+                        descended += sheet_count * subgroup_character_value(
+                            norm_value,
+                            power,
+                            index,
+                            log_table,
+                        )
+                    assert abs(pair_sums[power][power] - descended) < 1e-8, (
+                        prime,
+                        index,
+                        a_rows,
+                        b_rows,
+                        power,
+                        pair_sums[power][power],
+                        descended,
                     )
 
             if b_poly:

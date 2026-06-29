@@ -67,13 +67,16 @@ Keep entries concise and link to the relevant files.
   `Y^2=Theta_R(z)` with `deg Theta_R<=4`.  The subgroup domain/outside filter
   expands into Kummer traces of `r_+^a r_-^b` on this same cover, and the
   fixed-zero-root branch `B_R=0` is charged to the fixed-root line `p=0`.
+  The diagonal pair terms `S_{a,a}` descend to bounded-support `P^1` Kummer
+  traces involving `B_R/Q_R` and `Theta_R`.
 - **How it is useful:** The denominator-zero solvable case is exactly a
   fixed-root line or the full-plane lift, both already charged.  Thus the
   residual non-line root-core target is a one-variable slope-cover problem
   of genus at most one after squarefree reduction.  The filter has bounded
   zero-pole support, so non-power character terms have depth-independent
   conductor under the standard Kummer-Weil input, giving an explicit per-core
-  mixed-domain bound once nonprincipal power branches are absent.
+  mixed-domain bound once nonprincipal power branches are absent, with the
+  diagonal product terms removed from the genuinely cover-level workload.
 - **What to do next:** Use this recurrence chart when attacking the active
   `(j-2)` root-core image after quotient, tangent, fixed-root, and full-plane
   charges.

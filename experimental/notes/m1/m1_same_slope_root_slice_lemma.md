@@ -2122,6 +2122,37 @@ The principal contribution in (RKCOUNT) is
 ((e-1)/e^2) |C_R^x| + O(1).
 ```
 
+The diagonal product terms in (RKCOUNT) descend to the slope line.  Since
+
+```text
+r_+(z,Y) r_-(z,Y)=B_R(z)/Q_R(z),
+```
+
+one has, on the open locus `Q_R B_R != 0`,
+
+```text
+S_{a,a}
+ = sum_z (1+chi_2(Theta_R(z))) chi^a(B_R(z)/Q_R(z)).       (RKDIAG)
+```
+
+Thus every diagonal pair term is the sum of two `P^1` Kummer traces: the
+untwisted rational term `chi^a(B_R/Q_R)` and the quadratic-twisted quartic
+term `chi_2(Theta_R) chi^a(B_R/Q_R)`.  Their zero-pole support is contained in
+the roots of `B_R`, `Q_R`, `Theta_R`, and infinity, hence is bounded by an
+absolute constant.  The only diagonal no-cancellation branches are the explicit
+power-divisor congruences
+
+```text
+div((B_R/Q_R)^a) == 0 mod e,
+div((B_R/Q_R)^{a ell/e} Theta_R^{ell/2}) == 0 mod ell,
+ell=lcm(e,2).
+```
+
+Consequently the diagonal part of (RKCOUNT) never requires a new
+depth-dependent genus-one estimate; it is a bounded-support `P^1` Kummer
+problem.  The genuinely cover-level terms are the off-diagonal `S_{a,b}` with
+`a != b`, together with the one-root sums `S_a^+`.
+
 If no nonprincipal `chi^a(r_+)` or `chi^a(r_+)chi^b(r_-)` term is
 geometrically trivial on `C_R`, the standard curve Kummer-Weil input gives
 
@@ -2296,9 +2327,10 @@ recurrence chart and its quartic discriminant numerator, realizes the residual
 split slopes as a genus-at-most-one cover of the slope line, pushes the
 domain/outside filter to bounded-conductor Kummer traces on that cover, derives
 the per-core mixed-domain Kummer bound (RKBD) after fixed-zero-root and
-nonprincipal power branches are removed, and gives the local max-degree bound
-and average-collinearity corollary above, including the packet-level
-higher-exchange ledger substitution.
+nonprincipal power branches are removed, descends the diagonal pair terms in
+that mixed-domain expansion to bounded-support `P^1` Kummer sums, and gives the
+local max-degree bound and average-collinearity corollary above, including the
+packet-level higher-exchange ledger substitution.
 
 ## Verification
 
@@ -2340,4 +2372,5 @@ quartics over small prime fields, and checks the slope-side recurrence chart
 for fixed root cores, including its denominator-zero fixed-root/full-plane
 classification, quartic degree bound, split-root cover criterion, and exact
 finite-field subgroup-character expansion for the domain/outside filter and
-the mixed-domain count formula (RKCOUNT).
+the mixed-domain count formula (RKCOUNT), including the diagonal descent
+(RKDIAG).
