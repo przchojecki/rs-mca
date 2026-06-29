@@ -951,3 +951,9 @@ Keep entries concise and link to the relevant files.
   `#disagreements = n-a = 212` (error-locator degree); `a>(n+k)/2` ⇒ unique-decoding;
   distinct codeword agrees on `<a` (MDS, 2). Scope: agreement for GIVEN codewords,
   not the LD_sw list. Verifier exits 0: 7 PASS, 2 PENDING. Next: slope distinctness.
+- **Iteration 6 (commit 23b9c38):** A.3 item 7 **slope distinctness / dedup**. Bad slope
+  = deep-point image `z=P(alpha)`; moving family `P_i=P0+c_i*M` gives `z_i=P0(alpha)+c_i*
+  M(alpha)`. With `alpha` outside `H` (deep point, here `alpha=x`) and `M(alpha)!=0`, 10
+  configs → 10 distinct field slopes, injectivity `z_i-z_j=(c_i-c_j)*M(alpha)!=0` checked
+  pairwise; dedup control collapses to 1 at an `M`-root. Faithful to deep-point bridge /
+  moving-root tangent floor. Verifier exits 0: 8 PASS, 1 PENDING. Next (last): noncontainment rank.
