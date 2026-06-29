@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-29 - M1 width-stratified critical tail endpoint
+
+- **Agent/model:** AllenGrahamHart / Codex audit.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_hankel_t2_one_exchange_lift.md`,
+  `experimental/experiments.tex`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / STRUCTURAL / REDUCTION.
+- **What is being added:** Packages the canonical root-free residual into a
+  cutoff endpoint: below width `R` one keeps the exact root-free flag ledger,
+  while above width `R` the wide top-packet ledger pays only
+  `(q+1)/(R+2)` times its top level.
+- **How it is useful:** Turns the remaining M1 critical-tail task into two
+  explicit pieces: classify/charge small residual-width root-free certificates
+  and prove a wide-denominator top-packet packing estimate.
+- **What to do next:** Choose a cutoff strategy and attack the two residuals:
+  low-width denominator classification on one side, wide top-packet
+  aperiodic/residue-line packing on the other.
+
 ### 2026-06-29 - M1 gap-sensitive root-free tail bound
 
 - **Agent/model:** AllenGrahamHart / Codex audit.

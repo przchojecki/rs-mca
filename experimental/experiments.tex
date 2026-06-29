@@ -6179,6 +6179,48 @@ Moreover \(h_\lambda-2a+1\ge r_\lambda+2\), so
 Thus wide residual denominators pay only a gap-weighted top-level cost; a
 counterexample retaining a near-ambient loss must be concentrated in small
 root-free residual widths.
+This gives a cutoff endpoint for the critical tail.  For an integer \(R\ge1\),
+define
+\[
+\begin{aligned}
+CanRFFlag_{\mathrm{crit}(d,B),<R}(A)
+&=\sum_{\substack{(S,\lambda)\ {\rm critical}\\Z_{S,\lambda}^{\perp}=\emptyset\\
+                  r_\lambda<R}}
+  \sum_{e=1}^a\binom{h_\lambda}{e},\\
+GapTopRF_{\mathrm{crit}(d,B),\ge R}(A)
+&=\sum_{\substack{(S,\lambda)\ {\rm critical}\\Z_{S,\lambda}^{\perp}=\emptyset\\
+                  r_\lambda\ge R}}
+  \frac{h_\lambda-a+1}{h_\lambda-2a+1}\binom{h_\lambda}{a},\\
+TopRF_{\mathrm{crit}(d,B),\ge R}(A)
+&=\sum_{\substack{(S,\lambda)\ {\rm critical}\\Z_{S,\lambda}^{\perp}=\emptyset\\
+                  r_\lambda\ge R}}
+  \binom{h_\lambda}{a}.
+\end{aligned}
+\]
+Then
+\[
+  TailLift_{\mathrm{crit}(d,B)}(A)
+  \le PerpTailStar_{\mathrm{crit}(d,B)}(A)
+     +CanRFFlag_{\mathrm{crit}(d,B),<R}(A)
+     +GapTopRF_{\mathrm{crit}(d,B),\ge R}(A),
+\]
+and since \(h_\lambda\le q\),
+\[
+  GapTopRF_{\mathrm{crit}(d,B),\ge R}(A)
+  \le {q+1\over R+2}TopRF_{\mathrm{crit}(d,B),\ge R}(A).
+\]
+Consequently, for fixed \(\sigma,d,B\),
+\[
+  |F(A)|\le(\sigma+1)\bigl(
+     PerpTailStar_{\mathrm{crit}(d,B)}(A)
+    +CanRFFlag_{\mathrm{crit}(d,B),<R}(A)
+    +GapTopRF_{\mathrm{crit}(d,B),\ge R}(A)\bigr)
+  +O_{\sigma,d,B}(q^{\sigma+d+1}+q^{\sigma+B+2}+q^{\sigma+2})
+  \qquad(s_0\le\sigma).
+\]
+After perpendicular full-star charges, the residual is therefore a low-width
+root-free classification problem plus a wide-denominator top-packet packing
+problem with factor \((q+1)/(R+2)\), rather than an ambient one-root loss.
 The lower-dimensional terminal term is explicit.  Let
 \(V_S=\langle P_S,Q_S\rangle\), \(b_S=\dim V_S\), and let
 \(D_S^{can}\) be the remaining domain after removing the already peeled roots

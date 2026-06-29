@@ -6965,6 +6965,67 @@ denominator width: wide residual denominators have only a gap-weighted
 top-level cost, while any counterexample carrying a near-ambient loss must
 come from small-width root-free certificates.
 
+## Width-Stratified Critical Tail Endpoint
+
+The preceding gap bound gives a clean cutoff form of the remaining critical
+tail.  Fix an integer `R>=1`.  Define the narrow exact root-free ledger
+
+```text
+CanRFFlag_{crit(d,B),<R}(A)
+ =
+ sum_{(S,lambda) critical, Z empty, r<R}
+   sum_{e=1}^a binom(h,e),
+```
+
+and the wide top-level ledgers
+
+```text
+GapTopRF_{crit(d,B),>=R}(A)
+ =
+ sum_{(S,lambda) critical, Z empty, r>=R}
+   ((h-a+1)/(h-2a+1)) binom(h,a),
+
+TopRF_{crit(d,B),>=R}(A)
+ =
+ sum_{(S,lambda) critical, Z empty, r>=R} binom(h,a).
+```
+
+Then (PF2-exact-post-star-tail) and (PF2-gap-tail-domination) give
+
+```text
+TailLift_{crit(d,B)}(A)
+ <= PerpTailStar_{crit(d,B)}(A)
+    +CanRFFlag_{crit(d,B),<R}(A)
+    +GapTopRF_{crit(d,B),>=R}(A).              (PF2-width-stratified-tail)
+```
+
+Since `h<=q_S<=q` and `r>=R` on the wide summands,
+
+```text
+GapTopRF_{crit(d,B),>=R}(A)
+ <= ((q+1)/(R+2)) TopRF_{crit(d,B),>=R}(A).   (PF2-wide-top-proxy)
+```
+
+Substituting into the critical-tail endpoint gives, for fixed `sigma,d,B`,
+
+```text
+|F(A)|
+ <= (sigma+1)(
+      PerpTailStar_{crit(d,B)}(A)
+      +CanRFFlag_{crit(d,B),<R}(A)
+      +GapTopRF_{crit(d,B),>=R}(A))
+    +O_{sigma,d,B}(q^{sigma+d+1}+q^{sigma+B+2}+q^{sigma+2}),
+        whenever s_0<=sigma.                  (PF2-width-stratified-endpoint)
+```
+
+Equivalently, one may replace the last displayed wide term by the top-level
+proxy from (PF2-wide-top-proxy).  Thus after perpendicular full stars are
+charged, the fixed-surplus critical-tail route has two explicit residuals:
+small residual-width root-free certificates, and wide residual-width top
+packets carrying the factor `(q+1)/(R+2)` rather than an ambient one-root
+loss.  Any closure proof can now choose the cutoff `R` to balance a low-width
+classification against a wide-denominator top-packet packing estimate.
+
 ## Canonical Terminal Leaves Are Explicit Residual Packings
 
 The lower-dimensional term in (PF2-canon-tree) is not a new primitive.  At a
