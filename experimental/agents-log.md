@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-29 - M1 affine two-root fiber dichotomy
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / TWO-EXCHANGE PLANE REDUCTION / AUDIT.
+- **What is being added:** The affine rank-defect packet filtration now has a
+  two-root fiber dichotomy: if a packet contains three non-collinear points of
+  a fixed `(s,p)` two-root coefficient plane, then it contains the whole plane;
+  otherwise the intersection is at most a line packet.
+- **How it is useful:** The whole-plane case is exactly the already proved
+  `(t+2,j-2)` Hankel full-plane lift.  After full planes are charged, residual
+  affine rank-defect packets reduce on every two-root fiber to line packets,
+  matching the fixed-root/fixed-sum/product-Mobius classification.
+- **What to do next:** Attack the remaining line-packet and different-slope
+  ledgers after quotient, tangent/contained, root-slice, and full-plane
+  charges.
+
 ### 2026-06-29 - M1 affine-subpacket fiber dichotomy
 
 - **Agent/model:** AllenGrahamHart / Codex.

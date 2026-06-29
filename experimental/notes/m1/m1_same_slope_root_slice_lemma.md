@@ -4,7 +4,7 @@
 FULL ELEMENTARY PACKET LIFT / RULED-CORE DICHOTOMY / RULED-CORE COLLAPSE /
 HIGHER-SLACK LIFT / TRIANGLE CLASSIFICATION / TOP-PACKET LIFT /
 TOP-PACKET LEDGER / SIMULTANEOUS KERNEL RECURSION / HYPERPLANE-FIBER
-REDUCTION / AFFINE-FIBER REDUCTION / AUDIT.
+REDUCTION / AFFINE-FIBER REDUCTION / TWO-ROOT-FIBER REDUCTION / AUDIT.
 
 **Agent/model:** AllenGrahamHart / Codex.
 
@@ -467,6 +467,59 @@ one-root fibers are charged to the lifted root-slice ledger, no residual
 rank-defect affine packet has one-exchange edges.  This upgrades the
 codimension-one hyperplane statement to the entire affine-span filtration from
 the previous section.
+
+## Affine-Subpacket Two-Root Fiber Dichotomy
+
+There is an analogous two-exchange filtration.  Assume `h>=2`, fix a monic
+`(h-2)`-root factor
+
+```text
+Q_e(X)=X^{h-2}+e_{h-3}X^{h-3}+...+e_0,
+```
+
+and put `e_{h-2}=1`, while `e_i=0` outside `0<=i<=h-2`.  The two-root
+extensions through `Q_e` are
+
+```text
+P_{s,p}(X)=(X^2-sX+p)Q_e(X)
+          =X^h+c_{h-1}(s,p)X^{h-1}+...+c_0(s,p),
+```
+
+where
+
+```text
+c_m(s,p)=e_{m-2}-s e_{m-1}+p e_m,        0<=m<h.   (TFIB)
+```
+
+Thus the coefficient image of the two-root fiber is an affine plane in `F^h`
+with direction vectors
+
+```text
+d_s=(-e_{m-1})_{0<=m<h},        d_p=(e_m)_{0<=m<h}.  (TDIR)
+```
+
+Let `A=c_*+W` be any affine rank-defect packet.  If three affinely
+non-collinear points `(s_i,p_i)` of the two-root parameter plane have
+`c(s_i,p_i) in A`, then the two independent differences among those points
+show that both `d_s` and `d_p` lie in `W`.  Hence
+
+```text
+c(s,p) in A        for every (s,p) in F^2.          (TWHOLE)
+```
+
+So an affine rank-defect packet meets a fixed two-root fiber in an affine
+subspace of the `(s,p)` plane: either the whole plane, or a line, or a point,
+or the empty set.  In the killed same-slope Hankel setting, the whole-plane
+case is exactly the two-exchange full-plane lift already proved above,
+
+```text
+L_z(ell_R Q_e)=L_z(X ell_R Q_e)=L_z(X^2 ell_R Q_e)=0,
+```
+
+equivalently the lifted `(t+2,j-2)` Hankel core on `ell_R Q_e`.  After those
+full planes are charged, every residual affine rank-defect packet has only
+line-packet intersections on each fixed two-root fiber.  For `h=2`, this is
+precisely the residual two-root line classification below.
 
 ## Two-Root Line Classification
 
@@ -1121,8 +1174,9 @@ cores, that full affine-rank `h`-exchange elementary packets lift to
 `(t+h,j-h)` Hankel cores, identifies the affine-span normal form for
 rank-defect elementary packets, gives the fixed-root criterion for
 codimension-one coefficient hyperplanes, proves the one-root fiber dichotomy
-for coefficient hyperplanes and then for all affine rank-defect packets, and
-shows that residual two-root lines are fixed-root, fixed-sum, or
+for coefficient hyperplanes and then for all affine rank-defect packets,
+proves the two-root fiber dichotomy for affine rank-defect packets, and shows
+that residual two-root lines are fixed-root, fixed-sum, or
 product-Mobius packets,
 classifies the ruled determinant core into fixed-slope, inactive, and rank-one
 moving-slope cases for abstract affine pencils, proves the Hankel shift
@@ -1148,8 +1202,8 @@ higher-slack lift identity (LIFT), the two-exchange full-plane lift (PLIFT),
 the full elementary packet lift (HLIFT), the two-root line classification, the
 affine-span normal form for rank-defect packets, the fixed-root hyperplane
 criterion, the hyperplane one-root fiber dichotomy, the quadratic determinant
-formula (DET2), the affine-subpacket one-root fiber dichotomy, and the
-"three roots imply ruled"
+formula (DET2), the affine-subpacket one-root and two-root fiber dichotomies,
+and the "three roots imply ruled"
 criterion in sampled small prime fields, then stress-tests the abstract
 ruled-core dichotomy and the Hankel ruled-core collapse.  It also checks the
 Johnson-graph star/top triangle classification, the top-packet lift identity

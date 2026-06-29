@@ -17,7 +17,8 @@ ruled-core collapse, triangle classification, and top-packet lift identities.
 The simultaneous top-kernel recursion is checked by the same padded-row
 identity applied to both syndrome rows.  Rank-defect hyperplane fibers are
 checked by the affine-linear one-root extension formula, and general affine
-subpacket fibers are checked by finite-field linear algebra.
+subpacket one-root and two-root fibers are checked by finite-field linear
+algebra.
 """
 
 from __future__ import annotations
@@ -942,6 +943,130 @@ def check_affine_subpacket_one_root_fiber_dichotomy() -> None:
                         )
 
 
+def check_affine_subpacket_two_root_fiber_dichotomy() -> None:
+    rng = Random(20260709)
+
+    for p in (5, 7, 11):
+        parameter_points = [
+            (s_value, prod_value)
+            for s_value in range(p)
+            for prod_value in range(p)
+        ]
+        for h_exchange in range(2, 6):
+            core_degree = h_exchange - 2
+            if p**core_degree <= 500:
+                cores = [
+                    list(coeffs) + [1]
+                    for coeffs in product(range(p), repeat=core_degree)
+                ]
+            else:
+                cores = [
+                    [rng.randrange(p) for _ in range(core_degree)] + [1]
+                    for _ in range(40)
+                ]
+
+            affine_subspaces: list[tuple[list[int], list[list[int]]]] = []
+            for rank in range(h_exchange + 1):
+                base = [rng.randrange(p) for _ in range(h_exchange)]
+                coordinate_directions = []
+                for axis in range(rank):
+                    direction = [0] * h_exchange
+                    direction[axis] = 1
+                    coordinate_directions.append(direction)
+                affine_subspaces.append((base, coordinate_directions))
+
+                for _ in range(8):
+                    base = [rng.randrange(p) for _ in range(h_exchange)]
+                    directions = [
+                        [rng.randrange(p) for _ in range(h_exchange)]
+                        for _ in range(rank)
+                    ]
+                    affine_subspaces.append((base, directions))
+
+            for core in cores:
+                def core_coeff(index: int) -> int:
+                    if 0 <= index < len(core):
+                        return core[index] % p
+                    return 0
+
+                base_vector = tuple(core_coeff(m - 2) for m in range(h_exchange))
+                s_direction = tuple((-core_coeff(m - 1)) % p for m in range(h_exchange))
+                p_direction = tuple(core_coeff(m) for m in range(h_exchange))
+                assert matrix_rank([list(s_direction), list(p_direction)], p) == 2, (
+                    p,
+                    h_exchange,
+                    core,
+                    s_direction,
+                    p_direction,
+                )
+
+                for base, directions in affine_subspaces:
+                    passing_points: list[tuple[int, int]] = []
+                    for s_value, prod_value in parameter_points:
+                        point = tuple(
+                            mul_x2_minus_sx_plus_c(core, s_value, prod_value, p)[:-1]
+                        )
+                        formula_point = tuple(
+                            (
+                                base_vector[m]
+                                + s_value * s_direction[m]
+                                + prod_value * p_direction[m]
+                            )
+                            % p
+                            for m in range(h_exchange)
+                        )
+                        assert point == formula_point, (
+                            p,
+                            h_exchange,
+                            core,
+                            s_value,
+                            prod_value,
+                            point,
+                            formula_point,
+                        )
+                        if in_affine_subspace(point, base, directions, p):
+                            passing_points.append((s_value, prod_value))
+
+                    has_noncollinear_triple = any(
+                        affine_plane_det(triple[0], triple[1], triple[2], p) != 0
+                        for triple in combinations(passing_points, 3)
+                    )
+                    if has_noncollinear_triple:
+                        assert in_linear_span(s_direction, directions, p), (
+                            p,
+                            h_exchange,
+                            core,
+                            base,
+                            directions,
+                            s_direction,
+                        )
+                        assert in_linear_span(p_direction, directions, p), (
+                            p,
+                            h_exchange,
+                            core,
+                            base,
+                            directions,
+                            p_direction,
+                        )
+                        assert len(passing_points) == p * p, (
+                            p,
+                            h_exchange,
+                            core,
+                            base,
+                            directions,
+                            len(passing_points),
+                        )
+                    else:
+                        assert len(passing_points) <= p, (
+                            p,
+                            h_exchange,
+                            core,
+                            base,
+                            directions,
+                            passing_points,
+                        )
+
+
 def check_two_root_line_classification() -> None:
     for p in (3, 5, 7, 11, 17):
         pairs = [(x, y) for x in range(p) for y in range(x + 1, p)]
@@ -1671,6 +1796,7 @@ def main() -> None:
     check_fixed_root_hyperplane_criterion()
     check_hyperplane_one_root_fiber_dichotomy()
     check_affine_subpacket_one_root_fiber_dichotomy()
+    check_affine_subpacket_two_root_fiber_dichotomy()
     check_two_root_line_classification()
     check_t2_determinant_gate()
     check_ruled_core_dichotomy()
