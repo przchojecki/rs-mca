@@ -4605,29 +4605,27 @@ def check_boundary_core_rational_cubic_ledger() -> None:
             )
 
         principal_coefficient = Fraction(index - 1, index * index)
-        large_coefficient = Fraction(
-            len(large_anti_diagonal_powers),
-            index * index,
-        )
+        # The two large coefficients are conjugate cubic constants lambda and
+        # lambda^{-1}, and RKCOUNT subtracts their sum.  Since
+        # lambda+lambda^{-1} is 2 or -1, the worst sign contributes only
+        # +1/e^2, not +2/e^2.
+        large_coefficient = Fraction(1 if index % 3 == 0 else 0, index * index)
         safe_coefficient = principal_coefficient + large_coefficient
         if index % 3 == 0:
-            assert safe_coefficient == Fraction(index + 1, index * index)
+            assert safe_coefficient == Fraction(1, index)
         else:
             assert safe_coefficient == Fraction(index - 1, index * index)
-        assert safe_coefficient <= Fraction(index + 1, index * index)
+        assert safe_coefficient <= Fraction(1, index)
 
         # Since |C^x|<=p+O(1) and |D|=(p-1)/e, the cover coefficient
         # translates to the advertised proportional per-core bound.
-        assert Fraction(index + 1, index * index) * index == Fraction(
-            index + 1,
-            index,
-        )
+        assert Fraction(1, index) * index == 1
 
 
 def check_boundary_core_classified_per_core_bound() -> None:
     for index in range(2, 31):
         generic_cover_coefficient = Fraction(index - 1, index * index)
-        rational_cubic_coefficient = Fraction(index + 1, index * index)
+        rational_cubic_coefficient = Fraction(1, index)
         split_square_coefficient = 2 * generic_cover_coefficient
 
         genus_one_as_domain = generic_cover_coefficient * index
@@ -4635,7 +4633,7 @@ def check_boundary_core_classified_per_core_bound() -> None:
         split_square_as_domain = split_square_coefficient * index
 
         assert genus_one_as_domain == Fraction(index - 1, index)
-        assert rational_cubic_as_domain == Fraction(index + 1, index)
+        assert rational_cubic_as_domain == 1
         assert split_square_as_domain == 2 * Fraction(index - 1, index)
 
         if index == 2:
@@ -4644,7 +4642,7 @@ def check_boundary_core_classified_per_core_bound() -> None:
             assert Fraction(1, 2) <= genus_one_as_domain
             assert Fraction(1, 1) <= split_square_as_domain
         else:
-            assert genus_one_as_domain < rational_cubic_as_domain
+            assert genus_one_as_domain <= rational_cubic_as_domain
             assert rational_cubic_as_domain <= split_square_as_domain or index == 3
 
 

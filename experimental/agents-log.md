@@ -84,8 +84,9 @@ Keep entries concise and link to the relevant files.
   degree-one cube root, hence a rational cover; genus-one root-core covers
   have no genuine cover-level power branch after the norm exceptions.  On the
   rational cubic branch, only the two coefficients `a=e/3,2e/3` can be large,
-  giving the explicit bound `((e+1)/e^2)|C_R^x|+O_e(sqrt(p))`.  These cases
-  are packaged as the classified per-core bound (RKCLASS).
+  and their conjugate cubic constants improve the explicit bound to
+  `(1/e)|C_R^x|+O_e(sqrt(p))`.  These cases are packaged as the classified
+  per-core bound (RKCLASS).
 - **How it is useful:** The denominator-zero solvable case is exactly a
   fixed-root line or the full-plane lift, both already charged.  Thus the
   residual non-line root-core target is a one-variable slope-cover problem

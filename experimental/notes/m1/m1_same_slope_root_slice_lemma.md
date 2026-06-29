@@ -2389,21 +2389,37 @@ a=e/3,  2e/3.                                      (RKANTICOEFF)
 
 All other one-root, non-anti-diagonal, and anti-diagonal coefficients are
 bounded-conductor Kummer sums after the constant-norm and square-norm
-exceptions above are removed.  Therefore on the rational cubic branch
+exceptions above are removed.  The two large anti-diagonal constants are
+conjugate cubic roots.  Writing
+
+```text
+lambda = chi^{e/3}(c),
+```
+
+the large part of `S_{e/3,-e/3}+S_{2e/3,-2e/3}` is
+`(lambda+lambda^{-1})|C_R^x|`, and it enters (RKCOUNT) with the negative
+coefficient `-e^{-2}`.  Since
+
+```text
+lambda+lambda^{-1} in {2,-1},
+```
+
+the worst sign adds only `e^{-2}|C_R^x|`, not `2e^{-2}|C_R^x|`.  Therefore on
+the rational cubic branch
 
 ```text
 N_R^{+,-}(D)
- <= ((e-1)/e^2)|C_R^x| + (2/e^2)|C_R^x|
+ <= ((e-1)/e^2)|C_R^x| + (1/e^2)|C_R^x|
     + C_e sqrt(p) + O_e(1)
 
- <= ((e+1)/e^2)|C_R^x| + C_e sqrt(p) + O_e(1).       (RKCUBBD)
+ <= (1/e)|C_R^x| + C_e sqrt(p) + O_e(1).             (RKCUBBD)
 ```
 
 For a geometrically integral rational normalization, `|C_R^x|<=p+O(1)`, so
 this gives
 
 ```text
-N_R^{+,-}(D) <= (1+1/e)|D| + C_e sqrt(p) + O_e(1)
+N_R^{+,-}(D) <= |D| + C_e sqrt(p) + O_e(1)
 ```
 
 on the rational cubic anti-ratio branch.  This is weaker than the generic
@@ -2503,7 +2519,7 @@ geometrically integral genus-one branch:
   N_R^{+,-}(D) <= (1-1/e)|D| + C_e sqrt(p) + O_e(1),
 
 geometrically integral rational cubic branch:
-  N_R^{+,-}(D) <= (1+1/e)|D| + C_e sqrt(p) + O_e(1),
+  N_R^{+,-}(D) <= |D| + C_e sqrt(p) + O_e(1),
 
 split-square rational branch:
   N_R^{+,-}(D) <= 2(1-1/e)|D| + C_e sqrt(p) + O_e(1),
