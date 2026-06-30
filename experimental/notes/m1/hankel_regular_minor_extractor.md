@@ -163,9 +163,22 @@ experimental/data/certificates/regular-minor-extractor-rank-witness-toy/
 It uses the same pencil but asks for `certificate_mode=rank_witness_bound`.
 Here the full-rank specialization found by `rank_at_nodes` already proves that
 the selected determinant is a nonzero polynomial.  The packet therefore records
-the bound `deg Delta_A <= j+1` and leaves the root table unenumbered instead of
-interpolating `Delta_A(Z)`.  This is weaker than an enumerated root table, but it
-is the intended cheap first pass for large `F_17^32` regular-window rows.
+the bound `deg Delta_A <= j+1` and leaves the root table unenumerated instead of
+interpolating `Delta_A(Z)`.  The integrated checker recomputes the deterministic
+rank-witness hash from the row set, pivot node, and degree bound, and requires
+the audit fields `certificate_mode=rank_witness_bound` and
+`root_count=not_enumerated`.  This is weaker than an enumerated root table, but
+it is the intended cheap first pass for large `F_17^32` regular-window rows.
+
+The negative packet
+
+```text
+experimental/data/certificates/regular-minor-extractor-rank-witness-toy/
+  invalid_rank_witness_root_hash_packet.json
+```
+
+must fail because it keeps the same witness metadata but corrupts the
+rank-witness root hash.
 
 The singular rank-pivot replay is
 
@@ -257,6 +270,9 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-extractor-rank-witness-toy/f17_n10_k4_a8_rank_witness_packet.json
+
+! python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-extractor-rank-witness-toy/invalid_rank_witness_root_hash_packet.json
 
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_singular_toy.json \

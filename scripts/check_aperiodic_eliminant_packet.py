@@ -9,9 +9,9 @@ the packet gives an explicit polynomial-basis field model, the checker verifies
 the model is compatible with the row field, verifies the modulus is irreducible,
 and evaluates encoded extension roots directly in that field.  For packets
 emitted by the regular-minor extractor, it also checks the rank-pivot audit
-metadata needed to justify singular regular-bucket declarations.  Local packet
-references such as removed-ledger certificates are resolved, including JSON
-pointer fragments.
+metadata needed to justify singular regular-bucket declarations and
+rank-witness degree-bound packets.  Local packet references such as
+removed-ledger certificates are resolved, including JSON pointer fragments.
 """
 
 from __future__ import annotations
@@ -618,6 +618,13 @@ def validate_regular_minor(
         )
 
     data = item.get("regular_minor_data")
+    if str(minor["polynomial_ref"]).startswith("rank_witness:"):
+        validate_rank_witness_minor(item, row_set)
+        if "regular_minor_data" in item or "regular_minor_polynomial_data" in item:
+            raise PacketError(
+                f"A={item.get('A')}: rank_witness minor must not carry inline data"
+            )
+        return None, []
     if data is None:
         return None, []
     if not isinstance(data, dict):
@@ -671,6 +678,46 @@ def validate_regular_minor(
             raise PacketError(f"A={item.get('A')}: listed extension non-roots {non_roots}")
 
     return roots, bad_slopes
+
+
+def validate_rank_witness_minor(item: dict[str, Any], row_set: list[int]) -> None:
+    minor = item["regular_minor"]
+    location = f"A={item.get('A')}: rank_witness"
+    if minor["polynomial_ref"] != "rank_witness:determinant_nonzero_at_pivot_node":
+        raise PacketError(f"{location}: unsupported polynomial_ref")
+
+    audit = item.get("extractor_audit")
+    if not isinstance(audit, dict):
+        raise PacketError(f"{location}: missing extractor_audit")
+    if audit.get("certificate_mode") != "rank_witness_bound":
+        raise PacketError(f"{location}: certificate_mode must be rank_witness_bound")
+
+    expected_degree = item["j"] + 1
+    if minor["degree"] != expected_degree:
+        raise PacketError(
+            f"{location}: degree {minor['degree']} but rank witness needs {expected_degree}"
+        )
+    if audit.get("degree_bound") != expected_degree:
+        raise PacketError(
+            f"{location}: degree_bound must equal j+1={expected_degree}"
+        )
+    if audit.get("root_count") != "not_enumerated":
+        raise PacketError(f"{location}: root_count must be not_enumerated")
+
+    node = audit.get("rank_pivot_node")
+    if not isinstance(node, int) or node < 0:
+        raise PacketError(f"{location}: rank_pivot_node must name the witness node")
+
+    expected_hash = hash_json(
+        {
+            "roots": "not_enumerated",
+            "degree_bound": expected_degree,
+            "row_set": row_set,
+            "rank_pivot_node": node,
+        }
+    )
+    if minor["root_hash"] != expected_hash:
+        raise PacketError(f"{location}: root_hash mismatch")
 
 
 def validate_extractor_audit(

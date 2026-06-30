@@ -1,0 +1,61 @@
+{
+  "agreement_threshold": 8,
+  "exact_agreements": [
+    {
+      "A": 8,
+      "extractor_audit": {
+        "certificate_mode": "rank_witness_bound",
+        "degree_bound": 3,
+        "rank_pivot_node": 1,
+        "rank_pivot_nodes_required": 4,
+        "rank_pivot_nodes_tested": 2,
+        "root_count": "not_enumerated",
+        "row_set_source": "rank_at_nodes",
+        "tested_row_sets": 1
+      },
+      "j": 2,
+      "regular_minor": {
+        "degree": 3,
+        "polynomial_ref": "rank_witness:determinant_nonzero_at_pivot_node",
+        "root_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+        "row_set": [
+          0,
+          1,
+          3
+        ]
+      },
+      "status": "regular_minor",
+      "t": 4
+    }
+  ],
+  "extractor": {
+    "certificate_mode": "rank_witness_bound",
+    "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_witness_toy.json",
+    "input_sha256": "ca3c8aa82deb427e6994a0dc4dac6428e87a33073badd2b100f8dbdef4a00beb",
+    "method": "rank_at_nodes full-rank specialization over the base prime field",
+    "name": "regular-hankel-minor-extractor",
+    "row_set_strategy": {
+      "type": "rank_at_nodes"
+    },
+    "scope": "prime-field syndrome pencils only"
+  },
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an F_17^32 row-data packet",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ],
+  "regular_root_bound_sum": 3,
+  "removed_ledgers": [],
+  "root_union_table_ref": "not_enumerated",
+  "row": {
+    "domain_description": "first ten nonzero elements of F_17",
+    "domain_hash": "ef58d7c6937c627ace93d94e1045c06ff884c23bbb9f4aa5c1bb276842be4629",
+    "field": "F_17",
+    "k": 4,
+    "n": 10
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "status": "INTENTIONALLY_INVALID"
+}

@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Rank-witness packet hash audit
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:** `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/regular-minor-extractor-rank-witness-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** The v9 packet checker now verifies
+  `rank_witness_bound` packets by recomputing the deterministic hash of
+  `roots=not_enumerated`, the degree bound, row set, and rank-pivot node.
+  A deliberately corrupted toy packet checks that stale witness hashes are
+  rejected.
+- **How it is useful:** This makes the cheap M3 rank-witness certificates
+  replay-checkable instead of relying only on conventionally formatted JSON.
+- **What to do next:** Use the same checker path on any actual `F_17^32`
+  rank-witness or pivot-chart packets before comparing them with the Paper D
+  ledgers.
+
 ### 2026-06-30 - F17^32 M3 rank-witness family certificate
 
 - **Agent/model:** AllenGrahamHart / Codex.
