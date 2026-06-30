@@ -1,0 +1,96 @@
+{
+  "agreement_threshold": 506,
+  "declared_aperiodic_numerator": 0,
+  "exact_agreements": [
+    {
+      "A": 506,
+      "empty_reason": "smoke packet: exact numerator is charged to the tangent_high_agreement_exact_A506 removed ledger",
+      "j": 6,
+      "status": "empty",
+      "t": 250
+    },
+    {
+      "A": 507,
+      "empty_reason": "smoke packet: exact numerator is charged to the tangent_high_agreement_exact_A507 removed ledger",
+      "j": 5,
+      "status": "empty",
+      "t": 251
+    }
+  ],
+  "nonclaims": [
+    "not a new proof of the high-agreement tangent theorem",
+    "not a new prize-row threshold",
+    "not a regular-minor computation for the F_17^32 row",
+    "not a lower-agreement M1 aperiodic local-limit theorem"
+  ],
+  "removed_ledgers": [
+    {
+      "certificate_ref": "experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json#definition_freeze.pure_mca_scanner_replay.threshold_rows.506",
+      "name": "tangent_high_agreement_exact_A506",
+      "numerator": 7
+    },
+    {
+      "certificate_ref": "experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json#definition_freeze.pure_mca_scanner_replay.threshold_rows.507",
+      "name": "tangent_high_agreement_exact_A507",
+      "numerator": 6
+    }
+  ],
+  "root_numerator_table": [
+    {
+      "A": 506,
+      "budget": 6,
+      "combined_verdict": "UNSAFE_BY_PROVED_LOWER_BOUND",
+      "finite_line_numerator": 7,
+      "j": 6,
+      "removed_ledger": "tangent_high_agreement_exact_A506",
+      "residual_aperiodic_roots_after_removal": 0,
+      "safe_at_target": false,
+      "t": 250,
+      "tangent_formula": "n-A+1",
+      "unsafe_at_target": true
+    },
+    {
+      "A": 507,
+      "budget": 6,
+      "combined_verdict": "SAFE_BY_PROVED_UPPER_BOUND",
+      "finite_line_numerator": 6,
+      "j": 5,
+      "removed_ledger": "tangent_high_agreement_exact_A507",
+      "residual_aperiodic_roots_after_removal": 0,
+      "safe_at_target": true,
+      "t": 251,
+      "tangent_formula": "n-A+1",
+      "unsafe_at_target": false
+    }
+  ],
+  "root_union": [],
+  "root_union_table_ref": "inline:root_union",
+  "row": {
+    "domain_description": "smooth domain H from the high-agreement threshold package; this smoke packet references the settled row rather than re-enumerating H",
+    "domain_hash": "3e579909d655cc63e59eea315becd3666fde3ec465884c3020ceb50f83a16ed2",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "source_certificate": {
+    "path": "experimental/data/certificates/high-agreement-threshold-package/f17_512_high_agreement_threshold_certificate.json",
+    "proof_input": {
+      "formula": "LD_sw(C,a)=r+1=n-a+1 when r=n-a <= floor((n-k)/3)",
+      "nonclaim": "this certificate does not prove lower-agreement M1, quotient floors, extension transfer, or L2",
+      "source": "tex/slackMCA_v4.tex, theorem B-high-agreement-line-staircase",
+      "theorem": "high-agreement tangent line staircase"
+    },
+    "sha256": "03437b604c3d84e9f9cb23b735a67a9769dbbff064940fe20ec5571f82ddcc60"
+  },
+  "status": "AUDIT",
+  "threshold_summary": {
+    "budget": 6,
+    "safe_agreement": 507,
+    "safe_numerator": 6,
+    "status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
+    "unsafe_agreement": 506,
+    "unsafe_numerator": 7
+  }
+}

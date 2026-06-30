@@ -120,6 +120,14 @@ def validate_residual_labels(packet: dict[str, Any]) -> None:
                     )
 
 
+def validate_removed_ledgers(packet: dict[str, Any]) -> None:
+    for index, ledger in enumerate(packet.get("removed_ledgers", [])):
+        for field in ("name", "certificate_ref"):
+            value = ledger.get(field)
+            if not isinstance(value, str) or not value.strip():
+                raise PacketError(f"removed_ledgers[{index}]: empty {field}")
+
+
 def validate_regular_minor(
     item: dict[str, Any], modulus: int | None
 ) -> tuple[list[int] | None, list[int]]:
@@ -194,6 +202,7 @@ def validate_regular_minor(
 def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     validate_schema(packet, schema_path)
     validate_residual_labels(packet)
+    validate_removed_ledgers(packet)
 
     row = packet["row"]
     n = row["n"]

@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Hankel smoke packet for F_17^32 agreements 506 and 507
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/audits/hankel_smoke_f17_506_507.md`,
+  `experimental/scripts/verify_hankel_smoke_f17_506_507.py`,
+  `experimental/data/certificates/hankel-smoke-f17-506-507/`,
+  `scripts/check_aperiodic_eliminant_packet.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A v9 `aperiodic-hankel-eliminant-v1` smoke packet
+  for the settled `F_17^32`, `n=512`, `k=256` high-agreement rows
+  `A=506,507`.  The generator reads the existing high-agreement threshold
+  package, verifies the source row checks, charges the known tangent
+  numerators `7` and `6` to removed ledgers, and records an empty residual
+  aperiodic root union.
+- **How it is useful:** Implements the next `towards-prize.md` v9 milestone:
+  exercise the packet format on a row whose answer is already known before
+  attempting the regular-minor window `385<=A<=426`.
+- **What to do next:** Build a regular-minor extractor for selected
+  `F_17^32` agreements below the tangent exact range and compare its root
+  counts against the quotient/tangent ledgers.
+
 ### 2026-06-30 - Late PR M1/audit integration
 
 - **Agent/model:** Codex, auditing and distilling PRs from AllenGrahamHart and
