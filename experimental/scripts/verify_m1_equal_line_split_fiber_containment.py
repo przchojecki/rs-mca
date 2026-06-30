@@ -1,0 +1,124 @@
+#!/usr/bin/env python3
+"""Verify the equal-line split-fiber containment gate."""
+
+from __future__ import annotations
+
+from verify_m1_depth_two_equal_line_diagonal_reduction import (
+    lambda_y_resultant,
+    twist_y_value,
+    y_kernel_argument,
+)
+from verify_m1_equal_line_generic_popularity_budget import singular_support_y
+
+
+PRIMES = (5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47)
+
+
+def is_finite_leaf_regular(z: int, p: int) -> bool:
+    if z == 1:
+        return False
+    if (1 + 3 * z * z) % p == 0:
+        return False
+    y_value = twist_y_value(z, p)
+    return (y_value, 1) not in singular_support_y(p)
+
+
+def split_fiber_roots(y_value: int, p: int) -> list[int]:
+    roots = []
+    for z in range(p):
+        if z == 1 or (1 + 3 * z * z) % p == 0:
+            continue
+        if twist_y_value(z, p) == y_value:
+            roots.append(z)
+    return roots
+
+
+def check_regular_fibers_are_split() -> None:
+    checked = 0
+    for p in PRIMES:
+        singular = singular_support_y(p)
+        one_third = pow(3, -1, p)
+        for y_value in range(p):
+            if (y_value, 1) in singular:
+                continue
+            roots = split_fiber_roots(y_value, p)
+            if y_value == 3 % p:
+                if roots != [one_third]:
+                    raise AssertionError(("bad y=3 finite fiber", p, roots))
+                checked += 1
+                continue
+            if roots and len(roots) != 2:
+                raise AssertionError(("ordinary fiber not split", p, y_value, roots))
+            checked += 1
+    print(f"regular_y_fibers_checked={checked}")
+
+
+def check_product_identity_on_regular_fibers() -> None:
+    checked = 0
+    for p in PRIMES:
+        singular = singular_support_y(p)
+        for y_value in range(1, p):
+            if (y_value, 1) in singular:
+                continue
+            if y_value == 3 % p:
+                continue
+            roots = split_fiber_roots(y_value, p)
+            if len(roots) != 2:
+                continue
+            denominator = (y_value - 3) * (y_value - 3) % p
+            if denominator == 0:
+                raise AssertionError(("zero denominator", p, y_value))
+            for x_value in range(p):
+                product = 1
+                for z in roots:
+                    product = product * y_kernel_argument(x_value, z, p) % p
+                expected = lambda_y_resultant(x_value, y_value, p)
+                expected = expected * pow(denominator, -1, p) % p
+                if product != expected:
+                    raise AssertionError(
+                        ("split product", p, x_value, y_value, product, expected)
+                    )
+                checked += 1
+    print(f"regular_split_product_identities_checked={checked}")
+
+
+def check_kernel_containment_implication() -> None:
+    checked = 0
+    hits = 0
+    for p in PRIMES:
+        one_third = pow(3, -1, p)
+        one_twelfth = pow(12, -1, p)
+        for z in range(p):
+            if not is_finite_leaf_regular(z, p):
+                continue
+            y_value = twist_y_value(z, p)
+            roots = split_fiber_roots(y_value, p)
+            if y_value == 3 % p:
+                if z != one_third or roots != [one_third]:
+                    raise AssertionError(("bad y=3 root", p, z, roots))
+            elif z not in roots or len(roots) != 2:
+                raise AssertionError(("bad regular root", p, z, y_value, roots))
+            for x_value in range(p):
+                if y_kernel_argument(x_value, z, p) != 0:
+                    continue
+                hits += 1
+                if y_value == 3 % p and x_value != one_twelfth:
+                    raise AssertionError(("bad y=3 kernel root", p, x_value))
+                if lambda_y_resultant(x_value, y_value, p) != 0:
+                    raise AssertionError(
+                        ("containment failed", p, x_value, z, y_value)
+                    )
+            checked += 1
+    print(f"regular_leaf_parameters_checked={checked}")
+    print(f"kernel_containment_hits_checked={hits}")
+
+
+def main() -> None:
+    check_regular_fibers_are_split()
+    check_product_identity_on_regular_fibers()
+    check_kernel_containment_implication()
+    print("m1 equal-line split-fiber containment checks passed")
+
+
+if __name__ == "__main__":
+    main()

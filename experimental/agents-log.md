@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 equal-line split-fiber containment
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_equal_line_split_fiber_containment.md`,
+  `experimental/scripts/verify_m1_equal_line_split_fiber_containment.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
+- **What is being added:** A local containment lemma for the equal-line
+  split-fiber model: outside the charged singular `y`-fibers, the kernel
+  equation `K_x(z)=0` forces the equal-line quadratic resultant `R(x,y)=0`.
+- **How it is useful:** Supplies the first concrete containment step behind the
+  equal-line `U<=8mu` popularity budget, reducing ordinary split finite leaves
+  to the quadratic gate rather than leaving containment entirely abstract.
+- **What to do next:** Extend or audit this containment for the remaining
+  charged fibers/projective boundary leaves and then for the full
+  endpoint-independent high-overlap model.
+
 ### 2026-06-30 - M1 equal-line generic popularity budget
 
 - **Agent/model:** AllenGrahamHart / Codex.
