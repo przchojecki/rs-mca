@@ -45,8 +45,9 @@ Keep entries concise and link to the relevant files.
   finite-slope contribution.  The verifier proves
   `H(u)+Z H(v)=(Z+5)H(v)`, `rank H(v)=2`, enumerates all 45 split co-supports,
   and obtains exact root union `{12}`.  The v9 checker now also rejects
-  eliminant pivot records that omit `eliminant_ref` or degree metadata, and
-  it recomputes pivot eliminant root tables when coefficient data are present.
+  eliminant pivot records that omit `eliminant_ref` or degree metadata,
+  recomputes pivot eliminant root tables when coefficient data are present,
+  and compares the packet root-union table against those pivot roots.
 - **How it is useful:** This is the first checked `pivot_atlas` shape in the
   branch, exercising the v9 singular-bucket workflow without calling an
   unresolved singular bucket aperiodic evidence.

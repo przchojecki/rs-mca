@@ -418,8 +418,9 @@ def validate_packet_reference(reference: str, location: str) -> Any | None:
 
 
 def table_numerator(target: Any, location: str) -> int | None:
-    if isinstance(target, list):
-        return len(normalize_int_list(target, location))
+    roots = table_roots(target, location)
+    if roots is not None:
+        return len(roots)
     if not isinstance(target, dict):
         return None
 
@@ -429,10 +430,19 @@ def table_numerator(target: Any, location: str) -> int | None:
             raise PacketError(f"{location}.declared_aperiodic_numerator is invalid")
         return declared
 
+    return None
+
+
+def table_roots(target: Any, location: str) -> list[int] | None:
+    if isinstance(target, list):
+        return normalize_int_list(target, location)
+    if not isinstance(target, dict):
+        return None
+
     root_key = first_matching_key(target, r"root_union_mod_\d+", r"root_union", r"roots")
     if root_key is None:
         return None
-    return len(normalize_int_list(target[root_key], f"{location}.{root_key}"))
+    return normalize_int_list(target[root_key], f"{location}.{root_key}")
 
 
 def validate_external_root_union_table(packet: dict[str, Any], target: Any) -> None:
@@ -650,11 +660,12 @@ def require_nonempty_string(value: Any, location: str) -> str:
     return value
 
 
-def validate_pivot_atlas(packet: dict[str, Any]) -> None:
+def validate_pivot_atlas(packet: dict[str, Any]) -> list[int]:
     row = packet.get("row", {})
     row_field = row.get("field") if isinstance(row, dict) else None
     modulus = parse_prime_field(row_field) if isinstance(row_field, str) else None
     extension_field = PolynomialBasisField.from_packet(packet)
+    pivot_roots: set[int] = set()
 
     for item in packet.get("exact_agreements", []):
         if item.get("status") == "pivot_atlas":
@@ -703,13 +714,15 @@ def validate_pivot_atlas(packet: dict[str, Any]) -> None:
                                 f"{pivot_location}.degree={degree} but "
                                 f"eliminant target degree is {target_degree}"
                             )
-                        validate_pivot_eliminant_target(
+                        roots = validate_pivot_eliminant_target(
                             target,
                             degree,
                             f"{pivot_location}.eliminant_ref",
                             modulus,
                             extension_field,
                         )
+                        if roots is not None:
+                            pivot_roots.update(roots)
                 elif status == "dimension_degree":
                     require_nonnegative_int(
                         pivot.get("dimension"), f"{pivot_location}.dimension"
@@ -718,6 +731,7 @@ def validate_pivot_atlas(packet: dict[str, Any]) -> None:
                         pivot.get("variety_degree"),
                         f"{pivot_location}.variety_degree",
                     )
+    return sorted(pivot_roots)
 
 
 def validate_pivot_eliminant_target(
@@ -726,7 +740,7 @@ def validate_pivot_eliminant_target(
     location: str,
     modulus: int | None,
     extension_field: PolynomialBasisField | None,
-) -> None:
+) -> list[int] | None:
     coefficient_key = first_matching_key(
         target,
         r"eliminant_coefficients_mod_\d+_ascending",
@@ -735,7 +749,7 @@ def validate_pivot_eliminant_target(
     )
     root_key = first_matching_key(target, r"roots_mod_\d+", r"roots")
     if coefficient_key is None and root_key is None:
-        return
+        return None
     if coefficient_key is None or root_key is None:
         raise PacketError(
             f"{location}: eliminant target needs both coefficients and roots"
@@ -811,6 +825,8 @@ def validate_pivot_eliminant_target(
             exact_monomial_roots = monomial_exact_roots(coefficients)
             if exact_monomial_roots is not None:
                 require_exact_roots(roots, exact_monomial_roots, location)
+
+    return roots
 
 
 def validate_regular_minor(
@@ -1073,7 +1089,7 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     validate_schema(packet, schema_path)
     validate_residual_labels(packet)
     validate_references(packet)
-    validate_pivot_atlas(packet)
+    pivot_roots = validate_pivot_atlas(packet)
 
     row = packet["row"]
     n = row["n"]
@@ -1082,6 +1098,7 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     extension_field = PolynomialBasisField.from_packet(packet)
     all_roots: set[int] = set()
     all_bad: set[int] = set()
+    all_roots.update(pivot_roots)
 
     for item in packet["exact_agreements"]:
         agreement = item["A"]
@@ -1104,6 +1121,7 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
         validate_extractor_audit(item, roots)
 
     root_union_key = first_matching_key(packet, r"root_union_mod_\d+", r"root_union")
+    root_union: list[int] | None = None
     if root_union_key is not None:
         root_union = normalize_int_list(packet[root_union_key], root_union_key)
         if all_roots and root_union != sorted(all_roots):
@@ -1119,6 +1137,17 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
                 )
     elif packet.get("root_union_table_ref", "").startswith("inline"):
         raise PacketError("inline root_union_table_ref requires an inline root_union")
+    else:
+        root_union_table_ref = packet.get("root_union_table_ref")
+        if isinstance(root_union_table_ref, str):
+            target = validate_packet_reference(root_union_table_ref, "root_union_table_ref")
+            if target is not None:
+                root_union = table_roots(target, "root_union_table_ref")
+                if all_roots and root_union is not None and root_union != sorted(all_roots):
+                    raise PacketError(
+                        "root_union_table_ref does not match the union of inline "
+                        "or pivot root tables"
+                    )
 
     bad_union_key = first_matching_key(
         packet, r"enumerated_bad_slope_union_mod_\d+", r"enumerated_bad_slope_union"

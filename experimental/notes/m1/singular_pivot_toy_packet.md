@@ -77,11 +77,16 @@ python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/singular-pivot-toy/invalid_bad_eliminant_roots_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/singular-pivot-toy/invalid_bad_pivot_root_union_packet.json
 ```
 
 The second negative fixture publishes the same pivot eliminant `Z+5` but gives
 the wrong root table.  The packet checker rejects it by recomputing the roots
-over `F_17`.
+over `F_17`.  The third fixture keeps the pivot root tables correct but points
+the packet-level root union at `{0}`; the checker rejects that numerator table
+because the pivot-root union is `{12}`.
 
 Next step: use the same packet shape only when an actual lower-agreement row
 produces a genuine singular bucket.  Until then this is a machinery certificate,
