@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 fixed-basis slope-pair parametrization
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The fixed-basis nondegenerate square-norm chart is
+  reparametrized directly by slope pairs
+  `lambda_0 in F^*`, `lambda_1 in F \ {lambda_0}`.  The endpoint coordinate is
+  recovered by `x_1=lambda_0^2/(2lambda_0-lambda_1)` unless
+  `lambda_1=2lambda_0`, which is the endpoint at infinity.
+- **How it is useful:** This shows that the local branch has no additional
+  endpoint constraint once the initial row basis is fixed.  The M1 obstruction
+  is pushed further toward the global row-basis/core-image problem in the
+  residue-line local-limit program.
+- **What to do next:** Use this slope-pair form to isolate admissible
+  row-basis variation and compare it with quotient-periodic template charges.
+
 ### 2026-06-30 - M1 fixed-basis coordinate normal form
 
 - **Agent/model:** AllenGrahamHart / Codex.

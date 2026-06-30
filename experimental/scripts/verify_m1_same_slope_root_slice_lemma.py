@@ -62,8 +62,8 @@ endpoint-pair inversion, projective endpoint-pair inversion, diagonal endpoint
 collapse, off-diagonal endpoint-pair count, canonical endpoint-pair norm
 factorization, fixed endpoint-pair coset palette, endpoint-charge corollary,
 fixed-basis forbidden-endpoint sharpening, fixed-basis coordinate normal form,
-fixed-basis endpoint-palette bound, fixed endpoint-pair packet-size bound, and
-packet-count corollary.
+fixed-basis slope-pair parametrization, fixed-basis endpoint-palette bound,
+fixed endpoint-pair packet-size bound, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -3602,6 +3602,15 @@ def assert_overlapping_plucker_chart_recurrence(
         )
 
     if not same_projective_endpoint:
+        assert lambda1 != lambda0, (
+            p,
+            a_rows,
+            b_rows,
+            lambda0,
+            lambda1,
+            (e0_z, e0_w),
+            (e1_z, e1_w),
+        )
         h1_poly = hankel_minor_poly(a_rows, b_rows, 1, p)
         c0_poly = poly1_from_terms(((0, row0[0]), (1, row0[1])), p)
         if c0_e1 != 0:
@@ -3622,6 +3631,26 @@ def assert_overlapping_plucker_chart_recurrence(
                 x0,
                 x1,
                 lambda1,
+            )
+            assert lambda1 != (2 * x0) % p, (
+                p,
+                a_rows,
+                b_rows,
+                x0,
+                x1,
+                lambda1,
+            )
+            recovered_x1 = (
+                x0 * x0 * pow((2 * x0 - lambda1) % p, -1, p)
+            ) % p
+            assert recovered_x1 == x1, (
+                p,
+                a_rows,
+                b_rows,
+                x0,
+                lambda1,
+                x1,
+                recovered_x1,
             )
             normal_factor = poly1_from_terms(
                 (
@@ -6455,6 +6484,9 @@ def check_boundary_core_square_norm_hankel_minor_discriminants() -> None:
         seen_endpoint_pairs: dict[
             tuple[tuple[int, int], tuple[int, int]], tuple[int, int]
         ] = {}
+        seen_slope_pairs: set[tuple[int, int]] = set()
+        zero_c0 = projective_zero_of_row(row0, prime)
+        zero_c1 = projective_zero_of_row(row1, prime)
         for lambda0 in range(1, prime):
             row2 = (
                 (2 * lambda0 * row1[0] - lambda0 * lambda0 * row0[0]) % prime,
@@ -6490,13 +6522,72 @@ def check_boundary_core_square_norm_hankel_minor_discriminants() -> None:
                     (lambda0, lambda1),
                 )
                 seen_endpoint_pairs[key] = (lambda0, lambda1)
+                seen_slope_pairs.add((lambda0, lambda1))
+                c0_e0 = (row0[0] * e0[1] + row0[1] * e0[0]) % prime
+                c1_e0 = (row1[0] * e0[1] + row1[1] * e0[0]) % prime
+                assert c0_e0 != 0
+                assert (c1_e0 * pow(c0_e0, -1, prime)) % prime == lambda0, (
+                    prime,
+                    lambda0,
+                    lambda1,
+                    e0,
+                    c0_e0,
+                    c1_e0,
+                )
+                if lambda1 == (2 * lambda0) % prime:
+                    assert e1 == zero_c0, (
+                        prime,
+                        lambda0,
+                        lambda1,
+                        e1,
+                        zero_c0,
+                    )
+                else:
+                    denominator = (2 * lambda0 - lambda1) % prime
+                    expected_x1 = (
+                        lambda0 * lambda0 * pow(denominator, -1, prime)
+                    ) % prime
+                    assert expected_x1 != 0 and expected_x1 != lambda0, (
+                        prime,
+                        lambda0,
+                        lambda1,
+                        expected_x1,
+                    )
+                    assert e1 != zero_c0, (
+                        prime,
+                        lambda0,
+                        lambda1,
+                        e1,
+                        zero_c0,
+                    )
+                    c0_e1 = (row0[0] * e1[1] + row0[1] * e1[0]) % prime
+                    c1_e1 = (row1[0] * e1[1] + row1[1] * e1[0]) % prime
+                    assert c0_e1 != 0
+                    x1 = (c1_e1 * pow(c0_e1, -1, prime)) % prime
+                    assert x1 == expected_x1, (
+                        prime,
+                        lambda0,
+                        lambda1,
+                        e1,
+                        x1,
+                        expected_x1,
+                    )
                 assert_overlapping_plucker_chart_recurrence(a_rows, b_rows, prime)
         assert len(seen_endpoint_pairs) == (prime - 1) * (prime - 1), (
             prime,
             len(seen_endpoint_pairs),
         )
-        zero_c0 = projective_zero_of_row(row0, prime)
-        zero_c1 = projective_zero_of_row(row1, prime)
+        expected_slope_pairs = {
+            (lambda0, lambda1)
+            for lambda0 in range(1, prime)
+            for lambda1 in range(prime)
+            if lambda1 != lambda0
+        }
+        assert seen_slope_pairs == expected_slope_pairs, (
+            prime,
+            seen_slope_pairs,
+            expected_slope_pairs,
+        )
         p1_normalized = [(value, 1) for value in range(prime)] + [(1, 0)]
         allowed_endpoint_pairs = {
             (first_endpoint, second_endpoint)
