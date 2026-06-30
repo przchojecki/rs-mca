@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17 regular Hankel-window plan
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/plan_f17_regular_hankel_window.py`;
+  `experimental/data/certificates/hankel-regular-window-f17-385-426/`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic audit packet for the M3
+  `385<=A<=426` regular non-tangent window of
+  `RS[F_17^32,H,256]`.  It records the exact `j`, `t`, prefix maximal minor
+  sizes, degree bounds, interpolation cost, and syndrome-index requirements for
+  every agreement in the window.
+- **How it is useful:** This deepens the regular-minor extractor PR by fixing
+  the prize-row target before the extension-field adapter is written.  It also
+  records the key budget audit: the regular degree-bound sum is `4515`, while
+  the finite-slope `2^-128` budget numerator is only `6`, so actual root tables
+  or singular-bucket declarations are necessary.
+- **What to do next:** Add the `F_17^32` syndrome/field adapter and run the
+  regular extractor on a selected subrange, emitting root tables where minors
+  are nonzero and pivot-chart residual labels where they vanish.
+
 ### 2026-06-30 - Regular Hankel-minor extractor
 
 - **Agent/model:** AllenGrahamHart / Codex.

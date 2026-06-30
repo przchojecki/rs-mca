@@ -1,0 +1,860 @@
+{
+  "adapter_contract": [
+    "supply syndrome vectors u,v of length n-k over F_17^32",
+    "supply deterministic F_17^32 addition, multiplication, inversion, and determinant arithmetic",
+    "supply at least degree_bound+1 distinct finite slopes for interpolation at each A",
+    "emit a v9 aperiodic-hankel-eliminant packet with removed tangent and quotient ledgers",
+    "for every A, record a nonzero minor root table or declare the first singular bucket"
+  ],
+  "budget_context": {
+    "budget_numerator": 6,
+    "degree_bound_max": 128,
+    "degree_bound_min": 87,
+    "degree_bound_sum": 4515,
+    "degree_only_closes_safe_side": false,
+    "epsilon": "2^-128",
+    "interpretation": "degree bounds alone are far above the finite-slope budget; the useful object is the actual root table or a singular bucket",
+    "line_denominator": 2367911594760467245844106297320951247361
+  },
+  "conditions": {
+    "prefix_minor": "rows 0..j, columns 0..j of H_t,j(u)+Z H_t,j(v)",
+    "regular_overdetermined": "t=A-k >= j+1=n-A+1",
+    "regular_start_formula": "ceil((n+k+1)/2)",
+    "tangent_exact_start_formula": "n-floor((n-k)/3)"
+  },
+  "nonclaims": [
+    "does not compute any F_17^32 determinant",
+    "does not enumerate roots in the prize field",
+    "does not prove a safe-side MCA bound",
+    "does not classify singular buckets"
+  ],
+  "per_agreement": [
+    {
+      "A": 385,
+      "degree_bound": 128,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 129,
+      "j": 127,
+      "minor_size": 128,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 254,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 127
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 129
+    },
+    {
+      "A": 386,
+      "degree_bound": 127,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 128,
+      "j": 126,
+      "minor_size": 127,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 252,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 126
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 130
+    },
+    {
+      "A": 387,
+      "degree_bound": 126,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 127,
+      "j": 125,
+      "minor_size": 126,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 250,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 125
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 131
+    },
+    {
+      "A": 388,
+      "degree_bound": 125,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 126,
+      "j": 124,
+      "minor_size": 125,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 248,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 124
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 132
+    },
+    {
+      "A": 389,
+      "degree_bound": 124,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 125,
+      "j": 123,
+      "minor_size": 124,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 246,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 123
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 133
+    },
+    {
+      "A": 390,
+      "degree_bound": 123,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 124,
+      "j": 122,
+      "minor_size": 123,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 244,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 122
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 134
+    },
+    {
+      "A": 391,
+      "degree_bound": 122,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 123,
+      "j": 121,
+      "minor_size": 122,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 242,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 121
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 135
+    },
+    {
+      "A": 392,
+      "degree_bound": 121,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 122,
+      "j": 120,
+      "minor_size": 121,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 240,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 120
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 136
+    },
+    {
+      "A": 393,
+      "degree_bound": 120,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 121,
+      "j": 119,
+      "minor_size": 120,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 238,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 119
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 137
+    },
+    {
+      "A": 394,
+      "degree_bound": 119,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 120,
+      "j": 118,
+      "minor_size": 119,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 236,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 118
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 138
+    },
+    {
+      "A": 395,
+      "degree_bound": 118,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 119,
+      "j": 117,
+      "minor_size": 118,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 234,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 117
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 139
+    },
+    {
+      "A": 396,
+      "degree_bound": 117,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 118,
+      "j": 116,
+      "minor_size": 117,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 232,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 116
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 140
+    },
+    {
+      "A": 397,
+      "degree_bound": 116,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 117,
+      "j": 115,
+      "minor_size": 116,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 230,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 115
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 141
+    },
+    {
+      "A": 398,
+      "degree_bound": 115,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 116,
+      "j": 114,
+      "minor_size": 115,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 228,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 114
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 142
+    },
+    {
+      "A": 399,
+      "degree_bound": 114,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 115,
+      "j": 113,
+      "minor_size": 114,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 226,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 113
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 143
+    },
+    {
+      "A": 400,
+      "degree_bound": 113,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 114,
+      "j": 112,
+      "minor_size": 113,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 224,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 112
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 144
+    },
+    {
+      "A": 401,
+      "degree_bound": 112,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 113,
+      "j": 111,
+      "minor_size": 112,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 222,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 111
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 145
+    },
+    {
+      "A": 402,
+      "degree_bound": 111,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 112,
+      "j": 110,
+      "minor_size": 111,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 220,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 110
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 146
+    },
+    {
+      "A": 403,
+      "degree_bound": 110,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 111,
+      "j": 109,
+      "minor_size": 110,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 218,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 109
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 147
+    },
+    {
+      "A": 404,
+      "degree_bound": 109,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 110,
+      "j": 108,
+      "minor_size": 109,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 216,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 108
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 148
+    },
+    {
+      "A": 405,
+      "degree_bound": 108,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 109,
+      "j": 107,
+      "minor_size": 108,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 214,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 107
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 149
+    },
+    {
+      "A": 406,
+      "degree_bound": 107,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 108,
+      "j": 106,
+      "minor_size": 107,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 212,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 106
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 150
+    },
+    {
+      "A": 407,
+      "degree_bound": 106,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 107,
+      "j": 105,
+      "minor_size": 106,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 210,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 105
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 151
+    },
+    {
+      "A": 408,
+      "degree_bound": 105,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 106,
+      "j": 104,
+      "minor_size": 105,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 208,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 104
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 152
+    },
+    {
+      "A": 409,
+      "degree_bound": 104,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 105,
+      "j": 103,
+      "minor_size": 104,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 206,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 103
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 153
+    },
+    {
+      "A": 410,
+      "degree_bound": 103,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 104,
+      "j": 102,
+      "minor_size": 103,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 204,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 102
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 154
+    },
+    {
+      "A": 411,
+      "degree_bound": 102,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 103,
+      "j": 101,
+      "minor_size": 102,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 202,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 101
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 155
+    },
+    {
+      "A": 412,
+      "degree_bound": 101,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 102,
+      "j": 100,
+      "minor_size": 101,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 200,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 100
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 156
+    },
+    {
+      "A": 413,
+      "degree_bound": 100,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 101,
+      "j": 99,
+      "minor_size": 100,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 198,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 99
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 157
+    },
+    {
+      "A": 414,
+      "degree_bound": 99,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 100,
+      "j": 98,
+      "minor_size": 99,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 196,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 98
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 158
+    },
+    {
+      "A": 415,
+      "degree_bound": 98,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 99,
+      "j": 97,
+      "minor_size": 98,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 194,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 97
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 159
+    },
+    {
+      "A": 416,
+      "degree_bound": 97,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 98,
+      "j": 96,
+      "minor_size": 97,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 192,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 96
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 160
+    },
+    {
+      "A": 417,
+      "degree_bound": 96,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 97,
+      "j": 95,
+      "minor_size": 96,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 190,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 95
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 161
+    },
+    {
+      "A": 418,
+      "degree_bound": 95,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 96,
+      "j": 94,
+      "minor_size": 95,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 188,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 94
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 162
+    },
+    {
+      "A": 419,
+      "degree_bound": 94,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 95,
+      "j": 93,
+      "minor_size": 94,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 186,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 93
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 163
+    },
+    {
+      "A": 420,
+      "degree_bound": 93,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 94,
+      "j": 92,
+      "minor_size": 93,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 184,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 92
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 164
+    },
+    {
+      "A": 421,
+      "degree_bound": 92,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 93,
+      "j": 91,
+      "minor_size": 92,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 182,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 91
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 165
+    },
+    {
+      "A": 422,
+      "degree_bound": 91,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 92,
+      "j": 90,
+      "minor_size": 91,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 180,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 90
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 166
+    },
+    {
+      "A": 423,
+      "degree_bound": 90,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 91,
+      "j": 89,
+      "minor_size": 90,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 178,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 89
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 167
+    },
+    {
+      "A": 424,
+      "degree_bound": 89,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 90,
+      "j": 88,
+      "minor_size": 89,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 176,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 88
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 168
+    },
+    {
+      "A": 425,
+      "degree_bound": 88,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 89,
+      "j": 87,
+      "minor_size": 88,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 174,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 87
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 169
+    },
+    {
+      "A": 426,
+      "degree_bound": 87,
+      "full_hankel_max_syndrome_index": 255,
+      "full_window_defined_by_syndrome_length": true,
+      "interpolation_evaluations": 88,
+      "j": 86,
+      "minor_size": 87,
+      "packet_outcome_needed": "nonzero minor with root table, or singular declaration",
+      "prefix_max_syndrome_index": 172,
+      "prefix_minor_defined_by_syndrome_length": true,
+      "prefix_row_set": {
+        "start": 0,
+        "stop_inclusive": 86
+      },
+      "regular_overdetermined": true,
+      "syndrome_length_required_for_full_window": 256,
+      "t": 170
+    }
+  ],
+  "row": {
+    "domain_description": "multiplicative subgroup H with |H|=512",
+    "domain_hash": "not_supplied",
+    "field": "F_17^32",
+    "field_order": 2367911594760467245844106297320951247361,
+    "k": 256,
+    "n": 512,
+    "syndrome_length": 256
+  },
+  "schema_version": "regular-hankel-window-plan-v1",
+  "status": "AUDIT",
+  "summary": {
+    "all_full_hankel_windows_defined_by_syndrome_length": true,
+    "all_prefix_minors_defined_by_syndrome_length": true,
+    "all_regular_overdetermined": true,
+    "max_full_hankel_syndrome_index": 255,
+    "max_prefix_syndrome_index": 254,
+    "minor_size_max": 128,
+    "minor_size_min": 87,
+    "total_interpolation_evaluations": 4557
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreements": 42,
+    "reason": "regular overdetermined but below tangent exactness",
+    "regular_start": 385,
+    "tangent_exact_start": 427
+  }
+}
