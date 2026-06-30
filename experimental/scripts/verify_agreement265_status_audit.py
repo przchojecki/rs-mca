@@ -16,6 +16,7 @@ sys.path.insert(0, str(REPO_ROOT))
 
 import experimental.scripts.verify_m1_coset_packet_finite_slope_floors as floors
 import experimental.scripts.verify_m1_random_simple_pole_entropy_floor as random_floor
+import experimental.scripts.certify_high_agreement_threshold_package as high
 
 
 Q = 17**32
@@ -59,6 +60,18 @@ def random_floor_rows() -> dict[int, dict[str, Any]]:
 def status_certificate() -> dict[str, Any]:
     floors.validate_math()
     floors.validate_json(floors.DATA_PATH)
+    high_gate = high.exact_threshold(floors.N, floors.K, Q)
+    if high_gate["budget"] != GATE:
+        raise AssertionError(("high-agreement budget mismatch", high_gate["budget"], GATE))
+    if high_gate["last_unsafe_agreement"] != 506:
+        raise AssertionError(("unexpected last unsafe agreement", high_gate))
+    if high_gate["first_safe_agreement"] != 507:
+        raise AssertionError(("unexpected first safe agreement", high_gate))
+    if high_gate["unsafe_line_numerator"] != FIRST_UNSAFE_NUMERATOR:
+        raise AssertionError(("unexpected unsafe numerator", high_gate))
+    if high_gate["safe_line_numerator"] != GATE:
+        raise AssertionError(("unexpected safe numerator", high_gate))
+
     rows = random_floor_rows()
     coset_rows = rows_by_agreement(floors.certificate())
     overlap = sorted(set(rows) & set(coset_rows))
@@ -109,7 +122,17 @@ def status_certificate() -> dict[str, Any]:
         "first_unsafe_numerator": FIRST_UNSAFE_NUMERATOR,
         "old_target": "LD_sw(C,265) <= 6",
         "old_target_status": "false under the finite-slope support-wise convention",
-        "explicit_lower_floor_interval": [257, 288],
+        "low_agreement_mechanism_interval": [257, 288],
+        "first_not_covered_by_low_agreement_mechanisms": 289,
+        "high_agreement_threshold": {
+            "status": "already pinned by high-agreement tangent package",
+            "last_unsafe_agreement": high_gate["last_unsafe_agreement"],
+            "first_safe_agreement": high_gate["first_safe_agreement"],
+            "largest_safe_integer_radius": high_gate["largest_safe_integer_radius"],
+            "first_unsafe_integer_radius": high_gate["first_unsafe_integer_radius"],
+            "safe_line_numerator": high_gate["safe_line_numerator"],
+            "unsafe_line_numerator": high_gate["unsafe_line_numerator"],
+        },
         "agreement_257_lower": rows[257]["lower"],
         "agreement_257_lower_formula": rows[257]["formula"],
         "agreement_259_lower": rows[259]["lower"],
@@ -120,11 +143,12 @@ def status_certificate() -> dict[str, Any]:
         "agreement_265_lower_formula": rows[265]["formula"],
         "agreement_288_lower": rows[288]["lower"],
         "agreement_288_lower_formula": rows[288]["formula"],
-        "certified_unsafe_agreement_interval": [257, 288],
+        "certified_low_agreement_mechanism_interval": [257, 288],
         "monotone_unsafe_through": 288,
-        "first_not_ruled_out_by_this_floor": 289,
+        "global_finite_slope_unsafe_through": high_gate["last_unsafe_agreement"],
+        "global_finite_slope_first_safe": high_gate["first_safe_agreement"],
         "nonclaims": [
-            "does not prove LD_sw(C,289) <= 6",
+            "does not add a new proof of the 506/507 threshold",
             "does not classify all finite slopes",
             "does not count projective slopes",
             "does not change the high-agreement 506/507 threshold package",
@@ -161,7 +185,15 @@ def main() -> None:
         f"({cert['agreement_288_lower_formula']})",
     )
     print("old target:", cert["old_target"], "is false")
-    print("first not ruled out by this floor:", cert["first_not_ruled_out_by_this_floor"])
+    print(
+        "low-agreement mechanisms cover:",
+        cert["low_agreement_mechanism_interval"],
+    )
+    print(
+        "global finite-slope threshold:",
+        f"unsafe through a={cert['global_finite_slope_unsafe_through']},",
+        f"safe from a={cert['global_finite_slope_first_safe']}",
+    )
 
 
 if __name__ == "__main__":

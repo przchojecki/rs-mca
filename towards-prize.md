@@ -1077,11 +1077,11 @@ LD_{\mathrm{sw}}(C,265)\ge \binom{31}{16}=300{,}540{,}195,
 \]
 and the integrated random simple-pole plus coset-packet lower-floor packages
 give more than six bad finite slopes for every agreement \(257\le a\le288\).
-See
+Moreover, the high-agreement threshold package already pins the global
+finite-slope threshold at \(506/507\).  See
 `experimental/notes/thresholds/agreement265_status_audit.md`.  Therefore this
 lane should be read as an old finite-row target unless a different sampler
-convention is intended; for the finite-slope predicate, the first agreement not
-ruled out by the current lower-floor package is \(a=289\).
+convention is intended.
 
 ## B.1 Formulate agreement 265 as a Hankel-pencil problem
 
@@ -2148,8 +2148,8 @@ write exact failure audit
 **Current status.** This risk has materialized for the finite-slope
 support-wise predicate: the integrated random simple-pole and coset-packet
 lower-floor packages give more than six bad finite slopes for every agreement
-\(257\le a\le288\), and hence push the first possible finite-slope upper edge
-to at least \(288/289\).  See
+\(257\le a\le288\), while the high-agreement threshold package already pins
+the global finite-slope threshold at \(506/507\).  See
 `experimental/notes/thresholds/agreement265_status_audit.md`.
 
 **Mitigation.**
@@ -2157,8 +2157,7 @@ to at least \(288/289\).  See
 ```text
 record the agreement-265 witness status as settled for finite slopes
 do not attempt LD_sw(C,265) <= 6 under the finite-slope convention
-if no different sampler convention is intended, move the next finite-slope
-upper-bound target to a=289
+if a different sampler convention is intended, restate it explicitly
 keep staircase approach
 ```
 

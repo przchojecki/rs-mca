@@ -38,7 +38,7 @@ LD_sw(C,288) >= binom(16,9) = 11440.
 
 Together with the random simple-pole entropy floor in
 `experimental/notes/m1/m1_random_simple_pole_entropy_floor.md`, the current
-explicit finite-slope lower-floor coverage is:
+explicit low-agreement mechanism coverage is:
 
 ```text
 a = 257:     all 17^32 finite slopes are bad,
@@ -64,56 +64,54 @@ finite-slope MCA gate. Thus the agreement-265 upper-bound target is not an
 open finite-slope upper theorem in this convention; it is refuted by a proved
 lower floor.
 
+There is also a stronger global status statement from the high-agreement
+threshold package:
+
+```text
+LD_sw(C,506) = 7,
+LD_sw(C,507) = 6.
+```
+
+By monotonicity, the `a=506` row already makes every `a<=506` unsafe, while
+the promoted high-agreement theorem proves every `a>=507` safe. This note does
+not reprove that threshold; it uses it to keep the agreement-265 status
+ledger aligned with the current roadmap.
+
 ## Consequence for the finite row
 
-The integrated lower-floor packages give more than six finite bad slopes at
-each agreement from `257` through `288`. In particular, the current
-finite-slope lower-bound evidence pushes the first possible safe agreement
-edge beyond `288`:
+The integrated low-agreement lower-floor packages give more than six finite
+bad slopes at each agreement from `257` through `288`:
 
 ```text
-LD_sw(C,a) > 6        for every a <= 288
+LD_sw(C,a) > 6        for 257 <= a <= 288.
 ```
 
-where `257<=a<=288` is covered by the displayed lower-floor packages, and the
-statement for `a<257` follows monotonically from the `a=257` row.
+The first row not covered by these two low-agreement mechanism packages is
+`a=289`.  This is a mechanism-coverage boundary only.  It is not the first row
+not ruled out for the finite-slope predicate overall, because the
+high-agreement threshold package already pins the global finite-slope edge at
+`506/507`.
 
-Therefore, if this finite-slope predicate is the intended object, the next
-finite upper-bound target should not be `a=265`. The first agreement not ruled
-out by the current coset-packet floor is
-
-```text
-a = 289.
-```
-
-Equivalently, the next threshold-pinning edge allowed by this lower-floor
-package is at least
-
-```text
-288 / 289
-```
-
-in agreement coordinates.
+Therefore, if the finite-slope support-wise predicate is the intended object,
+the old agreement-265 upper-bound work package should be treated as obsolete.
+If a different sampler or predicate was intended, it should be restated
+explicitly before any further agreement-265 upper-bound work is attempted.
 
 ## Non-claims
 
-This note does not prove
-
-```text
-LD_sw(C,289) <= 6.
-```
-
-It also does not classify all bad finite slopes, does not give a projective
-slope count, does not prove a protocol soundness statement, and does not change
-the high-agreement `506/507` threshold package. It is only a status audit for
-the older agreement-265 finite-slope upper-bound target.
+This note does not add a new proof of the high-agreement `506/507` threshold,
+does not classify all bad finite slopes, does not give a projective slope
+count, does not prove a protocol soundness statement, and does not change the
+high-agreement threshold package. It is only a status audit for the older
+agreement-265 finite-slope upper-bound target.
 
 ## Verification
 
 The companion verifier checks the exact integer arithmetic, reuses the
-random simple-pole and coset-packet certificate verifiers, and confirms that
-all agreements `257,...,288` have certified lower floors larger than the gate
-value `6`:
+random simple-pole, coset-packet, and high-agreement threshold verifiers.  It
+confirms that all agreements `257,...,288` have certified low-agreement
+mechanism floors larger than the gate value `6`, and that the high-agreement
+package pins the global finite-slope threshold at `506/507`:
 
 ```sh
 python3 experimental/scripts/verify_agreement265_status_audit.py

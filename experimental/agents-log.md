@@ -43,14 +43,14 @@ Keep entries concise and link to the relevant files.
   support-wise convention: the integrated coset-packet floor gives
   `LD_sw(C,265)>=binom(31,16)=300540195`.  The verifier also aggregates the
   integrated random simple-pole rows, so the explicit lower-floor coverage is
-  `a=257..288`.
+  `a=257..288`, and cross-checks the existing high-agreement package which
+  pins the global finite-slope edge at `506/507`.
 - **How it is useful:** Resolves the `towards-prize.md` Risk 3 branch for this
-  finite-slope predicate and shows that the current lower-floor package pushes
-  the first possible upper-bound edge to at least `288/289`, since
-  `LD_sw(C,288)>=binom(16,9)>6`.
-- **What to do next:** Decide whether `towards-prize.md` should replace the
-  agreement-265 upper-bound work package by an agreement-289 status target, or
-  whether the old line was meant for a different sampler convention.
+  finite-slope predicate without confusing low-agreement mechanism coverage
+  with the already-pinned global threshold.
+- **What to do next:** If the old agreement-265 upper-bound work package was
+  meant for a different sampler convention, restate that convention explicitly;
+  otherwise treat it as obsolete for finite-slope support-wise MCA.
 
 ### 2026-06-30 - PR #137--#149 integration and triage
 
