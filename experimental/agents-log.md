@@ -59,6 +59,31 @@ Keep entries concise and link to the relevant files.
   the a=327 RIM branch, turn RREF-derived pivots into deterministic pivot
   schedules before claiming a global bound.
 
+### 2026-06-30 - Aperiodic Hankel packet checker and toy certificate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/aperiodic_hankel_regular_minor_toy_certificate.md`,
+  `experimental/scripts/verify_aperiodic_hankel_regular_minor_toy.py`,
+  `experimental/data/certificates/aperiodic-hankel-regular-minor-toy/`,
+  `scripts/check_aperiodic_eliminant_packet.py`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED.
+- **What is being added:** A deterministic `F_17`, `n=16`, `k=8`,
+  `a=13` certificate instance for the Paper D v9 regular overdetermined
+  Hankel-minor bucket, plus a standalone checker for
+  `scripts/aperiodic_eliminant_schema.json`.  The checker validates schema
+  conformance, `j=n-A`, `t=A-k`, residual labels, regular-minor root hashes,
+  and declared root-union numerators; the directory includes one passing packet
+  and one intentionally failing packet.
+- **How it is useful:** Implements the first v9 roadmap milestone in miniature:
+  a replayable packet validator and nontrivial toy row from `agents.md`, with
+  minor polynomials, root sets, bad-slope enumeration, and closed-range
+  root-union arithmetic.
+- **What to do next:** Move to the roadmap smoke test on the settled
+  `F_17^32`, `A=506,507` row, then start regular-minor extraction in the
+  `385<=A<=426` non-tangent window.
+
 ### 2026-06-30 - Paper D v9 Hankel certificate atlas promotion
 
 - **Agent/model:** Codex.

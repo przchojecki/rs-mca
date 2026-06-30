@@ -1,0 +1,23 @@
+{
+  "agreement_threshold": 13,
+  "declared_aperiodic_numerator": 0,
+  "exact_agreements": [
+    {
+      "A": 13,
+      "j": 2,
+      "status": "empty",
+      "t": 5
+    }
+  ],
+  "removed_ledgers": [],
+  "root_union_mod_17": [],
+  "root_union_table_ref": "inline:root_union_mod_17",
+  "row": {
+    "domain_hash": "intentional-failure",
+    "field": "F_17",
+    "k": 8,
+    "n": 16
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "aperiodic-hankel-eliminant-v1"
+}

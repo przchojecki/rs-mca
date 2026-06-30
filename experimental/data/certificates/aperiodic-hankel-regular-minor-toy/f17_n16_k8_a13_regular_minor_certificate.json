@@ -1,0 +1,164 @@
+{
+  "agreement_threshold": 13,
+  "declared_aperiodic_numerator": 4,
+  "enumerated_bad_slope_union_mod_17": [],
+  "exact_agreements": [
+    {
+      "A": 13,
+      "j": 3,
+      "regular_minor": {
+        "degree": 4,
+        "polynomial_ref": "inline:regular_minor.coefficients_mod_17_ascending",
+        "root_hash": "95bce61a71a78185f4b6f8f25fc6986108043727fe9d9c19dbe44b0081ef928a",
+        "row_set": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "regular_minor_data": {
+        "coefficients_mod_17_ascending": [
+          4,
+          14,
+          12,
+          7,
+          1
+        ],
+        "enumerated_bad_slopes_mod_17": [],
+        "roots_mod_17": [
+          11
+        ]
+      },
+      "status": "regular_minor",
+      "t": 5
+    },
+    {
+      "A": 14,
+      "j": 2,
+      "regular_minor": {
+        "degree": 3,
+        "polynomial_ref": "inline:regular_minor.coefficients_mod_17_ascending",
+        "root_hash": "43a2d66e5f850f64677fc2fae986fcdbdf190e6b6f026167f70b21d8860826b3",
+        "row_set": [
+          0,
+          1,
+          2
+        ]
+      },
+      "regular_minor_data": {
+        "coefficients_mod_17_ascending": [
+          5,
+          4,
+          8,
+          4
+        ],
+        "enumerated_bad_slopes_mod_17": [],
+        "roots_mod_17": [
+          10,
+          11
+        ]
+      },
+      "status": "regular_minor",
+      "t": 6
+    },
+    {
+      "A": 15,
+      "j": 1,
+      "regular_minor": {
+        "degree": 2,
+        "polynomial_ref": "inline:regular_minor.coefficients_mod_17_ascending",
+        "root_hash": "45e1c0b7597006d357bb6b74965c9d19ee076dc5bf7ff45406f375e146f187df",
+        "row_set": [
+          0,
+          1
+        ]
+      },
+      "regular_minor_data": {
+        "coefficients_mod_17_ascending": [
+          0,
+          3,
+          7
+        ],
+        "enumerated_bad_slopes_mod_17": [],
+        "roots_mod_17": [
+          0,
+          2
+        ]
+      },
+      "status": "regular_minor",
+      "t": 7
+    },
+    {
+      "A": 16,
+      "j": 0,
+      "regular_minor": {
+        "degree": 1,
+        "polynomial_ref": "inline:regular_minor.coefficients_mod_17_ascending",
+        "root_hash": "038966de9f6b9a901b20b4c6ca8b2a46009feebe031babc842d43690c0bc222b",
+        "row_set": [
+          0
+        ]
+      },
+      "regular_minor_data": {
+        "coefficients_mod_17_ascending": [
+          3,
+          7
+        ],
+        "enumerated_bad_slopes_mod_17": [],
+        "roots_mod_17": [
+          2
+        ]
+      },
+      "status": "regular_minor",
+      "t": 8
+    }
+  ],
+  "line_syndrome": {
+    "description": "deterministic toy syndrome pair; entries are cubic polynomials in the syndrome index modulo 17",
+    "u": [
+      3,
+      11,
+      12,
+      12,
+      0,
+      16,
+      15,
+      3
+    ],
+    "v": [
+      7,
+      3,
+      12,
+      1,
+      5,
+      8,
+      11,
+      15
+    ]
+  },
+  "nonclaims": [
+    "not a prize-row certificate",
+    "not a quotient/tangent removal theorem",
+    "not a full M1 aperiodic local-limit theorem",
+    "certificate is for one deterministic toy syndrome pair"
+  ],
+  "removed_ledgers": [],
+  "root_union_mod_17": [
+    0,
+    2,
+    10,
+    11
+  ],
+  "root_union_table_ref": "inline:root_union_mod_17",
+  "row": {
+    "domain_description": "sorted nonzero elements of F_17",
+    "domain_hash": "c8aa3562cf53e860d2bff96611bbd511190e1ba0d75e502cbab10a106f04248e",
+    "field": "F_17",
+    "k": 8,
+    "n": 16
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "status": "PROVED"
+}
