@@ -30,6 +30,7 @@ from typing import Any
 
 DEFAULT_SCHEMA = Path("scripts/aperiodic_eliminant_schema.json")
 ROOT_COMPLETENESS_ENUMERATION_LIMIT = 1_000_000
+INLINE_MINOR_REPLAY_SIZE_LIMIT = 16
 
 
 class PacketError(Exception):
@@ -1537,6 +1538,21 @@ ENCODED_FIELD_INPUT_ENCODINGS = {
 }
 
 
+def needs_inline_regular_minor_replay(item: dict[str, Any]) -> bool:
+    minor = item.get("regular_minor")
+    if not isinstance(minor, dict):
+        return False
+    polynomial_ref = minor.get("polynomial_ref")
+    row_set = minor.get("row_set")
+    return (
+        isinstance(polynomial_ref, str)
+        and polynomial_ref.startswith("inline:")
+        and isinstance(row_set, list)
+        and len(row_set) <= INLINE_MINOR_REPLAY_SIZE_LIMIT
+        and isinstance(item.get("regular_minor_data"), dict)
+    )
+
+
 def packet_has_rank_replay_items(packet: dict[str, Any]) -> bool:
     for item in packet.get("exact_agreements", []):
         if not isinstance(item, dict):
@@ -1546,6 +1562,8 @@ def packet_has_rank_replay_items(packet: dict[str, Any]) -> bool:
             isinstance(minor, dict)
             and minor.get("polynomial_ref") == RANK_WITNESS_POLYNOMIAL_REF
         ):
+            return True
+        if needs_inline_regular_minor_replay(item):
             return True
         if item.get("regular_minor_gcd") is not None:
             return True
@@ -1889,7 +1907,7 @@ def validate_rank_specializations(
             )
 
 
-def validate_gcd_minor_polynomial_replay(
+def validate_minor_polynomial_replay(
     item: dict[str, Any],
     row_set: list[int],
     polynomial: list[int],
@@ -2333,6 +2351,16 @@ def validate_regular_minor(
         raise PacketError(f"A={item.get('A')}: root_hash mismatch")
     if not set(bad_slopes).issubset(roots):
         raise PacketError(f"A={item.get('A')}: enumerated bad slopes are not roots")
+    if expected_size <= INLINE_MINOR_REPLAY_SIZE_LIMIT:
+        validate_minor_polynomial_replay(
+            item,
+            row_set,
+            coefficients,
+            rank_replay_input,
+            modulus,
+            extension_field,
+            f"A={item.get('A')}: regular_minor",
+        )
     if modulus is not None:
         validate_split_linear_root_certificate_mod(
             root_certificate,
@@ -2615,7 +2643,7 @@ def validate_regular_minor_gcd(
             raise PacketError(
                 f"A={item.get('A')}: minor polynomial {index} has empty coefficients"
             )
-        validate_gcd_minor_polynomial_replay(
+        validate_minor_polynomial_replay(
             item,
             expected_row_set,
             polynomial,

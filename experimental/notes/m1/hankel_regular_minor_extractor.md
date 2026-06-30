@@ -162,6 +162,14 @@ k = 8,
 A = 13,14,15,16.
 ```
 
+For inline ordinary `regular_minor` packets with row-set size at most `16`,
+the generic checker now SHA-loads the extractor input and replays the recorded
+determinant polynomial at `j+2` finite slopes.  This catches scaled or otherwise
+fabricated determinant polynomials even when their root tables are still
+internally consistent.  Larger closed-form `F_17^32` packets remain covered by
+their compressed-root certificates and should get dedicated closed-form replay
+gates rather than brute-force interpolation.
+
 The extractor finds nonzero prefix minors in all four exact agreements, with
 degrees `4,3,2,1` and closed-range root union `{0,2,10,11}`.
 
@@ -432,6 +440,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/regular-minor-extractor-toy/invalid_synthetic_threshold_scope_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-extractor-toy/invalid_bad_regular_minor_replay_packet.json
 
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_2_n16_k8_a13_toy.json \

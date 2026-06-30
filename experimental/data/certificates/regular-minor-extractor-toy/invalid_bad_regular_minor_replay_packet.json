@@ -1,0 +1,93 @@
+{
+  "agreement_threshold": 13,
+  "claim_scope": {
+    "may_be_used_for_threshold_pinning": false,
+    "note": "Intentionally invalid: the inline determinant polynomial is scaled away from the SHA-checked Hankel input while keeping the same root table.",
+    "root_status": "enumerated",
+    "row_data": "toy_row",
+    "threshold_role": "toy_mechanism"
+  },
+  "declared_aperiodic_numerator": 1,
+  "enumerated_bad_slope_union_mod_17": [],
+  "exact_agreements": [
+    {
+      "A": 13,
+      "extractor_audit": {
+        "degree_bound": 4,
+        "rank_pivot_node": null,
+        "rank_pivot_nodes_required": null,
+        "rank_pivot_nodes_tested": null,
+        "root_count": 1,
+        "row_set_source": "prefix",
+        "tested_row_sets": 1
+      },
+      "j": 3,
+      "regular_minor": {
+        "degree": 4,
+        "polynomial_ref": "inline:regular_minor.coefficients_mod_17_ascending",
+        "root_hash": "95bce61a71a78185f4b6f8f25fc6986108043727fe9d9c19dbe44b0081ef928a",
+        "row_set": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "regular_minor_data": {
+        "coefficients_mod_17_ascending": [
+          8,
+          11,
+          7,
+          14,
+          2
+        ],
+        "enumerated_bad_slopes_mod_17": [],
+        "roots_mod_17": [
+          11
+        ]
+      },
+      "regular_minor_polynomial_data": {
+        "coefficients_mod_17_ascending": [
+          8,
+          11,
+          7,
+          14,
+          2
+        ]
+      },
+      "status": "regular_minor",
+      "t": 5
+    }
+  ],
+  "extractor": {
+    "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_toy.json",
+    "input_sha256": "9a9810cd64c34d5c870b99f7c52ae8f5e86dd947cb38e47a7bc1bbbe8c4623a5",
+    "method": "numeric determinant interpolation over the base prime field",
+    "name": "regular-hankel-minor-extractor",
+    "row_set_strategy": {
+      "type": "prefix"
+    },
+    "scope": "prime-field syndrome pencils only"
+  },
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an extension-field row adapter",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ],
+  "removed_ledgers": [],
+  "root_union_mod_17": [
+    11
+  ],
+  "root_union_table_ref": "inline:root_union_mod_17",
+  "row": {
+    "domain_description": "sorted nonzero elements of F_17",
+    "domain_hash": "c8aa3562cf53e860d2bff96611bbd511190e1ba0d75e502cbab10a106f04248e",
+    "field": "F_17",
+    "k": 8,
+    "n": 16
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "status": "PROVED / INTENTIONALLY INVALID"
+}

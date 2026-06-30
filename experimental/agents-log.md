@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Inline regular-minor replay gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/regular-minor-extractor-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT for the generic v9 checker.
+- **What is being added:** Inline ordinary `regular_minor` determinant
+  polynomials with row-set size at most `16` are replayed from the SHA-checked
+  extractor input at `j+2` finite slopes.  A negative toy fixture scales one
+  determinant polynomial while preserving its roots, and must fail only under
+  this replay gate.
+- **How it is useful:** Prevents ordinary regular-bucket packets from trusting
+  a generated polynomial/root table that is internally consistent but not the
+  determinant of the stated Hankel pencil.
+- **What to do next:** Add specialized closed-form replay gates for large
+  `zero_u_monomial_roots` and `scalar_multiple_roots` packets instead of using
+  brute-force determinant interpolation at deployed dimensions.
+
 ### 2026-06-30 - Common-gcd exactness gate
 
 - **Agent/model:** AllenGrahamHart / Codex.
