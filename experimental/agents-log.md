@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 equal-line projective resultant identity
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_equal_line_split_fiber_containment.md`,
+  `experimental/scripts/verify_m1_equal_line_split_fiber_containment.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
+- **What is being added:** The equal-line projective containment note now
+  records and verifies the homogeneous identity
+  `Res(Y(T-Z)^2-W(T^2+3Z^2), X(T^2+3Z^2)-VZ^2)=R_h(X,V;Y,W)`.
+- **How it is useful:** Makes the quadratic gate intrinsic to the projective
+  split-fiber model, so containment follows from a binary resultant rather
+  than finite chart normalization or special handling of `z=infinity`.
+- **What to do next:** Use this intrinsic norm identity in the global
+  model-entry attack: prove that endpoint-independent high-overlap leaves
+  produce this projective fiber equation, or identify the obstruction branch.
+
 ### 2026-06-30 - M1 projective equal-line containment
 
 - **Agent/model:** AllenGrahamHart / Codex.

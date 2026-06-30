@@ -58,6 +58,56 @@ def projective_resultant(
     ) % p
 
 
+def det_mod(matrix: list[list[int]], p: int) -> int:
+    rows = [[entry % p for entry in row] for row in matrix]
+    determinant = 1
+    for col in range(len(rows)):
+        pivot = None
+        for row in range(col, len(rows)):
+            if rows[row][col] % p != 0:
+                pivot = row
+                break
+        if pivot is None:
+            return 0
+        if pivot != col:
+            rows[col], rows[pivot] = rows[pivot], rows[col]
+            determinant = -determinant
+        pivot_value = rows[col][col] % p
+        determinant = determinant * pivot_value % p
+        inverse = pow(pivot_value, -1, p)
+        for row in range(col + 1, len(rows)):
+            factor = rows[row][col] * inverse % p
+            for inner in range(col, len(rows)):
+                rows[row][inner] = (rows[row][inner] - factor * rows[col][inner]) % p
+    return determinant % p
+
+
+def quadratic_resultant(
+    left: tuple[int, int, int], right: tuple[int, int, int], p: int
+) -> int:
+    a, b, c = left
+    d, e, f = right
+    return det_mod(
+        [
+            [a, b, c, 0],
+            [0, a, b, c],
+            [d, e, f, 0],
+            [0, d, e, f],
+        ],
+        p,
+    )
+
+
+def fiber_equation_coefficients(y_point: tuple[int, int], p: int) -> tuple[int, int, int]:
+    y_num, y_den = y_point
+    return ((y_num - 3 * y_den) % p, (-2 * y_num) % p, (y_num - y_den) % p)
+
+
+def kernel_coefficients(x_point: tuple[int, int], p: int) -> tuple[int, int, int]:
+    x_num, x_den = x_point
+    return ((3 * x_num - x_den) % p, 0, x_num % p)
+
+
 def is_finite_leaf_regular(z: int, p: int) -> bool:
     if z == 1:
         return False
@@ -117,6 +167,23 @@ def check_projective_regular_fibers_are_split() -> None:
                 raise AssertionError(("projective fiber not split", p, y_point, roots))
             checked += 1
     print(f"regular_projective_y_fibers_checked={checked}")
+
+
+def check_projective_resultant_identity() -> None:
+    checked = 0
+    for p in PRIMES:
+        for x_point in projective_line(p):
+            kernel = kernel_coefficients(x_point, p)
+            for y_point in projective_line(p):
+                fiber = fiber_equation_coefficients(y_point, p)
+                resultant = quadratic_resultant(fiber, kernel, p)
+                expected = projective_resultant(x_point, y_point, p)
+                if resultant != expected:
+                    raise AssertionError(
+                        ("projective resultant identity", p, x_point, y_point)
+                    )
+                checked += 1
+    print(f"projective_resultant_identities_checked={checked}")
 
 
 def check_product_identity_on_regular_fibers() -> None:
@@ -213,6 +280,7 @@ def check_projective_kernel_containment_implication() -> None:
 def main() -> None:
     check_regular_fibers_are_split()
     check_projective_regular_fibers_are_split()
+    check_projective_resultant_identity()
     check_product_identity_on_regular_fibers()
     check_kernel_containment_implication()
     check_projective_kernel_containment_implication()

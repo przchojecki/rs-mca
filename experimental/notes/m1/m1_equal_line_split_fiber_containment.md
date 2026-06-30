@@ -54,6 +54,19 @@ For ordinary split fibers, the verifier records
 prod_{z' : y(z')=y} K_x(z') = R(x,y)/(y-3)^2.      (SF)
 ```
 
+The projective identity behind this affine product is the homogeneous
+resultant formula
+
+```text
+Res_{[Z:T]}(
+  Y(T-Z)^2 - W(T^2+3Z^2),
+  X(T^2+3Z^2) - VZ^2
+) = R_h(X,V;Y,W).                                  (PR)
+```
+
+Thus `R_h` is not merely an affine chart artifact: it is exactly the norm of
+the homogeneous kernel form along the projective `y`-fiber.
+
 ## Singular fibers
 
 Charge the projective `y`-values
@@ -108,6 +121,18 @@ then `R(x,y)=0`.
 The hypotheses exclude the charged singular fibers, including `y=0`, which is
 the pole of `lambda(z)`, and `y=infinity`, which is the pole of `y(z)`.
 
+The point `z` lies in the projective `y`-fiber, so it is a common zero of
+
+```text
+Y(T-Z)^2 - W(T^2+3Z^2)
+```
+
+and `K_x^h(Z,T)`.  Therefore their binary resultant vanishes.  By `(PR)`,
+this resultant is exactly `R_h(x,y)`, so `R_h(x,y)=0`.
+
+The remaining paragraphs unpack this identity in the affine chart used by the
+original finite verifier.
+
 If `z` is finite and `y != 3`, then `y` is a finite ordinary split value.  The
 finite split-fiber identity `(SF)` applies.  Since one factor in the product is
 `K_x(z)=0`, the product is zero.  As `(y-3)^2` is nonzero, `R(x,y)=0`.
@@ -154,9 +179,9 @@ from `m1_equal_line_generic_popularity_budget.md`.
 ## Verification
 
 The companion verifier checks the finite split-fiber identity, the projective
-degree-two fibers, the singular support exclusions, and the implications
-`K_x(z)=0 => R(x,y)=0` and `K_x^h(z)=0 => R_h(x,y)=0` over expanded prime
-rows:
+degree-two fibers, the homogeneous resultant identity `(PR)`, the singular
+support exclusions, and the implications `K_x(z)=0 => R(x,y)=0` and
+`K_x^h(z)=0 => R_h(x,y)=0` over expanded prime rows:
 
 ```sh
 python3 experimental/scripts/verify_m1_equal_line_split_fiber_containment.py
