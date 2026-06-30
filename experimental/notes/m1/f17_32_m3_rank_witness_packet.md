@@ -131,6 +131,20 @@ minor size `87..92`.  Thus a single v9 packet has root union `{0}` across six
 agreements, which is closer to the eventual M3 packet shape than the separate
 endpoint stress tests.
 
+The fixed top-window packet also has an explicit line-value lift:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-line-value-lift/
+  f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json
+```
+
+For the order-512 subgroup, `lambda_x=x/512`, so the verifier uses the inverse
+Fourier section `y(x)=sum_m s_m x^(-m-1)` to produce values
+`f,g:H -> F_17^32` whose syndromes are exactly the fixed top-window input.  This
+does not make the packet a worst-case row bound, but it closes the gap between
+the syndrome-only synthetic pencil and an explicit received line on the pinned
+row.
+
 ## Verification
 
 Run:
@@ -169,6 +183,9 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json
+
+python3 experimental/scripts/verify_f17_32_m3_line_value_lift.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-line-value-lift/f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank_witness_family.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank-witness-family/f17_32_n512_k256_m3_rank_witness_family_certificate.json

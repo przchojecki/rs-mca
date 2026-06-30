@@ -40,6 +40,10 @@ TOP_PACKET_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/"
     "f17_32_n512_k256_a421_426_fixed_prefix92_packet.json"
 )
+LINE_VALUE_LIFT_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-line-value-lift/"
+    "f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json"
+)
 OUTPUT_PATH = ROOT / (
     "experimental/data/certificates/hankel-f17-32-m3-regular-window-status/"
     "f17_32_n512_k256_m3_regular_window_status.json"
@@ -84,6 +88,7 @@ def validate_inputs(
     generic: dict[str, Any],
     family: dict[str, Any],
     top_packet: dict[str, Any],
+    line_value_lift: dict[str, Any],
 ) -> None:
     require(plan["window"]["A_min"] == AGREEMENT_MIN, "plan A_min mismatch")
     require(plan["window"]["A_max"] == AGREEMENT_MAX, "plan A_max mismatch")
@@ -108,6 +113,19 @@ def validate_inputs(
     require(
         top_packet["declared_aperiodic_numerator"] == 1,
         "top-window numerator mismatch",
+    )
+    require(
+        line_value_lift["source_packet"]["fixed_top_window_input_ref"]
+        == top_packet["extractor"]["input_ref"],
+        "line-value lift input ref mismatch",
+    )
+    require(
+        line_value_lift["source_packet"]["fixed_top_window_packet_ref"] == TOP_PACKET_REF,
+        "line-value lift packet ref mismatch",
+    )
+    require(
+        line_value_lift["syndrome_replay"]["matches_fixed_top_window_input"] is True,
+        "line-value lift does not replay the fixed input",
     )
 
 
@@ -149,10 +167,18 @@ def per_agreement_records(
                 "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
                 "synthetic_root_union": ROOT_UNION,
                 "fixed_top_window_v9_packet": TOP_PACKET_REF if top_item is not None else None,
+                "fixed_top_window_line_value_lift": LINE_VALUE_LIFT_REF
+                if top_item is not None
+                else None,
                 "fixed_top_window_degree": (
                     top_item["extractor_audit"]["degree_bound"] if top_item is not None else None
                 ),
-                "actual_row_outcome": "not supplied",
+                "actual_row_outcome": (
+                    "line-value lift supplied for the fixed synthetic packet; "
+                    "tangent/quotient-deduped row outcome not supplied"
+                    if top_item is not None
+                    else "not supplied"
+                ),
                 "next_required": (
                     "supply actual F_17^32 syndrome vectors u,v, compute a nonzero "
                     "regular minor root table, or declare the first singular bucket"
@@ -167,7 +193,8 @@ def build_status() -> dict[str, Any]:
     generic = load_json(GENERIC_REF)
     family = load_json(FAMILY_REF)
     top_packet = load_json(TOP_PACKET_REF)
-    validate_inputs(plan, generic, family, top_packet)
+    line_value_lift = load_json(LINE_VALUE_LIFT_REF)
+    validate_inputs(plan, generic, family, top_packet, line_value_lift)
     records = per_agreement_records(plan, generic, family, top_packet)
     artifacts = [
         artifact_record("regular_window_plan", PLAN_REF, "regular-hankel-window-plan-v1"),
@@ -182,6 +209,11 @@ def build_status() -> dict[str, Any]:
             "f17-32-m3-rank-witness-family-v1",
         ),
         artifact_record("fixed_top_window_v9_packet", TOP_PACKET_REF, "aperiodic-hankel-eliminant-v1"),
+        artifact_record(
+            "fixed_top_window_line_value_lift",
+            LINE_VALUE_LIFT_REF,
+            "f17-32-m3-line-value-lift-v1",
+        ),
     ]
     return {
         "schema_version": SCHEMA_VERSION,
@@ -195,8 +227,9 @@ def build_status() -> dict[str, Any]:
             "generic_regular_minors_status": "proved generically nonzero for every row-set chart",
             "synthetic_family_status": "proved closed-form root union {0} for all 42 synthetic pencils",
             "fixed_top_window_status": "one v9 packet covers A=421..426 with root union {0}",
-            "actual_row_status": "not supplied",
-            "first_actual_row_task": "compute actual root/singularity outcomes for A=385..426",
+            "fixed_top_window_line_value_status": "explicit f,g line values replay the fixed top-window syndrome input",
+            "actual_row_status": "tangent/quotient-deduped row outcomes not supplied",
+            "first_actual_row_task": "compute tangent/quotient-deduped root/singularity outcomes for A=385..426",
         },
         "artifacts": artifacts,
         "per_agreement": records,
@@ -206,6 +239,7 @@ def build_status() -> dict[str, Any]:
                 "every maximal row-set regular minor is generically nonzero",
                 "the synthetic u=0 family has exact root union {0}",
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
+                "the fixed top-window syndrome input has an explicit line-value lift",
             ],
             "not_proved": [
                 "an actual-row root table for any A in 385..426",

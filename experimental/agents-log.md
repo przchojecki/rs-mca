@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 M3 line-value lift
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_line_value_lift.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-line-value-lift/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the synthetic line-value lift.
+- **What is being added:** An explicit `f,g:H -> F_17^32` line-value lift of
+  the fixed top-window syndrome packet.  The verifier uses
+  `lambda_x=x/512` and the inverse Fourier section
+  `y(x)=sum_m s_m x^(-m-1)` to replay the exact fixed top-window syndromes.
+- **How it is useful:** This closes the adapter gap between Paper D's
+  line-value formulation and the regular-minor extractor's syndrome input for
+  the current `A=421..426` packet.
+- **What to do next:** Use the same adapter boundary for tangent/quotient
+  deduped row data, then replace the remaining `actual_row_outcome = not
+  supplied` entries by root tables or singular-bucket declarations.
+
 ### 2026-06-30 - F17^32 M3 regular-window status ledger
 
 - **Agent/model:** AllenGrahamHart / Codex.

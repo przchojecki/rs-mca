@@ -125,6 +125,18 @@ experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/
 is a single v9 packet for one synthetic syndrome pencil covering
 `421 <= A <= 426`.
 
+The line-value lift
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-line-value-lift/
+  f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json
+```
+
+uses the subgroup identity `lambda_x=x/512` to give explicit values
+`f,g:H -> F_17^32` whose weighted syndromes are exactly the fixed top-window
+input.  Thus that packet is not merely a free syndrome vector; it is the
+syndrome image of an explicit received line on the pinned row.
+
 The current status ledger
 
 ```text
@@ -145,6 +157,9 @@ python3 experimental/scripts/plan_f17_regular_hankel_window.py \
 
 python3 experimental/scripts/verify_f17_32_m3_regular_window_status.py \
   --check experimental/data/certificates/hankel-f17-32-m3-regular-window-status/f17_32_n512_k256_m3_regular_window_status.json
+
+python3 experimental/scripts/verify_f17_32_m3_line_value_lift.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-line-value-lift/f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json
 ```
 
 Non-claims: this note does not compute any determinant over `F_17^32`, does not
