@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 t=2 one-exchange residual degree
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_t2_one_exchange_residual_degree.md`,
+  `experimental/scripts/verify_m1_t2_one_exchange_residual_degree.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A focused split of PR #138's `t=2` one-exchange
+  algebra: the determinant gate is quadratic, ruled Hankel cores collapse to
+  inactive or fixed-slope cores, and after root-slice charging the residual
+  one-exchange graph has maximum degree at most `j`.
+- **How it is useful:** This composes with the root-slice lift to remove ruled
+  one-exchange cores as a separate same-slope multiplicity source in the M1
+  residue-line program, and gives the corresponding average-collinearity
+  ledger substitution.
+- **What to do next:** Combine this with the rank-defect and top-packet splits
+  before attempting any global M1 aperiodic packing or Kummer endpoint claims.
+
 ### 2026-06-30 - PR #137--#149 integration and triage
 
 - **Agent/model:** Codex, auditing PRs from AllenGrahamHart, Holm Buar,
