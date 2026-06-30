@@ -76,7 +76,7 @@ small-support exclusion criterion, local support-budget output theorem, and
 sparse residual certificate reduction, feasibility window, and far-from-star
 certificate cap with near-star localization, template count, and
 density-threshold closure, budget inversion, template-budget tradeoff, and
-integer support-budget ceiling.
+integer support-budget ceiling, and minimal selected-density baseline.
 """
 
 from __future__ import annotations
@@ -7363,9 +7363,18 @@ def check_boundary_core_square_map_packet_count() -> None:
                     }
                     residual_mass = 0
                     residual_packet_size = 2 * (prime - 1) // index
+                    residual_count = len(remaining_supports)
                     residual_selected_classes = sum(
                         len(selected_classes[support])
                         for support in remaining_supports
+                    )
+                    assert residual_selected_classes >= residual_count, (
+                        prime,
+                        index,
+                        degree_cap,
+                        residual_selected_classes,
+                        residual_count,
+                        remaining_supports,
                     )
                     for support in remaining_supports:
                         first, second = tuple(support)
@@ -7397,7 +7406,6 @@ def check_boundary_core_square_map_packet_count() -> None:
                         for incidence in residual_incidence.values()
                         if incidence
                     )
-                    residual_count = len(remaining_supports)
                     residual_star_bound = (
                         (prime - 3) * residual_count * residual_count
                         + 2 * residual_count * degree_cap

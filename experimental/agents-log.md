@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 minimal selected-density baseline
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/scripts/m1_density_budget.py`,
+  `experimental/scripts/README.md`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** In the reduced selected-support convention, every
+  residual support carries at least one selected square-coset class, so
+  `alpha_ap>=1/(e/2)=2/e`.  The density-budget evaluator now supports
+  `--baseline-a0` to use this theorem-backed floor.
+- **How it is useful:** This gives an unconditional baseline support budget
+  `R_base(L)=R_dens(2/e,L)` before any deeper global row-basis/core-image
+  density theorem is proved.
+- **What to do next:** Compare future global density lower bounds against
+  this `2/e` baseline and quantify the improvement in `R_Z`.
+
 ### 2026-06-30 - M1 density-budget exact evaluator
 
 - **Agent/model:** AllenGrahamHart / Codex.

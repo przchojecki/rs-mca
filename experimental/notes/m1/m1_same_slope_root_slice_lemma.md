@@ -56,6 +56,7 @@ SQUARE-NORM DENSITY-THRESHOLD CLOSURE COROLLARY /
 SQUARE-NORM DENSITY-BUDGET INVERSION /
 SQUARE-NORM TEMPLATE-BUDGET TRADEOFF /
 SQUARE-NORM INTEGER SUPPORT-BUDGET CEILING /
+SQUARE-NORM MINIMAL SELECTED-DENSITY BASELINE /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3891,6 +3892,39 @@ threshold and the missing-side linear threshold.  This is an audit/evaluation
 tool for (RKSQINTBUDGET/RKSQTRADE), not a proof of the missing global density
 lower bound.
 
+There is also a weak unconditional density floor from the reduced support
+convention.  A support with no selected square-coset class is absent from the
+selected support family `Sigma`; equivalently, every `S in Sigma_ap` has
+`|Theta_S|>=1`.  Hence
+
+```text
+K_ap >= m_ap,
+alpha_ap = K_ap/(h m_ap) >= 1/h = 2/e.          (RKSQMINALPHA)
+```
+
+Putting `a0=1/h` in (RKSQBUDGET) gives the baseline support budget
+
+```text
+R_base(L)
+  = max(
+      (q-1)^2/(h^2(q-3+2/L)),
+      q+1 - (L/(L-1))(1-1/h)(q-1)
+    ).                                           (RKSQBASEBUDGET)
+```
+
+Thus every sparse certificate with `B_ap<=R<R_base(L)` is already impossible
+or `L`-near-star before any deeper global density theorem is used:
+
+```text
+B_ap<=R<R_base(L)
+  =>  m_ap<LD
+      or the sparse certificate branch is impossible.        (RKSQBASECLOSE)
+```
+
+This baseline is usually not expected to close the prize row by itself, but it
+is a theorem-backed floor.  Any future row-basis/core-image lower bound should
+be measured as an improvement over `2/e`.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -4421,6 +4455,8 @@ the density-budget inversion
 the template-budget tradeoff (RKSQLS/RKSQTRADE),
 the integer support-budget ceiling
 (RKSQINTBUDGET/RKSQINTCLOSE/RKSQINTTRADE),
+the minimal selected-density baseline
+(RKSQMINALPHA/RKSQBASEBUDGET/RKSQBASECLOSE),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the
@@ -4522,6 +4558,8 @@ the density-budget inversion
 the template-budget tradeoff (RKSQLS/RKSQTRADE),
 the integer support-budget ceiling
 (RKSQINTBUDGET/RKSQINTCLOSE/RKSQINTTRADE),
+the minimal selected-density baseline
+(RKSQMINALPHA/RKSQBASEBUDGET/RKSQBASECLOSE),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the

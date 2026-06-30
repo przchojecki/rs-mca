@@ -9,7 +9,7 @@ python3 experimental/scripts/verify_l1_monomial_dyadic_descent_local16.py
 python3 experimental/scripts/verify_f1_arbitrary_anchor_split.py
 python3 experimental/scripts/verify_m1_tangent_floor_gate_ladder.py
 python3 experimental/scripts/verify_m1_depth_two_line_conic_resonance_reduction.py
-python3 experimental/scripts/m1_density_budget.py --q 17 --D 2 --L 3 --a0 1/2 --target-R 5 --e 4 --pretty
+python3 experimental/scripts/m1_density_budget.py --q 17 --D 2 --L 3 --baseline-a0 --target-R 5 --e 4 --pretty
 python3 experimental/scripts/verify_q17_locator_mca.py \
   --check experimental/data/certificates/q17-locator-mca/q17_locator_mca_certificate.json
 python3 experimental/scripts/f1_deep_point_list_to_ca_mca_sanity.py

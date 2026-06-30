@@ -15,6 +15,9 @@ footprint cap S is supplied, it also uses the optimal compatible far-factor
 With ``--target-R`` it prints the exact density inequalities that would close
 that target support budget.
 
+With ``--baseline-a0`` it uses the unconditional reduced-support density floor
+``a0=2/e`` from (RKSQMINALPHA).
+
 The script does not prove the missing global row-basis/core-image density
 bound.  It tells a finite checker what support budget that hypothetical bound
 would close, and what near-star template ledger remains.
@@ -102,7 +105,16 @@ def template_bound(q: int, footprint_cap: int, e: int) -> int:
 def compute_report(args: argparse.Namespace) -> dict[str, Any]:
     q = args.q
     d_cap = args.D
-    a0 = args.a0
+    if args.baseline_a0 and args.a0 is not None:
+        raise ValueError("provide only one of --a0 or --baseline-a0")
+    if args.baseline_a0:
+        if args.e is None:
+            raise ValueError("--baseline-a0 requires --e")
+        a0 = Fraction(2, args.e)
+    else:
+        if args.a0 is None:
+            raise ValueError("provide --a0 or --baseline-a0")
+        a0 = args.a0
     if not (Fraction(0) <= a0 <= Fraction(1)):
         raise ValueError("--a0 must satisfy 0 <= a0 <= 1")
 
@@ -160,6 +172,7 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         "q": q,
         "D": d_cap,
         "a0": fraction_record(a0),
+        "a0_source": "baseline_2_over_e" if args.baseline_a0 else "input",
         "L": far_factor,
         "footprint_cap": footprint_cap,
         "footprint_source": footprint_source,
@@ -225,7 +238,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--q", type=positive_int, required=True)
     parser.add_argument("--D", type=positive_int, required=True)
-    parser.add_argument("--a0", type=rational, required=True)
+    parser.add_argument("--a0", type=rational)
+    parser.add_argument("--baseline-a0", action="store_true")
     selector = parser.add_mutually_exclusive_group(required=True)
     selector.add_argument("--L", type=positive_int)
     selector.add_argument("--S", type=nonnegative_int)
