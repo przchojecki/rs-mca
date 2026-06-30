@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 high-agreement tangent table
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_high_agreement_tangent_table.py`;
+  `experimental/data/certificates/hankel-f17-32-high-agreement-tangent-table/`;
+  `experimental/notes/thresholds/f17_32_high_agreement_tangent_table.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A checked item-5 ledger table for every
+  high-agreement exact row `A=427..512` of `RS[F_17^32,H,256]`.  It rewrites
+  the proved tangent staircase as columns `B_tan`, `B_quot_support`,
+  `B_quot_image`, `B_ap_regular`, `B_ap_pivot`, `B_ext`, and the deduped total.
+- **How it is useful:** This gives the F17^32 row a complete theorem-backed
+  subtraction table in the high-agreement range and a template for the
+  lower-agreement M4 table, where actual v9 root counts and singular-pivot
+  packets are still missing.
+- **What to do next:** Build the same ledger columns for `A<427` only when
+  actual regular-minor root counts, quotient/tangent deduplication, or
+  singular-pivot certificates are available.
+
 ### 2026-06-30 - F17^32 M3 extension-denominator audit
 
 - **Agent/model:** AllenGrahamHart / Codex.
