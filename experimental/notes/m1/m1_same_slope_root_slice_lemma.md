@@ -47,6 +47,7 @@ SQUARE-NORM RESIDUAL SUPPORT-BUDGET ALTERNATIVE /
 SQUARE-NORM RESIDUAL PALETTE-DENSITY SUPPORT LOWER BOUND /
 SQUARE-NORM RESIDUAL SMALL-SUPPORT EXCLUSION CRITERION /
 SQUARE-NORM LOCAL SUPPORT-BUDGET OUTPUT THEOREM /
+SQUARE-NORM SPARSE RESIDUAL CERTIFICATE REDUCTION /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3551,7 +3552,7 @@ The local fixed-basis square-map output can now be stated as a single proved
 package.  Let `Sigma` be any selected family of two-point supports in
 `P^1(F_q)\{0}`, let `Theta_S` be any selected square-coset classes for each
 support, and let `D,R` be integers with `0<=R<=q+1`.  After the greedy
-endpoint-star pruning at cap `D`, exactly one of the following local outcomes
+endpoint-star pruning at cap `D`, at least one of the following local outcomes
 is available:
 
 ```text
@@ -3575,6 +3576,32 @@ overlap branch: after endpoint stars are charged, a small-support residual is
 precisely a residual palette-sparsity certificate.  This is the object that a
 global M1 row-basis/core-image argument must rule out or classify as
 quotient/template structure.                              (RKSQLOCALOUT)
+
+It is useful to name the last outcome.  A `(D,R)` square-map sparse residual
+certificate is a residual support family `Sigma_ap` with selected classes
+`Theta_S` such that, writing `m=m_ap`, `K=K_ap`, `C=C_ap`, and `B=B_ap`,
+
+```text
+m>D,       B<=R,       max_x d_{Sigma_ap}(x)<=D,             (RKSQSPCERT0)
+
+(2(q-1)/e)^2 K^2 <= R((q-3)m^2+2mD),                        (RKSQSPCERT1)
+
+(m-D)(q+1-R) <= (2(q-1)/e) C.                               (RKSQSPCERT2)
+```
+
+The local theorem can then be restated as the reduction:
+
+```text
+selected square-map family
+  => endpoint-star charges
+     + small residual (m_ap<=D)
+     + large support (B_ap>R)
+     + optional (D,R) sparse residual certificate.           (RKSQSPCERT)
+```
+
+Moreover, the optional certificate cannot occur if either strict exclusion
+trigger in (RKSQEXCLUDE) holds.  This is the exact finite combinatorial object
+left for the global M1 argument.
 
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
@@ -4092,8 +4119,9 @@ uncovered-slope defect bound (RKSQDEFECT/RKSQDEFECTMASS/RKSQUNCOVER), the
 residual support-budget alternative (RKSQSUPPBUDGET1/RKSQSUPPBUDGET2), the
 residual palette-density support lower bound (RKSQPALETTESUPP/RKSQPALETTEDENS),
 the residual small-support exclusion criterion (RKSQEXCLUDE), the local
-support-budget output theorem (RKSQLOCALOUT), the canonical endpoint-pair
-norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
+support-budget output theorem (RKSQLOCALOUT), the sparse residual certificate
+reduction (RKSQSPCERT0/RKSQSPCERT1/RKSQSPCERT2/RKSQSPCERT), the canonical
+endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
@@ -4179,8 +4207,9 @@ uncovered-slope defect bound (RKSQDEFECT/RKSQDEFECTMASS/RKSQUNCOVER), the
 residual support-budget alternative (RKSQSUPPBUDGET1/RKSQSUPPBUDGET2), the
 residual palette-density support lower bound (RKSQPALETTESUPP/RKSQPALETTEDENS),
 the residual small-support exclusion criterion (RKSQEXCLUDE), the local
-support-budget output theorem (RKSQLOCALOUT), the canonical endpoint-pair
-norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
+support-budget output theorem (RKSQLOCALOUT), the sparse residual certificate
+reduction (RKSQSPCERT0/RKSQSPCERT1/RKSQSPCERT2/RKSQSPCERT), the canonical
+endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary

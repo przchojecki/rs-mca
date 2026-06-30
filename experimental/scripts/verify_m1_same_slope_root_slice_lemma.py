@@ -72,7 +72,8 @@ partial-palette inverse packing bound, support-star pruning reduction, pruned
 residual density trichotomy, full-palette residual coverage, and packet-count
 corollary, plus the partial-palette uncovered-slope defect bound and residual
 support-budget alternative, palette-density support lower bound, and
-small-support exclusion criterion and local support-budget output theorem.
+small-support exclusion criterion, local support-budget output theorem, and
+sparse residual certificate reduction.
 """
 
 from __future__ import annotations
@@ -7563,6 +7564,11 @@ def check_boundary_core_square_map_packet_count() -> None:
                             )
                             <= residual_packet_size * residual_missing_classes
                         )
+                        sparse_residual_certificate = (
+                            residual_count > degree_cap
+                            and residual_support_size <= probe_budget
+                            and support_budget_certificate
+                        )
                         assert (
                             residual_count <= degree_cap
                             or residual_support_size > probe_budget
@@ -7582,6 +7588,24 @@ def check_boundary_core_square_map_packet_count() -> None:
                             residual_incidence,
                             residual_defect_incidence,
                         )
+                        if residual_count > degree_cap and (
+                            residual_support_size <= probe_budget
+                        ):
+                            assert sparse_residual_certificate, (
+                                prime,
+                                index,
+                                degree_cap,
+                                probe_budget,
+                                residual_count,
+                                residual_support_size,
+                                residual_selected_classes,
+                                residual_missing_classes,
+                                residual_packet_size,
+                                residual_star_bound,
+                                support_budget_certificate,
+                                residual_incidence,
+                                residual_defect_incidence,
+                            )
                         density_excludes_small_support = (
                             residual_packet_size
                             * residual_packet_size

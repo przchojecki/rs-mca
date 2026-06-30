@@ -49,6 +49,23 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 sparse residual certificate reduction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The small-support branch of the local square-map
+  theorem is named as a `(D,R)` sparse residual certificate with explicit
+  degree, support, selected-class, and missing-class inequalities.
+- **How it is useful:** This gives the next global M1 step an exact finite
+  object to rule out or classify as quotient/template structure.
+- **What to do next:** Prove that row-basis/core images cannot produce these
+  sparse certificates except through quotient/template mechanisms.
+
 ### 2026-06-30 - M1 local support-budget output theorem
 
 - **Agent/model:** AllenGrahamHart / Codex.
