@@ -1442,6 +1442,10 @@ def validate_projective_infinity(
 
 
 RANK_WITNESS_POLYNOMIAL_REF = "rank_witness:determinant_nonzero_at_pivot_node"
+PROPORTIONAL_RESIDUAL_CLASSIFICATIONS = {
+    "proportional_window_tangent",
+    "proportional_window_single_slope",
+}
 ENCODED_FIELD_INPUT_ENCODINGS = {
     "base-p low-to-high integer",
     "base-p low-to-high encoded integer",
@@ -1465,6 +1469,12 @@ def packet_has_rank_replay_items(packet: dict[str, Any]) -> bool:
             item.get("status") == "residual_obstruction"
             and isinstance(source, str)
             and source.startswith("rank_at_nodes")
+        ):
+            return True
+        if (
+            isinstance(audit, dict)
+            and audit.get("residual_classification")
+            in PROPORTIONAL_RESIDUAL_CLASSIFICATIONS
         ):
             return True
     return False
@@ -1725,6 +1735,171 @@ def validate_rank_specializations(
             raise PacketError(
                 f"{location}: selected row_set is not {expectation} at node {node}"
             )
+
+
+def visible_proportional_scalar_mod(
+    u: list[int],
+    v: list[int],
+    visible_length: int,
+    prime: int,
+) -> int | None:
+    scalar: int | None = None
+    for index in range(visible_length):
+        u_i = u[index] % prime
+        v_i = v[index] % prime
+        if v_i == 0:
+            if u_i != 0:
+                return None
+            continue
+        candidate = (u_i * pow(v_i, -1, prime)) % prime
+        if scalar is None:
+            scalar = candidate
+        elif scalar != candidate:
+            return None
+    return scalar
+
+
+def visible_proportional_scalar_field(
+    u: list[tuple[int, ...]],
+    v: list[tuple[int, ...]],
+    visible_length: int,
+    field: PolynomialBasisField,
+) -> tuple[int, ...] | None:
+    scalar: tuple[int, ...] | None = None
+    for index in range(visible_length):
+        u_i = u[index]
+        v_i = v[index]
+        if v_i == field.zero:
+            if u_i != field.zero:
+                return None
+            continue
+        candidate = field.mul(u_i, field.inv(v_i))
+        if scalar is None:
+            scalar = candidate
+        elif scalar != candidate:
+            return None
+    return scalar
+
+
+def validate_proportional_residual_audit(
+    item: dict[str, Any],
+    audit: dict[str, Any],
+    rank_replay_input: dict[str, Any] | None,
+    modulus: int | None,
+    extension_field: PolynomialBasisField | None,
+    location: str,
+) -> None:
+    if rank_replay_input is None:
+        raise PacketError(f"{location}: proportional residual needs replay input")
+    exact_agreements = rank_replay_input.get("exact_agreements")
+    if not isinstance(exact_agreements, list) or item.get("A") not in exact_agreements:
+        raise PacketError(f"{location}: replay input does not list this agreement")
+    syndrome = rank_replay_input.get("line_syndrome")
+    if not isinstance(syndrome, dict):
+        raise PacketError(f"{location}: replay input needs line_syndrome")
+    if "u" not in syndrome or "v" not in syndrome:
+        raise PacketError(f"{location}: line_syndrome needs u and v")
+    visible_length = item["t"] + item["j"]
+
+    if modulus is not None:
+        scalar = audit["scalar_multiple_u_over_v"]
+        tangent = audit["residual_single_slope"]
+        if scalar < 0 or scalar >= modulus:
+            raise PacketError(f"{location}.scalar_multiple_u_over_v outside F_{modulus}")
+        if tangent < 0 or tangent >= modulus:
+            raise PacketError(f"{location}.residual_single_slope outside F_{modulus}")
+        u = require_int_list(syndrome["u"], f"{location}: line_syndrome.u")
+        v = require_int_list(syndrome["v"], f"{location}: line_syndrome.v")
+        if len(u) < visible_length or len(v) < visible_length:
+            raise PacketError(
+                f"{location}: syndrome length must be at least {visible_length}"
+            )
+        actual_scalar = visible_proportional_scalar_mod(
+            u, v, visible_length, modulus
+        )
+        if actual_scalar is None:
+            raise PacketError(f"{location}: visible window is not proportional")
+        if actual_scalar != scalar:
+            raise PacketError(
+                f"{location}.scalar_multiple_u_over_v={scalar} "
+                f"but replay gives {actual_scalar}"
+            )
+        actual_tangent = (-actual_scalar) % modulus
+        full_proportional = len(u) == len(v) and all(
+            (u_i - actual_scalar * v_i) % modulus == 0 for u_i, v_i in zip(u, v)
+        )
+    else:
+        if extension_field is None:
+            raise PacketError(f"{location}: unsupported row field")
+        scalar = audit["scalar_multiple_u_over_v"]
+        tangent = audit["residual_single_slope"]
+        scalar_elem = extension_field.decode(scalar)
+        extension_field.decode(tangent)
+        encoding = syndrome.get(
+            "field_encoding", rank_replay_input.get("field_element_encoding")
+        )
+        if encoding is not None and not isinstance(encoding, str):
+            raise PacketError(f"{location}: field encoding must be a string")
+        u_field = normalize_field_input_list(
+            syndrome["u"], extension_field, encoding, f"{location}: line_syndrome.u"
+        )
+        v_field = normalize_field_input_list(
+            syndrome["v"], extension_field, encoding, f"{location}: line_syndrome.v"
+        )
+        if len(u_field) < visible_length or len(v_field) < visible_length:
+            raise PacketError(
+                f"{location}: syndrome length must be at least {visible_length}"
+            )
+        actual_scalar_elem = visible_proportional_scalar_field(
+            u_field, v_field, visible_length, extension_field
+        )
+        if actual_scalar_elem is None:
+            raise PacketError(f"{location}: visible window is not proportional")
+        actual_scalar = extension_field.encode(actual_scalar_elem)
+        if actual_scalar_elem != scalar_elem:
+            raise PacketError(
+                f"{location}.scalar_multiple_u_over_v={scalar} "
+                f"but replay gives {actual_scalar}"
+            )
+        actual_tangent = extension_field.encode(extension_field.neg(actual_scalar_elem))
+        full_proportional = len(u_field) == len(v_field) and all(
+            extension_field.sub(u_i, extension_field.mul(actual_scalar_elem, v_i))
+            == extension_field.zero
+            for u_i, v_i in zip(u_field, v_field)
+        )
+
+    if tangent != actual_tangent:
+        raise PacketError(
+            f"{location}.residual_single_slope={tangent} "
+            f"but replay gives {actual_tangent}"
+        )
+    declared_tangent = syndrome.get("tangent_root")
+    if declared_tangent is not None and int(declared_tangent) != actual_tangent:
+        raise PacketError(f"{location}: input tangent_root does not match replay")
+    if audit["full_syndrome_proportional"] != full_proportional:
+        raise PacketError(
+            f"{location}.full_syndrome_proportional="
+            f"{audit['full_syndrome_proportional']} but replay gives "
+            f"{full_proportional}"
+        )
+    expected_classification = (
+        "proportional_window_tangent"
+        if full_proportional
+        else "proportional_window_single_slope"
+    )
+    expected_charge = (
+        "tangent_common_code_line" if full_proportional else "tail_check_required"
+    )
+    if audit["residual_classification"] != expected_classification:
+        raise PacketError(
+            f"{location}.residual_classification={audit['residual_classification']} "
+            f"but replay gives {expected_classification}"
+        )
+    if audit["residual_charge"] != expected_charge:
+        raise PacketError(
+            f"{location}.residual_charge={audit['residual_charge']} "
+            f"but replay gives {expected_charge}"
+        )
 
 
 def validate_pivot_eliminant_target(
@@ -2459,10 +2634,7 @@ def validate_extractor_audit(
             )
 
     residual_classification = audit.get("residual_classification")
-    if residual_classification in {
-        "proportional_window_tangent",
-        "proportional_window_single_slope",
-    }:
+    if residual_classification in PROPORTIONAL_RESIDUAL_CLASSIFICATIONS:
         if item.get("status") != "residual_obstruction":
             raise PacketError(
                 f"{location}.residual_classification only applies to residuals"
@@ -2474,6 +2646,14 @@ def validate_extractor_audit(
         if not isinstance(audit.get("full_syndrome_proportional"), bool):
             raise PacketError(f"{location}.full_syndrome_proportional must be bool")
         residual_charge = audit.get("residual_charge")
+        validate_proportional_residual_audit(
+            item,
+            audit,
+            rank_replay_input,
+            modulus,
+            extension_field,
+            location,
+        )
         if residual_classification == "proportional_window_tangent":
             if item.get("residual_label") != "tangent":
                 raise PacketError(

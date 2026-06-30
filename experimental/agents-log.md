@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Proportional residual replay gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/`;
+  `experimental/notes/m1/m1_hankel_proportional_pencil_tangent_lemma.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the proportional residual replay.
+- **What is being added:** The v9 checker now verifies
+  `proportional_window_tangent` and `proportional_window_single_slope` audits by
+  loading the referenced extractor input, checking its SHA, recomputing the
+  visible scalar `u=c v`, recomputing the slope `-c`, and deciding whether the
+  stored syndrome is fully proportional.
+- **How it is useful:** Tangent/common-code-line charging for proportional
+  singular buckets can no longer be asserted by metadata alone; it is tied to
+  the actual syndrome pencil and the visible-window/tail distinction.
+- **What to do next:** Use this replay gate for future proportional M3/M1
+  residual packets, especially when distinguishing one-slope residuals from
+  tangent-paid full-syndrome cases.
+
 ### 2026-06-30 - Singular rank-at-nodes replay gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

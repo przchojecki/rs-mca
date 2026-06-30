@@ -26,6 +26,16 @@
       }
     }
   ],
+  "extractor": {
+    "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_scalar5_rank_pivot_tangent_residual_toy.json",
+    "input_sha256": "fd4745f7afe84d13d6eeec3f0586d954300b596cd14eafa0057c878bdfc80b06",
+    "method": "numeric determinant interpolation over the base prime field",
+    "name": "regular-hankel-minor-extractor",
+    "row_set_strategy": {
+      "type": "rank_at_nodes"
+    },
+    "scope": "prime-field syndrome pencils only"
+  },
   "root_union_table_ref": "not_enumerated",
   "regular_root_bound_sum": 0
 }

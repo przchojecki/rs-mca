@@ -1,0 +1,60 @@
+{
+  "agreement_threshold": 8,
+  "exact_agreements": [
+    {
+      "A": 8,
+      "extractor_audit": {
+        "full_syndrome_proportional": true,
+        "rank_pivot_node": null,
+        "rank_pivot_nodes_required": 4,
+        "rank_pivot_nodes_tested": 4,
+        "rank_pivot_test_nodes": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "residual_charge": "tangent_common_code_line",
+        "residual_classification": "proportional_window_tangent",
+        "residual_single_slope": 11,
+        "row_set_source": "rank_at_nodes",
+        "scalar_multiple_u_over_v": 6,
+        "tested_row_sets": 0
+      },
+      "j": 2,
+      "residual_label": "tangent",
+      "residual_reason": "all maximal minors have degree <= size and vanish at size+1 distinct slopes, so they vanish identically; visible Hankel window is proportional; the proportional-window lemma classifies the residual as tangent/common-code-line",
+      "status": "residual_obstruction",
+      "t": 4
+    }
+  ],
+  "extractor": {
+    "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_scalar5_rank_pivot_tangent_residual_toy.json",
+    "input_sha256": "fd4745f7afe84d13d6eeec3f0586d954300b596cd14eafa0057c878bdfc80b06",
+    "method": "numeric determinant interpolation over the base prime field",
+    "name": "regular-hankel-minor-extractor",
+    "row_set_strategy": {
+      "type": "rank_at_nodes"
+    },
+    "scope": "prime-field syndrome pencils only"
+  },
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an F_17^32 row-data packet",
+    "not a full singular pivot-chart certificate",
+    "toy row only"
+  ],
+  "regular_root_bound_sum": 0,
+  "removed_ledgers": [],
+  "root_union_table_ref": "not_enumerated",
+  "row": {
+    "domain_description": "first ten nonzero elements of F_17",
+    "domain_hash": "ef58d7c6937c627ace93d94e1045c06ff884c23bbb9f4aa5c1bb276842be4629",
+    "field": "F_17",
+    "k": 4,
+    "n": 10
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "status": "PROVED"
+}

@@ -30,7 +30,18 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/invalid_bad_tangent_residual_audit_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/invalid_bad_proportional_replay_packet.json
 ```
 
 Non-claims: this is a toy residual-classification packet, not actual M3 row
 data and not a prize-row bound.
+
+The replay-failure packet points at the same SHA-checked proportional input but
+claims scalar `6` and slope `11`; the checker recomputes scalar `5` and slope
+`12`.
+
+The `invalid_bad_tangent_residual_audit_packet.json` fixture also points at the
+same input but falsely sets `full_syndrome_proportional=false`; replay shows the
+stored syndrome is fully proportional.

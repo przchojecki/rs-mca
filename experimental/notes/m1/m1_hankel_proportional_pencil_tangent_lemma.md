@@ -66,6 +66,19 @@ together with a `proportional_window_tangent` audit: the only possible slope is
 `12=-5`, and the supplied syndrome is fully proportional, so the
 tangent/common-code-line ledger may pay it.
 
+The packet checker replays this audit from the referenced extractor input: it
+checks the input SHA, recomputes the visible scalar `c`, recomputes the slope
+`-c`, and independently decides whether proportionality holds on the full
+stored syndrome vector.  The negative fixture
+
+```text
+experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/
+  invalid_bad_proportional_replay_packet.json
+```
+
+keeps the same input but claims scalar `6`; it must fail because replay gives
+scalar `5` and slope `12`.
+
 Run:
 
 ```sh
@@ -75,6 +88,12 @@ python3 experimental/scripts/verify_m1_hankel_proportional_pencil_tangent_lemma.
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_scalar5_rank_pivot_tangent_residual_toy.json \
   --check experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/f17_n10_k4_a8_scalar5_tangent_residual_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/f17_n10_k4_a8_scalar5_tangent_residual_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/invalid_bad_proportional_replay_packet.json
 ```
 
 Non-claims: this does not supply actual M3 row root tables, does not bound
