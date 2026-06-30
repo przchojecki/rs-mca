@@ -27,7 +27,7 @@ Rows meeting `1 <= B_Q <= floor((n-k)/3)` are the **solved high-agreement region
 |---|------|--------|
 | 1 | compiler formula + flagship anchor | **done** |
 | 2 | solved-region boundary (`B_Q <= floor((n-k)/3)`) | **done** |
-| 3 | multi-rate envelope grid (rho in {1/2,1/4,1/8,1/16}) | pending |
+| 3 | multi-rate envelope grid (rho in {1/2,1/4,1/8,1/16}) | **done** |
 | 4 | high-agreement scope vs the Johnson radius | pending |
 | 5 | emit the envelope-map artifact (table / JSON) | pending |
 
@@ -39,6 +39,12 @@ Rows meeting `1 <= B_Q <= floor((n-k)/3)` are the **solved high-agreement region
 - **Solved-region boundary.** The region is exactly `B_Q <= floor((n-k)/3)`: at
   `n=512, rho=1/2` (cap `85`), `B_Q=85` is solved, `B_Q=86` exits, and `B_Q=0`
   (`q <= 2^128`) means the compiler does not apply.
+- **Multi-rate grid.** All four grand-challenge rates at `n=512, q=17^32` (`B_Q=6`) are
+  solved, with caps `floor((n-k)/3) = 85, 128, 149, 160` for `rho = 1/2, 1/4, 1/8, 1/16`
+  -- the cap GROWS as the rate drops, so lower-rate rows are solved with more room; the
+  pinned threshold is `a >= 507` for all (fixed by `B_Q`). Each rate's solved boundary is
+  exactly `B_Q <= cap` (`cap` in, `cap+1` out). A large row `n=2^20, rho=1/2` is also
+  solved at this `q`, pinned at `a = n - B_Q + 1`.
 
 ## Honest scope
 

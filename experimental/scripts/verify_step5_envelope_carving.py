@@ -91,6 +91,37 @@ def check_solved_region_boundary():
     return ok, d
 
 
+def check_multi_rate_grid():
+    """Carve the envelope across all four grand-challenge rates rho in {1/2,1/4,1/8,1/16}.
+    At fixed q the threshold is fixed by B_Q, while the cap floor((n-k)/3) GROWS as the
+    rate drops -- so lower-rate rows are solved with more room.  Also a large-n row."""
+    d = []
+    ok = True
+    n, q = 512, 17 ** 32
+    b_q = q // TWO128
+    expected_cap = {(1, 2): 85, (1, 4): 128, (1, 8): 149, (1, 16): 160}
+    d.append(f"at n={n}, q=17^32 (B_Q={b_q}):")
+    for rho in RATES:
+        r = solved_region(rho, n, q)
+        b_in = solved_region(rho, n, r["cap"] * TWO128 + 1)["solved"]      # B_Q = cap
+        b_out = solved_region(rho, n, (r["cap"] + 1) * TWO128)["solved"]   # B_Q = cap+1
+        row_ok = (r["cap"] == expected_cap[rho] and r["solved"]
+                  and r.get("safe_min_agreement") == 507
+                  and r.get("first_unsafe_agreement") == 506
+                  and b_in and not b_out)
+        ok &= row_ok
+        d.append(f"  rho={rho[0]}/{rho[1]}: k={r['k']}, n-k={r['nk']}, cap={r['cap']}; "
+                 f"solved={r['solved']}, safe a>={r.get('safe_min_agreement')}; "
+                 f"boundary[in={b_in},out={not b_out}] : {row_ok}")
+    # n-scaling: a large row stays solved at this q, pinned at a = n - B_Q + 1
+    big = solved_region((1, 2), 2 ** 20, q)
+    big_ok = big["solved"] and big.get("safe_min_agreement") == 2 ** 20 - b_q + 1
+    d.append(f"  large row n=2^20, rho=1/2, q=17^32: solved={big['solved']}, "
+             f"safe a>={big.get('safe_min_agreement')} (= n-B_Q+1) : {big_ok}")
+    ok &= big_ok
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop iteration"]
 
@@ -98,7 +129,7 @@ def _pending():
 CHECKS = [
     ("compiler formula / flagship anchor", check_flagship_anchor),
     ("solved-region boundary",             check_solved_region_boundary),
-    ("multi-rate envelope grid",           _pending),
+    ("multi-rate envelope grid",           check_multi_rate_grid),
     ("high-agreement scope vs Johnson",    _pending),
     ("emit envelope map artifact",         _pending),
 ]
