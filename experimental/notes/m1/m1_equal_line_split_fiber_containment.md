@@ -1,4 +1,4 @@
-# M1 equal-line split-fiber containment
+# M1 equal-line projective split-fiber containment
 
 **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
 
@@ -6,7 +6,7 @@
 
 **Date:** 2026-06-30.
 
-This note proves the finite split-fiber containment step behind the equal-line
+This note proves the projective split-fiber containment step behind the equal-line
 popularity budget, in the local coordinates of
 `m1_depth_two_equal_line_diagonal_reduction.md`.
 
@@ -38,6 +38,16 @@ R(x,y) =
   16x^2y^2 - 8xy^2 + 4xy + y^2 - 2y + 1.
 ```
 
+The projective form uses `z=[Z:T]`, `x=[X:V]`, and `y=[Y:W]`:
+
+```text
+y(z) = [T^2+3Z^2 : (T-Z)^2],
+K_x^h(z) = X(T^2+3Z^2) - VZ^2,
+R_h(X,V;Y,W)
+ = 16X^2Y^2 - 8XVY^2 + 4XVYW
+   + V^2Y^2 - 2V^2YW + V^2W^2.
+```
+
 For ordinary split fibers, the verifier records
 
 ```text
@@ -61,40 +71,51 @@ This is the same six-point exceptional budget used in
 
 ## Containment lemma
 
-Let `p>3`, and let `z in F_p` satisfy:
+Let `p>3`, and let `z=[Z:T] in P^1(F_p)` have `y(z)` outside the singular
+fiber set.  Equivalently, after charged fibers are removed, `z` is an
+ordinary projective split-fiber leaf.
+
+If a projective center residue `x=[X:V]` satisfies the homogeneous
+leaf-containment equation
 
 ```text
-z != 1,
-1+3z^2 != 0,
-y=(1+3z^2)/(1-z)^2 is not in the singular fiber set.
-```
-
-If a center residue `x` satisfies the finite leaf-containment equation
-
-```text
-K_x(z)=0,
+K_x^h(z)=0,
 ```
 
 then
 
 ```text
-R(x,y)=0.
+R_h(x,y(z))=0.
 ```
 
-Thus every ordinary finite split-fiber leaf containing `x` is covered by the
-quadratic projective resultant gate in the `y` parameter.
+Thus every ordinary projective split-fiber leaf containing `x` is covered by
+the quadratic projective resultant gate in the `y` parameter.
+
+The finite affine statement from the previous version is the chart `T=V=1`:
+if
+
+```text
+z != 1,
+1+3z^2 != 0,
+y=(1+3z^2)/(1-z)^2 is not in the singular fiber set,
+K_x(z)=0,
+```
+
+then `R(x,y)=0`.
 
 ## Proof
 
-The hypotheses exclude the pole of `y(z)`, the pole of `lambda(z)`, and the
-charged singular fibers.
+The hypotheses exclude the charged singular fibers, including `y=0`, which is
+the pole of `lambda(z)`, and `y=infinity`, which is the pole of `y(z)`.
 
-If `y != 3`, then `y` is a finite ordinary split value.  The finite split-fiber
-identity `(SF)` applies.  Since one factor in the product is `K_x(z)=0`, the
-product is zero.  As `(y-3)^2` is nonzero, `R(x,y)=0`.
+If `z` is finite and `y != 3`, then `y` is a finite ordinary split value.  The
+finite split-fiber identity `(SF)` applies.  Since one factor in the product is
+`K_x(z)=0`, the product is zero.  As `(y-3)^2` is nonzero, `R(x,y)=0`.
 
-The remaining ordinary finite fiber is `y=3`.  In this fiber the finite point
-is `z=1/3`; the second projective point lies at infinity.  Directly,
+The remaining ordinary projective fiber is `y=3`.  It has two points:
+`z=1/3` and `z=infinity`.
+
+At the finite point `z=1/3`, directly
 
 ```text
 K_x(1/3) = (12x-1)/9,
@@ -106,8 +127,20 @@ so `K_x(1/3)=0` gives `x=1/12`, and substituting gives
 R(1/12,3)=0.
 ```
 
-Thus the finite `y=3` leaf is also contained in the resultant gate; no extra
-exceptional `y`-fiber is needed.
+At the projective point `z=infinity=[1:0]`, the homogeneous kernel equation is
+
+```text
+K_x^h([1:0]) = 3X - V = 0.
+```
+
+Thus `x=[X:V]=[1:3]`, i.e. affine `x=1/3`, and substituting gives
+
+```text
+R(1/3,3)=0.
+```
+
+Thus the full projective `y=3` fiber is also contained in the resultant gate;
+no extra exceptional `y`-fiber is needed.
 
 The excluded `y`-fibers are exactly those charged in the generic equal-line
 budget, so the containment lemma feeds the cap
@@ -120,9 +153,10 @@ from `m1_equal_line_generic_popularity_budget.md`.
 
 ## Verification
 
-The companion verifier checks the finite split-fiber identity, the singular
-support exclusions, and the implication `K_x(z)=0 => R(x,y)=0` over expanded
-prime rows:
+The companion verifier checks the finite split-fiber identity, the projective
+degree-two fibers, the singular support exclusions, and the implications
+`K_x(z)=0 => R(x,y)=0` and `K_x^h(z)=0 => R_h(x,y)=0` over expanded prime
+rows:
 
 ```sh
 python3 experimental/scripts/verify_m1_equal_line_split_fiber_containment.py

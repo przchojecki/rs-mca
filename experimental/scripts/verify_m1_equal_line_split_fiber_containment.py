@@ -14,6 +14,50 @@ from verify_m1_equal_line_generic_popularity_budget import singular_support_y
 PRIMES = (5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47)
 
 
+def normalize_projective(first: int, second: int, p: int) -> tuple[int, int]:
+    first %= p
+    second %= p
+    if second == 0:
+        if first == 0:
+            raise AssertionError(("zero projective point", p))
+        return (1, 0)
+    return (first * pow(second, -1, p) % p, 1)
+
+
+def projective_line(p: int) -> list[tuple[int, int]]:
+    return [(value, 1) for value in range(p)] + [(1, 0)]
+
+
+def projective_y_point(z_point: tuple[int, int], p: int) -> tuple[int, int]:
+    z_num, z_den = z_point
+    y_num = z_den * z_den + 3 * z_num * z_num
+    y_den = (z_den - z_num) * (z_den - z_num)
+    return normalize_projective(y_num, y_den, p)
+
+
+def projective_kernel_argument(
+    x_point: tuple[int, int], z_point: tuple[int, int], p: int
+) -> int:
+    x_num, x_den = x_point
+    z_num, z_den = z_point
+    return (x_num * (z_den * z_den + 3 * z_num * z_num) - x_den * z_num * z_num) % p
+
+
+def projective_resultant(
+    x_point: tuple[int, int], y_point: tuple[int, int], p: int
+) -> int:
+    x_num, x_den = x_point
+    y_num, y_den = y_point
+    return (
+        16 * x_num * x_num * y_num * y_num
+        - 8 * x_num * x_den * y_num * y_num
+        + 4 * x_num * x_den * y_num * y_den
+        + x_den * x_den * y_num * y_num
+        - 2 * x_den * x_den * y_num * y_den
+        + x_den * x_den * y_den * y_den
+    ) % p
+
+
 def is_finite_leaf_regular(z: int, p: int) -> bool:
     if z == 1:
         return False
@@ -31,6 +75,14 @@ def split_fiber_roots(y_value: int, p: int) -> list[int]:
         if twist_y_value(z, p) == y_value:
             roots.append(z)
     return roots
+
+
+def projective_split_fiber_roots(y_point: tuple[int, int], p: int) -> list[tuple[int, int]]:
+    return [
+        z_point
+        for z_point in projective_line(p)
+        if projective_y_point(z_point, p) == y_point
+    ]
 
 
 def check_regular_fibers_are_split() -> None:
@@ -51,6 +103,20 @@ def check_regular_fibers_are_split() -> None:
                 raise AssertionError(("ordinary fiber not split", p, y_value, roots))
             checked += 1
     print(f"regular_y_fibers_checked={checked}")
+
+
+def check_projective_regular_fibers_are_split() -> None:
+    checked = 0
+    for p in PRIMES:
+        singular = singular_support_y(p)
+        for y_point in projective_line(p):
+            if y_point in singular:
+                continue
+            roots = projective_split_fiber_roots(y_point, p)
+            if roots and len(roots) != 2:
+                raise AssertionError(("projective fiber not split", p, y_point, roots))
+            checked += 1
+    print(f"regular_projective_y_fibers_checked={checked}")
 
 
 def check_product_identity_on_regular_fibers() -> None:
@@ -113,10 +179,43 @@ def check_kernel_containment_implication() -> None:
     print(f"kernel_containment_hits_checked={hits}")
 
 
+def check_projective_kernel_containment_implication() -> None:
+    checked = 0
+    hits = 0
+    infinity_hits = 0
+    for p in PRIMES:
+        singular = singular_support_y(p)
+        for z_point in projective_line(p):
+            y_point = projective_y_point(z_point, p)
+            if y_point in singular:
+                continue
+            roots = projective_split_fiber_roots(y_point, p)
+            if z_point not in roots or len(roots) != 2:
+                raise AssertionError(("bad projective root", p, z_point, y_point, roots))
+            for x_point in projective_line(p):
+                if projective_kernel_argument(x_point, z_point, p) != 0:
+                    continue
+                hits += 1
+                if z_point == (1, 0):
+                    infinity_hits += 1
+                    if x_point != (pow(3, -1, p), 1):
+                        raise AssertionError(("bad z=infinity kernel root", p, x_point))
+                if projective_resultant(x_point, y_point, p) != 0:
+                    raise AssertionError(
+                        ("projective containment failed", p, x_point, z_point, y_point)
+                    )
+            checked += 1
+    print(f"regular_projective_leaf_parameters_checked={checked}")
+    print(f"projective_kernel_containment_hits_checked={hits}")
+    print(f"projective_infinity_leaf_hits_checked={infinity_hits}")
+
+
 def main() -> None:
     check_regular_fibers_are_split()
+    check_projective_regular_fibers_are_split()
     check_product_identity_on_regular_fibers()
     check_kernel_containment_implication()
+    check_projective_kernel_containment_implication()
     print("m1 equal-line split-fiber containment checks passed")
 
 

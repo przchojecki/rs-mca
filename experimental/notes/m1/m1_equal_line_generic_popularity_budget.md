@@ -12,14 +12,14 @@ This note combines three local ingredients:
    `m1_depth_two_equal_line_diagonal_reduction.md`;
 2. the equal-line resultant popularity gate from
    `m1_equal_line_resultant_popularity_gate.md`;
-3. the finite split-fiber containment lemma from
+3. the projective split-fiber containment lemma from
    `m1_equal_line_split_fiber_containment.md`.
 
-It gives an explicit popularity constant for the ordinary finite equal-line
-split-fiber branch.  It remains conditional only on the nonlocal model-entry
-step: the global endpoint-disjoint high-overlap leaves must actually reduce to
-this equal-line split-fiber model after quotient, tangent, fixed-root, and
-denominator exceptions are charged.
+It gives an explicit popularity constant for the ordinary projective
+equal-line split-fiber branch.  It remains conditional only on the nonlocal
+model-entry step: the global endpoint-disjoint high-overlap leaves must
+actually reduce to this equal-line split-fiber model after quotient, tangent,
+fixed-root, and denominator exceptions are charged.
 
 ## Singular support
 
@@ -84,12 +84,13 @@ using `(EQ-Uz)`.
 
 ## Local cap theorem
 
-In the ordinary finite split-fiber equal-line model, the containment hypothesis
-needed by the divisor gate is no longer open.  If a leaf parameter `z` is
-regular and a center residue `x` satisfies the leaf-containment equation
+In the ordinary projective split-fiber equal-line model, the containment
+hypothesis needed by the divisor gate is no longer open.  If a leaf parameter
+`z` is regular and a center residue `x` satisfies the homogeneous
+leaf-containment equation
 
 ```text
-K_x(z)=0,
+K_x^h(z)=0,
 ```
 
 then `m1_equal_line_split_fiber_containment.md` proves that, with
@@ -101,7 +102,7 @@ y = (1+3z^2)/(1-z)^2,
 one has
 
 ```text
-R(x,y)=0,
+R_h(x,y)=0,
 ```
 
 unless `y` lies in the six charged projective singular fibers.  Therefore a
@@ -111,7 +112,7 @@ fixed center residue is contained in at most
 mu(6+2) = 8mu
 ```
 
-endpoint-disjoint ordinary finite split-fiber leaves.
+endpoint-disjoint ordinary projective split-fiber leaves.
 
 ## Packet-sift consequence
 
@@ -141,13 +142,15 @@ large support,
 near-star,
 or model-entry failure:
   the endpoint-independent high-overlap leaves do not reduce to the ordinary
-  finite equal-line split-fiber model after the charged branches are removed.
+  projective equal-line split-fiber model after the charged branches are
+  removed.
 ```
 
 This turns the equal-line branch into a concrete falsifiable target.  The
-ordinary finite split-fiber containment, packet combinatorics, and divisor root
-count are closed locally; the remaining algebraic work is the global reduction
-from the full M1 high-overlap model into this equal-line split-fiber chart.
+ordinary projective split-fiber containment, packet combinatorics, and divisor
+root count are closed locally; the remaining algebraic work is the global
+reduction from the full M1 high-overlap model into this equal-line split-fiber
+chart.
 
 ## Verification
 

@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 projective equal-line containment
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_equal_line_split_fiber_containment.md`,
+  `experimental/scripts/verify_m1_equal_line_split_fiber_containment.py`,
+  `experimental/notes/m1/m1_equal_line_generic_popularity_budget.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
+- **What is being added:** The equal-line containment lemma is homogenized
+  from finite `z` to projective `z=[Z:T]`, with
+  `K_x^h(z)=X(T^2+3Z^2)-VZ^2`; the ordinary boundary leaf `z=infinity` over
+  `y=3` is shown to force `x=1/3` and hence `R_h(x,3)=0`.
+- **How it is useful:** Removes a boundary caveat from the local C3/M1
+  popularity cap: ordinary projective split-fiber leaves are covered by the
+  same six charged `y`-fibers plus the quadratic resultant gate.
+- **What to do next:** Prove the global model-entry step from the full
+  endpoint-independent high-overlap packet geometry into this projective
+  equal-line chart, or identify an escaping branch that needs its own charge.
+
 ### 2026-06-30 - M1 equal-line injective-z cap
 
 - **Agent/model:** AllenGrahamHart / Codex.
@@ -59,13 +79,13 @@ Keep entries concise and link to the relevant files.
   `experimental/agents-log.md`.
 - **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
 - **What is being added:** The equal-line popularity budget now explicitly
-  incorporates the split-fiber containment lemma, so the ordinary finite
-  equal-line branch has a local cap `U_eq <= 8mu` rather than an open
+  incorporates the split-fiber containment lemma, so the ordinary equal-line
+  branch has a local cap `U_eq <= 8mu` rather than an open
   containment subtask.
 - **How it is useful:** Narrows the C3/M1 obstruction after packet-sifting:
   the remaining issue is the global reduction into the equal-line split-fiber
   chart and the accounting of charged boundary branches, not the local
-  resultant gate or ordinary finite containment.
+  resultant gate or ordinary split-fiber containment.
 - **What to do next:** Attack the global model-entry step for
   endpoint-independent high-overlap leaves, or produce a counterexample showing
   that some aperiodic high-overlap family escapes the equal-line chart without
@@ -83,10 +103,9 @@ Keep entries concise and link to the relevant files.
   split-fiber model: outside the charged singular `y`-fibers, the kernel
   equation `K_x(z)=0` forces the equal-line quadratic resultant `R(x,y)=0`.
 - **How it is useful:** Supplies the first concrete containment step behind the
-  equal-line `U<=8mu` popularity budget, reducing ordinary split finite leaves
+  equal-line `U<=8mu` popularity budget, reducing ordinary split-fiber leaves
   to the quadratic gate rather than leaving containment entirely abstract.
-- **What to do next:** Extend or audit this containment for the remaining
-  charged fibers/projective boundary leaves and then for the full
+- **What to do next:** Extend from this local split-fiber chart to the full
   endpoint-independent high-overlap model.
 
 ### 2026-06-30 - M1 equal-line generic popularity budget
