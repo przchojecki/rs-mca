@@ -77,7 +77,7 @@ sparse residual certificate reduction, feasibility window, and far-from-star
 certificate cap with near-star localization, template count, and
 density-threshold closure, budget inversion, template-budget tradeoff, and
 integer support-budget ceiling, fixed-residual sparse certificate feasibility
-interval, far-star class-count floor monotonicity, and minimal
+interval, far-star class-count floor monotonicity and closed form, and minimal
 selected-density baseline.
 """
 
@@ -8444,6 +8444,33 @@ def check_sparse_certificate_fixed_residual_feasibility() -> None:
                         if boundary_size not in floor_by_residual_size:
                             continue
                         boundary_floor = floor_by_residual_size[boundary_size]
+                        selected_closed = ceil_fraction(
+                            Fraction(
+                                (q - 1) * (q - 1) * far_factor,
+                                h * h * ((q - 3) * far_factor + 2),
+                            )
+                        )
+                        missing_closed = max(
+                            0,
+                            q
+                            + 1
+                            - (
+                                ((q - 1) * (h - 1) * far_factor)
+                                // (h * (far_factor - 1))
+                            ),
+                        )
+                        closed_floor = max(selected_closed, missing_closed)
+                        assert boundary_floor == closed_floor, (
+                            q,
+                            e,
+                            degree_cap,
+                            far_factor,
+                            boundary_size,
+                            boundary_floor,
+                            selected_closed,
+                            missing_closed,
+                            closed_floor,
+                        )
                         for residual_size, minimal_target in (
                             floor_by_residual_size.items()
                         ):

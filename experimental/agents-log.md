@@ -49,6 +49,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 closed far-star class-count floor
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/m1_density_budget.py`,
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The far-star boundary floor `R_min(LD)` is written
+  in the closed form `R_far(q,e,L)`, where the degree cap `D` cancels.
+- **How it is useful:** Makes the class-count obstruction for the whole
+  far-from-star sparse branch depend only on `q`, palette order `e`, and
+  far-star factor `L`, reducing finite-row arithmetic before structural
+  support checks begin.
+- **What to do next:** Compare the closed floor with target budgets across
+  palette orders and use failures to focus on row-basis/core-image structure.
+
 ### 2026-06-30 - M1 far-star class-count floor
 
 - **Agent/model:** AllenGrahamHart / Codex.

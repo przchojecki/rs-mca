@@ -458,6 +458,67 @@ def sparse_target_floor_report(
     }
 
 
+def far_star_sparse_floor_report(
+    q: int,
+    d_cap: int,
+    e: int,
+    far_factor: int,
+) -> dict[str, Any]:
+    h = e // 2
+    if far_factor < 2:
+        raise ValueError("far-star floor requires L>=2")
+    selected_argument = Fraction(
+        (q - 1) * (q - 1) * far_factor,
+        h * h * ((q - 3) * far_factor + 2),
+    )
+    missing_argument = Fraction(
+        (q - 1) * (h - 1) * far_factor,
+        h * (far_factor - 1),
+    )
+    selected_min_target = ceil_fraction(selected_argument)
+    missing_min_target = max(
+        0,
+        q + 1 - (missing_argument.numerator // missing_argument.denominator),
+    )
+    minimal_target = max(selected_min_target, missing_min_target)
+    boundary_residual_size = far_factor * d_cap
+    fixed_boundary = sparse_target_floor_report(q, d_cap, e, boundary_residual_size)
+    assert selected_min_target == fixed_boundary[
+        "selected_side_min_target_R_at_K_eq_m"
+    ]
+    assert missing_min_target == fixed_boundary[
+        "missing_side_min_target_R_at_K_eq_m"
+    ]
+    assert minimal_target == fixed_boundary[
+        "minimal_target_R_for_class_count_feasibility"
+    ]
+    return {
+        "object": "m1_far_star_sparse_class_count_floor",
+        "status": "AUDIT",
+        "e": e,
+        "h": h,
+        "L": far_factor,
+        "minimum_residual_size_m_ge_LD": boundary_residual_size,
+        "selected_side_closed_form_argument": fraction_record(selected_argument),
+        "missing_side_closed_form_floor_argument": fraction_record(
+            missing_argument
+        ),
+        "selected_side_min_target_R_at_K_eq_m": selected_min_target,
+        "missing_side_min_target_R_at_K_eq_m": missing_min_target,
+        "minimal_target_R_for_class_count_feasibility": minimal_target,
+        "selected_side_min_target_R_at_m_eq_LD": selected_min_target,
+        "missing_side_min_target_R_at_m_eq_LD": missing_min_target,
+        "minimal_target_R_for_far_star_class_count_feasibility": minimal_target,
+        "class_count_feasible_for_some_R_leq_q_plus_one": minimal_target <= q + 1,
+        "D_independent_closed_form": True,
+        "certificate": (
+            "Substituting m_ap=LD into R_min(m_ap) cancels D. Since "
+            "R_min(m_ap) is nondecreasing for m_ap>D, every class-count "
+            "sparse certificate with m_ap>=LD requires this boundary floor."
+        ),
+    }
+
+
 def template_bound(q: int, footprint_cap: int, e: int) -> int:
     h = e // 2
     return sum(
@@ -564,28 +625,25 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
     }
 
     if args.e is not None:
-        far_star_floor = sparse_target_floor_report(
+        far_star_floor = far_star_sparse_floor_report(
             q,
             d_cap,
             args.e,
-            far_factor * d_cap,
-        )
-        far_star_floor["object"] = "m1_far_star_sparse_class_count_floor"
-        far_star_floor["L"] = far_factor
-        far_star_floor["minimum_residual_size_m_ge_LD"] = far_factor * d_cap
-        far_star_floor["certificate"] = (
-            "R_min(m_ap) is nondecreasing for m_ap>D, so every class-count "
-            "sparse certificate with m_ap>=LD requires R>=R_min(LD)."
+            far_factor,
         )
         if args.R is not None:
             far_star_floor["queried_R_excluded_by_class_count_floor"] = (
                 args.R
-                < far_star_floor["minimal_target_R_for_class_count_feasibility"]
+                < far_star_floor[
+                    "minimal_target_R_for_far_star_class_count_feasibility"
+                ]
             )
         if args.target_R is not None:
             far_star_floor["target_R_excluded_by_class_count_floor"] = (
                 args.target_R
-                < far_star_floor["minimal_target_R_for_class_count_feasibility"]
+                < far_star_floor[
+                    "minimal_target_R_for_far_star_class_count_feasibility"
+                ]
             )
         report["far_star_sparse_class_count_floor"] = far_star_floor
 

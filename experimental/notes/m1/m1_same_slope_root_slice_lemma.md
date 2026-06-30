@@ -3754,6 +3754,30 @@ requires
 R >= R_min(LD).                                 (RKSQSPFARFLOOR)
 ```
 
+Substituting `m=LD` into (RKSQSPRFLOOR) cancels the degree cap `D`, giving the
+closed form
+
+```text
+R_sel_far(q,e,L)
+ = ceil((q-1)^2 L/(h^2((q-3)L+2))),
+
+R_miss_far(q,e,L)
+ = max(
+     0,
+     q+1 - floor((q-1)(h-1)L/(h(L-1)))
+   ),
+
+R_far(q,e,L)=max(R_sel_far(q,e,L),R_miss_far(q,e,L)).        (RKSQSPFARCLOSED)
+```
+
+Thus the class-count arithmetic obstruction in the far-from-star range is
+independent of the endpoint-degree cap:
+
+```text
+m>=LD and class-count feasibility at budget R
+  => R >= R_far(q,e,L).                         (RKSQSPFARUNIF)
+```
+
 This is weaker than proving support realization impossible, but it gives an
 exact finite-row floor for the whole far-from-star sparse branch before any
 row-basis/core-image structure is used.
@@ -4017,7 +4041,8 @@ for `(K_ap,C_ap)` in the sparse certificate inequalities at the given residual
 size, together with the minimum integer target budget `R_min(m_ap)` for any
 class-count certificate at that residual size.  When `--e` and the far-star
 factor `L` are available, it also reports the monotone far-star class-count
-floor `R_min(LD)`.  This is an audit/evaluation tool for
+floor `R_far(q,e,L)=R_min(LD)`, in the closed form where `D` cancels.  This is
+an audit/evaluation tool for
 (RKSQINTBUDGET/RKSQTRADE), not a proof of the missing global density lower
 bound.
 
@@ -4700,6 +4725,7 @@ certificate feasibility window (RKSQSPWINDOW1/RKSQSPWINDOW2/RKSQSPWINDOW), the
 fixed-residual sparse class-count interval (RKSQSPFEASDATA/RKSQSPFEAS), the
 fixed-residual minimum support-budget floor (RKSQSPRFLOOR/RKSQSPRMIN), the
 far-star monotone class-count floor (RKSQSPMONO/RKSQSPFARFLOOR), the
+closed far-star class-count floor (RKSQSPFARCLOSED/RKSQSPFARUNIF), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
@@ -4813,6 +4839,7 @@ certificate feasibility window (RKSQSPWINDOW1/RKSQSPWINDOW2/RKSQSPWINDOW), the
 fixed-residual sparse class-count interval (RKSQSPFEASDATA/RKSQSPFEAS), the
 fixed-residual minimum support-budget floor (RKSQSPRFLOOR/RKSQSPRMIN), the
 far-star monotone class-count floor (RKSQSPMONO/RKSQSPFARFLOOR), the
+closed far-star class-count floor (RKSQSPFARCLOSED/RKSQSPFARUNIF), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
