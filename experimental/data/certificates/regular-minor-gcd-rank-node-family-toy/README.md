@@ -21,6 +21,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/regular-minor-gcd-rank-node-family-toy/invalid_bad_rank_node_witness_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-gcd-rank-node-family-toy/invalid_zero_rank_node_witness_packet.json
 ```
 
 Non-claims: this is a toy-row mechanism packet, not an `F_17^32` M3 root table

@@ -1721,6 +1721,7 @@ def validate_regular_minor_gcd(
         raise PacketError(
             f"A={item.get('A')}: minor polynomial records must match row_sets"
         )
+    polynomial_by_row_set: dict[tuple[int, ...], list[int]] = {}
     for index, (expected_row_set, record) in enumerate(zip(row_sets, minor_records)):
         if not isinstance(record, dict):
             raise PacketError(
@@ -1742,6 +1743,7 @@ def validate_regular_minor_gcd(
             raise PacketError(
                 f"A={item.get('A')}: minor polynomial {index} has empty coefficients"
             )
+        polynomial_by_row_set[tuple(row_set)] = polynomial
         if modulus is not None:
             if any(coefficient % modulus != 0 for coefficient in polynomial):
                 degree = poly_degree([coefficient % modulus for coefficient in polynomial])
@@ -1787,6 +1789,52 @@ def validate_regular_minor_gcd(
                 raise PacketError(
                     f"A={item.get('A')}: zero minor polynomial {index} must have degree -1"
                 )
+
+    audit = item.get("extractor_audit")
+    source = audit.get("row_set_source") if isinstance(audit, dict) else None
+    if isinstance(source, str) and source.startswith("rank_at_nodes_family"):
+        witness_records = audit.get("rank_pivot_witness_records")
+        if not isinstance(witness_records, list) or not witness_records:
+            raise PacketError(
+                f"A={item.get('A')}: rank-node gcd needs witness records"
+            )
+        for index, record in enumerate(witness_records):
+            if not isinstance(record, dict):
+                raise PacketError(
+                    f"A={item.get('A')}: rank-node witness {index} must be an object"
+                )
+            witness_node = record.get("node")
+            if not isinstance(witness_node, int):
+                raise PacketError(
+                    f"A={item.get('A')}: rank-node witness {index} needs integer node"
+                )
+            witness_row_set = tuple(
+                normalize_int_list(
+                    record.get("row_set", []),
+                    f"A={item.get('A')} rank-node witness {index} row_set",
+                )
+            )
+            polynomial = polynomial_by_row_set.get(witness_row_set)
+            if polynomial is None:
+                raise PacketError(
+                    f"A={item.get('A')}: rank-node witness {index} row_set "
+                    "has no matching minor polynomial"
+                )
+            if modulus is not None:
+                if poly_eval_mod(polynomial, witness_node, modulus) == 0:
+                    raise PacketError(
+                        f"A={item.get('A')}: rank-node witness {index} "
+                        "does not evaluate to a nonzero minor"
+                    )
+            else:
+                assert extension_field is not None
+                if extension_field.is_zero(
+                    extension_field.poly_eval_encoded(polynomial, witness_node)
+                ):
+                    raise PacketError(
+                        f"A={item.get('A')}: rank-node witness {index} "
+                        "does not evaluate to a nonzero extension minor"
+                    )
 
     if field_size <= ROOT_COMPLETENESS_ENUMERATION_LIMIT and roots is None:
         raise PacketError(

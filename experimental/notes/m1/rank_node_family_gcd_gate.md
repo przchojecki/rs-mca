@@ -69,8 +69,9 @@ A=16: 2 row sets, gcd roots empty
 ```
 
 The checker verifies that every recorded witness node belongs to the tested
-deterministic node prefix and that every gcd row set is witnessed.  The negative
-fixture corrupts a witness row set and must fail.
+deterministic node prefix, that every gcd row set is witnessed, and that the
+recorded minor polynomial is nonzero at its witness node.  The negative
+fixtures corrupt a witness row set and a witness node value; both must fail.
 
 Non-claims: this is a finite toy replay and extractor theorem.  It is not an
 `F_17^32` regular-window root table, not a quotient/tangent subtraction table,
@@ -88,4 +89,7 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/regular-minor-gcd-rank-node-family-toy/invalid_bad_rank_node_witness_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-gcd-rank-node-family-toy/invalid_zero_rank_node_witness_packet.json
 ```

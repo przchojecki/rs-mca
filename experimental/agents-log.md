@@ -47,7 +47,8 @@ Keep entries concise and link to the relevant files.
   scans a deterministic prefix of finite slope nodes, records every distinct
   full-rank row set witnessed there, and takes the common gcd of the witnessed
   determinant polynomials; the checker verifies that every gcd row set is
-  backed by a witness node.
+  backed by a witness node and that the determinant polynomial is nonzero at
+  that node.
 - **How it is useful:** This combines the rank-at-nodes singularity gate with
   the common-gcd root-sharpening gate, giving a deterministic row-set family
   that can be much smaller than all contiguous minors while retaining the same

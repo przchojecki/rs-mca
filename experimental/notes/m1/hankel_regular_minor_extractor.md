@@ -115,7 +115,8 @@ contiguous gcd packet, but obtains its row sets from deterministic full-rank
 specializations.  With `node_limit=17`, it audits row-set counts
 `1,2,3,2` for `A=13,14,15,16` and gets the same final root union `{11}` as the
 all-contiguous replay.  The checker verifies that each gcd row set is backed by
-a recorded full-rank witness node.
+a recorded full-rank witness node, and now evaluates the recorded determinant
+polynomial at that node to confirm the witness is genuinely nonzero.
 
 When the field is small enough, the extractor enumerates roots in the full
 finite slope field.  For extension fields, root-table elements are encoded as
@@ -442,6 +443,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 ! python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-gcd-rank-node-family-toy/invalid_bad_rank_node_witness_packet.json
+
+! python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-gcd-rank-node-family-toy/invalid_zero_rank_node_witness_packet.json
 
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_toy.json \
