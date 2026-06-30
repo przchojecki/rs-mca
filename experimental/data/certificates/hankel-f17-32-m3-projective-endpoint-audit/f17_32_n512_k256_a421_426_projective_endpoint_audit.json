@@ -134,11 +134,11 @@
     "fixed_top_window_packet": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json",
       "sampler": "finite_affine_line",
-      "sha256": "2ed9f7082e7fa5b2cfef258f02f8f3fb1d4e09a904a824be839a50f3b76f4976"
+      "sha256": "9a0a2a4a79881b795410eaaf7eb891165997f2be04e6b746baaf42ccff51c66d"
     },
     "zero_slope_subtraction": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_a421_426_zero_slope_subtraction.json",
-      "sha256": "2daab57ff7ad35d81423d9e14ee93cda7fc5c07bd7f1aa59b12cea00598f109d"
+      "sha256": "e9580ce4c2d291454cf3c0baa8ce653960549ea0472fdea88e782cf896a6c960"
     }
   },
   "status": "PROVED / AUDIT",

@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 split-root packet certificates
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/emit_f17_32_m3_rank_witness_input.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_*`;
+  `experimental/data/certificates/hankel-f17-32-m3-*`;
+  `experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/`;
+  `experimental/data/certificates/subgroup-syndrome-section/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the synthetic F17^32 packets.
+- **What is being added:** The existing F17^32 M3 synthetic monomial and
+  proportional packets now carry `split_linear_factorization` certificates:
+  `Z^d` for the rank-witness/fixed-window packets and `(Z+5)^87` for the
+  scalar packet.  Dependent sidecar hashes and status ledgers were regenerated.
+- **How it is useful:** Exercises the compressed exact-root certificate at the
+  real field size needed for M1/M3, rather than only in the F17^2 toy replay.
+- **What to do next:** Apply the same certificate format to actual row-data
+  regular minors whenever their determinant factors or admits a small exact
+  root table.
+
 ### 2026-06-30 - Split-linear root certificates
 
 - **Agent/model:** AllenGrahamHart / Codex.

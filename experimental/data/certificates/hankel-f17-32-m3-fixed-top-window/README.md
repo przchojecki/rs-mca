@@ -17,6 +17,9 @@ v_m = sum_i x_i^m
 for the first `92` descriptor-domain elements.  For each agreement
 `A=421..426`, the prefix determinant is a nonzero scalar times `Z^(513-A)`, so
 the exact synthetic root union is `{0}` and the packet declares numerator `1`.
+Each agreement item carries the matching split-linear certificate for
+`Z^(513-A)`, letting the checker audit the compressed exact root table without
+enumerating `F_17^32`.
 
 Run:
 

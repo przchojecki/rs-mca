@@ -18,49 +18,49 @@
       "name": "synthetic_rank_witness_family",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-witness-family/f17_32_n512_k256_m3_rank_witness_family_certificate.json",
       "schema_version": "f17-32-m3-rank-witness-family-v1",
-      "sha256": "174baa0a8cb93cff8244b33e6108bcee304decb6d977437f172e0eea8c8014aa",
+      "sha256": "f9f02fea2f2284428393e3002fb079bda7da43cc5af6ae090c821a9506fbf759",
       "status": "PROVED / AUDIT"
     },
     {
       "name": "fixed_top_window_v9_packet",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json",
       "schema_version": "aperiodic-hankel-eliminant-v1",
-      "sha256": "2ed9f7082e7fa5b2cfef258f02f8f3fb1d4e09a904a824be839a50f3b76f4976",
+      "sha256": "9a0a2a4a79881b795410eaaf7eb891165997f2be04e6b746baaf42ccff51c66d",
       "status": "PROVED / AUDIT"
     },
     {
       "name": "fixed_top_window_line_value_lift",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-line-value-lift/f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json",
       "schema_version": "f17-32-m3-line-value-lift-v1",
-      "sha256": "d5201a3d94d56c58b07e628cbeb878b861c012d599fe9b7c7dc6d2862e76cfe5",
+      "sha256": "a31c50f65c7caacb482bde6ae286d55327961f5a1e773dbcd443a8a6089f606d",
       "status": "PROVED / AUDIT"
     },
     {
       "name": "subgroup_syndrome_section",
       "ref": "experimental/data/certificates/subgroup-syndrome-section/subgroup_syndrome_section_certificate.json",
       "schema_version": "subgroup-syndrome-section-v1",
-      "sha256": "02cee88e18e7baacdbbd3bdcdedf82ed8a37e1a1edd767b6645663da69df24bc",
+      "sha256": "a0063bf809beb7a5fecfe519dd4fd0552bd85c7ac2a3013c12298509e4904c5a",
       "status": "PROVED / AUDIT"
     },
     {
       "name": "fixed_top_window_zero_slope_subtraction",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_a421_426_zero_slope_subtraction.json",
       "schema_version": "f17-32-m3-zero-slope-subtraction-v1",
-      "sha256": "2daab57ff7ad35d81423d9e14ee93cda7fc5c07bd7f1aa59b12cea00598f109d",
+      "sha256": "e9580ce4c2d291454cf3c0baa8ce653960549ea0472fdea88e782cf896a6c960",
       "status": "AUDIT"
     },
     {
       "name": "fixed_top_window_extension_denominator_audit",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-extension-denominator-audit/f17_32_n512_k256_a421_426_extension_denominator_audit.json",
       "schema_version": "f17-32-m3-extension-denominator-audit-v1",
-      "sha256": "e22b709556c501fa991f557ace13f5df5edeb6e8f296acf62c08139eddd016cb",
+      "sha256": "0274706f33216fbe9e6cfb6f39a8d8a95b4d145cd28ef68ad2915a9ef004bec9",
       "status": "AUDIT"
     },
     {
       "name": "fixed_top_window_projective_endpoint_audit",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-projective-endpoint-audit/f17_32_n512_k256_a421_426_projective_endpoint_audit.json",
       "schema_version": "f17-32-m3-projective-endpoint-audit-v1",
-      "sha256": "1a56d559b7c3837a487d86f61868d48667a6d64de6ff5514bca0ffc4da70058e",
+      "sha256": "94ed1a52340c4facc7f43d90bd4fdf720686b7cbda3445114301c3aa7f471a56",
       "status": "PROVED / AUDIT"
     }
   ],

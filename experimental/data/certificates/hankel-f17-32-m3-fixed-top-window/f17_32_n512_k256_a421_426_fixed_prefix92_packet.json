@@ -214,6 +214,17 @@
         "field_encoding": "base-p low-to-high integer",
         "field_extension_degree": 32,
         "p": 17,
+        "root_certificate": {
+          "factors": [
+            {
+              "multiplicity": 92,
+              "root": 0
+            }
+          ],
+          "field_encoding": "base-p low-to-high integer",
+          "kind": "split_linear_factorization",
+          "leading_coefficient": 265816049548075604963879353555399861332
+        },
         "roots": [
           0
         ]
@@ -530,6 +541,17 @@
         "field_encoding": "base-p low-to-high integer",
         "field_extension_degree": 32,
         "p": 17,
+        "root_certificate": {
+          "factors": [
+            {
+              "multiplicity": 91,
+              "root": 0
+            }
+          ],
+          "field_encoding": "base-p low-to-high integer",
+          "kind": "split_linear_factorization",
+          "leading_coefficient": 2228217070838796745502098253856027100447
+        },
         "roots": [
           0
         ]
@@ -843,6 +865,17 @@
         "field_encoding": "base-p low-to-high integer",
         "field_extension_degree": 32,
         "p": 17,
+        "root_certificate": {
+          "factors": [
+            {
+              "multiplicity": 90,
+              "root": 0
+            }
+          ],
+          "field_encoding": "base-p low-to-high integer",
+          "kind": "split_linear_factorization",
+          "leading_coefficient": 2112949732651038301290573168004098385879
+        },
         "roots": [
           0
         ]
@@ -1153,6 +1186,17 @@
         "field_encoding": "base-p low-to-high integer",
         "field_extension_degree": 32,
         "p": 17,
+        "root_certificate": {
+          "factors": [
+            {
+              "multiplicity": 89,
+              "root": 0
+            }
+          ],
+          "field_encoding": "base-p low-to-high integer",
+          "kind": "split_linear_factorization",
+          "leading_coefficient": 1616470401258173214025266066491067382390
+        },
         "roots": [
           0
         ]
@@ -1460,6 +1504,17 @@
         "field_encoding": "base-p low-to-high integer",
         "field_extension_degree": 32,
         "p": 17,
+        "root_certificate": {
+          "factors": [
+            {
+              "multiplicity": 88,
+              "root": 0
+            }
+          ],
+          "field_encoding": "base-p low-to-high integer",
+          "kind": "split_linear_factorization",
+          "leading_coefficient": 2319353195721567964131859028787361906801
+        },
         "roots": [
           0
         ]
@@ -1764,6 +1819,17 @@
         "field_encoding": "base-p low-to-high integer",
         "field_extension_degree": 32,
         "p": 17,
+        "root_certificate": {
+          "factors": [
+            {
+              "multiplicity": 87,
+              "root": 0
+            }
+          ],
+          "field_encoding": "base-p low-to-high integer",
+          "kind": "split_linear_factorization",
+          "leading_coefficient": 224526537580335194765233378697607744035
+        },
         "roots": [
           0
         ]
@@ -1911,7 +1977,7 @@
       "p": 17
     },
     "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a421_426_fixed_prefix92_input.json",
-    "input_sha256": "20e0f9bf9661b8ed0c78b81cbcd5483d7442b14d2d58c44fb7facc65a903f94c",
+    "input_sha256": "8f1a978726a8cc48048acc7eea83a832c988de1d082cbe7a5f769c69e1d9b370",
     "method": "zero-u monomial closed-form root certificate over a polynomial-basis finite field",
     "name": "regular-hankel-minor-extractor",
     "row_set_strategy": {

@@ -13,6 +13,9 @@ Because `u=0`, the prefix determinant is a nonzero scalar times `Z^87`.
 The extractor checks the prefix row set directly, computes the nonzero
 Vandermonde-square leading coefficient, and the packet records the exact
 synthetic root table `{0}` without interpolating the determinant polynomial.
+It also carries a split-linear root certificate for `Z^87`, so the checker can
+replay the compressed factorization over `F_17^32` without enumerating the
+whole slope field.
 
 Run:
 

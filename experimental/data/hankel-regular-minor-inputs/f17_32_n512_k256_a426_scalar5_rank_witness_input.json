@@ -8,6 +8,7 @@
     "row_data": "synthetic_syndrome_pencil",
     "threshold_role": "synthetic_stress"
   },
+  "emit_split_root_certificate": true,
   "exact_agreements": [
     426
   ],

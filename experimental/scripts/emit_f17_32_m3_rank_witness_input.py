@@ -178,6 +178,7 @@ def build_input(
         ),
         "line_syndrome": line_syndrome,
         "row_set_strategy": {"type": "prefix"},
+        "emit_split_root_certificate": True,
         "status": "PROVED / AUDIT",
         "nonclaims": [
             "synthetic syndrome pencil only",

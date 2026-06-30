@@ -204,6 +204,17 @@
         "field_encoding": "base-p low-to-high integer",
         "field_extension_degree": 32,
         "p": 17,
+        "root_certificate": {
+          "factors": [
+            {
+              "multiplicity": 87,
+              "root": 0
+            }
+          ],
+          "field_encoding": "base-p low-to-high integer",
+          "kind": "split_linear_factorization",
+          "leading_coefficient": 1679562971418113032387101671407887322647
+        },
         "roots": [
           0
         ]
@@ -351,7 +362,7 @@
       "p": 17
     },
     "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_rank_witness_input.json",
-    "input_sha256": "2408cdfd154e52c6d95ce8d47003f4498b59f4b344ed1946a5506f19be0fec9b",
+    "input_sha256": "fc39bf1352d9f888f9b8b6b726062839cd83862f5e34b90a2a2d9ec414ee32fd",
     "method": "zero-u monomial closed-form root certificate over a polynomial-basis finite field",
     "name": "regular-hankel-minor-extractor",
     "row_set_strategy": {

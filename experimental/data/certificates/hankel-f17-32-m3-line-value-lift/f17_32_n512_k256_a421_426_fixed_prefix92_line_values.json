@@ -1087,9 +1087,9 @@
   "schema_version": "f17-32-m3-line-value-lift-v1",
   "source_packet": {
     "fixed_top_window_input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a421_426_fixed_prefix92_input.json",
-    "fixed_top_window_input_sha256": "20e0f9bf9661b8ed0c78b81cbcd5483d7442b14d2d58c44fb7facc65a903f94c",
+    "fixed_top_window_input_sha256": "8f1a978726a8cc48048acc7eea83a832c988de1d082cbe7a5f769c69e1d9b370",
     "fixed_top_window_packet_ref": "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json",
-    "fixed_top_window_packet_sha256": "2ed9f7082e7fa5b2cfef258f02f8f3fb1d4e09a904a824be839a50f3b76f4976"
+    "fixed_top_window_packet_sha256": "9a0a2a4a79881b795410eaaf7eb891165997f2be04e6b746baaf42ccff51c66d"
   },
   "status": "PROVED / AUDIT",
   "syndrome_replay": {

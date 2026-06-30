@@ -21,6 +21,9 @@ H(u) + Z H(v) = (5+Z) H(v),
 
 and the prefix determinant is a nonzero scalar times `(Z+5)^87`.  The exact
 finite root union is `{12}` in `F_17`, encoded as `12` inside `F_17^32`.
+The packet carries the split-linear certificate `(Z+5)^87`, so the checker
+reconstructs the compressed factorization and verifies the exact root table
+without enumerating the full extension field.
 
 Run:
 

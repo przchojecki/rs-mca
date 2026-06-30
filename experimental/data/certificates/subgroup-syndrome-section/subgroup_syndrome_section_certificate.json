@@ -17,9 +17,9 @@
       "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
       "field": "F_17^32",
       "fixed_top_window_input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a421_426_fixed_prefix92_input.json",
-      "fixed_top_window_input_sha256": "20e0f9bf9661b8ed0c78b81cbcd5483d7442b14d2d58c44fb7facc65a903f94c",
+      "fixed_top_window_input_sha256": "8f1a978726a8cc48048acc7eea83a832c988de1d082cbe7a5f769c69e1d9b370",
       "line_value_lift_ref": "experimental/data/certificates/hankel-f17-32-m3-line-value-lift/f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json",
-      "line_value_lift_sha256": "d5201a3d94d56c58b07e628cbeb878b861c012d599fe9b7c7dc6d2862e76cfe5",
+      "line_value_lift_sha256": "a31c50f65c7caacb482bde6ae286d55327961f5a1e773dbcd443a8a6089f606d",
       "name": "F17_32_H512_fixed_top_window",
       "status": "PASS",
       "u_section": {

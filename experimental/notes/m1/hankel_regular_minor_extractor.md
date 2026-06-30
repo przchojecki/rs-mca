@@ -167,6 +167,14 @@ verifies that the factor roots are exactly the declared root table.  This is
 the reusable compressed-root format intended for future large-field packets,
 where brute-force enumeration of `F_17^32` is impossible.
 
+The format is now also exercised at the actual M3 field size.  The synthetic
+F17^32 rank-witness packets at `A=385` and `A=426`, the fixed top-window packet
+for `421 <= A <= 426`, and the proportional scalar packet at `A=426` all carry
+split-linear certificates.  The monomial packets certify `Z^d`, while the
+scalar packet certifies `(Z+5)^87`; the checker reconstructs these determinant
+polynomials from the factors and verifies the declared exact root tables without
+enumerating `F_17^32`.
+
 The checker also verifies that a polynomial-basis field model matches the row
 field label and that its modulus is irreducible over `F_p`.  The negative packet
 

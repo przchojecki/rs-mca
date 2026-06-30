@@ -1,6 +1,7 @@
 {
   "agreement_threshold": 385,
   "certificate_mode": "zero_u_monomial_roots",
+  "emit_split_root_certificate": true,
   "exact_agreements": [
     385
   ],
