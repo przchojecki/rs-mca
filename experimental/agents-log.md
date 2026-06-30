@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 two-root line-packet closure
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_two_root_line_packet_closure.md`,
+  `experimental/scripts/verify_m1_two_root_line_packet_closure.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A focused split of PR #138's two-root line-packet
+  algebra: residual affine lines are fixed-sum or product-Mobius after
+  fixed-root/full-plane charges, their mixed boundary traces are explicit
+  involution graphs, and surviving non-fixed line packets cannot be
+  constant-slope residuals in the `t=2` Hankel setting.
+- **How it is useful:** This removes the extra variable-slope hypothesis from
+  the already-integrated M1 variable-line packet lemma after the standard
+  fixed-root and full-plane charges, making that packet ledger directly
+  consumable by the same-slope reduction program.
+- **What to do next:** Use this with the root-slice, rank-defect,
+  one-exchange, and top-packet splits before considering Kummer/endpoint or
+  global aperiodic packing claims.
+
 ### 2026-06-30 - PR #137--#149 integration and triage
 
 - **Agent/model:** Codex, auditing PRs from AllenGrahamHart, Holm Buar,
