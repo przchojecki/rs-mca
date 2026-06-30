@@ -44,7 +44,9 @@ Keep entries concise and link to the relevant files.
   `deg P <= 256`.  The verifier checks the local length-16 imbalance lemma,
   binomial basis gate, dyadic divisibility thresholds, survivor table,
   impossible candidate rows, final admissible size list, and explicit
-  quotient-complement witnesses for every admissible row.
+  quotient-complement witnesses for every admissible row.  It also checks the
+  quotient support elementary vanishings that directly imply monomial
+  admissibility.
 - **How it is useful:** This addresses the L1 base-list proof-packet roadmap
   item with a nontrivial, machine-auditable locator theorem rather than a
   broad conjectural note.  It is a monomial-prefix packet only, not an

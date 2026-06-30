@@ -25,7 +25,9 @@ structural nonemptiness witnesses.
 For every admissible survivor row, the verifier also constructs an explicit
 quotient-complement witness in exponent coordinates and checks the required
 power-sum vanishings `p_1,...,p_d` in the `F_17` basis determined by
-`alpha^(N/16)=3`.
+`alpha^(N/16)=3`.  It then forms the quotient support `T=G_N\C` and checks
+the elementary vanishings `e_1(T),...,e_d(T)=0`, which are the actual
+coefficient conditions making the lifted monomial support admissible.
 
 Run:
 

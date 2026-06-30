@@ -7,8 +7,9 @@ classification recorded in
 not enumerate all supports in the order-512 domain.  Instead it checks the
 reviewable finite gates used by the proof: the local length-16 imbalance
 classification, the dyadic divisibility gate, the survivor table, the
-impossible rows, and explicit quotient-complement witnesses for every
-admissible row.
+impossible rows, explicit quotient-complement witnesses for every admissible
+row, and the elementary-coefficient vanishings that make those witnesses
+monomial-admissible.
 """
 
 from __future__ import annotations
@@ -332,6 +333,46 @@ def power_sum(exponents: set[int], n_quotient: int, power: int) -> tuple[int, ..
     return tuple(total)
 
 
+def add_vectors(left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
+    require(len(left) == len(right), "vector dimension mismatch")
+    return tuple((a + b) % P for a, b in zip(left, right, strict=True))
+
+
+def multiply_vector_by_exponent(
+    vector: tuple[int, ...], exponent: int, n_quotient: int
+) -> tuple[int, ...]:
+    h = n_quotient // 16
+    require(len(vector) == h, "field vector dimension mismatch")
+    out = [0] * h
+    for basis_index, coefficient in enumerate(vector):
+        if coefficient == 0:
+            continue
+        shifted = exponent_vector(exponent + basis_index, n_quotient)
+        for index, value in enumerate(shifted):
+            out[index] = (out[index] + coefficient * value) % P
+    return tuple(out)
+
+
+def elementary_coefficients(
+    exponents: set[int], n_quotient: int, degree: int
+) -> list[tuple[int, ...]]:
+    h = n_quotient // 16
+    one = (1,) + (0,) * (h - 1)
+    coefficients = [zero_vector(n_quotient) for _ in range(degree + 1)]
+    coefficients[0] = one
+    used = 0
+    for exponent in sorted(exponents):
+        used += 1
+        for index in range(min(degree, used), 0, -1):
+            coefficients[index] = add_vectors(
+                coefficients[index],
+                multiply_vector_by_exponent(
+                    coefficients[index - 1], exponent, n_quotient
+                ),
+            )
+    return coefficients
+
+
 def zero_vector(n_quotient: int) -> tuple[int, ...]:
     return (0,) * (n_quotient // 16)
 
@@ -437,6 +478,8 @@ def verify_constructive_witnesses(packet: dict[str, Any]) -> None:
         d = row["d"]
         require(len(complement) == c, f"A={agreement}: complement size mismatch")
         require(all(0 <= exponent < n_quotient for exponent in complement), f"A={agreement}: exponent outside quotient group")
+        support = set(range(n_quotient)) - complement
+        require(len(support) == row["B"], f"A={agreement}: quotient support size mismatch")
         if c == 0:
             continue
         require(n_quotient >= 16, f"A={agreement}: nonempty witness needs N>=16")
@@ -444,6 +487,12 @@ def verify_constructive_witnesses(packet: dict[str, Any]) -> None:
             require(
                 power_sum(complement, n_quotient, power) == zero_vector(n_quotient),
                 f"A={agreement}: quotient complement p_{power} does not vanish",
+            )
+        elementary = elementary_coefficients(support, n_quotient, d)
+        for index in range(1, d + 1):
+            require(
+                elementary[index] == zero_vector(n_quotient),
+                f"A={agreement}: quotient support e_{index} does not vanish",
             )
 
 
@@ -562,6 +611,7 @@ def main() -> int:
         print(f"  candidates after divisibility gate: {len(EXPECTED_CANDIDATES)}")
         print(f"  admissible sizes: {EXPECTED_ADMISSIBLE}")
         print("  constructive quotient-complement witnesses: checked")
+        print("  quotient support elementary vanishings: checked")
     return 0
 
 

@@ -623,5 +623,7 @@ dyadic descent thresholds, survivor table, impossible rows, final admissible
 size list, and the structural nonemptiness witnesses.  It also constructs one
 explicit quotient-complement witness for every admissible row and checks the
 required quotient power sums `p_1,...,p_d` directly in the `F_17` basis
-determined by `alpha^(N/16)=3`.  It does not enumerate all support orbits in
-the large admissible families.
+determined by `alpha^(N/16)=3`.  It then forms the quotient support `T=G_N\C`
+and checks the elementary vanishings `e_1(T),...,e_d(T)=0`, which are the
+actual coefficient conditions making the lifted monomial support admissible.
+It does not enumerate all support orbits in the large admissible families.
