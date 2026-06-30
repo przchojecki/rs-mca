@@ -973,3 +973,7 @@ Keep entries concise and link to the relevant files.
   rates at n=512,q=17^32 solved (caps 85/128/149/160 for rho=1/2,1/4,1/8,1/16; cap grows
   as rate drops), all pinned a>=507; per-rate boundary exactly `B_Q<=cap`; large row
   n=2^20 also solved. Verifier exits 0: 3 PASS, 2 PENDING. Next: Johnson-scope.
+- **iter 3 (commit d302cca):** step 5 item 4 **high-agreement scope vs Johnson** -- pinned
+  radius ~B_Q/n (6/512~0.0117) far below Johnson 1-sqrt(rho) (0.293..0.750), via exact
+  integer test `k*n < (n-B_Q)^2`. Honest: carves the easy slice, not near-capacity.
+  Verifier exits 0: 4 PASS, 1 PENDING. Next: emit map artifact (last step-5 item).
