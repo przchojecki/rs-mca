@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Regular-minor common-gcd gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_regular_minor_gcd_gate.py`;
+  `experimental/data/certificates/regular-minor-gcd-gate/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the finite toy replay.
+- **What is being added:** A proof/audit gate says that regular rank-defect
+  slopes are contained in the roots of the gcd of any audited family of
+  maximal-minor determinant polynomials.  The `F_17`, `n=16`, `k=8` toy replay
+  shows the gcd removes false roots from single prefix minors at `A=14,15,16`.
+- **How it is useful:** Points to a sharper M3 regular-window strategy than
+  one-minor degree bounds: compute common roots across a rank-complete minor
+  family before declaring pivot residuals.
+- **What to do next:** Add a v9-compatible multi-minor gcd/root-table packet
+  mode, then test it on small rank-complete charts before attempting F17^32
+  regular-window pencils.
+
 ### 2026-06-30 - M3 syndrome-pencil realizability
 
 - **Agent/model:** AllenGrahamHart / Codex.

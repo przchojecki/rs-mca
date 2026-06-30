@@ -65,6 +65,21 @@ determinants, rather than by a factorial permutation determinant.  This is the
 right algorithmic shape for the future `385 <= A <= 426` window once row data
 for the `F_17^32` row are supplied.
 
+A sharper regular-bucket gate is recorded in
+
+```text
+experimental/data/certificates/regular-minor-gcd-gate/
+experimental/scripts/verify_m1_regular_minor_gcd_gate.py
+```
+
+If a slope is genuinely regular-bad, the full Hankel matrix has rank at most
+`j`, so every maximal minor vanishes there.  Thus the bad slopes are contained
+in the roots of the gcd of any audited family of maximal-minor determinant
+polynomials.  On the `F_17`, `n=16`, `k=8` toy, the common gcd of all contiguous
+maximal minors removes prefix-minor false roots at `A=14,15,16`.  This is not
+yet wired into v9 packet emission, but it identifies the next useful sharpening
+for the M3 regular-window audit.
+
 When the field is small enough, the extractor enumerates roots in the full
 finite slope field.  For extension fields, root-table elements are encoded as
 base-`p` low-to-high integers so the existing v9 packet checker can audit root

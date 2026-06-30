@@ -1,0 +1,508 @@
+{
+  "nonclaims": [
+    "does not prove a worst-case M1/M3 bound",
+    "does not classify F_17^32 regular-window pencils",
+    "does not make gcd roots equivalent to bad slopes for a proper minor family",
+    "does not replace affine/projective pivot charts for singular buckets"
+  ],
+  "schema_version": "regular-minor-gcd-gate-v1",
+  "source_input": {
+    "ref": "experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_toy.json",
+    "sha256": "9a9810cd64c34d5c870b99f7c52ae8f5e86dd947cb38e47a7bc1bbbe8c4623a5"
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreements": 4,
+    "common_gcd_roots_by_A": {
+      "13": [
+        11
+      ],
+      "14": [
+        11
+      ],
+      "15": [],
+      "16": []
+    },
+    "prefix_roots_by_A": {
+      "13": [
+        11
+      ],
+      "14": [
+        10,
+        11
+      ],
+      "15": [
+        0,
+        2
+      ],
+      "16": [
+        2
+      ]
+    },
+    "rank_defect_slopes_by_A": {
+      "13": [
+        11
+      ],
+      "14": [
+        11
+      ],
+      "15": [],
+      "16": []
+    }
+  },
+  "theorem": {
+    "non_equivalence_warning": "A gcd root for a proper audited family can still be a false positive unless all maximal minors or an equivalent rank criterion are audited.",
+    "proof": "Rank at most j means all (j+1)x(j+1) minors vanish.  The audited row-set determinants are among those minors, so their univariate determinant polynomials all vanish at the slope.  A common finite-field root of the audited polynomials is a root of their monic gcd.",
+    "statement": "In a regular overdetermined bucket, any slope at which the Hankel matrix has rank at most j is a root of every maximal minor determinant, hence of the gcd of any audited family of maximal-minor determinant polynomials."
+  },
+  "toy_replay": {
+    "agreements": [
+      {
+        "A": 13,
+        "audited_row_set_family": "all contiguous maximal row sets",
+        "audited_row_sets": 2,
+        "common_gcd_degree": 4,
+        "common_gcd_polynomial": [
+          4,
+          14,
+          12,
+          7,
+          1
+        ],
+        "common_gcd_root_count": 1,
+        "common_gcd_roots": [
+          11
+        ],
+        "containment_checks": {
+          "rank_defects_subset_common_gcd_roots": true,
+          "split_bad_slopes_subset_common_gcd_roots": true
+        },
+        "j": 3,
+        "minor_records": [
+          {
+            "degree": 4,
+            "polynomial": [
+              4,
+              14,
+              12,
+              7,
+              1
+            ],
+            "roots": [
+              11
+            ],
+            "row_set": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "degree": 4,
+            "polynomial": [
+              4,
+              14,
+              12,
+              7,
+              1
+            ],
+            "roots": [
+              11
+            ],
+            "row_set": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "minor_size": 4,
+        "rank_defect_slopes": [
+          11
+        ],
+        "sharpening_over_prefix_root_count": 0,
+        "single_prefix_root_count": 1,
+        "single_prefix_roots": [
+          11
+        ],
+        "split_bad_slopes": [],
+        "t": 5
+      },
+      {
+        "A": 14,
+        "audited_row_set_family": "all contiguous maximal row sets",
+        "audited_row_sets": 4,
+        "common_gcd_degree": 2,
+        "common_gcd_polynomial": [
+          2,
+          12,
+          1
+        ],
+        "common_gcd_root_count": 1,
+        "common_gcd_roots": [
+          11
+        ],
+        "containment_checks": {
+          "rank_defects_subset_common_gcd_roots": true,
+          "split_bad_slopes_subset_common_gcd_roots": true
+        },
+        "j": 2,
+        "minor_records": [
+          {
+            "degree": 3,
+            "polynomial": [
+              5,
+              4,
+              8,
+              4
+            ],
+            "roots": [
+              10,
+              11
+            ],
+            "row_set": [
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "degree": 3,
+            "polynomial": [
+              1,
+              14,
+              6,
+              4
+            ],
+            "roots": [
+              2,
+              11
+            ],
+            "row_set": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "degree": 3,
+            "polynomial": [
+              4,
+              2,
+              6,
+              6
+            ],
+            "roots": [
+              11
+            ],
+            "row_set": [
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "degree": 3,
+            "polynomial": [
+              2,
+              13,
+              7,
+              9
+            ],
+            "roots": [
+              11,
+              15
+            ],
+            "row_set": [
+              3,
+              4,
+              5
+            ]
+          }
+        ],
+        "minor_size": 3,
+        "rank_defect_slopes": [
+          11
+        ],
+        "sharpening_over_prefix_root_count": 1,
+        "single_prefix_root_count": 2,
+        "single_prefix_roots": [
+          10,
+          11
+        ],
+        "split_bad_slopes": [],
+        "t": 6
+      },
+      {
+        "A": 15,
+        "audited_row_set_family": "all contiguous maximal row sets",
+        "audited_row_sets": 6,
+        "common_gcd_degree": 0,
+        "common_gcd_polynomial": [
+          1
+        ],
+        "common_gcd_root_count": 0,
+        "common_gcd_roots": [],
+        "containment_checks": {
+          "rank_defects_subset_common_gcd_roots": true,
+          "split_bad_slopes_subset_common_gcd_roots": true
+        },
+        "j": 1,
+        "minor_records": [
+          {
+            "degree": 2,
+            "polynomial": [
+              0,
+              3,
+              7
+            ],
+            "roots": [
+              0,
+              2
+            ],
+            "row_set": [
+              0,
+              1
+            ]
+          },
+          {
+            "degree": 2,
+            "polynomial": [
+              5,
+              14,
+              12
+            ],
+            "roots": [],
+            "row_set": [
+              1,
+              2
+            ]
+          },
+          {
+            "degree": 2,
+            "polynomial": [
+              9,
+              2,
+              8
+            ],
+            "roots": [],
+            "row_set": [
+              2,
+              3
+            ]
+          },
+          {
+            "degree": 1,
+            "polynomial": [
+              5,
+              10
+            ],
+            "roots": [
+              8
+            ],
+            "row_set": [
+              3,
+              4
+            ]
+          },
+          {
+            "degree": 2,
+            "polynomial": [
+              16,
+              6,
+              8
+            ],
+            "roots": [
+              6
+            ],
+            "row_set": [
+              4,
+              5
+            ]
+          },
+          {
+            "degree": 2,
+            "polynomial": [
+              10,
+              2,
+              16
+            ],
+            "roots": [],
+            "row_set": [
+              5,
+              6
+            ]
+          }
+        ],
+        "minor_size": 2,
+        "rank_defect_slopes": [],
+        "sharpening_over_prefix_root_count": 2,
+        "single_prefix_root_count": 2,
+        "single_prefix_roots": [
+          0,
+          2
+        ],
+        "split_bad_slopes": [],
+        "t": 7
+      },
+      {
+        "A": 16,
+        "audited_row_set_family": "all contiguous maximal row sets",
+        "audited_row_sets": 8,
+        "common_gcd_degree": 0,
+        "common_gcd_polynomial": [
+          1
+        ],
+        "common_gcd_root_count": 0,
+        "common_gcd_roots": [],
+        "containment_checks": {
+          "rank_defects_subset_common_gcd_roots": true,
+          "split_bad_slopes_subset_common_gcd_roots": true
+        },
+        "j": 0,
+        "minor_records": [
+          {
+            "degree": 1,
+            "polynomial": [
+              3,
+              7
+            ],
+            "roots": [
+              2
+            ],
+            "row_set": [
+              0
+            ]
+          },
+          {
+            "degree": 1,
+            "polynomial": [
+              11,
+              3
+            ],
+            "roots": [
+              2
+            ],
+            "row_set": [
+              1
+            ]
+          },
+          {
+            "degree": 1,
+            "polynomial": [
+              12,
+              12
+            ],
+            "roots": [
+              16
+            ],
+            "row_set": [
+              2
+            ]
+          },
+          {
+            "degree": 1,
+            "polynomial": [
+              12,
+              1
+            ],
+            "roots": [
+              5
+            ],
+            "row_set": [
+              3
+            ]
+          },
+          {
+            "degree": 1,
+            "polynomial": [
+              0,
+              5
+            ],
+            "roots": [
+              0
+            ],
+            "row_set": [
+              4
+            ]
+          },
+          {
+            "degree": 1,
+            "polynomial": [
+              16,
+              8
+            ],
+            "roots": [
+              15
+            ],
+            "row_set": [
+              5
+            ]
+          },
+          {
+            "degree": 1,
+            "polynomial": [
+              15,
+              11
+            ],
+            "roots": [
+              11
+            ],
+            "row_set": [
+              6
+            ]
+          },
+          {
+            "degree": 1,
+            "polynomial": [
+              3,
+              15
+            ],
+            "roots": [
+              10
+            ],
+            "row_set": [
+              7
+            ]
+          }
+        ],
+        "minor_size": 1,
+        "rank_defect_slopes": [],
+        "sharpening_over_prefix_root_count": 1,
+        "single_prefix_root_count": 1,
+        "single_prefix_roots": [
+          2
+        ],
+        "split_bad_slopes": [],
+        "t": 8
+      }
+    ],
+    "field": "F_17",
+    "row": {
+      "domain": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "domain_description": "sorted nonzero elements of F_17",
+      "field": "F_17",
+      "k": 8,
+      "n": 16
+    }
+  }
+}
