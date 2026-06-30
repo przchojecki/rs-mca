@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - L1 monomial dyadic descent packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_l1_monomial_dyadic_descent_packet.py`;
+  `experimental/data/certificates/l1-monomial-dyadic-descent/`;
+  `experimental/notes/l1/l1_monomial_dyadic_descent_survivors.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A replayable proof packet for the monomial-prefix
+  locator classification over `F_17[z]/(z^32-3)`, `|H|=512`, and degree bound
+  `deg P <= 256`.  The verifier checks the local length-16 imbalance lemma,
+  binomial basis gate, dyadic divisibility thresholds, survivor table,
+  impossible candidate rows, final admissible size list, and structural
+  nonemptiness witnesses.
+- **How it is useful:** This addresses the L1 base-list proof-packet roadmap
+  item with a nontrivial, machine-auditable locator theorem rather than a
+  broad conjectural note.  It is a monomial-prefix packet only, not an
+  arbitrary-word L1 theorem.
+- **What to do next:** Use this packet shape for quotient-removed
+  arbitrary-word or prefix-family packets, keeping quotient-periodic mass and
+  primitive remainders explicitly separated.
+
 ### 2026-06-30 - M2 Hankel smoke packet
 
 - **Agent/model:** Codex.

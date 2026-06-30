@@ -601,3 +601,24 @@ The main points to audit are:
 4. The quotient identity L_S(X)=L_T(X^Q) matches the forced K_Q-periodicity.
 5. The structural families Z_1, Z_2, and Z_3 are normal forms, not explicit orbit-representative lists.
 ```
+
+## Replay Packet
+
+The finite arithmetic gates in this note are packaged in:
+
+```text
+experimental/data/certificates/l1-monomial-dyadic-descent/
+  f17_32_n512_deg256_monomial_dyadic_packet.json
+```
+
+Run:
+
+```sh
+python3 experimental/scripts/verify_l1_monomial_dyadic_descent_packet.py \
+  --check experimental/data/certificates/l1-monomial-dyadic-descent/f17_32_n512_deg256_monomial_dyadic_packet.json
+```
+
+The packet verifier checks the local length-16 lemma, binomial basis gate,
+dyadic descent thresholds, survivor table, impossible rows, final admissible
+size list, and the structural nonemptiness witnesses.  It does not enumerate
+all support orbits in the large admissible families.

@@ -1,0 +1,393 @@
+{
+  "schema_version": "l1-monomial-dyadic-descent-packet-v1",
+  "status": "PROVED / AUDIT",
+  "row": {
+    "field": "F_17[z]/(z^32 - 3)",
+    "base_prime": 17,
+    "extension_degree": 32,
+    "domain": "H=<z>",
+    "domain_order": 512,
+    "degree_bound_inclusive": 256,
+    "standard_rs_dimension_if_promoted": 257
+  },
+  "object": "monomial-prefix locator supports for x -> x^A",
+  "agreement_range": {
+    "A_min": 258,
+    "A_max": 512
+  },
+  "source_note": "experimental/notes/l1/l1_monomial_dyadic_descent_survivors.md",
+  "local16": {
+    "p": 17,
+    "omega": 3,
+    "omega_order": 16,
+    "delta0": [
+      0,
+      0,
+      1,
+      -1,
+      -1,
+      1,
+      1,
+      1
+    ],
+    "delta0_values_at_1_3_5": [
+      0,
+      0,
+      15
+    ],
+    "solution_count_for_1_3": 17,
+    "solution_weights": [
+      0,
+      6
+    ],
+    "solution_count_for_1_3_5": 1
+  },
+  "basis_gate": {
+    "binomial": "X^h - 3",
+    "h_values": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32
+    ]
+  },
+  "descent_gates": [
+    {
+      "r": 0,
+      "moment_threshold": 5,
+      "min_A": 262,
+      "forced_divisor": 2
+    },
+    {
+      "r": 1,
+      "moment_threshold": 10,
+      "min_A": 267,
+      "forced_divisor": 4
+    },
+    {
+      "r": 2,
+      "moment_threshold": 20,
+      "min_A": 277,
+      "forced_divisor": 8
+    },
+    {
+      "r": 3,
+      "moment_threshold": 40,
+      "min_A": 297,
+      "forced_divisor": 16
+    },
+    {
+      "r": 4,
+      "moment_threshold": 80,
+      "min_A": 337,
+      "forced_divisor": 32
+    },
+    {
+      "r": 5,
+      "moment_threshold": 160,
+      "min_A": 417,
+      "forced_divisor": 64
+    }
+  ],
+  "candidate_sizes": [
+    258,
+    259,
+    260,
+    261,
+    262,
+    264,
+    266,
+    268,
+    272,
+    276,
+    280,
+    288,
+    296,
+    304,
+    320,
+    336,
+    352,
+    384,
+    416,
+    448,
+    512
+  ],
+  "survivor_rows": [
+    {
+      "A": 258,
+      "Q": 1,
+      "N": 512,
+      "B": 258,
+      "D": 256,
+      "d": 1,
+      "c": 254,
+      "status": "admissible",
+      "family": "Z_1(512,254)"
+    },
+    {
+      "A": 259,
+      "Q": 1,
+      "N": 512,
+      "B": 259,
+      "D": 256,
+      "d": 2,
+      "c": 253,
+      "status": "admissible",
+      "family": "Z_2(512,253)"
+    },
+    {
+      "A": 260,
+      "Q": 1,
+      "N": 512,
+      "B": 260,
+      "D": 256,
+      "d": 3,
+      "c": 252,
+      "status": "admissible",
+      "family": "Z_3(512,252)"
+    },
+    {
+      "A": 261,
+      "Q": 1,
+      "N": 512,
+      "B": 261,
+      "D": 256,
+      "d": 4,
+      "c": 251,
+      "status": "impossible",
+      "reason": "d=4 with odd quotient-complement size"
+    },
+    {
+      "A": 262,
+      "Q": 2,
+      "N": 256,
+      "B": 131,
+      "D": 128,
+      "d": 2,
+      "c": 125,
+      "status": "admissible",
+      "family": "Z_2(256,125)"
+    },
+    {
+      "A": 264,
+      "Q": 2,
+      "N": 256,
+      "B": 132,
+      "D": 128,
+      "d": 3,
+      "c": 124,
+      "status": "admissible",
+      "family": "Z_3(256,124)"
+    },
+    {
+      "A": 266,
+      "Q": 2,
+      "N": 256,
+      "B": 133,
+      "D": 128,
+      "d": 4,
+      "c": 123,
+      "status": "impossible",
+      "reason": "d=4 with odd quotient-complement size"
+    },
+    {
+      "A": 268,
+      "Q": 4,
+      "N": 128,
+      "B": 67,
+      "D": 64,
+      "d": 2,
+      "c": 61,
+      "status": "admissible",
+      "family": "Z_2(128,61)"
+    },
+    {
+      "A": 272,
+      "Q": 4,
+      "N": 128,
+      "B": 68,
+      "D": 64,
+      "d": 3,
+      "c": 60,
+      "status": "admissible",
+      "family": "Z_3(128,60)"
+    },
+    {
+      "A": 276,
+      "Q": 4,
+      "N": 128,
+      "B": 69,
+      "D": 64,
+      "d": 4,
+      "c": 59,
+      "status": "impossible",
+      "reason": "d=4 with odd quotient-complement size"
+    },
+    {
+      "A": 280,
+      "Q": 8,
+      "N": 64,
+      "B": 35,
+      "D": 32,
+      "d": 2,
+      "c": 29,
+      "status": "admissible",
+      "family": "Z_2(64,29)"
+    },
+    {
+      "A": 288,
+      "Q": 8,
+      "N": 64,
+      "B": 36,
+      "D": 32,
+      "d": 3,
+      "c": 28,
+      "status": "admissible",
+      "family": "Z_3(64,28)"
+    },
+    {
+      "A": 296,
+      "Q": 8,
+      "N": 64,
+      "B": 37,
+      "D": 32,
+      "d": 4,
+      "c": 27,
+      "status": "impossible",
+      "reason": "d=4 with odd quotient-complement size"
+    },
+    {
+      "A": 304,
+      "Q": 16,
+      "N": 32,
+      "B": 19,
+      "D": 16,
+      "d": 2,
+      "c": 13,
+      "status": "admissible",
+      "family": "Z_2(32,13)"
+    },
+    {
+      "A": 320,
+      "Q": 16,
+      "N": 32,
+      "B": 20,
+      "D": 16,
+      "d": 3,
+      "c": 12,
+      "status": "admissible",
+      "family": "Z_3(32,12)"
+    },
+    {
+      "A": 336,
+      "Q": 16,
+      "N": 32,
+      "B": 21,
+      "D": 16,
+      "d": 4,
+      "c": 11,
+      "status": "impossible",
+      "reason": "d=4 with odd quotient-complement size"
+    },
+    {
+      "A": 352,
+      "Q": 32,
+      "N": 16,
+      "B": 11,
+      "D": 8,
+      "d": 2,
+      "c": 5,
+      "status": "admissible",
+      "family": "Z_2(16,5)"
+    },
+    {
+      "A": 384,
+      "Q": 32,
+      "N": 16,
+      "B": 12,
+      "D": 8,
+      "d": 3,
+      "c": 4,
+      "status": "admissible",
+      "family": "one_order_4_coset_in_G_16"
+    },
+    {
+      "A": 416,
+      "Q": 32,
+      "N": 16,
+      "B": 13,
+      "D": 8,
+      "d": 4,
+      "c": 3,
+      "status": "impossible",
+      "reason": "d=4 with odd quotient-complement size"
+    },
+    {
+      "A": 448,
+      "Q": 64,
+      "N": 8,
+      "B": 7,
+      "D": 4,
+      "d": 2,
+      "c": 1,
+      "status": "impossible",
+      "reason": "one nonzero quotient-complement point cannot satisfy p_1=0"
+    },
+    {
+      "A": 512,
+      "Q": 64,
+      "N": 8,
+      "B": 8,
+      "D": 4,
+      "d": 3,
+      "c": 0,
+      "status": "admissible",
+      "family": "empty_complement"
+    }
+  ],
+  "impossible_candidate_sizes": [
+    261,
+    266,
+    276,
+    296,
+    336,
+    416,
+    448
+  ],
+  "final_admissible_sizes": [
+    258,
+    259,
+    260,
+    262,
+    264,
+    268,
+    272,
+    280,
+    288,
+    304,
+    320,
+    352,
+    384,
+    512
+  ],
+  "nonemptiness_witnesses": {
+    "d1_witness": "any 127 antipodal pairs in G_512",
+    "E0_mod_17": [
+      1,
+      2,
+      3,
+      13,
+      15
+    ],
+    "d3_witness": "union of complete order-4 cosets"
+  },
+  "theorem_summary": "For the monomial word x -> x^A on H=<z> in F_17[z]/(z^32-3), with degree bound deg P <= 256, the listed final_admissible_sizes are exactly the agreement sizes A in 258..512 for which an A-admissible support exists.",
+  "nonclaims": [
+    "not an arbitrary-word L1 local-limit theorem",
+    "not the F_17^32 k=256 finite-row MCA threshold",
+    "not an MCA, line-decoding, interleaved-list, or protocol theorem",
+    "does not enumerate all support orbits in the large admissible families"
+  ]
+}
