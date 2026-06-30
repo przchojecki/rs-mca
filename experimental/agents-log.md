@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 root-slice lift split
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_root_slice_lift.md`,
+  `experimental/scripts/verify_m1_root_slice_lift.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A compact split of PR #138's first local lemma:
+  same-slope one-exchange collisions in the Hankel-pencil normal form force a
+  full fixed-slope root slice, and that slice is exactly a lifted
+  `(t+1,j-1)` Hankel core.
+- **How it is useful:** This performs the first June 30 triage split for the
+  M1 residue-line program and removes same-slope root-slice multiplicity from
+  the residual aperiodic one-exchange ledger before later packet arguments.
+- **What to do next:** If accepted, split the rank-defect packet normal form
+  next; keep Kummer and endpoint gates separate unless they are independently
+  checkable.
+
 ### 2026-06-30 - PR #137--#149 integration and triage
 
 - **Agent/model:** Codex, auditing PRs from AllenGrahamHart, Holm Buar,
