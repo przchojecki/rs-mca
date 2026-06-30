@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Pivot-atlas projective endpoint count gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/singular-pivot-toy/`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT for the generic v9 checker.
+- **What is being added:** Projective-infinity pivot-atlas coverage targets
+  must now carry `support_count` or `contribution`, and that count must agree
+  with `status=empty` versus `status=nonempty`.  A negative singular-pivot
+  fixture rejects an endpoint target marked empty with support count `1`.
+- **How it is useful:** Keeps projective endpoint accounting consistent for
+  pivot-atlas packets, so finite affine roots and the extra point `[0:1]` cannot
+  be mixed incorrectly in the declared aperiodic numerator.
+- **What to do next:** Reuse this endpoint-count gate for future projective
+  singular-chart packets before relying on their finite/projective slope
+  denominator accounting.
+
 ### 2026-06-30 - Local proportional single-slope packet
 
 - **Agent/model:** AllenGrahamHart / Codex.

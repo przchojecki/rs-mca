@@ -46,7 +46,14 @@ python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/singular-pivot-toy/invalid_missing_projective_infinity_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/singular-pivot-toy/invalid_bad_projective_infinity_count_packet.json
 ```
 
 Non-claims: this is a toy row only, not an `F_17^32` row-data packet, not a
 prize-row threshold theorem, and not a uniform singular-pivot algorithm.
+
+The projective-infinity count fixture keeps the infinity pivot record empty but
+points the coverage target at `status=empty, support_count=1`; the generic v9
+checker must reject that inconsistent endpoint accounting.

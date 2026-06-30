@@ -1431,13 +1431,27 @@ def validate_projective_infinity(
                 f"A={item.get('A')}: empty projective_infinity target needs empty pivots"
             )
         contribution = target.get("support_count", target.get("contribution"))
-        if contribution is not None:
-            value = require_nonnegative_int(
-                contribution,
-                f"A={item.get('A')}: projective_infinity contribution",
+        if contribution is None:
+            raise PacketError(
+                f"A={item.get('A')}: projective_infinity target needs "
+                "support_count or contribution"
             )
-            if value > 0:
-                projective_infinity_present = True
+        value = require_nonnegative_int(
+            contribution,
+            f"A={item.get('A')}: projective_infinity contribution",
+        )
+        if status == "empty" and value != 0:
+            raise PacketError(
+                f"A={item.get('A')}: empty projective_infinity target "
+                f"has contribution {value}"
+            )
+        if status == "nonempty" and value == 0:
+            raise PacketError(
+                f"A={item.get('A')}: nonempty projective_infinity target "
+                "needs positive contribution"
+            )
+        if value > 0:
+            projective_infinity_present = True
     return int(projective_infinity_present)
 
 

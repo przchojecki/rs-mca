@@ -1,0 +1,6 @@
+{
+  "projective_point": "[0:1]",
+  "reason": "intentionally invalid: the chart is declared empty but carries a positive support count",
+  "status": "empty",
+  "support_count": 1
+}

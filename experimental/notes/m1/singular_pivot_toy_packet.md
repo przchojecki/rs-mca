@@ -89,6 +89,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/singular-pivot-toy/invalid_missing_projective_infinity_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/singular-pivot-toy/invalid_bad_projective_infinity_count_packet.json
 ```
 
 The second negative fixture publishes the same pivot eliminant `Z+5` but gives
@@ -96,7 +99,10 @@ the wrong root table.  The packet checker rejects it by recomputing the roots
 over `F_17`.  The third fixture keeps the pivot root tables correct but points
 the packet-level root union at `{0}`; the checker rejects that numerator table
 because the pivot-root union is `{12}`.  The fourth fixture uses the
-`projective_line` sampler but omits the `projective_infinity` chart.
+`projective_line` sampler but omits the `projective_infinity` chart.  The fifth
+fixture includes that chart but points its coverage target at `status=empty`
+with `support_count=1`; the checker rejects the inconsistent endpoint
+accounting.
 
 Next step: use the same packet shape only when an actual lower-agreement row
 produces a genuine singular bucket.  Until then this is a machinery certificate,
