@@ -77,7 +77,8 @@ sparse residual certificate reduction, feasibility window, and far-from-star
 certificate cap with near-star localization, template count, and
 density-threshold closure, budget inversion, template-budget tradeoff, and
 integer support-budget ceiling, fixed-residual sparse certificate feasibility
-interval, and minimal selected-density baseline.
+interval, far-star class-count floor monotonicity, and minimal
+selected-density baseline.
 """
 
 from __future__ import annotations
@@ -8399,6 +8400,64 @@ def check_sparse_certificate_fixed_residual_feasibility() -> None:
                 continue
             h = e // 2
             for degree_cap in range(0, min(5, q)):
+                floor_by_residual_size: dict[int, int] = {}
+                previous_floor = None
+                for residual_size in range(degree_cap + 1, q + 3):
+                    star_bound = (
+                        (q - 3) * residual_size * residual_size
+                        + 2 * residual_size * degree_cap
+                    )
+                    max_missing_classes = (h - 1) * residual_size
+                    selected_min_target = ceil_fraction(
+                        Fraction(
+                            (q - 1)
+                            * (q - 1)
+                            * residual_size
+                            * residual_size,
+                            h * h * star_bound,
+                        )
+                    )
+                    missing_min_target = max(
+                        0,
+                        q
+                        + 1
+                        - (
+                            ((q - 1) * max_missing_classes)
+                            // (h * (residual_size - degree_cap))
+                        ),
+                    )
+                    minimal_target = max(selected_min_target, missing_min_target)
+                    floor_by_residual_size[residual_size] = minimal_target
+                    if previous_floor is not None:
+                        assert previous_floor <= minimal_target, (
+                            q,
+                            e,
+                            degree_cap,
+                            residual_size,
+                            previous_floor,
+                            minimal_target,
+                        )
+                    previous_floor = minimal_target
+                if degree_cap > 0:
+                    for far_factor in range(2, 5):
+                        boundary_size = far_factor * degree_cap
+                        if boundary_size not in floor_by_residual_size:
+                            continue
+                        boundary_floor = floor_by_residual_size[boundary_size]
+                        for residual_size, minimal_target in (
+                            floor_by_residual_size.items()
+                        ):
+                            if residual_size >= boundary_size:
+                                assert boundary_floor <= minimal_target, (
+                                    q,
+                                    e,
+                                    degree_cap,
+                                    far_factor,
+                                    boundary_size,
+                                    residual_size,
+                                    boundary_floor,
+                                    minimal_target,
+                                )
                 for target_budget in range(0, q + 2):
                     for residual_size in range(1, q + 3):
                         total_classes = h * residual_size

@@ -49,6 +49,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 far-star class-count floor
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/m1_density_budget.py`,
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The fixed-residual floor `R_min(m_ap)` is proved
+  monotone in `m_ap`, so every far-star class-count sparse certificate with
+  `m_ap>=LD` requires the exact boundary budget `R>=R_min(LD)`.
+- **How it is useful:** Compresses the far-from-star sparse branch from a
+  residual-size scan to one boundary arithmetic check before applying the
+  remaining row-basis/core-image constraints.
+- **What to do next:** Compare `R_min(LD)` with concrete finite-row target
+  budgets and use the surviving cases to guide support-structure searches.
+
 ### 2026-06-30 - M1 fixed-residual support-budget floor
 
 - **Agent/model:** AllenGrahamHart / Codex.

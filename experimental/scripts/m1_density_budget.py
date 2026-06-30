@@ -32,6 +32,9 @@ integer feasibility interval for the sparse certificate class counts
 ``K_ap`` and ``C_ap`` at that residual size, and the minimum integer target
 budget ``R`` for which any class-count certificate can exist.
 
+When ``--e`` is supplied, it also reports the monotone far-star class-count
+floor at ``m_ap=L D``.
+
 The script does not prove the missing global row-basis/core-image density
 bound.  It tells a finite checker what support budget that hypothetical bound
 would close, and what near-star template ledger remains.
@@ -348,29 +351,13 @@ def finite_sparse_feasibility_report(args: argparse.Namespace) -> dict[str, Any]
         and forced_missing_classes <= max_missing_classes
         and selected_upper >= residual_size
     )
-    if sparse_size_condition:
-        selected_min_target = ceil_fraction(
-            Fraction(
-                (q - 1) * (q - 1) * residual_size * residual_size,
-                h * h * star_bound,
-            )
-        )
-        missing_min_target = max(
-            0,
-            q
-            + 1
-            - (
-                ((q - 1) * max_missing_classes)
-                // (h * (residual_size - d_cap))
-            ),
-        )
-        minimal_target = max(selected_min_target, missing_min_target)
-        feasible_for_some_target = minimal_target <= q + 1
-    else:
-        selected_min_target = None
-        missing_min_target = None
-        minimal_target = None
-        feasible_for_some_target = False
+    target_floor = sparse_target_floor_report(q, d_cap, args.e, residual_size)
+    selected_min_target = target_floor["selected_side_min_target_R_at_K_eq_m"]
+    missing_min_target = target_floor["missing_side_min_target_R_at_K_eq_m"]
+    minimal_target = target_floor["minimal_target_R_for_class_count_feasibility"]
+    feasible_for_some_target = target_floor[
+        "class_count_feasible_for_some_R_leq_q_plus_one"
+    ]
     return {
         "object": "m1_finite_sparse_certificate_feasibility",
         "status": "AUDIT",
@@ -407,6 +394,66 @@ def finite_sparse_feasibility_report(args: argparse.Namespace) -> dict[str, Any]
             "m_ap. Feasibility requires m_ap>D, m_ap<=K_ap<=hm_ap, "
             "0<=C_ap<=(h-1)m_ap, K_ap+C_ap=hm_ap, and both support-budget "
             "inequalities. The minimum target budget is attained at K_ap=m_ap."
+        ),
+    }
+
+
+def sparse_target_floor_report(
+    q: int,
+    d_cap: int,
+    e: int,
+    residual_size: int,
+) -> dict[str, Any]:
+    h = e // 2
+    if residual_size <= d_cap:
+        return {
+            "object": "m1_sparse_class_count_target_floor",
+            "status": "AUDIT",
+            "e": e,
+            "h": h,
+            "m_ap": residual_size,
+            "requires_sparse_size_condition_m_gt_D": False,
+            "selected_side_min_target_R_at_K_eq_m": None,
+            "missing_side_min_target_R_at_K_eq_m": None,
+            "minimal_target_R_for_class_count_feasibility": None,
+            "class_count_feasible_for_some_R_leq_q_plus_one": False,
+        }
+    star_bound = (
+        (q - 3) * residual_size * residual_size + 2 * residual_size * d_cap
+    )
+    if star_bound <= 0:
+        raise ValueError("require positive sparse star bound")
+    max_missing_classes = (h - 1) * residual_size
+    selected_min_target = ceil_fraction(
+        Fraction(
+            (q - 1) * (q - 1) * residual_size * residual_size,
+            h * h * star_bound,
+        )
+    )
+    missing_min_target = max(
+        0,
+        q
+        + 1
+        - (
+            ((q - 1) * max_missing_classes)
+            // (h * (residual_size - d_cap))
+        ),
+    )
+    minimal_target = max(selected_min_target, missing_min_target)
+    return {
+        "object": "m1_sparse_class_count_target_floor",
+        "status": "AUDIT",
+        "e": e,
+        "h": h,
+        "m_ap": residual_size,
+        "requires_sparse_size_condition_m_gt_D": True,
+        "selected_side_min_target_R_at_K_eq_m": selected_min_target,
+        "missing_side_min_target_R_at_K_eq_m": missing_min_target,
+        "minimal_target_R_for_class_count_feasibility": minimal_target,
+        "class_count_feasible_for_some_R_leq_q_plus_one": minimal_target <= q + 1,
+        "certificate": (
+            "For fixed m_ap, RKSQSPCERT1/RKSQSPCERT2 first become "
+            "class-count feasible at K_ap=m_ap."
         ),
     }
 
@@ -515,6 +562,32 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
             "or near-star template branches from the M1 local theorem.",
         ],
     }
+
+    if args.e is not None:
+        far_star_floor = sparse_target_floor_report(
+            q,
+            d_cap,
+            args.e,
+            far_factor * d_cap,
+        )
+        far_star_floor["object"] = "m1_far_star_sparse_class_count_floor"
+        far_star_floor["L"] = far_factor
+        far_star_floor["minimum_residual_size_m_ge_LD"] = far_factor * d_cap
+        far_star_floor["certificate"] = (
+            "R_min(m_ap) is nondecreasing for m_ap>D, so every class-count "
+            "sparse certificate with m_ap>=LD requires R>=R_min(LD)."
+        )
+        if args.R is not None:
+            far_star_floor["queried_R_excluded_by_class_count_floor"] = (
+                args.R
+                < far_star_floor["minimal_target_R_for_class_count_feasibility"]
+            )
+        if args.target_R is not None:
+            far_star_floor["target_R_excluded_by_class_count_floor"] = (
+                args.target_R
+                < far_star_floor["minimal_target_R_for_class_count_feasibility"]
+            )
+        report["far_star_sparse_class_count_floor"] = far_star_floor
 
     if args.R is not None:
         report["queried_R"] = args.R
