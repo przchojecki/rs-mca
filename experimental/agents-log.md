@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 high-overlap graph budget
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_high_overlap_graph_budget.md`,
+  `experimental/scripts/verify_m1_high_overlap_graph_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A graph-budget version of the M1 packet-overlap
+  endpoint sift: after endpoint-star pruning, a small residual support forces
+  many disjoint-support packet pairs with overlap above a threshold, unless an
+  explicit high-overlap edge budget fails.
+- **How it is useful:** Gives Work package C3 a more realistic algebraic
+  target than a uniform pair cap: a Kummer/cross-ratio theorem bounding the
+  high-overlap graph by maximum degree, degeneracy, or total edge count can be
+  inserted directly into the support floor.
+- **What to do next:** Prove the corresponding high-overlap graph bound for
+  the actual Hankel residue-line packet families, or find a structured family
+  where the high-overlap graph is too dense.
+
 ### 2026-06-30 - M1 post-sift residual alternative
 
 - **Agent/model:** AllenGrahamHart / Codex.
