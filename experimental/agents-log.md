@@ -49,6 +49,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 sparse certificate feasibility window
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The sparse residual certificate inequalities are
+  normalized into a feasibility window for selected palette density `alpha`
+  and missing palette density `gamma`.
+- **How it is useful:** A global row-basis/core-image lower bound on selected
+  palette density can now be compared directly against this window to rule out
+  sparse certificates.
+- **What to do next:** Prove such a global density lower bound or classify
+  failures as quotient/template structure.
+
 ### 2026-06-30 - M1 sparse residual certificate reduction
 
 - **Agent/model:** AllenGrahamHart / Codex.

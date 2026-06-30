@@ -48,6 +48,7 @@ SQUARE-NORM RESIDUAL PALETTE-DENSITY SUPPORT LOWER BOUND /
 SQUARE-NORM RESIDUAL SMALL-SUPPORT EXCLUSION CRITERION /
 SQUARE-NORM LOCAL SUPPORT-BUDGET OUTPUT THEOREM /
 SQUARE-NORM SPARSE RESIDUAL CERTIFICATE REDUCTION /
+SQUARE-NORM SPARSE CERTIFICATE FEASIBILITY WINDOW /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3603,6 +3604,35 @@ Moreover, the optional certificate cannot occur if either strict exclusion
 trigger in (RKSQEXCLUDE) holds.  This is the exact finite combinatorial object
 left for the global M1 argument.
 
+The certificate also has a normalized feasibility window.  Put `h=e/2` and
+
+```text
+alpha=K/(hm),        gamma=C/(hm)=1-alpha.
+```
+
+For a `(D,R)` sparse residual certificate, (RKSQSPCERT1) and
+(RKSQSPCERT2) imply
+
+```text
+alpha^2 <= R((q-3)m^2+2mD)/((q-1)^2 m^2),        (RKSQSPWINDOW1)
+
+gamma >= (m-D)(q+1-R)/((q-1)m).                  (RKSQSPWINDOW2)
+```
+
+Equivalently, any such certificate must satisfy
+
+```text
+alpha <= min(
+  sqrt(R((q-3)m^2+2mD))/((q-1)m),
+  1 - (m-D)(q+1-R)/((q-1)m)
+).                                                (RKSQSPWINDOW)
+```
+
+Thus a global row-basis/core-image lower bound `alpha>alpha_0` excludes all
+certificates in a parameter range as soon as `alpha_0` is above this window
+throughout that range.  This is the normalized density target left by the
+local square-map analysis.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -4120,8 +4150,10 @@ residual support-budget alternative (RKSQSUPPBUDGET1/RKSQSUPPBUDGET2), the
 residual palette-density support lower bound (RKSQPALETTESUPP/RKSQPALETTEDENS),
 the residual small-support exclusion criterion (RKSQEXCLUDE), the local
 support-budget output theorem (RKSQLOCALOUT), the sparse residual certificate
-reduction (RKSQSPCERT0/RKSQSPCERT1/RKSQSPCERT2/RKSQSPCERT), the canonical
-endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
+reduction (RKSQSPCERT0/RKSQSPCERT1/RKSQSPCERT2/RKSQSPCERT), the sparse
+certificate feasibility window (RKSQSPWINDOW1/RKSQSPWINDOW2/RKSQSPWINDOW), the
+canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
+coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
@@ -4208,8 +4240,10 @@ residual support-budget alternative (RKSQSUPPBUDGET1/RKSQSUPPBUDGET2), the
 residual palette-density support lower bound (RKSQPALETTESUPP/RKSQPALETTEDENS),
 the residual small-support exclusion criterion (RKSQEXCLUDE), the local
 support-budget output theorem (RKSQLOCALOUT), the sparse residual certificate
-reduction (RKSQSPCERT0/RKSQSPCERT1/RKSQSPCERT2/RKSQSPCERT), the canonical
-endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
+reduction (RKSQSPCERT0/RKSQSPCERT1/RKSQSPCERT2/RKSQSPCERT), the sparse
+certificate feasibility window (RKSQSPWINDOW1/RKSQSPWINDOW2/RKSQSPWINDOW), the
+canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
+coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary

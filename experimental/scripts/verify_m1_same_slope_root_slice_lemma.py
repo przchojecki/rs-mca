@@ -73,7 +73,7 @@ residual density trichotomy, full-palette residual coverage, and packet-count
 corollary, plus the partial-palette uncovered-slope defect bound and residual
 support-budget alternative, palette-density support lower bound, and
 small-support exclusion criterion, local support-budget output theorem, and
-sparse residual certificate reduction.
+sparse residual certificate reduction and feasibility window.
 """
 
 from __future__ import annotations
@@ -7605,6 +7605,45 @@ def check_boundary_core_square_map_packet_count() -> None:
                                 support_budget_certificate,
                                 residual_incidence,
                                 residual_defect_incidence,
+                            )
+                            assert full_palette_size * residual_packet_size == (
+                                prime - 1
+                            )
+                            assert (
+                                (prime - 1)
+                                * (prime - 1)
+                                * residual_selected_classes
+                                * residual_selected_classes
+                            ) <= (
+                                full_palette_size
+                                * full_palette_size
+                                * probe_budget
+                                * residual_star_bound
+                            ), (
+                                prime,
+                                index,
+                                degree_cap,
+                                probe_budget,
+                                residual_count,
+                                residual_selected_classes,
+                                full_palette_size,
+                                residual_star_bound,
+                            )
+                            assert (
+                                (prime - 1) * residual_missing_classes
+                            ) >= (
+                                full_palette_size
+                                * (residual_count - degree_cap)
+                                * (len(all_projective_points) - probe_budget)
+                            ), (
+                                prime,
+                                index,
+                                degree_cap,
+                                probe_budget,
+                                residual_count,
+                                residual_missing_classes,
+                                full_palette_size,
+                                residual_star_bound,
                             )
                         density_excludes_small_support = (
                             residual_packet_size
