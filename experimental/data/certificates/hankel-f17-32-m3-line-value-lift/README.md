@@ -13,11 +13,20 @@ are exactly the fixed top-window input.  For the order-512 subgroup,
 `lambda_x = x/512`, so the verifier uses the inverse Fourier section
 `y(x)=sum_m s_m x^(-m-1)` and checks `Syn(y)=s`.
 
+The reusable subgroup-section theorem behind this lift is recorded at
+
+```text
+experimental/data/certificates/subgroup-syndrome-section/
+```
+
 Run:
 
 ```sh
 python3 experimental/scripts/verify_f17_32_m3_line_value_lift.py \
   --check experimental/data/certificates/hankel-f17-32-m3-line-value-lift/f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json
+
+python3 experimental/scripts/verify_m1_subgroup_syndrome_section.py \
+  --check experimental/data/certificates/subgroup-syndrome-section/subgroup_syndrome_section_certificate.json
 ```
 
 Non-claims: this is a line-value lift of a synthetic packet, not a worst-case

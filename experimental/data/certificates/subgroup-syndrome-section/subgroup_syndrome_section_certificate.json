@@ -1,0 +1,63 @@
+{
+  "cases": [
+    {
+      "domain_description": "F_17^*",
+      "field": "F_17",
+      "name": "F17_star_order16",
+      "replayed_syndrome_hash": "56ce9a998f9ba887e2adc0d432b3df34b7ea087d52a33790f5d3b00fe684818d",
+      "section_replays_syndrome": true,
+      "section_values_hash": "271febeb628ff10dec4e0c46aac52f850dde0bf859a1ea91f6613675af49d5d2",
+      "status": "PASS",
+      "subgroup_order": 16,
+      "syndrome_length": 8,
+      "target_syndrome_hash": "56ce9a998f9ba887e2adc0d432b3df34b7ea087d52a33790f5d3b00fe684818d",
+      "weights_hash": "794e85b59b5cad36790cfff39f819d9f651e24f39e6227e6f45275e5781b4aa3"
+    },
+    {
+      "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+      "field": "F_17^32",
+      "fixed_top_window_input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a421_426_fixed_prefix92_input.json",
+      "fixed_top_window_input_sha256": "20e0f9bf9661b8ed0c78b81cbcd5483d7442b14d2d58c44fb7facc65a903f94c",
+      "line_value_lift_ref": "experimental/data/certificates/hankel-f17-32-m3-line-value-lift/f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json",
+      "line_value_lift_sha256": "d5201a3d94d56c58b07e628cbeb878b861c012d599fe9b7c7dc6d2862e76cfe5",
+      "name": "F17_32_H512_fixed_top_window",
+      "status": "PASS",
+      "u_section": {
+        "replayed_syndrome_hash": "2d673de942048a8b5ede075bd8fc7c56c7d9cce7335d5be36ef4b87dbb16cb82",
+        "section_replays_syndrome": true,
+        "section_values_hash": "983da4945a3343cc5e2c4c81cb51ab95c7dbca56e20b9278d58a727f92e1d6c6",
+        "subgroup_order": 512,
+        "syndrome_length": 256,
+        "target_syndrome_hash": "2d673de942048a8b5ede075bd8fc7c56c7d9cce7335d5be36ef4b87dbb16cb82",
+        "weights_hash": "d613a790688ed4b6f0b691e9dac61f819258efee3b7a92d93c23e79b2c829add"
+      },
+      "v_section": {
+        "replayed_syndrome_hash": "a237870d5d074bf1de43dd6d3330c662a96b8713a29d7f4705af82cd1d05a4b5",
+        "section_replays_syndrome": true,
+        "section_values_hash": "59b2a62f68bac1c06b1908756ef581d1bf0e32428e4ea5fa66a92cda8ec2d276",
+        "subgroup_order": 512,
+        "syndrome_length": 256,
+        "target_syndrome_hash": "a237870d5d074bf1de43dd6d3330c662a96b8713a29d7f4705af82cd1d05a4b5",
+        "weights_hash": "d613a790688ed4b6f0b691e9dac61f819258efee3b7a92d93c23e79b2c829add"
+      }
+    }
+  ],
+  "nonclaims": [
+    "does not prove a worst-case MCA bound",
+    "does not classify quotient, tangent, or extension residuals",
+    "does not compute actual-row root tables"
+  ],
+  "schema_version": "subgroup-syndrome-section-v1",
+  "status": "PROVED / AUDIT",
+  "theorem": {
+    "dual_weight_formula": "lambda_x = 1 / prod_{y!=x}(x-y) = x/n",
+    "hypotheses": [
+      "H is a finite multiplicative subgroup of F^*",
+      "r <= |H|",
+      "the field characteristic does not divide |H|"
+    ],
+    "orthogonality": "sum_{x in H} x^a is n if a=0 mod n and 0 otherwise",
+    "section_formula": "y_s(x)=sum_{0<=m<r} s_m x^(-m-1)",
+    "statement": "For a multiplicative subgroup H of order n and any r <= n, the weighted Reed-Solomon syndrome map Syn:F^H -> F^r has the explicit section y_s(x)=sum_{m<r} s_m x^(-m-1)."
+  }
+}

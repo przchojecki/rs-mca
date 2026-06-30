@@ -9,9 +9,10 @@ RS[F_17^32,H,256], |H|=512, 385 <= A <= 426.
 
 It hashes and cross-checks the regular-window plan, the generic all-row-set
 minor certificate, the synthetic rank-witness family, the fixed top-window v9
-packet, and the explicit line-value lift of that fixed packet.  Its purpose is
-to make the frontier explicit: generic and synthetic regular-minor facts are
-proved, while tangent/quotient-deduped actual-row root tables and
+packet, the explicit line-value lift of that fixed packet, and the reusable
+subgroup syndrome-section theorem behind the lift.  Its purpose is to make the
+frontier explicit: generic and synthetic regular-minor facts are proved, while
+tangent/quotient-deduped actual-row root tables and
 singular-bucket outcomes are still not supplied.
 
 Run:

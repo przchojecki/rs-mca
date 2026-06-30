@@ -145,6 +145,10 @@ does not make the packet a worst-case row bound, but it closes the gap between
 the syndrome-only synthetic pencil and an explicit received line on the pinned
 row.
 
+The subgroup-section theorem is recorded separately in
+`experimental/notes/m1/subgroup_syndrome_section.md`; the certificate
+cross-checks the `F_17^32` section hashes against the line-value lift.
+
 ## Verification
 
 Run:
@@ -186,6 +190,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 experimental/scripts/verify_f17_32_m3_line_value_lift.py \
   --check experimental/data/certificates/hankel-f17-32-m3-line-value-lift/f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json
+
+python3 experimental/scripts/verify_m1_subgroup_syndrome_section.py \
+  --check experimental/data/certificates/subgroup-syndrome-section/subgroup_syndrome_section_certificate.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank_witness_family.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank-witness-family/f17_32_n512_k256_m3_rank_witness_family_certificate.json

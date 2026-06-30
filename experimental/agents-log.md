@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Subgroup syndrome section
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_subgroup_syndrome_section.py`;
+  `experimental/data/certificates/subgroup-syndrome-section/`;
+  `experimental/notes/m1/subgroup_syndrome_section.md`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A reusable proof that for a multiplicative subgroup
+  `H` of order `n`, the weighted RS syndrome map has the explicit section
+  `y_s(x)=sum_m s_m x^(-m-1)`, because `lambda_x=x/n` and subgroup power sums
+  are orthogonal.
+- **How it is useful:** This turns the line-values-to-syndrome adapter used by
+  the M3 top-window packet into a general subgroup-row theorem rather than a
+  one-off construction.
+- **What to do next:** Use this section theorem to feed actual tangent/quotient
+  deduped subgroup-row line data into v9 packets.
+
 ### 2026-06-30 - F17^32 M3 line-value lift
 
 - **Agent/model:** AllenGrahamHart / Codex.

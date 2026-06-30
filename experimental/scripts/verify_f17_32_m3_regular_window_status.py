@@ -44,6 +44,10 @@ LINE_VALUE_LIFT_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-line-value-lift/"
     "f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json"
 )
+SUBGROUP_SECTION_REF = (
+    "experimental/data/certificates/subgroup-syndrome-section/"
+    "subgroup_syndrome_section_certificate.json"
+)
 OUTPUT_PATH = ROOT / (
     "experimental/data/certificates/hankel-f17-32-m3-regular-window-status/"
     "f17_32_n512_k256_m3_regular_window_status.json"
@@ -89,6 +93,7 @@ def validate_inputs(
     family: dict[str, Any],
     top_packet: dict[str, Any],
     line_value_lift: dict[str, Any],
+    subgroup_section: dict[str, Any],
 ) -> None:
     require(plan["window"]["A_min"] == AGREEMENT_MIN, "plan A_min mismatch")
     require(plan["window"]["A_max"] == AGREEMENT_MAX, "plan A_max mismatch")
@@ -126,6 +131,16 @@ def validate_inputs(
     require(
         line_value_lift["syndrome_replay"]["matches_fixed_top_window_input"] is True,
         "line-value lift does not replay the fixed input",
+    )
+    section_cases = {case["name"]: case for case in subgroup_section["cases"]}
+    require(
+        "F17_32_H512_fixed_top_window" in section_cases,
+        "subgroup section lacks the F17^32 fixed top-window case",
+    )
+    require(
+        section_cases["F17_32_H512_fixed_top_window"]["line_value_lift_ref"]
+        == LINE_VALUE_LIFT_REF,
+        "subgroup section does not reference the line-value lift",
     )
 
 
@@ -194,7 +209,8 @@ def build_status() -> dict[str, Any]:
     family = load_json(FAMILY_REF)
     top_packet = load_json(TOP_PACKET_REF)
     line_value_lift = load_json(LINE_VALUE_LIFT_REF)
-    validate_inputs(plan, generic, family, top_packet, line_value_lift)
+    subgroup_section = load_json(SUBGROUP_SECTION_REF)
+    validate_inputs(plan, generic, family, top_packet, line_value_lift, subgroup_section)
     records = per_agreement_records(plan, generic, family, top_packet)
     artifacts = [
         artifact_record("regular_window_plan", PLAN_REF, "regular-hankel-window-plan-v1"),
@@ -214,6 +230,11 @@ def build_status() -> dict[str, Any]:
             LINE_VALUE_LIFT_REF,
             "f17-32-m3-line-value-lift-v1",
         ),
+        artifact_record(
+            "subgroup_syndrome_section",
+            SUBGROUP_SECTION_REF,
+            "subgroup-syndrome-section-v1",
+        ),
     ]
     return {
         "schema_version": SCHEMA_VERSION,
@@ -228,6 +249,7 @@ def build_status() -> dict[str, Any]:
             "synthetic_family_status": "proved closed-form root union {0} for all 42 synthetic pencils",
             "fixed_top_window_status": "one v9 packet covers A=421..426 with root union {0}",
             "fixed_top_window_line_value_status": "explicit f,g line values replay the fixed top-window syndrome input",
+            "subgroup_syndrome_section_status": "proved explicit inverse-Fourier section for subgroup syndrome vectors",
             "actual_row_status": "tangent/quotient-deduped row outcomes not supplied",
             "first_actual_row_task": "compute tangent/quotient-deduped root/singularity outcomes for A=385..426",
         },
@@ -240,6 +262,7 @@ def build_status() -> dict[str, Any]:
                 "the synthetic u=0 family has exact root union {0}",
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
                 "the fixed top-window syndrome input has an explicit line-value lift",
+                "subgroup syndrome vectors have an explicit inverse-Fourier line-value section",
             ],
             "not_proved": [
                 "an actual-row root table for any A in 385..426",

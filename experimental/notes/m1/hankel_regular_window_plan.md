@@ -137,6 +137,18 @@ uses the subgroup identity `lambda_x=x/512` to give explicit values
 input.  Thus that packet is not merely a free syndrome vector; it is the
 syndrome image of an explicit received line on the pinned row.
 
+The reusable theorem behind this lift is recorded in
+
+```text
+experimental/notes/m1/subgroup_syndrome_section.md
+experimental/data/certificates/subgroup-syndrome-section/
+  subgroup_syndrome_section_certificate.json
+```
+
+It proves that for any multiplicative subgroup row, every syndrome vector of
+length at most the subgroup order has the explicit inverse-Fourier section
+`y_s(x)=sum_m s_m x^(-m-1)`.
+
 The current status ledger
 
 ```text
@@ -160,6 +172,9 @@ python3 experimental/scripts/verify_f17_32_m3_regular_window_status.py \
 
 python3 experimental/scripts/verify_f17_32_m3_line_value_lift.py \
   --check experimental/data/certificates/hankel-f17-32-m3-line-value-lift/f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json
+
+python3 experimental/scripts/verify_m1_subgroup_syndrome_section.py \
+  --check experimental/data/certificates/subgroup-syndrome-section/subgroup_syndrome_section_certificate.json
 ```
 
 Non-claims: this note does not compute any determinant over `F_17^32`, does not

@@ -34,6 +34,13 @@
       "schema_version": "f17-32-m3-line-value-lift-v1",
       "sha256": "d5201a3d94d56c58b07e628cbeb878b861c012d599fe9b7c7dc6d2862e76cfe5",
       "status": "PROVED / AUDIT"
+    },
+    {
+      "name": "subgroup_syndrome_section",
+      "ref": "experimental/data/certificates/subgroup-syndrome-section/subgroup_syndrome_section_certificate.json",
+      "schema_version": "subgroup-syndrome-section-v1",
+      "sha256": "02cee88e18e7baacdbbd3bdcdedf82ed8a37e1a1edd767b6645663da69df24bc",
+      "status": "PROVED / AUDIT"
     }
   ],
   "claim_boundaries": {
@@ -47,7 +54,8 @@
       "every maximal row-set regular minor is generically nonzero",
       "the synthetic u=0 family has exact root union {0}",
       "the fixed synthetic top-window packet is v9-checkable for A=421..426",
-      "the fixed top-window syndrome input has an explicit line-value lift"
+      "the fixed top-window syndrome input has an explicit line-value lift",
+      "subgroup syndrome vectors have an explicit inverse-Fourier line-value section"
     ]
   },
   "nonclaims": [
@@ -839,6 +847,7 @@
       "A_max": 426,
       "A_min": 385
     },
+    "subgroup_syndrome_section_status": "proved explicit inverse-Fourier section for subgroup syndrome vectors",
     "synthetic_family_status": "proved closed-form root union {0} for all 42 synthetic pencils"
   }
 }
