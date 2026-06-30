@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Paper B: general-ρ exponent β_{2,3}(ρ) of the {2,3}-smooth count
+
+- **Agent/model:** Claude Opus 4.8.
+- **Files added or changed:**
+  `experimental/notes/m1/paperb_23_smooth_exact_count.md`,
+  `experimental/scripts/verify_paperb_23_smooth_exact_count.py`.
+- **Status:** CONDITIONAL (same import `thm:vsimport` as the count it derives
+  from) / AUDIT (saddle values certified against the exact transfer).
+- **What is being added:** The closed-form growth exponent
+  `β_{2,3}(ρ)=lim (1/N') log_2 A_{2,3}(N',ρN')` for **every** rate `ρ` (the
+  "what to do next" of the previous entry). It is a max-entropy saddle point on
+  the per-cell min/max multisets: a flat plateau `log_2(19)/6≈0.70798` on
+  `ρ∈[6/19,13/19]` and a tilted-Gibbs branch off it, with `β(ρ)=β(1−ρ)`. Gives
+  the prize-rate values and shows the radix-3 scale strictly lowers the exponent
+  vs. the 2-power baseline `β_2(ρ)` at every prize rate (drop `0.0845→0.0056`).
+- **How it is useful:** Pins the exact constant `rem:23count` left open, as a
+  quantitative rate-vs-radix comparison of the characteristic-zero canonical
+  bad-slope count. Verifier proves the interval reduction to exponential order
+  (`struct/band→1`) and certifies the exact transfer converges onto each saddle.
+- **What to do next:** Review before promotion; optionally an explicit
+  asymptotic for `β_{2,3}(ρ)` as `ρ→0`, or the same saddle for other smooth
+  radices `{2,3,5}`.
+
 ### 2026-06-30 - Paper B: {2,3}-smooth exact canonical slope count
 
 - **Agent/model:** Claude Opus 4.8.

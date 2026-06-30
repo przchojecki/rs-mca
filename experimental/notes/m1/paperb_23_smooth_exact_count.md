@@ -6,7 +6,9 @@ the mixed-radix analogue of the closed form `thm:exactcount` proves for 2-power
 domains. It is a bounded class-enumeration theorem **proved by a structural
 reduction and verified by exact enumeration**, conditional on the same import
 (`thm:vsimport`) that `thm:23rigidity` is conditional on — no new black box. It
-does not touch the open local-limit conjectures.
+does not touch the open local-limit conjectures. As a corollary of the count it
+also gives the **closed-form growth exponent `β_{2,3}(ρ)` for every rate `ρ`** (a
+max-entropy saddle point), strictly below the 2-power exponent at all prize rates.
 
 ## Claim
 
@@ -124,6 +126,14 @@ deployed every-prime MCA bound — the per-class finite-field transfer is still
 required). No entropy/quotient/interleaved-list/line-decoding/field-transfer
 ledger is mixed.
 
+The closed-form exponent `β_{2,3}(ρ)` below sharpens this into a quantitative
+**rate-vs-radix comparison**: the canonical bad-slope count grows like
+`2^{β_{2,3}(ρ)·N'(1+o(1))}`, strictly below the 2-power exponent `β_2(ρ)` at every
+prize rate. Against the `1/q_gen` denominator of the `conj:B` reserve shape this
+is the size of the per-class characteristic-zero sum the norm sieve must clear, so
+a smaller exponent is a (modest) easing of the canonical-line half of the budget —
+not a deployed bound, but the exact constant `rem:23count` left open.
+
 ## Constants
 
 Verified exactly (structural = brute) for `N' ∈ {6,12,18,24,36,48}`, all `ℓ'`:
@@ -137,18 +147,78 @@ N'=24 (2^3 3^1): A = 24, 265, 1561, 6097, 16705, 35713, 60985, 86689,
 N'=36 (2^2 3^2): A = 36, 613, 6013, 40033, 190945, 695521, 2008477, 4762153
 ```
 
-**Entropy exponent (the `β(ρ)` analogue at `ρ=1/2`).** The per-cell alphabet has
-exactly `19` types, so the half-rate count saturates as
-`A_{2,3}(N', N'/2) = 19^{n_c (1-o(1))} = 2^{(log_2 19 / 6) N' (1-o(1))}`, giving
+## Entropy exponent `β_{2,3}(ρ)` for general `ρ`
+
+Define `β_{2,3}(ρ) = lim_{N'→∞} (1/N') log_2 A_{2,3}(N', ρN')`, the exponential
+growth rate of the characteristic-zero canonical bad-slope count. We give it in
+closed form for every `ρ`. There are `n_c = N'/6` cells; each cell draws one of
+the `19` types, contributing a size in `[min Sizes(d), max Sizes(d)]`. The
+per-cell **min/max multisets** read off the four size-classes are
 
 ```text
-β_{2,3}(1/2) = (log_2 19)/6 ≈ 0.70798
+min over the 19 types:  {0:×1, 1:×6, 2:×6, 3:×6}
+max over the 19 types:  {6:×1, 5:×6, 4:×6, 3:×6}   (= 6 − min, so β(ρ)=β(1−ρ))
 ```
 
-(verified numerically converging: `0.7080` already at `N'=96..768`). Compare the
-2-power value `β(1/2)=½ max_θ(𝓗(θ)+θ) ≈ 0.7925`: adjoining the radix-3 scale
-*lowers* the half-rate canonical slope-count exponent. General `ρ` is the
-saddle-point of the per-cell size generating function.
+**Interval reduction (proof to exponential order).** A type-vector counts at `ℓ'`
+iff `ℓ' ∈ ⊕_c Sizes(d_c)`. Every step-1 type `{1,2,3,4,5}` is a length-5 run, and
+each `Sizes(d)` has internal gaps `≤ 2`; so a Minkowski sum containing **one**
+such cell is the full interval `[Σ_c min_c, Σ_c max_c]`. The saddle distribution
+below puts positive density on the six `{1,2,3,4,5}` types, hence a `1−o(1)`
+fraction of the dominant vectors are gap-free and
+
+```text
+ℓ' ∈ ⊕_c Sizes(d_c)   ⇔   Σ_c min_c ≤ ℓ' ≤ Σ_c max_c        (to exp. order).
+```
+
+(Verified: `struct/band → 1`, ratio `1.000000` already at `N'=192`.) By Cramér /
+the method of types this **interval count** has the rate function
+
+```text
+β_{2,3}(ρ) = (1/(6 ln2)) · max{ H(p) : p ∈ Δ_19,
+                                 Σ_i p_i min_i ≤ 6ρ ≤ Σ_i p_i max_i }.
+```
+
+The uniform `p≡1/19` gives `Σp·min = 36/19`, `Σp·max = 78/19`, feasible exactly
+when `6ρ ∈ [36/19, 78/19]`, i.e. a **flat plateau**
+
+```text
+β_{2,3}(ρ) = (log_2 19)/6 ≈ 0.707983      for  ρ ∈ [6/19, 13/19] ≈ [0.3158, 0.6842].
+```
+
+Off the plateau a single constraint binds and the optimiser is the **tilted
+(Gibbs)** law `p_i ∝ exp(−λ·min_i)`. With `x = e^{−λ} ∈ (0,1)` the unique root of
+`x(1+2x+3x²) = ρ·(1+6x+6x²+6x³)` (for `ρ < 6/19`; reflect by `β(ρ)=β(1−ρ)` for
+`ρ > 13/19`),
+
+```text
+β_{2,3}(ρ) = [ log_2(1 + 6x + 6x² + 6x³) − 6ρ·log_2 x ] / 6.
+```
+
+**Values at the prize rates** (with the 2-power baseline `β_2(ρ)`, obtained from
+the same saddle on the `b=0` alphabet `min{0,1,1}`, `max{2,1,1}`, `cell=2`):
+
+```text
+ρ       β_{2,3}(ρ)   β_2(ρ)      radix-3 drop
+1/2     0.707983     0.792481     0.0845      (β_2(1/2)=log_2 3 /2, Paper B value)
+1/4     0.685747     0.750000     0.0643
+1/8     0.509338     0.530639     0.0213
+1/16    0.328649     0.334282     0.0056
+```
+
+So **adjoining the radix-3 scale strictly lowers the canonical slope-count
+exponent at every prize rate**, the gap shrinking to `0` as `ρ→0`. The plateau
+also widens vs. the 2-power case (`[1/3,2/3] → [6/19,13/19]`).
+
+The saddle values are matched by the **exact** transfer: the (gap-free) interval
+count's exponent climbs monotonically toward each `β_{2,3}(ρ)` from below, with
+the finite-size gap halving per doubling of `N'` (a `Θ(1/N')` correction, so
+Richardson-extrapolation lands on the saddle):
+
+```text
+ρ=1/8:  N'=96→0.4829, 192→0.4936, 384→0.5002, 768→0.5041, … → 0.50934
+ρ=1/16: N'=96→0.3041, 192→0.3138, 384→0.3200, 768→0.3237, … → 0.32865
+```
 
 ## Reproducibility
 
@@ -158,5 +228,9 @@ experimental/scripts/verify_paperb_23_smooth_exact_count.py
 
 Pure stdlib. Implements (★) as a Boolean-Minkowski transfer and cross-checks it
 against two-faithful-prime brute-force enumeration; recovers `thm:exactcount`
-at `b=0`; prints the entropy-exponent samples. `--certificate` / `--check` emit
-and re-verify a deterministic JSON certificate (`PASS`). Exit code `0` on pass.
+at `b=0`. The entropy-exponent block computes `β_{2,3}(ρ)` from the saddle point
+(`saddle_beta`), checks the plateau value and the 2-power baseline
+`β_2(1/2)=log_2 3 /2` exactly, confirms `β_2(ρ) ≥ β_{2,3}(ρ)` at every prize
+rate, and certifies convergence of the exact interval count (`band_count`) up to
+the saddle plus `struct/band → 1`. `--certificate` / `--check` emit and re-verify
+a deterministic JSON certificate (`PASS`). Exit code `0` on pass.

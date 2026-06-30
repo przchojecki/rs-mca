@@ -55,7 +55,7 @@ import argparse
 import json
 from collections import Counter
 from itertools import combinations, product
-from math import comb, log2
+from math import comb, log, log2
 from pathlib import Path
 
 # ---------------------------------------------------------------------------
@@ -131,6 +131,82 @@ def exactcount_2power(a: int, l: int) -> int:
             tot += comb(n1, t) * (2 ** t)
         u += 1
     return tot
+
+
+# ---------------------------------------------------------------------------
+# Entropy exponent  beta_{2,3}(rho) = lim_{N'->oo} (1/N') log2 A_{2,3}(N', rho N')
+# ---------------------------------------------------------------------------
+# Each cell draws one of the 19 (b>=1) / 3 (b=0) types; the size it contributes
+# lies in [min Sizes(d), max Sizes(d)]. The per-cell min/max multisets:
+_MIN23 = [0] + [1] * 6 + [2] * 6 + [3] * 6          # {0:1,1:6,2:6,3:6}
+_MAX23 = [6 - m for m in _MIN23]                    # {6:1,5:6,4:6,3:6}; min<->6-max
+_MIN2 = [0, 1, 1]                                    # b=0 pair: {0}->{0,2},{+1},{-1}->{1}
+_MAX2 = [2, 1, 1]
+
+
+def saddle_beta(rho: float, MINv=_MIN23, MAXv=_MAX23, cell: int = 6) -> float:
+    """Large-deviation exponent of A = #{type-vectors : l' in (+)_c Sizes(d_c)}.
+
+    To exponential order l' in the Minkowski sum  <=>  sum_c min_c <= l' <= sum_c
+    max_c (one step-1 type {1..5} closes every gap), so by Cramer / the method of
+    types
+
+        beta(rho) = (1 / (cell*ln2)) * max{ H(p) : p in simplex_T,
+                       sum_i p_i min_i <= cell*rho <= sum_i p_i max_i }.
+
+    Plateau = log2(T)/cell wherever the uniform p is feasible; off the plateau the
+    binding constraint gives the tilted (Gibbs) optimiser p_i ~ exp(-lam*min_i),
+    lam>=0 fixed by sum p_i min_i = cell*rho.  cell = N'/n_c = 6 (resp. 2 for b=0).
+    """
+    nt = len(MINv)
+    lo = sum(MINv) / nt / cell                       # uniform sum(p*min)/cell
+    hi = sum(MAXv) / nt / cell                        # uniform sum(p*max)/cell
+    if lo <= rho <= hi:
+        return log2(nt) / cell
+    if rho > hi:                                      # reflect onto the min-binding side
+        MINv = [cell - m for m in MAXv]
+        rho = 1.0 - rho
+    target = cell * rho
+    mean = lambda x: sum(m * x ** m for m in MINv) / sum(x ** m for m in MINv)
+    a_, b_ = 1e-308, 1.0                              # bisection for x = exp(-lam) in (0,1)
+    for _ in range(400):
+        x = (a_ * b_) ** 0.5
+        if mean(x) < target:
+            a_ = x
+        else:
+            b_ = x
+    x = (a_ * b_) ** 0.5
+    Z = sum(x ** m for m in MINv)
+    return (log(Z) - target * log(x)) / (cell * log(2))
+
+
+def _sum_dist(vals, nc):
+    """Distribution of the sum of nc i.i.d. draws from the multiset `vals`."""
+    d = {0: 1}
+    for _ in range(nc):
+        nd: dict[int, int] = {}
+        for s, c in d.items():
+            for v in vals:
+                nd[s + v] = nd.get(s + v, 0) + c
+        d = nd
+    return d
+
+
+def band_count(a: int, b: int, l: int) -> int:
+    """Interval relaxation of (*): #{type-vectors : sum min <= l <= sum max}
+    = T^{n_c} - (#sum-min>l) - (#sum-max<l).  Shares the exact A_{2,3} exponent
+    (the two differ only on gap-only vectors, an exponentially negligible set)."""
+    if b == 0:
+        nt, MINv, MAXv = 3, _MIN2, _MAX2
+        nc = 1 << (a - 1)
+    else:
+        nt, MINv, MAXv = 19, _MIN23, _MAX23
+        nc = (1 << (a - 1)) * (3 ** (b - 1))
+    dmin = _sum_dist(MINv, nc)
+    dmax = _sum_dist(MAXv, nc)
+    over = sum(c for s, c in dmin.items() if s > l)
+    under = sum(c for s, c in dmax.items() if s < l)
+    return nt ** nc - over - under
 
 
 # ---------------------------------------------------------------------------
@@ -255,14 +331,51 @@ def build_certificate():
         b0.append({"N": N, "a": a, "rows": rows})
 
     # entropy exponent beta_{2,3}(rho) = lim log2 A_{2,3}(N', rho N') / N'
-    def beta(rho_num, rho_den):
-        vals = []
-        for a in range(2, 9):  # b=1 family, N'=2^a*3
+    plateau = log2(19) / 6
+    band_lo, band_hi = 6 / 19, 13 / 19          # uniform feasible <=> rho in [6/19,13/19]
+    # plateau is exact on the whole band (and 2-power value reproduces Paper B)
+    plateau_exact = (
+        abs(saddle_beta(band_lo) - plateau) < 1e-12
+        and abs(saddle_beta(0.5) - plateau) < 1e-12
+        and abs(saddle_beta(band_hi) - plateau) < 1e-12
+        and abs(saddle_beta(0.5, _MIN2, _MAX2, 2) - log2(3) / 2) < 1e-12
+    )
+    # prize rates: {2,3} exponent, the 2-power baseline, and the (lowering) gap
+    prize = []
+    lowers = True
+    for name, num, den in (("1/2", 1, 2), ("1/4", 1, 4), ("1/8", 1, 8), ("1/16", 1, 16)):
+        rho = num / den
+        b23 = saddle_beta(rho)
+        b2 = saddle_beta(rho, _MIN2, _MAX2, 2)
+        lowers = lowers and b2 >= b23 - 1e-12
+        prize.append({"rho": name, "beta_2_3": b23, "beta_2pow": b2, "drop": b2 - b23})
+    # convergence: exact band-count exponent climbs monotonically toward the saddle
+    conv = []
+    conv_ok = True
+    for name, num, den in (("1/16", 1, 16), ("1/8", 1, 8), ("1/4", 1, 4)):
+        rho = num / den
+        s = saddle_beta(rho)
+        ladder = []
+        for a in range(5, 9):                   # N' = 96,192,384,768 (fast, exact)
             N = (2 ** a) * 3
-            l = N * rho_num // rho_den
-            A = struct_count(a, 1, l)[l]
-            vals.append((N, log2(A) / N))
-        return vals
+            l = round(rho * N)
+            ladder.append({"Np": N, "beta_band": log2(band_count(a, 1, l)) / N})
+        mono = all(ladder[i]["beta_band"] < ladder[i + 1]["beta_band"]
+                   for i in range(len(ladder) - 1))
+        below = all(r["beta_band"] < s for r in ladder)
+        gap = s - ladder[-1]["beta_band"]
+        conv_ok = conv_ok and mono and below and gap < 0.01
+        conv.append({"rho": name, "saddle": s, "ladder": ladder,
+                     "monotone_up": mono, "below_saddle": below, "gap_at_N768": gap})
+    # exact Minkowski count and its interval relaxation share the exponent
+    ratio_192 = None
+    for a in (5, 6):
+        N = (2 ** a) * 3
+        l = round(N / 8)
+        ratio_192 = struct_count(a, 1, l)[l] / band_count(a, 1, l)
+    same_exponent = ratio_192 is not None and ratio_192 > 0.9999
+    exponent_ok = plateau_exact and lowers and conv_ok and same_exponent
+    ok = ok and exponent_ok
 
     cert = {
         "result": "{2,3}-smooth exact canonical slope count A_{2,3}(2^a 3^b, l')",
@@ -278,7 +391,21 @@ def build_certificate():
                        "types (b=0) recovering thm:exactcount.",
         "cross_check_struct_vs_brute": cross,
         "b0_recovers_thm_exactcount": b0,
-        "entropy_exponent_beta_2_3_half_samples": beta(1, 2),
+        "entropy_exponent": {
+            "formula": "beta_{2,3}(rho) = (1/(6 ln2)) max{H(p): sum p*min <= 6rho <= "
+                       "sum p*max}; plateau log2(19)/6 on rho in [6/19,13/19], tilted "
+                       "(Gibbs) optimiser p_i~exp(-lam*min_i) off the plateau; "
+                       "beta(rho)=beta(1-rho).",
+            "plateau_beta": plateau,
+            "plateau_rho_band": [band_lo, band_hi],
+            "plateau_exact_and_2pow_baseline": plateau_exact,
+            "prize_rates": prize,
+            "lowered_by_radix3_at_all_prize_rates": lowers,
+            "convergence_band_count_to_saddle": conv,
+            "struct_vs_band_ratio_N192": ratio_192,
+            "struct_band_share_exponent": same_exponent,
+            "passed": exponent_ok,
+        },
         "passed": ok,
     }
     return cert
@@ -300,9 +427,19 @@ def render(cert) -> str:
     for blk in cert["b0_recovers_thm_exactcount"]:
         allm = all(r["match"] for r in blk["rows"])
         L.append(f"    N={blk['N']:>3}: {'ALL MATCH' if allm else 'MISMATCH'}")
-    bvals = cert["entropy_exponent_beta_2_3_half_samples"]
-    L.append("  entropy exponent beta_{2,3}(1/2) = lim log2 A / N'  (b=1 family):")
-    L.append("    " + ", ".join(f"N'={n}:{b:.4f}" for n, b in bvals[-4:]))
+    ee = cert["entropy_exponent"]
+    L.append(f"  entropy exponent  beta_2,3(rho)=lim log2 A/N'  (plateau "
+             f"{ee['plateau_beta']:.6f}=log2(19)/6 on rho in [6/19,13/19]):")
+    for r in ee["prize_rates"]:
+        L.append(f"    rho={r['rho']:>4}: beta_2,3={r['beta_2_3']:.6f}   "
+                 f"2-power baseline={r['beta_2pow']:.6f}   (radix-3 drop {r['drop']:.4f})")
+    for c in ee["convergence_band_count_to_saddle"]:
+        L.append(f"    rho={c['rho']:>4}: band-count exponent -> saddle "
+                 f"{c['saddle']:.6f}  (monotone={c['monotone_up']}, "
+                 f"gap@N'=768 {c['gap_at_N768']:.4f})")
+    L.append(f"    exact/band exponent agree (ratio@N'=192 "
+             f"{ee['struct_vs_band_ratio_N192']:.6f}); exponent block "
+             f"{'PASS' if ee['passed'] else 'FAIL'}")
     L.append(f"RESULT: {'PASS' if cert['passed'] else 'FAIL'}")
     return "\n".join(L)
 
