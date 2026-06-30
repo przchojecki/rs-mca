@@ -3880,6 +3880,14 @@ This is the form that can be fed to a finite threshold checker: all
 rounding is explicit, and no strict real inequality remains hidden in the
 comparison.
 
+The exact-arithmetic helper
+`experimental/scripts/m1_density_budget.py` evaluates this finite-row
+criterion directly.  Given `q`, `D`, a rational density lower bound `a0`, and
+either `L` or a footprint cap `S`, it prints `R_sel`, `R_miss`, `R_dens`, the
+integer ceiling `R_Z`, and, when `e` is supplied, the near-star template
+bound.  This is an audit/evaluation tool for (RKSQINTBUDGET/RKSQTRADE), not a
+proof of the missing global density lower bound.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.

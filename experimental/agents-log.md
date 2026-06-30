@@ -49,6 +49,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 density-budget exact evaluator
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/m1_density_budget.py`,
+  `experimental/scripts/README.md`,
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXACT-ARITHMETIC.
+- **What is being added:** An exact `Fraction`-based evaluator for
+  `R_Z(a0,L)=ceil(R_dens(a0,L))-1` and the optional near-star template count.
+  The script accepts `q`, `D`, rational `a0`, and either `L` or a footprint
+  cap `S`.
+- **How it is useful:** Finite-row M1 checks can now consume the
+  density-budget theorem without hand rounding or floating-point thresholds.
+- **What to do next:** Use the evaluator with any future concrete
+  row-basis/core-image density lower bound.
+
 ### 2026-06-30 - M1 integer support-budget ceiling
 
 - **Agent/model:** AllenGrahamHart / Codex.
