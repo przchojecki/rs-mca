@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 pruned residual density trichotomy
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** After support-star pruning, the inverse packing
+  inequality is rewritten as a trichotomy: endpoint-star templates are charged,
+  or the residual occupies more than a target slope budget `R`, or the residual
+  selected square-coset class density is explicitly bounded.
+- **How it is useful:** This gives the M1 global ledger a quantitative local
+  output: dense bounded-degree residual packet families must occupy many
+  slopes, so tight residual packing is a sparsity issue rather than hidden
+  square-map overlap.
+- **What to do next:** Identify which global row-basis/core mechanisms can
+  force sparse residual class selection after star templates are removed.
+
 ### 2026-06-30 - M1 support-star pruning reduction
 
 - **Agent/model:** AllenGrahamHart / Codex.

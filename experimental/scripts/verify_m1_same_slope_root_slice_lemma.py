@@ -68,8 +68,8 @@ fixed-basis support-packet incidence design, fixed-basis endpoint-palette
 bound, selected support-avoidance reduction, fixed endpoint-pair packet-size
 bound, selected support-degree profile, selected support-collision energy, and
 selected support star-forcing bound, partial-palette star-forcing bound,
-partial-palette inverse packing bound, support-star pruning reduction, and
-packet-count corollary.
+partial-palette inverse packing bound, support-star pruning reduction, pruned
+residual density trichotomy, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -7355,6 +7355,11 @@ def check_boundary_core_square_map_packet_count() -> None:
                         point: 0 for point in all_projective_points
                     }
                     residual_mass = 0
+                    residual_packet_size = 2 * (prime - 1) // index
+                    residual_selected_classes = sum(
+                        len(selected_classes[support])
+                        for support in remaining_supports
+                    )
                     for support in remaining_supports:
                         first, second = tuple(support)
                         support_map = mobius_from_zero_pole(first, second, prime)
@@ -7370,13 +7375,7 @@ def check_boundary_core_square_map_packet_count() -> None:
                             for point in packet:
                                 residual_incidence[point] += 1
                     residual_expected_mass = (
-                        2
-                        * (prime - 1)
-                        // index
-                        * sum(
-                            len(selected_classes[support])
-                            for support in remaining_supports
-                        )
+                        residual_packet_size * residual_selected_classes
                     )
                     assert residual_mass == residual_expected_mass, (
                         prime,
@@ -7405,6 +7404,27 @@ def check_boundary_core_square_map_packet_count() -> None:
                         residual_count,
                         residual_support_size,
                         residual_mass,
+                        residual_star_bound,
+                        remaining_supports,
+                        residual_incidence,
+                    )
+                    slope_budget = rng.randint(
+                        residual_support_size,
+                        len(all_projective_points),
+                    )
+                    assert (
+                        residual_packet_size
+                        * residual_packet_size
+                        * residual_selected_classes
+                        * residual_selected_classes
+                    ) <= slope_budget * residual_star_bound, (
+                        prime,
+                        index,
+                        degree_cap,
+                        slope_budget,
+                        residual_count,
+                        residual_selected_classes,
+                        residual_packet_size,
                         residual_star_bound,
                         remaining_supports,
                         residual_incidence,

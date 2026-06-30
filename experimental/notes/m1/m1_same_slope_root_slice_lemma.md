@@ -40,6 +40,7 @@ SQUARE-NORM SELECTED SUPPORT STAR-FORCING BOUND /
 SQUARE-NORM PARTIAL-PALETTE STAR-FORCING BOUND /
 SQUARE-NORM PARTIAL-PALETTE INVERSE PACKING BOUND /
 SQUARE-NORM SUPPORT-STAR PRUNING REDUCTION /
+SQUARE-NORM PRUNED RESIDUAL DENSITY TRICHOTOMY /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3357,6 +3358,32 @@ is the local form of the M1 quotient-versus-aperiodic separation: any failure
 of the residual packing bound must come from a star that was deliberately
 charged, not from hidden square-map packet geometry.
 
+The same inequality gives a density-normalized trichotomy.  Let `R` be any
+target slope-support budget for the residual family.  After the star pruning
+above, either
+
+```text
+B_ap > R,
+```
+
+or else the residual average selected class density `alpha_ap=K_ap/m_ap`
+satisfies
+
+```text
+(2(q-1)/e)^2 K_ap^2
+  <= R((q-3)m_ap^2 + 2m_apD),                    (RKSQDENS)
+
+alpha_ap^2
+  <= R((q-3)+2D/m_ap) / (2(q-1)/e)^2.            (RKSQDENSAVG)
+```
+
+Thus, for fixed `D` and residual slope budget `R`, the local square-map ledger
+has only three outputs: endpoint-star templates deleted during pruning,
+residual support larger than `R`, or genuinely sparse residual square-coset
+class selection.  In particular, a dense residual packet family with bounded
+endpoint degree cannot be hidden inside a small aperiodic slope set by local
+packet overlaps.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -3867,8 +3894,8 @@ design (RKSQDESIGN), the selected support-avoidance reduction
 selected support star-forcing bound (RKSQSTARFORCE), the partial-palette
 star-forcing bound (RKSQPARTSTAR), the partial-palette inverse packing bound
 (RKSQPACK), the support-star pruning reduction (RKSQPRUNE/RKSQPRUNEPACK), the
-canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
-coset palette
+pruned residual density trichotomy (RKSQDENS/RKSQDENSAVG), the canonical
+endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
@@ -3948,8 +3975,8 @@ design (RKSQDESIGN), the selected support-avoidance reduction
 selected support star-forcing bound (RKSQSTARFORCE), the partial-palette
 star-forcing bound (RKSQPARTSTAR), the partial-palette inverse packing bound
 (RKSQPACK), the support-star pruning reduction (RKSQPRUNE/RKSQPRUNEPACK), the
-canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
-coset palette
+pruned residual density trichotomy (RKSQDENS/RKSQDENSAVG), the canonical
+endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
