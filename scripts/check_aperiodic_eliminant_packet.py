@@ -47,6 +47,10 @@ def hash_json(value: Any) -> str:
     return sha256(payload).hexdigest()
 
 
+def hash_file(path: Path) -> str:
+    return sha256(path.read_bytes()).hexdigest()
+
+
 def require_int_list(values: Any, field: str) -> list[int]:
     if not isinstance(values, list):
         raise PacketError(f"{field}: expected a list")
@@ -341,6 +345,34 @@ class PolynomialBasisField:
         if parsed_row_field is not None and parsed_row_field != (field.p, field.degree):
             raise PacketError("row.field does not match extractor.field_model")
         return field
+
+    def normalize(self, value: Any) -> tuple[int, ...]:
+        if isinstance(value, int):
+            coeffs = [value % self.p]
+        elif isinstance(value, list):
+            coeffs = [
+                entry % self.p
+                for entry in require_int_list(value, "field element")
+            ]
+        elif isinstance(value, tuple):
+            if any(not isinstance(entry, int) for entry in value):
+                raise PacketError("field element tuple entries must be integers")
+            coeffs = [entry % self.p for entry in value]
+        else:
+            raise PacketError(f"unsupported field element {value!r}")
+        if len(coeffs) > self.degree:
+            raise PacketError("field element has too many coefficients")
+        coeffs += [0] * (self.degree - len(coeffs))
+        return tuple(coeffs)
+
+    def encode(self, value: Any) -> int:
+        elem = self.normalize(value)
+        total = 0
+        place = 1
+        for coeff in elem:
+            total += coeff * place
+            place *= self.p
+        return total
 
     def decode(self, value: int) -> tuple[int, ...]:
         if not isinstance(value, int) or value < 0 or value >= self.size:
@@ -701,6 +733,15 @@ def validate_packet_reference(reference: str, location: str) -> Any | None:
         raise PacketError(f"{location}: only JSON references may use fragments")
     document = load_json(path)
     return resolve_json_pointer(document, fragment, location)
+
+
+def repo_relative_file(path_text: str, location: str) -> Path:
+    path = Path(path_text)
+    if path.is_absolute() or ".." in path.parts:
+        raise PacketError(f"{location}: reference must be a repo-relative path")
+    if not path.exists():
+        raise PacketError(f"{location}: referenced file does not exist: {path}")
+    return path
 
 
 def table_numerator(target: Any, location: str) -> int | None:
@@ -1400,6 +1441,268 @@ def validate_projective_infinity(
     return int(projective_infinity_present)
 
 
+RANK_WITNESS_POLYNOMIAL_REF = "rank_witness:determinant_nonzero_at_pivot_node"
+ENCODED_FIELD_INPUT_ENCODINGS = {
+    "base-p low-to-high integer",
+    "base-p low-to-high encoded integer",
+    "encoded_integer",
+}
+
+
+def packet_has_rank_witness_items(packet: dict[str, Any]) -> bool:
+    for item in packet.get("exact_agreements", []):
+        if not isinstance(item, dict):
+            continue
+        minor = item.get("regular_minor")
+        if (
+            isinstance(minor, dict)
+            and minor.get("polynomial_ref") == RANK_WITNESS_POLYNOMIAL_REF
+        ):
+            return True
+    return False
+
+
+def load_rank_witness_input(packet: dict[str, Any]) -> dict[str, Any] | None:
+    if not packet_has_rank_witness_items(packet):
+        return None
+    extractor = packet.get("extractor")
+    if not isinstance(extractor, dict):
+        raise PacketError("rank_witness packet needs extractor metadata")
+    input_ref = extractor.get("input_ref")
+    if not isinstance(input_ref, str) or not input_ref:
+        raise PacketError("rank_witness packet needs extractor.input_ref")
+    if input_ref.startswith("inline:") or input_ref in REFERENCE_SENTINELS:
+        raise PacketError("rank_witness extractor.input_ref must be a JSON file")
+    path_text, separator, _fragment = input_ref.partition("#")
+    if separator:
+        raise PacketError("rank_witness extractor.input_ref must point to a full file")
+    path = repo_relative_file(path_text, "extractor.input_ref")
+    if path.suffix != ".json":
+        raise PacketError("rank_witness extractor.input_ref must be JSON")
+
+    input_sha = extractor.get("input_sha256")
+    if not isinstance(input_sha, str) or not input_sha:
+        raise PacketError("rank_witness packet needs extractor.input_sha256")
+    actual_sha = hash_file(path)
+    if input_sha != actual_sha:
+        raise PacketError(
+            f"extractor.input_sha256 mismatch: packet has {input_sha}, "
+            f"file has {actual_sha}"
+        )
+
+    data = load_json(path)
+    if not isinstance(data, dict):
+        raise PacketError("rank_witness extractor input must be a JSON object")
+    if data.get("schema_version") != "regular-hankel-minor-extractor-input-v1":
+        raise PacketError("rank_witness input has wrong schema_version")
+    if data.get("certificate_mode") != "rank_witness_bound":
+        raise PacketError(
+            "rank_witness input must use certificate_mode=rank_witness_bound"
+        )
+
+    input_row = data.get("row")
+    packet_row = packet.get("row")
+    if not isinstance(input_row, dict) or not isinstance(packet_row, dict):
+        raise PacketError("rank_witness input and packet need row objects")
+    for field_name in ("n", "k", "field"):
+        if input_row.get(field_name) != packet_row.get(field_name):
+            raise PacketError(
+                f"rank_witness input row.{field_name} does not match packet row"
+            )
+    if data.get("sampler") != packet.get("sampler"):
+        raise PacketError("rank_witness input sampler does not match packet sampler")
+    return data
+
+
+def matrix_at_rank_witness_node_mod(
+    u: list[int],
+    v: list[int],
+    row_set: list[int],
+    cols: int,
+    node: int,
+    prime: int,
+) -> list[list[int]]:
+    return [
+        [(u[row + col] + node * v[row + col]) % prime for col in range(cols)]
+        for row in row_set
+    ]
+
+
+def matrix_is_full_rank_mod(matrix: list[list[int]], prime: int) -> bool:
+    size = len(matrix)
+    work = [[entry % prime for entry in row] for row in matrix]
+    for col in range(size):
+        pivot = None
+        for row in range(col, size):
+            if work[row][col] % prime:
+                pivot = row
+                break
+        if pivot is None:
+            return False
+        if pivot != col:
+            work[col], work[pivot] = work[pivot], work[col]
+        inv_pivot = pow(work[col][col] % prime, -1, prime)
+        for row in range(col + 1, size):
+            factor = (work[row][col] * inv_pivot) % prime
+            if factor == 0:
+                continue
+            for entry_col in range(col, size):
+                work[row][entry_col] = (
+                    work[row][entry_col] - factor * work[col][entry_col]
+                ) % prime
+    return True
+
+
+def normalize_field_input_value(
+    value: Any,
+    field: PolynomialBasisField,
+    encoding: str | None,
+    location: str,
+) -> tuple[int, ...]:
+    if encoding in ENCODED_FIELD_INPUT_ENCODINGS:
+        if not isinstance(value, int):
+            raise PacketError(f"{location}: encoded field input must be an integer")
+        return field.decode(value)
+    return field.normalize(value)
+
+
+def normalize_field_input_list(
+    values: Any,
+    field: PolynomialBasisField,
+    encoding: str | None,
+    location: str,
+) -> list[tuple[int, ...]]:
+    if not isinstance(values, list):
+        raise PacketError(f"{location}: expected a list")
+    return [
+        normalize_field_input_value(value, field, encoding, f"{location}[{index}]")
+        for index, value in enumerate(values)
+    ]
+
+
+def matrix_at_rank_witness_node_field(
+    u: list[tuple[int, ...]],
+    v: list[tuple[int, ...]],
+    row_set: list[int],
+    cols: int,
+    node: tuple[int, ...],
+    field: PolynomialBasisField,
+) -> list[list[tuple[int, ...]]]:
+    return [
+        [
+            field.add(u[row + col], field.mul(node, v[row + col]))
+            for col in range(cols)
+        ]
+        for row in row_set
+    ]
+
+
+def matrix_is_full_rank_field(
+    matrix: list[list[tuple[int, ...]]],
+    field: PolynomialBasisField,
+) -> bool:
+    size = len(matrix)
+    work = [[field.normalize(entry) for entry in row] for row in matrix]
+    for col in range(size):
+        pivot = None
+        for row in range(col, size):
+            if not field.is_zero(work[row][col]):
+                pivot = row
+                break
+        if pivot is None:
+            return False
+        if pivot != col:
+            work[col], work[pivot] = work[pivot], work[col]
+        inv_pivot = field.inv(work[col][col])
+        for row in range(col + 1, size):
+            factor = field.mul(work[row][col], inv_pivot)
+            if field.is_zero(factor):
+                continue
+            for entry_col in range(col, size):
+                work[row][entry_col] = field.sub(
+                    work[row][entry_col],
+                    field.mul(factor, work[col][entry_col]),
+                )
+    return True
+
+
+def validate_rank_witness_specialization(
+    item: dict[str, Any],
+    row_set: list[int],
+    node: int,
+    rank_witness_input: dict[str, Any] | None,
+    modulus: int | None,
+    extension_field: PolynomialBasisField | None,
+) -> None:
+    location = f"A={item.get('A')}: rank_witness"
+    if rank_witness_input is None:
+        raise PacketError(f"{location}: missing replay input")
+
+    exact_agreements = rank_witness_input.get("exact_agreements")
+    if not isinstance(exact_agreements, list) or item.get("A") not in exact_agreements:
+        raise PacketError(f"{location}: replay input does not list this agreement")
+    if min(row_set) < 0 or max(row_set) >= item["t"]:
+        raise PacketError(f"{location}: row_set outside Hankel row range")
+
+    syndrome = rank_witness_input.get("line_syndrome")
+    if not isinstance(syndrome, dict):
+        raise PacketError(f"{location}: replay input needs line_syndrome")
+    if "u" not in syndrome or "v" not in syndrome:
+        raise PacketError(f"{location}: line_syndrome needs u and v")
+    needed_length = item["t"] + item["j"]
+    cols = item["j"] + 1
+
+    if modulus is not None:
+        if node >= modulus:
+            raise PacketError(f"{location}: rank_pivot_node outside F_{modulus}")
+        u = require_int_list(syndrome["u"], f"{location}: line_syndrome.u")
+        v = require_int_list(syndrome["v"], f"{location}: line_syndrome.v")
+        if len(u) < needed_length or len(v) < needed_length:
+            raise PacketError(
+                f"{location}: syndrome length must be at least {needed_length}"
+            )
+        matrix = matrix_at_rank_witness_node_mod(
+            u, v, row_set, cols, node, modulus
+        )
+        if not matrix_is_full_rank_mod(matrix, modulus):
+            raise PacketError(
+                f"{location}: selected row_set is not full rank at node {node}"
+            )
+        return
+
+    if extension_field is None:
+        raise PacketError(f"{location}: unsupported row field")
+    if node >= extension_field.size:
+        raise PacketError(f"{location}: rank_pivot_node outside extension field")
+    encoding = syndrome.get(
+        "field_encoding", rank_witness_input.get("field_element_encoding")
+    )
+    if encoding is not None and not isinstance(encoding, str):
+        raise PacketError(f"{location}: field encoding must be a string")
+    u_field = normalize_field_input_list(
+        syndrome["u"], extension_field, encoding, f"{location}: line_syndrome.u"
+    )
+    v_field = normalize_field_input_list(
+        syndrome["v"], extension_field, encoding, f"{location}: line_syndrome.v"
+    )
+    if len(u_field) < needed_length or len(v_field) < needed_length:
+        raise PacketError(
+            f"{location}: syndrome length must be at least {needed_length}"
+        )
+    matrix = matrix_at_rank_witness_node_field(
+        u_field,
+        v_field,
+        row_set,
+        cols,
+        extension_field.decode(node),
+        extension_field,
+    )
+    if not matrix_is_full_rank_field(matrix, extension_field):
+        raise PacketError(
+            f"{location}: selected row_set is not full rank at node {node}"
+        )
+
+
 def validate_pivot_eliminant_target(
     target: dict[str, Any],
     declared_degree: int,
@@ -1509,6 +1812,7 @@ def validate_regular_minor(
     item: dict[str, Any],
     modulus: int | None,
     extension_field: PolynomialBasisField | None,
+    rank_witness_input: dict[str, Any] | None,
 ) -> tuple[list[int] | None, list[int]]:
     minor = item.get("regular_minor")
     if not isinstance(minor, dict):
@@ -1524,6 +1828,8 @@ def validate_regular_minor(
         raise PacketError(
             f"A={item.get('A')}: row_set has {len(row_set)} rows, expected {expected_size}"
         )
+    if min(row_set) < 0 or max(row_set) >= item["t"]:
+        raise PacketError(f"A={item.get('A')}: row_set outside Hankel row range")
 
     if not isinstance(minor["degree"], int) or minor["degree"] < 0:
         raise PacketError(f"A={item.get('A')}: bad regular_minor.degree")
@@ -1534,7 +1840,13 @@ def validate_regular_minor(
 
     data = item.get("regular_minor_data")
     if str(minor["polynomial_ref"]).startswith("rank_witness:"):
-        validate_rank_witness_minor(item, row_set)
+        validate_rank_witness_minor(
+            item,
+            row_set,
+            rank_witness_input,
+            modulus,
+            extension_field,
+        )
         if "regular_minor_data" in item or "regular_minor_polynomial_data" in item:
             raise PacketError(
                 f"A={item.get('A')}: rank_witness minor must not carry inline data"
@@ -2005,7 +2317,13 @@ def validate_regular_minor_gcd(
     return roots, bad_slopes
 
 
-def validate_rank_witness_minor(item: dict[str, Any], row_set: list[int]) -> None:
+def validate_rank_witness_minor(
+    item: dict[str, Any],
+    row_set: list[int],
+    rank_witness_input: dict[str, Any] | None,
+    modulus: int | None,
+    extension_field: PolynomialBasisField | None,
+) -> None:
     minor = item["regular_minor"]
     location = f"A={item.get('A')}: rank_witness"
     if minor["polynomial_ref"] != "rank_witness:determinant_nonzero_at_pivot_node":
@@ -2043,6 +2361,14 @@ def validate_rank_witness_minor(item: dict[str, Any], row_set: list[int]) -> Non
     )
     if minor["root_hash"] != expected_hash:
         raise PacketError(f"{location}: root_hash mismatch")
+    validate_rank_witness_specialization(
+        item,
+        row_set,
+        node,
+        rank_witness_input,
+        modulus,
+        extension_field,
+    )
 
 
 def validate_extractor_audit(
@@ -2287,6 +2613,7 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     k = row["k"]
     modulus = parse_prime_field(row["field"])
     extension_field = PolynomialBasisField.from_packet(packet)
+    rank_witness_input = load_rank_witness_input(packet)
     projective_infinity_count = validate_projective_infinity(
         packet, modulus, extension_field
     )
@@ -2312,7 +2639,7 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
                 )
             else:
                 roots, bad_slopes = validate_regular_minor(
-                    item, modulus, extension_field
+                    item, modulus, extension_field, rank_witness_input
                 )
             if roots is not None:
                 all_roots.update(roots)

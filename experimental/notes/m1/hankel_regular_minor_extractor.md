@@ -300,10 +300,12 @@ Here the full-rank specialization found by `rank_at_nodes` already proves that
 the selected determinant is a nonzero polynomial.  The packet therefore records
 the bound `deg Delta_A <= j+1` and leaves the root table unenumerated instead of
 interpolating `Delta_A(Z)`.  The integrated checker recomputes the deterministic
-rank-witness hash from the row set, pivot node, and degree bound, and requires
-the audit fields `certificate_mode=rank_witness_bound` and
-`root_count=not_enumerated`.  This is weaker than an enumerated root table, but
-it is the intended cheap first pass for large `F_17^32` regular-window rows.
+rank-witness hash from the row set, pivot node, and degree bound, requires the
+audit fields `certificate_mode=rank_witness_bound` and
+`root_count=not_enumerated`, verifies the referenced extractor input SHA, and
+replays the claimed full-rank specialization from the input syndrome.  This is
+weaker than an enumerated root table, but it is the intended cheap first pass
+for large `F_17^32` regular-window rows.
 
 The negative packet
 
@@ -314,6 +316,26 @@ experimental/data/certificates/regular-minor-extractor-rank-witness-toy/
 
 must fail because it keeps the same witness metadata but corrupts the
 rank-witness root hash.
+
+The second negative packet
+
+```text
+experimental/data/certificates/regular-minor-extractor-rank-witness-toy/
+  invalid_singular_rank_witness_packet.json
+```
+
+recomputes the correct hash for row set `[0,1,2]`, but that row set is singular
+at the claimed pivot node.  It must fail the replayed rank check.
+
+The polynomial-basis extension companion is
+
+```text
+experimental/data/hankel-regular-minor-inputs/f17_2_n10_k4_a8_rank_witness_toy.json
+experimental/data/certificates/regular-minor-extractor-rank-witness-f17-2-toy/
+```
+
+It exercises the same replay obligation over
+`F_17^2 = F_17[x]/(x^2-3)`, including a singular-witness expected-fail packet.
 
 The singular rank-pivot replay is
 

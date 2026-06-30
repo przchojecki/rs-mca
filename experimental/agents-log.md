@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Rank-witness determinant replay gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_2_n10_k4_a8_rank_witness_toy.json`;
+  `experimental/data/certificates/regular-minor-extractor-rank-witness-toy/`;
+  `experimental/data/certificates/regular-minor-extractor-rank-witness-f17-2-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the rank-witness packet replay.
+- **What is being added:** The v9 checker now verifies a `rank_witness_bound`
+  packet by loading the referenced extractor input, checking its SHA, and
+  replaying the claimed full-rank Hankel specialization at the pivot node over
+  either a prime field or a polynomial-basis extension field.
+- **How it is useful:** A cheap degree-bound packet can no longer certify a
+  nonzero regular minor using metadata alone; the determinant nonvanishing
+  witness is tied to the actual syndrome pencil.
+- **What to do next:** Use this replay gate before relying on future large-row
+  rank-witness packets, especially any `F_17^32` rank-witness packet in the
+  active M3/M1 certificate set.
+
 ### 2026-06-30 - Projective regular-minor gcd endpoint audit
 
 - **Agent/model:** AllenGrahamHart / Codex.
