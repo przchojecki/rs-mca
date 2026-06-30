@@ -7,8 +7,8 @@
 **Date:** 2026-06-30.
 
 This note records the finite-slope consequence of the already integrated
-coset-packet lower-floor theorem for the old agreement-265 upper-bound target
-in `towards-prize.md`.
+finite lower-floor packages for the old agreement-265 upper-bound target in
+`towards-prize.md`.
 
 The target
 
@@ -36,6 +36,23 @@ for every `a=265,...,271`, and also proves
 LD_sw(C,288) >= binom(16,9) = 11440.
 ```
 
+Together with the random simple-pole entropy floor in
+`experimental/notes/m1/m1_random_simple_pole_entropy_floor.md`, the current
+explicit finite-slope lower-floor coverage is:
+
+```text
+a = 257:     all 17^32 finite slopes are bad,
+a = 258:     all 17^32 finite slopes are bad,
+a = 259:     at least 17^32 - 68904 finite slopes are bad,
+a = 260:     at least 33439260151101646297506087371119470 slopes,
+a = 261..263 at least binom(63,32) slopes,
+a = 264:     at least binom(64,33) slopes,
+a = 265..271 at least binom(31,16) slopes,
+a = 272:     at least binom(32,17) slopes,
+a = 273..287 at least binom(15,8) slopes,
+a = 288:     at least binom(16,9) slopes.
+```
+
 Since
 
 ```text
@@ -49,18 +66,17 @@ lower floor.
 
 ## Consequence for the finite row
 
-The coset-packet lower floor gives more than six finite bad slopes at each
-agreement from `265` through `288`. In particular, the current finite-slope
-lower-bound evidence pushes the first possible safe agreement edge beyond
-`288`:
+The integrated lower-floor packages give more than six finite bad slopes at
+each agreement from `257` through `288`. In particular, the current
+finite-slope lower-bound evidence pushes the first possible safe agreement
+edge beyond `288`:
 
 ```text
 LD_sw(C,a) > 6        for every a <= 288
 ```
 
-where the statement for `a<265` follows monotonically from the displayed
-`a=265` row, and the statement for `265<=a<=288` is covered directly by the
-coset-packet rows.
+where `257<=a<=288` is covered by the displayed lower-floor packages, and the
+statement for `a<257` follows monotonically from the `a=257` row.
 
 Therefore, if this finite-slope predicate is the intended object, the next
 finite upper-bound target should not be `a=265`. The first agreement not ruled
@@ -95,8 +111,9 @@ the older agreement-265 finite-slope upper-bound target.
 ## Verification
 
 The companion verifier checks the exact integer arithmetic, reuses the
-coset-packet certificate verifier, and confirms that all agreements
-`265,...,288` have certified lower floors larger than the gate value `6`:
+random simple-pole and coset-packet certificate verifiers, and confirms that
+all agreements `257,...,288` have certified lower floors larger than the gate
+value `6`:
 
 ```sh
 python3 experimental/scripts/verify_agreement265_status_audit.py

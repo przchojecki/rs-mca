@@ -1075,8 +1075,9 @@ false.  The integrated coset-packet finite-slope floor proves
 \[
 LD_{\mathrm{sw}}(C,265)\ge \binom{31}{16}=300{,}540{,}195,
 \]
-and the same lower-floor package gives more than six bad finite slopes through
-agreement \(288\).  See
+and the integrated random simple-pole plus coset-packet lower-floor packages
+give more than six bad finite slopes for every agreement \(257\le a\le288\).
+See
 `experimental/notes/thresholds/agreement265_status_audit.md`.  Therefore this
 lane should be read as an old finite-row target unless a different sampler
 convention is intended; for the finite-slope predicate, the first agreement not
@@ -2145,9 +2146,10 @@ write exact failure audit
 **Impact.** Threshold is lower/higher than expected; finite pinning target changes.
 
 **Current status.** This risk has materialized for the finite-slope
-support-wise predicate: the coset-packet finite-slope floor gives more than six
-bad finite slopes for every agreement \(265\le a\le288\), and hence pushes the
-first possible finite-slope upper edge to at least \(288/289\).  See
+support-wise predicate: the integrated random simple-pole and coset-packet
+lower-floor packages give more than six bad finite slopes for every agreement
+\(257\le a\le288\), and hence push the first possible finite-slope upper edge
+to at least \(288/289\).  See
 `experimental/notes/thresholds/agreement265_status_audit.md`.
 
 **Mitigation.**

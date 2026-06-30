@@ -41,7 +41,9 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A compact status theorem showing that the older
   `LD_sw(C,265)<=6` finite-slope target is already false under the
   support-wise convention: the integrated coset-packet floor gives
-  `LD_sw(C,265)>=binom(31,16)=300540195`.
+  `LD_sw(C,265)>=binom(31,16)=300540195`.  The verifier also aggregates the
+  integrated random simple-pole rows, so the explicit lower-floor coverage is
+  `a=257..288`.
 - **How it is useful:** Resolves the `towards-prize.md` Risk 3 branch for this
   finite-slope predicate and shows that the current lower-floor package pushes
   the first possible upper-bound edge to at least `288/289`, since

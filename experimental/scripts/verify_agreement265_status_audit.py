@@ -15,6 +15,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO_ROOT))
 
 import experimental.scripts.verify_m1_coset_packet_finite_slope_floors as floors
+import experimental.scripts.verify_m1_random_simple_pole_entropy_floor as random_floor
 
 
 Q = 17**32
@@ -41,13 +42,31 @@ def rows_by_agreement(certificate: dict[str, Any]) -> dict[int, dict[str, Any]]:
     return rows
 
 
+def random_floor_rows() -> dict[int, dict[str, Any]]:
+    random_floor.check_certificate(random_floor.CERTIFICATE)
+    rows: dict[int, dict[str, Any]] = {}
+    for record in random_floor.computed_certificate()["records"]:
+        agreement = int(record["agreement"])
+        rows[agreement] = {
+            "agreement": agreement,
+            "lower": int(record["badSlopesLowerExact"]),
+            "formula": record["badSlopesLower"],
+            "source": "random simple-pole entropy floor",
+        }
+    return rows
+
+
 def status_certificate() -> dict[str, Any]:
     floors.validate_math()
     floors.validate_json(floors.DATA_PATH)
-    source = floors.certificate()
-    rows = rows_by_agreement(source)
+    rows = random_floor_rows()
+    coset_rows = rows_by_agreement(floors.certificate())
+    overlap = sorted(set(rows) & set(coset_rows))
+    if overlap:
+        raise AssertionError(("overlapping source rows", overlap))
+    rows.update(coset_rows)
 
-    required_rows = list(range(265, 289))
+    required_rows = list(range(257, 289))
     missing = [agreement for agreement in required_rows if agreement not in rows]
     if missing:
         raise AssertionError(("missing lower-floor rows", missing))
@@ -72,6 +91,12 @@ def status_certificate() -> dict[str, Any]:
         raise AssertionError(("a=265 lower mismatch", rows[265]))
     if rows[288]["lower"] != comb(16, 9):
         raise AssertionError(("a=288 lower mismatch", rows[288]))
+    if rows[257]["lower"] != Q:
+        raise AssertionError(("a=257 lower mismatch", rows[257]))
+    if rows[258]["lower"] != Q:
+        raise AssertionError(("a=258 lower mismatch", rows[258]))
+    if rows[259]["lower"] != Q - 68_904:
+        raise AssertionError(("a=259 lower mismatch", rows[259]))
 
     return {
         "status": "PROVED-CONSEQUENCE / AUDIT",
@@ -84,11 +109,18 @@ def status_certificate() -> dict[str, Any]:
         "first_unsafe_numerator": FIRST_UNSAFE_NUMERATOR,
         "old_target": "LD_sw(C,265) <= 6",
         "old_target_status": "false under the finite-slope support-wise convention",
+        "explicit_lower_floor_interval": [257, 288],
+        "agreement_257_lower": rows[257]["lower"],
+        "agreement_257_lower_formula": rows[257]["formula"],
+        "agreement_259_lower": rows[259]["lower"],
+        "agreement_259_lower_formula": rows[259]["formula"],
+        "agreement_260_lower": rows[260]["lower"],
+        "agreement_260_lower_formula": rows[260]["formula"],
         "agreement_265_lower": rows[265]["lower"],
         "agreement_265_lower_formula": rows[265]["formula"],
         "agreement_288_lower": rows[288]["lower"],
         "agreement_288_lower_formula": rows[288]["formula"],
-        "certified_unsafe_agreement_interval": [265, 288],
+        "certified_unsafe_agreement_interval": [257, 288],
         "monotone_unsafe_through": 288,
         "first_not_ruled_out_by_this_floor": 289,
         "nonclaims": [
@@ -113,6 +145,11 @@ def main() -> None:
     print("agreement-265 finite-slope status audit")
     print("q =", cert["q"])
     print("floor(q/2^128) =", cert["floor_q_over_2_128"])
+    print(
+        "a=257 lower =",
+        cert["agreement_257_lower"],
+        f"({cert['agreement_257_lower_formula']})",
+    )
     print(
         "a=265 lower =",
         cert["agreement_265_lower"],
