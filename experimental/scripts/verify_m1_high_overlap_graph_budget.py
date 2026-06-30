@@ -191,6 +191,37 @@ def support_floor_from_degeneracy_bound(
     )
 
 
+def degeneracy_bound_from_popularity_cap(
+    s: int, h: int, degree_cap: int, lambda_cap: int, popularity_cap: int
+) -> int:
+    if popularity_cap < 0:
+        raise ValueError("popularity_cap must be nonnegative")
+    if not 0 <= lambda_cap < s:
+        raise ValueError("lambda_cap must satisfy 0 <= lambda_cap < s")
+    leaf_cap = (s * popularity_cap) // (lambda_cap + 1)
+    return h * (2 * degree_cap - 1) * leaf_cap
+
+
+def support_floor_from_popularity_cap(
+    k: int,
+    s: int,
+    h: int,
+    degree_cap: int,
+    lambda_cap: int,
+    popularity_cap: int,
+) -> int:
+    return support_floor_from_degeneracy_bound(
+        k,
+        s,
+        h,
+        degree_cap,
+        lambda_cap,
+        degeneracy_bound_from_popularity_cap(
+            s, h, degree_cap, lambda_cap, popularity_cap
+        ),
+    )
+
+
 def forced_high_edges(
     k: int,
     s: int,
@@ -277,6 +308,7 @@ def check_exact_parameter_grid() -> None:
     checked = 0
     degree_checked = 0
     popularity_checked = 0
+    popularity_floor_checked = 0
     for k in range(2, 24):
         for s in range(1, 13):
             for h in range(1, 6):
@@ -433,11 +465,64 @@ def check_exact_parameter_grid() -> None:
                                             cap_allows_star,
                                             cap_breaks,
                                         )
-                                    )
+                                )
                                 popularity_checked += 1
+                        for popularity_cap in range(0, 16):
+                            degen_bound = degeneracy_bound_from_popularity_cap(
+                                s, h, degree_cap, lambda_cap, popularity_cap
+                            )
+                            leaf_cap = (s * popularity_cap) // (lambda_cap + 1)
+                            if endpoint_star_leaf_floor(
+                                degen_bound + 1, h, degree_cap
+                            ) <= leaf_cap:
+                                raise AssertionError(
+                                    (
+                                        "popularity degeneracy threshold",
+                                        k,
+                                        s,
+                                        h,
+                                        degree_cap,
+                                        lambda_cap,
+                                        popularity_cap,
+                                        degen_bound,
+                                        leaf_cap,
+                                    )
+                                )
+                            pop_floor = support_floor_from_popularity_cap(
+                                k,
+                                s,
+                                h,
+                                degree_cap,
+                                lambda_cap,
+                                popularity_cap,
+                            )
+                            degen_floor = support_floor_from_degeneracy_bound(
+                                k,
+                                s,
+                                h,
+                                degree_cap,
+                                lambda_cap,
+                                degen_bound,
+                            )
+                            if pop_floor != degen_floor:
+                                raise AssertionError(
+                                    (
+                                        "popularity floor mismatch",
+                                        k,
+                                        s,
+                                        h,
+                                        degree_cap,
+                                        lambda_cap,
+                                        popularity_cap,
+                                        pop_floor,
+                                        degen_floor,
+                                    )
+                                )
+                            popularity_floor_checked += 1
     print(f"exact_high_edge_parameter_grid_checked={checked}")
     print(f"exact_degree_degeneracy_grid_checked={degree_checked}")
     print(f"exact_popularity_grid_checked={popularity_checked}")
+    print(f"exact_popularity_floor_grid_checked={popularity_floor_checked}")
 
 
 def check_sampled_packet_systems() -> None:
@@ -449,6 +534,7 @@ def check_sampled_packet_systems() -> None:
     dense_core_interfaces = 0
     endpoint_star_interfaces = 0
     popular_residue_interfaces = 0
+    popularity_floor_interfaces = 0
 
     for trial in range(650):
         labels = make_random_labels(rng, trial)
@@ -577,8 +663,15 @@ def check_sampled_packet_systems() -> None:
                 )
             degeneracy_interfaces += 1
 
+            global_popularity_cap = 0
             for center, neighbors in enumerate(adjacency):
                 neighbor_list = sorted(neighbors)
+                all_neighbor_popularity, _ = star_center_popularity(
+                    labels, center, neighbor_list
+                )
+                global_popularity_cap = max(
+                    global_popularity_cap, all_neighbor_popularity
+                )
                 selected = endpoint_disjoint_subset(labels, neighbor_list)
                 used_endpoints: set[int] = set()
                 for index in selected:
@@ -647,6 +740,36 @@ def check_sampled_packet_systems() -> None:
                         )
                     popular_residue_interfaces += 1
                 endpoint_star_interfaces += 1
+
+            popularity_degen_bound = degeneracy_bound_from_popularity_cap(
+                s, h, degree_cap, lambda_cap, global_popularity_cap
+            )
+            if degeneracy > popularity_degen_bound:
+                raise AssertionError(
+                    (
+                        "popularity-derived degeneracy bound",
+                        trial,
+                        lambda_cap,
+                        degeneracy,
+                        popularity_degen_bound,
+                        global_popularity_cap,
+                    )
+                )
+            popularity_floor = support_floor_from_popularity_cap(
+                k, s, h, degree_cap, lambda_cap, global_popularity_cap
+            )
+            if support_size < popularity_floor:
+                raise AssertionError(
+                    (
+                        "popularity support floor",
+                        trial,
+                        lambda_cap,
+                        support_size,
+                        popularity_floor,
+                        global_popularity_cap,
+                    )
+                )
+            popularity_floor_interfaces += 1
 
             for d in range(0, min(k, 8)):
                 forced = forced_high_edges(
@@ -723,6 +846,7 @@ def check_sampled_packet_systems() -> None:
     print(f"sampled_dense_core_interfaces_checked={dense_core_interfaces}")
     print(f"sampled_endpoint_star_interfaces_checked={endpoint_star_interfaces}")
     print(f"sampled_popular_residue_interfaces_checked={popular_residue_interfaces}")
+    print(f"sampled_popularity_floor_interfaces_checked={popularity_floor_interfaces}")
 
 
 def main() -> None:

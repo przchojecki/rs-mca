@@ -425,6 +425,76 @@ Hankel/Kummer geometry: prove a uniform popularity cap for one center packet
 point against endpoint-independent high-overlap partners, or classify the
 exception.
 
+## Popularity-cap support criterion
+
+The preceding reductions compose into one support floor.  Suppose an algebraic
+input proves that, outside already charged quotient/tangent/root/endpoint-star
+branches, every endpoint-disjoint high-overlap star has
+
+```text
+pop_a(x) <= U        for every x in P_a.
+```
+
+Put
+
+```text
+T_U = floor( s U / (Lambda+1) ),
+d_U = h(2D-1) T_U.
+```
+
+Then any residual packet family with no popular-residue exception satisfies
+
+```text
+degeneracy(G_Lambda) <= d_U.
+```
+
+Consequently it has the support floor
+
+```text
+B >= F_pop(K,s,h,D,Lambda,U)
+  :=
+  ceil(
+    K^2 s^2
+    /
+    (
+      K s + 2 K h(D-1)s + K(K-1)Lambda
+      + 2(s-Lambda) M_degen(K,d_U)
+    )
+  ).                                                  (PC1)
+```
+
+Equivalently, if
+
+```text
+F_pop(K,s,h,D,Lambda,U) > R,
+```
+
+then every selected packet family satisfies at least one of:
+
+```text
+large support:       B > R,
+near-star:           #{endpoint supports E_a} < L D,
+popular residue:     some endpoint-disjoint high-overlap star has
+                     pop_a(x) > U for a center-packet point x.
+```
+
+Proof: if `degeneracy(G_Lambda)>d_U`, dense-core and endpoint-disjoint star
+extraction give a star with at least
+
+```text
+ceil((d_U+1)/(h(2D-1))) = T_U+1
+```
+
+endpoint-disjoint leaves.  By `(PR1)`, this star has a center-packet point with
+popularity at least
+
+```text
+ceil((T_U+1)(Lambda+1)/s) > U,
+```
+
+contradicting the popularity cap.  Hence the degeneracy is at most `d_U`, and
+substitution into the degeneracy support floor gives `(PC1)`.
+
 ## M1 use
 
 For Work package C3 in `towards-prize.md`, this is a sharper interface than a
@@ -444,14 +514,15 @@ support remains too small, the dense-core extraction above identifies a
 specific high-minimum-degree high-overlap packet core, and then an
 endpoint-disjoint high-overlap star.  The popular-residue extraction reduces
 that star to one center packet point with many independent high-overlap
-partners.
+partners.  Finally, `(PC1)` states the explicit support floor obtained from
+any future algebraic popularity cap.
 
 ## Verification
 
 The companion verifier checks the exact floor, the forced high-edge lower
 bound, the degree/degeneracy substitutions, the dense-core extraction, and
 the endpoint-disjoint star/popular-residue extraction on sampled finite packet
-systems:
+systems, including the composed popularity-cap floor:
 
 ```sh
 python3 experimental/scripts/verify_m1_high_overlap_graph_budget.py

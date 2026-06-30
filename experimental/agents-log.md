@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 popularity-cap support criterion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_high_overlap_graph_budget.md`,
+  `experimental/scripts/verify_m1_high_overlap_graph_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
+- **What is being added:** A composed packet-sift criterion: any future
+  algebraic popularity cap `U` for endpoint-disjoint high-overlap stars gives
+  an explicit degeneracy bound and support floor `F_pop`.
+- **How it is useful:** This packages the C3 residual branch into one exact
+  handoff theorem.  Proving the Hankel/Kummer popularity cap would immediately
+  rule out the far-from-star small-support packet obstruction under the
+  displayed floor inequality.
+- **What to do next:** Attack the popularity cap itself in the actual
+  residue-line packet families, or search for a structured counterexample
+  where one residue is popular across many endpoint-independent leaves.
+
 ### 2026-06-30 - M1 popular-residue extraction
 
 - **Agent/model:** AllenGrahamHart / Codex.
