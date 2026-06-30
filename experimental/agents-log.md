@@ -30,6 +30,63 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - A0: consolidated adversarial audit of Paper D v7 `thm:A`
+
+- **Agent/model:** Claude Opus 4.8 (1M) + `a0-thmA-audit` workflow (17 agents).
+- **Files added or changed:**
+  `experimental/notes/audits/a0_thmA_v7_consolidated.md`,
+  `experimental/scripts/verify_a0_thmA_v7_cap_certificate.py`,
+  `experimental/scripts/verify_a0_thmA_v7_boundary_tight.py`,
+  `experimental/scripts/verify_a0_thmB_internal_radius.py`.
+- **Status:** AUDIT (verdict: `thm:A` correct & self-contained for the main cap;
+  `thm:B` internal-radius `1/n` concern resolved as a non-issue; one residual
+  source-access item on the `prop:slacked` fallback).
+- **What is being added:** First adversarial verification of the *in-house*
+  v7 `thm:A` (deep-point list-to-CA conversion) — 7/7 load-bearing steps survived
+  refutation; the `v5→v7` revision (`q>n` added, strict `f<n-k-1` relaxed to
+  non-strict `f≤n-k-1`, `thm:main` interval closed) is sound and exactly tight;
+  prior 5 A0 notes reconciled (all audited the stale v4 import-framing, none
+  contradict v7, none relied on the strict bound); ABF defs/envelope EXACT
+  primary-verified (Wayback), BCHKS Thm 1.9 primary-verified (Toronto mirror),
+  CS25 Thm 2 secondary-verified verbatim; numerical cap certificate (25 rows +
+  deployed) all pass exactly.
+- **How it is useful:** Closes the long-standing A0 "CS25 import conditional"
+  caveat for the universal cap `thm:main`/`cor:grand`/`cor:deployed`
+  (`tex/cs25_cap_v7.tex`); consolidates/supersedes the scattered v4-era A0 notes
+  for the main route; certifies the published constants (`2^-86/2^-42/2^-22` are
+  conservative — true floors `2^-85/2^-41/2^-21`).
+- **What to do next:** The internal-radius `1/n` strict/non-strict worry on the
+  fallback is **resolved** (non-issue; BCHKS gives `Δ([f,g],C²) ≥ 1-ρ`, a `1/n`
+  margin over the strict threshold — `verify_a0_thmB_internal_radius.py`). The
+  only remaining item is source-access: verify ABF Thm 5.2's literal
+  `LDR`/field-radius packaging (ePrint 2026/680, 403-blocked) before promoting
+  the `prop:slacked` fallback from CONDITIONAL — not a known defect. Agents.md
+  rule 5 still holds — Papers A–D unchanged; this is an `experimental/` audit only.
+
+### 2026-06-30 - Paper B: {2,3}-smooth exact canonical slope count
+
+- **Agent/model:** Claude Opus 4.8.
+- **Files added or changed:**
+  `experimental/notes/m1/paperb_23_smooth_exact_count.md`,
+  `experimental/scripts/verify_paperb_23_smooth_exact_count.py`.
+- **Status:** CONDITIONAL (agents.md rule 4 — proof depends on the import
+  `thm:vsimport`, exactly as `thm:23rigidity` is "conditional on the import") /
+  AUDIT cross-check (finite values certified unconditionally vs brute force).
+- **What is being added:** The exact `{2,3}`-smooth canonical slope count
+  `A_{2,3}(2^a 3^b, ℓ')` requested as "future combinatorics" in
+  `slackMCA_v4.tex` `rem:23count` — a single closed form (per-cell Boolean-
+  Minkowski transfer over `n_c=2^{a-1}3^{b-1}` cells, alphabet of 19
+  difference-types in four size-classes) that recovers `thm:exactcount` at
+  `b=0` and gives the half-rate exponent `β_{2,3}(1/2)=log_2(19)/6 ≈ 0.708`.
+- **How it is useful:** Closes the mixed-radix class-enumeration target of
+  `rem:23count` (the analogue of `thm:exactcount`), feeding the unchanged norm
+  sieve for `{2,3}`-smooth (mixed-radix FFT) domains. Verifier certifies the
+  closed form against two-faithful-prime brute force for all `N'≤48` and
+  certifies the `b=0` collapse to `thm:exactcount`.
+- **What to do next:** Review the proof skeleton before promoting the closed
+  form to `tex/`; extend the explicit `β_{2,3}(ρ)` saddle-point to general `ρ`;
+  optionally a stdlib-Lean statement of the per-cell transfer identity.
+
 ### 2026-06-29 - Lean: quotient-periodic whole-fiber strict-overlap arithmetic
 
 - **Agent/model:** Claude Opus 4.8 (1M).
