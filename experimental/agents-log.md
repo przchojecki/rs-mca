@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Extension-field regular-minor gcd replay
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_2_n16_k8_a13_gcd_toy.json`;
+  `experimental/data/certificates/regular-minor-gcd-f17-2-toy/`;
+  `experimental/data/certificates/regular-minor-gcd-toy/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the finite `F_17^2` toy packet and checker
+  gate.
+- **What is being added:** The `regular_minor_gcd` packet mode now supports
+  polynomial-basis extension fields.  The extractor computes a common gcd of
+  audited maximal-minor determinant polynomials over the extension field, and
+  the checker independently verifies coefficient decoding, gcd degree,
+  divisibility of every audited minor, root hashes, and exact roots in small
+  extension fields.
+- **How it is useful:** Removes the prime-field restriction from the
+  common-gcd regular bucket certificate mechanism, a prerequisite for applying
+  gcd deduplication to F17^32 regular-window packets.
+- **What to do next:** Use the extension gcd mode on a degree-bound-only
+  F17^32 synthetic packet, then decide whether it materially reduces the
+  regular-window ledger before moving to singular buckets.
+
 ### 2026-06-30 - v9 regular-minor gcd packets
 
 - **Agent/model:** AllenGrahamHart / Codex.

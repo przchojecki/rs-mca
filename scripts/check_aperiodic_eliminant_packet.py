@@ -360,6 +360,9 @@ class PolynomialBasisField:
     def sub(self, left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
         return tuple((left[i] - right[i]) % self.p for i in range(self.degree))
 
+    def neg(self, value: tuple[int, ...]) -> tuple[int, ...]:
+        return self.sub(self.zero, value)
+
     def mul(self, left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
         coeffs = [0] * (2 * self.degree - 1)
         for i, left_coeff in enumerate(left):
@@ -377,6 +380,26 @@ class PolynomialBasisField:
                     coeffs[offset + j] - lead * self.modulus[j]
                 ) % self.p
         return tuple(coeffs[: self.degree])
+
+    def pow(self, value: tuple[int, ...], exponent: int) -> tuple[int, ...]:
+        if exponent < 0:
+            return self.pow(self.inv(value), -exponent)
+        out = self.one
+        base = value
+        while exponent:
+            if exponent & 1:
+                out = self.mul(out, base)
+            base = self.mul(base, base)
+            exponent >>= 1
+        return out
+
+    def inv(self, value: tuple[int, ...]) -> tuple[int, ...]:
+        if value == self.zero:
+            raise ZeroDivisionError("division by zero")
+        return self.pow(value, self.size - 2)
+
+    def div(self, left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
+        return self.mul(left, self.inv(right))
 
     def is_zero(self, value: tuple[int, ...]) -> bool:
         return value == self.zero
@@ -434,6 +457,70 @@ def extension_poly_mul(
     while len(out) > 1 and out[-1] == field.zero:
         out.pop()
     return out
+
+
+def extension_poly_trim(
+    poly: list[tuple[int, ...]], field: PolynomialBasisField
+) -> list[tuple[int, ...]]:
+    out = poly[:]
+    while len(out) > 1 and out[-1] == field.zero:
+        out.pop()
+    if not out:
+        return [field.zero]
+    return out
+
+
+def extension_poly_is_zero(
+    poly: list[tuple[int, ...]], field: PolynomialBasisField
+) -> bool:
+    trimmed = extension_poly_trim(poly, field)
+    return len(trimmed) == 1 and trimmed[0] == field.zero
+
+
+def extension_poly_degree(
+    poly: list[tuple[int, ...]], field: PolynomialBasisField
+) -> int:
+    return len(extension_poly_trim(poly, field)) - 1
+
+
+def extension_poly_divmod(
+    numerator: list[tuple[int, ...]],
+    denominator: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> tuple[list[tuple[int, ...]], list[tuple[int, ...]]]:
+    work = extension_poly_trim(numerator, field)
+    divisor = extension_poly_trim(denominator, field)
+    if extension_poly_is_zero(divisor, field):
+        raise ZeroDivisionError("polynomial division by zero")
+    quotient = [field.zero] * max(1, len(work) - len(divisor) + 1)
+    while len(work) >= len(divisor) and not extension_poly_is_zero(work, field):
+        coeff = field.div(work[-1], divisor[-1])
+        shift = len(work) - len(divisor)
+        quotient[shift] = coeff
+        subtractor = [field.zero] * shift + [
+            field.mul(coeff, term) for term in divisor
+        ]
+        size = max(len(work), len(subtractor))
+        work = extension_poly_trim(
+            [
+                field.sub(
+                    work[index] if index < len(work) else field.zero,
+                    subtractor[index] if index < len(subtractor) else field.zero,
+                )
+                for index in range(size)
+            ],
+            field,
+        )
+    return extension_poly_trim(quotient, field), work
+
+
+def extension_poly_mod(
+    numerator: list[tuple[int, ...]],
+    denominator: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    _quotient, remainder = extension_poly_divmod(numerator, denominator, field)
+    return remainder
 
 
 def validate_split_linear_root_certificate_mod(
@@ -1462,13 +1549,9 @@ def validate_regular_minor_gcd(
     modulus: int | None,
     extension_field: PolynomialBasisField | None,
 ) -> tuple[list[int] | None, list[int]]:
-    if extension_field is not None:
+    if modulus is None and extension_field is None:
         raise PacketError(
-            f"A={item.get('A')}: regular_minor_gcd currently supports prime fields only"
-        )
-    if modulus is None:
-        raise PacketError(
-            f"A={item.get('A')}: regular_minor_gcd needs a prime-field row"
+            f"A={item.get('A')}: regular_minor_gcd needs a finite-field row"
         )
     gcd_info = item.get("regular_minor_gcd")
     if not isinstance(gcd_info, dict):
@@ -1532,27 +1615,78 @@ def validate_regular_minor_gcd(
     bad_slope_key = first_matching_key(
         data, r"enumerated_bad_slopes_mod_\d+", r"enumerated_bad_slopes"
     )
-    if coefficient_key is None or root_key is None or minor_polynomial_key is None:
+    if coefficient_key is None or minor_polynomial_key is None:
         raise PacketError(
-            f"A={item.get('A')}: gcd data needs gcd coefficients, roots, and minor polynomials"
+            f"A={item.get('A')}: gcd data needs gcd coefficients and minor polynomials"
         )
     coefficients = require_int_list(
         data[coefficient_key], f"A={item.get('A')} gcd coefficients"
     )
-    roots = normalize_int_list(data[root_key], f"A={item.get('A')} gcd roots")
+    if not coefficients:
+        raise PacketError(f"A={item.get('A')}: empty gcd coefficient list")
+    roots = (
+        normalize_int_list(data[root_key], f"A={item.get('A')} gcd roots")
+        if root_key is not None
+        else None
+    )
     bad_slopes = normalize_int_list(
         data.get(bad_slope_key, []), f"A={item.get('A')} gcd bad_slopes"
     )
-    if all(coefficient == 0 for coefficient in coefficients):
-        raise PacketError(f"A={item.get('A')}: zero gcd polynomial")
-    actual_degree = poly_degree(coefficients)
+    if roots is None and bad_slopes:
+        raise PacketError(
+            f"A={item.get('A')}: enumerated bad slopes need an exact gcd root table"
+        )
+
+    if modulus is not None:
+        require_key_modulus(coefficient_key, modulus, f"A={item.get('A')}: gcd")
+        if root_key is not None:
+            require_key_modulus(root_key, modulus, f"A={item.get('A')}: gcd")
+        if bad_slope_key is not None:
+            require_key_modulus(
+                bad_slope_key, modulus, f"A={item.get('A')}: gcd"
+            )
+        if all(coefficient % modulus == 0 for coefficient in coefficients):
+            raise PacketError(f"A={item.get('A')}: zero gcd polynomial")
+        actual_degree = poly_degree([coefficient % modulus for coefficient in coefficients])
+        decoded_coefficients = None
+        field_size = modulus
+    else:
+        assert extension_field is not None
+        if data.get("p") not in (None, extension_field.p):
+            raise PacketError(f"A={item.get('A')}: gcd data p does not match field")
+        if data.get("field_extension_degree") not in (None, extension_field.degree):
+            raise PacketError(
+                f"A={item.get('A')}: gcd data extension degree does not match field"
+            )
+        decoded_coefficients = [
+            extension_field.decode(coefficient) for coefficient in coefficients
+        ]
+        if extension_poly_is_zero(decoded_coefficients, extension_field):
+            raise PacketError(f"A={item.get('A')}: zero gcd polynomial")
+        actual_degree = extension_poly_degree(decoded_coefficients, extension_field)
+        if roots is not None:
+            for root in roots:
+                extension_field.decode(root)
+        for slope in bad_slopes:
+            extension_field.decode(slope)
+        field_size = extension_field.size
+
     if actual_degree != gcd_info["degree"]:
         raise PacketError(
             f"A={item.get('A')}: gcd degree field {gcd_info['degree']} != actual {actual_degree}"
         )
-    if hash_json(roots) != gcd_info["root_hash"]:
+    root_hash_payload: Any = (
+        roots
+        if roots is not None
+        else {
+            "roots": "not_enumerated",
+            "degree_bound": actual_degree,
+            "row_sets": row_sets,
+        }
+    )
+    if hash_json(root_hash_payload) != gcd_info["root_hash"]:
         raise PacketError(f"A={item.get('A')}: gcd root_hash mismatch")
-    if not set(bad_slopes).issubset(roots):
+    if roots is not None and not set(bad_slopes).issubset(roots):
         raise PacketError(
             f"A={item.get('A')}: enumerated bad slopes are not gcd roots"
         )
@@ -1583,40 +1717,96 @@ def validate_regular_minor_gcd(
             raise PacketError(
                 f"A={item.get('A')}: minor polynomial {index} has empty coefficients"
             )
-        if any(coefficient != 0 for coefficient in polynomial):
-            degree = poly_degree(polynomial)
-            if degree > item["j"] + 1:
+        if modulus is not None:
+            if any(coefficient % modulus != 0 for coefficient in polynomial):
+                degree = poly_degree([coefficient % modulus for coefficient in polynomial])
+                if degree > item["j"] + 1:
+                    raise PacketError(
+                        f"A={item.get('A')}: minor polynomial {index} degree exceeds j+1"
+                    )
+                if record.get("degree") != degree:
+                    raise PacketError(
+                        f"A={item.get('A')}: minor polynomial {index} degree mismatch"
+                    )
+                if ppoly_mod(polynomial, coefficients, modulus) != [0]:
+                    raise PacketError(
+                        f"A={item.get('A')}: gcd does not divide minor polynomial {index}"
+                    )
+            elif record.get("degree") != -1:
                 raise PacketError(
-                    f"A={item.get('A')}: minor polynomial {index} degree exceeds j+1"
+                    f"A={item.get('A')}: zero minor polynomial {index} must have degree -1"
                 )
-            if record.get("degree") != degree:
+        else:
+            assert extension_field is not None and decoded_coefficients is not None
+            decoded_polynomial = [
+                extension_field.decode(coefficient) for coefficient in polynomial
+            ]
+            if not extension_poly_is_zero(decoded_polynomial, extension_field):
+                degree = extension_poly_degree(decoded_polynomial, extension_field)
+                if degree > item["j"] + 1:
+                    raise PacketError(
+                        f"A={item.get('A')}: minor polynomial {index} degree exceeds j+1"
+                    )
+                if record.get("degree") != degree:
+                    raise PacketError(
+                        f"A={item.get('A')}: minor polynomial {index} degree mismatch"
+                    )
+                remainder = extension_poly_mod(
+                    decoded_polynomial, decoded_coefficients, extension_field
+                )
+                if not extension_poly_is_zero(remainder, extension_field):
+                    raise PacketError(
+                        f"A={item.get('A')}: gcd does not divide minor polynomial {index}"
+                    )
+            elif record.get("degree") != -1:
                 raise PacketError(
-                    f"A={item.get('A')}: minor polynomial {index} degree mismatch"
+                    f"A={item.get('A')}: zero minor polynomial {index} must have degree -1"
                 )
-            if ppoly_mod(polynomial, coefficients, modulus) != [0]:
-                raise PacketError(
-                    f"A={item.get('A')}: gcd does not divide minor polynomial {index}"
-                )
-        elif record.get("degree") != -1:
-            raise PacketError(
-                f"A={item.get('A')}: zero minor polynomial {index} must have degree -1"
-            )
 
-    if modulus <= ROOT_COMPLETENESS_ENUMERATION_LIMIT:
-        actual_roots = [
-            root
-            for root in range(modulus)
-            if poly_eval_mod(coefficients, root, modulus) == 0
-        ]
-        require_exact_roots(roots, actual_roots, f"A={item.get('A')}: gcd")
+    if field_size <= ROOT_COMPLETENESS_ENUMERATION_LIMIT and roots is None:
+        raise PacketError(
+            f"A={item.get('A')}: small-field gcd packets need exact roots"
+        )
+    if modulus is not None and roots is not None:
+        if modulus <= ROOT_COMPLETENESS_ENUMERATION_LIMIT:
+            actual_roots = [
+                root
+                for root in range(modulus)
+                if poly_eval_mod(coefficients, root, modulus) == 0
+            ]
+            require_exact_roots(roots, actual_roots, f"A={item.get('A')}: gcd")
+        else:
+            non_roots = [
+                root for root in roots if poly_eval_mod(coefficients, root, modulus)
+            ]
+            if non_roots:
+                raise PacketError(
+                    f"A={item.get('A')}: listed gcd non-roots {non_roots}"
+                )
     else:
-        non_roots = [
-            root for root in roots if poly_eval_mod(coefficients, root, modulus)
-        ]
-        if non_roots:
-            raise PacketError(
-                f"A={item.get('A')}: listed gcd non-roots {non_roots}"
-            )
+        assert extension_field is not None
+        if roots is not None:
+            if extension_field.size <= ROOT_COMPLETENESS_ENUMERATION_LIMIT:
+                actual_roots = [
+                    root
+                    for root in range(extension_field.size)
+                    if extension_field.is_zero(
+                        extension_field.poly_eval_encoded(coefficients, root)
+                    )
+                ]
+                require_exact_roots(roots, actual_roots, f"A={item.get('A')}: gcd")
+            else:
+                non_roots = [
+                    root
+                    for root in roots
+                    if not extension_field.is_zero(
+                        extension_field.poly_eval_encoded(coefficients, root)
+                    )
+                ]
+                if non_roots:
+                    raise PacketError(
+                        f"A={item.get('A')}: listed extension gcd non-roots {non_roots}"
+                    )
     return roots, bad_slopes
 
 

@@ -22,5 +22,6 @@ python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/regular-minor-gcd-toy/invalid_omitted_gcd_root_packet.json
 ```
 
-Non-claims: this is a finite toy replay, not an F17^32 regular-window bound.
-The mode is currently implemented for prime-field packets.
+Non-claims: this is a finite prime-field toy replay, not an F17^32
+regular-window bound.  A companion `F_17^2` replay now exercises the same
+common-gcd gate over a polynomial-basis extension field.

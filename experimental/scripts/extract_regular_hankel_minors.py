@@ -576,6 +576,81 @@ def fpoly_degree(
     return len(fpoly_trim(poly, field)) - 1
 
 
+def fpoly_is_zero(
+    poly: list[tuple[int, ...]], field: PolynomialBasisField
+) -> bool:
+    trimmed = fpoly_trim(poly, field)
+    return len(trimmed) == 1 and field.is_zero(trimmed[0])
+
+
+def fpoly_divmod(
+    numerator: list[tuple[int, ...]],
+    denominator: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> tuple[list[tuple[int, ...]], list[tuple[int, ...]]]:
+    work = fpoly_trim(numerator, field)
+    divisor = fpoly_trim(denominator, field)
+    if fpoly_is_zero(divisor, field):
+        raise ZeroDivisionError("polynomial division by zero")
+    quotient = [field.zero] * max(1, len(work) - len(divisor) + 1)
+    while len(work) >= len(divisor) and not fpoly_is_zero(work, field):
+        coeff = field.div(work[-1], divisor[-1])
+        shift = len(work) - len(divisor)
+        quotient[shift] = coeff
+        subtractor = [field.zero] * shift + [
+            field.mul(coeff, term) for term in divisor
+        ]
+        size = max(len(work), len(subtractor))
+        work = fpoly_trim(
+            [
+                field.sub(
+                    work[index] if index < len(work) else field.zero,
+                    subtractor[index] if index < len(subtractor) else field.zero,
+                )
+                for index in range(size)
+            ],
+            field,
+        )
+    return fpoly_trim(quotient, field), work
+
+
+def fpoly_monic(
+    poly: list[tuple[int, ...]], field: PolynomialBasisField
+) -> list[tuple[int, ...]]:
+    out = fpoly_trim(poly, field)
+    if fpoly_is_zero(out, field):
+        return out
+    return fpoly_scale(out, field.inv(out[-1]), field)
+
+
+def fpoly_gcd(
+    left: list[tuple[int, ...]],
+    right: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    a = fpoly_trim(left, field)
+    b = fpoly_trim(right, field)
+    if fpoly_is_zero(a, field):
+        return fpoly_monic(b, field)
+    if fpoly_is_zero(b, field):
+        return fpoly_monic(a, field)
+    while not fpoly_is_zero(b, field):
+        _quotient, remainder = fpoly_divmod(a, b, field)
+        a, b = b, remainder
+    return fpoly_monic(a, field)
+
+
+def fpoly_gcd_many(
+    polynomials: list[list[tuple[int, ...]]], field: PolynomialBasisField
+) -> list[tuple[int, ...]]:
+    if not polynomials:
+        raise ValueError("need at least one polynomial for gcd")
+    out = polynomials[0]
+    for polynomial in polynomials[1:]:
+        out = fpoly_gcd(out, polynomial, field)
+    return fpoly_monic(out, field)
+
+
 def fpoly_linear_power(
     constant: tuple[int, ...],
     exponent: int,
@@ -1539,6 +1614,112 @@ def extract_for_agreement_field(
             ),
             residual_audit=proportional_audit,
         )
+    if spec.get("certificate_mode") == MINOR_GCD_MODE:
+        polynomials: list[list[tuple[int, ...]]] = []
+        family_records: list[dict[str, Any]] = []
+        for row_set in row_sets:
+            polynomial = determinant_polynomial_by_interpolation_field(
+                u, v, row_set, size, field
+            )
+            polynomial = fpoly_trim(polynomial, field)
+            polynomials.append(polynomial)
+            family_records.append(
+                {
+                    "row_set": row_set,
+                    "coefficients": polynomial,
+                    "degree": fpoly_degree(polynomial, field)
+                    if not fpoly_is_zero(polynomial, field)
+                    else -1,
+                }
+            )
+        nonzero_polynomials = [
+            polynomial for polynomial in polynomials if not fpoly_is_zero(polynomial, field)
+        ]
+        if nonzero_polynomials:
+            gcd_polynomial = fpoly_gcd_many(nonzero_polynomials, field)
+            roots: list[tuple[int, ...]] | None = None
+            bad_slopes: list[tuple[int, ...]] | None = None
+            if field.size <= int(
+                spec.get("max_root_enum_field_size", DEFAULT_MAX_ROOT_ENUM_FIELD_SIZE)
+            ):
+                roots = [
+                    value
+                    for value in field.elements()
+                    if field.is_zero(fpoly_eval(gcd_polynomial, value, field))
+                ]
+            domain = spec.get("row", {}).get("domain")
+            if domain is not None and spec.get("enumerate_split_bad_slopes", False):
+                domain_encoding = spec.get("row", {}).get(
+                    "field_encoding", spec.get("field_element_encoding")
+                )
+                domain_values = normalize_field_input_list(
+                    domain, field, domain_encoding
+                )
+                subset_count = n_choose_k(len(domain_values), j)
+                if subset_count <= int(
+                    spec.get(
+                        "max_bad_slope_subsets", DEFAULT_MAX_BAD_SLOPE_SUBSETS
+                    )
+                ):
+                    bad_slopes = finite_bad_slopes_for_exact_agreement_field(
+                        u,
+                        v,
+                        domain_values,
+                        n,
+                        k,
+                        exact_agreement,
+                        field,
+                    )
+                    if roots is not None:
+                        root_codes = {field.encode(root) for root in roots}
+                        bad_codes = {field.encode(slope) for slope in bad_slopes}
+                        if not bad_codes.issubset(root_codes):
+                            raise AssertionError(
+                                (
+                                    "bad slopes not contained in common gcd roots",
+                                    exact_agreement,
+                                )
+                            )
+            return ExtractionResult(
+                exact_agreement,
+                j,
+                t,
+                "regular_minor",
+                None,
+                gcd_polynomial,
+                roots,
+                bad_slopes,
+                len(row_sets),
+                row_set_source=f"{row_set_audit['source']}_minor_gcd",
+                rank_pivot_node=row_set_audit.get("node"),
+                rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+                rank_pivot_nodes_required=row_set_audit.get(
+                    "nodes_required_for_singularity_proof"
+                ),
+                minor_family_records=family_records,
+            )
+        residual_reason = row_set_audit.get(
+            "singularity_proof"
+        ) or "all audited maximal-minor determinant polynomials vanished"
+        return ExtractionResult(
+            exact_agreement,
+            j,
+            t,
+            "residual_obstruction",
+            None,
+            None,
+            None,
+            None,
+            len(row_sets),
+            row_set_source=f"{row_set_audit['source']}_minor_gcd",
+            rank_pivot_node=row_set_audit.get("node"),
+            rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+            rank_pivot_nodes_required=row_set_audit.get(
+                "nodes_required_for_singularity_proof"
+            ),
+            residual_label="unknown",
+            residual_reason=residual_reason,
+        )
     if (
         spec.get("certificate_mode") == "rank_witness_bound"
         and row_set_audit["source"] == "rank_at_nodes"
@@ -1890,6 +2071,83 @@ def result_to_packet_item_field(
         "status": result.status,
     }
     if result.status == "regular_minor":
+        if result.minor_family_records is not None:
+            assert result.polynomial is not None
+            polynomial = [field.normalize(coeff) for coeff in result.polynomial]
+            polynomial_encoded = [field.encode(coeff) for coeff in polynomial]
+            degree = fpoly_degree(polynomial, field)
+            roots = result.roots
+            roots_encoded = (
+                sorted(field.encode(root) for root in roots)
+                if roots is not None
+                else None
+            )
+            row_sets = [
+                record["row_set"] for record in result.minor_family_records
+            ]
+            minor_records = []
+            for record in result.minor_family_records:
+                record_coefficients = [
+                    field.normalize(coeff) for coeff in record["coefficients"]
+                ]
+                minor_records.append(
+                    {
+                        "row_set": record["row_set"],
+                        "coefficients": [
+                            field.encode(coeff) for coeff in record_coefficients
+                        ],
+                        "degree": fpoly_degree(record_coefficients, field)
+                        if not fpoly_is_zero(record_coefficients, field)
+                        else -1,
+                    }
+                )
+            item["regular_minor_gcd"] = {
+                "row_sets": row_sets,
+                "polynomial_ref": "inline:regular_minor_gcd_data.gcd_coefficients_ascending",
+                "degree": degree,
+                "root_hash": hash_json(
+                    roots_encoded
+                    if roots_encoded is not None
+                    else {
+                        "roots": "not_enumerated",
+                        "degree_bound": degree,
+                        "row_sets": row_sets,
+                    }
+                ),
+                "minor_count": len(result.minor_family_records),
+                "containment": (
+                    "rank-defect slopes make every audited maximal minor vanish, "
+                    "so they are contained in the common gcd roots"
+                ),
+            }
+            item["regular_minor_gcd_data"] = {
+                "gcd_coefficients_ascending": polynomial_encoded,
+                "minor_polynomials_ascending": minor_records,
+                "field_encoding": "base-p low-to-high integer",
+                "p": field.p,
+                "field_extension_degree": field.degree,
+            }
+            if roots_encoded is not None:
+                item["regular_minor_gcd_data"]["roots"] = roots_encoded
+                if result.enumerated_bad_slopes is not None:
+                    item["regular_minor_gcd_data"]["enumerated_bad_slopes"] = sorted(
+                        field.encode(slope) for slope in result.enumerated_bad_slopes
+                    )
+            item["extractor_audit"] = {
+                "tested_row_sets": result.tested_row_sets,
+                "row_set_source": result.row_set_source,
+                "rank_pivot_node": result.rank_pivot_node,
+                "rank_pivot_nodes_tested": result.rank_pivot_nodes_tested,
+                "rank_pivot_nodes_required": result.rank_pivot_nodes_required,
+                "root_count": (
+                    len(roots_encoded) if roots_encoded is not None else "not_enumerated"
+                ),
+                "gcd_degree": degree,
+                "field_size": field.size,
+                "certificate_mode": MINOR_GCD_MODE,
+            }
+            add_rank_pivot_test_nodes(item["extractor_audit"])
+            return item
         assert result.row_set is not None
         if result.polynomial is None:
             if sampler == "projective_line":
@@ -2123,10 +2381,6 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
 def build_packet_field(
     spec: dict[str, Any], input_ref: str | None = None
 ) -> dict[str, Any]:
-    if spec.get("certificate_mode") == MINOR_GCD_MODE:
-        raise ValueError(
-            "minor_gcd_roots mode is currently implemented for prime fields only"
-        )
     row = spec["row"]
     field = PolynomialBasisField.from_spec(spec["field_model"])
     agreements = [int(value) for value in spec["exact_agreements"]]
@@ -2198,6 +2452,8 @@ def build_packet_field(
                 if spec.get("certificate_mode") == ZERO_U_MONOMIAL_MODE
                 else "scalar-multiple closed-form root certificate over a polynomial-basis finite field"
                 if spec.get("certificate_mode") == SCALAR_MULTIPLE_MODE
+                else "common-gcd audit of numeric determinant minors over a polynomial-basis finite field"
+                if spec.get("certificate_mode") == MINOR_GCD_MODE
                 else "numeric determinant interpolation over a polynomial-basis finite field"
             ),
             "input_ref": input_ref,
