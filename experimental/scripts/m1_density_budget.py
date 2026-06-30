@@ -12,6 +12,9 @@ footprint cap S is supplied, it also uses the optimal compatible far-factor
 
     L_S = floor((S+1)/(2D)).
 
+With ``--target-R`` it prints the exact density inequalities that would close
+that target support budget.
+
 The script does not prove the missing global row-basis/core-image density
 bound.  It tells a finite checker what support budget that hypothetical bound
 would close, and what near-star template ledger remains.
@@ -79,6 +82,14 @@ def fraction_record(value: Fraction) -> dict[str, Any]:
     }
 
 
+def square_threshold_record(value: Fraction) -> dict[str, Any]:
+    return {
+        "square": fraction_record(value),
+        "sqrt_decimal": math.sqrt(float(value)) if value >= 0 else None,
+        "comparison": "alpha_ap^2 > square",
+    }
+
+
 def template_bound(q: int, footprint_cap: int, e: int) -> int:
     h = e // 2
     return sum(
@@ -128,6 +139,17 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
     )
     r_dens = max(r_sel, r_miss)
     r_z = ceil_fraction(r_dens) - 1
+    target_selected_square = target_missing = None
+    if args.target_R is not None:
+        target_selected_square = (
+            Fraction(args.target_R * selected_denominator, far_factor)
+            / ((q - 1) * (q - 1))
+        )
+        target_missing = (
+            Fraction(1)
+            - Fraction(far_factor - 1, far_factor)
+            * Fraction(q + 1 - args.target_R, q - 1)
+        )
 
     report: dict[str, Any] = {
         "object": "m1_sparse_certificate_density_budget",
@@ -159,6 +181,21 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
     if args.R is not None:
         report["queried_R"] = args.R
         report["queried_R_closes_far_sparse_branch"] = args.R <= r_z
+
+    if args.target_R is not None:
+        assert target_selected_square is not None
+        assert target_missing is not None
+        report["target_R"] = args.target_R
+        report["required_density_to_close_target_R"] = {
+            "selected_side": square_threshold_record(target_selected_square),
+            "missing_side": fraction_record(target_missing),
+            "certificate": (
+                "For an integer target R, alpha_ap > theta_L(q,R) is "
+                "equivalent to either alpha_ap^2 > "
+                "R(q-3+2/L)/(q-1)^2 or alpha_ap > "
+                "1-((L-1)/L)(q+1-R)/(q-1)."
+            ),
+        }
 
     if args.e is not None:
         exact_template_bound = None
@@ -193,6 +230,7 @@ def build_parser() -> argparse.ArgumentParser:
     selector.add_argument("--L", type=positive_int)
     selector.add_argument("--S", type=nonnegative_int)
     parser.add_argument("--R", type=nonnegative_int)
+    parser.add_argument("--target-R", type=nonnegative_int)
     parser.add_argument("--e", type=even_positive_int)
     parser.add_argument("--template-exact-limit", type=nonnegative_int, default=64)
     parser.add_argument("--pretty", action="store_true")

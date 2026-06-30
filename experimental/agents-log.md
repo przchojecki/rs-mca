@@ -59,9 +59,9 @@ Keep entries concise and link to the relevant files.
   `experimental/agents-log.md`.
 - **Status:** AUDIT / EXACT-ARITHMETIC.
 - **What is being added:** An exact `Fraction`-based evaluator for
-  `R_Z(a0,L)=ceil(R_dens(a0,L))-1` and the optional near-star template count.
-  The script accepts `q`, `D`, rational `a0`, and either `L` or a footprint
-  cap `S`.
+  `R_Z(a0,L)=ceil(R_dens(a0,L))-1`, the optional near-star template count, and
+  the reverse `--target-R` density requirements.  The script accepts `q`,
+  `D`, rational `a0`, and either `L` or a footprint cap `S`.
 - **How it is useful:** Finite-row M1 checks can now consume the
   density-budget theorem without hand rounding or floating-point thresholds.
 - **What to do next:** Use the evaluator with any future concrete
