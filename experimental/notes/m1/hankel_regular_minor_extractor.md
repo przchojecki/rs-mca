@@ -97,7 +97,9 @@ polynomials.  On the `F_17`, `n=16`, `k=8` toy, the common gcd of all contiguous
 maximal minors removes prefix-minor false roots at `A=14,15,16`.  The extractor
 now emits this as a `regular_minor_gcd` v9 packet over prime fields and
 polynomial-basis extension fields.  The checker verifies gcd divisibility,
-exact roots in small fields, and degree-bound root hashes in large fields.
+exact roots in small fields, degree-bound root hashes in large fields, and
+replays each recorded minor polynomial against the SHA-checked extractor input
+at `j+2` finite slopes.
 The `F_17^2` replay checks exact extension roots; the first `F_17^32` toy uses
 the pinned extension-field model and reports a degree bound without enumerating
 the slope field.
@@ -452,6 +454,12 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_gcd_toy.json \
   --check experimental/data/certificates/regular-minor-gcd-toy/f17_n16_k8_a13_regular_minor_gcd_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-gcd-toy/f17_n16_k8_a13_regular_minor_gcd_packet.json
+
+! python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-gcd-toy/invalid_bad_minor_replay_packet.json
 
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_2_n16_k8_a13_gcd_toy.json \

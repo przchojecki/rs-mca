@@ -20,8 +20,16 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/regular-minor-gcd-toy/invalid_omitted_gcd_root_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-gcd-toy/invalid_bad_minor_replay_packet.json
 ```
 
 Non-claims: this is a finite prime-field toy replay, not an F17^32
 regular-window bound.  A companion `F_17^2` replay now exercises the same
 common-gcd gate over a polynomial-basis extension field.
+
+The `invalid_bad_minor_replay_packet.json` fixture keeps gcd divisibility and
+the root table intact, but scales one recorded minor away from the SHA-checked
+Hankel input.  The generic checker must reject it by replaying determinant
+values from the extractor input.

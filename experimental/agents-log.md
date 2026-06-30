@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Common-gcd minor replay gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/regular-minor-gcd-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT for the generic v9 checker.
+- **What is being added:** `regular_minor_gcd` packets now SHA-load their
+  extractor input and replay every recorded maximal-minor determinant
+  polynomial at `j+2` finite slopes.  A negative GCD toy fixture keeps the same
+  gcd/root table but scales one minor polynomial, so divisibility alone would
+  not catch it.
+- **How it is useful:** Makes the common-gcd regular-bucket reduction
+  replayable from row data rather than trusting the generated minor-family
+  table, which is necessary before using the same mechanism for prize-row
+  M1/M3 certificates.
+- **What to do next:** Extend the same replay philosophy to any future
+  compressed large-field common-gcd certificates before treating them as
+  threshold-pinning evidence.
+
 ### 2026-06-30 - Pivot-atlas projective endpoint count gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

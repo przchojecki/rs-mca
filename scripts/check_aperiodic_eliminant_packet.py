@@ -11,10 +11,11 @@ and evaluates encoded extension roots directly in that field.  In small fields,
 it also enumerates the full finite field to check that inline root tables have
 not omitted any roots.  For packets emitted by the regular-minor extractor, it
 also checks the rank-pivot audit metadata needed to justify singular
-regular-bucket declarations, rank-witness degree-bound packets, and pivot-atlas
-records.  Pivot eliminant targets with machine-readable coefficient/root tables
-are checked arithmetically.  Local packet references such as removed-ledger
-certificates are resolved, including JSON pointer fragments.
+regular-bucket declarations, rank-witness degree-bound packets, common-gcd
+minor families, and pivot-atlas records.  Pivot eliminant targets with
+machine-readable coefficient/root tables are checked arithmetically.  Local
+packet references such as removed-ledger certificates are resolved, including
+JSON pointer fragments.
 """
 
 from __future__ import annotations
@@ -553,6 +554,19 @@ def extension_poly_mod(
 ) -> list[tuple[int, ...]]:
     _quotient, remainder = extension_poly_divmod(numerator, denominator, field)
     return remainder
+
+
+def extension_poly_eval(
+    coefficients: list[tuple[int, ...]],
+    value: tuple[int, ...],
+    field: PolynomialBasisField,
+) -> tuple[int, ...]:
+    total = field.zero
+    power = field.one
+    for coefficient in coefficients:
+        total = field.add(total, field.mul(coefficient, power))
+        power = field.mul(power, value)
+    return total
 
 
 def validate_split_linear_root_certificate_mod(
@@ -1477,6 +1491,8 @@ def packet_has_rank_replay_items(packet: dict[str, Any]) -> bool:
             and minor.get("polynomial_ref") == RANK_WITNESS_POLYNOMIAL_REF
         ):
             return True
+        if item.get("regular_minor_gcd") is not None:
+            return True
         audit = item.get("extractor_audit")
         source = audit.get("row_set_source") if isinstance(audit, dict) else None
         if (
@@ -1631,6 +1647,37 @@ def matrix_at_rank_replay_node_field(
     ]
 
 
+def determinant_square_mod(matrix: list[list[int]], prime: int) -> int:
+    size = len(matrix)
+    if size == 0 or any(len(row) != size for row in matrix):
+        raise PacketError("determinant replay needs a square matrix")
+    work = [[entry % prime for entry in row] for row in matrix]
+    determinant = 1
+    for col in range(size):
+        pivot = None
+        for row in range(col, size):
+            if work[row][col] % prime:
+                pivot = row
+                break
+        if pivot is None:
+            return 0
+        if pivot != col:
+            work[col], work[pivot] = work[pivot], work[col]
+            determinant = (-determinant) % prime
+        pivot_value = work[col][col] % prime
+        determinant = (determinant * pivot_value) % prime
+        inv_pivot = pow(pivot_value, -1, prime)
+        for row in range(col + 1, size):
+            factor = (work[row][col] * inv_pivot) % prime
+            if factor == 0:
+                continue
+            for entry_col in range(col, size):
+                work[row][entry_col] = (
+                    work[row][entry_col] - factor * work[col][entry_col]
+                ) % prime
+    return determinant % prime
+
+
 def matrix_is_full_rank_field(
     matrix: list[list[tuple[int, ...]]],
     field: PolynomialBasisField,
@@ -1664,6 +1711,41 @@ def matrix_is_full_rank_field(
                 )
         pivot_row += 1
     return True
+
+
+def determinant_square_field(
+    matrix: list[list[tuple[int, ...]]],
+    field: PolynomialBasisField,
+) -> tuple[int, ...]:
+    size = len(matrix)
+    if size == 0 or any(len(row) != size for row in matrix):
+        raise PacketError("determinant replay needs a square matrix")
+    work = [[field.normalize(entry) for entry in row] for row in matrix]
+    determinant = field.one
+    for col in range(size):
+        pivot = None
+        for row in range(col, size):
+            if not field.is_zero(work[row][col]):
+                pivot = row
+                break
+        if pivot is None:
+            return field.zero
+        if pivot != col:
+            work[col], work[pivot] = work[pivot], work[col]
+            determinant = field.neg(determinant)
+        pivot_value = work[col][col]
+        determinant = field.mul(determinant, pivot_value)
+        inv_pivot = field.inv(pivot_value)
+        for row in range(col + 1, size):
+            factor = field.mul(work[row][col], inv_pivot)
+            if field.is_zero(factor):
+                continue
+            for entry_col in range(col, size):
+                work[row][entry_col] = field.sub(
+                    work[row][entry_col],
+                    field.mul(factor, work[col][entry_col]),
+                )
+    return determinant
 
 
 def validate_rank_specializations(
@@ -1748,6 +1830,98 @@ def validate_rank_specializations(
             expectation = "full rank" if expected_full_rank else "rank deficient"
             raise PacketError(
                 f"{location}: selected row_set is not {expectation} at node {node}"
+            )
+
+
+def validate_gcd_minor_polynomial_replay(
+    item: dict[str, Any],
+    row_set: list[int],
+    polynomial: list[int],
+    rank_replay_input: dict[str, Any] | None,
+    modulus: int | None,
+    extension_field: PolynomialBasisField | None,
+    location: str,
+) -> None:
+    if rank_replay_input is None:
+        raise PacketError(f"{location}: missing replay input")
+
+    exact_agreements = rank_replay_input.get("exact_agreements")
+    if not isinstance(exact_agreements, list) or item.get("A") not in exact_agreements:
+        raise PacketError(f"{location}: replay input does not list this agreement")
+
+    syndrome = rank_replay_input.get("line_syndrome")
+    if not isinstance(syndrome, dict):
+        raise PacketError(f"{location}: replay input needs line_syndrome")
+    if "u" not in syndrome or "v" not in syndrome:
+        raise PacketError(f"{location}: line_syndrome needs u and v")
+
+    needed_length = item["t"] + item["j"]
+    cols = item["j"] + 1
+    node_count = cols + 1
+
+    if modulus is not None:
+        if modulus < node_count:
+            raise PacketError(
+                f"{location}: not enough prime-field nodes to replay degree {cols}"
+            )
+        u = require_int_list(syndrome["u"], f"{location}: line_syndrome.u")
+        v = require_int_list(syndrome["v"], f"{location}: line_syndrome.v")
+        if len(u) < needed_length or len(v) < needed_length:
+            raise PacketError(
+                f"{location}: syndrome length must be at least {needed_length}"
+            )
+        for node in range(node_count):
+            determinant = determinant_square_mod(
+                matrix_at_rank_replay_node_mod(
+                    u, v, row_set, cols, node, modulus
+                ),
+                modulus,
+            )
+            value = poly_eval_mod(polynomial, node, modulus)
+            if value != determinant:
+                raise PacketError(
+                    f"{location}: minor polynomial does not replay at node {node}"
+                )
+        return
+
+    if extension_field is None:
+        raise PacketError(f"{location}: unsupported row field")
+    if extension_field.size < node_count:
+        raise PacketError(
+            f"{location}: not enough extension-field nodes to replay degree {cols}"
+        )
+    encoding = syndrome.get(
+        "field_encoding", rank_replay_input.get("field_element_encoding")
+    )
+    if encoding is not None and not isinstance(encoding, str):
+        raise PacketError(f"{location}: field encoding must be a string")
+    u_field = normalize_field_input_list(
+        syndrome["u"], extension_field, encoding, f"{location}: line_syndrome.u"
+    )
+    v_field = normalize_field_input_list(
+        syndrome["v"], extension_field, encoding, f"{location}: line_syndrome.v"
+    )
+    if len(u_field) < needed_length or len(v_field) < needed_length:
+        raise PacketError(
+            f"{location}: syndrome length must be at least {needed_length}"
+        )
+    decoded_polynomial = [
+        extension_field.decode(coefficient) for coefficient in polynomial
+    ]
+    for node in range(node_count):
+        node_value = extension_field.decode(node)
+        determinant = determinant_square_field(
+            matrix_at_rank_replay_node_field(
+                u_field, v_field, row_set, cols, node_value, extension_field
+            ),
+            extension_field,
+        )
+        value = extension_poly_eval(
+            decoded_polynomial, node_value, extension_field
+        )
+        if value != determinant:
+            raise PacketError(
+                f"{location}: extension minor polynomial does not replay at node {node}"
             )
 
 
@@ -2187,6 +2361,7 @@ def validate_regular_minor_gcd(
     item: dict[str, Any],
     modulus: int | None,
     extension_field: PolynomialBasisField | None,
+    rank_replay_input: dict[str, Any] | None,
 ) -> tuple[list[int] | None, list[int]]:
     if modulus is None and extension_field is None:
         raise PacketError(
@@ -2382,6 +2557,15 @@ def validate_regular_minor_gcd(
             raise PacketError(
                 f"A={item.get('A')}: minor polynomial {index} has empty coefficients"
             )
+        validate_gcd_minor_polynomial_replay(
+            item,
+            expected_row_set,
+            polynomial,
+            rank_replay_input,
+            modulus,
+            extension_field,
+            f"A={item.get('A')}: minor polynomial {index}",
+        )
         polynomial_by_row_set[tuple(row_set)] = polynomial
         if modulus is not None:
             if any(coefficient % modulus != 0 for coefficient in polynomial):
@@ -2875,7 +3059,7 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
         if item["status"] == "regular_minor":
             if "regular_minor_gcd" in item:
                 roots, bad_slopes = validate_regular_minor_gcd(
-                    item, modulus, extension_field
+                    item, modulus, extension_field, rank_replay_input
                 )
             else:
                 roots, bad_slopes = validate_regular_minor(
