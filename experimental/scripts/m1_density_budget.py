@@ -27,6 +27,10 @@ With ``--quartic-window`` it evaluates the first nontrivial palette case
 one-class residual supports forced by the selected-side and missing-side
 quartic inequalities.
 
+With ``--residual-m``, ``--target-R``, and ``--e``, it computes the exact
+integer feasibility interval for the sparse certificate class counts
+``K_ap`` and ``C_ap`` at that residual size.
+
 The script does not prove the missing global row-basis/core-image density
 bound.  It tells a finite checker what support budget that hypothetical bound
 would close, and what near-star template ledger remains.
@@ -301,6 +305,78 @@ def quartic_window_report(args: argparse.Namespace, far_factor: int) -> dict[str
     return report
 
 
+def finite_sparse_feasibility_report(args: argparse.Namespace) -> dict[str, Any]:
+    if args.e is None:
+        raise ValueError("--residual-m requires --e")
+    if args.target_R is None:
+        raise ValueError("--residual-m requires --target-R")
+    q = args.q
+    d_cap = args.D
+    residual_size = args.residual_m
+    h = args.e // 2
+    total_classes = h * residual_size
+    max_missing_classes = (h - 1) * residual_size
+    selected_rhs = Fraction(
+        h
+        * h
+        * args.target_R
+        * ((q - 3) * residual_size * residual_size + 2 * residual_size * d_cap),
+        (q - 1) * (q - 1),
+    )
+    max_selected_classes = min(total_classes, floor_sqrt_fraction(selected_rhs))
+    selected_forced_missing = max(0, total_classes - max_selected_classes)
+    missing_forced_missing = max(
+        0,
+        ceil_fraction(
+            Fraction(
+                h
+                * (residual_size - d_cap)
+                * (q + 1 - args.target_R),
+                q - 1,
+            )
+        ),
+    )
+    forced_missing_classes = max(selected_forced_missing, missing_forced_missing)
+    selected_upper = total_classes - forced_missing_classes
+    sparse_size_condition = residual_size > d_cap
+    feasible = (
+        sparse_size_condition
+        and forced_missing_classes <= max_missing_classes
+        and selected_upper >= residual_size
+    )
+    return {
+        "object": "m1_finite_sparse_certificate_feasibility",
+        "status": "AUDIT",
+        "theorem_problem_id": "M1 / RKSQSPCERT1 / RKSQSPCERT2",
+        "e": args.e,
+        "h": h,
+        "target_R": args.target_R,
+        "m_ap": residual_size,
+        "requires_sparse_size_condition_m_gt_D": sparse_size_condition,
+        "total_palette_classes_hm": total_classes,
+        "selected_class_range_unconditional": [residual_size, total_classes],
+        "missing_class_range_unconditional": [0, max_missing_classes],
+        "selected_side_rhs_for_K_ap_squared": fraction_record(selected_rhs),
+        "selected_side_max_K_ap": max_selected_classes,
+        "selected_side_min_C_ap": selected_forced_missing,
+        "missing_side_min_C_ap": missing_forced_missing,
+        "forced_min_C_ap": forced_missing_classes,
+        "feasible_K_ap_interval": [residual_size, selected_upper]
+        if feasible
+        else None,
+        "feasible_C_ap_interval": [forced_missing_classes, max_missing_classes]
+        if feasible
+        else None,
+        "sparse_certificate_arithmetically_possible": feasible,
+        "certificate": (
+            "Exact integer restatement of RKSQSPCERT1/RKSQSPCERT2 at fixed "
+            "m_ap. Feasibility requires m_ap>D, m_ap<=K_ap<=hm_ap, "
+            "0<=C_ap<=(h-1)m_ap, K_ap+C_ap=hm_ap, and both support-budget "
+            "inequalities."
+        ),
+    }
+
+
 def template_bound(q: int, footprint_cap: int, e: int) -> int:
     h = e // 2
     return sum(
@@ -333,6 +409,11 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError("--scan-targets-up-to must be at most q+1")
     if args.quartic_m is not None and not args.quartic_window:
         raise ValueError("--quartic-m requires --quartic-window")
+    if args.residual_m is not None:
+        if args.e is None:
+            raise ValueError("--residual-m requires --e")
+        if args.target_R is None:
+            raise ValueError("--residual-m requires --target-R")
 
     if args.L is not None:
         far_factor = args.L
@@ -431,6 +512,11 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
     if args.quartic_window:
         report["quartic_palette_window"] = quartic_window_report(args, far_factor)
 
+    if args.residual_m is not None:
+        report["finite_sparse_certificate_feasibility"] = (
+            finite_sparse_feasibility_report(args)
+        )
+
     if args.e is not None:
         exact_template_bound = None
         omitted_reason = None
@@ -471,6 +557,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--template-exact-limit", type=nonnegative_int, default=64)
     parser.add_argument("--quartic-window", action="store_true")
     parser.add_argument("--quartic-m", type=positive_int)
+    parser.add_argument("--residual-m", type=positive_int)
     parser.add_argument("--pretty", action="store_true")
     return parser
 

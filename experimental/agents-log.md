@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 finite sparse feasibility evaluator
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/m1_density_budget.py`,
+  `experimental/scripts/README.md`,
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED-LOCAL.
+- **What is being added:** The density-budget evaluator now supports
+  `--residual-m` with `--target-R` and `--e`, returning the exact integer
+  feasibility interval for `(K_ap,C_ap)` at a fixed residual size under
+  (RKSQSPCERT1/RKSQSPCERT2).
+- **How it is useful:** Converts the sparse-certificate inequalities into a
+  finite arithmetic test for arbitrary even palette order, identifying when a
+  proposed residual size is impossible before any global density theorem is
+  invoked.
+- **What to do next:** Use this fixed-`m_ap` feasibility test to audit finite
+  row-basis/core-image candidates and to compare general `e` behavior with the
+  special `e=2` and `e=4` closures.
+
 ### 2026-06-30 - M1 quartic-window exact evaluator
 
 - **Agent/model:** AllenGrahamHart / Codex.
