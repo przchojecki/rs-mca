@@ -149,6 +149,12 @@ The subgroup-section theorem is recorded separately in
 `experimental/notes/m1/subgroup_syndrome_section.md`; the certificate
 cross-checks the `F_17^32` section hashes against the line-value lift.
 
+The zero-slope subtraction sidecar is recorded in
+`experimental/notes/m1/f17_32_m3_zero_slope_subtraction.md`.  It checks that
+the fixed top-window packet's single synthetic root `{0}` is the
+zero-codeword tangent/common-code-line slope, leaving no residual synthetic
+aperiodic root after that paid branch is removed.
+
 ## Verification
 
 Run:
@@ -194,10 +200,14 @@ python3 experimental/scripts/verify_f17_32_m3_line_value_lift.py \
 python3 experimental/scripts/verify_m1_subgroup_syndrome_section.py \
   --check experimental/data/certificates/subgroup-syndrome-section/subgroup_syndrome_section_certificate.json
 
+python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_a421_426_zero_slope_subtraction.json
+
 python3 experimental/scripts/verify_f17_32_m3_rank_witness_family.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank-witness-family/f17_32_n512_k256_m3_rank_witness_family_certificate.json
 ```
 
 Non-claims: this is a synthetic syndrome pencil, not a worst-case MCA row bound,
-not a worst-case row root table over `F_17^32`, and not a quotient/tangent
+and not a worst-case row root table over `F_17^32`.  The zero-slope sidecar is
+only a one-packet tangent-subtraction check, not a full quotient/tangent
 subtraction table.

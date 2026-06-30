@@ -149,6 +149,20 @@ It proves that for any multiplicative subgroup row, every syndrome vector of
 length at most the subgroup order has the explicit inverse-Fourier section
 `y_s(x)=sum_m s_m x^(-m-1)`.
 
+The first subtraction sidecar for this packet is
+
+```text
+experimental/notes/m1/f17_32_m3_zero_slope_subtraction.md
+experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/
+  f17_32_n512_k256_a421_426_zero_slope_subtraction.json
+```
+
+It verifies that the synthetic root `{0}` is the zero-codeword
+tangent/common-code-line slope because the line-value lift has `f=0`.  Thus the
+fixed top-window packet has residual synthetic aperiodic numerator `0` after
+that paid tangent branch is removed.  This is a no-double-counting check for
+one synthetic packet, not the full M4 row table.
+
 The current status ledger
 
 ```text
@@ -175,7 +189,10 @@ python3 experimental/scripts/verify_f17_32_m3_line_value_lift.py \
 
 python3 experimental/scripts/verify_m1_subgroup_syndrome_section.py \
   --check experimental/data/certificates/subgroup-syndrome-section/subgroup_syndrome_section_certificate.json
+
+python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_a421_426_zero_slope_subtraction.json
 ```
 
 Non-claims: this note does not compute any determinant over `F_17^32`, does not
-enumerate root sets, and does not prove a safe-side MCA bound.
+enumerate actual-row root sets, and does not prove a safe-side MCA bound.

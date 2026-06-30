@@ -48,6 +48,10 @@ SUBGROUP_SECTION_REF = (
     "experimental/data/certificates/subgroup-syndrome-section/"
     "subgroup_syndrome_section_certificate.json"
 )
+ZERO_SLOPE_SUBTRACTION_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/"
+    "f17_32_n512_k256_a421_426_zero_slope_subtraction.json"
+)
 OUTPUT_PATH = ROOT / (
     "experimental/data/certificates/hankel-f17-32-m3-regular-window-status/"
     "f17_32_n512_k256_m3_regular_window_status.json"
@@ -94,6 +98,7 @@ def validate_inputs(
     top_packet: dict[str, Any],
     line_value_lift: dict[str, Any],
     subgroup_section: dict[str, Any],
+    zero_slope_subtraction: dict[str, Any],
 ) -> None:
     require(plan["window"]["A_min"] == AGREEMENT_MIN, "plan A_min mismatch")
     require(plan["window"]["A_max"] == AGREEMENT_MAX, "plan A_max mismatch")
@@ -142,6 +147,28 @@ def validate_inputs(
         == LINE_VALUE_LIFT_REF,
         "subgroup section does not reference the line-value lift",
     )
+    require(
+        zero_slope_subtraction["schema_version"]
+        == "f17-32-m3-zero-slope-subtraction-v1",
+        "zero-slope subtraction schema mismatch",
+    )
+    require(
+        zero_slope_subtraction["source_artifacts"]["fixed_top_window_packet"]["ref"]
+        == TOP_PACKET_REF,
+        "zero-slope subtraction top-packet ref mismatch",
+    )
+    require(
+        zero_slope_subtraction["source_artifacts"]["line_value_lift"]["ref"]
+        == LINE_VALUE_LIFT_REF,
+        "zero-slope subtraction line-value ref mismatch",
+    )
+    require(
+        zero_slope_subtraction["summary"][
+            "deduped_aperiodic_numerator_after_removed_ledgers"
+        ]
+        == 0,
+        "zero-slope subtraction residual numerator mismatch",
+    )
 
 
 def per_agreement_records(
@@ -149,11 +176,15 @@ def per_agreement_records(
     generic: dict[str, Any],
     family: dict[str, Any],
     top_packet: dict[str, Any],
+    zero_slope_subtraction: dict[str, Any],
 ) -> list[dict[str, Any]]:
     plan_by_a = {int(item["A"]): item for item in plan["per_agreement"]}
     generic_by_a = {int(item["A"]): item for item in generic["agreements"]}
     family_by_a = {int(item["A"]): item for item in family["agreements"]}
     top_by_a = top_window_by_agreement(top_packet)
+    zero_subtraction_by_a = {
+        int(item["A"]): item for item in zero_slope_subtraction["per_agreement"]
+    }
     records = []
     for agreement in range(AGREEMENT_MIN, AGREEMENT_MAX + 1):
         plan_item = plan_by_a[agreement]
@@ -170,6 +201,17 @@ def per_agreement_records(
                 top_item["extractor_audit"]["root_count"] == 1,
                 f"A={agreement}: top-window root count mismatch",
             )
+            zero_subtraction_item = zero_subtraction_by_a[agreement]
+            require(
+                zero_subtraction_item["B_ap_after_removed_ledgers"] == 0,
+                f"A={agreement}: zero-slope residual mismatch",
+            )
+            require(
+                zero_subtraction_item["overlap_regular_tangent_roots"] == ROOT_UNION,
+                f"A={agreement}: zero-slope overlap mismatch",
+            )
+        else:
+            zero_subtraction_item = None
         records.append(
             {
                 "A": agreement,
@@ -185,11 +227,20 @@ def per_agreement_records(
                 "fixed_top_window_line_value_lift": LINE_VALUE_LIFT_REF
                 if top_item is not None
                 else None,
+                "fixed_top_window_zero_slope_subtraction": ZERO_SLOPE_SUBTRACTION_REF
+                if top_item is not None
+                else None,
                 "fixed_top_window_degree": (
                     top_item["extractor_audit"]["degree_bound"] if top_item is not None else None
                 ),
+                "fixed_top_window_aperiodic_after_tangent": (
+                    zero_subtraction_item["B_ap_after_removed_ledgers"]
+                    if zero_subtraction_item is not None
+                    else None
+                ),
                 "actual_row_outcome": (
-                    "line-value lift supplied for the fixed synthetic packet; "
+                    "line-value lift and zero-slope tangent subtraction supplied "
+                    "for the fixed synthetic packet; "
                     "tangent/quotient-deduped row outcome not supplied"
                     if top_item is not None
                     else "not supplied"
@@ -210,8 +261,19 @@ def build_status() -> dict[str, Any]:
     top_packet = load_json(TOP_PACKET_REF)
     line_value_lift = load_json(LINE_VALUE_LIFT_REF)
     subgroup_section = load_json(SUBGROUP_SECTION_REF)
-    validate_inputs(plan, generic, family, top_packet, line_value_lift, subgroup_section)
-    records = per_agreement_records(plan, generic, family, top_packet)
+    zero_slope_subtraction = load_json(ZERO_SLOPE_SUBTRACTION_REF)
+    validate_inputs(
+        plan,
+        generic,
+        family,
+        top_packet,
+        line_value_lift,
+        subgroup_section,
+        zero_slope_subtraction,
+    )
+    records = per_agreement_records(
+        plan, generic, family, top_packet, zero_slope_subtraction
+    )
     artifacts = [
         artifact_record("regular_window_plan", PLAN_REF, "regular-hankel-window-plan-v1"),
         artifact_record(
@@ -235,6 +297,11 @@ def build_status() -> dict[str, Any]:
             SUBGROUP_SECTION_REF,
             "subgroup-syndrome-section-v1",
         ),
+        artifact_record(
+            "fixed_top_window_zero_slope_subtraction",
+            ZERO_SLOPE_SUBTRACTION_REF,
+            "f17-32-m3-zero-slope-subtraction-v1",
+        ),
     ]
     return {
         "schema_version": SCHEMA_VERSION,
@@ -250,6 +317,7 @@ def build_status() -> dict[str, Any]:
             "fixed_top_window_status": "one v9 packet covers A=421..426 with root union {0}",
             "fixed_top_window_line_value_status": "explicit f,g line values replay the fixed top-window syndrome input",
             "subgroup_syndrome_section_status": "proved explicit inverse-Fourier section for subgroup syndrome vectors",
+            "fixed_top_window_subtraction_status": "the synthetic root {0} is removed by the zero-codeword tangent slope, leaving aperiodic numerator 0",
             "actual_row_status": "tangent/quotient-deduped row outcomes not supplied",
             "first_actual_row_task": "compute tangent/quotient-deduped root/singularity outcomes for A=385..426",
         },
@@ -263,17 +331,19 @@ def build_status() -> dict[str, Any]:
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
                 "the fixed top-window syndrome input has an explicit line-value lift",
                 "subgroup syndrome vectors have an explicit inverse-Fourier line-value section",
+                "the fixed synthetic top-window root {0} is the zero-codeword tangent slope and leaves no synthetic residual aperiodic roots after subtraction",
             ],
             "not_proved": [
                 "an actual-row root table for any A in 385..426",
-                "a tangent/quotient-deduped safe-side upper bound in this window",
+                "a tangent/quotient-deduped safe-side upper bound for actual row data in this window",
+                "a Prime192 quotient/tangent subtraction table",
                 "the first singular bucket for actual row data",
             ],
         },
         "nonclaims": [
             "not a worst-case MCA bound",
             "not actual M3 row data",
-            "not a quotient/tangent subtraction table",
+            "not a full quotient/tangent subtraction table",
             "not a singular-pivot packet",
         ],
     }

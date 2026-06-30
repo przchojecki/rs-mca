@@ -1,0 +1,187 @@
+{
+  "nonclaims": [
+    "not a worst-case MCA bound",
+    "not actual M3 row data",
+    "not a Prime192 subtraction table",
+    "not a singular-pivot packet",
+    "does not prove quotient/tangent subtraction for arbitrary row pencils"
+  ],
+  "per_agreement": [
+    {
+      "A": 421,
+      "B_ap_after_removed_ledgers": 0,
+      "B_ap_regular_before_removed_ledgers": 1,
+      "B_ext": 0,
+      "B_quot_image": 0,
+      "B_quot_support": 0,
+      "B_tan_common_code_line": 1,
+      "aperiodic_root_union_after_removed_ledgers": [],
+      "claim_status": "synthetic_packet_only",
+      "deduped_total_upper_for_synthetic_packet": 1,
+      "j": 91,
+      "overlap_regular_tangent_roots": [
+        0
+      ],
+      "regular_minor_root_union_before_removed_ledgers": [
+        0
+      ],
+      "t": 165
+    },
+    {
+      "A": 422,
+      "B_ap_after_removed_ledgers": 0,
+      "B_ap_regular_before_removed_ledgers": 1,
+      "B_ext": 0,
+      "B_quot_image": 0,
+      "B_quot_support": 0,
+      "B_tan_common_code_line": 1,
+      "aperiodic_root_union_after_removed_ledgers": [],
+      "claim_status": "synthetic_packet_only",
+      "deduped_total_upper_for_synthetic_packet": 1,
+      "j": 90,
+      "overlap_regular_tangent_roots": [
+        0
+      ],
+      "regular_minor_root_union_before_removed_ledgers": [
+        0
+      ],
+      "t": 166
+    },
+    {
+      "A": 423,
+      "B_ap_after_removed_ledgers": 0,
+      "B_ap_regular_before_removed_ledgers": 1,
+      "B_ext": 0,
+      "B_quot_image": 0,
+      "B_quot_support": 0,
+      "B_tan_common_code_line": 1,
+      "aperiodic_root_union_after_removed_ledgers": [],
+      "claim_status": "synthetic_packet_only",
+      "deduped_total_upper_for_synthetic_packet": 1,
+      "j": 89,
+      "overlap_regular_tangent_roots": [
+        0
+      ],
+      "regular_minor_root_union_before_removed_ledgers": [
+        0
+      ],
+      "t": 167
+    },
+    {
+      "A": 424,
+      "B_ap_after_removed_ledgers": 0,
+      "B_ap_regular_before_removed_ledgers": 1,
+      "B_ext": 0,
+      "B_quot_image": 0,
+      "B_quot_support": 0,
+      "B_tan_common_code_line": 1,
+      "aperiodic_root_union_after_removed_ledgers": [],
+      "claim_status": "synthetic_packet_only",
+      "deduped_total_upper_for_synthetic_packet": 1,
+      "j": 88,
+      "overlap_regular_tangent_roots": [
+        0
+      ],
+      "regular_minor_root_union_before_removed_ledgers": [
+        0
+      ],
+      "t": 168
+    },
+    {
+      "A": 425,
+      "B_ap_after_removed_ledgers": 0,
+      "B_ap_regular_before_removed_ledgers": 1,
+      "B_ext": 0,
+      "B_quot_image": 0,
+      "B_quot_support": 0,
+      "B_tan_common_code_line": 1,
+      "aperiodic_root_union_after_removed_ledgers": [],
+      "claim_status": "synthetic_packet_only",
+      "deduped_total_upper_for_synthetic_packet": 1,
+      "j": 87,
+      "overlap_regular_tangent_roots": [
+        0
+      ],
+      "regular_minor_root_union_before_removed_ledgers": [
+        0
+      ],
+      "t": 169
+    },
+    {
+      "A": 426,
+      "B_ap_after_removed_ledgers": 0,
+      "B_ap_regular_before_removed_ledgers": 1,
+      "B_ext": 0,
+      "B_quot_image": 0,
+      "B_quot_support": 0,
+      "B_tan_common_code_line": 1,
+      "aperiodic_root_union_after_removed_ledgers": [],
+      "claim_status": "synthetic_packet_only",
+      "deduped_total_upper_for_synthetic_packet": 1,
+      "j": 86,
+      "overlap_regular_tangent_roots": [
+        0
+      ],
+      "regular_minor_root_union_before_removed_ledgers": [
+        0
+      ],
+      "t": 170
+    }
+  ],
+  "row": {
+    "domain_description": "order-512 subgroup from the pinned F_17^32 row descriptor; fixed synthetic M3 window syndrome uses the first 92 elements",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "f17-32-m3-zero-slope-subtraction-v1",
+  "scope": {
+    "agreement_range": {
+      "A_max": 426,
+      "A_min": 421
+    },
+    "packet_type": "synthetic fixed top-window v9 packet",
+    "sampler": "finite_affine_line"
+  },
+  "source_artifacts": {
+    "fixed_top_window_packet": {
+      "declared_aperiodic_numerator_before_subtraction": 1,
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json",
+      "schema_version": "aperiodic-hankel-eliminant-v1",
+      "sha256": "2ed9f7082e7fa5b2cfef258f02f8f3fb1d4e09a904a824be839a50f3b76f4976"
+    },
+    "line_value_lift": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-line-value-lift/f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json",
+      "schema_version": "f17-32-m3-line-value-lift-v1",
+      "sha256": "d5201a3d94d56c58b07e628cbeb878b861c012d599fe9b7c7dc6d2862e76cfe5"
+    }
+  },
+  "status": "AUDIT",
+  "subtraction_rule": {
+    "finite_slope": 0,
+    "name": "zero_codeword_tangent_slope",
+    "reason": "The line-value lift has f(x)=0 for every x in H.  At finite slope z=0, the line word f+z g is therefore the zero Reed-Solomon codeword, so the root z=0 is paid by the tangent/common-code-line ledger.",
+    "removed_extension_roots": [],
+    "removed_quotient_image_roots": [],
+    "removed_quotient_support_roots": [],
+    "removed_tangent_roots": [
+      0
+    ]
+  },
+  "summary": {
+    "actual_row_status": "not supplied",
+    "agreements": 6,
+    "aperiodic_root_union_after_removed_ledgers": [],
+    "deduped_aperiodic_numerator_after_removed_ledgers": 0,
+    "next_required": "Repeat this subtraction discipline for actual F_17^32 row pencils and for quotient-image roots before claiming an M4 row table.",
+    "raw_regular_numerator": 1,
+    "regular_root_union_before_removed_ledgers": [
+      0
+    ],
+    "tangent_numerator_removed": 1,
+    "tangent_root_union_removed": [
+      0
+    ]
+  }
+}

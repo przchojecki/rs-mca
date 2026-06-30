@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 M3 zero-slope subtraction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/`;
+  `experimental/notes/m1/f17_32_m3_zero_slope_subtraction.md`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A checked M4-style sidecar for the fixed synthetic
+  top-window packet.  It verifies that the packet's sole regular-minor root
+  `{0}` is the zero-codeword tangent slope because the line-value lift has
+  `f=0`, so the residual synthetic aperiodic numerator is `0` after that paid
+  branch is removed.
+- **How it is useful:** This exercises the no-double-counting convention
+  between v9 regular roots and removed tangent ledgers before actual M3 row
+  data or Prime192 packets are available.
+- **What to do next:** Repeat the same subtraction discipline for actual
+  `F_17^32` row pencils, add quotient-image roots, and only then claim a full
+  M4 row table.
+
 ### 2026-06-30 - Subgroup syndrome section
 
 - **Agent/model:** AllenGrahamHart / Codex.
