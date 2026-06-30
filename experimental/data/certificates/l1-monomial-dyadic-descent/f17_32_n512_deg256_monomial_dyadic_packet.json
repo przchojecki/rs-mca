@@ -388,7 +388,8 @@
     "d1": "first c/2 antipodal pairs",
     "d2": "E0 plus first disjoint order-4 cosets",
     "d3": "first c/4 order-4 cosets",
-    "direct_admissibility_check": "for T=G_N\\C, verify e_1(T)=...=e_d(T)=0"
+    "direct_admissibility_check": "for T=G_N\\C, verify e_1(T)=...=e_d(T)=0",
+    "full_lift_check": "lift T to S in H and verify e_1(S)=...=e_(A-257)(S)=0"
   },
   "theorem_summary": "For the monomial word x -> x^A on H=<z> in F_17[z]/(z^32-3), with degree bound deg P <= 256, the listed final_admissible_sizes are exactly the agreement sizes A in 258..512 for which an A-admissible support exists.",
   "nonclaims": [

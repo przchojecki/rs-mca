@@ -27,7 +27,9 @@ quotient-complement witness in exponent coordinates and checks the required
 power-sum vanishings `p_1,...,p_d` in the `F_17` basis determined by
 `alpha^(N/16)=3`.  It then forms the quotient support `T=G_N\C` and checks
 the elementary vanishings `e_1(T),...,e_d(T)=0`, which are the actual
-coefficient conditions making the lifted monomial support admissible.
+quotient coefficient conditions.  Finally it lifts `T` back to a support
+`S subset H` and checks `e_1(S),...,e_(A-257)(S)=0` in `F_17[z]/(z^32-3)`,
+which is the direct monomial-admissibility condition for `deg P <= 256`.
 
 Run:
 

@@ -45,8 +45,8 @@ Keep entries concise and link to the relevant files.
   binomial basis gate, dyadic divisibility thresholds, survivor table,
   impossible candidate rows, final admissible size list, and explicit
   quotient-complement witnesses for every admissible row.  It also checks the
-  quotient support elementary vanishings that directly imply monomial
-  admissibility.
+  quotient support elementary vanishings and the lifted order-512 elementary
+  vanishings that directly imply monomial admissibility.
 - **How it is useful:** This addresses the L1 base-list proof-packet roadmap
   item with a nontrivial, machine-auditable locator theorem rather than a
   broad conjectural note.  It is a monomial-prefix packet only, not an

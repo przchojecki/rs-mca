@@ -625,5 +625,7 @@ explicit quotient-complement witness for every admissible row and checks the
 required quotient power sums `p_1,...,p_d` directly in the `F_17` basis
 determined by `alpha^(N/16)=3`.  It then forms the quotient support `T=G_N\C`
 and checks the elementary vanishings `e_1(T),...,e_d(T)=0`, which are the
-actual coefficient conditions making the lifted monomial support admissible.
-It does not enumerate all support orbits in the large admissible families.
+quotient coefficient conditions.  Finally it lifts `T` back to a support
+`S subset H` and checks `e_1(S),...,e_(A-257)(S)=0` in `F_17[z]/(z^32-3)`,
+which is the direct monomial-admissibility condition for `deg P <= 256`.  It
+does not enumerate all support orbits in the large admissible families.

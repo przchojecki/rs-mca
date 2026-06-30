@@ -8,8 +8,8 @@ not enumerate all supports in the order-512 domain.  Instead it checks the
 reviewable finite gates used by the proof: the local length-16 imbalance
 classification, the dyadic divisibility gate, the survivor table, the
 impossible rows, explicit quotient-complement witnesses for every admissible
-row, and the elementary-coefficient vanishings that make those witnesses
-monomial-admissible.
+row, quotient-level elementary vanishings, and the lifted order-512
+elementary-coefficient vanishings that make those witnesses monomial-admissible.
 """
 
 from __future__ import annotations
@@ -452,6 +452,16 @@ def construct_complement_witness(
     raise PacketError(f"A={agreement}: no constructive witness rule")
 
 
+def lift_quotient_support(row: dict[str, Any], support: set[int]) -> set[int]:
+    q = row["Q"]
+    n_quotient = row["N"]
+    lifted: set[int] = set()
+    for exponent in support:
+        for kernel_index in range(q):
+            lifted.add(exponent + kernel_index * n_quotient)
+    return lifted
+
+
 def verify_constructive_witnesses(packet: dict[str, Any]) -> None:
     witnesses = packet.get("nonemptiness_witnesses")
     require(isinstance(witnesses, dict), "nonemptiness_witnesses must be an object")
@@ -467,6 +477,16 @@ def verify_constructive_witnesses(packet: dict[str, Any]) -> None:
         "d2 constructive rule mismatch",
     )
     require(rules.get("d3") == "first c/4 order-4 cosets", "d3 constructive rule mismatch")
+    require(
+        rules.get("direct_admissibility_check")
+        == "for T=G_N\\C, verify e_1(T)=...=e_d(T)=0",
+        "direct admissibility rule mismatch",
+    )
+    require(
+        rules.get("full_lift_check")
+        == "lift T to S in H and verify e_1(S)=...=e_(A-257)(S)=0",
+        "full lift rule mismatch",
+    )
 
     for row in packet["survivor_rows"]:
         if row.get("status") != "admissible":
@@ -480,19 +500,27 @@ def verify_constructive_witnesses(packet: dict[str, Any]) -> None:
         require(all(0 <= exponent < n_quotient for exponent in complement), f"A={agreement}: exponent outside quotient group")
         support = set(range(n_quotient)) - complement
         require(len(support) == row["B"], f"A={agreement}: quotient support size mismatch")
-        if c == 0:
-            continue
-        require(n_quotient >= 16, f"A={agreement}: nonempty witness needs N>=16")
-        for power in range(1, d + 1):
+        if c:
+            require(n_quotient >= 16, f"A={agreement}: nonempty witness needs N>=16")
+            for power in range(1, d + 1):
+                require(
+                    power_sum(complement, n_quotient, power) == zero_vector(n_quotient),
+                    f"A={agreement}: quotient complement p_{power} does not vanish",
+                )
+            quotient_elementary = elementary_coefficients(support, n_quotient, d)
+            for index in range(1, d + 1):
+                require(
+                    quotient_elementary[index] == zero_vector(n_quotient),
+                    f"A={agreement}: quotient support e_{index} does not vanish",
+                )
+        lifted_support = lift_quotient_support(row, support)
+        full_degree = agreement - DEGREE_BOUND - 1
+        require(len(lifted_support) == agreement, f"A={agreement}: lifted support size mismatch")
+        full_elementary = elementary_coefficients(lifted_support, N, full_degree)
+        for index in range(1, full_degree + 1):
             require(
-                power_sum(complement, n_quotient, power) == zero_vector(n_quotient),
-                f"A={agreement}: quotient complement p_{power} does not vanish",
-            )
-        elementary = elementary_coefficients(support, n_quotient, d)
-        for index in range(1, d + 1):
-            require(
-                elementary[index] == zero_vector(n_quotient),
-                f"A={agreement}: quotient support e_{index} does not vanish",
+                full_elementary[index] == zero_vector(N),
+                f"A={agreement}: lifted support e_{index} does not vanish",
             )
 
 
@@ -612,6 +640,7 @@ def main() -> int:
         print(f"  admissible sizes: {EXPECTED_ADMISSIBLE}")
         print("  constructive quotient-complement witnesses: checked")
         print("  quotient support elementary vanishings: checked")
+        print("  lifted order-512 elementary vanishings: checked")
     return 0
 
 
