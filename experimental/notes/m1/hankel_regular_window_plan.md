@@ -149,6 +149,26 @@ It proves that for any multiplicative subgroup row, every syndrome vector of
 length at most the subgroup order has the explicit inverse-Fourier section
 `y_s(x)=sum_m s_m x^(-m-1)`.
 
+For the whole M3 window this applies uniformly, not only to the fixed
+top-window packet.  Since every exact bucket has
+
+```text
+t+j = (A-k)+(n-A) = n-k = 256 <= |H| = 512,
+```
+
+every length-256 syndrome pencil `(u,v)` is realized by explicit line values
+`f,g:H -> F_17^32`.  The certificate
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/
+  f17_32_n512_k256_m3_syndrome_realizability_certificate.json
+```
+
+records this reduction.  Thus the remaining M3 regular-window gap is not
+construction of actual row data; it is universal classification of arbitrary
+length-256 syndrome pencils after tangent, quotient, and extension-confined
+branches are removed.
+
 The first subtraction sidecar for this packet is
 
 ```text
@@ -209,5 +229,5 @@ python3 experimental/scripts/verify_f17_32_m3_extension_denominator_audit.py \
   --check experimental/data/certificates/hankel-f17-32-m3-extension-denominator-audit/f17_32_n512_k256_a421_426_extension_denominator_audit.json
 ```
 
-Non-claims: this note does not compute any determinant over `F_17^32`, does not
-enumerate actual-row root sets, and does not prove a safe-side MCA bound.
+Non-claims: this note does not enumerate universal root sets for arbitrary
+syndrome pencils, classify singular buckets, or prove a safe-side MCA bound.

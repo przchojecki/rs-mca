@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M3 syndrome-pencil realizability
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_syndrome_realizability.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/subgroup_syndrome_section.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** In the F17^32 M3 regular window, every exact bucket
+  uses `t+j=n-k=256` syndrome moments.  Since `256 <= |H|=512`, the subgroup
+  inverse-Fourier section realizes every length-256 syndrome pencil `(u,v)` by
+  explicit line values `f,g:H -> F_17^32`.
+- **How it is useful:** Removes a possible ambiguity in the regular-window
+  frontier: the remaining gap is universal root/singularity classification
+  after tangent, quotient, and extension ledgers, not construction of actual
+  row data.
+- **What to do next:** Attack arbitrary length-256 syndrome pencils in the M3
+  window: produce a deduped root table or identify the first singular bucket.
+
 ### 2026-06-30 - F17^32 split-root packet certificates
 
 - **Agent/model:** AllenGrahamHart / Codex.

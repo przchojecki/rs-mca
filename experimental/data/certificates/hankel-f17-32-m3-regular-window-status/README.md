@@ -11,14 +11,17 @@ It hashes and cross-checks the regular-window plan, the generic all-row-set
 minor certificate, the synthetic rank-witness family, the fixed top-window v9
 packet, the explicit line-value lift of that fixed packet, and the reusable
 subgroup syndrome-section theorem behind the lift.  It also references the
-zero-slope subtraction sidecar showing that the fixed top-window packet's
-synthetic root `{0}` is paid by the zero-codeword tangent branch, and the
-extension-denominator audit showing that the line-value lift is genuinely
-`F_17^32`-valued.  It also references the projective endpoint sidecar proving
-that `[0:1]` is empty for the fixed top-window regular minors.  Its purpose is
-to make the frontier explicit: generic and synthetic regular-minor facts are
-proved, while tangent/quotient-deduped actual-row root tables and singular-bucket
-outcomes are still not supplied.
+M3 syndrome-realizability certificate, which proves that every length-256
+syndrome pencil in this window is realized by explicit line values on the
+pinned subgroup row.  The zero-slope subtraction sidecar shows that the fixed
+top-window packet's synthetic root `{0}` is paid by the zero-codeword tangent
+branch, the extension-denominator audit shows that the line-value lift is
+genuinely `F_17^32`-valued, and the projective endpoint sidecar proves that
+`[0:1]` is empty for the fixed top-window regular minors.  Its purpose is to
+make the frontier explicit: generic and synthetic regular-minor facts are
+proved and row-realizability is discharged, while universal
+tangent/quotient-deduped root tables and singular-bucket outcomes are still not
+supplied.
 
 Run:
 
@@ -27,5 +30,5 @@ python3 experimental/scripts/verify_f17_32_m3_regular_window_status.py \
   --check experimental/data/certificates/hankel-f17-32-m3-regular-window-status/f17_32_n512_k256_m3_regular_window_status.json
 ```
 
-Non-claims: this is not a worst-case MCA bound, not actual M3 row data, not a
-full quotient/tangent subtraction table, and not a singular-pivot packet.
+Non-claims: this is not a worst-case MCA bound, not a universal M3 row outcome,
+not a full quotient/tangent subtraction table, and not a singular-pivot packet.

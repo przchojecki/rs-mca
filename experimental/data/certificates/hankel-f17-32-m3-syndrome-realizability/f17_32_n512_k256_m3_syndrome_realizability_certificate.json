@@ -1,0 +1,641 @@
+{
+  "nonclaims": [
+    "does not prove a worst-case MCA bound",
+    "does not compute root tables for arbitrary syndrome pencils",
+    "does not remove tangent, quotient, or extension-confined branches",
+    "does not classify singular pivot buckets"
+  ],
+  "per_agreement": [
+    {
+      "A": 385,
+      "j": 127,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 129,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 386,
+      "j": 126,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 130,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 387,
+      "j": 125,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 131,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 388,
+      "j": 124,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 132,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 389,
+      "j": 123,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 133,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 390,
+      "j": 122,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 134,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 391,
+      "j": 121,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 135,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 392,
+      "j": 120,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 136,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 393,
+      "j": 119,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 137,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 394,
+      "j": 118,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 138,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 395,
+      "j": 117,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 139,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 396,
+      "j": 116,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 140,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 397,
+      "j": 115,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 141,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 398,
+      "j": 114,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 142,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 399,
+      "j": 113,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 143,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 400,
+      "j": 112,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 144,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 401,
+      "j": 111,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 145,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 402,
+      "j": 110,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 146,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 403,
+      "j": 109,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 147,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 404,
+      "j": 108,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 148,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 405,
+      "j": 107,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 149,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 406,
+      "j": 106,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 150,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 407,
+      "j": 105,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 151,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 408,
+      "j": 104,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 152,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 409,
+      "j": 103,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 153,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 410,
+      "j": 102,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 154,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 411,
+      "j": 101,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 155,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 412,
+      "j": 100,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 156,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 413,
+      "j": 99,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 157,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 414,
+      "j": 98,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 158,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 415,
+      "j": 97,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 159,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 416,
+      "j": 96,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 160,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 417,
+      "j": 95,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 161,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 418,
+      "j": 94,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 162,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 419,
+      "j": 93,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 163,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 420,
+      "j": 92,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 164,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 421,
+      "j": 91,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 165,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 422,
+      "j": 90,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 166,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 423,
+      "j": 89,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 167,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 424,
+      "j": 88,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 168,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 425,
+      "j": 87,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 169,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    },
+    {
+      "A": 426,
+      "j": 86,
+      "line_value_formula": {
+        "f_u": "f_u(x)=sum_{0<=m<256} u_m x^(-m-1)",
+        "g_v": "g_v(x)=sum_{0<=m<256} v_m x^(-m-1)"
+      },
+      "max_syndrome_index_used": 255,
+      "section_applies": true,
+      "subgroup_order": 512,
+      "t": 170,
+      "u_v_pencil_space": "all pairs in (F_17^32)^256 x (F_17^32)^256",
+      "visible_syndrome_length": 256
+    }
+  ],
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "f17-32-m3-syndrome-realizability-v1",
+  "source_artifacts": {
+    "regular_window_plan": {
+      "ref": "experimental/data/certificates/hankel-regular-window-f17-385-426/f17_32_n512_k256_regular_window_plan.json",
+      "schema_version": "regular-hankel-window-plan-v1",
+      "sha256": "c15b0aef5a6003cc9a18fd6613d6f143f03937bb0db55e10a02bc08c62523ef2"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "schema_version": "f17-32-hankel-row-descriptor-v1",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    },
+    "subgroup_syndrome_section": {
+      "ref": "experimental/data/certificates/subgroup-syndrome-section/subgroup_syndrome_section_certificate.json",
+      "schema_version": "subgroup-syndrome-section-v1",
+      "sha256": "a0063bf809beb7a5fecfe519dd4fd0552bd85c7ac2a3013c12298509e4904c5a"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreements": 42,
+    "pencil_realizability": "surjective onto all length-256 u,v syndrome pencils",
+    "regular_window": {
+      "A_max": 426,
+      "A_min": 385
+    },
+    "remaining_problem": "classify arbitrary length-256 syndrome pencils after tangent, quotient, and extension-confined ledgers are removed",
+    "subgroup_order": 512,
+    "visible_syndrome_length": 256
+  },
+  "theorem": {
+    "reason": "t+j=(A-k)+(n-A)=n-k=256 <= |H|=512",
+    "section_formula": "y_s(x)=sum_{0<=m<256} s_m x^(-m-1)",
+    "statement": "For every A in 385..426 and every length-256 syndrome pencil (u,v), there are explicit line values f,g:H->F_17^32 whose weighted syndromes are u and v.  Hence row-realizability imposes no extra constraint on the M3 regular-window syndrome-pencil classification.",
+    "uses": "subgroup-syndrome-section theorem"
+  }
+}

@@ -69,6 +69,19 @@ F_17^32, |H|=512, r=256,
 and cross-checks the `F_17^32` section hashes against the fixed top-window
 line-value lift.
 
+In the M3 regular window `385 <= A <= 426`, every exact bucket uses
+`t+j=n-k=256` syndrome moments.  Since `256 <= |H|=512`, the section theorem
+applies to all possible `u` and `v` pencils in that window.  The follow-up
+certificate in
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/
+```
+
+records this row-realizability reduction: the remaining M3 task is universal
+classification of arbitrary length-256 syndrome pencils, not construction of
+line values realizing them.
+
 Non-claims: this note does not compute a worst-case MCA bound, remove quotient
 or tangent ledgers, or classify singular pivot buckets.  It only supplies the
 line-values-to-syndromes adapter for subgroup rows.
