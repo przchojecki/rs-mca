@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Local proportional single-slope packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_scalar5_rank_pivot_local_residual_toy.json`;
+  `experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/`;
+  `experimental/notes/m1/m1_hankel_proportional_pencil_tangent_lemma.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the local proportional toy packet.
+- **What is being added:** A v9 packet where the visible Hankel window has
+  `u=5v`, so the singular residual compresses to the single slope `12=-5`, but
+  an extra stored tail moment breaks full proportionality.  The packet is
+  accepted only as `proportional_window_single_slope` with
+  `tail_check_required`, and a negative fixture rejects tangent charging.
+- **How it is useful:** This makes the proportional-window lemma's ledger
+  distinction replayable: one-slope compression is not the same as
+  tangent/common-code-line payment unless the full stored syndrome is
+  proportional.
+- **What to do next:** Use the same local-vs-full proportional accounting when
+  classifying future singular M3/M1 residual buckets.
+
 ### 2026-06-30 - Proportional residual replay gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

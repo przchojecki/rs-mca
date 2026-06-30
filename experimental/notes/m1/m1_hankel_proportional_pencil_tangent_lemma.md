@@ -79,6 +79,26 @@ experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-r
 keeps the same input but claims scalar `6`; it must fail because replay gives
 scalar `5` and slope `12`.
 
+The companion local-tail packet
+
+```text
+experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/
+  f17_n10_k4_a8_scalar5_local_single_slope_packet.json
+```
+
+uses the same visible window but stores one extra tail moment that violates
+`u=5v`.  The checker accepts the one-slope compression while requiring
+`full_syndrome_proportional=false` and `residual_charge=tail_check_required`.
+The negative fixture
+
+```text
+experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/
+  invalid_local_window_tangent_charge_packet.json
+```
+
+must fail because it tries to charge this local-only proportional window to the
+tangent/common-code-line ledger.
+
 Run:
 
 ```sh
@@ -89,11 +109,21 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_scalar5_rank_pivot_tangent_residual_toy.json \
   --check experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/f17_n10_k4_a8_scalar5_tangent_residual_packet.json
 
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_scalar5_rank_pivot_local_residual_toy.json \
+  --check experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/f17_n10_k4_a8_scalar5_local_single_slope_packet.json
+
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/f17_n10_k4_a8_scalar5_tangent_residual_packet.json
 
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/f17_n10_k4_a8_scalar5_local_single_slope_packet.json
+
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/invalid_bad_proportional_replay_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/invalid_local_window_tangent_charge_packet.json
 ```
 
 Non-claims: this does not supply actual M3 row root tables, does not bound

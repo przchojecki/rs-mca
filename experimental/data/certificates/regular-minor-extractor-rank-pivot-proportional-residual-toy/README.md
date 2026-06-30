@@ -18,6 +18,12 @@ detects the visible scalar `c=5` from the ordinary syndrome-pencil data.  The
 minors vanish identically.  The proportional-window lemma then labels the
 residual as tangent/common-code-line with single slope `12=-5`.
 
+The companion local-tail input extends the stored syndrome by one moment.  The
+first `t+j=6` visible moments still satisfy `u=5v`, but the seventh moment
+breaks full proportionality.  Its packet therefore records
+`proportional_window_single_slope`, `residual_single_slope=12`,
+`full_syndrome_proportional=false`, and `residual_charge=tail_check_required`.
+
 Run:
 
 ```sh
@@ -25,14 +31,24 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_scalar5_rank_pivot_tangent_residual_toy.json \
   --check experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/f17_n10_k4_a8_scalar5_tangent_residual_packet.json
 
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_scalar5_rank_pivot_local_residual_toy.json \
+  --check experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/f17_n10_k4_a8_scalar5_local_single_slope_packet.json
+
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/f17_n10_k4_a8_scalar5_tangent_residual_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/f17_n10_k4_a8_scalar5_local_single_slope_packet.json
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/invalid_bad_tangent_residual_audit_packet.json
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/invalid_bad_proportional_replay_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/invalid_local_window_tangent_charge_packet.json
 ```
 
 Non-claims: this is a toy residual-classification packet, not actual M3 row
@@ -45,3 +61,7 @@ claims scalar `6` and slope `11`; the checker recomputes scalar `5` and slope
 The `invalid_bad_tangent_residual_audit_packet.json` fixture also points at the
 same input but falsely sets `full_syndrome_proportional=false`; replay shows the
 stored syndrome is fully proportional.
+
+The local-window tangent-charge negative fixture points at the local-tail input
+but falsely claims the tangent/common-code-line ledger can pay the slope; replay
+keeps the one-slope compression but rejects the full-syndrome flag.

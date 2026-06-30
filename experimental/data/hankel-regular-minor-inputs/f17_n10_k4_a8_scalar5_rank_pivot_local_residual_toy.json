@@ -1,0 +1,58 @@
+{
+  "schema_version": "regular-hankel-minor-extractor-input-v1",
+  "row": {
+    "n": 10,
+    "k": 4,
+    "field": "F_17",
+    "domain": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "domain_description": "first ten nonzero elements of F_17"
+  },
+  "agreement_threshold": 8,
+  "exact_agreements": [
+    8
+  ],
+  "sampler": "finite_affine_line",
+  "line_syndrome": {
+    "u": [
+      5,
+      10,
+      3,
+      6,
+      12,
+      7,
+      1
+    ],
+    "v": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      15,
+      13
+    ],
+    "description": "rank-pivot local proportional residual toy: u=5v on the visible t+j window, but the stored tail moment breaks full proportionality"
+  },
+  "row_set_strategy": {
+    "type": "rank_at_nodes"
+  },
+  "enumerate_split_bad_slopes": false,
+  "status": "PROVED",
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an F_17^32 row-data packet",
+    "not a full singular pivot-chart certificate",
+    "toy row only"
+  ]
+}
