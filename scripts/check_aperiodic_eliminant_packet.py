@@ -1457,6 +1457,169 @@ def validate_regular_minor(
     return roots, bad_slopes
 
 
+def validate_regular_minor_gcd(
+    item: dict[str, Any],
+    modulus: int | None,
+    extension_field: PolynomialBasisField | None,
+) -> tuple[list[int] | None, list[int]]:
+    if extension_field is not None:
+        raise PacketError(
+            f"A={item.get('A')}: regular_minor_gcd currently supports prime fields only"
+        )
+    if modulus is None:
+        raise PacketError(
+            f"A={item.get('A')}: regular_minor_gcd needs a prime-field row"
+        )
+    gcd_info = item.get("regular_minor_gcd")
+    if not isinstance(gcd_info, dict):
+        raise PacketError(f"A={item.get('A')}: missing regular_minor_gcd")
+    if "regular_minor" in item:
+        raise PacketError(
+            f"A={item.get('A')}: use either regular_minor or regular_minor_gcd, not both"
+        )
+    audit = item.get("extractor_audit")
+    if not isinstance(audit, dict) or audit.get("certificate_mode") != "minor_gcd_roots":
+        raise PacketError(
+            f"A={item.get('A')}: regular_minor_gcd needs certificate_mode=minor_gcd_roots"
+        )
+    for field in ("row_sets", "polynomial_ref", "degree", "root_hash", "minor_count"):
+        if field not in gcd_info:
+            raise PacketError(f"A={item.get('A')}: missing regular_minor_gcd.{field}")
+    row_sets_raw = gcd_info["row_sets"]
+    if not isinstance(row_sets_raw, list) or not row_sets_raw:
+        raise PacketError(f"A={item.get('A')}: regular_minor_gcd.row_sets must be nonempty")
+    expected_size = item["j"] + 1
+    row_sets = []
+    for index, row_set_raw in enumerate(row_sets_raw):
+        row_set = normalize_int_list(
+            row_set_raw, f"A={item.get('A')} regular_minor_gcd.row_sets[{index}]"
+        )
+        if len(row_set) != expected_size:
+            raise PacketError(
+                f"A={item.get('A')}: gcd row set {index} has {len(row_set)} rows, "
+                f"expected {expected_size}"
+            )
+        if len(set(row_set)) != len(row_set):
+            raise PacketError(f"A={item.get('A')}: gcd row set {index} has duplicates")
+        if min(row_set) < 0 or max(row_set) >= item["t"]:
+            raise PacketError(
+                f"A={item.get('A')}: gcd row set {index} outside Hankel row range"
+            )
+        row_sets.append(row_set)
+    if gcd_info["minor_count"] != len(row_sets):
+        raise PacketError(
+            f"A={item.get('A')}: minor_count does not match row_sets length"
+        )
+    if not isinstance(gcd_info["degree"], int) or gcd_info["degree"] < 0:
+        raise PacketError(f"A={item.get('A')}: bad regular_minor_gcd.degree")
+    if gcd_info["degree"] > item["j"] + 1:
+        raise PacketError(
+            f"A={item.get('A')}: gcd degree {gcd_info['degree']} exceeds j+1={item['j'] + 1}"
+        )
+
+    data = item.get("regular_minor_gcd_data")
+    if not isinstance(data, dict):
+        raise PacketError(
+            f"A={item.get('A')}: regular_minor_gcd_data must be an object"
+        )
+    coefficient_key = first_matching_key(
+        data, r"gcd_coefficients_mod_\d+_ascending", r"gcd_coefficients_ascending"
+    )
+    root_key = first_matching_key(data, r"roots_mod_\d+", r"roots")
+    minor_polynomial_key = first_matching_key(
+        data, r"minor_polynomials_mod_\d+_ascending", r"minor_polynomials_ascending"
+    )
+    bad_slope_key = first_matching_key(
+        data, r"enumerated_bad_slopes_mod_\d+", r"enumerated_bad_slopes"
+    )
+    if coefficient_key is None or root_key is None or minor_polynomial_key is None:
+        raise PacketError(
+            f"A={item.get('A')}: gcd data needs gcd coefficients, roots, and minor polynomials"
+        )
+    coefficients = require_int_list(
+        data[coefficient_key], f"A={item.get('A')} gcd coefficients"
+    )
+    roots = normalize_int_list(data[root_key], f"A={item.get('A')} gcd roots")
+    bad_slopes = normalize_int_list(
+        data.get(bad_slope_key, []), f"A={item.get('A')} gcd bad_slopes"
+    )
+    if all(coefficient == 0 for coefficient in coefficients):
+        raise PacketError(f"A={item.get('A')}: zero gcd polynomial")
+    actual_degree = poly_degree(coefficients)
+    if actual_degree != gcd_info["degree"]:
+        raise PacketError(
+            f"A={item.get('A')}: gcd degree field {gcd_info['degree']} != actual {actual_degree}"
+        )
+    if hash_json(roots) != gcd_info["root_hash"]:
+        raise PacketError(f"A={item.get('A')}: gcd root_hash mismatch")
+    if not set(bad_slopes).issubset(roots):
+        raise PacketError(
+            f"A={item.get('A')}: enumerated bad slopes are not gcd roots"
+        )
+
+    minor_records = data[minor_polynomial_key]
+    if not isinstance(minor_records, list) or len(minor_records) != len(row_sets):
+        raise PacketError(
+            f"A={item.get('A')}: minor polynomial records must match row_sets"
+        )
+    for index, (expected_row_set, record) in enumerate(zip(row_sets, minor_records)):
+        if not isinstance(record, dict):
+            raise PacketError(
+                f"A={item.get('A')}: minor polynomial record {index} must be an object"
+            )
+        row_set = normalize_int_list(
+            record.get("row_set", []),
+            f"A={item.get('A')} minor polynomial row_set {index}",
+        )
+        if row_set != expected_row_set:
+            raise PacketError(
+                f"A={item.get('A')}: minor polynomial row_set {index} mismatch"
+            )
+        polynomial = require_int_list(
+            record.get("coefficients", []),
+            f"A={item.get('A')} minor polynomial coefficients {index}",
+        )
+        if not polynomial:
+            raise PacketError(
+                f"A={item.get('A')}: minor polynomial {index} has empty coefficients"
+            )
+        if any(coefficient != 0 for coefficient in polynomial):
+            degree = poly_degree(polynomial)
+            if degree > item["j"] + 1:
+                raise PacketError(
+                    f"A={item.get('A')}: minor polynomial {index} degree exceeds j+1"
+                )
+            if record.get("degree") != degree:
+                raise PacketError(
+                    f"A={item.get('A')}: minor polynomial {index} degree mismatch"
+                )
+            if ppoly_mod(polynomial, coefficients, modulus) != [0]:
+                raise PacketError(
+                    f"A={item.get('A')}: gcd does not divide minor polynomial {index}"
+                )
+        elif record.get("degree") != -1:
+            raise PacketError(
+                f"A={item.get('A')}: zero minor polynomial {index} must have degree -1"
+            )
+
+    if modulus <= ROOT_COMPLETENESS_ENUMERATION_LIMIT:
+        actual_roots = [
+            root
+            for root in range(modulus)
+            if poly_eval_mod(coefficients, root, modulus) == 0
+        ]
+        require_exact_roots(roots, actual_roots, f"A={item.get('A')}: gcd")
+    else:
+        non_roots = [
+            root for root in roots if poly_eval_mod(coefficients, root, modulus)
+        ]
+        if non_roots:
+            raise PacketError(
+                f"A={item.get('A')}: listed gcd non-roots {non_roots}"
+            )
+    return roots, bad_slopes
+
+
 def validate_rank_witness_minor(item: dict[str, Any], row_set: list[int]) -> None:
     minor = item["regular_minor"]
     location = f"A={item.get('A')}: rank_witness"
@@ -1530,7 +1693,14 @@ def validate_extractor_audit(
 
     if item.get("status") == "regular_minor" and "degree_bound" in audit:
         degree_bound = audit["degree_bound"]
-        degree = item["regular_minor"]["degree"]
+        if "regular_minor" in item:
+            degree = item["regular_minor"]["degree"]
+        elif "regular_minor_gcd" in item:
+            degree = item["regular_minor_gcd"]["degree"]
+        else:
+            raise PacketError(
+                f"{location}.degree_bound needs regular_minor or regular_minor_gcd"
+            )
         if (
             not isinstance(degree_bound, int)
             or degree_bound < degree
@@ -1680,9 +1850,14 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
                 f"A={agreement}: below threshold {packet['agreement_threshold']}"
             )
         if item["status"] == "regular_minor":
-            roots, bad_slopes = validate_regular_minor(
-                item, modulus, extension_field
-            )
+            if "regular_minor_gcd" in item:
+                roots, bad_slopes = validate_regular_minor_gcd(
+                    item, modulus, extension_field
+                )
+            else:
+                roots, bad_slopes = validate_regular_minor(
+                    item, modulus, extension_field
+                )
             if roots is not None:
                 all_roots.update(roots)
             all_bad.update(bad_slopes)

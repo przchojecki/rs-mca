@@ -13,6 +13,12 @@ The replay uses the `F_17`, `n=16`, `k=8` regular-minor toy and all contiguous
 maximal row sets.  It shows that common-gcd roots can be strictly sharper than
 a single prefix-minor root table.
 
+The v9 packet version of this gate is recorded in:
+
+```text
+experimental/data/certificates/regular-minor-gcd-toy/
+```
+
 Run:
 
 ```sh

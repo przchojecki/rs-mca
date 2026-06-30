@@ -71,6 +71,23 @@
               "root_hash": {"type": "string"}
             }
           },
+          "regular_minor_gcd": {
+            "type": "object",
+            "properties": {
+              "row_sets": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "items": {"type": "integer"}
+                }
+              },
+              "polynomial_ref": {"type": "string"},
+              "degree": {"type": "integer", "minimum": 0},
+              "root_hash": {"type": "string"},
+              "minor_count": {"type": "integer", "minimum": 1},
+              "containment": {"type": "string"}
+            }
+          },
           "regular_minor_data": {
             "type": "object",
             "properties": {
@@ -93,6 +110,9 @@
                 }
               }
             }
+          },
+          "regular_minor_gcd_data": {
+            "type": "object"
           },
           "projective_infinity": {
             "type": "object",

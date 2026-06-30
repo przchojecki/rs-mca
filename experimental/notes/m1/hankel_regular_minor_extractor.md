@@ -69,6 +69,7 @@ A sharper regular-bucket gate is recorded in
 
 ```text
 experimental/data/certificates/regular-minor-gcd-gate/
+experimental/data/certificates/regular-minor-gcd-toy/
 experimental/scripts/verify_m1_regular_minor_gcd_gate.py
 ```
 
@@ -76,9 +77,10 @@ If a slope is genuinely regular-bad, the full Hankel matrix has rank at most
 `j`, so every maximal minor vanishes there.  Thus the bad slopes are contained
 in the roots of the gcd of any audited family of maximal-minor determinant
 polynomials.  On the `F_17`, `n=16`, `k=8` toy, the common gcd of all contiguous
-maximal minors removes prefix-minor false roots at `A=14,15,16`.  This is not
-yet wired into v9 packet emission, but it identifies the next useful sharpening
-for the M3 regular-window audit.
+maximal minors removes prefix-minor false roots at `A=14,15,16`.  The extractor
+now emits this as a `regular_minor_gcd` v9 packet over prime fields, and the
+checker verifies gcd divisibility, exact roots in small fields, and an
+expected-failure packet that omits the `A=14` gcd root.
 
 When the field is small enough, the extractor enumerates roots in the full
 finite slope field.  For extension fields, root-table elements are encoded as

@@ -28,6 +28,7 @@ DEFAULT_MAX_ROOT_ENUM_FIELD_SIZE = 10000
 DEFAULT_MAX_BAD_SLOPE_SUBSETS = 200000
 ZERO_U_MONOMIAL_MODE = "zero_u_monomial_roots"
 SCALAR_MULTIPLE_MODE = "scalar_multiple_roots"
+MINOR_GCD_MODE = "minor_gcd_roots"
 
 
 def mod(value: int, prime: int) -> int:
@@ -75,6 +76,64 @@ def poly_eval(poly: list[int], value: int, prime: int) -> int:
 
 def poly_degree(poly: list[int], prime: int) -> int:
     return len(trim(poly, prime)) - 1
+
+
+def poly_divmod(
+    numerator: list[int],
+    denominator: list[int],
+    prime: int,
+) -> tuple[list[int], list[int]]:
+    work = trim(numerator, prime)
+    divisor = trim(denominator, prime)
+    if divisor == [0]:
+        raise ZeroDivisionError("polynomial division by zero")
+    quotient = [0] * max(1, len(work) - len(divisor) + 1)
+    while len(work) >= len(divisor) and work != [0]:
+        coeff = work[-1] * pow(divisor[-1], -1, prime) % prime
+        shift = len(work) - len(divisor)
+        quotient[shift] = coeff
+        subtractor = [0] * shift + [(coeff * term) % prime for term in divisor]
+        work = trim(
+            [
+                (
+                    (work[index] if index < len(work) else 0)
+                    - (subtractor[index] if index < len(subtractor) else 0)
+                )
+                % prime
+                for index in range(max(len(work), len(subtractor)))
+            ],
+            prime,
+        )
+    return trim(quotient, prime), work
+
+
+def poly_monic(poly: list[int], prime: int) -> list[int]:
+    out = trim(poly, prime)
+    if out == [0]:
+        return out
+    return poly_scale(out, pow(out[-1], -1, prime), prime)
+
+
+def poly_gcd(left: list[int], right: list[int], prime: int) -> list[int]:
+    a = trim(left, prime)
+    b = trim(right, prime)
+    if a == [0]:
+        return poly_monic(b, prime)
+    if b == [0]:
+        return poly_monic(a, prime)
+    while b != [0]:
+        _quotient, remainder = poly_divmod(a, b, prime)
+        a, b = b, remainder
+    return poly_monic(a, prime)
+
+
+def poly_gcd_many(polynomials: list[list[int]], prime: int) -> list[int]:
+    if not polynomials:
+        raise ValueError("need at least one polynomial for gcd")
+    out = polynomials[0]
+    for polynomial in polynomials[1:]:
+        out = poly_gcd(out, polynomial, prime)
+    return poly_monic(out, prime)
 
 
 def linear_power_mod(constant: int, exponent: int, prime: int) -> list[int]:
@@ -754,6 +813,7 @@ class ExtractionResult:
     residual_label: str | None = None
     residual_reason: str | None = None
     residual_audit: dict[str, Any] | None = None
+    minor_family_records: list[dict[str, Any]] | None = None
 
 
 def candidate_row_sets(t: int, size: int, config: dict[str, Any]) -> list[list[int]]:
@@ -1164,6 +1224,104 @@ def extract_for_agreement(
             ),
             residual_audit=proportional_audit,
         )
+    if spec.get("certificate_mode") == MINOR_GCD_MODE:
+        polynomials: list[list[int]] = []
+        family_records: list[dict[str, Any]] = []
+        for row_set in row_sets:
+            polynomial = determinant_polynomial_by_interpolation(
+                u, v, row_set, size, prime
+            )
+            polynomial = trim(polynomial, prime)
+            polynomials.append(polynomial)
+            family_records.append(
+                {
+                    "row_set": row_set,
+                    "coefficients": polynomial,
+                    "degree": poly_degree(polynomial, prime)
+                    if polynomial != [0]
+                    else -1,
+                }
+            )
+        nonzero_polynomials = [
+            polynomial for polynomial in polynomials if polynomial != [0]
+        ]
+        if nonzero_polynomials:
+            gcd_polynomial = poly_gcd_many(nonzero_polynomials, prime)
+            roots: list[int] | None = None
+            bad_slopes: list[int] | None = None
+            if prime <= int(
+                spec.get("max_root_enum_field_size", DEFAULT_MAX_ROOT_ENUM_FIELD_SIZE)
+            ):
+                roots = [
+                    value
+                    for value in range(prime)
+                    if poly_eval(gcd_polynomial, value, prime) == 0
+                ]
+            domain = spec.get("row", {}).get("domain")
+            if domain is not None and spec.get("enumerate_split_bad_slopes", False):
+                domain_values = [int(value) % prime for value in domain]
+                subset_count = n_choose_k(len(domain_values), j)
+                if subset_count <= int(
+                    spec.get(
+                        "max_bad_slope_subsets", DEFAULT_MAX_BAD_SLOPE_SUBSETS
+                    )
+                ):
+                    bad_slopes = finite_bad_slopes_for_exact_agreement(
+                        u,
+                        v,
+                        domain_values,
+                        n,
+                        k,
+                        exact_agreement,
+                        prime,
+                    )
+                    if roots is not None and not set(bad_slopes).issubset(roots):
+                        raise AssertionError(
+                            (
+                                "bad slopes not contained in common gcd roots",
+                                exact_agreement,
+                            )
+                        )
+            return ExtractionResult(
+                exact_agreement,
+                j,
+                t,
+                "regular_minor",
+                None,
+                gcd_polynomial,
+                roots,
+                bad_slopes,
+                len(row_sets),
+                row_set_source=f"{row_set_audit['source']}_minor_gcd",
+                rank_pivot_node=row_set_audit.get("node"),
+                rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+                rank_pivot_nodes_required=row_set_audit.get(
+                    "nodes_required_for_singularity_proof"
+                ),
+                minor_family_records=family_records,
+            )
+        residual_reason = row_set_audit.get(
+            "singularity_proof"
+        ) or "all audited maximal-minor determinant polynomials vanished"
+        return ExtractionResult(
+            exact_agreement,
+            j,
+            t,
+            "residual_obstruction",
+            None,
+            None,
+            None,
+            None,
+            len(row_sets),
+            row_set_source=f"{row_set_audit['source']}_minor_gcd",
+            rank_pivot_node=row_set_audit.get("node"),
+            rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+            rank_pivot_nodes_required=row_set_audit.get(
+                "nodes_required_for_singularity_proof"
+            ),
+            residual_label="unknown",
+            residual_reason=residual_reason,
+        )
     if (
         spec.get("certificate_mode") == "rank_witness_bound"
         and row_set_audit["source"] == "rank_at_nodes"
@@ -1570,6 +1728,56 @@ def result_to_packet_item(
         "status": result.status,
     }
     if result.status == "regular_minor":
+        if result.minor_family_records is not None:
+            assert result.polynomial is not None
+            degree = poly_degree(result.polynomial, prime)
+            roots = result.roots
+            row_sets = [
+                record["row_set"] for record in result.minor_family_records
+            ]
+            item["regular_minor_gcd"] = {
+                "row_sets": row_sets,
+                "polynomial_ref": (
+                    f"inline:regular_minor_gcd_data.gcd_coefficients_mod_{prime}_ascending"
+                ),
+                "degree": degree,
+                "root_hash": hash_json(
+                    roots
+                    if roots is not None
+                    else {
+                        "roots": "not_enumerated",
+                        "degree_bound": degree,
+                        "row_sets": row_sets,
+                    }
+                ),
+                "minor_count": len(result.minor_family_records),
+                "containment": (
+                    "rank-defect slopes make every audited maximal minor vanish, "
+                    "so they are contained in the common gcd roots"
+                ),
+            }
+            item["regular_minor_gcd_data"] = {
+                f"gcd_coefficients_mod_{prime}_ascending": result.polynomial,
+                f"minor_polynomials_mod_{prime}_ascending": result.minor_family_records,
+            }
+            if roots is not None:
+                item["regular_minor_gcd_data"][f"roots_mod_{prime}"] = roots
+                if result.enumerated_bad_slopes is not None:
+                    item["regular_minor_gcd_data"][
+                        f"enumerated_bad_slopes_mod_{prime}"
+                    ] = result.enumerated_bad_slopes
+            item["extractor_audit"] = {
+                "tested_row_sets": result.tested_row_sets,
+                "row_set_source": result.row_set_source,
+                "rank_pivot_node": result.rank_pivot_node,
+                "rank_pivot_nodes_tested": result.rank_pivot_nodes_tested,
+                "rank_pivot_nodes_required": result.rank_pivot_nodes_required,
+                "root_count": len(roots) if roots is not None else "not_enumerated",
+                "gcd_degree": degree,
+                "certificate_mode": MINOR_GCD_MODE,
+            }
+            add_rank_pivot_test_nodes(item["extractor_audit"])
+            return item
         assert result.row_set is not None
         if result.polynomial is None:
             if sampler == "projective_line":
@@ -1868,6 +2076,8 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
                 if spec.get("certificate_mode") == ZERO_U_MONOMIAL_MODE
                 else "scalar-multiple closed-form root certificate over the base prime field"
                 if spec.get("certificate_mode") == SCALAR_MULTIPLE_MODE
+                else "common-gcd root certificate over audited maximal minors"
+                if spec.get("certificate_mode") == MINOR_GCD_MODE
                 else "numeric determinant interpolation over the base prime field"
             ),
             "input_ref": input_ref,
@@ -1913,6 +2123,10 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
 def build_packet_field(
     spec: dict[str, Any], input_ref: str | None = None
 ) -> dict[str, Any]:
+    if spec.get("certificate_mode") == MINOR_GCD_MODE:
+        raise ValueError(
+            "minor_gcd_roots mode is currently implemented for prime fields only"
+        )
     row = spec["row"]
     field = PolynomialBasisField.from_spec(spec["field_model"])
     agreements = [int(value) for value in spec["exact_agreements"]]
@@ -2060,18 +2274,26 @@ def print_summary(packet: dict[str, Any]) -> None:
     for item in packet["exact_agreements"]:
         if item["status"] == "regular_minor":
             data = item.get("regular_minor_data", {})
+            certificate = item.get("regular_minor")
+            rows: Any = certificate["row_set"] if isinstance(certificate, dict) else None
+            degree: Any = certificate["degree"] if isinstance(certificate, dict) else None
+            if "regular_minor_gcd" in item:
+                data = item.get("regular_minor_gcd_data", {})
+                certificate = item["regular_minor_gcd"]
+                rows = f"{certificate['minor_count']} row sets"
+                degree = certificate["degree"]
             root_keys = [
                 key for key in data if key.startswith("roots_mod_") or key == "roots"
             ]
             roots: list[int] | str = data[root_keys[0]] if root_keys else "not_enumerated"
             print(
-                "A={A} j={j} t={t} row_set={row_set} degree={degree} "
+                "A={A} j={j} t={t} rows={rows} degree={degree} "
                 "roots={roots} tested={tested}".format(
                     A=item["A"],
                     j=item["j"],
                     t=item["t"],
-                    row_set=item["regular_minor"]["row_set"],
-                    degree=item["regular_minor"]["degree"],
+                    rows=rows,
+                    degree=degree,
                     roots=roots,
                     tested=item["extractor_audit"]["tested_row_sets"],
                 )

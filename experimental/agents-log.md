@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - v9 regular-minor gcd packets
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `scripts/aperiodic_eliminant_schema.json`;
+  `experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_gcd_toy.json`;
+  `experimental/data/certificates/regular-minor-gcd-toy/`;
+  `experimental/data/certificates/regular-minor-gcd-gate/README.md`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the prime-field toy packet and checker gate.
+- **What is being added:** The v9 packet format now has a `regular_minor_gcd`
+  certificate mode for prime-field packets.  The extractor emits all audited
+  maximal-minor determinant polynomials, their common gcd, and the gcd roots;
+  the checker verifies divisibility and exact roots, with a negative fixture
+  omitting the `A=14` gcd root.
+- **How it is useful:** Converts the common-gcd regular bucket theorem into a
+  replayable packet shape, so M3 can try common-root tables before escalating
+  to singular pivot charts.
+- **What to do next:** Extend the gcd packet mode to polynomial-basis extension
+  fields, then test rank-complete row-set families for F17^32 syndrome pencils.
+
 ### 2026-06-30 - Regular-minor common-gcd gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

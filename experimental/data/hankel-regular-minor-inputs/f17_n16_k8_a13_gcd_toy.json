@@ -1,0 +1,77 @@
+{
+  "agreement_threshold": 13,
+  "certificate_mode": "minor_gcd_roots",
+  "claim_scope": {
+    "may_be_used_for_threshold_pinning": false,
+    "note": "Finite toy replay for the multi-minor common-gcd regular bucket gate only.",
+    "root_status": "enumerated",
+    "row_data": "toy_row",
+    "threshold_role": "toy_mechanism"
+  },
+  "enumerate_split_bad_slopes": true,
+  "exact_agreements": [
+    13,
+    14,
+    15,
+    16
+  ],
+  "line_syndrome": {
+    "description": "u_m=3+5m+2m^2+m^3, v_m=7+4m+6m^2+3m^3 modulo 17; gcd toy audits all contiguous maximal row-set minors",
+    "u": [
+      3,
+      11,
+      12,
+      12,
+      0,
+      16,
+      15,
+      3
+    ],
+    "v": [
+      7,
+      3,
+      12,
+      1,
+      5,
+      8,
+      11,
+      15
+    ]
+  },
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an F_17^32 row-data packet",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ],
+  "row": {
+    "domain": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "domain_description": "sorted nonzero elements of F_17",
+    "field": "F_17",
+    "k": 8,
+    "n": 16
+  },
+  "row_set_strategy": {
+    "type": "contiguous"
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "regular-hankel-minor-extractor-input-v1",
+  "status": "PROVED"
+}
