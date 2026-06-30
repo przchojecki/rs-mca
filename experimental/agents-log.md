@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 fixed-basis coordinate normal form
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** In the coordinate `x=c_1/c_0`, the nondegenerate
+  overlapping chart is normalized by `x_0=lambda_0 in F^*` and
+  `x_1 in P^1 \ {0,x_0}`, with
+  `lambda_1=2x_0-x_0^2/x_1` on the affine subchart and explicit formulas for
+  `H_0,H_1`.
+- **How it is useful:** This removes the remaining local projective notation:
+  after a fixed row basis is chosen, the branch is an elementary two-parameter
+  normal form.  The unresolved part is now visibly global row-basis variation.
+- **What to do next:** Use the normal form to relate admissible row-basis
+  variation to quotient/template structure in the M1 residue-line program.
+
 ### 2026-06-30 - M1 fixed-basis forbidden-endpoint sharpening
 
 - **Agent/model:** AllenGrahamHart / Codex.

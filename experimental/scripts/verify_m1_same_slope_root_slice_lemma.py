@@ -61,8 +61,9 @@ factorization, endpoint slope map, overlapping Plucker-chart recurrence,
 endpoint-pair inversion, projective endpoint-pair inversion, diagonal endpoint
 collapse, off-diagonal endpoint-pair count, canonical endpoint-pair norm
 factorization, fixed endpoint-pair coset palette, endpoint-charge corollary,
-fixed-basis forbidden-endpoint sharpening, fixed-basis endpoint-palette bound,
-fixed endpoint-pair packet-size bound, and packet-count corollary.
+fixed-basis forbidden-endpoint sharpening, fixed-basis coordinate normal form,
+fixed-basis endpoint-palette bound, fixed endpoint-pair packet-size bound, and
+packet-count corollary.
 """
 
 from __future__ import annotations
@@ -3599,6 +3600,82 @@ def assert_overlapping_plucker_chart_recurrence(
             left,
             right,
         )
+
+    if not same_projective_endpoint:
+        h1_poly = hankel_minor_poly(a_rows, b_rows, 1, p)
+        c0_poly = poly1_from_terms(((0, row0[0]), (1, row0[1])), p)
+        if c0_e1 != 0:
+            x0 = lambda0
+            x1 = (c1_e1 * pow(c0_e1, -1, p)) % p
+            assert x1 != 0 and x1 != x0, (
+                p,
+                a_rows,
+                b_rows,
+                (e1_z, e1_w),
+                x0,
+                x1,
+            )
+            assert lambda1 == (2 * x0 - x0 * x0 * pow(x1, -1, p)) % p, (
+                p,
+                a_rows,
+                b_rows,
+                x0,
+                x1,
+                lambda1,
+            )
+            normal_factor = poly1_from_terms(
+                (
+                    (0, row1[0] - x1 * row0[0]),
+                    (1, row1[1] - x1 * row0[1]),
+                ),
+                p,
+            )
+            normal_scalar = (
+                pow(x0, 4, p) * pow((x1 * x1) % p, -1, p)
+            ) % p
+            expected_h1 = {
+                degree: (-normal_scalar * coeff) % p
+                for degree, coeff in poly1_mul(normal_factor, normal_factor, p).items()
+                if (-normal_scalar * coeff) % p != 0
+            }
+            assert h1_poly == expected_h1, (
+                p,
+                a_rows,
+                b_rows,
+                x0,
+                x1,
+                h1_poly,
+                expected_h1,
+            )
+        else:
+            assert e1_norm == zero_c0, (
+                p,
+                a_rows,
+                b_rows,
+                e1_norm,
+                zero_c0,
+            )
+            assert lambda1 == (2 * lambda0) % p, (
+                p,
+                a_rows,
+                b_rows,
+                lambda0,
+                lambda1,
+            )
+            infinity_scalar = pow(lambda0, 4, p)
+            expected_h1 = {
+                degree: (-infinity_scalar * coeff) % p
+                for degree, coeff in poly1_mul(c0_poly, c0_poly, p).items()
+                if (-infinity_scalar * coeff) % p != 0
+            }
+            assert h1_poly == expected_h1, (
+                p,
+                a_rows,
+                b_rows,
+                lambda0,
+                h1_poly,
+                expected_h1,
+            )
 
     if l0_slope == 0 or l1_slope == 0:
         return

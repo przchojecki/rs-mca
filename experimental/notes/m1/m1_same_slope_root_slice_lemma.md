@@ -27,6 +27,7 @@ SQUARE-NORM PROJECTIVE ENDPOINT-PAIR INVERSION /
 SQUARE-NORM PROJECTIVE DIAGONAL ENDPOINT COLLAPSE /
 SQUARE-NORM OFF-DIAGONAL ENDPOINT-PAIR COUNT /
 SQUARE-NORM FIXED-BASIS FORBIDDEN-ENDPOINT SHARPENING /
+SQUARE-NORM FIXED-BASIS COORDINATE NORMAL FORM /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -2856,6 +2857,41 @@ Thus, for a palette `Omega`, the exact fixed-basis packet count is
 For the full projective line over `F_q`, this is `(q-1)^2`, improving the
 coarser `q(q+1)` full-palette bound.
 
+In the fixed-basis coordinate
+
+```text
+x=c_1/c_0,
+```
+
+the forbidden endpoints are `A_1={x=0}` and `A_0={x=infty}`.  Thus the
+generic affine subchart has
+
+```text
+x_0=lambda_0 in F^*,
+x_1=c_1(E_1)/c_0(E_1) in F^*,        x_1 != x_0,
+lambda_1=2x_0-x_0^2/x_1.                         (RKSQXPAR)
+```
+
+On this subchart the rows and norm have the normal form
+
+```text
+c_2=2x_0 c_1-x_0^2 c_0,
+c_3=2lambda_1 c_2-lambda_1^2 c_1,
+H_0=-(c_1-x_0 c_0)^2,
+H_1=-(x_0^4/x_1^2)(c_1-x_1 c_0)^2.                (RKSQXNF)
+```
+
+If `E_1=A_0` is the endpoint at `x=infty`, then `lambda_1=2x_0` and
+
+```text
+H_1=-x_0^4 c_0^2.
+```
+
+Thus, after the fixed initial row basis is chosen, the entire nondegenerate
+overlapping square-norm chart is the elementary two-parameter family
+`(x_0,x_1)` with `x_0 in F^*` and `x_1 in P^1 \ {0,x_0}`.  The only remaining
+global work is to control which initial row bases occur.
+
 The off-diagonal projective endpoint pair also identifies the norm map.  For
 `E=[Z:W]`, let
 
@@ -3487,12 +3523,13 @@ Plucker-chart recurrence (RKSQOV), the endpoint-pair inversion
 (RKSQINV0/RKSQINV1), the projective endpoint-pair inversion
 (RKSQPINV0/RKSQPINV1), the projective diagonal endpoint collapse
 (RKSQPDIAG), the off-diagonal endpoint-pair count (RKSQOFF), the fixed-basis
-forbidden-endpoint sharpening (RKSQFORB/RKSQFORBCOUNT), the canonical
-endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset
-palette (RKSQPAIRPAL), the fixed-basis endpoint-palette bound (RKSQBASIS), the
-fixed endpoint-pair packet-size bound (RKSQSIZE), the finite endpoint-charge
-corollary (RKSQEPCH), and square-map packet-count corollary (RKSQCOUNT) from
-the support palette.
+forbidden-endpoint sharpening (RKSQFORB/RKSQFORBCOUNT), the fixed-basis
+coordinate normal form (RKSQXPAR/RKSQXNF), the canonical endpoint-pair norm
+factorization (RKSQRAT), the fixed endpoint-pair coset palette (RKSQPAIRPAL),
+the fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
+packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
+(RKSQEPCH), and square-map packet-count corollary (RKSQCOUNT) from the support
+palette.
 
 ## Verification
 
@@ -3555,8 +3592,9 @@ the Plucker-chart decomposition (RKSQPLCH), the Plucker-chart row recurrence
 inversion (RKSQINV0/RKSQINV1), the projective endpoint-pair inversion
 (RKSQPINV0/RKSQPINV1), the projective diagonal endpoint collapse
 (RKSQPDIAG), the off-diagonal endpoint-pair count (RKSQOFF), the fixed-basis
-forbidden-endpoint sharpening (RKSQFORB/RKSQFORBCOUNT), the canonical
-endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset
-palette (RKSQPAIRPAL), the fixed-basis endpoint-palette bound (RKSQBASIS), the
-fixed endpoint-pair packet-size bound (RKSQSIZE), the finite endpoint-charge
-corollary (RKSQEPCH), and the packet-count corollary (RKSQCOUNT).
+forbidden-endpoint sharpening (RKSQFORB/RKSQFORBCOUNT), the fixed-basis
+coordinate normal form (RKSQXPAR/RKSQXNF), the canonical endpoint-pair norm
+factorization (RKSQRAT), the fixed endpoint-pair coset palette (RKSQPAIRPAL),
+the fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
+packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
+(RKSQEPCH), and the packet-count corollary (RKSQCOUNT).
