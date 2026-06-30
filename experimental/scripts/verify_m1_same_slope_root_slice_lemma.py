@@ -70,7 +70,8 @@ bound, selected support-degree profile, selected support-collision energy, and
 selected support star-forcing bound, partial-palette star-forcing bound,
 partial-palette inverse packing bound, support-star pruning reduction, pruned
 residual density trichotomy, full-palette residual coverage, and packet-count
-corollary, plus the partial-palette uncovered-slope defect bound.
+corollary, plus the partial-palette uncovered-slope defect bound and residual
+support-budget alternative.
 """
 
 from __future__ import annotations
@@ -7502,6 +7503,21 @@ def check_boundary_core_square_map_packet_count() -> None:
                             degree_cap,
                             residual_count,
                             len(uncovered_points),
+                            residual_packet_size,
+                            residual_missing_classes,
+                            residual_incidence,
+                            residual_defect_incidence,
+                        )
+                        assert (
+                            (residual_count - degree_cap)
+                            * (len(all_projective_points) - slope_budget)
+                        ) <= residual_packet_size * residual_missing_classes, (
+                            prime,
+                            index,
+                            degree_cap,
+                            slope_budget,
+                            residual_count,
+                            residual_support_size,
                             residual_packet_size,
                             residual_missing_classes,
                             residual_incidence,

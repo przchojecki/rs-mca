@@ -43,6 +43,7 @@ SQUARE-NORM SUPPORT-STAR PRUNING REDUCTION /
 SQUARE-NORM PRUNED RESIDUAL DENSITY TRICHOTOMY /
 SQUARE-NORM FULL-PALETTE RESIDUAL COVERAGE /
 SQUARE-NORM PARTIAL-PALETTE UNCOVERED-SLOPE DEFECT BOUND /
+SQUARE-NORM RESIDUAL SUPPORT-BUDGET ALTERNATIVE /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3455,6 +3456,33 @@ can fail to cover the projective slope line only by spending missing
 square-coset classes.  This turns "partial palette" from a vague leftover into
 an explicit defect ledger.
 
+Combining the density and defect ledgers gives the local support-budget
+alternative used by the global residue-line packing program.  Fix a slope
+budget `R` with `0<=R<=q+1`.  After pruning endpoint stars with degree cap
+`D`, either
+
+```text
+m_ap <= D,
+B_ap > R,
+```
+
+or the residual simultaneously satisfies
+
+```text
+(2(q-1)/e)^2 K_ap^2
+  <= R((q-3)m_ap^2 + 2m_apD),                    (RKSQSUPPBUDGET1)
+
+(m_ap-D)(q+1-R)
+  <= (2(q-1)/e) C_ap.                            (RKSQSUPPBUDGET2)
+```
+
+Here `K_ap` is the selected residual class count and `C_ap` is the missing
+residual class count.  Thus a large pruned residual with small slope support
+must pay twice: selected classes must be density-limited, and the uncovered
+projective slopes must be accounted for by missing square-coset classes.  The
+remaining obstruction is therefore a global row-basis/core-image sparsity
+question, not a hidden local square-map packing effect.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -3968,6 +3996,7 @@ star-forcing bound (RKSQPARTSTAR), the partial-palette inverse packing bound
 pruned residual density trichotomy (RKSQDENS/RKSQDENSAVG), the full-palette
 residual coverage (RKSQFULLCOVER/RKSQFULLPRUNE), the partial-palette
 uncovered-slope defect bound (RKSQDEFECT/RKSQDEFECTMASS/RKSQUNCOVER), the
+residual support-budget alternative (RKSQSUPPBUDGET1/RKSQSUPPBUDGET2), the
 canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the
@@ -4052,6 +4081,7 @@ star-forcing bound (RKSQPARTSTAR), the partial-palette inverse packing bound
 pruned residual density trichotomy (RKSQDENS/RKSQDENSAVG), the full-palette
 residual coverage (RKSQFULLCOVER/RKSQFULLPRUNE), the partial-palette
 uncovered-slope defect bound (RKSQDEFECT/RKSQDEFECTMASS/RKSQUNCOVER), the
+residual support-budget alternative (RKSQSUPPBUDGET1/RKSQSUPPBUDGET2), the
 canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the

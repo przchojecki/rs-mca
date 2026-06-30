@@ -2673,6 +2673,20 @@ the number of uncovered residual slopes satisfies
 \]
 So a large bounded-degree residual can leave many slopes uncovered only by
 spending many missing local square-coset classes.
+Combining the two residual ledgers gives the local support-budget alternative.
+For any \(0\le R\le q+1\), after pruning endpoint stars with degree cap \(D\),
+either \(m_{\rm ap}\le D\), or \(B_{\rm ap}>R\), or both
+\[
+        \left({2(q-1)\over e}\right)^2 K_{\rm ap}^2
+        \le R\bigl((q-3)m_{\rm ap}^2+2m_{\rm ap}D\bigr)
+\]
+and
+\[
+        (m_{\rm ap}-D)(q+1-R)
+        \le {2(q-1)\over e}\, C_{\rm ap}
+\]
+hold.  Thus small residual slope support must be paid for by both selected
+class sparsity and missing-class mass.
 Moreover, if \(L_E(z)=Wz-Z\) for \(E=[Z:W]\), then in the off-diagonal case
 \[
         {H_1\over H_0}

@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 residual support-budget alternative
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The pruned residual density and missing-class
+  ledgers are combined: for any slope budget `R`, a residual with `m_ap>D` and
+  `B_ap<=R` must satisfy both the selected-class density bound and
+  `(m_ap-D)(q+1-R) <= (2(q-1)/e) C_ap`.
+- **How it is useful:** This packages the local M1 square-map output as a
+  support-budget alternative: small residual slope support must be paid for by
+  selected-class sparsity and missing-class mass.
+- **What to do next:** Use the global row-basis/core equations to constrain
+  simultaneous selected-class sparsity and missing-class mass.
+
 ### 2026-06-30 - M1 partial-palette uncovered-slope defect bound
 
 - **Agent/model:** AllenGrahamHart / Codex.
