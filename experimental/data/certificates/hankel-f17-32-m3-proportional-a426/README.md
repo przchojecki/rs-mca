@@ -45,3 +45,9 @@ The subtraction certificate verifies that the root `12=-5` is paid by the
 tangent/common-code-line ledger: at that slope the stored syndrome vector is
 zero.  Non-claims: this is not a worst-case MCA bound, not actual M3 row data,
 and not a full quotient/tangent subtraction table.
+
+The reusable theorem form is recorded in:
+
+```text
+experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/
+```

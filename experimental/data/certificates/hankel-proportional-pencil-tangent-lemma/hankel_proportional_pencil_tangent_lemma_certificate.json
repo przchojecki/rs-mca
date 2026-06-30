@@ -1,0 +1,159 @@
+{
+  "consequence_for_packets": {
+    "claim_scope": "not threshold-pinning unless embedded in an actual-row packet",
+    "if_regular_bucket_singular": "proportionality alone is a tangent residual, not a new aperiodic obstruction",
+    "if_regular_minor_nonzero": "root_union={-c}; charge it to tangent"
+  },
+  "f17_32_replay": {
+    "checked_residual_after_tangent": [],
+    "checked_root_union": [
+      12
+    ],
+    "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_scalar5_rank_witness_input.json",
+    "input_sha256": "ea3f9af1cf91ca1223553116843c677919f4adb8f0be1de2ff4e93f568b940f4",
+    "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-proportional-a426/f17_32_n512_k256_a426_scalar5_packet.json",
+    "packet_sha256": "a70a4eeb85dd1ab6c98a11ab7b6b588730a7200230b5874d9d241002b463a802",
+    "subtraction_ref": "experimental/data/certificates/hankel-f17-32-m3-proportional-a426/f17_32_n512_k256_a426_scalar5_subtraction.json",
+    "subtraction_sha256": "0b48f43f3d41fd406bba22eff5f065195d241a446459742e4dcf9a005432010a"
+  },
+  "formal_identities": {
+    "pivot_chart": "A_T=H(u) ell_T=c H(v) ell_T=c B_T",
+    "regular_minor": "det((H(u)+Z H(v))_R)=det(H(v)_R)*(Z+c)^(j+1)",
+    "removed_slope": "Z=-c makes u+Z v=0, a common-code-line syndrome"
+  },
+  "nonclaims": [
+    "does not prove actual M3 row root tables",
+    "does not bound non-proportional aperiodic pencils",
+    "does not replace quotient/tangent deduplication for arbitrary packets"
+  ],
+  "prime_field_checks": {
+    "pivot_slope_checks": {
+      "checked_vectors": [
+        {
+          "A_vector": [
+            0,
+            15,
+            1,
+            4
+          ],
+          "B_vector": [
+            0,
+            3,
+            7,
+            11
+          ],
+          "slope_mod_17": 12,
+          "status": "finite_tangent_slope"
+        },
+        {
+          "A_vector": [
+            8,
+            0,
+            0,
+            11
+          ],
+          "B_vector": [
+            5,
+            0,
+            0,
+            9
+          ],
+          "slope_mod_17": 12,
+          "status": "finite_tangent_slope"
+        },
+        {
+          "A_vector": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "B_vector": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "slope_mod_17": null,
+          "status": "contained"
+        }
+      ],
+      "field": "F_17",
+      "identity": "A_T=c B_T for every locator/co-support T"
+    },
+    "regular_minor_checks": [
+      {
+        "det_Hv": 12,
+        "determinant_coefficients_mod_17": [
+          4,
+          16,
+          10,
+          12
+        ],
+        "expected_shape": "det(H(v)_R)*(Z+c)^3",
+        "field": "F_17",
+        "minor_size": 3,
+        "name": "nonzero_prefix_minor",
+        "roots_mod_17": [
+          12
+        ],
+        "row_set": [
+          0,
+          1,
+          2
+        ],
+        "scalar_c": 5,
+        "tangent_slope_mod_17": 12
+      },
+      {
+        "det_Hv": 15,
+        "determinant_coefficients_mod_17": [
+          5,
+          3,
+          4,
+          15
+        ],
+        "expected_shape": "det(H(v)_R)*(Z+c)^3",
+        "field": "F_17",
+        "minor_size": 3,
+        "name": "nonzero_shifted_minor",
+        "roots_mod_17": [
+          12
+        ],
+        "row_set": [
+          0,
+          1,
+          3
+        ],
+        "scalar_c": 5,
+        "tangent_slope_mod_17": 12
+      },
+      {
+        "det_Hv": 0,
+        "determinant_coefficients_mod_17": [
+          0
+        ],
+        "expected_shape": "zero determinant; proportional branch is still tangent-confined",
+        "field": "F_17",
+        "minor_size": 3,
+        "name": "singular_rank_one_minor",
+        "roots_mod_17": "all_slopes_for_this_zero_minor",
+        "row_set": [
+          0,
+          1,
+          2
+        ],
+        "scalar_c": 5,
+        "tangent_slope_mod_17": 12
+      }
+    ]
+  },
+  "schema_version": "m1-hankel-proportional-pencil-tangent-lemma-v1",
+  "status": "PROVED / AUDIT",
+  "theorem": {
+    "name": "Hankel proportional-pencil tangent lemma",
+    "proof_status": "algebraic identity plus machine replay",
+    "statement": "For any field F, scalar c, syndrome vector v, and u=c v, the v9 Hankel pencil satisfies H(u)+Z H(v)=(c+Z)H(v). Thus every nonzero regular maximal minor has root set {-c}; every affine pivot slope with B_T nonzero is also -c; and B_T=0 implies A_T=0, hence contained.  After the tangent/common-code-line ledger removes Z=-c, the proportional branch contributes no aperiodic roots.",
+    "v9_residual_label": "tangent"
+  }
+}

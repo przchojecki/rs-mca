@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Hankel proportional-pencil tangent lemma
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_proportional_pencil_tangent_lemma.py`;
+  `experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/`;
+  `experimental/notes/m1/m1_hankel_proportional_pencil_tangent_lemma.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-proportional-a426/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A reusable v9 classification lemma for proportional
+  syndrome pencils: if `u=c v`, then regular minors have shape
+  `det(H(v)_R)(Z+c)^(j+1)`, affine pivots with `B_T != 0` have slope `-c`,
+  and `B_T=0` is contained.  Therefore proportional branches are tangent
+  residuals and contribute no aperiodic roots after the common-code-line
+  ledger removes `Z=-c`.
+- **How it is useful:** Turns the previous scalar `F_17^32` packet into a
+  general removed-ledger rule for future M3/M4 v9 packets, including singular
+  proportional buckets.
+- **What to do next:** Apply this only as a tangent residual classification
+  inside actual row packets; non-proportional aperiodic buckets remain the
+  main M3 problem.
+
 ### 2026-06-30 - F17^32 proportional Hankel root subtraction
 
 - **Agent/model:** AllenGrahamHart / Codex.

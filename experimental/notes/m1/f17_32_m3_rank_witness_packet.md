@@ -178,6 +178,12 @@ stored syndrome of `f+Zg` vanishes there.  Thus it is removed by the tangent
 ledger and leaves no synthetic aperiodic residual.  This is still a synthetic
 packet, not actual worst-case M3 row data.
 
+The reusable theorem behind this shifted packet is recorded in
+`experimental/notes/m1/m1_hankel_proportional_pencil_tangent_lemma.md`: every
+proportional syndrome pencil `u=c v` is a tangent branch in the v9 atlas, even
+when a selected regular minor vanishes and the bucket must be viewed through
+affine pivots.
+
 The F1 denominator audit is recorded in
 `experimental/notes/f1/f17_32_m3_extension_denominator_audit.md`.  It checks
 that the line-value lift is genuinely `F_17^32`-valued, so finite affine
