@@ -3927,6 +3927,56 @@ support size is already forced above the target budget by (RKSQPAIRCAP).
 This turns the post-class-count M1 problem into a pair-overlap/Kummer target
 instead of an unstructured sparse-palette search.
 
+The endpoint-star pruning makes the target sharper.  Suppose the selected
+support graph has endpoint degree at most `D`, and let `h=e/2`.  A selected
+packet label has two endpoints; at each endpoint it can share that endpoint
+with at most `D-1` other supports, each carrying at most `h` selected packet
+classes.  Hence the number of unordered selected label pairs with distinct
+supports sharing an endpoint is at most
+
+```text
+K h(D-1).
+```
+
+Pairs from the same support have disjoint packet classes and contribute zero
+overlap.  Since every endpoint-sharing packet overlap is at most `s`, the
+total overlap mass supplied by endpoint-sharing pairs is at most
+
+```text
+K h(D-1)s.                                      (RKSQSTARPAIR)
+```
+
+Therefore, if `K>=2`, `R>0`, `B<=R`, and
+
+```text
+Omega_* = Ks(Ks-R)/(2R) - K h(D-1)s,
+```
+
+then the total overlap mass contributed by disjoint-support packet pairs is at
+least `Omega_*`.  In particular, if `Omega_*>0`, some disjoint-support pair
+satisfies
+
+```text
+|P_i cap P_j|
+ >= ceil( Omega_* / binom(K,2) ).                (RKSQDISJBURDEN)
+```
+
+Equivalently, if all disjoint-support packet pairs have intersection at most
+`Lambda_disj`, then
+
+```text
+B >= ceil(
+  K^2 s^2 /
+  (K s + 2K h(D-1)s + 2 Lambda_disj binom(K,2))
+).                                                (RKSQDISJCAP)
+```
+
+Thus, after endpoint-star pruning, a small-support residual either spends its
+overlap budget on the bounded endpoint-sharing channel (already controlled by
+`D`) or it produces a genuinely disjoint-support high-overlap pair.  The
+remaining post-ceiling M1 target is correspondingly a disjoint-support
+Kummer/cross-ratio bound, not an endpoint-star phenomenon.
+
 In particular, the window becomes uniform once the residual is separated from
 the endpoint-star threshold.  If a `(D,R)` sparse residual certificate also
 satisfies `m>=L D` for an integer `L>=2`, then `D/m<=1/L`, and the preceding
@@ -4879,6 +4929,8 @@ baseline successor identity (RKSQSPBASEID/RKSQSPBASEZ), the
 asymptotic far-star class-count ceiling (RKSQSPFARLIM), the
 asymptotic class-count sharpness statement (RKSQSPFARSHARP), the
 pair-overlap burden and cap (RKSQPAIRID/RKSQPAIRBURDEN/RKSQPAIRCAP), the
+star-sifted disjoint-overlap burden
+(RKSQSTARPAIR/RKSQDISJBURDEN/RKSQDISJCAP), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
@@ -4999,6 +5051,8 @@ baseline successor identity (RKSQSPBASEID/RKSQSPBASEZ), the
 asymptotic far-star class-count ceiling (RKSQSPFARLIM), the
 asymptotic class-count sharpness statement (RKSQSPFARSHARP), the
 pair-overlap burden and cap (RKSQPAIRID/RKSQPAIRBURDEN/RKSQPAIRCAP), the
+star-sifted disjoint-overlap burden
+(RKSQSTARPAIR/RKSQDISJBURDEN/RKSQDISJCAP), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),

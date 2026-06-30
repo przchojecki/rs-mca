@@ -79,7 +79,7 @@ density-threshold closure, budget inversion, template-budget tradeoff, and
 integer support-budget ceiling, fixed-residual sparse certificate feasibility
 interval, far-star class-count floor monotonicity, closed form, footprint
 tradeoff, baseline-budget identity, asymptotic ceiling, sharpness witness, and
-pair-overlap burden.
+pair-overlap burden with endpoint-star sift.
 """
 
 from __future__ import annotations
@@ -7225,7 +7225,9 @@ def check_boundary_core_square_map_packet_count() -> None:
                     for support in selected_supports
                 }
                 selected_incidence = {point: 0 for point in all_projective_points}
-                selected_packets: list[frozenset[P1Point]] = []
+                selected_packets: list[
+                    tuple[frozenset[P1Point], frozenset[P1Point]]
+                ] = []
                 selected_mass = 0
                 for support, classes in selected_classes.items():
                     first, second = tuple(support)
@@ -7238,7 +7240,7 @@ def check_boundary_core_square_map_packet_count() -> None:
                             log_table,
                             prime,
                         )
-                        selected_packets.append(packet)
+                        selected_packets.append((support, packet))
                         selected_mass += len(packet)
                         for point in packet:
                             selected_incidence[point] += 1
@@ -7304,10 +7306,38 @@ def check_boundary_core_square_map_packet_count() -> None:
                 )
                 pair_overlap_sum = 0
                 max_pair_overlap = 0
-                for left_packet, right_packet in combinations(selected_packets, 2):
+                endpoint_sharing_pair_count = 0
+                endpoint_sharing_overlap_sum = 0
+                disjoint_pair_overlap_sum = 0
+                max_disjoint_pair_overlap = 0
+                for (
+                    left_support,
+                    left_packet,
+                ), (
+                    right_support,
+                    right_packet,
+                ) in combinations(selected_packets, 2):
                     overlap = len(left_packet & right_packet)
                     pair_overlap_sum += overlap
                     max_pair_overlap = max(max_pair_overlap, overlap)
+                    support_intersection = left_support & right_support
+                    if left_support == right_support:
+                        assert overlap == 0, (
+                            prime,
+                            index,
+                            left_support,
+                            left_packet,
+                            right_packet,
+                            selected_classes,
+                        )
+                    elif support_intersection:
+                        endpoint_sharing_pair_count += 1
+                        endpoint_sharing_overlap_sum += overlap
+                    else:
+                        disjoint_pair_overlap_sum += overlap
+                        max_disjoint_pair_overlap = max(
+                            max_disjoint_pair_overlap, overlap
+                        )
                 assert partial_second_moment == (
                     selected_mass + 2 * pair_overlap_sum
                 ), (
@@ -7339,6 +7369,85 @@ def check_boundary_core_square_map_packet_count() -> None:
                         forced_overlap_raw,
                         selected_classes,
                     )
+                    total_pair_overlap_mass_raw = (
+                        Fraction(selected_mass * selected_mass, selected_support_size)
+                        - selected_mass
+                    ) / 2
+                    assert pair_overlap_sum >= ceil_fraction(
+                        total_pair_overlap_mass_raw
+                    ), (
+                        prime,
+                        index,
+                        selected_packet_count,
+                        selected_support_size,
+                        packet_size,
+                        pair_overlap_sum,
+                        total_pair_overlap_mass_raw,
+                        selected_classes,
+                    )
+                    full_palette_size = index // 2
+                    endpoint_pair_count_bound = (
+                        selected_packet_count
+                        * full_palette_size
+                        * max(0, max_degree - 1)
+                    )
+                    endpoint_overlap_mass_bound = (
+                        endpoint_pair_count_bound * packet_size
+                    )
+                    assert endpoint_sharing_pair_count <= (
+                        endpoint_pair_count_bound
+                    ), (
+                        prime,
+                        index,
+                        selected_packet_count,
+                        max_degree,
+                        endpoint_sharing_pair_count,
+                        endpoint_pair_count_bound,
+                        selected_classes,
+                    )
+                    assert endpoint_sharing_overlap_sum <= (
+                        endpoint_overlap_mass_bound
+                    ), (
+                        prime,
+                        index,
+                        selected_packet_count,
+                        max_degree,
+                        endpoint_sharing_overlap_sum,
+                        endpoint_overlap_mass_bound,
+                        selected_classes,
+                    )
+                    forced_disjoint_overlap_mass_raw = (
+                        total_pair_overlap_mass_raw
+                        - endpoint_overlap_mass_bound
+                    )
+                    if forced_disjoint_overlap_mass_raw > 0:
+                        assert disjoint_pair_overlap_sum >= ceil_fraction(
+                            forced_disjoint_overlap_mass_raw
+                        ), (
+                            prime,
+                            index,
+                            selected_packet_count,
+                            max_degree,
+                            selected_support_size,
+                            disjoint_pair_overlap_sum,
+                            forced_disjoint_overlap_mass_raw,
+                            endpoint_overlap_mass_bound,
+                            selected_classes,
+                        )
+                        disjoint_burden = ceil_fraction(
+                            forced_disjoint_overlap_mass_raw
+                            / comb(selected_packet_count, 2)
+                        )
+                        assert max_disjoint_pair_overlap >= disjoint_burden, (
+                            prime,
+                            index,
+                            selected_packet_count,
+                            max_degree,
+                            selected_support_size,
+                            max_disjoint_pair_overlap,
+                            disjoint_burden,
+                            selected_classes,
+                        )
                     support_floor_from_observed_pair_cap = ceil_fraction(
                         Fraction(
                             selected_packet_count * packet_size * packet_size,
@@ -7356,6 +7465,33 @@ def check_boundary_core_square_map_packet_count() -> None:
                         packet_size,
                         max_pair_overlap,
                         support_floor_from_observed_pair_cap,
+                        selected_classes,
+                    )
+                    star_sifted_denominator = (
+                        selected_mass
+                        + 2 * endpoint_overlap_mass_bound
+                        + 2
+                        * max_disjoint_pair_overlap
+                        * comb(selected_packet_count, 2)
+                    )
+                    support_floor_from_disjoint_pair_cap = ceil_fraction(
+                        Fraction(
+                            selected_mass * selected_mass,
+                            star_sifted_denominator,
+                        )
+                    )
+                    assert selected_support_size >= (
+                        support_floor_from_disjoint_pair_cap
+                    ), (
+                        prime,
+                        index,
+                        selected_packet_count,
+                        selected_support_size,
+                        packet_size,
+                        max_degree,
+                        max_disjoint_pair_overlap,
+                        endpoint_overlap_mass_bound,
+                        support_floor_from_disjoint_pair_cap,
                         selected_classes,
                     )
                 assert selected_support_size * partial_star_bound >= (

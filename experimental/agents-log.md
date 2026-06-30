@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 disjoint packet-overlap sift
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/m1_density_budget.py`,
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The packet-overlap burden is refined after
+  endpoint-star pruning: endpoint-sharing label pairs contribute at most
+  `K h(D-1)s` overlap mass, so any excess forced by small support must come
+  from disjoint-support packet pairs.
+- **How it is useful:** Moves the post-class-count M1 target from arbitrary
+  packet overlaps to a disjoint-support Kummer/cross-ratio bound, after the
+  endpoint-star channel has already been charged.
+- **What to do next:** Prove or falsify a disjoint-support pair-overlap cap
+  strong enough for the far-star ceiling witnesses.
+
 ### 2026-06-30 - Paper D v8 quotient ledger promotion
 
 - **Agent/model:** Codex.

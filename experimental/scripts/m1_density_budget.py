@@ -559,6 +559,7 @@ def far_star_sparse_floor_report(
 
 def packet_pair_overlap_report(
     q: int,
+    d_cap: int,
     e: int,
     selected_classes: int,
     target_support_budget: int,
@@ -570,20 +571,46 @@ def packet_pair_overlap_report(
     small_support_impossible_by_mass = (
         selected_classes > 0 and target_support_budget < packet_size
     )
+    total_pair_overlap_mass_raw = None
+    total_pair_overlap_mass_ceiling = None
     forced_pair_overlap = None
     forced_pair_overlap_raw = None
     if selected_classes >= 2 and target_support_budget > 0:
+        total_pair_overlap_mass_raw = (
+            total_mass * total_mass / target_support_budget
+        ) - total_mass
+        total_pair_overlap_mass_raw /= 2
+        total_pair_overlap_mass_ceiling = max(
+            0, ceil_fraction(total_pair_overlap_mass_raw)
+        )
         forced_pair_overlap_raw = Fraction(
             packet_size * (total_mass - target_support_budget),
             target_support_budget * (selected_classes - 1),
         )
         forced_pair_overlap = max(0, ceil_fraction(forced_pair_overlap_raw))
+    endpoint_sharing_pair_count_bound = selected_classes * h * max(0, d_cap - 1)
+    endpoint_sharing_overlap_mass_bound = (
+        endpoint_sharing_pair_count_bound * packet_size
+    )
+    disjoint_pair_overlap_mass_raw = None
+    disjoint_pair_overlap_ceiling_over_all_pairs = None
+    pair_count = selected_classes * (selected_classes - 1) // 2
+    if selected_classes >= 2 and total_pair_overlap_mass_raw is not None:
+        disjoint_pair_overlap_mass_raw = (
+            total_pair_overlap_mass_raw - endpoint_sharing_overlap_mass_bound
+        )
+        disjoint_pair_overlap_ceiling_over_all_pairs = max(
+            0, ceil_fraction(disjoint_pair_overlap_mass_raw / pair_count)
+        )
     pair_cap_floor = None
+    star_sifted_pair_cap_floor = None
     target_excluded_by_pair_cap = None
+    target_excluded_by_star_sifted_pair_cap = None
     if pair_overlap_cap is not None:
         denominator = packet_size + (selected_classes - 1) * pair_overlap_cap
         if selected_classes == 0:
             pair_cap_floor = 0
+            star_sifted_pair_cap_floor = 0
         elif denominator <= 0:
             raise ValueError("--pair-overlap-cap gives nonpositive denominator")
         else:
@@ -591,30 +618,73 @@ def packet_pair_overlap_report(
                 Fraction(selected_classes) * packet_size * packet_size
                 / denominator
             )
+            star_sifted_denominator = (
+                total_mass
+                + 2 * endpoint_sharing_overlap_mass_bound
+                + 2 * pair_overlap_cap * pair_count
+            )
+            if star_sifted_denominator <= 0:
+                raise ValueError("--pair-overlap-cap gives nonpositive denominator")
+            star_sifted_pair_cap_floor = ceil_fraction(
+                total_mass * total_mass / star_sifted_denominator
+            )
         target_excluded_by_pair_cap = pair_cap_floor > target_support_budget
+        target_excluded_by_star_sifted_pair_cap = (
+            star_sifted_pair_cap_floor > target_support_budget
+        )
     return {
         "object": "m1_packet_pair_overlap_burden",
         "status": "PROVED-LOCAL / AUDIT",
-        "theorem_problem_id": "M1 / RKSQPAIRBURDEN / RKSQPAIRCAP",
+        "theorem_problem_id": (
+            "M1 / RKSQPAIRBURDEN / RKSQPAIRCAP / RKSQDISJBURDEN"
+        ),
         "e": e,
         "h": h,
+        "endpoint_degree_cap_D": d_cap,
         "selected_packet_classes_K": selected_classes,
         "target_support_budget_R": target_support_budget,
         "packet_projective_size_s": fraction_record(packet_size),
         "total_packet_mass_Ks": fraction_record(total_mass),
         "target_smaller_than_one_packet": small_support_impossible_by_mass,
+        "forced_total_pair_overlap_mass_raw": (
+            fraction_record(total_pair_overlap_mass_raw)
+            if total_pair_overlap_mass_raw is not None
+            else None
+        ),
+        "forced_total_pair_overlap_mass_ceiling": total_pair_overlap_mass_ceiling,
         "forced_pair_overlap_raw": fraction_record(forced_pair_overlap_raw)
         if forced_pair_overlap_raw is not None
         else None,
         "forced_pair_overlap_ceiling": forced_pair_overlap,
+        "endpoint_sharing_pair_count_bound": endpoint_sharing_pair_count_bound,
+        "endpoint_sharing_overlap_mass_bound": fraction_record(
+            endpoint_sharing_overlap_mass_bound
+        ),
+        "forced_disjoint_pair_overlap_mass_raw_after_endpoint_sift": (
+            fraction_record(disjoint_pair_overlap_mass_raw)
+            if disjoint_pair_overlap_mass_raw is not None
+            else None
+        ),
+        "forced_disjoint_pair_overlap_ceiling_over_all_pairs": (
+            disjoint_pair_overlap_ceiling_over_all_pairs
+        ),
         "pair_overlap_cap_Lambda": pair_overlap_cap,
         "support_floor_from_pair_overlap_cap": pair_cap_floor,
+        "support_floor_from_disjoint_pair_cap_after_endpoint_sift": (
+            star_sifted_pair_cap_floor
+        ),
         "target_R_excluded_by_pair_overlap_cap": target_excluded_by_pair_cap,
+        "target_R_excluded_by_disjoint_pair_cap_after_endpoint_sift": (
+            target_excluded_by_star_sifted_pair_cap
+        ),
         "certificate": (
             "If K selected square-map packets of size s have union B<=R, "
             "Cauchy's inequality and sum I^2 = Ks + 2 sum pair overlaps force "
             "a pair overlap at least ceil_+(s(Ks-R)/(R(K-1))). Conversely, "
-            "a pair cap Lambda gives B>=ceil(Ks^2/(s+(K-1)Lambda))."
+            "a pair cap Lambda gives B>=ceil(Ks^2/(s+(K-1)Lambda)). "
+            "After endpoint-star pruning with degree cap D, endpoint-sharing "
+            "label pairs contribute overlap mass at most K h(D-1)s; any excess "
+            "must come from disjoint-support packet pairs."
         ),
     }
 
@@ -838,6 +908,7 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         report["sparsest_residual_pair_overlap_burden"] = (
             packet_pair_overlap_report(
                 q,
+                d_cap,
                 args.e,
                 args.residual_m,
                 args.target_R,
@@ -848,6 +919,7 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
     if args.selected_K is not None:
         report["packet_pair_overlap_burden"] = packet_pair_overlap_report(
             q,
+            d_cap,
             args.e,
             args.selected_K,
             args.target_R,
