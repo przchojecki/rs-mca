@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 fixed-basis endpoint-palette bound
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** Combining endpoint-pair injection with the
+  square-coset palette gives the bound
+  `(e/2)|Omega|(|Omega|-1)` for distinct nonconstant slope sets over a fixed
+  initial row basis and finite projective endpoint palette `Omega`.
+- **How it is useful:** This packages the local nondegenerate overlapping
+  square-norm branch as a concrete endpoint-palette bound.  The remaining M1
+  work is to bound the global endpoint-pair image or row-basis variation.
+- **What to do next:** Feed this fixed-basis bound into a global row-basis
+  image estimate for the aperiodic residue-line packing theorem.
+
 ### 2026-06-30 - M1 fixed endpoint-pair square-coset palette
 
 - **Agent/model:** AllenGrahamHart / Codex.

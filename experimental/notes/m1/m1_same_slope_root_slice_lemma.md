@@ -28,6 +28,7 @@ SQUARE-NORM PROJECTIVE DIAGONAL ENDPOINT COLLAPSE /
 SQUARE-NORM OFF-DIAGONAL ENDPOINT-PAIR COUNT /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
+SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
 SQUARE-NORM ENDPOINT-CHARGE COROLLARY /
 SQUARE-MAP PACKET-COUNT COROLLARY /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
@@ -2868,6 +2869,21 @@ degree-one parameter is defined and nonzero.  Hence after endpoint-pair
 injection, the residual nondegenerate overlapping square-norm branch pays
 only the existing `O_e(1)` square-map coset palette per ordered endpoint pair.
 
+Combining (RKSQOFF) and (RKSQPAIRPAL) gives the fixed-basis endpoint-palette
+bound:
+
+```text
+# distinct nonconstant slope sets
+  <= (e/2) |Omega|(|Omega|-1).                    (RKSQBASIS)
+```
+
+Here `Omega` is any projective endpoint palette containing the possible
+endpoints of `H_0` and `H_1` for the fixed initial row basis, and `e` is even.
+With the full projective line over `F_q`, this is at most
+`(e/2) q(q+1)`.  Thus the nondegenerate overlapping square-norm chart has no
+additional local slope-set growth beyond the endpoint-pair image and the
+already isolated square-coset palette.
+
 The finite endpoints themselves are not residual live mixed-domain slopes.
 Let `z_0` be a finite endpoint of the reduced square norm.
 
@@ -3418,8 +3434,9 @@ Plucker-chart recurrence (RKSQOV), the endpoint-pair inversion
 (RKSQPINV0/RKSQPINV1), the projective diagonal endpoint collapse
 (RKSQPDIAG), the off-diagonal endpoint-pair count (RKSQOFF), the canonical
 endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset
-palette (RKSQPAIRPAL), the finite endpoint-charge corollary (RKSQEPCH), and
-square-map packet-count corollary (RKSQCOUNT) from the support palette.
+palette (RKSQPAIRPAL), the fixed-basis endpoint-palette bound (RKSQBASIS),
+the finite endpoint-charge corollary (RKSQEPCH), and square-map packet-count
+corollary (RKSQCOUNT) from the support palette.
 
 ## Verification
 
@@ -3483,5 +3500,6 @@ inversion (RKSQINV0/RKSQINV1), the projective endpoint-pair inversion
 (RKSQPINV0/RKSQPINV1), the projective diagonal endpoint collapse
 (RKSQPDIAG), the off-diagonal endpoint-pair count (RKSQOFF), the canonical
 endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset
-palette (RKSQPAIRPAL), the finite endpoint-charge corollary (RKSQEPCH), and
-the packet-count corollary (RKSQCOUNT).
+palette (RKSQPAIRPAL), the fixed-basis endpoint-palette bound (RKSQBASIS),
+the finite endpoint-charge corollary (RKSQEPCH), and the packet-count
+corollary (RKSQCOUNT).

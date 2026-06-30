@@ -61,7 +61,7 @@ factorization, endpoint slope map, overlapping Plucker-chart recurrence,
 endpoint-pair inversion, projective endpoint-pair inversion, diagonal endpoint
 collapse, off-diagonal endpoint-pair count, canonical endpoint-pair norm
 factorization, fixed endpoint-pair coset palette, endpoint-charge corollary,
-and packet-count corollary.
+fixed-basis endpoint-palette bound, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -6616,6 +6616,38 @@ def check_boundary_core_square_map_packet_count() -> None:
                         open_finite_line,
                         packets_by_class,
                     )
+
+            for palette_size in range(2, min(6, len(p1_points)) + 1):
+                omega = rng.sample(p1_points, palette_size)
+                slope_sets: set[frozenset[int]] = set()
+                for pole_endpoint in omega:
+                    for zero_endpoint in omega:
+                        if zero_endpoint == pole_endpoint:
+                            continue
+                        endpoint_map = mobius_from_zero_pole(
+                            zero_endpoint,
+                            pole_endpoint,
+                            prime,
+                        )
+                        for packet_class in packet_classes:
+                            slope_sets.add(
+                                finite_square_packet(
+                                    endpoint_map,
+                                    packet_class,
+                                    index,
+                                    log_table,
+                                    prime,
+                                )
+                            )
+                assert len(slope_sets) <= (index // 2) * palette_size * (
+                    palette_size - 1
+                ), (
+                    prime,
+                    index,
+                    omega,
+                    len(slope_sets),
+                    slope_sets,
+                )
 
 
 def check_boundary_core_classified_per_core_bound() -> None:
