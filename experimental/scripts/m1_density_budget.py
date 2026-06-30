@@ -86,10 +86,37 @@ def fraction_record(value: Fraction) -> dict[str, Any]:
 
 
 def square_threshold_record(value: Fraction) -> dict[str, Any]:
+    try:
+        sqrt_decimal = math.sqrt(float(value))
+    except OverflowError:
+        sqrt_decimal = None
     return {
         "square": fraction_record(value),
-        "sqrt_decimal": math.sqrt(float(value)) if value >= 0 else None,
+        "sqrt_decimal": sqrt_decimal if value >= 0 else None,
         "comparison": "alpha_ap^2 > square",
+    }
+
+
+def active_target_record(selected_square: Fraction, missing: Fraction) -> dict[str, Any]:
+    if missing < 0:
+        return {
+            "active_side": "missing",
+            "threshold": fraction_record(missing),
+            "strict_condition": "alpha_ap > missing_side",
+            "reason": "missing_side_is_negative",
+        }
+    if selected_square <= missing * missing:
+        return {
+            "active_side": "selected",
+            "threshold": square_threshold_record(selected_square),
+            "strict_condition": "alpha_ap^2 > selected_side_square",
+            "reason": "selected_side_at_most_missing_side",
+        }
+    return {
+        "active_side": "missing",
+        "threshold": fraction_record(missing),
+        "strict_condition": "alpha_ap > missing_side",
+        "reason": "missing_side_below_selected_side",
     }
 
 
@@ -117,6 +144,10 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         a0 = args.a0
     if not (Fraction(0) <= a0 <= Fraction(1)):
         raise ValueError("--a0 must satisfy 0 <= a0 <= 1")
+    if args.R is not None and args.R > q + 1:
+        raise ValueError("--R must be at most q+1")
+    if args.target_R is not None and args.target_R > q + 1:
+        raise ValueError("--target-R must be at most q+1")
 
     if args.L is not None:
         far_factor = args.L
@@ -202,6 +233,9 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         report["required_density_to_close_target_R"] = {
             "selected_side": square_threshold_record(target_selected_square),
             "missing_side": fraction_record(target_missing),
+            "active_scalar_target": active_target_record(
+                target_selected_square, target_missing
+            ),
             "certificate": (
                 "For an integer target R, alpha_ap > theta_L(q,R) is "
                 "equivalent to either alpha_ap^2 > "

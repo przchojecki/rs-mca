@@ -57,6 +57,7 @@ SQUARE-NORM DENSITY-BUDGET INVERSION /
 SQUARE-NORM TEMPLATE-BUDGET TRADEOFF /
 SQUARE-NORM INTEGER SUPPORT-BUDGET CEILING /
 SQUARE-NORM MINIMAL SELECTED-DENSITY BASELINE /
+SQUARE-NORM EXACT TARGET-DENSITY THRESHOLD /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3888,9 +3889,10 @@ either `L` or a footprint cap `S`, it prints `R_sel`, `R_miss`, `R_dens`, the
 integer ceiling `R_Z`, and, when `e` is supplied, the near-star template
 bound.  With `--target-R`, it also prints the two exact density requirements
 whose disjunction is `alpha_ap>theta_L(q,R)`: the selected-side squared
-threshold and the missing-side linear threshold.  This is an audit/evaluation
-tool for (RKSQINTBUDGET/RKSQTRADE), not a proof of the missing global density
-lower bound.
+threshold and the missing-side linear threshold, together with the active
+scalar side of their minimum.  This is an audit/evaluation tool for
+(RKSQINTBUDGET/RKSQTRADE), not a proof of the missing global density lower
+bound.
 
 There is also a weak unconditional density floor from the reduced support
 convention.  A support with no selected square-coset class is absent from the
@@ -3924,6 +3926,32 @@ B_ap<=R<R_base(L)
 This baseline is usually not expected to close the prize row by itself, but it
 is a theorem-backed floor.  Any future row-basis/core-image lower bound should
 be measured as an improvement over `2/e`.
+
+Conversely, for a desired integer support budget `R`, the exact density target
+is a single scalar threshold.  Define
+
+```text
+A_sel(q,R,L)^2 = R(q-3+2/L)/(q-1)^2,
+
+A_miss(q,R,L) = 1 - ((L-1)/L)(q+1-R)/(q-1),
+
+A_target(q,R,L) = min(A_sel(q,R,L), A_miss(q,R,L)).          (RKSQTARGET)
+```
+
+Then a global lower bound
+
+```text
+alpha_ap > A_target(q,R,L)                                  (RKSQTARGETHYP)
+```
+
+is exactly the scalar density requirement that empties the far-from-star
+sparse branch at support budget `R`: if `m_ap>=LD`, then (RKSQFARSTAR) forces
+`alpha_ap<=A_target(q,R,L)`.  Therefore, under (RKSQTARGETHYP), every sparse
+certificate with `B_ap<=R` is impossible unless it is `L`-near-star.
+
+The selected side is naturally squared, so finite checkers can compare the two
+candidate thresholds exactly: if `A_miss<0`, the missing side is active; if
+`A_miss>=0`, compare `A_sel^2` with `A_miss^2`.
 
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
@@ -4457,6 +4485,7 @@ the integer support-budget ceiling
 (RKSQINTBUDGET/RKSQINTCLOSE/RKSQINTTRADE),
 the minimal selected-density baseline
 (RKSQMINALPHA/RKSQBASEBUDGET/RKSQBASECLOSE),
+the exact target-density threshold (RKSQTARGET/RKSQTARGETHYP),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the
@@ -4560,6 +4589,7 @@ the integer support-budget ceiling
 (RKSQINTBUDGET/RKSQINTCLOSE/RKSQINTTRADE),
 the minimal selected-density baseline
 (RKSQMINALPHA/RKSQBASEBUDGET/RKSQBASECLOSE),
+the exact target-density threshold (RKSQTARGET/RKSQTARGETHYP),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the

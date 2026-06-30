@@ -2830,6 +2830,17 @@ Substituting \(a_0=1/h\) in \(R_{\rm dens}\) gives a theorem-backed baseline
 budget \(R_{\rm base}(L)\); every sparse certificate below this budget is
 already impossible or \(L\)-near-star before any stronger global density
 input is used.
+Conversely, for a desired integer budget \(R\), the exact scalar target is
+\[
+        A_{\rm target}(q,R,L)=
+        \min\left\{
+          {\sqrt{R(q-3+2/L)}\over q-1},
+          1-{L-1\over L}{q+1-R\over q-1}
+        \right\}.
+\]
+A global theorem proving \(\alpha_{\rm ap}>A_{\rm target}(q,R,L)\) empties
+the far-from-star sparse branch at support budget \(R\); the selected-side
+candidate can be compared exactly by squaring.
 Moreover, if \(L_E(z)=Wz-Z\) for \(E=[Z:W]\), then in the off-diagonal case
 \[
         {H_1\over H_0}

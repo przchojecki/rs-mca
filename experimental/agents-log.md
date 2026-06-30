@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 exact target-density threshold
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/m1_density_budget.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** For a desired integer support budget `R`, the
+  scalar density target is
+  `A_target(q,R,L)=min(sqrt(R(q-3+2/L))/(q-1),
+  1-((L-1)/L)(q+1-R)/(q-1))`.  The evaluator reports the active exact side of
+  this minimum.
+- **How it is useful:** A future global row-basis/core-image density theorem
+  now has a single exact target to beat for a chosen finite support budget.
+- **What to do next:** Use the active target side to guide a proof of a
+  density lower bound stronger than the `2/e` baseline.
+
 ### 2026-06-30 - M1 minimal selected-density baseline
 
 - **Agent/model:** AllenGrahamHart / Codex.
@@ -81,8 +100,9 @@ Keep entries concise and link to the relevant files.
 - **Status:** AUDIT / EXACT-ARITHMETIC.
 - **What is being added:** An exact `Fraction`-based evaluator for
   `R_Z(a0,L)=ceil(R_dens(a0,L))-1`, the optional near-star template count, and
-  the reverse `--target-R` density requirements.  The script accepts `q`,
-  `D`, rational `a0`, and either `L` or a footprint cap `S`.
+  the reverse `--target-R` density requirements, including the active scalar
+  target side.  The script accepts `q`, `D`, rational `a0`, and either `L` or
+  a footprint cap `S`.
 - **How it is useful:** Finite-row M1 checks can now consume the
   density-budget theorem without hand rounding or floating-point thresholds.
 - **What to do next:** Use the evaluator with any future concrete
