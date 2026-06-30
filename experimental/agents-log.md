@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 high-overlap degree bridge
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_high_overlap_graph_budget.md`,
+  `experimental/scripts/verify_m1_high_overlap_graph_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** Degree and degeneracy corollaries for the
+  high-overlap graph budget: a bounded maximum-degree or bounded-degeneracy
+  theorem for the disjoint high-overlap graph now plugs directly into an
+  explicit support floor and residual alternative.
+- **How it is useful:** This matches the M1 audit target of a bounded-degree
+  one-exchange/high-overlap graph lemma, while keeping the algebraic
+  Hankel/Kummer input separate from the finite support-packing reduction.
+- **What to do next:** Prove the required degree or degeneracy bound in the
+  actual residue-line packet graph after quotient, tangent, root-slice, and
+  endpoint-star charges.
+
 ### 2026-06-30 - M1 high-overlap graph budget
 
 - **Agent/model:** AllenGrahamHart / Codex.

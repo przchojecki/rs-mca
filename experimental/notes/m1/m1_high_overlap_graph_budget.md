@@ -164,6 +164,91 @@ because this theorem is meant to be consumed after the endpoint-star sift: the
 far-from-star small-support branch is now reduced to proving an algebraic
 upper bound on `e_Lambda`.
 
+## Degree and degeneracy corollaries
+
+The edge budget can be filled by any graph-theoretic theorem for
+`G_Lambda`.
+
+### Maximum-degree input
+
+Suppose a separate algebraic argument proves
+
+```text
+Delta(G_Lambda) <= d.
+```
+
+Then
+
+```text
+e_Lambda <= floor(K d / 2),
+```
+
+and `(HG1)` gives the degree-budget floor
+
+```text
+F_deg(K,s,h,D,Lambda,d)
+ =
+ ceil(
+   K^2 s^2
+   /
+   (
+     K s + 2 K h(D-1)s + K(K-1)Lambda
+     + 2(s-Lambda) floor(Kd/2)
+   )
+ ).                                                   (DG1)
+```
+
+If `F_deg(K,s,h,D,Lambda,d)>R`, then every selected packet family satisfies at
+least one of:
+
+```text
+large support:       B > R,
+near-star:           #{endpoint supports E_a} < L D,
+degree break:        Delta(G_Lambda) > d.
+```
+
+So an algebraic maximum-degree theorem makes the far-from-star small-support
+branch impossible.
+
+### Degeneracy input
+
+A weaker but often more stable input is graph degeneracy.  If every subgraph of
+`G_Lambda` has a vertex of degree at most `d`, then
+
+```text
+e_Lambda <=
+  binom(K,2),                         if d >= K-1,
+  dK - binom(d+1,2),                  if 0 <= d < K-1.
+```
+
+Write this edge ceiling as `M_degen(K,d)`.  Substituting
+`M=M_degen(K,d)` in `(HG1)` gives `F_degen`.  If
+
+```text
+F_degen(K,s,h,D,Lambda,d) > R,
+```
+
+then every selected packet family satisfies one of:
+
+```text
+large support,
+near-star,
+or degeneracy(G_Lambda) > d.
+```
+
+This is useful because many incidence/Kummer estimates naturally rule out
+dense induced high-overlap subgraphs rather than bounding the degree of every
+single packet.
+
+Proof of the corollaries: the maximum-degree edge ceiling is the handshaking
+bound `2e_Lambda <= Kd`.  For degeneracy, remove vertices in an order where
+each removed vertex has at most `d` later neighbors.  If `d >= K-1`, the
+complete graph ceiling `binom(K,2)` is sharp.  If `0 <= d < K-1`, the first
+`K-d-1` removed vertices contribute at most `d` later edges each, and the last
+`d+1` vertices contribute at most `binom(d+1,2)` edges, giving
+`d(K-d-1)+binom(d+1,2)=dK-binom(d+1,2)`.  Substitution in `(HG1)` gives the
+displayed support floors and alternatives.
+
 ## M1 use
 
 For Work package C3 in `towards-prize.md`, this is a sharper interface than a
@@ -176,9 +261,9 @@ outside quotient-periodic, subfield-confined, or finite-template branches.
 ```
 
 For example, a Kummer/cross-ratio theorem proving maximum high-overlap degree
-`d` would give `M <= Kd/2`; a degeneracy bound `d` would give `M <= dK`.  Either
-bound can be inserted into `(HG1)` to rule out the far-from-star small-support
-residual once the resulting floor exceeds the target support budget.
+`d` or high-overlap degeneracy `d` can now be inserted into `(DG1)` or
+`F_degen` to rule out the far-from-star small-support residual once the
+resulting floor exceeds the target support budget.
 
 ## Verification
 

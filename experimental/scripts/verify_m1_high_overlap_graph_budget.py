@@ -45,6 +45,38 @@ def high_overlap_max_degree(labels: list[Label], lambda_cap: int) -> int:
     return max(degree, default=0)
 
 
+def graph_degeneracy(num_vertices: int, edges: set[tuple[int, int]]) -> int:
+    adjacency = [set() for _ in range(num_vertices)]
+    for i, j in edges:
+        adjacency[i].add(j)
+        adjacency[j].add(i)
+
+    remaining = set(range(num_vertices))
+    degeneracy = 0
+    while remaining:
+        vertex = min(remaining, key=lambda v: len(adjacency[v] & remaining))
+        degree = len(adjacency[vertex] & remaining)
+        degeneracy = max(degeneracy, degree)
+        remaining.remove(vertex)
+    return degeneracy
+
+
+def max_edges_from_degree_bound(k: int, degree_bound: int) -> int:
+    if degree_bound < 0:
+        raise ValueError("degree_bound must be nonnegative")
+    return min(comb2(k), k * degree_bound // 2)
+
+
+def max_edges_from_degeneracy_bound(k: int, degeneracy_bound: int) -> int:
+    if degeneracy_bound < 0:
+        raise ValueError("degeneracy_bound must be nonnegative")
+    if k <= 1:
+        return 0
+    if degeneracy_bound >= k - 1:
+        return comb2(k)
+    return degeneracy_bound * k - degeneracy_bound * (degeneracy_bound + 1) // 2
+
+
 def support_floor_from_high_edge_budget(
     k: int,
     s: int,
@@ -64,6 +96,42 @@ def support_floor_from_high_edge_budget(
     if denominator <= 0:
         raise ValueError("nonpositive high-edge denominator")
     return ceil_fraction(Fraction(k * k * s * s, denominator))
+
+
+def support_floor_from_max_degree_bound(
+    k: int,
+    s: int,
+    h: int,
+    degree_cap: int,
+    lambda_cap: int,
+    graph_degree_bound: int,
+) -> int:
+    return support_floor_from_high_edge_budget(
+        k,
+        s,
+        h,
+        degree_cap,
+        lambda_cap,
+        max_edges_from_degree_bound(k, graph_degree_bound),
+    )
+
+
+def support_floor_from_degeneracy_bound(
+    k: int,
+    s: int,
+    h: int,
+    degree_cap: int,
+    lambda_cap: int,
+    degeneracy_bound: int,
+) -> int:
+    return support_floor_from_high_edge_budget(
+        k,
+        s,
+        h,
+        degree_cap,
+        lambda_cap,
+        max_edges_from_degeneracy_bound(k, degeneracy_bound),
+    )
 
 
 def forced_high_edges(
@@ -88,6 +156,7 @@ def forced_high_edges(
 
 def check_exact_parameter_grid() -> None:
     checked = 0
+    degree_checked = 0
     for k in range(2, 24):
         for s in range(1, 13):
             for h in range(1, 6):
@@ -168,10 +237,62 @@ def check_exact_parameter_grid() -> None:
                                             lambda_cap,
                                             lower,
                                             complete_floor,
-                                        )
                                     )
+                                )
                             checked += 1
+                        for graph_bound in range(0, k + 2):
+                            degree_edges = max_edges_from_degree_bound(k, graph_bound)
+                            if degree_edges > comb2(k):
+                                raise AssertionError((k, graph_bound, degree_edges))
+                            degree_floor = support_floor_from_max_degree_bound(
+                                k, s, h, degree_cap, lambda_cap, graph_bound
+                            )
+                            edge_floor = support_floor_from_high_edge_budget(
+                                k, s, h, degree_cap, lambda_cap, degree_edges
+                            )
+                            if degree_floor != edge_floor:
+                                raise AssertionError(
+                                    (
+                                        "degree floor",
+                                        k,
+                                        s,
+                                        h,
+                                        degree_cap,
+                                        lambda_cap,
+                                        graph_bound,
+                                        degree_floor,
+                                        edge_floor,
+                                    )
+                                )
+
+                            degen_edges = max_edges_from_degeneracy_bound(k, graph_bound)
+                            if degen_edges > comb2(k):
+                                raise AssertionError(
+                                    ("degen edges", k, graph_bound, degen_edges)
+                                )
+                            degen_floor = support_floor_from_degeneracy_bound(
+                                k, s, h, degree_cap, lambda_cap, graph_bound
+                            )
+                            edge_floor = support_floor_from_high_edge_budget(
+                                k, s, h, degree_cap, lambda_cap, degen_edges
+                            )
+                            if degen_floor != edge_floor:
+                                raise AssertionError(
+                                    (
+                                        "degen floor",
+                                        k,
+                                        s,
+                                        h,
+                                        degree_cap,
+                                        lambda_cap,
+                                        graph_bound,
+                                        degen_floor,
+                                        edge_floor,
+                                    )
+                                )
+                            degree_checked += 1
     print(f"exact_high_edge_parameter_grid_checked={checked}")
+    print(f"exact_degree_degeneracy_grid_checked={degree_checked}")
 
 
 def check_sampled_packet_systems() -> None:
@@ -179,6 +300,7 @@ def check_sampled_packet_systems() -> None:
     checked = 0
     alternatives = 0
     degree_interfaces = 0
+    degeneracy_interfaces = 0
 
     for trial in range(650):
         labels = make_random_labels(rng, trial)
@@ -260,11 +382,11 @@ def check_sampled_packet_systems() -> None:
                     alternatives += 1
 
             max_degree = high_overlap_max_degree(labels, lambda_cap)
-            degree_budget = k * max_degree // 2
+            degree_budget = max_edges_from_degree_bound(k, max_degree)
             if edge_count > degree_budget:
                 raise AssertionError((trial, lambda_cap, edge_count, max_degree))
-            degree_floor = support_floor_from_high_edge_budget(
-                k, s, h, degree_cap, lambda_cap, degree_budget
+            degree_floor = support_floor_from_max_degree_bound(
+                k, s, h, degree_cap, lambda_cap, max_degree
             )
             if support_size < degree_floor:
                 raise AssertionError(
@@ -279,11 +401,35 @@ def check_sampled_packet_systems() -> None:
                     )
                 )
             degree_interfaces += 1
+
+            degeneracy = graph_degeneracy(k, high_edges)
+            degen_budget = max_edges_from_degeneracy_bound(k, degeneracy)
+            if edge_count > degen_budget:
+                raise AssertionError(
+                    (trial, lambda_cap, edge_count, degeneracy, degen_budget)
+                )
+            degen_floor = support_floor_from_degeneracy_bound(
+                k, s, h, degree_cap, lambda_cap, degeneracy
+            )
+            if support_size < degen_floor:
+                raise AssertionError(
+                    (
+                        "degeneracy interface",
+                        trial,
+                        lambda_cap,
+                        edge_count,
+                        degeneracy,
+                        support_size,
+                        degen_floor,
+                    )
+                )
+            degeneracy_interfaces += 1
         checked += 1
 
     print(f"sampled_packet_systems_checked={checked}")
     print(f"sampled_high_edge_alternatives_triggered={alternatives}")
     print(f"sampled_degree_interfaces_checked={degree_interfaces}")
+    print(f"sampled_degeneracy_interfaces_checked={degeneracy_interfaces}")
 
 
 def main() -> None:
