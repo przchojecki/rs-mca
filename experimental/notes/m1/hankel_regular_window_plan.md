@@ -114,14 +114,37 @@ experimental/data/certificates/hankel-f17-32-m3-rank-witness-family/
   f17_32_n512_k256_m3_rank_witness_family_certificate.json
 ```
 
-records the same synthetic Vandermonde rank witness for all 42 agreements in
-the window without storing 42 full v9 packets.
+records the same synthetic Vandermonde prefix witness for all 42 agreements in
+the window without storing 42 full v9 packets.  The fixed top-window packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/
+  f17_32_n512_k256_a421_426_fixed_prefix92_packet.json
+```
+
+is a single v9 packet for one synthetic syndrome pencil covering
+`421 <= A <= 426`.
+
+The current status ledger
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-regular-window-status/
+  f17_32_n512_k256_m3_regular_window_status.json
+```
+
+hashes the plan, generic certificate, synthetic family certificate, and fixed
+top-window packet.  It records, per agreement, that the generic/synthetic facts
+are proved but actual `F_17^32` row-data root tables and singular-bucket
+outcomes remain unsupplied.
 
 Reproduce the audit packet:
 
 ```sh
 python3 experimental/scripts/plan_f17_regular_hankel_window.py \
   --check experimental/data/certificates/hankel-regular-window-f17-385-426/f17_32_n512_k256_regular_window_plan.json
+
+python3 experimental/scripts/verify_f17_32_m3_regular_window_status.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-regular-window-status/f17_32_n512_k256_m3_regular_window_status.json
 ```
 
 Non-claims: this note does not compute any determinant over `F_17^32`, does not

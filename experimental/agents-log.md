@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 M3 regular-window status ledger
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A compact ledger that hashes the M3 regular-window
+  plan, generic all-row-set certificate, synthetic rank-witness family, and
+  fixed top-window v9 packet.  It records, for every `A=385..426`, which
+  generic/synthetic facts are proved and that actual-row root/singularity
+  outcomes are still not supplied.
+- **How it is useful:** This makes the M3 frontier reviewable without
+  overclaiming that synthetic packets prove a worst-case MCA bound.
+- **What to do next:** Supply actual `F_17^32` syndrome vectors and replace
+  the `actual_row_outcome = not supplied` entries by root tables or singular
+  bucket declarations.
+
 ### 2026-06-30 - F17^32 M3 fixed top-window packet
 
 - **Agent/model:** AllenGrahamHart / Codex.
