@@ -353,7 +353,9 @@ The checker treats this as an audited proof obligation, not just metadata:
 `rank_pivot_nodes_required` must equal `j+2`, `rank_pivot_test_nodes` must list
 the deterministic distinct nodes actually tested, a successful packet must name
 the final node where full rank was found, and a singular declaration must have
-tested all `j+2` nodes.  The negative packet
+tested all `j+2` nodes.  For singular declarations, the checker also loads the
+referenced extractor input, checks its SHA, and replays the rank defect of the
+full `t x (j+1)` Hankel matrix at each tested node.  The negative packet
 
 ```text
 experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/
@@ -369,6 +371,17 @@ experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/
 ```
 
 must fail because it records a duplicate tested node.
+
+The replay-failure packet
+
+```text
+experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/
+  invalid_rank_pivot_singular_replay_packet.json
+```
+
+keeps a structurally valid singular declaration but points to a SHA-checked
+input where node `1` has a full-rank specialization.  It must fail the replayed
+rank-defect test.
 
 The first finite affine pivot-atlas replay is
 
@@ -520,4 +533,7 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 ! python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/invalid_rank_pivot_underchecked_packet.json
+
+! python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/invalid_rank_pivot_singular_replay_packet.json
 ```

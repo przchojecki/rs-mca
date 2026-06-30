@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Singular rank-at-nodes replay gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the singular rank-at-nodes replay.
+- **What is being added:** The v9 checker now verifies singular
+  `rank_at_nodes` residual declarations by loading the referenced extractor
+  input, checking its SHA, and replaying that the full `t x (j+1)` Hankel
+  matrix is rank-deficient at each tested node.
+- **How it is useful:** A packet can no longer prove the regular bucket is
+  identically singular from rank-at-nodes metadata alone; the
+  degree/root-vanishing argument is tied to the actual syndrome pencil.
+- **What to do next:** Use this replay gate before escalating any regular
+  bucket to a singular pivot chart or residual obstruction in future M3/M1
+  packets.
+
 ### 2026-06-30 - Rank-witness determinant replay gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

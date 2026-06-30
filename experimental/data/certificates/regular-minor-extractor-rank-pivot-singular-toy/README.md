@@ -27,7 +27,14 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/f17_n10_k4_a8_rank_pivot_singular_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/invalid_rank_pivot_singular_replay_packet.json
 ```
 
 This is a machinery test for singular regular-bucket declarations, not a
 singular pivot-chart certificate.
+
+The replay-failure packet keeps the singular metadata shape but points at a
+SHA-checked input whose node `1` has a full-rank specialization.  It must fail
+the checker's replayed rank-defect test.
