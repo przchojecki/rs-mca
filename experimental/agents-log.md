@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 projective popularity divisor gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_popularity_divisor_gate.md`,
+  `experimental/scripts/verify_m1_popularity_divisor_gate.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
+- **What is being added:** A projective/rational version of the popularity
+  divisor gate: nonzero homogeneous binary forms on `P^1`, plus bounded
+  exceptional pole/chart fibers, imply the same explicit popularity cap.
+- **How it is useful:** Matches the form of Kummer/resultant reductions after
+  clearing denominators and accounting for infinity, making the handoff from
+  actual residue-line algebra to the packet-sift `F_pop` criterion cleaner.
+- **What to do next:** Derive nonzero projective gate forms for the real
+  endpoint-independent high-overlap leaf parameters.
+
 ### 2026-06-30 - M1 popularity divisor gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -123,11 +123,54 @@ If this claim is proved for the actual Hankel residue-line packet families,
 then the far-from-star small-support residual branch is closed whenever the
 displayed `F_pop` inequality beats the target support budget.
 
+## Projective/rational form
+
+In many residue-line reductions the leaf parameter is projective, or the gate
+is first obtained as a rational function and then cleared of denominators.  The
+same lemma has the following projective form.
+
+Let
+
+```text
+theta : B -> P^1(F)
+```
+
+have fiber multiplicity at most `mu`.  Suppose
+
+```text
+theta(B_x) subset Z_exc union V(G_1) union ... union V(G_r),
+```
+
+where:
+
+```text
+|Z_exc| <= E,
+G_i in F[Y_0,Y_1] is a nonzero homogeneous binary form,
+deg(G_i) <= d_i.
+```
+
+Then again
+
+```text
+pop_a(x) <= mu ( E + d_1 + ... + d_r ).            (PDG)
+```
+
+This includes rational affine gates: after writing a gate as
+`N(T)/Q(T)=0`, the roots of `Q`, the point at infinity, and any chart-exception
+fibers are charged to `Z_exc`, while the homogenized numerator supplies the
+nonzero binary form.  The nonzero condition is essential; if a cleared
+numerator vanishes identically, the leaf family has entered a structured
+exception branch rather than a bounded divisor gate.
+
+The proof is the same: a nonzero homogeneous binary form of degree `d` has at
+most `d` roots on `P^1(F)`, counted without multiplicity over the rational
+points.
+
 ## Verification
 
 The companion verifier checks finite-field root bounds, randomized divisor-gate
-instances, multiplicity sharpness, and the composition with the
-popularity-cap support floor:
+instances, projective binary-form gates, multiplicity sharpness, and the
+composition with the popularity-cap support floor:
 
 ```sh
 python3 experimental/scripts/verify_m1_popularity_divisor_gate.py

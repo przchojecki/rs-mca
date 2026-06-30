@@ -47,6 +47,68 @@ def roots(poly: tuple[int, ...], p: int) -> set[int]:
     return {x for x in range(p) if eval_poly(poly, x, p) == 0}
 
 
+def normalize_projective(point: tuple[int, int], p: int) -> tuple[int, int]:
+    x, z = point
+    if x % p:
+        inv_x = pow(x % p, p - 2, p)
+        return (1, (z * inv_x) % p)
+    if z % p:
+        inv_z = pow(z % p, p - 2, p)
+        return ((x * inv_z) % p, 1)
+    raise ValueError("zero projective point")
+
+
+def projective_line(p: int) -> list[tuple[int, int]]:
+    return [(value, 1) for value in range(p)] + [(1, 0)]
+
+
+def eval_binary_form(form: tuple[int, ...], point: tuple[int, int], p: int) -> int:
+    x, z = point
+    degree_bound = len(form) - 1
+    total = 0
+    for x_degree, coeff in enumerate(form):
+        z_degree = degree_bound - x_degree
+        total += coeff * pow(x, x_degree, p) * pow(z, z_degree, p)
+    return total % p
+
+
+def binary_degree(form: tuple[int, ...], p: int) -> int:
+    if not form or all(coeff % p == 0 for coeff in form):
+        raise ValueError("zero binary form has no divisor-gate degree")
+    return len(form) - 1
+
+
+def projective_roots(form: tuple[int, ...], p: int) -> set[tuple[int, int]]:
+    binary_degree(form, p)
+    return {
+        point
+        for point in projective_line(p)
+        if eval_binary_form(form, point, p) == 0
+    }
+
+
+def multiply_binary_forms(
+    left: tuple[int, ...], right: tuple[int, ...], p: int
+) -> tuple[int, ...]:
+    product = [0] * (len(left) + len(right) - 1)
+    for i, a_i in enumerate(left):
+        for j, b_j in enumerate(right):
+            product[i + j] = (product[i + j] + a_i * b_j) % p
+    return tuple(product)
+
+
+def binary_form_from_projective_roots(
+    selected_roots: list[tuple[int, int]], p: int
+) -> tuple[int, ...]:
+    form = (1,)
+    for root in selected_roots:
+        a, b = normalize_projective(root, p)
+        # bX-aZ vanishes at [a:b].  Coefficients are ordered by X-degree.
+        linear = ((-a) % p, b % p)
+        form = multiply_binary_forms(form, linear, p)
+    return form
+
+
 def divisor_gate_cap(
     multiplicity: int,
     exceptional_size: int,
@@ -140,6 +202,40 @@ def check_root_bound() -> None:
     print(f"root_bound_polynomials_checked={checked}")
 
 
+def check_projective_root_bound() -> None:
+    checked = 0
+    for p in PRIMES:
+        for degree_bound in range(0, 7):
+            limit = min(p ** (degree_bound + 1), 700)
+            for mask in range(1, limit):
+                coeffs = []
+                value = mask
+                for _ in range(degree_bound + 1):
+                    coeffs.append(value % p)
+                    value //= p
+                form = tuple(coeffs)
+                if all(coeff % p == 0 for coeff in form):
+                    continue
+                root_count = len(projective_roots(form, p))
+                actual_degree = binary_degree(form, p)
+                if root_count > actual_degree:
+                    raise AssertionError((p, form, actual_degree, root_count))
+                checked += 1
+
+        points = projective_line(p)
+        rng = random.Random(20260701 + p)
+        for trial in range(200):
+            selected = rng.sample(points, rng.randint(0, min(6, len(points))))
+            form = binary_form_from_projective_roots(selected, p)
+            root_count = len(projective_roots(form, p))
+            if root_count > binary_degree(form, p):
+                raise AssertionError((p, selected, form, root_count))
+            if not set(selected).issubset(projective_roots(form, p)):
+                raise AssertionError((p, selected, form, projective_roots(form, p)))
+            checked += 1
+    print(f"projective_root_forms_checked={checked}")
+
+
 def check_random_gate_instances() -> None:
     rng = random.Random(20260630)
     checked = 0
@@ -168,6 +264,48 @@ def check_random_gate_instances() -> None:
         checked += 1
     print(f"random_gate_instances_checked={checked}")
     print(f"sharp_gate_instances_seen={sharp}")
+
+
+def check_random_projective_gate_instances() -> None:
+    rng = random.Random(20260702)
+    checked = 0
+    sharp = 0
+    for trial in range(900):
+        p = PRIMES[trial % len(PRIMES)]
+        points = projective_line(p)
+        multiplicity = 1 + trial % 5
+        exceptional = set(rng.sample(points, rng.randint(0, min(5, len(points)))))
+        forms = []
+        for _ in range(1 + trial % 4):
+            root_pool = [point for point in points if point not in exceptional]
+            selected = rng.sample(root_pool, rng.randint(0, min(5, len(root_pool))))
+            form = binary_form_from_projective_roots(selected, p)
+            if trial % 6 == 0:
+                form = tuple(
+                    (coeff + (1 if index == 0 else 0)) % p
+                    for index, coeff in enumerate(form)
+                )
+                if all(coeff % p == 0 for coeff in form):
+                    form = (1,)
+            forms.append(form)
+
+        allowed = set(exceptional)
+        degree_bounds = []
+        for form in forms:
+            allowed.update(projective_roots(form, p))
+            degree_bounds.append(binary_degree(form, p))
+        cap = divisor_gate_cap(multiplicity, len(exceptional), degree_bounds)
+        leaves = []
+        for point in sorted(allowed):
+            for copy in range(multiplicity):
+                leaves.append((point, copy))
+        if len(leaves) > cap:
+            raise AssertionError((trial, p, len(leaves), cap, forms, exceptional))
+        if len(leaves) == cap:
+            sharp += 1
+        checked += 1
+    print(f"random_projective_gate_instances_checked={checked}")
+    print(f"sharp_projective_gate_instances_seen={sharp}")
 
 
 def check_support_floor_composition() -> None:
@@ -220,7 +358,9 @@ def check_support_floor_composition() -> None:
 
 def main() -> None:
     check_root_bound()
+    check_projective_root_bound()
     check_random_gate_instances()
+    check_random_projective_gate_instances()
     check_support_floor_composition()
     print("m1 popularity divisor-gate checks passed")
 
