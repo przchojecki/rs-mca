@@ -7,11 +7,13 @@ arithmetical checks that are easiest to get wrong in generated packets:
 declared root-union numerators when the packet includes inline root tables.  If
 the packet gives an explicit polynomial-basis field model, the checker verifies
 the model is compatible with the row field, verifies the modulus is irreducible,
-and evaluates encoded extension roots directly in that field.  For packets
-emitted by the regular-minor extractor, it also checks the rank-pivot audit
-metadata needed to justify singular regular-bucket declarations and
-rank-witness degree-bound packets.  Local packet references such as
-removed-ledger certificates are resolved, including JSON pointer fragments.
+and evaluates encoded extension roots directly in that field.  In small fields,
+it also enumerates the full finite field to check that inline root tables have
+not omitted any roots.  For packets emitted by the regular-minor extractor, it
+also checks the rank-pivot audit metadata needed to justify singular
+regular-bucket declarations and rank-witness degree-bound packets.  Local
+packet references such as removed-ledger certificates are resolved, including
+JSON pointer fragments.
 """
 
 from __future__ import annotations
@@ -25,6 +27,7 @@ from typing import Any
 
 
 DEFAULT_SCHEMA = Path("scripts/aperiodic_eliminant_schema.json")
+ROOT_COMPLETENESS_ENUMERATION_LIMIT = 1_000_000
 
 
 class PacketError(Exception):
@@ -73,6 +76,25 @@ def poly_eval_mod(coefficients: list[int], value: int, modulus: int) -> int:
         total = (total + coefficient * power) % modulus
         power = (power * value) % modulus
     return total
+
+
+def require_exact_roots(
+    listed_roots: list[int],
+    actual_roots: list[int],
+    location: str,
+) -> None:
+    if listed_roots == actual_roots:
+        return
+    listed = set(listed_roots)
+    actual = set(actual_roots)
+    missing = sorted(actual - listed)
+    extra = sorted(listed - actual)
+    details = []
+    if missing:
+        details.append(f"missing roots {missing}")
+    if extra:
+        details.append(f"extra non-roots {extra}")
+    raise PacketError(f"{location}: incomplete root table ({'; '.join(details)})")
 
 
 def parse_prime_field(field_name: str) -> int | None:
@@ -663,19 +685,41 @@ def validate_regular_minor(
     if not set(bad_slopes).issubset(roots):
         raise PacketError(f"A={item.get('A')}: enumerated bad slopes are not roots")
     if modulus is not None:
-        non_roots = [root for root in roots if poly_eval_mod(coefficients, root, modulus)]
-        if non_roots:
-            raise PacketError(f"A={item.get('A')}: listed non-roots {non_roots}")
+        if modulus <= ROOT_COMPLETENESS_ENUMERATION_LIMIT:
+            actual_roots = [
+                root
+                for root in range(modulus)
+                if poly_eval_mod(coefficients, root, modulus) == 0
+            ]
+            require_exact_roots(roots, actual_roots, f"A={item.get('A')}")
+        else:
+            non_roots = [
+                root for root in roots if poly_eval_mod(coefficients, root, modulus)
+            ]
+            if non_roots:
+                raise PacketError(f"A={item.get('A')}: listed non-roots {non_roots}")
     if extension_field is not None:
-        non_roots = [
-            root
-            for root in roots
-            if not extension_field.is_zero(
-                extension_field.poly_eval_encoded(coefficients, root)
-            )
-        ]
-        if non_roots:
-            raise PacketError(f"A={item.get('A')}: listed extension non-roots {non_roots}")
+        if extension_field.size <= ROOT_COMPLETENESS_ENUMERATION_LIMIT:
+            actual_roots = [
+                root
+                for root in range(extension_field.size)
+                if extension_field.is_zero(
+                    extension_field.poly_eval_encoded(coefficients, root)
+                )
+            ]
+            require_exact_roots(roots, actual_roots, f"A={item.get('A')}")
+        else:
+            non_roots = [
+                root
+                for root in roots
+                if not extension_field.is_zero(
+                    extension_field.poly_eval_encoded(coefficients, root)
+                )
+            ]
+            if non_roots:
+                raise PacketError(
+                    f"A={item.get('A')}: listed extension non-roots {non_roots}"
+                )
 
     return roots, bad_slopes
 

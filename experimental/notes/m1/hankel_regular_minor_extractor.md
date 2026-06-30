@@ -116,8 +116,10 @@ Here the prefix minor is
 
 over `F_17[x]/(x^2-3)`, so the determinant is `Z^2-3` and the two roots are the
 non-base elements `x` and `-x`, encoded as `17` and `272`.  The integrated
-checker now evaluates encoded polynomial-basis extension roots, so this packet
-is a genuine extension-root validation rather than only a hash check.
+checker now evaluates encoded polynomial-basis extension roots and, when the
+field is small enough to enumerate, checks that the root table is complete.  So
+this packet is a genuine small-extension root-table validation rather than only
+a hash check.
 
 The checker also verifies that a polynomial-basis field model matches the row
 field label and that its modulus is irreducible over `F_p`.  The negative packet
@@ -128,6 +130,15 @@ experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/
 ```
 
 must fail because it replaces `x^2-3` by the reducible modulus `x^2-1`.
+The second negative packet
+
+```text
+experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/
+  invalid_omitted_extension_root_packet.json
+```
+
+must fail because it lists only the encoded root `17` and omits the second root
+`272`.
 
 The prime-field rank-pivot replay is
 
@@ -249,6 +260,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 ! python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/invalid_reducible_field_model_packet.json
+
+! python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/invalid_omitted_extension_root_packet.json
 
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_toy.json \

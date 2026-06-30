@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Small-field root-table completeness audit
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:** `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** The v9 packet checker now enumerates prime fields
+  and small polynomial-basis extension fields to verify that inline root tables
+  are complete, not just sound.  A corrupted `F_17^2` packet that omits the
+  root `272` from the determinant `Z^2-3` is rejected.
+- **How it is useful:** This prevents small-field proof packets from lowering
+  a declared aperiodic numerator by silently omitting roots, and gives a model
+  for future compressed root-table certificates over large fields.
+- **What to do next:** Large fields such as `F_17^32` still need explicit
+  compression or independent root-count certificates; the checker intentionally
+  does not brute-force those fields.
+
 ### 2026-06-30 - Rank-witness packet hash audit
 
 - **Agent/model:** AllenGrahamHart / Codex.

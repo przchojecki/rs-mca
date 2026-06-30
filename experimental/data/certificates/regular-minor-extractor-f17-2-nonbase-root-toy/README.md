@@ -40,12 +40,17 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/f17_2_n5_k2_a4_nonbase_root_packet.json
 ```
 
-Negative control:
+Negative controls:
 
 ```sh
-python3 scripts/check_aperiodic_eliminant_packet.py \
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/invalid_reducible_field_model_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/invalid_omitted_extension_root_packet.json
 ```
 
-The negative packet must fail: it replaces the irreducible modulus `x^2-3` by
-the reducible modulus `x^2-1`.
+The first negative packet replaces the irreducible modulus `x^2-3` by the
+reducible modulus `x^2-1`.  The second lists only the root `x` and omits `-x`;
+because this field has only `289` elements, the checker enumerates the full
+field and rejects the incomplete root table.
