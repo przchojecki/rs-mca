@@ -7,6 +7,7 @@
         "rank_pivot_node": null,
         "rank_pivot_nodes_required": 4,
         "rank_pivot_nodes_tested": 3,
+        "rank_pivot_test_nodes": [0, 1, 2],
         "row_set_source": "rank_at_nodes",
         "tested_row_sets": 0
       },

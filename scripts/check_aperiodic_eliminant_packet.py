@@ -1291,12 +1291,38 @@ def validate_extractor_audit(
             f"{location}.rank_pivot_nodes_tested must be in "
             f"1..{expected_required}"
         )
+    test_nodes = audit.get("rank_pivot_test_nodes")
+    if not isinstance(test_nodes, list):
+        raise PacketError(f"{location}.rank_pivot_test_nodes must list tested nodes")
+    if len(test_nodes) != tested:
+        raise PacketError(
+            f"{location}.rank_pivot_test_nodes has length {len(test_nodes)} "
+            f"but rank_pivot_nodes_tested={tested}"
+        )
+    if any(
+        not isinstance(node_value, int) or node_value < 0
+        for node_value in test_nodes
+    ):
+        raise PacketError(
+            f"{location}.rank_pivot_test_nodes must contain nonnegative integers"
+        )
+    if len(set(test_nodes)) != len(test_nodes):
+        raise PacketError(f"{location}.rank_pivot_test_nodes must be distinct")
+    if test_nodes != list(range(tested)):
+        raise PacketError(
+            f"{location}.rank_pivot_test_nodes must be the deterministic "
+            f"prefix nodes 0..{tested - 1}"
+        )
 
     node = audit.get("rank_pivot_node")
     if item.get("status") == "regular_minor":
         if not isinstance(node, int) or node < 0:
             raise PacketError(
                 f"{location}.rank_pivot_node must name the successful node"
+            )
+        if test_nodes[-1] != node:
+            raise PacketError(
+                f"{location}.rank_pivot_node must be the last tested node"
             )
         if tested_row_sets is not None and tested_row_sets < 1:
             raise PacketError(

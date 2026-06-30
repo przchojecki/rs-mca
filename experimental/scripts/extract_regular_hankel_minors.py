@@ -947,6 +947,14 @@ def proportional_residual_reason(
     )
 
 
+def add_rank_pivot_test_nodes(audit: dict[str, Any]) -> None:
+    if audit.get("row_set_source") != "rank_at_nodes":
+        return
+    tested = audit.get("rank_pivot_nodes_tested")
+    if isinstance(tested, int):
+        audit["rank_pivot_test_nodes"] = list(range(tested))
+
+
 def extract_for_agreement(
     spec: dict[str, Any],
     exact_agreement: int,
@@ -1417,6 +1425,7 @@ def result_to_packet_item(result: ExtractionResult, prime: int) -> dict[str, Any
                 "degree_bound": degree,
                 "certificate_mode": "rank_witness_bound",
             }
+            add_rank_pivot_test_nodes(item["extractor_audit"])
             return item
         assert result.polynomial is not None
         degree = poly_degree(result.polynomial, prime)
@@ -1470,6 +1479,7 @@ def result_to_packet_item(result: ExtractionResult, prime: int) -> dict[str, Any
         }
         if result.residual_audit is not None:
             item["extractor_audit"].update(result.residual_audit)
+    add_rank_pivot_test_nodes(item["extractor_audit"])
     return item
 
 
@@ -1511,6 +1521,7 @@ def result_to_packet_item_field(
                 "field_size": field.size,
                 "certificate_mode": "rank_witness_bound",
             }
+            add_rank_pivot_test_nodes(item["extractor_audit"])
             return item
         assert result.polynomial is not None
         polynomial = [field.normalize(coeff) for coeff in result.polynomial]
@@ -1578,6 +1589,7 @@ def result_to_packet_item_field(
         }
         if result.residual_audit is not None:
             item["extractor_audit"].update(result.residual_audit)
+    add_rank_pivot_test_nodes(item["extractor_audit"])
     return item
 
 

@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Rank-at-nodes tested-node audit
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/regular-minor-extractor-rank-pivot-toy/`;
+  `experimental/data/certificates/regular-minor-extractor-rank-witness-toy/`;
+  `experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/`;
+  `experimental/data/certificates/regular-minor-extractor-rank-pivot-f17-2-toy/`;
+  `experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** Rank-at-nodes v9 packets now record the deterministic
+  finite nodes actually tested.  The checker requires the list to have the
+  declared length, be distinct, match the deterministic prefix schedule, and
+  end at the successful full-rank node when one exists.
+- **How it is useful:** Makes regular/singular rank-pivot certificates more
+  replayable and prevents a singular regular bucket from being certified by a
+  vague or duplicated node count.
+- **What to do next:** Apply this metadata to actual M3 row packets once
+  genuine row-data rank-at-nodes certificates are produced.
+
 ### 2026-06-30 - Proportional residual extractor classification
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -46,7 +46,9 @@ slopes.  If the pencil has full column rank over `F(Z)`, some maximal minor has
 degree at most `j+1`, so it cannot vanish at all `j+2` nodes; a full-rank
 specialization supplies a row set whose determinant polynomial is nonzero.  If
 no full-rank specialization appears at those nodes, all maximal minors vanish
-identically and the regular bucket is genuinely singular.
+identically and the regular bucket is genuinely singular.  Rank-at-nodes packet
+audits now list the tested deterministic nodes, so the v9 checker can reject
+underchecked or non-distinct singularity proofs.
 
 The determinant polynomial is recovered by interpolation from numeric
 determinants, rather than by a factorial permutation determinant.  This is the
@@ -216,9 +218,10 @@ most `j+1=3`, this proves that all maximal regular minors vanish identically
 and emits a singular residual declaration.
 
 The checker treats this as an audited proof obligation, not just metadata:
-`rank_pivot_nodes_required` must equal `j+2`, a successful packet must name the
-node where full rank was found, and a singular declaration must have tested all
-`j+2` nodes.  The negative packet
+`rank_pivot_nodes_required` must equal `j+2`, `rank_pivot_test_nodes` must list
+the deterministic distinct nodes actually tested, a successful packet must name
+the final node where full rank was found, and a singular declaration must have
+tested all `j+2` nodes.  The negative packet
 
 ```text
 experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/
@@ -226,7 +229,14 @@ experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/
 ```
 
 must fail because it claims the singular conclusion after only three of the
-four required nodes.
+four required nodes.  The negative packet
+
+```text
+experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/
+  invalid_rank_pivot_duplicate_nodes_packet.json
+```
+
+must fail because it records a duplicate tested node.
 
 The first finite affine pivot-atlas replay is
 
