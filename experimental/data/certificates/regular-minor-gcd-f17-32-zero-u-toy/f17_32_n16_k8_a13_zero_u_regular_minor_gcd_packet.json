@@ -1,0 +1,620 @@
+{
+  "agreement_threshold": 13,
+  "claim_scope": {
+    "may_be_used_for_threshold_pinning": false,
+    "note": "Finite toy replay over the pinned F_17^32 model for the zero-u closed-form common-gcd gate.",
+    "root_status": "closed_form",
+    "row_data": "toy_row",
+    "threshold_role": "toy_mechanism"
+  },
+  "declared_aperiodic_numerator": 1,
+  "enumerated_bad_slope_union": [],
+  "exact_agreements": [
+    {
+      "A": 13,
+      "extractor_audit": {
+        "certificate_mode": "minor_gcd_roots",
+        "field_size": 2367911594760467245844106297320951247361,
+        "gcd_degree": 4,
+        "minor_gcd_method": "zero_u_monomial",
+        "rank_pivot_node": null,
+        "rank_pivot_nodes_required": null,
+        "rank_pivot_nodes_tested": null,
+        "root_count": 1,
+        "row_set_source": "contiguous_minor_gcd_zero_u_monomial",
+        "tested_row_sets": 2
+      },
+      "j": 3,
+      "regular_minor_gcd": {
+        "containment": "rank-defect slopes make every audited maximal minor vanish, so they are contained in the common gcd roots",
+        "degree": 4,
+        "minor_count": 2,
+        "polynomial_ref": "inline:regular_minor_gcd_data.gcd_coefficients_ascending",
+        "root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+        "row_sets": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            1,
+            2,
+            3,
+            4
+          ]
+        ]
+      },
+      "regular_minor_gcd_data": {
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 32,
+        "gcd_coefficients_ascending": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "minor_polynomials_ascending": [
+          {
+            "coefficients": [
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "degree": 4,
+            "row_set": [
+              0,
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "degree": 4,
+            "row_set": [
+              1,
+              2,
+              3,
+              4
+            ]
+          }
+        ],
+        "p": 17,
+        "root_certificate": {
+          "factors": [
+            {
+              "multiplicity": 4,
+              "root": 0
+            }
+          ],
+          "field_encoding": "base-p low-to-high integer",
+          "kind": "split_linear_factorization",
+          "leading_coefficient": 1
+        },
+        "roots": [
+          0
+        ]
+      },
+      "status": "regular_minor",
+      "t": 5
+    },
+    {
+      "A": 14,
+      "extractor_audit": {
+        "certificate_mode": "minor_gcd_roots",
+        "field_size": 2367911594760467245844106297320951247361,
+        "gcd_degree": 3,
+        "minor_gcd_method": "zero_u_monomial",
+        "rank_pivot_node": null,
+        "rank_pivot_nodes_required": null,
+        "rank_pivot_nodes_tested": null,
+        "root_count": 1,
+        "row_set_source": "contiguous_minor_gcd_zero_u_monomial",
+        "tested_row_sets": 4
+      },
+      "j": 2,
+      "regular_minor_gcd": {
+        "containment": "rank-defect slopes make every audited maximal minor vanish, so they are contained in the common gcd roots",
+        "degree": 3,
+        "minor_count": 4,
+        "polynomial_ref": "inline:regular_minor_gcd_data.gcd_coefficients_ascending",
+        "root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+        "row_sets": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            3
+          ],
+          [
+            2,
+            3,
+            4
+          ],
+          [
+            3,
+            4,
+            5
+          ]
+        ]
+      },
+      "regular_minor_gcd_data": {
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 32,
+        "gcd_coefficients_ascending": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "minor_polynomials_ascending": [
+          {
+            "coefficients": [
+              0,
+              0,
+              0,
+              4
+            ],
+            "degree": 3,
+            "row_set": [
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              0,
+              0,
+              4
+            ],
+            "degree": 3,
+            "row_set": [
+              1,
+              2,
+              3
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              0,
+              0,
+              6
+            ],
+            "degree": 3,
+            "row_set": [
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              0,
+              0,
+              9
+            ],
+            "degree": 3,
+            "row_set": [
+              3,
+              4,
+              5
+            ]
+          }
+        ],
+        "p": 17,
+        "root_certificate": {
+          "factors": [
+            {
+              "multiplicity": 3,
+              "root": 0
+            }
+          ],
+          "field_encoding": "base-p low-to-high integer",
+          "kind": "split_linear_factorization",
+          "leading_coefficient": 1
+        },
+        "roots": [
+          0
+        ]
+      },
+      "status": "regular_minor",
+      "t": 6
+    },
+    {
+      "A": 15,
+      "extractor_audit": {
+        "certificate_mode": "minor_gcd_roots",
+        "field_size": 2367911594760467245844106297320951247361,
+        "gcd_degree": 2,
+        "minor_gcd_method": "zero_u_monomial",
+        "rank_pivot_node": null,
+        "rank_pivot_nodes_required": null,
+        "rank_pivot_nodes_tested": null,
+        "root_count": 1,
+        "row_set_source": "contiguous_minor_gcd_zero_u_monomial",
+        "tested_row_sets": 6
+      },
+      "j": 1,
+      "regular_minor_gcd": {
+        "containment": "rank-defect slopes make every audited maximal minor vanish, so they are contained in the common gcd roots",
+        "degree": 2,
+        "minor_count": 6,
+        "polynomial_ref": "inline:regular_minor_gcd_data.gcd_coefficients_ascending",
+        "root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+        "row_sets": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            6
+          ]
+        ]
+      },
+      "regular_minor_gcd_data": {
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 32,
+        "gcd_coefficients_ascending": [
+          0,
+          0,
+          1
+        ],
+        "minor_polynomials_ascending": [
+          {
+            "coefficients": [
+              0,
+              0,
+              7
+            ],
+            "degree": 2,
+            "row_set": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              0,
+              12
+            ],
+            "degree": 2,
+            "row_set": [
+              1,
+              2
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              0,
+              8
+            ],
+            "degree": 2,
+            "row_set": [
+              2,
+              3
+            ]
+          },
+          {
+            "coefficients": [
+              0
+            ],
+            "degree": -1,
+            "row_set": [
+              3,
+              4
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              0,
+              8
+            ],
+            "degree": 2,
+            "row_set": [
+              4,
+              5
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              0,
+              16
+            ],
+            "degree": 2,
+            "row_set": [
+              5,
+              6
+            ]
+          }
+        ],
+        "p": 17,
+        "root_certificate": {
+          "factors": [
+            {
+              "multiplicity": 2,
+              "root": 0
+            }
+          ],
+          "field_encoding": "base-p low-to-high integer",
+          "kind": "split_linear_factorization",
+          "leading_coefficient": 1
+        },
+        "roots": [
+          0
+        ]
+      },
+      "status": "regular_minor",
+      "t": 7
+    },
+    {
+      "A": 16,
+      "extractor_audit": {
+        "certificate_mode": "minor_gcd_roots",
+        "field_size": 2367911594760467245844106297320951247361,
+        "gcd_degree": 1,
+        "minor_gcd_method": "zero_u_monomial",
+        "rank_pivot_node": null,
+        "rank_pivot_nodes_required": null,
+        "rank_pivot_nodes_tested": null,
+        "root_count": 1,
+        "row_set_source": "contiguous_minor_gcd_zero_u_monomial",
+        "tested_row_sets": 8
+      },
+      "j": 0,
+      "regular_minor_gcd": {
+        "containment": "rank-defect slopes make every audited maximal minor vanish, so they are contained in the common gcd roots",
+        "degree": 1,
+        "minor_count": 8,
+        "polynomial_ref": "inline:regular_minor_gcd_data.gcd_coefficients_ascending",
+        "root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+        "row_sets": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ]
+        ]
+      },
+      "regular_minor_gcd_data": {
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 32,
+        "gcd_coefficients_ascending": [
+          0,
+          1
+        ],
+        "minor_polynomials_ascending": [
+          {
+            "coefficients": [
+              0,
+              7
+            ],
+            "degree": 1,
+            "row_set": [
+              0
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              3
+            ],
+            "degree": 1,
+            "row_set": [
+              1
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              12
+            ],
+            "degree": 1,
+            "row_set": [
+              2
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              1
+            ],
+            "degree": 1,
+            "row_set": [
+              3
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              5
+            ],
+            "degree": 1,
+            "row_set": [
+              4
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              8
+            ],
+            "degree": 1,
+            "row_set": [
+              5
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              11
+            ],
+            "degree": 1,
+            "row_set": [
+              6
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              15
+            ],
+            "degree": 1,
+            "row_set": [
+              7
+            ]
+          }
+        ],
+        "p": 17,
+        "root_certificate": {
+          "factors": [
+            {
+              "multiplicity": 1,
+              "root": 0
+            }
+          ],
+          "field_encoding": "base-p low-to-high integer",
+          "kind": "split_linear_factorization",
+          "leading_coefficient": 1
+        },
+        "roots": [
+          0
+        ]
+      },
+      "status": "regular_minor",
+      "t": 8
+    }
+  ],
+  "extractor": {
+    "certificate_mode": "minor_gcd_roots",
+    "field_model": {
+      "degree": 32,
+      "encoding": "base-p low-to-high integer",
+      "kind": "polynomial_basis",
+      "modulus": [
+        16,
+        7,
+        8,
+        5,
+        13,
+        3,
+        11,
+        9,
+        5,
+        4,
+        3,
+        9,
+        3,
+        12,
+        1,
+        6,
+        7,
+        11,
+        11,
+        6,
+        12,
+        5,
+        5,
+        7,
+        14,
+        2,
+        0,
+        2,
+        4,
+        4,
+        0,
+        14,
+        1
+      ],
+      "p": 17
+    },
+    "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n16_k8_a13_zero_u_gcd_toy.json",
+    "input_sha256": "68db008823d4c9d8d9d4ddcc9873456b2ee433b84c196018a44f37695bad13c8",
+    "method": "zero-u closed-form common-gcd audit over a polynomial-basis finite field",
+    "minor_gcd_method": "zero_u_monomial",
+    "name": "regular-hankel-minor-extractor",
+    "row_set_strategy": {
+      "type": "contiguous"
+    },
+    "scope": "prime-power syndrome pencils with explicit polynomial-basis model"
+  },
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not F_17^32 prize-row data",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ],
+  "removed_ledgers": [],
+  "root_union": [
+    0
+  ],
+  "root_union_table_ref": "inline:root_union",
+  "row": {
+    "domain_description": "toy embedded-base-field domain inside the pinned F_17^32 model",
+    "domain_hash": "62e7f173baaa28a8130e19c6ada812ae3053ae6bc7d197cd420b41b92293fe8e",
+    "field": "F_17^32",
+    "k": 8,
+    "n": 16
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "status": "PROVED"
+}

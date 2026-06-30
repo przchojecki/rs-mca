@@ -29,6 +29,7 @@ DEFAULT_MAX_BAD_SLOPE_SUBSETS = 200000
 ZERO_U_MONOMIAL_MODE = "zero_u_monomial_roots"
 SCALAR_MULTIPLE_MODE = "scalar_multiple_roots"
 MINOR_GCD_MODE = "minor_gcd_roots"
+ZERO_U_GCD_METHOD = "zero_u_monomial"
 
 
 def mod(value: int, prime: int) -> int:
@@ -476,6 +477,37 @@ def finite_bad_slopes_for_exact_agreement(
     return sorted(slopes)
 
 
+def zero_u_monomial_minor_records_mod(
+    u: list[int],
+    v: list[int],
+    row_sets: list[list[int]],
+    visible_length: int,
+    size: int,
+    prime: int,
+) -> tuple[list[list[int]], list[dict[str, Any]]]:
+    if any(value % prime for value in u[:visible_length]):
+        raise ValueError("zero_u_monomial gcd method needs u=0 on the visible window")
+    polynomials = []
+    family_records = []
+    for row_set in row_sets:
+        leading = determinant_mod(
+            [[v[row + col] % prime for col in range(size)] for row in row_set],
+            prime,
+        )
+        polynomial = [0] if leading == 0 else [0] * size + [leading]
+        polynomials.append(polynomial)
+        family_records.append(
+            {
+                "row_set": row_set,
+                "coefficients": polynomial,
+                "degree": poly_degree(polynomial, prime)
+                if polynomial != [0]
+                else -1,
+            }
+        )
+    return polynomials, family_records
+
+
 def normalize_field_input_value(
     value: Any,
     field: PolynomialBasisField,
@@ -868,6 +900,41 @@ def finite_bad_slopes_for_exact_agreement_field(
         if consistent and candidate is not None:
             slopes[field.encode(candidate)] = candidate
     return [slopes[key] for key in sorted(slopes)]
+
+
+def zero_u_monomial_minor_records_field(
+    u: list[tuple[int, ...]],
+    v: list[tuple[int, ...]],
+    row_sets: list[list[int]],
+    visible_length: int,
+    size: int,
+    field: PolynomialBasisField,
+) -> tuple[list[list[tuple[int, ...]]], list[dict[str, Any]]]:
+    if any(not field.is_zero(value) for value in u[:visible_length]):
+        raise ValueError("zero_u_monomial gcd method needs u=0 on the visible window")
+    polynomials = []
+    family_records = []
+    for row_set in row_sets:
+        leading = determinant_field(
+            [[v[row + col] for col in range(size)] for row in row_set],
+            field,
+        )
+        polynomial = (
+            [field.zero]
+            if field.is_zero(leading)
+            else [field.zero] * size + [leading]
+        )
+        polynomials.append(polynomial)
+        family_records.append(
+            {
+                "row_set": row_set,
+                "coefficients": polynomial,
+                "degree": fpoly_degree(polynomial, field)
+                if not fpoly_is_zero(polynomial, field)
+                else -1,
+            }
+        )
+    return polynomials, family_records
 
 
 @dataclass(frozen=True)
@@ -1300,23 +1367,30 @@ def extract_for_agreement(
             residual_audit=proportional_audit,
         )
     if spec.get("certificate_mode") == MINOR_GCD_MODE:
-        polynomials: list[list[int]] = []
-        family_records: list[dict[str, Any]] = []
-        for row_set in row_sets:
-            polynomial = determinant_polynomial_by_interpolation(
-                u, v, row_set, size, prime
+        row_set_source = f"{row_set_audit['source']}_minor_gcd"
+        if spec.get("minor_gcd_method") == ZERO_U_GCD_METHOD:
+            row_set_source += f"_{ZERO_U_GCD_METHOD}"
+            polynomials, family_records = zero_u_monomial_minor_records_mod(
+                u, v, row_sets, t + j, size, prime
             )
-            polynomial = trim(polynomial, prime)
-            polynomials.append(polynomial)
-            family_records.append(
-                {
-                    "row_set": row_set,
-                    "coefficients": polynomial,
-                    "degree": poly_degree(polynomial, prime)
-                    if polynomial != [0]
-                    else -1,
-                }
-            )
+        else:
+            polynomials = []
+            family_records = []
+            for row_set in row_sets:
+                polynomial = determinant_polynomial_by_interpolation(
+                    u, v, row_set, size, prime
+                )
+                polynomial = trim(polynomial, prime)
+                polynomials.append(polynomial)
+                family_records.append(
+                    {
+                        "row_set": row_set,
+                        "coefficients": polynomial,
+                        "degree": poly_degree(polynomial, prime)
+                        if polynomial != [0]
+                        else -1,
+                    }
+                )
         nonzero_polynomials = [
             polynomial for polynomial in polynomials if polynomial != [0]
         ]
@@ -1324,7 +1398,12 @@ def extract_for_agreement(
             gcd_polynomial = poly_gcd_many(nonzero_polynomials, prime)
             roots: list[int] | None = None
             bad_slopes: list[int] | None = None
-            if prime <= int(
+            if (
+                spec.get("minor_gcd_method") == ZERO_U_GCD_METHOD
+                and gcd_polynomial == [0] * size + [1]
+            ):
+                roots = [0]
+            elif prime <= int(
                 spec.get("max_root_enum_field_size", DEFAULT_MAX_ROOT_ENUM_FIELD_SIZE)
             ):
                 roots = [
@@ -1367,7 +1446,7 @@ def extract_for_agreement(
                 roots,
                 bad_slopes,
                 len(row_sets),
-                row_set_source=f"{row_set_audit['source']}_minor_gcd",
+                row_set_source=row_set_source,
                 rank_pivot_node=row_set_audit.get("node"),
                 rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
                 rank_pivot_nodes_required=row_set_audit.get(
@@ -1388,7 +1467,7 @@ def extract_for_agreement(
             None,
             None,
             len(row_sets),
-            row_set_source=f"{row_set_audit['source']}_minor_gcd",
+            row_set_source=row_set_source,
             rank_pivot_node=row_set_audit.get("node"),
             rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
             rank_pivot_nodes_required=row_set_audit.get(
@@ -1615,23 +1694,30 @@ def extract_for_agreement_field(
             residual_audit=proportional_audit,
         )
     if spec.get("certificate_mode") == MINOR_GCD_MODE:
-        polynomials: list[list[tuple[int, ...]]] = []
-        family_records: list[dict[str, Any]] = []
-        for row_set in row_sets:
-            polynomial = determinant_polynomial_by_interpolation_field(
-                u, v, row_set, size, field
+        row_set_source = f"{row_set_audit['source']}_minor_gcd"
+        if spec.get("minor_gcd_method") == ZERO_U_GCD_METHOD:
+            row_set_source += f"_{ZERO_U_GCD_METHOD}"
+            polynomials, family_records = zero_u_monomial_minor_records_field(
+                u, v, row_sets, t + j, size, field
             )
-            polynomial = fpoly_trim(polynomial, field)
-            polynomials.append(polynomial)
-            family_records.append(
-                {
-                    "row_set": row_set,
-                    "coefficients": polynomial,
-                    "degree": fpoly_degree(polynomial, field)
-                    if not fpoly_is_zero(polynomial, field)
-                    else -1,
-                }
-            )
+        else:
+            polynomials = []
+            family_records = []
+            for row_set in row_sets:
+                polynomial = determinant_polynomial_by_interpolation_field(
+                    u, v, row_set, size, field
+                )
+                polynomial = fpoly_trim(polynomial, field)
+                polynomials.append(polynomial)
+                family_records.append(
+                    {
+                        "row_set": row_set,
+                        "coefficients": polynomial,
+                        "degree": fpoly_degree(polynomial, field)
+                        if not fpoly_is_zero(polynomial, field)
+                        else -1,
+                    }
+                )
         nonzero_polynomials = [
             polynomial for polynomial in polynomials if not fpoly_is_zero(polynomial, field)
         ]
@@ -1639,7 +1725,12 @@ def extract_for_agreement_field(
             gcd_polynomial = fpoly_gcd_many(nonzero_polynomials, field)
             roots: list[tuple[int, ...]] | None = None
             bad_slopes: list[tuple[int, ...]] | None = None
-            if field.size <= int(
+            if (
+                spec.get("minor_gcd_method") == ZERO_U_GCD_METHOD
+                and gcd_polynomial == [field.zero] * size + [field.one]
+            ):
+                roots = [field.zero]
+            elif field.size <= int(
                 spec.get("max_root_enum_field_size", DEFAULT_MAX_ROOT_ENUM_FIELD_SIZE)
             ):
                 roots = [
@@ -1690,7 +1781,7 @@ def extract_for_agreement_field(
                 roots,
                 bad_slopes,
                 len(row_sets),
-                row_set_source=f"{row_set_audit['source']}_minor_gcd",
+                row_set_source=row_set_source,
                 rank_pivot_node=row_set_audit.get("node"),
                 rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
                 rank_pivot_nodes_required=row_set_audit.get(
@@ -1711,7 +1802,7 @@ def extract_for_agreement_field(
             None,
             None,
             len(row_sets),
-            row_set_source=f"{row_set_audit['source']}_minor_gcd",
+            row_set_source=row_set_source,
             rank_pivot_node=row_set_audit.get("node"),
             rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
             rank_pivot_nodes_required=row_set_audit.get(
@@ -1943,6 +2034,14 @@ def result_to_packet_item(
             }
             if roots is not None:
                 item["regular_minor_gcd_data"][f"roots_mod_{prime}"] = roots
+                if emit_split_root_certificate:
+                    root_certificate = split_linear_root_certificate_mod(
+                        result.polynomial, roots, prime
+                    )
+                    if root_certificate is not None:
+                        item["regular_minor_gcd_data"]["root_certificate"] = (
+                            root_certificate
+                        )
                 if result.enumerated_bad_slopes is not None:
                     item["regular_minor_gcd_data"][
                         f"enumerated_bad_slopes_mod_{prime}"
@@ -1957,6 +2056,10 @@ def result_to_packet_item(
                 "gcd_degree": degree,
                 "certificate_mode": MINOR_GCD_MODE,
             }
+            if result.row_set_source and result.row_set_source.endswith(
+                f"_minor_gcd_{ZERO_U_GCD_METHOD}"
+            ):
+                item["extractor_audit"]["minor_gcd_method"] = ZERO_U_GCD_METHOD
             add_rank_pivot_test_nodes(item["extractor_audit"])
             return item
         assert result.row_set is not None
@@ -2129,6 +2232,14 @@ def result_to_packet_item_field(
             }
             if roots_encoded is not None:
                 item["regular_minor_gcd_data"]["roots"] = roots_encoded
+                if emit_split_root_certificate:
+                    root_certificate = split_linear_root_certificate_field(
+                        polynomial, roots, field
+                    )
+                    if root_certificate is not None:
+                        item["regular_minor_gcd_data"]["root_certificate"] = (
+                            root_certificate
+                        )
                 if result.enumerated_bad_slopes is not None:
                     item["regular_minor_gcd_data"]["enumerated_bad_slopes"] = sorted(
                         field.encode(slope) for slope in result.enumerated_bad_slopes
@@ -2146,6 +2257,10 @@ def result_to_packet_item_field(
                 "field_size": field.size,
                 "certificate_mode": MINOR_GCD_MODE,
             }
+            if result.row_set_source and result.row_set_source.endswith(
+                f"_minor_gcd_{ZERO_U_GCD_METHOD}"
+            ):
+                item["extractor_audit"]["minor_gcd_method"] = ZERO_U_GCD_METHOD
             add_rank_pivot_test_nodes(item["extractor_audit"])
             return item
         assert result.row_set is not None
@@ -2336,6 +2451,10 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
                 if spec.get("certificate_mode") == SCALAR_MULTIPLE_MODE
                 else "common-gcd root certificate over audited maximal minors"
                 if spec.get("certificate_mode") == MINOR_GCD_MODE
+                and spec.get("minor_gcd_method") != ZERO_U_GCD_METHOD
+                else "zero-u closed-form common-gcd certificate over audited maximal minors"
+                if spec.get("certificate_mode") == MINOR_GCD_MODE
+                and spec.get("minor_gcd_method") == ZERO_U_GCD_METHOD
                 else "numeric determinant interpolation over the base prime field"
             ),
             "input_ref": input_ref,
@@ -2355,6 +2474,8 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
     }
     if "certificate_mode" in spec:
         packet["extractor"]["certificate_mode"] = spec["certificate_mode"]
+    if "minor_gcd_method" in spec:
+        packet["extractor"]["minor_gcd_method"] = spec["minor_gcd_method"]
     if "claim_scope" in spec:
         packet["claim_scope"] = spec["claim_scope"]
     if all_roots_enumerated:
@@ -2454,6 +2575,10 @@ def build_packet_field(
                 if spec.get("certificate_mode") == SCALAR_MULTIPLE_MODE
                 else "common-gcd audit of numeric determinant minors over a polynomial-basis finite field"
                 if spec.get("certificate_mode") == MINOR_GCD_MODE
+                and spec.get("minor_gcd_method") != ZERO_U_GCD_METHOD
+                else "zero-u closed-form common-gcd audit over a polynomial-basis finite field"
+                if spec.get("certificate_mode") == MINOR_GCD_MODE
+                and spec.get("minor_gcd_method") == ZERO_U_GCD_METHOD
                 else "numeric determinant interpolation over a polynomial-basis finite field"
             ),
             "input_ref": input_ref,
@@ -2479,6 +2604,8 @@ def build_packet_field(
     }
     if "certificate_mode" in spec:
         packet["extractor"]["certificate_mode"] = spec["certificate_mode"]
+    if "minor_gcd_method" in spec:
+        packet["extractor"]["minor_gcd_method"] = spec["minor_gcd_method"]
     if "claim_scope" in spec:
         packet["claim_scope"] = spec["claim_scope"]
     if all_roots_enumerated:

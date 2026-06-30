@@ -1632,6 +1632,7 @@ def validate_regular_minor_gcd(
     bad_slopes = normalize_int_list(
         data.get(bad_slope_key, []), f"A={item.get('A')} gcd bad_slopes"
     )
+    root_certificate = data.get("root_certificate")
     if roots is None and bad_slopes:
         raise PacketError(
             f"A={item.get('A')}: enumerated bad slopes need an exact gcd root table"
@@ -1649,6 +1650,7 @@ def validate_regular_minor_gcd(
             raise PacketError(f"A={item.get('A')}: zero gcd polynomial")
         actual_degree = poly_degree([coefficient % modulus for coefficient in coefficients])
         decoded_coefficients = None
+        exact_monomial_roots = monomial_exact_roots(coefficients, modulus)
         field_size = modulus
     else:
         assert extension_field is not None
@@ -1664,6 +1666,7 @@ def validate_regular_minor_gcd(
         if extension_poly_is_zero(decoded_coefficients, extension_field):
             raise PacketError(f"A={item.get('A')}: zero gcd polynomial")
         actual_degree = extension_poly_degree(decoded_coefficients, extension_field)
+        exact_monomial_roots = monomial_exact_roots(coefficients)
         if roots is not None:
             for root in roots:
                 extension_field.decode(root)
@@ -1690,6 +1693,28 @@ def validate_regular_minor_gcd(
         raise PacketError(
             f"A={item.get('A')}: enumerated bad slopes are not gcd roots"
         )
+    if root_certificate is not None and roots is None:
+        raise PacketError(
+            f"A={item.get('A')}: gcd root_certificate needs an exact root table"
+        )
+    if root_certificate is not None:
+        if modulus is not None:
+            validate_split_linear_root_certificate_mod(
+                root_certificate,
+                coefficients,
+                roots or [],
+                modulus,
+                f"A={item.get('A')}: gcd",
+            )
+        else:
+            assert extension_field is not None
+            validate_split_linear_root_certificate_extension(
+                root_certificate,
+                coefficients,
+                roots or [],
+                extension_field,
+                f"A={item.get('A')}: gcd",
+            )
 
     minor_records = data[minor_polynomial_key]
     if not isinstance(minor_records, list) or len(minor_records) != len(row_sets):
@@ -1783,6 +1808,10 @@ def validate_regular_minor_gcd(
                 raise PacketError(
                     f"A={item.get('A')}: listed gcd non-roots {non_roots}"
                 )
+            if exact_monomial_roots is not None:
+                require_exact_roots(
+                    roots, exact_monomial_roots, f"A={item.get('A')}: gcd"
+                )
     else:
         assert extension_field is not None
         if roots is not None:
@@ -1806,6 +1835,10 @@ def validate_regular_minor_gcd(
                 if non_roots:
                     raise PacketError(
                         f"A={item.get('A')}: listed extension gcd non-roots {non_roots}"
+                    )
+                if exact_monomial_roots is not None:
+                    require_exact_roots(
+                        roots, exact_monomial_roots, f"A={item.get('A')}: gcd"
                     )
     return roots, bad_slopes
 

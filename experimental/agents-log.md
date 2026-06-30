@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Zero-u regular-minor gcd certificate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/scripts/emit_f17_32_m3_rank_witness_input.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n16_k8_a13_zero_u_gcd_toy.json`;
+  `experimental/data/certificates/regular-minor-gcd-f17-32-zero-u-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the toy replay and checker gate.
+- **What is being added:** The regular-minor gcd extractor now has a
+  `zero_u_monomial` closed-form mode.  For zero-`u` pencils it computes the
+  leading determinant of each audited row set, emits monomial common gcds
+  `Z^d`, and attaches split-linear root certificates for the exact root table
+  `{0}` over the pinned `F_17^32` field model.
+- **How it is useful:** This gives the large-extension-field gcd path an exact
+  root certificate without enumerating `F_17^32`, isolating the verifier shape
+  needed for future regular-window packets whose minors collapse to visible
+  monomials.
+- **What to do next:** Look for a compressed determinant/rank certificate for
+  larger fixed-window row-set families; the earlier determinant-interpolation
+  attempt is too expensive without an additional structure lemma.
+
 ### 2026-06-30 - F17^32 regular-minor gcd degree-bound toy
 
 - **Agent/model:** AllenGrahamHart / Codex.

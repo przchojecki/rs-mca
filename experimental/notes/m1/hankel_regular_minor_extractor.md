@@ -72,6 +72,7 @@ experimental/data/certificates/regular-minor-gcd-gate/
 experimental/data/certificates/regular-minor-gcd-toy/
 experimental/data/certificates/regular-minor-gcd-f17-2-toy/
 experimental/data/certificates/regular-minor-gcd-f17-32-toy/
+experimental/data/certificates/regular-minor-gcd-f17-32-zero-u-toy/
 experimental/scripts/verify_m1_regular_minor_gcd_gate.py
 ```
 
@@ -83,9 +84,18 @@ maximal minors removes prefix-minor false roots at `A=14,15,16`.  The extractor
 now emits this as a `regular_minor_gcd` v9 packet over prime fields and
 polynomial-basis extension fields.  The checker verifies gcd divisibility,
 exact roots in small fields, and degree-bound root hashes in large fields.
-The `F_17^2` replay checks exact extension roots; the `F_17^32` toy uses the
-pinned extension-field model and reports a degree bound without enumerating the
-slope field.
+The `F_17^2` replay checks exact extension roots; the first `F_17^32` toy uses
+the pinned extension-field model and reports a degree bound without enumerating
+the slope field.
+
+There is also a closed-form `zero_u_monomial` common-gcd mode for zero-`u`
+pencils.  In this case every audited nonzero maximal minor has the form
+`c Z^(j+1)`, so the extractor computes only the leading determinant of each row
+set, takes the common gcd, and emits the exact root table `{0}` with a
+split-linear root certificate.  The packet checker independently verifies the
+gcd divisibility, reconstructs the split-linear certificate, and uses the
+visible monomial form to require the exact large-field root table `{0}` without
+enumerating `F_17^32`.
 
 When the field is small enough, the extractor enumerates roots in the full
 finite slope field.  For extension fields, root-table elements are encoded as
@@ -337,8 +347,8 @@ actual-row singular pivot charts.
 Those are the next M3/M4 steps.  The present contribution is the reusable
 regular-minor extractor, with prime-field and explicit polynomial-basis
 extension-field replays showing that it emits v9 packets accepted by the
-integrated checker.  The `F_17^32` gcd toy is still toy-row data; it exercises
-the large-field packet shape but is not prize-row evidence.
+integrated checker.  The `F_17^32` gcd toys are still toy-row data; they
+exercise large-field packet shapes but are not prize-row evidence.
 
 ## Verification
 
@@ -392,6 +402,16 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 ! python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-gcd-f17-32-toy/invalid_extension_gcd_nondivisor_packet.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_32_n16_k8_a13_zero_u_gcd_toy.json \
+  --check experimental/data/certificates/regular-minor-gcd-f17-32-zero-u-toy/f17_32_n16_k8_a13_zero_u_regular_minor_gcd_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-gcd-f17-32-zero-u-toy/f17_32_n16_k8_a13_zero_u_regular_minor_gcd_packet.json
+
+! python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-gcd-f17-32-zero-u-toy/invalid_zero_u_gcd_root_certificate_packet.json
 
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_toy.json \

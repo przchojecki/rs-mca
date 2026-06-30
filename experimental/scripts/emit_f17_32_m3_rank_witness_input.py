@@ -81,6 +81,7 @@ def build_input(
     agreement_max: int | None = None,
     witness_prefix_count: int | None = None,
     syndrome_scalar: int = 0,
+    minor_gcd_contiguous_limit: int | None = None,
 ) -> dict[str, Any]:
     descriptor = load_json(ROW_DESCRIPTOR)
     field = Field(P, MODULUS)
@@ -109,6 +110,10 @@ def build_input(
         field.encode(field.mul(scalar, field.decode(value))) for value in v_syndrome
     ]
     proportional = any(value != 0 for value in scalar)
+    if minor_gcd_contiguous_limit is not None and proportional:
+        raise ValueError("minor-gcd closed form currently requires syndrome-scalar 0")
+    if minor_gcd_contiguous_limit is not None and minor_gcd_contiguous_limit <= 0:
+        raise ValueError("minor-gcd contiguous limit must be positive")
     if agreement_max is None:
         domain_description = (
             "order-512 subgroup from the pinned F_17^32 row descriptor; "
@@ -173,11 +178,15 @@ def build_input(
         "agreement_threshold": agreement,
         "exact_agreements": agreements,
         "sampler": "finite_affine_line",
-        "certificate_mode": (
-            "scalar_multiple_roots" if proportional else "zero_u_monomial_roots"
-        ),
+        "certificate_mode": "minor_gcd_roots"
+        if minor_gcd_contiguous_limit is not None
+        else ("scalar_multiple_roots" if proportional else "zero_u_monomial_roots"),
         "line_syndrome": line_syndrome,
-        "row_set_strategy": {"type": "prefix"},
+        "row_set_strategy": (
+            {"type": "contiguous", "limit": minor_gcd_contiguous_limit}
+            if minor_gcd_contiguous_limit is not None
+            else {"type": "prefix"}
+        ),
         "emit_split_root_certificate": True,
         "status": "PROVED / AUDIT",
         "nonclaims": [
@@ -187,6 +196,19 @@ def build_input(
             "not a quotient/tangent subtraction table",
         ],
     }
+    if minor_gcd_contiguous_limit is not None:
+        packet["minor_gcd_method"] = "zero_u_monomial"
+        packet["claim_scope"] = {
+            "row_data": "synthetic_syndrome_pencil",
+            "threshold_role": "synthetic_stress",
+            "root_status": "closed_form",
+            "may_be_used_for_threshold_pinning": False,
+            "note": (
+                "Closed-form common-gcd replay for a contiguous row-set family; "
+                "the unique root is the zero-codeword tangent slope, not an "
+                "aperiodic row bound."
+            ),
+        }
     if proportional:
         packet["claim_scope"] = {
             "row_data": "synthetic_syndrome_pencil",
@@ -207,9 +229,16 @@ def check_input(
     agreement_max: int | None,
     witness_prefix_count: int | None,
     syndrome_scalar: int,
+    minor_gcd_contiguous_limit: int | None,
 ) -> None:
     expected = render(
-        build_input(agreement, agreement_max, witness_prefix_count, syndrome_scalar)
+        build_input(
+            agreement,
+            agreement_max,
+            witness_prefix_count,
+            syndrome_scalar,
+            minor_gcd_contiguous_limit,
+        )
     )
     actual = path.read_text(encoding="utf-8")
     if actual != expected:
@@ -253,6 +282,14 @@ def main() -> None:
         default=0,
         help="emit the proportional pencil u=c*v; default c=0 keeps zero-u mode",
     )
+    parser.add_argument(
+        "--minor-gcd-contiguous-limit",
+        type=int,
+        help=(
+            "emit minor_gcd_roots with zero_u_monomial closed form over the "
+            "first LIMIT contiguous row sets"
+        ),
+    )
     parser.add_argument("--write", type=Path, help="write deterministic input JSON")
     parser.add_argument("--check", type=Path, help="check deterministic input JSON")
     parser.add_argument("--json", action="store_true", help="print input JSON")
@@ -263,6 +300,7 @@ def main() -> None:
         args.agreement_max,
         args.witness_prefix_count,
         args.syndrome_scalar,
+        args.minor_gcd_contiguous_limit,
     )
     if args.write:
         args.write.parent.mkdir(parents=True, exist_ok=True)
@@ -274,6 +312,7 @@ def main() -> None:
             args.agreement_max,
             args.witness_prefix_count,
             args.syndrome_scalar,
+            args.minor_gcd_contiguous_limit,
         )
     if args.json:
         print(render(packet), end="")

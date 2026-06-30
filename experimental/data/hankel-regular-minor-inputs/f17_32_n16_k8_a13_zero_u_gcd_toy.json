@@ -1,0 +1,101 @@
+{
+  "agreement_threshold": 13,
+  "certificate_mode": "minor_gcd_roots",
+  "claim_scope": {
+    "may_be_used_for_threshold_pinning": false,
+    "note": "Finite toy replay over the pinned F_17^32 model for the zero-u closed-form common-gcd gate.",
+    "root_status": "closed_form",
+    "row_data": "toy_row",
+    "threshold_role": "toy_mechanism"
+  },
+  "emit_split_root_certificate": true,
+  "enumerate_split_bad_slopes": false,
+  "exact_agreements": [
+    13,
+    14,
+    15,
+    16
+  ],
+  "field_model": {
+    "description": "Pinned F_17^32 polynomial-basis model from the row descriptor",
+    "kind": "polynomial_basis",
+    "modulus": [
+      16,
+      7,
+      8,
+      5,
+      13,
+      3,
+      11,
+      9,
+      5,
+      4,
+      3,
+      9,
+      3,
+      12,
+      1,
+      6,
+      7,
+      11,
+      11,
+      6,
+      12,
+      5,
+      5,
+      7,
+      14,
+      2,
+      0,
+      2,
+      4,
+      4,
+      0,
+      14,
+      1
+    ],
+    "p": 17
+  },
+  "line_syndrome": {
+    "description": "zero-u pencil embedded in the pinned F_17^32 model; every nonzero audited minor is a monomial in the slope",
+    "u": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "v": [
+      7,
+      3,
+      12,
+      1,
+      5,
+      8,
+      11,
+      15
+    ]
+  },
+  "minor_gcd_method": "zero_u_monomial",
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not F_17^32 prize-row data",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ],
+  "row": {
+    "domain_description": "toy embedded-base-field domain inside the pinned F_17^32 model",
+    "field": "F_17^32",
+    "k": 8,
+    "n": 16
+  },
+  "row_set_strategy": {
+    "type": "contiguous"
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "regular-hankel-minor-extractor-input-v1",
+  "status": "PROVED"
+}
