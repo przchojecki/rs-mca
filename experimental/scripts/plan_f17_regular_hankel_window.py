@@ -26,6 +26,11 @@ DEFAULT_K = 256
 DEFAULT_FIELD = "F_17^32"
 DEFAULT_FIELD_ORDER = 17**32
 DEFAULT_EPSILON_DENOMINATOR = 2**128
+DEFAULT_DOMAIN_HASH = "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92"
+DEFAULT_ROW_DESCRIPTOR_REF = (
+    "experimental/data/certificates/hankel-f17-32-row-descriptor/"
+    "f17_32_n512_k256_hankel_row_descriptor.json"
+)
 
 
 def ceil_div(numerator: int, denominator: int) -> int:
@@ -111,7 +116,8 @@ def build_plan(
             "n": n,
             "k": k,
             "domain_description": "multiplicative subgroup H with |H|=512",
-            "domain_hash": "not_supplied",
+            "domain_hash": DEFAULT_DOMAIN_HASH,
+            "row_descriptor_ref": DEFAULT_ROW_DESCRIPTOR_REF,
             "syndrome_length": n - k,
         },
         "window": {

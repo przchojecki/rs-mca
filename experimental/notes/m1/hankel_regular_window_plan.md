@@ -43,6 +43,19 @@ Thus the first prize-facing non-tangent regular window is exactly
 385 <= A <= 426.
 ```
 
+The concrete field/domain descriptor for this row is
+
+```text
+experimental/data/certificates/hankel-f17-32-row-descriptor/
+  f17_32_n512_k256_hankel_row_descriptor.json
+```
+
+with domain hash
+
+```text
+35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92
+```
+
 For the prefix maximal minor with rows `0..j` and columns `0..j`, the largest
 syndrome index used is `2j`.  Across the window this ranges from `254` down to
 `172`, so every prefix minor is syntactically available from a syndrome vector

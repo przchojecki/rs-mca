@@ -830,11 +830,12 @@
   ],
   "row": {
     "domain_description": "multiplicative subgroup H with |H|=512",
-    "domain_hash": "not_supplied",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
     "field": "F_17^32",
     "field_order": 2367911594760467245844106297320951247361,
     "k": 256,
     "n": 512,
+    "row_descriptor_ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
     "syndrome_length": 256
   },
   "schema_version": "regular-hankel-window-plan-v1",

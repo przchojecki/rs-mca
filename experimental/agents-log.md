@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 Hankel row descriptor
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/emit_f17_32_hankel_row_descriptor.py`;
+  `experimental/data/certificates/hankel-f17-32-row-descriptor/`;
+  `experimental/data/certificates/hankel-regular-window-f17-385-426/`;
+  `experimental/notes/m1/f17_32_hankel_row_descriptor.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A deterministic descriptor for the
+  `RS[F_17^32,H,256]` row used in M3.  It pins the polynomial-basis field
+  model, order-512 subgroup generator, encoded domain list, domain hash,
+  finite-slope budget, and `385<=A<=426` regular-window arithmetic.
+- **How it is useful:** Future regular-window proof packets can now refer to a
+  replayable `row.domain_hash` and field model instead of an informal
+  `F_17^32,H` row label.
+- **What to do next:** Supply syndrome-pencil line data against this row
+  descriptor, then run the regular-minor extractor on a selected M3 subrange.
+
 ### 2026-06-30 - Extension-root checker hardening
 
 - **Agent/model:** AllenGrahamHart / Codex.
