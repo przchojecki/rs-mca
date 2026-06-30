@@ -1,0 +1,57 @@
+# Step 5: carve the solved high-agreement region of the prize envelope
+
+- **Status:** IN PROGRESS (one item per loop iteration). Closes `towards-prize.md`
+  S1 step 5 ("use the compiler to carve out the solved high-agreement region").
+- **Lane:** V (verification / packaging), independent of the M1/F1/L1 proof lanes.
+- **Branch / PR:** `allen/step5-envelope-map`.
+- **Script:** `experimental/scripts/verify_step5_envelope_carving.py`.
+
+## The compiler being applied
+
+For `C = RS[F, L, k]`, `n = |L|`, line/challenge field size `q = q_line`, set
+`B_Q = floor(q / 2^128)` and `r = n - a`. The promoted tangent staircase gives the
+exact value `LD_sw(C,a) = n-a+1 = r+1` whenever `r = n-a <= floor((n-k)/3)`, and the
+target gate is `emca(C,delta) > 2^-128  <=>  LD_sw(C,a) >= B_Q + 1`. Therefore
+
+```text
+if  1 <= B_Q <= floor((n-k)/3)   then the grid threshold is pinned EXACTLY:
+        r <= B_Q - 1  safe,   r = B_Q  unsafe
+        (agreement a >= n - B_Q + 1 safe, a = n - B_Q first unsafe).
+```
+
+Rows meeting `1 <= B_Q <= floor((n-k)/3)` are the **solved high-agreement region**.
+
+## Coverage
+
+| # | item | status |
+|---|------|--------|
+| 1 | compiler formula + flagship anchor | **done** |
+| 2 | solved-region boundary (`B_Q <= floor((n-k)/3)`) | **done** |
+| 3 | multi-rate envelope grid (rho in {1/2,1/4,1/8,1/16}) | pending |
+| 4 | high-agreement scope vs the Johnson radius | pending |
+| 5 | emit the envelope-map artifact (table / JSON) | pending |
+
+### Verified so far
+
+- **Flagship anchor.** `B_Q = floor(17^32/2^128) = 6 <= floor(256/3) = 85`, so the
+  `F_17^32, n=512, k=256` row is solved and the compiler pins it to `a >= 507` safe,
+  `a = 506` first unsafe -- matching the on-`main` board record `tangent506-exact-gate`.
+- **Solved-region boundary.** The region is exactly `B_Q <= floor((n-k)/3)`: at
+  `n=512, rho=1/2` (cap `85`), `B_Q=85` is solved, `B_Q=86` exits, and `B_Q=0`
+  (`q <= 2^128`) means the compiler does not apply.
+
+## Honest scope
+
+The solved region is the **high-agreement** regime: the pinned threshold sits at radius
+`~ B_Q / n` (e.g. `6/512 ~ 0.012` for the flagship), **far below** the Johnson radius
+`1 - sqrt(rho)` and far from the near-capacity band where the prize-determining content
+lives. This artifact carves the **easy** slice of the envelope and turns the compiler
+into a concrete "which rows are solved" map; it does **not** resolve the hard
+near-capacity content (the aperiodic local limit). No safety/threshold claim is made
+beyond the promoted tangent theorem's exact-equality range `r <= floor((n-k)/3)`.
+
+## Reproduce
+
+```bash
+python3 experimental/scripts/verify_step5_envelope_carving.py
+```

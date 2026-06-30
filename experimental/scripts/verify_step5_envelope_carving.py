@@ -1,0 +1,133 @@
+#!/usr/bin/env python3
+"""Step 5 (towards-prize.md S1): carve the SOLVED high-agreement region of the
+prize envelope using the row-independent high-agreement compiler.
+
+THE COMPILER (promoted tangent theorem + the 2^-128 gate).
+For C = RS[F, L, k] with n = |L|, line/challenge field size q = q_line, write
+    B_Q = floor(q / 2^128),     r = n - a   (redundancy at agreement a).
+The tangent staircase gives the EXACT value
+    LD_sw(C, a) = n - a + 1 = r + 1     whenever   r = n - a <= floor((n-k)/3),
+and the target gate is:  emca(C, delta) > 2^-128  <=>  LD_sw(C, a) >= B_Q + 1.
+Hence IF
+    1 <= B_Q <= floor((n-k)/3),
+then the single line / MCA / CA grid threshold is pinned EXACTLY:
+    r <= B_Q - 1  is SAFE,     r = B_Q  is UNSAFE,
+equivalently  agreement a >= n - B_Q + 1 is safe, a = n - B_Q is the first unsafe.
+Rows meeting this hypothesis are the SOLVED high-agreement region of the envelope.
+
+This script computes the carving (solved vs not, and the exact pinned threshold)
+across the four prize rates rho in {1/2, 1/4, 1/8, 1/16}, anchors it on the
+flagship F_17^32 row, and pins the exact boundary of the solved region.
+
+HONEST SCOPE.
+The solved region is the HIGH-AGREEMENT regime: the pinned threshold sits at
+radius ~ B_Q / n, which is tiny (6/512 ~ 0.012 for the flagship) and FAR below the
+Johnson radius 1 - sqrt(rho).  This carves the EASY slice of the prize envelope; it
+does NOT resolve the prize-determining near-capacity content.  No claim is made
+beyond the promoted tangent theorem's exact-equality range r <= floor((n-k)/3).
+
+Run:  python3 experimental/scripts/verify_step5_envelope_carving.py
+Exit non-zero iff any implemented check fails.
+"""
+from __future__ import annotations
+
+TWO128 = 2 ** 128
+RATES = [(1, 2), (1, 4), (1, 8), (1, 16)]   # the four grand-challenge rates
+
+
+def solved_region(rho, n, q):
+    """Carving verdict for C = RS[F, L, k], n = |L|, line field size q.
+    rho = (num, den) with k = rho * n (must be an integer)."""
+    num, den = rho
+    if (n * num) % den != 0:
+        raise ValueError(f"k = {num}/{den} * {n} is not an integer")
+    k = n * num // den
+    nk = n - k
+    cap = nk // 3                       # floor((n-k)/3)
+    b_q = q // TWO128                   # floor(q / 2^128)
+    applies = (1 <= b_q <= cap)
+    res = {"n": n, "k": k, "nk": nk, "cap": cap, "B_Q": b_q, "solved": applies}
+    if applies:
+        res["threshold_r"] = b_q                 # r = B_Q unsafe, r <= B_Q-1 safe
+        res["safe_min_agreement"] = n - b_q + 1  # a >= this is safe
+        res["first_unsafe_agreement"] = n - b_q  # a = n - B_Q is unsafe
+    return res
+
+
+def check_flagship_anchor():
+    """The flagship F_17^32 row lands in the solved region and the compiler pins it
+    to the value already on the board (a=506 unsafe, a=507 safe)."""
+    d = []
+    ok = True
+    q = 17 ** 32
+    r = solved_region((1, 2), 512, q)
+    d.append(f"B_Q = floor(17^32/2^128) = {r['B_Q']} ; cap = floor((n-k)/3) = {r['cap']}")
+    d.append(f"solved (1 <= B_Q <= cap) : {r['solved']}")
+    ok &= r["solved"] and (r["B_Q"] == 6) and (r["cap"] == 85)
+    d.append(f"pinned threshold: a >= {r.get('safe_min_agreement')} safe, "
+             f"a = {r.get('first_unsafe_agreement')} unsafe")
+    ok &= (r.get("safe_min_agreement") == 507) and (r.get("first_unsafe_agreement") == 506)
+    # cross-check against the on-main board record (tangent506-exact-gate)
+    d.append("matches board tangent506-exact-gate (506 unsafe / 507 safe) : "
+             f"{r.get('first_unsafe_agreement') == 506 and r.get('safe_min_agreement') == 507}")
+    return ok, d
+
+
+def check_solved_region_boundary():
+    """The solved region is EXACTLY B_Q <= floor((n-k)/3): at n=512, rho=1/2 (cap=85),
+    B_Q=85 is solved, B_Q=86 exits the region; B_Q=0 (q<=2^128) does not apply."""
+    d = []
+    ok = True
+    n = 512
+    cap = (512 - 256) // 3
+    inside = solved_region((1, 2), n, 85 * TWO128 + 1)     # B_Q = 85 = cap
+    outside = solved_region((1, 2), n, 86 * TWO128)        # B_Q = 86 > cap
+    degenerate = solved_region((1, 2), n, TWO128 - 1)      # B_Q = 0 -> compiler n/a
+    d.append(f"cap = floor((n-k)/3) = {cap}")
+    d.append(f"B_Q = {cap} (= cap)  solved : {inside['solved']}")
+    d.append(f"B_Q = {cap + 1} (> cap)  solved : {outside['solved']} (expect False)")
+    d.append(f"B_Q = 0 (q <= 2^128)  solved : {degenerate['solved']} (expect False; compiler n/a)")
+    ok &= inside["solved"] and (not outside["solved"]) and (not degenerate["solved"])
+    return ok, d
+
+
+def _pending():
+    return None, ["PENDING -- added in a later loop iteration"]
+
+
+CHECKS = [
+    ("compiler formula / flagship anchor", check_flagship_anchor),
+    ("solved-region boundary",             check_solved_region_boundary),
+    ("multi-rate envelope grid",           _pending),
+    ("high-agreement scope vs Johnson",    _pending),
+    ("emit envelope map artifact",         _pending),
+]
+
+
+def main():
+    print("=" * 74)
+    print("Step 5: carve the SOLVED high-agreement region of the prize envelope")
+    print("compiler: 1 <= B_Q=floor(q/2^128) <= floor((n-k)/3)  =>  threshold pinned at r=B_Q")
+    print("=" * 74)
+    failed = done = pending = 0
+    for title, fn in CHECKS:
+        status, details = fn()
+        tag = "PENDING" if status is None else ("PASS" if status else "FAIL")
+        if status is None:
+            pending += 1
+        elif status:
+            done += 1
+        else:
+            failed += 1
+        print(f"\n[{tag:7}] {title}")
+        for line in details:
+            print(f"          {line}")
+    print("\n" + "-" * 74)
+    print(f"implemented PASS: {done}   FAIL: {failed}   PENDING: {pending}")
+    print("-" * 74)
+    if failed:
+        raise SystemExit(1)
+
+
+if __name__ == "__main__":
+    main()
