@@ -950,3 +950,22 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-06-30 - Step 5 envelope-carving map (PR #153), loop iter 1
+
+- **Agent/model:** Claude Opus 4.8, branch `allen/step5-envelope-map`, PR #153.
+- **Files added or changed:** `experimental/scripts/verify_step5_envelope_carving.py`,
+  `experimental/notes/audits/audit_step5_envelope_carving.md`, `experimental/agents-log.md`.
+- **Status:** PROVED-COMPILER-ARITHMETIC / AUDIT (Lane V).
+- **What is being added:** Closes `towards-prize.md` S1 step 5 (carve the solved
+  high-agreement region). `solved_region(rho,n,q)` applies the compiler `1 <= B_Q =
+  floor(q/2^128) <= floor((n-k)/3) => threshold pinned at r=B_Q`. Iter 1: flagship
+  anchor (B_Q=6<=cap=85, a>=507 safe / a=506 unsafe, matches board `tangent506-exact-gate`)
+  + solved-region boundary (exactly `B_Q<=floor((n-k)/3)`). Verifier exits 0: 2 PASS, 3 PENDING.
+- **How it is useful:** Turns the high-agreement compiler into a concrete "which rows
+  are solved" envelope map. Honest scope: high-agreement only (radius ~B_Q/n, far below
+  Johnson); not the near-capacity prize content.
+- **What to do next:** Loop (60s cadence) adds multi-rate grid, Johnson-scope comparison,
+  emitted map artifact; then PR B = step 1 (official-sampler reconciliation). Steps 2-4
+  already on `main` (certified + V1-verified); their only residue is Paper 1/2 write-ups
+  in `tex/` (off-lane).
