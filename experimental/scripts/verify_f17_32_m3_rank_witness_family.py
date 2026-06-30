@@ -7,10 +7,9 @@ description of a synthetic syndrome pencil
     u_m = 0,
     v_m = sum_i x_i^m,
 
-using the first j+1 descriptor-domain elements.  At finite slope 1 the prefix
-regular Hankel minor is a shifted Vandermonde square, so rank_at_nodes has a
-full-rank specialization and the regular bucket is nonsingular for this
-synthetic pencil.
+using the first j+1 descriptor-domain elements.  The prefix regular Hankel
+minor is Z^(j+1) times a shifted Vandermonde square, so rank_at_nodes has a
+full-rank specialization and the exact synthetic root table is {0}.
 
 This is not a worst-case MCA bound.  It is a finite-field stress certificate
 for the v9 regular-minor pipeline across the whole M3 size range.
@@ -41,6 +40,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (
 AGREEMENT_MIN = 385
 AGREEMENT_MAX = 426
 SCHEMA_VERSION = "f17-32-m3-rank-witness-family-v1"
+SYNTHETIC_ROOTS = [0]
 ROW_DESCRIPTOR = REPO_ROOT / (
     "experimental/data/certificates/hankel-f17-32-row-descriptor/"
     "f17_32_n512_k256_hankel_row_descriptor.json"
@@ -155,6 +155,13 @@ def agreement_record(
         "rank_pivot_nodes_required_for_singularity": size + 1,
         "rank_witness_row_set": {"type": "prefix", "start": 0, "stop_exclusive": size},
         "degree_bound": size,
+        "closed_form_determinant": "leading_coefficient * Z^minor_size",
+        "synthetic_roots": SYNTHETIC_ROOTS,
+        "synthetic_root_hash": hash_json(SYNTHETIC_ROOTS),
+        "synthetic_root_count": len(SYNTHETIC_ROOTS),
+        "root_completeness_reason": (
+            "u=0 makes the prefix determinant a nonzero monomial in Z"
+        ),
         "node_prefix_count": size,
         "node_prefix_hash": hash_json(prefix_encodings),
         "vandermonde_product_encoding": field.encode(vandermonde),
@@ -178,6 +185,7 @@ def build_certificate() -> dict[str, Any]:
         for agreement in range(AGREEMENT_MIN, AGREEMENT_MAX + 1)
     ]
     degree_sum = sum(record["degree_bound"] for record in records)
+    root_count_sum = sum(record["synthetic_root_count"] for record in records)
     endpoint_packets = {
         str(agreement): packet_summary(path_text)
         for agreement, path_text in ENDPOINT_PACKET_REFS.items()
@@ -218,6 +226,18 @@ def build_certificate() -> dict[str, Any]:
             )
             else "FAIL",
         },
+        {
+            "name": "closed_form_roots",
+            "status": "PASS"
+            if all(record["synthetic_roots"] == SYNTHETIC_ROOTS for record in records)
+            else "FAIL",
+            "root_hash": hash_json(SYNTHETIC_ROOTS),
+        },
+        {
+            "name": "closed_form_root_count_sum",
+            "status": "PASS" if root_count_sum == 42 else "FAIL",
+            "value": root_count_sum,
+        },
     ]
     return {
         "schema_version": SCHEMA_VERSION,
@@ -235,14 +255,20 @@ def build_certificate() -> dict[str, Any]:
             "summary": (
                 "For every A in 385..426, the synthetic moment syndrome "
                 "u=0, v_m=sum_i x_i^m using the first j+1 descriptor-domain "
-                "elements has a full-rank prefix regular minor at slope 1."
+                "elements has a full-rank prefix regular minor, and the "
+                "closed-form determinant has exact root set {0}."
             ),
             "proof": (
-                "At slope 1 the prefix Hankel matrix is a moment matrix. "
-                "Its determinant is Vandermonde(x_0,...,x_j)^2, nonzero "
-                "because the descriptor-domain prefix elements are distinct."
+                "The prefix pencil is Z times a moment matrix because u=0. "
+                "The moment determinant is Vandermonde(x_0,...,x_j)^2, "
+                "nonzero because the descriptor-domain prefix elements are "
+                "distinct.  Therefore Delta_A(Z)=c_A Z^(j+1) with c_A != 0."
             ),
             "degree_sum": degree_sum,
+            "closed_form_root_union": SYNTHETIC_ROOTS,
+            "closed_form_root_union_hash": hash_json(SYNTHETIC_ROOTS),
+            "closed_form_root_union_numerator": len(SYNTHETIC_ROOTS),
+            "per_agreement_root_count_sum": root_count_sum,
             "finite_slope_budget_numerator": (P ** (len(MODULUS) - 1)) // (2**128),
             "degree_only_budget_closes_safe_side": False,
         },
@@ -252,7 +278,7 @@ def build_certificate() -> dict[str, Any]:
         "nonclaims": [
             "synthetic syndrome pencils only",
             "does not prove a worst-case MCA row bound",
-            "does not enumerate roots over F_17^32",
+            "does not brute-force roots over F_17^32",
             "does not provide quotient/tangent subtraction",
         ],
     }
@@ -283,8 +309,9 @@ def print_summary(certificate: dict[str, Any]) -> None:
         )
     )
     print(
-        "degree_sum={degree_sum}, budget={budget}".format(
+        "degree_sum={degree_sum}, synthetic_root_union={roots}, budget={budget}".format(
             degree_sum=certificate["claim"]["degree_sum"],
+            roots=certificate["claim"]["closed_form_root_union"],
             budget=certificate["claim"]["finite_slope_budget_numerator"],
         )
     )

@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 M3 synthetic closed-form roots
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank_witness_family.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank-witness-family/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the synthetic finite replay.
+- **What is being added:** The all-window synthetic M3 family certificate now
+  records the closed-form determinant `Delta_A(Z)=c_A Z^(j+1)` with
+  `c_A != 0`, so every agreement in `385..426` has exact synthetic root table
+  `{0}`.
+- **How it is useful:** This demonstrates a compressed root-table certificate
+  over the pinned `F_17^32` model and sharpens the synthetic stress family from
+  degree-only bounds to exact roots.
+- **What to do next:** Apply the same root-certificate discipline to actual M3
+  row-data pencils, then combine the resulting aperiodic counts with the
+  tangent and quotient ledgers.
+
 ### 2026-06-30 - Small-field root-table completeness audit
 
 - **Agent/model:** AllenGrahamHart / Codex.

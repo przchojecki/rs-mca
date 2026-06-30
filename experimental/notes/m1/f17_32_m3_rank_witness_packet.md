@@ -94,6 +94,18 @@ for every agreement in `385..426` without emitting all 42 full v9 packets.  It
 stores one compact record per agreement and hashes the two endpoint v9 packets
 as concrete replays of the extractor/checker path.
 
+For the synthetic family, there is also a closed-form root certificate.  Since
+`u=0`, the prefix determinant is
+
+```text
+Delta_A(Z) = c_A Z^(j+1),
+```
+
+where `c_A` is the nonzero Vandermonde-square leading coefficient recorded in
+the certificate.  Thus the exact synthetic root table is `{0}` for every
+`A=385..426`; the certificate records root union `{0}` and per-agreement root
+count sum `42`.
+
 ## Why This Matters
 
 The previous generic theorem proves that regular minors are not structurally
@@ -102,11 +114,12 @@ packet pipeline over the pinned `F_17^32` field model and row descriptor.  They
 are concrete large-field stress tests for the M3 regular-window audit at the
 largest and smallest minor sizes.
 
-These results are still too weak to close the safe side: even the smaller
-endpoint degree bound `87` exceeds the finite-slope budget numerator `6`.  To
-become a threshold certificate, a future packet needs root
-enumeration/compression, a sharper eliminant, or a pivot-chart classification
-after tangent and quotient ledgers are subtracted.
+The endpoint v9 packets still carry only rank-witness degree bounds; the family
+certificate shows how a compressed closed-form root table can look when the
+syndrome pencil is structured.  This does not close the safe side for the row:
+a future threshold packet needs actual M3 row data, tangent/quotient
+subtraction, and root tables or pivot-chart classifications for those actual
+pencils.
 
 ## Verification
 
@@ -139,4 +152,5 @@ python3 experimental/scripts/verify_f17_32_m3_rank_witness_family.py \
 ```
 
 Non-claims: this is a synthetic syndrome pencil, not a worst-case MCA row bound,
-not a root table over `F_17^32`, and not a quotient/tangent subtraction table.
+not a brute-force root enumeration over `F_17^32`, and not a quotient/tangent
+subtraction table.

@@ -17,9 +17,11 @@ v_m = sum_i x_i^m
 ```
 
 with the first `j+1` descriptor-domain elements.  At slope `1`, the prefix
-regular Hankel minor is a Vandermonde square, so it is nonzero.  The certificate
-records the resulting degree bound for all 42 agreements and links the endpoint
-v9 packets at `A=385` and `A=426`.
+regular Hankel minor is a nonzero Vandermonde square.  As a polynomial in the
+slope parameter, the determinant is therefore a nonzero scalar times
+`Z^(j+1)`, so its exact synthetic root table is `{0}`.  The certificate records
+both the degree bound and this closed-form root certificate for all 42
+agreements, and links the endpoint v9 packets at `A=385` and `A=426`.
 
 Run:
 
@@ -29,5 +31,5 @@ python3 experimental/scripts/verify_f17_32_m3_rank_witness_family.py \
 ```
 
 Non-claims: this is a synthetic witness-family certificate, not a worst-case MCA
-bound, not a root table over `F_17^32`, and not a quotient/tangent subtraction
-table.
+bound for the row, not a brute-force root enumeration over `F_17^32`, and not a
+quotient/tangent subtraction table.

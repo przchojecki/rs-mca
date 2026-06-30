@@ -2,6 +2,7 @@
   "agreements": [
     {
       "A": 385,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 128,
       "j": 127,
       "leading_coefficient_encoding": 1960127525760963954976810457703429629095,
@@ -17,13 +18,20 @@
         "stop_exclusive": 128,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 129,
       "vandermonde_product_encoding": 1442303266353718182582541126167929149753
     },
     {
       "A": 386,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 127,
       "j": 126,
       "leading_coefficient_encoding": 496073742394775788598166928489200568658,
@@ -39,13 +47,20 @@
         "stop_exclusive": 127,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 130,
       "vandermonde_product_encoding": 319278768228821373255275556231410355830
     },
     {
       "A": 387,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 126,
       "j": 125,
       "leading_coefficient_encoding": 1812083095683987272151378733457441781395,
@@ -61,13 +76,20 @@
         "stop_exclusive": 126,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 131,
       "vandermonde_product_encoding": 1713900030201128284193944156152292852946
     },
     {
       "A": 388,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 125,
       "j": 124,
       "leading_coefficient_encoding": 801602236823272202298702624015334190399,
@@ -83,13 +105,20 @@
         "stop_exclusive": 125,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 132,
       "vandermonde_product_encoding": 1370428967695195231846436961082535040590
     },
     {
       "A": 389,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 124,
       "j": 123,
       "leading_coefficient_encoding": 353908664811310541551848142583756076095,
@@ -105,13 +134,20 @@
         "stop_exclusive": 124,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 133,
       "vandermonde_product_encoding": 234805518827481851098117304777935057645
     },
     {
       "A": 390,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 123,
       "j": 122,
       "leading_coefficient_encoding": 342634331139171815574309265824355558334,
@@ -127,13 +163,20 @@
         "stop_exclusive": 123,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 134,
       "vandermonde_product_encoding": 1017152962221881189297336295912219312586
     },
     {
       "A": 391,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 122,
       "j": 121,
       "leading_coefficient_encoding": 1710840598805328105053886624336408118149,
@@ -149,13 +192,20 @@
         "stop_exclusive": 122,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 135,
       "vandermonde_product_encoding": 144820048953672480806756858159901794400
     },
     {
       "A": 392,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 121,
       "j": 120,
       "leading_coefficient_encoding": 2195971428518805751996365415031908500830,
@@ -171,13 +221,20 @@
         "stop_exclusive": 121,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 136,
       "vandermonde_product_encoding": 905696134646466656696451769112704666775
     },
     {
       "A": 393,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 120,
       "j": 119,
       "leading_coefficient_encoding": 1820799323371946193183878234070001430955,
@@ -193,13 +250,20 @@
         "stop_exclusive": 120,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 137,
       "vandermonde_product_encoding": 876985603592882879961902077607178729135
     },
     {
       "A": 394,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 119,
       "j": 118,
       "leading_coefficient_encoding": 470938990856930116960320685179333350339,
@@ -215,13 +279,20 @@
         "stop_exclusive": 119,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 138,
       "vandermonde_product_encoding": 354398525623326563768088933022590479979
     },
     {
       "A": 395,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 118,
       "j": 117,
       "leading_coefficient_encoding": 100919767089740780499066295931668351702,
@@ -237,13 +308,20 @@
         "stop_exclusive": 118,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 139,
       "vandermonde_product_encoding": 331029713511286459094945298501039697821
     },
     {
       "A": 396,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 117,
       "j": 116,
       "leading_coefficient_encoding": 1685443426320145250183393507716690895160,
@@ -259,13 +337,20 @@
         "stop_exclusive": 117,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 140,
       "vandermonde_product_encoding": 288894684799806958022401817596130357684
     },
     {
       "A": 397,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 116,
       "j": 115,
       "leading_coefficient_encoding": 1664634994593716759843410256493381111947,
@@ -281,13 +366,20 @@
         "stop_exclusive": 116,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 141,
       "vandermonde_product_encoding": 1259938950699015590693248326269304469518
     },
     {
       "A": 398,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 115,
       "j": 114,
       "leading_coefficient_encoding": 294773241926924909066802979946567578729,
@@ -303,13 +395,20 @@
         "stop_exclusive": 115,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 142,
       "vandermonde_product_encoding": 67200843575339088482823474456291566632
     },
     {
       "A": 399,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 114,
       "j": 113,
       "leading_coefficient_encoding": 71846692608176055586320066844908846896,
@@ -325,13 +424,20 @@
         "stop_exclusive": 114,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 143,
       "vandermonde_product_encoding": 1955248411342466673402690739101309814213
     },
     {
       "A": 400,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 113,
       "j": 112,
       "leading_coefficient_encoding": 1130307758722218882644531062134510475889,
@@ -347,13 +453,20 @@
         "stop_exclusive": 113,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 144,
       "vandermonde_product_encoding": 1205457092703529205075183155188899691086
     },
     {
       "A": 401,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 112,
       "j": 111,
       "leading_coefficient_encoding": 1250918881245057304151093957424794294165,
@@ -369,13 +482,20 @@
         "stop_exclusive": 112,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 145,
       "vandermonde_product_encoding": 1082168510741041559288283996037057463075
     },
     {
       "A": 402,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 111,
       "j": 110,
       "leading_coefficient_encoding": 24734832539777253207071787731201571446,
@@ -391,13 +511,20 @@
         "stop_exclusive": 111,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 146,
       "vandermonde_product_encoding": 1675915113208843634329336691153926261662
     },
     {
       "A": 403,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 110,
       "j": 109,
       "leading_coefficient_encoding": 459947468539296144349069142694475510118,
@@ -413,13 +540,20 @@
         "stop_exclusive": 110,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 147,
       "vandermonde_product_encoding": 34939642453298176290444164090439866782
     },
     {
       "A": 404,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 109,
       "j": 108,
       "leading_coefficient_encoding": 1918575663998876397526365133514413501504,
@@ -435,13 +569,20 @@
         "stop_exclusive": 109,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 148,
       "vandermonde_product_encoding": 451624417430239348885735922655027375054
     },
     {
       "A": 405,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 108,
       "j": 107,
       "leading_coefficient_encoding": 211041704907486732169007754589382378937,
@@ -457,13 +598,20 @@
         "stop_exclusive": 108,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 149,
       "vandermonde_product_encoding": 2340173473896498915050081811566536416700
     },
     {
       "A": 406,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 107,
       "j": 106,
       "leading_coefficient_encoding": 1521820178092625308093349612694629485453,
@@ -479,13 +627,20 @@
         "stop_exclusive": 107,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 150,
       "vandermonde_product_encoding": 613715033906744706909161788039248354972
     },
     {
       "A": 407,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 106,
       "j": 105,
       "leading_coefficient_encoding": 307621075849948038636009236451998818873,
@@ -501,13 +656,20 @@
         "stop_exclusive": 106,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 151,
       "vandermonde_product_encoding": 1764162671233851639377850607099084195701
     },
     {
       "A": 408,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 105,
       "j": 104,
       "leading_coefficient_encoding": 1831202745295413043137036734163137881540,
@@ -523,13 +685,20 @@
         "stop_exclusive": 105,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 152,
       "vandermonde_product_encoding": 1409951053206587923767471973307828849249
     },
     {
       "A": 409,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 104,
       "j": 103,
       "leading_coefficient_encoding": 422187020011215957122005847265015724713,
@@ -545,13 +714,20 @@
         "stop_exclusive": 104,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 153,
       "vandermonde_product_encoding": 856888171167745293066977873520061042523
     },
     {
       "A": 410,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 103,
       "j": 102,
       "leading_coefficient_encoding": 1656892761321802793161410105918804331374,
@@ -567,13 +743,20 @@
         "stop_exclusive": 103,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 154,
       "vandermonde_product_encoding": 1044369682077084398808702405156886279665
     },
     {
       "A": 411,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 102,
       "j": 101,
       "leading_coefficient_encoding": 755831957698730571541985828703222995728,
@@ -589,13 +772,20 @@
         "stop_exclusive": 102,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 155,
       "vandermonde_product_encoding": 1746087967500687072748559691141938546424
     },
     {
       "A": 412,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 101,
       "j": 100,
       "leading_coefficient_encoding": 476489136704274775061167902838876486766,
@@ -611,13 +801,20 @@
         "stop_exclusive": 101,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 156,
       "vandermonde_product_encoding": 2251050377892376921336901055118528240711
     },
     {
       "A": 413,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 100,
       "j": 99,
       "leading_coefficient_encoding": 262241965281328634739489740362727376348,
@@ -633,13 +830,20 @@
         "stop_exclusive": 100,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 157,
       "vandermonde_product_encoding": 2273777933670996575855532567450854693988
     },
     {
       "A": 414,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 99,
       "j": 98,
       "leading_coefficient_encoding": 255878304015780547909485754516290276079,
@@ -655,13 +859,20 @@
         "stop_exclusive": 99,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 158,
       "vandermonde_product_encoding": 514150194009922504821418839267079881958
     },
     {
       "A": 415,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 98,
       "j": 97,
       "leading_coefficient_encoding": 1687488083283963403905718093652314444446,
@@ -677,13 +888,20 @@
         "stop_exclusive": 98,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 159,
       "vandermonde_product_encoding": 1087643364599802475748599918551477778790
     },
     {
       "A": 416,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 97,
       "j": 96,
       "leading_coefficient_encoding": 1733401208212334985416239809861793981134,
@@ -699,13 +917,20 @@
         "stop_exclusive": 97,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 160,
       "vandermonde_product_encoding": 1263370630721176878099403629905581567271
     },
     {
       "A": 417,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 96,
       "j": 95,
       "leading_coefficient_encoding": 1768718544895380476887756296451774298197,
@@ -721,13 +946,20 @@
         "stop_exclusive": 96,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 161,
       "vandermonde_product_encoding": 2011549941882347178417482909791207978161
     },
     {
       "A": 418,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 95,
       "j": 94,
       "leading_coefficient_encoding": 835436229860121537478496103576089233998,
@@ -743,13 +975,20 @@
         "stop_exclusive": 95,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 162,
       "vandermonde_product_encoding": 125461814343005776704601625177812100096
     },
     {
       "A": 419,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 94,
       "j": 93,
       "leading_coefficient_encoding": 89993492769349859364812778941100020881,
@@ -765,13 +1004,20 @@
         "stop_exclusive": 94,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 163,
       "vandermonde_product_encoding": 1568282631176795940563763940766011243687
     },
     {
       "A": 420,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 93,
       "j": 92,
       "leading_coefficient_encoding": 2349370168658727426479015660687837002313,
@@ -787,13 +1033,20 @@
         "stop_exclusive": 93,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 164,
       "vandermonde_product_encoding": 347828153964632197700989437845844073861
     },
     {
       "A": 421,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 92,
       "j": 91,
       "leading_coefficient_encoding": 265816049548075604963879353555399861332,
@@ -809,13 +1062,20 @@
         "stop_exclusive": 92,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 165,
       "vandermonde_product_encoding": 305727721710765527961805475435124696126
     },
     {
       "A": 422,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 91,
       "j": 90,
       "leading_coefficient_encoding": 184521148592075467316957239048914376974,
@@ -831,13 +1091,20 @@
         "stop_exclusive": 91,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 166,
       "vandermonde_product_encoding": 2076227874236272512435126145483524507963
     },
     {
       "A": 423,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 90,
       "j": 89,
       "leading_coefficient_encoding": 2060256867170291804111877656520339314254,
@@ -853,13 +1120,20 @@
         "stop_exclusive": 90,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 167,
       "vandermonde_product_encoding": 1421839333508100428785979449833528151174
     },
     {
       "A": 424,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 89,
       "j": 88,
       "leading_coefficient_encoding": 1283142822677126961532305606241471025383,
@@ -875,13 +1149,20 @@
         "stop_exclusive": 89,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 168,
       "vandermonde_product_encoding": 1787452603378849757400339881535453545484
     },
     {
       "A": 425,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 88,
       "j": 87,
       "leading_coefficient_encoding": 416884347478717958584104368471384620671,
@@ -897,13 +1178,20 @@
         "stop_exclusive": 88,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 169,
       "vandermonde_product_encoding": 1475129969636031925277046719869777090111
     },
     {
       "A": 426,
+      "closed_form_determinant": "leading_coefficient * Z^minor_size",
       "degree_bound": 87,
       "j": 86,
       "leading_coefficient_encoding": 1679562971418113032387101671407887322647,
@@ -919,8 +1207,14 @@
         "stop_exclusive": 87,
         "type": "prefix"
       },
+      "root_completeness_reason": "u=0 makes the prefix determinant a nonzero monomial in Z",
       "status": "PASS",
       "syndrome_length": 256,
+      "synthetic_root_count": 1,
+      "synthetic_root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "synthetic_roots": [
+        0
+      ],
       "t": 170,
       "vandermonde_product_encoding": 1924090593656304490796694840952458886954
     }
@@ -951,18 +1245,34 @@
     {
       "name": "endpoint_packets_match_degrees",
       "status": "PASS"
+    },
+    {
+      "name": "closed_form_roots",
+      "root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+      "status": "PASS"
+    },
+    {
+      "name": "closed_form_root_count_sum",
+      "status": "PASS",
+      "value": 42
     }
   ],
   "claim": {
+    "closed_form_root_union": [
+      0
+    ],
+    "closed_form_root_union_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+    "closed_form_root_union_numerator": 1,
     "degree_only_budget_closes_safe_side": false,
     "degree_sum": 4515,
     "finite_slope_budget_numerator": 6,
-    "proof": "At slope 1 the prefix Hankel matrix is a moment matrix. Its determinant is Vandermonde(x_0,...,x_j)^2, nonzero because the descriptor-domain prefix elements are distinct.",
+    "per_agreement_root_count_sum": 42,
+    "proof": "The prefix pencil is Z times a moment matrix because u=0. The moment determinant is Vandermonde(x_0,...,x_j)^2, nonzero because the descriptor-domain prefix elements are distinct.  Therefore Delta_A(Z)=c_A Z^(j+1) with c_A != 0.",
     "regular_window": {
       "A_max": 426,
       "A_min": 385
     },
-    "summary": "For every A in 385..426, the synthetic moment syndrome u=0, v_m=sum_i x_i^m using the first j+1 descriptor-domain elements has a full-rank prefix regular minor at slope 1."
+    "summary": "For every A in 385..426, the synthetic moment syndrome u=0, v_m=sum_i x_i^m using the first j+1 descriptor-domain elements has a full-rank prefix regular minor, and the closed-form determinant has exact root set {0}."
   },
   "endpoint_v9_packets": {
     "385": {
@@ -989,7 +1299,7 @@
   "nonclaims": [
     "synthetic syndrome pencils only",
     "does not prove a worst-case MCA row bound",
-    "does not enumerate roots over F_17^32",
+    "does not brute-force roots over F_17^32",
     "does not provide quotient/tangent subtraction"
   ],
   "row": {
