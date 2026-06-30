@@ -31,6 +31,8 @@ Exit non-zero iff any implemented check fails.
 """
 from __future__ import annotations
 
+import math  # decimal radii are display-only; PASS assertions use exact integers
+
 TWO128 = 2 ** 128
 RATES = [(1, 2), (1, 4), (1, 8), (1, 16)]   # the four grand-challenge rates
 
@@ -122,6 +124,29 @@ def check_multi_rate_grid():
     return ok, d
 
 
+def check_high_agreement_scope():
+    """HONEST SCOPE: the pinned transition radius ~ B_Q/n sits far BELOW the Johnson
+    radius 1 - sqrt(rho).  Exact test (no floats in the assertion):
+        B_Q/n < 1 - sqrt(k/n)   <=>   k*n < (n - B_Q)^2.
+    So the carved region is the EASY high-agreement slice, not near-capacity content."""
+    d = []
+    ok = True
+    n, q = 512, 17 ** 32
+    b_q = q // TWO128
+    for rho in RATES:
+        k = solved_region(rho, n, q)["k"]
+        below = (k * n < (n - b_q) ** 2)            # exact integer form of pinned < Johnson
+        pinned = b_q / n                            # display only
+        johnson = 1 - math.sqrt(k / n)              # display only
+        d.append(f"  rho={rho[0]}/{rho[1]}: pinned B_Q/n={pinned:.4f}, "
+                 f"Johnson 1-sqrt(rho)={johnson:.4f}; pinned << Johnson "
+                 f"(k*n={k * n} < (n-B_Q)^2={(n - b_q) ** 2}) : {below}")
+        ok &= below
+    d.append("=> the solved region is HIGH-AGREEMENT (radius ~B_Q/n), far below Johnson; "
+             "it carves the EASY slice, NOT the near-capacity prize content.")
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop iteration"]
 
@@ -130,7 +155,7 @@ CHECKS = [
     ("compiler formula / flagship anchor", check_flagship_anchor),
     ("solved-region boundary",             check_solved_region_boundary),
     ("multi-rate envelope grid",           check_multi_rate_grid),
-    ("high-agreement scope vs Johnson",    _pending),
+    ("high-agreement scope vs Johnson",    check_high_agreement_scope),
     ("emit envelope map artifact",         _pending),
 ]
 

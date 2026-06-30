@@ -28,7 +28,7 @@ Rows meeting `1 <= B_Q <= floor((n-k)/3)` are the **solved high-agreement region
 | 1 | compiler formula + flagship anchor | **done** |
 | 2 | solved-region boundary (`B_Q <= floor((n-k)/3)`) | **done** |
 | 3 | multi-rate envelope grid (rho in {1/2,1/4,1/8,1/16}) | **done** |
-| 4 | high-agreement scope vs the Johnson radius | pending |
+| 4 | high-agreement scope vs the Johnson radius | **done** |
 | 5 | emit the envelope-map artifact (table / JSON) | pending |
 
 ### Verified so far
@@ -45,6 +45,12 @@ Rows meeting `1 <= B_Q <= floor((n-k)/3)` are the **solved high-agreement region
   pinned threshold is `a >= 507` for all (fixed by `B_Q`). Each rate's solved boundary is
   exactly `B_Q <= cap` (`cap` in, `cap+1` out). A large row `n=2^20, rho=1/2` is also
   solved at this `q`, pinned at `a = n - B_Q + 1`.
+- **High-agreement scope vs Johnson.** The pinned transition radius `~ B_Q/n` (`6/512 ~
+  0.0117` here) is far **below** the Johnson radius `1 - sqrt(rho)` (`0.293, 0.500, 0.646,
+  0.750` for the four rates). Verified by the exact integer inequality
+  `B_Q/n < 1 - sqrt(k/n)  <=>  k*n < (n - B_Q)^2` (no floats in the assertion). This makes
+  explicit that the carved region is the **easy** high-agreement slice; it does not touch
+  the near-capacity band where the prize-determining content lives.
 
 ## Honest scope
 
