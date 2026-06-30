@@ -99,7 +99,9 @@ now emits this as a `regular_minor_gcd` v9 packet over prime fields and
 polynomial-basis extension fields.  The checker verifies gcd divisibility,
 exact roots in small fields, degree-bound root hashes in large fields, and
 replays each recorded minor polynomial against the SHA-checked extractor input
-at `j+2` finite slopes.
+at `j+2` finite slopes.  It also recomputes the monic common gcd of the
+audited nonzero minors; divisibility by the advertised polynomial is not enough,
+because a proper common divisor can miss simultaneous rank-defect roots.
 The `F_17^2` replay checks exact extension roots; the first `F_17^32` toy uses
 the pinned extension-field model and reports a degree bound without enumerating
 the slope field.
@@ -460,6 +462,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 ! python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-gcd-toy/invalid_bad_minor_replay_packet.json
+
+! python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-gcd-toy/invalid_proper_gcd_divisor_packet.json
 
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_2_n16_k8_a13_gcd_toy.json \

@@ -23,6 +23,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/regular-minor-gcd-toy/invalid_bad_minor_replay_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-gcd-toy/invalid_proper_gcd_divisor_packet.json
 ```
 
 Non-claims: this is a finite prime-field toy replay, not an F17^32
@@ -32,4 +35,7 @@ common-gcd gate over a polynomial-basis extension field.
 The `invalid_bad_minor_replay_packet.json` fixture keeps gcd divisibility and
 the root table intact, but scales one recorded minor away from the SHA-checked
 Hankel input.  The generic checker must reject it by replaying determinant
-values from the extractor input.
+values from the extractor input.  The `invalid_proper_gcd_divisor_packet.json`
+fixture advertises the proper common divisor `1`; it must fail because the
+reduction needs the greatest common divisor, not just any divisor of all
+audited minors.

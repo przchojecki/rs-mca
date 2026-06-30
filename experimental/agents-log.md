@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Common-gcd exactness gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/regular-minor-gcd-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT for the generic v9 checker.
+- **What is being added:** `regular_minor_gcd` validation now recomputes the
+  monic gcd of the audited nonzero minor polynomials and compares it with the
+  advertised gcd up to scalar.  A negative fixture advertises the proper common
+  divisor `1`, which preserves divisibility but loses the required containment.
+- **How it is useful:** The regular-bucket common-gcd reduction only contains
+  all rank-defect slopes for the greatest common divisor, not for an arbitrary
+  common divisor.  This closes a proof-critical audit gap before using the gate
+  for M1/M3 row certificates.
+- **What to do next:** Keep exact-gcd recomputation enabled for future
+  compressed certificates, or replace it only with an independently replayable
+  proof that the compressed object is the true gcd.
+
 ### 2026-06-30 - Common-gcd minor replay gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

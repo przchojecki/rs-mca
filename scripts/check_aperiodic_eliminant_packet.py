@@ -263,6 +263,23 @@ def ppoly_gcd(left: list[int], right: list[int], prime: int) -> list[int]:
     return [(coeff * inv_lead) % prime for coeff in a]
 
 
+def ppoly_monic(poly: list[int], prime: int) -> list[int]:
+    out = ppoly_trim(poly, prime)
+    if len(out) == 1 and out[0] == 0:
+        return out
+    inv_lead = pow(out[-1], -1, prime)
+    return [(coeff * inv_lead) % prime for coeff in out]
+
+
+def ppoly_gcd_many(polynomials: list[list[int]], prime: int) -> list[int]:
+    if not polynomials:
+        raise PacketError("need a nonzero minor polynomial for common gcd")
+    out = ppoly_trim(polynomials[0], prime)
+    for polynomial in polynomials[1:]:
+        out = ppoly_gcd(out, polynomial, prime)
+    return ppoly_monic(out, prime)
+
+
 def prime_divisors(value: int) -> list[int]:
     out = []
     remaining = value
@@ -554,6 +571,45 @@ def extension_poly_mod(
 ) -> list[tuple[int, ...]]:
     _quotient, remainder = extension_poly_divmod(numerator, denominator, field)
     return remainder
+
+
+def extension_poly_monic(
+    poly: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    out = extension_poly_trim(poly, field)
+    if extension_poly_is_zero(out, field):
+        return out
+    inv_lead = field.inv(out[-1])
+    return extension_poly_trim([field.mul(coeff, inv_lead) for coeff in out], field)
+
+
+def extension_poly_gcd(
+    left: list[tuple[int, ...]],
+    right: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    a = extension_poly_trim(left, field)
+    b = extension_poly_trim(right, field)
+    if extension_poly_is_zero(a, field):
+        return extension_poly_monic(b, field)
+    if extension_poly_is_zero(b, field):
+        return extension_poly_monic(a, field)
+    while not extension_poly_is_zero(b, field):
+        a, b = b, extension_poly_mod(a, b, field)
+    return extension_poly_monic(a, field)
+
+
+def extension_poly_gcd_many(
+    polynomials: list[list[tuple[int, ...]]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    if not polynomials:
+        raise PacketError("need a nonzero extension minor polynomial for common gcd")
+    out = extension_poly_trim(polynomials[0], field)
+    for polynomial in polynomials[1:]:
+        out = extension_poly_gcd(out, polynomial, field)
+    return extension_poly_monic(out, field)
 
 
 def extension_poly_eval(
@@ -2536,6 +2592,8 @@ def validate_regular_minor_gcd(
             f"A={item.get('A')}: minor polynomial records must match row_sets"
         )
     polynomial_by_row_set: dict[tuple[int, ...], list[int]] = {}
+    nonzero_minor_polynomials_mod: list[list[int]] = []
+    nonzero_minor_polynomials_extension: list[list[tuple[int, ...]]] = []
     for index, (expected_row_set, record) in enumerate(zip(row_sets, minor_records)):
         if not isinstance(record, dict):
             raise PacketError(
@@ -2569,7 +2627,8 @@ def validate_regular_minor_gcd(
         polynomial_by_row_set[tuple(row_set)] = polynomial
         if modulus is not None:
             if any(coefficient % modulus != 0 for coefficient in polynomial):
-                degree = poly_degree([coefficient % modulus for coefficient in polynomial])
+                trimmed_polynomial = trim_mod_coefficients(polynomial, modulus)
+                degree = poly_degree(trimmed_polynomial)
                 if degree > item["j"] + 1:
                     raise PacketError(
                         f"A={item.get('A')}: minor polynomial {index} degree exceeds j+1"
@@ -2582,6 +2641,7 @@ def validate_regular_minor_gcd(
                     raise PacketError(
                         f"A={item.get('A')}: gcd does not divide minor polynomial {index}"
                     )
+                nonzero_minor_polynomials_mod.append(trimmed_polynomial)
             elif record.get("degree") != -1:
                 raise PacketError(
                     f"A={item.get('A')}: zero minor polynomial {index} must have degree -1"
@@ -2608,10 +2668,29 @@ def validate_regular_minor_gcd(
                     raise PacketError(
                         f"A={item.get('A')}: gcd does not divide minor polynomial {index}"
                     )
+                nonzero_minor_polynomials_extension.append(
+                    extension_poly_trim(decoded_polynomial, extension_field)
+                )
             elif record.get("degree") != -1:
                 raise PacketError(
                     f"A={item.get('A')}: zero minor polynomial {index} must have degree -1"
                 )
+
+    if modulus is not None:
+        recomputed_gcd = ppoly_gcd_many(nonzero_minor_polynomials_mod, modulus)
+        if ppoly_monic(coefficients, modulus) != recomputed_gcd:
+            raise PacketError(
+                f"A={item.get('A')}: gcd coefficients are not the common gcd"
+            )
+    else:
+        assert extension_field is not None and decoded_coefficients is not None
+        recomputed_gcd = extension_poly_gcd_many(
+            nonzero_minor_polynomials_extension, extension_field
+        )
+        if extension_poly_monic(decoded_coefficients, extension_field) != recomputed_gcd:
+            raise PacketError(
+                f"A={item.get('A')}: extension gcd coefficients are not the common gcd"
+            )
 
     audit = item.get("extractor_audit")
     source = audit.get("row_set_source") if isinstance(audit, dict) else None
