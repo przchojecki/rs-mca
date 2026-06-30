@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Singular pivot toy packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_singular_pivot_toy_packet.py`;
+  `experimental/data/certificates/singular-pivot-toy/`;
+  `experimental/notes/m1/singular_pivot_toy_packet.md`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for a finite toy packet.
+- **What is being added:** A nonzero `F_17` pivot-atlas packet where the
+  regular Hankel bucket is genuinely singular but affine pivots close the
+  finite-slope contribution.  The verifier proves
+  `H(u)+Z H(v)=(Z+5)H(v)`, `rank H(v)=2`, enumerates all 45 split co-supports,
+  and obtains exact root union `{12}`.
+- **How it is useful:** This is the first checked `pivot_atlas` shape in the
+  branch, exercising the v9 singular-bucket workflow without calling an
+  unresolved singular bucket aperiodic evidence.
+- **What to do next:** Apply the same pivot packet discipline to an actual
+  lower-agreement row only after a genuine singular bucket appears there.
+
 ### 2026-06-30 - F17^32 high-agreement tangent table
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -1,0 +1,1381 @@
+{
+  "agreement": {
+    "A": 8,
+    "j": 2,
+    "minor_size": 3,
+    "t": 4
+  },
+  "coverage": {
+    "contained_residual_B_equals_0": 1,
+    "declared_aperiodic_numerator": 1,
+    "pivot_counts": {
+      "B_0": 42,
+      "B_1": 2,
+      "B_2": 0,
+      "B_3": 0
+    },
+    "root_union_mod_17": [
+      12
+    ],
+    "split_cosupport_count": 45
+  },
+  "nonclaims": [
+    "toy row only",
+    "not an F_17^32 row-data packet",
+    "not a prize-row threshold theorem",
+    "not a uniform singular-pivot algorithm"
+  ],
+  "pivot_open_cover": [
+    "B_0 != 0",
+    "B_1 != 0",
+    "B_2 != 0",
+    "B_3 != 0"
+  ],
+  "pivots": {
+    "B_0": {
+      "degree": 1,
+      "eliminant_coefficients_mod_17_ascending": [
+        5,
+        1
+      ],
+      "roots_mod_17": [
+        12
+      ],
+      "status": "eliminant",
+      "support_count": 42
+    },
+    "B_1": {
+      "degree": 1,
+      "eliminant_coefficients_mod_17_ascending": [
+        5,
+        1
+      ],
+      "roots_mod_17": [
+        12
+      ],
+      "status": "eliminant",
+      "support_count": 2
+    },
+    "B_2": {
+      "status": "empty",
+      "support_count": 0
+    },
+    "B_3": {
+      "status": "empty",
+      "support_count": 0
+    }
+  },
+  "regular_bucket_singularity": {
+    "nodes_required_for_singularity_proof": 4,
+    "rank_at_all_finite_slopes": [
+      {
+        "rank": 2,
+        "z": 0
+      },
+      {
+        "rank": 2,
+        "z": 1
+      },
+      {
+        "rank": 2,
+        "z": 2
+      },
+      {
+        "rank": 2,
+        "z": 3
+      },
+      {
+        "rank": 2,
+        "z": 4
+      },
+      {
+        "rank": 2,
+        "z": 5
+      },
+      {
+        "rank": 2,
+        "z": 6
+      },
+      {
+        "rank": 2,
+        "z": 7
+      },
+      {
+        "rank": 2,
+        "z": 8
+      },
+      {
+        "rank": 2,
+        "z": 9
+      },
+      {
+        "rank": 2,
+        "z": 10
+      },
+      {
+        "rank": 2,
+        "z": 11
+      },
+      {
+        "rank": 0,
+        "z": 12
+      },
+      {
+        "rank": 2,
+        "z": 13
+      },
+      {
+        "rank": 2,
+        "z": 14
+      },
+      {
+        "rank": 2,
+        "z": 15
+      },
+      {
+        "rank": 2,
+        "z": 16
+      }
+    ],
+    "rank_at_nodes_certificate": [
+      {
+        "rank": 2,
+        "z": 0
+      },
+      {
+        "rank": 2,
+        "z": 1
+      },
+      {
+        "rank": 2,
+        "z": 2
+      },
+      {
+        "rank": 2,
+        "z": 3
+      }
+    ],
+    "reason": "All 3x3 minors have degree at most 3 and vanish at four distinct slopes, so every maximal regular minor is the zero polynomial."
+  },
+  "row": {
+    "domain": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "domain_description": "first ten nonzero elements of F_17",
+    "domain_hash": "ef58d7c6937c627ace93d94e1045c06ff884c23bbb9f4aa5c1bb276842be4629",
+    "field": "F_17",
+    "k": 4,
+    "n": 10
+  },
+  "schema_version": "singular-pivot-toy-certificate-v1",
+  "status": "PROVED / AUDIT",
+  "support_image_equations": {
+    "A_T": "H(u) ell_T",
+    "B_T": "H(v) ell_T",
+    "contained_residual": "B_T = 0 forces A_T = 0 because u=5v",
+    "finite_bad_condition": "A_T + Z B_T = 0 and B_T != 0",
+    "locator": "ell_T(X)=prod_{x in T}(X-x), coefficients low-to-high"
+  },
+  "support_records": [
+    {
+      "A": [
+        10,
+        13,
+        5,
+        15
+      ],
+      "B": [
+        2,
+        6,
+        1,
+        3
+      ],
+      "T": [
+        1,
+        2
+      ],
+      "locator_coefficients": [
+        2,
+        14,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        12,
+        7,
+        14,
+        11
+      ],
+      "B": [
+        16,
+        15,
+        13,
+        9
+      ],
+      "T": [
+        1,
+        3
+      ],
+      "locator_coefficients": [
+        3,
+        13,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        14,
+        1,
+        6,
+        7
+      ],
+      "B": [
+        13,
+        7,
+        8,
+        15
+      ],
+      "T": [
+        1,
+        4
+      ],
+      "locator_coefficients": [
+        4,
+        12,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        16,
+        12,
+        15,
+        3
+      ],
+      "B": [
+        10,
+        16,
+        3,
+        4
+      ],
+      "T": [
+        1,
+        5
+      ],
+      "locator_coefficients": [
+        5,
+        11,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        1,
+        6,
+        7,
+        16
+      ],
+      "B": [
+        7,
+        8,
+        15,
+        10
+      ],
+      "T": [
+        1,
+        6
+      ],
+      "locator_coefficients": [
+        6,
+        10,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        3,
+        0,
+        16,
+        12
+      ],
+      "B": [
+        4,
+        0,
+        10,
+        16
+      ],
+      "T": [
+        1,
+        7
+      ],
+      "locator_coefficients": [
+        7,
+        9,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        5,
+        11,
+        8,
+        8
+      ],
+      "B": [
+        1,
+        9,
+        5,
+        5
+      ],
+      "T": [
+        1,
+        8
+      ],
+      "locator_coefficients": [
+        8,
+        8,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        7,
+        5,
+        0,
+        4
+      ],
+      "B": [
+        15,
+        1,
+        0,
+        11
+      ],
+      "T": [
+        1,
+        9
+      ],
+      "locator_coefficients": [
+        9,
+        7,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        9,
+        16,
+        9,
+        0
+      ],
+      "B": [
+        12,
+        10,
+        12,
+        0
+      ],
+      "T": [
+        1,
+        10
+      ],
+      "locator_coefficients": [
+        10,
+        6,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "B": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "T": [
+        2,
+        3
+      ],
+      "locator_coefficients": [
+        6,
+        12,
+        1
+      ],
+      "pivot": null,
+      "slope": null,
+      "status": "contained_residual_B_equals_0"
+    },
+    {
+      "A": [
+        12,
+        2,
+        6,
+        1
+      ],
+      "B": [
+        16,
+        14,
+        8,
+        7
+      ],
+      "T": [
+        2,
+        4
+      ],
+      "locator_coefficients": [
+        8,
+        11,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        7,
+        4,
+        12,
+        2
+      ],
+      "B": [
+        15,
+        11,
+        16,
+        14
+      ],
+      "T": [
+        2,
+        5
+      ],
+      "locator_coefficients": [
+        10,
+        10,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        2,
+        6,
+        1,
+        3
+      ],
+      "B": [
+        14,
+        8,
+        7,
+        4
+      ],
+      "T": [
+        2,
+        6
+      ],
+      "locator_coefficients": [
+        12,
+        9,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        14,
+        8,
+        7,
+        4
+      ],
+      "B": [
+        13,
+        5,
+        15,
+        11
+      ],
+      "T": [
+        2,
+        7
+      ],
+      "locator_coefficients": [
+        14,
+        8,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        9,
+        10,
+        13,
+        5
+      ],
+      "B": [
+        12,
+        2,
+        6,
+        1
+      ],
+      "T": [
+        2,
+        8
+      ],
+      "locator_coefficients": [
+        16,
+        7,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        4,
+        12,
+        2,
+        6
+      ],
+      "B": [
+        11,
+        16,
+        14,
+        8
+      ],
+      "T": [
+        2,
+        9
+      ],
+      "locator_coefficients": [
+        1,
+        6,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        16,
+        14,
+        8,
+        7
+      ],
+      "B": [
+        10,
+        13,
+        5,
+        15
+      ],
+      "T": [
+        2,
+        10
+      ],
+      "locator_coefficients": [
+        3,
+        5,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        10,
+        3,
+        6,
+        12
+      ],
+      "B": [
+        2,
+        4,
+        8,
+        16
+      ],
+      "T": [
+        3,
+        4
+      ],
+      "locator_coefficients": [
+        12,
+        10,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        15,
+        13,
+        9,
+        1
+      ],
+      "B": [
+        3,
+        6,
+        12,
+        7
+      ],
+      "T": [
+        3,
+        5
+      ],
+      "locator_coefficients": [
+        15,
+        9,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        3,
+        6,
+        12,
+        7
+      ],
+      "B": [
+        4,
+        8,
+        16,
+        15
+      ],
+      "T": [
+        3,
+        6
+      ],
+      "locator_coefficients": [
+        1,
+        8,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        8,
+        16,
+        15,
+        13
+      ],
+      "B": [
+        5,
+        10,
+        3,
+        6
+      ],
+      "T": [
+        3,
+        7
+      ],
+      "locator_coefficients": [
+        4,
+        7,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        13,
+        9,
+        1,
+        2
+      ],
+      "B": [
+        6,
+        12,
+        7,
+        14
+      ],
+      "T": [
+        3,
+        8
+      ],
+      "locator_coefficients": [
+        7,
+        6,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "B": [
+        7,
+        14,
+        11,
+        5
+      ],
+      "T": [
+        3,
+        9
+      ],
+      "locator_coefficients": [
+        10,
+        5,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        6,
+        12,
+        7,
+        14
+      ],
+      "B": [
+        8,
+        16,
+        15,
+        13
+      ],
+      "T": [
+        3,
+        10
+      ],
+      "locator_coefficients": [
+        13,
+        4,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        6,
+        5,
+        6,
+        0
+      ],
+      "B": [
+        8,
+        1,
+        8,
+        0
+      ],
+      "T": [
+        4,
+        5
+      ],
+      "locator_coefficients": [
+        3,
+        8,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        4,
+        6,
+        6,
+        11
+      ],
+      "B": [
+        11,
+        8,
+        8,
+        9
+      ],
+      "T": [
+        4,
+        6
+      ],
+      "locator_coefficients": [
+        7,
+        7,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        2,
+        7,
+        6,
+        5
+      ],
+      "B": [
+        14,
+        15,
+        8,
+        1
+      ],
+      "T": [
+        4,
+        7
+      ],
+      "locator_coefficients": [
+        11,
+        6,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        0,
+        8,
+        6,
+        16
+      ],
+      "B": [
+        0,
+        5,
+        8,
+        10
+      ],
+      "T": [
+        4,
+        8
+      ],
+      "locator_coefficients": [
+        15,
+        5,
+        1
+      ],
+      "pivot": "B_1",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        15,
+        9,
+        6,
+        10
+      ],
+      "B": [
+        3,
+        12,
+        8,
+        2
+      ],
+      "T": [
+        4,
+        9
+      ],
+      "locator_coefficients": [
+        2,
+        4,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        13,
+        10,
+        6,
+        4
+      ],
+      "B": [
+        6,
+        2,
+        8,
+        11
+      ],
+      "T": [
+        4,
+        10
+      ],
+      "locator_coefficients": [
+        6,
+        3,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        5,
+        6,
+        0,
+        15
+      ],
+      "B": [
+        1,
+        8,
+        0,
+        3
+      ],
+      "T": [
+        5,
+        6
+      ],
+      "locator_coefficients": [
+        13,
+        6,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        13,
+        15,
+        14,
+        14
+      ],
+      "B": [
+        6,
+        3,
+        13,
+        13
+      ],
+      "T": [
+        5,
+        7
+      ],
+      "locator_coefficients": [
+        1,
+        5,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        4,
+        7,
+        11,
+        13
+      ],
+      "B": [
+        11,
+        15,
+        9,
+        6
+      ],
+      "T": [
+        5,
+        8
+      ],
+      "locator_coefficients": [
+        6,
+        4,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        12,
+        16,
+        8,
+        12
+      ],
+      "B": [
+        16,
+        10,
+        5,
+        16
+      ],
+      "T": [
+        5,
+        9
+      ],
+      "locator_coefficients": [
+        11,
+        3,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        3,
+        8,
+        5,
+        11
+      ],
+      "B": [
+        4,
+        5,
+        1,
+        9
+      ],
+      "T": [
+        5,
+        10
+      ],
+      "locator_coefficients": [
+        16,
+        2,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        7,
+        6,
+        5,
+        6
+      ],
+      "B": [
+        15,
+        8,
+        1,
+        8
+      ],
+      "T": [
+        6,
+        7
+      ],
+      "locator_coefficients": [
+        8,
+        4,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        8,
+        6,
+        16,
+        10
+      ],
+      "B": [
+        5,
+        8,
+        10,
+        2
+      ],
+      "T": [
+        6,
+        8
+      ],
+      "locator_coefficients": [
+        14,
+        3,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        9,
+        6,
+        10,
+        14
+      ],
+      "B": [
+        12,
+        8,
+        2,
+        13
+      ],
+      "T": [
+        6,
+        9
+      ],
+      "locator_coefficients": [
+        3,
+        2,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        10,
+        6,
+        4,
+        1
+      ],
+      "B": [
+        2,
+        8,
+        11,
+        7
+      ],
+      "T": [
+        6,
+        10
+      ],
+      "locator_coefficients": [
+        9,
+        1,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        12,
+        5,
+        4,
+        7
+      ],
+      "B": [
+        16,
+        1,
+        11,
+        15
+      ],
+      "T": [
+        7,
+        8
+      ],
+      "locator_coefficients": [
+        5,
+        2,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        6,
+        13,
+        12,
+        16
+      ],
+      "B": [
+        8,
+        6,
+        16,
+        10
+      ],
+      "T": [
+        7,
+        9
+      ],
+      "locator_coefficients": [
+        12,
+        1,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        0,
+        4,
+        3,
+        8
+      ],
+      "B": [
+        0,
+        11,
+        4,
+        5
+      ],
+      "T": [
+        7,
+        10
+      ],
+      "locator_coefficients": [
+        2,
+        0,
+        1
+      ],
+      "pivot": "B_1",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        3,
+        3,
+        14,
+        1
+      ],
+      "B": [
+        4,
+        4,
+        13,
+        7
+      ],
+      "T": [
+        8,
+        9
+      ],
+      "locator_coefficients": [
+        4,
+        0,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        7,
+        2,
+        2,
+        15
+      ],
+      "B": [
+        15,
+        14,
+        14,
+        3
+      ],
+      "T": [
+        8,
+        10
+      ],
+      "locator_coefficients": [
+        12,
+        16,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    },
+    {
+      "A": [
+        14,
+        0,
+        1,
+        5
+      ],
+      "B": [
+        13,
+        0,
+        7,
+        1
+      ],
+      "T": [
+        9,
+        10
+      ],
+      "locator_coefficients": [
+        5,
+        15,
+        1
+      ],
+      "pivot": "B_0",
+      "slope": 12,
+      "status": "affine_pivot_eliminant"
+    }
+  ],
+  "syndrome_pencil": {
+    "hankel_v_rank": 2,
+    "regular_matrix": "H(u)+Z H(v) = (Z+5) H(v)",
+    "relation": "u = 5 v",
+    "u": [
+      10,
+      8,
+      14,
+      5,
+      9,
+      15
+    ],
+    "v": [
+      2,
+      5,
+      13,
+      1,
+      12,
+      3
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "agreement_threshold": 8,
+  "declared_aperiodic_numerator": 1,
+  "exact_agreements": [
+    {
+      "A": 8,
+      "charts": [
+        {
+          "chart_id": "split_cosupports_size_2",
+          "coverage_ref": "experimental/data/certificates/singular-pivot-toy/f17_n10_k4_a8_singular_pivot_certificate.json#/coverage",
+          "equations_ref": "experimental/data/certificates/singular-pivot-toy/f17_n10_k4_a8_singular_pivot_certificate.json#/support_image_equations",
+          "inequations_ref": "experimental/data/certificates/singular-pivot-toy/f17_n10_k4_a8_singular_pivot_certificate.json#/pivot_open_cover",
+          "pivot_records": [
+            {
+              "degree": 1,
+              "eliminant_ref": "experimental/data/certificates/singular-pivot-toy/f17_n10_k4_a8_singular_pivot_certificate.json#/pivots/B_0",
+              "pivot": "B_0 != 0",
+              "status": "eliminant"
+            },
+            {
+              "degree": 1,
+              "eliminant_ref": "experimental/data/certificates/singular-pivot-toy/f17_n10_k4_a8_singular_pivot_certificate.json#/pivots/B_1",
+              "pivot": "B_1 != 0",
+              "status": "eliminant"
+            },
+            {
+              "pivot": "B_2 != 0",
+              "status": "empty"
+            },
+            {
+              "pivot": "B_3 != 0",
+              "status": "empty"
+            }
+          ]
+        }
+      ],
+      "j": 2,
+      "regular_bucket_ref": "experimental/data/certificates/singular-pivot-toy/f17_n10_k4_a8_singular_pivot_certificate.json#/regular_bucket_singularity",
+      "regular_bucket_status": "singular",
+      "status": "pivot_atlas",
+      "t": 4
+    }
+  ],
+  "nonclaims": [
+    "toy row only",
+    "not an F_17^32 row-data packet",
+    "not a prize-row threshold theorem",
+    "not a uniform singular-pivot algorithm"
+  ],
+  "removed_ledgers": [],
+  "root_union_table_ref": "experimental/data/certificates/singular-pivot-toy/f17_n10_k4_a8_singular_pivot_certificate.json#/coverage/root_union_mod_17",
+  "row": {
+    "domain_description": "first ten nonzero elements of F_17",
+    "domain_hash": "ef58d7c6937c627ace93d94e1045c06ff884c23bbb9f4aa5c1bb276842be4629",
+    "field": "F_17",
+    "k": 4,
+    "n": 10
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "status": "PROVED / AUDIT"
+}

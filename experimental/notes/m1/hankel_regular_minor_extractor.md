@@ -216,6 +216,20 @@ experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/
 must fail because it claims the singular conclusion after only three of the
 four required nodes.
 
+The first finite affine pivot-atlas replay is
+
+```text
+experimental/data/certificates/singular-pivot-toy/
+experimental/notes/m1/singular_pivot_toy_packet.md
+```
+
+This is a nonzero singular bucket, not the zero-pencil singular toy.  The
+chosen pencil has `H(u)+Z H(v)=(Z+5)H(v)` with `rank H(v)=2`, so all maximal
+regular minors vanish.  Enumerating the split co-supports and applying the
+exact support-image map closes the affine pivot cover: pivots `B_0` and `B_1`
+both have eliminant `Z+5`, pivots `B_2` and `B_3` are empty, and the only
+`B=0` residual is contained.  The exact finite root union is `{12}`.
+
 ## Non-Claims
 
 This does not solve the `F_17^32` regular window.  In particular, it does not
@@ -224,7 +238,7 @@ yet provide:
 ```text
 an F_17^32 row-data adapter;
 quotient/tangent subtraction for 385 <= A <= 426;
-singular pivot charts.
+actual-row singular pivot charts.
 ```
 
 Those are the next M3/M4 steps.  The present contribution is the reusable
