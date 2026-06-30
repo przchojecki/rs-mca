@@ -103,6 +103,16 @@ def fiber_equation_coefficients(y_point: tuple[int, int], p: int) -> tuple[int, 
     return ((y_num - 3 * y_den) % p, (-2 * y_num) % p, (y_num - y_den) % p)
 
 
+def fiber_discriminant(y_point: tuple[int, int], p: int) -> int:
+    y_num, y_den = y_point
+    return 4 * y_den * (4 * y_num - 3 * y_den) % p
+
+
+def is_square(value: int, p: int) -> bool:
+    value %= p
+    return value == 0 or pow(value, (p - 1) // 2, p) == 1
+
+
 def kernel_coefficients(x_point: tuple[int, int], p: int) -> tuple[int, int, int]:
     x_num, x_den = x_point
     return ((3 * x_num - x_den) % p, 0, x_num % p)
@@ -167,6 +177,42 @@ def check_projective_regular_fibers_are_split() -> None:
                 raise AssertionError(("projective fiber not split", p, y_point, roots))
             checked += 1
     print(f"regular_projective_y_fibers_checked={checked}")
+
+
+def check_projective_fiber_splitting_ledger() -> None:
+    checked = 0
+    split_count = 0
+    nonsplit_count = 0
+    ramified_count = 0
+    infinity_count = 0
+    for p in PRIMES:
+        branch_point = normalize_projective(3, 4, p)
+        for y_point in projective_line(p):
+            roots = projective_split_fiber_roots(y_point, p)
+            discriminant = fiber_discriminant(y_point, p)
+            if y_point == (1, 0):
+                if roots != [(1, 1)] or discriminant != 0:
+                    raise AssertionError(("bad infinity fiber", p, roots, discriminant))
+                infinity_count += 1
+            elif y_point == branch_point:
+                branch_root = ((-pow(3, -1, p)) % p, 1)
+                if roots != [branch_root] or discriminant != 0:
+                    raise AssertionError(("bad branch fiber", p, roots, discriminant))
+                ramified_count += 1
+            elif is_square(discriminant, p):
+                if len(roots) != 2:
+                    raise AssertionError(("expected split fiber", p, y_point, roots))
+                split_count += 1
+            else:
+                if roots:
+                    raise AssertionError(("expected nonsplit fiber", p, y_point, roots))
+                nonsplit_count += 1
+            checked += 1
+    print(f"projective_fiber_splitting_ledger_checks={checked}")
+    print(f"projective_fiber_split_count={split_count}")
+    print(f"projective_fiber_nonsplit_count={nonsplit_count}")
+    print(f"projective_fiber_ramified_count={ramified_count}")
+    print(f"projective_fiber_infinity_count={infinity_count}")
 
 
 def check_projective_resultant_identity() -> None:
@@ -364,6 +410,7 @@ def check_projective_base_field_gate_exactness() -> None:
 def main() -> None:
     check_regular_fibers_are_split()
     check_projective_regular_fibers_are_split()
+    check_projective_fiber_splitting_ledger()
     check_projective_resultant_identity()
     check_product_identity_on_regular_fibers()
     check_kernel_containment_implication()

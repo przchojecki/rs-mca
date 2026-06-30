@@ -72,9 +72,10 @@ selected leaves inject into the finite/projective `z` parameter.  The map
 z |-> y=(1+3z^2)/(1-z)^2
 ```
 
-has projective degree two: every finite `y`-fiber contains at most two finite
-`z` values, and the pole `y=infinity` is the single point `z=1`.  Therefore,
-under the additional injective-`z` hypothesis,
+has projective degree two.  Its finite fibers split over the base field exactly
+when `4y-3` is a square; the ramified fiber `y=3/4` and pole
+`y=infinity` are charged.  Therefore, under the additional injective-`z`
+hypothesis,
 
 ```text
 mu <= 2,

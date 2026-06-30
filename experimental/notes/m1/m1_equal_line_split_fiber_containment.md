@@ -67,6 +67,23 @@ Res_{[Z:T]}(
 Thus `R_h` is not merely an affine chart artifact: it is exactly the norm of
 the homogeneous kernel form along the projective `y`-fiber.
 
+The projective `y`-fiber equation is
+
+```text
+(Y-3W)Z^2 - 2YZT + (Y-W)T^2 = 0,
+```
+
+with discriminant
+
+```text
+Delta_y = 4W(4Y-3W).                               (D)
+```
+
+Hence, for finite `y`, the fiber splits over the base field exactly when
+`4y-3` is a square.  The ramified finite fiber is `y=3/4`, and the projective
+pole `y=infinity` is the double fiber `z=1`.  Both are already charged in the
+singular ledger.
+
 Consequently the gate is exact over the base field on ordinary projective
 fibers:
 
@@ -129,6 +146,10 @@ zero `ZT` coefficient, while the ordinary uncharged fiber has mixed
 coefficient `-2Y`.  The only way this mixed coefficient can vanish is `Y=0`,
 which is the charged fiber `y=0`.  Hence no nonsplit ordinary fiber contributes
 a base-field gate zero.
+
+The discriminant ledger `(D)` makes this field accounting explicit: ordinary
+nonsplit finite fibers are exactly the finite `y` with nonsquare `4y-3`, after
+the charged fibers have been removed.
 
 The finite affine statement from the previous version is the chart `T=V=1`:
 if
@@ -213,10 +234,11 @@ from `m1_equal_line_generic_popularity_budget.md`.
 ## Verification
 
 The companion verifier checks the finite split-fiber identity, the projective
-degree-two fibers, the homogeneous resultant identity `(PR)`, the singular
-support exclusions, and the implications `K_x(z)=0 => R(x,y)=0` and
-`K_x^h(z)=0 => R_h(x,y)=0`, plus the exact equivalence `(EX)` and the absence
-of nonsplit base-field gate zeros, over expanded prime rows:
+degree-two fibers, the discriminant splitting ledger `(D)`, the homogeneous
+resultant identity `(PR)`, the singular support exclusions, and the
+implications `K_x(z)=0 => R(x,y)=0` and `K_x^h(z)=0 => R_h(x,y)=0`, plus the
+exact equivalence `(EX)` and the absence of nonsplit base-field gate zeros,
+over expanded prime rows:
 
 ```sh
 python3 experimental/scripts/verify_m1_equal_line_split_fiber_containment.py

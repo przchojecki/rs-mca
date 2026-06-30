@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 equal-line fiber splitting ledger
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_equal_line_split_fiber_containment.md`,
+  `experimental/scripts/verify_m1_equal_line_split_fiber_containment.py`,
+  `experimental/notes/m1/m1_equal_line_generic_popularity_budget.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
+- **What is being added:** An explicit splitting ledger for the equal-line
+  projective map `z |-> y`: the fiber equation has discriminant
+  `Delta_y=4W(4Y-3W)`, so finite fibers split exactly when `4y-3` is a square,
+  with ramification at `y=3/4` and the pole at `y=infinity`.
+- **How it is useful:** Makes the split/nonsplit field accounting behind the
+  exact equal-line gate transparent and machine-checked, supporting the
+  no-nonsplit-phantom popularity cap.
+- **What to do next:** Use this ledger when proving global model entry, so any
+  leaf-count multiplicity is charged against actual base-field split fibers.
+
 ### 2026-06-30 - M1 equal-line no nonsplit phantom
 
 - **Agent/model:** AllenGrahamHart / Codex.
