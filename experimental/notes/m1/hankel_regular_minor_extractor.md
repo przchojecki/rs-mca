@@ -161,6 +161,12 @@ field is small enough to enumerate, checks that the root table is complete.  So
 this packet is a genuine small-extension root-table validation rather than only
 a hash check.
 
+The same packet now also carries a `split_linear_factorization` certificate:
+the checker reconstructs `Z^2-3` from the encoded factors `(Z-x)(Z+x)` and
+verifies that the factor roots are exactly the declared root table.  This is
+the reusable compressed-root format intended for future large-field packets,
+where brute-force enumeration of `F_17^32` is impossible.
+
 The checker also verifies that a polynomial-basis field model matches the row
 field label and that its modulus is irreducible over `F_p`.  The negative packet
 
@@ -179,6 +185,15 @@ experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/
 
 must fail because it lists only the encoded root `17` and omits the second root
 `272`.
+The third negative packet
+
+```text
+experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/
+  invalid_bad_split_root_certificate_packet.json
+```
+
+must fail because it corrupts the split-factor leading coefficient while
+leaving the root table unchanged.
 
 The prime-field rank-pivot replay is
 

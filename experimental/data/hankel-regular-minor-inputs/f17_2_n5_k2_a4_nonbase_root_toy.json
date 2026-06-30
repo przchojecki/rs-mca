@@ -24,6 +24,7 @@
   "row_set_strategy": {
     "type": "prefix"
   },
+  "emit_split_root_certificate": true,
   "enumerate_split_bad_slopes": true,
   "status": "PROVED",
   "nonclaims": [

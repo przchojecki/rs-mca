@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Split-linear root certificates
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `scripts/aperiodic_eliminant_schema.json`;
+  `experimental/data/hankel-regular-minor-inputs/f17_2_n5_k2_a4_nonbase_root_toy.json`;
+  `experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the toy packet and checker gate.
+- **What is being added:** Regular-minor packets may now carry an optional
+  `split_linear_factorization` root certificate.  The checker reconstructs the
+  determinant from encoded linear factors and verifies that the declared root
+  table is exactly the factor-root set.
+- **How it is useful:** Provides a compressed exact-root format for future
+  large-field M3 packets, where enumerating all `F_17^32` slopes is impossible.
+- **What to do next:** Use this certificate format when an actual M3 regular
+  minor factors enough to give a small exact root table.
+
 ### 2026-06-30 - Rank-at-nodes regular-bucket lemma
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -23,7 +23,10 @@ At `A=4`, `n=5`, `k=2`, we have `j=1`, `t=2`, and the prefix minor is
 ```
 
 so the determinant is `Z^2 - 3`.  Its roots are the two non-base elements
-`x` and `-x`, encoded as `17` and `272` in the packet.
+`x` and `-x`, encoded as `17` and `272` in the packet.  The packet also emits
+a `split_linear_factorization` root certificate, so the checker reconstructs
+the determinant from the two encoded linear factors instead of relying only on
+small-field enumeration.
 
 Regenerate and check:
 
@@ -48,9 +51,14 @@ python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/invalid_omitted_extension_root_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/invalid_bad_split_root_certificate_packet.json
 ```
 
 The first negative packet replaces the irreducible modulus `x^2-3` by the
 reducible modulus `x^2-1`.  The second lists only the root `x` and omits `-x`;
 because this field has only `289` elements, the checker enumerates the full
-field and rejects the incomplete root table.
+field and rejects the incomplete root table.  The third keeps the roots but
+corrupts the split-factor leading coefficient, so the checker rejects the
+certificate reconstruction.

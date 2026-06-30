@@ -85,6 +85,57 @@ def linear_power_mod(constant: int, exponent: int, prime: int) -> list[int]:
     return out
 
 
+def divide_by_linear_root_mod(
+    poly: list[int],
+    root: int,
+    prime: int,
+) -> list[int] | None:
+    coeffs = trim(poly, prime)
+    degree = len(coeffs) - 1
+    if degree <= 0:
+        return None
+    root %= prime
+    quotient = [0] * degree
+    quotient[-1] = coeffs[degree]
+    for index in range(degree - 1, 0, -1):
+        quotient[index - 1] = (coeffs[index] + root * quotient[index]) % prime
+    remainder = (coeffs[0] + root * quotient[0]) % prime
+    if remainder != 0:
+        return None
+    return trim(quotient, prime)
+
+
+def split_linear_root_certificate_mod(
+    poly: list[int],
+    roots: list[int] | None,
+    prime: int,
+) -> dict[str, Any] | None:
+    if roots is None:
+        return None
+    work = trim(poly, prime)
+    factors = []
+    for root in sorted(set(root % prime for root in roots)):
+        multiplicity = 0
+        while len(work) > 1:
+            quotient = divide_by_linear_root_mod(work, root, prime)
+            if quotient is None:
+                break
+            multiplicity += 1
+            work = quotient
+        if multiplicity:
+            factors.append({"root": root, "multiplicity": multiplicity})
+    factor_roots = sorted(factor["root"] for factor in factors)
+    if len(work) == 1 and work[0] % prime != 0 and factor_roots == sorted(
+        set(root % prime for root in roots)
+    ):
+        return {
+            "kind": "split_linear_factorization",
+            "leading_coefficient": work[0] % prime,
+            "factors": factors,
+        }
+    return None
+
+
 def hash_json(value: Any) -> str:
     payload = json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
     return sha256(payload).hexdigest()
@@ -476,6 +527,60 @@ def fpoly_linear_power(
     for _ in range(exponent):
         out = fpoly_mul(out, factor, field)
     return out
+
+
+def fpoly_divide_by_linear_root(
+    poly: list[tuple[int, ...]],
+    root: tuple[int, ...],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]] | None:
+    coeffs = fpoly_trim(poly, field)
+    degree = len(coeffs) - 1
+    if degree <= 0:
+        return None
+    root = field.normalize(root)
+    quotient = [field.zero] * degree
+    quotient[-1] = coeffs[degree]
+    for index in range(degree - 1, 0, -1):
+        quotient[index - 1] = field.add(
+            coeffs[index], field.mul(root, quotient[index])
+        )
+    remainder = field.add(coeffs[0], field.mul(root, quotient[0]))
+    if not field.is_zero(remainder):
+        return None
+    return fpoly_trim(quotient, field)
+
+
+def split_linear_root_certificate_field(
+    poly: list[tuple[int, ...]],
+    roots: list[tuple[int, ...]] | None,
+    field: PolynomialBasisField,
+) -> dict[str, Any] | None:
+    if roots is None:
+        return None
+    work = fpoly_trim(poly, field)
+    root_set = sorted({field.encode(root) for root in roots})
+    factors = []
+    for root_encoding in root_set:
+        root = field.decode(root_encoding)
+        multiplicity = 0
+        while len(work) > 1:
+            quotient = fpoly_divide_by_linear_root(work, root, field)
+            if quotient is None:
+                break
+            multiplicity += 1
+            work = quotient
+        if multiplicity:
+            factors.append({"root": root_encoding, "multiplicity": multiplicity})
+    factor_roots = sorted(factor["root"] for factor in factors)
+    if len(work) == 1 and not field.is_zero(work[0]) and factor_roots == root_set:
+        return {
+            "kind": "split_linear_factorization",
+            "leading_coefficient": field.encode(work[0]),
+            "field_encoding": "base-p low-to-high integer",
+            "factors": factors,
+        }
+    return None
 
 
 def determinant_field(
@@ -1456,6 +1561,7 @@ def result_to_packet_item(
     result: ExtractionResult,
     prime: int,
     sampler: str,
+    emit_split_root_certificate: bool,
 ) -> dict[str, Any]:
     item: dict[str, Any] = {
         "A": result.exact_agreement,
@@ -1524,6 +1630,12 @@ def result_to_packet_item(
                 f"coefficients_mod_{prime}_ascending": result.polynomial,
                 f"roots_mod_{prime}": roots,
             }
+            if emit_split_root_certificate:
+                root_certificate = split_linear_root_certificate_mod(
+                    result.polynomial, roots, prime
+                )
+                if root_certificate is not None:
+                    item["regular_minor_data"]["root_certificate"] = root_certificate
             if result.enumerated_bad_slopes is not None:
                 item["regular_minor_data"][
                     f"enumerated_bad_slopes_mod_{prime}"
@@ -1561,6 +1673,7 @@ def result_to_packet_item_field(
     result: ExtractionResult,
     field: PolynomialBasisField,
     sampler: str,
+    emit_split_root_certificate: bool,
 ) -> dict[str, Any]:
     item: dict[str, Any] = {
         "A": result.exact_agreement,
@@ -1641,6 +1754,12 @@ def result_to_packet_item_field(
                 "p": field.p,
                 "field_extension_degree": field.degree,
             }
+            if emit_split_root_certificate:
+                root_certificate = split_linear_root_certificate_field(
+                    polynomial, roots, field
+                )
+                if root_certificate is not None:
+                    item["regular_minor_data"]["root_certificate"] = root_certificate
             if result.enumerated_bad_slopes is not None:
                 item["regular_minor_data"]["enumerated_bad_slopes"] = sorted(
                     field.encode(slope) for slope in result.enumerated_bad_slopes
@@ -1709,8 +1828,14 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
         raise AssertionError(("closed-range bad slopes not contained in roots"))
 
     sampler = spec.get("sampler", "finite_affine_line")
+    emit_split_root_certificate = bool(
+        spec.get("emit_split_root_certificate", False)
+    )
     exact_items = [
-        result_to_packet_item(result, prime, sampler) for result in results
+        result_to_packet_item(
+            result, prime, sampler, emit_split_root_certificate
+        )
+        for result in results
     ]
     projective_infinity_count = (
         projective_infinity_union_count(exact_items)
@@ -1819,8 +1944,14 @@ def build_packet_field(
         raise AssertionError(("closed-range bad slopes not contained in roots"))
 
     sampler = spec.get("sampler", "finite_affine_line")
+    emit_split_root_certificate = bool(
+        spec.get("emit_split_root_certificate", False)
+    )
     exact_items = [
-        result_to_packet_item_field(result, field, sampler) for result in results
+        result_to_packet_item_field(
+            result, field, sampler, emit_split_root_certificate
+        )
+        for result in results
     ]
     projective_infinity_count = (
         projective_infinity_union_count(exact_items)

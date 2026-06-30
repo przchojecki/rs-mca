@@ -52,7 +52,7 @@
           ],
           "field_encoding": "base-p low-to-high integer",
           "kind": "split_linear_factorization",
-          "leading_coefficient": 1
+          "leading_coefficient": 2
         },
         "roots": [
           17,

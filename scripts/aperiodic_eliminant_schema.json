@@ -71,6 +71,29 @@
               "root_hash": {"type": "string"}
             }
           },
+          "regular_minor_data": {
+            "type": "object",
+            "properties": {
+              "root_certificate": {
+                "type": "object",
+                "properties": {
+                  "kind": {"type": "string", "enum": ["split_linear_factorization"]},
+                  "leading_coefficient": {"type": "integer", "minimum": 0},
+                  "field_encoding": {"type": "string"},
+                  "factors": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "root": {"type": "integer", "minimum": 0},
+                        "multiplicity": {"type": "integer", "minimum": 1}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
           "projective_infinity": {
             "type": "object",
             "properties": {

@@ -98,6 +98,13 @@ def poly_power_mod_coefficients(
     return out
 
 
+def trim_mod_coefficients(coefficients: list[int], modulus: int) -> list[int]:
+    out = [coefficient % modulus for coefficient in coefficients]
+    while len(out) > 1 and out[-1] == 0:
+        out.pop()
+    return out
+
+
 def require_exact_roots(
     listed_roots: list[int],
     actual_roots: list[int],
@@ -413,6 +420,126 @@ def repeated_root_power_exact_roots_extension(
     if expected[: len(decoded)] == decoded:
         return [roots[0]]
     return None
+
+
+def extension_poly_mul(
+    left: list[tuple[int, ...]],
+    right: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    out = [field.zero] * (len(left) + len(right) - 1)
+    for i, left_coeff in enumerate(left):
+        for j, right_coeff in enumerate(right):
+            out[i + j] = field.add(out[i + j], field.mul(left_coeff, right_coeff))
+    while len(out) > 1 and out[-1] == field.zero:
+        out.pop()
+    return out
+
+
+def validate_split_linear_root_certificate_mod(
+    certificate: Any,
+    coefficients: list[int],
+    roots: list[int],
+    modulus: int,
+    location: str,
+) -> list[int] | None:
+    if certificate is None:
+        return None
+    if not isinstance(certificate, dict):
+        raise PacketError(f"{location}.root_certificate must be an object")
+    if certificate.get("kind") != "split_linear_factorization":
+        raise PacketError(f"{location}.root_certificate.kind is unsupported")
+    leading = certificate.get("leading_coefficient")
+    if not isinstance(leading, int):
+        raise PacketError(f"{location}.root_certificate.leading_coefficient must be int")
+    factors = certificate.get("factors")
+    if not isinstance(factors, list):
+        raise PacketError(f"{location}.root_certificate.factors must be a list")
+    reconstructed = [leading % modulus]
+    factor_roots = []
+    total_multiplicity = 0
+    for index, factor in enumerate(factors):
+        if not isinstance(factor, dict):
+            raise PacketError(f"{location}.root_certificate.factors[{index}] must be an object")
+        root = factor.get("root")
+        multiplicity = factor.get("multiplicity")
+        if not isinstance(root, int):
+            raise PacketError(f"{location}.root_certificate.factors[{index}].root must be int")
+        if not isinstance(multiplicity, int) or multiplicity <= 0:
+            raise PacketError(
+                f"{location}.root_certificate.factors[{index}].multiplicity must be positive"
+            )
+        root %= modulus
+        factor_roots.append(root)
+        total_multiplicity += multiplicity
+        for _ in range(multiplicity):
+            reconstructed = poly_mul_mod_coefficients(
+                reconstructed, [(-root) % modulus, 1], modulus
+            )
+    if total_multiplicity != poly_degree(coefficients):
+        raise PacketError(
+            f"{location}.root_certificate multiplicities do not match polynomial degree"
+        )
+    if trim_mod_coefficients(reconstructed, modulus) != trim_mod_coefficients(
+        coefficients, modulus
+    ):
+        raise PacketError(f"{location}.root_certificate does not reconstruct polynomial")
+    exact_roots = sorted(set(factor_roots))
+    require_exact_roots(roots, exact_roots, location)
+    return exact_roots
+
+
+def validate_split_linear_root_certificate_extension(
+    certificate: Any,
+    coefficients: list[int],
+    roots: list[int],
+    field: PolynomialBasisField,
+    location: str,
+) -> list[int] | None:
+    if certificate is None:
+        return None
+    if not isinstance(certificate, dict):
+        raise PacketError(f"{location}.root_certificate must be an object")
+    if certificate.get("kind") != "split_linear_factorization":
+        raise PacketError(f"{location}.root_certificate.kind is unsupported")
+    leading = certificate.get("leading_coefficient")
+    if not isinstance(leading, int):
+        raise PacketError(f"{location}.root_certificate.leading_coefficient must be int")
+    factors = certificate.get("factors")
+    if not isinstance(factors, list):
+        raise PacketError(f"{location}.root_certificate.factors must be a list")
+    reconstructed = [field.decode(leading)]
+    factor_roots = []
+    total_multiplicity = 0
+    for index, factor in enumerate(factors):
+        if not isinstance(factor, dict):
+            raise PacketError(f"{location}.root_certificate.factors[{index}] must be an object")
+        root_value = factor.get("root")
+        multiplicity = factor.get("multiplicity")
+        if not isinstance(root_value, int):
+            raise PacketError(f"{location}.root_certificate.factors[{index}].root must be int")
+        if not isinstance(multiplicity, int) or multiplicity <= 0:
+            raise PacketError(
+                f"{location}.root_certificate.factors[{index}].multiplicity must be positive"
+            )
+        root = field.decode(root_value)
+        factor_roots.append(root_value)
+        total_multiplicity += multiplicity
+        linear = [field.sub(field.zero, root), field.one]
+        for _ in range(multiplicity):
+            reconstructed = extension_poly_mul(reconstructed, linear, field)
+    if total_multiplicity != poly_degree(coefficients):
+        raise PacketError(
+            f"{location}.root_certificate multiplicities do not match polynomial degree"
+        )
+    decoded = [field.decode(coefficient) for coefficient in coefficients]
+    while len(decoded) > 1 and decoded[-1] == field.zero:
+        decoded.pop()
+    if reconstructed != decoded:
+        raise PacketError(f"{location}.root_certificate does not reconstruct polynomial")
+    exact_roots = sorted(set(factor_roots))
+    require_exact_roots(roots, exact_roots, location)
+    return exact_roots
 
 
 def first_matching_key(data: dict[str, Any], *patterns: str) -> str | None:
@@ -1235,6 +1362,7 @@ def validate_regular_minor(
     bad_slopes = normalize_int_list(
         data.get(bad_slope_key, []), f"A={item.get('A')} bad_slopes"
     )
+    root_certificate = data.get("root_certificate")
 
     if not coefficients:
         raise PacketError(f"A={item.get('A')}: empty coefficient list")
@@ -1250,6 +1378,13 @@ def validate_regular_minor(
     if not set(bad_slopes).issubset(roots):
         raise PacketError(f"A={item.get('A')}: enumerated bad slopes are not roots")
     if modulus is not None:
+        validate_split_linear_root_certificate_mod(
+            root_certificate,
+            coefficients,
+            roots,
+            modulus,
+            f"A={item.get('A')}",
+        )
         exact_monomial_roots = monomial_exact_roots(coefficients, modulus)
         if modulus <= ROOT_COMPLETENESS_ENUMERATION_LIMIT:
             actual_roots = [
@@ -1278,6 +1413,13 @@ def validate_regular_minor(
     if extension_field is not None:
         for coefficient in coefficients:
             extension_field.decode(coefficient)
+        validate_split_linear_root_certificate_extension(
+            root_certificate,
+            coefficients,
+            roots,
+            extension_field,
+            f"A={item.get('A')}",
+        )
         exact_monomial_roots = monomial_exact_roots(coefficients)
         if extension_field.size <= ROOT_COMPLETENESS_ENUMERATION_LIMIT:
             actual_roots = [
