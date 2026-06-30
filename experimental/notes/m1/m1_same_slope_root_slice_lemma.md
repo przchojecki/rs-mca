@@ -34,6 +34,7 @@ SQUARE-NORM FIXED-BASIS UNORIENTED SUPPORT PALETTE /
 SQUARE-NORM FIXED-BASIS SUPPORT-FIBER DECOMPOSITION /
 SQUARE-NORM FIXED-BASIS SUPPORT-PACKET INCIDENCE DESIGN /
 SQUARE-NORM SELECTED SUPPORT-AVOIDANCE REDUCTION /
+SQUARE-NORM SELECTED SUPPORT-DEGREE PROFILE /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3205,6 +3206,32 @@ controlled by the support-avoidance profile of the selected support image.
 The local square-map classes add no further point concentration: each support
 avoiding `x` contributes to at most one packet through `x`.
 
+Equivalently, for full square-coset palettes the selected support image is just
+a graph-degree problem.  Let `m=|Sigma|`, and for `x in U` put
+
+```text
+d_Sigma(x)=#{S in Sigma : x in S},        d_Sigma(0)=0.
+```
+
+Then the full-palette incidence is exactly
+
+```text
+I_full(x)=m-d_Sigma(x).                         (RKSQDEG)
+```
+
+Consequently
+
+```text
+sum_x I_full(x) = (q-1)m,
+sum_x I_full(x)^2 = (q-3)m^2 + sum_{x in U} d_Sigma(x)^2.  (RKSQDEG2)
+```
+
+Thus the only possible full-palette incidence energy beyond the uniform local
+packet geometry is endpoint-degree energy of the selected support graph.  A
+large second moment therefore forces a high-degree/star-like or otherwise
+structured support image, which is the kind of object that must be charged to
+quotient-periodic or low-template structure in the global M1 argument.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -3710,8 +3737,9 @@ parametrization (RKSQSLOPE), the fixed-basis no-loss square map
 (RKSQSUPP/RKSQSUPPFULL), the fixed-basis support-fiber decomposition
 (RKSQSUPPFIB/RKSQSUPPFIBCOUNT), the fixed-basis support-packet incidence
 design (RKSQDESIGN), the selected support-avoidance reduction
-(RKSQAVOID/RKSQAVOIDMASS), the canonical endpoint-pair norm factorization
-(RKSQRAT), the fixed endpoint-pair coset palette (RKSQPAIRPAL), the
+(RKSQAVOID/RKSQAVOIDMASS), the selected support-degree profile
+(RKSQDEG/RKSQDEG2), the canonical endpoint-pair norm factorization (RKSQRAT),
+the fixed endpoint-pair coset palette (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
 (RKSQEPCH), and square-map packet-count corollary (RKSQCOUNT) from the support
@@ -3785,8 +3813,9 @@ parametrization (RKSQSLOPE), the fixed-basis no-loss square map
 (RKSQSUPP/RKSQSUPPFULL), the fixed-basis support-fiber decomposition
 (RKSQSUPPFIB/RKSQSUPPFIBCOUNT), the fixed-basis support-packet incidence
 design (RKSQDESIGN), the selected support-avoidance reduction
-(RKSQAVOID/RKSQAVOIDMASS), the canonical endpoint-pair norm factorization
-(RKSQRAT), the fixed endpoint-pair coset palette (RKSQPAIRPAL), the
+(RKSQAVOID/RKSQAVOIDMASS), the selected support-degree profile
+(RKSQDEG/RKSQDEG2), the canonical endpoint-pair norm factorization (RKSQRAT),
+the fixed endpoint-pair coset palette (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
 (RKSQEPCH), and the packet-count corollary (RKSQCOUNT).

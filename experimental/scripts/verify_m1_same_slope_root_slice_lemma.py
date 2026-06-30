@@ -66,7 +66,7 @@ fixed-basis slope-pair parametrization, fixed-basis no-loss square map,
 fixed-basis support-palette count, fixed-basis support-fiber decomposition,
 fixed-basis support-packet incidence design, fixed-basis endpoint-palette
 bound, selected support-avoidance reduction, fixed endpoint-pair packet-size
-bound, and packet-count corollary.
+bound, selected support-degree profile, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -7230,6 +7230,17 @@ def check_boundary_core_square_map_packet_count() -> None:
                     avoidance_count = sum(
                         1 for support in selected_supports if point not in support
                     )
+                    endpoint_degree = sum(
+                        1 for support in selected_supports if point in support
+                    )
+                    assert avoidance_count == selected_count - endpoint_degree, (
+                        prime,
+                        index,
+                        point,
+                        avoidance_count,
+                        selected_count,
+                        endpoint_degree,
+                    )
                     assert incidence <= avoidance_count, (
                         prime,
                         index,
@@ -7262,6 +7273,64 @@ def check_boundary_core_square_map_packet_count() -> None:
                     point,
                     incidence,
                     full_avoidance_count,
+                )
+
+            for _ in range(30):
+                selected_count = rng.randint(1, len(support_list))
+                selected_supports = rng.sample(support_list, selected_count)
+                degree_profile = {
+                    point: sum(1 for support in selected_supports if point in support)
+                    for point in all_projective_points
+                }
+                full_palette_incidence = {point: 0 for point in all_projective_points}
+                for support in selected_supports:
+                    first, second = tuple(support)
+                    support_map = mobius_from_zero_pole(first, second, prime)
+                    for packet_class in packet_classes:
+                        for point in projective_square_packet(
+                            support_map,
+                            packet_class,
+                            index,
+                            log_table,
+                            prime,
+                        ):
+                            full_palette_incidence[point] += 1
+                for point, incidence in full_palette_incidence.items():
+                    expected_incidence = selected_count - degree_profile[point]
+                    assert incidence == expected_incidence, (
+                        prime,
+                        index,
+                        point,
+                        incidence,
+                        expected_incidence,
+                        degree_profile,
+                    )
+                incidence_mass = sum(full_palette_incidence.values())
+                assert incidence_mass == (prime - 1) * selected_count, (
+                    prime,
+                    index,
+                    selected_count,
+                    incidence_mass,
+                )
+                incidence_second_moment = sum(
+                    incidence * incidence
+                    for incidence in full_palette_incidence.values()
+                )
+                degree_energy = sum(
+                    degree_profile[point] * degree_profile[point]
+                    for point in fixed_support_universe
+                )
+                expected_second_moment = (
+                    (prime - 3) * selected_count * selected_count + degree_energy
+                )
+                assert incidence_second_moment == expected_second_moment, (
+                    prime,
+                    index,
+                    selected_count,
+                    incidence_second_moment,
+                    expected_second_moment,
+                    full_palette_incidence,
+                    degree_profile,
                 )
 
             for palette_size in range(2, min(6, len(p1_points)) + 1):

@@ -49,6 +49,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 selected support-degree profile
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** For a selected support graph `Sigma`, the
+  full-palette incidence satisfies `I_full(x)=m-d_Sigma(x)` and
+  `sum_x I_full(x)^2=(q-3)m^2+sum_{x in U}d_Sigma(x)^2`.
+- **How it is useful:** This identifies full-palette concentration with
+  endpoint-degree energy of the selected row-basis/core support image, giving a
+  concrete graph-theoretic target for the M1 inverse/local-limit step.
+- **What to do next:** Show that high support-degree energy forces a charged
+  quotient-periodic, star, or low-template support image.
+
 ### 2026-06-30 - M1 selected support-avoidance reduction
 
 - **Agent/model:** AllenGrahamHart / Codex.
