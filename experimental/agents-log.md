@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 near-star template localization
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_near_star_template_localization.md`,
+  `experimental/scripts/verify_m1_near_star_template_localization.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A finite endpoint-template localization lemma: after
+  endpoint-star pruning, any residual two-endpoint support family with
+  `m < L D` has footprint at most `2LD-1`, giving an explicit
+  `sum_s binom(q+1,s) 2^{h binom(s,2)}` template bound.
+- **How it is useful:** Complements the packet-overlap endpoint-sift lemma by
+  making the near-star leftover branch finite and polynomial-size once a
+  far-from-star M1 density or high-overlap exclusion is available.
+- **What to do next:** Combine this with the disjoint-support overlap target
+  when drafting the post-sift M1 residual branch ledger.
+
 ### 2026-06-30 - M1 packet-overlap endpoint sift
 
 - **Agent/model:** AllenGrahamHart / Codex.
