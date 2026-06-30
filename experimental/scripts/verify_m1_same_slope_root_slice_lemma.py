@@ -61,8 +61,8 @@ factorization, endpoint slope map, overlapping Plucker-chart recurrence,
 endpoint-pair inversion, projective endpoint-pair inversion, diagonal endpoint
 collapse, off-diagonal endpoint-pair count, canonical endpoint-pair norm
 factorization, fixed endpoint-pair coset palette, endpoint-charge corollary,
-fixed-basis endpoint-palette bound, fixed endpoint-pair packet-size bound,
-and packet-count corollary.
+fixed-basis forbidden-endpoint sharpening, fixed-basis endpoint-palette bound,
+fixed endpoint-pair packet-size bound, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -3463,6 +3463,26 @@ def assert_overlapping_plucker_chart_recurrence(
     e1_z, e1_w = (-l1_const) % p, l1_slope
     assert (e0_z, e0_w) != (0, 0)
     assert (e1_z, e1_w) != (0, 0)
+    e0_norm = normalized_projective_point(e0_z, e0_w, p)
+    e1_norm = normalized_projective_point(e1_z, e1_w, p)
+    zero_c0 = projective_zero_of_row(row0, p)
+    zero_c1 = projective_zero_of_row(row1, p)
+    assert zero_c0 != zero_c1
+    assert e0_norm not in {zero_c0, zero_c1}, (
+        p,
+        a_rows,
+        b_rows,
+        e0_norm,
+        zero_c0,
+        zero_c1,
+    )
+    assert e1_norm != zero_c1, (
+        p,
+        a_rows,
+        b_rows,
+        e1_norm,
+        zero_c1,
+    )
     c0_e0 = (row0[0] * e0_w + row0[1] * e0_z) % p
     c1_e0 = (row1[0] * e0_w + row1[1] * e0_z) % p
     c0_e1 = (row0[0] * e1_w + row0[1] * e1_z) % p
@@ -3663,6 +3683,11 @@ def normalized_projective_point(z_coord: int, w_coord: int, p: int) -> tuple[int
         inv_w = pow(w_coord, -1, p)
         return ((z_coord * inv_w) % p, 1)
     return (1, 0)
+
+
+def projective_zero_of_row(row: tuple[int, int], p: int) -> tuple[int, int]:
+    assert not vec_is_zero(row)
+    return normalized_projective_point(-row[0], row[1], p)
 
 
 def scalar_for_proportional_linear_forms(
@@ -6392,6 +6417,24 @@ def check_boundary_core_square_norm_hankel_minor_discriminants() -> None:
         assert len(seen_endpoint_pairs) == (prime - 1) * (prime - 1), (
             prime,
             len(seen_endpoint_pairs),
+        )
+        zero_c0 = projective_zero_of_row(row0, prime)
+        zero_c1 = projective_zero_of_row(row1, prime)
+        p1_normalized = [(value, 1) for value in range(prime)] + [(1, 0)]
+        allowed_endpoint_pairs = {
+            (first_endpoint, second_endpoint)
+            for first_endpoint in p1_normalized
+            for second_endpoint in p1_normalized
+            if first_endpoint not in {zero_c0, zero_c1}
+            and second_endpoint != zero_c1
+            and second_endpoint != first_endpoint
+        }
+        assert set(seen_endpoint_pairs) == allowed_endpoint_pairs, (
+            prime,
+            zero_c0,
+            zero_c1,
+            set(seen_endpoint_pairs),
+            allowed_endpoint_pairs,
         )
 
 

@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 fixed-basis forbidden-endpoint sharpening
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** For a fixed initial row basis, the first endpoint
+  avoids the two projective zeros of `c_0,c_1`, and the second endpoint
+  avoids the zero of `c_1` and the first endpoint.  Conversely every such pair
+  gives a unique nondegenerate overlapping packet.
+- **How it is useful:** The exact fixed-basis endpoint-pair count is
+  `|Omega \\ (A_0 union A_1)|(|Omega \\ A_1|-1)`, giving `(q-1)^2` over the
+  full projective line instead of the coarser `q(q+1)` count.
+- **What to do next:** Combine the sharpened fixed-basis count with the
+  square-coset palette and packet-size bounds in a global endpoint-image
+  estimate.
+
 ### 2026-06-30 - M1 fixed endpoint-pair packet-size bound
 
 - **Agent/model:** AllenGrahamHart / Codex.

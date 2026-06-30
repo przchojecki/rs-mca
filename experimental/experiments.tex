@@ -2488,6 +2488,15 @@ nondegenerate overlapping chart therefore injects into ordered off-diagonal
 projective endpoint pairs.  For an endpoint palette \(\Omega\), a fixed
 initial row basis supports at most \(|\Omega|(|\Omega|-1)\) nonconstant
 overlapping square-norm packets.
+In fact, if \(A_i=\{E:c_i(E)=0\}\), then \(A_0\ne A_1\), the first endpoint
+must avoid \(A_0\cup A_1\), and the second must avoid \(A_1\) and the first
+endpoint.  Conversely every such ordered pair recovers a unique
+nondegenerate packet.  Hence the exact fixed-basis count is
+\[
+        |\Omega\setminus(A_0\cup A_1)|\,
+        (|\Omega\setminus A_1|-1),
+\]
+which is \((q-1)^2\) for \(\Omega=\mathbb P^1(F_q)\).
 Moreover, if \(L_E(z)=Wz-Z\) for \(E=[Z:W]\), then in the off-diagonal case
 \[
         {H_1\over H_0}
