@@ -1,0 +1,31 @@
+{
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "row": {
+    "n": 10,
+    "k": 4,
+    "field": "F_17",
+    "domain_hash": "invalid-proportional-residual-audit"
+  },
+  "agreement_threshold": 8,
+  "sampler": "finite_affine_line",
+  "removed_ledgers": [],
+  "exact_agreements": [
+    {
+      "A": 8,
+      "j": 2,
+      "t": 4,
+      "status": "residual_obstruction",
+      "residual_label": "tangent",
+      "residual_reason": "intentionally invalid: tangent charge without full proportionality",
+      "extractor_audit": {
+        "residual_classification": "proportional_window_tangent",
+        "scalar_multiple_u_over_v": 5,
+        "residual_single_slope": 12,
+        "full_syndrome_proportional": false,
+        "residual_charge": "tangent_common_code_line"
+      }
+    }
+  ],
+  "root_union_table_ref": "not_enumerated",
+  "regular_root_bound_sum": 0
+}

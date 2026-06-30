@@ -1241,6 +1241,40 @@ def validate_extractor_audit(
                 f"and j+1={item['j'] + 1}"
             )
 
+    residual_classification = audit.get("residual_classification")
+    if residual_classification in {
+        "proportional_window_tangent",
+        "proportional_window_single_slope",
+    }:
+        if item.get("status") != "residual_obstruction":
+            raise PacketError(
+                f"{location}.residual_classification only applies to residuals"
+            )
+        if not isinstance(audit.get("scalar_multiple_u_over_v"), int):
+            raise PacketError(f"{location}.scalar_multiple_u_over_v must be int")
+        if not isinstance(audit.get("residual_single_slope"), int):
+            raise PacketError(f"{location}.residual_single_slope must be int")
+        if not isinstance(audit.get("full_syndrome_proportional"), bool):
+            raise PacketError(f"{location}.full_syndrome_proportional must be bool")
+        residual_charge = audit.get("residual_charge")
+        if residual_classification == "proportional_window_tangent":
+            if item.get("residual_label") != "tangent":
+                raise PacketError(
+                    f"{location}: proportional_window_tangent needs residual_label=tangent"
+                )
+            if residual_charge != "tangent_common_code_line":
+                raise PacketError(
+                    f"{location}: tangent classification needs tangent_common_code_line charge"
+                )
+            if audit.get("full_syndrome_proportional") is not True:
+                raise PacketError(
+                    f"{location}: tangent charge needs full_syndrome_proportional=true"
+                )
+        elif residual_charge != "tail_check_required":
+            raise PacketError(
+                f"{location}: local single-slope residual needs tail_check_required"
+            )
+
     if source != "rank_at_nodes":
         return
 

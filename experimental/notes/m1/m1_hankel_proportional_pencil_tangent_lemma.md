@@ -51,11 +51,29 @@ minor; checks affine pivot ratios; checks a local-window proportional example
 with a nonzero tail obstruction; and cross-checks the pinned `F_17^32`,
 `A=426`, `c=5` full proportional packet and subtraction certificate.
 
+The same classification is also wired into the regular-minor extractor.  The
+toy packet
+
+```text
+experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/
+  f17_n10_k4_a8_scalar5_tangent_residual_packet.json
+```
+
+has rank-one `H(v)`, so every maximal regular minor vanishes.  Instead of
+leaving the singular bucket as `unknown`, the extractor records
+`residual_label=tangent` together with a `proportional_window_tangent` audit:
+the only possible slope is `12=-5`, and the supplied syndrome is fully
+proportional, so the tangent/common-code-line ledger may pay it.
+
 Run:
 
 ```sh
 python3 experimental/scripts/verify_m1_hankel_proportional_pencil_tangent_lemma.py \
   --check experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/hankel_proportional_pencil_tangent_lemma_certificate.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_scalar5_rank_pivot_tangent_residual_toy.json \
+  --check experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/f17_n10_k4_a8_scalar5_tangent_residual_packet.json
 ```
 
 Non-claims: this does not supply actual M3 row root tables, does not bound
