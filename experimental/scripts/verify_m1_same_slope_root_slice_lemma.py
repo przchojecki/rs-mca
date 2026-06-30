@@ -74,7 +74,7 @@ corollary, plus the partial-palette uncovered-slope defect bound and residual
 support-budget alternative, palette-density support lower bound, and
 small-support exclusion criterion, local support-budget output theorem, and
 sparse residual certificate reduction, feasibility window, and far-from-star
-certificate cap.
+certificate cap with near-star localization.
 """
 
 from __future__ import annotations
@@ -7647,6 +7647,30 @@ def check_boundary_core_square_map_packet_count() -> None:
                                 residual_star_bound,
                             )
                             far_factor = rng.randint(2, 5)
+                            far_selected_gap = (
+                                far_factor
+                                * (prime - 1)
+                                * (prime - 1)
+                                * residual_selected_classes
+                                * residual_selected_classes
+                            ) > (
+                                full_palette_size
+                                * full_palette_size
+                                * residual_count
+                                * residual_count
+                                * probe_budget
+                                * (far_factor * (prime - 3) + 2)
+                            )
+                            far_missing_gap = (
+                                far_factor
+                                * (prime - 1)
+                                * residual_missing_classes
+                            ) < (
+                                full_palette_size
+                                * residual_count
+                                * (far_factor - 1)
+                                * (len(all_projective_points) - probe_budget)
+                            )
                             if residual_count >= far_factor * degree_cap:
                                 assert (
                                     far_factor
@@ -7689,6 +7713,42 @@ def check_boundary_core_square_map_packet_count() -> None:
                                     residual_count,
                                     residual_missing_classes,
                                     full_palette_size,
+                                )
+                            if far_selected_gap or far_missing_gap:
+                                assert residual_count < far_factor * degree_cap, (
+                                    prime,
+                                    index,
+                                    degree_cap,
+                                    far_factor,
+                                    probe_budget,
+                                    residual_count,
+                                    residual_selected_classes,
+                                    residual_missing_classes,
+                                    full_palette_size,
+                                    far_selected_gap,
+                                    far_missing_gap,
+                                )
+                                residual_endpoint_footprint = len(
+                                    {
+                                        endpoint
+                                        for support in remaining_supports
+                                        for endpoint in support
+                                    }
+                                )
+                                assert (
+                                    residual_endpoint_footprint
+                                    <= 2 * residual_count
+                                )
+                                assert (
+                                    residual_endpoint_footprint
+                                    < 2 * far_factor * degree_cap
+                                ), (
+                                    prime,
+                                    index,
+                                    degree_cap,
+                                    far_factor,
+                                    residual_count,
+                                    residual_endpoint_footprint,
                                 )
                         density_excludes_small_support = (
                             residual_packet_size

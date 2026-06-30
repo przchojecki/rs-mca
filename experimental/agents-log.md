@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 density-gap near-star localization
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The far-from-star sparse certificate cap is read
+  contrapositively: for each `L>=2`, any `(D,R)` sparse certificate violating
+  the `L`-uniform selected-density or missing-density window must satisfy
+  `m<L D`, and its endpoint footprint is `<2L D`.
+- **How it is useful:** This turns a future global row-basis/core-image
+  density gap into an explicit near-star/template residual ledger instead of
+  leaving an unclassified sparse branch.
+- **What to do next:** Prove the global density estimate that excludes the
+  far-from-star window, then classify the resulting bounded near-star
+  templates.
+
 ### 2026-06-30 - M1 far-from-star sparse certificate cap
 
 - **Agent/model:** AllenGrahamHart / Codex.

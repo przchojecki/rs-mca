@@ -50,6 +50,7 @@ SQUARE-NORM LOCAL SUPPORT-BUDGET OUTPUT THEOREM /
 SQUARE-NORM SPARSE RESIDUAL CERTIFICATE REDUCTION /
 SQUARE-NORM SPARSE CERTIFICATE FEASIBILITY WINDOW /
 SQUARE-NORM FAR-FROM-STAR SPARSE CERTIFICATE CAP /
+SQUARE-NORM DENSITY-GAP NEAR-STAR LOCALIZATION /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3659,6 +3660,49 @@ can only survive inside an explicit `L`-dependent palette-density window.  A
 global density lower bound above this uniform window rules out all such
 far-from-star sparse certificates at once.
 
+Equivalently, the far-from-star cap localizes every density-gap certificate
+near the endpoint-star threshold.  Fix `L>=2`.  If a `(D,R)` sparse residual
+certificate satisfies either strict density gap
+
+```text
+alpha^2 > R(q-3+2/L)/(q-1)^2,                  (RKSQNEARSTAR1)
+
+gamma < ((L-1)/L)(q+1-R)/(q-1),                (RKSQNEARSTAR2)
+```
+
+then necessarily
+
+```text
+m < L D.                                        (RKSQNEARSTAR)
+```
+
+Indeed, `m>=L D` would put the certificate in the far-from-star range and
+force both inequalities in (RKSQFARSTAR1/RKSQFARSTAR2), contradicting the
+chosen strict density gap.  Consequently the residual support graph has at
+most `m` two-point supports and endpoint footprint
+
+```text
+| union_{S in Sigma_ap} S | <= 2m < 2L D.        (RKSQNEARFOOT)
+```
+
+Thus any global row-basis/core-image estimate that violates the uniform
+far-from-star window does not merely exclude a local packing pattern: it
+forces the optional sparse branch into a finite `L`-near-star template ledger
+of size `O_L(D)`.  Combining this with (RKSQLOCALOUT), for each fixed `L>=2`
+the local output may be sharpened to
+
+```text
+selected square-map family
+  => endpoint-star charges
+     + large support (B_ap>R)
+     + L-near-star residual (m_ap<L D)
+     + far-from-star sparse certificate inside (RKSQFARSTAR).   (RKSQLOCALIZE)
+```
+
+In particular, if a global density theorem rules out the last branch, all
+small-support residual mass has been reduced to endpoint-star or bounded
+near-star/template structure.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -4179,6 +4223,8 @@ support-budget output theorem (RKSQLOCALOUT), the sparse residual certificate
 reduction (RKSQSPCERT0/RKSQSPCERT1/RKSQSPCERT2/RKSQSPCERT), the sparse
 certificate feasibility window (RKSQSPWINDOW1/RKSQSPWINDOW2/RKSQSPWINDOW), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
+the density-gap near-star localization
+(RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the
@@ -4270,6 +4316,8 @@ support-budget output theorem (RKSQLOCALOUT), the sparse residual certificate
 reduction (RKSQSPCERT0/RKSQSPCERT1/RKSQSPCERT2/RKSQSPCERT), the sparse
 certificate feasibility window (RKSQSPWINDOW1/RKSQSPWINDOW2/RKSQSPWINDOW), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
+the density-gap near-star localization
+(RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the
