@@ -24,7 +24,8 @@ SQUARE-NORM PLUCKER-CHART ENDPOINT SLOPE MAP /
 SQUARE-NORM OVERLAPPING PLUCKER-CHART RECURRENCE /
 SQUARE-NORM OVERLAPPING ENDPOINT-PAIR INVERSION /
 SQUARE-NORM PROJECTIVE ENDPOINT-PAIR INVERSION /
-SQUARE-NORM DIAGONAL ENDPOINT COLLAPSE /
+SQUARE-NORM PROJECTIVE DIAGONAL ENDPOINT COLLAPSE /
+SQUARE-NORM OFF-DIAGONAL ENDPOINT-PAIR COUNT /
 SQUARE-NORM ENDPOINT-CHARGE COROLLARY /
 SQUARE-MAP PACKET-COUNT COROLLARY /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
@@ -2790,21 +2791,34 @@ Thus an ordered projective endpoint pair `(E_0,E_1)` supports at most one
 nondegenerate overlapping Plucker packet over a fixed initial row basis.  The
 finite formulas (RKSQINV0/RKSQINV1) are the affine chart `W_0,W_1!=0`.
 
-The diagonal finite endpoint is not a residual square-norm case.  If
-`z_0=z_1=z` in the nondegenerate finite-finite chart, then
-`lambda_0=c_1(z)/c_0(z)`.  Substituting this into (RKSQINV1) gives
-`lambda_1=lambda_0`.  Therefore
+The diagonal projective endpoint is not a residual square-norm case.  If
+`E_0=E_1=E`, then `lambda_0=c_1(E)/c_0(E)`.  Substituting this into
+(RKSQPINV1) gives `lambda_1=lambda_0`.  Therefore
 
 ```text
 c_2-lambda_1 c_1
   =lambda_0(c_1-lambda_0 c_0),
-H_1=lambda_0^2 H_0.                               (RKSQDIAG)
+H_1=lambda_0^2 H_0.                               (RKSQPDIAG)
 ```
 
 So the slope-line norm `H_1/H_0` is constant on the chart.  Hence a
-nonconstant square-norm branch cannot have coincident finite zero and pole
+nonconstant square-norm branch cannot have coincident projective zero and pole
 endpoints in the nondegenerate overlapping Plucker chart; the diagonal
 endpoint case is already charged to the constant-norm packet ledger.
+
+Consequently, after the zero-row/proportional and constant-norm ledgers are
+removed, the nondegenerate overlapping square-norm chart injects into ordered
+off-diagonal projective endpoint pairs:
+
+```text
+packet |-> (E_0,E_1),        E_0 != E_1.           (RKSQOFF)
+```
+
+For a finite endpoint palette `Omega`, a fixed initial row basis therefore
+supports at most `|Omega|(|Omega|-1)` nonconstant overlapping packets.  Over a
+finite field `F_q` with the full projective endpoint palette, this gives the
+local bound `q(q+1)` for the nonconstant nondegenerate overlapping chart.  The
+remaining multiplicity is basis variation, not endpoint-pair multiplicity.
 
 The finite endpoints themselves are not residual live mixed-domain slopes.
 Let `z_0` be a finite endpoint of the reduced square norm.
@@ -3353,7 +3367,8 @@ discriminant certificate (RKSQPL), the Plucker-chart decomposition
 factorization (RKSQSQ), the endpoint slope map (RKSQZ), the overlapping
 Plucker-chart recurrence (RKSQOV), the endpoint-pair inversion
 (RKSQINV0/RKSQINV1), the projective endpoint-pair inversion
-(RKSQPINV0/RKSQPINV1), the diagonal endpoint collapse (RKSQDIAG), the finite
+(RKSQPINV0/RKSQPINV1), the projective diagonal endpoint collapse
+(RKSQPDIAG), the off-diagonal endpoint-pair count (RKSQOFF), the finite
 endpoint-charge corollary (RKSQEPCH), and square-map packet-count corollary
 (RKSQCOUNT) from the support palette.
 
@@ -3416,6 +3431,7 @@ the Plucker-chart decomposition (RKSQPLCH), the Plucker-chart row recurrence
 (RKSQROW), the Hankel square factorization (RKSQSQ), the endpoint slope map
 (RKSQZ), the overlapping Plucker-chart recurrence (RKSQOV), the endpoint-pair
 inversion (RKSQINV0/RKSQINV1), the projective endpoint-pair inversion
-(RKSQPINV0/RKSQPINV1), the diagonal endpoint collapse (RKSQDIAG), the finite
+(RKSQPINV0/RKSQPINV1), the projective diagonal endpoint collapse
+(RKSQPDIAG), the off-diagonal endpoint-pair count (RKSQOFF), the finite
 endpoint-charge corollary (RKSQEPCH), and the packet-count corollary
 (RKSQCOUNT).

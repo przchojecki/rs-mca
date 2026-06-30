@@ -59,7 +59,8 @@ discriminant certificate, Plucker-minor discriminant certificate,
 Plucker-chart decomposition, Plucker-chart row recurrence, Hankel square
 factorization, endpoint slope map, overlapping Plucker-chart recurrence,
 endpoint-pair inversion, projective endpoint-pair inversion, diagonal endpoint
-collapse, endpoint-charge corollary, and packet-count corollary.
+collapse, off-diagonal endpoint-pair count, endpoint-charge corollary, and
+packet-count corollary.
 """
 
 from __future__ import annotations
@@ -3488,6 +3489,34 @@ def assert_overlapping_plucker_chart_recurrence(
         lambda1,
         projective_lambda1,
     )
+    same_projective_endpoint = (e0_z * e1_w - e1_z * e0_w) % p == 0
+    if same_projective_endpoint:
+        assert lambda1 == lambda0, (
+            p,
+            a_rows,
+            b_rows,
+            (e0_z, e0_w),
+            (e1_z, e1_w),
+            lambda0,
+            lambda1,
+        )
+        h0_poly = hankel_minor_poly(a_rows, b_rows, 0, p)
+        h1_poly = hankel_minor_poly(a_rows, b_rows, 1, p)
+        scaled_h0 = {
+            degree: (lambda0 * lambda0 * coeff) % p
+            for degree, coeff in h0_poly.items()
+            if (lambda0 * lambda0 * coeff) % p != 0
+        }
+        assert h1_poly == scaled_h0, (
+            p,
+            a_rows,
+            b_rows,
+            (e0_z, e0_w),
+            lambda0,
+            h0_poly,
+            h1_poly,
+            scaled_h0,
+        )
 
     if l0_slope == 0 or l1_slope == 0:
         return
@@ -3562,6 +3591,16 @@ def assert_overlapping_plucker_chart_recurrence(
             h1_poly,
             scaled_h0,
         )
+
+
+def normalized_projective_point(z_coord: int, w_coord: int, p: int) -> tuple[int, int]:
+    z_coord %= p
+    w_coord %= p
+    assert (z_coord, w_coord) != (0, 0)
+    if w_coord != 0:
+        inv_w = pow(w_coord, -1, p)
+        return ((z_coord * inv_w) % p, 1)
+    return (1, 0)
 
 
 def quadratic_character(value: int, p: int) -> int:
@@ -6233,6 +6272,50 @@ def check_boundary_core_square_norm_hankel_minor_discriminants() -> None:
             a_rows = (row0[0], row1[0], row2[0], row3[0])
             b_rows = (row0[1], row1[1], row2[1], row3[1])
             assert_overlapping_plucker_chart_recurrence(a_rows, b_rows, prime)
+
+        seen_endpoint_pairs: dict[
+            tuple[tuple[int, int], tuple[int, int]], tuple[int, int]
+        ] = {}
+        for lambda0 in range(1, prime):
+            row2 = (
+                (2 * lambda0 * row1[0] - lambda0 * lambda0 * row0[0]) % prime,
+                (2 * lambda0 * row1[1] - lambda0 * lambda0 * row0[1]) % prime,
+            )
+            for lambda1 in range(prime):
+                row3 = (
+                    (2 * lambda1 * row2[0] - lambda1 * lambda1 * row1[0]) % prime,
+                    (2 * lambda1 * row2[1] - lambda1 * lambda1 * row1[1]) % prime,
+                )
+                a_rows = (row0[0], row1[0], row2[0], row3[0])
+                b_rows = (row0[1], row1[1], row2[1], row3[1])
+                l0_const = (row1[0] - lambda0 * row0[0]) % prime
+                l0_slope = (row1[1] - lambda0 * row0[1]) % prime
+                l1_const = (row2[0] - lambda1 * row1[0]) % prime
+                l1_slope = (row2[1] - lambda1 * row1[1]) % prime
+                e0 = normalized_projective_point(-l0_const, l0_slope, prime)
+                e1 = normalized_projective_point(-l1_const, l1_slope, prime)
+                if e0 == e1:
+                    assert lambda1 == lambda0, (
+                        prime,
+                        lambda0,
+                        lambda1,
+                        e0,
+                        e1,
+                    )
+                    continue
+                key = (e0, e1)
+                assert key not in seen_endpoint_pairs, (
+                    prime,
+                    key,
+                    seen_endpoint_pairs.get(key),
+                    (lambda0, lambda1),
+                )
+                seen_endpoint_pairs[key] = (lambda0, lambda1)
+                assert_overlapping_plucker_chart_recurrence(a_rows, b_rows, prime)
+        assert len(seen_endpoint_pairs) == (prime - 1) * (prime - 1), (
+            prime,
+            len(seen_endpoint_pairs),
+        )
 
 
 def check_boundary_core_square_norm_endpoint_charge() -> None:

@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 projective diagonal and off-diagonal endpoint count
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The diagonal endpoint collapse is upgraded to
+  projective endpoints: if `E_0=E_1`, then `lambda_1=lambda_0` and
+  `H_1=lambda_0^2 H_0`.  Hence nonconstant overlapping packets inject into
+  ordered off-diagonal projective endpoint pairs.
+- **How it is useful:** For a fixed initial row basis, an endpoint palette
+  `Omega` supports at most `|Omega|(|Omega|-1)` nonconstant nondegenerate
+  overlapping square-norm packets.  This turns the residual local branch into
+  an endpoint-pair count after the existing ledgers are removed.
+- **What to do next:** Bound the remaining row-basis variation or identify it
+  as quotient/template structure in the M1 residue-line packing ledger.
+
 ### 2026-06-30 - M1 projective endpoint-pair inversion
 
 - **Agent/model:** AllenGrahamHart / Codex.
