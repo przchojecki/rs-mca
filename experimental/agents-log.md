@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 M3 fixed top-window packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:** `experimental/scripts/extract_regular_hankel_minors.py`;
+  `experimental/scripts/emit_f17_32_m3_rank_witness_input.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a421_426_fixed_prefix92_input.json`;
+  `experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the synthetic finite replay.
+- **What is being added:** A fixed-syndrome v9 packet for `A=421..426` using
+  one `u=0` moment syndrome from the first `92` pinned domain elements.  The
+  extractor verifies nonzero prefix leading coefficients for minor sizes
+  `87..92`, so the packet has exact synthetic root union `{0}` and declared
+  numerator `1`.
+- **How it is useful:** This is the first single-pencil multi-agreement M3
+  stress packet over `F_17^32`, closer to the eventual regular-window packet
+  shape than separate endpoint probes.
+- **What to do next:** Replace this synthetic pencil by actual M3 row data and
+  combine root counts with tangent and quotient subtraction.
+
 ### 2026-06-30 - F17^32 M3 endpoint closed-form v9 packets
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -10,8 +10,8 @@ RS[F_17^32,H,256], |H|=512, A=426.
 The input is synthetic: `u=0` and `v_m=sum_i x_i^m` for the first `j+1=87`
 descriptor-domain elements, stored as base-`17` low-to-high encoded integers.
 Because `u=0`, the prefix determinant is a nonzero scalar times `Z^87`.
-`rank_at_nodes` finds the full-rank row set at slope `1`, the extractor
-computes the nonzero leading coefficient, and the packet records the exact
+The extractor checks the prefix row set directly, computes the nonzero
+Vandermonde-square leading coefficient, and the packet records the exact
 synthetic root table `{0}` without interpolating the determinant polynomial.
 
 Run:

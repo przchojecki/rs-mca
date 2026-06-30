@@ -8,11 +8,11 @@
       "extractor_audit": {
         "degree_bound": 128,
         "field_size": 2367911594760467245844106297320951247361,
-        "rank_pivot_node": 1,
-        "rank_pivot_nodes_required": 129,
-        "rank_pivot_nodes_tested": 2,
+        "rank_pivot_node": null,
+        "rank_pivot_nodes_required": null,
+        "rank_pivot_nodes_tested": null,
         "root_count": 1,
-        "row_set_source": "rank_at_nodes",
+        "row_set_source": "prefix",
         "tested_row_sets": 1
       },
       "j": 127,
@@ -474,11 +474,11 @@
       "p": 17
     },
     "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a385_rank_witness_input.json",
-    "input_sha256": "97d1ccb26790986baf2a7bdf41f527fb37d4c8369af64f55eed57af06ca4a812",
+    "input_sha256": "19f203c2758a209a7d3cb92f6ce9b496d4a230a62051128499ed160258b3e002",
     "method": "zero-u monomial closed-form root certificate over a polynomial-basis finite field",
     "name": "regular-hankel-minor-extractor",
     "row_set_strategy": {
-      "type": "rank_at_nodes"
+      "type": "prefix"
     },
     "scope": "prime-power syndrome pencils with explicit polynomial-basis model"
   },

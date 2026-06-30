@@ -1281,9 +1281,9 @@
       "declared_aperiodic_numerator": 1,
       "degree_bound": 128,
       "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-rank-witness-a385/f17_32_n512_k256_a385_rank_witness_packet.json",
-      "packet_sha256": "bfee5221ddd8c35081472878abe75cc3595c68ef24fb015318bd6b79530d42a1",
-      "rank_pivot_node": 1,
-      "rank_pivot_nodes_tested": 2,
+      "packet_sha256": "87cf3f5e016d2ce8c1a35b141d49cdee710e1d1a04a00f0fa1b5ba16efb807ed",
+      "rank_pivot_node": null,
+      "rank_pivot_nodes_tested": null,
       "regular_root_bound_sum": null,
       "root_union": [
         0
@@ -1296,9 +1296,9 @@
       "declared_aperiodic_numerator": 1,
       "degree_bound": 87,
       "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/f17_32_n512_k256_a426_rank_witness_packet.json",
-      "packet_sha256": "9263543183eb8946a144a8b2a483a2fb239233afe5e7b404b19a8248d200f44e",
-      "rank_pivot_node": 1,
-      "rank_pivot_nodes_tested": 2,
+      "packet_sha256": "3e27603f493cef074a496bc38c42aa7a7a856e4eedf9525458900b5cf6dc82b6",
+      "rank_pivot_node": null,
+      "rank_pivot_nodes_tested": null,
       "regular_root_bound_sum": null,
       "root_union": [
         0

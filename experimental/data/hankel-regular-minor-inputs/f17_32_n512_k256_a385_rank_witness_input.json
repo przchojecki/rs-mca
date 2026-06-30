@@ -583,7 +583,7 @@
     "n": 512
   },
   "row_set_strategy": {
-    "type": "rank_at_nodes"
+    "type": "prefix"
   },
   "sampler": "finite_affine_line",
   "schema_version": "regular-hankel-minor-extractor-input-v1",

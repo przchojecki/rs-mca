@@ -826,6 +826,54 @@ def extract_for_agreement(
             "node": None,
             "nodes_tested": None,
         }
+    if spec.get("certificate_mode") == ZERO_U_MONOMIAL_MODE:
+        if any(value % prime for value in u):
+            raise ValueError("zero_u_monomial_roots needs u=0")
+        tested = 0
+        for row_set in row_sets:
+            tested += 1
+            leading = determinant_mod(
+                [[v[row + col] % prime for col in range(size)] for row in row_set],
+                prime,
+            )
+            if leading == 0:
+                continue
+            return ExtractionResult(
+                exact_agreement,
+                j,
+                t,
+                "regular_minor",
+                row_set,
+                [0] * size + [leading],
+                [0],
+                None,
+                tested,
+                row_set_source=row_set_audit["source"],
+                rank_pivot_node=row_set_audit.get("node"),
+                rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+                rank_pivot_nodes_required=row_set_audit.get(
+                    "nodes_required_for_singularity_proof"
+                ),
+            )
+        return ExtractionResult(
+            exact_agreement,
+            j,
+            t,
+            "residual_obstruction",
+            None,
+            None,
+            None,
+            None,
+            tested,
+            row_set_source=row_set_audit["source"],
+            rank_pivot_node=row_set_audit.get("node"),
+            rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+            rank_pivot_nodes_required=row_set_audit.get(
+                "nodes_required_for_singularity_proof"
+            ),
+            residual_label="unknown",
+            residual_reason="all tested zero-u monomial leading coefficients vanished",
+        )
     if (
         spec.get("certificate_mode") == "rank_witness_bound"
         and row_set_audit["source"] == "rank_at_nodes"
@@ -839,39 +887,6 @@ def extract_for_agreement(
             row_sets[0],
             None,
             None,
-            None,
-            1,
-            row_set_source=row_set_audit["source"],
-            rank_pivot_node=row_set_audit.get("node"),
-            rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
-            rank_pivot_nodes_required=row_set_audit.get(
-                "nodes_required_for_singularity_proof"
-            ),
-        )
-    if (
-        spec.get("certificate_mode") == ZERO_U_MONOMIAL_MODE
-        and row_set_audit["source"] == "rank_at_nodes"
-        and row_sets
-    ):
-        if any(value % prime for value in u):
-            raise ValueError("zero_u_monomial_roots needs u=0")
-        node = row_set_audit.get("node")
-        if not isinstance(node, int) or node % prime == 0:
-            raise ValueError("zero_u_monomial_roots needs a nonzero rank witness")
-        leading = determinant_mod(
-            matrix_at_slope(u, v, row_sets[0], size, 1, prime),
-            prime,
-        )
-        if leading == 0:
-            raise AssertionError("zero_u_monomial_roots leading coefficient vanished")
-        return ExtractionResult(
-            exact_agreement,
-            j,
-            t,
-            "regular_minor",
-            row_sets[0],
-            [0] * size + [leading],
-            [0],
             None,
             1,
             row_set_source=row_set_audit["source"],
@@ -1006,6 +1021,54 @@ def extract_for_agreement_field(
             "node": None,
             "nodes_tested": None,
         }
+    if spec.get("certificate_mode") == ZERO_U_MONOMIAL_MODE:
+        if any(not field.is_zero(value) for value in u):
+            raise ValueError("zero_u_monomial_roots needs u=0")
+        tested = 0
+        for row_set in row_sets:
+            tested += 1
+            leading = determinant_field(
+                [[v[row + col] for col in range(size)] for row in row_set],
+                field,
+            )
+            if field.is_zero(leading):
+                continue
+            return ExtractionResult(
+                exact_agreement,
+                j,
+                t,
+                "regular_minor",
+                row_set,
+                [field.zero] * size + [leading],
+                [field.zero],
+                None,
+                tested,
+                row_set_source=row_set_audit["source"],
+                rank_pivot_node=row_set_audit.get("node"),
+                rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+                rank_pivot_nodes_required=row_set_audit.get(
+                    "nodes_required_for_singularity_proof"
+                ),
+            )
+        return ExtractionResult(
+            exact_agreement,
+            j,
+            t,
+            "residual_obstruction",
+            None,
+            None,
+            None,
+            None,
+            tested,
+            row_set_source=row_set_audit["source"],
+            rank_pivot_node=row_set_audit.get("node"),
+            rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+            rank_pivot_nodes_required=row_set_audit.get(
+                "nodes_required_for_singularity_proof"
+            ),
+            residual_label="unknown",
+            residual_reason="all tested zero-u monomial leading coefficients vanished",
+        )
     if (
         spec.get("certificate_mode") == "rank_witness_bound"
         and row_set_audit["source"] == "rank_at_nodes"
@@ -1019,39 +1082,6 @@ def extract_for_agreement_field(
             row_sets[0],
             None,
             None,
-            None,
-            1,
-            row_set_source=row_set_audit["source"],
-            rank_pivot_node=row_set_audit.get("node"),
-            rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
-            rank_pivot_nodes_required=row_set_audit.get(
-                "nodes_required_for_singularity_proof"
-            ),
-        )
-    if (
-        spec.get("certificate_mode") == ZERO_U_MONOMIAL_MODE
-        and row_set_audit["source"] == "rank_at_nodes"
-        and row_sets
-    ):
-        if any(not field.is_zero(value) for value in u):
-            raise ValueError("zero_u_monomial_roots needs u=0")
-        node = row_set_audit.get("node")
-        if not isinstance(node, int) or node == 0:
-            raise ValueError("zero_u_monomial_roots needs a nonzero rank witness")
-        leading = determinant_field(
-            matrix_at_slope_field(u, v, row_sets[0], size, field.one, field),
-            field,
-        )
-        if field.is_zero(leading):
-            raise AssertionError("zero_u_monomial_roots leading coefficient vanished")
-        return ExtractionResult(
-            exact_agreement,
-            j,
-            t,
-            "regular_minor",
-            row_sets[0],
-            [field.zero] * size + [leading],
-            [field.zero],
             None,
             1,
             row_set_source=row_set_audit["source"],

@@ -9,9 +9,9 @@ selected exact agreement A.  The construction is deliberately simple:
     v_m = sum_i x_i^m,
 
 where x_i are the first j+1 domain elements from the descriptor.  At slope 1 the
-prefix Hankel minor is Z^(j+1) times a shifted Vandermonde square, so
-rank_at_nodes finds a full-rank specialization and the extractor can emit the
-closed-form synthetic root table {0} without determinant interpolation.
+prefix Hankel minor is Z^(j+1) times a shifted Vandermonde square, so the
+extractor can emit the closed-form synthetic root table {0} from the prefix
+row set without determinant interpolation.
 """
 
 from __future__ import annotations
@@ -76,12 +76,22 @@ def power_sum_syndrome(
     return syndrome
 
 
-def build_input(agreement: int = DEFAULT_AGREEMENT) -> dict[str, Any]:
+def build_input(
+    agreement: int = DEFAULT_AGREEMENT,
+    agreement_max: int | None = None,
+    witness_prefix_count: int | None = None,
+) -> dict[str, Any]:
     descriptor = load_json(ROW_DESCRIPTOR)
     field = Field(P, MODULUS)
+    if agreement_max is not None and agreement_max < agreement:
+        raise ValueError("agreement-max must be at least agreement")
+    agreements = list(range(agreement, (agreement_max or agreement) + 1))
     j_value = N - agreement
     t_value = agreement - K
     size = j_value + 1
+    prefix_count = witness_prefix_count or size
+    if prefix_count < size:
+        raise ValueError("witness prefix count must cover the largest minor")
     if t_value < size:
         raise ValueError("selected agreement is not regular overdetermined")
     length = t_value + j_value
@@ -89,8 +99,28 @@ def build_input(agreement: int = DEFAULT_AGREEMENT) -> dict[str, Any]:
         raise ValueError("selected agreement needs more syndrome entries than n-k")
 
     domain_encodings = descriptor["domain"]["domain_encodings"]
-    nodes = [field.decode(value) for value in domain_encodings[:size]]
+    if prefix_count > len(domain_encodings):
+        raise ValueError("witness prefix count exceeds the pinned domain size")
+    nodes = [field.decode(value) for value in domain_encodings[:prefix_count]]
     v_syndrome = power_sum_syndrome(field, nodes, length)
+    if agreement_max is None:
+        domain_description = (
+            "order-512 subgroup from the pinned F_17^32 row descriptor; "
+            "synthetic M3 rank-witness syndrome uses the first j+1 elements"
+        )
+        line_description = (
+            "synthetic M3 rank witness: u=0 and v_m=sum_i x_i^m for "
+            "the first j+1 descriptor-domain elements"
+        )
+    else:
+        domain_description = (
+            "order-512 subgroup from the pinned F_17^32 row descriptor; "
+            f"fixed synthetic M3 window syndrome uses the first {prefix_count} elements"
+        )
+        line_description = (
+            "fixed synthetic M3 window witness: u=0 and v_m=sum_i x_i^m for "
+            f"the first {prefix_count} descriptor-domain elements"
+        )
     return {
         "schema_version": "regular-hankel-minor-extractor-input-v1",
         "row": {
@@ -98,10 +128,7 @@ def build_input(agreement: int = DEFAULT_AGREEMENT) -> dict[str, Any]:
             "k": K,
             "field": "F_17^32",
             "domain_hash": descriptor["row"]["domain_hash"],
-            "domain_description": (
-                "order-512 subgroup from the pinned F_17^32 row descriptor; "
-                "synthetic M3 rank-witness syndrome uses the first j+1 elements"
-            ),
+            "domain_description": domain_description,
         },
         "field_model": {
             "kind": "polynomial_basis",
@@ -111,25 +138,22 @@ def build_input(agreement: int = DEFAULT_AGREEMENT) -> dict[str, Any]:
             "encoding": "base-p low-to-high coefficients",
         },
         "agreement_threshold": agreement,
-        "exact_agreements": [agreement],
+        "exact_agreements": agreements,
         "sampler": "finite_affine_line",
         "certificate_mode": "zero_u_monomial_roots",
         "line_syndrome": {
             "u": [0 for _ in range(length)],
             "v": v_syndrome,
             "field_encoding": "base-p low-to-high integer",
-            "description": (
-                "synthetic M3 rank witness: u=0 and v_m=sum_i x_i^m for "
-                "the first j+1 descriptor-domain elements"
-            ),
+            "description": line_description,
             "length": length,
             "witness_slope": 1,
-            "witness_node_prefix_count": size,
+            "witness_node_prefix_count": prefix_count,
             "rank_witness_reason": (
                 "u=0 makes the prefix determinant a nonzero monomial in the slope"
             ),
         },
-        "row_set_strategy": {"type": "rank_at_nodes"},
+        "row_set_strategy": {"type": "prefix"},
         "status": "PROVED / AUDIT",
         "nonclaims": [
             "synthetic syndrome pencil only",
@@ -140,8 +164,13 @@ def build_input(agreement: int = DEFAULT_AGREEMENT) -> dict[str, Any]:
     }
 
 
-def check_input(path: Path, agreement: int) -> None:
-    expected = render(build_input(agreement))
+def check_input(
+    path: Path,
+    agreement: int,
+    agreement_max: int | None,
+    witness_prefix_count: int | None,
+) -> None:
+    expected = render(build_input(agreement, agreement_max, witness_prefix_count))
     actual = path.read_text(encoding="utf-8")
     if actual != expected:
         raise AssertionError(f"rank-witness input mismatch: {path}")
@@ -149,7 +178,8 @@ def check_input(path: Path, agreement: int) -> None:
 
 def print_summary(packet: dict[str, Any]) -> None:
     row = packet["row"]
-    agreement = packet["exact_agreements"][0]
+    agreements = packet["exact_agreements"]
+    agreement = agreements[0]
     j_value = row["n"] - agreement
     t_value = agreement - row["k"]
     print("F_17^32 M3 rank-witness extractor input")
@@ -161,6 +191,8 @@ def print_summary(packet: dict[str, Any]) -> None:
             **row,
         )
     )
+    if len(agreements) > 1:
+        print(f"agreement_window={agreements[0]}..{agreements[-1]}")
     print(
         "syndrome_length={length}, witness_prefix={prefix}, mode={mode}".format(
             length=packet["line_syndrome"]["length"],
@@ -173,17 +205,24 @@ def print_summary(packet: dict[str, Any]) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--agreement", type=int, default=DEFAULT_AGREEMENT)
+    parser.add_argument("--agreement-max", type=int)
+    parser.add_argument("--witness-prefix-count", type=int)
     parser.add_argument("--write", type=Path, help="write deterministic input JSON")
     parser.add_argument("--check", type=Path, help="check deterministic input JSON")
     parser.add_argument("--json", action="store_true", help="print input JSON")
     args = parser.parse_args()
 
-    packet = build_input(args.agreement)
+    packet = build_input(args.agreement, args.agreement_max, args.witness_prefix_count)
     if args.write:
         args.write.parent.mkdir(parents=True, exist_ok=True)
         args.write.write_text(render(packet), encoding="utf-8")
     if args.check:
-        check_input(args.check, args.agreement)
+        check_input(
+            args.check,
+            args.agreement,
+            args.agreement_max,
+            args.witness_prefix_count,
+        )
     if args.json:
         print(render(packet), end="")
         return

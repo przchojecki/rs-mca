@@ -27,6 +27,9 @@ experimental/data/certificates/hankel-f17-32-m3-rank-witness-a385/
 
 experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/
   f17_32_n512_k256_a426_rank_witness_packet.json
+
+experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/
+  f17_32_n512_k256_a421_426_fixed_prefix92_packet.json
 ```
 
 ## Construction
@@ -54,13 +57,13 @@ v_m = sum_i x_i^m,       0 <= m < 256.
 
 The generated input stores these `F_17^32` elements as base-`17`
 low-to-high encoded integers, and the extractor decodes that compact format
-before running the rank test.
+before extracting the prefix minor.
 
-At slope `1`, the prefix minor is the Hankel moment matrix of those `87`
-distinct nonzero elements.  Its determinant is a shifted Vandermonde square, so
-it is nonzero in the pinned `F_17^32` model.  The extractor's `rank_at_nodes`
-selector therefore tests node `0`, then node `1`, finds the prefix row set
-`[0,...,86]`, computes the nonzero leading coefficient of
+The coefficient of `Z^87` in the prefix minor is the Hankel moment matrix of
+those `87` distinct nonzero elements.  Its determinant is a shifted
+Vandermonde square, so it is nonzero in the pinned `F_17^32` model.  The
+extractor's `zero_u_monomial_roots` mode therefore checks the prefix row set
+`[0,...,86]` directly, computes the nonzero leading coefficient of
 
 ```text
 Delta_426(Z) = c_426 Z^87,
@@ -90,8 +93,8 @@ root_union = {0}.
 Thus the concrete replay covers both endpoint minor sizes in the M3 regular
 window: `128` at `A=385` and `87` at `A=426`.
 
-The family certificate records the same Vandermonde rank-witness construction
-for every agreement in `385..426` without emitting all 42 full v9 packets.  It
+The family certificate records the same Vandermonde prefix construction for
+every agreement in `385..426` without emitting all 42 full v9 packets.  It
 stores one compact record per agreement and hashes the two endpoint v9 packets
 as concrete replays of the extractor/checker path.
 
@@ -121,6 +124,13 @@ agreements.  This does not close the safe side for the row: a future threshold
 packet needs actual M3 row data, tangent/quotient subtraction, and root tables
 or pivot-chart classifications for those actual pencils.
 
+There is also one fixed-syndrome top-window packet for `A=421..426`.  It uses a
+single `u=0` moment syndrome from the first `92` descriptor-domain elements, and
+the extractor verifies that the prefix leading coefficient is nonzero for each
+minor size `87..92`.  Thus a single v9 packet has root union `{0}` across six
+agreements, which is closer to the eventual M3 packet shape than the separate
+endpoint stress tests.
+
 ## Verification
 
 Run:
@@ -146,6 +156,19 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/f17_32_n512_k256_a426_rank_witness_packet.json
+
+python3 experimental/scripts/emit_f17_32_m3_rank_witness_input.py \
+  --agreement 421 \
+  --agreement-max 426 \
+  --witness-prefix-count 92 \
+  --check experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a421_426_fixed_prefix92_input.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a421_426_fixed_prefix92_input.json \
+  --check experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank_witness_family.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank-witness-family/f17_32_n512_k256_m3_rank_witness_family_certificate.json
