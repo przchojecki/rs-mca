@@ -2,6 +2,15 @@
   "agreements": [
     {
       "A": 385,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 129,
+        "count": 129,
+        "minor_size": 128,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 2,
@@ -36,6 +45,15 @@
     },
     {
       "A": 386,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 130,
+        "count": 357760,
+        "minor_size": 127,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 4,
@@ -70,6 +88,15 @@
     },
     {
       "A": 387,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 131,
+        "count": 297602656,
+        "minor_size": 126,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 6,
@@ -104,6 +131,15 @@
     },
     {
       "A": 388,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 132,
+        "count": 117850651776,
+        "minor_size": 125,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 8,
@@ -138,6 +174,15 @@
     },
     {
       "A": 389,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 133,
+        "count": 27212042858000,
+        "minor_size": 124,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 10,
@@ -172,6 +217,15 @@
     },
     {
       "A": 390,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 134,
+        "count": 4110502764804800,
+        "minor_size": 123,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 12,
@@ -206,6 +260,15 @@
     },
     {
       "A": 391,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 135,
+        "count": 437531400061434000,
+        "minor_size": 122,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 14,
@@ -240,6 +303,15 @@
     },
     {
       "A": 392,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 136,
+        "count": 34569147570568156800,
+        "minor_size": 121,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 16,
@@ -274,6 +346,15 @@
     },
     {
       "A": 393,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 137,
+        "count": 2106811614990104173800,
+        "minor_size": 120,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 18,
@@ -308,6 +389,15 @@
     },
     {
       "A": 394,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 138,
+        "count": 102014036094257675784000,
+        "minor_size": 119,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 20,
@@ -342,6 +432,15 @@
     },
     {
       "A": 395,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 139,
+        "count": 4017652788178848131293200,
+        "minor_size": 118,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 22,
@@ -376,6 +475,15 @@
     },
     {
       "A": 396,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 140,
+        "count": 131169217511293618831944000,
+        "minor_size": 117,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 24,
@@ -410,6 +518,15 @@
     },
     {
       "A": 397,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 141,
+        "count": 3606497635473018049784300280,
+        "minor_size": 116,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 26,
@@ -444,6 +561,15 @@
     },
     {
       "A": 398,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 142,
+        "count": 84624257908136115834824778080,
+        "minor_size": 115,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 28,
@@ -478,6 +604,15 @@
     },
     {
       "A": 399,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 143,
+        "count": 1713849656772535006039031373800,
+        "minor_size": 114,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 30,
@@ -512,6 +647,15 @@
     },
     {
       "A": 400,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 144,
+        "count": 30252210715675198558211547346560,
+        "minor_size": 113,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 32,
@@ -546,6 +690,15 @@
     },
     {
       "A": 401,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 145,
+        "count": 469396280848805045810886556130100,
+        "minor_size": 112,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 34,
@@ -580,6 +733,15 @@
     },
     {
       "A": 402,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 146,
+        "count": 6450057129781226982436652912470080,
+        "minor_size": 111,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 36,
@@ -614,6 +776,15 @@
     },
     {
       "A": 403,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 147,
+        "count": 79013199839820030534848998177758480,
+        "minor_size": 110,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 38,
@@ -648,6 +819,15 @@
     },
     {
       "A": 404,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 148,
+        "count": 867972262747820578345034878767819200,
+        "minor_size": 109,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 40,
@@ -682,6 +862,15 @@
     },
     {
       "A": 405,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 149,
+        "count": 8595571658102045129818116747602531480,
+        "minor_size": 108,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 42,
@@ -716,6 +905,15 @@
     },
     {
       "A": 406,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 150,
+        "count": 77103134474669507808999718333976196000,
+        "minor_size": 107,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 44,
@@ -750,6 +948,15 @@
     },
     {
       "A": 407,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 151,
+        "count": 629169365508704665489903257132350201400,
+        "minor_size": 106,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 46,
@@ -784,6 +991,15 @@
     },
     {
       "A": 408,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 152,
+        "count": 4688795937593084907665736021700474766400,
+        "minor_size": 105,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 48,
@@ -818,6 +1034,15 @@
     },
     {
       "A": 409,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 153,
+        "count": 32026150823738481735395429076793421395500,
+        "minor_size": 104,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 50,
@@ -852,6 +1077,15 @@
     },
     {
       "A": 410,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 154,
+        "count": 201149345722743342538860075330950367478560,
+        "minor_size": 103,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 52,
@@ -886,6 +1120,15 @@
     },
     {
       "A": 411,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 155,
+        "count": 1165221082896806046310922025638106900143400,
+        "minor_size": 102,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 54,
@@ -920,6 +1163,15 @@
     },
     {
       "A": 412,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 156,
+        "count": 6242760225944100272356697397964160604404640,
+        "minor_size": 101,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 56,
@@ -954,6 +1206,15 @@
     },
     {
       "A": 413,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 157,
+        "count": 31012358678820676071040147443457924406028940,
+        "minor_size": 100,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 58,
@@ -988,6 +1249,15 @@
     },
     {
       "A": 414,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 158,
+        "count": 143189733233596341882651762012459148338766000,
+        "minor_size": 99,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 60,
@@ -1022,6 +1292,15 @@
     },
     {
       "A": 415,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 159,
+        "count": 615833221538262299883830979737191107650414100,
+        "minor_size": 98,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 62,
@@ -1056,6 +1335,15 @@
     },
     {
       "A": 416,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 160,
+        "count": 2472162036282630021039034757367935629277648000,
+        "minor_size": 97,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 64,
@@ -1090,6 +1378,15 @@
     },
     {
       "A": 417,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 161,
+        "count": 9280710221304286788116972549474771808276208850,
+        "minor_size": 96,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 66,
@@ -1124,6 +1421,15 @@
     },
     {
       "A": 418,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 162,
+        "count": 32639892664342891933241781340893634365063681600,
+        "minor_size": 95,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 68,
@@ -1158,6 +1464,15 @@
     },
     {
       "A": 419,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 163,
+        "count": 107721384890739488829123824395511067379158378000,
+        "minor_size": 94,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 70,
@@ -1192,6 +1507,15 @@
     },
     {
       "A": 420,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 164,
+        "count": 334131362067533191104582067782937347025574558400,
+        "minor_size": 93,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 72,
@@ -1226,6 +1550,15 @@
     },
     {
       "A": 421,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 165,
+        "count": 975503377269082347317315797208746877874322983000,
+        "minor_size": 92,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 74,
@@ -1260,6 +1593,15 @@
     },
     {
       "A": 422,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 166,
+        "count": 2684304068045662271753161595490447264666064972320,
+        "minor_size": 91,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 76,
@@ -1294,6 +1636,15 @@
     },
     {
       "A": 423,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 167,
+        "count": 6970842262831498554995351463887273937308644802520,
+        "minor_size": 90,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 78,
@@ -1328,6 +1679,15 @@
     },
     {
       "A": 424,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 168,
+        "count": 17104695717950707262500765033102171686482750635200,
+        "minor_size": 89,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 80,
@@ -1362,6 +1722,15 @@
     },
     {
       "A": 425,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 169,
+        "count": 39702427205817374681369445503532371039565903133340,
+        "minor_size": 88,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 82,
@@ -1396,6 +1765,15 @@
     },
     {
       "A": 426,
+      "all_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "ambient_row_count": 170,
+        "count": 87268338377759025159166456763568067991758141474400,
+        "minor_size": 87,
+        "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+        "row_set_type": "arbitrary",
+        "valid_for_every_field": true
+      },
       "contiguous_row_set_atlas": {
         "all_generic_nonzero": true,
         "count": 84,
@@ -1440,6 +1818,10 @@
       "value": 4515
     },
     {
+      "name": "all_row_set_records_pass",
+      "status": "PASS"
+    },
+    {
       "name": "contiguous_row_set_count_sum",
       "status": "PASS",
       "value": 1806
@@ -1451,16 +1833,17 @@
     }
   ],
   "claim": {
+    "all_row_set_count_sum": 155193154203428426778689566118132250614039201839551,
     "contiguous_row_set_count_sum": 1806,
     "degree_only_budget_closes_safe_side": false,
     "degree_sum": 4515,
     "finite_slope_budget_numerator": 6,
-    "proof_method": "shifted Vandermonde moment specialization",
+    "proof_method": "identity initial monomial for all row sets; shifted Vandermonde audit for contiguous row sets",
     "regular_window": {
       "A_max": 426,
       "A_min": 385
     },
-    "summary": "For every 385 <= A <= 426, every contiguous regular Hankel minor det(H_{t,j}(u)+Z H_{t,j}(v)) with row set s..s+j is generically nonzero and has exact degree j+1."
+    "summary": "For every 385 <= A <= 426, every maximal row-set regular Hankel minor det(H_{t,j}(u)+Z H_{t,j}(v)) is generically nonzero and has exact degree j+1."
   },
   "nonclaims": [
     "does not prove any particular syndrome pencil is nonsingular",
@@ -1476,6 +1859,6 @@
     "row_descriptor_ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
     "row_descriptor_sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
   },
-  "schema_version": "f17-32-m3-generic-contiguous-regular-minor-v1",
+  "schema_version": "f17-32-m3-generic-all-row-set-regular-minor-v1",
   "status": "PROVED / AUDIT"
 }

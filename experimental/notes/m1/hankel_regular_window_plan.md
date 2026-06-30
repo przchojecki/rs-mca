@@ -84,11 +84,13 @@ The follow-up note
 experimental/notes/m1/f17_32_m3_generic_regular_minor.md
 ```
 
-proves that every contiguous maximal row-set minor is generically nonzero, with
-exact degree `j+1`, for every agreement in this window.  Across the window this
-gives `1806` generic contiguous charts.  Thus vanished contiguous minors for an
-actual syndrome pencil are special singular strata, not a forced failure of the
-regular Hankel chart.
+proves that every maximal row-set minor is generically nonzero, with exact
+degree `j+1`, for every agreement in this window.  Across the window this
+covers
+`155193154203428426778689566118132250614039201839551` formal row-set charts,
+with `1806` contiguous charts singled out as the practical first-search
+subatlas.  Thus vanished regular minors for an actual syndrome pencil are
+special singular strata, not a forced failure of the regular Hankel chart.
 
 Reproduce the audit packet:
 

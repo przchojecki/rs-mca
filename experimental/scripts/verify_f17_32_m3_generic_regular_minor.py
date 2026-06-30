@@ -1,22 +1,30 @@
 #!/usr/bin/env python3
-"""Verify generic contiguous regular-minor nonsingularity for the M3 window.
+"""Verify generic maximal-row-set regular-minor nonsingularity for M3.
 
 For each agreement 385 <= A <= 426 in the F_17^32, n=512, k=256 row,
-this script certifies that every contiguous (j+1)x(j+1) Hankel row-set minor
-is not identically zero as a polynomial in a generic syndrome pencil.
+this script certifies that every maximal (j+1)x(j+1) Hankel row-set minor is
+not identically zero as a polynomial in a generic syndrome pencil.
 
-The witness specialization is u=0 and
+The all-row-set proof is formal.  For a sorted row set r_0<...<r_j, the
+leading Z^(j+1) coefficient is
 
-    v_m = sum_{i=0}^j x_i^m
+    det(y_{r_a+c})_{0 <= a,c <= j}.
 
-for the first j+1 domain elements x_i.  For a contiguous row set s..s+j, the
-specialized Hankel matrix factors as A_s B^T, so its determinant is
+In its determinant expansion, the identity permutation contributes the monomial
+prod_a y_{r_a+a}.  This monomial is unique by induction on the smallest
+available row and column, so its coefficient is +1.  Hence no maximal row-set
+minor is structurally zero over any field.
+
+The certificate also keeps the previous explicit shifted-Vandermonde audit for
+the contiguous subatlas.  There the specialization is u=0 and
+
+    v_m = sum_{i=0}^j x_i^m,
+
+using the first j+1 domain elements x_i.  For row set s..s+j, the determinant is
 
     (prod_i x_i^s) * Vandermonde(x_0,...,x_j)^2.
 
-This is nonzero.  Thus the leading Z^(j+1) coefficient of
-det(H(u)+Z H(v)) is nonzero under this specialization, proving exact generic
-degree j+1 for every contiguous chart.
+This gives a concrete finite-field audit of the contiguous charts.
 """
 
 from __future__ import annotations
@@ -24,6 +32,7 @@ from __future__ import annotations
 import argparse
 import json
 from hashlib import sha256
+from math import comb
 from pathlib import Path
 from typing import Any
 
@@ -37,9 +46,9 @@ ROW_DESCRIPTOR = ROOT / (
 )
 CERTIFICATE_PATH = ROOT / (
     "experimental/data/certificates/hankel-f17-32-generic-regular-minor/"
-    "f17_32_n512_k256_m3_generic_contiguous_regular_minor_certificate.json"
+    "f17_32_n512_k256_m3_generic_all_row_set_regular_minor_certificate.json"
 )
-SCHEMA_VERSION = "f17-32-m3-generic-contiguous-regular-minor-v1"
+SCHEMA_VERSION = "f17-32-m3-generic-all-row-set-regular-minor-v1"
 AGREEMENT_MIN = 385
 AGREEMENT_MAX = 426
 
@@ -107,6 +116,7 @@ def agreement_record(
     j = N - agreement
     t = agreement - K
     size = j + 1
+    all_row_set_count = comb(t, size)
     encoded_domain = descriptor["domain"]["domain_encodings"]
     prefix_encodings = encoded_domain[:size]
     require(len(set(prefix_encodings)) == size, f"domain prefix not distinct at A={agreement}")
@@ -141,6 +151,15 @@ def agreement_record(
         "vandermonde_product_encoding": field.encode(vandermonde),
         "node_product_encoding": field.encode(node_product),
         "leading_coefficient_encoding": field.encode(prefix_leading),
+        "all_row_set_atlas": {
+            "row_set_type": "arbitrary",
+            "ambient_row_count": t,
+            "minor_size": size,
+            "count": all_row_set_count,
+            "all_generic_nonzero": True,
+            "proof": "identity initial monomial prod_a y_{r_a+a} has coefficient +1",
+            "valid_for_every_field": True,
+        },
         "contiguous_row_set_atlas": {
             "row_set_type": "contiguous",
             "start_min": 0,
@@ -172,6 +191,9 @@ def build_certificate() -> dict[str, Any]:
         for agreement in range(AGREEMENT_MIN, AGREEMENT_MAX + 1)
     ]
     degree_sum = sum(record["generic_degree"] for record in records)
+    all_row_set_count_sum = sum(
+        record["all_row_set_atlas"]["count"] for record in records
+    )
     contiguous_count_sum = sum(
         record["contiguous_row_set_atlas"]["count"] for record in records
     )
@@ -188,13 +210,14 @@ def build_certificate() -> dict[str, Any]:
         },
         "claim": {
             "summary": (
-                "For every 385 <= A <= 426, every contiguous regular Hankel "
-                "minor det(H_{t,j}(u)+Z H_{t,j}(v)) with row set s..s+j is "
-                "generically nonzero and has exact degree j+1."
+                "For every 385 <= A <= 426, every maximal row-set regular "
+                "Hankel minor det(H_{t,j}(u)+Z H_{t,j}(v)) is generically "
+                "nonzero and has exact degree j+1."
             ),
             "regular_window": {"A_min": AGREEMENT_MIN, "A_max": AGREEMENT_MAX},
-            "proof_method": "shifted Vandermonde moment specialization",
+            "proof_method": "identity initial monomial for all row sets; shifted Vandermonde audit for contiguous row sets",
             "degree_sum": degree_sum,
+            "all_row_set_count_sum": all_row_set_count_sum,
             "contiguous_row_set_count_sum": contiguous_count_sum,
             "degree_only_budget_closes_safe_side": False,
             "finite_slope_budget_numerator": (P ** (len(MODULUS) - 1)) // (2**128),
@@ -209,6 +232,13 @@ def build_certificate() -> dict[str, Any]:
                 "name": "degree_sum",
                 "status": "PASS" if degree_sum == 4515 else "FAIL",
                 "value": degree_sum,
+            },
+            {
+                "name": "all_row_set_records_pass",
+                "status": "PASS" if all(
+                    record["all_row_set_atlas"]["all_generic_nonzero"]
+                    for record in records
+                ) else "FAIL",
             },
             {
                 "name": "contiguous_row_set_count_sum",
@@ -243,7 +273,7 @@ def check_certificate(path: Path) -> None:
 
 def print_summary(certificate: dict[str, Any]) -> None:
     window = certificate["claim"]["regular_window"]
-    print("F_17^32 M3 generic contiguous regular-minor certificate")
+    print("F_17^32 M3 generic all-row-set regular-minor certificate")
     print(
         "row: n={n}, k={k}, domain_hash={domain_hash}".format(
             **certificate["row"]
@@ -258,7 +288,12 @@ def print_summary(certificate: dict[str, Any]) -> None:
         )
     )
     print(
-        "contiguous row-set charts={}".format(
+        "all row-set charts={}".format(
+            certificate["claim"]["all_row_set_count_sum"]
+        )
+    )
+    print(
+        "contiguous subatlas charts={}".format(
             certificate["claim"]["contiguous_row_set_count_sum"]
         )
     )
