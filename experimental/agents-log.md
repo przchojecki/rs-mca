@@ -30,7 +30,7 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
-### 2026-06-30 - Hankel proportional-pencil tangent lemma
+### 2026-06-30 - Hankel proportional-window root compression
 
 - **Agent/model:** AllenGrahamHart / Codex.
 - **Files added or changed:**
@@ -42,17 +42,18 @@ Keep entries concise and link to the relevant files.
   `experimental/agents-log.md`.
 - **Status:** PROVED / AUDIT.
 - **What is being added:** A reusable v9 classification lemma for proportional
-  syndrome pencils: if `u=c v`, then regular minors have shape
-  `det(H(v)_R)(Z+c)^(j+1)`, affine pivots with `B_T != 0` have slope `-c`,
-  and `B_T=0` is contained.  Therefore proportional branches are tangent
-  residuals and contribute no aperiodic roots after the common-code-line
-  ledger removes `Z=-c`.
+  Hankel windows: if `u_m=c v_m` on the visible exact-bucket window `m<t+j`,
+  then regular minors have shape `det(H(v)_R)(Z+c)^(j+1)`, affine pivots with
+  `B_T != 0` have slope `-c`, and `B_T=0` is contained.  Full-syndrome
+  proportionality is recorded as the extra condition needed to charge `Z=-c`
+  to the common-code-line ledger.
 - **How it is useful:** Turns the previous scalar `F_17^32` packet into a
   general removed-ledger rule for future M3/M4 v9 packets, including singular
-  proportional buckets.
+  proportional buckets, while avoiding overcharging merely local proportional
+  windows to tangent.
 - **What to do next:** Apply this only as a tangent residual classification
-  inside actual row packets; non-proportional aperiodic buckets remain the
-  main M3 problem.
+  inside actual row packets after the full syndrome/tail check; non-proportional
+  aperiodic buckets remain the main M3 problem.
 
 ### 2026-06-30 - F17^32 proportional Hankel root subtraction
 

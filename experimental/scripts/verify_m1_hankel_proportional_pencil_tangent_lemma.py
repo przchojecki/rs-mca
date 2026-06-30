@@ -31,7 +31,7 @@ from experimental.scripts.extract_regular_hankel_minors import (  # noqa: E402
 )
 
 
-SCHEMA_VERSION = "m1-hankel-proportional-pencil-tangent-lemma-v1"
+SCHEMA_VERSION = "m1-hankel-proportional-pencil-tangent-lemma-v2"
 PRIME = 17
 SCALAR = 5
 TANGENT_ROOT = (-SCALAR) % PRIME
@@ -157,6 +157,47 @@ def pivot_case() -> dict[str, Any]:
     }
 
 
+def local_window_case() -> dict[str, Any]:
+    """Check that proportionality only on the visible Hankel window suffices.
+
+    The regular bucket with minor size ``SIZE`` and ``T`` rows only reads
+    moments with indices < T+SIZE-1.  A tail deviation outside that window must
+    not change the regular or pivot algebra for this exact agreement, but it
+    also means the root cannot be charged to the global common-code-line ledger
+    from local data alone.
+    """
+
+    window_length = T + SIZE - 1
+    v = [2, 7, 4, 13, 6, 15, 5, 9]
+    u = [(SCALAR * value) % PRIME for value in v]
+    u[window_length] = (u[window_length] + 1) % PRIME
+    row_set = [0, 1, 2]
+    det_v = determinant_mod(regular_matrix(v, row_set, SIZE), PRIME)
+    actual = determinant_polynomial_by_interpolation(u, v, row_set, SIZE, PRIME)
+    expected = poly_scale(linear_power_mod(SCALAR, SIZE, PRIME), det_v, PRIME)
+    require(actual == expected, "local-window determinant identity failed")
+    roots = [root for root in range(PRIME) if poly_eval(actual, root, PRIME) == 0]
+    require(roots == [TANGENT_ROOT], "local-window root compression failed")
+    tail_at_root = (u[window_length] + TANGENT_ROOT * v[window_length]) % PRIME
+    require(tail_at_root != 0, "tail deviation should block global tangent charge")
+    return {
+        "field": f"F_{PRIME}",
+        "t": T,
+        "minor_size": SIZE,
+        "visible_moment_indices": [0, window_length - 1],
+        "first_tail_index": window_length,
+        "scalar_c": SCALAR,
+        "root_mod_17": TANGENT_ROOT,
+        "determinant_coefficients_mod_17": actual,
+        "tail_syndrome_at_root_mod_17": tail_at_root,
+        "conclusion": (
+            "local Hankel-window proportionality compresses this exact bucket "
+            "to one finite slope, but tail moments are needed before charging "
+            "that slope to the global common-code-line ledger"
+        ),
+    }
+
+
 def check_f17_32_artifacts() -> dict[str, Any]:
     checker = load_schema_checker()
     checker.check_path(REPO_ROOT / SCALAR_PACKET_REF, SCHEMA)
@@ -195,35 +236,40 @@ def build_certificate() -> dict[str, Any]:
         "schema_version": SCHEMA_VERSION,
         "status": "PROVED / AUDIT",
         "theorem": {
-            "name": "Hankel proportional-pencil tangent lemma",
+            "name": "Hankel proportional-window root-compression lemma",
             "statement": (
-                "For any field F, scalar c, syndrome vector v, and u=c v, "
-                "the v9 Hankel pencil satisfies H(u)+Z H(v)=(c+Z)H(v). "
+                "For any exact v9 bucket, if u_m=c v_m on the visible Hankel "
+                "window m<t+j, then H(u)+Z H(v)=(c+Z)H(v) on that bucket. "
                 "Thus every nonzero regular maximal minor has root set {-c}; "
                 "every affine pivot slope with B_T nonzero is also -c; and "
-                "B_T=0 implies A_T=0, hence contained.  After the "
-                "tangent/common-code-line ledger removes Z=-c, the proportional "
-                "branch contributes no aperiodic roots."
+                "B_T=0 implies A_T=0, hence contained.  If the proportionality "
+                "holds for the full syndrome vector, then Z=-c is a "
+                "tangent/common-code-line slope and the branch contributes no "
+                "aperiodic roots after that ledger is removed."
             ),
             "proof_status": "algebraic identity plus machine replay",
-            "v9_residual_label": "tangent",
+            "v9_residual_label": "single_slope; tangent when full syndrome proportional",
         },
         "formal_identities": {
-            "regular_minor": "det((H(u)+Z H(v))_R)=det(H(v)_R)*(Z+c)^(j+1)",
-            "pivot_chart": "A_T=H(u) ell_T=c H(v) ell_T=c B_T",
-            "removed_slope": "Z=-c makes u+Z v=0, a common-code-line syndrome",
+            "visible_window": "m=0,...,t+j-1 are the only syndrome moments used by an exact-A bucket",
+            "regular_minor": "if u=c v on that window, det((H(u)+Z H(v))_R)=det(H(v)_R)*(Z+c)^(j+1)",
+            "pivot_chart": "if u=c v on that window, A_T=H(u) ell_T=c H(v) ell_T=c B_T",
+            "global_removed_slope": "if u=c v for the full syndrome vector, Z=-c makes u+Z v=0, a common-code-line syndrome",
         },
         "prime_field_checks": {
             "regular_minor_checks": regular_checks,
             "pivot_slope_checks": pivot_case(),
+            "local_window_not_global_check": local_window_case(),
         },
         "f17_32_replay": check_f17_32_artifacts(),
         "consequence_for_packets": {
-            "if_regular_minor_nonzero": "root_union={-c}; charge it to tangent",
+            "if_regular_minor_nonzero": "root_union={-c} for that exact bucket",
             "if_regular_bucket_singular": (
-                "proportionality alone is a tangent residual, not a new "
-                "aperiodic obstruction"
+                "local proportionality alone is a one-slope residual, not a "
+                "new aperiodic family"
             ),
+            "if_full_syndrome_proportional": "charge {-c} to tangent/common-code-line",
+            "if_only_window_proportional": "do not charge to tangent without a tail check",
             "claim_scope": "not threshold-pinning unless embedded in an actual-row packet",
         },
         "nonclaims": [
