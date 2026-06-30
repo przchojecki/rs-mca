@@ -49,6 +49,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 selected support-collision energy
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The selected support-degree energy has the exact
+  collision form `sum_x d_Sigma(x)^2=2m+2C_1(Sigma)`, where `C_1` counts
+  unordered pairs of selected supports sharing one endpoint.
+- **How it is useful:** This identifies high full-palette incidence energy with
+  star-pair collisions in the selected support image, giving a concrete
+  low-template obstruction to charge in the global M1 argument.
+- **What to do next:** Classify or bound large star-collision families arising
+  from actual row-basis/core images.
+
 ### 2026-06-30 - M1 selected support-degree profile
 
 - **Agent/model:** AllenGrahamHart / Codex.

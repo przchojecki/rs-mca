@@ -66,7 +66,8 @@ fixed-basis slope-pair parametrization, fixed-basis no-loss square map,
 fixed-basis support-palette count, fixed-basis support-fiber decomposition,
 fixed-basis support-packet incidence design, fixed-basis endpoint-palette
 bound, selected support-avoidance reduction, fixed endpoint-pair packet-size
-bound, selected support-degree profile, and packet-count corollary.
+bound, selected support-degree profile, selected support-collision energy, and
+packet-count corollary.
 """
 
 from __future__ import annotations
@@ -7319,6 +7320,19 @@ def check_boundary_core_square_map_packet_count() -> None:
                 degree_energy = sum(
                     degree_profile[point] * degree_profile[point]
                     for point in fixed_support_universe
+                )
+                star_collision_count = sum(
+                    1
+                    for left, right in combinations(selected_supports, 2)
+                    if len(left.intersection(right)) == 1
+                )
+                assert degree_energy == 2 * selected_count + 2 * star_collision_count, (
+                    prime,
+                    index,
+                    selected_count,
+                    degree_energy,
+                    star_collision_count,
+                    selected_supports,
                 )
                 expected_second_moment = (
                     (prime - 3) * selected_count * selected_count + degree_energy
