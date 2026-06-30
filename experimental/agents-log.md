@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 popularity divisor gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_popularity_divisor_gate.md`,
+  `experimental/scripts/verify_m1_popularity_divisor_gate.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
+- **What is being added:** A divisor-gate lemma for the M1 popularity cap:
+  bounded exceptional leaf parameters plus nonzero bounded-degree univariate
+  gates imply an explicit popularity bound `U_gate`, which feeds directly into
+  the packet-sift support floor.
+- **How it is useful:** Matches the form of the existing Kummer/resultant
+  reductions, turning the remaining popularity-cap task into a concrete
+  bounded-degree gate or structured-exception statement.
+- **What to do next:** Derive the actual residue-line high-overlap leaf gates
+  and verify that the gate polynomials are nonzero outside the charged
+  quotient/tangent/root/template branches.
+
 ### 2026-06-30 - M1 popularity-cap support criterion
 
 - **Agent/model:** AllenGrahamHart / Codex.
