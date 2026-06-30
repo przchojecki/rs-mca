@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 equal-line resultant popularity gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_equal_line_resultant_popularity_gate.md`,
+  `experimental/scripts/verify_m1_equal_line_resultant_popularity_gate.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
+- **What is being added:** A concrete instantiation of the popularity divisor
+  gate using the equal-line diagonal kernel resultant
+  `16x^2y^2-8xy^2+4xy+y^2-2y+1`: every fixed projective center residue gives a
+  nonzero quadratic gate in the projective leaf parameter.
+- **How it is useful:** Connects the abstract M1 packet-sift popularity cap to
+  an actual Kummer/resultant object already present in the depth-two
+  equal-line reduction, giving an explicit `U=mu(E+2)` cap once the
+  high-overlap leaves are reduced to this resultant outside charged
+  exceptions.
+- **What to do next:** Prove or falsify the remaining containment statement:
+  endpoint-independent equal-line high-overlap leaves containing a fixed center
+  residue are forced onto this resultant after known quotient/tangent/root
+  exceptions are removed.
+
 ### 2026-06-30 - M1 projective popularity divisor gate
 
 - **Agent/model:** AllenGrahamHart / Codex.
