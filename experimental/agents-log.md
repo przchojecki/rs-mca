@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 equal-line local cap consolidation
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_equal_line_generic_popularity_budget.md`,
+  `experimental/notes/m1/m1_equal_line_resultant_popularity_gate.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
+- **What is being added:** The equal-line popularity budget now explicitly
+  incorporates the split-fiber containment lemma, so the ordinary finite
+  equal-line branch has a local cap `U_eq <= 8mu` rather than an open
+  containment subtask.
+- **How it is useful:** Narrows the C3/M1 obstruction after packet-sifting:
+  the remaining issue is the global reduction into the equal-line split-fiber
+  chart and the accounting of charged boundary branches, not the local
+  resultant gate or ordinary finite containment.
+- **What to do next:** Attack the global model-entry step for
+  endpoint-independent high-overlap leaves, or produce a counterexample showing
+  that some aperiodic high-overlap family escapes the equal-line chart without
+  landing in an already charged branch.
+
 ### 2026-06-30 - M1 equal-line split-fiber containment
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -6,17 +6,20 @@
 
 **Date:** 2026-06-30.
 
-This note combines two existing local ingredients:
+This note combines three local ingredients:
 
 1. the equal-line diagonal singular-value ledger from
    `m1_depth_two_equal_line_diagonal_reduction.md`;
 2. the equal-line resultant popularity gate from
-   `m1_equal_line_resultant_popularity_gate.md`.
+   `m1_equal_line_resultant_popularity_gate.md`;
+3. the finite split-fiber containment lemma from
+   `m1_equal_line_split_fiber_containment.md`.
 
-It gives an explicit popularity constant for the equal-line diagonal branch.
-It remains conditional on the nonlocal containment step: the endpoint-disjoint
-high-overlap leaves containing a fixed center residue must actually reduce to
-the equal-line resultant outside the charged singular/denominator fibers.
+It gives an explicit popularity constant for the ordinary finite equal-line
+split-fiber branch.  It remains conditional only on the nonlocal model-entry
+step: the global endpoint-disjoint high-overlap leaves must actually reduce to
+this equal-line split-fiber model after quotient, tangent, fixed-root, and
+denominator exceptions are charged.
 
 ## Singular support
 
@@ -59,6 +62,37 @@ U_eq <= mu(E_eq+2) <= 8mu.                         (EQ-U)
 Here `mu` is the multiplicity of the projective leaf parameter: at most `mu`
 endpoint-disjoint leaves may share the same `y`.
 
+## Local cap theorem
+
+In the ordinary finite split-fiber equal-line model, the containment hypothesis
+needed by the divisor gate is no longer open.  If a leaf parameter `z` is
+regular and a center residue `x` satisfies the leaf-containment equation
+
+```text
+K_x(z)=0,
+```
+
+then `m1_equal_line_split_fiber_containment.md` proves that, with
+
+```text
+y = (1+3z^2)/(1-z)^2,
+```
+
+one has
+
+```text
+R(x,y)=0,
+```
+
+unless `y` lies in the six charged projective singular fibers.  Therefore a
+fixed center residue is contained in at most
+
+```text
+mu(6+2) = 8mu
+```
+
+endpoint-disjoint ordinary finite split-fiber leaves.
+
 ## Packet-sift consequence
 
 Insert
@@ -79,14 +113,15 @@ then the equal-line diagonal residual satisfies at least one of:
 ```text
 large support,
 near-star,
-or containment/gate failure:
-  a fixed center residue has endpoint-independent high-overlap leaves
-  not covered by the six singular fibers and the quadratic resultant gate.
+or model-entry failure:
+  the endpoint-independent high-overlap leaves do not reduce to the ordinary
+  finite equal-line split-fiber model after the charged branches are removed.
 ```
 
-This turns the equal-line branch into a concrete falsifiable target.  The only
-remaining algebraic work is the containment statement, not the packet
-combinatorics or the divisor root count.
+This turns the equal-line branch into a concrete falsifiable target.  The
+ordinary finite split-fiber containment, packet combinatorics, and divisor root
+count are closed locally; the remaining algebraic work is the global reduction
+from the full M1 high-overlap model into this equal-line split-fiber chart.
 
 ## Verification
 

@@ -92,19 +92,20 @@ Consequently the popularity-cap support criterion of
 U = mu(E+2).
 ```
 
-Thus, in the equal-line diagonal branch, proving the leaf-containment reduction
-to `R_h=0` outside the charged exceptional fibers is enough to close the
+Thus, in the equal-line diagonal branch, a leaf-containment reduction to
+`R_h=0` outside the charged exceptional fibers is enough to close the
 far-from-star small-support residual whenever
 
 ```text
 F_pop(K,s,h,D,Lambda,mu(E+2)) > R_budget.
 ```
 
-The remaining nonlocal task is exactly the containment/nonzero audit: show
-that the relevant endpoint-independent high-overlap leaves containing a fixed
-center residue are forced onto this resultant, and that all denominator,
-branch, quotient, tangent, and fixed-root exceptions are charged into `Z_exc`
-or earlier ledgers.
+The finite ordinary split-fiber containment case is discharged in
+`m1_equal_line_split_fiber_containment.md`.  The remaining nonlocal task is to
+show that the relevant global endpoint-independent high-overlap leaves enter
+that split-fiber chart, and that all denominator, branch, quotient, tangent,
+projective-boundary, and fixed-root exceptions are charged into `Z_exc` or
+earlier ledgers.
 
 ## Verification
 
