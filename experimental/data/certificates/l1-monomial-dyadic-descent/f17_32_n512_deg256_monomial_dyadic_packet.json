@@ -383,6 +383,12 @@
     ],
     "d3_witness": "union of complete order-4 cosets"
   },
+  "constructive_witness_rules": {
+    "encoding": "exponents of the quotient generator alpha in G_N",
+    "d1": "first c/2 antipodal pairs",
+    "d2": "E0 plus first disjoint order-4 cosets",
+    "d3": "first c/4 order-4 cosets"
+  },
   "theorem_summary": "For the monomial word x -> x^A on H=<z> in F_17[z]/(z^32-3), with degree bound deg P <= 256, the listed final_admissible_sizes are exactly the agreement sizes A in 258..512 for which an A-admissible support exists.",
   "nonclaims": [
     "not an arbitrary-word L1 local-limit theorem",

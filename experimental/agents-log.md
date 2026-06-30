@@ -43,8 +43,8 @@ Keep entries concise and link to the relevant files.
   locator classification over `F_17[z]/(z^32-3)`, `|H|=512`, and degree bound
   `deg P <= 256`.  The verifier checks the local length-16 imbalance lemma,
   binomial basis gate, dyadic divisibility thresholds, survivor table,
-  impossible candidate rows, final admissible size list, and structural
-  nonemptiness witnesses.
+  impossible candidate rows, final admissible size list, and explicit
+  quotient-complement witnesses for every admissible row.
 - **How it is useful:** This addresses the L1 base-list proof-packet roadmap
   item with a nontrivial, machine-auditable locator theorem rather than a
   broad conjectural note.  It is a monomial-prefix packet only, not an

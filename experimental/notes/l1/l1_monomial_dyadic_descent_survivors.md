@@ -620,5 +620,8 @@ python3 experimental/scripts/verify_l1_monomial_dyadic_descent_packet.py \
 
 The packet verifier checks the local length-16 lemma, binomial basis gate,
 dyadic descent thresholds, survivor table, impossible rows, final admissible
-size list, and the structural nonemptiness witnesses.  It does not enumerate
-all support orbits in the large admissible families.
+size list, and the structural nonemptiness witnesses.  It also constructs one
+explicit quotient-complement witness for every admissible row and checks the
+required quotient power sums `p_1,...,p_d` directly in the `F_17` basis
+determined by `alpha^(N/16)=3`.  It does not enumerate all support orbits in
+the large admissible families.
