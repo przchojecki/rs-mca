@@ -49,6 +49,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 integer support-budget ceiling
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL-DENSITY / AUDIT.
+- **What is being added:** The real strict inequality
+  `R<R_dens(a0,L)` is converted to the exact integer ceiling
+  `R_Z(a0,L)=ceil(R_dens(a0,L))-1`, so integer support budgets close exactly
+  when `R<=R_Z(a0,L)`.
+- **How it is useful:** Finite-row threshold checks can consume the density
+  budget without hidden strict-real rounding conventions.
+- **What to do next:** Use the integer ceiling with concrete finite-row
+  density lower bounds and template-footprint caps.
+
 ### 2026-06-30 - M1 template-budget tradeoff
 
 - **Agent/model:** AllenGrahamHart / Codex.

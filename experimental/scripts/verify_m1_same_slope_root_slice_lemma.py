@@ -75,7 +75,8 @@ support-budget alternative, palette-density support lower bound, and
 small-support exclusion criterion, local support-budget output theorem, and
 sparse residual certificate reduction, feasibility window, and far-from-star
 certificate cap with near-star localization, template count, and
-density-threshold closure, budget inversion, and template-budget tradeoff.
+density-threshold closure, budget inversion, template-budget tradeoff, and
+integer support-budget ceiling.
 """
 
 from __future__ import annotations
@@ -7716,6 +7717,90 @@ def check_boundary_core_square_map_packet_count() -> None:
                             assert density_threshold_exceeded == (
                                 density_budget_selected_closes
                                 or density_budget_missing_closes
+                            )
+                            selected_budget_numerator = (
+                                far_factor
+                                * (prime - 1)
+                                * (prime - 1)
+                                * residual_selected_classes
+                                * residual_selected_classes
+                            )
+                            selected_budget_denominator = (
+                                (
+                                    full_palette_size
+                                    * residual_count
+                                )
+                                * (
+                                    full_palette_size
+                                    * residual_count
+                                )
+                                * (far_factor * (prime - 3) + 2)
+                            )
+                            selected_integer_ceiling = (
+                                (selected_budget_numerator - 1)
+                                // selected_budget_denominator
+                            )
+                            assert density_budget_selected_closes == (
+                                probe_budget <= selected_integer_ceiling
+                            ), (
+                                prime,
+                                index,
+                                far_factor,
+                                probe_budget,
+                                selected_integer_ceiling,
+                                selected_budget_numerator,
+                                selected_budget_denominator,
+                            )
+                            missing_budget_numerator = (
+                                (
+                                    full_palette_size
+                                    * residual_count
+                                )
+                                * (far_factor - 1)
+                                * len(all_projective_points)
+                                - far_factor
+                                * (prime - 1)
+                                * (
+                                    full_palette_size * residual_count
+                                    - residual_selected_classes
+                                )
+                            )
+                            missing_budget_denominator = (
+                                (
+                                    full_palette_size
+                                    * residual_count
+                                )
+                                * (far_factor - 1)
+                            )
+                            missing_integer_ceiling = (
+                                (missing_budget_numerator - 1)
+                                // missing_budget_denominator
+                            )
+                            assert density_budget_missing_closes == (
+                                probe_budget <= missing_integer_ceiling
+                            ), (
+                                prime,
+                                index,
+                                far_factor,
+                                probe_budget,
+                                missing_integer_ceiling,
+                                missing_budget_numerator,
+                                missing_budget_denominator,
+                            )
+                            integer_budget_ceiling = max(
+                                selected_integer_ceiling,
+                                missing_integer_ceiling,
+                            )
+                            assert density_threshold_exceeded == (
+                                probe_budget <= integer_budget_ceiling
+                            ), (
+                                prime,
+                                index,
+                                far_factor,
+                                probe_budget,
+                                integer_budget_ceiling,
+                                selected_integer_ceiling,
+                                missing_integer_ceiling,
                             )
                             if residual_count >= far_factor * degree_cap:
                                 assert (

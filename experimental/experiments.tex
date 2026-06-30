@@ -2812,6 +2812,15 @@ at most \(S\), leaving at most
         \sum_{s=0}^{\min(q+1,S)} {q+1\choose s}\,2^{h{s\choose2}}
 \]
 palette templates.
+For finite rows one can replace the real comparison by the integer ceiling
+\[
+        R_{\mathbb Z}(a_0,L)=\lceil R_{\rm dens}(a_0,L)\rceil-1.
+\]
+Then an integer support budget satisfies
+\(R<R_{\rm dens}(a_0,L)\) exactly when \(R\le R_{\mathbb Z}(a_0,L)\).
+Thus, with \(L=L_S\), every sparse certificate with
+\(B_{\rm ap}\le R_{\mathbb Z}(a_0,L_S)\) is impossible or belongs to the
+endpoint-footprint-\(\le S\) template ledger.
 Moreover, if \(L_E(z)=Wz-Z\) for \(E=[Z:W]\), then in the off-diagonal case
 \[
         {H_1\over H_0}
