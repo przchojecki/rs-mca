@@ -30,6 +30,93 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Paper B: {2,3}-smooth exact canonical slope count
+
+- **Agent/model:** Claude Opus 4.8.
+- **Files added or changed:**
+  `experimental/notes/m1/paperb_23_smooth_exact_count.md`,
+  `experimental/scripts/verify_paperb_23_smooth_exact_count.py`.
+- **Status:** CONDITIONAL (agents.md rule 4 — proof depends on the import
+  `thm:vsimport`, exactly as `thm:23rigidity` is "conditional on the import") /
+  AUDIT cross-check (finite values certified unconditionally vs brute force).
+- **What is being added:** The exact `{2,3}`-smooth canonical slope count
+  `A_{2,3}(2^a 3^b, ℓ')` requested as "future combinatorics" in
+  `slackMCA_v4.tex` `rem:23count` — a single closed form (per-cell Boolean-
+  Minkowski transfer over `n_c=2^{a-1}3^{b-1}` cells, alphabet of 19
+  difference-types in four size-classes) that recovers `thm:exactcount` at
+  `b=0` and gives the half-rate exponent `β_{2,3}(1/2)=log_2(19)/6 ≈ 0.708`.
+- **How it is useful:** Closes the mixed-radix class-enumeration target of
+  `rem:23count` (the analogue of `thm:exactcount`), feeding the unchanged norm
+  sieve for `{2,3}`-smooth (mixed-radix FFT) domains. Verifier certifies the
+  closed form against two-faithful-prime brute force for all `N'≤48` and
+  certifies the `b=0` collapse to `thm:exactcount`.
+- **What to do next:** Review the proof skeleton before promoting the closed
+  form to `tex/`; extend the explicit `β_{2,3}(ρ)` saddle-point to general `ρ`;
+  optionally a stdlib-Lean statement of the per-cell transfer identity.
+
+### 2026-06-29 - Lean: quotient-periodic whole-fiber strict-overlap arithmetic
+
+- **Agent/model:** Claude Opus 4.8 (1M).
+- **Files added or changed:**
+  `experimental/lean/rs_mca_formalization/RsMca/QuotientOverlap.lean` (new),
+  `experimental/lean/rs_mca_formalization/RsMca.lean` (import wired in),
+  `experimental/lean/rs_mca_formalization/README.md`, `experimental/agents-log.md`.
+- **Status:** PROVED (machine-checked, stdlib-only Lean 4; no `sorry`).
+- **What is being added:** A compiler-verified formalization of the
+  size/threshold arithmetic of the PROVED note
+  `notes/m1/m1_quotient_periodic_overlap_profile.md`: with a domain split into
+  `N` fibers of size `m`, whole-fiber supports have size `L*m` and differ by
+  `|S\T| = h*m`, `|S∩T| = (L-h)*m`; at agreement `s = k+t` the strict
+  high-overlap range `|S∩T| > k` is exactly `|S\T| < t`
+  (`strict_overlap_iff`), there are no strict pairs when `t <= m`
+  (`no_strict_when_t_le_m`), the first correction needs `t >= m+1`
+  (`strict_needs_t_gt_fiber`), the first band `m < t <= 2m` forces `h = 1`
+  (`first_band_unique`), and the active-scale count is `floor((t-1)/m)`
+  (`active_scale_iff`).
+- **How it is useful:** Turns the M1 quotient-periodic overlap reduction into a
+  kernel-checked unit (the project's stated Lean to-do; see SUMMARY Next Steps
+  #7 and agents.md). `#print axioms` shows `no_strict_when_t_le_m` is axiom-free;
+  the rest use only `[propext, Classical.choice, Quot.sound]`. Companion to the
+  `RsMca.HighAgreementLedger` module.
+- **What to do next:** The binomial COUNT identities (`|A_QP| = C(N,L)`, the
+  Johnson exchange profile `Δ_{hm} = C(N,L) C(L,h) C(N-L,h)`) are the note's
+  combinatorial content and need Mathlib finite-set reasoning; formalize the
+  dyadic dither `v2`-valuation rules (note lines 124+) next.
+
+### 2026-06-29 - Lean: high-agreement tangent-staircase ledger arithmetic
+
+- **Agent/model:** Claude Opus 4.8 (1M), via an ultracode probe workflow that
+  ranked candidate easiest contributions before landing this one.
+- **Files added or changed:**
+  `experimental/lean/rs_mca_formalization/RsMca/HighAgreementLedger.lean` (new),
+  `experimental/lean/rs_mca_formalization/RsMca.lean` (import wired in),
+  `experimental/lean/rs_mca_formalization/README.md`, `experimental/agents-log.md`.
+- **Status:** PROVED (machine-checked, stdlib-only Lean 4; no `sorry`).
+- **What is being added:** A compiler-verified formalization of the *integer
+  ledger* arithmetic behind `notes/high_agreement/tangent_staircase.tex` and
+  `data/generalized-ledgers/generalized_high_agreement_ledgers_summary.md`: the
+  range equivalence `3a-2n >= k  <->  3r <= R` (`r=n-a`, `R=n-k`), the
+  line/curve/interleaved numerators with `line = degree-one curve`, monotonicity
+  of every numerator in `r`, the `2^-128` safety gate `N <= B_Q` with the
+  first-unsafe-radius characterization, and the exact `F_{17^32}` rate-`1/2` row
+  (`n=512,k=256`): `B_Q = floor(17^32/2^128) = 6`, the staircase pinned at
+  agreement `507` (safe) / `506` (unsafe), and largest safe integer radius `5`.
+- **How it is useful:** Replaces the hand calculation in
+  `tangent_staircase.tex` (Cor. `f17-32-exact-tangent-gate`) -- including the
+  39-digit bracket `6*2^128 < 17^32 < 7*2^128` -- with a kernel-checked
+  certificate. `#print axioms` confirms the concrete numeric theorems
+  (`f17_staircase`, `f17_bracket`, `f17_BQ_eq`, `f17_largest_safe_radius`) depend
+  on NO axioms (pure `decide`, not `native_decide`); the symbolic ones use only
+  the standard `[propext, Classical.choice, Quot.sound]`. Extends the Lean stub
+  (`RsMca.Basic`, `RsMca.DeepPoint`) with the first finite *frontier* ledger.
+- **What to do next:** This is a coding-ledger certificate, not a protocol
+  theorem (no challenge-field, extension-lift, folding, query, or cryptographic
+  term). Natural follow-ups: formalize the generalized-row safety statement
+  `r <= B_Q - 1` (line) / `r <= B_Q - 2` (line + one list) as a clean threshold
+  theorem; formalize the quotient-locator `supportSize` family already in
+  `RsMca.Basic` against this ledger; and (needs Mathlib) connect `f17_LDsw` to
+  the actual finite-field `LD_sw` rather than carrying it as a definition.
+
 ### 2026-06-29 - Paper D v7 first-grid cap promotion
 
 - **Agent/model:** Codex.
