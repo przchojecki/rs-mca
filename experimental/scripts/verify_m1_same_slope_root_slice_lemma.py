@@ -67,8 +67,8 @@ fixed-basis support-palette count, fixed-basis support-fiber decomposition,
 fixed-basis support-packet incidence design, fixed-basis endpoint-palette
 bound, selected support-avoidance reduction, fixed endpoint-pair packet-size
 bound, selected support-degree profile, selected support-collision energy, and
-selected support star-forcing bound, partial-palette star-forcing bound, and
-packet-count corollary.
+selected support star-forcing bound, partial-palette star-forcing bound,
+partial-palette inverse packing bound, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -7268,6 +7268,22 @@ def check_boundary_core_square_map_packet_count() -> None:
                     selected_count,
                     max_degree,
                     partial_second_moment,
+                    partial_star_bound,
+                    selected_classes,
+                    selected_incidence,
+                )
+                selected_support_size = sum(
+                    1 for incidence in selected_incidence.values() if incidence
+                )
+                assert selected_support_size * partial_star_bound >= (
+                    selected_mass * selected_mass
+                ), (
+                    prime,
+                    index,
+                    selected_count,
+                    max_degree,
+                    selected_support_size,
+                    selected_mass,
                     partial_star_bound,
                     selected_classes,
                     selected_incidence,

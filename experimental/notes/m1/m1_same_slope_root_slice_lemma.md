@@ -38,6 +38,7 @@ SQUARE-NORM SELECTED SUPPORT-DEGREE PROFILE /
 SQUARE-NORM SELECTED SUPPORT-COLLISION ENERGY /
 SQUARE-NORM SELECTED SUPPORT STAR-FORCING BOUND /
 SQUARE-NORM PARTIAL-PALETTE STAR-FORCING BOUND /
+SQUARE-NORM PARTIAL-PALETTE INVERSE PACKING BOUND /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3295,6 +3296,29 @@ the global row-basis/core image chooses only some square-coset classes, local
 packet geometry cannot create extra second-moment mass beyond the same
 endpoint-star obstruction.
 
+This has the following inverse packing form.  Put
+
+```text
+K=sum_{S in Sigma} |Theta_S|,        M=(2(q-1)/e)K,
+B=|{x : I(x)>0}|.
+```
+
+By Cauchy and (RKSQPARTSTAR),
+
+```text
+B >= M^2 / ((q-3)m^2 + 2mDelta).                  (RKSQPACK)
+```
+
+Equivalently, for any tested degree cap `D`, if the selected support graph has
+`max_x d_Sigma(x)<=D`, then the same lower bound holds with `D` in place of
+`Delta`.  Therefore, if an arbitrary selected square-map packet family is
+supported on fewer than
+`M^2/((q-3)m^2+2mD)` slope points, some endpoint has
+`d_Sigma(x)>D`.  Unexpectedly tight packing of many local square-map packets
+into a small slope set forces the same endpoint-star/low-template alternative.
+This is the local inverse form needed by the global residue-line packing
+program.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -3802,9 +3826,10 @@ parametrization (RKSQSLOPE), the fixed-basis no-loss square map
 design (RKSQDESIGN), the selected support-avoidance reduction
 (RKSQAVOID/RKSQAVOIDMASS), the selected support-degree profile
 (RKSQDEG/RKSQDEG2), the selected support-collision energy (RKSQSTAR), the
-selected support star-forcing bound (RKSQSTARFORCE), the canonical
-partial-palette star-forcing bound (RKSQPARTSTAR), the canonical endpoint-pair
-norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
+selected support star-forcing bound (RKSQSTARFORCE), the partial-palette
+star-forcing bound (RKSQPARTSTAR), the partial-palette inverse packing bound
+(RKSQPACK), the canonical endpoint-pair norm factorization (RKSQRAT), the fixed
+endpoint-pair coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
@@ -3881,9 +3906,10 @@ parametrization (RKSQSLOPE), the fixed-basis no-loss square map
 design (RKSQDESIGN), the selected support-avoidance reduction
 (RKSQAVOID/RKSQAVOIDMASS), the selected support-degree profile
 (RKSQDEG/RKSQDEG2), the selected support-collision energy (RKSQSTAR), the
-selected support star-forcing bound (RKSQSTARFORCE), the canonical
-partial-palette star-forcing bound (RKSQPARTSTAR), the canonical endpoint-pair
-norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
+selected support star-forcing bound (RKSQSTARFORCE), the partial-palette
+star-forcing bound (RKSQPARTSTAR), the partial-palette inverse packing bound
+(RKSQPACK), the canonical endpoint-pair norm factorization (RKSQRAT), the fixed
+endpoint-pair coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary

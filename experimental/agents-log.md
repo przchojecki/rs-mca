@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 partial-palette inverse packing bound
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** Cauchy's inequality converts the partial-palette
+  star-forcing second-moment bound into an inverse packing lower bound:
+  selected square-map packets of total mass `M` and endpoint cap `D` cannot
+  occupy fewer than `M^2/((q-3)m^2+2mD)` slope points.
+- **How it is useful:** This turns unexpectedly tight local residue-line
+  packing into the same endpoint-star/low-template alternative, matching the
+  M1 aperiodic packing direction in `towards-prize.md`.
+- **What to do next:** Use the inverse form to test row-basis/core images and
+  distinguish quotient-periodic endpoint stars from genuinely aperiodic mass.
+
 ### 2026-06-30 - M1 partial-palette star-forcing bound
 
 - **Agent/model:** AllenGrahamHart / Codex.
