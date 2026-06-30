@@ -77,8 +77,8 @@ sparse residual certificate reduction, feasibility window, and far-from-star
 certificate cap with near-star localization, template count, and
 density-threshold closure, budget inversion, template-budget tradeoff, and
 integer support-budget ceiling, fixed-residual sparse certificate feasibility
-interval, far-star class-count floor monotonicity and closed form, and minimal
-selected-density baseline.
+interval, far-star class-count floor monotonicity, closed form, footprint
+tradeoff, and minimal selected-density baseline.
 """
 
 from __future__ import annotations
@@ -8399,6 +8399,33 @@ def check_sparse_certificate_fixed_residual_feasibility() -> None:
             if e % 2 or (q - 1) % e:
                 continue
             h = e // 2
+            previous_far_floor = None
+            for far_factor in range(2, 12):
+                selected_closed = ceil_fraction(
+                    Fraction(
+                        (q - 1) * (q - 1) * far_factor,
+                        h * h * ((q - 3) * far_factor + 2),
+                    )
+                )
+                missing_closed = max(
+                    0,
+                    q
+                    + 1
+                    - (
+                        ((q - 1) * (h - 1) * far_factor)
+                        // (h * (far_factor - 1))
+                    ),
+                )
+                closed_floor = max(selected_closed, missing_closed)
+                if previous_far_floor is not None:
+                    assert previous_far_floor <= closed_floor, (
+                        q,
+                        e,
+                        far_factor,
+                        previous_far_floor,
+                        closed_floor,
+                    )
+                previous_far_floor = closed_floor
             for degree_cap in range(0, min(5, q)):
                 floor_by_residual_size: dict[int, int] = {}
                 previous_floor = None

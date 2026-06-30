@@ -3778,6 +3778,31 @@ m>=LD and class-count feasibility at budget R
   => R >= R_far(q,e,L).                         (RKSQSPFARUNIF)
 ```
 
+The closed far-star floor is nondecreasing in `L`.  The selected-side real
+argument is a positive constant times `L/((q-3)L+2)`, which is nondecreasing
+for `q>=3`; the missing-side floor argument is a positive constant times
+`L/(L-1)`, which is nonincreasing for `L>=2`, so `q+1` minus its floor is
+nondecreasing.  Taking `ceil`, `floor`, `max`, and the outer `max` with `0`
+preserves the required monotonic directions.  Therefore
+
+```text
+L_1<=L_2  =>  R_far(q,e,L_1)<=R_far(q,e,L_2).   (RKSQSPFARLMONO)
+```
+
+Consequently, for a footprint cap `S>=4D-1`, the choice
+
+```text
+L_S=floor((S+1)/(2D))
+```
+
+gives the strongest far-star class-count floor compatible with the near-star
+template footprint `2LD-1<=S`:
+
+```text
+m>=L_S D and class-count feasibility at budget R
+  => R >= R_far(q,e,L_S).                       (RKSQSPFARTRADE)
+```
+
 This is weaker than proving support realization impossible, but it gives an
 exact finite-row floor for the whole far-from-star sparse branch before any
 row-basis/core-image structure is used.
@@ -4041,8 +4066,9 @@ for `(K_ap,C_ap)` in the sparse certificate inequalities at the given residual
 size, together with the minimum integer target budget `R_min(m_ap)` for any
 class-count certificate at that residual size.  When `--e` and the far-star
 factor `L` are available, it also reports the monotone far-star class-count
-floor `R_far(q,e,L)=R_min(LD)`, in the closed form where `D` cancels.  This is
-an audit/evaluation tool for
+floor `R_far(q,e,L)=R_min(LD)`, in the closed form where `D` cancels, and
+records that this is the largest floor compatible with the chosen footprint
+tradeoff.  This is an audit/evaluation tool for
 (RKSQINTBUDGET/RKSQTRADE), not a proof of the missing global density lower
 bound.
 
@@ -4726,6 +4752,8 @@ fixed-residual sparse class-count interval (RKSQSPFEASDATA/RKSQSPFEAS), the
 fixed-residual minimum support-budget floor (RKSQSPRFLOOR/RKSQSPRMIN), the
 far-star monotone class-count floor (RKSQSPMONO/RKSQSPFARFLOOR), the
 closed far-star class-count floor (RKSQSPFARCLOSED/RKSQSPFARUNIF), the
+far-star `L`-monotonicity and footprint tradeoff
+(RKSQSPFARLMONO/RKSQSPFARTRADE), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
@@ -4840,6 +4868,8 @@ fixed-residual sparse class-count interval (RKSQSPFEASDATA/RKSQSPFEAS), the
 fixed-residual minimum support-budget floor (RKSQSPRFLOOR/RKSQSPRMIN), the
 far-star monotone class-count floor (RKSQSPMONO/RKSQSPFARFLOOR), the
 closed far-star class-count floor (RKSQSPFARCLOSED/RKSQSPFARUNIF), the
+far-star `L`-monotonicity and footprint tradeoff
+(RKSQSPFARLMONO/RKSQSPFARTRADE), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),

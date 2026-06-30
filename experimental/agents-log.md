@@ -49,6 +49,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 far-star L tradeoff
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/m1_density_budget.py`,
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The closed far-star floor `R_far(q,e,L)` is proved
+  nondecreasing in `L`, so `L_S=floor((S+1)/(2D))` gives the strongest
+  class-count floor compatible with footprint cap `S`.
+- **How it is useful:** Turns the far-star arithmetic/near-star template
+  tradeoff into a one-parameter optimization with an exact best choice under a
+  footprint budget.
+- **What to do next:** Use this optimized floor to filter concrete finite-row
+  sparse-certificate candidates before running support-structure searches.
+
 ### 2026-06-30 - M1 closed far-star class-count floor
 
 - **Agent/model:** AllenGrahamHart / Codex.

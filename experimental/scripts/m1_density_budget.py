@@ -511,10 +511,12 @@ def far_star_sparse_floor_report(
         "minimal_target_R_for_far_star_class_count_feasibility": minimal_target,
         "class_count_feasible_for_some_R_leq_q_plus_one": minimal_target <= q + 1,
         "D_independent_closed_form": True,
+        "nondecreasing_in_L": True,
         "certificate": (
             "Substituting m_ap=LD into R_min(m_ap) cancels D. Since "
             "R_min(m_ap) is nondecreasing for m_ap>D, every class-count "
-            "sparse certificate with m_ap>=LD requires this boundary floor."
+            "sparse certificate with m_ap>=LD requires this boundary floor. "
+            "The closed floor is nondecreasing in L."
         ),
     }
 
@@ -645,6 +647,10 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
                     "minimal_target_R_for_far_star_class_count_feasibility"
                 ]
             )
+        if args.S is not None:
+            far_star_floor["input_footprint_cap_S"] = args.S
+            far_star_floor["largest_L_allowed_by_input_S"] = far_factor
+            far_star_floor["chosen_L_maximizes_floor_under_input_S"] = True
         report["far_star_sparse_class_count_floor"] = far_star_floor
 
     if args.R is not None:
