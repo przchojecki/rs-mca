@@ -1,6 +1,6 @@
 # Singular Pivot Toy Packet
 
-This directory contains a small nonzero `F_17` v9 pivot-atlas packet.
+This directory contains a small nonzero `F_17` v9 projective pivot-atlas packet.
 
 ```text
 F = F_17, n = 10, k = 4, A = 8, j = 2, t = 4.
@@ -21,7 +21,9 @@ use pivot `B_1`, and the remaining co-support has `B=0`, hence is contained
 because `A=5B`.
 
 The only finite slope produced by the noncontainment pivots is `Z=12`, the root
-of `Z+5` over `F_17`.
+of `Z+5` over `F_17`.  The packet also certifies the projective infinity chart:
+the point `[0:1]` is controlled by `B=0, A!=0`, but `A=5B`, so the infinity
+chart is empty and contributes no extra projective parameter.
 
 Run:
 
@@ -41,6 +43,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/singular-pivot-toy/invalid_bad_pivot_root_union_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/singular-pivot-toy/invalid_missing_projective_infinity_packet.json
 ```
 
 Non-claims: this is a toy row only, not an `F_17^32` row-data packet, not a

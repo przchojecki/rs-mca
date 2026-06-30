@@ -4,7 +4,8 @@ Status: **PROVED / AUDIT** for a finite toy packet.
 
 This note records the first checked `pivot_atlas` packet in this branch.  It is
 not a prize-row theorem; it is a small exact example showing how the v9 atlas
-should represent a singular regular bucket once affine pivots close it.
+should represent a singular regular bucket once affine pivots and projective
+infinity close it.
 
 The row is
 
@@ -54,6 +55,11 @@ B = 0 contained residual: 1 support
 Thus the pivot eliminant is `Z+5`, the exact root union is `{12}`, and the
 declared aperiodic numerator is `1`.
 
+The packet uses the `projective_line` sampler.  The extra point `[0:1]` is
+controlled by the infinity chart `B_T=0, A_T!=0`.  Since `A_T=5B_T`, every
+`B_T=0` branch has `A_T=0`, so the infinity chart is empty and contributes no
+additional projective parameter.
+
 Artifacts:
 
 ```text
@@ -80,13 +86,17 @@ python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/singular-pivot-toy/invalid_bad_pivot_root_union_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/singular-pivot-toy/invalid_missing_projective_infinity_packet.json
 ```
 
 The second negative fixture publishes the same pivot eliminant `Z+5` but gives
 the wrong root table.  The packet checker rejects it by recomputing the roots
 over `F_17`.  The third fixture keeps the pivot root tables correct but points
 the packet-level root union at `{0}`; the checker rejects that numerator table
-because the pivot-root union is `{12}`.
+because the pivot-root union is `{12}`.  The fourth fixture uses the
+`projective_line` sampler but omits the `projective_infinity` chart.
 
 Next step: use the same packet shape only when an actual lower-agreement row
 produces a genuine singular bucket.  Until then this is a machinery certificate,

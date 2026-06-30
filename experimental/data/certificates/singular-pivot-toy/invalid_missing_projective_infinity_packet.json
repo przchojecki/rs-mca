@@ -32,18 +32,6 @@
               "status": "empty"
             }
           ]
-        },
-        {
-          "chart_id": "projective_infinity",
-          "coverage_ref": "experimental/data/certificates/singular-pivot-toy/f17_n10_k4_a8_singular_pivot_certificate.json#/projective_infinity_chart",
-          "equations_ref": "experimental/data/certificates/singular-pivot-toy/f17_n10_k4_a8_singular_pivot_certificate.json#/projective_infinity_chart/equations",
-          "inequations_ref": "experimental/data/certificates/singular-pivot-toy/f17_n10_k4_a8_singular_pivot_certificate.json#/projective_infinity_chart/inequations",
-          "pivot_records": [
-            {
-              "pivot": "B_T = 0, A_T != 0 at [0:1]",
-              "status": "empty"
-            }
-          ]
         }
       ],
       "j": 2,
@@ -70,5 +58,5 @@
   },
   "sampler": "projective_line",
   "schema_version": "aperiodic-hankel-eliminant-v1",
-  "status": "PROVED / AUDIT"
+  "status": "INTENTIONALLY_INVALID"
 }

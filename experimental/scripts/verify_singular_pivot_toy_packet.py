@@ -131,20 +131,26 @@ def support_records() -> tuple[list[dict[str, Any]], dict[str, Any]]:
     records: list[dict[str, Any]] = []
     pivot_counts = {f"B_{index}": 0 for index in range(T)}
     contained_count = 0
+    projective_infinity_count = 0
     slopes: set[int] = set()
     for pair in combinations(DOMAIN, J):
         locator = locator_for_pair(pair)
         b_vec = mat_vec(h_v, locator)
         a_vec = [(5 * value) % P for value in b_vec]
         if all(value == 0 for value in b_vec):
-            contained_count += 1
+            if any(value != 0 for value in a_vec):
+                projective_infinity_count += 1
+                status = "projective_infinity"
+            else:
+                contained_count += 1
+                status = "contained_residual_B_equals_0"
             records.append(
                 {
                     "T": list(pair),
                     "locator_coefficients": locator,
                     "A": a_vec,
                     "B": b_vec,
-                    "status": "contained_residual_B_equals_0",
+                    "status": status,
                     "slope": None,
                     "pivot": None,
                 }
@@ -173,6 +179,7 @@ def support_records() -> tuple[list[dict[str, Any]], dict[str, Any]]:
     summary = {
         "support_count": len(records),
         "contained_residual_B_equals_0": contained_count,
+        "projective_infinity_count": projective_infinity_count,
         "pivot_counts": pivot_counts,
         "root_union_mod_17": sorted(slopes),
     }
@@ -222,6 +229,16 @@ def build_certificate() -> dict[str, Any]:
             "finite_bad_condition": "A_T + Z B_T = 0 and B_T != 0",
             "contained_residual": "B_T = 0 forces A_T = 0 because u=5v",
         },
+        "projective_infinity_chart": {
+            "status": "empty",
+            "projective_point": "[0:1]",
+            "equations": "B_T = 0",
+            "inequations": "A_T != 0",
+            "reason": (
+                "A_T=5B_T, so B_T=0 forces A_T=0 and the infinity chart is empty."
+            ),
+            "support_count": summary["projective_infinity_count"],
+        },
         "pivot_open_cover": ["B_0 != 0", "B_1 != 0", "B_2 != 0", "B_3 != 0"],
         "pivots": {
             "B_0": {
@@ -244,6 +261,7 @@ def build_certificate() -> dict[str, Any]:
         "coverage": {
             "split_cosupport_count": summary["support_count"],
             "contained_residual_B_equals_0": summary["contained_residual_B_equals_0"],
+            "projective_infinity_count": summary["projective_infinity_count"],
             "pivot_counts": summary["pivot_counts"],
             "root_union_mod_17": summary["root_union_mod_17"],
             "declared_aperiodic_numerator": len(summary["root_union_mod_17"]),
@@ -270,7 +288,7 @@ def build_packet(certificate: dict[str, Any]) -> dict[str, Any]:
             "domain_description": certificate["row"]["domain_description"],
         },
         "agreement_threshold": AGREEMENT,
-        "sampler": "finite_affine_line",
+        "sampler": "projective_line",
         "removed_ledgers": [],
         "exact_agreements": [
             {
@@ -301,6 +319,22 @@ def build_packet(certificate: dict[str, Any]) -> dict[str, Any]:
                             },
                             {"pivot": "B_2 != 0", "status": "empty"},
                             {"pivot": "B_3 != 0", "status": "empty"},
+                        ],
+                    },
+                    {
+                        "chart_id": "projective_infinity",
+                        "equations_ref": (
+                            f"{cert_ref}#/projective_infinity_chart/equations"
+                        ),
+                        "inequations_ref": (
+                            f"{cert_ref}#/projective_infinity_chart/inequations"
+                        ),
+                        "coverage_ref": f"{cert_ref}#/projective_infinity_chart",
+                        "pivot_records": [
+                            {
+                                "pivot": "B_T = 0, A_T != 0 at [0:1]",
+                                "status": "empty",
+                            }
                         ],
                     }
                 ],
@@ -346,8 +380,12 @@ def print_summary(certificate: dict[str, Any]) -> None:
     print("row: F_17, n=10, k=4, A=8")
     print("regular bucket: singular; rank(H(v))=2, rank(H(u)+zH(v))<3 for all z")
     print(
-        "pivot supports: B_0={B_0}, B_1={B_1}, B_2={B_2}, B_3={B_3}, contained={contained}".format(
+        (
+            "pivot supports: B_0={B_0}, B_1={B_1}, B_2={B_2}, B_3={B_3}, "
+            "contained={contained}, infinity={infinity}"
+        ).format(
             contained=coverage["contained_residual_B_equals_0"],
+            infinity=coverage["projective_infinity_count"],
             **coverage["pivot_counts"],
         )
     )

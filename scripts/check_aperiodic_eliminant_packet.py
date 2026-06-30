@@ -914,6 +914,64 @@ def validate_pivot_atlas(packet: dict[str, Any]) -> list[int]:
     return sorted(pivot_roots)
 
 
+def validate_projective_infinity_charts(packet: dict[str, Any]) -> None:
+    if packet.get("sampler") != "projective_line":
+        return
+    for item in packet.get("exact_agreements", []):
+        if item.get("status") != "pivot_atlas":
+            continue
+        charts = item.get("charts")
+        infinity_charts = [
+            chart
+            for chart in charts
+            if (
+                isinstance(chart, dict)
+                and chart.get("chart_id") == "projective_infinity"
+            )
+        ]
+        if len(infinity_charts) != 1:
+            raise PacketError(
+                f"A={item.get('A')}: projective_line pivot_atlas needs exactly "
+                "one projective_infinity chart"
+            )
+        chart = infinity_charts[0]
+        coverage_ref = chart.get("coverage_ref")
+        if not isinstance(coverage_ref, str):
+            raise PacketError(
+                f"A={item.get('A')}: projective_infinity chart needs coverage_ref"
+            )
+        target = validate_packet_reference(
+            coverage_ref, f"A={item.get('A')}: projective_infinity.coverage_ref"
+        )
+        if not isinstance(target, dict):
+            raise PacketError(
+                f"A={item.get('A')}: projective_infinity coverage_ref must "
+                "point to object"
+            )
+        status = target.get("status")
+        if status not in {"empty", "nonempty"}:
+            raise PacketError(
+                f"A={item.get('A')}: projective_infinity target needs status empty/nonempty"
+            )
+        pivots = chart.get("pivot_records")
+        if not isinstance(pivots, list) or not pivots:
+            raise PacketError(
+                f"A={item.get('A')}: projective_infinity needs pivot_records"
+            )
+        if status == "empty" and any(
+            pivot.get("status") != "empty" for pivot in pivots
+        ):
+            raise PacketError(
+                f"A={item.get('A')}: empty projective_infinity target needs empty pivots"
+            )
+        contribution = target.get("support_count", target.get("contribution"))
+        if contribution is not None:
+            require_nonnegative_int(
+                contribution,
+                f"A={item.get('A')}: projective_infinity contribution",
+            )
+
+
 def validate_pivot_eliminant_target(
     target: dict[str, Any],
     declared_degree: int,
@@ -1355,6 +1413,7 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     validate_residual_labels(packet)
     validate_references(packet)
     pivot_roots = validate_pivot_atlas(packet)
+    validate_projective_infinity_charts(packet)
 
     row = packet["row"]
     n = row["n"]

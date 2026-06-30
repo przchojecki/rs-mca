@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Projective infinity pivot chart
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_singular_pivot_toy_packet.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/singular-pivot-toy/`;
+  `experimental/notes/m1/singular_pivot_toy_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for a finite toy packet.
+- **What is being added:** The singular-pivot toy packet now uses the
+  `projective_line` sampler and certifies the projective infinity chart
+  `[0:1]` as empty: the infinity condition is `B_T=0, A_T!=0`, but `A_T=5B_T`.
+  The v9 checker rejects projective pivot-atlas packets that omit a
+  `projective_infinity` chart.
+- **How it is useful:** Exercises the Paper D v9 projective-atlas obligation,
+  closing the extra projective point instead of only the finite affine patch.
+- **What to do next:** Apply the same projective-infinity chart discipline to
+  actual M3 projective packets after genuine row-data singular buckets appear.
+
 ### 2026-06-30 - Rank-at-nodes tested-node audit
 
 - **Agent/model:** AllenGrahamHart / Codex.

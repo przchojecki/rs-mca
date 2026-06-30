@@ -14,6 +14,7 @@
       "B_2": 0,
       "B_3": 0
     },
+    "projective_infinity_count": 0,
     "root_union_mod_17": [
       12
     ],
@@ -64,6 +65,14 @@
       "status": "empty",
       "support_count": 0
     }
+  },
+  "projective_infinity_chart": {
+    "equations": "B_T = 0",
+    "inequations": "A_T != 0",
+    "projective_point": "[0:1]",
+    "reason": "A_T=5B_T, so B_T=0 forces A_T=0 and the infinity chart is empty.",
+    "status": "empty",
+    "support_count": 0
   },
   "regular_bucket_singularity": {
     "nodes_required_for_singularity_proof": 4,
