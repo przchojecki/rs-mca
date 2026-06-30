@@ -74,7 +74,7 @@ corollary, plus the partial-palette uncovered-slope defect bound and residual
 support-budget alternative, palette-density support lower bound, and
 small-support exclusion criterion, local support-budget output theorem, and
 sparse residual certificate reduction, feasibility window, and far-from-star
-certificate cap with near-star localization.
+certificate cap with near-star localization and template count.
 """
 
 from __future__ import annotations
@@ -7749,6 +7749,74 @@ def check_boundary_core_square_map_packet_count() -> None:
                                     far_factor,
                                     residual_count,
                                     residual_endpoint_footprint,
+                                )
+                                near_star_cutoff = min(
+                                    len(all_projective_points),
+                                    max(0, 2 * far_factor * degree_cap - 1),
+                                )
+                                assert (
+                                    residual_endpoint_footprint
+                                    <= near_star_cutoff
+                                ), (
+                                    prime,
+                                    index,
+                                    degree_cap,
+                                    far_factor,
+                                    residual_endpoint_footprint,
+                                    near_star_cutoff,
+                                )
+                                near_star_template_bound = sum(
+                                    comb(len(all_projective_points), footprint_size)
+                                    * (
+                                        1
+                                        << (
+                                            full_palette_size
+                                            * comb(footprint_size, 2)
+                                        )
+                                    )
+                                    for footprint_size in range(
+                                        near_star_cutoff + 1
+                                    )
+                                )
+                                actual_footprint_template_choices = 1 << (
+                                    full_palette_size
+                                    * comb(residual_endpoint_footprint, 2)
+                                )
+                                assert actual_footprint_template_choices <= (
+                                    near_star_template_bound
+                                ), (
+                                    prime,
+                                    index,
+                                    degree_cap,
+                                    far_factor,
+                                    residual_endpoint_footprint,
+                                    actual_footprint_template_choices,
+                                    near_star_template_bound,
+                                )
+                                coarse_template_bound = (
+                                    (near_star_cutoff + 1)
+                                    * (
+                                        len(all_projective_points)
+                                        ** near_star_cutoff
+                                    )
+                                    * (
+                                        1
+                                        << (
+                                            full_palette_size
+                                            * comb(near_star_cutoff, 2)
+                                        )
+                                    )
+                                )
+                                assert near_star_template_bound <= (
+                                    coarse_template_bound
+                                ), (
+                                    prime,
+                                    index,
+                                    degree_cap,
+                                    far_factor,
+                                    near_star_cutoff,
+                                    near_star_template_bound,
+                                    coarse_template_bound,
                                 )
                         density_excludes_small_support = (
                             residual_packet_size

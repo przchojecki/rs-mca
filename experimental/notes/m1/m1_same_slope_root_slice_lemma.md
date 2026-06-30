@@ -51,6 +51,7 @@ SQUARE-NORM SPARSE RESIDUAL CERTIFICATE REDUCTION /
 SQUARE-NORM SPARSE CERTIFICATE FEASIBILITY WINDOW /
 SQUARE-NORM FAR-FROM-STAR SPARSE CERTIFICATE CAP /
 SQUARE-NORM DENSITY-GAP NEAR-STAR LOCALIZATION /
+SQUARE-NORM NEAR-STAR TEMPLATE COUNT /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3703,6 +3704,37 @@ In particular, if a global density theorem rules out the last branch, all
 small-support residual mass has been reduced to endpoint-star or bounded
 near-star/template structure.
 
+The bounded near-star branch is finite in a completely explicit sense.  Let
+`h=e/2` and put
+
+```text
+s_LD = min(q+1, max(0,2LD-1)).
+```
+
+Every `L`-near-star residual has endpoint footprint `U` of size at most
+`s_LD`.  Once `U` is fixed, every possible residual square-map selection is
+encoded by choosing, for each unordered pair in `U`, one subset of the `h`
+square-coset classes; the empty subset means that the pair is absent.  Hence
+the number of possible near-star palette templates is at most
+
+```text
+T_near(q,D,L,e)
+  <= sum_{s=0}^{s_LD} binom(q+1,s) 2^{h binom(s,2)}.        (RKSQNEARCOUNT)
+```
+
+In particular, for fixed `D,L,e`,
+
+```text
+T_near(q,D,L,e)
+  <= (s_LD+1)(q+1)^{s_LD} 2^{h binom(s_LD,2)}
+  = O_{D,L,e}(q^{max(0,2LD-1)}).                           (RKSQNEARPOLY)
+```
+
+Thus closing the far-from-star density window reduces the residual M1
+packing problem to a polynomial-size endpoint-template ledger.  The exponent
+is explicit and comes only from the allowed endpoint footprint, not from
+hidden local square-map packet overlap.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -4225,6 +4257,7 @@ certificate feasibility window (RKSQSPWINDOW1/RKSQSPWINDOW2/RKSQSPWINDOW), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
+the near-star template count (RKSQNEARCOUNT/RKSQNEARPOLY),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the
@@ -4318,6 +4351,7 @@ certificate feasibility window (RKSQSPWINDOW1/RKSQSPWINDOW2/RKSQSPWINDOW), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
+the near-star template count (RKSQNEARCOUNT/RKSQNEARPOLY),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the

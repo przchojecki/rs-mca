@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 near-star template count
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The localized `m<L D` branch is given an explicit
+  palette-template count:
+  `sum_{s<=s_LD} binom(q+1,s) 2^{(e/2)binom(s,2)}`, with
+  `s_LD=min(q+1,max(0,2LD-1))`.
+- **How it is useful:** Once the far-from-star sparse branch is ruled out by a
+  global density estimate, the remaining residual M1 branch is a polynomial
+  endpoint-template ledger for fixed `D,L,e`, with no hidden packet-overlap
+  term.
+- **What to do next:** Connect the template ledger to the global
+  row-basis/core-image density estimate, or classify the bounded templates as
+  quotient/low-template structure.
+
 ### 2026-06-30 - M1 density-gap near-star localization
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -2761,6 +2761,17 @@ The residual then has fewer than \(LD\) two-point supports and endpoint
 footprint \(<2LD\).  Hence a global row-basis/core-image density theorem
 above the displayed far-from-star window reduces every remaining
 small-support residual to a bounded near-star/template ledger.
+Writing \(h=e/2\) and
+\[
+        s_{LD}=\min(q+1,\max(0,2LD-1)),
+\]
+the number of such residual palette templates is bounded by
+\[
+        \sum_{s=0}^{s_{LD}} {q+1\choose s}\,2^{h{s\choose 2}}
+        \le (s_{LD}+1)(q+1)^{s_{LD}}2^{h{s_{LD}\choose 2}}.
+\]
+For fixed \(D,L,e\), the near-star branch is therefore a polynomial-size
+endpoint-template ledger.
 Moreover, if \(L_E(z)=Wz-Z\) for \(E=[Z:W]\), then in the off-diagonal case
 \[
         {H_1\over H_0}
