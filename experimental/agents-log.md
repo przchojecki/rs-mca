@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 M3 rank-witness family certificate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank_witness_family.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank-witness-family/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the synthetic finite replay.
+- **What is being added:** A compact all-window certificate showing that, for
+  every `385<=A<=426`, the synthetic moment syndrome over the pinned
+  `F_17^32` domain has a full-rank prefix regular minor at slope `1`.  It
+  records all 42 degree bounds, degree sum `4515`, and endpoint v9 packet
+  hashes for `A=385` and `A=426`.
+- **How it is useful:** This avoids adding 42 bulky generated packets while
+  still proving that the rank-witness construction covers every M3 minor size
+  over the actual degree-32 field model.
+- **What to do next:** Replace synthetic family witnesses by actual M3 line
+  data or by root/pivot certificates strong enough to compare with the
+  finite-slope budget.
+
 ### 2026-06-30 - F17^32 M3 rank-witness packet at A=385
 
 - **Agent/model:** AllenGrahamHart / Codex.

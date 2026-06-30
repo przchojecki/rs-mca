@@ -19,6 +19,9 @@ experimental/data/certificates/hankel-f17-32-row-descriptor/
 The endpoint packets are
 
 ```text
+experimental/data/certificates/hankel-f17-32-m3-rank-witness-family/
+  f17_32_n512_k256_m3_rank_witness_family_certificate.json
+
 experimental/data/certificates/hankel-f17-32-m3-rank-witness-a385/
   f17_32_n512_k256_a385_rank_witness_packet.json
 
@@ -86,6 +89,11 @@ regular_root_bound_sum = 128.
 Thus the concrete replay covers both endpoint minor sizes in the M3 regular
 window: `128` at `A=385` and `87` at `A=426`.
 
+The family certificate records the same Vandermonde rank-witness construction
+for every agreement in `385..426` without emitting all 42 full v9 packets.  It
+stores one compact record per agreement and hashes the two endpoint v9 packets
+as concrete replays of the extractor/checker path.
+
 ## Why This Matters
 
 The previous generic theorem proves that regular minors are not structurally
@@ -125,6 +133,9 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/f17_32_n512_k256_a426_rank_witness_packet.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank_witness_family.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank-witness-family/f17_32_n512_k256_m3_rank_witness_family_certificate.json
 ```
 
 Non-claims: this is a synthetic syndrome pencil, not a worst-case MCA row bound,

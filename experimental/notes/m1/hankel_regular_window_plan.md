@@ -107,6 +107,15 @@ They use synthetic `F_17^32` syndrome pencils at `A=385` and `A=426` and prove
 nonzero regular minors by rank witnesses.  This exercises the pinned
 field/domain arithmetic at the largest and smallest minor sizes in the window,
 but it is not a worst-case safe-side bound and does not provide a root table.
+The compact family certificate
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank-witness-family/
+  f17_32_n512_k256_m3_rank_witness_family_certificate.json
+```
+
+records the same synthetic Vandermonde rank witness for all 42 agreements in
+the window without storing 42 full v9 packets.
 
 Reproduce the audit packet:
 
