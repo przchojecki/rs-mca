@@ -43,10 +43,13 @@ Keep entries concise and link to the relevant files.
   when a packet supplies an explicit polynomial-basis field model.  A tiny
   `F_17^2` replay has prefix minor determinant `Z^2-3`, whose roots are the
   non-base elements encoded as `17` and `272`, so the checker exercises genuine
-  extension-root arithmetic.
+  extension-root arithmetic.  The checker also verifies row-field/model
+  compatibility and irreducibility of the supplied modulus, with a reducible
+  negative packet included.
 - **How it is useful:** This hardens the M3 regular-minor packet pipeline for
   `F_17^32`: future extension-field root tables will be arithmetically checked,
-  not merely schema-checked and hash-counted.
+  not merely schema-checked and hash-counted, and their field model must define
+  a genuine polynomial-basis field.
 - **What to do next:** Use the same checker path on selected `F_17^32`
   regular-window packets once syndrome-pencil row data are supplied.
 

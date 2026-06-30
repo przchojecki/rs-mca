@@ -112,6 +112,16 @@ non-base elements `x` and `-x`, encoded as `17` and `272`.  The integrated
 checker now evaluates encoded polynomial-basis extension roots, so this packet
 is a genuine extension-root validation rather than only a hash check.
 
+The checker also verifies that a polynomial-basis field model matches the row
+field label and that its modulus is irreducible over `F_p`.  The negative packet
+
+```text
+experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/
+  invalid_reducible_field_model_packet.json
+```
+
+must fail because it replaces `x^2-3` by the reducible modulus `x^2-1`.
+
 ## Non-Claims
 
 This does not solve the `F_17^32` regular window.  In particular, it does not
@@ -153,4 +163,7 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/f17_2_n5_k2_a4_nonbase_root_packet.json
+
+! python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/invalid_reducible_field_model_packet.json
 ```

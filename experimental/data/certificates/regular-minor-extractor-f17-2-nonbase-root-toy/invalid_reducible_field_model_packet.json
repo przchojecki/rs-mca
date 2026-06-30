@@ -1,0 +1,74 @@
+{
+  "agreement_threshold": 4,
+  "declared_aperiodic_numerator": 2,
+  "enumerated_bad_slope_union": [
+    17
+  ],
+  "exact_agreements": [
+    {
+      "A": 4,
+      "extractor_audit": {
+        "degree_bound": 2,
+        "field_size": 289,
+        "root_count": 2,
+        "tested_row_sets": 1
+      },
+      "j": 1,
+      "regular_minor": {
+        "degree": 2,
+        "polynomial_ref": "inline:regular_minor.coefficients_ascending",
+        "root_hash": "e8664da5430eee0e0c5a99d329d7a091b4935d296297e41a60e8af8acd820b39",
+        "row_set": [
+          0,
+          1
+        ]
+      },
+      "regular_minor_data": {
+        "coefficients_ascending": [
+          14,
+          0,
+          1
+        ],
+        "enumerated_bad_slopes": [
+          17
+        ],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 2,
+        "p": 17,
+        "roots": [
+          17,
+          272
+        ]
+      },
+      "status": "regular_minor",
+      "t": 2
+    }
+  ],
+  "extractor": {
+    "field_model": {
+      "degree": 2,
+      "encoding": "base-p low-to-high integer",
+      "kind": "polynomial_basis",
+      "modulus": [
+        16,
+        0,
+        1
+      ],
+      "p": 17
+    }
+  },
+  "removed_ledgers": [],
+  "root_union": [
+    17,
+    272
+  ],
+  "root_union_table_ref": "inline:root_union",
+  "row": {
+    "domain_hash": "intentional-reducible-field-model",
+    "field": "F_17^2",
+    "k": 2,
+    "n": 5
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "aperiodic-hankel-eliminant-v1"
+}

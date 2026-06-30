@@ -5,8 +5,9 @@ The JSON schema catches the structural contract.  This script adds the
 arithmetical checks that are easiest to get wrong in generated packets:
 ``j=n-A``, ``t=A-k``, residual labels, regular-minor degree/root hashes, and
 declared root-union numerators when the packet includes inline root tables.  If
-the packet gives an explicit polynomial-basis field model, encoded extension
-roots are evaluated directly in that field.
+the packet gives an explicit polynomial-basis field model, the checker verifies
+the model is compatible with the row field, verifies the modulus is irreducible,
+and evaluates encoded extension roots directly in that field.
 """
 
 from __future__ import annotations
@@ -77,12 +78,141 @@ def parse_prime_field(field_name: str) -> int | None:
     return int(match.group(1))
 
 
+def parse_prime_power_field(field_name: str) -> tuple[int, int] | None:
+    match = re.fullmatch(r"F_(\d+)(?:\^(\d+))?", field_name)
+    if not match:
+        return None
+    return int(match.group(1)), int(match.group(2) or "1")
+
+
+def is_prime(value: int) -> bool:
+    if value < 2:
+        return False
+    if value == 2:
+        return True
+    if value % 2 == 0:
+        return False
+    divisor = 3
+    while divisor * divisor <= value:
+        if value % divisor == 0:
+            return False
+        divisor += 2
+    return True
+
+
+def ppoly_trim(poly: list[int], prime: int) -> list[int]:
+    out = [coeff % prime for coeff in poly]
+    while len(out) > 1 and out[-1] == 0:
+        out.pop()
+    return out
+
+
+def ppoly_degree(poly: list[int], prime: int) -> int:
+    return len(ppoly_trim(poly, prime)) - 1
+
+
+def ppoly_sub(left: list[int], right: list[int], prime: int) -> list[int]:
+    size = max(len(left), len(right))
+    out = [0] * size
+    for index in range(size):
+        out[index] = (
+            (left[index] if index < len(left) else 0)
+            - (right[index] if index < len(right) else 0)
+        ) % prime
+    return ppoly_trim(out, prime)
+
+
+def ppoly_mod(poly: list[int], modulus: list[int], prime: int) -> list[int]:
+    work = ppoly_trim(poly, prime)
+    modulus = ppoly_trim(modulus, prime)
+    mod_degree = len(modulus) - 1
+    inv_mod_lead = pow(modulus[-1], -1, prime)
+    while len(work) - 1 >= mod_degree and not (len(work) == 1 and work[0] == 0):
+        lead = (work[-1] * inv_mod_lead) % prime
+        if lead:
+            offset = len(work) - len(modulus)
+            for index, coeff in enumerate(modulus):
+                work[offset + index] = (work[offset + index] - lead * coeff) % prime
+        work = ppoly_trim(work, prime)
+    return work
+
+
+def ppoly_mul_mod(
+    left: list[int], right: list[int], modulus: list[int], prime: int
+) -> list[int]:
+    out = [0] * (len(left) + len(right) - 1)
+    for i, left_coeff in enumerate(left):
+        for j, right_coeff in enumerate(right):
+            out[i + j] = (out[i + j] + left_coeff * right_coeff) % prime
+    return ppoly_mod(out, modulus, prime)
+
+
+def ppoly_pow_mod(
+    base: list[int], exponent: int, modulus: list[int], prime: int
+) -> list[int]:
+    out = [1]
+    factor = ppoly_mod(base, modulus, prime)
+    while exponent:
+        if exponent & 1:
+            out = ppoly_mul_mod(out, factor, modulus, prime)
+        factor = ppoly_mul_mod(factor, factor, modulus, prime)
+        exponent >>= 1
+    return out
+
+
+def ppoly_gcd(left: list[int], right: list[int], prime: int) -> list[int]:
+    a = ppoly_trim(left, prime)
+    b = ppoly_trim(right, prime)
+    while not (len(b) == 1 and b[0] == 0):
+        a, b = b, ppoly_mod(a, b, prime)
+    inv_lead = pow(a[-1], -1, prime)
+    return [(coeff * inv_lead) % prime for coeff in a]
+
+
+def prime_divisors(value: int) -> list[int]:
+    out = []
+    remaining = value
+    divisor = 2
+    while divisor * divisor <= remaining:
+        if remaining % divisor == 0:
+            out.append(divisor)
+            while remaining % divisor == 0:
+                remaining //= divisor
+        divisor += 1 if divisor == 2 else 2
+    if remaining > 1:
+        out.append(remaining)
+    return out
+
+
+def frobenius_power_x(modulus: list[int], prime: int, iterations: int) -> list[int]:
+    out = [0, 1]
+    for _ in range(iterations):
+        out = ppoly_pow_mod(out, prime, modulus, prime)
+    return out
+
+
+def is_irreducible_mod_prime(modulus: list[int], prime: int) -> bool:
+    modulus = ppoly_trim(modulus, prime)
+    degree = len(modulus) - 1
+    if degree < 1 or modulus[-1] != 1:
+        return False
+    if degree == 1:
+        return True
+    x_poly = [0, 1]
+    for divisor in prime_divisors(degree):
+        test = frobenius_power_x(modulus, prime, degree // divisor)
+        if ppoly_degree(ppoly_gcd(ppoly_sub(test, x_poly, prime), modulus, prime), prime):
+            return False
+    final = frobenius_power_x(modulus, prime, degree)
+    return ppoly_mod(ppoly_sub(final, x_poly, prime), modulus, prime) == [0]
+
+
 class PolynomialBasisField:
     """Finite field F_p[X]/(modulus), with low-degree-first coefficients."""
 
     def __init__(self, prime: int, modulus: list[int]):
-        if prime < 2:
-            raise PacketError("field_model.p must be at least 2")
+        if not is_prime(prime):
+            raise PacketError("field_model.p must be prime")
         if len(modulus) < 2:
             raise PacketError("field_model.modulus must have positive degree")
         if modulus[-1] % prime != 1:
@@ -93,6 +223,8 @@ class PolynomialBasisField:
         self.size = prime**self.degree
         self.zero = (0,) * self.degree
         self.one = (1,) + (0,) * (self.degree - 1)
+        if not is_irreducible_mod_prime(self.modulus, self.p):
+            raise PacketError("field_model.modulus must be irreducible over F_p")
 
     @classmethod
     def from_packet(cls, packet: dict[str, Any]) -> "PolynomialBasisField | None":
@@ -106,8 +238,20 @@ class PolynomialBasisField:
             raise PacketError("unsupported extractor.field_model.kind")
         if "p" not in model or "modulus" not in model:
             raise PacketError("field_model needs p and modulus")
+        if not isinstance(model["p"], int):
+            raise PacketError("field_model.p must be integer")
         modulus = require_int_list(model["modulus"], "field_model.modulus")
-        return cls(int(model["p"]), modulus)
+        field = cls(model["p"], modulus)
+        if "degree" in model and model["degree"] != field.degree:
+            raise PacketError("field_model.degree does not match modulus degree")
+        row = packet.get("row")
+        row_field = row.get("field") if isinstance(row, dict) else None
+        parsed_row_field = (
+            parse_prime_power_field(row_field) if isinstance(row_field, str) else None
+        )
+        if parsed_row_field is not None and parsed_row_field != (field.p, field.degree):
+            raise PacketError("row.field does not match extractor.field_model")
+        return field
 
     def decode(self, value: int) -> tuple[int, ...]:
         if not isinstance(value, int) or value < 0 or value >= self.size:
