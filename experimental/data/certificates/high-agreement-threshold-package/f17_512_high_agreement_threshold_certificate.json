@@ -1,0 +1,1093 @@
+{
+  "all_checks_passed": true,
+  "definition_freeze": {
+    "affine_denominator": "q_line=|F|",
+    "agreement": "a=n-r",
+    "bridge": "epsilon_mca(C,delta)=LD_sw(C,ceil((1-delta)n))/q_line",
+    "closed_integer_radius": "r=n-a",
+    "closed_real_radius_rule": "r(delta)=floor(delta*n)",
+    "endpoint": "the supremal real transition radius is not attained when the first unsafe integer radius is reached",
+    "line_plus_list_scanner_replay": {
+      "checks": {
+        "row_and_protocol_checks_passed": true,
+        "threshold_row_checks_passed": true
+      },
+      "purpose": "replay committed line-plus-one-list scanner output at the shifted threshold rows",
+      "row_checks": {
+        "config_is_line_plus_one_list": true,
+        "config_row_matches_f17": true,
+        "config_target_is_128": true,
+        "report_budget_is_6": true,
+        "report_row_matches_f17": true
+      },
+      "scanner_config": {
+        "path": "experimental/notes/certificate_scanner/examples/f17_512.json",
+        "sha256": "af20e750d35ec4af280a287c7cc5b814a3c5721e5dcd4caff165a0f126463822"
+      },
+      "scanner_json_report": {
+        "path": "experimental/notes/certificate_scanner/outputs/f17_512.report.json",
+        "sha256": "e0e4c50e4ff5b9cb0b53445769202b648d3b89263e62ad29ad6a2e3a943ba0e1"
+      },
+      "scanner_markdown_report": {
+        "path": "experimental/notes/certificate_scanner/outputs/f17_512.report.md",
+        "sha256": "a0d2af456b18e237d0b49461d399d302e62f406c17e0d39f6f9b1bc48ae367c9"
+      },
+      "status": "AUDIT",
+      "threshold_rows": {
+        "507": {
+          "checks": {
+            "budget_comparison_matches": true,
+            "combined_has_no_unknown_terms": true,
+            "combined_verdict_matches": true,
+            "common_denominator_matches": true,
+            "line_numerator_matches": true,
+            "list_numerator_matches": true,
+            "present": true,
+            "r_matches": true,
+            "sigma_matches": true,
+            "total_numerator_matches": true
+          },
+          "combined_verdict": "UNSAFE_BY_PROVED_LOWER_BOUND",
+          "line_numerator": 6,
+          "list_numerator": 1,
+          "r": 5,
+          "sigma": 251,
+          "total_numerator": 7
+        },
+        "508": {
+          "checks": {
+            "budget_comparison_matches": true,
+            "combined_has_no_unknown_terms": true,
+            "combined_verdict_matches": true,
+            "common_denominator_matches": true,
+            "line_numerator_matches": true,
+            "list_numerator_matches": true,
+            "present": true,
+            "r_matches": true,
+            "sigma_matches": true,
+            "total_numerator_matches": true
+          },
+          "combined_verdict": "SAFE_BY_PROVED_UPPER_BOUND",
+          "line_numerator": 5,
+          "list_numerator": 1,
+          "r": 4,
+          "sigma": 252,
+          "total_numerator": 6
+        }
+      }
+    },
+    "object": "finite-slope support-wise MCA / LD_sw",
+    "official_source": {
+      "anchors": [
+        {
+          "label": "support_set_agreement_size",
+          "line": 99,
+          "needle": "\\abs{S}\\ge (1-\\delta)n"
+        },
+        {
+          "label": "line_family",
+          "line": 105,
+          "needle": "\\calF_{\\mathrm{lines}}"
+        },
+        {
+          "label": "grand_challenge_rates",
+          "line": 143,
+          "needle": "\\rho(C):=\\frac{k}{\\abs{L}}\\in\\set{\\frac12,\\frac14,\\frac18,\\frac1{16}}"
+        },
+        {
+          "label": "grand_challenge_field_range",
+          "line": 153,
+          "needle": "\\abs{\\F}<2^{256}"
+        },
+        {
+          "label": "mca_error_definition",
+          "line": 599,
+          "needle": "\\epsmca(C,\\delta):=\\max_{f_1,f_2\\in(\\F^s)^n}"
+        },
+        {
+          "label": "support_wise_exists_same_support",
+          "line": 602,
+          "needle": "\\exists S=S_\\gamma\\subseteq[n]"
+        },
+        {
+          "label": "support_wise_noncontainment",
+          "line": 604,
+          "needle": "\\Delta_S((f_1,f_2),C^{\\equiv2})>0"
+        },
+        {
+          "label": "line_decoding_to_mca_denominator",
+          "line": 792,
+          "needle": "\\epsmca(C,\\delta)\\le \\frac{a}{\\abs{\\F}}"
+        }
+      ],
+      "checks": {
+        "all_anchors_found": true,
+        "source_present": true
+      },
+      "path": "open-proximity.tex",
+      "sha256": "9ee33d8734181678fe07a9f2a2a44df6d5c773abfb45f67eac2f82ded000edbf"
+    },
+    "projective_denominator": "|P^1(F)|=|F|+1",
+    "pure_mca_scanner_replay": {
+      "checks": {
+        "row_and_protocol_checks_passed": true,
+        "threshold_row_checks_passed": true
+      },
+      "purpose": "replay committed pure finite-slope MCA scanner output at the threshold rows",
+      "row_checks": {
+        "config_is_pure_mca": true,
+        "config_row_matches_f17": true,
+        "config_target_is_128": true,
+        "report_budget_is_6": true,
+        "report_row_matches_f17": true
+      },
+      "scanner_config": {
+        "path": "experimental/notes/certificate_scanner/examples/f17_512_mca_only.json",
+        "sha256": "2730fa041dc131b62b31fb88a2a5ed0b9de6f17e5e3f5d442575e7e8f64ef57b"
+      },
+      "scanner_json_report": {
+        "path": "experimental/notes/certificate_scanner/outputs/f17_512_mca_only.report.json",
+        "sha256": "0fc406ca94f02dbee4ab120735c2a5758fce5e51a6321f6d3d551edc9bd41f50"
+      },
+      "scanner_markdown_report": {
+        "path": "experimental/notes/certificate_scanner/outputs/f17_512_mca_only.report.md",
+        "sha256": "2f23160a71296c59971ea7675943baf5be608bd4483ef70550ed844d698484cd"
+      },
+      "status": "AUDIT",
+      "threshold_rows": {
+        "506": {
+          "checks": {
+            "combined_has_no_unknown_terms": true,
+            "combined_verdict_matches": true,
+            "denominator_matches": true,
+            "exact_numerator_matches": true,
+            "present": true,
+            "r_matches": true,
+            "safe_flag_matches": true,
+            "sigma_matches": true,
+            "unsafe_flag_matches": true
+          },
+          "combined_verdict": "UNSAFE_BY_PROVED_LOWER_BOUND",
+          "finite_line_numerator": 7,
+          "r": 6,
+          "safe_at_target": false,
+          "sigma": 250,
+          "unsafe_at_target": true
+        },
+        "507": {
+          "checks": {
+            "combined_has_no_unknown_terms": true,
+            "combined_verdict_matches": true,
+            "denominator_matches": true,
+            "exact_numerator_matches": true,
+            "present": true,
+            "r_matches": true,
+            "safe_flag_matches": true,
+            "sigma_matches": true,
+            "unsafe_flag_matches": true
+          },
+          "combined_verdict": "SAFE_BY_PROVED_UPPER_BOUND",
+          "finite_line_numerator": 6,
+          "r": 5,
+          "safe_at_target": true,
+          "sigma": 251,
+          "unsafe_at_target": false
+        },
+        "508": {
+          "checks": {
+            "combined_has_no_unknown_terms": true,
+            "combined_verdict_matches": true,
+            "denominator_matches": true,
+            "exact_numerator_matches": true,
+            "present": true,
+            "r_matches": true,
+            "safe_flag_matches": true,
+            "sigma_matches": true,
+            "unsafe_flag_matches": true
+          },
+          "combined_verdict": "SAFE_BY_PROVED_UPPER_BOUND",
+          "finite_line_numerator": 5,
+          "r": 4,
+          "safe_at_target": true,
+          "sigma": 252,
+          "unsafe_at_target": false
+        },
+        "512": {
+          "checks": {
+            "combined_has_no_unknown_terms": true,
+            "combined_verdict_matches": true,
+            "denominator_matches": true,
+            "exact_numerator_matches": true,
+            "present": true,
+            "r_matches": true,
+            "safe_flag_matches": true,
+            "sigma_matches": true,
+            "unsafe_flag_matches": true
+          },
+          "combined_verdict": "SAFE_BY_PROVED_UPPER_BOUND",
+          "finite_line_numerator": 1,
+          "r": 0,
+          "safe_at_target": true,
+          "sigma": 256,
+          "unsafe_at_target": false
+        }
+      }
+    }
+  },
+  "f17_512_affine": {
+    "applies": true,
+    "budget": 6,
+    "checks": {
+      "exact_agreement_inside_tangent_range": true,
+      "safe_grid_numerator_within_budget": true,
+      "safe_probability_le_target": true,
+      "unsafe_grid_numerator_exceeds_budget": true,
+      "unsafe_probability_gt_target": true
+    },
+    "closed_real_safe_interval": {
+      "endpoint_attained": false,
+      "left_closed": true,
+      "right_open_supremum": {
+        "denominator": 256,
+        "display": "3/256",
+        "numerator": 3
+      }
+    },
+    "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
+    "exact_range_min_agreement": 427,
+    "first_safe_agreement": 507,
+    "first_unsafe_integer_radius": 6,
+    "largest_safe_integer_radius": 5,
+    "last_unsafe_agreement": 506,
+    "line_exact_radius": 85,
+    "safe_line_numerator": 6,
+    "threshold_pinned": true,
+    "unsafe_line_numerator": 7
+  },
+  "f17_512_endpoint_bridge": {
+    "first_unsafe_endpoint": {
+      "agreement_from_ceil": 506,
+      "agreement_from_closed_radius": 506,
+      "delta": {
+        "denominator": 256,
+        "display": "3/256",
+        "numerator": 3
+      },
+      "endpoint_formulas_agree": true,
+      "epsilon_fraction": {
+        "denominator": 2367911594760467245844106297320951247361,
+        "display": "7/2367911594760467245844106297320951247361",
+        "numerator": 7
+      },
+      "ld_sw_numerator": 7,
+      "r": 6,
+      "safe_at_2^-128": false,
+      "unsafe_at_2^-128": true
+    },
+    "safe_endpoint": {
+      "agreement_from_ceil": 507,
+      "agreement_from_closed_radius": 507,
+      "delta": {
+        "denominator": 512,
+        "display": "5/512",
+        "numerator": 5
+      },
+      "endpoint_formulas_agree": true,
+      "epsilon_fraction": {
+        "denominator": 2367911594760467245844106297320951247361,
+        "display": "6/2367911594760467245844106297320951247361",
+        "numerator": 6
+      },
+      "ld_sw_numerator": 6,
+      "r": 5,
+      "safe_at_2^-128": true,
+      "unsafe_at_2^-128": false
+    },
+    "source": "experimental/notes/m2/m2_line_decoding_mca_bridge.md"
+  },
+  "f17_512_projective": {
+    "applies": true,
+    "budget": 6,
+    "checks": {
+      "exact_agreement_inside_tangent_range": true,
+      "safe_grid_numerator_within_budget": true,
+      "safe_probability_le_target": true,
+      "unsafe_grid_numerator_exceeds_budget": true,
+      "unsafe_probability_gt_target": true
+    },
+    "closed_real_safe_interval": {
+      "endpoint_attained": false,
+      "left_closed": true,
+      "right_open_supremum": {
+        "denominator": 256,
+        "display": "3/256",
+        "numerator": 3
+      }
+    },
+    "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
+    "exact_range_min_agreement": 427,
+    "first_safe_agreement": 507,
+    "first_unsafe_integer_radius": 6,
+    "largest_safe_integer_radius": 5,
+    "last_unsafe_agreement": 506,
+    "line_exact_radius": 85,
+    "safe_line_numerator": 6,
+    "threshold_pinned": true,
+    "unsafe_line_numerator": 7
+  },
+  "f17_512_same_denominator_line_plus_list": {
+    "budget": 6,
+    "checks": {
+      "safe_agreement_matches_radius": true,
+      "safe_total_within_budget": true,
+      "unsafe_agreement_matches_radius": true,
+      "unsafe_total_exceeds_budget": true
+    },
+    "first_safe_agreement": 508,
+    "first_unsafe_integer_radius": 5,
+    "largest_safe_integer_radius": 4,
+    "last_unsafe_agreement": 507,
+    "list_numerator": 1,
+    "safe_total_numerator": 6,
+    "same_denominator": 2367911594760467245844106297320951247361,
+    "source": "experimental/notes/high_agreement/current_row_protocol_ledger.tex",
+    "unsafe_total_numerator": 7
+  },
+  "f17_512_variant_denominator_audit": {
+    "rows": [
+      {
+        "budget": 6,
+        "denominator": 2367911594760467245844106297320951247361,
+        "denominator_note": "projective slopes use |F|+1; affine/no-loss finite variants use |F|",
+        "label": "finite_supportwise_mca",
+        "safe_numerator": 6,
+        "safe_probability_le_target": true,
+        "unsafe_numerator": 7,
+        "unsafe_probability_gt_target": true
+      },
+      {
+        "budget": 6,
+        "denominator": 2367911594760467245844106297320951247361,
+        "denominator_note": "projective slopes use |F|+1; affine/no-loss finite variants use |F|",
+        "label": "finite_no_loss_ca",
+        "safe_numerator": 6,
+        "safe_probability_le_target": true,
+        "unsafe_numerator": 7,
+        "unsafe_probability_gt_target": true
+      },
+      {
+        "budget": 6,
+        "denominator": 2367911594760467245844106297320951247362,
+        "denominator_note": "projective slopes use |F|+1; affine/no-loss finite variants use |F|",
+        "label": "projective_supportwise_mca",
+        "safe_numerator": 6,
+        "safe_probability_le_target": true,
+        "unsafe_numerator": 7,
+        "unsafe_probability_gt_target": true
+      }
+    ],
+    "safe_agreement": 507,
+    "source": "tex/slackMCA_v4.tex, theorem B-high-agreement-line-staircase",
+    "unsafe_agreement": 506
+  },
+  "proof_input": {
+    "formula": "LD_sw(C,a)=r+1=n-a+1 when r=n-a <= floor((n-k)/3)",
+    "nonclaim": "this certificate does not prove lower-agreement M1, quotient floors, extension transfer, or L2",
+    "source": "tex/slackMCA_v4.tex, theorem B-high-agreement-line-staircase",
+    "theorem": "high-agreement tangent line staircase"
+  },
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "k": 256,
+    "n": 512,
+    "q_chal": 2367911594760467245844106297320951247361,
+    "q_gen": 2367911594760467245844106297320951247361,
+    "q_line": 2367911594760467245844106297320951247361,
+    "q_projective": 2367911594760467245844106297320951247362,
+    "rho": "1/2"
+  },
+  "row_checks": {
+    "affine_budget_bracket": true,
+    "affine_threshold_applies": true,
+    "exact_line_range_radius_is_85": true,
+    "exact_range_min_agreement_is_427": true,
+    "floor_17_32_over_2_128_is_6": true,
+    "projective_budget_bracket": true,
+    "projective_budget_same_as_affine": true,
+    "projective_threshold_applies": true
+  },
+  "row_independent_compiler": {
+    "examples": [
+      {
+        "budget": 0,
+        "checks": {
+          "radius_zero_unsafe": true,
+          "zero_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "NO_SAFE_RADIUS",
+        "denominator": 79228162514264337593543950336,
+        "first_unsafe_radius": 0,
+        "k": 1099511627776,
+        "label": "rho=1/2, k=2^40, Q=2^96",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 366503875925,
+        "n": 2199023255552,
+        "reason": "floor(Q/2^lambda)=0, so the radius-zero numerator already exceeds target",
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
+      },
+      {
+        "budget": 1,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
+        "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
+        "denominator": 340282366920938463463374607431768211456,
+        "first_unsafe_radius": 1,
+        "k": 1099511627776,
+        "label": "rho=1/2, k=2^40, Q=2^128",
+        "largest_safe_integer_radius": 0,
+        "line_exact_radius": 366503875925,
+        "n": 2199023255552,
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
+      },
+      {
+        "budget": 4294967296,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
+        "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
+        "denominator": 1461501637330902918203684832716283019655932542976,
+        "first_unsafe_radius": 4294967296,
+        "k": 1099511627776,
+        "label": "rho=1/2, k=2^40, Q=2^160",
+        "largest_safe_integer_radius": 4294967295,
+        "line_exact_radius": 366503875925,
+        "n": 2199023255552,
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
+      },
+      {
+        "budget": 18446744073709551616,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+        "denominator": 6277101735386680763835789423207666416102355444464034512896,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/2, k=2^40, Q=2^192",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 366503875925,
+        "n": 2199023255552,
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 366503875925,
+        "threshold_pinned": false
+      },
+      {
+        "budget": 170141183460469231731687303715884105728,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+        "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/2, k=2^40, Q=2^255",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 366503875925,
+        "n": 2199023255552,
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 366503875925,
+        "threshold_pinned": false
+      },
+      {
+        "budget": 0,
+        "checks": {
+          "radius_zero_unsafe": true,
+          "zero_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "NO_SAFE_RADIUS",
+        "denominator": 79228162514264337593543950336,
+        "first_unsafe_radius": 0,
+        "k": 1099511627776,
+        "label": "rho=1/4, k=2^40, Q=2^96",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 1099511627776,
+        "n": 4398046511104,
+        "reason": "floor(Q/2^lambda)=0, so the radius-zero numerator already exceeds target",
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
+      },
+      {
+        "budget": 1,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
+        "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
+        "denominator": 340282366920938463463374607431768211456,
+        "first_unsafe_radius": 1,
+        "k": 1099511627776,
+        "label": "rho=1/4, k=2^40, Q=2^128",
+        "largest_safe_integer_radius": 0,
+        "line_exact_radius": 1099511627776,
+        "n": 4398046511104,
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
+      },
+      {
+        "budget": 4294967296,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
+        "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
+        "denominator": 1461501637330902918203684832716283019655932542976,
+        "first_unsafe_radius": 4294967296,
+        "k": 1099511627776,
+        "label": "rho=1/4, k=2^40, Q=2^160",
+        "largest_safe_integer_radius": 4294967295,
+        "line_exact_radius": 1099511627776,
+        "n": 4398046511104,
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
+      },
+      {
+        "budget": 18446744073709551616,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+        "denominator": 6277101735386680763835789423207666416102355444464034512896,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/4, k=2^40, Q=2^192",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 1099511627776,
+        "n": 4398046511104,
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 1099511627776,
+        "threshold_pinned": false
+      },
+      {
+        "budget": 170141183460469231731687303715884105728,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+        "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/4, k=2^40, Q=2^255",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 1099511627776,
+        "n": 4398046511104,
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 1099511627776,
+        "threshold_pinned": false
+      },
+      {
+        "budget": 0,
+        "checks": {
+          "radius_zero_unsafe": true,
+          "zero_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "NO_SAFE_RADIUS",
+        "denominator": 79228162514264337593543950336,
+        "first_unsafe_radius": 0,
+        "k": 1099511627776,
+        "label": "rho=1/8, k=2^40, Q=2^96",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 2565527131477,
+        "n": 8796093022208,
+        "reason": "floor(Q/2^lambda)=0, so the radius-zero numerator already exceeds target",
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
+      },
+      {
+        "budget": 1,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
+        "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
+        "denominator": 340282366920938463463374607431768211456,
+        "first_unsafe_radius": 1,
+        "k": 1099511627776,
+        "label": "rho=1/8, k=2^40, Q=2^128",
+        "largest_safe_integer_radius": 0,
+        "line_exact_radius": 2565527131477,
+        "n": 8796093022208,
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
+      },
+      {
+        "budget": 4294967296,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
+        "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
+        "denominator": 1461501637330902918203684832716283019655932542976,
+        "first_unsafe_radius": 4294967296,
+        "k": 1099511627776,
+        "label": "rho=1/8, k=2^40, Q=2^160",
+        "largest_safe_integer_radius": 4294967295,
+        "line_exact_radius": 2565527131477,
+        "n": 8796093022208,
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
+      },
+      {
+        "budget": 18446744073709551616,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+        "denominator": 6277101735386680763835789423207666416102355444464034512896,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/8, k=2^40, Q=2^192",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 2565527131477,
+        "n": 8796093022208,
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 2565527131477,
+        "threshold_pinned": false
+      },
+      {
+        "budget": 170141183460469231731687303715884105728,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+        "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/8, k=2^40, Q=2^255",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 2565527131477,
+        "n": 8796093022208,
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 2565527131477,
+        "threshold_pinned": false
+      },
+      {
+        "budget": 0,
+        "checks": {
+          "radius_zero_unsafe": true,
+          "zero_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "NO_SAFE_RADIUS",
+        "denominator": 79228162514264337593543950336,
+        "first_unsafe_radius": 0,
+        "k": 1099511627776,
+        "label": "rho=1/16, k=2^40, Q=2^96",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 5497558138880,
+        "n": 17592186044416,
+        "reason": "floor(Q/2^lambda)=0, so the radius-zero numerator already exceeds target",
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
+      },
+      {
+        "budget": 1,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
+        "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
+        "denominator": 340282366920938463463374607431768211456,
+        "first_unsafe_radius": 1,
+        "k": 1099511627776,
+        "label": "rho=1/16, k=2^40, Q=2^128",
+        "largest_safe_integer_radius": 0,
+        "line_exact_radius": 5497558138880,
+        "n": 17592186044416,
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
+      },
+      {
+        "budget": 4294967296,
+        "checks": {
+          "exact_agreement_inside_tangent_range": true,
+          "safe_grid_numerator_within_budget": true,
+          "safe_probability_le_target": true,
+          "unsafe_grid_numerator_exceeds_budget": true,
+          "unsafe_probability_gt_target": true
+        },
+        "compiler_applies": true,
+        "compiler_status": "PINNED_THRESHOLD_IN_EXACT_RANGE",
+        "denominator": 1461501637330902918203684832716283019655932542976,
+        "first_unsafe_radius": 4294967296,
+        "k": 1099511627776,
+        "label": "rho=1/16, k=2^40, Q=2^160",
+        "largest_safe_integer_radius": 4294967295,
+        "line_exact_radius": 5497558138880,
+        "n": 17592186044416,
+        "reason": null,
+        "safe_through_exact_radius": null,
+        "threshold_pinned": true
+      },
+      {
+        "budget": 18446744073709551616,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+        "denominator": 6277101735386680763835789423207666416102355444464034512896,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/16, k=2^40, Q=2^192",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 5497558138880,
+        "n": 17592186044416,
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 5497558138880,
+        "threshold_pinned": false
+      },
+      {
+        "budget": 170141183460469231731687303715884105728,
+        "checks": {
+          "budget_exceeds_exact_range": true,
+          "exact_range_numerator_within_budget": true
+        },
+        "compiler_applies": false,
+        "compiler_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+        "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
+        "first_unsafe_radius": null,
+        "k": 1099511627776,
+        "label": "rho=1/16, k=2^40, Q=2^255",
+        "largest_safe_integer_radius": null,
+        "line_exact_radius": 5497558138880,
+        "n": 17592186044416,
+        "reason": "B_Q exceeds the exact tangent range, so this theorem proves safety only throughout that range",
+        "safe_through_exact_radius": 5497558138880,
+        "threshold_pinned": false
+      }
+    ],
+    "power2_inverse_boundary": "for rate rho=1/d and Q=2^lambda with lambda>=128, the high-agreement compiler pins the threshold exactly iff k >= ceil(3*2^(lambda-128)/(d-1))",
+    "prize_rate_k_2^40_power2_boundaries": [
+      {
+        "checks": {
+          "largest_official_power2_not_pinned_at_kmax": true,
+          "largest_power2_probe_agrees": true,
+          "line_range_formula": true,
+          "max_power2_inside_interval": true,
+          "min_k_for_largest_official_power2_exceeds_prize_kmax": true,
+          "n_matches_rate": true,
+          "next_power2_outside_interval": true,
+          "official_power2_upper_is_exclusive": true,
+          "rate_denominator": true
+        },
+        "first_power2_field_bits_beyond_pinned": 167,
+        "k": 1099511627776,
+        "largest_official_power2_probe": {
+          "budget": 170141183460469231731687303715884105728,
+          "checks": {
+            "denominator_is_power2": true,
+            "inverse_boundary_agrees_with_classifier": true,
+            "line_radius_formula": true,
+            "min_k_equivalence": true,
+            "n_matches_rate": true,
+            "rate_denominator_valid": true
+          },
+          "classifier_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+          "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
+          "field_bits": 255,
+          "first_unsafe_integer_radius": null,
+          "inverse_condition": "k >= ceil(3*2^(lambda-target_bits)/(d-1))",
+          "inverse_status": "REQUIRES_LOWER_AGREEMENT_THEORY",
+          "k": 1099511627776,
+          "k_meets_inverse_boundary": false,
+          "largest_safe_integer_radius": null,
+          "line_exact_radius": 366503875925,
+          "min_k_to_pin": 510423550381407695195061911147652317184,
+          "n": 2199023255552,
+          "rate": "1/2",
+          "rate_denominator": 2,
+          "safe_through_exact_radius": 366503875925,
+          "target_bits": 128,
+          "threshold_pinned": false
+        },
+        "line_exact_radius": 366503875925,
+        "max_power2_field_bits_pinned": 166,
+        "min_k_to_pin_largest_official_power2_field": 510423550381407695195061911147652317184,
+        "n": 2199023255552,
+        "official_field_bound": "|F| < 2^256",
+        "official_power2_bits": {
+          "largest_allowed": 255,
+          "smallest_relevant": 128
+        },
+        "pinned_denominator_max": 124714806385797237264661731367431734082260755808255,
+        "pinned_denominator_min": 340282366920938463463374607431768211456,
+        "pinned_power2_bit_interval": {
+          "count": 39,
+          "max": 166,
+          "min": 128
+        },
+        "requires_lower_agreement_power2_bit_interval": {
+          "count": 89,
+          "max": 255,
+          "min": 167
+        },
+        "rho": "1/2"
+      },
+      {
+        "checks": {
+          "largest_official_power2_not_pinned_at_kmax": true,
+          "largest_power2_probe_agrees": true,
+          "line_range_formula": true,
+          "max_power2_inside_interval": true,
+          "min_k_for_largest_official_power2_exceeds_prize_kmax": true,
+          "n_matches_rate": true,
+          "next_power2_outside_interval": true,
+          "official_power2_upper_is_exclusive": true,
+          "rate_denominator": true
+        },
+        "first_power2_field_bits_beyond_pinned": 169,
+        "k": 1099511627776,
+        "largest_official_power2_probe": {
+          "budget": 170141183460469231731687303715884105728,
+          "checks": {
+            "denominator_is_power2": true,
+            "inverse_boundary_agrees_with_classifier": true,
+            "line_radius_formula": true,
+            "min_k_equivalence": true,
+            "n_matches_rate": true,
+            "rate_denominator_valid": true
+          },
+          "classifier_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+          "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
+          "field_bits": 255,
+          "first_unsafe_integer_radius": null,
+          "inverse_condition": "k >= ceil(3*2^(lambda-target_bits)/(d-1))",
+          "inverse_status": "REQUIRES_LOWER_AGREEMENT_THEORY",
+          "k": 1099511627776,
+          "k_meets_inverse_boundary": false,
+          "largest_safe_integer_radius": null,
+          "line_exact_radius": 1099511627776,
+          "min_k_to_pin": 170141183460469231731687303715884105728,
+          "n": 4398046511104,
+          "rate": "1/4",
+          "rate_denominator": 4,
+          "safe_through_exact_radius": 1099511627776,
+          "target_bits": 128,
+          "threshold_pinned": false
+        },
+        "line_exact_radius": 1099511627776,
+        "max_power2_field_bits_pinned": 168,
+        "min_k_to_pin_largest_official_power2_field": 170141183460469231731687303715884105728,
+        "n": 4398046511104,
+        "official_field_bound": "|F| < 2^256",
+        "official_power2_bits": {
+          "largest_allowed": 255,
+          "smallest_relevant": 128
+        },
+        "pinned_denominator_max": 374144419157051429427064255638831827639350499213311,
+        "pinned_denominator_min": 340282366920938463463374607431768211456,
+        "pinned_power2_bit_interval": {
+          "count": 41,
+          "max": 168,
+          "min": 128
+        },
+        "requires_lower_agreement_power2_bit_interval": {
+          "count": 87,
+          "max": 255,
+          "min": 169
+        },
+        "rho": "1/4"
+      },
+      {
+        "checks": {
+          "largest_official_power2_not_pinned_at_kmax": true,
+          "largest_power2_probe_agrees": true,
+          "line_range_formula": true,
+          "max_power2_inside_interval": true,
+          "min_k_for_largest_official_power2_exceeds_prize_kmax": true,
+          "n_matches_rate": true,
+          "next_power2_outside_interval": true,
+          "official_power2_upper_is_exclusive": true,
+          "rate_denominator": true
+        },
+        "first_power2_field_bits_beyond_pinned": 170,
+        "k": 1099511627776,
+        "largest_official_power2_probe": {
+          "budget": 170141183460469231731687303715884105728,
+          "checks": {
+            "denominator_is_power2": true,
+            "inverse_boundary_agrees_with_classifier": true,
+            "line_radius_formula": true,
+            "min_k_equivalence": true,
+            "n_matches_rate": true,
+            "rate_denominator_valid": true
+          },
+          "classifier_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+          "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
+          "field_bits": 255,
+          "first_unsafe_integer_radius": null,
+          "inverse_condition": "k >= ceil(3*2^(lambda-target_bits)/(d-1))",
+          "inverse_status": "REQUIRES_LOWER_AGREEMENT_THEORY",
+          "k": 1099511627776,
+          "k_meets_inverse_boundary": false,
+          "largest_safe_integer_radius": null,
+          "line_exact_radius": 2565527131477,
+          "min_k_to_pin": 72917650054486813599294558735378902455,
+          "n": 8796093022208,
+          "rate": "1/8",
+          "rate_denominator": 8,
+          "safe_through_exact_radius": 2565527131477,
+          "target_bits": 128,
+          "threshold_pinned": false
+        },
+        "line_exact_radius": 2565527131477,
+        "max_power2_field_bits_pinned": 169,
+        "min_k_to_pin_largest_official_power2_field": 72917650054486813599294558735378902455,
+        "n": 8796093022208,
+        "official_field_bound": "|F| < 2^256",
+        "official_power2_bits": {
+          "largest_allowed": 255,
+          "smallest_relevant": 128
+        },
+        "pinned_denominator_max": 873003644699219531384948365718168640146098217811967,
+        "pinned_denominator_min": 340282366920938463463374607431768211456,
+        "pinned_power2_bit_interval": {
+          "count": 42,
+          "max": 169,
+          "min": 128
+        },
+        "requires_lower_agreement_power2_bit_interval": {
+          "count": 86,
+          "max": 255,
+          "min": 170
+        },
+        "rho": "1/8"
+      },
+      {
+        "checks": {
+          "largest_official_power2_not_pinned_at_kmax": true,
+          "largest_power2_probe_agrees": true,
+          "line_range_formula": true,
+          "max_power2_inside_interval": true,
+          "min_k_for_largest_official_power2_exceeds_prize_kmax": true,
+          "n_matches_rate": true,
+          "next_power2_outside_interval": true,
+          "official_power2_upper_is_exclusive": true,
+          "rate_denominator": true
+        },
+        "first_power2_field_bits_beyond_pinned": 171,
+        "k": 1099511627776,
+        "largest_official_power2_probe": {
+          "budget": 170141183460469231731687303715884105728,
+          "checks": {
+            "denominator_is_power2": true,
+            "inverse_boundary_agrees_with_classifier": true,
+            "line_radius_formula": true,
+            "min_k_equivalence": true,
+            "n_matches_rate": true,
+            "rate_denominator_valid": true
+          },
+          "classifier_status": "EXACT_RANGE_SAFE_THRESHOLD_BEYOND_TANGENT",
+          "denominator": 57896044618658097711785492504343953926634992332820282019728792003956564819968,
+          "field_bits": 255,
+          "first_unsafe_integer_radius": null,
+          "inverse_condition": "k >= ceil(3*2^(lambda-target_bits)/(d-1))",
+          "inverse_status": "REQUIRES_LOWER_AGREEMENT_THEORY",
+          "k": 1099511627776,
+          "k_meets_inverse_boundary": false,
+          "largest_safe_integer_radius": null,
+          "line_exact_radius": 5497558138880,
+          "min_k_to_pin": 34028236692093846346337460743176821146,
+          "n": 17592186044416,
+          "rate": "1/16",
+          "rate_denominator": 16,
+          "safe_through_exact_radius": 5497558138880,
+          "target_bits": 128,
+          "threshold_pinned": false
+        },
+        "line_exact_radius": 5497558138880,
+        "max_power2_field_bits_pinned": 170,
+        "min_k_to_pin_largest_official_power2_field": 34028236692093846346337460743176821146,
+        "n": 17592186044416,
+        "official_field_bound": "|F| < 2^256",
+        "official_power2_bits": {
+          "largest_allowed": 255,
+          "smallest_relevant": 128
+        },
+        "pinned_denominator_max": 1870722095783896017667637524340305639767025423220735,
+        "pinned_denominator_min": 340282366920938463463374607431768211456,
+        "pinned_power2_bit_interval": {
+          "count": 43,
+          "max": 170,
+          "min": 128
+        },
+        "requires_lower_agreement_power2_bit_interval": {
+          "count": 85,
+          "max": 255,
+          "min": 171
+        },
+        "rho": "1/16"
+      }
+    ],
+    "statement": "for B_Q=floor(Q/2^128), B_Q=0 gives no safe integer radius; 1 <= B_Q <= floor((n-k)/3) pins the threshold at r=B_Q; larger B_Q proves safety throughout the exact tangent range but does not locate the later threshold"
+  },
+  "status": "PROVED-COMPILER-ARITHMETIC / AUDIT",
+  "target": "2^-128"
+}

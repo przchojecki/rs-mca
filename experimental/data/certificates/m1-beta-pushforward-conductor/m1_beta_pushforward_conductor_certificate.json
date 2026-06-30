@@ -1,0 +1,62 @@
+{
+  "all_audit_datapoints_ok": true,
+  "audit_datapoints_reproduced": {
+    "p109_e12": {
+      "beta2_ratio": 5.6717827398,
+      "expected_beta2": 5.6717827398,
+      "expected_two_sided": 3.9816513761,
+      "ok": true,
+      "points": 11750,
+      "two_sided_ratio": 3.9816513761
+    },
+    "p181_e18": {
+      "beta2_ratio": 3.7679558011,
+      "expected_beta2": 3.7679558011,
+      "expected_two_sided": 3.1817736563,
+      "ok": true,
+      "points": 28406,
+      "two_sided_ratio": 3.1817736563
+    },
+    "p43_e6": {
+      "beta2_ratio": 3.2558139535,
+      "expected_beta2": 3.2558139535,
+      "expected_two_sided": 3.0697674419,
+      "ok": true,
+      "points": 1568,
+      "two_sided_ratio": 3.0697674419
+    },
+    "p61_e12": {
+      "beta2_ratio": 5.0163934426,
+      "expected_beta2": 5.0163934426,
+      "expected_two_sided": 3.7704918033,
+      "ok": true,
+      "points": 3638,
+      "two_sided_ratio": 3.7704918033
+    },
+    "p73_e12": {
+      "beta2_ratio": 5.5068493151,
+      "expected_beta2": 5.5068493151,
+      "expected_two_sided": 3.397260274,
+      "ok": true,
+      "points": 4452,
+      "two_sided_ratio": 3.397260274
+    },
+    "p97_e24": {
+      "beta2_ratio": 3.6118420031,
+      "expected_beta2": 3.6118420031,
+      "expected_two_sided": 2.4147368394,
+      "ok": true,
+      "points": 8220,
+      "two_sided_ratio": 2.4147368394
+    }
+  },
+  "extended_trend_e6_p151": {
+    "case_count": 16,
+    "peak_beta2_ratio": 5.50684932,
+    "peak_two_sided_ratio": 3.98165138
+  },
+  "method": "reuse good_pushforward_matrix + spectral_stats (validated audit), scan fixed e over growing p",
+  "object": "max_{psi,phi!=1} |G_{psi,phi}| / p for the good beta-pushforward, fixed e, growing p",
+  "status": "EXPERIMENTAL",
+  "theorem_id": "M1 (BETA_2) beta-pushforward conductor (m1_kummer_weil_import_contract.md, m1_beta_pushforward_spectral_audit.md)"
+}

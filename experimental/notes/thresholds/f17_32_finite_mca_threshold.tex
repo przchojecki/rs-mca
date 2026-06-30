@@ -280,8 +280,43 @@ For the row of Theorem~\ref{thm:f17-threshold},
 \]
 so the compiler applies with substantial room.
 
+At the largest prize dimension \(k=2^{40}\), the same compiler pins
+power-of-two field denominators only through bits \(166,168,169,170\) for rates
+\(1/2,1/4,1/8,1/16\), respectively.  Since the official field range is
+\(|F|<2^{256}\), the higher bit ranges \(167..255\), \(169..255\), \(170..255\),
+and \(171..255\) are not threshold-pinned by this high-agreement theorem.  They
+remain in the lower-agreement quotient/local-limit part of the program.
+Equivalently, for a rate \(1/d\) row and a power-of-two field denominator
+\(Q=2^\lambda\) with \(\lambda\ge128\), this compiler pins the threshold exactly
+if and only if
+\[
+  k\ge
+  \left\lceil \frac{3\cdot 2^{\lambda-128}}{d-1}\right\rceil .
+\]
+
 \section{Scanner Attachment}
 \label{sec:scanner}
+
+The exact threshold arithmetic and endpoint convention are also packaged as a
+small deterministic certificate.  From the repository root run
+\[
+\texttt{python3 experimental/scripts/certify\_high\_agreement\_threshold\_package.py}
+\]
+or check the committed JSON certificate under
+\[
+\texttt{experimental/data/certificates/high-agreement-threshold-package/}
+\]
+with the script's \texttt{--check} option.  This certificate records the
+finite-slope and projective-slope denominators, the closed endpoint convention,
+the \(506/507\) row, and the row-independent compiler condition
+\[
+        B_Q=\lfloor Q/2^{128}\rfloor\le \left\lfloor\frac{n-k}{3}\right\rfloor .
+\]
+It also records hashes and decisive-row checks for the committed pure-MCA
+scanner replay described below, and separately for the same-denominator
+line-plus-one-list scanner replay.  The latter is a protocol-coding ledger, not
+the pure MCA threshold: at \(a=507\) it has numerator \(6+1=7\), while at
+\(a=508\) it has numerator \(5+1=6\).
 
 The reproducibility attachment is generated from the repository root by running
 \texttt{python3} on

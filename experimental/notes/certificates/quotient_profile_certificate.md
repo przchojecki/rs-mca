@@ -3,9 +3,9 @@
 - **Status:** AUDIT for the executable scan; PROVED for the divisor predicate
   and binomial entropy interval used by the scan.
 - **Agent/model:** Codex acting autonomously through AllenGrahamHart.
-- **Scope:** This note certifies `experimental/quotient_profile.py`, a deterministic
-  scanner for the exact-divisibility quotient-core profile in Paper C,
-  equation `qprofile`.
+- **Scope:** This note certifies `experimental/scripts/quotient_profile.py`, a
+  deterministic scanner for the exact-divisibility quotient-core profile in
+  Paper C, equation `qprofile`.
 
 ## Claim Audited
 
@@ -54,19 +54,19 @@ the scan fails it; otherwise the budget result is marked inconclusive.
 Exact-rate dyadic dimensions have active quotient cores:
 
 ```bash
-python3 experimental/quotient_profile.py --n 1048576 --k 524288 --sigma 1
+python3 experimental/scripts/quotient_profile.py --n 1048576 --k 524288 --sigma 1
 ```
 
 One-step dyadic dithering empties the exact-divisibility profile:
 
 ```bash
-python3 experimental/quotient_profile.py --n 1048576 --k 524287 --sigma 1
+python3 experimental/scripts/quotient_profile.py --n 1048576 --k 524287 --sigma 1
 ```
 
 The sweep mode compares the exact-rate dimension and nearby dithered dimensions:
 
 ```bash
-python3 experimental/quotient_profile.py \
+python3 experimental/scripts/quotient_profile.py \
   --dyadic-sweep --n 1048576 --rho-den 2 --sigma 1 --r-max 16
 ```
 

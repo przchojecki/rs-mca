@@ -68,7 +68,7 @@
               "log2_binom_N_ell2": 507.1510491270155,
               "log2_requirement": 253.5976218400217,
               "rhoN": 256,
-              "status": "PROVED_PAPERD_V6_CAP"
+              "status": "PROVED_PAPERD_V7_CAP"
             }
           ],
           "checked_candidate_divisors": 7,
@@ -85,7 +85,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           },
           "field_hypotheses": {
             "domain_fits_field": true,
@@ -96,8 +96,8 @@
           "num_active_caps": 1,
           "q_base": 2367911594760467245844106297320951247361,
           "q_line": 2367911594760467245844106297320951247361,
-          "source": "Paper D v6 universal cap",
-          "status": "PROVED_PAPERD_V6_CAP",
+          "source": "Paper D v7 universal cap",
+          "status": "PROVED_PAPERD_V7_CAP",
           "strongest_cap_min_delta": {
             "N": 512,
             "delta_cap_float": 0.49609375,
@@ -111,7 +111,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           }
         },
         "quotient_profile": {
@@ -258,7 +258,7 @@
               "log2_binom_N_ell2": 507.1510491270155,
               "log2_requirement": 253.5976218400217,
               "rhoN": 256,
-              "status": "PROVED_PAPERD_V6_CAP"
+              "status": "PROVED_PAPERD_V7_CAP"
             }
           ],
           "checked_candidate_divisors": 7,
@@ -275,7 +275,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           },
           "field_hypotheses": {
             "domain_fits_field": true,
@@ -286,8 +286,8 @@
           "num_active_caps": 1,
           "q_base": 2367911594760467245844106297320951247361,
           "q_line": 2367911594760467245844106297320951247361,
-          "source": "Paper D v6 universal cap",
-          "status": "PROVED_PAPERD_V6_CAP",
+          "source": "Paper D v7 universal cap",
+          "status": "PROVED_PAPERD_V7_CAP",
           "strongest_cap_min_delta": {
             "N": 512,
             "delta_cap_float": 0.49609375,
@@ -301,7 +301,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           }
         },
         "quotient_profile": {
@@ -412,7 +412,7 @@
               "log2_binom_N_ell2": 507.1510491270155,
               "log2_requirement": 253.5976218400217,
               "rhoN": 256,
-              "status": "PROVED_PAPERD_V6_CAP"
+              "status": "PROVED_PAPERD_V7_CAP"
             }
           ],
           "checked_candidate_divisors": 7,
@@ -429,7 +429,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           },
           "field_hypotheses": {
             "domain_fits_field": true,
@@ -440,8 +440,8 @@
           "num_active_caps": 1,
           "q_base": 2367911594760467245844106297320951247361,
           "q_line": 2367911594760467245844106297320951247361,
-          "source": "Paper D v6 universal cap",
-          "status": "PROVED_PAPERD_V6_CAP",
+          "source": "Paper D v7 universal cap",
+          "status": "PROVED_PAPERD_V7_CAP",
           "strongest_cap_min_delta": {
             "N": 512,
             "delta_cap_float": 0.49609375,
@@ -455,7 +455,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           }
         },
         "quotient_profile": {
@@ -566,7 +566,7 @@
               "log2_binom_N_ell2": 507.1510491270155,
               "log2_requirement": 253.5976218400217,
               "rhoN": 256,
-              "status": "PROVED_PAPERD_V6_CAP"
+              "status": "PROVED_PAPERD_V7_CAP"
             }
           ],
           "checked_candidate_divisors": 7,
@@ -583,7 +583,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           },
           "field_hypotheses": {
             "domain_fits_field": true,
@@ -594,8 +594,8 @@
           "num_active_caps": 1,
           "q_base": 2367911594760467245844106297320951247361,
           "q_line": 2367911594760467245844106297320951247361,
-          "source": "Paper D v6 universal cap",
-          "status": "PROVED_PAPERD_V6_CAP",
+          "source": "Paper D v7 universal cap",
+          "status": "PROVED_PAPERD_V7_CAP",
           "strongest_cap_min_delta": {
             "N": 512,
             "delta_cap_float": 0.49609375,
@@ -609,7 +609,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           }
         },
         "quotient_profile": {
@@ -726,7 +726,7 @@
               "log2_binom_N_ell2": 507.1510491270155,
               "log2_requirement": 253.5976218400217,
               "rhoN": 256,
-              "status": "PROVED_PAPERD_V6_CAP"
+              "status": "PROVED_PAPERD_V7_CAP"
             }
           ],
           "checked_candidate_divisors": 7,
@@ -743,7 +743,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           },
           "field_hypotheses": {
             "domain_fits_field": true,
@@ -754,8 +754,8 @@
           "num_active_caps": 1,
           "q_base": 2367911594760467245844106297320951247361,
           "q_line": 2367911594760467245844106297320951247361,
-          "source": "Paper D v6 universal cap",
-          "status": "PROVED_PAPERD_V6_CAP",
+          "source": "Paper D v7 universal cap",
+          "status": "PROVED_PAPERD_V7_CAP",
           "strongest_cap_min_delta": {
             "N": 512,
             "delta_cap_float": 0.49609375,
@@ -769,7 +769,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           }
         },
         "quotient_profile": {
@@ -886,7 +886,7 @@
               "log2_binom_N_ell2": 507.1510491270155,
               "log2_requirement": 253.5976218400217,
               "rhoN": 256,
-              "status": "PROVED_PAPERD_V6_CAP"
+              "status": "PROVED_PAPERD_V7_CAP"
             }
           ],
           "checked_candidate_divisors": 7,
@@ -903,7 +903,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           },
           "field_hypotheses": {
             "domain_fits_field": true,
@@ -914,8 +914,8 @@
           "num_active_caps": 1,
           "q_base": 2367911594760467245844106297320951247361,
           "q_line": 2367911594760467245844106297320951247361,
-          "source": "Paper D v6 universal cap",
-          "status": "PROVED_PAPERD_V6_CAP",
+          "source": "Paper D v7 universal cap",
+          "status": "PROVED_PAPERD_V7_CAP",
           "strongest_cap_min_delta": {
             "N": 512,
             "delta_cap_float": 0.49609375,
@@ -929,7 +929,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           }
         },
         "quotient_profile": {
@@ -1046,7 +1046,7 @@
               "log2_binom_N_ell2": 507.1510491270155,
               "log2_requirement": 253.5976218400217,
               "rhoN": 256,
-              "status": "PROVED_PAPERD_V6_CAP"
+              "status": "PROVED_PAPERD_V7_CAP"
             }
           ],
           "checked_candidate_divisors": 7,
@@ -1063,7 +1063,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           },
           "field_hypotheses": {
             "domain_fits_field": true,
@@ -1074,8 +1074,8 @@
           "num_active_caps": 1,
           "q_base": 2367911594760467245844106297320951247361,
           "q_line": 2367911594760467245844106297320951247361,
-          "source": "Paper D v6 universal cap",
-          "status": "PROVED_PAPERD_V6_CAP",
+          "source": "Paper D v7 universal cap",
+          "status": "PROVED_PAPERD_V7_CAP",
           "strongest_cap_min_delta": {
             "N": 512,
             "delta_cap_float": 0.49609375,
@@ -1089,7 +1089,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           }
         },
         "quotient_profile": {
@@ -1206,7 +1206,7 @@
               "log2_binom_N_ell2": 507.1510491270155,
               "log2_requirement": 253.5976218400217,
               "rhoN": 256,
-              "status": "PROVED_PAPERD_V6_CAP"
+              "status": "PROVED_PAPERD_V7_CAP"
             }
           ],
           "checked_candidate_divisors": 7,
@@ -1223,7 +1223,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           },
           "field_hypotheses": {
             "domain_fits_field": true,
@@ -1234,8 +1234,8 @@
           "num_active_caps": 1,
           "q_base": 2367911594760467245844106297320951247361,
           "q_line": 2367911594760467245844106297320951247361,
-          "source": "Paper D v6 universal cap",
-          "status": "PROVED_PAPERD_V6_CAP",
+          "source": "Paper D v7 universal cap",
+          "status": "PROVED_PAPERD_V7_CAP",
           "strongest_cap_min_delta": {
             "N": 512,
             "delta_cap_float": 0.49609375,
@@ -1249,7 +1249,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           }
         },
         "quotient_profile": {
@@ -1366,7 +1366,7 @@
               "log2_binom_N_ell2": 507.1510491270155,
               "log2_requirement": 253.5976218400217,
               "rhoN": 256,
-              "status": "PROVED_PAPERD_V6_CAP"
+              "status": "PROVED_PAPERD_V7_CAP"
             }
           ],
           "checked_candidate_divisors": 7,
@@ -1383,7 +1383,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           },
           "field_hypotheses": {
             "domain_fits_field": true,
@@ -1394,8 +1394,8 @@
           "num_active_caps": 1,
           "q_base": 2367911594760467245844106297320951247361,
           "q_line": 2367911594760467245844106297320951247361,
-          "source": "Paper D v6 universal cap",
-          "status": "PROVED_PAPERD_V6_CAP",
+          "source": "Paper D v7 universal cap",
+          "status": "PROVED_PAPERD_V7_CAP",
           "strongest_cap_min_delta": {
             "N": 512,
             "delta_cap_float": 0.49609375,
@@ -1409,7 +1409,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           }
         },
         "quotient_profile": {
@@ -1526,7 +1526,7 @@
               "log2_binom_N_ell2": 507.1510491270155,
               "log2_requirement": 253.5976218400217,
               "rhoN": 256,
-              "status": "PROVED_PAPERD_V6_CAP"
+              "status": "PROVED_PAPERD_V7_CAP"
             }
           ],
           "checked_candidate_divisors": 7,
@@ -1543,7 +1543,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           },
           "field_hypotheses": {
             "domain_fits_field": true,
@@ -1554,8 +1554,8 @@
           "num_active_caps": 1,
           "q_base": 2367911594760467245844106297320951247361,
           "q_line": 2367911594760467245844106297320951247361,
-          "source": "Paper D v6 universal cap",
-          "status": "PROVED_PAPERD_V6_CAP",
+          "source": "Paper D v7 universal cap",
+          "status": "PROVED_PAPERD_V7_CAP",
           "strongest_cap_min_delta": {
             "N": 512,
             "delta_cap_float": 0.49609375,
@@ -1569,7 +1569,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           }
         },
         "quotient_profile": {
@@ -1686,7 +1686,7 @@
               "log2_binom_N_ell2": 507.1510491270155,
               "log2_requirement": 253.5976218400217,
               "rhoN": 256,
-              "status": "PROVED_PAPERD_V6_CAP"
+              "status": "PROVED_PAPERD_V7_CAP"
             }
           ],
           "checked_candidate_divisors": 7,
@@ -1703,7 +1703,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           },
           "field_hypotheses": {
             "domain_fits_field": true,
@@ -1714,8 +1714,8 @@
           "num_active_caps": 1,
           "q_base": 2367911594760467245844106297320951247361,
           "q_line": 2367911594760467245844106297320951247361,
-          "source": "Paper D v6 universal cap",
-          "status": "PROVED_PAPERD_V6_CAP",
+          "source": "Paper D v7 universal cap",
+          "status": "PROVED_PAPERD_V7_CAP",
           "strongest_cap_min_delta": {
             "N": 512,
             "delta_cap_float": 0.49609375,
@@ -1729,7 +1729,7 @@
             "log2_binom_N_ell2": 507.1510491270155,
             "log2_requirement": 253.5976218400217,
             "rhoN": 256,
-            "status": "PROVED_PAPERD_V6_CAP"
+            "status": "PROVED_PAPERD_V7_CAP"
           }
         },
         "quotient_profile": {

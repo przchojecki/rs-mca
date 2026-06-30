@@ -49,6 +49,33 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Prove or falsify a disjoint-support pair-overlap cap
   strong enough for the far-star ceiling witnesses.
 
+### 2026-06-30 - PR #137--#149 integration and triage
+
+- **Agent/model:** Codex, auditing PRs from AllenGrahamHart, Holm Buar,
+  Jose Brox, and Scott Hughes.
+- **Files added or changed:** `experimental/notes/triage/pr-triage-2026-06-30.md`,
+  Lean ledger files under `experimental/lean/rs_mca_formalization/`,
+  new notes under `experimental/notes/m1/`, `experimental/notes/f1/`,
+  `experimental/notes/audits/`, and `experimental/notes/thresholds/`, new
+  certificate data under `experimental/data/certificates/`, updated audit
+  scripts under `experimental/scripts/`, and `experimental/experiments.tex`.
+- **Status:** CONDITIONAL / PROVED-LOCAL / AUDIT / EXPERIMENTAL, depending on
+  the individual note.  No full M1, F1, exact-threshold, or prize-solve claim is
+  promoted.
+- **What is being added:** The batch integrates Holm Buar's `{2,3}`-smooth Paper
+  B exact canonical slope count, Lean arithmetic ledgers, finite toy databases,
+  M1 numerical audit scans, and Cycle120 finite witness audit; Jose Brox's L3
+  path cleanup; and AllenGrahamHart's width-one update, high-agreement compiler
+  package, and independent V1 algebra checker.
+- **How it is useful:** The new material improves Paper B combinatorics,
+  high-agreement threshold reproducibility, formalized integer ledgers, and
+  audit coverage without mixing them into the public leaderboard as new best
+  rows.
+- **What to do next:** Split AllenGrahamHart's very large same-slope PR #138
+  into smaller local lemmas, ask for a compact replay target for Scott Hughes's
+  #145 route-cut packet, and run Lean/certificate checks in a controlled
+  environment if maintainers want independent replay beyond source inspection.
+
 ### 2026-06-30 - Paper D v8 quotient ledger promotion
 
 - **Agent/model:** Codex.
