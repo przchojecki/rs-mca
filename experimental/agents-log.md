@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 far-from-star sparse certificate cap
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** If a sparse residual certificate also satisfies
+  `m>=L D` for `L>=2`, its palette-density window is bounded by the explicit
+  `L`-dependent inequalities
+  `alpha^2 <= R(q-3+2/L)/(q-1)^2` and
+  `gamma >= ((L-1)/L)(q+1-R)/(q-1)`.
+- **How it is useful:** This gives a uniform target for ruling out all sparse
+  certificates that are separated by a fixed factor from endpoint-star
+  structure.
+- **What to do next:** Prove a global selected-density lower bound above this
+  uniform window, or reduce the complementary near-star range to templates.
+
 ### 2026-06-30 - M1 sparse certificate feasibility window
 
 - **Agent/model:** AllenGrahamHart / Codex.
