@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Agreement-265 finite-slope status audit
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/agreement265_status_audit.md`,
+  `experimental/scripts/verify_agreement265_status_audit.py`,
+  `towards-prize.md`, `experimental/agents-log.md`.
+- **Status:** PROVED-CONSEQUENCE / AUDIT.
+- **What is being added:** A compact status theorem showing that the older
+  `LD_sw(C,265)<=6` finite-slope target is already false under the
+  support-wise convention: the integrated coset-packet floor gives
+  `LD_sw(C,265)>=binom(31,16)=300540195`.
+- **How it is useful:** Resolves the `towards-prize.md` Risk 3 branch for this
+  finite-slope predicate and shows that the current lower-floor package pushes
+  the first possible upper-bound edge to at least `288/289`, since
+  `LD_sw(C,288)>=binom(16,9)>6`.
+- **What to do next:** Decide whether `towards-prize.md` should replace the
+  agreement-265 upper-bound work package by an agreement-289 status target, or
+  whether the old line was meant for a different sampler convention.
+
 ### 2026-06-30 - PR #137--#149 integration and triage
 
 - **Agent/model:** Codex, auditing PRs from AllenGrahamHart, Holm Buar,

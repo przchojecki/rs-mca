@@ -1069,6 +1069,19 @@ LD_{\mathrm{sw}}(C,265)\le 6.
 
 The first inequality is a lower-bound certificate. The second is an all-line upper-bound theorem.
 
+**Status caveat, 2026-06-30.**  Under the finite-slope support-wise convention
+used by the threshold notes, the displayed agreement-265 upper target is already
+false.  The integrated coset-packet finite-slope floor proves
+\[
+LD_{\mathrm{sw}}(C,265)\ge \binom{31}{16}=300{,}540{,}195,
+\]
+and the same lower-floor package gives more than six bad finite slopes through
+agreement \(288\).  See
+`experimental/notes/thresholds/agreement265_status_audit.md`.  Therefore this
+lane should be read as an old finite-row target unless a different sampler
+convention is intended; for the finite-slope predicate, the first agreement not
+ruled out by the current lower-floor package is \(a=289\).
+
 ## B.1 Formulate agreement 265 as a Hankel-pencil problem
 
 At \(a=265\),
@@ -2131,11 +2144,19 @@ write exact failure audit
 
 **Impact.** Threshold is lower/higher than expected; finite pinning target changes.
 
+**Current status.** This risk has materialized for the finite-slope
+support-wise predicate: the coset-packet finite-slope floor gives more than six
+bad finite slopes for every agreement \(265\le a\le288\), and hence pushes the
+first possible finite-slope upper edge to at least \(288/289\).  See
+`experimental/notes/thresholds/agreement265_status_audit.md`.
+
 **Mitigation.**
 
 ```text
-search for agreement-265 witnesses
-if >=7 found, move threshold target to a=265/266
+record the agreement-265 witness status as settled for finite slopes
+do not attempt LD_sw(C,265) <= 6 under the finite-slope convention
+if no different sampler convention is intended, move the next finite-slope
+upper-bound target to a=289
 keep staircase approach
 ```
 
