@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 endpoint-disjoint star extraction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_high_overlap_graph_budget.md`,
+  `experimental/scripts/verify_m1_high_overlap_graph_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A final localization of the high-overlap graph
+  obstruction: endpoint-degree and labels-per-support caps convert a dense
+  high-overlap core into a rooted star with many pairwise endpoint-disjoint
+  high-overlap leaves.
+- **How it is useful:** Gives the M1/C3 algebraic step a sharply local target:
+  rule out or classify one packet with many endpoint-independent
+  Kummer/cross-ratio high-overlap partners.
+- **What to do next:** Try to prove the corresponding residue-line
+  high-overlap star exclusion in the actual Hankel packet families.
+
 ### 2026-06-30 - M1 high-overlap dense-core extraction
 
 - **Agent/model:** AllenGrahamHart / Codex.

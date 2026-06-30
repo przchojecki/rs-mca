@@ -297,6 +297,64 @@ Proof: if `B<=R`, then `(HG2)` gives
 characterization of degeneracy, some induced subgraph has minimum degree at
 least `d+1`.
 
+## Endpoint-disjoint star extraction
+
+The dense-core branch can be localized one step further using the endpoint
+degree cap.  Suppose `G_Lambda` contains an induced core with minimum degree at
+least `delta`.  Then some center packet `a` in that core has a set `N(a)` of at
+least `delta` high-overlap neighbors.  Every neighbor support is disjoint from
+`E_a`, by definition of `G_Lambda`.
+
+Because each endpoint lies in at most `D` endpoint supports and each endpoint
+support carries at most `h` labels, any chosen neighbor can conflict by
+endpoint intersection with at most
+
+```text
+h(2D-1)
+```
+
+neighbor labels, including labels over its own endpoint support.  A greedy
+packing therefore extracts at least
+
+```text
+S_star(delta,D,h) =
+  ceil( delta / (h(2D-1)) )
+```
+
+neighbors whose endpoint supports are pairwise disjoint.  Hence the dense-core
+branch contains a rooted high-overlap star
+
+```text
+a; b_1,...,b_m,        m >= S_star(delta,D,h),
+```
+
+with:
+
+```text
+E_a cap E_{b_i} = emptyset,
+E_{b_i} cap E_{b_j} = emptyset        (i != j),
+|P_a cap P_{b_i}| > Lambda.
+```
+
+Combining this with dense-core extraction, if
+
+```text
+E_forced(K,s,h,D,Lambda,R) > M_degen(K,d),
+```
+
+then every selected packet family satisfies at least one of:
+
+```text
+large support,
+near-star,
+or an endpoint-disjoint high-overlap star with
+  m >= S_star(d+1,D,h).
+```
+
+This is the most local target in this packet-sift chain: rule out one packet
+having many endpoint-independent high-overlap partners, or classify the
+exception.
+
 ## M1 use
 
 For Work package C3 in `towards-prize.md`, this is a sharper interface than a
@@ -313,14 +371,14 @@ For example, a Kummer/cross-ratio theorem proving maximum high-overlap degree
 `F_degen` to rule out the far-from-star small-support residual once the
 resulting floor exceeds the target support budget.  Equivalently, if the
 support remains too small, the dense-core extraction above identifies a
-specific high-minimum-degree high-overlap packet core for the algebraic proof
-to eliminate.
+specific high-minimum-degree high-overlap packet core, and then an
+endpoint-disjoint high-overlap star, for the algebraic proof to eliminate.
 
 ## Verification
 
 The companion verifier checks the exact floor, the forced high-edge lower
 bound, the degree/degeneracy substitutions, the dense-core extraction, and
-sampled finite packet systems:
+the endpoint-disjoint star extraction on sampled finite packet systems:
 
 ```sh
 python3 experimental/scripts/verify_m1_high_overlap_graph_budget.py

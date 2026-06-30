@@ -80,6 +80,26 @@ def min_degree_core(
     return remaining
 
 
+def endpoint_disjoint_subset(labels: list[Label], indices: list[int]) -> list[int]:
+    chosen: list[int] = []
+    used_endpoints: set[int] = set()
+    for index in indices:
+        endpoints = set(labels[index].endpoints)
+        if endpoints & used_endpoints:
+            continue
+        chosen.append(index)
+        used_endpoints.update(endpoints)
+    return chosen
+
+
+def endpoint_star_leaf_floor(neighbor_count: int, h: int, degree_cap: int) -> int:
+    if neighbor_count == 0:
+        return 0
+    if h <= 0 or degree_cap <= 0:
+        raise ValueError("positive h and degree_cap are required")
+    return ceil_fraction(Fraction(neighbor_count, h * (2 * degree_cap - 1)))
+
+
 def max_edges_from_degree_bound(k: int, degree_bound: int) -> int:
     if degree_bound < 0:
         raise ValueError("degree_bound must be nonnegative")
@@ -383,6 +403,7 @@ def check_sampled_packet_systems() -> None:
     degree_interfaces = 0
     degeneracy_interfaces = 0
     dense_core_interfaces = 0
+    endpoint_star_interfaces = 0
 
     for trial in range(650):
         labels = make_random_labels(rng, trial)
@@ -398,6 +419,10 @@ def check_sampled_packet_systems() -> None:
         for lambda_cap in range(0, s):
             high_edges = high_overlap_edges(labels, lambda_cap)
             edge_count = len(high_edges)
+            adjacency = [set() for _ in labels]
+            for i, j in high_edges:
+                adjacency[i].add(j)
+                adjacency[j].add(i)
 
             floor = support_floor_from_high_edge_budget(
                 k, s, h, degree_cap, lambda_cap, edge_count
@@ -507,6 +532,39 @@ def check_sampled_packet_systems() -> None:
                 )
             degeneracy_interfaces += 1
 
+            for center, neighbors in enumerate(adjacency):
+                neighbor_list = sorted(neighbors)
+                selected = endpoint_disjoint_subset(labels, neighbor_list)
+                used_endpoints: set[int] = set()
+                for index in selected:
+                    if labels[index].endpoints & labels[center].endpoints:
+                        raise AssertionError(
+                            ("center support conflict", trial, lambda_cap, center, index)
+                        )
+                    if labels[index].endpoints & used_endpoints:
+                        raise AssertionError(
+                            ("leaf support conflict", trial, lambda_cap, selected)
+                        )
+                    used_endpoints.update(labels[index].endpoints)
+                floor = endpoint_star_leaf_floor(
+                    len(neighbor_list), h, degree_cap
+                )
+                if len(selected) < floor:
+                    raise AssertionError(
+                        (
+                            "endpoint star floor",
+                            trial,
+                            lambda_cap,
+                            center,
+                            len(neighbor_list),
+                            len(selected),
+                            floor,
+                            h,
+                            degree_cap,
+                        )
+                    )
+                endpoint_star_interfaces += 1
+
             for d in range(0, min(k, 8)):
                 forced = forced_high_edges(
                     k, s, support_size, h, degree_cap, lambda_cap
@@ -528,6 +586,34 @@ def check_sampled_packet_systems() -> None:
                             support_size,
                         )
                     )
+                center = next(iter(core))
+                core_neighbors = sorted(adjacency[center] & core)
+                if len(core_neighbors) < d + 1:
+                    raise AssertionError(
+                        (
+                            "core min degree failed",
+                            trial,
+                            lambda_cap,
+                            d,
+                            center,
+                            len(core_neighbors),
+                            core,
+                        )
+                    )
+                selected = endpoint_disjoint_subset(labels, core_neighbors)
+                floor = endpoint_star_leaf_floor(d + 1, h, degree_cap)
+                if len(selected) < floor:
+                    raise AssertionError(
+                        (
+                            "forced endpoint star missing",
+                            trial,
+                            lambda_cap,
+                            d,
+                            len(core_neighbors),
+                            len(selected),
+                            floor,
+                        )
+                    )
                 dense_core_interfaces += 1
         checked += 1
 
@@ -536,6 +622,7 @@ def check_sampled_packet_systems() -> None:
     print(f"sampled_degree_interfaces_checked={degree_interfaces}")
     print(f"sampled_degeneracy_interfaces_checked={degeneracy_interfaces}")
     print(f"sampled_dense_core_interfaces_checked={dense_core_interfaces}")
+    print(f"sampled_endpoint_star_interfaces_checked={endpoint_star_interfaces}")
 
 
 def main() -> None:
