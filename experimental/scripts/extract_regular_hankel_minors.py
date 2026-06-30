@@ -26,6 +26,7 @@ from typing import Any
 
 DEFAULT_MAX_ROOT_ENUM_FIELD_SIZE = 10000
 DEFAULT_MAX_BAD_SLOPE_SUBSETS = 200000
+ZERO_U_MONOMIAL_MODE = "zero_u_monomial_roots"
 
 
 def mod(value: int, prime: int) -> int:
@@ -847,6 +848,39 @@ def extract_for_agreement(
                 "nodes_required_for_singularity_proof"
             ),
         )
+    if (
+        spec.get("certificate_mode") == ZERO_U_MONOMIAL_MODE
+        and row_set_audit["source"] == "rank_at_nodes"
+        and row_sets
+    ):
+        if any(value % prime for value in u):
+            raise ValueError("zero_u_monomial_roots needs u=0")
+        node = row_set_audit.get("node")
+        if not isinstance(node, int) or node % prime == 0:
+            raise ValueError("zero_u_monomial_roots needs a nonzero rank witness")
+        leading = determinant_mod(
+            matrix_at_slope(u, v, row_sets[0], size, 1, prime),
+            prime,
+        )
+        if leading == 0:
+            raise AssertionError("zero_u_monomial_roots leading coefficient vanished")
+        return ExtractionResult(
+            exact_agreement,
+            j,
+            t,
+            "regular_minor",
+            row_sets[0],
+            [0] * size + [leading],
+            [0],
+            None,
+            1,
+            row_set_source=row_set_audit["source"],
+            rank_pivot_node=row_set_audit.get("node"),
+            rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+            rank_pivot_nodes_required=row_set_audit.get(
+                "nodes_required_for_singularity_proof"
+            ),
+        )
     tested = 0
     for row_set in row_sets:
         tested += 1
@@ -985,6 +1019,39 @@ def extract_for_agreement_field(
             row_sets[0],
             None,
             None,
+            None,
+            1,
+            row_set_source=row_set_audit["source"],
+            rank_pivot_node=row_set_audit.get("node"),
+            rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+            rank_pivot_nodes_required=row_set_audit.get(
+                "nodes_required_for_singularity_proof"
+            ),
+        )
+    if (
+        spec.get("certificate_mode") == ZERO_U_MONOMIAL_MODE
+        and row_set_audit["source"] == "rank_at_nodes"
+        and row_sets
+    ):
+        if any(not field.is_zero(value) for value in u):
+            raise ValueError("zero_u_monomial_roots needs u=0")
+        node = row_set_audit.get("node")
+        if not isinstance(node, int) or node == 0:
+            raise ValueError("zero_u_monomial_roots needs a nonzero rank witness")
+        leading = determinant_field(
+            matrix_at_slope_field(u, v, row_sets[0], size, field.one, field),
+            field,
+        )
+        if field.is_zero(leading):
+            raise AssertionError("zero_u_monomial_roots leading coefficient vanished")
+        return ExtractionResult(
+            exact_agreement,
+            j,
+            t,
+            "regular_minor",
+            row_sets[0],
+            [field.zero] * size + [leading],
+            [field.zero],
             None,
             1,
             row_set_source=row_set_audit["source"],
@@ -1331,6 +1398,8 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
             "method": (
                 "rank_at_nodes full-rank specialization over the base prime field"
                 if spec.get("certificate_mode") == "rank_witness_bound"
+                else "zero-u monomial closed-form root certificate over the base prime field"
+                if spec.get("certificate_mode") == ZERO_U_MONOMIAL_MODE
                 else "numeric determinant interpolation over the base prime field"
             ),
             "input_ref": input_ref,
@@ -1425,6 +1494,8 @@ def build_packet_field(
             "method": (
                 "rank_at_nodes full-rank specialization over a polynomial-basis finite field"
                 if spec.get("certificate_mode") == "rank_witness_bound"
+                else "zero-u monomial closed-form root certificate over a polynomial-basis finite field"
+                if spec.get("certificate_mode") == ZERO_U_MONOMIAL_MODE
                 else "numeric determinant interpolation over a polynomial-basis finite field"
             ),
             "input_ref": input_ref,

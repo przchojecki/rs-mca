@@ -1,0 +1,117 @@
+{
+  "agreement_threshold": 4,
+  "declared_aperiodic_numerator": 0,
+  "enumerated_bad_slope_union": [],
+  "exact_agreements": [
+    {
+      "A": 4,
+      "extractor_audit": {
+        "degree_bound": 1,
+        "field_size": 2367911594760467245844106297320951247361,
+        "rank_pivot_node": null,
+        "rank_pivot_nodes_required": null,
+        "rank_pivot_nodes_tested": null,
+        "root_count": 0,
+        "row_set_source": "prefix",
+        "tested_row_sets": 1
+      },
+      "j": 1,
+      "regular_minor": {
+        "degree": 1,
+        "polynomial_ref": "inline:regular_minor.coefficients_ascending",
+        "root_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "row_set": [
+          0,
+          1
+        ]
+      },
+      "regular_minor_data": {
+        "coefficients_ascending": [
+          0,
+          1
+        ],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 32,
+        "p": 17,
+        "roots": []
+      },
+      "regular_minor_polynomial_data": {
+        "coefficients_ascending": [
+          0,
+          1
+        ],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 32,
+        "p": 17
+      },
+      "status": "regular_minor",
+      "t": 2
+    }
+  ],
+  "extractor": {
+    "field_model": {
+      "degree": 32,
+      "encoding": "base-p low-to-high integer",
+      "kind": "polynomial_basis",
+      "modulus": [
+        16,
+        7,
+        8,
+        5,
+        13,
+        3,
+        11,
+        9,
+        5,
+        4,
+        3,
+        9,
+        3,
+        12,
+        1,
+        6,
+        7,
+        11,
+        11,
+        6,
+        12,
+        5,
+        5,
+        7,
+        14,
+        2,
+        0,
+        2,
+        4,
+        4,
+        0,
+        14,
+        1
+      ],
+      "p": 17
+    },
+    "method": "negative control for large-field monomial root completeness",
+    "name": "regular-hankel-minor-extractor",
+    "row_set_strategy": {
+      "type": "prefix"
+    },
+    "scope": "prime-power syndrome pencils with explicit polynomial-basis model"
+  },
+  "nonclaims": [
+    "intentionally invalid checker fixture",
+    "not a row-data packet"
+  ],
+  "removed_ledgers": [],
+  "root_union": [],
+  "root_union_table_ref": "inline:root_union",
+  "row": {
+    "domain_description": "minimal large-field monomial negative fixture",
+    "domain_hash": "intentionally-invalid-large-field-monomial-root",
+    "field": "F_17^32",
+    "k": 2,
+    "n": 5
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "status": "INTENTIONALLY_INVALID"
+}

@@ -9,9 +9,9 @@ selected exact agreement A.  The construction is deliberately simple:
     v_m = sum_i x_i^m,
 
 where x_i are the first j+1 domain elements from the descriptor.  At slope 1 the
-prefix Hankel minor is a shifted Vandermonde square, so rank_at_nodes finds a
-full-rank specialization and the extractor can emit a rank-witness degree bound
-without determinant interpolation.
+prefix Hankel minor is Z^(j+1) times a shifted Vandermonde square, so
+rank_at_nodes finds a full-rank specialization and the extractor can emit the
+closed-form synthetic root table {0} without determinant interpolation.
 """
 
 from __future__ import annotations
@@ -113,7 +113,7 @@ def build_input(agreement: int = DEFAULT_AGREEMENT) -> dict[str, Any]:
         "agreement_threshold": agreement,
         "exact_agreements": [agreement],
         "sampler": "finite_affine_line",
-        "certificate_mode": "rank_witness_bound",
+        "certificate_mode": "zero_u_monomial_roots",
         "line_syndrome": {
             "u": [0 for _ in range(length)],
             "v": v_syndrome,
@@ -126,7 +126,7 @@ def build_input(agreement: int = DEFAULT_AGREEMENT) -> dict[str, Any]:
             "witness_slope": 1,
             "witness_node_prefix_count": size,
             "rank_witness_reason": (
-                "at slope 1, the prefix minor is a shifted Vandermonde square"
+                "u=0 makes the prefix determinant a nonzero monomial in the slope"
             ),
         },
         "row_set_strategy": {"type": "rank_at_nodes"},
@@ -134,7 +134,7 @@ def build_input(agreement: int = DEFAULT_AGREEMENT) -> dict[str, Any]:
         "nonclaims": [
             "synthetic syndrome pencil only",
             "not a worst-case MCA row bound",
-            "not a root table over F_17^32",
+            "not a worst-case row root table over F_17^32",
             "not a quotient/tangent subtraction table",
         ],
     }

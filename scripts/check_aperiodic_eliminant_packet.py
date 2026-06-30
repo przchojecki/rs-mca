@@ -97,6 +97,20 @@ def require_exact_roots(
     raise PacketError(f"{location}: incomplete root table ({'; '.join(details)})")
 
 
+def monomial_exact_roots(
+    coefficients: list[int],
+    modulus: int | None = None,
+) -> list[int] | None:
+    nonzero_indices = []
+    for index, coefficient in enumerate(coefficients):
+        value = coefficient % modulus if modulus is not None else coefficient
+        if value != 0:
+            nonzero_indices.append(index)
+    if len(nonzero_indices) != 1:
+        return None
+    return [0] if nonzero_indices[0] > 0 else []
+
+
 def parse_prime_field(field_name: str) -> int | None:
     match = re.fullmatch(r"F_(\d+)", field_name)
     if not match:
@@ -685,6 +699,7 @@ def validate_regular_minor(
     if not set(bad_slopes).issubset(roots):
         raise PacketError(f"A={item.get('A')}: enumerated bad slopes are not roots")
     if modulus is not None:
+        exact_monomial_roots = monomial_exact_roots(coefficients, modulus)
         if modulus <= ROOT_COMPLETENESS_ENUMERATION_LIMIT:
             actual_roots = [
                 root
@@ -698,7 +713,14 @@ def validate_regular_minor(
             ]
             if non_roots:
                 raise PacketError(f"A={item.get('A')}: listed non-roots {non_roots}")
+            if exact_monomial_roots is not None:
+                require_exact_roots(
+                    roots, exact_monomial_roots, f"A={item.get('A')}"
+                )
     if extension_field is not None:
+        for coefficient in coefficients:
+            extension_field.decode(coefficient)
+        exact_monomial_roots = monomial_exact_roots(coefficients)
         if extension_field.size <= ROOT_COMPLETENESS_ENUMERATION_LIMIT:
             actual_roots = [
                 root
@@ -719,6 +741,10 @@ def validate_regular_minor(
             if non_roots:
                 raise PacketError(
                     f"A={item.get('A')}: listed extension non-roots {non_roots}"
+                )
+            if exact_monomial_roots is not None:
+                require_exact_roots(
+                    roots, exact_monomial_roots, f"A={item.get('A')}"
                 )
 
     return roots, bad_slopes

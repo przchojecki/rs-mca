@@ -1,6 +1,6 @@
 {
   "agreement_threshold": 385,
-  "certificate_mode": "rank_witness_bound",
+  "certificate_mode": "zero_u_monomial_roots",
   "exact_agreements": [
     385
   ],
@@ -49,7 +49,7 @@
     "description": "synthetic M3 rank witness: u=0 and v_m=sum_i x_i^m for the first j+1 descriptor-domain elements",
     "field_encoding": "base-p low-to-high integer",
     "length": 256,
-    "rank_witness_reason": "at slope 1, the prefix minor is a shifted Vandermonde square",
+    "rank_witness_reason": "u=0 makes the prefix determinant a nonzero monomial in the slope",
     "u": [
       0,
       0,
@@ -572,7 +572,7 @@
   "nonclaims": [
     "synthetic syndrome pencil only",
     "not a worst-case MCA row bound",
-    "not a root table over F_17^32",
+    "not a worst-case row root table over F_17^32",
     "not a quotient/tangent subtraction table"
   ],
   "row": {

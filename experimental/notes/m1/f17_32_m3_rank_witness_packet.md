@@ -60,15 +60,16 @@ At slope `1`, the prefix minor is the Hankel moment matrix of those `87`
 distinct nonzero elements.  Its determinant is a shifted Vandermonde square, so
 it is nonzero in the pinned `F_17^32` model.  The extractor's `rank_at_nodes`
 selector therefore tests node `0`, then node `1`, finds the prefix row set
-`[0,...,86]`, and emits the rank-witness packet
+`[0,...,86]`, computes the nonzero leading coefficient of
 
 ```text
-degree_bound = j+1 = 87,
-regular_root_bound_sum = 87.
+Delta_426(Z) = c_426 Z^87,
 ```
 
-This certifies a nonzero regular maximal minor for one actual degree-32 field
-syndrome pencil without interpolating the determinant polynomial.
+and emits the exact synthetic root table `{0}` without interpolating the
+determinant polynomial.  This certifies a nonzero regular maximal minor for one
+actual degree-32 field syndrome pencil and records the exact roots of that
+synthetic pencil.
 
 At the other endpoint, `A=385`,
 
@@ -79,11 +80,11 @@ j+1 = 128.
 ```
 
 The same construction with the first `128` descriptor-domain elements gives a
-rank-witness packet with
+closed-form endpoint packet with
 
 ```text
-degree_bound = j+1 = 128,
-regular_root_bound_sum = 128.
+Delta_385(Z) = c_385 Z^128,
+root_union = {0}.
 ```
 
 Thus the concrete replay covers both endpoint minor sizes in the M3 regular
@@ -94,8 +95,8 @@ for every agreement in `385..426` without emitting all 42 full v9 packets.  It
 stores one compact record per agreement and hashes the two endpoint v9 packets
 as concrete replays of the extractor/checker path.
 
-For the synthetic family, there is also a closed-form root certificate.  Since
-`u=0`, the prefix determinant is
+For the whole synthetic family, the same closed-form root certificate applies.
+Since `u=0`, the prefix determinant is
 
 ```text
 Delta_A(Z) = c_A Z^(j+1),
@@ -114,12 +115,11 @@ packet pipeline over the pinned `F_17^32` field model and row descriptor.  They
 are concrete large-field stress tests for the M3 regular-window audit at the
 largest and smallest minor sizes.
 
-The endpoint v9 packets still carry only rank-witness degree bounds; the family
-certificate shows how a compressed closed-form root table can look when the
-syndrome pencil is structured.  This does not close the safe side for the row:
-a future threshold packet needs actual M3 row data, tangent/quotient
-subtraction, and root tables or pivot-chart classifications for those actual
-pencils.
+The endpoint v9 packets now carry exact synthetic root tables, and the family
+certificate records the same closed-form root union compactly across all 42
+agreements.  This does not close the safe side for the row: a future threshold
+packet needs actual M3 row data, tangent/quotient subtraction, and root tables
+or pivot-chart classifications for those actual pencils.
 
 ## Verification
 
@@ -152,5 +152,5 @@ python3 experimental/scripts/verify_f17_32_m3_rank_witness_family.py \
 ```
 
 Non-claims: this is a synthetic syndrome pencil, not a worst-case MCA row bound,
-not a brute-force root enumeration over `F_17^32`, and not a quotient/tangent
+not a worst-case row root table over `F_17^32`, and not a quotient/tangent
 subtraction table.

@@ -1243,7 +1243,7 @@
       ]
     },
     {
-      "name": "endpoint_packets_match_degrees",
+      "name": "endpoint_packets_match_closed_form_roots",
       "status": "PASS"
     },
     {
@@ -1278,22 +1278,32 @@
     "385": {
       "A": 385,
       "checker_command": "python3 scripts/check_aperiodic_eliminant_packet.py experimental/data/certificates/hankel-f17-32-m3-rank-witness-a385/f17_32_n512_k256_a385_rank_witness_packet.json",
+      "declared_aperiodic_numerator": 1,
       "degree_bound": 128,
       "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-rank-witness-a385/f17_32_n512_k256_a385_rank_witness_packet.json",
-      "packet_sha256": "8ba738e19d4e045c88108a1cd5dd7ae551b8821f4e55ea0f96f8d51912bba1eb",
+      "packet_sha256": "bfee5221ddd8c35081472878abe75cc3595c68ef24fb015318bd6b79530d42a1",
       "rank_pivot_node": 1,
       "rank_pivot_nodes_tested": 2,
-      "regular_root_bound_sum": 128
+      "regular_root_bound_sum": null,
+      "root_union": [
+        0
+      ],
+      "root_union_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97"
     },
     "426": {
       "A": 426,
       "checker_command": "python3 scripts/check_aperiodic_eliminant_packet.py experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/f17_32_n512_k256_a426_rank_witness_packet.json",
+      "declared_aperiodic_numerator": 1,
       "degree_bound": 87,
       "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/f17_32_n512_k256_a426_rank_witness_packet.json",
-      "packet_sha256": "ec138a7127185a5a9ba73edbd7a78ad4c6767ebf74482ad2f38087ff76c0fc75",
+      "packet_sha256": "9263543183eb8946a144a8b2a483a2fb239233afe5e7b404b19a8248d200f44e",
       "rank_pivot_node": 1,
       "rank_pivot_nodes_tested": 2,
-      "regular_root_bound_sum": 87
+      "regular_root_bound_sum": null,
+      "root_union": [
+        0
+      ],
+      "root_union_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97"
     }
   },
   "nonclaims": [

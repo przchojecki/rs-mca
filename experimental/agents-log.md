@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 M3 endpoint closed-form v9 packets
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:** `experimental/scripts/extract_regular_hankel_minors.py`;
+  `experimental/scripts/emit_f17_32_m3_rank_witness_input.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a385_rank_witness_input.json`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_rank_witness_input.json`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank-witness-a385/`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank-witness-family/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the synthetic finite replay.
+- **What is being added:** The endpoint `F_17^32` M3 packets now use a
+  `zero_u_monomial_roots` extractor mode.  Because `u=0`, the selected prefix
+  determinant is `c_A Z^(j+1)` with computed nonzero `c_A`, so the v9 packets
+  record exact synthetic root union `{0}` and declared numerator `1`.
+- **How it is useful:** This promotes the compressed-root idea from the
+  sidecar family certificate into ordinary v9 packets and gives the checker a
+  large-field monomial completeness gate.
+- **What to do next:** Replace the synthetic syndrome pencils by actual M3 row
+  data and combine their root counts with tangent and quotient subtraction.
+
 ### 2026-06-30 - F17^32 M3 synthetic closed-form roots
 
 - **Agent/model:** AllenGrahamHart / Codex.

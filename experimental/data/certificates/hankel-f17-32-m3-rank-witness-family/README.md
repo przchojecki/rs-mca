@@ -21,7 +21,8 @@ regular Hankel minor is a nonzero Vandermonde square.  As a polynomial in the
 slope parameter, the determinant is therefore a nonzero scalar times
 `Z^(j+1)`, so its exact synthetic root table is `{0}`.  The certificate records
 both the degree bound and this closed-form root certificate for all 42
-agreements, and links the endpoint v9 packets at `A=385` and `A=426`.
+agreements, and links the endpoint v9 packets at `A=385` and `A=426`, which now
+carry the exact synthetic root table `{0}`.
 
 Run:
 

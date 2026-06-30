@@ -107,6 +107,7 @@ def packet_summary(path_text: str) -> dict[str, Any]:
     path = REPO_ROOT / path_text
     packet = load_json(path)
     item = packet["exact_agreements"][0]
+    root_union = packet.get("root_union")
     return {
         "packet_ref": path_text,
         "packet_sha256": sha256(path.read_bytes()).hexdigest(),
@@ -116,7 +117,10 @@ def packet_summary(path_text: str) -> dict[str, Any]:
         "rank_pivot_nodes_tested": item["extractor_audit"][
             "rank_pivot_nodes_tested"
         ],
-        "regular_root_bound_sum": packet["regular_root_bound_sum"],
+        "declared_aperiodic_numerator": packet.get("declared_aperiodic_numerator"),
+        "root_union": root_union,
+        "root_union_hash": hash_json(root_union) if isinstance(root_union, list) else None,
+        "regular_root_bound_sum": packet.get("regular_root_bound_sum"),
         "checker_command": f"python3 scripts/check_aperiodic_eliminant_packet.py {path_text}",
     }
 
@@ -217,11 +221,14 @@ def build_certificate() -> dict[str, Any]:
             ],
         },
         {
-            "name": "endpoint_packets_match_degrees",
+            "name": "endpoint_packets_match_closed_form_roots",
             "status": "PASS"
             if all(
                 endpoint_packets[str(agreement)]["degree_bound"]
                 == (N - agreement + 1)
+                and endpoint_packets[str(agreement)]["declared_aperiodic_numerator"]
+                == 1
+                and endpoint_packets[str(agreement)]["root_union"] == SYNTHETIC_ROOTS
                 for agreement in ENDPOINT_PACKET_REFS
             )
             else "FAIL",
