@@ -1,0 +1,71 @@
+{
+  "agreement_threshold": 8,
+  "certificate_mode": "scalar_multiple_roots",
+  "emit_split_root_certificate": true,
+  "exact_agreements": [
+    8
+  ],
+  "line_syndrome": {
+    "description": "toy scalar-multiple regular bucket: v_m=1^m+2^m+3^m and u=5v over F_17",
+    "length": 8,
+    "scalar_multiple_u_over_v": 5,
+    "tangent_root": 12,
+    "u": [
+      15,
+      13,
+      2,
+      10,
+      14,
+      3,
+      9,
+      3
+    ],
+    "v": [
+      3,
+      6,
+      14,
+      2,
+      13,
+      4,
+      12,
+      4
+    ]
+  },
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an F_17^32 row-data packet",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ],
+  "row": {
+    "domain": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "domain_description": "first ten nonzero elements of F_17",
+    "field": "F_17",
+    "k": 4,
+    "n": 10
+  },
+  "row_set_strategy": {
+    "candidate_row_sets": [
+      [
+        0,
+        1,
+        2
+      ]
+    ],
+    "type": "explicit"
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "regular-hankel-minor-extractor-input-v1",
+  "status": "PROVED"
+}

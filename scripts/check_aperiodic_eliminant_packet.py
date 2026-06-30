@@ -31,6 +31,7 @@ from typing import Any
 DEFAULT_SCHEMA = Path("scripts/aperiodic_eliminant_schema.json")
 ROOT_COMPLETENESS_ENUMERATION_LIMIT = 1_000_000
 INLINE_MINOR_REPLAY_SIZE_LIMIT = 16
+CLOSED_FORM_LEADING_REPLAY_SIZE_LIMIT = 16
 
 
 class PacketError(Exception):
@@ -611,6 +612,18 @@ def extension_poly_gcd_many(
     for polynomial in polynomials[1:]:
         out = extension_poly_gcd(out, polynomial, field)
     return extension_poly_monic(out, field)
+
+
+def extension_poly_linear_power(
+    scalar: tuple[int, ...],
+    exponent: int,
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    out = [field.one]
+    factor = [scalar, field.one]
+    for _ in range(exponent):
+        out = extension_poly_mul(out, factor, field)
+    return out
 
 
 def extension_poly_eval(
@@ -1536,6 +1549,10 @@ ENCODED_FIELD_INPUT_ENCODINGS = {
     "base-p low-to-high encoded integer",
     "encoded_integer",
 }
+CLOSED_FORM_REGULAR_MINOR_MODES = {
+    "zero_u_monomial_roots",
+    "scalar_multiple_roots",
+}
 
 
 def needs_inline_regular_minor_replay(item: dict[str, Any]) -> bool:
@@ -1554,6 +1571,10 @@ def needs_inline_regular_minor_replay(item: dict[str, Any]) -> bool:
 
 
 def packet_has_rank_replay_items(packet: dict[str, Any]) -> bool:
+    extractor = packet.get("extractor")
+    certificate_mode = (
+        extractor.get("certificate_mode") if isinstance(extractor, dict) else None
+    )
     for item in packet.get("exact_agreements", []):
         if not isinstance(item, dict):
             continue
@@ -1564,6 +1585,14 @@ def packet_has_rank_replay_items(packet: dict[str, Any]) -> bool:
         ):
             return True
         if needs_inline_regular_minor_replay(item):
+            return True
+        if (
+            certificate_mode in CLOSED_FORM_REGULAR_MINOR_MODES
+            and isinstance(minor, dict)
+            and isinstance(minor.get("polynomial_ref"), str)
+            and minor["polynomial_ref"].startswith("inline:")
+            and isinstance(item.get("regular_minor_data"), dict)
+        ):
             return True
         if item.get("regular_minor_gcd") is not None:
             return True
@@ -1999,6 +2028,134 @@ def validate_minor_polynomial_replay(
             )
 
 
+def validate_closed_form_regular_minor_replay(
+    item: dict[str, Any],
+    row_set: list[int],
+    coefficients: list[int],
+    rank_replay_input: dict[str, Any] | None,
+    modulus: int | None,
+    extension_field: PolynomialBasisField | None,
+    location: str,
+) -> bool:
+    if rank_replay_input is None:
+        return False
+    mode = rank_replay_input.get("certificate_mode")
+    if mode not in CLOSED_FORM_REGULAR_MINOR_MODES:
+        return False
+    exact_agreements = rank_replay_input.get("exact_agreements")
+    if not isinstance(exact_agreements, list) or item.get("A") not in exact_agreements:
+        raise PacketError(f"{location}: replay input does not list this agreement")
+    syndrome = rank_replay_input.get("line_syndrome")
+    if not isinstance(syndrome, dict):
+        raise PacketError(f"{location}: replay input needs line_syndrome")
+    if "u" not in syndrome or "v" not in syndrome:
+        raise PacketError(f"{location}: line_syndrome needs u and v")
+
+    visible_length = item["t"] + item["j"]
+    size = item["j"] + 1
+
+    if modulus is not None:
+        u = require_int_list(syndrome["u"], f"{location}: line_syndrome.u")
+        v = require_int_list(syndrome["v"], f"{location}: line_syndrome.v")
+        if len(u) < visible_length or len(v) < visible_length:
+            raise PacketError(
+                f"{location}: syndrome length must be at least {visible_length}"
+            )
+        scalar = 0
+        if mode == "scalar_multiple_roots":
+            scalar_raw = syndrome.get("scalar_multiple_u_over_v")
+            if not isinstance(scalar_raw, int):
+                raise PacketError(
+                    f"{location}: scalar_multiple_roots needs scalar_multiple_u_over_v"
+                )
+            scalar = scalar_raw % modulus
+        for index in range(visible_length):
+            if (u[index] - scalar * v[index]) % modulus != 0:
+                raise PacketError(
+                    f"{location}: visible window is not scalar-multiple at {index}"
+                )
+        trimmed = trim_mod_coefficients(coefficients, modulus)
+        leading = trimmed[size] % modulus
+        expected = poly_power_mod_coefficients([scalar, 1], size, modulus)
+        expected = [(leading * coefficient) % modulus for coefficient in expected]
+        if trimmed != trim_mod_coefficients(expected, modulus):
+            raise PacketError(
+                f"{location}: closed-form coefficients do not match replay"
+            )
+        if size > CLOSED_FORM_LEADING_REPLAY_SIZE_LIMIT:
+            return True
+        replayed_leading = determinant_square_mod(
+            [[v[row + col] % modulus for col in range(size)] for row in row_set],
+            modulus,
+        )
+        if replayed_leading != leading:
+            raise PacketError(
+                f"{location}: closed-form leading coefficient does not match replay"
+            )
+        return True
+
+    if extension_field is None:
+        raise PacketError(f"{location}: unsupported row field")
+    encoding = syndrome.get(
+        "field_encoding", rank_replay_input.get("field_element_encoding")
+    )
+    if encoding is not None and not isinstance(encoding, str):
+        raise PacketError(f"{location}: field encoding must be a string")
+    u_field = normalize_field_input_list(
+        syndrome["u"], extension_field, encoding, f"{location}: line_syndrome.u"
+    )
+    v_field = normalize_field_input_list(
+        syndrome["v"], extension_field, encoding, f"{location}: line_syndrome.v"
+    )
+    if len(u_field) < visible_length or len(v_field) < visible_length:
+        raise PacketError(
+            f"{location}: syndrome length must be at least {visible_length}"
+        )
+    scalar = extension_field.zero
+    if mode == "scalar_multiple_roots":
+        if "scalar_multiple_u_over_v" not in syndrome:
+            raise PacketError(
+                f"{location}: scalar_multiple_roots needs scalar_multiple_u_over_v"
+            )
+        scalar = normalize_field_input_value(
+            syndrome["scalar_multiple_u_over_v"],
+            extension_field,
+            encoding,
+            f"{location}: scalar_multiple_u_over_v",
+        )
+    for index in range(visible_length):
+        if extension_field.sub(
+            u_field[index], extension_field.mul(scalar, v_field[index])
+        ) != extension_field.zero:
+            raise PacketError(
+                f"{location}: visible extension window is not scalar-multiple at {index}"
+            )
+    decoded = extension_poly_trim(
+        [extension_field.decode(coefficient) for coefficient in coefficients],
+        extension_field,
+    )
+    leading = decoded[size]
+    expected = [
+        extension_field.mul(leading, coefficient)
+        for coefficient in extension_poly_linear_power(scalar, size, extension_field)
+    ]
+    if decoded != extension_poly_trim(expected, extension_field):
+        raise PacketError(
+            f"{location}: closed-form extension coefficients do not match replay"
+        )
+    if size > CLOSED_FORM_LEADING_REPLAY_SIZE_LIMIT:
+        return True
+    replayed_leading = determinant_square_field(
+        [[v_field[row + col] for col in range(size)] for row in row_set],
+        extension_field,
+    )
+    if replayed_leading != leading:
+        raise PacketError(
+            f"{location}: closed-form extension leading coefficient does not match replay"
+        )
+    return True
+
+
 def visible_proportional_scalar_mod(
     u: list[int],
     v: list[int],
@@ -2351,7 +2508,17 @@ def validate_regular_minor(
         raise PacketError(f"A={item.get('A')}: root_hash mismatch")
     if not set(bad_slopes).issubset(roots):
         raise PacketError(f"A={item.get('A')}: enumerated bad slopes are not roots")
-    if expected_size <= INLINE_MINOR_REPLAY_SIZE_LIMIT:
+    if validate_closed_form_regular_minor_replay(
+        item,
+        row_set,
+        coefficients,
+        rank_replay_input,
+        modulus,
+        extension_field,
+        f"A={item.get('A')}: regular_minor",
+    ):
+        pass
+    elif expected_size <= INLINE_MINOR_REPLAY_SIZE_LIMIT:
         validate_minor_polynomial_replay(
             item,
             row_set,

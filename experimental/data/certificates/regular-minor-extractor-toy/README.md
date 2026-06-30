@@ -34,6 +34,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/regular-minor-extractor-toy/invalid_bad_regular_minor_replay_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-extractor-toy/invalid_scalar_closed_form_leading_packet.json
 ```
 
 This is a reusable extractor smoke test.  It is not a prize-row threshold
@@ -43,3 +46,6 @@ synthetic-scope negative fixture checks that synthetic evidence cannot mark
 itself as threshold-pinning material.  The bad-replay negative fixture scales
 one inline determinant polynomial without changing its root table; the generic
 checker must reject it by replaying determinant values from the extractor input.
+The scalar closed-form negative fixture has the correct repeated root
+`Z=-5`, but the wrong leading determinant for the SHA-checked scalar-multiple
+input, so the closed-form replay gate must reject it.

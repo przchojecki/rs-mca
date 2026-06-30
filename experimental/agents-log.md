@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Closed-form regular-minor replay gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_scalar5_regular_minor_toy.json`;
+  `experimental/data/certificates/regular-minor-extractor-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT for the generic v9 checker.
+- **What is being added:** Closed-form `zero_u_monomial_roots` and
+  `scalar_multiple_roots` packets now replay the visible scalar relation from
+  the SHA-checked extractor input and verify that the determinant polynomial has
+  the exact repeated-root form `C(Z+c)^(j+1)`.  For row sets of size at most
+  `16`, the checker also recomputes the leading Hankel determinant `C`; the new
+  scalar toy fixture has the correct root but wrong leading coefficient and
+  must fail there.
+- **How it is useful:** Gives large closed-form F_17^32 packets a cheap
+  structural replay path without brute-force interpolation, while still testing
+  the leading-determinant obligation on a compact exact fixture.
+- **What to do next:** Add a compressed Vandermonde or domain-descriptor proof
+  for the large F_17^32 leading determinants, so deployed closed-form packets
+  can replay `C` without dense Gaussian elimination.
+
 ### 2026-06-30 - Inline regular-minor replay gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -170,6 +170,14 @@ internally consistent.  Larger closed-form `F_17^32` packets remain covered by
 their compressed-root certificates and should get dedicated closed-form replay
 gates rather than brute-force interpolation.
 
+The closed-form scalar/zero-u packets now have a cheaper replay path.  The
+checker verifies the visible input relation `u=c v`, verifies that the inline
+polynomial is exactly `C(Z+c)^(j+1)`, and for row-set size at most `16`
+recomputes the leading Hankel determinant `C` from the input.  For the deployed
+`F_17^32` packets this avoids impractical repeated large determinant
+interpolation while still tying the repeated-root location to the SHA-checked
+syndrome pencil.
+
 The extractor finds nonzero prefix minors in all four exact agreements, with
 degrees `4,3,2,1` and closed-range root union `{0,2,10,11}`.
 
@@ -443,6 +451,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/regular-minor-extractor-toy/invalid_bad_regular_minor_replay_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-extractor-toy/invalid_scalar_closed_form_leading_packet.json
 
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_2_n16_k8_a13_toy.json \
