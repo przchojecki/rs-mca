@@ -49,6 +49,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 local support-budget output theorem
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The support-star pruning, residual support-budget,
+  palette-density, and exclusion lemmas are packaged into one local
+  four-outcome theorem for fixed-basis square-map packets.
+- **How it is useful:** The M1 local branch now has a single citeable output:
+  after endpoint stars are charged, small residual support is exactly a global
+  palette-sparsity certificate to be ruled out or classified.
+- **What to do next:** Attack the global row-basis/core-image sparsity
+  certificate or connect it to quotient/template structure.
+
 ### 2026-06-30 - M1 residual small-support exclusion criterion
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -46,6 +46,7 @@ SQUARE-NORM PARTIAL-PALETTE UNCOVERED-SLOPE DEFECT BOUND /
 SQUARE-NORM RESIDUAL SUPPORT-BUDGET ALTERNATIVE /
 SQUARE-NORM RESIDUAL PALETTE-DENSITY SUPPORT LOWER BOUND /
 SQUARE-NORM RESIDUAL SMALL-SUPPORT EXCLUSION CRITERION /
+SQUARE-NORM LOCAL SUPPORT-BUDGET OUTPUT THEOREM /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3546,6 +3547,35 @@ Thus a future global argument can close this local branch by proving either
 enough selected palette density or too few missing palette classes in the
 row-basis/core image.
 
+The local fixed-basis square-map output can now be stated as a single proved
+package.  Let `Sigma` be any selected family of two-point supports in
+`P^1(F_q)\{0}`, let `Theta_S` be any selected square-coset classes for each
+support, and let `D,R` be integers with `0<=R<=q+1`.  After the greedy
+endpoint-star pruning at cap `D`, exactly one of the following local outcomes
+is available:
+
+```text
+1. star charge:
+   Sigma\Sigma_ap is partitioned into endpoint-star templates;
+
+2. small residual:
+   m_ap <= D;
+
+3. large support:
+   B_ap > R;
+
+4. sparse residual certificate:
+   m_ap>D, B_ap<=R, and both support-budget inequalities
+   (RKSQSUPPBUDGET1/RKSQSUPPBUDGET2) hold.
+```
+
+Moreover, outcome 4 is excluded as soon as either trigger in (RKSQEXCLUDE)
+holds.  Therefore the square-map local analysis has no remaining hidden
+overlap branch: after endpoint stars are charged, a small-support residual is
+precisely a residual palette-sparsity certificate.  This is the object that a
+global M1 row-basis/core-image argument must rule out or classify as
+quotient/template structure.                              (RKSQLOCALOUT)
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -4061,8 +4091,9 @@ residual coverage (RKSQFULLCOVER/RKSQFULLPRUNE), the partial-palette
 uncovered-slope defect bound (RKSQDEFECT/RKSQDEFECTMASS/RKSQUNCOVER), the
 residual support-budget alternative (RKSQSUPPBUDGET1/RKSQSUPPBUDGET2), the
 residual palette-density support lower bound (RKSQPALETTESUPP/RKSQPALETTEDENS),
-the residual small-support exclusion criterion (RKSQEXCLUDE), the canonical
-endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
+the residual small-support exclusion criterion (RKSQEXCLUDE), the local
+support-budget output theorem (RKSQLOCALOUT), the canonical endpoint-pair
+norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
@@ -4147,8 +4178,9 @@ residual coverage (RKSQFULLCOVER/RKSQFULLPRUNE), the partial-palette
 uncovered-slope defect bound (RKSQDEFECT/RKSQDEFECTMASS/RKSQUNCOVER), the
 residual support-budget alternative (RKSQSUPPBUDGET1/RKSQSUPPBUDGET2), the
 residual palette-density support lower bound (RKSQPALETTESUPP/RKSQPALETTEDENS),
-the residual small-support exclusion criterion (RKSQEXCLUDE), the canonical
-endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
+the residual small-support exclusion criterion (RKSQEXCLUDE), the local
+support-budget output theorem (RKSQLOCALOUT), the canonical endpoint-pair
+norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
