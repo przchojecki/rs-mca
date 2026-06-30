@@ -1,0 +1,128 @@
+{
+  "audit_summary": {
+    "audited_packet_refs": [
+      "experimental/data/certificates/regular-minor-extractor-rank-pivot-f17-2-toy/f17_2_n10_k4_a8_rank_pivot_packet.json",
+      "experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/f17_n10_k4_a8_scalar5_tangent_residual_packet.json",
+      "experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/f17_n10_k4_a8_rank_pivot_singular_packet.json",
+      "experimental/data/certificates/regular-minor-extractor-rank-pivot-toy/f17_n10_k4_a8_rank_pivot_packet.json",
+      "experimental/data/certificates/regular-minor-extractor-rank-witness-toy/f17_n10_k4_a8_rank_witness_packet.json"
+    ],
+    "rank_at_nodes_packet_items": 5,
+    "regular_minor_items": 3,
+    "singular_or_residual_items": 2
+  },
+  "audited_instances": [
+    {
+      "A": 8,
+      "degree_bound": 3,
+      "field_size": 289,
+      "item_index": 0,
+      "j": 2,
+      "minor_size": 3,
+      "nodes_required_for_singularity_proof": 4,
+      "packet_ref": "experimental/data/certificates/regular-minor-extractor-rank-pivot-f17-2-toy/f17_2_n10_k4_a8_rank_pivot_packet.json",
+      "packet_sha256": "6d77e254ca731b8510c2c5d1ed159dc6cefce86f4a7ead729e0724879cfcd12f",
+      "packet_status": "regular_minor",
+      "rank_pivot_node": 1,
+      "rank_pivot_test_nodes": [
+        0,
+        1
+      ],
+      "t": 4,
+      "theorem_outcome": "nonzero_maximal_minor"
+    },
+    {
+      "A": 8,
+      "degree_bound": 3,
+      "field_size": 17,
+      "item_index": 0,
+      "j": 2,
+      "minor_size": 3,
+      "nodes_required_for_singularity_proof": 4,
+      "packet_ref": "experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-residual-toy/f17_n10_k4_a8_scalar5_tangent_residual_packet.json",
+      "packet_sha256": "0788b6934bf7c7cbfe9ec77e9e85e7ce2ec2f92cbb7330be54b7cdf6308b5cce",
+      "packet_status": "residual_obstruction",
+      "rank_pivot_node": null,
+      "rank_pivot_test_nodes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "t": 4,
+      "theorem_outcome": "all_maximal_minors_identically_zero"
+    },
+    {
+      "A": 8,
+      "degree_bound": 3,
+      "field_size": 17,
+      "item_index": 0,
+      "j": 2,
+      "minor_size": 3,
+      "nodes_required_for_singularity_proof": 4,
+      "packet_ref": "experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/f17_n10_k4_a8_rank_pivot_singular_packet.json",
+      "packet_sha256": "701fa93dde33c22d3970bec0137683061a31874cba85e06dfc1c784b08e62d7a",
+      "packet_status": "residual_obstruction",
+      "rank_pivot_node": null,
+      "rank_pivot_test_nodes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "t": 4,
+      "theorem_outcome": "all_maximal_minors_identically_zero"
+    },
+    {
+      "A": 8,
+      "degree_bound": 3,
+      "field_size": 17,
+      "item_index": 0,
+      "j": 2,
+      "minor_size": 3,
+      "nodes_required_for_singularity_proof": 4,
+      "packet_ref": "experimental/data/certificates/regular-minor-extractor-rank-pivot-toy/f17_n10_k4_a8_rank_pivot_packet.json",
+      "packet_sha256": "561997bf08c7cc029db4841a522da87a2335bef71295dc215f73c7941412d666",
+      "packet_status": "regular_minor",
+      "rank_pivot_node": 1,
+      "rank_pivot_test_nodes": [
+        0,
+        1
+      ],
+      "t": 4,
+      "theorem_outcome": "nonzero_maximal_minor"
+    },
+    {
+      "A": 8,
+      "degree_bound": 3,
+      "field_size": 17,
+      "item_index": 0,
+      "j": 2,
+      "minor_size": 3,
+      "nodes_required_for_singularity_proof": 4,
+      "packet_ref": "experimental/data/certificates/regular-minor-extractor-rank-witness-toy/f17_n10_k4_a8_rank_witness_packet.json",
+      "packet_sha256": "d2392468b779ba804268e125c7473362ff269ccfa35703c1856924f2a15ae02f",
+      "packet_status": "regular_minor",
+      "rank_pivot_node": 1,
+      "rank_pivot_test_nodes": [
+        0,
+        1
+      ],
+      "t": 4,
+      "theorem_outcome": "nonzero_maximal_minor"
+    }
+  ],
+  "nonclaims": [
+    "does not enumerate roots for large fields",
+    "does not prove an actual F_17^32 M3 row bound",
+    "does not close singular pivot charts"
+  ],
+  "schema_version": "rank-at-nodes-regular-bucket-audit-v1",
+  "status": "PROVED / AUDIT",
+  "theorem": {
+    "name": "rank_at_nodes_regular_bucket_dichotomy",
+    "paper_d_v9_role": "regular overdetermined bucket decision before pivot charts",
+    "required_distinct_nodes": "j+2",
+    "statement": "For a t by (j+1) affine-linear matrix pencil M(Z), every maximal minor has degree at most j+1.  A full-rank specialization at one tested node gives a nonzero maximal minor; if all maximal minors vanish at j+2 distinct tested nodes, then all maximal minors vanish identically."
+  }
+}

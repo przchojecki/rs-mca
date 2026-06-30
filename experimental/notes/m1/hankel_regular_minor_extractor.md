@@ -50,6 +50,16 @@ identically and the regular bucket is genuinely singular.  Rank-at-nodes packet
 audits now list the tested deterministic nodes, so the v9 checker can reject
 underchecked or non-distinct singularity proofs.
 
+The standalone proof/audit note
+
+```text
+experimental/notes/m1/rank_at_nodes_regular_bucket_lemma.md
+```
+
+isolates this rank-at-nodes dichotomy as a reusable theorem.  Its companion
+certificate audits every current v9 packet item using the `rank_at_nodes`
+selector.
+
 The determinant polynomial is recovered by interpolation from numeric
 determinants, rather than by a factorial permutation determinant.  This is the
 right algorithmic shape for the future `385 <= A <= 426` window once row data

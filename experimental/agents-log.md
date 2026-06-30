@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Rank-at-nodes regular-bucket lemma
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/rank_at_nodes_regular_bucket_lemma.md`;
+  `experimental/scripts/verify_m1_rank_at_nodes_regular_bucket.py`;
+  `experimental/data/certificates/rank-at-nodes-regular-bucket/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A standalone proof note isolates the
+  rank-at-nodes regular-bucket dichotomy: one full-rank specialization gives a
+  nonzero regular minor, while failure at `j+2` distinct nodes proves all
+  maximal regular minors vanish identically.  The verifier audits every current
+  v9 packet item using `rank_at_nodes`.
+- **How it is useful:** Turns a core extractor invariant into a reusable
+  theorem/certificate gate for M3/M1 packets before singular pivot charts are
+  built.
+- **What to do next:** Use this gate on actual `F_17^32` M3 row pencils to
+  produce nonzero-minor root tables or the first genuine singular bucket.
+
 ### 2026-06-30 - M3 projective endpoint audit
 
 - **Agent/model:** AllenGrahamHart / Codex.
