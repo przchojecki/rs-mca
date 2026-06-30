@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+
+### 2026-06-30 - M1 packet pair-overlap burden
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/m1_density_budget.py`,
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A Cauchy reduction showing that any selected
+  square-map packet family with `K` packet classes and support `B<=R` must
+  contain a pair of packets with overlap at least
+  `ceil_+(s(Ks-R)/(R(K-1)))`; conversely, a pair-overlap cap gives an
+  immediate support floor.
+- **How it is useful:** Converts the post-class-count M1 obstruction exposed
+  by the far-star ceiling sharpness result into a concrete pair-overlap/Kummer
+  target.
+- **What to do next:** Prove or falsify a row-basis/core-image pair-overlap
+  cap strong enough to rule out the sparsest far-star ceiling witnesses.
+
 ### 2026-06-30 - M1 far-star class-count sharpness
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -3882,6 +3882,51 @@ class-count ledger alone.  It must use the structural conditions
 `B<=R`, `max_x d_Sigma(x)<=D`, or additional row-basis/core-image information.
                                                         (RKSQSPFARSHARP)
 
+The first structural obstruction can be isolated without any new geometry.  Let
+`P_1,...,P_K` be the selected square-map packet classes in a pruned residual
+family, counted with their selected `(support,class)` labels, and put
+
+```text
+s = 2(q-1)/e = (q-1)/h,
+B = |P_1 union ... union P_K|.
+```
+
+Each packet has projective size `s`.  If `I(x)=#{i:x in P_i}`, then
+
+```text
+sum_x I(x)=Ks,
+sum_x I(x)^2 = Ks + 2 sum_{i<j} |P_i cap P_j|.       (RKSQPAIRID)
+```
+
+Consequently, if `K>=2`, `R>0`, and `B<=R`, Cauchy's inequality forces
+
+```text
+max_{i<j} |P_i cap P_j|
+ >= ceil_+( s(Ks-R)/(R(K-1)) ),                    (RKSQPAIRBURDEN)
+```
+
+where `ceil_+(x)=max(0,ceil(x))`.  Thus a small-support sparse residual cannot
+realize the class-count window unless it produces an explicitly large
+pairwise overlap between selected square-map packets.  This is the concrete
+next target left by (RKSQSPFARSHARP): prove, or disprove by counterexample,
+that the row-basis/core image cannot supply such high-overlap pairs after the
+quotient/tangent/root-slice charges.
+
+Equivalently, any independent pair-overlap cap immediately gives a support
+lower bound.  If every pair of selected packet classes has intersection at
+most `Lambda`, then
+
+```text
+B >= ceil( K s^2 / (s+(K-1)Lambda) ).             (RKSQPAIRCAP)
+```
+
+Specializing to the sharp class-count witness `K=m`, `C=(h-1)m` shows exactly
+what remains to be proved above the far-star ceiling: either the structural
+image creates packet pairs whose overlap reaches (RKSQPAIRBURDEN), or the
+support size is already forced above the target budget by (RKSQPAIRCAP).
+This turns the post-class-count M1 problem into a pair-overlap/Kummer target
+instead of an unstructured sparse-palette search.
+
 In particular, the window becomes uniform once the residual is separated from
 the endpoint-star threshold.  If a `(D,R)` sparse residual certificate also
 satisfies `m>=L D` for an integer `L>=2`, then `D/m<=1/L`, and the preceding
@@ -4833,6 +4878,7 @@ far-star `L`-monotonicity and footprint tradeoff
 baseline successor identity (RKSQSPBASEID/RKSQSPBASEZ), the
 asymptotic far-star class-count ceiling (RKSQSPFARLIM), the
 asymptotic class-count sharpness statement (RKSQSPFARSHARP), the
+pair-overlap burden and cap (RKSQPAIRID/RKSQPAIRBURDEN/RKSQPAIRCAP), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
@@ -4952,6 +4998,7 @@ far-star `L`-monotonicity and footprint tradeoff
 baseline successor identity (RKSQSPBASEID/RKSQSPBASEZ), the
 asymptotic far-star class-count ceiling (RKSQSPFARLIM), the
 asymptotic class-count sharpness statement (RKSQSPFARSHARP), the
+pair-overlap burden and cap (RKSQPAIRID/RKSQPAIRBURDEN/RKSQPAIRCAP), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),

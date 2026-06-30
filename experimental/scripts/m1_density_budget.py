@@ -35,6 +35,11 @@ budget ``R`` for which any class-count certificate can exist.
 When ``--e`` is supplied, it also reports the monotone far-star class-count
 floor at ``m_ap=L D``.
 
+With ``--selected-K`` and ``--target-R`` it reports the exact pair-overlap
+burden forced by trying to fit ``K`` selected square-map packet classes into
+at most ``R`` slope points.  With ``--pair-overlap-cap`` it also reports the
+resulting Cauchy support floor.
+
 The script does not prove the missing global row-basis/core-image density
 bound.  It tells a finite checker what support budget that hypothetical bound
 would close, and what near-star template ledger remains.
@@ -552,6 +557,68 @@ def far_star_sparse_floor_report(
     }
 
 
+def packet_pair_overlap_report(
+    q: int,
+    e: int,
+    selected_classes: int,
+    target_support_budget: int,
+    pair_overlap_cap: int | None,
+) -> dict[str, Any]:
+    h = e // 2
+    packet_size = Fraction(2 * (q - 1), e)
+    total_mass = selected_classes * packet_size
+    small_support_impossible_by_mass = (
+        selected_classes > 0 and target_support_budget < packet_size
+    )
+    forced_pair_overlap = None
+    forced_pair_overlap_raw = None
+    if selected_classes >= 2 and target_support_budget > 0:
+        forced_pair_overlap_raw = Fraction(
+            packet_size * (total_mass - target_support_budget),
+            target_support_budget * (selected_classes - 1),
+        )
+        forced_pair_overlap = max(0, ceil_fraction(forced_pair_overlap_raw))
+    pair_cap_floor = None
+    target_excluded_by_pair_cap = None
+    if pair_overlap_cap is not None:
+        denominator = packet_size + (selected_classes - 1) * pair_overlap_cap
+        if selected_classes == 0:
+            pair_cap_floor = 0
+        elif denominator <= 0:
+            raise ValueError("--pair-overlap-cap gives nonpositive denominator")
+        else:
+            pair_cap_floor = ceil_fraction(
+                Fraction(selected_classes) * packet_size * packet_size
+                / denominator
+            )
+        target_excluded_by_pair_cap = pair_cap_floor > target_support_budget
+    return {
+        "object": "m1_packet_pair_overlap_burden",
+        "status": "PROVED-LOCAL / AUDIT",
+        "theorem_problem_id": "M1 / RKSQPAIRBURDEN / RKSQPAIRCAP",
+        "e": e,
+        "h": h,
+        "selected_packet_classes_K": selected_classes,
+        "target_support_budget_R": target_support_budget,
+        "packet_projective_size_s": fraction_record(packet_size),
+        "total_packet_mass_Ks": fraction_record(total_mass),
+        "target_smaller_than_one_packet": small_support_impossible_by_mass,
+        "forced_pair_overlap_raw": fraction_record(forced_pair_overlap_raw)
+        if forced_pair_overlap_raw is not None
+        else None,
+        "forced_pair_overlap_ceiling": forced_pair_overlap,
+        "pair_overlap_cap_Lambda": pair_overlap_cap,
+        "support_floor_from_pair_overlap_cap": pair_cap_floor,
+        "target_R_excluded_by_pair_overlap_cap": target_excluded_by_pair_cap,
+        "certificate": (
+            "If K selected square-map packets of size s have union B<=R, "
+            "Cauchy's inequality and sum I^2 = Ks + 2 sum pair overlaps force "
+            "a pair overlap at least ceil_+(s(Ks-R)/(R(K-1))). Conversely, "
+            "a pair cap Lambda gives B>=ceil(Ks^2/(s+(K-1)Lambda))."
+        ),
+    }
+
+
 def template_bound(q: int, footprint_cap: int, e: int) -> int:
     h = e // 2
     return sum(
@@ -589,6 +656,20 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
             raise ValueError("--residual-m requires --e")
         if args.target_R is None:
             raise ValueError("--residual-m requires --target-R")
+    if args.selected_K is not None:
+        if args.e is None:
+            raise ValueError("--selected-K requires --e")
+        if args.target_R is None:
+            raise ValueError("--selected-K requires --target-R")
+    if args.pair_overlap_cap is not None:
+        if args.selected_K is None and args.residual_m is None:
+            raise ValueError(
+                "--pair-overlap-cap requires --selected-K or --residual-m"
+            )
+        if args.e is None:
+            raise ValueError("--pair-overlap-cap requires --e")
+        if args.target_R is None:
+            raise ValueError("--pair-overlap-cap requires --target-R")
 
     if args.L is not None:
         far_factor = args.L
@@ -754,6 +835,24 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         report["finite_sparse_certificate_feasibility"] = (
             finite_sparse_feasibility_report(args)
         )
+        report["sparsest_residual_pair_overlap_burden"] = (
+            packet_pair_overlap_report(
+                q,
+                args.e,
+                args.residual_m,
+                args.target_R,
+                args.pair_overlap_cap,
+            )
+        )
+
+    if args.selected_K is not None:
+        report["packet_pair_overlap_burden"] = packet_pair_overlap_report(
+            q,
+            args.e,
+            args.selected_K,
+            args.target_R,
+            args.pair_overlap_cap,
+        )
 
     if args.e is not None:
         exact_template_bound = None
@@ -796,6 +895,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--quartic-window", action="store_true")
     parser.add_argument("--quartic-m", type=positive_int)
     parser.add_argument("--residual-m", type=positive_int)
+    parser.add_argument("--selected-K", dest="selected_K", type=positive_int)
+    parser.add_argument("--pair-overlap-cap", type=nonnegative_int)
     parser.add_argument("--pretty", action="store_true")
     return parser
 

@@ -78,7 +78,8 @@ certificate cap with near-star localization, template count, and
 density-threshold closure, budget inversion, template-budget tradeoff, and
 integer support-budget ceiling, fixed-residual sparse certificate feasibility
 interval, far-star class-count floor monotonicity, closed form, footprint
-tradeoff, baseline-budget identity, asymptotic ceiling, and sharpness witness.
+tradeoff, baseline-budget identity, asymptotic ceiling, sharpness witness, and
+pair-overlap burden.
 """
 
 from __future__ import annotations
@@ -7224,6 +7225,7 @@ def check_boundary_core_square_map_packet_count() -> None:
                     for support in selected_supports
                 }
                 selected_incidence = {point: 0 for point in all_projective_points}
+                selected_packets: list[frozenset[P1Point]] = []
                 selected_mass = 0
                 for support, classes in selected_classes.items():
                     first, second = tuple(support)
@@ -7236,13 +7238,14 @@ def check_boundary_core_square_map_packet_count() -> None:
                             log_table,
                             prime,
                         )
+                        selected_packets.append(packet)
                         selected_mass += len(packet)
                         for point in packet:
                             selected_incidence[point] += 1
+                selected_packet_count = len(selected_packets)
+                packet_size = 2 * (prime - 1) // index
                 expected_mass = (
-                    2
-                    * (prime - 1)
-                    // index
+                    packet_size
                     * sum(len(classes) for classes in selected_classes.values())
                 )
                 assert selected_mass == expected_mass, (
@@ -7299,6 +7302,62 @@ def check_boundary_core_square_map_packet_count() -> None:
                 selected_support_size = sum(
                     1 for incidence in selected_incidence.values() if incidence
                 )
+                pair_overlap_sum = 0
+                max_pair_overlap = 0
+                for left_packet, right_packet in combinations(selected_packets, 2):
+                    overlap = len(left_packet & right_packet)
+                    pair_overlap_sum += overlap
+                    max_pair_overlap = max(max_pair_overlap, overlap)
+                assert partial_second_moment == (
+                    selected_mass + 2 * pair_overlap_sum
+                ), (
+                    prime,
+                    index,
+                    selected_classes,
+                    partial_second_moment,
+                    selected_mass,
+                    pair_overlap_sum,
+                )
+                if selected_packet_count >= 2 and selected_support_size > 0:
+                    forced_overlap_raw = Fraction(
+                        packet_size
+                        * (
+                            selected_packet_count * packet_size
+                            - selected_support_size
+                        ),
+                        selected_support_size * (selected_packet_count - 1),
+                    )
+                    forced_overlap = max(0, ceil_fraction(forced_overlap_raw))
+                    assert max_pair_overlap >= forced_overlap, (
+                        prime,
+                        index,
+                        selected_packet_count,
+                        selected_support_size,
+                        packet_size,
+                        max_pair_overlap,
+                        forced_overlap,
+                        forced_overlap_raw,
+                        selected_classes,
+                    )
+                    support_floor_from_observed_pair_cap = ceil_fraction(
+                        Fraction(
+                            selected_packet_count * packet_size * packet_size,
+                            packet_size
+                            + (selected_packet_count - 1) * max_pair_overlap,
+                        )
+                    )
+                    assert selected_support_size >= (
+                        support_floor_from_observed_pair_cap
+                    ), (
+                        prime,
+                        index,
+                        selected_packet_count,
+                        selected_support_size,
+                        packet_size,
+                        max_pair_overlap,
+                        support_floor_from_observed_pair_cap,
+                        selected_classes,
+                    )
                 assert selected_support_size * partial_star_bound >= (
                     selected_mass * selected_mass
                 ), (
