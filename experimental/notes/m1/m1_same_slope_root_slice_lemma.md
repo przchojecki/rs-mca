@@ -42,6 +42,7 @@ SQUARE-NORM PARTIAL-PALETTE INVERSE PACKING BOUND /
 SQUARE-NORM SUPPORT-STAR PRUNING REDUCTION /
 SQUARE-NORM PRUNED RESIDUAL DENSITY TRICHOTOMY /
 SQUARE-NORM FULL-PALETTE RESIDUAL COVERAGE /
+SQUARE-NORM PARTIAL-PALETTE UNCOVERED-SLOPE DEFECT BOUND /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3408,6 +3409,52 @@ most `D` remaining supports or use genuinely partial square-coset palettes.
 Full local palettes cannot hide a large bounded-degree residual in a small
 aperiodic slope set.
 
+There is also an exact partial-palette defect form.  For each `S` let
+`Theta_S^c` be the missing square-coset classes, and define the missing-class
+incidence
+
+```text
+J(x)=#{(S,theta): S in Sigma, theta in Theta_S^c, x in P_S(theta)}.
+```
+
+Since the full palette partitions `P^1(F_q)\S`, every point satisfies the
+pointwise identity
+
+```text
+I(x)+J(x)=m-d_Sigma(x).                           (RKSQDEFECT)
+```
+
+Let
+
+```text
+C=sum_{S in Sigma} |Theta_S^c|
+```
+
+be the number of missing local square-coset classes.  Then
+
+```text
+sum_x J(x) = (2(q-1)/e) C.                        (RKSQDEFECTMASS)
+```
+
+After support-star pruning with residual degree cap `D`, suppose
+`m_ap>D`.  Every uncovered residual slope `x` with `I_ap(x)=0` then has
+
+```text
+J_ap(x)=m_ap-d_{Sigma_ap}(x) >= m_ap-D.
+```
+
+Hence the number of uncovered residual slopes obeys
+
+```text
+|{x : I_ap(x)=0}|
+  <= (2(q-1)/e) C_ap / (m_ap-D).                  (RKSQUNCOVER)
+```
+
+Thus, once endpoint stars have been charged, a large bounded-degree residual
+can fail to cover the projective slope line only by spending missing
+square-coset classes.  This turns "partial palette" from a vague leftover into
+an explicit defect ledger.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -3919,8 +3966,10 @@ selected support star-forcing bound (RKSQSTARFORCE), the partial-palette
 star-forcing bound (RKSQPARTSTAR), the partial-palette inverse packing bound
 (RKSQPACK), the support-star pruning reduction (RKSQPRUNE/RKSQPRUNEPACK), the
 pruned residual density trichotomy (RKSQDENS/RKSQDENSAVG), the full-palette
-residual coverage (RKSQFULLCOVER/RKSQFULLPRUNE), the canonical endpoint-pair
-norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
+residual coverage (RKSQFULLCOVER/RKSQFULLPRUNE), the partial-palette
+uncovered-slope defect bound (RKSQDEFECT/RKSQDEFECTMASS/RKSQUNCOVER), the
+canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
+coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
@@ -4001,8 +4050,10 @@ selected support star-forcing bound (RKSQSTARFORCE), the partial-palette
 star-forcing bound (RKSQPARTSTAR), the partial-palette inverse packing bound
 (RKSQPACK), the support-star pruning reduction (RKSQPRUNE/RKSQPRUNEPACK), the
 pruned residual density trichotomy (RKSQDENS/RKSQDENSAVG), the full-palette
-residual coverage (RKSQFULLCOVER/RKSQFULLPRUNE), the canonical endpoint-pair
-norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
+residual coverage (RKSQFULLCOVER/RKSQFULLPRUNE), the partial-palette
+uncovered-slope defect bound (RKSQDEFECT/RKSQDEFECTMASS/RKSQUNCOVER), the
+canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
+coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary

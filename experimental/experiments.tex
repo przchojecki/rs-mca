@@ -2654,6 +2654,25 @@ Hence, after support-star pruning, if \(m_{\rm ap}>D\), the residual common
 intersection is empty and the full-palette residual covers all \(q+1\)
 projective slopes.  Any small pruned residual support therefore comes from at
 most \(D\) remaining supports or from genuinely partial square-coset palettes.
+The partial-palette leftover has an exact defect ledger.  If
+\(\Theta_S^c\) denotes the missing square-coset classes and
+\[
+        J(x)=\#\{(S,\theta):\theta\in\Theta_S^c,\ x\in P_S(\theta)\},
+\]
+then
+\[
+        I(x)+J(x)=m-d_\Sigma(x),\qquad
+        \sum_x J(x)={2(q-1)\over e}\sum_{S\in\Sigma}|\Theta_S^c|.
+\]
+Thus, after pruning with maximum residual degree \(D\) and \(m_{\rm ap}>D\),
+the number of uncovered residual slopes satisfies
+\[
+        |\{x:I_{\rm ap}(x)=0\}|
+        \le {2(q-1)\over e}\,
+        {\sum_{S\in\Sigma_{\rm ap}}|\Theta_S^c|\over m_{\rm ap}-D}.
+\]
+So a large bounded-degree residual can leave many slopes uncovered only by
+spending many missing local square-coset classes.
 Moreover, if \(L_E(z)=Wz-Z\) for \(E=[Z:W]\), then in the off-diagonal case
 \[
         {H_1\over H_0}

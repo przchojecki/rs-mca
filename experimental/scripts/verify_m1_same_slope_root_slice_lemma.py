@@ -70,7 +70,7 @@ bound, selected support-degree profile, selected support-collision energy, and
 selected support star-forcing bound, partial-palette star-forcing bound,
 partial-palette inverse packing bound, support-star pruning reduction, pruned
 residual density trichotomy, full-palette residual coverage, and packet-count
-corollary.
+corollary, plus the partial-palette uncovered-slope defect bound.
 """
 
 from __future__ import annotations
@@ -7430,6 +7430,83 @@ def check_boundary_core_square_map_packet_count() -> None:
                         remaining_supports,
                         residual_incidence,
                     )
+                    residual_defect_incidence = {
+                        point: 0 for point in all_projective_points
+                    }
+                    residual_missing_classes = 0
+                    for support in remaining_supports:
+                        first, second = tuple(support)
+                        support_map = mobius_from_zero_pole(first, second, prime)
+                        missing_classes = set(packet_classes) - selected_classes[support]
+                        residual_missing_classes += len(missing_classes)
+                        for packet_class in missing_classes:
+                            for point in projective_square_packet(
+                                support_map,
+                                packet_class,
+                                index,
+                                log_table,
+                                prime,
+                            ):
+                                residual_defect_incidence[point] += 1
+                    assert sum(residual_defect_incidence.values()) == (
+                        residual_packet_size * residual_missing_classes
+                    ), (
+                        prime,
+                        index,
+                        degree_cap,
+                        residual_missing_classes,
+                        residual_defect_incidence,
+                    )
+                    for point in all_projective_points:
+                        residual_degree = sum(
+                            1 for support in remaining_supports if point in support
+                        )
+                        assert (
+                            residual_incidence[point]
+                            + residual_defect_incidence[point]
+                        ) == residual_count - residual_degree, (
+                            prime,
+                            index,
+                            degree_cap,
+                            point,
+                            residual_incidence[point],
+                            residual_defect_incidence[point],
+                            residual_count,
+                            residual_degree,
+                            remaining_supports,
+                        )
+                    if residual_count > degree_cap:
+                        uncovered_points = [
+                            point
+                            for point, incidence in residual_incidence.items()
+                            if incidence == 0
+                        ]
+                        for point in uncovered_points:
+                            assert residual_defect_incidence[point] >= (
+                                residual_count - degree_cap
+                            ), (
+                                prime,
+                                index,
+                                degree_cap,
+                                residual_count,
+                                point,
+                                residual_defect_incidence[point],
+                                residual_incidence,
+                                residual_defect_incidence,
+                            )
+                        assert len(uncovered_points) * (
+                            residual_count - degree_cap
+                        ) <= residual_packet_size * residual_missing_classes, (
+                            prime,
+                            index,
+                            degree_cap,
+                            residual_count,
+                            len(uncovered_points),
+                            residual_packet_size,
+                            residual_missing_classes,
+                            residual_incidence,
+                            residual_defect_incidence,
+                        )
 
             full_selected_incidence = {point: 0 for point in all_projective_points}
             for support in support_list:
