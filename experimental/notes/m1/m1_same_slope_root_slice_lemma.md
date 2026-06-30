@@ -31,6 +31,7 @@ SQUARE-NORM FIXED-BASIS COORDINATE NORMAL FORM /
 SQUARE-NORM FIXED-BASIS SLOPE-PAIR PARAMETRIZATION /
 SQUARE-NORM FIXED-BASIS NO-LOSS SQUARE MAP /
 SQUARE-NORM FIXED-BASIS UNORIENTED SUPPORT PALETTE /
+SQUARE-NORM FIXED-BASIS SUPPORT-FIBER DECOMPOSITION /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3115,6 +3116,40 @@ orientation are duplicates in the same quotient-inverse support palette, and
 finite-infinity supports occur only once because the pole endpoint cannot be
 `x=infty`.
 
+Equivalently, the slope-pair chart has an exact support-fiber decomposition.
+Let
+
+```text
+U = P^1(F_q) \ {0}.
+```
+
+For a slope pair `(lambda_0,lambda_1)` with `lambda_0 in F_q^*` and
+`lambda_1 != lambda_0`, define
+
+```text
+x_0=lambda_0,
+x_1=lambda_0^2/(2lambda_0-lambda_1)  if lambda_1 != 2lambda_0,
+x_1=infty                            if lambda_1 = 2lambda_0,
+Phi(lambda_0,lambda_1)={x_0,x_1}.                  (RKSQSUPPFIB)
+```
+
+Then `Phi` maps onto the two-element subsets of `U`.  Its fibers are exact:
+
+```text
+|Phi^{-1}({a,b})| = 2        if a,b in F_q^*, a != b,
+|Phi^{-1}({a,infty})| = 1   if a in F_q^*.          (RKSQSUPPFIBCOUNT)
+```
+
+Thus the ordered local packet incidence is precisely
+
+```text
+2 binom(q-1,2) + (q-1) = (q-1)^2,
+```
+
+while the slope-set support ledger has only `binom(q,2)` support classes.
+The gap between these two ledgers is exactly orientation duplication, not an
+additional residue-line source.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -3617,7 +3652,8 @@ forbidden-endpoint sharpening (RKSQFORB/RKSQFORBCOUNT), the fixed-basis
 coordinate normal form (RKSQXPAR/RKSQXNF), the fixed-basis slope-pair
 parametrization (RKSQSLOPE), the fixed-basis no-loss square map
 (RKSQSMAP/RKSQSMAP2/RKSQBAL), the fixed-basis unoriented support palette
-(RKSQSUPP/RKSQSUPPFULL), the canonical endpoint-pair norm factorization
+(RKSQSUPP/RKSQSUPPFULL), the fixed-basis support-fiber decomposition
+(RKSQSUPPFIB/RKSQSUPPFIBCOUNT), the canonical endpoint-pair norm factorization
 (RKSQRAT), the fixed endpoint-pair coset palette (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
@@ -3689,7 +3725,8 @@ forbidden-endpoint sharpening (RKSQFORB/RKSQFORBCOUNT), the fixed-basis
 coordinate normal form (RKSQXPAR/RKSQXNF), the fixed-basis slope-pair
 parametrization (RKSQSLOPE), the fixed-basis no-loss square map
 (RKSQSMAP/RKSQSMAP2/RKSQBAL), the fixed-basis unoriented support palette
-(RKSQSUPP/RKSQSUPPFULL), the canonical endpoint-pair norm factorization
+(RKSQSUPP/RKSQSUPPFULL), the fixed-basis support-fiber decomposition
+(RKSQSUPPFIB/RKSQSUPPFIBCOUNT), the canonical endpoint-pair norm factorization
 (RKSQRAT), the fixed endpoint-pair coset palette (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary

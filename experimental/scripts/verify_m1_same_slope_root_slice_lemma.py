@@ -63,8 +63,9 @@ collapse, off-diagonal endpoint-pair count, canonical endpoint-pair norm
 factorization, fixed endpoint-pair coset palette, endpoint-charge corollary,
 fixed-basis forbidden-endpoint sharpening, fixed-basis coordinate normal form,
 fixed-basis slope-pair parametrization, fixed-basis no-loss square map,
-fixed-basis support-palette count, fixed-basis endpoint-palette bound, fixed
-endpoint-pair packet-size bound, and packet-count corollary.
+fixed-basis support-palette count, fixed-basis support-fiber decomposition,
+fixed-basis endpoint-palette bound, fixed endpoint-pair packet-size bound, and
+packet-count corollary.
 """
 
 from __future__ import annotations
@@ -6984,6 +6985,49 @@ def check_boundary_core_square_map_packet_count() -> None:
 
             fixed_support_packets: dict[frozenset[P1Point], set[frozenset[int]]] = {}
             fixed_slope_sets: set[frozenset[int]] = set()
+            support_fibers: dict[frozenset[P1Point], list[tuple[int, int]]] = {}
+            for lambda0 in range(1, prime):
+                for lambda1 in range(prime):
+                    if lambda1 == lambda0:
+                        continue
+                    if lambda1 == (2 * lambda0) % prime:
+                        x1: P1Point = None
+                    else:
+                        denominator = (2 * lambda0 - lambda1) % prime
+                        x1 = lambda0 * lambda0 * pow(denominator, -1, prime) % prime
+                        assert x1 != 0 and x1 != lambda0, (
+                            prime,
+                            lambda0,
+                            lambda1,
+                            x1,
+                        )
+                    support = frozenset((lambda0, x1))
+                    support_fibers.setdefault(support, []).append((lambda0, lambda1))
+
+            fixed_support_universe: list[P1Point] = list(range(1, prime)) + [None]
+            expected_fixed_supports = {
+                frozenset((left, right))
+                for left, right in combinations(fixed_support_universe, 2)
+            }
+            assert set(support_fibers) == expected_fixed_supports, (
+                prime,
+                index,
+                set(support_fibers),
+                expected_fixed_supports,
+            )
+            assert sum(len(fiber) for fiber in support_fibers.values()) == (
+                prime - 1
+            ) * (prime - 1)
+            for support, fiber in support_fibers.items():
+                expected_fiber_size = 1 if None in support else 2
+                assert len(fiber) == expected_fiber_size, (
+                    prime,
+                    index,
+                    support,
+                    fiber,
+                    expected_fiber_size,
+                )
+
             for pole_endpoint in range(1, prime):
                 for zero_endpoint in p1_points:
                     if zero_endpoint in {0, pole_endpoint}:

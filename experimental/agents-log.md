@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 fixed-basis support-fiber decomposition
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The slope-pair chart maps onto two-element supports
+  in `P^1(F_q) \ {0}` with exact fibers: two preimages for finite-finite
+  supports and one preimage for finite-infinity supports.
+- **How it is useful:** This separates local ordered packet incidence from
+  true slope-set growth.  The identity
+  `2 binom(q-1,2)+(q-1)=(q-1)^2` explains all fixed-basis ordered multiplicity
+  as orientation duplication plus the one-sided infinity case.
+- **What to do next:** Use the support image, not the slope-pair incidence
+  image, as the object to bound in the global row-basis/core-image problem.
+
 ### 2026-06-30 - M1 fixed-basis support-palette count
 
 - **Agent/model:** AllenGrahamHart / Codex.
