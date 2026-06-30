@@ -2840,6 +2840,29 @@ After endpoint-star pruning, if \(m_{\rm ap}>D\), the full-palette coverage
 formula gives \(B_{\rm ap}=q+1\).  Hence for every \(R<q+1\) the optional
 sparse residual certificate branch is empty; the local output is only
 endpoint-star charges, \(D\)-small residuals, or large support \(B_{\rm ap}>R\).
+The first nontrivial case \(e=4\) is also exact.  Let \(P_{\rm ap}\) be the
+number of residual supports carrying just one of the two packet classes.  Then
+\[
+        K_{\rm ap}=2m_{\rm ap}-P_{\rm ap},\qquad
+        C_{\rm ap}=P_{\rm ap},\qquad
+        \alpha_{\rm ap}=1-{P_{\rm ap}\over2m_{\rm ap}} .
+\]
+Thus any sparse certificate must satisfy
+\[
+        (q-1)^2(2m_{\rm ap}-P_{\rm ap})^2
+        \le 4R\bigl((q-3)m_{\rm ap}^2+2m_{\rm ap}D\bigr),
+\]
+and
+\[
+        2(m_{\rm ap}-D)(q+1-R)\le(q-1)P_{\rm ap}.
+\]
+If \(m_{\rm ap}\ge LD\), the missing-class side alone rules out the
+far-from-star quartic sparse branch whenever
+\[
+        R<q+1-{L(q-1)\over2(L-1)} .
+\]
+Below this half-line budget, the \(e=4\) sparse branch is forced into the
+\(L\)-near-star/template ledger without any additional global density input.
 Conversely, for a desired integer budget \(R\), the exact scalar target is
 \[
         A_{\rm target}(q,R,L)=

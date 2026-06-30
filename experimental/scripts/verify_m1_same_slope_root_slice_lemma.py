@@ -7509,6 +7509,51 @@ def check_boundary_core_square_map_packet_count() -> None:
                             residual_incidence,
                             remaining_supports,
                         )
+                    quartic_partial_supports = None
+                    if full_palette_size == 2:
+                        quartic_partial_supports = sum(
+                            1
+                            for support in remaining_supports
+                            if len(selected_classes[support]) == 1
+                        )
+                        quartic_full_supports = sum(
+                            1
+                            for support in remaining_supports
+                            if len(selected_classes[support]) == 2
+                        )
+                        assert quartic_partial_supports + quartic_full_supports == (
+                            residual_count
+                        ), (
+                            prime,
+                            index,
+                            degree_cap,
+                            quartic_partial_supports,
+                            quartic_full_supports,
+                            residual_count,
+                            remaining_supports,
+                            selected_classes,
+                        )
+                        assert residual_missing_classes == quartic_partial_supports, (
+                            prime,
+                            index,
+                            degree_cap,
+                            residual_missing_classes,
+                            quartic_partial_supports,
+                            remaining_supports,
+                            selected_classes,
+                        )
+                        assert residual_selected_classes == (
+                            2 * residual_count - quartic_partial_supports
+                        ), (
+                            prime,
+                            index,
+                            degree_cap,
+                            residual_selected_classes,
+                            quartic_partial_supports,
+                            residual_count,
+                            remaining_supports,
+                            selected_classes,
+                        )
                     for point in all_projective_points:
                         residual_degree = sum(
                             1 for support in remaining_supports if point in support
@@ -7606,6 +7651,46 @@ def check_boundary_core_square_map_packet_count() -> None:
                             and residual_support_size <= probe_budget
                             and support_budget_certificate
                         )
+                        if full_palette_size == 2 and sparse_residual_certificate:
+                            assert quartic_partial_supports is not None
+                            assert (
+                                (prime - 1)
+                                * (prime - 1)
+                                * (
+                                    2 * residual_count
+                                    - quartic_partial_supports
+                                )
+                                * (
+                                    2 * residual_count
+                                    - quartic_partial_supports
+                                )
+                            ) <= (
+                                4 * probe_budget * residual_star_bound
+                            ), (
+                                prime,
+                                index,
+                                degree_cap,
+                                probe_budget,
+                                residual_count,
+                                quartic_partial_supports,
+                                residual_star_bound,
+                                residual_selected_classes,
+                            )
+                            assert (
+                                2
+                                * (residual_count - degree_cap)
+                                * (len(all_projective_points) - probe_budget)
+                            ) <= (
+                                (prime - 1) * quartic_partial_supports
+                            ), (
+                                prime,
+                                index,
+                                degree_cap,
+                                probe_budget,
+                                residual_count,
+                                quartic_partial_supports,
+                                residual_missing_classes,
+                            )
                         assert (
                             residual_count <= degree_cap
                             or residual_support_size > probe_budget
@@ -7879,6 +7964,30 @@ def check_boundary_core_square_map_packet_count() -> None:
                                     residual_missing_classes,
                                     full_palette_size,
                                 )
+                                if full_palette_size == 2:
+                                    assert quartic_partial_supports is not None
+                                    assert (
+                                        far_factor
+                                        * (prime - 1)
+                                        * quartic_partial_supports
+                                    ) >= (
+                                        2
+                                        * residual_count
+                                        * (far_factor - 1)
+                                        * (
+                                            len(all_projective_points)
+                                            - probe_budget
+                                        )
+                                    ), (
+                                        prime,
+                                        index,
+                                        degree_cap,
+                                        far_factor,
+                                        probe_budget,
+                                        residual_count,
+                                        quartic_partial_supports,
+                                        residual_missing_classes,
+                                    )
                                 assert not density_threshold_exceeded, (
                                     prime,
                                     index,

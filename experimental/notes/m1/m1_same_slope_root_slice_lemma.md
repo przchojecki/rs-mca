@@ -58,6 +58,7 @@ SQUARE-NORM TEMPLATE-BUDGET TRADEOFF /
 SQUARE-NORM INTEGER SUPPORT-BUDGET CEILING /
 SQUARE-NORM MINIMAL SELECTED-DENSITY BASELINE /
 SQUARE-NORM QUADRATIC-PALETTE SPARSE BRANCH COLLAPSE /
+SQUARE-NORM QUARTIC-PALETTE PARTIAL-SUPPORT WINDOW /
 SQUARE-NORM EXACT TARGET-DENSITY THRESHOLD /
 SQUARE-NORM TARGET-DENSITY MONOTONICITY /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
@@ -3959,6 +3960,55 @@ In other words, the first nontrivial M1 sparse-palette obstruction cannot
 appear at `e=2`; it starts only when the local square-map palette has at least
 two classes.
 
+The first nontrivial case `e=4` can also be normalized exactly.  Now `h=2`.
+For a residual support family, let
+
+```text
+P_ap=#{S in Sigma_ap : |Theta_S|=1}
+```
+
+be the number of genuinely partial supports.  The remaining supports are
+full-palette supports, so
+
+```text
+K_ap=2m_ap-P_ap,        C_ap=P_ap,
+alpha_ap=1-P_ap/(2m_ap),        gamma_ap=P_ap/(2m_ap).       (RKSQQUARTICCOUNT)
+```
+
+Consequently, a `(D,R)` sparse residual certificate in the `e=4` case must
+satisfy both
+
+```text
+(q-1)^2(2m_ap-P_ap)^2
+  <= 4R((q-3)m_ap^2+2m_apD),                    (RKSQQUARTICSEL)
+
+2(m_ap-D)(q+1-R)
+  <= (q-1)P_ap.                                  (RKSQQUARTICMISS)
+```
+
+Equivalently, if `m_ap>=LD` with `L>=2`, then the partial-support fraction
+obeys the uniform lower bound
+
+```text
+P_ap/m_ap >= max(
+  2(1 - sqrt(R(q-3+2/L))/(q-1)),
+  2((L-1)/L)(q+1-R)/(q-1)
+).                                                (RKSQQUARTICFAR)
+```
+
+Thus the first possible sparse branch is not an arbitrary class selection: it
+must spend a large fraction of the residual supports on one-class partial
+palettes.  In particular, the missing-class side alone excludes far-from-star
+quartic certificates whenever
+
+```text
+R < q+1 - L(q-1)/(2(L-1)).                       (RKSQQUARTICHALF)
+```
+
+Below this half-line budget the `e=4` sparse branch is forced into the same
+`L`-near-star/template ledger as in (RKSQLOCALIZE), before any additional
+global row-basis/core-image density theorem is used.
+
 Conversely, for a desired integer support budget `R`, the exact density target
 is a single scalar threshold.  Define
 
@@ -4540,6 +4590,9 @@ the minimal selected-density baseline
 (RKSQMINALPHA/RKSQBASEBUDGET/RKSQBASECLOSE),
 the quadratic-palette sparse-branch collapse
 (RKSQQUADPAL/RKSQQUADFULL/RKSQQUADCLOSE),
+the quartic-palette partial-support window
+(RKSQQUARTICCOUNT/RKSQQUARTICSEL/RKSQQUARTICMISS/RKSQQUARTICFAR/
+RKSQQUARTICHALF),
 the exact target-density threshold (RKSQTARGET/RKSQTARGETHYP),
 the target-density monotonicity corollary (RKSQTARGETMONO),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
@@ -4647,6 +4700,9 @@ the minimal selected-density baseline
 (RKSQMINALPHA/RKSQBASEBUDGET/RKSQBASECLOSE),
 the quadratic-palette sparse-branch collapse
 (RKSQQUADPAL/RKSQQUADFULL/RKSQQUADCLOSE),
+the quartic-palette partial-support window
+(RKSQQUARTICCOUNT/RKSQQUARTICSEL/RKSQQUARTICMISS/RKSQQUARTICFAR/
+RKSQQUARTICHALF),
 the exact target-density threshold (RKSQTARGET/RKSQTARGETHYP),
 the target-density monotonicity corollary (RKSQTARGETMONO),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair

@@ -49,6 +49,28 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 quartic-palette partial window
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** In the first nontrivial square-map palette case
+  `e=4`, writing `P_ap` for one-class residual supports gives
+  `K_ap=2m_ap-P_ap` and `C_ap=P_ap`.  Any sparse certificate must therefore
+  spend a quantified fraction of its supports on partial palettes, and below
+  the half-line budget
+  `R < q+1 - L(q-1)/(2(L-1))` the far-from-star quartic branch is excluded.
+- **How it is useful:** Makes the first surviving sparse-palette obstruction
+  after the `e=2` collapse explicit and reduces low-budget quartic residuals
+  to the near-star/template ledger without additional global density input.
+- **What to do next:** Use the partial-support window to guide attempts at a
+  global row-basis/core-image theorem for `e>=4`, where sparse certificates
+  must create many one-class support choices.
+
 ### 2026-06-30 - M1 quadratic-palette sparse collapse
 
 - **Agent/model:** AllenGrahamHart / Codex.
