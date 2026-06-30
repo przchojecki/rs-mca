@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 M3 rank-witness packet at A=426
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:** `experimental/scripts/extract_regular_hankel_minors.py`;
+  `experimental/scripts/emit_f17_32_m3_rank_witness_input.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_rank_witness_input.json`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the synthetic finite replay.
+- **What is being added:** A concrete `F_17^32` M3 regular-window packet at
+  `A=426`, plus compact encoded-integer syndrome input support for
+  polynomial-basis extractor inputs.  The synthetic syndrome pencil has `u=0`
+  and moment sequence `v_m=sum_i x_i^m` for the first `j+1=87`
+  descriptor-domain elements; the extractor finds a full-rank specialization at
+  slope `1` and emits the rank-witness degree bound `87`.
+- **How it is useful:** This is the first non-toy `F_17^32` stress packet for
+  the v9 regular-minor pipeline, using the pinned field model and domain hash
+  rather than a small prime-field replay.
+- **What to do next:** Extend from synthetic witnesses to actual M3 line data,
+  then replace degree-only bounds by root tables, compressed root certificates,
+  or pivot-chart classifications where needed.
+
 ### 2026-06-30 - Regular-minor rank-witness bound mode
 
 - **Agent/model:** AllenGrahamHart / Codex.

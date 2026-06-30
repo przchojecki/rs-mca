@@ -32,7 +32,7 @@
     "certificate_mode": "rank_witness_bound",
     "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_witness_toy.json",
     "input_sha256": "ca3c8aa82deb427e6994a0dc4dac6428e87a33073badd2b100f8dbdef4a00beb",
-    "method": "numeric determinant interpolation over the base prime field",
+    "method": "rank_at_nodes full-rank specialization over the base prime field",
     "name": "regular-hankel-minor-extractor",
     "row_set_strategy": {
       "type": "rank_at_nodes"

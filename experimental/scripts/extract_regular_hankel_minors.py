@@ -356,6 +356,30 @@ def finite_bad_slopes_for_exact_agreement(
     return sorted(slopes)
 
 
+def normalize_field_input_value(
+    value: Any,
+    field: PolynomialBasisField,
+    encoding: str | None,
+) -> tuple[int, ...]:
+    if encoding in {
+        "base-p low-to-high integer",
+        "base-p low-to-high encoded integer",
+        "encoded_integer",
+    }:
+        if not isinstance(value, int):
+            raise ValueError("encoded field input values must be integers")
+        return field.decode(value)
+    return field.normalize(value)
+
+
+def normalize_field_input_list(
+    values: list[Any],
+    field: PolynomialBasisField,
+    encoding: str | None,
+) -> list[tuple[int, ...]]:
+    return [normalize_field_input_value(value, field, encoding) for value in values]
+
+
 def n_choose_k(n: int, k: int) -> int:
     if k < 0 or k > n:
         return 0
@@ -912,8 +936,10 @@ def extract_for_agreement_field(
     row = spec["row"]
     n = int(row["n"])
     k = int(row["k"])
-    u = [field.normalize(value) for value in spec["line_syndrome"]["u"]]
-    v = [field.normalize(value) for value in spec["line_syndrome"]["v"]]
+    syndrome = spec["line_syndrome"]
+    syndrome_encoding = syndrome.get("field_encoding", spec.get("field_element_encoding"))
+    u = normalize_field_input_list(syndrome["u"], field, syndrome_encoding)
+    v = normalize_field_input_list(syndrome["v"], field, syndrome_encoding)
     j = n - exact_agreement
     t = exact_agreement - k
     size = j + 1
@@ -987,7 +1013,12 @@ def extract_for_agreement_field(
                 ]
             domain = spec.get("row", {}).get("domain")
             if domain is not None and spec.get("enumerate_split_bad_slopes", False):
-                domain_values = [field.normalize(value) for value in domain]
+                domain_encoding = spec.get("row", {}).get(
+                    "field_encoding", spec.get("field_element_encoding")
+                )
+                domain_values = normalize_field_input_list(
+                    domain, field, domain_encoding
+                )
                 subset_count = n_choose_k(len(domain_values), j)
                 if subset_count <= int(
                     spec.get(
@@ -1297,7 +1328,11 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
         ],
         "extractor": {
             "name": "regular-hankel-minor-extractor",
-            "method": "numeric determinant interpolation over the base prime field",
+            "method": (
+                "rank_at_nodes full-rank specialization over the base prime field"
+                if spec.get("certificate_mode") == "rank_witness_bound"
+                else "numeric determinant interpolation over the base prime field"
+            ),
             "input_ref": input_ref,
             "input_sha256": optional_file_hash(input_ref),
             "row_set_strategy": spec.get("row_set_strategy", {"type": "prefix"}),
@@ -1387,7 +1422,11 @@ def build_packet_field(
         ],
         "extractor": {
             "name": "regular-hankel-minor-extractor",
-            "method": "numeric determinant interpolation over a polynomial-basis finite field",
+            "method": (
+                "rank_at_nodes full-rank specialization over a polynomial-basis finite field"
+                if spec.get("certificate_mode") == "rank_witness_bound"
+                else "numeric determinant interpolation over a polynomial-basis finite field"
+            ),
             "input_ref": input_ref,
             "input_sha256": optional_file_hash(input_ref),
             "row_set_strategy": spec.get("row_set_strategy", {"type": "prefix"}),
