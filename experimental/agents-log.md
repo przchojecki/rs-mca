@@ -968,3 +968,22 @@ Keep entries concise and link to the relevant files.
   predicate and finite-vs-projective slope family as RESIDUAL JUDGMENT CALLS (not asserted).
 - **What to do next:** Loop adds the predicate/line-family correspondence item, then
   consolidates + posts coverage comment; then BOTH PRs (153, 156) complete -> terminate.
+
+### 2026-06-30 - Steps 5 & 1 loop COMPLETE (PRs #153, #156)
+
+- **Agent/model:** Claude Opus 4.8, branches `allen/step5-envelope-map` (#153) and
+  `allen/step1-sampler-audit` (#156), Lane V.
+- **Files added or changed:** `experimental/scripts/verify_step1_sampler_reconciliation.py`
+  (4 checks), `experimental/notes/audits/audit_step1_sampler_reconciliation.md`,
+  `experimental/agents-log.md`; (on #153) `verify_step5_envelope_carving.py` (5 checks),
+  `audit_step5_envelope_carving.md`, `experimental/data/step5-envelope-map/envelope_map.json`.
+- **Status:** AUDIT / PROVED-COMPILER-ARITHMETIC / DOCUMENTED-RECONCILIATION.
+- **What is being added:** Closes the two open in-lane loose ends of `towards-prize.md` S1.
+  Step 5 (#153): carve the solved high-agreement region (compiler `1<=B_Q<=floor((n-k)/3)`),
+  flagship anchor, multi-rate grid, Johnson-scope, emitted envelope map. Step 1 (#156):
+  documented reconciliation of our finite-slope support-wise MCA convention vs the official
+  sampler (gate/denominator/endpoint/anchors/predicate), residual judgment calls flagged.
+- **How it is useful:** Completes the packaging/audit half (steps 1 & 5) of S1's full-prize
+  path; steps 2-4 were already on `main` (certified + V1-verified), residue is Paper 1/2
+  write-ups in `tex/` (off-lane). Step 6 (aperiodic core) is untouched and remains the barrier.
+- **What to do next:** Maintainer review of #153/#156; loop terminated (no further wakeup).
