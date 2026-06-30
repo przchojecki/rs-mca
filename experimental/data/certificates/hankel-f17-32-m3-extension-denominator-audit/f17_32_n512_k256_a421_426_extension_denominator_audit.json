@@ -1,0 +1,76 @@
+{
+  "field_ledgers": {
+    "ambient_line_field": "F_17^32",
+    "base_field": "F_17",
+    "base_field_budget_if_wrongly_used": 0,
+    "denominator_rule": "Because the packet samples finite affine slopes z in F_17^32, the support-wise MCA numerator must be divided by q_line=17^32.",
+    "epsilon_star": "2^-128",
+    "finite_affine_budget": 6,
+    "finite_affine_slope_denominator": 2367911594760467245844106297320951247361,
+    "projective_slope_denominator": 2367911594760467245844106297320951247362,
+    "q_base": 17,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "line_value_classification": {
+    "base_field_embedding": "encoded values 0..16",
+    "classification": "The line is genuinely F_17^32-valued: f is the zero base-field vector, while every g(x) is outside the base field.",
+    "f": {
+      "base_field_values": 512,
+      "first_nonbase_value": null,
+      "length": 512,
+      "nonbase_values": 0,
+      "nonzero_values": 0
+    },
+    "field_encoding": "base-p low-to-high polynomial-basis integer",
+    "g": {
+      "base_field_values": 0,
+      "first_nonbase_value": {
+        "index": 0,
+        "value": 1146202692681783696919425969908338766890
+      },
+      "length": 512,
+      "nonbase_values": 512,
+      "nonzero_values": 512
+    }
+  },
+  "nonclaims": [
+    "not an extension-line lift theorem",
+    "not a base-field MCA packet",
+    "not actual M3 row data",
+    "not a Prime192 denominator audit",
+    "not a safe-side MCA bound"
+  ],
+  "row": {
+    "domain_description": "order-512 subgroup from the pinned F_17^32 row descriptor; fixed synthetic M3 window syndrome uses the first 92 elements",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "f17-32-m3-extension-denominator-audit-v1",
+  "source_artifacts": {
+    "fixed_top_window_packet": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json",
+      "schema_version": "aperiodic-hankel-eliminant-v1",
+      "sha256": "2ed9f7082e7fa5b2cfef258f02f8f3fb1d4e09a904a824be839a50f3b76f4976"
+    },
+    "line_value_lift": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-line-value-lift/f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json",
+      "schema_version": "f17-32-m3-line-value-lift-v1",
+      "sha256": "d5201a3d94d56c58b07e628cbeb878b861c012d599fe9b7c7dc6d2862e76cfe5"
+    },
+    "zero_slope_subtraction": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_a421_426_zero_slope_subtraction.json",
+      "schema_version": "f17-32-m3-zero-slope-subtraction-v1",
+      "sha256": "2daab57ff7ad35d81423d9e14ee93cda7fc5c07bd7f1aa59b12cea00598f109d"
+    }
+  },
+  "status": "AUDIT",
+  "subtraction_context": {
+    "deduped_aperiodic_numerator_after_zero_slope_subtraction": 0,
+    "denominator_for_that_statement": 2367911594760467245844106297320951247361,
+    "zero_slope": 0,
+    "zero_slope_is_base_field_element": true,
+    "zero_slope_subtraction_ref": "experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_a421_426_zero_slope_subtraction.json"
+  }
+}

@@ -163,6 +163,18 @@ fixed top-window packet has residual synthetic aperiodic numerator `0` after
 that paid tangent branch is removed.  This is a no-double-counting check for
 one synthetic packet, not the full M4 row table.
 
+The corresponding F1 denominator audit is
+
+```text
+experimental/notes/f1/f17_32_m3_extension_denominator_audit.md
+experimental/data/certificates/hankel-f17-32-m3-extension-denominator-audit/
+  f17_32_n512_k256_a421_426_extension_denominator_audit.json
+```
+
+It verifies that `g` is non-base-valued at all 512 positions, so finite affine
+slopes for this packet are sampled from `F_17^32` and the denominator is
+`q_line=17^32`.
+
 The current status ledger
 
 ```text
@@ -192,6 +204,9 @@ python3 experimental/scripts/verify_m1_subgroup_syndrome_section.py \
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_a421_426_zero_slope_subtraction.json
+
+python3 experimental/scripts/verify_f17_32_m3_extension_denominator_audit.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-extension-denominator-audit/f17_32_n512_k256_a421_426_extension_denominator_audit.json
 ```
 
 Non-claims: this note does not compute any determinant over `F_17^32`, does not

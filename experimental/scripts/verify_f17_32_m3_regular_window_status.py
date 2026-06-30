@@ -52,6 +52,10 @@ ZERO_SLOPE_SUBTRACTION_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/"
     "f17_32_n512_k256_a421_426_zero_slope_subtraction.json"
 )
+EXTENSION_DENOMINATOR_AUDIT_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-extension-denominator-audit/"
+    "f17_32_n512_k256_a421_426_extension_denominator_audit.json"
+)
 OUTPUT_PATH = ROOT / (
     "experimental/data/certificates/hankel-f17-32-m3-regular-window-status/"
     "f17_32_n512_k256_m3_regular_window_status.json"
@@ -99,6 +103,7 @@ def validate_inputs(
     line_value_lift: dict[str, Any],
     subgroup_section: dict[str, Any],
     zero_slope_subtraction: dict[str, Any],
+    extension_denominator_audit: dict[str, Any],
 ) -> None:
     require(plan["window"]["A_min"] == AGREEMENT_MIN, "plan A_min mismatch")
     require(plan["window"]["A_max"] == AGREEMENT_MAX, "plan A_max mismatch")
@@ -169,6 +174,30 @@ def validate_inputs(
         == 0,
         "zero-slope subtraction residual numerator mismatch",
     )
+    require(
+        extension_denominator_audit["schema_version"]
+        == "f17-32-m3-extension-denominator-audit-v1",
+        "extension denominator audit schema mismatch",
+    )
+    require(
+        extension_denominator_audit["source_artifacts"]["line_value_lift"]["ref"]
+        == LINE_VALUE_LIFT_REF,
+        "extension denominator audit line-value ref mismatch",
+    )
+    require(
+        extension_denominator_audit["field_ledgers"][
+            "finite_affine_slope_denominator"
+        ]
+        == 17**32,
+        "extension denominator audit q_line mismatch",
+    )
+    require(
+        extension_denominator_audit["line_value_classification"]["g"][
+            "nonbase_values"
+        ]
+        == 512,
+        "extension denominator audit did not classify g as extension-valued",
+    )
 
 
 def per_agreement_records(
@@ -230,6 +259,9 @@ def per_agreement_records(
                 "fixed_top_window_zero_slope_subtraction": ZERO_SLOPE_SUBTRACTION_REF
                 if top_item is not None
                 else None,
+                "fixed_top_window_extension_denominator_audit": EXTENSION_DENOMINATOR_AUDIT_REF
+                if top_item is not None
+                else None,
                 "fixed_top_window_degree": (
                     top_item["extractor_audit"]["degree_bound"] if top_item is not None else None
                 ),
@@ -262,6 +294,7 @@ def build_status() -> dict[str, Any]:
     line_value_lift = load_json(LINE_VALUE_LIFT_REF)
     subgroup_section = load_json(SUBGROUP_SECTION_REF)
     zero_slope_subtraction = load_json(ZERO_SLOPE_SUBTRACTION_REF)
+    extension_denominator_audit = load_json(EXTENSION_DENOMINATOR_AUDIT_REF)
     validate_inputs(
         plan,
         generic,
@@ -270,6 +303,7 @@ def build_status() -> dict[str, Any]:
         line_value_lift,
         subgroup_section,
         zero_slope_subtraction,
+        extension_denominator_audit,
     )
     records = per_agreement_records(
         plan, generic, family, top_packet, zero_slope_subtraction
@@ -302,6 +336,11 @@ def build_status() -> dict[str, Any]:
             ZERO_SLOPE_SUBTRACTION_REF,
             "f17-32-m3-zero-slope-subtraction-v1",
         ),
+        artifact_record(
+            "fixed_top_window_extension_denominator_audit",
+            EXTENSION_DENOMINATOR_AUDIT_REF,
+            "f17-32-m3-extension-denominator-audit-v1",
+        ),
     ]
     return {
         "schema_version": SCHEMA_VERSION,
@@ -318,6 +357,7 @@ def build_status() -> dict[str, Any]:
             "fixed_top_window_line_value_status": "explicit f,g line values replay the fixed top-window syndrome input",
             "subgroup_syndrome_section_status": "proved explicit inverse-Fourier section for subgroup syndrome vectors",
             "fixed_top_window_subtraction_status": "the synthetic root {0} is removed by the zero-codeword tangent slope, leaving aperiodic numerator 0",
+            "fixed_top_window_denominator_status": "the line-value lift is genuinely F_17^32-valued, so the finite-affine slope denominator is 17^32",
             "actual_row_status": "tangent/quotient-deduped row outcomes not supplied",
             "first_actual_row_task": "compute tangent/quotient-deduped root/singularity outcomes for A=385..426",
         },
@@ -332,11 +372,12 @@ def build_status() -> dict[str, Any]:
                 "the fixed top-window syndrome input has an explicit line-value lift",
                 "subgroup syndrome vectors have an explicit inverse-Fourier line-value section",
                 "the fixed synthetic top-window root {0} is the zero-codeword tangent slope and leaves no synthetic residual aperiodic roots after subtraction",
+                "the fixed top-window line-value lift is extension-valued and must use q_line=17^32 for finite-affine slope accounting",
             ],
             "not_proved": [
                 "an actual-row root table for any A in 385..426",
                 "a tangent/quotient-deduped safe-side upper bound for actual row data in this window",
-                "a Prime192 quotient/tangent subtraction table",
+                "a Prime192 quotient/tangent subtraction or denominator table",
                 "the first singular bucket for actual row data",
             ],
         },

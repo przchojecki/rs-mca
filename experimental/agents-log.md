@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 M3 extension-denominator audit
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_extension_denominator_audit.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-extension-denominator-audit/`;
+  `experimental/notes/f1/f17_32_m3_extension_denominator_audit.md`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A checked denominator audit for the fixed synthetic
+  top-window line-value lift.  It verifies that `f` is the zero base-field
+  vector while all 512 values of `g` are outside `F_17`, so finite affine
+  slopes are sampled over `F_17^32` and the denominator is `17^32`.
+- **How it is useful:** This addresses the F1 accounting hazard for the first
+  extension-valued v9 packet in this branch and prevents comparing its
+  numerator to a base-field slope denominator.
+- **What to do next:** Apply the same denominator audit to actual-row and
+  Prime192 v9 packets before combining tangent, quotient, and aperiodic
+  ledgers.
+
 ### 2026-06-30 - F17^32 M3 zero-slope subtraction
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -155,6 +155,11 @@ the fixed top-window packet's single synthetic root `{0}` is the
 zero-codeword tangent/common-code-line slope, leaving no residual synthetic
 aperiodic root after that paid branch is removed.
 
+The F1 denominator audit is recorded in
+`experimental/notes/f1/f17_32_m3_extension_denominator_audit.md`.  It checks
+that the line-value lift is genuinely `F_17^32`-valued, so finite affine
+slopes in this packet are counted with denominator `17^32`, not `17`.
+
 ## Verification
 
 Run:
@@ -202,6 +207,9 @@ python3 experimental/scripts/verify_m1_subgroup_syndrome_section.py \
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_a421_426_zero_slope_subtraction.json
+
+python3 experimental/scripts/verify_f17_32_m3_extension_denominator_audit.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-extension-denominator-audit/f17_32_n512_k256_a421_426_extension_denominator_audit.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank_witness_family.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank-witness-family/f17_32_n512_k256_m3_rank_witness_family_certificate.json
