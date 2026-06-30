@@ -969,3 +969,7 @@ Keep entries concise and link to the relevant files.
   emitted map artifact; then PR B = step 1 (official-sampler reconciliation). Steps 2-4
   already on `main` (certified + V1-verified); their only residue is Paper 1/2 write-ups
   in `tex/` (off-lane).
+- **iter 2 (commit 1c2f980):** step 5 item 3 **multi-rate envelope grid** -- all four
+  rates at n=512,q=17^32 solved (caps 85/128/149/160 for rho=1/2,1/4,1/8,1/16; cap grows
+  as rate drops), all pinned a>=507; per-rate boundary exactly `B_Q<=cap`; large row
+  n=2^20 also solved. Verifier exits 0: 3 PASS, 2 PENDING. Next: Johnson-scope.
