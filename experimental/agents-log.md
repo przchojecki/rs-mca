@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 quadratic-palette sparse collapse
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** In the `e=2` quadratic-palette case, every reduced
+  residual support has the full one-class square-coset palette.  After
+  endpoint-star pruning, any residual with `m_ap>D` therefore has
+  `B_ap=q+1`, so the optional sparse certificate branch is empty for
+  `R<q+1`.
+- **How it is useful:** Removes the first possible sparse-palette obstruction
+  in the smallest palette case and sharpens the M1 local residue-line packing
+  ledger toward the quotient/aperiodic split emphasized in `towards-prize.md`.
+- **What to do next:** Use this collapse as a check on any proposed global
+  density theorem; genuine sparse-palette obstructions must begin at `e>=4`.
+
 ### 2026-06-30 - M1 target-density monotonicity
 
 - **Agent/model:** AllenGrahamHart / Codex.

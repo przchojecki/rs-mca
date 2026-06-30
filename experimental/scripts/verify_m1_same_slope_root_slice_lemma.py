@@ -7483,6 +7483,32 @@ def check_boundary_core_square_map_packet_count() -> None:
                         full_palette_size,
                         residual_count,
                     )
+                    if full_palette_size == 1 and residual_count > degree_cap:
+                        assert residual_selected_classes == residual_count, (
+                            prime,
+                            index,
+                            degree_cap,
+                            residual_selected_classes,
+                            residual_count,
+                            remaining_supports,
+                        )
+                        assert residual_missing_classes == 0, (
+                            prime,
+                            index,
+                            degree_cap,
+                            residual_missing_classes,
+                            remaining_supports,
+                        )
+                        assert residual_support_size == len(all_projective_points), (
+                            prime,
+                            index,
+                            degree_cap,
+                            residual_count,
+                            residual_support_size,
+                            len(all_projective_points),
+                            residual_incidence,
+                            remaining_supports,
+                        )
                     for point in all_projective_points:
                         residual_degree = sum(
                             1 for support in remaining_supports if point in support

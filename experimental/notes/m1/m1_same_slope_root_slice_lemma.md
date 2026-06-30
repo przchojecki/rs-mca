@@ -57,6 +57,7 @@ SQUARE-NORM DENSITY-BUDGET INVERSION /
 SQUARE-NORM TEMPLATE-BUDGET TRADEOFF /
 SQUARE-NORM INTEGER SUPPORT-BUDGET CEILING /
 SQUARE-NORM MINIMAL SELECTED-DENSITY BASELINE /
+SQUARE-NORM QUADRATIC-PALETTE SPARSE BRANCH COLLAPSE /
 SQUARE-NORM EXACT TARGET-DENSITY THRESHOLD /
 SQUARE-NORM TARGET-DENSITY MONOTONICITY /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
@@ -3930,6 +3931,34 @@ This baseline is usually not expected to close the prize row by itself, but it
 is a theorem-backed floor.  Any future row-basis/core-image lower bound should
 be measured as an improvement over `2/e`.
 
+The quadratic-palette case `e=2` is sharper.  Here `h=e/2=1`, so every
+nonempty selected support already carries the full local square-coset palette.
+In the reduced support convention this gives, for every residual support
+family,
+
+```text
+K_ap=m_ap,          C_ap=0,          alpha_ap=1.             (RKSQQUADPAL)
+```
+
+Consequently, after endpoint-star pruning at cap `D`, if `m_ap>D`, then the
+full-palette coverage lemma (RKSQFULLPRUNE) applies and
+
+```text
+B_ap=q+1.                                               (RKSQQUADFULL)
+```
+
+Thus for every target budget `R<q+1`, the optional sparse residual certificate
+branch is empty in the quadratic-palette case:
+
+```text
+e=2 and R<q+1
+  => endpoint-star charges, or m_ap<=D, or B_ap>R.       (RKSQQUADCLOSE)
+```
+
+In other words, the first nontrivial M1 sparse-palette obstruction cannot
+appear at `e=2`; it starts only when the local square-map palette has at least
+two classes.
+
 Conversely, for a desired integer support budget `R`, the exact density target
 is a single scalar threshold.  Define
 
@@ -4509,6 +4538,8 @@ the integer support-budget ceiling
 (RKSQINTBUDGET/RKSQINTCLOSE/RKSQINTTRADE),
 the minimal selected-density baseline
 (RKSQMINALPHA/RKSQBASEBUDGET/RKSQBASECLOSE),
+the quadratic-palette sparse-branch collapse
+(RKSQQUADPAL/RKSQQUADFULL/RKSQQUADCLOSE),
 the exact target-density threshold (RKSQTARGET/RKSQTARGETHYP),
 the target-density monotonicity corollary (RKSQTARGETMONO),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
@@ -4614,6 +4645,8 @@ the integer support-budget ceiling
 (RKSQINTBUDGET/RKSQINTCLOSE/RKSQINTTRADE),
 the minimal selected-density baseline
 (RKSQMINALPHA/RKSQBASEBUDGET/RKSQBASECLOSE),
+the quadratic-palette sparse-branch collapse
+(RKSQQUADPAL/RKSQQUADFULL/RKSQQUADCLOSE),
 the exact target-density threshold (RKSQTARGET/RKSQTARGETHYP),
 the target-density monotonicity corollary (RKSQTARGETMONO),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair

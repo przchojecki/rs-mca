@@ -2830,6 +2830,16 @@ Substituting \(a_0=1/h\) in \(R_{\rm dens}\) gives a theorem-backed baseline
 budget \(R_{\rm base}(L)\); every sparse certificate below this budget is
 already impossible or \(L\)-near-star before any stronger global density
 input is used.
+In the quadratic-palette case \(e=2\) this improves to a full collapse:
+then \(h=1\), so every nonempty selected support has the full palette,
+\[
+        K_{\rm ap}=m_{\rm ap},\qquad C_{\rm ap}=0,\qquad
+        \alpha_{\rm ap}=1 .
+\]
+After endpoint-star pruning, if \(m_{\rm ap}>D\), the full-palette coverage
+formula gives \(B_{\rm ap}=q+1\).  Hence for every \(R<q+1\) the optional
+sparse residual certificate branch is empty; the local output is only
+endpoint-star charges, \(D\)-small residuals, or large support \(B_{\rm ap}>R\).
 Conversely, for a desired integer budget \(R\), the exact scalar target is
 \[
         A_{\rm target}(q,R,L)=
