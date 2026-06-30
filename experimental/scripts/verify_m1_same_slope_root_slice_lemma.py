@@ -76,7 +76,8 @@ small-support exclusion criterion, local support-budget output theorem, and
 sparse residual certificate reduction, feasibility window, and far-from-star
 certificate cap with near-star localization, template count, and
 density-threshold closure, budget inversion, template-budget tradeoff, and
-integer support-budget ceiling, and minimal selected-density baseline.
+integer support-budget ceiling, fixed-residual sparse certificate feasibility
+interval, and minimal selected-density baseline.
 """
 
 from __future__ import annotations
@@ -84,7 +85,7 @@ from __future__ import annotations
 from cmath import exp
 from fractions import Fraction
 from itertools import combinations, product
-from math import comb, gcd, pi
+from math import comb, gcd, isqrt, pi
 from random import Random
 
 
@@ -113,6 +114,20 @@ def mul_monic_factor(poly: list[int], coeffs: tuple[int, ...], p: int) -> list[i
         for m, factor_coeff in enumerate(coeffs):
             out[i + m] = (out[i + m] + factor_coeff * coeff) % p
     return out
+
+
+def ceil_fraction(value: Fraction) -> int:
+    return -((-value.numerator) // value.denominator)
+
+
+def floor_sqrt_fraction(value: Fraction) -> int:
+    assert value >= 0
+    root = isqrt(value.numerator // value.denominator)
+    while Fraction((root + 1) * (root + 1), 1) <= value:
+        root += 1
+    while Fraction(root * root, 1) > value:
+        root -= 1
+    return root
 
 
 def locator_from_roots(roots: tuple[int, ...], p: int) -> list[int]:
@@ -8377,6 +8392,133 @@ def check_boundary_core_square_map_packet_count() -> None:
                 )
 
 
+def check_sparse_certificate_fixed_residual_feasibility() -> None:
+    for q in (5, 7, 11, 13, 17, 19):
+        for e in range(2, q):
+            if e % 2 or (q - 1) % e:
+                continue
+            h = e // 2
+            for degree_cap in range(0, min(5, q)):
+                for target_budget in range(0, q + 2):
+                    for residual_size in range(1, q + 3):
+                        total_classes = h * residual_size
+                        max_missing_classes = (h - 1) * residual_size
+                        selected_rhs = Fraction(
+                            h
+                            * h
+                            * target_budget
+                            * (
+                                (q - 3) * residual_size * residual_size
+                                + 2 * residual_size * degree_cap
+                            ),
+                            (q - 1) * (q - 1),
+                        )
+                        max_selected = min(
+                            total_classes,
+                            floor_sqrt_fraction(selected_rhs),
+                        )
+                        selected_forced_missing = max(
+                            0,
+                            total_classes - max_selected,
+                        )
+                        missing_forced_missing = max(
+                            0,
+                            ceil_fraction(
+                                Fraction(
+                                    h
+                                    * (residual_size - degree_cap)
+                                    * (q + 1 - target_budget),
+                                    q - 1,
+                                )
+                            ),
+                        )
+                        forced_missing = max(
+                            selected_forced_missing,
+                            missing_forced_missing,
+                        )
+                        feasible = (
+                            residual_size > degree_cap
+                            and forced_missing <= max_missing_classes
+                        )
+                        expected_interval = (
+                            list(
+                                range(
+                                    residual_size,
+                                    total_classes - forced_missing + 1,
+                                )
+                            )
+                            if feasible
+                            else []
+                        )
+
+                        brute_interval = []
+                        for selected_classes in range(
+                            residual_size,
+                            total_classes + 1,
+                        ):
+                            missing_classes = total_classes - selected_classes
+                            selected_ok = (
+                                (q - 1)
+                                * (q - 1)
+                                * selected_classes
+                                * selected_classes
+                            ) <= (
+                                h
+                                * h
+                                * target_budget
+                                * (
+                                    (q - 3)
+                                    * residual_size
+                                    * residual_size
+                                    + 2 * residual_size * degree_cap
+                                )
+                            )
+                            missing_ok = (
+                                h
+                                * (residual_size - degree_cap)
+                                * (q + 1 - target_budget)
+                            ) <= ((q - 1) * missing_classes)
+                            if (
+                                residual_size > degree_cap
+                                and selected_ok
+                                and missing_ok
+                            ):
+                                brute_interval.append(selected_classes)
+
+                        assert expected_interval == brute_interval, (
+                            q,
+                            e,
+                            h,
+                            degree_cap,
+                            target_budget,
+                            residual_size,
+                            selected_rhs,
+                            max_selected,
+                            selected_forced_missing,
+                            missing_forced_missing,
+                            forced_missing,
+                            expected_interval,
+                            brute_interval,
+                        )
+                        if brute_interval:
+                            feasible_missing = {
+                                total_classes - selected_classes
+                                for selected_classes in brute_interval
+                            }
+                            assert feasible_missing == set(
+                                range(forced_missing, max_missing_classes + 1)
+                            ), (
+                                q,
+                                e,
+                                degree_cap,
+                                target_budget,
+                                residual_size,
+                                feasible_missing,
+                                forced_missing,
+                                max_missing_classes,
+                            )
+
+
 def check_boundary_core_classified_per_core_bound() -> None:
     for index in range(2, 31):
         generic_cover_coefficient = Fraction(index - 1, index * index)
@@ -8664,6 +8806,7 @@ def main() -> None:
     check_boundary_core_square_norm_hankel_minor_discriminants()
     check_boundary_core_square_norm_endpoint_charge()
     check_boundary_core_square_map_packet_count()
+    check_sparse_certificate_fixed_residual_feasibility()
     check_boundary_core_classified_per_core_bound()
     check_nonruled_degree_bound()
     check_average_collinearity_corollary()

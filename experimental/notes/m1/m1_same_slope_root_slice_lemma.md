@@ -3645,6 +3645,59 @@ certificates in a parameter range as soon as `alpha_0` is above this window
 throughout that range.  This is the normalized density target left by the
 local square-map analysis.
 
+For finite-row checking, the same window has an exact integer form at fixed
+residual size.  Let `h=e/2`, and suppose that a residual with `m` selected
+supports has class counts
+
+```text
+m <= K <= hm,        C=hm-K,        0 <= C <= (h-1)m.
+```
+
+Define
+
+```text
+K_sel,max
+ = min(
+     hm,
+     floor_sqrt(
+       h^2 R((q-3)m^2+2mD)/(q-1)^2
+     )
+   ),
+
+C_sel,min = max(0,hm-K_sel,max),
+
+C_miss,min
+ = max(
+     0,
+     ceil(h(m-D)(q+1-R)/(q-1))
+   ),
+
+C_* = max(C_sel,min,C_miss,min).                 (RKSQSPFEASDATA)
+```
+
+Then the class-count part of a `(D,R)` sparse residual certificate at this
+fixed `m` is feasible if and only if
+
+```text
+m>D,        C_* <= (h-1)m.
+```
+
+When it is feasible, the feasible integer interval is exactly
+
+```text
+C_* <= C <= (h-1)m,
+m <= K <= hm-C_*,        C=hm-K.                 (RKSQSPFEAS)
+```
+
+Indeed, (RKSQSPCERT1) is precisely `K<=K_sel,max`, while
+(RKSQSPCERT2) is precisely `C>=C_miss,min`; together with `K+C=hm` and the
+unconditional class ranges this leaves the single interval above.  If
+`C_* > (h-1)m`, no integer class count can satisfy both budget inequalities.
+Thus, at a fixed residual size, the remaining sparse-certificate obstruction
+is not a search over palettes: it is an explicit integer feasibility interval.
+The structural support conditions `B<=R` and `max_x d_Sigma(x)<=D` remain the
+separate row-basis/core-image part of the certificate.
+
 In particular, the window becomes uniform once the residual is separated from
 the endpoint-star threshold.  If a `(D,R)` sparse residual certificate also
 satisfies `m>=L D` for an integer `L>=2`, then `D/m<=1/L`, and the preceding
@@ -4581,6 +4634,7 @@ the residual small-support exclusion criterion (RKSQEXCLUDE), the local
 support-budget output theorem (RKSQLOCALOUT), the sparse residual certificate
 reduction (RKSQSPCERT0/RKSQSPCERT1/RKSQSPCERT2/RKSQSPCERT), the sparse
 certificate feasibility window (RKSQSPWINDOW1/RKSQSPWINDOW2/RKSQSPWINDOW), the
+fixed-residual sparse class-count interval (RKSQSPFEASDATA/RKSQSPFEAS), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
@@ -4691,6 +4745,7 @@ the residual small-support exclusion criterion (RKSQEXCLUDE), the local
 support-budget output theorem (RKSQLOCALOUT), the sparse residual certificate
 reduction (RKSQSPCERT0/RKSQSPCERT1/RKSQSPCERT2/RKSQSPCERT), the sparse
 certificate feasibility window (RKSQSPWINDOW1/RKSQSPWINDOW2/RKSQSPWINDOW), the
+fixed-residual sparse class-count interval (RKSQSPFEASDATA/RKSQSPFEAS), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),

@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 fixed-residual sparse interval
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The M1 square-map sparse-certificate note now
+  states the exact fixed-`m_ap` integer feasibility interval for selected and
+  missing palette class counts `(K_ap,C_ap)` under
+  (RKSQSPCERT1/RKSQSPCERT2).
+- **How it is useful:** Turns the residual sparse-certificate branch into a
+  single explicit arithmetic interval once `q,D,R,e,m_ap` are fixed, making
+  finite row-basis/core-image candidates easier to falsify or certify.
+- **What to do next:** Apply the interval to concrete finite rows and compare
+  the surviving intervals with structural support constraints from the
+  row-basis/core-image ledger.
+
 ### 2026-06-30 - M1 finite sparse feasibility evaluator
 
 - **Agent/model:** AllenGrahamHart / Codex.
