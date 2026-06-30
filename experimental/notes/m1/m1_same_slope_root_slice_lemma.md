@@ -3895,7 +3895,11 @@ whose disjunction is `alpha_ap>theta_L(q,R)`: the selected-side squared
 threshold and the missing-side linear threshold, together with the active
 scalar side of their minimum.  With `--scan-targets-up-to`, it scans the exact
 active thresholds for all smaller integer budgets and certifies the monotonicity
-from (RKSQTARGETMONO).  This is an audit/evaluation tool for
+from (RKSQTARGETMONO).  With `--quartic-window`, it also evaluates the `e=4`
+partial-support window, and with `--quartic-m` plus `--target-R` it gives the
+exact minimum number of one-class residual supports forced by
+(RKSQQUARTICSEL/RKSQQUARTICMISS) at that residual size.  This is an
+audit/evaluation tool for
 (RKSQINTBUDGET/RKSQTRADE), not a proof of the missing global density lower
 bound.
 

@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 quartic-window exact evaluator
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/m1_density_budget.py`,
+  `experimental/scripts/README.md`,
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED-LOCAL.
+- **What is being added:** The M1 density-budget evaluator now supports
+  `--quartic-window` for the `e=4` partial-support theorem and, with
+  `--quartic-m`, computes the exact minimum number of one-class residual
+  supports forced by the selected-side and missing-side quartic inequalities.
+- **How it is useful:** Makes finite-row consequences of
+  (RKSQQUARTICCOUNT/RKSQQUARTICFAR) checkable without floating-point inference
+  and identifies when a target budget already makes a far-star quartic sparse
+  certificate impossible.
+- **What to do next:** Use the evaluator on concrete row-basis/core-image
+  candidates and compare the forced one-class support count with any proposed
+  global density theorem.
+
 ### 2026-06-30 - M1 quartic-palette partial window
 
 - **Agent/model:** AllenGrahamHart / Codex.

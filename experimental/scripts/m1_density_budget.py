@@ -21,6 +21,12 @@ integer budgets and certifies the monotonicity from (RKSQTARGETMONO).
 With ``--baseline-a0`` it uses the unconditional reduced-support density floor
 ``a0=2/e`` from (RKSQMINALPHA).
 
+With ``--quartic-window`` it evaluates the first nontrivial palette case
+``e=4`` from (RKSQQUARTICCOUNT/RKSQQUARTICFAR).  If ``--quartic-m`` and
+``--target-R`` are also supplied, it computes the exact minimum number of
+one-class residual supports forced by the selected-side and missing-side
+quartic inequalities.
+
 The script does not prove the missing global row-basis/core-image density
 bound.  It tells a finite checker what support budget that hypothetical bound
 would close, and what near-star template ledger remains.
@@ -73,6 +79,12 @@ def rational(text: str) -> Fraction:
 
 def ceil_fraction(value: Fraction) -> int:
     return -(-value.numerator // value.denominator)
+
+
+def floor_sqrt_fraction(value: Fraction) -> int:
+    if value < 0:
+        raise ValueError("cannot take square root of a negative rational")
+    return math.isqrt(value.numerator // value.denominator)
 
 
 def fraction_record(value: Fraction) -> dict[str, Any]:
@@ -203,6 +215,92 @@ def target_scan(q: int, far_factor: int, max_support_budget: int) -> dict[str, A
     }
 
 
+def quartic_window_report(args: argparse.Namespace, far_factor: int) -> dict[str, Any]:
+    q = args.q
+    d_cap = args.D
+    selected_denominator = (q - 3) * far_factor + 2
+    selected_threshold = Fraction(
+        (q - 1) * (q - 1) * far_factor,
+        4 * selected_denominator,
+    )
+    missing_threshold = (
+        Fraction(q + 1)
+        - Fraction(far_factor, 2 * (far_factor - 1)) * (q - 1)
+    )
+    quartic_threshold = max(selected_threshold, missing_threshold)
+    report: dict[str, Any] = {
+        "object": "m1_quartic_palette_partial_window",
+        "status": "AUDIT",
+        "theorem_problem_id": (
+            "M1 / RKSQQUARTICCOUNT / RKSQQUARTICFAR / RKSQQUARTICHALF"
+        ),
+        "e": 4,
+        "selected_side_R_threshold": fraction_record(selected_threshold),
+        "missing_side_half_line_R_threshold": fraction_record(missing_threshold),
+        "combined_far_sparse_R_threshold": fraction_record(quartic_threshold),
+        "combined_integer_R_Z": ceil_fraction(quartic_threshold) - 1,
+        "certificate": (
+            "For e=4, P_ap/m_ap is forced above both the selected-side "
+            "and missing-side lower bounds. Since P_ap<=m_ap, a far-star "
+            "sparse certificate is impossible for integer R<=combined_R_Z."
+        ),
+    }
+    if args.target_R is not None:
+        selected_square, _ = target_components(q, far_factor, args.target_R)
+        missing_fraction = (
+            Fraction(2 * (far_factor - 1), far_factor)
+            * Fraction(q + 1 - args.target_R, q - 1)
+        )
+        report["target_R"] = args.target_R
+        report["target_partial_fraction_bounds"] = {
+            "selected_side_square": fraction_record(selected_square),
+            "selected_side_expression": (
+                "P_ap/m_ap >= 2(1 - sqrt(selected_side_square))"
+            ),
+            "selected_side_impossible_from_P_le_m": selected_square < Fraction(1, 4),
+            "missing_side": fraction_record(missing_fraction),
+            "missing_side_expression": (
+                "P_ap/m_ap >= 2((L-1)/L)(q+1-R)/(q-1)"
+            ),
+            "missing_side_impossible_from_P_le_m": missing_fraction > 1,
+            "far_sparse_branch_excluded": args.target_R <= (
+                ceil_fraction(quartic_threshold) - 1
+            ),
+        }
+    if args.quartic_m is not None:
+        if args.target_R is None:
+            raise ValueError("--quartic-m requires --target-R")
+        residual_size = args.quartic_m
+        sparse_size_condition = residual_size > d_cap
+        selected_rhs = Fraction(
+            4
+            * args.target_R
+            * ((q - 3) * residual_size * residual_size + 2 * residual_size * d_cap),
+            (q - 1) * (q - 1),
+        )
+        selected_max_full_class_mass = floor_sqrt_fraction(selected_rhs)
+        selected_min_partial = max(0, 2 * residual_size - selected_max_full_class_mass)
+        missing_min_partial = ceil_fraction(
+            Fraction(
+                2 * (residual_size - d_cap) * (q + 1 - args.target_R),
+                q - 1,
+            )
+        )
+        missing_min_partial = max(0, missing_min_partial)
+        min_partial = max(selected_min_partial, missing_min_partial)
+        report["finite_residual_size"] = {
+            "m_ap": residual_size,
+            "requires_sparse_size_condition_m_gt_D": sparse_size_condition,
+            "selected_side_rhs_for_(2m-P)^2": fraction_record(selected_rhs),
+            "selected_side_max_2m_minus_P": selected_max_full_class_mass,
+            "selected_side_min_P_ap": selected_min_partial,
+            "missing_side_min_P_ap": missing_min_partial,
+            "forced_min_P_ap": min_partial,
+            "impossible_for_this_m": (not sparse_size_condition) or min_partial > residual_size,
+        }
+    return report
+
+
 def template_bound(q: int, footprint_cap: int, e: int) -> int:
     h = e // 2
     return sum(
@@ -233,6 +331,8 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError("--target-R must be at most q+1")
     if args.scan_targets_up_to is not None and args.scan_targets_up_to > q + 1:
         raise ValueError("--scan-targets-up-to must be at most q+1")
+    if args.quartic_m is not None and not args.quartic_window:
+        raise ValueError("--quartic-m requires --quartic-window")
 
     if args.L is not None:
         far_factor = args.L
@@ -328,6 +428,9 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
             q, far_factor, args.scan_targets_up_to
         )
 
+    if args.quartic_window:
+        report["quartic_palette_window"] = quartic_window_report(args, far_factor)
+
     if args.e is not None:
         exact_template_bound = None
         omitted_reason = None
@@ -366,6 +469,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--scan-targets-up-to", type=nonnegative_int)
     parser.add_argument("--e", type=even_positive_int)
     parser.add_argument("--template-exact-limit", type=nonnegative_int, default=64)
+    parser.add_argument("--quartic-window", action="store_true")
+    parser.add_argument("--quartic-m", type=positive_int)
     parser.add_argument("--pretty", action="store_true")
     return parser
 
