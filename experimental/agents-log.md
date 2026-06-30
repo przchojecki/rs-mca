@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 partial-palette star-forcing bound
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The star-forcing second-moment bound extends from
+  full palettes to arbitrary partial square-coset class selections because
+  `I(x)<=I_full(x)` pointwise:
+  `sum_x I(x)^2 <= (q-3)m^2+2mDelta`.
+- **How it is useful:** This confirms that selecting only some square-coset
+  classes cannot create a new local second-moment obstruction; the same large
+  endpoint-star alternative controls the actual selected-packet family.
+- **What to do next:** Apply the endpoint-star alternative to row-basis/core
+  images and classify when such stars are quotient-periodic or template-like.
+
 ### 2026-06-30 - M1 selected support star-forcing bound
 
 - **Agent/model:** AllenGrahamHart / Codex.

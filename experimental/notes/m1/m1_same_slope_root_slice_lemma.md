@@ -37,6 +37,7 @@ SQUARE-NORM SELECTED SUPPORT-AVOIDANCE REDUCTION /
 SQUARE-NORM SELECTED SUPPORT-DEGREE PROFILE /
 SQUARE-NORM SELECTED SUPPORT-COLLISION ENERGY /
 SQUARE-NORM SELECTED SUPPORT STAR-FORCING BOUND /
+SQUARE-NORM PARTIAL-PALETTE STAR-FORCING BOUND /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3274,6 +3275,26 @@ then some endpoint has `d_Sigma(x)>D`.  This is the precise low-template
 alternative produced by the local square-map ledger: large residual incidence
 energy forces a large endpoint star in the selected support image.
 
+The same star alternative controls arbitrary partial palettes.  With `I(x)` as
+in (RKSQAVOID), let `m=|Sigma|` and
+`Delta=max_x d_Sigma(x)`.  Since `0<=I(x)<=I_full(x)` pointwise,
+
+```text
+sum_x I(x)^2 <= sum_x I_full(x)^2
+             <= (q-3)m^2 + 2mDelta.              (RKSQPARTSTAR)
+```
+
+Equivalently, if an arbitrary selected packet family satisfies
+
+```text
+sum_x I(x)^2 > (q-3)m^2 + 2mD,
+```
+
+then some endpoint lies in more than `D` selected supports.  Thus even after
+the global row-basis/core image chooses only some square-coset classes, local
+packet geometry cannot create extra second-moment mass beyond the same
+endpoint-star obstruction.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -3782,8 +3803,9 @@ design (RKSQDESIGN), the selected support-avoidance reduction
 (RKSQAVOID/RKSQAVOIDMASS), the selected support-degree profile
 (RKSQDEG/RKSQDEG2), the selected support-collision energy (RKSQSTAR), the
 selected support star-forcing bound (RKSQSTARFORCE), the canonical
-endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset
-palette (RKSQPAIRPAL), the
+partial-palette star-forcing bound (RKSQPARTSTAR), the canonical endpoint-pair
+norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
+(RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
 (RKSQEPCH), and square-map packet-count corollary (RKSQCOUNT) from the support
@@ -3860,8 +3882,9 @@ design (RKSQDESIGN), the selected support-avoidance reduction
 (RKSQAVOID/RKSQAVOIDMASS), the selected support-degree profile
 (RKSQDEG/RKSQDEG2), the selected support-collision energy (RKSQSTAR), the
 selected support star-forcing bound (RKSQSTARFORCE), the canonical
-endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset
-palette (RKSQPAIRPAL), the
+partial-palette star-forcing bound (RKSQPARTSTAR), the canonical endpoint-pair
+norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
+(RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
 (RKSQEPCH), and the packet-count corollary (RKSQCOUNT).
