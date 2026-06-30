@@ -2785,6 +2785,19 @@ If a global row-basis/core-image argument proves
 far-from-star sparse branch is empty.  The local output reduces to endpoint
 stars, \(D\)-small residuals, large support \(B_{\rm ap}>R\), and the
 polynomial-size near-star template ledger above.
+Equivalently, a density lower bound \(\alpha_{\rm ap}\ge a_0\) gives the
+explicit support budget
+\[
+        R_{\rm dens}(a_0,L)=
+        \max\left\{
+          {a_0^2(q-1)^2\over q-3+2/L},
+          q+1-{L\over L-1}(1-a_0)(q-1)
+        \right\}.
+\]
+For every \(R<R_{\rm dens}(a_0,L)\), a sparse certificate with
+\(B_{\rm ap}\le R\) is either \(L\)-near-star or impossible.  Thus a global
+selected-density theorem immediately translates into an explicit
+all-line support budget plus the near-star template ledger.
 Moreover, if \(L_E(z)=Wz-Z\) for \(E=[Z:W]\), then in the off-diagonal case
 \[
         {H_1\over H_0}

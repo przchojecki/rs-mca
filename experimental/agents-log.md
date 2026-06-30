@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 density-budget inversion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL-DENSITY / AUDIT.
+- **What is being added:** The closure threshold is inverted into an explicit
+  support budget.  A global lower bound `alpha_ap>=a0` closes every sparse
+  certificate with `B_ap<=R<R_dens(a0,L)`, where
+  `R_dens=max(a0^2(q-1)^2/(q-3+2/L),
+  q+1-(L/(L-1))(1-a0)(q-1))`, except for the `L`-near-star template ledger.
+- **How it is useful:** This translates a future global density theorem into a
+  concrete all-line support budget, making the M1 comparison target explicit.
+- **What to do next:** Seek a row-basis/core-image lower bound `a0` strong
+  enough to put the desired slope budget below `R_dens(a0,L)`.
+
 ### 2026-06-30 - M1 density-threshold closure corollary
 
 - **Agent/model:** AllenGrahamHart / Codex.

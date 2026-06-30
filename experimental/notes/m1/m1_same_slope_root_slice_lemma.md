@@ -53,6 +53,7 @@ SQUARE-NORM FAR-FROM-STAR SPARSE CERTIFICATE CAP /
 SQUARE-NORM DENSITY-GAP NEAR-STAR LOCALIZATION /
 SQUARE-NORM NEAR-STAR TEMPLATE COUNT /
 SQUARE-NORM DENSITY-THRESHOLD CLOSURE COROLLARY /
+SQUARE-NORM DENSITY-BUDGET INVERSION /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3772,6 +3773,55 @@ This is the exact reduction target for the global density theorem: prove
 (RKSQDENSITYHYP), and the local square-map residue branch has no uncontrolled
 aperiodic packing term left.
 
+The same threshold can be inverted into a support-budget statement.  Let
+`0<=a0<=1` be any global lower bound for the residual selected density:
+
+```text
+alpha_ap >= a0.                                  (RKSQALPHA0)
+```
+
+For `L>=2`, define
+
+```text
+R_sel(a0,L)
+  = a0^2 (q-1)^2/(q-3+2/L),
+
+R_miss(a0,L)
+  = q+1 - (L/(L-1))(1-a0)(q-1),
+
+R_dens(a0,L)
+  = max(R_sel(a0,L), R_miss(a0,L)).              (RKSQBUDGET)
+```
+
+If `R<R_dens(a0,L)`, then either `R<R_sel(a0,L)` or
+`R<R_miss(a0,L)`.  In the first case
+
+```text
+a0^2 > R(q-3+2/L)/(q-1)^2,
+```
+
+and in the second case
+
+```text
+a0 > 1 - ((L-1)/L)(q+1-R)/(q-1).
+```
+
+Together with `alpha_ap>=a0`, either inequality implies
+`alpha_ap>theta_L(q,R)`.  Therefore, under (RKSQALPHA0), every residual with
+small support budget `B_ap<=R<R_dens(a0,L)` is forced into the `L`-near-star
+template ledger:
+
+```text
+B_ap<=R<R_dens(a0,L)
+  =>  m_ap<LD
+      or the sparse certificate branch is impossible.        (RKSQBUDGETCLOSE)
+```
+
+This is the quantitative form needed for a prize comparison: a global density
+lower bound `a0` immediately gives an explicit all-line support budget up to
+`R_dens(a0,L)`, with the only leftover being the polynomial-size near-star
+template ledger.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -4297,6 +4347,8 @@ the density-gap near-star localization
 the near-star template count (RKSQNEARCOUNT/RKSQNEARPOLY),
 the density-threshold closure corollary
 (RKSQTHETA/RKSQDENSITYHYP/RKSQCLOSE),
+the density-budget inversion
+(RKSQALPHA0/RKSQBUDGET/RKSQBUDGETCLOSE),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the
@@ -4393,6 +4445,8 @@ the density-gap near-star localization
 the near-star template count (RKSQNEARCOUNT/RKSQNEARPOLY),
 the density-threshold closure corollary
 (RKSQTHETA/RKSQDENSITYHYP/RKSQCLOSE),
+the density-budget inversion
+(RKSQALPHA0/RKSQBUDGET/RKSQBUDGETCLOSE),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the

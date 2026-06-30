@@ -75,7 +75,7 @@ support-budget alternative, palette-density support lower bound, and
 small-support exclusion criterion, local support-budget output theorem, and
 sparse residual certificate reduction, feasibility window, and far-from-star
 certificate cap with near-star localization, template count, and
-density-threshold closure.
+density-threshold closure and budget inversion.
 """
 
 from __future__ import annotations
@@ -7674,6 +7674,48 @@ def check_boundary_core_square_map_packet_count() -> None:
                             )
                             density_threshold_exceeded = (
                                 far_selected_gap or far_missing_gap
+                            )
+                            density_budget_selected_closes = (
+                                far_factor
+                                * (prime - 1)
+                                * (prime - 1)
+                                * residual_selected_classes
+                                * residual_selected_classes
+                            ) > (
+                                (
+                                    full_palette_size
+                                    * residual_count
+                                )
+                                * (
+                                    full_palette_size
+                                    * residual_count
+                                )
+                                * probe_budget
+                                * (far_factor * (prime - 3) + 2)
+                            )
+                            density_budget_missing_closes = (
+                                far_factor
+                                * (prime - 1)
+                                * (
+                                    full_palette_size * residual_count
+                                    - residual_selected_classes
+                                )
+                            ) < (
+                                (far_factor - 1)
+                                * (full_palette_size * residual_count)
+                                * (len(all_projective_points) - probe_budget)
+                            )
+                            assert (
+                                density_budget_selected_closes
+                                == far_selected_gap
+                            )
+                            assert (
+                                density_budget_missing_closes
+                                == far_missing_gap
+                            )
+                            assert density_threshold_exceeded == (
+                                density_budget_selected_closes
+                                or density_budget_missing_closes
                             )
                             if residual_count >= far_factor * degree_cap:
                                 assert (
