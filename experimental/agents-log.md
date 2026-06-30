@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 M3 generic regular minor
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_generic_regular_minor.py`;
+  `experimental/data/certificates/hankel-f17-32-generic-regular-minor/`;
+  `experimental/notes/m1/f17_32_m3_generic_regular_minor.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A Vandermonde-specialization certificate proving
+  that the prefix regular Hankel minor in the M3 window is generically
+  nonzero, with exact degree `j+1`, for every `385<=A<=426`.
+- **How it is useful:** It shows regular-prefix failure is a special
+  determinant-zero stratum of the actual syndrome pencil, not an unavoidable
+  failure of the v9 regular chart.
+- **What to do next:** For concrete `F_17^32` syndrome pencils, either compute
+  the actual prefix determinant/root data or classify determinant-zero cases by
+  alternate row sets and pivot charts.
+
 ### 2026-06-30 - F17^32 Hankel row descriptor
 
 - **Agent/model:** AllenGrahamHart / Codex.

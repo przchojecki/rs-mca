@@ -1,0 +1,971 @@
+{
+  "agreements": [
+    {
+      "A": 385,
+      "generic_degree": 128,
+      "j": 127,
+      "leading_coefficient_encoding": 1960127525760963954976810457703429629095,
+      "minor_size": 128,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 128,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 129,
+      "vandermonde_product_encoding": 1442303266353718182582541126167929149753,
+      "witness_specialization": {
+        "node_prefix_count": 128,
+        "node_prefix_hash": "725f4b906ca9e32b6358b11072ab2fee76f85b41dac78f2613f9b76b6413f7e5",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 386,
+      "generic_degree": 127,
+      "j": 126,
+      "leading_coefficient_encoding": 496073742394775788598166928489200568658,
+      "minor_size": 127,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 127,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 130,
+      "vandermonde_product_encoding": 319278768228821373255275556231410355830,
+      "witness_specialization": {
+        "node_prefix_count": 127,
+        "node_prefix_hash": "ab7fb911da75601707abfe8e8f3f8fc412b7d2fe62ae5d24b485cf18930144e0",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 387,
+      "generic_degree": 126,
+      "j": 125,
+      "leading_coefficient_encoding": 1812083095683987272151378733457441781395,
+      "minor_size": 126,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 126,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 131,
+      "vandermonde_product_encoding": 1713900030201128284193944156152292852946,
+      "witness_specialization": {
+        "node_prefix_count": 126,
+        "node_prefix_hash": "6b0da864e56189d9e9f94faa0ceede3e5ad31cc48c4b2397c81f73913a90806d",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 388,
+      "generic_degree": 125,
+      "j": 124,
+      "leading_coefficient_encoding": 801602236823272202298702624015334190399,
+      "minor_size": 125,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 125,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 132,
+      "vandermonde_product_encoding": 1370428967695195231846436961082535040590,
+      "witness_specialization": {
+        "node_prefix_count": 125,
+        "node_prefix_hash": "16b82f0321fdb922eb811ca0da9be537ee840948b6d44e752e7a568fc2def38a",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 389,
+      "generic_degree": 124,
+      "j": 123,
+      "leading_coefficient_encoding": 353908664811310541551848142583756076095,
+      "minor_size": 124,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 124,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 133,
+      "vandermonde_product_encoding": 234805518827481851098117304777935057645,
+      "witness_specialization": {
+        "node_prefix_count": 124,
+        "node_prefix_hash": "75042c45aa5e8df859f35586d9579daa5140f31e471ef0ba053565f9a103bfd0",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 390,
+      "generic_degree": 123,
+      "j": 122,
+      "leading_coefficient_encoding": 342634331139171815574309265824355558334,
+      "minor_size": 123,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 123,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 134,
+      "vandermonde_product_encoding": 1017152962221881189297336295912219312586,
+      "witness_specialization": {
+        "node_prefix_count": 123,
+        "node_prefix_hash": "9841eaf3751be51b1cbe0ffd5852a13fb81c33bf2b0c650bcc1acb00ed60ce33",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 391,
+      "generic_degree": 122,
+      "j": 121,
+      "leading_coefficient_encoding": 1710840598805328105053886624336408118149,
+      "minor_size": 122,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 122,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 135,
+      "vandermonde_product_encoding": 144820048953672480806756858159901794400,
+      "witness_specialization": {
+        "node_prefix_count": 122,
+        "node_prefix_hash": "cf5444506491661cbbe14de5487e6ecdb1bf46fc55b1bf575ef266c30a142446",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 392,
+      "generic_degree": 121,
+      "j": 120,
+      "leading_coefficient_encoding": 2195971428518805751996365415031908500830,
+      "minor_size": 121,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 121,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 136,
+      "vandermonde_product_encoding": 905696134646466656696451769112704666775,
+      "witness_specialization": {
+        "node_prefix_count": 121,
+        "node_prefix_hash": "e3c392cbbe98f0243ccfa094d3c776fa41ec0000b05b8891b8cf514bc1796be0",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 393,
+      "generic_degree": 120,
+      "j": 119,
+      "leading_coefficient_encoding": 1820799323371946193183878234070001430955,
+      "minor_size": 120,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 120,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 137,
+      "vandermonde_product_encoding": 876985603592882879961902077607178729135,
+      "witness_specialization": {
+        "node_prefix_count": 120,
+        "node_prefix_hash": "70753cabfad4ca898ec7f31e3ed1fb3dbff87fdea94c41069f8b7cdc9350e57c",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 394,
+      "generic_degree": 119,
+      "j": 118,
+      "leading_coefficient_encoding": 470938990856930116960320685179333350339,
+      "minor_size": 119,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 119,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 138,
+      "vandermonde_product_encoding": 354398525623326563768088933022590479979,
+      "witness_specialization": {
+        "node_prefix_count": 119,
+        "node_prefix_hash": "4cba2064cd09674be0e5af0815a1b6c7c0fc6f6d575d6b86a83966f063470dc7",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 395,
+      "generic_degree": 118,
+      "j": 117,
+      "leading_coefficient_encoding": 100919767089740780499066295931668351702,
+      "minor_size": 118,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 118,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 139,
+      "vandermonde_product_encoding": 331029713511286459094945298501039697821,
+      "witness_specialization": {
+        "node_prefix_count": 118,
+        "node_prefix_hash": "d6e019522167be650b0f7cb1fc6d572d101f637e1598f6aa9102c69cc4e095d4",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 396,
+      "generic_degree": 117,
+      "j": 116,
+      "leading_coefficient_encoding": 1685443426320145250183393507716690895160,
+      "minor_size": 117,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 117,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 140,
+      "vandermonde_product_encoding": 288894684799806958022401817596130357684,
+      "witness_specialization": {
+        "node_prefix_count": 117,
+        "node_prefix_hash": "eb981daf558731d36f45c15b2631af2c7783602759d7e9fa82266cfcbb5407e3",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 397,
+      "generic_degree": 116,
+      "j": 115,
+      "leading_coefficient_encoding": 1664634994593716759843410256493381111947,
+      "minor_size": 116,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 116,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 141,
+      "vandermonde_product_encoding": 1259938950699015590693248326269304469518,
+      "witness_specialization": {
+        "node_prefix_count": 116,
+        "node_prefix_hash": "69032576d1de27a3aa5df3e6d48c09c76723d94176131a8814cd05fd18cc5a43",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 398,
+      "generic_degree": 115,
+      "j": 114,
+      "leading_coefficient_encoding": 294773241926924909066802979946567578729,
+      "minor_size": 115,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 115,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 142,
+      "vandermonde_product_encoding": 67200843575339088482823474456291566632,
+      "witness_specialization": {
+        "node_prefix_count": 115,
+        "node_prefix_hash": "347a7209e63b5e335872906fd68912f8cf2069784db2dc91e3f1212344f0f594",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 399,
+      "generic_degree": 114,
+      "j": 113,
+      "leading_coefficient_encoding": 71846692608176055586320066844908846896,
+      "minor_size": 114,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 114,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 143,
+      "vandermonde_product_encoding": 1955248411342466673402690739101309814213,
+      "witness_specialization": {
+        "node_prefix_count": 114,
+        "node_prefix_hash": "be91fb3985d6f972c3ad3f31a9121078c59d9e258f955ea0ad6d9f8d52d953a8",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 400,
+      "generic_degree": 113,
+      "j": 112,
+      "leading_coefficient_encoding": 1130307758722218882644531062134510475889,
+      "minor_size": 113,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 113,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 144,
+      "vandermonde_product_encoding": 1205457092703529205075183155188899691086,
+      "witness_specialization": {
+        "node_prefix_count": 113,
+        "node_prefix_hash": "220237ee8dc7e6d9c14ab19e2e9813c2503f85545afb0f2ab810c9d526021e91",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 401,
+      "generic_degree": 112,
+      "j": 111,
+      "leading_coefficient_encoding": 1250918881245057304151093957424794294165,
+      "minor_size": 112,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 112,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 145,
+      "vandermonde_product_encoding": 1082168510741041559288283996037057463075,
+      "witness_specialization": {
+        "node_prefix_count": 112,
+        "node_prefix_hash": "cbba72e9c5d0a9a5b9b058f953ecb9a0e20fa683b599af83bd3bb64850f0aea7",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 402,
+      "generic_degree": 111,
+      "j": 110,
+      "leading_coefficient_encoding": 24734832539777253207071787731201571446,
+      "minor_size": 111,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 111,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 146,
+      "vandermonde_product_encoding": 1675915113208843634329336691153926261662,
+      "witness_specialization": {
+        "node_prefix_count": 111,
+        "node_prefix_hash": "fae11d1024d290f320c470cf8bd789022cc1698aa9fcebd1e7620027bd66af9b",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 403,
+      "generic_degree": 110,
+      "j": 109,
+      "leading_coefficient_encoding": 459947468539296144349069142694475510118,
+      "minor_size": 110,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 110,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 147,
+      "vandermonde_product_encoding": 34939642453298176290444164090439866782,
+      "witness_specialization": {
+        "node_prefix_count": 110,
+        "node_prefix_hash": "e990dd5594ff7dc1d48fa5160f05163a2b0d074d2e983bd1545132c72e24a451",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 404,
+      "generic_degree": 109,
+      "j": 108,
+      "leading_coefficient_encoding": 1918575663998876397526365133514413501504,
+      "minor_size": 109,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 109,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 148,
+      "vandermonde_product_encoding": 451624417430239348885735922655027375054,
+      "witness_specialization": {
+        "node_prefix_count": 109,
+        "node_prefix_hash": "6ca975c5e60d2924d921e4240eb49e33e9a1b5582f959debec42293e69de80d4",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 405,
+      "generic_degree": 108,
+      "j": 107,
+      "leading_coefficient_encoding": 211041704907486732169007754589382378937,
+      "minor_size": 108,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 108,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 149,
+      "vandermonde_product_encoding": 2340173473896498915050081811566536416700,
+      "witness_specialization": {
+        "node_prefix_count": 108,
+        "node_prefix_hash": "3bc75ee6c3bb943c5598c8959cf6b34ad3c5683a954e8803efce555e371ae501",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 406,
+      "generic_degree": 107,
+      "j": 106,
+      "leading_coefficient_encoding": 1521820178092625308093349612694629485453,
+      "minor_size": 107,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 107,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 150,
+      "vandermonde_product_encoding": 613715033906744706909161788039248354972,
+      "witness_specialization": {
+        "node_prefix_count": 107,
+        "node_prefix_hash": "875260c7bd81f97fb6ab6fe6b0b67cf06630c5d21a0b46c4877cad9ecbe2f442",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 407,
+      "generic_degree": 106,
+      "j": 105,
+      "leading_coefficient_encoding": 307621075849948038636009236451998818873,
+      "minor_size": 106,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 106,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 151,
+      "vandermonde_product_encoding": 1764162671233851639377850607099084195701,
+      "witness_specialization": {
+        "node_prefix_count": 106,
+        "node_prefix_hash": "77c6cbe9fd34ef9e534662c1ecd9a106ee8d57f6df3077082c99509604db75f2",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 408,
+      "generic_degree": 105,
+      "j": 104,
+      "leading_coefficient_encoding": 1831202745295413043137036734163137881540,
+      "minor_size": 105,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 105,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 152,
+      "vandermonde_product_encoding": 1409951053206587923767471973307828849249,
+      "witness_specialization": {
+        "node_prefix_count": 105,
+        "node_prefix_hash": "1e74633e133ea931f07bcb20b7141b8918f63163966486310555f67d6f35fb5e",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 409,
+      "generic_degree": 104,
+      "j": 103,
+      "leading_coefficient_encoding": 422187020011215957122005847265015724713,
+      "minor_size": 104,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 104,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 153,
+      "vandermonde_product_encoding": 856888171167745293066977873520061042523,
+      "witness_specialization": {
+        "node_prefix_count": 104,
+        "node_prefix_hash": "cb0e8e3059371599fe37118547d2584552f12dd2dd3927c7c5dd747e82e26027",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 410,
+      "generic_degree": 103,
+      "j": 102,
+      "leading_coefficient_encoding": 1656892761321802793161410105918804331374,
+      "minor_size": 103,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 103,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 154,
+      "vandermonde_product_encoding": 1044369682077084398808702405156886279665,
+      "witness_specialization": {
+        "node_prefix_count": 103,
+        "node_prefix_hash": "84b0c69e5ad5867591eb9f61c407a3083bf322f54055dcd4c823abcef66d7dbe",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 411,
+      "generic_degree": 102,
+      "j": 101,
+      "leading_coefficient_encoding": 755831957698730571541985828703222995728,
+      "minor_size": 102,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 102,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 155,
+      "vandermonde_product_encoding": 1746087967500687072748559691141938546424,
+      "witness_specialization": {
+        "node_prefix_count": 102,
+        "node_prefix_hash": "89b7a978c4df43fe3d9922f4c188e985975de8c1a539f53e6dedb0a73e6085e1",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 412,
+      "generic_degree": 101,
+      "j": 100,
+      "leading_coefficient_encoding": 476489136704274775061167902838876486766,
+      "minor_size": 101,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 101,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 156,
+      "vandermonde_product_encoding": 2251050377892376921336901055118528240711,
+      "witness_specialization": {
+        "node_prefix_count": 101,
+        "node_prefix_hash": "78e77ed4ba76313ae53b0a53d479b13055457b910e77234f3a4be3153587de42",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 413,
+      "generic_degree": 100,
+      "j": 99,
+      "leading_coefficient_encoding": 262241965281328634739489740362727376348,
+      "minor_size": 100,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 100,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 157,
+      "vandermonde_product_encoding": 2273777933670996575855532567450854693988,
+      "witness_specialization": {
+        "node_prefix_count": 100,
+        "node_prefix_hash": "b28d2b1c3d3333db0a4e474bdcaef662d2471859257b57e5f737dc35462a511f",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 414,
+      "generic_degree": 99,
+      "j": 98,
+      "leading_coefficient_encoding": 255878304015780547909485754516290276079,
+      "minor_size": 99,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 99,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 158,
+      "vandermonde_product_encoding": 514150194009922504821418839267079881958,
+      "witness_specialization": {
+        "node_prefix_count": 99,
+        "node_prefix_hash": "c176be4f514ab863f66e395131569858d52b6a3bfd665921d2fa069c85d8ff98",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 415,
+      "generic_degree": 98,
+      "j": 97,
+      "leading_coefficient_encoding": 1687488083283963403905718093652314444446,
+      "minor_size": 98,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 98,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 159,
+      "vandermonde_product_encoding": 1087643364599802475748599918551477778790,
+      "witness_specialization": {
+        "node_prefix_count": 98,
+        "node_prefix_hash": "6d34f03ac77f8520cd9c1344d5aa9201f8207a8560b53de50642552580e94741",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 416,
+      "generic_degree": 97,
+      "j": 96,
+      "leading_coefficient_encoding": 1733401208212334985416239809861793981134,
+      "minor_size": 97,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 97,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 160,
+      "vandermonde_product_encoding": 1263370630721176878099403629905581567271,
+      "witness_specialization": {
+        "node_prefix_count": 97,
+        "node_prefix_hash": "a5abc31eeb657517edec5efebbc659b027e67f461e8509a2304a90bcf943af06",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 417,
+      "generic_degree": 96,
+      "j": 95,
+      "leading_coefficient_encoding": 1768718544895380476887756296451774298197,
+      "minor_size": 96,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 96,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 161,
+      "vandermonde_product_encoding": 2011549941882347178417482909791207978161,
+      "witness_specialization": {
+        "node_prefix_count": 96,
+        "node_prefix_hash": "190323f228a5621f6da135f67c748709f2f02cc43b533eca1d3d64ac6d8fafa1",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 418,
+      "generic_degree": 95,
+      "j": 94,
+      "leading_coefficient_encoding": 835436229860121537478496103576089233998,
+      "minor_size": 95,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 95,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 162,
+      "vandermonde_product_encoding": 125461814343005776704601625177812100096,
+      "witness_specialization": {
+        "node_prefix_count": 95,
+        "node_prefix_hash": "673cb5384982d5bf06e10f8b0da677ca5e2427d293462518e0eb0a25b92def58",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 419,
+      "generic_degree": 94,
+      "j": 93,
+      "leading_coefficient_encoding": 89993492769349859364812778941100020881,
+      "minor_size": 94,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 94,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 163,
+      "vandermonde_product_encoding": 1568282631176795940563763940766011243687,
+      "witness_specialization": {
+        "node_prefix_count": 94,
+        "node_prefix_hash": "86b89d92707cfc5f956dddd2419d28aee1b13949bf1595cc510dd5c5ddeed5b6",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 420,
+      "generic_degree": 93,
+      "j": 92,
+      "leading_coefficient_encoding": 2349370168658727426479015660687837002313,
+      "minor_size": 93,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 93,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 164,
+      "vandermonde_product_encoding": 347828153964632197700989437845844073861,
+      "witness_specialization": {
+        "node_prefix_count": 93,
+        "node_prefix_hash": "a64874ef314e3831ec50efa010e161e749957ce1e42868a1da7c6e414977fd52",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 421,
+      "generic_degree": 92,
+      "j": 91,
+      "leading_coefficient_encoding": 265816049548075604963879353555399861332,
+      "minor_size": 92,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 92,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 165,
+      "vandermonde_product_encoding": 305727721710765527961805475435124696126,
+      "witness_specialization": {
+        "node_prefix_count": 92,
+        "node_prefix_hash": "5b807a9e9d99da8c13e99f0750c566ffe80b6568495e0e9818d95541fd33874a",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 422,
+      "generic_degree": 91,
+      "j": 90,
+      "leading_coefficient_encoding": 184521148592075467316957239048914376974,
+      "minor_size": 91,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 91,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 166,
+      "vandermonde_product_encoding": 2076227874236272512435126145483524507963,
+      "witness_specialization": {
+        "node_prefix_count": 91,
+        "node_prefix_hash": "acc755beee94f5b4c76f65d0a263372f1018f447781746b365a3d07c2cfaf571",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 423,
+      "generic_degree": 90,
+      "j": 89,
+      "leading_coefficient_encoding": 2060256867170291804111877656520339314254,
+      "minor_size": 90,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 90,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 167,
+      "vandermonde_product_encoding": 1421839333508100428785979449833528151174,
+      "witness_specialization": {
+        "node_prefix_count": 90,
+        "node_prefix_hash": "b95d843f2d030d8cad3ee3635daf0bc0cf4c17ed8862097b7f084b227a741372",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 424,
+      "generic_degree": 89,
+      "j": 88,
+      "leading_coefficient_encoding": 1283142822677126961532305606241471025383,
+      "minor_size": 89,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 89,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 168,
+      "vandermonde_product_encoding": 1787452603378849757400339881535453545484,
+      "witness_specialization": {
+        "node_prefix_count": 89,
+        "node_prefix_hash": "c3b6320115f7032efccf16179bda357bd8a3323d6e18383b7eaac173b2012976",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 425,
+      "generic_degree": 88,
+      "j": 87,
+      "leading_coefficient_encoding": 416884347478717958584104368471384620671,
+      "minor_size": 88,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 88,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 169,
+      "vandermonde_product_encoding": 1475129969636031925277046719869777090111,
+      "witness_specialization": {
+        "node_prefix_count": 88,
+        "node_prefix_hash": "e9ea63f4735489de284e2049a4cb2cb0e1ff1eb1b39cfb6e149458420300a5fe",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    },
+    {
+      "A": 426,
+      "generic_degree": 87,
+      "j": 86,
+      "leading_coefficient_encoding": 1679562971418113032387101671407887322647,
+      "minor_size": 87,
+      "row_set": {
+        "start": 0,
+        "stop_exclusive": 87,
+        "type": "prefix"
+      },
+      "status": "PASS",
+      "t": 170,
+      "vandermonde_product_encoding": 1924090593656304490796694840952458886954,
+      "witness_specialization": {
+        "node_prefix_count": 87,
+        "node_prefix_hash": "bcb120e7855be236d4ec0b1f6db06f21a371fe895edd1dd59402ef5c1ca334f9",
+        "node_source": "row_descriptor.domain.domain_encodings",
+        "u": "zero syndrome",
+        "v_m": "sum_{i=0}^j x_i^m using the first j+1 descriptor-domain elements"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "all_records_pass",
+      "status": "PASS"
+    },
+    {
+      "name": "degree_sum",
+      "status": "PASS",
+      "value": 4515
+    },
+    {
+      "name": "budget_numerator",
+      "status": "PASS",
+      "value": 6
+    }
+  ],
+  "claim": {
+    "degree_only_budget_closes_safe_side": false,
+    "degree_sum": 4515,
+    "finite_slope_budget_numerator": 6,
+    "proof_method": "Vandermonde moment specialization",
+    "regular_window": {
+      "A_max": 426,
+      "A_min": 385
+    },
+    "summary": "For every 385 <= A <= 426, the prefix regular Hankel minor det(H_{t,j}(u)+Z H_{t,j}(v)) is generically nonzero and has exact degree j+1."
+  },
+  "nonclaims": [
+    "does not prove any particular syndrome pencil is nonsingular",
+    "does not enumerate roots over F_17^32",
+    "does not clear the finite-slope 2^-128 budget",
+    "does not classify determinant-zero singular strata"
+  ],
+  "row": {
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "row_descriptor_ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+    "row_descriptor_sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+  },
+  "schema_version": "f17-32-m3-generic-prefix-regular-minor-v1",
+  "status": "PROVED / AUDIT"
+}

@@ -78,6 +78,17 @@ first agreement where the regular bucket is singular and pass that residual to
 pivot charts.  A degree-only certificate for this whole window would be far too
 weak.
 
+The follow-up note
+
+```text
+experimental/notes/m1/f17_32_m3_generic_regular_minor.md
+```
+
+proves that the prefix regular minor is generically nonzero, with exact degree
+`j+1`, for every agreement in this window.  Thus a vanished prefix minor for an
+actual syndrome pencil is a special singular stratum, not a forced failure of
+the regular Hankel chart.
+
 Reproduce the audit packet:
 
 ```sh
