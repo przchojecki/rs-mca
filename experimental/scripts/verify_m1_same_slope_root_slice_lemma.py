@@ -58,8 +58,8 @@ endpoint certificate, endpoint-discriminant certificate, Hankel-minor
 discriminant certificate, Plucker-minor discriminant certificate,
 Plucker-chart decomposition, Plucker-chart row recurrence, Hankel square
 factorization, endpoint slope map, overlapping Plucker-chart recurrence,
-endpoint-pair inversion, diagonal endpoint collapse, endpoint-charge
-corollary, and packet-count corollary.
+endpoint-pair inversion, projective endpoint-pair inversion, diagonal endpoint
+collapse, endpoint-charge corollary, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -3438,8 +3438,57 @@ def assert_overlapping_plucker_chart_recurrence(
         substituted_row3,
     )
 
+    l0_const = (row1[0] - lambda0 * row0[0]) % p
     l0_slope = (row1[1] - lambda0 * row0[1]) % p
+    l1_const = (row2[0] - lambda1 * row1[0]) % p
     l1_slope = (row2[1] - lambda1 * row1[1]) % p
+
+    e0_z, e0_w = (-l0_const) % p, l0_slope
+    e1_z, e1_w = (-l1_const) % p, l1_slope
+    assert (e0_z, e0_w) != (0, 0)
+    assert (e1_z, e1_w) != (0, 0)
+    c0_e0 = (row0[0] * e0_w + row0[1] * e0_z) % p
+    c1_e0 = (row1[0] * e0_w + row1[1] * e0_z) % p
+    c0_e1 = (row0[0] * e1_w + row0[1] * e1_z) % p
+    c1_e1 = (row1[0] * e1_w + row1[1] * e1_z) % p
+    assert c0_e0 != 0, (
+        p,
+        a_rows,
+        b_rows,
+        (e0_z, e0_w),
+        lambda0,
+    )
+    projective_lambda0 = (c1_e0 * pow(c0_e0, -1, p)) % p
+    assert projective_lambda0 == lambda0, (
+        p,
+        a_rows,
+        b_rows,
+        (e0_z, e0_w),
+        lambda0,
+        projective_lambda0,
+    )
+    assert c1_e1 != 0, (
+        p,
+        a_rows,
+        b_rows,
+        (e1_z, e1_w),
+        lambda0,
+        lambda1,
+    )
+    projective_lambda1 = (
+        2 * lambda0 - lambda0 * lambda0 * c0_e1 * pow(c1_e1, -1, p)
+    ) % p
+    assert projective_lambda1 == lambda1, (
+        p,
+        a_rows,
+        b_rows,
+        (e0_z, e0_w),
+        (e1_z, e1_w),
+        lambda0,
+        lambda1,
+        projective_lambda1,
+    )
+
     if l0_slope == 0 or l1_slope == 0:
         return
 
@@ -6168,6 +6217,22 @@ def check_boundary_core_square_norm_hankel_minor_discriminants() -> None:
                     index,
                     prime,
                 )
+
+        row0 = (1, 1)
+        row1 = (0, 2 % prime)
+        lambda0 = 2 % prime
+        row2 = (
+            (2 * lambda0 * row1[0] - lambda0 * lambda0 * row0[0]) % prime,
+            (2 * lambda0 * row1[1] - lambda0 * lambda0 * row0[1]) % prime,
+        )
+        for lambda1 in (1 % prime, lambda0):
+            row3 = (
+                (2 * lambda1 * row2[0] - lambda1 * lambda1 * row1[0]) % prime,
+                (2 * lambda1 * row2[1] - lambda1 * lambda1 * row1[1]) % prime,
+            )
+            a_rows = (row0[0], row1[0], row2[0], row3[0])
+            b_rows = (row0[1], row1[1], row2[1], row3[1])
+            assert_overlapping_plucker_chart_recurrence(a_rows, b_rows, prime)
 
 
 def check_boundary_core_square_norm_endpoint_charge() -> None:

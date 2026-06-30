@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 projective endpoint-pair inversion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The overlapping endpoint-pair inversion is lifted
+  from finite slopes to projective endpoints `E=[Z:W]`, with
+  `lambda_0=c_1(E_0)/c_0(E_0)` and
+  `lambda_1=2lambda_0-lambda_0^2 c_0(E_1)/c_1(E_1)`.
+- **How it is useful:** Infinity endpoint cases no longer need a separate
+  residual exception: for a fixed initial row basis, the ordered projective
+  endpoint pair determines the nondegenerate overlapping square-norm packet.
+- **What to do next:** Use projective endpoint-pair injectivity to replace
+  square-norm packet counts by endpoint-pair counts, with only row-basis
+  variation remaining.
+
 ### 2026-06-30 - M1 diagonal endpoint collapse
 
 - **Agent/model:** AllenGrahamHart / Codex.
