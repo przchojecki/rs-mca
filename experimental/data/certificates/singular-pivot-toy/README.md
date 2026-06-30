@@ -35,6 +35,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/singular-pivot-toy/invalid_missing_eliminant_ref_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/singular-pivot-toy/invalid_bad_eliminant_roots_packet.json
 ```
 
 Non-claims: this is a toy row only, not an `F_17^32` row-data packet, not a

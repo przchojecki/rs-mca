@@ -12,8 +12,9 @@ it also enumerates the full finite field to check that inline root tables have
 not omitted any roots.  For packets emitted by the regular-minor extractor, it
 also checks the rank-pivot audit metadata needed to justify singular
 regular-bucket declarations, rank-witness degree-bound packets, and pivot-atlas
-records.  Local packet references such as removed-ledger certificates are
-resolved, including JSON pointer fragments.
+records.  Pivot eliminant targets with machine-readable coefficient/root tables
+are checked arithmetically.  Local packet references such as removed-ledger
+certificates are resolved, including JSON pointer fragments.
 """
 
 from __future__ import annotations
@@ -351,6 +352,17 @@ def first_matching_key(data: dict[str, Any], *patterns: str) -> str | None:
     return None
 
 
+def modulus_named_in_key(key: str) -> int | None:
+    match = re.search(r"_mod_(\d+)(?:_|$)", key)
+    return int(match.group(1)) if match else None
+
+
+def require_key_modulus(key: str, expected: int, location: str) -> None:
+    named = modulus_named_in_key(key)
+    if named is not None and named != expected:
+        raise PacketError(f"{location}.{key} uses modulus {named}, expected {expected}")
+
+
 REFERENCE_SENTINELS = {"not_enumerated", "not_applicable", "none", "unknown"}
 
 
@@ -639,6 +651,11 @@ def require_nonempty_string(value: Any, location: str) -> str:
 
 
 def validate_pivot_atlas(packet: dict[str, Any]) -> None:
+    row = packet.get("row", {})
+    row_field = row.get("field") if isinstance(row, dict) else None
+    modulus = parse_prime_field(row_field) if isinstance(row_field, str) else None
+    extension_field = PolynomialBasisField.from_packet(packet)
+
     for item in packet.get("exact_agreements", []):
         if item.get("status") == "pivot_atlas":
             charts = item.get("charts")
@@ -686,6 +703,13 @@ def validate_pivot_atlas(packet: dict[str, Any]) -> None:
                                 f"{pivot_location}.degree={degree} but "
                                 f"eliminant target degree is {target_degree}"
                             )
+                        validate_pivot_eliminant_target(
+                            target,
+                            degree,
+                            f"{pivot_location}.eliminant_ref",
+                            modulus,
+                            extension_field,
+                        )
                 elif status == "dimension_degree":
                     require_nonnegative_int(
                         pivot.get("dimension"), f"{pivot_location}.dimension"
@@ -694,6 +718,99 @@ def validate_pivot_atlas(packet: dict[str, Any]) -> None:
                         pivot.get("variety_degree"),
                         f"{pivot_location}.variety_degree",
                     )
+
+
+def validate_pivot_eliminant_target(
+    target: dict[str, Any],
+    declared_degree: int,
+    location: str,
+    modulus: int | None,
+    extension_field: PolynomialBasisField | None,
+) -> None:
+    coefficient_key = first_matching_key(
+        target,
+        r"eliminant_coefficients_mod_\d+_ascending",
+        r"coefficients_mod_\d+_ascending",
+        r"coefficients_ascending",
+    )
+    root_key = first_matching_key(target, r"roots_mod_\d+", r"roots")
+    if coefficient_key is None and root_key is None:
+        return
+    if coefficient_key is None or root_key is None:
+        raise PacketError(
+            f"{location}: eliminant target needs both coefficients and roots"
+        )
+
+    coefficients = require_int_list(
+        target[coefficient_key], f"{location}.{coefficient_key}"
+    )
+    roots = normalize_int_list(target[root_key], f"{location}.{root_key}")
+    if not coefficients:
+        raise PacketError(f"{location}.{coefficient_key}: empty coefficient list")
+
+    if modulus is not None:
+        require_key_modulus(coefficient_key, modulus, location)
+        require_key_modulus(root_key, modulus, location)
+        coefficients = [coefficient % modulus for coefficient in coefficients]
+    if all(coefficient == 0 for coefficient in coefficients):
+        raise PacketError(f"{location}: zero pivot eliminant polynomial")
+
+    actual_degree = poly_degree(coefficients)
+    if actual_degree != declared_degree:
+        raise PacketError(
+            f"{location}: pivot degree {declared_degree} != actual {actual_degree}"
+        )
+    target_degree = target.get("degree")
+    if target_degree is not None and actual_degree != target_degree:
+        raise PacketError(
+            f"{location}: target degree {target_degree} != actual {actual_degree}"
+        )
+
+    if modulus is not None:
+        if modulus <= ROOT_COMPLETENESS_ENUMERATION_LIMIT:
+            actual_roots = [
+                root
+                for root in range(modulus)
+                if poly_eval_mod(coefficients, root, modulus) == 0
+            ]
+            require_exact_roots(roots, actual_roots, location)
+        else:
+            non_roots = [
+                root for root in roots if poly_eval_mod(coefficients, root, modulus)
+            ]
+            if non_roots:
+                raise PacketError(f"{location}: listed non-roots {non_roots}")
+            exact_monomial_roots = monomial_exact_roots(coefficients, modulus)
+            if exact_monomial_roots is not None:
+                require_exact_roots(roots, exact_monomial_roots, location)
+
+    if extension_field is not None:
+        for coefficient in coefficients:
+            extension_field.decode(coefficient)
+        if extension_field.size <= ROOT_COMPLETENESS_ENUMERATION_LIMIT:
+            actual_roots = [
+                root
+                for root in range(extension_field.size)
+                if extension_field.is_zero(
+                    extension_field.poly_eval_encoded(coefficients, root)
+                )
+            ]
+            require_exact_roots(roots, actual_roots, location)
+        else:
+            non_roots = [
+                root
+                for root in roots
+                if not extension_field.is_zero(
+                    extension_field.poly_eval_encoded(coefficients, root)
+                )
+            ]
+            if non_roots:
+                raise PacketError(
+                    f"{location}: listed extension non-roots {non_roots}"
+                )
+            exact_monomial_roots = monomial_exact_roots(coefficients)
+            if exact_monomial_roots is not None:
+                require_exact_roots(roots, exact_monomial_roots, location)
 
 
 def validate_regular_minor(

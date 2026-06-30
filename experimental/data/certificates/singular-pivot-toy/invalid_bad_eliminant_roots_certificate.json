@@ -1,0 +1,17 @@
+{
+  "pivots": {
+    "B_0": {
+      "degree": 1,
+      "eliminant_coefficients_mod_17_ascending": [
+        5,
+        1
+      ],
+      "roots_mod_17": [
+        0
+      ],
+      "status": "eliminant",
+      "support_count": 1
+    }
+  },
+  "schema_version": "invalid-singular-pivot-toy-certificate-v1"
+}
