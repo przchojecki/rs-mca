@@ -30,6 +30,49 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Paper D v9 Hankel certificate atlas promotion
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `tex/cs25_cap_v9.tex`,
+  `scripts/aperiodic_eliminant_schema.json`,
+  `experimental/notes/audits/paperD_v9_vs_v8_audit.md`, `AGENTS.md`,
+  `README.md`, site paper/update metadata, and compiled Paper D v9 PDFs.
+- **Status:** AUDIT / VERSION-PROMOTION / PROVED-CERTIFICATE-FRAMEWORK.
+- **What is being added:** Paper D v9 preserves the v8 universal cap,
+  first-grid cap, quotient-support ledger, and quotient-image ledger, then adds
+  the aperiodic Hankel chart atlas: regular overdetermined minors, affine
+  pivots, projective infinity, curve coefficient pivots, and named singular
+  residual buckets.
+- **How it is useful:** It turns the M1 safe-side task into concrete Hankel
+  certificate packets. Contributors can now emit JSON against
+  `scripts/aperiodic_eliminant_schema.json` instead of inventing an atlas or
+  hiding singular charts under a generic aperiodic label.
+- **What to do next:** Build actual eliminant certificates for meaningful rows,
+  starting with exact agreements where the regular minor test applies. Every
+  unresolved chart should be labelled as quotient, tangent, extension,
+  candidate new obstruction, or unknown.
+
+### 2026-06-30 - M1 equal-line deck multiplicity ledger
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_equal_line_deck_multiplicity_ledger.md`,
+  `experimental/scripts/verify_m1_equal_line_deck_multiplicity_ledger.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A projective deck ledger for
+  `y=(1+3z^2)/(1-z)^2`: the deck involution is
+  `sigma(z)=(z+1)/(3z-1)`, its only fixed fibers are `y=infinity` and
+  `y=3/4`, and outside charged fibers a `z`-multiplicity cap `nu` gives
+  `y`-multiplicity at most `2nu`.
+- **How it is useful:** Refines the equal-line packet-sift closure target by
+  replacing the coarse bounded-`y`-multiplicity input with the sharper and more
+  geometric bounded-`z`-multiplicity input, giving the popularity cap
+  `U=16nu`.
+- **What to do next:** Prove or falsify the nonlocal model-entry statement
+  that endpoint-independent high-overlap stars enter this `z` chart with
+  bounded `z`-multiplicity after the charged branches are removed.
+
 ### 2026-06-30 - M1 equal-line packet-sift closure
 
 - **Agent/model:** AllenGrahamHart / Codex.
