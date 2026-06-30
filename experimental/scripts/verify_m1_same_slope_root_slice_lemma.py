@@ -60,7 +60,8 @@ Plucker-chart decomposition, Plucker-chart row recurrence, Hankel square
 factorization, endpoint slope map, overlapping Plucker-chart recurrence,
 endpoint-pair inversion, projective endpoint-pair inversion, diagonal endpoint
 collapse, off-diagonal endpoint-pair count, canonical endpoint-pair norm
-factorization, endpoint-charge corollary, and packet-count corollary.
+factorization, fixed endpoint-pair coset palette, endpoint-charge corollary,
+and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -2951,6 +2952,19 @@ def p1_linear_factor(point: P1Point, p: int) -> tuple[int, ...] | None:
     if point is None:
         return None
     return tuple(poly1_to_list(poly1_from_list([(-point) % p, 1], p)))
+
+
+def p1_linear_coefficients(point: P1Point, p: int) -> tuple[int, int]:
+    if point is None:
+        return (0, 1)
+    return (1, (-point) % p)
+
+
+def mobius_from_zero_pole(zero: P1Point, pole: P1Point, p: int) -> MobiusMap:
+    assert zero != pole
+    numerator = p1_linear_coefficients(zero, p)
+    denominator = p1_linear_coefficients(pole, p)
+    return (numerator[0], numerator[1], denominator[0], denominator[1])
 
 
 def p1_divisor_exponent(
@@ -6535,6 +6549,73 @@ def check_boundary_core_square_map_packet_count() -> None:
                     support,
                     packets,
                 )
+
+            p1_points: list[P1Point] = list(range(prime)) + [None]
+            square_scalar_classes = {
+                (2 * (log_table[gamma] % index)) % index
+                for gamma in range(1, prime)
+            }
+            assert square_scalar_classes == set(packet_classes), (
+                prime,
+                index,
+                square_scalar_classes,
+                packet_classes,
+            )
+            for pole_endpoint in p1_points:
+                for zero_endpoint in p1_points:
+                    if zero_endpoint == pole_endpoint:
+                        continue
+                    endpoint_map = mobius_from_zero_pole(
+                        zero_endpoint,
+                        pole_endpoint,
+                        prime,
+                    )
+                    packets_by_class = {
+                        packet_class: finite_square_packet(
+                            endpoint_map,
+                            packet_class,
+                            index,
+                            log_table,
+                            prime,
+                        )
+                        for packet_class in packet_classes
+                    }
+                    assert len(set(packets_by_class.values())) == index // 2, (
+                        prime,
+                        index,
+                        zero_endpoint,
+                        pole_endpoint,
+                        packets_by_class,
+                    )
+                    open_finite_line = set(range(prime))
+                    if zero_endpoint is not None:
+                        open_finite_line.discard(zero_endpoint)
+                    if pole_endpoint is not None:
+                        open_finite_line.discard(pole_endpoint)
+                    union: set[int] = set()
+                    for left_class, right_class in combinations(packet_classes, 2):
+                        assert packets_by_class[left_class].isdisjoint(
+                            packets_by_class[right_class]
+                        ), (
+                            prime,
+                            index,
+                            zero_endpoint,
+                            pole_endpoint,
+                            left_class,
+                            right_class,
+                            packets_by_class,
+                        )
+                    for packet in packets_by_class.values():
+                        union.update(packet)
+                    assert union == open_finite_line, (
+                        prime,
+                        index,
+                        zero_endpoint,
+                        pole_endpoint,
+                        union,
+                        open_finite_line,
+                        packets_by_class,
+                    )
 
 
 def check_boundary_core_classified_per_core_bound() -> None:

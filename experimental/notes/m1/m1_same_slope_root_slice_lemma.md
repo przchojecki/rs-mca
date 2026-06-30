@@ -27,6 +27,7 @@ SQUARE-NORM PROJECTIVE ENDPOINT-PAIR INVERSION /
 SQUARE-NORM PROJECTIVE DIAGONAL ENDPOINT COLLAPSE /
 SQUARE-NORM OFF-DIAGONAL ENDPOINT-PAIR COUNT /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
+SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM ENDPOINT-CHARGE COROLLARY /
 SQUARE-MAP PACKET-COUNT COROLLARY /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
@@ -2850,6 +2851,23 @@ scalar.  The residual support question for this chart is therefore a
 square-map coset question over ordered endpoint pairs, not a moving quadratic
 root problem.
 
+In particular, for an even character order `e`, a fixed ordered endpoint pair
+`(E_0,E_1)` has only the standard square-coset palette.  Put
+`M_{E_0,E_1}=L_{E_1}/L_{E_0}`.  As the square scalar varies, the possible
+slope sets are
+
+```text
+P_{E_0,E_1}(theta)
+  = { z in P^1 \ {E_0,E_1} : chi(M_{E_0,E_1}(z))^2 = theta },
+theta in 2Z/eZ.                                  (RKSQPAIRPAL)
+```
+
+There are at most `e/2` such sets; on the open line
+`P^1 \ {E_0,E_1}` they are disjoint and partition the slopes where the
+degree-one parameter is defined and nonzero.  Hence after endpoint-pair
+injection, the residual nondegenerate overlapping square-norm branch pays
+only the existing `O_e(1)` square-map coset palette per ordered endpoint pair.
+
 The finite endpoints themselves are not residual live mixed-domain slopes.
 Let `z_0` be a finite endpoint of the reduced square norm.
 
@@ -3399,9 +3417,9 @@ Plucker-chart recurrence (RKSQOV), the endpoint-pair inversion
 (RKSQINV0/RKSQINV1), the projective endpoint-pair inversion
 (RKSQPINV0/RKSQPINV1), the projective diagonal endpoint collapse
 (RKSQPDIAG), the off-diagonal endpoint-pair count (RKSQOFF), the canonical
-endpoint-pair norm factorization (RKSQRAT), the finite endpoint-charge
-corollary (RKSQEPCH), and square-map packet-count corollary (RKSQCOUNT) from
-the support palette.
+endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset
+palette (RKSQPAIRPAL), the finite endpoint-charge corollary (RKSQEPCH), and
+square-map packet-count corollary (RKSQCOUNT) from the support palette.
 
 ## Verification
 
@@ -3464,5 +3482,6 @@ the Plucker-chart decomposition (RKSQPLCH), the Plucker-chart row recurrence
 inversion (RKSQINV0/RKSQINV1), the projective endpoint-pair inversion
 (RKSQPINV0/RKSQPINV1), the projective diagonal endpoint collapse
 (RKSQPDIAG), the off-diagonal endpoint-pair count (RKSQOFF), the canonical
-endpoint-pair norm factorization (RKSQRAT), the finite endpoint-charge
-corollary (RKSQEPCH), and the packet-count corollary (RKSQCOUNT).
+endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset
+palette (RKSQPAIRPAL), the finite endpoint-charge corollary (RKSQEPCH), and
+the packet-count corollary (RKSQCOUNT).

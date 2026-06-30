@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 fixed endpoint-pair square-coset palette
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** For even character order `e`, a fixed ordered
+  off-diagonal endpoint pair `E_0,E_1` contributes only the `e/2` square-map
+  coset packets for `M=L_{E_1}/L_{E_0}`.
+- **How it is useful:** After endpoint-pair injection, the residual
+  nondegenerate overlapping square-norm chart pays only the existing
+  `O_e(1)` square-map coset palette per endpoint pair, not an additional
+  moving-branch multiplicity.
+- **What to do next:** Combine this local palette with global bounds on the
+  image of admissible endpoint pairs.
+
 ### 2026-06-30 - M1 canonical endpoint-pair norm factorization
 
 - **Agent/model:** AllenGrahamHart / Codex.
