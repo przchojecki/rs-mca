@@ -45,6 +45,7 @@ SQUARE-NORM FULL-PALETTE RESIDUAL COVERAGE /
 SQUARE-NORM PARTIAL-PALETTE UNCOVERED-SLOPE DEFECT BOUND /
 SQUARE-NORM RESIDUAL SUPPORT-BUDGET ALTERNATIVE /
 SQUARE-NORM RESIDUAL PALETTE-DENSITY SUPPORT LOWER BOUND /
+SQUARE-NORM RESIDUAL SMALL-SUPPORT EXCLUSION CRITERION /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3514,6 +3515,37 @@ near-full projective support from the defect side.  For example, if
 principle that, after endpoint stars are removed, dense square-map palettes
 cannot remain confined to a small aperiodic slope set.
 
+Equivalently, for a target support budget `R`, the contrapositive gives a
+ready-to-use exclusion criterion.  If `m_ap>D` and either
+
+```text
+(2(q-1)/e)^2 K_ap^2
+  > R((q-3)m_ap^2 + 2m_apD),
+```
+
+or
+
+```text
+(2(q-1)/e) C_ap < (m_ap-D)(q+1-R),
+```
+
+then
+
+```text
+B_ap > R.                                        (RKSQEXCLUDE)
+```
+
+In density language, small residual support `B_ap<=R` forces both
+
+```text
+alpha_ap <= sqrt(R((q-3)m_ap^2+2m_apD))/((q-1)m_ap),
+gamma_ap >= (m_ap-D)(q+1-R)/((q-1)m_ap).
+```
+
+Thus a future global argument can close this local branch by proving either
+enough selected palette density or too few missing palette classes in the
+row-basis/core image.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -4029,8 +4061,8 @@ residual coverage (RKSQFULLCOVER/RKSQFULLPRUNE), the partial-palette
 uncovered-slope defect bound (RKSQDEFECT/RKSQDEFECTMASS/RKSQUNCOVER), the
 residual support-budget alternative (RKSQSUPPBUDGET1/RKSQSUPPBUDGET2), the
 residual palette-density support lower bound (RKSQPALETTESUPP/RKSQPALETTEDENS),
-the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
-coset palette
+the residual small-support exclusion criterion (RKSQEXCLUDE), the canonical
+endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
@@ -4115,8 +4147,8 @@ residual coverage (RKSQFULLCOVER/RKSQFULLPRUNE), the partial-palette
 uncovered-slope defect bound (RKSQDEFECT/RKSQDEFECTMASS/RKSQUNCOVER), the
 residual support-budget alternative (RKSQSUPPBUDGET1/RKSQSUPPBUDGET2), the
 residual palette-density support lower bound (RKSQPALETTESUPP/RKSQPALETTEDENS),
-the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
-coset palette
+the residual small-support exclusion criterion (RKSQEXCLUDE), the canonical
+endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary

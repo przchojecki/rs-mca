@@ -71,7 +71,8 @@ selected support star-forcing bound, partial-palette star-forcing bound,
 partial-palette inverse packing bound, support-star pruning reduction, pruned
 residual density trichotomy, full-palette residual coverage, and packet-count
 corollary, plus the partial-palette uncovered-slope defect bound and residual
-support-budget alternative and palette-density support lower bound.
+support-budget alternative, palette-density support lower bound, and
+small-support exclusion criterion.
 """
 
 from __future__ import annotations
@@ -7549,6 +7550,36 @@ def check_boundary_core_square_map_packet_count() -> None:
                             residual_incidence,
                             residual_defect_incidence,
                         )
+                        probe_budget = rng.randint(0, len(all_projective_points))
+                        density_excludes_small_support = (
+                            residual_packet_size
+                            * residual_packet_size
+                            * residual_selected_classes
+                            * residual_selected_classes
+                        ) > probe_budget * residual_star_bound
+                        defect_excludes_small_support = (
+                            residual_packet_size * residual_missing_classes
+                        ) < (
+                            (residual_count - degree_cap)
+                            * (len(all_projective_points) - probe_budget)
+                        )
+                        if density_excludes_small_support or defect_excludes_small_support:
+                            assert residual_support_size > probe_budget, (
+                                prime,
+                                index,
+                                degree_cap,
+                                probe_budget,
+                                residual_count,
+                                residual_support_size,
+                                residual_selected_classes,
+                                residual_missing_classes,
+                                residual_packet_size,
+                                residual_star_bound,
+                                density_excludes_small_support,
+                                defect_excludes_small_support,
+                                residual_incidence,
+                                residual_defect_incidence,
+                            )
 
             full_selected_incidence = {point: 0 for point in all_projective_points}
             for support in support_list:

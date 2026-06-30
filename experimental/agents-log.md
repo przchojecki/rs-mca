@@ -49,6 +49,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 residual small-support exclusion criterion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The support-budget alternative is restated as a
+  contrapositive exclusion criterion: after endpoint-star pruning, either too
+  much selected class mass or too little missing class mass forces
+  `B_ap>R`.
+- **How it is useful:** This gives a future global M1 proof a direct local
+  closure test for a target slope budget `R`.
+- **What to do next:** Prove one of the two density triggers from the
+  row-basis/core image, or classify failures as quotient/template structure.
+
 ### 2026-06-30 - M1 residual palette-density support lower bound
 
 - **Agent/model:** AllenGrahamHart / Codex.
