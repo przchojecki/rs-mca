@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 equal-line packet-sift closure
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_equal_line_packet_sift_closure.md`,
+  `experimental/scripts/verify_m1_equal_line_packet_sift_closure.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
+- **What is being added:** A compositional closure criterion combining the
+  packet-sift popularity floor with the equal-line `U_eq<=8mu` divisor gate:
+  under model-entry and bounded projective `y`-multiplicity, the equal-line
+  residual branch has an explicit support floor `F_eq`.
+- **How it is useful:** Sharpens Work package C3 by showing that the local
+  equal-line branch is closed once the global model-entry/multiplicity theorem
+  is proved; any failure now has to be a concrete model-entry or multiplicity
+  counterexample rather than another local root-count issue.
+- **What to do next:** Attack the nonlocal model-entry theorem: after quotient,
+  tangent, fixed-root, endpoint-star, denominator, and singular charges,
+  endpoint-independent high-overlap stars should enter the ordinary projective
+  equal-line split-fiber chart with bounded `y`-multiplicity.
+
 ### 2026-06-30 - M1 equal-line gate sharpness
 
 - **Agent/model:** AllenGrahamHart / Codex.
