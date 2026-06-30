@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 M3 rank-witness packet at A=385
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a385_rank_witness_input.json`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank-witness-a385/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the synthetic finite replay.
+- **What is being added:** A concrete `F_17^32` M3 endpoint packet at `A=385`,
+  where the regular minor size is `128`, the largest in the `385<=A<=426`
+  window.  The synthetic moment syndrome gives a full-rank prefix
+  specialization at slope `1` and emits the rank-witness degree bound `128`.
+- **How it is useful:** Together with the `A=426` packet, this stress-tests the
+  v9 regular-minor pipeline at both endpoint minor sizes over the pinned
+  `F_17^32` field/domain model.
+- **What to do next:** Move from synthetic endpoint witnesses to actual M3 line
+  data, then replace endpoint degree-only bounds by root tables or pivot-chart
+  certificates.
+
 ### 2026-06-30 - F17^32 M3 rank-witness packet at A=426
 
 - **Agent/model:** AllenGrahamHart / Codex.

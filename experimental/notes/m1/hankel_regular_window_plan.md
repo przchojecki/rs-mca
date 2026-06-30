@@ -92,17 +92,21 @@ with `1806` contiguous charts singled out as the practical first-search
 subatlas.  Thus vanished regular minors for an actual syndrome pencil are
 special singular strata, not a forced failure of the regular Hankel chart.
 
-The first concrete large-field stress packet for this window is
+The first concrete large-field stress packets for this window are the endpoint
+rank-witness packets
 
 ```text
+experimental/data/certificates/hankel-f17-32-m3-rank-witness-a385/
+  f17_32_n512_k256_a385_rank_witness_packet.json
+
 experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/
   f17_32_n512_k256_a426_rank_witness_packet.json
 ```
 
-It uses a synthetic `F_17^32` syndrome pencil at `A=426` and proves a nonzero
-regular minor by a rank witness.  This exercises the pinned field/domain
-arithmetic, but it is not a worst-case safe-side bound and does not provide a
-root table.
+They use synthetic `F_17^32` syndrome pencils at `A=385` and `A=426` and prove
+nonzero regular minors by rank witnesses.  This exercises the pinned
+field/domain arithmetic at the largest and smallest minor sizes in the window,
+but it is not a worst-case safe-side bound and does not provide a root table.
 
 Reproduce the audit packet:
 

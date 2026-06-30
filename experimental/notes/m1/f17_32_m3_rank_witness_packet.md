@@ -2,7 +2,7 @@
 
 Status: PROVED / AUDIT for this synthetic finite replay.
 
-This note records the first concrete `F_17^32` regular-window packet produced
+This note records the first concrete `F_17^32` regular-window packets produced
 by the regular-minor extractor in the pinned row
 
 ```text
@@ -16,9 +16,12 @@ experimental/data/certificates/hankel-f17-32-row-descriptor/
   f17_32_n512_k256_hankel_row_descriptor.json
 ```
 
-and the packet is
+The endpoint packets are
 
 ```text
+experimental/data/certificates/hankel-f17-32-m3-rank-witness-a385/
+  f17_32_n512_k256_a385_rank_witness_packet.json
+
 experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/
   f17_32_n512_k256_a426_rank_witness_packet.json
 ```
@@ -64,24 +67,55 @@ regular_root_bound_sum = 87.
 This certifies a nonzero regular maximal minor for one actual degree-32 field
 syndrome pencil without interpolating the determinant polynomial.
 
+At the other endpoint, `A=385`,
+
+```text
+j = 512 - 385 = 127,
+t = 385 - 256 = 129,
+j+1 = 128.
+```
+
+The same construction with the first `128` descriptor-domain elements gives a
+rank-witness packet with
+
+```text
+degree_bound = j+1 = 128,
+regular_root_bound_sum = 128.
+```
+
+Thus the concrete replay covers both endpoint minor sizes in the M3 regular
+window: `128` at `A=385` and `87` at `A=426`.
+
 ## Why This Matters
 
 The previous generic theorem proves that regular minors are not structurally
-zero in the M3 window.  This packet is different: it runs the real v9 packet
-pipeline over the pinned `F_17^32` field model and row descriptor.  It is a
-first concrete large-field stress test for the M3 regular-window audit.
+zero in the M3 window.  These packets are different: they run the real v9
+packet pipeline over the pinned `F_17^32` field model and row descriptor.  They
+are concrete large-field stress tests for the M3 regular-window audit at the
+largest and smallest minor sizes.
 
-The result is still too weak to close the safe side: a degree bound of `87`
-already exceeds the finite-slope budget numerator `6`.  To become a threshold
-certificate, a future packet needs root enumeration/compression, a sharper
-eliminant, or a pivot-chart classification after tangent and quotient ledgers
-are subtracted.
+These results are still too weak to close the safe side: even the smaller
+endpoint degree bound `87` exceeds the finite-slope budget numerator `6`.  To
+become a threshold certificate, a future packet needs root
+enumeration/compression, a sharper eliminant, or a pivot-chart classification
+after tangent and quotient ledgers are subtracted.
 
 ## Verification
 
 Run:
 
 ```sh
+python3 experimental/scripts/emit_f17_32_m3_rank_witness_input.py \
+  --agreement 385 \
+  --check experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a385_rank_witness_input.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a385_rank_witness_input.json \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank-witness-a385/f17_32_n512_k256_a385_rank_witness_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/hankel-f17-32-m3-rank-witness-a385/f17_32_n512_k256_a385_rank_witness_packet.json
+
 python3 experimental/scripts/emit_f17_32_m3_rank_witness_input.py \
   --check experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_rank_witness_input.json
 
