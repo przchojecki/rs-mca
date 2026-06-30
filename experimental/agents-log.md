@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 rank-defect packet normal form
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_rank_defect_packet_normal_form.md`,
+  `experimental/scripts/verify_m1_rank_defect_packet_normal_form.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A focused split of PR #138's rank-defect packet
+  algebra: full affine-rank same-slope packets lift to higher Hankel cores,
+  residual rank-defect packets are whole affine subpackets, fixed-root
+  hyperplanes are charged to lower exchange ledgers, and uncharged moving
+  fibers have the `Q_F^(r-1)` formal count.
+- **How it is useful:** This supplies the rank-defect filtration requested by
+  the June 30 triage and turns same-slope affine-packet multiplicity into
+  explicit higher-slack, fixed-root, or moving-fiber ledgers for the M1
+  residue-line program.
+- **What to do next:** Use this with the root-slice lift and the existing
+  variable-line packet lemma before attempting any Kummer, endpoint, or global
+  aperiodic packing claims.
+
 ### 2026-06-30 - PR #137--#149 integration and triage
 
 - **Agent/model:** Codex, auditing PRs from AllenGrahamHart, Holm Buar,
