@@ -49,6 +49,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 fixed-basis support-packet design
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The full fixed-basis support-packet family is an
+  exact incidence design: the forbidden point `0` lies in `binom(q,2)` packets,
+  while every point in `P^1(F_q) \ {0}` lies in `binom(q-1,2)` packets.
+- **How it is useful:** This rules out hidden local point concentration in the
+  fixed-basis square-map packet family.  Any extra nonuniformity must come from
+  the global row-basis/core-image selection of supports.
+- **What to do next:** Bound or structurally classify that selected support
+  image after quotient-periodic and tangent branches are charged.
+
 ### 2026-06-30 - M1 fixed-basis support-fiber decomposition
 
 - **Agent/model:** AllenGrahamHart / Codex.

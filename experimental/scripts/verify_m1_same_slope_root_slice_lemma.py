@@ -64,8 +64,8 @@ factorization, fixed endpoint-pair coset palette, endpoint-charge corollary,
 fixed-basis forbidden-endpoint sharpening, fixed-basis coordinate normal form,
 fixed-basis slope-pair parametrization, fixed-basis no-loss square map,
 fixed-basis support-palette count, fixed-basis support-fiber decomposition,
-fixed-basis endpoint-palette bound, fixed endpoint-pair packet-size bound, and
-packet-count corollary.
+fixed-basis support-packet incidence design, fixed-basis endpoint-palette
+bound, fixed endpoint-pair packet-size bound, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -3010,6 +3010,18 @@ def eval_mobius(mobius_map: MobiusMap, value: int, p: int) -> int | None:
     return ((a_coeff * value + b_coeff) * pow(denominator, -1, p)) % p
 
 
+def eval_mobius_p1(mobius_map: MobiusMap, point: P1Point, p: int) -> P1Point:
+    a_coeff, b_coeff, c_coeff, d_coeff = mobius_map
+    if point is None:
+        if c_coeff % p == 0:
+            return None
+        return (a_coeff * pow(c_coeff, -1, p)) % p
+    denominator = (c_coeff * point + d_coeff) % p
+    if denominator == 0:
+        return None
+    return ((a_coeff * point + b_coeff) * pow(denominator, -1, p)) % p
+
+
 def finite_square_packet(
     mobius_map: MobiusMap,
     packet_class: int,
@@ -3024,6 +3036,23 @@ def finite_square_packet(
             continue
         if (2 * (log_table[image] % index) - packet_class) % index == 0:
             packet.add(value)
+    return frozenset(packet)
+
+
+def projective_square_packet(
+    mobius_map: MobiusMap,
+    packet_class: int,
+    index: int,
+    log_table: dict[int, int],
+    p: int,
+) -> frozenset[P1Point]:
+    packet: set[P1Point] = set()
+    for point in list(range(p)) + [None]:
+        image = eval_mobius_p1(mobius_map, point, p)
+        if image is None or image == 0:
+            continue
+        if (2 * (log_table[image] % index) - packet_class) % index == 0:
+            packet.add(point)
     return frozenset(packet)
 
 
@@ -7101,6 +7130,56 @@ def check_boundary_core_square_map_packet_count() -> None:
                     right_endpoint,
                     left_to_right,
                     right_to_left,
+                )
+
+            projective_incidence = {
+                point: 0 for point in list(range(prime)) + [None]
+            }
+            for support in expected_fixed_supports:
+                first, second = tuple(support)
+                support_map = mobius_from_zero_pole(first, second, prime)
+                for packet_class in packet_classes:
+                    packet = projective_square_packet(
+                        support_map,
+                        packet_class,
+                        index,
+                        log_table,
+                        prime,
+                    )
+                    assert packet.isdisjoint(set(support)), (
+                        prime,
+                        index,
+                        support,
+                        packet_class,
+                        packet,
+                    )
+                    expected_projective_size = 2 * (prime - 1) // index
+                    assert len(packet) == expected_projective_size, (
+                        prime,
+                        index,
+                        support,
+                        packet_class,
+                        len(packet),
+                        expected_projective_size,
+                        packet,
+                    )
+                    for point in packet:
+                        projective_incidence[point] += 1
+            expected_forbidden_incidence = prime * (prime - 1) // 2
+            expected_open_incidence = (prime - 1) * (prime - 2) // 2
+            for point, incidence in projective_incidence.items():
+                expected_incidence = (
+                    expected_forbidden_incidence
+                    if point == 0
+                    else expected_open_incidence
+                )
+                assert incidence == expected_incidence, (
+                    prime,
+                    index,
+                    point,
+                    incidence,
+                    expected_incidence,
+                    projective_incidence,
                 )
 
             for palette_size in range(2, min(6, len(p1_points)) + 1):
