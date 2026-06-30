@@ -1,7 +1,9 @@
 # Step 1: reconcile the finite-slope support-wise MCA convention with the official sampler
 
-- **Status:** IN PROGRESS (one item per loop iteration). Closes `towards-prize.md`
-  S1 step 1 ("finish the definition audit against the official MCA sampler").
+- **Status:** COMPLETE -- all four items implemented and passing (verifier exits 0:
+  4 PASS / 0 PENDING), with the residual judgment calls explicitly flagged (not asserted).
+  Closes `towards-prize.md` S1 step 1 ("finish the definition audit against the official
+  MCA sampler") on the audit/reconciliation side.
 - **Lane:** V (verification / audit), independent of the M1/F1/L1 proof lanes.
 - **Branch / PR:** `allen/step1-sampler-audit`.
 - **Script:** `experimental/scripts/verify_step1_sampler_reconciliation.py`.
@@ -40,7 +42,10 @@ Row: `C = RS[F_17^32, H, 256]`, `n=512`, `k=256`, `q = q_line = 17^32`, target `
 | 1 | gate: affine vs projective denominator | **done** |
 | 2 | endpoint / closed-ball convention | **done** |
 | 3 | survey anchors + bridge consistency | **done** |
-| 4 | predicate / line-family correspondence | pending |
+| 4 | predicate / line-family correspondence | **done** |
+
+**Full coverage (verifier exits 0: 4 PASS / 0 PENDING).** The unambiguous correspondences
+are verified; the two residual judgment calls remain documented and explicitly not asserted.
 
 ### Verified so far
 
@@ -53,6 +58,14 @@ Row: `C = RS[F_17^32, H, 256]`, `n=512`, `k=256`, `q = q_line = 17^32`, target `
   radius is `5/512`.
 - **Anchors + bridge.** Target `2^-128`, field range `|F| < 2^256` (so `B_Q` up to `2^128-1`),
   the four rates, and the bridge `emca = LD_sw/|F|` re-deriving the same `>= B_Q+1 = 7` gate.
+- **Predicate / line-family.** The survey MCA event `exists S, |S| >= (1-delta)n` matches our
+  co-support arithmetic exactly: with agreement `a=|S|` and co-support `r=n-a`,
+  `|S| >= (1-delta)n  <=>  r <= floor(delta n)` (checked at the grid radii), and
+  noncontainment is a per-support boolean, so the count is over size-`>=a` supports
+  (one support pays for `<=1` slope, Paper D v8). The slope family: `|P^1(F)| = |F|+1`, and
+  the point at infinity does not move the `5/6` cut (`floor(|F|/2^128)=floor((|F|+1)/2^128)=6`).
+  The **definitional** equivalence of the predicate `Delta_S>0` and the finite-vs-projective
+  slope family to the official sampler stays a documented residual judgment call, not asserted.
 
 ## Honest limit
 
