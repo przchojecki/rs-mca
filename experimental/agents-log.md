@@ -977,3 +977,9 @@ Keep entries concise and link to the relevant files.
   radius ~B_Q/n (6/512~0.0117) far below Johnson 1-sqrt(rho) (0.293..0.750), via exact
   integer test `k*n < (n-B_Q)^2`. Honest: carves the easy slice, not near-capacity.
   Verifier exits 0: 4 PASS, 1 PENDING. Next: emit map artifact (last step-5 item).
+- **iter 4 (commit 129a165) -- STEP 5 COMPLETE:** item 5 **emit envelope-map artifact** --
+  deterministic `experimental/data/step5-envelope-map/envelope_map.json` (4 rates at the
+  flagship, large n=2^20 row, solved/unsolved boundary rows); the check emits, re-reads,
+  and recomputes every row via solved_region (6/7 solved). Verifier exits 0: 5 PASS / 0
+  PENDING. Posted coverage comment on PR #153. NEXT: start PR B = step 1 (official-sampler
+  reconciliation) on branch allen/step1-sampler-audit.
