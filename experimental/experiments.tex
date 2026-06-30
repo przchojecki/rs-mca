@@ -2798,6 +2798,20 @@ For every \(R<R_{\rm dens}(a_0,L)\), a sparse certificate with
 \(B_{\rm ap}\le R\) is either \(L\)-near-star or impossible.  Thus a global
 selected-density theorem immediately translates into an explicit
 all-line support budget plus the near-star template ledger.
+Equivalently, if \(D\ge1\) and an endpoint-footprint cap \(S\ge4D-1\) is
+chosen, set
+\[
+        L_S=\left\lfloor {S+1\over 2D}\right\rfloor .
+\]
+The budget \(R_{\rm dens}(a_0,L)\) is nondecreasing in \(L\), so \(L_S\) is
+the largest far-factor compatible with footprint at most \(S\).  Under
+\(\alpha_{\rm ap}\ge a_0\), every sparse certificate with
+\(B_{\rm ap}<R_{\rm dens}(a_0,L_S)\) is impossible or has endpoint footprint
+at most \(S\), leaving at most
+\[
+        \sum_{s=0}^{\min(q+1,S)} {q+1\choose s}\,2^{h{s\choose2}}
+\]
+palette templates.
 Moreover, if \(L_E(z)=Wz-Z\) for \(E=[Z:W]\), then in the off-diagonal case
 \[
         {H_1\over H_0}

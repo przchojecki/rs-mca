@@ -75,7 +75,7 @@ support-budget alternative, palette-density support lower bound, and
 small-support exclusion criterion, local support-budget output theorem, and
 sparse residual certificate reduction, feasibility window, and far-from-star
 certificate cap with near-star localization, template count, and
-density-threshold closure and budget inversion.
+density-threshold closure, budget inversion, and template-budget tradeoff.
 """
 
 from __future__ import annotations
@@ -7876,6 +7876,39 @@ def check_boundary_core_square_map_packet_count() -> None:
                                     near_star_template_bound,
                                     coarse_template_bound,
                                 )
+                                if degree_cap > 0:
+                                    footprint_cap = 2 * far_factor * degree_cap - 1
+                                    recovered_factor = (
+                                        (footprint_cap + 1) // (2 * degree_cap)
+                                    )
+                                    assert recovered_factor == far_factor, (
+                                        prime,
+                                        index,
+                                        degree_cap,
+                                        far_factor,
+                                        footprint_cap,
+                                        recovered_factor,
+                                    )
+                                    assert (
+                                        residual_endpoint_footprint
+                                        <= footprint_cap
+                                    )
+                                    next_factor = far_factor + 1
+                                    denominator_lhs = (
+                                        (
+                                            (prime - 3) * next_factor + 2
+                                        )
+                                        * far_factor
+                                    )
+                                    denominator_rhs = (
+                                        ((prime - 3) * far_factor + 2)
+                                        * next_factor
+                                    )
+                                    assert denominator_lhs <= denominator_rhs
+                                    assert (
+                                        next_factor * (far_factor - 1)
+                                        <= far_factor * far_factor
+                                    )
                         density_excludes_small_support = (
                             residual_packet_size
                             * residual_packet_size

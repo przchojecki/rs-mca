@@ -54,6 +54,7 @@ SQUARE-NORM DENSITY-GAP NEAR-STAR LOCALIZATION /
 SQUARE-NORM NEAR-STAR TEMPLATE COUNT /
 SQUARE-NORM DENSITY-THRESHOLD CLOSURE COROLLARY /
 SQUARE-NORM DENSITY-BUDGET INVERSION /
+SQUARE-NORM TEMPLATE-BUDGET TRADEOFF /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3822,6 +3823,35 @@ lower bound `a0` immediately gives an explicit all-line support budget up to
 `R_dens(a0,L)`, with the only leftover being the polynomial-size near-star
 template ledger.
 
+The support budget can also be optimized subject to a chosen template
+complexity.  Assume `q>=3` and `D>=1`.  For an endpoint-footprint allowance
+`S>=4D-1`, put
+
+```text
+L_S = floor((S+1)/(2D)).                         (RKSQLS)
+```
+
+Then `L_S>=2` and `2L_S D-1<=S`.  Moreover `R_dens(a0,L)` is nondecreasing in
+`L>=2`: the denominator `q-3+2/L` in `R_sel` decreases with `L`, while
+`L/(L-1)` in `R_miss` also decreases with `L`.  Hence `L_S` gives the largest
+support budget compatible with endpoint footprint at most `S`.  Under
+`alpha_ap>=a0`, every sparse certificate with
+
+```text
+B_ap<=R<R_dens(a0,L_S)
+```
+
+is either impossible or has endpoint footprint at most `S`.  The number of
+remaining residual palette templates is bounded by
+
+```text
+sum_{s=0}^{min(q+1,S)} binom(q+1,s) 2^{h binom(s,2)}.       (RKSQTRADE)
+```
+
+Thus the density problem can be parameterized by a single reviewable tradeoff:
+choose a template-footprint cap `S`, prove `alpha_ap>=a0`, and compare the
+desired slope-support budget against `R_dens(a0,L_S)`.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -4349,6 +4379,7 @@ the density-threshold closure corollary
 (RKSQTHETA/RKSQDENSITYHYP/RKSQCLOSE),
 the density-budget inversion
 (RKSQALPHA0/RKSQBUDGET/RKSQBUDGETCLOSE),
+the template-budget tradeoff (RKSQLS/RKSQTRADE),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the
@@ -4447,6 +4478,7 @@ the density-threshold closure corollary
 (RKSQTHETA/RKSQDENSITYHYP/RKSQCLOSE),
 the density-budget inversion
 (RKSQALPHA0/RKSQBUDGET/RKSQBUDGETCLOSE),
+the template-budget tradeoff (RKSQLS/RKSQTRADE),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the

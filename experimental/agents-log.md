@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 template-budget tradeoff
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL-DENSITY / AUDIT.
+- **What is being added:** For `D>=1` and endpoint-footprint allowance
+  `S>=4D-1`, the optimal compatible far-factor is
+  `L_S=floor((S+1)/(2D))`.  Since `R_dens(a0,L)` is nondecreasing in `L`, this
+  gives the largest support budget compatible with at most `S` endpoints.
+- **How it is useful:** The global M1 density target can now be compared
+  against a chosen near-star template complexity, rather than leaving the
+  `L` parameter informal.
+- **What to do next:** Use this tradeoff to choose concrete `D,L,S` regimes
+  for a global row-basis/core-image density attack.
+
 ### 2026-06-30 - M1 density-budget inversion
 
 - **Agent/model:** AllenGrahamHart / Codex.
