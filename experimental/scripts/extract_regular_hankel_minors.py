@@ -801,6 +801,28 @@ def extract_for_agreement(
             "node": None,
             "nodes_tested": None,
         }
+    if (
+        spec.get("certificate_mode") == "rank_witness_bound"
+        and row_set_audit["source"] == "rank_at_nodes"
+        and row_sets
+    ):
+        return ExtractionResult(
+            exact_agreement,
+            j,
+            t,
+            "regular_minor",
+            row_sets[0],
+            None,
+            None,
+            None,
+            1,
+            row_set_source=row_set_audit["source"],
+            rank_pivot_node=row_set_audit.get("node"),
+            rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+            rank_pivot_nodes_required=row_set_audit.get(
+                "nodes_required_for_singularity_proof"
+            ),
+        )
     tested = 0
     for row_set in row_sets:
         tested += 1
@@ -924,6 +946,28 @@ def extract_for_agreement_field(
             "node": None,
             "nodes_tested": None,
         }
+    if (
+        spec.get("certificate_mode") == "rank_witness_bound"
+        and row_set_audit["source"] == "rank_at_nodes"
+        and row_sets
+    ):
+        return ExtractionResult(
+            exact_agreement,
+            j,
+            t,
+            "regular_minor",
+            row_sets[0],
+            None,
+            None,
+            None,
+            1,
+            row_set_source=row_set_audit["source"],
+            rank_pivot_node=row_set_audit.get("node"),
+            rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+            rank_pivot_nodes_required=row_set_audit.get(
+                "nodes_required_for_singularity_proof"
+            ),
+        )
     tested = 0
     for row_set in row_sets:
         tested += 1
@@ -1017,6 +1061,32 @@ def result_to_packet_item(result: ExtractionResult, prime: int) -> dict[str, Any
     }
     if result.status == "regular_minor":
         assert result.row_set is not None
+        if result.polynomial is None:
+            degree = result.j + 1
+            item["regular_minor"] = {
+                "row_set": result.row_set,
+                "polynomial_ref": "rank_witness:determinant_nonzero_at_pivot_node",
+                "degree": degree,
+                "root_hash": hash_json(
+                    {
+                        "roots": "not_enumerated",
+                        "degree_bound": degree,
+                        "row_set": result.row_set,
+                        "rank_pivot_node": result.rank_pivot_node,
+                    }
+                ),
+            }
+            item["extractor_audit"] = {
+                "tested_row_sets": result.tested_row_sets,
+                "row_set_source": result.row_set_source,
+                "rank_pivot_node": result.rank_pivot_node,
+                "rank_pivot_nodes_tested": result.rank_pivot_nodes_tested,
+                "rank_pivot_nodes_required": result.rank_pivot_nodes_required,
+                "root_count": "not_enumerated",
+                "degree_bound": degree,
+                "certificate_mode": "rank_witness_bound",
+            }
+            return item
         assert result.polynomial is not None
         degree = poly_degree(result.polynomial, prime)
         roots = result.roots
@@ -1082,6 +1152,33 @@ def result_to_packet_item_field(
     }
     if result.status == "regular_minor":
         assert result.row_set is not None
+        if result.polynomial is None:
+            degree = result.j + 1
+            item["regular_minor"] = {
+                "row_set": result.row_set,
+                "polynomial_ref": "rank_witness:determinant_nonzero_at_pivot_node",
+                "degree": degree,
+                "root_hash": hash_json(
+                    {
+                        "roots": "not_enumerated",
+                        "degree_bound": degree,
+                        "row_set": result.row_set,
+                        "rank_pivot_node": result.rank_pivot_node,
+                    }
+                ),
+            }
+            item["extractor_audit"] = {
+                "tested_row_sets": result.tested_row_sets,
+                "row_set_source": result.row_set_source,
+                "rank_pivot_node": result.rank_pivot_node,
+                "rank_pivot_nodes_tested": result.rank_pivot_nodes_tested,
+                "rank_pivot_nodes_required": result.rank_pivot_nodes_required,
+                "root_count": "not_enumerated",
+                "degree_bound": degree,
+                "field_size": field.size,
+                "certificate_mode": "rank_witness_bound",
+            }
+            return item
         assert result.polynomial is not None
         polynomial = [field.normalize(coeff) for coeff in result.polynomial]
         polynomial_encoded = [field.encode(coeff) for coeff in polynomial]
@@ -1216,6 +1313,8 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
             ],
         ),
     }
+    if "certificate_mode" in spec:
+        packet["extractor"]["certificate_mode"] = spec["certificate_mode"]
     if all_roots_enumerated:
         packet["declared_aperiodic_numerator"] = len(root_union)
         packet["root_union_table_ref"] = f"inline:root_union_mod_{prime}"
@@ -1224,9 +1323,13 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
     else:
         packet["root_union_table_ref"] = "not_enumerated"
         packet["regular_root_bound_sum"] = sum(
-            poly_degree(result.polynomial, prime)
+            (
+                poly_degree(result.polynomial, prime)
+                if result.polynomial is not None
+                else result.j + 1
+            )
             for result in results
-            if result.status == "regular_minor" and result.polynomial is not None
+            if result.status == "regular_minor"
         )
     return packet
 
@@ -1306,6 +1409,8 @@ def build_packet_field(
             ],
         ),
     }
+    if "certificate_mode" in spec:
+        packet["extractor"]["certificate_mode"] = spec["certificate_mode"]
     if all_roots_enumerated:
         packet["declared_aperiodic_numerator"] = len(root_union)
         packet["root_union_table_ref"] = "inline:root_union"
@@ -1314,9 +1419,13 @@ def build_packet_field(
     else:
         packet["root_union_table_ref"] = "not_enumerated"
         packet["regular_root_bound_sum"] = sum(
-            fpoly_degree(result.polynomial, field)
+            (
+                fpoly_degree(result.polynomial, field)
+                if result.polynomial is not None
+                else result.j + 1
+            )
             for result in results
-            if result.status == "regular_minor" and result.polynomial is not None
+            if result.status == "regular_minor"
         )
     return packet
 

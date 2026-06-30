@@ -1,0 +1,56 @@
+{
+  "agreement_threshold": 8,
+  "certificate_mode": "rank_witness_bound",
+  "exact_agreements": [
+    8
+  ],
+  "line_syndrome": {
+    "description": "rank-witness toy: prefix rows 0,1,2 are singular but rank_at_nodes finds a full-rank specialization",
+    "u": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "v": [
+      15,
+      14,
+      14,
+      3,
+      16,
+      1
+    ]
+  },
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an F_17^32 row-data packet",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ],
+  "row": {
+    "domain": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "domain_description": "first ten nonzero elements of F_17",
+    "field": "F_17",
+    "k": 4,
+    "n": 10
+  },
+  "row_set_strategy": {
+    "type": "rank_at_nodes"
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "regular-hankel-minor-extractor-input-v1",
+  "status": "PROVED"
+}

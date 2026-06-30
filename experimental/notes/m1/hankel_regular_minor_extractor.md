@@ -153,6 +153,20 @@ It embeds the same toy in `F_17^2 = F_17[x]/(x^2-3)`.  The same row set
 `[0,1,3]` is selected at encoded node `1`, and the v9 checker verifies the
 encoded extension-field root table.
 
+The rank-witness replay is
+
+```text
+experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_witness_toy.json
+experimental/data/certificates/regular-minor-extractor-rank-witness-toy/
+```
+
+It uses the same pencil but asks for `certificate_mode=rank_witness_bound`.
+Here the full-rank specialization found by `rank_at_nodes` already proves that
+the selected determinant is a nonzero polynomial.  The packet therefore records
+the bound `deg Delta_A <= j+1` and leaves the root table unenumbered instead of
+interpolating `Delta_A(Z)`.  This is weaker than an enumerated root table, but it
+is the intended cheap first pass for large `F_17^32` regular-window rows.
+
 The singular rank-pivot replay is
 
 ```text
@@ -236,6 +250,13 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-extractor-rank-pivot-f17-2-toy/f17_2_n10_k4_a8_rank_pivot_packet.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_witness_toy.json \
+  --check experimental/data/certificates/regular-minor-extractor-rank-witness-toy/f17_n10_k4_a8_rank_witness_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-extractor-rank-witness-toy/f17_n10_k4_a8_rank_witness_packet.json
 
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_singular_toy.json \

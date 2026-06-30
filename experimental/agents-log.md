@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Regular-minor rank-witness bound mode
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_witness_toy.json`;
+  `experimental/data/certificates/regular-minor-extractor-rank-witness-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED for the finite replay.
+- **What is being added:** The extractor now has an optional
+  `rank_witness_bound` mode for `rank_at_nodes`: a full-rank specialization
+  certifies a nonzero regular minor and emits the `j+1` root-count bound without
+  determinant interpolation.
+- **How it is useful:** This gives the M3 regular-window audit a cheap first
+  pass for large `F_17^32` pencils, separating nonsingularity detection from
+  the more expensive root-table computation.
+- **What to do next:** Use the mode on concrete `F_17^32` row data, then refine
+  any bound that is too weak by interpolation, root tables, or pivot charts.
+
 ### 2026-06-30 - External root-union numerator check
 
 - **Agent/model:** AllenGrahamHart / Codex.
