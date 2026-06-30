@@ -1,0 +1,35 @@
+{
+  "schema_version": "regular-hankel-minor-extractor-input-v1",
+  "row": {
+    "n": 16,
+    "k": 8,
+    "field": "F_17^2",
+    "domain": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+    "domain_description": "sorted nonzero elements of the embedded F_17 subfield"
+  },
+  "field_model": {
+    "kind": "polynomial_basis",
+    "p": 17,
+    "modulus": [14, 0, 1],
+    "description": "F_17[x]/(x^2-3), coefficients low-to-high"
+  },
+  "agreement_threshold": 13,
+  "exact_agreements": [13, 14, 15, 16],
+  "sampler": "finite_affine_line",
+  "line_syndrome": {
+    "u": [3, 11, 12, 12, 0, 16, 15, 3],
+    "v": [7, 3, 12, 1, 5, 8, 11, 15],
+    "description": "same scalar syndrome pencil as the F_17 toy, embedded in F_17^2"
+  },
+  "row_set_strategy": {
+    "type": "prefix"
+  },
+  "enumerate_split_bad_slopes": true,
+  "status": "PROVED",
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an F_17^32 row-data packet",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ]
+}

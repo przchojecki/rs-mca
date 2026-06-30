@@ -1,0 +1,240 @@
+{
+  "agreement_threshold": 13,
+  "declared_aperiodic_numerator": 4,
+  "enumerated_bad_slope_union": [],
+  "exact_agreements": [
+    {
+      "A": 13,
+      "extractor_audit": {
+        "degree_bound": 4,
+        "field_size": 289,
+        "root_count": 1,
+        "tested_row_sets": 1
+      },
+      "j": 3,
+      "regular_minor": {
+        "degree": 4,
+        "polynomial_ref": "inline:regular_minor.coefficients_ascending",
+        "root_hash": "95bce61a71a78185f4b6f8f25fc6986108043727fe9d9c19dbe44b0081ef928a",
+        "row_set": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "regular_minor_data": {
+        "coefficients_ascending": [
+          4,
+          14,
+          12,
+          7,
+          1
+        ],
+        "enumerated_bad_slopes": [],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 2,
+        "p": 17,
+        "roots": [
+          11
+        ]
+      },
+      "regular_minor_polynomial_data": {
+        "coefficients_ascending": [
+          4,
+          14,
+          12,
+          7,
+          1
+        ],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 2,
+        "p": 17
+      },
+      "status": "regular_minor",
+      "t": 5
+    },
+    {
+      "A": 14,
+      "extractor_audit": {
+        "degree_bound": 3,
+        "field_size": 289,
+        "root_count": 2,
+        "tested_row_sets": 1
+      },
+      "j": 2,
+      "regular_minor": {
+        "degree": 3,
+        "polynomial_ref": "inline:regular_minor.coefficients_ascending",
+        "root_hash": "43a2d66e5f850f64677fc2fae986fcdbdf190e6b6f026167f70b21d8860826b3",
+        "row_set": [
+          0,
+          1,
+          2
+        ]
+      },
+      "regular_minor_data": {
+        "coefficients_ascending": [
+          5,
+          4,
+          8,
+          4
+        ],
+        "enumerated_bad_slopes": [],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 2,
+        "p": 17,
+        "roots": [
+          10,
+          11
+        ]
+      },
+      "regular_minor_polynomial_data": {
+        "coefficients_ascending": [
+          5,
+          4,
+          8,
+          4
+        ],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 2,
+        "p": 17
+      },
+      "status": "regular_minor",
+      "t": 6
+    },
+    {
+      "A": 15,
+      "extractor_audit": {
+        "degree_bound": 2,
+        "field_size": 289,
+        "root_count": 2,
+        "tested_row_sets": 1
+      },
+      "j": 1,
+      "regular_minor": {
+        "degree": 2,
+        "polynomial_ref": "inline:regular_minor.coefficients_ascending",
+        "root_hash": "45e1c0b7597006d357bb6b74965c9d19ee076dc5bf7ff45406f375e146f187df",
+        "row_set": [
+          0,
+          1
+        ]
+      },
+      "regular_minor_data": {
+        "coefficients_ascending": [
+          0,
+          3,
+          7
+        ],
+        "enumerated_bad_slopes": [],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 2,
+        "p": 17,
+        "roots": [
+          0,
+          2
+        ]
+      },
+      "regular_minor_polynomial_data": {
+        "coefficients_ascending": [
+          0,
+          3,
+          7
+        ],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 2,
+        "p": 17
+      },
+      "status": "regular_minor",
+      "t": 7
+    },
+    {
+      "A": 16,
+      "extractor_audit": {
+        "degree_bound": 1,
+        "field_size": 289,
+        "root_count": 1,
+        "tested_row_sets": 1
+      },
+      "j": 0,
+      "regular_minor": {
+        "degree": 1,
+        "polynomial_ref": "inline:regular_minor.coefficients_ascending",
+        "root_hash": "038966de9f6b9a901b20b4c6ca8b2a46009feebe031babc842d43690c0bc222b",
+        "row_set": [
+          0
+        ]
+      },
+      "regular_minor_data": {
+        "coefficients_ascending": [
+          3,
+          7
+        ],
+        "enumerated_bad_slopes": [],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 2,
+        "p": 17,
+        "roots": [
+          2
+        ]
+      },
+      "regular_minor_polynomial_data": {
+        "coefficients_ascending": [
+          3,
+          7
+        ],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 2,
+        "p": 17
+      },
+      "status": "regular_minor",
+      "t": 8
+    }
+  ],
+  "extractor": {
+    "field_model": {
+      "degree": 2,
+      "encoding": "base-p low-to-high integer",
+      "kind": "polynomial_basis",
+      "modulus": [
+        14,
+        0,
+        1
+      ],
+      "p": 17
+    },
+    "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_2_n16_k8_a13_toy.json",
+    "input_sha256": "90b0be20b6604e3935cbf98ce9a03ea932f45c06dd602d4c5e61f474db7c5003",
+    "method": "numeric determinant interpolation over a polynomial-basis finite field",
+    "name": "regular-hankel-minor-extractor",
+    "row_set_strategy": {
+      "type": "prefix"
+    },
+    "scope": "prime-power syndrome pencils with explicit polynomial-basis model"
+  },
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an F_17^32 row-data packet",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ],
+  "removed_ledgers": [],
+  "root_union": [
+    0,
+    2,
+    10,
+    11
+  ],
+  "root_union_table_ref": "inline:root_union",
+  "row": {
+    "domain_description": "sorted nonzero elements of the embedded F_17 subfield",
+    "domain_hash": "c8aa3562cf53e860d2bff96611bbd511190e1ba0d75e502cbab10a106f04248e",
+    "field": "F_17^2",
+    "k": 8,
+    "n": 16
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "status": "PROVED"
+}

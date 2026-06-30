@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Extension-field regular-minor adapter replay
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_2_n16_k8_a13_toy.json`;
+  `experimental/data/certificates/regular-minor-extractor-f17-2-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT / PROVED for the finite toy replay.
+- **What is being added:** The regular-minor extractor now has a
+  polynomial-basis extension-field path.  The new replay embeds the existing
+  `F_17` scalar toy into `F_17^2 = F_17[x]/(x^2-3)`, interpolates regular
+  determinant polynomials over the full extension field, enumerates all `289`
+  finite slopes, and emits an encoded v9 root table accepted by the packet
+  checker.
+- **How it is useful:** This removes the extractor's prime-field-only
+  limitation on the path to M3.  The remaining missing ingredient for the
+  `385<=A<=426` prize-facing window is now row data over `F_17^32`, not the
+  finite-field determinant/interpolation adapter.
+- **What to do next:** Supply or derive the `F_17^32` syndrome-pencil row data
+  and run the extension path on a selected agreement subrange, then compare
+  actual roots or singular declarations with tangent and quotient ledgers.
+
 ### 2026-06-30 - F17 regular Hankel-window plan
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 """Extract regular overdetermined Hankel-minor certificates from row data.
 
-This is the first reusable M3 extractor for the Paper D v9 atlas.  It reads a
-prime-field syndrome-pencil input, tries candidate maximal Hankel row minors
-for each exact agreement, and emits an ``aperiodic-hankel-eliminant-v1`` packet.
+This is the first reusable M3 extractor for the Paper D v9 atlas.  It reads
+syndrome-pencil input, tries candidate maximal Hankel row minors for each exact
+agreement, and emits an ``aperiodic-hankel-eliminant-v1`` packet.
 
 The determinant polynomial is recovered by interpolation from numeric
 determinants, avoiding the factorial permutation determinant used by the first
-hard-coded toy verifier.  The current implementation is intentionally limited
-to prime fields ``F_p``; extension-field row adapters are a later M3/F1 task.
+hard-coded toy verifier.  The current implementation supports prime fields
+``F_p`` and polynomial-basis extension fields supplied by the input JSON.  The
+extension path uses encoded integer root tables so the existing v9 checker can
+still audit degrees, root hashes, and declared numerators.
 """
 
 from __future__ import annotations
@@ -17,7 +19,7 @@ import argparse
 from dataclasses import dataclass
 from hashlib import sha256
 import json
-from itertools import combinations
+from itertools import combinations, product
 from pathlib import Path
 from typing import Any
 
@@ -98,6 +100,123 @@ def parse_prime_field(field_name: str) -> int:
     if prime < 2:
         raise ValueError("field prime must be at least 2")
     return prime
+
+
+class PolynomialBasisField:
+    """Finite field F_p[X]/(modulus), with low-degree-first coefficients."""
+
+    def __init__(self, prime: int, modulus: list[int]):
+        if prime < 2:
+            raise ValueError("field prime must be at least 2")
+        if len(modulus) < 2:
+            raise ValueError("field modulus must have positive degree")
+        if modulus[-1] % prime != 1:
+            raise ValueError("field modulus must be monic in low-to-high form")
+        self.p = prime
+        self.modulus = [coeff % prime for coeff in modulus]
+        self.degree = len(modulus) - 1
+        self.size = prime**self.degree
+        self.zero = (0,) * self.degree
+        self.one = (1,) + (0,) * (self.degree - 1)
+
+    @classmethod
+    def from_spec(cls, spec: dict[str, Any]) -> "PolynomialBasisField":
+        if spec.get("kind") != "polynomial_basis":
+            raise ValueError("field_model.kind must be polynomial_basis")
+        return cls(int(spec["p"]), [int(value) for value in spec["modulus"]])
+
+    def normalize(self, value: Any) -> tuple[int, ...]:
+        if isinstance(value, int):
+            coeffs = [value % self.p]
+        elif isinstance(value, list):
+            coeffs = [int(entry) % self.p for entry in value]
+        elif isinstance(value, tuple):
+            coeffs = [int(entry) % self.p for entry in value]
+        else:
+            raise ValueError(f"unsupported field element {value!r}")
+        if len(coeffs) > self.degree:
+            raise ValueError("field element has too many coefficients")
+        coeffs += [0] * (self.degree - len(coeffs))
+        return tuple(coeffs)
+
+    def encode(self, value: Any) -> int:
+        elem = self.normalize(value)
+        total = 0
+        place = 1
+        for coeff in elem:
+            total += coeff * place
+            place *= self.p
+        return total
+
+    def decode(self, value: int) -> tuple[int, ...]:
+        if value < 0 or value >= self.size:
+            raise ValueError("encoded field element outside field range")
+        coeffs = []
+        remaining = value
+        for _ in range(self.degree):
+            coeffs.append(remaining % self.p)
+            remaining //= self.p
+        return tuple(coeffs)
+
+    def add(self, left: Any, right: Any) -> tuple[int, ...]:
+        a = self.normalize(left)
+        b = self.normalize(right)
+        return tuple((a[i] + b[i]) % self.p for i in range(self.degree))
+
+    def sub(self, left: Any, right: Any) -> tuple[int, ...]:
+        a = self.normalize(left)
+        b = self.normalize(right)
+        return tuple((a[i] - b[i]) % self.p for i in range(self.degree))
+
+    def neg(self, value: Any) -> tuple[int, ...]:
+        elem = self.normalize(value)
+        return tuple((-coeff) % self.p for coeff in elem)
+
+    def mul(self, left: Any, right: Any) -> tuple[int, ...]:
+        a = self.normalize(left)
+        b = self.normalize(right)
+        coeffs = [0] * (2 * self.degree - 1)
+        for i, a_i in enumerate(a):
+            for j, b_j in enumerate(b):
+                coeffs[i + j] = (coeffs[i + j] + a_i * b_j) % self.p
+        for deg in range(len(coeffs) - 1, self.degree - 1, -1):
+            lead = coeffs[deg] % self.p
+            if lead == 0:
+                continue
+            offset = deg - self.degree
+            for j in range(self.degree):
+                coeffs[offset + j] = (
+                    coeffs[offset + j] - lead * self.modulus[j]
+                ) % self.p
+        return tuple(coeffs[: self.degree])
+
+    def pow(self, value: Any, exponent: int) -> tuple[int, ...]:
+        if exponent < 0:
+            return self.pow(self.inv(value), -exponent)
+        out = self.one
+        base = self.normalize(value)
+        while exponent:
+            if exponent & 1:
+                out = self.mul(out, base)
+            base = self.mul(base, base)
+            exponent >>= 1
+        return out
+
+    def inv(self, value: Any) -> tuple[int, ...]:
+        elem = self.normalize(value)
+        if elem == self.zero:
+            raise ZeroDivisionError("division by zero")
+        return self.pow(elem, self.size - 2)
+
+    def div(self, left: Any, right: Any) -> tuple[int, ...]:
+        return self.mul(left, self.inv(right))
+
+    def is_zero(self, value: Any) -> bool:
+        return self.normalize(value) == self.zero
+
+    def elements(self):
+        for coeffs in product(range(self.p), repeat=self.degree):
+            yield coeffs
 
 
 def determinant_mod(matrix: list[list[int]], prime: int) -> int:
@@ -249,6 +368,223 @@ def n_choose_k(n: int, k: int) -> int:
     return numerator // denominator
 
 
+def fpoly_trim(
+    poly: list[tuple[int, ...]], field: PolynomialBasisField
+) -> list[tuple[int, ...]]:
+    out = [field.normalize(coeff) for coeff in poly]
+    while len(out) > 1 and field.is_zero(out[-1]):
+        out.pop()
+    if not out:
+        return [field.zero]
+    return out
+
+
+def fpoly_add(
+    left: list[tuple[int, ...]],
+    right: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    size = max(len(left), len(right))
+    out = [field.zero] * size
+    for index in range(size):
+        left_coeff = left[index] if index < len(left) else field.zero
+        right_coeff = right[index] if index < len(right) else field.zero
+        out[index] = field.add(left_coeff, right_coeff)
+    return fpoly_trim(out, field)
+
+
+def fpoly_mul(
+    left: list[tuple[int, ...]],
+    right: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    out = [field.zero] * (len(left) + len(right) - 1)
+    for i, left_coeff in enumerate(left):
+        for j, right_coeff in enumerate(right):
+            out[i + j] = field.add(out[i + j], field.mul(left_coeff, right_coeff))
+    return fpoly_trim(out, field)
+
+
+def fpoly_scale(
+    poly: list[tuple[int, ...]],
+    scalar: tuple[int, ...],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    return fpoly_trim([field.mul(coeff, scalar) for coeff in poly], field)
+
+
+def fpoly_eval(
+    poly: list[tuple[int, ...]],
+    value: tuple[int, ...],
+    field: PolynomialBasisField,
+) -> tuple[int, ...]:
+    total = field.zero
+    power = field.one
+    for coeff in poly:
+        total = field.add(total, field.mul(coeff, power))
+        power = field.mul(power, value)
+    return total
+
+
+def fpoly_degree(
+    poly: list[tuple[int, ...]], field: PolynomialBasisField
+) -> int:
+    return len(fpoly_trim(poly, field)) - 1
+
+
+def determinant_field(
+    matrix: list[list[tuple[int, ...]]], field: PolynomialBasisField
+) -> tuple[int, ...]:
+    size = len(matrix)
+    work = [[field.normalize(entry) for entry in row] for row in matrix]
+    det = field.one
+    for col in range(size):
+        pivot = None
+        for row in range(col, size):
+            if not field.is_zero(work[row][col]):
+                pivot = row
+                break
+        if pivot is None:
+            return field.zero
+        if pivot != col:
+            work[col], work[pivot] = work[pivot], work[col]
+            det = field.neg(det)
+        pivot_value = work[col][col]
+        det = field.mul(det, pivot_value)
+        inv_pivot = field.inv(pivot_value)
+        for row in range(col + 1, size):
+            factor = field.mul(work[row][col], inv_pivot)
+            if field.is_zero(factor):
+                continue
+            for entry_col in range(col, size):
+                work[row][entry_col] = field.sub(
+                    work[row][entry_col],
+                    field.mul(factor, work[col][entry_col]),
+                )
+    return det
+
+
+def interpolate_field(
+    points: list[tuple[tuple[int, ...], tuple[int, ...]]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    out = [field.zero]
+    for index, (x_i, y_i) in enumerate(points):
+        basis = [field.one]
+        denominator = field.one
+        for other_index, (x_j, _y_j) in enumerate(points):
+            if other_index == index:
+                continue
+            basis = fpoly_mul(basis, [field.neg(x_j), field.one], field)
+            denominator = field.mul(denominator, field.sub(x_i, x_j))
+        scale = field.div(y_i, denominator)
+        out = fpoly_add(out, fpoly_scale(basis, scale, field), field)
+    return fpoly_trim(out, field)
+
+
+def matrix_at_slope_field(
+    u: list[tuple[int, ...]],
+    v: list[tuple[int, ...]],
+    row_set: list[int],
+    cols: int,
+    slope: tuple[int, ...],
+    field: PolynomialBasisField,
+) -> list[list[tuple[int, ...]]]:
+    return [
+        [field.add(u[row + col], field.mul(slope, v[row + col])) for col in range(cols)]
+        for row in row_set
+    ]
+
+
+def determinant_polynomial_by_interpolation_field(
+    u: list[tuple[int, ...]],
+    v: list[tuple[int, ...]],
+    row_set: list[int],
+    cols: int,
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    degree_bound = cols
+    if field.size <= degree_bound:
+        raise ValueError(
+            f"need field size > degree bound for interpolation, got {field.size} <= {degree_bound}"
+        )
+    nodes = [field.decode(index) for index in range(degree_bound + 1)]
+    points = []
+    for slope in nodes:
+        det = determinant_field(
+            matrix_at_slope_field(u, v, row_set, cols, slope, field),
+            field,
+        )
+        points.append((slope, det))
+    poly = interpolate_field(points, field)
+    for slope, det in points:
+        if fpoly_eval(poly, slope, field) != det:
+            raise AssertionError(("extension interpolation check failed", slope, det))
+    return poly
+
+
+def locator_coefficients_field(
+    roots: tuple[tuple[int, ...], ...], field: PolynomialBasisField
+) -> list[tuple[int, ...]]:
+    coeffs = [field.one]
+    for root in roots:
+        coeffs = fpoly_mul(coeffs, [field.neg(root), field.one], field)
+    return coeffs
+
+
+def hankel_times_locator_field(
+    syndrome: list[tuple[int, ...]],
+    t: int,
+    locator: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    j = len(locator) - 1
+    out = []
+    for row in range(t):
+        total = field.zero
+        for col in range(j + 1):
+            total = field.add(total, field.mul(syndrome[row + col], locator[col]))
+        out.append(total)
+    return out
+
+
+def finite_bad_slopes_for_exact_agreement_field(
+    u: list[tuple[int, ...]],
+    v: list[tuple[int, ...]],
+    domain: list[tuple[int, ...]],
+    n: int,
+    k: int,
+    exact_agreement: int,
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    j = n - exact_agreement
+    t = exact_agreement - k
+    slopes: dict[int, tuple[int, ...]] = {}
+    for roots in combinations(domain, j):
+        locator = locator_coefficients_field(roots, field)
+        a_vec = hankel_times_locator_field(u, t, locator, field)
+        b_vec = hankel_times_locator_field(v, t, locator, field)
+        if all(field.is_zero(value) for value in b_vec):
+            continue
+        candidate = None
+        consistent = True
+        for a_i, b_i in zip(a_vec, b_vec):
+            if field.is_zero(b_i):
+                if not field.is_zero(a_i):
+                    consistent = False
+                    break
+                continue
+            slope = field.neg(field.div(a_i, b_i))
+            if candidate is None:
+                candidate = slope
+            elif candidate != slope:
+                consistent = False
+                break
+        if consistent and candidate is not None:
+            slopes[field.encode(candidate)] = candidate
+    return [slopes[key] for key in sorted(slopes)]
+
+
 @dataclass(frozen=True)
 class ExtractionResult:
     exact_agreement: int
@@ -256,9 +592,9 @@ class ExtractionResult:
     t: int
     status: str
     row_set: list[int] | None
-    polynomial: list[int] | None
-    roots: list[int] | None
-    enumerated_bad_slopes: list[int] | None
+    polynomial: list[Any] | None
+    roots: list[Any] | None
+    enumerated_bad_slopes: list[Any] | None
     tested_row_sets: int
     residual_label: str | None = None
     residual_reason: str | None = None
@@ -389,6 +725,108 @@ def extract_for_agreement(
     )
 
 
+def extract_for_agreement_field(
+    spec: dict[str, Any],
+    exact_agreement: int,
+    field: PolynomialBasisField,
+) -> ExtractionResult:
+    row = spec["row"]
+    n = int(row["n"])
+    k = int(row["k"])
+    u = [field.normalize(value) for value in spec["line_syndrome"]["u"]]
+    v = [field.normalize(value) for value in spec["line_syndrome"]["v"]]
+    j = n - exact_agreement
+    t = exact_agreement - k
+    size = j + 1
+    if t < size:
+        return ExtractionResult(
+            exact_agreement,
+            j,
+            t,
+            "residual_obstruction",
+            None,
+            None,
+            None,
+            None,
+            0,
+            residual_label="unknown",
+            residual_reason="regular overdetermined condition t>=j+1 fails",
+        )
+    if len(u) < t + j or len(v) < t + j:
+        raise ValueError(
+            f"syndrome length must be at least t+j={t + j} for A={exact_agreement}"
+        )
+
+    row_config = spec.get("row_set_strategy", {"type": "prefix"})
+    tested = 0
+    for row_set in candidate_row_sets(t, size, row_config):
+        tested += 1
+        polynomial = determinant_polynomial_by_interpolation_field(
+            u, v, row_set, size, field
+        )
+        if any(not field.is_zero(coeff) for coeff in polynomial):
+            roots: list[tuple[int, ...]] | None = None
+            bad_slopes: list[tuple[int, ...]] | None = None
+            if field.size <= int(
+                spec.get("max_root_enum_field_size", DEFAULT_MAX_ROOT_ENUM_FIELD_SIZE)
+            ):
+                roots = [
+                    value
+                    for value in field.elements()
+                    if field.is_zero(fpoly_eval(polynomial, value, field))
+                ]
+            domain = spec.get("row", {}).get("domain")
+            if domain is not None and spec.get("enumerate_split_bad_slopes", False):
+                domain_values = [field.normalize(value) for value in domain]
+                subset_count = n_choose_k(len(domain_values), j)
+                if subset_count <= int(
+                    spec.get(
+                        "max_bad_slope_subsets", DEFAULT_MAX_BAD_SLOPE_SUBSETS
+                    )
+                ):
+                    bad_slopes = finite_bad_slopes_for_exact_agreement_field(
+                        u,
+                        v,
+                        domain_values,
+                        n,
+                        k,
+                        exact_agreement,
+                        field,
+                    )
+                    if roots is not None:
+                        root_codes = {field.encode(root) for root in roots}
+                        bad_codes = {field.encode(slope) for slope in bad_slopes}
+                        if not bad_codes.issubset(root_codes):
+                            raise AssertionError(
+                                ("bad slopes not contained in roots", exact_agreement)
+                            )
+            return ExtractionResult(
+                exact_agreement,
+                j,
+                t,
+                "regular_minor",
+                row_set,
+                polynomial,
+                roots,
+                bad_slopes,
+                tested,
+            )
+
+    return ExtractionResult(
+        exact_agreement,
+        j,
+        t,
+        "residual_obstruction",
+        None,
+        None,
+        None,
+        None,
+        tested,
+        residual_label="unknown",
+        residual_reason="all tested regular maximal minors vanished",
+    )
+
+
 def result_to_packet_item(result: ExtractionResult, prime: int) -> dict[str, Any]:
     item: dict[str, Any] = {
         "A": result.exact_agreement,
@@ -441,7 +879,79 @@ def result_to_packet_item(result: ExtractionResult, prime: int) -> dict[str, Any
     return item
 
 
+def result_to_packet_item_field(
+    result: ExtractionResult,
+    field: PolynomialBasisField,
+) -> dict[str, Any]:
+    item: dict[str, Any] = {
+        "A": result.exact_agreement,
+        "j": result.j,
+        "t": result.t,
+        "status": result.status,
+    }
+    if result.status == "regular_minor":
+        assert result.row_set is not None
+        assert result.polynomial is not None
+        polynomial = [field.normalize(coeff) for coeff in result.polynomial]
+        polynomial_encoded = [field.encode(coeff) for coeff in polynomial]
+        degree = fpoly_degree(polynomial, field)
+        roots = result.roots
+        roots_encoded = (
+            sorted(field.encode(root) for root in roots)
+            if roots is not None
+            else None
+        )
+        item["regular_minor"] = {
+            "row_set": result.row_set,
+            "polynomial_ref": "inline:regular_minor.coefficients_ascending",
+            "degree": degree,
+            "root_hash": hash_json(
+                roots_encoded
+                if roots_encoded is not None
+                else {
+                    "roots": "not_enumerated",
+                    "degree_bound": degree,
+                    "row_set": result.row_set,
+                }
+            ),
+        }
+        item["regular_minor_polynomial_data"] = {
+            "coefficients_ascending": polynomial_encoded,
+            "field_encoding": "base-p low-to-high integer",
+            "p": field.p,
+            "field_extension_degree": field.degree,
+        }
+        if roots_encoded is not None:
+            item["regular_minor_data"] = {
+                "coefficients_ascending": polynomial_encoded,
+                "roots": roots_encoded,
+                "field_encoding": "base-p low-to-high integer",
+                "p": field.p,
+                "field_extension_degree": field.degree,
+            }
+            if result.enumerated_bad_slopes is not None:
+                item["regular_minor_data"]["enumerated_bad_slopes"] = sorted(
+                    field.encode(slope) for slope in result.enumerated_bad_slopes
+                )
+        item["extractor_audit"] = {
+            "tested_row_sets": result.tested_row_sets,
+            "root_count": (
+                len(roots_encoded) if roots_encoded is not None else "not_enumerated"
+            ),
+            "degree_bound": degree,
+            "field_size": field.size,
+        }
+    else:
+        item["residual_label"] = result.residual_label or "unknown"
+        item["residual_reason"] = result.residual_reason
+        item["extractor_audit"] = {"tested_row_sets": result.tested_row_sets}
+    return item
+
+
 def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str, Any]:
+    if "field_model" in spec:
+        return build_packet_field(spec, input_ref)
+
     row = spec["row"]
     prime = parse_prime_field(row["field"])
     agreements = [int(value) for value in spec["exact_agreements"]]
@@ -520,6 +1030,96 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
     return packet
 
 
+def build_packet_field(
+    spec: dict[str, Any], input_ref: str | None = None
+) -> dict[str, Any]:
+    row = spec["row"]
+    field = PolynomialBasisField.from_spec(spec["field_model"])
+    agreements = [int(value) for value in spec["exact_agreements"]]
+    results = [
+        extract_for_agreement_field(spec, agreement, field)
+        for agreement in agreements
+    ]
+    all_roots_enumerated = all(
+        result.status == "regular_minor" and result.roots is not None
+        for result in results
+    )
+    root_union = sorted(
+        {
+            field.encode(root)
+            for result in results
+            if result.roots is not None
+            for root in result.roots
+        }
+    )
+    bad_union = sorted(
+        {
+            field.encode(slope)
+            for result in results
+            if result.enumerated_bad_slopes is not None
+            for slope in result.enumerated_bad_slopes
+        }
+    )
+    if bad_union and not set(bad_union).issubset(root_union):
+        raise AssertionError(("closed-range bad slopes not contained in roots"))
+
+    packet: dict[str, Any] = {
+        "schema_version": "aperiodic-hankel-eliminant-v1",
+        "row": {
+            "n": int(row["n"]),
+            "k": int(row["k"]),
+            "field": row["field"],
+            "domain_hash": row.get("domain_hash")
+            or hash_json(row.get("domain", row.get("domain_description", ""))),
+            "domain_description": row.get(
+                "domain_description", "domain supplied in extractor input"
+            ),
+        },
+        "agreement_threshold": int(spec.get("agreement_threshold", min(agreements))),
+        "sampler": spec.get("sampler", "finite_affine_line"),
+        "removed_ledgers": spec.get("removed_ledgers", []),
+        "exact_agreements": [
+            result_to_packet_item_field(result, field) for result in results
+        ],
+        "extractor": {
+            "name": "regular-hankel-minor-extractor",
+            "method": "numeric determinant interpolation over a polynomial-basis finite field",
+            "input_ref": input_ref,
+            "input_sha256": optional_file_hash(input_ref),
+            "row_set_strategy": spec.get("row_set_strategy", {"type": "prefix"}),
+            "scope": "prime-power syndrome pencils with explicit polynomial-basis model",
+            "field_model": {
+                "kind": "polynomial_basis",
+                "p": field.p,
+                "degree": field.degree,
+                "modulus": field.modulus,
+                "encoding": "base-p low-to-high integer",
+            },
+        },
+        "status": spec.get("status", "EXPERIMENTAL"),
+        "nonclaims": spec.get(
+            "nonclaims",
+            [
+                "not a prize-row threshold theorem",
+                "not a singular pivot-chart certificate",
+            ],
+        ),
+    }
+    if all_roots_enumerated:
+        packet["declared_aperiodic_numerator"] = len(root_union)
+        packet["root_union_table_ref"] = "inline:root_union"
+        packet["root_union"] = root_union
+        packet["enumerated_bad_slope_union"] = bad_union
+    else:
+        packet["root_union_table_ref"] = "not_enumerated"
+        packet["regular_root_bound_sum"] = sum(
+            fpoly_degree(result.polynomial, field)
+            for result in results
+            if result.status == "regular_minor" and result.polynomial is not None
+        )
+    return packet
+
+
 def render(packet: dict[str, Any]) -> str:
     return json.dumps(packet, indent=2, sort_keys=True) + "\n"
 
@@ -548,7 +1148,9 @@ def print_summary(packet: dict[str, Any]) -> None:
     for item in packet["exact_agreements"]:
         if item["status"] == "regular_minor":
             data = item.get("regular_minor_data", {})
-            root_keys = [key for key in data if key.startswith("roots_mod_")]
+            root_keys = [
+                key for key in data if key.startswith("roots_mod_") or key == "roots"
+            ]
             roots: list[int] | str = data[root_keys[0]] if root_keys else "not_enumerated"
             print(
                 "A={A} j={j} t={t} row_set={row_set} degree={degree} "
