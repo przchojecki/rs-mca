@@ -3835,6 +3835,30 @@ Thus the class-count far-star floor is not a separate reserve: it is exactly
 the first integer budget not already closed by the baseline density floor
 `alpha_ap>=1/h`.
 
+It also has an exact asymptotic ceiling as the near-star footprint allowance is
+relaxed.  For `q>3`, the real baseline budget is nondecreasing in `L` and tends
+to
+
+```text
+R_base,infty(q,e)
+ = max(
+     (q-1)^2/(h^2(q-3)),
+     q+1 - (q-1)(h-1)/h
+   ).
+```
+
+Therefore the integer far-star floor is bounded by and eventually reaches
+
+```text
+R_far,infty(q,e)=ceil(R_base,infty(q,e)).        (RKSQSPFARLIM)
+```
+
+Thus, even with arbitrarily large near-star footprint allowance, the
+class-count arithmetic alone can never force an all-line support budget beyond
+`R_far,infty(q,e)`.  Any target at or above this ceiling needs additional
+row-basis/core-image structure, not just the reduced-support class-count
+ledger.
+
 In particular, the window becomes uniform once the residual is separated from
 the endpoint-star threshold.  If a `(D,R)` sparse residual certificate also
 satisfies `m>=L D` for an integer `L>=2`, then `D/m<=1/L`, and the preceding
@@ -4096,7 +4120,8 @@ class-count certificate at that residual size.  When `--e` and the far-star
 factor `L` are available, it also reports the monotone far-star class-count
 floor `R_far(q,e,L)=R_min(LD)`, in the closed form where `D` cancels, and
 records that this is the largest floor compatible with the chosen footprint
-tradeoff.  This is an audit/evaluation tool for
+tradeoff.  For `q>3`, it also reports the asymptotic ceiling
+`R_far,infty(q,e)`.  This is an audit/evaluation tool for
 (RKSQINTBUDGET/RKSQTRADE), not a proof of the missing global density lower
 bound.
 
@@ -4783,6 +4808,7 @@ closed far-star class-count floor (RKSQSPFARCLOSED/RKSQSPFARUNIF), the
 far-star `L`-monotonicity and footprint tradeoff
 (RKSQSPFARLMONO/RKSQSPFARTRADE), the
 baseline successor identity (RKSQSPBASEID/RKSQSPBASEZ), the
+asymptotic far-star class-count ceiling (RKSQSPFARLIM), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
@@ -4900,6 +4926,7 @@ closed far-star class-count floor (RKSQSPFARCLOSED/RKSQSPFARUNIF), the
 far-star `L`-monotonicity and footprint tradeoff
 (RKSQSPFARLMONO/RKSQSPFARTRADE), the
 baseline successor identity (RKSQSPBASEID/RKSQSPBASEZ), the
+asymptotic far-star class-count ceiling (RKSQSPFARLIM), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),

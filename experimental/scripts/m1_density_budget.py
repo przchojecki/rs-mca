@@ -481,6 +481,21 @@ def far_star_sparse_floor_report(
         q + 1 - (missing_argument.numerator // missing_argument.denominator),
     )
     minimal_target = max(selected_min_target, missing_min_target)
+    asymptotic_limit_report = None
+    if q > 3:
+        selected_limit = Fraction((q - 1) * (q - 1), h * h * (q - 3))
+        missing_limit = Fraction(q + 1) - Fraction((q - 1) * (h - 1), h)
+        asymptotic_budget = max(selected_limit, missing_limit)
+        asymptotic_floor = ceil_fraction(asymptotic_budget)
+        asymptotic_limit_report = {
+            "selected_side_limit": fraction_record(selected_limit),
+            "missing_side_limit": fraction_record(missing_limit),
+            "baseline_density_budget_limit": fraction_record(asymptotic_budget),
+            "asymptotic_far_star_floor": asymptotic_floor,
+            "current_gap_to_asymptotic_floor": asymptotic_floor - minimal_target,
+            "current_L_reaches_asymptotic_floor": minimal_target
+            == asymptotic_floor,
+        }
     baseline_density_budget = max(
         selected_argument,
         Fraction(q + 1) - missing_argument,
@@ -523,12 +538,14 @@ def far_star_sparse_floor_report(
         "D_independent_closed_form": True,
         "nondecreasing_in_L": True,
         "equals_baseline_R_Z_plus_one": True,
+        "asymptotic_limit": asymptotic_limit_report,
         "certificate": (
             "Substituting m_ap=LD into R_min(m_ap) cancels D. Since "
             "R_min(m_ap) is nondecreasing for m_ap>D, every class-count "
             "sparse certificate with m_ap>=LD requires this boundary floor. "
             "The closed floor is nondecreasing in L and equals the successor "
-            "of the baseline reduced-support R_Z at a0=1/h."
+            "of the baseline reduced-support R_Z at a0=1/h; as L grows it "
+            "eventually reaches the reported asymptotic ceiling when q>3."
         ),
     }
 
