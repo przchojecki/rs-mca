@@ -53,8 +53,9 @@ For every fixed projective center residue, the equal-line kernel resultant
 ```
 
 gives a nonzero quadratic projective gate in the leaf parameter `y`.  On the
-ordinary split-fiber model this gate is exact: its zero set is precisely the
-set of `y`-fibers containing a projective leaf `z` with `K_x^h(z)=0`.
+ordinary uncharged projective model this gate is exact over the base field:
+its zero set is precisely the set of `y`-fibers containing a projective leaf
+`z` with `K_x^h(z)=0`, and nonsplit fibers give no base-field phantom zeros.
 Therefore the projective divisor-gate lemma gives
 
 ```text
@@ -150,9 +151,9 @@ or model-entry failure:
 
 This turns the equal-line branch into a concrete falsifiable target.  The
 ordinary projective split-fiber containment, packet combinatorics, and divisor
-root count are closed locally; the remaining algebraic work is the global
-reduction from the full M1 high-overlap model into this equal-line split-fiber
-chart.
+root count are closed locally; nonsplit ordinary fibers do not add base-field
+gate zeros.  The remaining algebraic work is the global reduction from the
+full M1 high-overlap model into this equal-line split-fiber chart.
 
 ## Verification
 

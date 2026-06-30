@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 equal-line no nonsplit phantom
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_equal_line_split_fiber_containment.md`,
+  `experimental/scripts/verify_m1_equal_line_split_fiber_containment.py`,
+  `experimental/notes/m1/m1_equal_line_generic_popularity_budget.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
+- **What is being added:** A field-ledger refinement for the equal-line
+  projective gate: outside the charged `y`-fibers, nonsplit ordinary
+  `y`-fibers have no base-field zeros of `R_h(x,y)`.
+- **How it is useful:** Removes an extension-only phantom from the local M1
+  popularity cap.  Over the base field, the quadratic gate now exactly
+  detects actual projective leaf parameters in the equal-line chart.
+- **What to do next:** Use this base-field exact gate in the global
+  model-entry reduction from endpoint-independent high-overlap packet stars.
+
 ### 2026-06-30 - M1 equal-line split-gate exactness
 
 - **Agent/model:** AllenGrahamHart / Codex.
@@ -45,11 +63,9 @@ Keep entries concise and link to the relevant files.
   `K_x^h(z)=0`.
 - **How it is useful:** Shows the local quadratic gate loses no leaves inside
   the split-fiber chart; any remaining loss in the M1 packet route must come
-  from global model entry, nonsplit/base-change accounting, or charged
-  exceptional branches.
+  from global model entry or charged exceptional branches.
 - **What to do next:** Use the exact gate in the global high-overlap-to-chart
-  reduction, tracking whether the relevant leaves are split over the line
-  field or require a separate field-ledger charge.
+  reduction, after the charged exceptional branches have been removed.
 
 ### 2026-06-30 - M1 equal-line projective resultant identity
 

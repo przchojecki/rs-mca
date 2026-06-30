@@ -310,6 +310,57 @@ def check_projective_split_gate_exactness() -> None:
     print(f"projective_split_gate_zeros_checked={zeros}")
 
 
+def check_no_nonsplit_base_field_gate_zeros() -> None:
+    checked = 0
+    nonsplit_fibers = 0
+    for p in PRIMES:
+        singular = singular_support_y(p)
+        for y_point in projective_line(p):
+            if y_point in singular:
+                continue
+            roots = projective_split_fiber_roots(y_point, p)
+            if roots:
+                continue
+            nonsplit_fibers += 1
+            for x_point in projective_line(p):
+                if projective_resultant(x_point, y_point, p) == 0:
+                    raise AssertionError(("nonsplit phantom gate zero", p, x_point, y_point))
+                checked += 1
+    print(f"projective_nonsplit_fibers_checked={nonsplit_fibers}")
+    print(f"projective_nonsplit_gate_nonzeros_checked={checked}")
+
+
+def check_projective_base_field_gate_exactness() -> None:
+    checked = 0
+    zeros = 0
+    witnesses = 0
+    for p in PRIMES:
+        singular = singular_support_y(p)
+        for y_point in projective_line(p):
+            if y_point in singular:
+                continue
+            roots = projective_split_fiber_roots(y_point, p)
+            for x_point in projective_line(p):
+                gate_zero = projective_resultant(x_point, y_point, p) == 0
+                has_leaf = any(
+                    projective_kernel_argument(x_point, z_point, p) == 0
+                    for z_point in roots
+                )
+                if gate_zero:
+                    zeros += 1
+                if has_leaf:
+                    witnesses += 1
+                if gate_zero != has_leaf:
+                    raise AssertionError(
+                        ("base-field gate exactness", p, x_point, y_point, roots)
+                    )
+                checked += 1
+    if zeros != witnesses:
+        raise AssertionError(("base-field zero witness mismatch", zeros, witnesses))
+    print(f"projective_base_field_gate_exactness_checks={checked}")
+    print(f"projective_base_field_gate_zeros_checked={zeros}")
+
+
 def main() -> None:
     check_regular_fibers_are_split()
     check_projective_regular_fibers_are_split()
@@ -318,6 +369,8 @@ def main() -> None:
     check_kernel_containment_implication()
     check_projective_kernel_containment_implication()
     check_projective_split_gate_exactness()
+    check_no_nonsplit_base_field_gate_zeros()
+    check_projective_base_field_gate_exactness()
     print("m1 equal-line split-fiber containment checks passed")
 
 

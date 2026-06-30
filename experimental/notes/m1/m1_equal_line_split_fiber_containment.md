@@ -67,18 +67,17 @@ Res_{[Z:T]}(
 Thus `R_h` is not merely an affine chart artifact: it is exactly the norm of
 the homogeneous kernel form along the projective `y`-fiber.
 
-Consequently the gate is exact on ordinary split projective fibers over the
-field of definition:
+Consequently the gate is exact over the base field on ordinary projective
+fibers:
 
 ```text
 R_h(x,y)=0
   <=> exists z in P^1 with y(z)=y and K_x^h(z)=0,              (EX)
 ```
 
-provided the projective `y`-fiber is split and `y` is outside the charged
-singular support.  Over a nonsplit finite-field fiber, `(EX)` holds after
-base change to the splitting field; the finite-field popularity budget only
-uses the split leaf parameters that actually occur in the local model.
+provided `x,y` are base-field projective points and `y` is outside the
+charged singular support.  In particular, nonsplit ordinary `y`-fibers produce
+no base-field zeros of the gate.
 
 ## Singular fibers
 
@@ -123,6 +122,14 @@ of the fiber equation and `K_x^h`.  Since the fiber has already split, that
 common root is one of its two projective leaf parameters.  Thus the resultant
 gate is exact on this local split-fiber model.
 
+If the ordinary `y`-fiber is nonsplit over the base field, then `R_h(x,y)` has
+no base-field zero.  Indeed, a zero would make the irreducible quadratic fiber
+divide the quadratic kernel form over the base field.  But the kernel form has
+zero `ZT` coefficient, while the ordinary uncharged fiber has mixed
+coefficient `-2Y`.  The only way this mixed coefficient can vanish is `Y=0`,
+which is the charged fiber `y=0`.  Hence no nonsplit ordinary fiber contributes
+a base-field gate zero.
+
 The finite affine statement from the previous version is the chart `T=V=1`:
 if
 
@@ -150,9 +157,12 @@ and `K_x^h(Z,T)`.  Therefore their binary resultant vanishes.  By `(PR)`,
 this resultant is exactly `R_h(x,y)`, so `R_h(x,y)=0`.
 
 Conversely, if `R_h(x,y)=0`, then `(PR)` says that the two binary quadratics
-have a common projective zero after base change.  On an ordinary split fiber
-over the base field, the fiber equation has two base-field roots; hence the
-common zero is one of those roots, giving a leaf `z` with `K_x^h(z)=0`.
+have a common projective zero after base change.  If the ordinary fiber is
+split over the base field, the common zero is one of its base-field roots,
+giving a leaf `z` with `K_x^h(z)=0`.  If the ordinary fiber is nonsplit, it is
+irreducible over the base field; a common root forces the fiber quadratic to
+divide `K_x^h`, contradicting the mixed-coefficient argument above.  Thus the
+base-field equivalence `(EX)` holds on all ordinary uncharged fibers.
 
 The remaining paragraphs unpack this identity in the affine chart used by the
 original finite verifier.
@@ -205,8 +215,8 @@ from `m1_equal_line_generic_popularity_budget.md`.
 The companion verifier checks the finite split-fiber identity, the projective
 degree-two fibers, the homogeneous resultant identity `(PR)`, the singular
 support exclusions, and the implications `K_x(z)=0 => R(x,y)=0` and
-`K_x^h(z)=0 => R_h(x,y)=0`, plus the exact equivalence `(EX)` on split
-projective fibers, over expanded prime rows:
+`K_x^h(z)=0 => R_h(x,y)=0`, plus the exact equivalence `(EX)` and the absence
+of nonsplit base-field gate zeros, over expanded prime rows:
 
 ```sh
 python3 experimental/scripts/verify_m1_equal_line_split_fiber_containment.py
