@@ -2120,6 +2120,42 @@ def prime_projective_infinity_audit(
     }
 
 
+def prime_projective_infinity_gcd_audit(
+    result: ExtractionResult,
+    prime: int,
+) -> dict[str, Any]:
+    top_degree = result.j + 1
+    assert result.minor_family_records is not None
+    top_records = []
+    first_nonzero: int | None = None
+    for record in result.minor_family_records:
+        coefficients = record["coefficients"]
+        top_coefficient = (
+            coefficients[top_degree] % prime if top_degree < len(coefficients) else 0
+        )
+        if top_coefficient and first_nonzero is None:
+            first_nonzero = top_coefficient
+        top_records.append(
+            {
+                "row_set": record["row_set"],
+                "top_coefficient": top_coefficient,
+            }
+        )
+    status = "empty" if first_nonzero is not None else "nonempty"
+    return {
+        "projective_point": "[0:1]",
+        "status": status,
+        "top_degree": top_degree,
+        "top_coefficient": first_nonzero or 0,
+        "top_coefficients": top_records,
+        "contribution": 0 if status == "empty" else 1,
+        "reason": (
+            "projective infinity is excluded exactly when at least one audited "
+            "maximal-minor homogenization has nonzero top coefficient"
+        ),
+    }
+
+
 def field_projective_infinity_audit(
     result: ExtractionResult,
     field: PolynomialBasisField,
@@ -2142,6 +2178,45 @@ def field_projective_infinity_audit(
         "reason": (
             "homogenized regular-minor determinant evaluates to its top "
             "finite-patch coefficient at projective infinity"
+        ),
+    }
+
+
+def field_projective_infinity_gcd_audit(
+    result: ExtractionResult,
+    field: PolynomialBasisField,
+) -> dict[str, Any]:
+    top_degree = result.j + 1
+    assert result.minor_family_records is not None
+    top_records = []
+    first_nonzero: tuple[int, ...] | None = None
+    for record in result.minor_family_records:
+        coefficients = record["coefficients"]
+        top_coefficient = (
+            field.normalize(coefficients[top_degree])
+            if top_degree < len(coefficients)
+            else field.zero
+        )
+        if not field.is_zero(top_coefficient) and first_nonzero is None:
+            first_nonzero = top_coefficient
+        top_records.append(
+            {
+                "row_set": record["row_set"],
+                "top_coefficient": field.encode(top_coefficient),
+            }
+        )
+    status = "empty" if first_nonzero is not None else "nonempty"
+    return {
+        "projective_point": "[0:1]",
+        "status": status,
+        "top_degree": top_degree,
+        "top_coefficient": field.encode(first_nonzero or field.zero),
+        "top_coefficients": top_records,
+        "field_encoding": "base-p low-to-high integer",
+        "contribution": 0 if status == "empty" else 1,
+        "reason": (
+            "projective infinity is excluded exactly when at least one audited "
+            "maximal-minor homogenization has nonzero top coefficient"
         ),
     }
 
@@ -2238,6 +2313,10 @@ def result_to_packet_item(
             ):
                 item["extractor_audit"]["minor_gcd_method"] = ZERO_U_GCD_METHOD
             add_rank_pivot_test_nodes(item["extractor_audit"])
+            if sampler == "projective_line":
+                item["projective_infinity"] = prime_projective_infinity_gcd_audit(
+                    result, prime
+                )
             return item
         assert result.row_set is not None
         if result.polynomial is None:
@@ -2447,6 +2526,10 @@ def result_to_packet_item_field(
             ):
                 item["extractor_audit"]["minor_gcd_method"] = ZERO_U_GCD_METHOD
             add_rank_pivot_test_nodes(item["extractor_audit"])
+            if sampler == "projective_line":
+                item["projective_infinity"] = field_projective_infinity_gcd_audit(
+                    result, field
+                )
             return item
         assert result.row_set is not None
         if result.polynomial is None:

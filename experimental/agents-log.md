@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Projective regular-minor gcd endpoint audit
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_projective_gcd_toy.json`;
+  `experimental/data/certificates/regular-minor-gcd-projective-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the finite toy replay and checker gate.
+- **What is being added:** Projective-line `regular_minor_gcd` packets now
+  audit `[0:1]` using the top coefficient of every audited maximal minor.  The
+  checker recomputes the per-minor top coefficients and requires infinity to be
+  empty exactly when at least one of them is nonzero.
+- **How it is useful:** This closes a v9 chart-atlas accounting gap for
+  common-gcd packets: projective infinity is controlled by the determinant
+  family, not by the affine gcd polynomial alone.
+- **What to do next:** Apply the same projective endpoint accounting to any
+  future `F_17^32` projective common-gcd packet, especially once actual M3
+  row-data root tables are available.
+
 ### 2026-06-30 - Rank-node family regular-minor gcd gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

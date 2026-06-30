@@ -86,6 +86,7 @@ experimental/data/certificates/regular-minor-gcd-f17-2-toy/
 experimental/data/certificates/regular-minor-gcd-f17-32-toy/
 experimental/data/certificates/regular-minor-gcd-f17-32-zero-u-toy/
 experimental/data/certificates/regular-minor-gcd-rank-node-family-toy/
+experimental/data/certificates/regular-minor-gcd-projective-toy/
 experimental/scripts/verify_m1_regular_minor_gcd_gate.py
 ```
 
@@ -117,6 +118,13 @@ specializations.  With `node_limit=17`, it audits row-set counts
 all-contiguous replay.  The checker verifies that each gcd row set is backed by
 a recorded full-rank witness node, and now evaluates the recorded determinant
 polynomial at that node to confirm the witness is genuinely nonzero.
+
+For projective-line common-gcd packets, the endpoint `[0:1]` is audited from
+the whole minor family, not from the affine common gcd alone.  Infinity is empty
+if at least one audited maximal-minor homogenization has nonzero top
+coefficient; if every audited top coefficient vanishes, the packet must pay one
+projective endpoint.  The projective gcd toy records all per-minor top
+coefficients and the checker recomputes them from the minor-polynomial table.
 
 When the field is small enough, the extractor enumerates roots in the full
 finite slope field.  For extension fields, root-table elements are encoded as
@@ -446,6 +454,16 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 ! python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-gcd-rank-node-family-toy/invalid_zero_rank_node_witness_packet.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_projective_gcd_toy.json \
+  --check experimental/data/certificates/regular-minor-gcd-projective-toy/f17_n16_k8_a13_projective_regular_minor_gcd_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-gcd-projective-toy/f17_n16_k8_a13_projective_regular_minor_gcd_packet.json
+
+! python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-gcd-projective-toy/invalid_bad_projective_gcd_top_packet.json
 
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_toy.json \

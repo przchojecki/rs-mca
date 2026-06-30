@@ -1171,26 +1171,140 @@ def validate_regular_minor_projective_infinity(
     if extension_field is not None:
         extension_field.decode(top_coefficient)
 
-    data = item.get("regular_minor_polynomial_data")
-    if isinstance(data, dict):
+    if "regular_minor_gcd" in item:
+        gcd_info = item["regular_minor_gcd"]
+        row_sets_raw = gcd_info.get("row_sets") if isinstance(gcd_info, dict) else None
+        if not isinstance(row_sets_raw, list) or not row_sets_raw:
+            raise PacketError(
+                f"A={item.get('A')}: projective gcd infinity needs row_sets"
+            )
+        row_sets = [
+            normalize_int_list(
+                row_set,
+                f"A={item.get('A')}: projective gcd row_sets[{index}]",
+            )
+            for index, row_set in enumerate(row_sets_raw)
+        ]
+        top_records = audit.get("top_coefficients")
+        if not isinstance(top_records, list) or len(top_records) != len(row_sets):
+            raise PacketError(
+                f"A={item.get('A')}: projective gcd infinity needs one "
+                "top_coefficients record per row set"
+            )
+        data = item.get("regular_minor_gcd_data")
+        if not isinstance(data, dict):
+            raise PacketError(
+                f"A={item.get('A')}: projective gcd infinity needs gcd data"
+            )
+        minor_polynomial_key = first_matching_key(
+            data,
+            r"minor_polynomials_mod_\d+_ascending",
+            r"minor_polynomials_ascending",
+        )
+        if minor_polynomial_key is None:
+            raise PacketError(
+                f"A={item.get('A')}: projective gcd infinity needs minor polynomials"
+            )
+        minor_records = data[minor_polynomial_key]
+        if not isinstance(minor_records, list) or len(minor_records) != len(row_sets):
+            raise PacketError(
+                f"A={item.get('A')}: projective gcd minor records mismatch row sets"
+            )
+        actual_top_by_row_set = {}
+        for index, (expected_row_set, record) in enumerate(zip(row_sets, minor_records)):
+            if not isinstance(record, dict):
+                raise PacketError(
+                    f"A={item.get('A')}: projective gcd minor record {index} must be object"
+                )
+            row_set = normalize_int_list(
+                record.get("row_set", []),
+                f"A={item.get('A')}: projective gcd minor record {index} row_set",
+            )
+            if row_set != expected_row_set:
+                raise PacketError(
+                    f"A={item.get('A')}: projective gcd minor row_set {index} mismatch"
+                )
+            coefficients = require_int_list(
+                record.get("coefficients", []),
+                f"A={item.get('A')}: projective gcd minor {index} coefficients",
+            )
+            actual_top = coefficients[top_degree] if top_degree < len(coefficients) else 0
+            if modulus is not None:
+                actual_top %= modulus
+            elif extension_field is not None:
+                actual_top = extension_field.encode(extension_field.decode(actual_top))
+            actual_top_by_row_set[tuple(row_set)] = actual_top
+        listed_top_values = []
+        for index, (expected_row_set, record) in enumerate(zip(row_sets, top_records)):
+            if not isinstance(record, dict):
+                raise PacketError(
+                    f"A={item.get('A')}: projective gcd top record {index} must be object"
+                )
+            row_set = normalize_int_list(
+                record.get("row_set", []),
+                f"A={item.get('A')}: projective gcd top record {index} row_set",
+            )
+            if row_set != expected_row_set:
+                raise PacketError(
+                    f"A={item.get('A')}: projective gcd top row_set {index} mismatch"
+                )
+            listed_top = record.get("top_coefficient")
+            if not isinstance(listed_top, int) or listed_top < 0:
+                raise PacketError(
+                    f"A={item.get('A')}: projective gcd top record {index} "
+                    "needs nonnegative top_coefficient"
+                )
+            if modulus is not None:
+                listed_top %= modulus
+            elif extension_field is not None:
+                listed_top = extension_field.encode(extension_field.decode(listed_top))
+            actual_top = actual_top_by_row_set[tuple(row_set)]
+            if listed_top != actual_top:
+                raise PacketError(
+                    f"A={item.get('A')}: projective gcd top record {index} "
+                    f"has value {listed_top} but polynomial coefficient is {actual_top}"
+                )
+            listed_top_values.append(listed_top)
+        nonzero_tops = [value for value in listed_top_values if value != 0]
+        expected_status = "empty" if nonzero_tops else "nonempty"
+        expected_top = nonzero_tops[0] if nonzero_tops else 0
+        if status != expected_status:
+            raise PacketError(
+                f"A={item.get('A')}: projective gcd infinity status {status} "
+                f"but top coefficients imply {expected_status}"
+            )
+        if top_coefficient != expected_top:
+            raise PacketError(
+                f"A={item.get('A')}: projective gcd top_coefficient "
+                f"{top_coefficient} != witness {expected_top}"
+            )
+    else:
+        data = item.get("regular_minor_polynomial_data")
+        if not isinstance(data, dict):
+            raise PacketError(
+                f"A={item.get('A')}: projective regular minor needs polynomial data"
+            )
         coefficient_key = first_matching_key(
             data, r"coefficients_mod_\d+_ascending", r"coefficients_ascending"
         )
-        if coefficient_key is not None:
-            coefficients = require_int_list(
-                data[coefficient_key],
-                f"A={item.get('A')}: projective_infinity polynomial coefficients",
+        if coefficient_key is None:
+            raise PacketError(
+                f"A={item.get('A')}: projective regular minor needs coefficients"
             )
-            actual_top = (
-                coefficients[top_degree] if top_degree < len(coefficients) else 0
+        coefficients = require_int_list(
+            data[coefficient_key],
+            f"A={item.get('A')}: projective_infinity polynomial coefficients",
+        )
+        actual_top = coefficients[top_degree] if top_degree < len(coefficients) else 0
+        if modulus is not None:
+            actual_top %= modulus
+        elif extension_field is not None:
+            actual_top = extension_field.encode(extension_field.decode(actual_top))
+        if actual_top != top_coefficient:
+            raise PacketError(
+                f"A={item.get('A')}: projective_infinity top_coefficient "
+                f"{top_coefficient} != polynomial coefficient {actual_top}"
             )
-            if modulus is not None:
-                actual_top %= modulus
-            if actual_top != top_coefficient:
-                raise PacketError(
-                    f"A={item.get('A')}: projective_infinity top_coefficient "
-                    f"{top_coefficient} != polynomial coefficient {actual_top}"
-                )
 
     is_zero_top = top_coefficient == 0
     if status == "empty" and is_zero_top:
