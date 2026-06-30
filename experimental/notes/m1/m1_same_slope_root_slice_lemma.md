@@ -3698,6 +3698,38 @@ is not a search over palettes: it is an explicit integer feasibility interval.
 The structural support conditions `B<=R` and `max_x d_Sigma(x)<=D` remain the
 separate row-basis/core-image part of the certificate.
 
+Equivalently, one can invert the fixed-`m` interval into the first possible
+integer support budget.  Assume `m>D` and define
+
+```text
+R_sel_min(m)
+ = ceil((q-1)^2 m^2/(h^2((q-3)m^2+2mD))),
+
+R_miss_min(m)
+ = max(
+     0,
+     q+1 - floor((q-1)(h-1)m/(h(m-D)))
+   ),
+
+R_min(m)=max(R_sel_min(m),R_miss_min(m)).        (RKSQSPRFLOOR)
+```
+
+Then for integer `0<=R<=q+1`, the class-count part of a fixed-`m` sparse
+residual certificate is feasible if and only if
+
+```text
+R >= R_min(m).                                  (RKSQSPRMIN)
+```
+
+If `R_min(m)>q+1`, no class-count certificate exists at that residual size for
+any allowed projective support budget.  The proof is monotone in `K`: the
+selected-side lower bound on `R` is increasing with `K`, while the missing-side
+lower bound on `R` is also increasing because `C=hm-K` decreases with `K`.
+Thus the first possible class-count certificate occurs at the smallest allowed
+selected class count `K=m`, where `C=(h-1)m`, giving exactly the two floors
+above.  This recovers the `e=2` collapse as the case `h=1`, where
+`R_miss_min=q+1`.
+
 In particular, the window becomes uniform once the residual is separated from
 the endpoint-star threshold.  If a `(D,R)` sparse residual certificate also
 satisfies `m>=L D` for an integer `L>=2`, then `D/m<=1/L`, and the preceding
@@ -3954,9 +3986,10 @@ exact minimum number of one-class residual supports forced by
 (RKSQQUARTICSEL/RKSQQUARTICMISS) at that residual size.  With `--residual-m`,
 `--target-R`, and `--e`, it computes the exact integer feasibility interval
 for `(K_ap,C_ap)` in the sparse certificate inequalities at the given residual
-size.  This is an audit/evaluation tool for
-(RKSQINTBUDGET/RKSQTRADE), not a proof of the missing global density lower
-bound.
+size, together with the minimum integer target budget `R_min(m_ap)` for any
+class-count certificate at that residual size.  This is an audit/evaluation
+tool for (RKSQINTBUDGET/RKSQTRADE), not a proof of the missing global density
+lower bound.
 
 There is also a weak unconditional density floor from the reduced support
 convention.  A support with no selected square-coset class is absent from the
@@ -4635,6 +4668,7 @@ support-budget output theorem (RKSQLOCALOUT), the sparse residual certificate
 reduction (RKSQSPCERT0/RKSQSPCERT1/RKSQSPCERT2/RKSQSPCERT), the sparse
 certificate feasibility window (RKSQSPWINDOW1/RKSQSPWINDOW2/RKSQSPWINDOW), the
 fixed-residual sparse class-count interval (RKSQSPFEASDATA/RKSQSPFEAS), the
+fixed-residual minimum support-budget floor (RKSQSPRFLOOR/RKSQSPRMIN), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
@@ -4746,6 +4780,7 @@ support-budget output theorem (RKSQLOCALOUT), the sparse residual certificate
 reduction (RKSQSPCERT0/RKSQSPCERT1/RKSQSPCERT2/RKSQSPCERT), the sparse
 certificate feasibility window (RKSQSPWINDOW1/RKSQSPWINDOW2/RKSQSPWINDOW), the
 fixed-residual sparse class-count interval (RKSQSPFEASDATA/RKSQSPFEAS), the
+fixed-residual minimum support-budget floor (RKSQSPRFLOOR/RKSQSPRMIN), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),

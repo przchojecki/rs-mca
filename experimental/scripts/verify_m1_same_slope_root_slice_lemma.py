@@ -8403,14 +8403,15 @@ def check_sparse_certificate_fixed_residual_feasibility() -> None:
                     for residual_size in range(1, q + 3):
                         total_classes = h * residual_size
                         max_missing_classes = (h - 1) * residual_size
+                        star_bound = (
+                            (q - 3) * residual_size * residual_size
+                            + 2 * residual_size * degree_cap
+                        )
                         selected_rhs = Fraction(
                             h
                             * h
                             * target_budget
-                            * (
-                                (q - 3) * residual_size * residual_size
-                                + 2 * residual_size * degree_cap
-                            ),
+                            * star_bound,
                             (q - 1) * (q - 1),
                         )
                         max_selected = min(
@@ -8516,6 +8517,63 @@ def check_sparse_certificate_fixed_residual_feasibility() -> None:
                                 feasible_missing,
                                 forced_missing,
                                 max_missing_classes,
+                            )
+
+                        if residual_size > degree_cap:
+                            selected_min_target = ceil_fraction(
+                                Fraction(
+                                    (q - 1)
+                                    * (q - 1)
+                                    * residual_size
+                                    * residual_size,
+                                    h * h * star_bound,
+                                )
+                            )
+                            missing_min_target = max(
+                                0,
+                                q
+                                + 1
+                                - (
+                                    ((q - 1) * max_missing_classes)
+                                    // (h * (residual_size - degree_cap))
+                                ),
+                            )
+                            minimal_target = max(
+                                selected_min_target,
+                                missing_min_target,
+                            )
+                            assert bool(brute_interval) == (
+                                minimal_target <= q + 1
+                                and target_budget >= minimal_target
+                            ), (
+                                q,
+                                e,
+                                degree_cap,
+                                target_budget,
+                                residual_size,
+                                selected_min_target,
+                                missing_min_target,
+                                minimal_target,
+                                brute_interval,
+                            )
+                            if brute_interval and target_budget == minimal_target:
+                                assert brute_interval[0] == residual_size, (
+                                    q,
+                                    e,
+                                    degree_cap,
+                                    target_budget,
+                                    residual_size,
+                                    minimal_target,
+                                    brute_interval,
+                                )
+                        else:
+                            assert not brute_interval, (
+                                q,
+                                e,
+                                degree_cap,
+                                target_budget,
+                                residual_size,
+                                brute_interval,
                             )
 
 

@@ -29,7 +29,8 @@ quartic inequalities.
 
 With ``--residual-m``, ``--target-R``, and ``--e``, it computes the exact
 integer feasibility interval for the sparse certificate class counts
-``K_ap`` and ``C_ap`` at that residual size.
+``K_ap`` and ``C_ap`` at that residual size, and the minimum integer target
+budget ``R`` for which any class-count certificate can exist.
 
 The script does not prove the missing global row-basis/core-image density
 bound.  It tells a finite checker what support budget that hypothetical bound
@@ -316,11 +317,14 @@ def finite_sparse_feasibility_report(args: argparse.Namespace) -> dict[str, Any]
     h = args.e // 2
     total_classes = h * residual_size
     max_missing_classes = (h - 1) * residual_size
+    star_bound = (
+        (q - 3) * residual_size * residual_size + 2 * residual_size * d_cap
+    )
     selected_rhs = Fraction(
         h
         * h
         * args.target_R
-        * ((q - 3) * residual_size * residual_size + 2 * residual_size * d_cap),
+        * star_bound,
         (q - 1) * (q - 1),
     )
     max_selected_classes = min(total_classes, floor_sqrt_fraction(selected_rhs))
@@ -344,6 +348,29 @@ def finite_sparse_feasibility_report(args: argparse.Namespace) -> dict[str, Any]
         and forced_missing_classes <= max_missing_classes
         and selected_upper >= residual_size
     )
+    if sparse_size_condition:
+        selected_min_target = ceil_fraction(
+            Fraction(
+                (q - 1) * (q - 1) * residual_size * residual_size,
+                h * h * star_bound,
+            )
+        )
+        missing_min_target = max(
+            0,
+            q
+            + 1
+            - (
+                ((q - 1) * max_missing_classes)
+                // (h * (residual_size - d_cap))
+            ),
+        )
+        minimal_target = max(selected_min_target, missing_min_target)
+        feasible_for_some_target = minimal_target <= q + 1
+    else:
+        selected_min_target = None
+        missing_min_target = None
+        minimal_target = None
+        feasible_for_some_target = False
     return {
         "object": "m1_finite_sparse_certificate_feasibility",
         "status": "AUDIT",
@@ -361,6 +388,13 @@ def finite_sparse_feasibility_report(args: argparse.Namespace) -> dict[str, Any]
         "selected_side_min_C_ap": selected_forced_missing,
         "missing_side_min_C_ap": missing_forced_missing,
         "forced_min_C_ap": forced_missing_classes,
+        "selected_side_min_target_R_at_K_eq_m": selected_min_target,
+        "missing_side_min_target_R_at_K_eq_m": missing_min_target,
+        "minimal_target_R_for_class_count_feasibility": minimal_target,
+        "class_count_feasible_for_some_R_leq_q_plus_one": feasible_for_some_target,
+        "target_R_meets_minimum_class_count_floor": (
+            args.target_R >= minimal_target if minimal_target is not None else False
+        ),
         "feasible_K_ap_interval": [residual_size, selected_upper]
         if feasible
         else None,
@@ -372,7 +406,7 @@ def finite_sparse_feasibility_report(args: argparse.Namespace) -> dict[str, Any]
             "Exact integer restatement of RKSQSPCERT1/RKSQSPCERT2 at fixed "
             "m_ap. Feasibility requires m_ap>D, m_ap<=K_ap<=hm_ap, "
             "0<=C_ap<=(h-1)m_ap, K_ap+C_ap=hm_ap, and both support-budget "
-            "inequalities."
+            "inequalities. The minimum target budget is attained at K_ap=m_ap."
         ),
     }
 
