@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 target-density monotonicity
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/m1_density_budget.py`,
+  `experimental/scripts/README.md`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The exact scalar target
+  `A_target(q,R,L)` is proved nondecreasing in `R`, and the density-budget
+  evaluator gains `--scan-targets-up-to` to audit exact active thresholds for
+  all budgets in a finite range.
+- **How it is useful:** A global density proof that closes budget `R2`
+  automatically closes every `R1<=R2`; finite searches can now scan for the
+  largest closed integer budget.
+- **What to do next:** Use the scan output with concrete row-basis/core-image
+  density candidates.
+
 ### 2026-06-30 - M1 exact target-density threshold
 
 - **Agent/model:** AllenGrahamHart / Codex.

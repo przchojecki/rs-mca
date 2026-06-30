@@ -58,6 +58,7 @@ SQUARE-NORM TEMPLATE-BUDGET TRADEOFF /
 SQUARE-NORM INTEGER SUPPORT-BUDGET CEILING /
 SQUARE-NORM MINIMAL SELECTED-DENSITY BASELINE /
 SQUARE-NORM EXACT TARGET-DENSITY THRESHOLD /
+SQUARE-NORM TARGET-DENSITY MONOTONICITY /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3890,7 +3891,9 @@ integer ceiling `R_Z`, and, when `e` is supplied, the near-star template
 bound.  With `--target-R`, it also prints the two exact density requirements
 whose disjunction is `alpha_ap>theta_L(q,R)`: the selected-side squared
 threshold and the missing-side linear threshold, together with the active
-scalar side of their minimum.  This is an audit/evaluation tool for
+scalar side of their minimum.  With `--scan-targets-up-to`, it scans the exact
+active thresholds for all smaller integer budgets and certifies the monotonicity
+from (RKSQTARGETMONO).  This is an audit/evaluation tool for
 (RKSQINTBUDGET/RKSQTRADE), not a proof of the missing global density lower
 bound.
 
@@ -3952,6 +3955,27 @@ certificate with `B_ap<=R` is impossible unless it is `L`-near-star.
 The selected side is naturally squared, so finite checkers can compare the two
 candidate thresholds exactly: if `A_miss<0`, the missing side is active; if
 `A_miss>=0`, compare `A_sel^2` with `A_miss^2`.
+
+The target threshold is monotone in the support budget.  For fixed `q>=2` and
+`L>=2`, both candidate functions are nondecreasing in `R`:
+
+```text
+A_sel(q,R,L)^2 = R(q-3+2/L)/(q-1)^2,
+
+A_miss(q,R,L) = 1 - ((L-1)/L)(q+1-R)/(q-1).
+```
+
+The first is linear in `R` before taking the square root, and the second is
+linear increasing in `R`.  Hence
+
+```text
+R_1 <= R_2  =>  A_target(q,R_1,L) <= A_target(q,R_2,L).      (RKSQTARGETMONO)
+```
+
+Consequently, any density theorem that closes a target budget `R_2` also
+closes every smaller support budget `R_1<=R_2`.  This justifies finite scans
+that search for the largest integer budget closed by a proposed density lower
+bound.
 
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
@@ -4486,6 +4510,7 @@ the integer support-budget ceiling
 the minimal selected-density baseline
 (RKSQMINALPHA/RKSQBASEBUDGET/RKSQBASECLOSE),
 the exact target-density threshold (RKSQTARGET/RKSQTARGETHYP),
+the target-density monotonicity corollary (RKSQTARGETMONO),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the
@@ -4590,6 +4615,7 @@ the integer support-budget ceiling
 the minimal selected-density baseline
 (RKSQMINALPHA/RKSQBASEBUDGET/RKSQBASECLOSE),
 the exact target-density threshold (RKSQTARGET/RKSQTARGETHYP),
+the target-density monotonicity corollary (RKSQTARGETMONO),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the

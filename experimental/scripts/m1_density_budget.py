@@ -15,6 +15,9 @@ footprint cap S is supplied, it also uses the optimal compatible far-factor
 With ``--target-R`` it prints the exact density inequalities that would close
 that target support budget.
 
+With ``--scan-targets-up-to`` it scans exact active target thresholds for
+integer budgets and certifies the monotonicity from (RKSQTARGETMONO).
+
 With ``--baseline-a0`` it uses the unconditional reduced-support density floor
 ``a0=2/e`` from (RKSQMINALPHA).
 
@@ -97,15 +100,17 @@ def square_threshold_record(value: Fraction) -> dict[str, Any]:
     }
 
 
-def active_target_record(selected_square: Fraction, missing: Fraction) -> dict[str, Any]:
+def active_target_kind(selected_square: Fraction, missing: Fraction) -> str:
     if missing < 0:
-        return {
-            "active_side": "missing",
-            "threshold": fraction_record(missing),
-            "strict_condition": "alpha_ap > missing_side",
-            "reason": "missing_side_is_negative",
-        }
+        return "missing"
     if selected_square <= missing * missing:
+        return "selected"
+    return "missing"
+
+
+def active_target_record(selected_square: Fraction, missing: Fraction) -> dict[str, Any]:
+    active_kind = active_target_kind(selected_square, missing)
+    if active_kind == "selected":
         return {
             "active_side": "selected",
             "threshold": square_threshold_record(selected_square),
@@ -116,7 +121,85 @@ def active_target_record(selected_square: Fraction, missing: Fraction) -> dict[s
         "active_side": "missing",
         "threshold": fraction_record(missing),
         "strict_condition": "alpha_ap > missing_side",
-        "reason": "missing_side_below_selected_side",
+        "reason": "missing_side_is_negative"
+        if missing < 0
+        else "missing_side_below_selected_side",
+    }
+
+
+def target_components(
+    q: int,
+    far_factor: int,
+    support_budget: int,
+) -> tuple[Fraction, Fraction]:
+    selected_denominator = (q - 3) * far_factor + 2
+    selected_square = (
+        Fraction(support_budget * selected_denominator, far_factor)
+        / ((q - 1) * (q - 1))
+    )
+    missing = (
+        Fraction(1)
+        - Fraction(far_factor - 1, far_factor)
+        * Fraction(q + 1 - support_budget, q - 1)
+    )
+    return selected_square, missing
+
+
+def target_leq(
+    left_selected_square: Fraction,
+    left_missing: Fraction,
+    right_selected_square: Fraction,
+    right_missing: Fraction,
+) -> bool:
+    left_kind = active_target_kind(left_selected_square, left_missing)
+    right_kind = active_target_kind(right_selected_square, right_missing)
+    if left_kind == "missing" and right_kind == "missing":
+        return left_missing <= right_missing
+    if left_kind == "missing":
+        return (
+            left_missing < 0
+            or left_missing * left_missing <= right_selected_square
+        )
+    if right_kind == "missing":
+        return (
+            right_missing >= 0
+            and left_selected_square <= right_missing * right_missing
+        )
+    return left_selected_square <= right_selected_square
+
+
+def target_scan(q: int, far_factor: int, max_support_budget: int) -> dict[str, Any]:
+    rows = []
+    previous: tuple[Fraction, Fraction] | None = None
+    monotone = True
+    for support_budget in range(max_support_budget + 1):
+        selected_square, missing = target_components(q, far_factor, support_budget)
+        if previous is not None and not target_leq(
+            previous[0],
+            previous[1],
+            selected_square,
+            missing,
+        ):
+            monotone = False
+        previous = (selected_square, missing)
+        rows.append(
+            {
+                "R": support_budget,
+                "active_scalar_target": active_target_record(
+                    selected_square, missing
+                ),
+                "selected_side_square": fraction_record(selected_square),
+                "missing_side": fraction_record(missing),
+            }
+        )
+    return {
+        "max_R": max_support_budget,
+        "monotone_non_decreasing": monotone,
+        "rows": rows,
+        "certificate": (
+            "Exact branch-aware comparisons of A_target(q,R,L) for "
+            "R=0..max_R; theorem RKSQTARGETMONO proves this for all R."
+        ),
     }
 
 
@@ -148,6 +231,8 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
         raise ValueError("--R must be at most q+1")
     if args.target_R is not None and args.target_R > q + 1:
         raise ValueError("--target-R must be at most q+1")
+    if args.scan_targets_up_to is not None and args.scan_targets_up_to > q + 1:
+        raise ValueError("--scan-targets-up-to must be at most q+1")
 
     if args.L is not None:
         far_factor = args.L
@@ -184,14 +269,8 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
     r_z = ceil_fraction(r_dens) - 1
     target_selected_square = target_missing = None
     if args.target_R is not None:
-        target_selected_square = (
-            Fraction(args.target_R * selected_denominator, far_factor)
-            / ((q - 1) * (q - 1))
-        )
-        target_missing = (
-            Fraction(1)
-            - Fraction(far_factor - 1, far_factor)
-            * Fraction(q + 1 - args.target_R, q - 1)
+        target_selected_square, target_missing = target_components(
+            q, far_factor, args.target_R
         )
 
     report: dict[str, Any] = {
@@ -244,6 +323,11 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
             ),
         }
 
+    if args.scan_targets_up_to is not None:
+        report["target_scan"] = target_scan(
+            q, far_factor, args.scan_targets_up_to
+        )
+
     if args.e is not None:
         exact_template_bound = None
         omitted_reason = None
@@ -279,6 +363,7 @@ def build_parser() -> argparse.ArgumentParser:
     selector.add_argument("--S", type=nonnegative_int)
     parser.add_argument("--R", type=nonnegative_int)
     parser.add_argument("--target-R", type=nonnegative_int)
+    parser.add_argument("--scan-targets-up-to", type=nonnegative_int)
     parser.add_argument("--e", type=even_positive_int)
     parser.add_argument("--template-exact-limit", type=nonnegative_int, default=64)
     parser.add_argument("--pretty", action="store_true")

@@ -2841,6 +2841,10 @@ Conversely, for a desired integer budget \(R\), the exact scalar target is
 A global theorem proving \(\alpha_{\rm ap}>A_{\rm target}(q,R,L)\) empties
 the far-from-star sparse branch at support budget \(R\); the selected-side
 candidate can be compared exactly by squaring.
+For fixed \(q\) and \(L\), this target is nondecreasing in \(R\), since the
+selected-side square is linear in \(R\) and the missing-side candidate is
+linear increasing in \(R\).  Thus closing a budget \(R_2\) automatically closes
+all smaller budgets \(R_1\le R_2\).
 Moreover, if \(L_E(z)=Wz-Z\) for \(E=[Z:W]\), then in the off-diagonal case
 \[
         {H_1\over H_0}
