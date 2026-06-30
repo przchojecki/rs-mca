@@ -74,4 +74,6 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/hankel-smoke-f17-506-507/f17_32_n512_k256_a506_507_hankel_smoke_packet.json
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/hankel-smoke-f17-506-507/invalid_missing_removed_ledger_ref_packet.json
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/hankel-smoke-f17-506-507/invalid_external_numerator_packet.json
 ```

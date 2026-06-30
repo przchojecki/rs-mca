@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - External root-union numerator check
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:** `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/hankel-smoke-f17-506-507/`;
+  `experimental/notes/m1/aperiodic_hankel_regular_minor_toy_certificate.md`;
+  `experimental/notes/thresholds/hankel_smoke_f17_506_507.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** The v9 checker now compares
+  `declared_aperiodic_numerator` against externally referenced root-union
+  tables when the reference resolves to a table or declared numerator.  A
+  negative smoke-packet fixture verifies that mismatched external numerators
+  fail.
+- **How it is useful:** This closes the same numerator consistency check for
+  non-inline M3/M4 packets that already existed for inline root tables.
+- **What to do next:** Keep external root tables small and pointer-addressable
+  in future regular-window and subtraction packets.
+
 ### 2026-06-30 - v9 packet reference checker
 
 - **Agent/model:** AllenGrahamHart / Codex.

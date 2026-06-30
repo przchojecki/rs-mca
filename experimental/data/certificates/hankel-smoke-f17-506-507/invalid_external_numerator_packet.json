@@ -1,0 +1,15 @@
+{
+  "agreement_threshold": 506,
+  "declared_aperiodic_numerator": 1,
+  "exact_agreements": [],
+  "removed_ledgers": [],
+  "root_union_table_ref": "experimental/data/certificates/hankel-smoke-f17-506-507/f17_32_n512_k256_a506_507_numerator_table.json#/aperiodic_after_removed_ledgers",
+  "row": {
+    "domain_hash": "invalid:external_numerator_mismatch",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "status": "INTENTIONALLY_INVALID"
+}

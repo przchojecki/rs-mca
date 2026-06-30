@@ -346,11 +346,11 @@ def resolve_json_pointer(document: Any, pointer: str, location: str) -> Any:
     return current
 
 
-def validate_packet_reference(reference: str, location: str) -> None:
+def validate_packet_reference(reference: str, location: str) -> Any | None:
     if not reference:
         raise PacketError(f"{location}: empty reference")
     if reference.startswith("inline:") or reference in REFERENCE_SENTINELS:
-        return
+        return None
 
     path_text, separator, fragment = reference.partition("#")
     if not path_text:
@@ -362,11 +362,45 @@ def validate_packet_reference(reference: str, location: str) -> None:
         raise PacketError(f"{location}: referenced file does not exist: {path}")
 
     if not separator:
-        return
+        return load_json(path) if path.suffix == ".json" else None
     if path.suffix != ".json":
         raise PacketError(f"{location}: only JSON references may use fragments")
     document = load_json(path)
-    resolve_json_pointer(document, fragment, location)
+    return resolve_json_pointer(document, fragment, location)
+
+
+def table_numerator(target: Any, location: str) -> int | None:
+    if isinstance(target, list):
+        return len(normalize_int_list(target, location))
+    if not isinstance(target, dict):
+        return None
+
+    declared = target.get("declared_aperiodic_numerator")
+    if declared is not None:
+        if not isinstance(declared, int) or declared < 0:
+            raise PacketError(f"{location}.declared_aperiodic_numerator is invalid")
+        return declared
+
+    root_key = first_matching_key(target, r"root_union_mod_\d+", r"root_union", r"roots")
+    if root_key is None:
+        return None
+    return len(normalize_int_list(target[root_key], f"{location}.{root_key}"))
+
+
+def validate_external_root_union_table(packet: dict[str, Any], target: Any) -> None:
+    if "declared_aperiodic_numerator" not in packet:
+        return
+    declared = packet["declared_aperiodic_numerator"]
+    if not isinstance(declared, int):
+        return
+    numerator = table_numerator(target, "root_union_table_ref")
+    if numerator is None:
+        return
+    if declared != numerator:
+        raise PacketError(
+            "declared_aperiodic_numerator="
+            f"{declared} but external root-union table has numerator {numerator}"
+        )
 
 
 def validate_references(packet: dict[str, Any]) -> None:
@@ -379,7 +413,9 @@ def validate_references(packet: dict[str, Any]) -> None:
 
     root_union_table_ref = packet.get("root_union_table_ref")
     if isinstance(root_union_table_ref, str):
-        validate_packet_reference(root_union_table_ref, "root_union_table_ref")
+        target = validate_packet_reference(root_union_table_ref, "root_union_table_ref")
+        if target is not None:
+            validate_external_root_union_table(packet, target)
 
 
 def validate_schema(packet: Any, schema_path: Path) -> None:
