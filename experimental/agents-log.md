@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 high-overlap dense-core extraction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_high_overlap_graph_budget.md`,
+  `experimental/scripts/verify_m1_high_overlap_graph_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A dense-core extraction for the high-overlap graph:
+  once the packet-overlap lower bound exceeds the degeneracy edge ceiling, the
+  residual contains an induced core in which every packet has many
+  disjoint-support high-overlap neighbors.
+- **How it is useful:** Converts the remaining M1/C3 obstruction from a global
+  high-edge count into a concrete local algebraic configuration to rule out or
+  classify in the Hankel/Kummer packet graph.
+- **What to do next:** Attack this induced high-minimum-degree packet core
+  directly using the residue-line normal form and the existing root-slice,
+  fixed-root, quotient, and endpoint-star charges.
+
 ### 2026-06-30 - M1 high-overlap degree bridge
 
 - **Agent/model:** AllenGrahamHart / Codex.

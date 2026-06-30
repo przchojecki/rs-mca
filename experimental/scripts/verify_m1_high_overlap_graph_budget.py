@@ -61,6 +61,25 @@ def graph_degeneracy(num_vertices: int, edges: set[tuple[int, int]]) -> int:
     return degeneracy
 
 
+def min_degree_core(
+    num_vertices: int, edges: set[tuple[int, int]], min_degree: int
+) -> set[int]:
+    adjacency = [set() for _ in range(num_vertices)]
+    for i, j in edges:
+        adjacency[i].add(j)
+        adjacency[j].add(i)
+
+    remaining = set(range(num_vertices))
+    changed = True
+    while changed:
+        changed = False
+        for vertex in list(remaining):
+            if len(adjacency[vertex] & remaining) < min_degree:
+                remaining.remove(vertex)
+                changed = True
+    return remaining
+
+
 def max_edges_from_degree_bound(k: int, degree_bound: int) -> int:
     if degree_bound < 0:
         raise ValueError("degree_bound must be nonnegative")
@@ -152,6 +171,68 @@ def forced_high_edges(
     return ceil_positive(
         (burden - endpoint_budget - baseline) / (s - lambda_cap)
     )
+
+
+def check_dense_core_graph_theory() -> None:
+    checked = 0
+    for k in range(1, 7):
+        pairs = list(combinations(range(k), 2))
+        for mask in range(1 << len(pairs)):
+            edges = {
+                pair for bit, pair in enumerate(pairs) if (mask >> bit) & 1
+            }
+            edge_count = len(edges)
+            degeneracy = graph_degeneracy(k, edges)
+            for d in range(0, k + 1):
+                ceiling = max_edges_from_degeneracy_bound(k, d)
+                if degeneracy <= d and edge_count > ceiling:
+                    raise AssertionError(
+                        ("edge ceiling", k, mask, d, edge_count, ceiling)
+                    )
+                core = min_degree_core(k, edges, d + 1)
+                if degeneracy > d and not core:
+                    raise AssertionError(("missing core", k, mask, d, degeneracy))
+                if core:
+                    for vertex in core:
+                        degree = sum(
+                            1
+                            for neighbor in core
+                            if tuple(sorted((vertex, neighbor))) in edges
+                        )
+                        if degree < d + 1:
+                            raise AssertionError(
+                                ("bad core", k, mask, d, vertex, degree, core)
+                            )
+                if edge_count > ceiling and not core:
+                    raise AssertionError(
+                        (
+                            "dense graph lacks core",
+                            k,
+                            mask,
+                            d,
+                            edge_count,
+                            ceiling,
+                        )
+                    )
+                checked += 1
+
+    rng = random.Random(20260702)
+    for k in range(7, 25):
+        pairs = list(combinations(range(k), 2))
+        for _ in range(80):
+            edges = {
+                pair for pair in pairs if rng.randrange(100) < rng.randrange(5, 95)
+            }
+            degeneracy = graph_degeneracy(k, edges)
+            for d in range(0, min(k + 1, 10)):
+                core = min_degree_core(k, edges, d + 1)
+                if (degeneracy > d) != bool(core):
+                    raise AssertionError(
+                        ("random core mismatch", k, d, degeneracy, len(edges))
+                    )
+                checked += 1
+
+    print(f"dense_core_graphs_checked={checked}")
 
 
 def check_exact_parameter_grid() -> None:
@@ -301,6 +382,7 @@ def check_sampled_packet_systems() -> None:
     alternatives = 0
     degree_interfaces = 0
     degeneracy_interfaces = 0
+    dense_core_interfaces = 0
 
     for trial in range(650):
         labels = make_random_labels(rng, trial)
@@ -424,15 +506,40 @@ def check_sampled_packet_systems() -> None:
                     )
                 )
             degeneracy_interfaces += 1
+
+            for d in range(0, min(k, 8)):
+                forced = forced_high_edges(
+                    k, s, support_size, h, degree_cap, lambda_cap
+                )
+                ceiling = max_edges_from_degeneracy_bound(k, d)
+                if forced <= ceiling:
+                    continue
+                core = min_degree_core(k, high_edges, d + 1)
+                if not core:
+                    raise AssertionError(
+                        (
+                            "forced dense core missing",
+                            trial,
+                            lambda_cap,
+                            d,
+                            forced,
+                            ceiling,
+                            edge_count,
+                            support_size,
+                        )
+                    )
+                dense_core_interfaces += 1
         checked += 1
 
     print(f"sampled_packet_systems_checked={checked}")
     print(f"sampled_high_edge_alternatives_triggered={alternatives}")
     print(f"sampled_degree_interfaces_checked={degree_interfaces}")
     print(f"sampled_degeneracy_interfaces_checked={degeneracy_interfaces}")
+    print(f"sampled_dense_core_interfaces_checked={dense_core_interfaces}")
 
 
 def main() -> None:
+    check_dense_core_graph_theory()
     check_exact_parameter_grid()
     check_sampled_packet_systems()
     print("m1 high-overlap graph-budget checks passed")

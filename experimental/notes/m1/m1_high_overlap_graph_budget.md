@@ -249,6 +249,54 @@ complete graph ceiling `binom(K,2)` is sharp.  If `0 <= d < K-1`, the first
 `d(K-d-1)+binom(d+1,2)=dK-binom(d+1,2)`.  Substitution in `(HG1)` gives the
 displayed support floors and alternatives.
 
+## Dense-core extraction
+
+The degeneracy alternative can be localized further.  Define the forced
+high-edge lower bound
+
+```text
+E_forced(K,s,h,D,Lambda,R)
+ =
+ ceil_+(
+   (
+     K s(Ks-R)/(2R)
+     - K h(D-1)s
+     - Lambda binom(K,2)
+   )
+   /
+   (s-Lambda)
+ ).
+```
+
+If
+
+```text
+E_forced(K,s,h,D,Lambda,R) > M_degen(K,d),
+```
+
+then every selected packet family satisfies at least one of:
+
+```text
+large support:       B > R,
+near-star:           #{endpoint supports E_a} < L D,
+dense core:          G_Lambda contains a nonempty induced subgraph
+                     with minimum degree at least d+1.
+```
+
+In the dense-core branch, every packet in the induced core has at least `d+1`
+disjoint-support packet neighbors meeting it in more than `Lambda` points.
+This is the form intended for the next algebraic attack: rule out one packet
+having many independent high-overlap Kummer/cross-ratio partners, or classify
+the structured exception as quotient-periodic, tangent, subfield-confined, or
+finite-template.
+
+Proof: if `B<=R`, then `(HG2)` gives
+`e_Lambda >= E_forced`.  If the near-star alternative is absent and
+`E_forced > M_degen(K,d)`, then the degeneracy edge ceiling is impossible for
+`G_Lambda`; hence `degeneracy(G_Lambda)>d`.  By the standard peeling
+characterization of degeneracy, some induced subgraph has minimum degree at
+least `d+1`.
+
 ## M1 use
 
 For Work package C3 in `towards-prize.md`, this is a sharper interface than a
@@ -263,12 +311,16 @@ outside quotient-periodic, subfield-confined, or finite-template branches.
 For example, a Kummer/cross-ratio theorem proving maximum high-overlap degree
 `d` or high-overlap degeneracy `d` can now be inserted into `(DG1)` or
 `F_degen` to rule out the far-from-star small-support residual once the
-resulting floor exceeds the target support budget.
+resulting floor exceeds the target support budget.  Equivalently, if the
+support remains too small, the dense-core extraction above identifies a
+specific high-minimum-degree high-overlap packet core for the algebraic proof
+to eliminate.
 
 ## Verification
 
 The companion verifier checks the exact floor, the forced high-edge lower
-bound, and sampled finite packet systems:
+bound, the degree/degeneracy substitutions, the dense-core extraction, and
+sampled finite packet systems:
 
 ```sh
 python3 experimental/scripts/verify_m1_high_overlap_graph_budget.py
