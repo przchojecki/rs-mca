@@ -39,6 +39,7 @@ SQUARE-NORM SELECTED SUPPORT-COLLISION ENERGY /
 SQUARE-NORM SELECTED SUPPORT STAR-FORCING BOUND /
 SQUARE-NORM PARTIAL-PALETTE STAR-FORCING BOUND /
 SQUARE-NORM PARTIAL-PALETTE INVERSE PACKING BOUND /
+SQUARE-NORM SUPPORT-STAR PRUNING REDUCTION /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3319,6 +3320,43 @@ into a small slope set forces the same endpoint-star/low-template alternative.
 This is the local inverse form needed by the global residue-line packing
 program.
 
+Equivalently, the endpoint-star alternative can be made into an exact pruning
+reduction before applying the inverse bound.  Fix a degree cap `D`.  Starting
+from `Sigma`, repeatedly choose an endpoint whose current degree is larger
+than `D`, record it in a center set `A`, and delete all remaining supports
+incident to that endpoint.  Since `Sigma` is finite, the process terminates
+with a residual support family `Sigma_ap`.  By construction,
+
+```text
+max_x d_{Sigma_ap}(x) <= D,
+Sigma \ Sigma_ap subset { S : S cap A != empty }.      (RKSQPRUNE)
+```
+
+Moreover, charging each deleted support to the first center that deleted it
+partitions `Sigma\Sigma_ap` into endpoint-star templates.  Thus this pruning
+does not lose or double-count packet classes: it separates a star-charged
+low-template part from a residual selected support graph with degree cap `D`.
+
+For the residual packet classes, put
+
+```text
+K_ap=sum_{S in Sigma_ap} |Theta_S|,        M_ap=(2(q-1)/e)K_ap,
+B_ap=|{x : I_ap(x)>0}|,                   m_ap=|Sigma_ap|.
+```
+
+If `m_ap>0`, then (RKSQPACK) applied to the residual graph gives
+
+```text
+B_ap >= M_ap^2 / ((q-3)m_ap^2 + 2m_apD).              (RKSQPRUNEPACK)
+```
+
+Consequently, after the endpoint-star templates have been charged to the
+quotient/low-template ledger, the remaining square-map packets cannot be
+packed more tightly than the bounded-degree inverse-packing threshold.  This
+is the local form of the M1 quotient-versus-aperiodic separation: any failure
+of the residual packing bound must come from a star that was deliberately
+charged, not from hidden square-map packet geometry.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -3828,8 +3866,9 @@ design (RKSQDESIGN), the selected support-avoidance reduction
 (RKSQDEG/RKSQDEG2), the selected support-collision energy (RKSQSTAR), the
 selected support star-forcing bound (RKSQSTARFORCE), the partial-palette
 star-forcing bound (RKSQPARTSTAR), the partial-palette inverse packing bound
-(RKSQPACK), the canonical endpoint-pair norm factorization (RKSQRAT), the fixed
-endpoint-pair coset palette
+(RKSQPACK), the support-star pruning reduction (RKSQPRUNE/RKSQPRUNEPACK), the
+canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
+coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
@@ -3908,8 +3947,9 @@ design (RKSQDESIGN), the selected support-avoidance reduction
 (RKSQDEG/RKSQDEG2), the selected support-collision energy (RKSQSTAR), the
 selected support star-forcing bound (RKSQSTARFORCE), the partial-palette
 star-forcing bound (RKSQPARTSTAR), the partial-palette inverse packing bound
-(RKSQPACK), the canonical endpoint-pair norm factorization (RKSQRAT), the fixed
-endpoint-pair coset palette
+(RKSQPACK), the support-star pruning reduction (RKSQPRUNE/RKSQPRUNEPACK), the
+canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
+coset palette
 (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary

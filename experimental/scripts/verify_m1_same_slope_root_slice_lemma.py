@@ -68,7 +68,8 @@ fixed-basis support-packet incidence design, fixed-basis endpoint-palette
 bound, selected support-avoidance reduction, fixed endpoint-pair packet-size
 bound, selected support-degree profile, selected support-collision energy, and
 selected support star-forcing bound, partial-palette star-forcing bound,
-partial-palette inverse packing bound, and packet-count corollary.
+partial-palette inverse packing bound, support-star pruning reduction, and
+packet-count corollary.
 """
 
 from __future__ import annotations
@@ -7288,6 +7289,126 @@ def check_boundary_core_square_map_packet_count() -> None:
                     selected_classes,
                     selected_incidence,
                 )
+                degree_cap = rng.randint(0, max_degree)
+                remaining_supports = set(selected_supports)
+                star_centers: set[P1Point] = set()
+                star_charged_supports: set[frozenset[P1Point]] = set()
+                while remaining_supports:
+                    current_degrees = {
+                        point: sum(
+                            1 for support in remaining_supports if point in support
+                        )
+                        for point in fixed_support_universe
+                    }
+                    high_points = [
+                        point
+                        for point, degree in current_degrees.items()
+                        if degree > degree_cap
+                    ]
+                    if not high_points:
+                        break
+                    center = max(
+                        high_points,
+                        key=lambda point: (current_degrees[point], str(point)),
+                    )
+                    star_centers.add(center)
+                    incident_supports = {
+                        support for support in remaining_supports if center in support
+                    }
+                    assert incident_supports
+                    star_charged_supports.update(incident_supports)
+                    remaining_supports.difference_update(incident_supports)
+                assert set(selected_supports) == (
+                    remaining_supports | star_charged_supports
+                ), (
+                    prime,
+                    index,
+                    degree_cap,
+                    selected_supports,
+                    remaining_supports,
+                    star_charged_supports,
+                    star_centers,
+                )
+                assert remaining_supports.isdisjoint(star_charged_supports)
+                for support in star_charged_supports:
+                    assert set(support) & star_centers, (
+                        prime,
+                        index,
+                        degree_cap,
+                        support,
+                        star_centers,
+                    )
+                residual_degrees = {
+                    point: sum(1 for support in remaining_supports if point in support)
+                    for point in fixed_support_universe
+                }
+                assert all(degree <= degree_cap for degree in residual_degrees.values()), (
+                    prime,
+                    index,
+                    degree_cap,
+                    residual_degrees,
+                    remaining_supports,
+                    star_centers,
+                )
+                if remaining_supports:
+                    residual_incidence = {
+                        point: 0 for point in all_projective_points
+                    }
+                    residual_mass = 0
+                    for support in remaining_supports:
+                        first, second = tuple(support)
+                        support_map = mobius_from_zero_pole(first, second, prime)
+                        for packet_class in selected_classes[support]:
+                            packet = projective_square_packet(
+                                support_map,
+                                packet_class,
+                                index,
+                                log_table,
+                                prime,
+                            )
+                            residual_mass += len(packet)
+                            for point in packet:
+                                residual_incidence[point] += 1
+                    residual_expected_mass = (
+                        2
+                        * (prime - 1)
+                        // index
+                        * sum(
+                            len(selected_classes[support])
+                            for support in remaining_supports
+                        )
+                    )
+                    assert residual_mass == residual_expected_mass, (
+                        prime,
+                        index,
+                        degree_cap,
+                        remaining_supports,
+                        residual_mass,
+                        residual_expected_mass,
+                    )
+                    residual_support_size = sum(
+                        1
+                        for incidence in residual_incidence.values()
+                        if incidence
+                    )
+                    residual_count = len(remaining_supports)
+                    residual_star_bound = (
+                        (prime - 3) * residual_count * residual_count
+                        + 2 * residual_count * degree_cap
+                    )
+                    assert residual_support_size * residual_star_bound >= (
+                        residual_mass * residual_mass
+                    ), (
+                        prime,
+                        index,
+                        degree_cap,
+                        residual_count,
+                        residual_support_size,
+                        residual_mass,
+                        residual_star_bound,
+                        remaining_supports,
+                        residual_incidence,
+                    )
 
             full_selected_incidence = {point: 0 for point in all_projective_points}
             for support in support_list:

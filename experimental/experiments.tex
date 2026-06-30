@@ -2613,6 +2613,24 @@ same selected square-map packets into fewer than
 slope points forces some endpoint star of degree \(>D\).  Thus unexpectedly
 tight packing of many selected square-map packets forces the same
 endpoint-star alternative.
+This can be turned into a pruning reduction.  Repeatedly remove all supports
+incident to an endpoint whose current degree is \(>D\).  The deleted supports
+are partitioned among endpoint-star templates, while the residual support
+family \(\Sigma_{\rm ap}\) has maximum degree at most \(D\).  For the residual
+classes, with
+\[
+        K_{\rm ap}=\sum_{S\in\Sigma_{\rm ap}}|\Theta_S|,\quad
+        M_{\rm ap}=2(q-1)K_{\rm ap}/e,\quad
+        B_{\rm ap}=|\{x:I_{\rm ap}(x)>0\}|,
+\]
+one has
+\[
+        B_{\rm ap}\ge
+        {M_{\rm ap}^2\over (q-3)m_{\rm ap}^2+2m_{\rm ap}D}
+        \qquad (m_{\rm ap}=|\Sigma_{\rm ap}|>0).
+\]
+Thus after endpoint stars are charged to quotient/low-template ledgers, the
+aperiodic residual cannot be overpacked by local square-map geometry.
 Moreover, if \(L_E(z)=Wz-Z\) for \(E=[Z:W]\), then in the off-diagonal case
 \[
         {H_1\over H_0}

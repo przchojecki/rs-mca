@@ -49,6 +49,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 support-star pruning reduction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A greedy endpoint-star pruning lemma separates any
+  selected square-map support graph into endpoint-star charged templates and a
+  residual graph of maximum degree at most a chosen cap `D`; the residual then
+  satisfies the inverse packing bound with `D`.
+- **How it is useful:** This is the local M1 quotient/template versus
+  aperiodic separation needed after large endpoint stars are charged away.
+- **What to do next:** Relate the pruned endpoint-star templates to concrete
+  quotient-periodic or fixed-endpoint row-basis/core images.
+
 ### 2026-06-30 - M1 partial-palette inverse packing bound
 
 - **Agent/model:** AllenGrahamHart / Codex.
