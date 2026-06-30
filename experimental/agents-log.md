@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Descriptor-backed closed-form leading replay
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT for the v9 checker.
+- **What is being added:** Large prefix `F_17^32` closed-form regular-minor
+  packets now replay their leading coefficient from the checked-in row
+  descriptor.  The checker verifies the advertised power-sum syndrome
+  `v_m=sum_i x_i^m`, uses a Vandermonde-square replay when the witness count
+  equals the minor size, and uses one cached prefix-Hankel elimination for the
+  fixed `A=421..426` top-window packet.
+- **How it is useful:** Removes another trusted scalar from compressed
+  closed-form M3 packets: a packet with the right repeated root but the wrong
+  large leading coefficient is now rejected without enumerating `F_17^32`.
+- **What to do next:** Keep this replay path restricted to descriptor-backed
+  prefix packets; future non-prefix or actual-row compressed certificates need
+  their own determinant/leading-coefficient proof.
+
 ### 2026-07-01 - Closed-form regular-minor replay gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

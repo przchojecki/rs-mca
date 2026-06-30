@@ -178,6 +178,22 @@ recomputes the leading Hankel determinant `C` from the input.  For the deployed
 interpolation while still tying the repeated-root location to the SHA-checked
 syndrome pencil.
 
+For the prefix synthetic `F_17^32` packets, the checker now also replays the
+large leading coefficient from the checked-in row descriptor.  It verifies that
+the input syndrome has
+
+```text
+v_m = sum_i x_i^m
+```
+
+for the advertised first descriptor-domain nodes.  If the witness-node count
+equals the minor size, the leading coefficient is replayed as the
+Vandermonde-square determinant.  For the fixed `A=421..426` top-window packet,
+where the same `92` witness nodes feed smaller prefix minors, the checker
+performs one cached prefix-Hankel elimination and reuses the leading principal
+determinants.  Thus the deployed closed-form packets no longer trust an
+arbitrary leading scalar.
+
 The extractor finds nonzero prefix minors in all four exact agreements, with
 degrees `4,3,2,1` and closed-range root union `{0,2,10,11}`.
 
@@ -558,6 +574,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 ! python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-extractor-rank-witness-toy/invalid_rank_witness_root_hash_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/invalid_large_closed_form_leading_packet.json
 
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_singular_toy.json \

@@ -32,10 +32,16 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/invalid_omitted_monomial_root_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/invalid_large_closed_form_leading_packet.json
 ```
 
 The expected-failure packet lists the large-field monomial `Z` but omits its
 root `0`; the checker rejects it without enumerating `F_17^32`.
+The second expected-failure packet keeps the root table `{0}` but changes the
+large leading coefficient; the checker rejects it by replaying the descriptor
+power sums and Vandermonde-square prefix determinant.
 
 Non-claims: this is not a worst-case MCA bound, not a worst-case row root table
 over `F_17^32`, and not a quotient/tangent subtraction table.

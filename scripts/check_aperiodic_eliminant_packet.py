@@ -32,6 +32,13 @@ DEFAULT_SCHEMA = Path("scripts/aperiodic_eliminant_schema.json")
 ROOT_COMPLETENESS_ENUMERATION_LIMIT = 1_000_000
 INLINE_MINOR_REPLAY_SIZE_LIMIT = 16
 CLOSED_FORM_LEADING_REPLAY_SIZE_LIMIT = 16
+PREFIX_LEADING_CACHE_SIZE_LIMIT = 96
+DOMAIN_DESCRIPTOR_CANDIDATES = [
+    Path(
+        "experimental/data/certificates/hankel-f17-32-row-descriptor/"
+        "f17_32_n512_k256_hankel_row_descriptor.json"
+    )
+]
 
 
 class PacketError(Exception):
@@ -1851,6 +1858,228 @@ def determinant_square_field(
     return determinant
 
 
+def field_model_matches(
+    model: Any,
+    field: PolynomialBasisField,
+    location: str,
+) -> None:
+    if not isinstance(model, dict):
+        raise PacketError(f"{location}: field_model must be an object")
+    if model.get("kind") != "polynomial_basis":
+        raise PacketError(f"{location}: unsupported field_model.kind")
+    if model.get("p") != field.p:
+        raise PacketError(f"{location}: field_model.p mismatch")
+    modulus = require_int_list(model.get("modulus"), f"{location}.modulus")
+    if [value % field.p for value in modulus] != field.modulus:
+        raise PacketError(f"{location}: field_model.modulus mismatch")
+    if "degree" in model and model["degree"] != field.degree:
+        raise PacketError(f"{location}: field_model.degree mismatch")
+
+
+def load_domain_descriptor_for_replay(
+    rank_replay_input: dict[str, Any],
+    field: PolynomialBasisField,
+    location: str,
+) -> dict[str, Any] | None:
+    cached = rank_replay_input.get("__domain_descriptor_cache")
+    if cached is False:
+        return None
+    if isinstance(cached, dict):
+        return cached
+
+    row = rank_replay_input.get("row")
+    domain_hash = row.get("domain_hash") if isinstance(row, dict) else None
+    if not isinstance(domain_hash, str):
+        rank_replay_input["__domain_descriptor_cache"] = False
+        return None
+
+    for path in DOMAIN_DESCRIPTOR_CANDIDATES:
+        if not path.exists():
+            continue
+        descriptor = load_json(path)
+        if not isinstance(descriptor, dict):
+            raise PacketError(f"{location}: domain descriptor must be an object")
+        domain = descriptor.get("domain")
+        if not isinstance(domain, dict):
+            raise PacketError(f"{location}: domain descriptor missing domain")
+        encodings = require_int_list(
+            domain.get("domain_encodings"), f"{location}: domain_encodings"
+        )
+        descriptor_row = descriptor.get("row")
+        descriptor_hash = (
+            descriptor_row.get("domain_hash")
+            if isinstance(descriptor_row, dict)
+            else None
+        )
+        if descriptor_hash != domain_hash and hash_json(encodings) != domain_hash:
+            continue
+        field_model_matches(descriptor.get("field_model"), field, location)
+        if isinstance(row, dict) and isinstance(descriptor_row, dict):
+            for field_name in ("n", "k", "field"):
+                if descriptor_row.get(field_name) != row.get(field_name):
+                    raise PacketError(
+                        f"{location}: domain descriptor row.{field_name} mismatch"
+                    )
+        rank_replay_input["__domain_descriptor_cache"] = descriptor
+        return descriptor
+
+    rank_replay_input["__domain_descriptor_cache"] = False
+    return None
+
+
+def verify_descriptor_power_sums(
+    rank_replay_input: dict[str, Any],
+    v_field: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+    location: str,
+) -> list[tuple[int, ...]] | None:
+    syndrome = rank_replay_input.get("line_syndrome")
+    if not isinstance(syndrome, dict):
+        return None
+    witness_count = syndrome.get("witness_node_prefix_count")
+    if not isinstance(witness_count, int) or witness_count <= 0:
+        return None
+
+    cache_key = (
+        "__descriptor_power_sum_cache",
+        field.p,
+        field.degree,
+        witness_count,
+        len(v_field),
+    )
+    cache = rank_replay_input.setdefault("__closed_form_replay_cache", {})
+    if isinstance(cache, dict) and cache_key in cache:
+        cached = cache[cache_key]
+        return cached if isinstance(cached, list) else None
+
+    descriptor = load_domain_descriptor_for_replay(rank_replay_input, field, location)
+    if descriptor is None:
+        return None
+    domain = descriptor["domain"]
+    encodings = require_int_list(
+        domain.get("domain_encodings"), f"{location}: domain_encodings"
+    )
+    if witness_count > len(encodings):
+        raise PacketError(
+            f"{location}: witness_node_prefix_count exceeds descriptor domain"
+        )
+    nodes = [field.decode(value) for value in encodings[:witness_count]]
+    powers = [field.one for _ in nodes]
+    for exponent, expected_value in enumerate(v_field):
+        total = field.zero
+        for power in powers:
+            total = field.add(total, power)
+        if total != expected_value:
+            raise PacketError(
+                f"{location}: descriptor power-sum replay fails at moment {exponent}"
+            )
+        powers = [field.mul(power, node) for power, node in zip(powers, nodes)]
+    if isinstance(cache, dict):
+        cache[cache_key] = nodes
+    return nodes
+
+
+def vandermonde_square_field(
+    nodes: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+    location: str,
+) -> tuple[int, ...]:
+    out = field.one
+    for left_index, left in enumerate(nodes):
+        for right in nodes[left_index + 1 :]:
+            diff = field.sub(right, left)
+            if field.is_zero(diff):
+                raise PacketError(f"{location}: repeated descriptor witness node")
+            out = field.mul(out, field.mul(diff, diff))
+    return out
+
+
+def cached_prefix_hankel_leading(
+    rank_replay_input: dict[str, Any],
+    v_field: list[tuple[int, ...]],
+    size: int,
+    witness_count: int,
+    field: PolynomialBasisField,
+    location: str,
+) -> tuple[int, ...] | None:
+    cache_size = (
+        witness_count if witness_count <= PREFIX_LEADING_CACHE_SIZE_LIMIT else size
+    )
+    if size > cache_size:
+        return None
+    if len(v_field) < 2 * cache_size - 1:
+        raise PacketError(
+            f"{location}: syndrome too short for prefix leading replay"
+        )
+
+    cache_key = (
+        "__prefix_hankel_leading_cache",
+        field.p,
+        field.degree,
+        cache_size,
+    )
+    cache = rank_replay_input.setdefault("__closed_form_replay_cache", {})
+    if isinstance(cache, dict) and cache_key in cache:
+        determinants = cache[cache_key]
+        if isinstance(determinants, dict):
+            return determinants.get(size)
+
+    work = [
+        [v_field[row + col] for col in range(cache_size)]
+        for row in range(cache_size)
+    ]
+    determinant = field.one
+    determinants: dict[int, tuple[int, ...]] = {}
+    for col in range(cache_size):
+        pivot = work[col][col]
+        if field.is_zero(pivot):
+            raise PacketError(
+                f"{location}: prefix leading replay hit a zero pivot at {col}"
+            )
+        determinant = field.mul(determinant, pivot)
+        determinants[col + 1] = determinant
+        inv_pivot = field.inv(pivot)
+        for row in range(col + 1, cache_size):
+            factor = field.mul(work[row][col], inv_pivot)
+            if field.is_zero(factor):
+                continue
+            for entry_col in range(col, cache_size):
+                work[row][entry_col] = field.sub(
+                    work[row][entry_col],
+                    field.mul(factor, work[col][entry_col]),
+                )
+    if isinstance(cache, dict):
+        cache[cache_key] = determinants
+    return determinants.get(size)
+
+
+def replay_closed_form_prefix_leading_field(
+    rank_replay_input: dict[str, Any],
+    row_set: list[int],
+    v_field: list[tuple[int, ...]],
+    size: int,
+    field: PolynomialBasisField,
+    location: str,
+) -> tuple[int, ...] | None:
+    if row_set != list(range(size)):
+        return None
+    nodes = verify_descriptor_power_sums(
+        rank_replay_input, v_field, field, location
+    )
+    if nodes is None or len(nodes) < size:
+        return None
+    if len(nodes) == size:
+        return vandermonde_square_field(nodes, field, location)
+    return cached_prefix_hankel_leading(
+        rank_replay_input,
+        v_field,
+        size,
+        len(nodes),
+        field,
+        location,
+    )
+
+
 def validate_rank_specializations(
     item: dict[str, Any],
     row_set: list[int],
@@ -2143,6 +2372,21 @@ def validate_closed_form_regular_minor_replay(
         raise PacketError(
             f"{location}: closed-form extension coefficients do not match replay"
         )
+    replayed_leading = replay_closed_form_prefix_leading_field(
+        rank_replay_input,
+        row_set,
+        v_field,
+        size,
+        extension_field,
+        location,
+    )
+    if replayed_leading is not None:
+        if replayed_leading != leading:
+            raise PacketError(
+                f"{location}: closed-form extension leading coefficient "
+                "does not match descriptor replay"
+            )
+        return True
     if size > CLOSED_FORM_LEADING_REPLAY_SIZE_LIMIT:
         return True
     replayed_leading = determinant_square_field(
