@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 selected support-avoidance reduction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** For any selected fixed-basis support family
+  `Sigma` and selected square-coset classes `Theta_S`, the packet incidence at
+  a point `x` is bounded by the number of selected supports avoiding `x`, with
+  equality for full palettes; total mass is
+  `(2(q-1)/e) sum_S |Theta_S|`.
+- **How it is useful:** This converts the remaining global square-map packet
+  problem into a support-avoidance profile problem for the row-basis/core image.
+- **What to do next:** Prove that large support-avoidance profiles force
+  quotient-periodic or low-template structure.
+
 ### 2026-06-30 - M1 fixed-basis support-packet design
 
 - **Agent/model:** AllenGrahamHart / Codex.

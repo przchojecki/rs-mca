@@ -65,7 +65,8 @@ fixed-basis forbidden-endpoint sharpening, fixed-basis coordinate normal form,
 fixed-basis slope-pair parametrization, fixed-basis no-loss square map,
 fixed-basis support-palette count, fixed-basis support-fiber decomposition,
 fixed-basis support-packet incidence design, fixed-basis endpoint-palette
-bound, fixed endpoint-pair packet-size bound, and packet-count corollary.
+bound, selected support-avoidance reduction, fixed endpoint-pair packet-size
+bound, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -7180,6 +7181,87 @@ def check_boundary_core_square_map_packet_count() -> None:
                     incidence,
                     expected_incidence,
                     projective_incidence,
+                )
+
+            all_projective_points: list[P1Point] = list(range(prime)) + [None]
+            support_list = sorted(
+                expected_fixed_supports,
+                key=lambda support: tuple(str(point) for point in support),
+            )
+            for _ in range(40):
+                selected_count = rng.randint(1, len(support_list))
+                selected_supports = rng.sample(support_list, selected_count)
+                selected_classes = {
+                    support: set(
+                        rng.sample(packet_classes, rng.randint(1, len(packet_classes)))
+                    )
+                    for support in selected_supports
+                }
+                selected_incidence = {point: 0 for point in all_projective_points}
+                selected_mass = 0
+                for support, classes in selected_classes.items():
+                    first, second = tuple(support)
+                    support_map = mobius_from_zero_pole(first, second, prime)
+                    for packet_class in classes:
+                        packet = projective_square_packet(
+                            support_map,
+                            packet_class,
+                            index,
+                            log_table,
+                            prime,
+                        )
+                        selected_mass += len(packet)
+                        for point in packet:
+                            selected_incidence[point] += 1
+                expected_mass = (
+                    2
+                    * (prime - 1)
+                    // index
+                    * sum(len(classes) for classes in selected_classes.values())
+                )
+                assert selected_mass == expected_mass, (
+                    prime,
+                    index,
+                    selected_classes,
+                    selected_mass,
+                    expected_mass,
+                )
+                for point, incidence in selected_incidence.items():
+                    avoidance_count = sum(
+                        1 for support in selected_supports if point not in support
+                    )
+                    assert incidence <= avoidance_count, (
+                        prime,
+                        index,
+                        point,
+                        incidence,
+                        avoidance_count,
+                        selected_classes,
+                    )
+
+            full_selected_incidence = {point: 0 for point in all_projective_points}
+            for support in support_list:
+                first, second = tuple(support)
+                support_map = mobius_from_zero_pole(first, second, prime)
+                for packet_class in packet_classes:
+                    for point in projective_square_packet(
+                        support_map,
+                        packet_class,
+                        index,
+                        log_table,
+                        prime,
+                    ):
+                        full_selected_incidence[point] += 1
+            for point, incidence in full_selected_incidence.items():
+                full_avoidance_count = sum(
+                    1 for support in support_list if point not in support
+                )
+                assert incidence == full_avoidance_count, (
+                    prime,
+                    index,
+                    point,
+                    incidence,
+                    full_avoidance_count,
                 )
 
             for palette_size in range(2, min(6, len(p1_points)) + 1):
