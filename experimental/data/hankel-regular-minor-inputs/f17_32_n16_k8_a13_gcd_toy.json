@@ -1,0 +1,117 @@
+{
+  "agreement_threshold": 13,
+  "certificate_mode": "minor_gcd_roots",
+  "claim_scope": {
+    "may_be_used_for_threshold_pinning": false,
+    "note": "Finite toy replay over the actual F_17^32 field model for the extension-field common-gcd degree-bound gate only.",
+    "root_status": "degree_bound_only",
+    "row_data": "toy_row",
+    "threshold_role": "toy_mechanism"
+  },
+  "enumerate_split_bad_slopes": true,
+  "exact_agreements": [
+    13,
+    14,
+    15,
+    16
+  ],
+  "field_model": {
+    "description": "Pinned F_17^32 polynomial-basis model from the row descriptor",
+    "kind": "polynomial_basis",
+    "modulus": [
+      16,
+      7,
+      8,
+      5,
+      13,
+      3,
+      11,
+      9,
+      5,
+      4,
+      3,
+      9,
+      3,
+      12,
+      1,
+      6,
+      7,
+      11,
+      11,
+      6,
+      12,
+      5,
+      5,
+      7,
+      14,
+      2,
+      0,
+      2,
+      4,
+      4,
+      0,
+      14,
+      1
+    ],
+    "p": 17
+  },
+  "line_syndrome": {
+    "description": "same scalar syndrome pencil as the F_17 gcd toy, embedded in the pinned F_17^32 model",
+    "u": [
+      3,
+      11,
+      12,
+      12,
+      0,
+      16,
+      15,
+      3
+    ],
+    "v": [
+      7,
+      3,
+      12,
+      1,
+      5,
+      8,
+      11,
+      15
+    ]
+  },
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not F_17^32 prize-row data",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ],
+  "row": {
+    "domain": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "domain_description": "sorted nonzero elements of the embedded F_17 subfield inside the pinned F_17^32 model",
+    "field": "F_17^32",
+    "k": 8,
+    "n": 16
+  },
+  "row_set_strategy": {
+    "type": "contiguous"
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "regular-hankel-minor-extractor-input-v1",
+  "status": "PROVED"
+}

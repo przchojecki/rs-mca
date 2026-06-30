@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 regular-minor gcd degree-bound toy
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n16_k8_a13_gcd_toy.json`;
+  `experimental/data/certificates/regular-minor-gcd-f17-32-toy/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the toy replay.
+- **What is being added:** A small `n=16`, `k=8` `regular_minor_gcd` packet
+  over the pinned `F_17^32` field model.  Because the field is large, roots are
+  not enumerated; the checker instead verifies the common gcd and the
+  degree-bound root hash, yielding `regular_root_bound_sum = 6`.
+- **How it is useful:** Exercises the exact large-extension-field packet shape
+  that a future F17^32 regular-window gcd/dedup ledger would need, without
+  pretending to certify prize-row data.
+- **What to do next:** Decide whether a closed-form or rank-witness variant can
+  avoid large determinant interpolation for actual M3 window row sets.
+
 ### 2026-06-30 - Extension-field regular-minor gcd replay
 
 - **Agent/model:** AllenGrahamHart / Codex.
