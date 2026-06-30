@@ -29,6 +29,7 @@ SQUARE-NORM OFF-DIAGONAL ENDPOINT-PAIR COUNT /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
+SQUARE-NORM FIXED ENDPOINT-PAIR PACKET-SIZE BOUND /
 SQUARE-NORM ENDPOINT-CHARGE COROLLARY /
 SQUARE-MAP PACKET-COUNT COROLLARY /
 RESIDUAL-DEGREE COROLLARY / AUDIT.
@@ -2884,6 +2885,27 @@ With the full projective line over `F_q`, this is at most
 additional local slope-set growth beyond the endpoint-pair image and the
 already isolated square-coset palette.
 
+For slope counts, each fixed endpoint-pair packet is small in the expected
+finite-field sense.  Assume `e | q-1` is even.  The degree-one map
+`M_{E_0,E_1}` is a bijection
+
+```text
+P^1(F_q) \ {E_0,E_1}  ->  F_q^*.
+```
+
+Therefore each projective square-coset packet has exactly `2(q-1)/e` points
+on the open projective line.  On the finite slope line, this gives
+
+```text
+|P_{E_0,E_1}(theta) cap F_q| <= 2(q-1)/e.          (RKSQSIZE)
+```
+
+The only correction is when both endpoints are finite: then the open point at
+infinity is omitted from the finite slope line, so the unique class containing
+`M_{E_0,E_1}(infinity)` has size `2(q-1)/e-1`, and the other classes have
+size `2(q-1)/e`.  Thus the fixed endpoint-pair branch has no hidden large
+finite-slope packet: its packet sizes are the exact square-coset sizes.
+
 The finite endpoints themselves are not residual live mixed-domain slopes.
 Let `z_0` be a finite endpoint of the reduced square norm.
 
@@ -3435,8 +3457,9 @@ Plucker-chart recurrence (RKSQOV), the endpoint-pair inversion
 (RKSQPDIAG), the off-diagonal endpoint-pair count (RKSQOFF), the canonical
 endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset
 palette (RKSQPAIRPAL), the fixed-basis endpoint-palette bound (RKSQBASIS),
-the finite endpoint-charge corollary (RKSQEPCH), and square-map packet-count
-corollary (RKSQCOUNT) from the support palette.
+the fixed endpoint-pair packet-size bound (RKSQSIZE), the finite
+endpoint-charge corollary (RKSQEPCH), and square-map packet-count corollary
+(RKSQCOUNT) from the support palette.
 
 ## Verification
 
@@ -3501,5 +3524,6 @@ inversion (RKSQINV0/RKSQINV1), the projective endpoint-pair inversion
 (RKSQPDIAG), the off-diagonal endpoint-pair count (RKSQOFF), the canonical
 endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair coset
 palette (RKSQPAIRPAL), the fixed-basis endpoint-palette bound (RKSQBASIS),
-the finite endpoint-charge corollary (RKSQEPCH), and the packet-count
-corollary (RKSQCOUNT).
+the fixed endpoint-pair packet-size bound (RKSQSIZE), the finite
+endpoint-charge corollary (RKSQEPCH), and the packet-count corollary
+(RKSQCOUNT).

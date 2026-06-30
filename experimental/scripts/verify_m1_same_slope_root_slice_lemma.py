@@ -61,7 +61,8 @@ factorization, endpoint slope map, overlapping Plucker-chart recurrence,
 endpoint-pair inversion, projective endpoint-pair inversion, diagonal endpoint
 collapse, off-diagonal endpoint-pair count, canonical endpoint-pair norm
 factorization, fixed endpoint-pair coset palette, endpoint-charge corollary,
-fixed-basis endpoint-palette bound, and packet-count corollary.
+fixed-basis endpoint-palette bound, fixed endpoint-pair packet-size bound,
+and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -6616,6 +6617,25 @@ def check_boundary_core_square_map_packet_count() -> None:
                         open_finite_line,
                         packets_by_class,
                     )
+                    expected_projective_size = 2 * (prime - 1) // index
+                    if zero_endpoint is not None and pole_endpoint is not None:
+                        infinity_class = 0
+                    else:
+                        infinity_class = None
+                    for packet_class, packet in packets_by_class.items():
+                        expected_size = expected_projective_size
+                        if packet_class == infinity_class:
+                            expected_size -= 1
+                        assert len(packet) == expected_size, (
+                            prime,
+                            index,
+                            zero_endpoint,
+                            pole_endpoint,
+                            packet_class,
+                            len(packet),
+                            expected_size,
+                            packet,
+                        )
 
             for palette_size in range(2, min(6, len(p1_points)) + 1):
                 omega = rng.sample(p1_points, palette_size)

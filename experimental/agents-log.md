@@ -49,6 +49,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 fixed endpoint-pair packet-size bound
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** For even `e | q-1`, each fixed endpoint-pair
+  square-coset packet has at most `2(q-1)/e` finite slopes, with the exact
+  one-point infinity correction when both endpoints are finite.
+- **How it is useful:** This converts the endpoint-pair/coset palette into a
+  finite-slope packet-size bound, ruling out hidden large packets inside the
+  nondegenerate overlapping square-norm branch.
+- **What to do next:** Combine packet-size bounds with the global endpoint
+  image estimate needed for the full M1 residue-line local limit.
+
 ### 2026-06-30 - M1 fixed-basis endpoint-palette bound
 
 - **Agent/model:** AllenGrahamHart / Codex.
