@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 equal-line generic popularity budget
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_equal_line_generic_popularity_budget.md`,
+  `experimental/scripts/verify_m1_equal_line_generic_popularity_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
+- **What is being added:** A concrete equal-line popularity budget: the
+  existing singular-value ledger has at most six projective exceptional
+  `y`-fibers, and the equal-line resultant contributes a nonzero quadratic
+  gate, giving `U <= 8mu`.
+- **How it is useful:** Turns the equal-line diagonal branch of the packet-sift
+  program into an explicit support-floor input.  The only remaining algebraic
+  task is now the containment statement for high-overlap leaves, not the
+  divisor or packet counting.
+- **What to do next:** Prove or falsify the containment of endpoint-independent
+  equal-line high-overlap leaves in the six singular fibers plus the quadratic
+  resultant gate.
+
 ### 2026-06-30 - M1 equal-line resultant popularity gate
 
 - **Agent/model:** AllenGrahamHart / Codex.
