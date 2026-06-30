@@ -355,6 +355,76 @@ This is the most local target in this packet-sift chain: rule out one packet
 having many endpoint-independent high-overlap partners, or classify the
 exception.
 
+## Popular residue extraction
+
+The endpoint-disjoint star can be compressed once more to a single point of the
+center packet.  Let
+
+```text
+a; b_1,...,b_m
+```
+
+be a rooted high-overlap star as above.  For `x in P_a`, define its leaf
+popularity by
+
+```text
+pop_a(x) = #{ i : x in P_{b_i} }.
+```
+
+Since each leaf satisfies `|P_a cap P_{b_i}| > Lambda`, the total incidence
+between the center packet and the leaves is at least
+
+```text
+sum_{x in P_a} pop_a(x) >= m(Lambda+1).
+```
+
+As `|P_a|=s`, some center-packet point satisfies
+
+```text
+pop_a(x) >= ceil( m(Lambda+1) / s ).                (PR1)
+```
+
+Equivalently, if an algebraic input proves the local popularity cap
+
+```text
+pop_a(x) <= U
+```
+
+for every endpoint-disjoint high-overlap star after the quotient/tangent/root
+charges, then every such star has
+
+```text
+m <= floor( s U / (Lambda+1) ).                     (PR2)
+```
+
+Combining this with the previous section, if
+
+```text
+E_forced(K,s,h,D,Lambda,R) > M_degen(K,d)
+```
+
+and
+
+```text
+S_star(d+1,D,h) > floor( s U / (Lambda+1) ),
+```
+
+then every selected packet family satisfies at least one of:
+
+```text
+large support,
+near-star,
+or a popular residue point x in a center packet P_a with
+  pop_a(x) > U
+```
+
+inside an endpoint-disjoint high-overlap star.
+
+This is the point where the finite packet combinatorics hands off to the
+Hankel/Kummer geometry: prove a uniform popularity cap for one center packet
+point against endpoint-independent high-overlap partners, or classify the
+exception.
+
 ## M1 use
 
 For Work package C3 in `towards-prize.md`, this is a sharper interface than a
@@ -372,13 +442,16 @@ For example, a Kummer/cross-ratio theorem proving maximum high-overlap degree
 resulting floor exceeds the target support budget.  Equivalently, if the
 support remains too small, the dense-core extraction above identifies a
 specific high-minimum-degree high-overlap packet core, and then an
-endpoint-disjoint high-overlap star, for the algebraic proof to eliminate.
+endpoint-disjoint high-overlap star.  The popular-residue extraction reduces
+that star to one center packet point with many independent high-overlap
+partners.
 
 ## Verification
 
 The companion verifier checks the exact floor, the forced high-edge lower
 bound, the degree/degeneracy substitutions, the dense-core extraction, and
-the endpoint-disjoint star extraction on sampled finite packet systems:
+the endpoint-disjoint star/popular-residue extraction on sampled finite packet
+systems:
 
 ```sh
 python3 experimental/scripts/verify_m1_high_overlap_graph_budget.py

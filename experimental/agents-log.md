@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 popular-residue extraction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_high_overlap_graph_budget.md`,
+  `experimental/scripts/verify_m1_high_overlap_graph_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A popularity extraction from endpoint-disjoint
+  high-overlap stars: many leaves force one center-packet point to lie in many
+  independent high-overlap leaf packets, with the exact
+  `ceil(m(Lambda+1)/s)` threshold.
+- **How it is useful:** Reduces the M1/C3 residual obstruction to a single
+  packet residue with many endpoint-independent partners, which is the local
+  Hankel/Kummer configuration left for the algebraic proof to classify or rule
+  out.
+- **What to do next:** Prove a uniform popularity cap for actual residue-line
+  packet families after quotient, tangent, root-slice, and endpoint-star
+  charges.
+
 ### 2026-06-30 - M1 endpoint-disjoint star extraction
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -100,6 +100,24 @@ def endpoint_star_leaf_floor(neighbor_count: int, h: int, degree_cap: int) -> in
     return ceil_fraction(Fraction(neighbor_count, h * (2 * degree_cap - 1)))
 
 
+def popular_residue_floor(leaf_count: int, overlap_threshold: int, packet_size: int) -> int:
+    if leaf_count == 0:
+        return 0
+    if packet_size <= 0:
+        raise ValueError("packet_size must be positive")
+    return ceil_fraction(Fraction(leaf_count * (overlap_threshold + 1), packet_size))
+
+
+def star_center_popularity(
+    labels: list[Label], center: int, leaves: list[int]
+) -> tuple[int, dict[int, int]]:
+    counts = {point: 0 for point in labels[center].packet}
+    for leaf in leaves:
+        for point in labels[center].packet & labels[leaf].packet:
+            counts[point] += 1
+    return max(counts.values(), default=0), counts
+
+
 def max_edges_from_degree_bound(k: int, degree_bound: int) -> int:
     if degree_bound < 0:
         raise ValueError("degree_bound must be nonnegative")
@@ -258,6 +276,7 @@ def check_dense_core_graph_theory() -> None:
 def check_exact_parameter_grid() -> None:
     checked = 0
     degree_checked = 0
+    popularity_checked = 0
     for k in range(2, 24):
         for s in range(1, 13):
             for h in range(1, 6):
@@ -392,8 +411,33 @@ def check_exact_parameter_grid() -> None:
                                     )
                                 )
                             degree_checked += 1
+                        for leaf_count in range(0, 30):
+                            popularity_floor = popular_residue_floor(
+                                leaf_count, lambda_cap, s
+                            )
+                            for popularity_cap in range(0, 30):
+                                cap_allows_star = (
+                                    leaf_count
+                                    <= (s * popularity_cap) // (lambda_cap + 1)
+                                )
+                                cap_breaks = popularity_floor > popularity_cap
+                                if cap_allows_star == cap_breaks:
+                                    raise AssertionError(
+                                        (
+                                            k,
+                                            s,
+                                            lambda_cap,
+                                            leaf_count,
+                                            popularity_cap,
+                                            popularity_floor,
+                                            cap_allows_star,
+                                            cap_breaks,
+                                        )
+                                    )
+                                popularity_checked += 1
     print(f"exact_high_edge_parameter_grid_checked={checked}")
     print(f"exact_degree_degeneracy_grid_checked={degree_checked}")
+    print(f"exact_popularity_grid_checked={popularity_checked}")
 
 
 def check_sampled_packet_systems() -> None:
@@ -404,6 +448,7 @@ def check_sampled_packet_systems() -> None:
     degeneracy_interfaces = 0
     dense_core_interfaces = 0
     endpoint_star_interfaces = 0
+    popular_residue_interfaces = 0
 
     for trial in range(650):
         labels = make_random_labels(rng, trial)
@@ -563,6 +608,44 @@ def check_sampled_packet_systems() -> None:
                             degree_cap,
                         )
                     )
+                popularity_floor = popular_residue_floor(
+                    len(selected), lambda_cap, s
+                )
+                max_popularity, counts = star_center_popularity(
+                    labels, center, selected
+                )
+                if max_popularity < popularity_floor:
+                    raise AssertionError(
+                        (
+                            "popular residue floor",
+                            trial,
+                            lambda_cap,
+                            center,
+                            len(selected),
+                            max_popularity,
+                            popularity_floor,
+                            counts,
+                        )
+                    )
+                if popularity_floor > 0:
+                    impossible_cap = popularity_floor - 1
+                    allowed = (
+                        len(selected)
+                        <= (s * impossible_cap) // (lambda_cap + 1)
+                    )
+                    if allowed:
+                        raise AssertionError(
+                            (
+                                "popularity cap should break",
+                                trial,
+                                lambda_cap,
+                                center,
+                                len(selected),
+                                max_popularity,
+                                impossible_cap,
+                            )
+                        )
+                    popular_residue_interfaces += 1
                 endpoint_star_interfaces += 1
 
             for d in range(0, min(k, 8)):
@@ -614,6 +697,22 @@ def check_sampled_packet_systems() -> None:
                             floor,
                         )
                     )
+                popularity_floor = popular_residue_floor(
+                    len(selected), lambda_cap, s
+                )
+                max_popularity, _ = star_center_popularity(labels, center, selected)
+                if max_popularity < popularity_floor:
+                    raise AssertionError(
+                        (
+                            "forced popular residue missing",
+                            trial,
+                            lambda_cap,
+                            d,
+                            len(selected),
+                            max_popularity,
+                            popularity_floor,
+                        )
+                    )
                 dense_core_interfaces += 1
         checked += 1
 
@@ -623,6 +722,7 @@ def check_sampled_packet_systems() -> None:
     print(f"sampled_degeneracy_interfaces_checked={degeneracy_interfaces}")
     print(f"sampled_dense_core_interfaces_checked={dense_core_interfaces}")
     print(f"sampled_endpoint_star_interfaces_checked={endpoint_star_interfaces}")
+    print(f"sampled_popular_residue_interfaces_checked={popular_residue_interfaces}")
 
 
 def main() -> None:
