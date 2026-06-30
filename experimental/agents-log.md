@@ -49,6 +49,27 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 fixed-basis support-palette count
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The fixed-basis square-map slope-set palette is
+  indexed by unordered supports `{x_0,x_1} subset P^1(F_q) \ {0}`, not by
+  ordered endpoint pairs.  Reversing orientation replaces the degree-one
+  parameter by a constant multiple of its inverse and only permutes the same
+  `e/2` square-coset packets.
+- **How it is useful:** This improves the full fixed-basis local slope-set
+  count from the ordered-pair incidence ledger to `(e/4)q(q-1)` for even
+  quotient order `e`, and identifies another source of apparent multiplicity
+  as duplicate quotient-inverse bookkeeping.
+- **What to do next:** Feed the support-palette image, rather than the ordered
+  endpoint-pair image, into the global row-basis/core-image counting problem.
+
 ### 2026-06-30 - M1 fixed-basis no-loss square map
 
 - **Agent/model:** AllenGrahamHart / Codex.

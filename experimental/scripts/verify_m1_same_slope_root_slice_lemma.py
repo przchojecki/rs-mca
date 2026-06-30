@@ -63,8 +63,8 @@ collapse, off-diagonal endpoint-pair count, canonical endpoint-pair norm
 factorization, fixed endpoint-pair coset palette, endpoint-charge corollary,
 fixed-basis forbidden-endpoint sharpening, fixed-basis coordinate normal form,
 fixed-basis slope-pair parametrization, fixed-basis no-loss square map,
-fixed-basis endpoint-palette bound, fixed endpoint-pair packet-size bound, and
-packet-count corollary.
+fixed-basis support-palette count, fixed-basis endpoint-palette bound, fixed
+endpoint-pair packet-size bound, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -6981,6 +6981,83 @@ def check_boundary_core_square_map_packet_count() -> None:
                             expected_size,
                             packet,
                         )
+
+            fixed_support_packets: dict[frozenset[P1Point], set[frozenset[int]]] = {}
+            fixed_slope_sets: set[frozenset[int]] = set()
+            for pole_endpoint in range(1, prime):
+                for zero_endpoint in p1_points:
+                    if zero_endpoint in {0, pole_endpoint}:
+                        continue
+                    endpoint_map = mobius_from_zero_pole(
+                        zero_endpoint,
+                        pole_endpoint,
+                        prime,
+                    )
+                    support = frozenset((zero_endpoint, pole_endpoint))
+                    support_packets = fixed_support_packets.setdefault(support, set())
+                    for packet_class in packet_classes:
+                        packet = finite_square_packet(
+                            endpoint_map,
+                            packet_class,
+                            index,
+                            log_table,
+                            prime,
+                        )
+                        support_packets.add(packet)
+                        fixed_slope_sets.add(packet)
+
+            expected_support_count = prime * (prime - 1) // 2
+            assert len(fixed_support_packets) == expected_support_count, (
+                prime,
+                index,
+                len(fixed_support_packets),
+                expected_support_count,
+                fixed_support_packets,
+            )
+            for support, packets in fixed_support_packets.items():
+                assert len(packets) == index // 2, (
+                    prime,
+                    index,
+                    support,
+                    packets,
+                )
+            assert len(fixed_slope_sets) <= (index // 2) * expected_support_count, (
+                prime,
+                index,
+                len(fixed_slope_sets),
+                expected_support_count,
+                fixed_slope_sets,
+            )
+
+            for left_endpoint, right_endpoint in combinations(range(1, prime), 2):
+                left_to_right = {
+                    finite_square_packet(
+                        mobius_from_zero_pole(right_endpoint, left_endpoint, prime),
+                        packet_class,
+                        index,
+                        log_table,
+                        prime,
+                    )
+                    for packet_class in packet_classes
+                }
+                right_to_left = {
+                    finite_square_packet(
+                        mobius_from_zero_pole(left_endpoint, right_endpoint, prime),
+                        packet_class,
+                        index,
+                        log_table,
+                        prime,
+                    )
+                    for packet_class in packet_classes
+                }
+                assert left_to_right == right_to_left, (
+                    prime,
+                    index,
+                    left_endpoint,
+                    right_endpoint,
+                    left_to_right,
+                    right_to_left,
+                )
 
             for palette_size in range(2, min(6, len(p1_points)) + 1):
                 omega = rng.sample(p1_points, palette_size)

@@ -30,6 +30,7 @@ SQUARE-NORM FIXED-BASIS FORBIDDEN-ENDPOINT SHARPENING /
 SQUARE-NORM FIXED-BASIS COORDINATE NORMAL FORM /
 SQUARE-NORM FIXED-BASIS SLOPE-PAIR PARAMETRIZATION /
 SQUARE-NORM FIXED-BASIS NO-LOSS SQUARE MAP /
+SQUARE-NORM FIXED-BASIS UNORIENTED SUPPORT PALETTE /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3089,6 +3090,31 @@ Thus repeated square roots, quotient-parallel parameters, or quotient-inverse
 parameters can create multiplicity inside a fixed packet palette, but they
 cannot create new slope-set growth beyond the endpoint support image.
 
+In the fixed-basis coordinate `x=c_1/c_0`, this support count has an exact
+closed form.  The nondegenerate branch has pole endpoint `x_0 in F^*` and
+zero endpoint `x_1 in P^1 \ {0,x_0}`.  The square-map palette depends only on
+the unordered support `{x_0,x_1}`: reversing the orientation replaces `M` by a
+constant multiple of `1/M`, hence permutes the same `e/2` square-coset packets.
+Thus, for any endpoint palette `Omega` with `0 in Omega`, the fixed-basis
+distinct packet sets are bounded by
+
+```text
+(e/2) * #{ {alpha,beta} subset Omega \ {0} : alpha != beta }.      (RKSQSUPP)
+```
+
+For the full projective line over `F_q`, this gives
+
+```text
+# distinct fixed-basis square-map packets <= (e/4) q(q-1).          (RKSQSUPPFULL)
+```
+
+Here `q=|F_q|` and `e` is even.  The previous ordered endpoint-pair count
+`(e/2)(q-1)^2` is still a valid packet-incidence ledger, but (RKSQSUPP) is the
+sharper slope-set ledger: finite-finite endpoint pairs with opposite
+orientation are duplicates in the same quotient-inverse support palette, and
+finite-infinity supports occur only once because the pole endpoint cannot be
+`x=infty`.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -3590,7 +3616,8 @@ Plucker-chart recurrence (RKSQOV), the endpoint-pair inversion
 forbidden-endpoint sharpening (RKSQFORB/RKSQFORBCOUNT), the fixed-basis
 coordinate normal form (RKSQXPAR/RKSQXNF), the fixed-basis slope-pair
 parametrization (RKSQSLOPE), the fixed-basis no-loss square map
-(RKSQSMAP/RKSQSMAP2/RKSQBAL), the canonical endpoint-pair norm factorization
+(RKSQSMAP/RKSQSMAP2/RKSQBAL), the fixed-basis unoriented support palette
+(RKSQSUPP/RKSQSUPPFULL), the canonical endpoint-pair norm factorization
 (RKSQRAT), the fixed endpoint-pair coset palette (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
@@ -3661,7 +3688,8 @@ inversion (RKSQINV0/RKSQINV1), the projective endpoint-pair inversion
 forbidden-endpoint sharpening (RKSQFORB/RKSQFORBCOUNT), the fixed-basis
 coordinate normal form (RKSQXPAR/RKSQXNF), the fixed-basis slope-pair
 parametrization (RKSQSLOPE), the fixed-basis no-loss square map
-(RKSQSMAP/RKSQSMAP2/RKSQBAL), the canonical endpoint-pair norm factorization
+(RKSQSMAP/RKSQSMAP2/RKSQBAL), the fixed-basis unoriented support palette
+(RKSQSUPP/RKSQSUPPFULL), the canonical endpoint-pair norm factorization
 (RKSQRAT), the fixed endpoint-pair coset palette (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
