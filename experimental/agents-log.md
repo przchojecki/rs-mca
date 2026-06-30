@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 post-sift residual alternative
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_post_sift_residual_alternative.md`,
+  `experimental/scripts/verify_m1_post_sift_residual_alternative.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A combined local alternative for the endpoint-sifted
+  packet branch: if the star-sifted support floor exceeds the target budget,
+  every pruned residual is large-support, near-star, or violates the proposed
+  disjoint-support overlap cap.
+- **How it is useful:** Gives the M1/C3 residual packet program a concrete
+  interface: prove the disjoint-support Kummer/cross-ratio overlap cap, and the
+  remaining small-support branch collapses to endpoint-star and finite
+  near-star templates.
+- **What to do next:** Connect the disjoint-support overlap cap to the actual
+  Hankel row-basis/core-image packet geometry.
+
 ### 2026-06-30 - M1 near-star template localization
 
 - **Agent/model:** AllenGrahamHart / Codex.
