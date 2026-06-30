@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from verify_m1_depth_two_equal_line_diagonal_reduction import (
     lambda_one_y_polynomial,
+    twist_y_value,
     verify_pushforward_singular_values,
 )
 from verify_m1_equal_line_resultant_popularity_gate import fixed_x_form
@@ -79,6 +80,35 @@ def check_quadratic_gate_budget() -> None:
     print(f"equal_line_quadratic_gate_budgets_checked={checked}")
 
 
+def check_injective_z_leaf_multiplicity_cap() -> None:
+    checked = 0
+    max_finite_fiber_size = 0
+    for p in PRIMES:
+        for y_value in range(p):
+            roots = [
+                z
+                for z in range(p)
+                if z != 1 and twist_y_value(z, p) == y_value
+            ]
+            if len(roots) > 2:
+                raise AssertionError((p, y_value, roots))
+            max_finite_fiber_size = max(max_finite_fiber_size, len(roots))
+            checked += 1
+
+        # The projective pole of y(z) is the single point z=1.
+        pole_roots = [z for z in range(p) if z == 1]
+        if len(pole_roots) != 1:
+            raise AssertionError((p, pole_roots))
+        checked += 1
+
+    if max_finite_fiber_size != 2:
+        raise AssertionError(("unexpected max finite fiber", max_finite_fiber_size))
+    injective_gate_cap = divisor_gate_cap(2, 6, [2])
+    if injective_gate_cap != 16:
+        raise AssertionError(("injective gate cap", injective_gate_cap))
+    print(f"equal_line_z_fiber_multiplicity_checks={checked}")
+
+
 def check_support_floor_with_eight_mu() -> None:
     checked = 0
     for k in range(2, 24):
@@ -131,6 +161,7 @@ def check_support_floor_with_eight_mu() -> None:
 def main() -> None:
     check_singular_budget()
     check_quadratic_gate_budget()
+    check_injective_z_leaf_multiplicity_cap()
     check_support_floor_with_eight_mu()
     print("m1 equal-line generic popularity-budget checks passed")
 

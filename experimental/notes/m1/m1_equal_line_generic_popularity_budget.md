@@ -62,6 +62,26 @@ U_eq <= mu(E_eq+2) <= 8mu.                         (EQ-U)
 Here `mu` is the multiplicity of the projective leaf parameter: at most `mu`
 endpoint-disjoint leaves may share the same `y`.
 
+In the parameter-level equal-line chart, this multiplicity is explicit if the
+selected leaves inject into the finite/projective `z` parameter.  The map
+
+```text
+z |-> y=(1+3z^2)/(1-z)^2
+```
+
+has projective degree two: every finite `y`-fiber contains at most two finite
+`z` values, and the pole `y=infinity` is the single point `z=1`.  Therefore,
+under the additional injective-`z` hypothesis,
+
+```text
+mu <= 2,
+U_eq <= 16.                                      (EQ-Uz)
+```
+
+This is not a global M1 assertion.  If the full high-overlap model allows
+multiple leaves over the same `z`, that multiplicity must be charged before
+using `(EQ-Uz)`.
+
 ## Local cap theorem
 
 In the ordinary finite split-fiber equal-line model, the containment hypothesis
@@ -101,11 +121,17 @@ Insert
 U = 8mu
 ```
 
+or, in the injective-`z` equal-line chart,
+
+```text
+U = 16
+```
+
 in the popularity-cap support criterion `(PC1)` of
 `m1_high_overlap_graph_budget.md`.  If
 
 ```text
-F_pop(K,s,h,D,Lambda,8mu) > R_budget,
+F_pop(K,s,h,D,Lambda,U) > R_budget,
 ```
 
 then the equal-line diagonal residual satisfies at least one of:

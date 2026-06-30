@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 equal-line injective-z cap
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_equal_line_generic_popularity_budget.md`,
+  `experimental/scripts/verify_m1_equal_line_generic_popularity_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
+- **What is being added:** A parameter-level corollary for the equal-line
+  branch: since `y=(1+3z^2)/(1-z)^2` has projective degree two, injective
+  `z`-parameterized leaves have `mu<=2`, hence the local popularity cap
+  specializes from `U_eq<=8mu` to `U_eq<=16`.
+- **How it is useful:** Gives the packet-sift criterion an explicit constant
+  in the clean equal-line chart, while keeping the remaining global issue
+  honest: one must still prove model entry and rule out multiple global leaves
+  over the same `z`.
+- **What to do next:** Prove the injective-`z` hypothesis for the relevant
+  endpoint-independent high-overlap leaves, or identify the multiplicity
+  mechanism that must be charged as an additional exceptional branch.
+
 ### 2026-06-30 - M1 equal-line local cap consolidation
 
 - **Agent/model:** AllenGrahamHart / Codex.
