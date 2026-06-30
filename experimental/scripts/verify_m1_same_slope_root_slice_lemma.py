@@ -69,7 +69,8 @@ bound, selected support-avoidance reduction, fixed endpoint-pair packet-size
 bound, selected support-degree profile, selected support-collision energy, and
 selected support star-forcing bound, partial-palette star-forcing bound,
 partial-palette inverse packing bound, support-star pruning reduction, pruned
-residual density trichotomy, and packet-count corollary.
+residual density trichotomy, full-palette residual coverage, and packet-count
+corollary.
 """
 
 from __future__ import annotations
@@ -7485,6 +7486,49 @@ def check_boundary_core_square_map_packet_count() -> None:
                         expected_incidence,
                         degree_profile,
                     )
+                common_endpoints = set(selected_supports[0])
+                for support in selected_supports[1:]:
+                    common_endpoints.intersection_update(support)
+                full_palette_support = {
+                    point
+                    for point, incidence in full_palette_incidence.items()
+                    if incidence
+                }
+                expected_full_palette_support = (
+                    set(all_projective_points) - common_endpoints
+                )
+                assert full_palette_support == expected_full_palette_support, (
+                    prime,
+                    index,
+                    selected_count,
+                    selected_supports,
+                    common_endpoints,
+                    full_palette_support,
+                    expected_full_palette_support,
+                )
+                common_size = len(common_endpoints)
+                if selected_count == 1:
+                    assert common_size == 2, (
+                        prime,
+                        index,
+                        selected_supports,
+                        common_endpoints,
+                    )
+                elif common_size == 1:
+                    center = next(iter(common_endpoints))
+                    assert all(center in support for support in selected_supports), (
+                        prime,
+                        index,
+                        selected_supports,
+                        common_endpoints,
+                    )
+                else:
+                    assert common_size == 0, (
+                        prime,
+                        index,
+                        selected_supports,
+                        common_endpoints,
+                    )
                 incidence_mass = sum(full_palette_incidence.values())
                 assert incidence_mass == (prime - 1) * selected_count, (
                     prime,
@@ -7514,6 +7558,14 @@ def check_boundary_core_square_map_packet_count() -> None:
                     selected_supports,
                 )
                 max_degree = max(degree_profile[point] for point in fixed_support_universe)
+                if selected_count > max_degree:
+                    assert full_palette_support == set(all_projective_points), (
+                        prime,
+                        index,
+                        selected_count,
+                        max_degree,
+                        full_palette_support,
+                    )
                 assert star_collision_count <= selected_count * (max_degree - 1), (
                     prime,
                     index,

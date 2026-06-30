@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 full-palette residual coverage
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** For full square-coset palettes, the slope support is
+  exactly `P^1(F_q)` minus the common intersection of all selected two-point
+  supports.  After support-star pruning, `m_ap>D` forces this intersection
+  empty, so the full-palette residual covers all projective slopes.
+- **How it is useful:** This sharply isolates the remaining M1 local
+  obstruction: small bounded-degree residual support can only come from at most
+  `D` residual supports or from genuinely partial/sparse square-coset
+  selections, not from full-palette local overlap.
+- **What to do next:** Connect sparse residual class selection to the global
+  row-basis/core image constraints.
+
 ### 2026-06-30 - M1 pruned residual density trichotomy
 
 - **Agent/model:** AllenGrahamHart / Codex.
