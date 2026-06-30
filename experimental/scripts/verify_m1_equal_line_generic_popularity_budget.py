@@ -80,6 +80,47 @@ def check_quadratic_gate_budget() -> None:
     print(f"equal_line_quadratic_gate_budgets_checked={checked}")
 
 
+def equal_line_forced_overlap_centers(p: int) -> set[tuple[int, int]]:
+    centers = {
+        (1, 0),  # x=infinity overlaps y=0.
+        (0, 1),  # x=0 overlaps y=1.
+        (pow(4, -1, p), 1),  # x=1/4 overlaps y=1 and y=infinity.
+        (pow(12, -1, p), 1),  # x=1/12 overlaps y=3/4.
+        (1, 1),  # x=1 overlaps the lambda=1 singular fibers.
+    }
+    for x_value in range(p):
+        if (16 * x_value * x_value + 8 * x_value + 9) % p == 0:
+            centers.add((x_value, 1))
+    return centers
+
+
+def check_quadratic_gate_sharpness() -> None:
+    checked = 0
+    sharp_rows: list[tuple[int, tuple[int, int], int]] = []
+    for p in PRIMES:
+        support = singular_support_y(p)
+        forced_overlap = equal_line_forced_overlap_centers(p)
+        best_size = 0
+        best_center = None
+        for x_point in projective_line(p):
+            roots = projective_roots(fixed_x_form(*x_point, p), p)
+            overlaps = roots & support
+            if overlaps and x_point not in forced_overlap:
+                raise AssertionError(("unexpected singular overlap", p, x_point, overlaps))
+            combined_size = len(support | roots)
+            if combined_size > best_size:
+                best_size = combined_size
+                best_center = x_point
+            checked += 1
+        if best_size == 8 and best_center is not None:
+            sharp_rows.append((p, best_center, best_size))
+
+    if not sharp_rows:
+        raise AssertionError("equal-line 8-point cap was not witnessed")
+    print(f"equal_line_quadratic_gate_sharpness_checks={checked}")
+    print(f"equal_line_quadratic_gate_sharp_rows={len(sharp_rows)}")
+
+
 def check_injective_z_leaf_multiplicity_cap() -> None:
     checked = 0
     max_finite_fiber_size = 0
@@ -161,6 +202,7 @@ def check_support_floor_with_eight_mu() -> None:
 def main() -> None:
     check_singular_budget()
     check_quadratic_gate_budget()
+    check_quadratic_gate_sharpness()
     check_injective_z_leaf_multiplicity_cap()
     check_support_floor_with_eight_mu()
     print("m1 equal-line generic popularity-budget checks passed")

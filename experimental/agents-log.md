@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 equal-line gate sharpness
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_equal_line_generic_popularity_budget.md`,
+  `experimental/scripts/verify_m1_equal_line_generic_popularity_budget.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A sharpness audit for the equal-line local
+  divisor-gate constant: singular/resultant overlaps occur only at
+  `x=infinity,0,1/4,1/12,1` and the roots of `16x^2+8x+9`; away from that
+  finite center set the six singular fibers and two resultant roots are
+  disjoint.
+- **How it is useful:** Shows that the local `U_eq<=8mu` cap is sharp for
+  root-count bookkeeping.  Further improvement must come from model entry,
+  multiplicity control, or global high-overlap structure rather than from
+  shaving the equal-line divisor constant.
+- **What to do next:** Focus subsequent M1 work on the global
+  endpoint-independent high-overlap to equal-line chart reduction.
+
 ### 2026-06-30 - M1 equal-line fiber splitting ledger
 
 - **Agent/model:** AllenGrahamHart / Codex.

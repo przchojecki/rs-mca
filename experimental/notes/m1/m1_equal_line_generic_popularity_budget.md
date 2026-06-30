@@ -65,6 +65,21 @@ U_eq <= mu(E_eq+2) <= 8mu.                         (EQ-U)
 Here `mu` is the multiplicity of the projective leaf parameter: at most `mu`
 endpoint-disjoint leaves may share the same `y`.
 
+This constant is sharp for this local divisor-gate bookkeeping.  The quadratic
+resultant has forced overlaps with the singular ledger only at the following
+projective center residues:
+
+```text
+x = infinity, 0, 1/4, 1/12, 1,
+16x^2+8x+9=0.
+```
+
+Away from this finite center set there is no forced singular overlap.  In
+finite rows where the six singular fibers and the two resultant roots are all
+base-field points, the union has size eight.  Thus the local root-count method
+cannot replace `8mu` by a smaller uniform constant; any improvement has to come
+from model entry, multiplicity, or additional global structure.
+
 In the parameter-level equal-line chart, this multiplicity is explicit if the
 selected leaves inject into the finite/projective `z` parameter.  The map
 
@@ -160,7 +175,8 @@ full M1 high-overlap model into this equal-line split-fiber chart.
 
 The companion verifier reconstructs the projective singular support, checks
 the `E_eq <= 6` budget including the `p=11` collision row, checks the resultant
-quadratic gate, and verifies the support-floor composition with `U=8mu`:
+quadratic gate and its sharpness, and verifies the support-floor composition
+with `U=8mu`:
 
 ```sh
 python3 experimental/scripts/verify_m1_equal_line_generic_popularity_budget.py
