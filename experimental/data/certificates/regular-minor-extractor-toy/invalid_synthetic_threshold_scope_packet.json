@@ -1,0 +1,30 @@
+{
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "row": {
+    "n": 1,
+    "k": 1,
+    "field": "F_17",
+    "domain_hash": "claim-scope-negative-fixture"
+  },
+  "agreement_threshold": 1,
+  "sampler": "finite_affine_line",
+  "removed_ledgers": [],
+  "exact_agreements": [
+    {
+      "A": 1,
+      "j": 0,
+      "t": 0,
+      "status": "empty"
+    }
+  ],
+  "claim_scope": {
+    "row_data": "synthetic_syndrome_pencil",
+    "threshold_role": "actual_safe_side_bound",
+    "root_status": "enumerated",
+    "may_be_used_for_threshold_pinning": true,
+    "note": "Intentionally invalid: synthetic evidence cannot pin a threshold."
+  },
+  "declared_aperiodic_numerator": 0,
+  "root_union_table_ref": "inline:root_union",
+  "root_union": []
+}

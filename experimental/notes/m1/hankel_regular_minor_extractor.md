@@ -88,6 +88,18 @@ A = 13,14,15,16.
 The extractor finds nonzero prefix minors in all four exact agreements, with
 degrees `4,3,2,1` and closed-range root union `{0,2,10,11}`.
 
+The toy packet also carries a structured `claim_scope` saying that it is
+`toy_mechanism` evidence and cannot be used for threshold pinning.  The checker
+has a matching negative fixture,
+
+```text
+experimental/data/certificates/regular-minor-extractor-toy/
+  invalid_synthetic_threshold_scope_packet.json
+```
+
+which must fail because it marks a synthetic packet as an actual safe-side
+threshold bound.
+
 The extension-field replay is
 
 ```text
@@ -257,6 +269,9 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-extractor-toy/f17_n16_k8_a13_regular_minor_extractor_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-extractor-toy/invalid_synthetic_threshold_scope_packet.json
 
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_2_n16_k8_a13_toy.json \

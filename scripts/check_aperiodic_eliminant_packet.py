@@ -660,6 +660,114 @@ def require_nonempty_string(value: Any, location: str) -> str:
     return value
 
 
+def require_enum(value: Any, allowed: set[str], location: str) -> str:
+    if not isinstance(value, str) or value not in allowed:
+        raise PacketError(f"{location} must be one of {sorted(allowed)}")
+    return value
+
+
+CLAIM_SCOPE_ROW_DATA = {
+    "toy_row",
+    "synthetic_syndrome_pencil",
+    "generic_symbolic",
+    "settled_row_bookkeeping",
+    "actual_row_certificate",
+}
+CLAIM_SCOPE_THRESHOLD_ROLES = {
+    "none",
+    "format_smoke",
+    "toy_mechanism",
+    "synthetic_stress",
+    "generic_identity",
+    "actual_row_audit",
+    "actual_safe_side_bound",
+    "actual_unsafe_lower_bound",
+    "threshold_pin",
+}
+CLAIM_SCOPE_ROOT_STATUS = {
+    "enumerated",
+    "closed_form",
+    "degree_bound_only",
+    "removed_by_ledgers",
+    "not_enumerated",
+    "not_applicable",
+}
+PINNING_ROLES = {
+    "actual_safe_side_bound",
+    "actual_unsafe_lower_bound",
+    "threshold_pin",
+}
+PINNING_NONCLAIM_PHRASES = {
+    "synthetic",
+    "toy row",
+    "toy packet",
+    "not a prize-row threshold theorem",
+    "not a worst-case",
+    "not actual",
+}
+
+
+def validate_claim_scope(packet: dict[str, Any]) -> None:
+    scope = packet.get("claim_scope")
+    if scope is None:
+        return
+    if not isinstance(scope, dict):
+        raise PacketError("claim_scope must be an object")
+
+    row_data = require_enum(
+        scope.get("row_data"), CLAIM_SCOPE_ROW_DATA, "claim_scope.row_data"
+    )
+    threshold_role = require_enum(
+        scope.get("threshold_role"),
+        CLAIM_SCOPE_THRESHOLD_ROLES,
+        "claim_scope.threshold_role",
+    )
+    root_status = require_enum(
+        scope.get("root_status"),
+        CLAIM_SCOPE_ROOT_STATUS,
+        "claim_scope.root_status",
+    )
+    may_pin = scope.get("may_be_used_for_threshold_pinning")
+    if not isinstance(may_pin, bool):
+        raise PacketError("claim_scope.may_be_used_for_threshold_pinning must be bool")
+
+    if not may_pin and threshold_role in PINNING_ROLES:
+        raise PacketError(
+            "claim_scope threshold-pinning role requires "
+            "may_be_used_for_threshold_pinning=true"
+        )
+    if not may_pin:
+        return
+
+    if row_data != "actual_row_certificate":
+        raise PacketError(
+            "claim_scope: threshold-pinning packets must be actual_row_certificate"
+        )
+    if threshold_role not in PINNING_ROLES:
+        raise PacketError(
+            "claim_scope: threshold-pinning packets need an actual threshold role"
+        )
+    if root_status in {"degree_bound_only", "not_enumerated", "not_applicable"}:
+        raise PacketError(
+            "claim_scope: threshold-pinning packets need enumerated, closed-form, "
+            "or removed-by-ledgers roots"
+        )
+    if packet.get("root_union_table_ref") == "not_enumerated":
+        raise PacketError(
+            "claim_scope: threshold-pinning packets cannot leave root_union_table_ref "
+            "not_enumerated"
+        )
+
+    nonclaims = packet.get("nonclaims", [])
+    if isinstance(nonclaims, list):
+        nonclaim_text = " ".join(str(item).lower() for item in nonclaims)
+        for phrase in PINNING_NONCLAIM_PHRASES:
+            if phrase in nonclaim_text:
+                raise PacketError(
+                    "claim_scope: threshold-pinning packet conflicts with nonclaims"
+                )
+
+
 def validate_pivot_atlas(packet: dict[str, Any]) -> list[int]:
     row = packet.get("row", {})
     row_field = row.get("field") if isinstance(row, dict) else None
@@ -1087,6 +1195,7 @@ def validate_extractor_audit(
 
 def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     validate_schema(packet, schema_path)
+    validate_claim_scope(packet)
     validate_residual_labels(packet)
     validate_references(packet)
     pivot_roots = validate_pivot_atlas(packet)

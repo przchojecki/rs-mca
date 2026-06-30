@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - v9 packet claim-scope guardrail
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `scripts/aperiodic_eliminant_schema.json`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_toy.json`;
+  `experimental/data/certificates/regular-minor-extractor-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / EXPERIMENTAL.
+- **What is being added:** A structured optional `claim_scope` field for v9
+  Hankel packets, with checker logic rejecting packets that mark synthetic,
+  toy, degree-only, or unenumerated evidence as threshold-pinning material.
+  The regular-minor toy packet now declares itself as non-pinning
+  `toy_mechanism` evidence, and an expected-failure fixture exercises the
+  synthetic-as-threshold-bound rejection.
+- **How it is useful:** This protects the M3/M4 workflow from treating
+  mechanism tests or synthetic row pencils as actual safe-side row bounds.
+- **What to do next:** Use `claim_scope` on future actual-row packets and set
+  `may_be_used_for_threshold_pinning=true` only when the packet has
+  theorem-backed row data and enumerated or closed-form root accounting.
+
 ### 2026-06-30 - Singular pivot toy packet
 
 - **Agent/model:** AllenGrahamHart / Codex.

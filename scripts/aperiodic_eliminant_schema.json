@@ -18,6 +18,26 @@
     },
     "agreement_threshold": {"type": "integer", "minimum": 0},
     "sampler": {"type": "string", "enum": ["finite_affine_line", "projective_line", "finite_power_curve"]},
+    "claim_scope": {
+      "type": "object",
+      "required": ["row_data", "threshold_role", "root_status", "may_be_used_for_threshold_pinning"],
+      "properties": {
+        "row_data": {
+          "type": "string",
+          "enum": ["toy_row", "synthetic_syndrome_pencil", "generic_symbolic", "settled_row_bookkeeping", "actual_row_certificate"]
+        },
+        "threshold_role": {
+          "type": "string",
+          "enum": ["none", "format_smoke", "toy_mechanism", "synthetic_stress", "generic_identity", "actual_row_audit", "actual_safe_side_bound", "actual_unsafe_lower_bound", "threshold_pin"]
+        },
+        "root_status": {
+          "type": "string",
+          "enum": ["enumerated", "closed_form", "degree_bound_only", "removed_by_ledgers", "not_enumerated", "not_applicable"]
+        },
+        "may_be_used_for_threshold_pinning": {"type": "boolean"},
+        "note": {"type": "string"}
+      }
+    },
     "curve_degree": {"type": "integer", "minimum": 1},
     "removed_ledgers": {
       "type": "array",

@@ -1,5 +1,12 @@
 {
   "agreement_threshold": 13,
+  "claim_scope": {
+    "may_be_used_for_threshold_pinning": false,
+    "note": "Finite toy replay for extractor mechanics only.",
+    "root_status": "enumerated",
+    "row_data": "toy_row",
+    "threshold_role": "toy_mechanism"
+  },
   "declared_aperiodic_numerator": 4,
   "enumerated_bad_slope_union_mod_17": [],
   "exact_agreements": [
@@ -182,7 +189,7 @@
   ],
   "extractor": {
     "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_toy.json",
-    "input_sha256": "07f837c768bf9540213d2357474bc24ebf9704cbc8ccf53392720a97d84921b1",
+    "input_sha256": "9a9810cd64c34d5c870b99f7c52ae8f5e86dd947cb38e47a7bc1bbbe8c4623a5",
     "method": "numeric determinant interpolation over the base prime field",
     "name": "regular-hankel-minor-extractor",
     "row_set_strategy": {

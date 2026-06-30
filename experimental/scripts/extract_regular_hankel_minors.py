@@ -1449,6 +1449,8 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
     }
     if "certificate_mode" in spec:
         packet["extractor"]["certificate_mode"] = spec["certificate_mode"]
+    if "claim_scope" in spec:
+        packet["claim_scope"] = spec["claim_scope"]
     if all_roots_enumerated:
         packet["declared_aperiodic_numerator"] = len(root_union)
         packet["root_union_table_ref"] = f"inline:root_union_mod_{prime}"
@@ -1551,6 +1553,8 @@ def build_packet_field(
     }
     if "certificate_mode" in spec:
         packet["extractor"]["certificate_mode"] = spec["certificate_mode"]
+    if "claim_scope" in spec:
+        packet["claim_scope"] = spec["claim_scope"]
     if all_roots_enumerated:
         packet["declared_aperiodic_numerator"] = len(root_union)
         packet["root_union_table_ref"] = "inline:root_union"
