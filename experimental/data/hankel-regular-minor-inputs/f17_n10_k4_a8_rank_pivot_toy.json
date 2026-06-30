@@ -1,0 +1,29 @@
+{
+  "schema_version": "regular-hankel-minor-extractor-input-v1",
+  "row": {
+    "n": 10,
+    "k": 4,
+    "field": "F_17",
+    "domain": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "domain_description": "first ten nonzero elements of F_17"
+  },
+  "agreement_threshold": 8,
+  "exact_agreements": [8],
+  "sampler": "finite_affine_line",
+  "line_syndrome": {
+    "u": [0, 0, 0, 0, 0, 0],
+    "v": [15, 14, 14, 3, 16, 1],
+    "description": "rank-pivot toy: prefix rows 0,1,2 are singular but rows 1,2,3 have nonzero determinant"
+  },
+  "row_set_strategy": {
+    "type": "rank_at_nodes"
+  },
+  "enumerate_split_bad_slopes": true,
+  "status": "PROVED",
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an F_17^32 row-data packet",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ]
+}

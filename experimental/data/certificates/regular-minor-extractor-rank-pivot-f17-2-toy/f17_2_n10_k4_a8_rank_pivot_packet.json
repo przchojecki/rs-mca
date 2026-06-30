@@ -1,61 +1,63 @@
 {
-  "agreement_threshold": 4,
-  "declared_aperiodic_numerator": 2,
+  "agreement_threshold": 8,
+  "declared_aperiodic_numerator": 1,
   "enumerated_bad_slope_union": [
-    17
+    0
   ],
   "exact_agreements": [
     {
-      "A": 4,
+      "A": 8,
       "extractor_audit": {
-        "degree_bound": 2,
+        "degree_bound": 3,
         "field_size": 289,
-        "rank_pivot_node": null,
-        "rank_pivot_nodes_required": null,
-        "rank_pivot_nodes_tested": null,
-        "root_count": 2,
-        "row_set_source": "prefix",
+        "rank_pivot_node": 1,
+        "rank_pivot_nodes_required": 4,
+        "rank_pivot_nodes_tested": 2,
+        "root_count": 1,
+        "row_set_source": "rank_at_nodes",
         "tested_row_sets": 1
       },
-      "j": 1,
+      "j": 2,
       "regular_minor": {
-        "degree": 2,
+        "degree": 3,
         "polynomial_ref": "inline:regular_minor.coefficients_ascending",
-        "root_hash": "e8664da5430eee0e0c5a99d329d7a091b4935d296297e41a60e8af8acd820b39",
+        "root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
         "row_set": [
           0,
-          1
+          1,
+          3
         ]
       },
       "regular_minor_data": {
         "coefficients_ascending": [
-          14,
           0,
-          1
+          0,
+          0,
+          13
         ],
         "enumerated_bad_slopes": [
-          17
+          0
         ],
         "field_encoding": "base-p low-to-high integer",
         "field_extension_degree": 2,
         "p": 17,
         "roots": [
-          17,
-          272
+          0
         ]
       },
       "regular_minor_polynomial_data": {
         "coefficients_ascending": [
-          14,
           0,
-          1
+          0,
+          0,
+          13
         ],
         "field_encoding": "base-p low-to-high integer",
         "field_extension_degree": 2,
         "p": 17
       },
       "status": "regular_minor",
-      "t": 2
+      "t": 4
     }
   ],
   "extractor": {
@@ -70,12 +72,12 @@
       ],
       "p": 17
     },
-    "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_2_n5_k2_a4_nonbase_root_toy.json",
-    "input_sha256": "6c51ebac3e4375f8bd6c52d339f7e58c403a41917bd7ab567230dd33f4921106",
+    "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_2_n10_k4_a8_rank_pivot_toy.json",
+    "input_sha256": "ff5cb8728472d2a38faabab8a4aa9206e2a0f9721e290b79a8eb9d6027c6f084",
     "method": "numeric determinant interpolation over a polynomial-basis finite field",
     "name": "regular-hankel-minor-extractor",
     "row_set_strategy": {
-      "type": "prefix"
+      "type": "rank_at_nodes"
     },
     "scope": "prime-power syndrome pencils with explicit polynomial-basis model"
   },
@@ -87,16 +89,15 @@
   ],
   "removed_ledgers": [],
   "root_union": [
-    17,
-    272
+    0
   ],
   "root_union_table_ref": "inline:root_union",
   "row": {
-    "domain_description": "five embedded F_17 points for a non-base-root extension smoke test",
-    "domain_hash": "f5baf0e4336fd53b4c82b453ece859868475160d36f22e9551a0e9b10ac9cc00",
+    "domain_description": "first ten nonzero elements of the embedded F_17 subfield",
+    "domain_hash": "ef58d7c6937c627ace93d94e1045c06ff884c23bbb9f4aa5c1bb276842be4629",
     "field": "F_17^2",
-    "k": 2,
-    "n": 5
+    "k": 4,
+    "n": 10
   },
   "sampler": "finite_affine_line",
   "schema_version": "aperiodic-hankel-eliminant-v1",

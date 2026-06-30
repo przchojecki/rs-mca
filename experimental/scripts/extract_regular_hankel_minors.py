@@ -596,6 +596,10 @@ class ExtractionResult:
     roots: list[Any] | None
     enumerated_bad_slopes: list[Any] | None
     tested_row_sets: int
+    row_set_source: str | None = None
+    rank_pivot_node: Any | None = None
+    rank_pivot_nodes_tested: int | None = None
+    rank_pivot_nodes_required: int | None = None
     residual_label: str | None = None
     residual_reason: str | None = None
 
@@ -624,6 +628,135 @@ def candidate_row_sets(t: int, size: int, config: dict[str, Any]) -> list[list[i
         if min(row_set) < 0 or max(row_set) >= t:
             raise ValueError(("row_set outside Hankel row range", row_set, t))
     return rows
+
+
+def full_rank_row_set_mod(
+    matrix: list[list[int]], prime: int, size: int
+) -> list[int] | None:
+    basis: list[tuple[int, list[int]]] = []
+    row_set: list[int] = []
+    for row_index, row in enumerate(matrix):
+        work = [entry % prime for entry in row]
+        for pivot_col, basis_row in basis:
+            if work[pivot_col] == 0:
+                continue
+            factor = work[pivot_col]
+            work = [
+                (work[col] - factor * basis_row[col]) % prime
+                for col in range(size)
+            ]
+        pivot_col = next((col for col, value in enumerate(work) if value), None)
+        if pivot_col is None:
+            continue
+        inv = pow(work[pivot_col], -1, prime)
+        work = [(value * inv) % prime for value in work]
+        basis.append((pivot_col, work))
+        row_set.append(row_index)
+        if len(row_set) == size:
+            return row_set
+    return None
+
+
+def rank_pivot_row_sets_mod(
+    u: list[int],
+    v: list[int],
+    t: int,
+    size: int,
+    prime: int,
+) -> tuple[list[list[int]], dict[str, Any]]:
+    if prime <= size:
+        raise ValueError(
+            f"rank_at_nodes needs at least size+1 distinct slopes, got {prime} <= {size}"
+        )
+    nodes = list(range(size + 1))
+    for index, node in enumerate(nodes):
+        matrix = matrix_at_slope(u, v, list(range(t)), size, node, prime)
+        row_set = full_rank_row_set_mod(matrix, prime, size)
+        if row_set is not None:
+            return [row_set], {
+                "source": "rank_at_nodes",
+                "node": node,
+                "nodes_tested": index + 1,
+                "nodes_required_for_singularity_proof": size + 1,
+            }
+    return [], {
+        "source": "rank_at_nodes",
+        "node": None,
+        "nodes_tested": len(nodes),
+        "nodes_required_for_singularity_proof": size + 1,
+        "singularity_proof": (
+            "all maximal minors have degree <= size and vanish at size+1 "
+            "distinct slopes, so they vanish identically"
+        ),
+    }
+
+
+def full_rank_row_set_field(
+    matrix: list[list[tuple[int, ...]]],
+    field: PolynomialBasisField,
+    size: int,
+) -> list[int] | None:
+    basis: list[tuple[int, list[tuple[int, ...]]]] = []
+    row_set: list[int] = []
+    for row_index, row in enumerate(matrix):
+        work = [field.normalize(entry) for entry in row]
+        for pivot_col, basis_row in basis:
+            if field.is_zero(work[pivot_col]):
+                continue
+            factor = work[pivot_col]
+            work = [
+                field.sub(work[col], field.mul(factor, basis_row[col]))
+                for col in range(size)
+            ]
+        pivot_col = next(
+            (col for col, value in enumerate(work) if not field.is_zero(value)),
+            None,
+        )
+        if pivot_col is None:
+            continue
+        inv = field.inv(work[pivot_col])
+        work = [field.mul(value, inv) for value in work]
+        basis.append((pivot_col, work))
+        row_set.append(row_index)
+        if len(row_set) == size:
+            return row_set
+    return None
+
+
+def rank_pivot_row_sets_field(
+    u: list[tuple[int, ...]],
+    v: list[tuple[int, ...]],
+    t: int,
+    size: int,
+    field: PolynomialBasisField,
+) -> tuple[list[list[int]], dict[str, Any]]:
+    if field.size <= size:
+        raise ValueError(
+            f"rank_at_nodes needs at least size+1 distinct slopes, got {field.size} <= {size}"
+        )
+    nodes = [field.decode(index) for index in range(size + 1)]
+    for index, node in enumerate(nodes):
+        matrix = matrix_at_slope_field(u, v, list(range(t)), size, node, field)
+        row_set = full_rank_row_set_field(matrix, field, size)
+        if row_set is not None:
+            return [row_set], {
+                "source": "rank_at_nodes",
+                "node": field.encode(node),
+                "nodes_tested": index + 1,
+                "nodes_required_for_singularity_proof": size + 1,
+                "field_encoding": "base-p low-to-high integer",
+            }
+    return [], {
+        "source": "rank_at_nodes",
+        "node": None,
+        "nodes_tested": len(nodes),
+        "nodes_required_for_singularity_proof": size + 1,
+        "field_encoding": "base-p low-to-high integer",
+        "singularity_proof": (
+            "all maximal minors have degree <= size and vanish at size+1 "
+            "distinct slopes, so they vanish identically"
+        ),
+    }
 
 
 def extract_for_agreement(
@@ -659,8 +792,17 @@ def extract_for_agreement(
         )
 
     row_config = spec.get("row_set_strategy", {"type": "prefix"})
+    if row_config.get("type") == "rank_at_nodes":
+        row_sets, row_set_audit = rank_pivot_row_sets_mod(u, v, t, size, prime)
+    else:
+        row_sets = candidate_row_sets(t, size, row_config)
+        row_set_audit = {
+            "source": row_config.get("type", "prefix"),
+            "node": None,
+            "nodes_tested": None,
+        }
     tested = 0
-    for row_set in candidate_row_sets(t, size, row_config):
+    for row_set in row_sets:
         tested += 1
         polynomial = determinant_polynomial_by_interpolation(
             u, v, row_set, size, prime
@@ -708,6 +850,12 @@ def extract_for_agreement(
                 roots,
                 bad_slopes,
                 tested,
+                row_set_source=row_set_audit["source"],
+                rank_pivot_node=row_set_audit.get("node"),
+                rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+                rank_pivot_nodes_required=row_set_audit.get(
+                    "nodes_required_for_singularity_proof"
+                ),
             )
 
     return ExtractionResult(
@@ -720,8 +868,17 @@ def extract_for_agreement(
         None,
         None,
         tested,
+        row_set_source=row_set_audit["source"],
+        rank_pivot_node=row_set_audit.get("node"),
+        rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+        rank_pivot_nodes_required=row_set_audit.get(
+            "nodes_required_for_singularity_proof"
+        ),
         residual_label="unknown",
-        residual_reason="all tested regular maximal minors vanished",
+        residual_reason=(
+            row_set_audit.get("singularity_proof")
+            or "all tested regular maximal minors vanished"
+        ),
     )
 
 
@@ -758,8 +915,17 @@ def extract_for_agreement_field(
         )
 
     row_config = spec.get("row_set_strategy", {"type": "prefix"})
+    if row_config.get("type") == "rank_at_nodes":
+        row_sets, row_set_audit = rank_pivot_row_sets_field(u, v, t, size, field)
+    else:
+        row_sets = candidate_row_sets(t, size, row_config)
+        row_set_audit = {
+            "source": row_config.get("type", "prefix"),
+            "node": None,
+            "nodes_tested": None,
+        }
     tested = 0
-    for row_set in candidate_row_sets(t, size, row_config):
+    for row_set in row_sets:
         tested += 1
         polynomial = determinant_polynomial_by_interpolation_field(
             u, v, row_set, size, field
@@ -810,6 +976,12 @@ def extract_for_agreement_field(
                 roots,
                 bad_slopes,
                 tested,
+                row_set_source=row_set_audit["source"],
+                rank_pivot_node=row_set_audit.get("node"),
+                rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+                rank_pivot_nodes_required=row_set_audit.get(
+                    "nodes_required_for_singularity_proof"
+                ),
             )
 
     return ExtractionResult(
@@ -822,8 +994,17 @@ def extract_for_agreement_field(
         None,
         None,
         tested,
+        row_set_source=row_set_audit["source"],
+        rank_pivot_node=row_set_audit.get("node"),
+        rank_pivot_nodes_tested=row_set_audit.get("nodes_tested"),
+        rank_pivot_nodes_required=row_set_audit.get(
+            "nodes_required_for_singularity_proof"
+        ),
         residual_label="unknown",
-        residual_reason="all tested regular maximal minors vanished",
+        residual_reason=(
+            row_set_audit.get("singularity_proof")
+            or "all tested regular maximal minors vanished"
+        ),
     )
 
 
@@ -869,13 +1050,23 @@ def result_to_packet_item(result: ExtractionResult, prime: int) -> dict[str, Any
                 ] = result.enumerated_bad_slopes
         item["extractor_audit"] = {
             "tested_row_sets": result.tested_row_sets,
+            "row_set_source": result.row_set_source,
+            "rank_pivot_node": result.rank_pivot_node,
+            "rank_pivot_nodes_tested": result.rank_pivot_nodes_tested,
+            "rank_pivot_nodes_required": result.rank_pivot_nodes_required,
             "root_count": len(roots) if roots is not None else "not_enumerated",
             "degree_bound": degree,
         }
     else:
         item["residual_label"] = result.residual_label or "unknown"
         item["residual_reason"] = result.residual_reason
-        item["extractor_audit"] = {"tested_row_sets": result.tested_row_sets}
+        item["extractor_audit"] = {
+            "tested_row_sets": result.tested_row_sets,
+            "row_set_source": result.row_set_source,
+            "rank_pivot_node": result.rank_pivot_node,
+            "rank_pivot_nodes_tested": result.rank_pivot_nodes_tested,
+            "rank_pivot_nodes_required": result.rank_pivot_nodes_required,
+        }
     return item
 
 
@@ -935,6 +1126,10 @@ def result_to_packet_item_field(
                 )
         item["extractor_audit"] = {
             "tested_row_sets": result.tested_row_sets,
+            "row_set_source": result.row_set_source,
+            "rank_pivot_node": result.rank_pivot_node,
+            "rank_pivot_nodes_tested": result.rank_pivot_nodes_tested,
+            "rank_pivot_nodes_required": result.rank_pivot_nodes_required,
             "root_count": (
                 len(roots_encoded) if roots_encoded is not None else "not_enumerated"
             ),
@@ -944,7 +1139,13 @@ def result_to_packet_item_field(
     else:
         item["residual_label"] = result.residual_label or "unknown"
         item["residual_reason"] = result.residual_reason
-        item["extractor_audit"] = {"tested_row_sets": result.tested_row_sets}
+        item["extractor_audit"] = {
+            "tested_row_sets": result.tested_row_sets,
+            "row_set_source": result.row_set_source,
+            "rank_pivot_node": result.rank_pivot_node,
+            "rank_pivot_nodes_tested": result.rank_pivot_nodes_tested,
+            "rank_pivot_nodes_required": result.rank_pivot_nodes_required,
+        }
     return item
 
 

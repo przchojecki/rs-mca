@@ -40,11 +40,18 @@ H_{t,j}(u) + Z H_{t,j}(v).
 ```
 
 The current candidate schedule is data-driven: explicit row sets, prefix row
-sets, or a bounded scan of contiguous row windows.  The determinant polynomial
-is recovered by interpolation from numeric determinants, rather than by a
-factorial permutation determinant.  This is the right algorithmic shape for the
-future `385 <= A <= 426` window once row data for the `F_17^32` row are
-supplied.
+sets, a bounded scan of contiguous row windows, or the `rank_at_nodes` selector.
+The rank selector evaluates the matrix pencil at `j+2` deterministic finite
+slopes.  If the pencil has full column rank over `F(Z)`, some maximal minor has
+degree at most `j+1`, so it cannot vanish at all `j+2` nodes; a full-rank
+specialization supplies a row set whose determinant polynomial is nonzero.  If
+no full-rank specialization appears at those nodes, all maximal minors vanish
+identically and the regular bucket is genuinely singular.
+
+The determinant polynomial is recovered by interpolation from numeric
+determinants, rather than by a factorial permutation determinant.  This is the
+right algorithmic shape for the future `385 <= A <= 426` window once row data
+for the `F_17^32` row are supplied.
 
 When the field is small enough, the extractor enumerates roots in the full
 finite slope field.  For extension fields, root-table elements are encoded as
@@ -122,6 +129,42 @@ experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/
 
 must fail because it replaces `x^2-3` by the reducible modulus `x^2-1`.
 
+The prime-field rank-pivot replay is
+
+```text
+experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_toy.json
+experimental/data/certificates/regular-minor-extractor-rank-pivot-toy/
+```
+
+Here `n=10`, `k=4`, `A=8`, so `j=2` and `t=4`.  The prefix row set is singular
+for the supplied pencil, but `rank_at_nodes` tests node `0`, then node `1`,
+and finds row set `[0,1,3]`.  The extracted determinant is `13 Z^3`, with root
+union `{0}`, and the packet checker verifies that the enumerated split bad
+slopes are contained in that root set.
+
+The extension-field rank-pivot replay is
+
+```text
+experimental/data/hankel-regular-minor-inputs/f17_2_n10_k4_a8_rank_pivot_toy.json
+experimental/data/certificates/regular-minor-extractor-rank-pivot-f17-2-toy/
+```
+
+It embeds the same toy in `F_17^2 = F_17[x]/(x^2-3)`.  The same row set
+`[0,1,3]` is selected at encoded node `1`, and the v9 checker verifies the
+encoded extension-field root table.
+
+The singular rank-pivot replay is
+
+```text
+experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_singular_toy.json
+experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/
+```
+
+It uses the zero syndrome pencil.  The selector tests `j+2=4` finite nodes and
+finds no full-rank specialization.  Since every maximal minor has degree at
+most `j+1=3`, this proves that all maximal regular minors vanish identically
+and emits a singular residual declaration.
+
 ## Non-Claims
 
 This does not solve the `F_17^32` regular window.  In particular, it does not
@@ -166,4 +209,25 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 ! python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/invalid_reducible_field_model_packet.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_toy.json \
+  --check experimental/data/certificates/regular-minor-extractor-rank-pivot-toy/f17_n10_k4_a8_rank_pivot_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-extractor-rank-pivot-toy/f17_n10_k4_a8_rank_pivot_packet.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_2_n10_k4_a8_rank_pivot_toy.json \
+  --check experimental/data/certificates/regular-minor-extractor-rank-pivot-f17-2-toy/f17_2_n10_k4_a8_rank_pivot_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-extractor-rank-pivot-f17-2-toy/f17_2_n10_k4_a8_rank_pivot_packet.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_singular_toy.json \
+  --check experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/f17_n10_k4_a8_rank_pivot_singular_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/f17_n10_k4_a8_rank_pivot_singular_packet.json
 ```

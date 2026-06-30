@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Regular-minor rank-pivot selector
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_toy.json`;
+  `experimental/data/hankel-regular-minor-inputs/f17_2_n10_k4_a8_rank_pivot_toy.json`;
+  `experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_singular_toy.json`;
+  `experimental/data/certificates/regular-minor-extractor-rank-pivot-toy/`;
+  `experimental/data/certificates/regular-minor-extractor-rank-pivot-f17-2-toy/`;
+  `experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the finite replay.
+- **What is being added:** The regular-minor extractor now has a
+  `rank_at_nodes` row-set strategy.  It evaluates the pencil at `j+2`
+  deterministic finite slopes to find a full-rank maximal row set whenever one
+  exists; if none appears, the degree bound proves all maximal minors vanish
+  identically.
+- **How it is useful:** Future M3 packets no longer have to rely on prefix or
+  contiguous row sets before declaring a singular regular bucket.
+- **What to do next:** Use `rank_at_nodes` on concrete `F_17^32` syndrome
+  pencils, then pass genuine singular outcomes to the pivot-chart program.
+
 ### 2026-06-30 - F17^32 M3 generic regular minor
 
 - **Agent/model:** AllenGrahamHart / Codex.

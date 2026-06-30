@@ -1,0 +1,87 @@
+{
+  "agreement_threshold": 8,
+  "declared_aperiodic_numerator": 1,
+  "enumerated_bad_slope_union_mod_17": [
+    0
+  ],
+  "exact_agreements": [
+    {
+      "A": 8,
+      "extractor_audit": {
+        "degree_bound": 3,
+        "rank_pivot_node": 1,
+        "rank_pivot_nodes_required": 4,
+        "rank_pivot_nodes_tested": 2,
+        "root_count": 1,
+        "row_set_source": "rank_at_nodes",
+        "tested_row_sets": 1
+      },
+      "j": 2,
+      "regular_minor": {
+        "degree": 3,
+        "polynomial_ref": "inline:regular_minor.coefficients_mod_17_ascending",
+        "root_hash": "d0bca111f8628137adc4c16f123496dcdd1d590d06cb5d9acd68b39fe656fb97",
+        "row_set": [
+          0,
+          1,
+          3
+        ]
+      },
+      "regular_minor_data": {
+        "coefficients_mod_17_ascending": [
+          0,
+          0,
+          0,
+          13
+        ],
+        "enumerated_bad_slopes_mod_17": [
+          0
+        ],
+        "roots_mod_17": [
+          0
+        ]
+      },
+      "regular_minor_polynomial_data": {
+        "coefficients_mod_17_ascending": [
+          0,
+          0,
+          0,
+          13
+        ]
+      },
+      "status": "regular_minor",
+      "t": 4
+    }
+  ],
+  "extractor": {
+    "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_toy.json",
+    "input_sha256": "f89d7b9eb0d84e04902207d747c2cc578484f1bfe7db0501f600f8448a1d2102",
+    "method": "numeric determinant interpolation over the base prime field",
+    "name": "regular-hankel-minor-extractor",
+    "row_set_strategy": {
+      "type": "rank_at_nodes"
+    },
+    "scope": "prime-field syndrome pencils only"
+  },
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an F_17^32 row-data packet",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ],
+  "removed_ledgers": [],
+  "root_union_mod_17": [
+    0
+  ],
+  "root_union_table_ref": "inline:root_union_mod_17",
+  "row": {
+    "domain_description": "first ten nonzero elements of F_17",
+    "domain_hash": "ef58d7c6937c627ace93d94e1045c06ff884c23bbb9f4aa5c1bb276842be4629",
+    "field": "F_17",
+    "k": 4,
+    "n": 10
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "status": "PROVED"
+}

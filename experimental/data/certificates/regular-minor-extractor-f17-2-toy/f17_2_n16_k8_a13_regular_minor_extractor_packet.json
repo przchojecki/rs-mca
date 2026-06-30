@@ -8,7 +8,11 @@
       "extractor_audit": {
         "degree_bound": 4,
         "field_size": 289,
+        "rank_pivot_node": null,
+        "rank_pivot_nodes_required": null,
+        "rank_pivot_nodes_tested": null,
         "root_count": 1,
+        "row_set_source": "prefix",
         "tested_row_sets": 1
       },
       "j": 3,
@@ -59,7 +63,11 @@
       "extractor_audit": {
         "degree_bound": 3,
         "field_size": 289,
+        "rank_pivot_node": null,
+        "rank_pivot_nodes_required": null,
+        "rank_pivot_nodes_tested": null,
         "root_count": 2,
+        "row_set_source": "prefix",
         "tested_row_sets": 1
       },
       "j": 2,
@@ -108,7 +116,11 @@
       "extractor_audit": {
         "degree_bound": 2,
         "field_size": 289,
+        "rank_pivot_node": null,
+        "rank_pivot_nodes_required": null,
+        "rank_pivot_nodes_tested": null,
         "root_count": 2,
+        "row_set_source": "prefix",
         "tested_row_sets": 1
       },
       "j": 1,
@@ -154,7 +166,11 @@
       "extractor_audit": {
         "degree_bound": 1,
         "field_size": 289,
+        "rank_pivot_node": null,
+        "rank_pivot_nodes_required": null,
+        "rank_pivot_nodes_tested": null,
         "root_count": 1,
+        "row_set_source": "prefix",
         "tested_row_sets": 1
       },
       "j": 0,
