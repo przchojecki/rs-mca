@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 far-star class-count sharpness
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/m1_density_budget.py`,
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The asymptotic far-star ceiling is shown sharp for
+  the class-count inequalities: budgets at or above it admit the boundary
+  class-count witness `K_ap=m_ap`, `C_ap=(h-1)m_ap` for sufficiently large
+  `L`.
+- **How it is useful:** Marks the point where class-count arithmetic stops
+  being able to rule out sparse certificates, forcing the next M1 step onto
+  support realization or row-basis/core-image structure.
+- **What to do next:** Search for structural support constraints below or at
+  the ceiling rather than increasing the near-star footprint allowance.
+
 ### 2026-06-30 - M1 far-star asymptotic ceiling
 
 - **Agent/model:** AllenGrahamHart / Codex.

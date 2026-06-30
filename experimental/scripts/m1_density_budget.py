@@ -545,7 +545,9 @@ def far_star_sparse_floor_report(
             "sparse certificate with m_ap>=LD requires this boundary floor. "
             "The closed floor is nondecreasing in L and equals the successor "
             "of the baseline reduced-support R_Z at a0=1/h; as L grows it "
-            "eventually reaches the reported asymptotic ceiling when q>3."
+            "eventually reaches the reported asymptotic ceiling when q>3. "
+            "Budgets at or above that ceiling require structural information "
+            "beyond class-count arithmetic."
         ),
     }
 
@@ -669,6 +671,24 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
                     "minimal_target_R_for_far_star_class_count_feasibility"
                 ]
             )
+            if far_star_floor["asymptotic_limit"] is not None:
+                asymptotic_floor = far_star_floor["asymptotic_limit"][
+                    "asymptotic_far_star_floor"
+                ]
+                far_star_floor[
+                    "queried_R_at_or_above_asymptotic_class_count_ceiling"
+                ] = args.R >= asymptotic_floor
+            if args.R >= far_star_floor[
+                "minimal_target_R_for_far_star_class_count_feasibility"
+            ]:
+                far_star_floor["queried_R_boundary_class_count_witness"] = {
+                    "m_ap": far_star_floor["minimum_residual_size_m_ge_LD"],
+                    "K_ap": far_star_floor["minimum_residual_size_m_ge_LD"],
+                    "C_ap": (
+                        (far_star_floor["h"] - 1)
+                        * far_star_floor["minimum_residual_size_m_ge_LD"]
+                    ),
+                }
         if args.target_R is not None:
             far_star_floor["target_R_excluded_by_class_count_floor"] = (
                 args.target_R
@@ -676,6 +696,24 @@ def compute_report(args: argparse.Namespace) -> dict[str, Any]:
                     "minimal_target_R_for_far_star_class_count_feasibility"
                 ]
             )
+            if far_star_floor["asymptotic_limit"] is not None:
+                asymptotic_floor = far_star_floor["asymptotic_limit"][
+                    "asymptotic_far_star_floor"
+                ]
+                far_star_floor[
+                    "target_R_at_or_above_asymptotic_class_count_ceiling"
+                ] = args.target_R >= asymptotic_floor
+            if args.target_R >= far_star_floor[
+                "minimal_target_R_for_far_star_class_count_feasibility"
+            ]:
+                far_star_floor["target_R_boundary_class_count_witness"] = {
+                    "m_ap": far_star_floor["minimum_residual_size_m_ge_LD"],
+                    "K_ap": far_star_floor["minimum_residual_size_m_ge_LD"],
+                    "C_ap": (
+                        (far_star_floor["h"] - 1)
+                        * far_star_floor["minimum_residual_size_m_ge_LD"]
+                    ),
+                }
         if args.S is not None:
             far_star_floor["input_footprint_cap_S"] = args.S
             far_star_floor["largest_L_allowed_by_input_S"] = far_factor

@@ -3859,6 +3859,29 @@ class-count arithmetic alone can never force an all-line support budget beyond
 row-basis/core-image structure, not just the reduced-support class-count
 ledger.
 
+This ceiling is sharp for the class-count inequalities.  If an integer budget
+`R` satisfies
+
+```text
+R >= R_far,infty(q,e),
+```
+
+then, for all sufficiently large `L`, the monotone integer floor has already
+reached its limit:
+
+```text
+R_far(q,e,L)=R_far,infty(q,e) <= R.
+```
+
+For any endpoint-degree cap `D>=1`, put `m=LD`, `K=m`, and
+`C=(h-1)m`.  Then the class-count part of
+(RKSQSPCERT1/RKSQSPCERT2) is feasible at budget `R`; equivalently, the
+fixed-`m` interval (RKSQSPFEAS) is nonempty and contains the sparsest allowed
+class count.  Therefore a proof above the ceiling cannot come from the
+class-count ledger alone.  It must use the structural conditions
+`B<=R`, `max_x d_Sigma(x)<=D`, or additional row-basis/core-image information.
+                                                        (RKSQSPFARSHARP)
+
 In particular, the window becomes uniform once the residual is separated from
 the endpoint-star threshold.  If a `(D,R)` sparse residual certificate also
 satisfies `m>=L D` for an integer `L>=2`, then `D/m<=1/L`, and the preceding
@@ -4809,6 +4832,7 @@ far-star `L`-monotonicity and footprint tradeoff
 (RKSQSPFARLMONO/RKSQSPFARTRADE), the
 baseline successor identity (RKSQSPBASEID/RKSQSPBASEZ), the
 asymptotic far-star class-count ceiling (RKSQSPFARLIM), the
+asymptotic class-count sharpness statement (RKSQSPFARSHARP), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
@@ -4927,6 +4951,7 @@ far-star `L`-monotonicity and footprint tradeoff
 (RKSQSPFARLMONO/RKSQSPFARTRADE), the
 baseline successor identity (RKSQSPBASEID/RKSQSPBASEZ), the
 asymptotic far-star class-count ceiling (RKSQSPFARLIM), the
+asymptotic class-count sharpness statement (RKSQSPFARSHARP), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),

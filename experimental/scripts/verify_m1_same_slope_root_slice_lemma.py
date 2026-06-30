@@ -78,7 +78,7 @@ certificate cap with near-star localization, template count, and
 density-threshold closure, budget inversion, template-budget tradeoff, and
 integer support-budget ceiling, fixed-residual sparse certificate feasibility
 interval, far-star class-count floor monotonicity, closed form, footprint
-tradeoff, baseline-budget identity, and asymptotic ceiling.
+tradeoff, baseline-budget identity, asymptotic ceiling, and sharpness witness.
 """
 
 from __future__ import annotations
@@ -8487,6 +8487,44 @@ def check_sparse_certificate_fixed_residual_feasibility() -> None:
                     missing_closed,
                     asymptotic_floor,
                 )
+                for degree_cap in (1, 2, 4):
+                    residual_size = far_factor * degree_cap
+                    selected_classes = residual_size
+                    missing_classes = (h - 1) * residual_size
+                    star_bound = (
+                        (q - 3) * residual_size * residual_size
+                        + 2 * residual_size * degree_cap
+                    )
+                    assert (
+                        (q - 1)
+                        * (q - 1)
+                        * selected_classes
+                        * selected_classes
+                    ) <= (
+                        h
+                        * h
+                        * asymptotic_floor
+                        * star_bound
+                    ), (
+                        q,
+                        e,
+                        degree_cap,
+                        residual_size,
+                        selected_classes,
+                        asymptotic_floor,
+                    )
+                    assert (
+                        h
+                        * (residual_size - degree_cap)
+                        * (q + 1 - asymptotic_floor)
+                    ) <= ((q - 1) * missing_classes), (
+                        q,
+                        e,
+                        degree_cap,
+                        residual_size,
+                        missing_classes,
+                        asymptotic_floor,
+                    )
             for degree_cap in range(0, min(5, q)):
                 floor_by_residual_size: dict[int, int] = {}
                 previous_floor = None
