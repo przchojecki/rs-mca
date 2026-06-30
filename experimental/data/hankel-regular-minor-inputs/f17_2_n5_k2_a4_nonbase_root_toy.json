@@ -1,0 +1,35 @@
+{
+  "schema_version": "regular-hankel-minor-extractor-input-v1",
+  "row": {
+    "n": 5,
+    "k": 2,
+    "field": "F_17^2",
+    "domain": [1, 2, 3, 4, 5],
+    "domain_description": "five embedded F_17 points for a non-base-root extension smoke test"
+  },
+  "field_model": {
+    "kind": "polynomial_basis",
+    "p": 17,
+    "modulus": [14, 0, 1],
+    "description": "F_17[x]/(x^2-3), coefficients low-to-high"
+  },
+  "agreement_threshold": 4,
+  "exact_agreements": [4],
+  "sampler": "finite_affine_line",
+  "line_syndrome": {
+    "u": [0, [0, 1], 0],
+    "v": [1, 0, 1],
+    "description": "prefix 2x2 minor [[Z,x],[x,Z]] has determinant Z^2-3"
+  },
+  "row_set_strategy": {
+    "type": "prefix"
+  },
+  "enumerate_split_bad_slopes": true,
+  "status": "PROVED",
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an F_17^32 row-data packet",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ]
+}

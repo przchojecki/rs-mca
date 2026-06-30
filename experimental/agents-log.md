@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Extension-root checker hardening
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:** `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_2_n5_k2_a4_nonbase_root_toy.json`;
+  `experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT / PROVED for the finite toy replay.
+- **What is being added:** The v9 packet checker now evaluates encoded roots
+  when a packet supplies an explicit polynomial-basis field model.  A tiny
+  `F_17^2` replay has prefix minor determinant `Z^2-3`, whose roots are the
+  non-base elements encoded as `17` and `272`, so the checker exercises genuine
+  extension-root arithmetic.
+- **How it is useful:** This hardens the M3 regular-minor packet pipeline for
+  `F_17^32`: future extension-field root tables will be arithmetically checked,
+  not merely schema-checked and hash-counted.
+- **What to do next:** Use the same checker path on selected `F_17^32`
+  regular-window packets once syndrome-pencil row data are supplied.
+
 ### 2026-06-30 - Extension-field regular-minor adapter replay
 
 - **Agent/model:** AllenGrahamHart / Codex.

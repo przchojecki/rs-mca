@@ -1,0 +1,100 @@
+{
+  "agreement_threshold": 4,
+  "declared_aperiodic_numerator": 2,
+  "enumerated_bad_slope_union": [
+    17
+  ],
+  "exact_agreements": [
+    {
+      "A": 4,
+      "extractor_audit": {
+        "degree_bound": 2,
+        "field_size": 289,
+        "root_count": 2,
+        "tested_row_sets": 1
+      },
+      "j": 1,
+      "regular_minor": {
+        "degree": 2,
+        "polynomial_ref": "inline:regular_minor.coefficients_ascending",
+        "root_hash": "e8664da5430eee0e0c5a99d329d7a091b4935d296297e41a60e8af8acd820b39",
+        "row_set": [
+          0,
+          1
+        ]
+      },
+      "regular_minor_data": {
+        "coefficients_ascending": [
+          14,
+          0,
+          1
+        ],
+        "enumerated_bad_slopes": [
+          17
+        ],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 2,
+        "p": 17,
+        "roots": [
+          17,
+          272
+        ]
+      },
+      "regular_minor_polynomial_data": {
+        "coefficients_ascending": [
+          14,
+          0,
+          1
+        ],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 2,
+        "p": 17
+      },
+      "status": "regular_minor",
+      "t": 2
+    }
+  ],
+  "extractor": {
+    "field_model": {
+      "degree": 2,
+      "encoding": "base-p low-to-high integer",
+      "kind": "polynomial_basis",
+      "modulus": [
+        14,
+        0,
+        1
+      ],
+      "p": 17
+    },
+    "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_2_n5_k2_a4_nonbase_root_toy.json",
+    "input_sha256": "6c51ebac3e4375f8bd6c52d339f7e58c403a41917bd7ab567230dd33f4921106",
+    "method": "numeric determinant interpolation over a polynomial-basis finite field",
+    "name": "regular-hankel-minor-extractor",
+    "row_set_strategy": {
+      "type": "prefix"
+    },
+    "scope": "prime-power syndrome pencils with explicit polynomial-basis model"
+  },
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an F_17^32 row-data packet",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ],
+  "removed_ledgers": [],
+  "root_union": [
+    17,
+    272
+  ],
+  "root_union_table_ref": "inline:root_union",
+  "row": {
+    "domain_description": "five embedded F_17 points for a non-base-root extension smoke test",
+    "domain_hash": "f5baf0e4336fd53b4c82b453ece859868475160d36f22e9551a0e9b10ac9cc00",
+    "field": "F_17^2",
+    "k": 2,
+    "n": 5
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "status": "PROVED"
+}

@@ -4,7 +4,9 @@
 The JSON schema catches the structural contract.  This script adds the
 arithmetical checks that are easiest to get wrong in generated packets:
 ``j=n-A``, ``t=A-k``, residual labels, regular-minor degree/root hashes, and
-declared root-union numerators when the packet includes inline root tables.
+declared root-union numerators when the packet includes inline root tables.  If
+the packet gives an explicit polynomial-basis field model, encoded extension
+roots are evaluated directly in that field.
 """
 
 from __future__ import annotations
@@ -73,6 +75,87 @@ def parse_prime_field(field_name: str) -> int | None:
     if not match:
         return None
     return int(match.group(1))
+
+
+class PolynomialBasisField:
+    """Finite field F_p[X]/(modulus), with low-degree-first coefficients."""
+
+    def __init__(self, prime: int, modulus: list[int]):
+        if prime < 2:
+            raise PacketError("field_model.p must be at least 2")
+        if len(modulus) < 2:
+            raise PacketError("field_model.modulus must have positive degree")
+        if modulus[-1] % prime != 1:
+            raise PacketError("field_model.modulus must be monic")
+        self.p = prime
+        self.modulus = [value % prime for value in modulus]
+        self.degree = len(modulus) - 1
+        self.size = prime**self.degree
+        self.zero = (0,) * self.degree
+        self.one = (1,) + (0,) * (self.degree - 1)
+
+    @classmethod
+    def from_packet(cls, packet: dict[str, Any]) -> "PolynomialBasisField | None":
+        extractor = packet.get("extractor")
+        if not isinstance(extractor, dict):
+            return None
+        model = extractor.get("field_model")
+        if not isinstance(model, dict):
+            return None
+        if model.get("kind") != "polynomial_basis":
+            raise PacketError("unsupported extractor.field_model.kind")
+        if "p" not in model or "modulus" not in model:
+            raise PacketError("field_model needs p and modulus")
+        modulus = require_int_list(model["modulus"], "field_model.modulus")
+        return cls(int(model["p"]), modulus)
+
+    def decode(self, value: int) -> tuple[int, ...]:
+        if not isinstance(value, int) or value < 0 or value >= self.size:
+            raise PacketError(
+                f"encoded field element {value!r} outside 0..{self.size - 1}"
+            )
+        coeffs = []
+        remaining = value
+        for _ in range(self.degree):
+            coeffs.append(remaining % self.p)
+            remaining //= self.p
+        return tuple(coeffs)
+
+    def add(self, left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
+        return tuple((left[i] + right[i]) % self.p for i in range(self.degree))
+
+    def sub(self, left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
+        return tuple((left[i] - right[i]) % self.p for i in range(self.degree))
+
+    def mul(self, left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
+        coeffs = [0] * (2 * self.degree - 1)
+        for i, left_coeff in enumerate(left):
+            for j, right_coeff in enumerate(right):
+                coeffs[i + j] = (
+                    coeffs[i + j] + left_coeff * right_coeff
+                ) % self.p
+        for deg in range(len(coeffs) - 1, self.degree - 1, -1):
+            lead = coeffs[deg] % self.p
+            if lead == 0:
+                continue
+            offset = deg - self.degree
+            for j in range(self.degree):
+                coeffs[offset + j] = (
+                    coeffs[offset + j] - lead * self.modulus[j]
+                ) % self.p
+        return tuple(coeffs[: self.degree])
+
+    def is_zero(self, value: tuple[int, ...]) -> bool:
+        return value == self.zero
+
+    def poly_eval_encoded(self, coefficients: list[int], value: int) -> tuple[int, ...]:
+        root = self.decode(value)
+        total = self.zero
+        power = self.one
+        for coefficient in coefficients:
+            total = self.add(total, self.mul(self.decode(coefficient), power))
+            power = self.mul(power, root)
+        return total
 
 
 def first_matching_key(data: dict[str, Any], *patterns: str) -> str | None:
@@ -257,7 +340,9 @@ def validate_residual_labels(packet: dict[str, Any]) -> None:
 
 
 def validate_regular_minor(
-    item: dict[str, Any], modulus: int | None
+    item: dict[str, Any],
+    modulus: int | None,
+    extension_field: PolynomialBasisField | None,
 ) -> tuple[list[int] | None, list[int]]:
     minor = item.get("regular_minor")
     if not isinstance(minor, dict):
@@ -323,6 +408,16 @@ def validate_regular_minor(
         non_roots = [root for root in roots if poly_eval_mod(coefficients, root, modulus)]
         if non_roots:
             raise PacketError(f"A={item.get('A')}: listed non-roots {non_roots}")
+    if extension_field is not None:
+        non_roots = [
+            root
+            for root in roots
+            if not extension_field.is_zero(
+                extension_field.poly_eval_encoded(coefficients, root)
+            )
+        ]
+        if non_roots:
+            raise PacketError(f"A={item.get('A')}: listed extension non-roots {non_roots}")
 
     return roots, bad_slopes
 
@@ -335,6 +430,7 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     n = row["n"]
     k = row["k"]
     modulus = parse_prime_field(row["field"])
+    extension_field = PolynomialBasisField.from_packet(packet)
     all_roots: set[int] = set()
     all_bad: set[int] = set()
 
@@ -349,7 +445,9 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
                 f"A={agreement}: below threshold {packet['agreement_threshold']}"
             )
         if item["status"] == "regular_minor":
-            roots, bad_slopes = validate_regular_minor(item, modulus)
+            roots, bad_slopes = validate_regular_minor(
+                item, modulus, extension_field
+            )
             if roots is not None:
                 all_roots.update(roots)
             all_bad.update(bad_slopes)
