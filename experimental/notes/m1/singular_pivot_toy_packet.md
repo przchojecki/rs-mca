@@ -71,6 +71,9 @@ python3 experimental/scripts/verify_singular_pivot_toy_packet.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/singular-pivot-toy/f17_n10_k4_a8_singular_pivot_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/singular-pivot-toy/invalid_missing_eliminant_ref_packet.json
 ```
 
 Next step: use the same packet shape only when an actual lower-agreement row

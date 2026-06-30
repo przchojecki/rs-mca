@@ -11,9 +11,9 @@ and evaluates encoded extension roots directly in that field.  In small fields,
 it also enumerates the full finite field to check that inline root tables have
 not omitted any roots.  For packets emitted by the regular-minor extractor, it
 also checks the rank-pivot audit metadata needed to justify singular
-regular-bucket declarations and rank-witness degree-bound packets.  Local
-packet references such as removed-ledger certificates are resolved, including
-JSON pointer fragments.
+regular-bucket declarations, rank-witness degree-bound packets, and pivot-atlas
+records.  Local packet references such as removed-ledger certificates are
+resolved, including JSON pointer fragments.
 """
 
 from __future__ import annotations
@@ -626,6 +626,76 @@ def validate_residual_labels(packet: dict[str, Any]) -> None:
                     )
 
 
+def require_nonnegative_int(value: Any, location: str) -> int:
+    if not isinstance(value, int) or value < 0:
+        raise PacketError(f"{location} must be a nonnegative integer")
+    return value
+
+
+def require_nonempty_string(value: Any, location: str) -> str:
+    if not isinstance(value, str) or not value:
+        raise PacketError(f"{location} must be a nonempty string")
+    return value
+
+
+def validate_pivot_atlas(packet: dict[str, Any]) -> None:
+    for item in packet.get("exact_agreements", []):
+        if item.get("status") == "pivot_atlas":
+            charts = item.get("charts")
+            if not isinstance(charts, list) or not charts:
+                raise PacketError(f"A={item.get('A')}: pivot_atlas needs charts")
+        else:
+            charts = item.get("charts", [])
+        for chart_index, chart in enumerate(charts):
+            location = f"A={item.get('A')} charts[{chart_index}]"
+            if not isinstance(chart, dict):
+                raise PacketError(f"{location} must be an object")
+            for ref_field in ("equations_ref", "inequations_ref", "coverage_ref"):
+                reference = chart.get(ref_field)
+                if isinstance(reference, str):
+                    validate_packet_reference(reference, f"{location}.{ref_field}")
+            pivots = chart.get("pivot_records")
+            if not isinstance(pivots, list) or not pivots:
+                raise PacketError(f"{location}.pivot_records must be a nonempty array")
+            for pivot_index, pivot in enumerate(pivots):
+                pivot_location = f"{location}.pivot_records[{pivot_index}]"
+                if not isinstance(pivot, dict):
+                    raise PacketError(f"{pivot_location} must be an object")
+                status = pivot.get("status")
+                if status == "eliminant":
+                    degree = require_nonnegative_int(
+                        pivot.get("degree"), f"{pivot_location}.degree"
+                    )
+                    reference = require_nonempty_string(
+                        pivot.get("eliminant_ref"),
+                        f"{pivot_location}.eliminant_ref",
+                    )
+                    target = validate_packet_reference(
+                        reference, f"{pivot_location}.eliminant_ref"
+                    )
+                    if isinstance(target, dict):
+                        target_status = target.get("status")
+                        if target_status is not None and target_status != "eliminant":
+                            raise PacketError(
+                                f"{pivot_location}.eliminant_ref points to "
+                                f"status {target_status!r}"
+                            )
+                        target_degree = target.get("degree")
+                        if target_degree is not None and target_degree != degree:
+                            raise PacketError(
+                                f"{pivot_location}.degree={degree} but "
+                                f"eliminant target degree is {target_degree}"
+                            )
+                elif status == "dimension_degree":
+                    require_nonnegative_int(
+                        pivot.get("dimension"), f"{pivot_location}.dimension"
+                    )
+                    require_nonnegative_int(
+                        pivot.get("variety_degree"),
+                        f"{pivot_location}.variety_degree",
+                    )
+
+
 def validate_regular_minor(
     item: dict[str, Any],
     modulus: int | None,
@@ -886,6 +956,7 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     validate_schema(packet, schema_path)
     validate_residual_labels(packet)
     validate_references(packet)
+    validate_pivot_atlas(packet)
 
     row = packet["row"]
     n = row["n"]

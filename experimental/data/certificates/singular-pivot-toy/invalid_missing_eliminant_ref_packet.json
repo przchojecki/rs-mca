@@ -1,0 +1,34 @@
+{
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "row": {
+    "n": 10,
+    "k": 4,
+    "field": "F_17",
+    "domain_hash": "ef58d7c6937c627ace93d94e1045c06ff884c23bbb9f4aa5c1bb276842be4629"
+  },
+  "agreement_threshold": 8,
+  "sampler": "finite_affine_line",
+  "removed_ledgers": [],
+  "exact_agreements": [
+    {
+      "A": 8,
+      "j": 2,
+      "t": 4,
+      "status": "pivot_atlas",
+      "charts": [
+        {
+          "chart_id": "split_cosupports_size_2",
+          "equations_ref": "experimental/data/certificates/singular-pivot-toy/f17_n10_k4_a8_singular_pivot_certificate.json#/support_image_equations",
+          "inequations_ref": "experimental/data/certificates/singular-pivot-toy/f17_n10_k4_a8_singular_pivot_certificate.json#/pivot_open_cover",
+          "pivot_records": [
+            {
+              "pivot": "B_0 != 0",
+              "status": "eliminant",
+              "degree": 1
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

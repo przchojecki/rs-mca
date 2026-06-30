@@ -63,6 +63,7 @@
                 "coverage_ref": {"type": "string"},
                 "pivot_records": {
                   "type": "array",
+                  "minItems": 1,
                   "items": {
                     "type": "object",
                     "required": ["pivot", "status"],
@@ -77,6 +78,14 @@
                     },
                     "allOf": [
                       {
+                        "if": {"properties": {"status": {"const": "eliminant"}}},
+                        "then": {"required": ["eliminant_ref", "degree"]}
+                      },
+                      {
+                        "if": {"properties": {"status": {"const": "dimension_degree"}}},
+                        "then": {"required": ["dimension", "variety_degree"]}
+                      },
+                      {
                         "if": {"properties": {"status": {"const": "residual_obstruction"}}},
                         "then": {"required": ["residual_label"]}
                       }
@@ -88,6 +97,10 @@
           }
         },
         "allOf": [
+          {
+            "if": {"properties": {"status": {"const": "pivot_atlas"}}},
+            "then": {"required": ["charts"]}
+          },
           {
             "if": {"properties": {"status": {"const": "residual_obstruction"}}},
             "then": {"required": ["residual_label"]}

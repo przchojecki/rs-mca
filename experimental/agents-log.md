@@ -44,7 +44,8 @@ Keep entries concise and link to the relevant files.
   regular Hankel bucket is genuinely singular but affine pivots close the
   finite-slope contribution.  The verifier proves
   `H(u)+Z H(v)=(Z+5)H(v)`, `rank H(v)=2`, enumerates all 45 split co-supports,
-  and obtains exact root union `{12}`.
+  and obtains exact root union `{12}`.  The v9 checker now also rejects
+  eliminant pivot records that omit `eliminant_ref` or degree metadata.
 - **How it is useful:** This is the first checked `pivot_atlas` shape in the
   branch, exercising the v9 singular-bucket workflow without calling an
   unresolved singular bucket aperiodic evidence.
