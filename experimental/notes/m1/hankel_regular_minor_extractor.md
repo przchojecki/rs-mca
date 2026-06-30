@@ -70,6 +70,8 @@ A sharper regular-bucket gate is recorded in
 ```text
 experimental/data/certificates/regular-minor-gcd-gate/
 experimental/data/certificates/regular-minor-gcd-toy/
+experimental/data/certificates/regular-minor-gcd-f17-2-toy/
+experimental/data/certificates/regular-minor-gcd-f17-32-toy/
 experimental/scripts/verify_m1_regular_minor_gcd_gate.py
 ```
 
@@ -78,9 +80,12 @@ If a slope is genuinely regular-bad, the full Hankel matrix has rank at most
 in the roots of the gcd of any audited family of maximal-minor determinant
 polynomials.  On the `F_17`, `n=16`, `k=8` toy, the common gcd of all contiguous
 maximal minors removes prefix-minor false roots at `A=14,15,16`.  The extractor
-now emits this as a `regular_minor_gcd` v9 packet over prime fields, and the
-checker verifies gcd divisibility, exact roots in small fields, and an
-expected-failure packet that omits the `A=14` gcd root.
+now emits this as a `regular_minor_gcd` v9 packet over prime fields and
+polynomial-basis extension fields.  The checker verifies gcd divisibility,
+exact roots in small fields, and degree-bound root hashes in large fields.
+The `F_17^2` replay checks exact extension roots; the `F_17^32` toy uses the
+pinned extension-field model and reports a degree bound without enumerating the
+slope field.
 
 When the field is small enough, the extractor enumerates roots in the full
 finite slope field.  For extension fields, root-table elements are encoded as
@@ -332,7 +337,8 @@ actual-row singular pivot charts.
 Those are the next M3/M4 steps.  The present contribution is the reusable
 regular-minor extractor, with prime-field and explicit polynomial-basis
 extension-field replays showing that it emits v9 packets accepted by the
-integrated checker.
+integrated checker.  The `F_17^32` gcd toy is still toy-row data; it exercises
+the large-field packet shape but is not prize-row evidence.
 
 ## Verification
 
@@ -368,6 +374,24 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 ! python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/invalid_omitted_extension_root_packet.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_gcd_toy.json \
+  --check experimental/data/certificates/regular-minor-gcd-toy/f17_n16_k8_a13_regular_minor_gcd_packet.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_2_n16_k8_a13_gcd_toy.json \
+  --check experimental/data/certificates/regular-minor-gcd-f17-2-toy/f17_2_n16_k8_a13_regular_minor_gcd_packet.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_32_n16_k8_a13_gcd_toy.json \
+  --check experimental/data/certificates/regular-minor-gcd-f17-32-toy/f17_32_n16_k8_a13_regular_minor_gcd_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-gcd-f17-32-toy/f17_32_n16_k8_a13_regular_minor_gcd_packet.json
+
+! python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-gcd-f17-32-toy/invalid_extension_gcd_nondivisor_packet.json
 
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_toy.json \

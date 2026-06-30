@@ -36,6 +36,7 @@ Keep entries concise and link to the relevant files.
 - **Files added or changed:**
   `experimental/data/hankel-regular-minor-inputs/f17_32_n16_k8_a13_gcd_toy.json`;
   `experimental/data/certificates/regular-minor-gcd-f17-32-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
   `experimental/agents-log.md`.
 - **Status:** PROVED / AUDIT for the toy replay.
 - **What is being added:** A small `n=16`, `k=8` `regular_minor_gcd` packet
