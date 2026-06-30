@@ -30,27 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
-### 2026-06-30 - Paper D v9 Hankel certificate atlas promotion
+### 2026-06-30 - M1 packet-overlap endpoint sift
 
-- **Agent/model:** Codex.
-- **Files added or changed:** `tex/cs25_cap_v9.tex`,
-  `scripts/aperiodic_eliminant_schema.json`,
-  `experimental/notes/audits/paperD_v9_vs_v8_audit.md`, `AGENTS.md`,
-  `README.md`, site paper/update metadata, and compiled Paper D v9 PDFs.
-- **Status:** AUDIT / VERSION-PROMOTION / PROVED-CERTIFICATE-FRAMEWORK.
-- **What is being added:** Paper D v9 preserves the v8 universal cap,
-  first-grid cap, quotient-support ledger, and quotient-image ledger, then adds
-  the aperiodic Hankel chart atlas: regular overdetermined minors, affine
-  pivots, projective infinity, curve coefficient pivots, and named singular
-  residual buckets.
-- **How it is useful:** It turns the M1 safe-side task into concrete Hankel
-  certificate packets. Contributors can now emit JSON against
-  `scripts/aperiodic_eliminant_schema.json` instead of inventing an atlas or
-  hiding singular charts under a generic aperiodic label.
-- **What to do next:** Build actual eliminant certificates for meaningful rows,
-  starting with exact agreements where the regular minor test applies. Every
-  unresolved chart should be labelled as quotient, tangent, extension,
-  candidate new obstruction, or unknown.
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_packet_overlap_endpoint_sift.md`,
+  `experimental/scripts/verify_m1_packet_overlap_endpoint_sift.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A compact combinatorial lemma showing that a
+  selected packet family fitting into a small support must create a large
+  packet-pair overlap, and that after endpoint-star pruning any excess overlap
+  must come from disjoint-support packet pairs.
+- **How it is useful:** Turns one residual M1 sparse-packet obstruction into a
+  precise disjoint-support Kummer/cross-ratio target for the C3 residue-line
+  local-limit program, without claiming the global M1 theorem.
+- **What to do next:** Use this as a local target when synthesizing the
+  post-#150--#155 residual branch ledger; prove or refute the required
+  disjoint-support high-overlap exclusion in concrete Hankel packet families.
 
 ### 2026-06-30 - PR #137--#149 integration and triage
 
