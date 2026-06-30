@@ -1,7 +1,8 @@
 # Step 5: carve the solved high-agreement region of the prize envelope
 
-- **Status:** IN PROGRESS (one item per loop iteration). Closes `towards-prize.md`
-  S1 step 5 ("use the compiler to carve out the solved high-agreement region").
+- **Status:** COMPLETE -- all five items implemented and passing (verifier exits 0:
+  5 PASS / 0 PENDING). Closes `towards-prize.md` S1 step 5 ("use the compiler to carve
+  out the solved high-agreement region").
 - **Lane:** V (verification / packaging), independent of the M1/F1/L1 proof lanes.
 - **Branch / PR:** `allen/step5-envelope-map`.
 - **Script:** `experimental/scripts/verify_step5_envelope_carving.py`.
@@ -29,7 +30,7 @@ Rows meeting `1 <= B_Q <= floor((n-k)/3)` are the **solved high-agreement region
 | 2 | solved-region boundary (`B_Q <= floor((n-k)/3)`) | **done** |
 | 3 | multi-rate envelope grid (rho in {1/2,1/4,1/8,1/16}) | **done** |
 | 4 | high-agreement scope vs the Johnson radius | **done** |
-| 5 | emit the envelope-map artifact (table / JSON) | pending |
+| 5 | emit the envelope-map artifact (table / JSON) | **done** |
 
 ### Verified so far
 
@@ -51,6 +52,12 @@ Rows meeting `1 <= B_Q <= floor((n-k)/3)` are the **solved high-agreement region
   `B_Q/n < 1 - sqrt(k/n)  <=>  k*n < (n - B_Q)^2` (no floats in the assertion). This makes
   explicit that the carved region is the **easy** high-agreement slice; it does not touch
   the near-capacity band where the prize-determining content lives.
+- **Envelope-map artifact.** A deterministic JSON map
+  `experimental/data/step5-envelope-map/envelope_map.json` records the carved rows
+  (the four rates at the flagship row, a large `n=2^20` row, and the solved/unsolved
+  boundary rows) with `rho, n, q, B_Q, cap, solved, safe_min_agreement`. The check emits
+  it, re-reads it, and recomputes every row via `solved_region` to confirm consistency
+  (`6/7` rows solved; the `B_Q=86>cap` row is the deliberate unsolved control).
 
 ## Honest scope
 

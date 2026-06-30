@@ -1,0 +1,96 @@
+{
+  "convention": "C=RS[F,L,k], n=|L|, q=q_line; B_Q=floor(q/2^128); solved iff 1<=B_Q<=floor((n-k)/3); then threshold pinned at r=B_Q, safe iff agreement a>=n-B_Q+1",
+  "rows": [
+    {
+      "B_Q": 6,
+      "cap": 85,
+      "first_unsafe_agreement": 506,
+      "k": 256,
+      "n": 512,
+      "nk": 256,
+      "q": "2367911594760467245844106297320951247361",
+      "q_label": "17^32",
+      "rho": "1/2",
+      "safe_min_agreement": 507,
+      "solved": true
+    },
+    {
+      "B_Q": 6,
+      "cap": 128,
+      "first_unsafe_agreement": 506,
+      "k": 128,
+      "n": 512,
+      "nk": 384,
+      "q": "2367911594760467245844106297320951247361",
+      "q_label": "17^32",
+      "rho": "1/4",
+      "safe_min_agreement": 507,
+      "solved": true
+    },
+    {
+      "B_Q": 6,
+      "cap": 149,
+      "first_unsafe_agreement": 506,
+      "k": 64,
+      "n": 512,
+      "nk": 448,
+      "q": "2367911594760467245844106297320951247361",
+      "q_label": "17^32",
+      "rho": "1/8",
+      "safe_min_agreement": 507,
+      "solved": true
+    },
+    {
+      "B_Q": 6,
+      "cap": 160,
+      "first_unsafe_agreement": 506,
+      "k": 32,
+      "n": 512,
+      "nk": 480,
+      "q": "2367911594760467245844106297320951247361",
+      "q_label": "17^32",
+      "rho": "1/16",
+      "safe_min_agreement": 507,
+      "solved": true
+    },
+    {
+      "B_Q": 6,
+      "cap": 174762,
+      "first_unsafe_agreement": 1048570,
+      "k": 524288,
+      "n": 1048576,
+      "nk": 524288,
+      "q": "2367911594760467245844106297320951247361",
+      "q_label": "17^32",
+      "rho": "1/2",
+      "safe_min_agreement": 1048571,
+      "solved": true
+    },
+    {
+      "B_Q": 85,
+      "cap": 85,
+      "first_unsafe_agreement": 427,
+      "k": 256,
+      "n": 512,
+      "nk": 256,
+      "q": "28924001188279769394386841631700297973761",
+      "q_label": "85*2^128+1 (B_Q=cap=85)",
+      "rho": "1/2",
+      "safe_min_agreement": 428,
+      "solved": true
+    },
+    {
+      "B_Q": 86,
+      "cap": 85,
+      "first_unsafe_agreement": null,
+      "k": 256,
+      "n": 512,
+      "nk": 256,
+      "q": "29264283555200707857850216239132066185216",
+      "q_label": "86*2^128 (B_Q=86>cap)",
+      "rho": "1/2",
+      "safe_min_agreement": null,
+      "solved": false
+    }
+  ]
+}

@@ -31,7 +31,9 @@ Exit non-zero iff any implemented check fails.
 """
 from __future__ import annotations
 
+import json
 import math  # decimal radii are display-only; PASS assertions use exact integers
+from pathlib import Path
 
 TWO128 = 2 ** 128
 RATES = [(1, 2), (1, 4), (1, 8), (1, 16)]   # the four grand-challenge rates
@@ -147,6 +149,73 @@ def check_high_agreement_scope():
     return ok, d
 
 
+def _rho_str(rho):
+    return f"{rho[0]}/{rho[1]}"
+
+
+def _parse_rho(s):
+    a, b = s.split("/")
+    return (int(a), int(b))
+
+
+def _envelope_rows():
+    """Canonical, deterministic set of rows for the envelope map."""
+    q = 17 ** 32
+    rows = [(rho, 512, q, "17^32") for rho in RATES]
+    rows.append(((1, 2), 2 ** 20, q, "17^32"))                       # large row
+    rows.append(((1, 2), 512, 85 * TWO128 + 1, "85*2^128+1 (B_Q=cap=85)"))   # boundary in
+    rows.append(((1, 2), 512, 86 * TWO128, "86*2^128 (B_Q=86>cap)"))          # boundary out
+    return rows
+
+
+def _map_path():
+    root = Path(__file__).resolve().parents[2]
+    return root / "experimental" / "data" / "step5-envelope-map" / "envelope_map.json"
+
+
+def check_emit_envelope_map():
+    """Emit a deterministic JSON map of the carved rows, then re-read it and recompute
+    every row via solved_region to confirm the artifact agrees with the compiler."""
+    d = []
+    ok = True
+    rows = []
+    for rho, n, q, label in _envelope_rows():
+        r = solved_region(rho, n, q)
+        rows.append({
+            "rho": _rho_str(rho), "n": n, "q": str(q), "q_label": label,
+            "k": r["k"], "nk": r["nk"], "cap": r["cap"], "B_Q": r["B_Q"],
+            "solved": r["solved"],
+            "safe_min_agreement": r.get("safe_min_agreement"),
+            "first_unsafe_agreement": r.get("first_unsafe_agreement"),
+        })
+    payload = {
+        "convention": ("C=RS[F,L,k], n=|L|, q=q_line; B_Q=floor(q/2^128); "
+                       "solved iff 1<=B_Q<=floor((n-k)/3); then threshold pinned at r=B_Q, "
+                       "safe iff agreement a>=n-B_Q+1"),
+        "rows": rows,
+    }
+    path = _map_path()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w") as f:
+        json.dump(payload, f, indent=2, sort_keys=True)
+        f.write("\n")
+    with open(path) as f:
+        back = json.load(f)
+    consistent = True
+    for row in back["rows"]:
+        rr = solved_region(_parse_rho(row["rho"]), row["n"], int(row["q"]))
+        if (rr["solved"] != row["solved"] or rr["cap"] != row["cap"]
+                or rr["B_Q"] != row["B_Q"]
+                or rr.get("safe_min_agreement") != row["safe_min_agreement"]):
+            consistent = False
+    n_solved = sum(1 for r in rows if r["solved"])
+    d.append("emitted -> experimental/data/step5-envelope-map/envelope_map.json")
+    d.append(f"re-read JSON and recomputed every row via solved_region : {consistent}")
+    d.append(f"solved rows: {n_solved}/{len(rows)} (expect 6/7)")
+    ok &= consistent and (n_solved == 6) and (len(rows) == 7)
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop iteration"]
 
@@ -156,7 +225,7 @@ CHECKS = [
     ("solved-region boundary",             check_solved_region_boundary),
     ("multi-rate envelope grid",           check_multi_rate_grid),
     ("high-agreement scope vs Johnson",    check_high_agreement_scope),
-    ("emit envelope map artifact",         _pending),
+    ("emit envelope map artifact",         check_emit_envelope_map),
 ]
 
 
