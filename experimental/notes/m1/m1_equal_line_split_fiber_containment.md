@@ -67,6 +67,19 @@ Res_{[Z:T]}(
 Thus `R_h` is not merely an affine chart artifact: it is exactly the norm of
 the homogeneous kernel form along the projective `y`-fiber.
 
+Consequently the gate is exact on ordinary split projective fibers over the
+field of definition:
+
+```text
+R_h(x,y)=0
+  <=> exists z in P^1 with y(z)=y and K_x^h(z)=0,              (EX)
+```
+
+provided the projective `y`-fiber is split and `y` is outside the charged
+singular support.  Over a nonsplit finite-field fiber, `(EX)` holds after
+base change to the splitting field; the finite-field popularity budget only
+uses the split leaf parameters that actually occur in the local model.
+
 ## Singular fibers
 
 Charge the projective `y`-values
@@ -104,6 +117,12 @@ R_h(x,y(z))=0.
 Thus every ordinary projective split-fiber leaf containing `x` is covered by
 the quadratic projective resultant gate in the `y` parameter.
 
+Conversely, if the ordinary `y`-fiber is split over the field and
+`R_h(x,y)=0`, then the same resultant identity gives a common projective root
+of the fiber equation and `K_x^h`.  Since the fiber has already split, that
+common root is one of its two projective leaf parameters.  Thus the resultant
+gate is exact on this local split-fiber model.
+
 The finite affine statement from the previous version is the chart `T=V=1`:
 if
 
@@ -129,6 +148,11 @@ Y(T-Z)^2 - W(T^2+3Z^2)
 
 and `K_x^h(Z,T)`.  Therefore their binary resultant vanishes.  By `(PR)`,
 this resultant is exactly `R_h(x,y)`, so `R_h(x,y)=0`.
+
+Conversely, if `R_h(x,y)=0`, then `(PR)` says that the two binary quadratics
+have a common projective zero after base change.  On an ordinary split fiber
+over the base field, the fiber equation has two base-field roots; hence the
+common zero is one of those roots, giving a leaf `z` with `K_x^h(z)=0`.
 
 The remaining paragraphs unpack this identity in the affine chart used by the
 original finite verifier.
@@ -181,7 +205,8 @@ from `m1_equal_line_generic_popularity_budget.md`.
 The companion verifier checks the finite split-fiber identity, the projective
 degree-two fibers, the homogeneous resultant identity `(PR)`, the singular
 support exclusions, and the implications `K_x(z)=0 => R(x,y)=0` and
-`K_x^h(z)=0 => R_h(x,y)=0` over expanded prime rows:
+`K_x^h(z)=0 => R_h(x,y)=0`, plus the exact equivalence `(EX)` on split
+projective fibers, over expanded prime rows:
 
 ```sh
 python3 experimental/scripts/verify_m1_equal_line_split_fiber_containment.py

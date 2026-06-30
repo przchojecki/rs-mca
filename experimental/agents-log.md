@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 equal-line split-gate exactness
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_equal_line_split_fiber_containment.md`,
+  `experimental/scripts/verify_m1_equal_line_split_fiber_containment.py`,
+  `experimental/notes/m1/m1_equal_line_generic_popularity_budget.md`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL / AUDIT.
+- **What is being added:** The equal-line resultant gate is upgraded from a
+  one-way containment to an exact gate on ordinary split projective fibers:
+  `R_h(x,y)=0` iff some projective leaf `z` in the `y`-fiber satisfies
+  `K_x^h(z)=0`.
+- **How it is useful:** Shows the local quadratic gate loses no leaves inside
+  the split-fiber chart; any remaining loss in the M1 packet route must come
+  from global model entry, nonsplit/base-change accounting, or charged
+  exceptional branches.
+- **What to do next:** Use the exact gate in the global high-overlap-to-chart
+  reduction, tracking whether the relevant leaves are split over the line
+  field or require a separate field-ledger charge.
+
 ### 2026-06-30 - M1 equal-line projective resultant identity
 
 - **Agent/model:** AllenGrahamHart / Codex.

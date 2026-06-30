@@ -52,8 +52,10 @@ For every fixed projective center residue, the equal-line kernel resultant
 16x^2y^2 - 8xy^2 + 4xy + y^2 - 2y + 1
 ```
 
-gives a nonzero quadratic projective gate in the leaf parameter `y`.  Therefore
-the projective divisor-gate lemma gives
+gives a nonzero quadratic projective gate in the leaf parameter `y`.  On the
+ordinary split-fiber model this gate is exact: its zero set is precisely the
+set of `y`-fibers containing a projective leaf `z` with `K_x^h(z)=0`.
+Therefore the projective divisor-gate lemma gives
 
 ```text
 U_eq <= mu(E_eq+2) <= 8mu.                         (EQ-U)
