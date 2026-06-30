@@ -56,6 +56,10 @@ EXTENSION_DENOMINATOR_AUDIT_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-extension-denominator-audit/"
     "f17_32_n512_k256_a421_426_extension_denominator_audit.json"
 )
+PROJECTIVE_ENDPOINT_AUDIT_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-projective-endpoint-audit/"
+    "f17_32_n512_k256_a421_426_projective_endpoint_audit.json"
+)
 OUTPUT_PATH = ROOT / (
     "experimental/data/certificates/hankel-f17-32-m3-regular-window-status/"
     "f17_32_n512_k256_m3_regular_window_status.json"
@@ -104,6 +108,7 @@ def validate_inputs(
     subgroup_section: dict[str, Any],
     zero_slope_subtraction: dict[str, Any],
     extension_denominator_audit: dict[str, Any],
+    projective_endpoint_audit: dict[str, Any],
 ) -> None:
     require(plan["window"]["A_min"] == AGREEMENT_MIN, "plan A_min mismatch")
     require(plan["window"]["A_max"] == AGREEMENT_MAX, "plan A_max mismatch")
@@ -198,6 +203,32 @@ def validate_inputs(
         == 512,
         "extension denominator audit did not classify g as extension-valued",
     )
+    require(
+        projective_endpoint_audit["schema_version"]
+        == "f17-32-m3-projective-endpoint-audit-v1",
+        "projective endpoint audit schema mismatch",
+    )
+    require(
+        projective_endpoint_audit["source_artifacts"]["fixed_top_window_packet"][
+            "ref"
+        ]
+        == TOP_PACKET_REF,
+        "projective endpoint audit top-packet ref mismatch",
+    )
+    require(
+        projective_endpoint_audit["summary"][
+            "projective_infinity_contribution_before_removed_ledgers"
+        ]
+        == 0,
+        "projective endpoint audit infinity contribution mismatch",
+    )
+    require(
+        projective_endpoint_audit["summary"][
+            "deduped_aperiodic_numerator_after_removed_ledgers"
+        ]
+        == 0,
+        "projective endpoint audit residual numerator mismatch",
+    )
 
 
 def per_agreement_records(
@@ -206,6 +237,7 @@ def per_agreement_records(
     family: dict[str, Any],
     top_packet: dict[str, Any],
     zero_slope_subtraction: dict[str, Any],
+    projective_endpoint_audit: dict[str, Any],
 ) -> list[dict[str, Any]]:
     plan_by_a = {int(item["A"]): item for item in plan["per_agreement"]}
     generic_by_a = {int(item["A"]): item for item in generic["agreements"]}
@@ -213,6 +245,9 @@ def per_agreement_records(
     top_by_a = top_window_by_agreement(top_packet)
     zero_subtraction_by_a = {
         int(item["A"]): item for item in zero_slope_subtraction["per_agreement"]
+    }
+    projective_by_a = {
+        int(item["A"]): item for item in projective_endpoint_audit["per_agreement"]
     }
     records = []
     for agreement in range(AGREEMENT_MIN, AGREEMENT_MAX + 1):
@@ -239,8 +274,18 @@ def per_agreement_records(
                 zero_subtraction_item["overlap_regular_tangent_roots"] == ROOT_UNION,
                 f"A={agreement}: zero-slope overlap mismatch",
             )
+            projective_item = projective_by_a[agreement]
+            require(
+                projective_item["projective_infinity"]["contribution"] == 0,
+                f"A={agreement}: projective endpoint contribution mismatch",
+            )
+            require(
+                projective_item["top_degree"] == top_item["j"] + 1,
+                f"A={agreement}: projective top degree mismatch",
+            )
         else:
             zero_subtraction_item = None
+            projective_item = None
         records.append(
             {
                 "A": agreement,
@@ -262,8 +307,16 @@ def per_agreement_records(
                 "fixed_top_window_extension_denominator_audit": EXTENSION_DENOMINATOR_AUDIT_REF
                 if top_item is not None
                 else None,
+                "fixed_top_window_projective_endpoint_audit": PROJECTIVE_ENDPOINT_AUDIT_REF
+                if top_item is not None
+                else None,
                 "fixed_top_window_degree": (
                     top_item["extractor_audit"]["degree_bound"] if top_item is not None else None
+                ),
+                "fixed_top_window_projective_infinity_contribution": (
+                    projective_item["projective_infinity"]["contribution"]
+                    if projective_item is not None
+                    else None
                 ),
                 "fixed_top_window_aperiodic_after_tangent": (
                     zero_subtraction_item["B_ap_after_removed_ledgers"]
@@ -295,6 +348,7 @@ def build_status() -> dict[str, Any]:
     subgroup_section = load_json(SUBGROUP_SECTION_REF)
     zero_slope_subtraction = load_json(ZERO_SLOPE_SUBTRACTION_REF)
     extension_denominator_audit = load_json(EXTENSION_DENOMINATOR_AUDIT_REF)
+    projective_endpoint_audit = load_json(PROJECTIVE_ENDPOINT_AUDIT_REF)
     validate_inputs(
         plan,
         generic,
@@ -304,9 +358,15 @@ def build_status() -> dict[str, Any]:
         subgroup_section,
         zero_slope_subtraction,
         extension_denominator_audit,
+        projective_endpoint_audit,
     )
     records = per_agreement_records(
-        plan, generic, family, top_packet, zero_slope_subtraction
+        plan,
+        generic,
+        family,
+        top_packet,
+        zero_slope_subtraction,
+        projective_endpoint_audit,
     )
     artifacts = [
         artifact_record("regular_window_plan", PLAN_REF, "regular-hankel-window-plan-v1"),
@@ -341,6 +401,11 @@ def build_status() -> dict[str, Any]:
             EXTENSION_DENOMINATOR_AUDIT_REF,
             "f17-32-m3-extension-denominator-audit-v1",
         ),
+        artifact_record(
+            "fixed_top_window_projective_endpoint_audit",
+            PROJECTIVE_ENDPOINT_AUDIT_REF,
+            "f17-32-m3-projective-endpoint-audit-v1",
+        ),
     ]
     return {
         "schema_version": SCHEMA_VERSION,
@@ -358,6 +423,7 @@ def build_status() -> dict[str, Any]:
             "subgroup_syndrome_section_status": "proved explicit inverse-Fourier section for subgroup syndrome vectors",
             "fixed_top_window_subtraction_status": "the synthetic root {0} is removed by the zero-codeword tangent slope, leaving aperiodic numerator 0",
             "fixed_top_window_denominator_status": "the line-value lift is genuinely F_17^32-valued, so the finite-affine slope denominator is 17^32",
+            "fixed_top_window_projective_endpoint_status": "the projective endpoint [0:1] is empty for A=421..426, so projectivizing the fixed synthetic packet adds no regular-minor root",
             "actual_row_status": "tangent/quotient-deduped row outcomes not supplied",
             "first_actual_row_task": "compute tangent/quotient-deduped root/singularity outcomes for A=385..426",
         },
@@ -373,6 +439,7 @@ def build_status() -> dict[str, Any]:
                 "subgroup syndrome vectors have an explicit inverse-Fourier line-value section",
                 "the fixed synthetic top-window root {0} is the zero-codeword tangent slope and leaves no synthetic residual aperiodic roots after subtraction",
                 "the fixed top-window line-value lift is extension-valued and must use q_line=17^32 for finite-affine slope accounting",
+                "the fixed top-window projective endpoint [0:1] is empty and contributes no extra synthetic regular-minor root",
             ],
             "not_proved": [
                 "an actual-row root table for any A in 385..426",

@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M3 projective endpoint audit
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_projective_endpoint_audit.py`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-projective-endpoint-audit/`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the fixed synthetic top-window packet.
+- **What is being added:** A compact sidecar proves that the extra projective
+  point `[0:1]` is empty for the existing `A=421..426` fixed synthetic
+  regular-minor packet: each determinant is a nonzero scalar times `Z^(j+1)`.
+  The M3 regular-window status ledger now records this endpoint audit.
+- **How it is useful:** Closes the finite-versus-projective accounting gap for
+  the current top-window stress packet without duplicating the large v9 packet.
+- **What to do next:** The actual frontier remains tangent/quotient-deduped
+  root or singular-bucket outcomes for actual `F_17^32` row pencils in
+  `385 <= A <= 426`.
+
 ### 2026-06-30 - Regular-minor projective infinity audit
 
 - **Agent/model:** AllenGrahamHart / Codex.

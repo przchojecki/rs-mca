@@ -14,9 +14,11 @@ subgroup syndrome-section theorem behind the lift.  It also references the
 zero-slope subtraction sidecar showing that the fixed top-window packet's
 synthetic root `{0}` is paid by the zero-codeword tangent branch, and the
 extension-denominator audit showing that the line-value lift is genuinely
-`F_17^32`-valued.  Its purpose is to make the frontier explicit: generic and
-synthetic regular-minor facts are proved, while tangent/quotient-deduped actual-row root tables and
-singular-bucket outcomes are still not supplied.
+`F_17^32`-valued.  It also references the projective endpoint sidecar proving
+that `[0:1]` is empty for the fixed top-window regular minors.  Its purpose is
+to make the frontier explicit: generic and synthetic regular-minor facts are
+proved, while tangent/quotient-deduped actual-row root tables and singular-bucket
+outcomes are still not supplied.
 
 Run:
 

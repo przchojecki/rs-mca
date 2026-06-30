@@ -1,0 +1,160 @@
+{
+  "endpoint_conventions": {
+    "extra_projective_point": "[0:1]",
+    "finite_affine_slope_denominator": 2367911594760467245844106297320951247361,
+    "finite_budget_numerator": 6,
+    "projective_budget_numerator": 6,
+    "projective_slope_denominator": 2367911594760467245844106297320951247362
+  },
+  "nonclaims": [
+    "not actual M3 row data",
+    "not a worst-case MCA bound",
+    "not a new quotient/tangent subtraction table",
+    "does not convert the source packet itself to sampler=projective_line"
+  ],
+  "per_agreement": [
+    {
+      "A": 421,
+      "B_ap_after_removed_ledgers": 0,
+      "aperiodic_root_union_after_removed_ledgers": [],
+      "finite_root_union_before_removed_ledgers": [
+        0
+      ],
+      "j": 91,
+      "projective_infinity": {
+        "contribution": 0,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized determinant evaluates to the nonzero top coefficient at [0:1]",
+        "status": "empty"
+      },
+      "t": 165,
+      "top_coefficient_encoding": 265816049548075604963879353555399861332,
+      "top_degree": 92
+    },
+    {
+      "A": 422,
+      "B_ap_after_removed_ledgers": 0,
+      "aperiodic_root_union_after_removed_ledgers": [],
+      "finite_root_union_before_removed_ledgers": [
+        0
+      ],
+      "j": 90,
+      "projective_infinity": {
+        "contribution": 0,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized determinant evaluates to the nonzero top coefficient at [0:1]",
+        "status": "empty"
+      },
+      "t": 166,
+      "top_coefficient_encoding": 2228217070838796745502098253856027100447,
+      "top_degree": 91
+    },
+    {
+      "A": 423,
+      "B_ap_after_removed_ledgers": 0,
+      "aperiodic_root_union_after_removed_ledgers": [],
+      "finite_root_union_before_removed_ledgers": [
+        0
+      ],
+      "j": 89,
+      "projective_infinity": {
+        "contribution": 0,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized determinant evaluates to the nonzero top coefficient at [0:1]",
+        "status": "empty"
+      },
+      "t": 167,
+      "top_coefficient_encoding": 2112949732651038301290573168004098385879,
+      "top_degree": 90
+    },
+    {
+      "A": 424,
+      "B_ap_after_removed_ledgers": 0,
+      "aperiodic_root_union_after_removed_ledgers": [],
+      "finite_root_union_before_removed_ledgers": [
+        0
+      ],
+      "j": 88,
+      "projective_infinity": {
+        "contribution": 0,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized determinant evaluates to the nonzero top coefficient at [0:1]",
+        "status": "empty"
+      },
+      "t": 168,
+      "top_coefficient_encoding": 1616470401258173214025266066491067382390,
+      "top_degree": 89
+    },
+    {
+      "A": 425,
+      "B_ap_after_removed_ledgers": 0,
+      "aperiodic_root_union_after_removed_ledgers": [],
+      "finite_root_union_before_removed_ledgers": [
+        0
+      ],
+      "j": 87,
+      "projective_infinity": {
+        "contribution": 0,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized determinant evaluates to the nonzero top coefficient at [0:1]",
+        "status": "empty"
+      },
+      "t": 169,
+      "top_coefficient_encoding": 2319353195721567964131859028787361906801,
+      "top_degree": 88
+    },
+    {
+      "A": 426,
+      "B_ap_after_removed_ledgers": 0,
+      "aperiodic_root_union_after_removed_ledgers": [],
+      "finite_root_union_before_removed_ledgers": [
+        0
+      ],
+      "j": 86,
+      "projective_infinity": {
+        "contribution": 0,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized determinant evaluates to the nonzero top coefficient at [0:1]",
+        "status": "empty"
+      },
+      "t": 170,
+      "top_coefficient_encoding": 224526537580335194765233378697607744035,
+      "top_degree": 87
+    }
+  ],
+  "row": {
+    "domain_description": "order-512 subgroup from the pinned F_17^32 row descriptor; fixed synthetic M3 window syndrome uses the first 92 elements",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "f17-32-m3-projective-endpoint-audit-v1",
+  "source_artifacts": {
+    "fixed_top_window_packet": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json",
+      "sampler": "finite_affine_line",
+      "sha256": "2ed9f7082e7fa5b2cfef258f02f8f3fb1d4e09a904a824be839a50f3b76f4976"
+    },
+    "zero_slope_subtraction": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_a421_426_zero_slope_subtraction.json",
+      "sha256": "2daab57ff7ad35d81423d9e14ee93cda7fc5c07bd7f1aa59b12cea00598f109d"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement_range": {
+      "A_max": 426,
+      "A_min": 421
+    },
+    "agreements": 6,
+    "aperiodic_root_union_after_removed_ledgers": [],
+    "deduped_aperiodic_numerator_after_removed_ledgers": 0,
+    "finite_root_union_before_removed_ledgers": [
+      0
+    ],
+    "interpretation": "For this fixed synthetic top-window packet, passing from finite-affine to projective slopes adds no regular-minor root at infinity.",
+    "projective_infinity_contribution_before_removed_ledgers": 0,
+    "projective_regular_numerator_before_removed_ledgers": 1
+  }
+}
