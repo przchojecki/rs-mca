@@ -165,6 +165,19 @@ finds no full-rank specialization.  Since every maximal minor has degree at
 most `j+1=3`, this proves that all maximal regular minors vanish identically
 and emits a singular residual declaration.
 
+The checker treats this as an audited proof obligation, not just metadata:
+`rank_pivot_nodes_required` must equal `j+2`, a successful packet must name the
+node where full rank was found, and a singular declaration must have tested all
+`j+2` nodes.  The negative packet
+
+```text
+experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/
+  invalid_rank_pivot_underchecked_packet.json
+```
+
+must fail because it claims the singular conclusion after only three of the
+four required nodes.
+
 ## Non-Claims
 
 This does not solve the `F_17^32` regular window.  In particular, it does not
@@ -230,4 +243,7 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/f17_n10_k4_a8_rank_pivot_singular_packet.json
+
+! python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/invalid_rank_pivot_underchecked_packet.json
 ```

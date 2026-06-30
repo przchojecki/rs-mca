@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Rank-pivot audit checker hardening
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:** `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/regular-minor-extractor-rank-pivot-singular-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** The v9 packet checker now validates the
+  `rank_at_nodes` proof audit: the required node count is `j+2`, successful
+  regular-minor packets must name the pivot node, and singular declarations
+  must have tested every required node.  An intentionally invalid packet shows
+  that underchecked singular declarations fail.
+- **How it is useful:** This tightens the M3 regular-minor extractor pipeline
+  before genuine `F_17^32` regular-window packets are emitted.
+- **What to do next:** Use the hardened checker while producing concrete M3
+  row-data packets and pass any genuine singular bucket to the pivot-chart
+  program.
+
 ### 2026-06-30 - Regular-minor rank-pivot selector
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -7,7 +7,9 @@ arithmetical checks that are easiest to get wrong in generated packets:
 declared root-union numerators when the packet includes inline root tables.  If
 the packet gives an explicit polynomial-basis field model, the checker verifies
 the model is compatible with the row field, verifies the modulus is irreducible,
-and evaluates encoded extension roots directly in that field.
+and evaluates encoded extension roots directly in that field.  For packets
+emitted by the regular-minor extractor, it also checks the rank-pivot audit
+metadata needed to justify singular regular-bucket declarations.
 """
 
 from __future__ import annotations
@@ -566,6 +568,98 @@ def validate_regular_minor(
     return roots, bad_slopes
 
 
+def validate_extractor_audit(
+    item: dict[str, Any],
+    roots: list[int] | None,
+) -> None:
+    audit = item.get("extractor_audit")
+    if audit is None:
+        return
+    if not isinstance(audit, dict):
+        raise PacketError(f"A={item.get('A')}: extractor_audit must be an object")
+
+    location = f"A={item.get('A')}: extractor_audit"
+    source = audit.get("row_set_source")
+    if source is not None and not isinstance(source, str):
+        raise PacketError(f"{location}.row_set_source must be a string or null")
+
+    tested_row_sets = audit.get("tested_row_sets")
+    if tested_row_sets is not None:
+        if not isinstance(tested_row_sets, int) or tested_row_sets < 0:
+            raise PacketError(
+                f"{location}.tested_row_sets must be a nonnegative integer"
+            )
+
+    if roots is not None and "root_count" in audit:
+        root_count = audit["root_count"]
+        if root_count != "not_enumerated":
+            if not isinstance(root_count, int) or root_count != len(roots):
+                raise PacketError(
+                    f"{location}.root_count={root_count!r} "
+                    f"but inline roots have size {len(roots)}"
+                )
+
+    if item.get("status") == "regular_minor" and "degree_bound" in audit:
+        degree_bound = audit["degree_bound"]
+        degree = item["regular_minor"]["degree"]
+        if (
+            not isinstance(degree_bound, int)
+            or degree_bound < degree
+            or degree_bound > item["j"] + 1
+        ):
+            raise PacketError(
+                f"{location}.degree_bound must lie between degree={degree} "
+                f"and j+1={item['j'] + 1}"
+            )
+
+    if source != "rank_at_nodes":
+        return
+
+    expected_required = item["j"] + 2
+    required = audit.get("rank_pivot_nodes_required")
+    if required != expected_required:
+        raise PacketError(
+            f"{location}.rank_pivot_nodes_required={required!r} "
+            f"but rank_at_nodes needs j+2={expected_required}"
+        )
+    tested = audit.get("rank_pivot_nodes_tested")
+    if not isinstance(tested, int) or tested < 1 or tested > expected_required:
+        raise PacketError(
+            f"{location}.rank_pivot_nodes_tested must be in "
+            f"1..{expected_required}"
+        )
+
+    node = audit.get("rank_pivot_node")
+    if item.get("status") == "regular_minor":
+        if not isinstance(node, int) or node < 0:
+            raise PacketError(
+                f"{location}.rank_pivot_node must name the successful node"
+            )
+        if tested_row_sets is not None and tested_row_sets < 1:
+            raise PacketError(
+                f"{location}.tested_row_sets must be positive for a regular minor"
+            )
+        return
+
+    if item.get("status") != "residual_obstruction":
+        return
+    if node is not None:
+        raise PacketError(
+            f"{location}.rank_pivot_node must be null for a singular declaration"
+        )
+    if tested != expected_required:
+        raise PacketError(
+            f"{location}.rank_pivot_nodes_tested={tested} "
+            f"but a singular declaration needs all j+2={expected_required} nodes"
+        )
+    reason = item.get("residual_reason")
+    if not isinstance(reason, str) or "size+1 distinct slopes" not in reason:
+        raise PacketError(
+            f"{location}: singular rank_at_nodes packets must record the "
+            "degree/root-vanishing residual_reason"
+        )
+
+
 def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     validate_schema(packet, schema_path)
     validate_residual_labels(packet)
@@ -580,6 +674,7 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
 
     for item in packet["exact_agreements"]:
         agreement = item["A"]
+        roots: list[int] | None = None
         if item["j"] != n - agreement:
             raise PacketError(f"A={agreement}: j={item['j']} but n-A={n - agreement}")
         if item["t"] != agreement - k:
@@ -595,6 +690,7 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
             if roots is not None:
                 all_roots.update(roots)
             all_bad.update(bad_slopes)
+        validate_extractor_audit(item, roots)
 
     root_union_key = first_matching_key(packet, r"root_union_mod_\d+", r"root_union")
     if root_union_key is not None:
