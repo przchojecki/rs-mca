@@ -40,15 +40,16 @@ Keep entries concise and link to the relevant files.
   `experimental/notes/m1/hankel_regular_window_plan.md`;
   `experimental/agents-log.md`.
 - **Status:** PROVED / AUDIT.
-- **What is being added:** A Vandermonde-specialization certificate proving
-  that the prefix regular Hankel minor in the M3 window is generically
-  nonzero, with exact degree `j+1`, for every `385<=A<=426`.
-- **How it is useful:** It shows regular-prefix failure is a special
+- **What is being added:** A shifted Vandermonde-specialization certificate
+  proving that every contiguous maximal row-set minor in the M3 window is
+  generically nonzero, with exact degree `j+1`, for every `385<=A<=426`.
+  The certificate records `1806` generic contiguous charts.
+- **How it is useful:** It shows contiguous-regular failure is a special
   determinant-zero stratum of the actual syndrome pencil, not an unavoidable
   failure of the v9 regular chart.
 - **What to do next:** For concrete `F_17^32` syndrome pencils, either compute
-  the actual prefix determinant/root data or classify determinant-zero cases by
-  alternate row sets and pivot charts.
+  actual contiguous determinant/root data or classify determinant-zero cases by
+  non-contiguous row sets and pivot charts.
 
 ### 2026-06-30 - F17^32 Hankel row descriptor
 

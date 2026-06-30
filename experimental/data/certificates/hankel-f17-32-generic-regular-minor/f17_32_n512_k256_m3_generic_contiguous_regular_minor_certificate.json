@@ -2,10 +2,22 @@
   "agreements": [
     {
       "A": 385,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 2,
+        "first_leading_coefficient_encoding": 1960127525760963954976810457703429629095,
+        "last_leading_coefficient_encoding": 1461859293992564101657786539489658811916,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "b57162377394299e87a9c4cf2818bb714e3a3a3371ead8397aa2ae152c8e0910",
+        "row_set_type": "contiguous",
+        "start_max": 1,
+        "start_min": 0
+      },
       "generic_degree": 128,
       "j": 127,
       "leading_coefficient_encoding": 1960127525760963954976810457703429629095,
       "minor_size": 128,
+      "node_product_encoding": 8,
       "row_set": {
         "start": 0,
         "stop_exclusive": 128,
@@ -24,10 +36,22 @@
     },
     {
       "A": 386,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 4,
+        "first_leading_coefficient_encoding": 496073742394775788598166928489200568658,
+        "last_leading_coefficient_encoding": 1737549643599687538711567717855145431991,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "e229b036bf33c94539918effa6aae4cdd2e8029e10d7fb1a31b1c98d24c9762d",
+        "row_set_type": "contiguous",
+        "start_max": 3,
+        "start_min": 0
+      },
       "generic_degree": 127,
       "j": 126,
       "leading_coefficient_encoding": 496073742394775788598166928489200568658,
       "minor_size": 127,
+      "node_product_encoding": 454329558097857581164572546346972581946,
       "row_set": {
         "start": 0,
         "stop_exclusive": 127,
@@ -46,10 +70,22 @@
     },
     {
       "A": 387,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 6,
+        "first_leading_coefficient_encoding": 1812083095683987272151378733457441781395,
+        "last_leading_coefficient_encoding": 200125795661071872437398887326000268689,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "4e70339f432230541b978a5c1ac5e055ca690a9673767d0229fce342090b4cd2",
+        "row_set_type": "contiguous",
+        "start_max": 5,
+        "start_min": 0
+      },
       "generic_degree": 126,
       "j": 125,
       "leading_coefficient_encoding": 1812083095683987272151378733457441781395,
       "minor_size": 126,
+      "node_product_encoding": 1958087373324612459101967046116397725445,
       "row_set": {
         "start": 0,
         "stop_exclusive": 126,
@@ -68,10 +104,22 @@
     },
     {
       "A": 388,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 8,
+        "first_leading_coefficient_encoding": 801602236823272202298702624015334190399,
+        "last_leading_coefficient_encoding": 1883728155228094970942217787076160767088,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "2740e9d8248b036287b49e35828092f2c637bf600cf716344654c476c4edcf8a",
+        "row_set_type": "contiguous",
+        "start_max": 7,
+        "start_min": 0
+      },
       "generic_degree": 125,
       "j": 124,
       "leading_coefficient_encoding": 801602236823272202298702624015334190399,
       "minor_size": 125,
+      "node_product_encoding": 1719008680950021044449327854483067936522,
       "row_set": {
         "start": 0,
         "stop_exclusive": 125,
@@ -90,10 +138,22 @@
     },
     {
       "A": 389,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 10,
+        "first_leading_coefficient_encoding": 353908664811310541551848142583756076095,
+        "last_leading_coefficient_encoding": 2230034838747741757157906681481604401469,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "4f54c4a5c3ffc360ba0fe8a8ec8103f705baf15cfe0a22af43affd2aa1d6ad49",
+        "row_set_type": "contiguous",
+        "start_max": 9,
+        "start_min": 0
+      },
       "generic_degree": 124,
       "j": 123,
       "leading_coefficient_encoding": 353908664811310541551848142583756076095,
       "minor_size": 124,
+      "node_product_encoding": 624703951443834420425147115767710882251,
       "row_set": {
         "start": 0,
         "stop_exclusive": 124,
@@ -112,10 +172,22 @@
     },
     {
       "A": 390,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 12,
+        "first_leading_coefficient_encoding": 342634331139171815574309265824355558334,
+        "last_leading_coefficient_encoding": 720422499518487336992387364362269044844,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "f4778f2bad8e1b79c6d2ca0aa184ab21bbb3d51a233b255aba6938ed5df9af16",
+        "row_set_type": "contiguous",
+        "start_max": 11,
+        "start_min": 0
+      },
       "generic_degree": 123,
       "j": 122,
       "leading_coefficient_encoding": 342634331139171815574309265824355558334,
       "minor_size": 123,
+      "node_product_encoding": 1134769736566538952157799357121835399808,
       "row_set": {
         "start": 0,
         "stop_exclusive": 123,
@@ -134,10 +206,22 @@
     },
     {
       "A": 391,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 14,
+        "first_leading_coefficient_encoding": 1710840598805328105053886624336408118149,
+        "last_leading_coefficient_encoding": 1262844445806786896641676534911263164050,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "b789d41acf75f0b3bb9da1a35c0ed96783096aa38af745d53f87fcd41943f1a6",
+        "row_set_type": "contiguous",
+        "start_max": 13,
+        "start_min": 0
+      },
       "generic_degree": 122,
       "j": 121,
       "leading_coefficient_encoding": 1710840598805328105053886624336408118149,
       "minor_size": 122,
+      "node_product_encoding": 2239237996359335498936100060100052930064,
       "row_set": {
         "start": 0,
         "stop_exclusive": 122,
@@ -156,10 +240,22 @@
     },
     {
       "A": 392,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 16,
+        "first_leading_coefficient_encoding": 2195971428518805751996365415031908500830,
+        "last_leading_coefficient_encoding": 2301052431056678041831143303026198726463,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "69d6cfee2d5b84b2f8433b0f2e979a0fcf55c36dfcefa72332c8bfb6633b1c9f",
+        "row_set_type": "contiguous",
+        "start_max": 15,
+        "start_min": 0
+      },
       "generic_degree": 121,
       "j": 120,
       "leading_coefficient_encoding": 2195971428518805751996365415031908500830,
       "minor_size": 121,
+      "node_product_encoding": 1095428954522840613118879339372247893691,
       "row_set": {
         "start": 0,
         "stop_exclusive": 121,
@@ -178,10 +274,22 @@
     },
     {
       "A": 393,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 18,
+        "first_leading_coefficient_encoding": 1820799323371946193183878234070001430955,
+        "last_leading_coefficient_encoding": 890968943831081511526476290142642584935,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "c32d1daa765b2e0773a435ed6941259088c4ffc1d87b89473cf48b79794d6d84",
+        "row_set_type": "contiguous",
+        "start_max": 17,
+        "start_min": 0
+      },
       "generic_degree": 120,
       "j": 119,
       "leading_coefficient_encoding": 1820799323371946193183878234070001430955,
       "minor_size": 120,
+      "node_product_encoding": 237197576995966707390810477524138821539,
       "row_set": {
         "start": 0,
         "stop_exclusive": 120,
@@ -200,10 +308,22 @@
     },
     {
       "A": 394,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 20,
+        "first_leading_coefficient_encoding": 470938990856930116960320685179333350339,
+        "last_leading_coefficient_encoding": 1048168788712033682330730124361378722959,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "85d4b5fc5077a5707a782bdb4941d7bcc60248dd429f71d2fd2038350c850f4c",
+        "row_set_type": "contiguous",
+        "start_max": 19,
+        "start_min": 0
+      },
       "generic_degree": 119,
       "j": 118,
       "leading_coefficient_encoding": 470938990856930116960320685179333350339,
       "minor_size": 119,
+      "node_product_encoding": 793209080148321845554058349692593247329,
       "row_set": {
         "start": 0,
         "stop_exclusive": 119,
@@ -222,10 +342,22 @@
     },
     {
       "A": 395,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 22,
+        "first_leading_coefficient_encoding": 100919767089740780499066295931668351702,
+        "last_leading_coefficient_encoding": 1711430451699515779352337867123612775913,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "aa019bfe43059763b45528db5c10470863fccab97f338da6c36c49feba345a58",
+        "row_set_type": "contiguous",
+        "start_max": 21,
+        "start_min": 0
+      },
       "generic_degree": 118,
       "j": 117,
       "leading_coefficient_encoding": 100919767089740780499066295931668351702,
       "minor_size": 118,
+      "node_product_encoding": 2283566857251331108593363303195627067501,
       "row_set": {
         "start": 0,
         "stop_exclusive": 118,
@@ -244,10 +376,22 @@
     },
     {
       "A": 396,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 24,
+        "first_leading_coefficient_encoding": 1685443426320145250183393507716690895160,
+        "last_leading_coefficient_encoding": 139074699108024009121764924070511003279,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "0bf9d7e943de062fd7973fd68f58d09d8a66ec5a10890d0f0ffbe344f51911c8",
+        "row_set_type": "contiguous",
+        "start_max": 23,
+        "start_min": 0
+      },
       "generic_degree": 117,
       "j": 116,
       "leading_coefficient_encoding": 1685443426320145250183393507716690895160,
       "minor_size": 117,
+      "node_product_encoding": 1645100780238694736070198252078690200260,
       "row_set": {
         "start": 0,
         "stop_exclusive": 117,
@@ -266,10 +410,22 @@
     },
     {
       "A": 397,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 26,
+        "first_leading_coefficient_encoding": 1664634994593716759843410256493381111947,
+        "last_leading_coefficient_encoding": 1447885642213880566034618277884056115598,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "ff26baf4c74fae422ce25804773ab7d9b053d6558f553c631ee57f86f8c299d3",
+        "row_set_type": "contiguous",
+        "start_max": 25,
+        "start_min": 0
+      },
       "generic_degree": 116,
       "j": 115,
       "leading_coefficient_encoding": 1664634994593716759843410256493381111947,
       "minor_size": 116,
+      "node_product_encoding": 1656781098831176057086631225516465181358,
       "row_set": {
         "start": 0,
         "stop_exclusive": 116,
@@ -288,10 +444,22 @@
     },
     {
       "A": 398,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 28,
+        "first_leading_coefficient_encoding": 294773241926924909066802979946567578729,
+        "last_leading_coefficient_encoding": 397696156529745949338447451569618994476,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "0c4dea8d4fe91543c8dcad1f9d204f4498f8d09644b517af9f51db43b2089c66",
+        "row_set_type": "contiguous",
+        "start_max": 27,
+        "start_min": 0
+      },
       "generic_degree": 115,
       "j": 114,
       "leading_coefficient_encoding": 294773241926924909066802979946567578729,
       "minor_size": 115,
+      "node_product_encoding": 1060213957143981938255986840969075554068,
       "row_set": {
         "start": 0,
         "stop_exclusive": 115,
@@ -310,10 +478,22 @@
     },
     {
       "A": 399,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 30,
+        "first_leading_coefficient_encoding": 71846692608176055586320066844908846896,
+        "last_leading_coefficient_encoding": 754650697729385279277645340907977190983,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "772d43eac8d929790b47f1839c57c7772658d3bc45809e1261270ce7315a5b23",
+        "row_set_type": "contiguous",
+        "start_max": 29,
+        "start_min": 0
+      },
       "generic_degree": 114,
       "j": 113,
       "leading_coefficient_encoding": 71846692608176055586320066844908846896,
       "minor_size": 114,
+      "node_product_encoding": 1869479033098892528646600009468201590380,
       "row_set": {
         "start": 0,
         "stop_exclusive": 114,
@@ -332,10 +512,22 @@
     },
     {
       "A": 400,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 32,
+        "first_leading_coefficient_encoding": 1130307758722218882644531062134510475889,
+        "last_leading_coefficient_encoding": 2324220128807508226468360119355361050518,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "2939856d940c66735f1c6e3d23a12f985a26688d66a4a9b5c97c1385abeb5bbd",
+        "row_set_type": "contiguous",
+        "start_max": 31,
+        "start_min": 0
+      },
       "generic_degree": 113,
       "j": 112,
       "leading_coefficient_encoding": 1130307758722218882644531062134510475889,
       "minor_size": 113,
+      "node_product_encoding": 907402573379557698796050203801456081888,
       "row_set": {
         "start": 0,
         "stop_exclusive": 113,
@@ -354,10 +546,22 @@
     },
     {
       "A": 401,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 34,
+        "first_leading_coefficient_encoding": 1250918881245057304151093957424794294165,
+        "last_leading_coefficient_encoding": 755217660365608558009586744050961455828,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "ac8e3861e7902f27bb37efbd83e1f566029f13cfd78a83dff79373873fc6d7f4",
+        "row_set_type": "contiguous",
+        "start_max": 33,
+        "start_min": 0
+      },
       "generic_degree": 112,
       "j": 111,
       "leading_coefficient_encoding": 1250918881245057304151093957424794294165,
       "minor_size": 112,
+      "node_product_encoding": 1085469789981504636459752456570618109224,
       "row_set": {
         "start": 0,
         "stop_exclusive": 112,
@@ -376,10 +580,22 @@
     },
     {
       "A": 402,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 36,
+        "first_leading_coefficient_encoding": 24734832539777253207071787731201571446,
+        "last_leading_coefficient_encoding": 753644106162682149890103607159734252789,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "7553ddc09c3a72b5881dad427ccc22b05b8844a313d54165e54a986281003c1f",
+        "row_set_type": "contiguous",
+        "start_max": 35,
+        "start_min": 0
+      },
       "generic_degree": 111,
       "j": 110,
       "leading_coefficient_encoding": 24734832539777253207071787731201571446,
       "minor_size": 111,
+      "node_product_encoding": 623317605216368028222761928259224241990,
       "row_set": {
         "start": 0,
         "stop_exclusive": 111,
@@ -398,10 +614,22 @@
     },
     {
       "A": 403,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 38,
+        "first_leading_coefficient_encoding": 459947468539296144349069142694475510118,
+        "last_leading_coefficient_encoding": 2112579398381861682079431256850293943697,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "85188f47c594175445fc7794167a54f729579cbb2b084f56d80e601f321bded5",
+        "row_set_type": "contiguous",
+        "start_max": 37,
+        "start_min": 0
+      },
       "generic_degree": 110,
       "j": 109,
       "leading_coefficient_encoding": 459947468539296144349069142694475510118,
       "minor_size": 110,
+      "node_product_encoding": 865700557619668274316627757628199258999,
       "row_set": {
         "start": 0,
         "stop_exclusive": 110,
@@ -420,10 +648,22 @@
     },
     {
       "A": 404,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 40,
+        "first_leading_coefficient_encoding": 1918575663998876397526365133514413501504,
+        "last_leading_coefficient_encoding": 1343768259873544948407930684983736010585,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "45ba18a1e744522ecc281d5d8e2c29ce4ecb6795c4958a2261a1ecb1885fee5b",
+        "row_set_type": "contiguous",
+        "start_max": 39,
+        "start_min": 0
+      },
       "generic_degree": 109,
       "j": 108,
       "leading_coefficient_encoding": 1918575663998876397526365133514413501504,
       "minor_size": 109,
+      "node_product_encoding": 659089571111203593733416736507632489754,
       "row_set": {
         "start": 0,
         "stop_exclusive": 109,
@@ -442,10 +682,22 @@
     },
     {
       "A": 405,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 42,
+        "first_leading_coefficient_encoding": 211041704907486732169007754589382378937,
+        "last_leading_coefficient_encoding": 1922851643365689291587522761627540003617,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "4cdfbd36547788abf50a518d6d248607edf08f786c078faf1dec20d8fc71852d",
+        "row_set_type": "contiguous",
+        "start_max": 41,
+        "start_min": 0
+      },
       "generic_degree": 108,
       "j": 107,
       "leading_coefficient_encoding": 211041704907486732169007754589382378937,
       "minor_size": 108,
+      "node_product_encoding": 684093681033680314803548034057809831938,
       "row_set": {
         "start": 0,
         "stop_exclusive": 108,
@@ -464,10 +716,22 @@
     },
     {
       "A": 406,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 44,
+        "first_leading_coefficient_encoding": 1521820178092625308093349612694629485453,
+        "last_leading_coefficient_encoding": 1602538786520992280295174977829476829479,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "9c6afa9a9d9da223bff1554fb88a8f15a349814b7b0aaef48b599917b6ce21a1",
+        "row_set_type": "contiguous",
+        "start_max": 43,
+        "start_min": 0
+      },
       "generic_degree": 107,
       "j": 106,
       "leading_coefficient_encoding": 1521820178092625308093349612694629485453,
       "minor_size": 107,
+      "node_product_encoding": 2339581404014765677661919891414003115302,
       "row_set": {
         "start": 0,
         "stop_exclusive": 107,
@@ -486,10 +750,22 @@
     },
     {
       "A": 407,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 46,
+        "first_leading_coefficient_encoding": 307621075849948038636009236451998818873,
+        "last_leading_coefficient_encoding": 483105457753883287993117387933804243774,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "16a9ebfcde06a05211e07bb72cba9ff3c03cc2c4f4bd551cd92225544b772838",
+        "row_set_type": "contiguous",
+        "start_max": 45,
+        "start_min": 0
+      },
       "generic_degree": 106,
       "j": 105,
       "leading_coefficient_encoding": 307621075849948038636009236451998818873,
       "minor_size": 106,
+      "node_product_encoding": 170145703598521524384192653251950352282,
       "row_set": {
         "start": 0,
         "stop_exclusive": 106,
@@ -508,10 +784,22 @@
     },
     {
       "A": 408,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 48,
+        "first_leading_coefficient_encoding": 1831202745295413043137036734163137881540,
+        "last_leading_coefficient_encoding": 1737805798881015360297921835959083693273,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "a2ef4d6e1c4513fc7da5d271f5f517e0eda46d1af72a5a104a6a25f57410f54f",
+        "row_set_type": "contiguous",
+        "start_max": 47,
+        "start_min": 0
+      },
       "generic_degree": 105,
       "j": 104,
       "leading_coefficient_encoding": 1831202745295413043137036734163137881540,
       "minor_size": 105,
+      "node_product_encoding": 950159747149685928546651250393537641826,
       "row_set": {
         "start": 0,
         "stop_exclusive": 105,
@@ -530,10 +818,22 @@
     },
     {
       "A": 409,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 50,
+        "first_leading_coefficient_encoding": 422187020011215957122005847265015724713,
+        "last_leading_coefficient_encoding": 927641768494114555185901260153983270272,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "d1399788f70aa183a58b78b13e4b971e130647a8215c4c5c8c193f2ac8f88a5f",
+        "row_set_type": "contiguous",
+        "start_max": 49,
+        "start_min": 0
+      },
       "generic_degree": 104,
       "j": 103,
       "leading_coefficient_encoding": 422187020011215957122005847265015724713,
       "minor_size": 104,
+      "node_product_encoding": 844491699992253776280989336969670179687,
       "row_set": {
         "start": 0,
         "stop_exclusive": 104,
@@ -552,10 +852,22 @@
     },
     {
       "A": 410,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 52,
+        "first_leading_coefficient_encoding": 1656892761321802793161410105918804331374,
+        "last_leading_coefficient_encoding": 793305180693327335517246358171068916953,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "215ac60bf5153f4467b5151b0955f999514ab3aee369cb8883342ad7df35bc16",
+        "row_set_type": "contiguous",
+        "start_max": 51,
+        "start_min": 0
+      },
       "generic_degree": 103,
       "j": 102,
       "leading_coefficient_encoding": 1656892761321802793161410105918804331374,
       "minor_size": 103,
+      "node_product_encoding": 1147236123731598709854926184019823515284,
       "row_set": {
         "start": 0,
         "stop_exclusive": 103,
@@ -574,10 +886,22 @@
     },
     {
       "A": 411,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 54,
+        "first_leading_coefficient_encoding": 755831957698730571541985828703222995728,
+        "last_leading_coefficient_encoding": 1531702508663353115901843211799341950011,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "15dc66d0f6487a98ef2a5c5ec17c82d4d2d4255237aaf9c22116491f897f19e1",
+        "row_set_type": "contiguous",
+        "start_max": 53,
+        "start_min": 0
+      },
       "generic_degree": 102,
       "j": 101,
       "leading_coefficient_encoding": 755831957698730571541985828703222995728,
       "minor_size": 102,
+      "node_product_encoding": 449985782467021486845543294158825274737,
       "row_set": {
         "start": 0,
         "stop_exclusive": 102,
@@ -596,10 +920,22 @@
     },
     {
       "A": 412,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 56,
+        "first_leading_coefficient_encoding": 476489136704274775061167902838876486766,
+        "last_leading_coefficient_encoding": 137527463454209133309093437597303033447,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "b963eb38723f552d6ece1bae69b3422290b4dfa6d06da84f69593e10f1e527f0",
+        "row_set_type": "contiguous",
+        "start_max": 55,
+        "start_min": 0
+      },
       "generic_degree": 101,
       "j": 100,
       "leading_coefficient_encoding": 476489136704274775061167902838876486766,
       "minor_size": 101,
+      "node_product_encoding": 1155139982121645890018794772595901399175,
       "row_set": {
         "start": 0,
         "stop_exclusive": 101,
@@ -618,10 +954,22 @@
     },
     {
       "A": 413,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 58,
+        "first_leading_coefficient_encoding": 262241965281328634739489740362727376348,
+        "last_leading_coefficient_encoding": 2052737086708074767844708782049428365138,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "0bccdf7ee86aca42f98bb5e78d809dba3f9ea7fdbf5c2da78c576a3370fbea52",
+        "row_set_type": "contiguous",
+        "start_max": 57,
+        "start_min": 0
+      },
       "generic_degree": 100,
       "j": 99,
       "leading_coefficient_encoding": 262241965281328634739489740362727376348,
       "minor_size": 100,
+      "node_product_encoding": 875523566043786130560836026329073651374,
       "row_set": {
         "start": 0,
         "stop_exclusive": 100,
@@ -640,10 +988,22 @@
     },
     {
       "A": 414,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 60,
+        "first_leading_coefficient_encoding": 255878304015780547909485754516290276079,
+        "last_leading_coefficient_encoding": 407622875746272413159038458989686790028,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "0332be3160e4a25cb2028718d975c1d0e82ee4a8104b92a5d61a7049b9a8b562",
+        "row_set_type": "contiguous",
+        "start_max": 59,
+        "start_min": 0
+      },
       "generic_degree": 99,
       "j": 98,
       "leading_coefficient_encoding": 255878304015780547909485754516290276079,
       "minor_size": 99,
+      "node_product_encoding": 796235500985785534303217266811050463995,
       "row_set": {
         "start": 0,
         "stop_exclusive": 99,
@@ -662,10 +1022,22 @@
     },
     {
       "A": 415,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 62,
+        "first_leading_coefficient_encoding": 1687488083283963403905718093652314444446,
+        "last_leading_coefficient_encoding": 282379116346186167542591843123272253279,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "c61bce72ea75c7559d6c564c491a772f46ec1311ad07f3ff5097b70fa84045e0",
+        "row_set_type": "contiguous",
+        "start_max": 61,
+        "start_min": 0
+      },
       "generic_degree": 98,
       "j": 97,
       "leading_coefficient_encoding": 1687488083283963403905718093652314444446,
       "minor_size": 98,
+      "node_product_encoding": 1847616535735231654781292890845206218976,
       "row_set": {
         "start": 0,
         "stop_exclusive": 98,
@@ -684,10 +1056,22 @@
     },
     {
       "A": 416,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 64,
+        "first_leading_coefficient_encoding": 1733401208212334985416239809861793981134,
+        "last_leading_coefficient_encoding": 672146274770865845611069809955412552245,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "17c97bc9a1b72c129236b3da3a614c9c45602b19caef2d1808c2eca78e63be2c",
+        "row_set_type": "contiguous",
+        "start_max": 63,
+        "start_min": 0
+      },
       "generic_degree": 97,
       "j": 96,
       "leading_coefficient_encoding": 1733401208212334985416239809861793981134,
       "minor_size": 97,
+      "node_product_encoding": 563070200758411572535853680088801860770,
       "row_set": {
         "start": 0,
         "stop_exclusive": 97,
@@ -706,10 +1090,22 @@
     },
     {
       "A": 417,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 66,
+        "first_leading_coefficient_encoding": 1768718544895380476887756296451774298197,
+        "last_leading_coefficient_encoding": 17657012424061522016745761512671944547,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "b1265dbf9837138f94e6f377be93b2307beb3b84aea3cd810c28e141821751b5",
+        "row_set_type": "contiguous",
+        "start_max": 65,
+        "start_min": 0
+      },
       "generic_degree": 96,
       "j": 95,
       "leading_coefficient_encoding": 1768718544895380476887756296451774298197,
       "minor_size": 96,
+      "node_product_encoding": 977165186862540864246879091807084485397,
       "row_set": {
         "start": 0,
         "stop_exclusive": 96,
@@ -728,10 +1124,22 @@
     },
     {
       "A": 418,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 68,
+        "first_leading_coefficient_encoding": 835436229860121537478496103576089233998,
+        "last_leading_coefficient_encoding": 606794340855861401697625500261315932281,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "2594258118394aa41ecde249ef39fd44cdd55d9ba3f50e620b2eaeadd2d586f1",
+        "row_set_type": "contiguous",
+        "start_max": 67,
+        "start_min": 0
+      },
       "generic_degree": 95,
       "j": 94,
       "leading_coefficient_encoding": 835436229860121537478496103576089233998,
       "minor_size": 95,
+      "node_product_encoding": 538201592116741386137413971634716578584,
       "row_set": {
         "start": 0,
         "stop_exclusive": 95,
@@ -750,10 +1158,22 @@
     },
     {
       "A": 419,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 70,
+        "first_leading_coefficient_encoding": 89993492769349859364812778941100020881,
+        "last_leading_coefficient_encoding": 1953085308494045468866072255838031999230,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "17d0710b2b2e5028b4fa8b3d91566ba16c8a5528702c048adb30a003a44f1feb",
+        "row_set_type": "contiguous",
+        "start_max": 69,
+        "start_min": 0
+      },
       "generic_degree": 94,
       "j": 93,
       "leading_coefficient_encoding": 89993492769349859364812778941100020881,
       "minor_size": 94,
+      "node_product_encoding": 272334021174553466205289994627308707261,
       "row_set": {
         "start": 0,
         "stop_exclusive": 94,
@@ -772,10 +1192,22 @@
     },
     {
       "A": 420,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 72,
+        "first_leading_coefficient_encoding": 2349370168658727426479015660687837002313,
+        "last_leading_coefficient_encoding": 1632508202040535486759836131324835312115,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "a086a7ec03e31152768b3807daf92e06859ccdc603124968cf3ed4dc7d86b0f0",
+        "row_set_type": "contiguous",
+        "start_max": 71,
+        "start_min": 0
+      },
       "generic_degree": 93,
       "j": 92,
       "leading_coefficient_encoding": 2349370168658727426479015660687837002313,
       "minor_size": 93,
+      "node_product_encoding": 2274144326862601039248897445183346414291,
       "row_set": {
         "start": 0,
         "stop_exclusive": 93,
@@ -794,10 +1226,22 @@
     },
     {
       "A": 421,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 74,
+        "first_leading_coefficient_encoding": 265816049548075604963879353555399861332,
+        "last_leading_coefficient_encoding": 748642648829419451458456033514183145120,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "8db8435c36a84ec87c492823127ca67938476b8d708c7187599f721652167306",
+        "row_set_type": "contiguous",
+        "start_max": 73,
+        "start_min": 0
+      },
       "generic_degree": 92,
       "j": 91,
       "leading_coefficient_encoding": 265816049548075604963879353555399861332,
       "minor_size": 92,
+      "node_product_encoding": 503080251074602891226323264931382616656,
       "row_set": {
         "start": 0,
         "stop_exclusive": 92,
@@ -816,10 +1260,22 @@
     },
     {
       "A": 422,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 76,
+        "first_leading_coefficient_encoding": 184521148592075467316957239048914376974,
+        "last_leading_coefficient_encoding": 1664634950553030831809982481886836222735,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "bcb766700b397732c81e0121b81e8887210ce2069d51980c7db420c2632cec01",
+        "row_set_type": "contiguous",
+        "start_max": 75,
+        "start_min": 0
+      },
       "generic_degree": 91,
       "j": 90,
       "leading_coefficient_encoding": 184521148592075467316957239048914376974,
       "minor_size": 91,
+      "node_product_encoding": 2216075647742448037969121143965638464830,
       "row_set": {
         "start": 0,
         "stop_exclusive": 91,
@@ -838,10 +1294,22 @@
     },
     {
       "A": 423,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 78,
+        "first_leading_coefficient_encoding": 2060256867170291804111877656520339314254,
+        "last_leading_coefficient_encoding": 413683332572445042226372549734651061189,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "e0fae39b70cdd31e393c3af1c122ea8c214a4b7eb64b40814e3673cd18d12262",
+        "row_set_type": "contiguous",
+        "start_max": 77,
+        "start_min": 0
+      },
       "generic_degree": 90,
       "j": 89,
       "leading_coefficient_encoding": 2060256867170291804111877656520339314254,
       "minor_size": 90,
+      "node_product_encoding": 1721109296208421153415705416873007981111,
       "row_set": {
         "start": 0,
         "stop_exclusive": 90,
@@ -860,10 +1328,22 @@
     },
     {
       "A": 424,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 80,
+        "first_leading_coefficient_encoding": 1283142822677126961532305606241471025383,
+        "last_leading_coefficient_encoding": 1529148035007174088787136787489080756584,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "538e2780df70c582bca3042ad67cc570cccfb37a7ce6d993ff6eace1e7df83b0",
+        "row_set_type": "contiguous",
+        "start_max": 79,
+        "start_min": 0
+      },
       "generic_degree": 89,
       "j": 88,
       "leading_coefficient_encoding": 1283142822677126961532305606241471025383,
       "minor_size": 89,
+      "node_product_encoding": 165505025676845545292606288551202847979,
       "row_set": {
         "start": 0,
         "stop_exclusive": 89,
@@ -882,10 +1362,22 @@
     },
     {
       "A": 425,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 82,
+        "first_leading_coefficient_encoding": 416884347478717958584104368471384620671,
+        "last_leading_coefficient_encoding": 2022912339305716212990238826087253852224,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "966e9a5cc4739eb9b2d88d8deac9f435666a217d6d7beaa86eb6b1b4a04a07cb",
+        "row_set_type": "contiguous",
+        "start_max": 81,
+        "start_min": 0
+      },
       "generic_degree": 88,
       "j": 87,
       "leading_coefficient_encoding": 416884347478717958584104368471384620671,
       "minor_size": 88,
+      "node_product_encoding": 366041368298847567145905307742468639080,
       "row_set": {
         "start": 0,
         "stop_exclusive": 88,
@@ -904,10 +1396,22 @@
     },
     {
       "A": 426,
+      "contiguous_row_set_atlas": {
+        "all_generic_nonzero": true,
+        "count": 84,
+        "first_leading_coefficient_encoding": 1679562971418113032387101671407887322647,
+        "last_leading_coefficient_encoding": 2181062665354119735403284865672042536869,
+        "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+        "leading_coefficient_hash": "7924ede22a847e799b1fcb9fa78bb8ca71ab6f4b4f954f09085b8434271d68da",
+        "row_set_type": "contiguous",
+        "start_max": 83,
+        "start_min": 0
+      },
       "generic_degree": 87,
       "j": 86,
       "leading_coefficient_encoding": 1679562971418113032387101671407887322647,
       "minor_size": 87,
+      "node_product_encoding": 1689307666905149450826560418887229652962,
       "row_set": {
         "start": 0,
         "stop_exclusive": 87,
@@ -936,21 +1440,27 @@
       "value": 4515
     },
     {
+      "name": "contiguous_row_set_count_sum",
+      "status": "PASS",
+      "value": 1806
+    },
+    {
       "name": "budget_numerator",
       "status": "PASS",
       "value": 6
     }
   ],
   "claim": {
+    "contiguous_row_set_count_sum": 1806,
     "degree_only_budget_closes_safe_side": false,
     "degree_sum": 4515,
     "finite_slope_budget_numerator": 6,
-    "proof_method": "Vandermonde moment specialization",
+    "proof_method": "shifted Vandermonde moment specialization",
     "regular_window": {
       "A_max": 426,
       "A_min": 385
     },
-    "summary": "For every 385 <= A <= 426, the prefix regular Hankel minor det(H_{t,j}(u)+Z H_{t,j}(v)) is generically nonzero and has exact degree j+1."
+    "summary": "For every 385 <= A <= 426, every contiguous regular Hankel minor det(H_{t,j}(u)+Z H_{t,j}(v)) with row set s..s+j is generically nonzero and has exact degree j+1."
   },
   "nonclaims": [
     "does not prove any particular syndrome pencil is nonsingular",
@@ -966,6 +1476,6 @@
     "row_descriptor_ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
     "row_descriptor_sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
   },
-  "schema_version": "f17-32-m3-generic-prefix-regular-minor-v1",
+  "schema_version": "f17-32-m3-generic-contiguous-regular-minor-v1",
   "status": "PROVED / AUDIT"
 }

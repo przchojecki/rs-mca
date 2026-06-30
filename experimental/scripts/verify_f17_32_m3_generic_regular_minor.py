@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
-"""Verify generic prefix regular-minor nonsingularity for the M3 window.
+"""Verify generic contiguous regular-minor nonsingularity for the M3 window.
 
 For each agreement 385 <= A <= 426 in the F_17^32, n=512, k=256 row,
-this script certifies that the prefix (j+1)x(j+1) Hankel minor is not
-identically zero as a polynomial in a generic syndrome pencil.
+this script certifies that every contiguous (j+1)x(j+1) Hankel row-set minor
+is not identically zero as a polynomial in a generic syndrome pencil.
 
 The witness specialization is u=0 and
 
     v_m = sum_{i=0}^j x_i^m
 
-for the first j+1 domain elements x_i.  Then the prefix Hankel matrix is
-V^T V, so its determinant is the square of the Vandermonde determinant and is
-nonzero.  Thus the leading Z^(j+1) coefficient of det(H(u)+Z H(v)) is nonzero
-under this specialization, proving the generic determinant has exact degree
-j+1.
+for the first j+1 domain elements x_i.  For a contiguous row set s..s+j, the
+specialized Hankel matrix factors as A_s B^T, so its determinant is
+
+    (prod_i x_i^s) * Vandermonde(x_0,...,x_j)^2.
+
+This is nonzero.  Thus the leading Z^(j+1) coefficient of
+det(H(u)+Z H(v)) is nonzero under this specialization, proving exact generic
+degree j+1 for every contiguous chart.
 """
 
 from __future__ import annotations
@@ -34,9 +37,9 @@ ROW_DESCRIPTOR = ROOT / (
 )
 CERTIFICATE_PATH = ROOT / (
     "experimental/data/certificates/hankel-f17-32-generic-regular-minor/"
-    "f17_32_n512_k256_m3_generic_prefix_regular_minor_certificate.json"
+    "f17_32_n512_k256_m3_generic_contiguous_regular_minor_certificate.json"
 )
-SCHEMA_VERSION = "f17-32-m3-generic-prefix-regular-minor-v1"
+SCHEMA_VERSION = "f17-32-m3-generic-contiguous-regular-minor-v1"
 AGREEMENT_MIN = 385
 AGREEMENT_MAX = 426
 
@@ -70,6 +73,15 @@ def prefix_vandermonde_products(
     return products
 
 
+def product_of_nodes(field: Field, nodes: list[tuple[int, ...]]) -> tuple[int, ...]:
+    product = field.one
+    for node in nodes:
+        if node == field.zero:
+            raise AssertionError("zero node in multiplicative subgroup witness")
+        product = field.mul(product, node)
+    return product
+
+
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise AssertionError(message)
@@ -98,10 +110,21 @@ def agreement_record(
     encoded_domain = descriptor["domain"]["domain_encodings"]
     prefix_encodings = encoded_domain[:size]
     require(len(set(prefix_encodings)) == size, f"domain prefix not distinct at A={agreement}")
-    product = prefix_products[size]
-    leading = field.mul(product, product)
-    require(product != field.zero, f"zero Vandermonde product at A={agreement}")
-    require(leading != field.zero, f"zero leading coefficient at A={agreement}")
+    nodes = [field.decode(value) for value in prefix_encodings]
+    vandermonde = prefix_products[size]
+    node_product = product_of_nodes(field, nodes)
+    prefix_leading = field.mul(vandermonde, vandermonde)
+    require(vandermonde != field.zero, f"zero Vandermonde product at A={agreement}")
+    require(prefix_leading != field.zero, f"zero leading coefficient at A={agreement}")
+    start_max = t - size
+    contiguous_leading_coefficients = []
+    for start in range(start_max + 1):
+        leading = field.mul(prefix_leading, field.pow(node_product, start))
+        require(
+            leading != field.zero,
+            f"zero contiguous leading coefficient at A={agreement}, start={start}",
+        )
+        contiguous_leading_coefficients.append(field.encode(leading))
     return {
         "A": agreement,
         "j": j,
@@ -115,8 +138,20 @@ def agreement_record(
             "node_prefix_count": size,
             "node_prefix_hash": hash_json(prefix_encodings),
         },
-        "vandermonde_product_encoding": field.encode(product),
-        "leading_coefficient_encoding": field.encode(leading),
+        "vandermonde_product_encoding": field.encode(vandermonde),
+        "node_product_encoding": field.encode(node_product),
+        "leading_coefficient_encoding": field.encode(prefix_leading),
+        "contiguous_row_set_atlas": {
+            "row_set_type": "contiguous",
+            "start_min": 0,
+            "start_max": start_max,
+            "count": start_max + 1,
+            "leading_coefficient_formula": "prefix_leading_coefficient * node_product^start",
+            "all_generic_nonzero": True,
+            "leading_coefficient_hash": hash_json(contiguous_leading_coefficients),
+            "first_leading_coefficient_encoding": contiguous_leading_coefficients[0],
+            "last_leading_coefficient_encoding": contiguous_leading_coefficients[-1],
+        },
         "generic_degree": size,
         "status": "PASS",
     }
@@ -137,6 +172,9 @@ def build_certificate() -> dict[str, Any]:
         for agreement in range(AGREEMENT_MIN, AGREEMENT_MAX + 1)
     ]
     degree_sum = sum(record["generic_degree"] for record in records)
+    contiguous_count_sum = sum(
+        record["contiguous_row_set_atlas"]["count"] for record in records
+    )
     return {
         "schema_version": SCHEMA_VERSION,
         "status": "PROVED / AUDIT",
@@ -150,13 +188,14 @@ def build_certificate() -> dict[str, Any]:
         },
         "claim": {
             "summary": (
-                "For every 385 <= A <= 426, the prefix regular Hankel minor "
-                "det(H_{t,j}(u)+Z H_{t,j}(v)) is generically nonzero and has "
-                "exact degree j+1."
+                "For every 385 <= A <= 426, every contiguous regular Hankel "
+                "minor det(H_{t,j}(u)+Z H_{t,j}(v)) with row set s..s+j is "
+                "generically nonzero and has exact degree j+1."
             ),
             "regular_window": {"A_min": AGREEMENT_MIN, "A_max": AGREEMENT_MAX},
-            "proof_method": "Vandermonde moment specialization",
+            "proof_method": "shifted Vandermonde moment specialization",
             "degree_sum": degree_sum,
+            "contiguous_row_set_count_sum": contiguous_count_sum,
             "degree_only_budget_closes_safe_side": False,
             "finite_slope_budget_numerator": (P ** (len(MODULUS) - 1)) // (2**128),
         },
@@ -170,6 +209,11 @@ def build_certificate() -> dict[str, Any]:
                 "name": "degree_sum",
                 "status": "PASS" if degree_sum == 4515 else "FAIL",
                 "value": degree_sum,
+            },
+            {
+                "name": "contiguous_row_set_count_sum",
+                "status": "PASS" if contiguous_count_sum == 1806 else "FAIL",
+                "value": contiguous_count_sum,
             },
             {
                 "name": "budget_numerator",
@@ -199,7 +243,7 @@ def check_certificate(path: Path) -> None:
 
 def print_summary(certificate: dict[str, Any]) -> None:
     window = certificate["claim"]["regular_window"]
-    print("F_17^32 M3 generic prefix regular-minor certificate")
+    print("F_17^32 M3 generic contiguous regular-minor certificate")
     print(
         "row: n={n}, k={k}, domain_hash={domain_hash}".format(
             **certificate["row"]
@@ -211,6 +255,11 @@ def print_summary(certificate: dict[str, Any]) -> None:
             records=len(certificate["agreements"]),
             degree_sum=certificate["claim"]["degree_sum"],
             budget=certificate["claim"]["finite_slope_budget_numerator"],
+        )
+    )
+    print(
+        "contiguous row-set charts={}".format(
+            certificate["claim"]["contiguous_row_set_count_sum"]
         )
     )
     print("status={}".format(certificate["status"]))

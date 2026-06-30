@@ -84,10 +84,11 @@ The follow-up note
 experimental/notes/m1/f17_32_m3_generic_regular_minor.md
 ```
 
-proves that the prefix regular minor is generically nonzero, with exact degree
-`j+1`, for every agreement in this window.  Thus a vanished prefix minor for an
-actual syndrome pencil is a special singular stratum, not a forced failure of
-the regular Hankel chart.
+proves that every contiguous maximal row-set minor is generically nonzero, with
+exact degree `j+1`, for every agreement in this window.  Across the window this
+gives `1806` generic contiguous charts.  Thus vanished contiguous minors for an
+actual syndrome pencil are special singular strata, not a forced failure of the
+regular Hankel chart.
 
 Reproduce the audit packet:
 
