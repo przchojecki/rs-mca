@@ -29,6 +29,7 @@ SQUARE-NORM OFF-DIAGONAL ENDPOINT-PAIR COUNT /
 SQUARE-NORM FIXED-BASIS FORBIDDEN-ENDPOINT SHARPENING /
 SQUARE-NORM FIXED-BASIS COORDINATE NORMAL FORM /
 SQUARE-NORM FIXED-BASIS SLOPE-PAIR PARAMETRIZATION /
+SQUARE-NORM FIXED-BASIS NO-LOSS SQUARE MAP /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -2913,6 +2914,48 @@ Thus the local branch has no hidden endpoint constraint after the initial row
 basis is fixed: it is exactly the ordered slope-pair palette
 `F^* x (F \ diagonal)`.  This is the slope-pair form of the count `(q-1)^2`.
 
+The same slope-pair coordinates give the square map without any Kummer loss.
+For `lambda_0 in F^*` and `lambda_1 != lambda_0`, put
+
+```text
+m_{lambda_0,lambda_1}
+ = ((2lambda_0-lambda_1)c_1-lambda_0^2 c_0)
+   /(c_1-lambda_0 c_0).                         (RKSQSMAP)
+```
+
+Since `c_2=2lambda_0 c_1-lambda_0^2 c_0`, the signed-square factorization is
+the identity
+
+```text
+H_1/H_0 = m_{lambda_0,lambda_1}^2.                (RKSQSMAP2)
+```
+
+The denominator endpoint is `x=lambda_0`.  The numerator endpoint is
+`x=lambda_0^2/(2lambda_0-lambda_1)` if `lambda_1!=2lambda_0`, and is
+`x=infty` if `lambda_1=2lambda_0`.  Hence, over `F_q`,
+`m_{lambda_0,lambda_1}` is a degree-one bijection
+
+```text
+P^1(F_q) \ {zero endpoint, pole endpoint}  ->  F_q^*.
+```
+
+Consequently every multiplicative-character sum on the full open projective
+packet is exact:
+
+```text
+sum_{open} psi(m_{lambda_0,lambda_1})
+ = q-1     if psi is principal,
+ = 0       otherwise.                             (RKSQBAL)
+```
+
+Passing to an affine finite-slope chart only deletes the projective point at
+infinity when that point is not already one of the two endpoints.  Thus a
+nonprincipal character sum changes by at most one, and every coset count
+changes by at most one.  In particular this fixed-basis branch contributes no
+local `sqrt(q)` Kummer loss; any square-root loss in the global M1 theorem
+must come from summing over the row-basis/core image, not from an individual
+nondegenerate square-norm packet.
+
 The off-diagonal projective endpoint pair also identifies the norm map.  For
 `E=[Z:W]`, let
 
@@ -3546,7 +3589,8 @@ Plucker-chart recurrence (RKSQOV), the endpoint-pair inversion
 (RKSQPDIAG), the off-diagonal endpoint-pair count (RKSQOFF), the fixed-basis
 forbidden-endpoint sharpening (RKSQFORB/RKSQFORBCOUNT), the fixed-basis
 coordinate normal form (RKSQXPAR/RKSQXNF), the fixed-basis slope-pair
-parametrization (RKSQSLOPE), the canonical endpoint-pair norm factorization
+parametrization (RKSQSLOPE), the fixed-basis no-loss square map
+(RKSQSMAP/RKSQSMAP2/RKSQBAL), the canonical endpoint-pair norm factorization
 (RKSQRAT), the fixed endpoint-pair coset palette (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary
@@ -3616,7 +3660,8 @@ inversion (RKSQINV0/RKSQINV1), the projective endpoint-pair inversion
 (RKSQPDIAG), the off-diagonal endpoint-pair count (RKSQOFF), the fixed-basis
 forbidden-endpoint sharpening (RKSQFORB/RKSQFORBCOUNT), the fixed-basis
 coordinate normal form (RKSQXPAR/RKSQXNF), the fixed-basis slope-pair
-parametrization (RKSQSLOPE), the canonical endpoint-pair norm factorization
+parametrization (RKSQSLOPE), the fixed-basis no-loss square map
+(RKSQSMAP/RKSQSMAP2/RKSQBAL), the canonical endpoint-pair norm factorization
 (RKSQRAT), the fixed endpoint-pair coset palette (RKSQPAIRPAL), the
 fixed-basis endpoint-palette bound (RKSQBASIS), the fixed endpoint-pair
 packet-size bound (RKSQSIZE), the finite endpoint-charge corollary

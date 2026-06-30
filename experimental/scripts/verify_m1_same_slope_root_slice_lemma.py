@@ -62,8 +62,9 @@ endpoint-pair inversion, projective endpoint-pair inversion, diagonal endpoint
 collapse, off-diagonal endpoint-pair count, canonical endpoint-pair norm
 factorization, fixed endpoint-pair coset palette, endpoint-charge corollary,
 fixed-basis forbidden-endpoint sharpening, fixed-basis coordinate normal form,
-fixed-basis slope-pair parametrization, fixed-basis endpoint-palette bound,
-fixed endpoint-pair packet-size bound, and packet-count corollary.
+fixed-basis slope-pair parametrization, fixed-basis no-loss square map,
+fixed-basis endpoint-palette bound, fixed endpoint-pair packet-size bound, and
+packet-count corollary.
 """
 
 from __future__ import annotations
@@ -3611,6 +3612,22 @@ def assert_overlapping_plucker_chart_recurrence(
             (e0_z, e0_w),
             (e1_z, e1_w),
         )
+        denominator_form = (l0_const, l0_slope)
+        numerator_form = (
+            ((2 * lambda0 - lambda1) * row1[0] - lambda0 * lambda0 * row0[0])
+            % p,
+            ((2 * lambda0 - lambda1) * row1[1] - lambda0 * lambda0 * row0[1])
+            % p,
+        )
+        assert numerator_form == (l1_const, l1_slope), (
+            p,
+            a_rows,
+            b_rows,
+            lambda0,
+            lambda1,
+            numerator_form,
+            (l1_const, l1_slope),
+        )
         h1_poly = hankel_minor_poly(a_rows, b_rows, 1, p)
         c0_poly = poly1_from_terms(((0, row0[0]), (1, row0[1])), p)
         if c0_e1 != 0:
@@ -3706,6 +3723,113 @@ def assert_overlapping_plucker_chart_recurrence(
                 expected_h1,
             )
 
+        h0_poly = hankel_minor_poly(a_rows, b_rows, 0, p)
+        expected_h0 = {
+            degree: (-coeff) % p
+            for degree, coeff in poly1_mul(
+                poly1_from_terms(
+                    ((0, denominator_form[0]), (1, denominator_form[1])),
+                    p,
+                ),
+                poly1_from_terms(
+                    ((0, denominator_form[0]), (1, denominator_form[1])),
+                    p,
+                ),
+                p,
+            ).items()
+            if (-coeff) % p != 0
+        }
+        expected_h1 = {
+            degree: (-coeff) % p
+            for degree, coeff in poly1_mul(
+                poly1_from_terms(
+                    ((0, numerator_form[0]), (1, numerator_form[1])),
+                    p,
+                ),
+                poly1_from_terms(
+                    ((0, numerator_form[0]), (1, numerator_form[1])),
+                    p,
+                ),
+                p,
+            ).items()
+            if (-coeff) % p != 0
+        }
+        assert h0_poly == expected_h0, (
+            p,
+            a_rows,
+            b_rows,
+            h0_poly,
+            expected_h0,
+        )
+        assert h1_poly == expected_h1, (
+            p,
+            a_rows,
+            b_rows,
+            h1_poly,
+            expected_h1,
+        )
+        all_projective_points = [(value, 1) for value in range(p)] + [(1, 0)]
+        projective_values: list[int] = []
+        finite_values: list[int] = []
+        infinity_point = (1, 0)
+        infinity_value: int | None = None
+        for point in all_projective_points:
+            if point in {e0_norm, e1_norm}:
+                continue
+            denominator_value = eval_linear_projective(denominator_form, point, p)
+            numerator_value = eval_linear_projective(numerator_form, point, p)
+            assert denominator_value != 0 and numerator_value != 0, (
+                p,
+                a_rows,
+                b_rows,
+                point,
+                numerator_form,
+                denominator_form,
+                numerator_value,
+                denominator_value,
+            )
+            map_value = numerator_value * pow(denominator_value, -1, p) % p
+            projective_values.append(map_value)
+            if point == infinity_point:
+                infinity_value = map_value
+            else:
+                finite_values.append(map_value)
+        assert len(projective_values) == p - 1
+        assert set(projective_values) == set(range(1, p)), (
+            p,
+            a_rows,
+            b_rows,
+            lambda0,
+            lambda1,
+            projective_values,
+        )
+        assert sum(quadratic_character(value, p) for value in projective_values) == 0
+        if infinity_point in {e0_norm, e1_norm}:
+            assert infinity_value is None
+            assert len(finite_values) == p - 1
+            assert set(finite_values) == set(range(1, p)), (
+                p,
+                a_rows,
+                b_rows,
+                lambda0,
+                lambda1,
+                finite_values,
+            )
+            assert sum(quadratic_character(value, p) for value in finite_values) == 0
+        else:
+            assert infinity_value is not None
+            assert len(finite_values) == p - 2
+            assert set(finite_values) == set(range(1, p)) - {infinity_value}, (
+                p,
+                a_rows,
+                b_rows,
+                lambda0,
+                lambda1,
+                infinity_value,
+                finite_values,
+            )
+            assert abs(sum(quadratic_character(value, p) for value in finite_values)) == 1
+
     if l0_slope == 0 or l1_slope == 0:
         return
 
@@ -3794,6 +3918,16 @@ def normalized_projective_point(z_coord: int, w_coord: int, p: int) -> tuple[int
 def projective_zero_of_row(row: tuple[int, int], p: int) -> tuple[int, int]:
     assert not vec_is_zero(row)
     return normalized_projective_point(-row[0], row[1], p)
+
+
+def eval_linear_projective(
+    form: tuple[int, int],
+    point: tuple[int, int],
+    p: int,
+) -> int:
+    constant, slope = form
+    z_coord, w_coord = point
+    return (constant * w_coord + slope * z_coord) % p
 
 
 def scalar_for_proportional_linear_forms(

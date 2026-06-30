@@ -49,6 +49,28 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 fixed-basis no-loss square map
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** In slope-pair coordinates the fixed-basis
+  nondegenerate square-norm branch has
+  `H_1/H_0 = m_{lambda_0,lambda_1}^2`, where `m` is a degree-one map from the
+  open projective slope line to `F_q^*`.  The full projective packet therefore
+  has exact multiplicative-character balance; finite-slope charts lose at most
+  the single omitted point at infinity.
+- **How it is useful:** This isolates a local no-loss mechanism for the M1
+  residue-line program: the fixed-basis packet itself does not introduce a
+  `sqrt(q)` Kummer loss.  Any such loss must come from global row-basis or
+  core-image summation.
+- **What to do next:** Use the no-loss packet form to separate local packet
+  balance from global row-basis/core-image counting in the M1 ledger.
+
 ### 2026-06-30 - M1 fixed-basis slope-pair parametrization
 
 - **Agent/model:** AllenGrahamHart / Codex.
