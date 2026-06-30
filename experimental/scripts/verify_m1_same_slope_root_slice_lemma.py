@@ -67,7 +67,7 @@ fixed-basis support-palette count, fixed-basis support-fiber decomposition,
 fixed-basis support-packet incidence design, fixed-basis endpoint-palette
 bound, selected support-avoidance reduction, fixed endpoint-pair packet-size
 bound, selected support-degree profile, selected support-collision energy, and
-packet-count corollary.
+selected support star-forcing bound, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -7334,6 +7334,24 @@ def check_boundary_core_square_map_packet_count() -> None:
                     star_collision_count,
                     selected_supports,
                 )
+                max_degree = max(degree_profile[point] for point in fixed_support_universe)
+                assert star_collision_count <= selected_count * (max_degree - 1), (
+                    prime,
+                    index,
+                    selected_count,
+                    max_degree,
+                    star_collision_count,
+                    selected_supports,
+                    degree_profile,
+                )
+                assert degree_energy <= 2 * selected_count * max_degree, (
+                    prime,
+                    index,
+                    selected_count,
+                    max_degree,
+                    degree_energy,
+                    degree_profile,
+                )
                 expected_second_moment = (
                     (prime - 3) * selected_count * selected_count + degree_energy
                 )
@@ -7345,6 +7363,18 @@ def check_boundary_core_square_map_packet_count() -> None:
                     expected_second_moment,
                     full_palette_incidence,
                     degree_profile,
+                )
+                star_bound_second_moment = (
+                    (prime - 3) * selected_count * selected_count
+                    + 2 * selected_count * max_degree
+                )
+                assert incidence_second_moment <= star_bound_second_moment, (
+                    prime,
+                    index,
+                    selected_count,
+                    max_degree,
+                    incidence_second_moment,
+                    star_bound_second_moment,
                 )
 
             for palette_size in range(2, min(6, len(p1_points)) + 1):

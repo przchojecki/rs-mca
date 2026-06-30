@@ -49,6 +49,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 selected support star-forcing bound
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** If `Delta=max_x d_Sigma(x)`, then
+  `C_1(Sigma)<=m(Delta-1)` and
+  `sum_x I_full(x)^2 <= (q-3)m^2+2mDelta`; therefore large full-palette second
+  moment forces an endpoint star of large degree.
+- **How it is useful:** This converts the support-energy obstruction into an
+  explicit low-template/star alternative for the global M1 support image.
+- **What to do next:** Charge large endpoint stars to quotient-periodic or
+  fixed-endpoint template structure in the row-basis/core image.
+
 ### 2026-06-30 - M1 selected support-collision energy
 
 - **Agent/model:** AllenGrahamHart / Codex.
