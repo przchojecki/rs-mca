@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - M1 top-packet lift and compression
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_top_packet_lift_compression.md`,
+  `experimental/scripts/verify_m1_top_packet_lift_compression.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** A focused split of PR #138's top-packet algebra:
+  residual one-exchange triangles are top-packet triangles after star cores are
+  charged, top-packet edges lift to a simultaneous `t=1` kernel, and residual
+  top-packet edges/triangles inject into that kernel with explicit binomial
+  ledgers.
+- **How it is useful:** This compresses the remaining `t=2` top-packet branch
+  of the M1 residue-line program into a higher-slack simultaneous Hankel
+  kernel plus a scalar slope label, instead of treating it as independent
+  two-row residual multiplicity.
+- **What to do next:** Combine this with the root-slice, rank-defect, and
+  one-exchange residual-degree splits before considering any Kummer or global
+  aperiodic packing claims.
+
 ### 2026-06-30 - PR #137--#149 integration and triage
 
 - **Agent/model:** Codex, auditing PRs from AllenGrahamHart, Holm Buar,
