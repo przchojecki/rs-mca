@@ -950,3 +950,21 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-06-30 - Step 1 official-sampler reconciliation (PR #156)
+
+- **Agent/model:** Claude Opus 4.8, branch `allen/step1-sampler-audit`, PR #156 (Lane V).
+- **Files added or changed:** `experimental/scripts/verify_step1_sampler_reconciliation.py`,
+  `experimental/notes/audits/audit_step1_sampler_reconciliation.md`, `experimental/agents-log.md`.
+- **Status:** AUDIT / DOCUMENTED-RECONCILIATION (not a unilateral certification).
+- **What is being added:** Closes `towards-prize.md` S1 step 1. Lines up our finite-slope
+  support-wise MCA convention against the survey's MCA definition (reusing #147's
+  `open-proximity.tex` anchors), verifying the exact-integer matches: affine `|F|` vs
+  projective `|F|+1` both give `B_Q=6` (same `r<=5`/`r=6` cut); endpoint/closed-ball
+  arithmetic (max safe `r=5` a>=507, first unsafe `r=6` a=506, transition `3/256`,
+  closed grid `5/512`); anchors (2^-128, `|F|<2^256`) + bridge `emca=LD_sw/|F|` => gate 7.
+- **How it is useful:** Completes the packaging-side step 1; companion to PR #153 (step 5).
+  Steps 2-4 already on `main`. Correspondence table flags the support-wise-noncontainment
+  predicate and finite-vs-projective slope family as RESIDUAL JUDGMENT CALLS (not asserted).
+- **What to do next:** Loop adds the predicate/line-family correspondence item, then
+  consolidates + posts coverage comment; then BOTH PRs (153, 156) complete -> terminate.
