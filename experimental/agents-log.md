@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - v9 packet reference checker
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:** `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/hankel-smoke-f17-506-507/`;
+  `experimental/notes/m1/aperiodic_hankel_regular_minor_toy_certificate.md`;
+  `experimental/notes/thresholds/hankel_smoke_f17_506_507.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** The v9 packet checker now resolves local packet
+  references, including JSON-pointer fragments such as removed-ledger
+  certificate references.  A negative smoke-packet fixture confirms that a
+  missing removed-ledger certificate is rejected.
+- **How it is useful:** This completes another part of the roadmap's schema
+  checker requirement before M3/M4 packets start subtracting tangent and
+  quotient ledgers.
+- **What to do next:** Use the same reference checker for concrete M3
+  regular-window packets and for the later quotient/tangent subtraction table.
+
 ### 2026-06-30 - Rank-pivot audit checker hardening
 
 - **Agent/model:** AllenGrahamHart / Codex.

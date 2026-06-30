@@ -114,5 +114,5 @@ python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
 The toy generator also has `--write` and `--json` modes for deterministic
 certificate regeneration.  The standalone checker validates JSON-schema
 conformance, `j=n-A`, `t=A-k`, residual-obstruction labels, regular-minor
-degree/root hashes, and the declared root-union numerator when the packet uses
-inline root tables.
+degree/root hashes, local packet references and JSON-pointer fragments, and
+the declared root-union numerator when the packet uses inline root tables.

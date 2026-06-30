@@ -9,7 +9,9 @@ the packet gives an explicit polynomial-basis field model, the checker verifies
 the model is compatible with the row field, verifies the modulus is irreducible,
 and evaluates encoded extension roots directly in that field.  For packets
 emitted by the regular-minor extractor, it also checks the rank-pivot audit
-metadata needed to justify singular regular-bucket declarations.
+metadata needed to justify singular regular-bucket declarations.  Local packet
+references such as removed-ledger certificates are resolved, including JSON
+pointer fragments.
 """
 
 from __future__ import annotations
@@ -311,6 +313,73 @@ def first_matching_key(data: dict[str, Any], *patterns: str) -> str | None:
             if regex.fullmatch(key):
                 return key
     return None
+
+
+REFERENCE_SENTINELS = {"not_enumerated", "not_applicable", "none", "unknown"}
+
+
+def decode_json_pointer_token(token: str) -> str:
+    return token.replace("~1", "/").replace("~0", "~")
+
+
+def resolve_json_pointer(document: Any, pointer: str, location: str) -> Any:
+    if pointer == "":
+        return document
+    if not pointer.startswith("/"):
+        raise PacketError(f"{location}: JSON pointer fragment must start with /")
+    current = document
+    for raw_token in pointer[1:].split("/"):
+        token = decode_json_pointer_token(raw_token)
+        if isinstance(current, dict):
+            if token not in current:
+                raise PacketError(f"{location}: missing JSON pointer token {token!r}")
+            current = current[token]
+        elif isinstance(current, list):
+            if not token.isdigit():
+                raise PacketError(f"{location}: array token {token!r} is not numeric")
+            index = int(token)
+            if index >= len(current):
+                raise PacketError(f"{location}: array index {index} out of range")
+            current = current[index]
+        else:
+            raise PacketError(f"{location}: JSON pointer enters scalar value")
+    return current
+
+
+def validate_packet_reference(reference: str, location: str) -> None:
+    if not reference:
+        raise PacketError(f"{location}: empty reference")
+    if reference.startswith("inline:") or reference in REFERENCE_SENTINELS:
+        return
+
+    path_text, separator, fragment = reference.partition("#")
+    if not path_text:
+        raise PacketError(f"{location}: reference must include a path")
+    path = Path(path_text)
+    if path.is_absolute() or ".." in path.parts:
+        raise PacketError(f"{location}: reference must be a repo-relative path")
+    if not path.exists():
+        raise PacketError(f"{location}: referenced file does not exist: {path}")
+
+    if not separator:
+        return
+    if path.suffix != ".json":
+        raise PacketError(f"{location}: only JSON references may use fragments")
+    document = load_json(path)
+    resolve_json_pointer(document, fragment, location)
+
+
+def validate_references(packet: dict[str, Any]) -> None:
+    for index, ledger in enumerate(packet.get("removed_ledgers", [])):
+        reference = ledger.get("certificate_ref")
+        if isinstance(reference, str):
+            validate_packet_reference(
+                reference, f"removed_ledgers[{index}].certificate_ref"
+            )
+
+    root_union_table_ref = packet.get("root_union_table_ref")
+    if isinstance(root_union_table_ref, str):
+        validate_packet_reference(root_union_table_ref, "root_union_table_ref")
 
 
 def validate_schema(packet: Any, schema_path: Path) -> None:
@@ -663,6 +732,7 @@ def validate_extractor_audit(
 def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     validate_schema(packet, schema_path)
     validate_residual_labels(packet)
+    validate_references(packet)
 
     row = packet["row"]
     n = row["n"]

@@ -1,0 +1,19 @@
+{
+  "agreement_threshold": 506,
+  "exact_agreements": [],
+  "removed_ledgers": [
+    {
+      "certificate_ref": "experimental/data/certificates/hankel-smoke-f17-506-507/missing_tangent_certificate.json#/tangent",
+      "name": "missing_tangent_common_code_line",
+      "numerator": 7
+    }
+  ],
+  "row": {
+    "domain_hash": "invalid:missing_removed_ledger_ref",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "status": "INTENTIONALLY_INVALID"
+}
