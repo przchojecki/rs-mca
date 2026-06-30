@@ -52,6 +52,7 @@ SQUARE-NORM SPARSE CERTIFICATE FEASIBILITY WINDOW /
 SQUARE-NORM FAR-FROM-STAR SPARSE CERTIFICATE CAP /
 SQUARE-NORM DENSITY-GAP NEAR-STAR LOCALIZATION /
 SQUARE-NORM NEAR-STAR TEMPLATE COUNT /
+SQUARE-NORM DENSITY-THRESHOLD CLOSURE COROLLARY /
 SQUARE-NORM CANONICAL ENDPOINT-PAIR NORM FACTORIZATION /
 SQUARE-NORM FIXED ENDPOINT-PAIR COSET PALETTE /
 SQUARE-NORM FIXED-BASIS ENDPOINT-PALETTE BOUND /
@@ -3735,6 +3736,42 @@ packing problem to a polynomial-size endpoint-template ledger.  The exponent
 is explicit and comes only from the allowed endpoint footprint, not from
 hidden local square-map packet overlap.
 
+This gives a compact conditional closure criterion for the local M1 branch.
+Define the far-window selected-density threshold
+
+```text
+theta_L(q,R)
+ = min(
+     sqrt(R(q-3+2/L))/(q-1),
+     1 - ((L-1)/L)(q+1-R)/(q-1)
+   ).                                             (RKSQTHETA)
+```
+
+Suppose a global row-basis/core-image argument proves that every sparse
+residual output with parameters `(D,R)` satisfies
+
+```text
+alpha_ap > theta_L(q,R).                         (RKSQDENSITYHYP)
+```
+
+Then the far-from-star sparse certificate branch in (RKSQLOCALIZE) is empty:
+if `m_ap>=LD`, (RKSQFARSTAR) forces `alpha_ap<=theta_L(q,R)`.  Therefore every
+remaining small-support residual is either `D`-small (`m_ap<=D`) or lies in
+the bounded near-star range `D<m_ap<LD`, and the latter is covered by the
+template count (RKSQNEARCOUNT).  Equivalently, under (RKSQDENSITYHYP),
+
+```text
+selected square-map family
+  => endpoint-star charges
+     + D-small residual
+     + large support (B_ap>R)
+     + one of at most T_near(q,D,L,e) near-star templates.   (RKSQCLOSE)
+```
+
+This is the exact reduction target for the global density theorem: prove
+(RKSQDENSITYHYP), and the local square-map residue branch has no uncontrolled
+aperiodic packing term left.
+
 This bound is cruder than (RKBD), but it is completely genus-free: it uses only
 the slope-line norm map.  The cover-level sums below are precisely the extra
 input needed to save the missing factor `e`.
@@ -4258,6 +4295,8 @@ far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
 the near-star template count (RKSQNEARCOUNT/RKSQNEARPOLY),
+the density-threshold closure corollary
+(RKSQTHETA/RKSQDENSITYHYP/RKSQCLOSE),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the
@@ -4352,6 +4391,8 @@ far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
 the near-star template count (RKSQNEARCOUNT/RKSQNEARPOLY),
+the density-threshold closure corollary
+(RKSQTHETA/RKSQDENSITYHYP/RKSQCLOSE),
 the canonical endpoint-pair norm factorization (RKSQRAT), the fixed endpoint-pair
 coset palette
 (RKSQPAIRPAL), the

@@ -74,7 +74,8 @@ corollary, plus the partial-palette uncovered-slope defect bound and residual
 support-budget alternative, palette-density support lower bound, and
 small-support exclusion criterion, local support-budget output theorem, and
 sparse residual certificate reduction, feasibility window, and far-from-star
-certificate cap with near-star localization and template count.
+certificate cap with near-star localization, template count, and
+density-threshold closure.
 """
 
 from __future__ import annotations
@@ -7671,6 +7672,9 @@ def check_boundary_core_square_map_packet_count() -> None:
                                 * (far_factor - 1)
                                 * (len(all_projective_points) - probe_budget)
                             )
+                            density_threshold_exceeded = (
+                                far_selected_gap or far_missing_gap
+                            )
                             if residual_count >= far_factor * degree_cap:
                                 assert (
                                     far_factor
@@ -7714,7 +7718,19 @@ def check_boundary_core_square_map_packet_count() -> None:
                                     residual_missing_classes,
                                     full_palette_size,
                                 )
-                            if far_selected_gap or far_missing_gap:
+                                assert not density_threshold_exceeded, (
+                                    prime,
+                                    index,
+                                    degree_cap,
+                                    far_factor,
+                                    probe_budget,
+                                    residual_count,
+                                    residual_selected_classes,
+                                    residual_missing_classes,
+                                    far_selected_gap,
+                                    far_missing_gap,
+                                )
+                            if density_threshold_exceeded:
                                 assert residual_count < far_factor * degree_cap, (
                                     prime,
                                     index,

@@ -2772,6 +2772,19 @@ the number of such residual palette templates is bounded by
 \]
 For fixed \(D,L,e\), the near-star branch is therefore a polynomial-size
 endpoint-template ledger.
+Equivalently, define
+\[
+        \theta_L(q,R)
+        =\min\left(
+          {\sqrt{R(q-3+2/L)}\over q-1},
+          1-{L-1\over L}{q+1-R\over q-1}
+        \right).
+\]
+If a global row-basis/core-image argument proves
+\(\alpha_{\rm ap}>\theta_L(q,R)\) for every sparse residual output, then the
+far-from-star sparse branch is empty.  The local output reduces to endpoint
+stars, \(D\)-small residuals, large support \(B_{\rm ap}>R\), and the
+polynomial-size near-star template ledger above.
 Moreover, if \(L_E(z)=Wz-Z\) for \(E=[Z:W]\), then in the off-diagonal case
 \[
         {H_1\over H_0}

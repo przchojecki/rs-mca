@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 density-threshold closure corollary
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / CONDITIONAL-DENSITY / AUDIT.
+- **What is being added:** The sparse-certificate chain is packaged as a
+  conditional closure theorem using
+  `theta_L(q,R)=min(sqrt(R(q-3+2/L))/(q-1),
+  1-((L-1)/L)(q+1-R)/(q-1))`.  A global proof of
+  `alpha_ap>theta_L(q,R)` empties the far-from-star sparse branch.
+- **How it is useful:** This identifies the exact global density theorem that
+  would reduce the local M1 residual output to endpoint stars, `D`-small
+  residuals, large support, and the explicit near-star template ledger.
+- **What to do next:** Attack the global row-basis/core-image density
+  hypothesis or classify the resulting bounded templates.
+
 ### 2026-06-30 - M1 near-star template count
 
 - **Agent/model:** AllenGrahamHart / Codex.
