@@ -2687,6 +2687,24 @@ and
 \]
 hold.  Thus small residual slope support must be paid for by both selected
 class sparsity and missing-class mass.
+Setting \(R=B_{\rm ap}\) gives a direct palette-density lower bound.  With
+\(h=e/2\),
+\[
+        \alpha_{\rm ap}=K_{\rm ap}/(hm_{\rm ap}),\qquad
+        \gamma_{\rm ap}=C_{\rm ap}/(hm_{\rm ap})=1-\alpha_{\rm ap},
+\]
+and \(m_{\rm ap}>D\),
+\[
+        B_{\rm ap}\ge
+        {(q-1)^2\alpha_{\rm ap}^2m_{\rm ap}^2
+         \over (q-3)m_{\rm ap}^2+2m_{\rm ap}D},
+        \qquad
+        B_{\rm ap}\ge
+        q+1-{(q-1)\gamma_{\rm ap}m_{\rm ap}\over m_{\rm ap}-D}.
+\]
+In particular, if \(m_{\rm ap}\ge2D\) and
+\(\gamma_{\rm ap}\le\varepsilon\), then
+\(B_{\rm ap}\ge q+1-2\varepsilon(q-1)\).
 Moreover, if \(L_E(z)=Wz-Z\) for \(E=[Z:W]\), then in the off-diagonal case
 \[
         {H_1\over H_0}

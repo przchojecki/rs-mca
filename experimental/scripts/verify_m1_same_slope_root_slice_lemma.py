@@ -71,7 +71,7 @@ selected support star-forcing bound, partial-palette star-forcing bound,
 partial-palette inverse packing bound, support-star pruning reduction, pruned
 residual density trichotomy, full-palette residual coverage, and packet-count
 corollary, plus the partial-palette uncovered-slope defect bound and residual
-support-budget alternative.
+support-budget alternative and palette-density support lower bound.
 """
 
 from __future__ import annotations
@@ -7435,6 +7435,7 @@ def check_boundary_core_square_map_packet_count() -> None:
                         point: 0 for point in all_projective_points
                     }
                     residual_missing_classes = 0
+                    full_palette_size = len(packet_classes)
                     for support in remaining_supports:
                         first, second = tuple(support)
                         support_map = mobius_from_zero_pole(first, second, prime)
@@ -7457,6 +7458,17 @@ def check_boundary_core_square_map_packet_count() -> None:
                         degree_cap,
                         residual_missing_classes,
                         residual_defect_incidence,
+                    )
+                    assert residual_selected_classes + residual_missing_classes == (
+                        full_palette_size * residual_count
+                    ), (
+                        prime,
+                        index,
+                        degree_cap,
+                        residual_selected_classes,
+                        residual_missing_classes,
+                        full_palette_size,
+                        residual_count,
                     )
                     for point in all_projective_points:
                         residual_degree = sum(
@@ -7503,6 +7515,20 @@ def check_boundary_core_square_map_packet_count() -> None:
                             degree_cap,
                             residual_count,
                             len(uncovered_points),
+                            residual_packet_size,
+                            residual_missing_classes,
+                            residual_incidence,
+                            residual_defect_incidence,
+                        )
+                        assert (
+                            (len(all_projective_points) - residual_support_size)
+                            * (residual_count - degree_cap)
+                        ) <= residual_packet_size * residual_missing_classes, (
+                            prime,
+                            index,
+                            degree_cap,
+                            residual_count,
+                            residual_support_size,
                             residual_packet_size,
                             residual_missing_classes,
                             residual_incidence,

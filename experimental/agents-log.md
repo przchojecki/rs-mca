@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 residual palette-density support lower bound
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The residual support-budget alternative is
+  converted into direct lower bounds for `B_ap` in terms of selected palette
+  density `alpha_ap` and missing palette density `gamma_ap`.
+- **How it is useful:** After endpoint-star pruning, dense selected palettes
+  and sparse missing palettes force large slope support, making the remaining
+  M1 obstruction a global sparsity constraint rather than local square-map
+  packing.
+- **What to do next:** Prove that the row-basis/core image supplies enough
+  palette density, or classify the sparse images as quotient/template
+  structure.
+
 ### 2026-06-30 - M1 residual support-budget alternative
 
 - **Agent/model:** AllenGrahamHart / Codex.
