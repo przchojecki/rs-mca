@@ -90,6 +90,22 @@ A = 13,14,15,16.
 The extractor finds nonzero prefix minors in all four exact agreements, with
 degrees `4,3,2,1` and closed-range root union `{0,2,10,11}`.
 
+The projective-line replay is
+
+```text
+experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_projective_toy.json
+experimental/data/certificates/regular-minor-extractor-projective-toy/
+```
+
+It uses the same finite determinant polynomials but declares the sampler to be
+`projective_line`.  For each exact agreement, the packet records the value of
+the homogenized regular-minor determinant at `[0:1]`, which is the top
+finite-patch coefficient of `Delta_A(Z)` in degree `j+1`.  The top
+coefficients are `1,4,7,7`, so the point at infinity is empty for all four
+agreements and the projective numerator remains the finite root union size
+`4`.  The checker rejects projective regular-minor packets that omit this
+audit.
+
 The toy packet also carries a structured `claim_scope` saying that it is
 `toy_mechanism` evidence and cannot be used for threshold pinning.  The checker
 has a matching negative fixture,

@@ -1,0 +1,36 @@
+{
+  "schema_version": "regular-hankel-minor-extractor-input-v1",
+  "row": {
+    "n": 16,
+    "k": 8,
+    "field": "F_17",
+    "domain": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+    "domain_description": "sorted nonzero elements of F_17"
+  },
+  "agreement_threshold": 13,
+  "exact_agreements": [13, 14, 15, 16],
+  "sampler": "projective_line",
+  "line_syndrome": {
+    "u": [3, 11, 12, 12, 0, 16, 15, 3],
+    "v": [7, 3, 12, 1, 5, 8, 11, 15],
+    "description": "u_m=3+5m+2m^2+m^3, v_m=7+4m+6m^2+3m^3 modulo 17"
+  },
+  "row_set_strategy": {
+    "type": "prefix"
+  },
+  "enumerate_split_bad_slopes": true,
+  "claim_scope": {
+    "row_data": "toy_row",
+    "threshold_role": "toy_mechanism",
+    "root_status": "enumerated",
+    "may_be_used_for_threshold_pinning": false,
+    "note": "Projective toy replay for extractor mechanics and [0:1] auditing only."
+  },
+  "status": "PROVED",
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an extension-field row adapter",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ]
+}

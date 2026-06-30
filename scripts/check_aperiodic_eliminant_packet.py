@@ -914,10 +914,107 @@ def validate_pivot_atlas(packet: dict[str, Any]) -> list[int]:
     return sorted(pivot_roots)
 
 
-def validate_projective_infinity_charts(packet: dict[str, Any]) -> None:
+def validate_regular_minor_projective_infinity(
+    item: dict[str, Any],
+    modulus: int | None,
+    extension_field: PolynomialBasisField | None,
+) -> int:
+    audit = item.get("projective_infinity")
+    if not isinstance(audit, dict):
+        raise PacketError(
+            f"A={item.get('A')}: projective_line regular_minor needs "
+            "projective_infinity"
+        )
+    if audit.get("projective_point") != "[0:1]":
+        raise PacketError(
+            f"A={item.get('A')}: projective_infinity.projective_point must be [0:1]"
+        )
+    status = audit.get("status")
+    if status not in {"empty", "nonempty"}:
+        raise PacketError(
+            f"A={item.get('A')}: projective_infinity status needs empty/nonempty"
+        )
+    top_degree = require_nonnegative_int(
+        audit.get("top_degree"),
+        f"A={item.get('A')}: projective_infinity.top_degree",
+    )
+    expected_top_degree = item["j"] + 1
+    if top_degree != expected_top_degree:
+        raise PacketError(
+            f"A={item.get('A')}: projective_infinity top_degree {top_degree} "
+            f"but expected j+1={expected_top_degree}"
+        )
+    top_coefficient = audit.get("top_coefficient")
+    if not isinstance(top_coefficient, int) or top_coefficient < 0:
+        raise PacketError(
+            f"A={item.get('A')}: projective_infinity.top_coefficient must be "
+            "a nonnegative integer"
+        )
+    if modulus is not None and top_coefficient >= modulus:
+        raise PacketError(
+            f"A={item.get('A')}: projective_infinity.top_coefficient outside F_{modulus}"
+        )
+    if extension_field is not None:
+        extension_field.decode(top_coefficient)
+
+    data = item.get("regular_minor_polynomial_data")
+    if isinstance(data, dict):
+        coefficient_key = first_matching_key(
+            data, r"coefficients_mod_\d+_ascending", r"coefficients_ascending"
+        )
+        if coefficient_key is not None:
+            coefficients = require_int_list(
+                data[coefficient_key],
+                f"A={item.get('A')}: projective_infinity polynomial coefficients",
+            )
+            actual_top = (
+                coefficients[top_degree] if top_degree < len(coefficients) else 0
+            )
+            if modulus is not None:
+                actual_top %= modulus
+            if actual_top != top_coefficient:
+                raise PacketError(
+                    f"A={item.get('A')}: projective_infinity top_coefficient "
+                    f"{top_coefficient} != polynomial coefficient {actual_top}"
+                )
+
+    is_zero_top = top_coefficient == 0
+    if status == "empty" and is_zero_top:
+        raise PacketError(
+            f"A={item.get('A')}: empty projective_infinity needs nonzero top coefficient"
+        )
+    if status == "nonempty" and not is_zero_top:
+        raise PacketError(
+            f"A={item.get('A')}: nonempty projective_infinity needs zero top coefficient"
+        )
+    contribution = require_nonnegative_int(
+        audit.get("contribution"),
+        f"A={item.get('A')}: projective_infinity.contribution",
+    )
+    expected_contribution = 0 if status == "empty" else 1
+    if contribution != expected_contribution:
+        raise PacketError(
+            f"A={item.get('A')}: projective_infinity contribution {contribution} "
+            f"but expected {expected_contribution}"
+        )
+    return contribution
+
+
+def validate_projective_infinity(
+    packet: dict[str, Any],
+    modulus: int | None,
+    extension_field: PolynomialBasisField | None,
+) -> int:
     if packet.get("sampler") != "projective_line":
-        return
+        return 0
+    projective_infinity_present = False
     for item in packet.get("exact_agreements", []):
+        if item.get("status") == "regular_minor":
+            if validate_regular_minor_projective_infinity(
+                item, modulus, extension_field
+            ):
+                projective_infinity_present = True
+            continue
         if item.get("status") != "pivot_atlas":
             continue
         charts = item.get("charts")
@@ -966,10 +1063,13 @@ def validate_projective_infinity_charts(packet: dict[str, Any]) -> None:
             )
         contribution = target.get("support_count", target.get("contribution"))
         if contribution is not None:
-            require_nonnegative_int(
+            value = require_nonnegative_int(
                 contribution,
                 f"A={item.get('A')}: projective_infinity contribution",
             )
+            if value > 0:
+                projective_infinity_present = True
+    return int(projective_infinity_present)
 
 
 def validate_pivot_eliminant_target(
@@ -1413,13 +1513,15 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     validate_residual_labels(packet)
     validate_references(packet)
     pivot_roots = validate_pivot_atlas(packet)
-    validate_projective_infinity_charts(packet)
 
     row = packet["row"]
     n = row["n"]
     k = row["k"]
     modulus = parse_prime_field(row["field"])
     extension_field = PolynomialBasisField.from_packet(packet)
+    projective_infinity_count = validate_projective_infinity(
+        packet, modulus, extension_field
+    )
     all_roots: set[int] = set()
     all_bad: set[int] = set()
     all_roots.update(pivot_roots)
@@ -1454,10 +1556,12 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
             )
         if "declared_aperiodic_numerator" in packet:
             declared = packet["declared_aperiodic_numerator"]
-            if declared != len(root_union):
+            expected = len(root_union) + projective_infinity_count
+            if declared != expected:
                 raise PacketError(
                     "declared_aperiodic_numerator="
-                    f"{declared} but root union has size {len(root_union)}"
+                    f"{declared} but finite root union plus projective infinity "
+                    f"has size {expected}"
                 )
     elif packet.get("root_union_table_ref", "").startswith("inline"):
         raise PacketError("inline root_union_table_ref requires an inline root_union")

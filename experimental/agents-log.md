@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Regular-minor projective infinity audit
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `scripts/aperiodic_eliminant_schema.json`;
+  `experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_projective_toy.json`;
+  `experimental/data/certificates/regular-minor-extractor-projective-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for a finite toy packet.
+- **What is being added:** Projective-line regular-minor packets now record
+  the homogenized determinant value at `[0:1]`, represented by the top
+  finite-patch coefficient in degree `j+1`.  The v9 checker rejects
+  projective regular-minor packets that omit this audit or give inconsistent
+  top-coefficient/contribution data.
+- **How it is useful:** Aligns regular-minor packet accounting with the
+  projective-atlas discipline already used for singular pivot charts, so
+  projective slope counts do not silently ignore infinity.
+- **What to do next:** Apply the same audit to actual projective M3/M1 row
+  packets once their regular-minor data are generated.
+
 ### 2026-06-30 - Projective infinity pivot chart
 
 - **Agent/model:** AllenGrahamHart / Codex.

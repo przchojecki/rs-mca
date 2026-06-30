@@ -1391,7 +1391,72 @@ def extract_for_agreement_field(
     )
 
 
-def result_to_packet_item(result: ExtractionResult, prime: int) -> dict[str, Any]:
+def prime_projective_infinity_audit(
+    result: ExtractionResult,
+    prime: int,
+) -> dict[str, Any]:
+    top_degree = result.j + 1
+    assert result.polynomial is not None
+    top_coefficient = (
+        result.polynomial[top_degree] % prime
+        if top_degree < len(result.polynomial)
+        else 0
+    )
+    status = "empty" if top_coefficient != 0 else "nonempty"
+    return {
+        "projective_point": "[0:1]",
+        "status": status,
+        "top_degree": top_degree,
+        "top_coefficient": top_coefficient,
+        "contribution": 0 if status == "empty" else 1,
+        "reason": (
+            "homogenized regular-minor determinant evaluates to its top "
+            "finite-patch coefficient at projective infinity"
+        ),
+    }
+
+
+def field_projective_infinity_audit(
+    result: ExtractionResult,
+    field: PolynomialBasisField,
+) -> dict[str, Any]:
+    top_degree = result.j + 1
+    assert result.polynomial is not None
+    top_coefficient = (
+        field.normalize(result.polynomial[top_degree])
+        if top_degree < len(result.polynomial)
+        else field.zero
+    )
+    status = "empty" if not field.is_zero(top_coefficient) else "nonempty"
+    return {
+        "projective_point": "[0:1]",
+        "status": status,
+        "top_degree": top_degree,
+        "top_coefficient": field.encode(top_coefficient),
+        "field_encoding": "base-p low-to-high integer",
+        "contribution": 0 if status == "empty" else 1,
+        "reason": (
+            "homogenized regular-minor determinant evaluates to its top "
+            "finite-patch coefficient at projective infinity"
+        ),
+    }
+
+
+def projective_infinity_union_count(items: list[dict[str, Any]]) -> int:
+    return int(
+        any(
+            isinstance(item.get("projective_infinity"), dict)
+            and item["projective_infinity"].get("contribution", 0) > 0
+            for item in items
+        )
+    )
+
+
+def result_to_packet_item(
+    result: ExtractionResult,
+    prime: int,
+    sampler: str,
+) -> dict[str, Any]:
     item: dict[str, Any] = {
         "A": result.exact_agreement,
         "j": result.j,
@@ -1401,6 +1466,11 @@ def result_to_packet_item(result: ExtractionResult, prime: int) -> dict[str, Any
     if result.status == "regular_minor":
         assert result.row_set is not None
         if result.polynomial is None:
+            if sampler == "projective_line":
+                raise ValueError(
+                    "projective_line regular-minor packets need an inline "
+                    "determinant polynomial to certify [0:1]"
+                )
             degree = result.j + 1
             item["regular_minor"] = {
                 "row_set": result.row_set,
@@ -1467,6 +1537,10 @@ def result_to_packet_item(result: ExtractionResult, prime: int) -> dict[str, Any
             "root_count": len(roots) if roots is not None else "not_enumerated",
             "degree_bound": degree,
         }
+        if sampler == "projective_line":
+            item["projective_infinity"] = prime_projective_infinity_audit(
+                result, prime
+            )
     else:
         item["residual_label"] = result.residual_label or "unknown"
         item["residual_reason"] = result.residual_reason
@@ -1486,6 +1560,7 @@ def result_to_packet_item(result: ExtractionResult, prime: int) -> dict[str, Any
 def result_to_packet_item_field(
     result: ExtractionResult,
     field: PolynomialBasisField,
+    sampler: str,
 ) -> dict[str, Any]:
     item: dict[str, Any] = {
         "A": result.exact_agreement,
@@ -1496,6 +1571,11 @@ def result_to_packet_item_field(
     if result.status == "regular_minor":
         assert result.row_set is not None
         if result.polynomial is None:
+            if sampler == "projective_line":
+                raise ValueError(
+                    "projective_line regular-minor packets need an inline "
+                    "determinant polynomial to certify [0:1]"
+                )
             degree = result.j + 1
             item["regular_minor"] = {
                 "row_set": result.row_set,
@@ -1577,6 +1657,10 @@ def result_to_packet_item_field(
             "degree_bound": degree,
             "field_size": field.size,
         }
+        if sampler == "projective_line":
+            item["projective_infinity"] = field_projective_infinity_audit(
+                result, field
+            )
     else:
         item["residual_label"] = result.residual_label or "unknown"
         item["residual_reason"] = result.residual_reason
@@ -1624,6 +1708,16 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
     if bad_union and not set(bad_union).issubset(root_union):
         raise AssertionError(("closed-range bad slopes not contained in roots"))
 
+    sampler = spec.get("sampler", "finite_affine_line")
+    exact_items = [
+        result_to_packet_item(result, prime, sampler) for result in results
+    ]
+    projective_infinity_count = (
+        projective_infinity_union_count(exact_items)
+        if sampler == "projective_line"
+        else 0
+    )
+
     packet: dict[str, Any] = {
         "schema_version": "aperiodic-hankel-eliminant-v1",
         "row": {
@@ -1637,11 +1731,9 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
             ),
         },
         "agreement_threshold": int(spec.get("agreement_threshold", min(agreements))),
-        "sampler": spec.get("sampler", "finite_affine_line"),
+        "sampler": sampler,
         "removed_ledgers": spec.get("removed_ledgers", []),
-        "exact_agreements": [
-            result_to_packet_item(result, prime) for result in results
-        ],
+        "exact_agreements": exact_items,
         "extractor": {
             "name": "regular-hankel-minor-extractor",
             "method": (
@@ -1673,7 +1765,9 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
     if "claim_scope" in spec:
         packet["claim_scope"] = spec["claim_scope"]
     if all_roots_enumerated:
-        packet["declared_aperiodic_numerator"] = len(root_union)
+        packet["declared_aperiodic_numerator"] = (
+            len(root_union) + projective_infinity_count
+        )
         packet["root_union_table_ref"] = f"inline:root_union_mod_{prime}"
         packet[f"root_union_mod_{prime}"] = root_union
         packet[f"enumerated_bad_slope_union_mod_{prime}"] = bad_union
@@ -1724,6 +1818,16 @@ def build_packet_field(
     if bad_union and not set(bad_union).issubset(root_union):
         raise AssertionError(("closed-range bad slopes not contained in roots"))
 
+    sampler = spec.get("sampler", "finite_affine_line")
+    exact_items = [
+        result_to_packet_item_field(result, field, sampler) for result in results
+    ]
+    projective_infinity_count = (
+        projective_infinity_union_count(exact_items)
+        if sampler == "projective_line"
+        else 0
+    )
+
     packet: dict[str, Any] = {
         "schema_version": "aperiodic-hankel-eliminant-v1",
         "row": {
@@ -1737,11 +1841,9 @@ def build_packet_field(
             ),
         },
         "agreement_threshold": int(spec.get("agreement_threshold", min(agreements))),
-        "sampler": spec.get("sampler", "finite_affine_line"),
+        "sampler": sampler,
         "removed_ledgers": spec.get("removed_ledgers", []),
-        "exact_agreements": [
-            result_to_packet_item_field(result, field) for result in results
-        ],
+        "exact_agreements": exact_items,
         "extractor": {
             "name": "regular-hankel-minor-extractor",
             "method": (
@@ -1779,7 +1881,9 @@ def build_packet_field(
     if "claim_scope" in spec:
         packet["claim_scope"] = spec["claim_scope"]
     if all_roots_enumerated:
-        packet["declared_aperiodic_numerator"] = len(root_union)
+        packet["declared_aperiodic_numerator"] = (
+            len(root_union) + projective_infinity_count
+        )
         packet["root_union_table_ref"] = "inline:root_union"
         packet["root_union"] = root_union
         packet["enumerated_bad_slope_union"] = bad_union

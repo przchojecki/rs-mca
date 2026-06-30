@@ -71,6 +71,18 @@
               "root_hash": {"type": "string"}
             }
           },
+          "projective_infinity": {
+            "type": "object",
+            "properties": {
+              "projective_point": {"type": "string", "const": "[0:1]"},
+              "status": {"type": "string", "enum": ["empty", "nonempty"]},
+              "top_degree": {"type": "integer", "minimum": 0},
+              "top_coefficient": {"type": "integer", "minimum": 0},
+              "field_encoding": {"type": "string"},
+              "contribution": {"type": "integer", "minimum": 0},
+              "reason": {"type": "string"}
+            }
+          },
           "charts": {
             "type": "array",
             "items": {
