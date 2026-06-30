@@ -481,6 +481,12 @@ def far_star_sparse_floor_report(
         q + 1 - (missing_argument.numerator // missing_argument.denominator),
     )
     minimal_target = max(selected_min_target, missing_min_target)
+    baseline_density_budget = max(
+        selected_argument,
+        Fraction(q + 1) - missing_argument,
+    )
+    baseline_integer_ceiling = ceil_fraction(baseline_density_budget) - 1
+    assert minimal_target == baseline_integer_ceiling + 1
     boundary_residual_size = far_factor * d_cap
     fixed_boundary = sparse_target_floor_report(q, d_cap, e, boundary_residual_size)
     assert selected_min_target == fixed_boundary[
@@ -503,6 +509,10 @@ def far_star_sparse_floor_report(
         "missing_side_closed_form_floor_argument": fraction_record(
             missing_argument
         ),
+        "baseline_density_budget_at_a0_eq_1_over_h": fraction_record(
+            baseline_density_budget
+        ),
+        "baseline_R_Z_at_a0_eq_1_over_h": baseline_integer_ceiling,
         "selected_side_min_target_R_at_K_eq_m": selected_min_target,
         "missing_side_min_target_R_at_K_eq_m": missing_min_target,
         "minimal_target_R_for_class_count_feasibility": minimal_target,
@@ -512,11 +522,13 @@ def far_star_sparse_floor_report(
         "class_count_feasible_for_some_R_leq_q_plus_one": minimal_target <= q + 1,
         "D_independent_closed_form": True,
         "nondecreasing_in_L": True,
+        "equals_baseline_R_Z_plus_one": True,
         "certificate": (
             "Substituting m_ap=LD into R_min(m_ap) cancels D. Since "
             "R_min(m_ap) is nondecreasing for m_ap>D, every class-count "
             "sparse certificate with m_ap>=LD requires this boundary floor. "
-            "The closed floor is nondecreasing in L."
+            "The closed floor is nondecreasing in L and equals the successor "
+            "of the baseline reduced-support R_Z at a0=1/h."
         ),
     }
 

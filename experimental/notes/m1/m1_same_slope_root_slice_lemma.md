@@ -3807,6 +3807,34 @@ This is weaker than proving support realization impossible, but it gives an
 exact finite-row floor for the whole far-from-star sparse branch before any
 row-basis/core-image structure is used.
 
+This floor is exactly the integer successor of the unconditional reduced-support
+baseline budget.  Indeed, putting `a0=1/h` in (RKSQBUDGET) gives
+
+```text
+R_base(L)=max(
+  (q-1)^2 L/(h^2((q-3)L+2)),
+  q+1 - (q-1)(h-1)L/(h(L-1))
+).
+```
+
+The two entries are precisely the real arguments in (RKSQSPFARCLOSED).  Since
+`max(ceil A,ceil B)=ceil(max(A,B))`,
+
+```text
+R_far(q,e,L)=ceil(R_base(L)).                   (RKSQSPBASEID)
+```
+
+Equivalently, for the integer ceiling `R_Z(1/h,L)=ceil(R_base(L))-1` from
+(RKSQINTBUDGET),
+
+```text
+R_far(q,e,L)=R_Z(1/h,L)+1.                      (RKSQSPBASEZ)
+```
+
+Thus the class-count far-star floor is not a separate reserve: it is exactly
+the first integer budget not already closed by the baseline density floor
+`alpha_ap>=1/h`.
+
 In particular, the window becomes uniform once the residual is separated from
 the endpoint-star threshold.  If a `(D,R)` sparse residual certificate also
 satisfies `m>=L D` for an integer `L>=2`, then `D/m<=1/L`, and the preceding
@@ -4754,6 +4782,7 @@ far-star monotone class-count floor (RKSQSPMONO/RKSQSPFARFLOOR), the
 closed far-star class-count floor (RKSQSPFARCLOSED/RKSQSPFARUNIF), the
 far-star `L`-monotonicity and footprint tradeoff
 (RKSQSPFARLMONO/RKSQSPFARTRADE), the
+baseline successor identity (RKSQSPBASEID/RKSQSPBASEZ), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),
@@ -4870,6 +4899,7 @@ far-star monotone class-count floor (RKSQSPMONO/RKSQSPFARFLOOR), the
 closed far-star class-count floor (RKSQSPFARCLOSED/RKSQSPFARUNIF), the
 far-star `L`-monotonicity and footprint tradeoff
 (RKSQSPFARLMONO/RKSQSPFARTRADE), the
+baseline successor identity (RKSQSPBASEID/RKSQSPBASEZ), the
 far-from-star sparse certificate cap (RKSQFARSTAR1/RKSQFARSTAR2/RKSQFARSTAR),
 the density-gap near-star localization
 (RKSQNEARSTAR1/RKSQNEARSTAR2/RKSQNEARSTAR/RKSQNEARFOOT/RKSQLOCALIZE),

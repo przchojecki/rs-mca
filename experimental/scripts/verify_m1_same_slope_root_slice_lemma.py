@@ -78,7 +78,7 @@ certificate cap with near-star localization, template count, and
 density-threshold closure, budget inversion, template-budget tradeoff, and
 integer support-budget ceiling, fixed-residual sparse certificate feasibility
 interval, far-star class-count floor monotonicity, closed form, footprint
-tradeoff, and minimal selected-density baseline.
+tradeoff, and baseline-budget identity.
 """
 
 from __future__ import annotations
@@ -8417,6 +8417,28 @@ def check_sparse_certificate_fixed_residual_feasibility() -> None:
                     ),
                 )
                 closed_floor = max(selected_closed, missing_closed)
+                baseline_density_budget = max(
+                    Fraction(
+                        (q - 1) * (q - 1) * far_factor,
+                        h * h * ((q - 3) * far_factor + 2),
+                    ),
+                    Fraction(q + 1)
+                    - Fraction(
+                        (q - 1) * (h - 1) * far_factor,
+                        h * (far_factor - 1),
+                    ),
+                )
+                baseline_integer_ceiling = (
+                    ceil_fraction(baseline_density_budget) - 1
+                )
+                assert closed_floor == baseline_integer_ceiling + 1, (
+                    q,
+                    e,
+                    far_factor,
+                    closed_floor,
+                    baseline_density_budget,
+                    baseline_integer_ceiling,
+                )
                 if previous_far_floor is not None:
                     assert previous_far_floor <= closed_floor, (
                         q,

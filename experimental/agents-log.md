@@ -49,6 +49,24 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 far-star baseline identity
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/m1_density_budget.py`,
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** The closed far-star class-count floor is identified
+  as `R_far(q,e,L)=R_Z(1/h,L)+1`, the first integer budget not already closed
+  by the reduced-support baseline density floor.
+- **How it is useful:** Unifies the sparse class-count arithmetic with the
+  existing density-budget ledger, preventing duplicate or inconsistent finite
+  thresholds.
+- **What to do next:** Use the identity when comparing far-star arithmetic
+  floors against improved row-basis/core-image density lower bounds.
+
 ### 2026-06-30 - M1 far-star L tradeoff
 
 - **Agent/model:** AllenGrahamHart / Codex.
