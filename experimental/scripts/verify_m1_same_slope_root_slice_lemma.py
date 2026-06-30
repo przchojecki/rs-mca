@@ -59,8 +59,8 @@ discriminant certificate, Plucker-minor discriminant certificate,
 Plucker-chart decomposition, Plucker-chart row recurrence, Hankel square
 factorization, endpoint slope map, overlapping Plucker-chart recurrence,
 endpoint-pair inversion, projective endpoint-pair inversion, diagonal endpoint
-collapse, off-diagonal endpoint-pair count, endpoint-charge corollary, and
-packet-count corollary.
+collapse, off-diagonal endpoint-pair count, canonical endpoint-pair norm
+factorization, endpoint-charge corollary, and packet-count corollary.
 """
 
 from __future__ import annotations
@@ -3517,6 +3517,53 @@ def assert_overlapping_plucker_chart_recurrence(
             h1_poly,
             scaled_h0,
         )
+    else:
+        canonical_e0 = ((-e0_z) % p, e0_w % p)
+        canonical_e1 = ((-e1_z) % p, e1_w % p)
+        factor0 = (l0_const, l0_slope)
+        factor1 = (l1_const, l1_slope)
+        alpha0 = scalar_for_proportional_linear_forms(canonical_e0, factor0, p)
+        alpha1 = scalar_for_proportional_linear_forms(canonical_e1, factor1, p)
+        assert alpha0 != 0 and alpha1 != 0
+        h0_poly = hankel_minor_poly(a_rows, b_rows, 0, p)
+        h1_poly = hankel_minor_poly(a_rows, b_rows, 1, p)
+        canonical0_poly = poly1_from_terms(
+            ((0, canonical_e0[0]), (1, canonical_e0[1])),
+            p,
+        )
+        canonical1_poly = poly1_from_terms(
+            ((0, canonical_e1[0]), (1, canonical_e1[1])),
+            p,
+        )
+        left = poly1_mul(
+            h1_poly,
+            poly1_mul(canonical0_poly, canonical0_poly, p),
+            p,
+        )
+        right_unscaled = poly1_mul(
+            h0_poly,
+            poly1_mul(canonical1_poly, canonical1_poly, p),
+            p,
+        )
+        scalar = (alpha1 * alpha1 * pow((alpha0 * alpha0) % p, -1, p)) % p
+        right = {
+            degree: (scalar * coeff) % p
+            for degree, coeff in right_unscaled.items()
+            if (scalar * coeff) % p != 0
+        }
+        assert left == right, (
+            p,
+            a_rows,
+            b_rows,
+            (e0_z, e0_w),
+            (e1_z, e1_w),
+            alpha0,
+            alpha1,
+            h0_poly,
+            h1_poly,
+            left,
+            right,
+        )
 
     if l0_slope == 0 or l1_slope == 0:
         return
@@ -3601,6 +3648,21 @@ def normalized_projective_point(z_coord: int, w_coord: int, p: int) -> tuple[int
         inv_w = pow(w_coord, -1, p)
         return ((z_coord * inv_w) % p, 1)
     return (1, 0)
+
+
+def scalar_for_proportional_linear_forms(
+    source: tuple[int, int],
+    target: tuple[int, int],
+    p: int,
+) -> int:
+    source = (source[0] % p, source[1] % p)
+    target = (target[0] % p, target[1] % p)
+    assert source != (0, 0)
+    assert target != (0, 0)
+    assert det2(source, target, p) == 0, (p, source, target)
+    if source[0] != 0:
+        return (target[0] * pow(source[0], -1, p)) % p
+    return (target[1] * pow(source[1], -1, p)) % p
 
 
 def quadratic_character(value: int, p: int) -> int:

@@ -49,6 +49,25 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat these ledgers as branch accounting only. The
   full safe-side theorem still needs the aperiodic Hankel-packing and
   extension-line completion inputs.
+### 2026-06-30 - M1 canonical endpoint-pair norm factorization
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/m1_same_slope_root_slice_lemma.md`,
+  `experimental/scripts/verify_m1_same_slope_root_slice_lemma.py`,
+  `experimental/experiments.tex`, `experimental/experiments.pdf`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / AUDIT.
+- **What is being added:** For off-diagonal projective endpoints `E_0,E_1`,
+  the overlapping square-norm chart satisfies
+  `H_1/H_0=gamma^2 (L_{E_1}/L_{E_0})^2`, where `L_E(z)=Wz-Z`.
+- **How it is useful:** The residual nondegenerate overlapping branch is
+  identified with the canonical degree-one square-map packet of divisor
+  `2E_1-2E_0`, up to square scalar.  This connects the endpoint-pair count to
+  the existing square-map packet ledger.
+- **What to do next:** Combine the endpoint-pair injection and square-map
+  coset palette to bound the residual branch across admissible row bases.
+
 ### 2026-06-30 - M1 projective diagonal and off-diagonal endpoint count
 
 - **Agent/model:** AllenGrahamHart / Codex.
