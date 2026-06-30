@@ -806,6 +806,147 @@ def rank_pivot_row_sets_field(
     }
 
 
+def visible_proportional_scalar_mod(
+    u: list[int],
+    v: list[int],
+    visible_length: int,
+    prime: int,
+) -> int | None:
+    scalar: int | None = None
+    for index in range(visible_length):
+        u_i = u[index] % prime
+        v_i = v[index] % prime
+        if v_i == 0:
+            if u_i != 0:
+                return None
+            continue
+        candidate = (u_i * pow(v_i, -1, prime)) % prime
+        if scalar is None:
+            scalar = candidate
+        elif scalar != candidate:
+            return None
+    return scalar
+
+
+def proportional_residual_audit_mod(
+    spec: dict[str, Any],
+    u: list[int],
+    v: list[int],
+    visible_length: int,
+    prime: int,
+) -> dict[str, Any] | None:
+    scalar = visible_proportional_scalar_mod(u, v, visible_length, prime)
+    if scalar is None:
+        return None
+    full_proportional = len(u) == len(v) and all(
+        (u_i - scalar * v_i) % prime == 0 for u_i, v_i in zip(u, v)
+    )
+    tangent_root = (-scalar) % prime
+    declared_tangent_root = spec["line_syndrome"].get("tangent_root")
+    if (
+        declared_tangent_root is not None
+        and int(declared_tangent_root) % prime != tangent_root
+    ):
+        raise ValueError("declared tangent_root does not match u=c*v")
+    can_charge_tangent = full_proportional
+    return {
+        "residual_classification": "proportional_window_tangent"
+        if can_charge_tangent
+        else "proportional_window_single_slope",
+        "scalar_multiple_u_over_v": scalar,
+        "residual_single_slope": tangent_root,
+        "full_syndrome_proportional": full_proportional,
+        "residual_charge": "tangent_common_code_line"
+        if can_charge_tangent
+        else "tail_check_required",
+    }
+
+
+def visible_proportional_scalar_field(
+    u: list[tuple[int, ...]],
+    v: list[tuple[int, ...]],
+    visible_length: int,
+    field: PolynomialBasisField,
+) -> tuple[int, ...] | None:
+    scalar: tuple[int, ...] | None = None
+    for index in range(visible_length):
+        u_i = u[index]
+        v_i = v[index]
+        if v_i == field.zero:
+            if u_i != field.zero:
+                return None
+            continue
+        candidate = field.mul(u_i, field.inv(v_i))
+        if scalar is None:
+            scalar = candidate
+        elif scalar != candidate:
+            return None
+    return scalar
+
+
+def proportional_residual_audit_field(
+    spec: dict[str, Any],
+    u: list[tuple[int, ...]],
+    v: list[tuple[int, ...]],
+    visible_length: int,
+    field: PolynomialBasisField,
+) -> dict[str, Any] | None:
+    scalar = visible_proportional_scalar_field(u, v, visible_length, field)
+    if scalar is None:
+        return None
+    full_proportional = len(u) == len(v) and all(
+        field.sub(u_i, field.mul(scalar, v_i)) == field.zero
+        for u_i, v_i in zip(u, v)
+    )
+    tangent_root = field.encode(field.neg(scalar))
+    declared_tangent_root = spec["line_syndrome"].get("tangent_root")
+    if (
+        declared_tangent_root is not None
+        and int(declared_tangent_root) != tangent_root
+    ):
+        raise ValueError("declared tangent_root does not match u=c*v")
+    can_charge_tangent = full_proportional
+    return {
+        "residual_classification": "proportional_window_tangent"
+        if can_charge_tangent
+        else "proportional_window_single_slope",
+        "scalar_multiple_u_over_v": field.encode(scalar),
+        "residual_single_slope": tangent_root,
+        "full_syndrome_proportional": full_proportional,
+        "residual_charge": "tangent_common_code_line"
+        if can_charge_tangent
+        else "tail_check_required",
+    }
+
+
+def proportional_residual_label(audit: dict[str, Any] | None) -> str:
+    if audit and audit.get("residual_charge") == "tangent_common_code_line":
+        return "tangent"
+    return "unknown"
+
+
+def proportional_residual_reason(
+    base_reason: str,
+    audit: dict[str, Any] | None,
+) -> str:
+    if audit is None:
+        return base_reason
+    tail = (
+        "classifies the residual as tangent/common-code-line"
+        if audit["residual_charge"] == "tangent_common_code_line"
+        else (
+            "compresses the residual to one slope, but a tail check is needed "
+            "before tangent charging"
+        )
+    )
+    return (
+        base_reason
+        + "; visible Hankel window is proportional; the proportional-window "
+        "lemma "
+        + tail
+    )
+
+
 def extract_for_agreement(
     spec: dict[str, Any],
     exact_agreement: int,
@@ -852,11 +993,14 @@ def extract_for_agreement(
         scalar = 0
         if spec.get("certificate_mode") == SCALAR_MULTIPLE_MODE:
             scalar = int(spec["line_syndrome"]["scalar_multiple_u_over_v"]) % prime
-        if any((u[index] - scalar * v[index]) % prime for index in range(t + j)):
+        proportional_audit = proportional_residual_audit_mod(
+            spec, u, v, t + j, prime
+        )
+        if (
+            proportional_audit is None
+            or proportional_audit["scalar_multiple_u_over_v"] != scalar
+        ):
             raise ValueError("scalar-multiple closed-form roots need u=c*v on the visible window")
-        full_proportional = all((u_i - scalar * v_i) % prime == 0 for u_i, v_i in zip(u, v))
-        tangent_root = (-scalar) % prime
-        can_charge_tangent = full_proportional and spec["line_syndrome"].get("tangent_root") == tangent_root
         tested = 0
         for row_set in row_sets:
             tested += 1
@@ -899,32 +1043,13 @@ def extract_for_agreement(
             rank_pivot_nodes_required=row_set_audit.get(
                 "nodes_required_for_singularity_proof"
             ),
-            residual_label="tangent" if can_charge_tangent else "unknown",
-            residual_reason=(
-                (
-                    row_set_audit.get("singularity_proof")
-                    or "all tested scalar-multiple leading coefficients vanished"
-                )
-                + "; "
-                "visible Hankel window is proportional and all tested scalar-multiple "
-                "leading coefficients vanished; the proportional-window lemma "
-                + (
-                    "classifies the residual as tangent/common-code-line"
-                    if can_charge_tangent
-                    else "compresses the residual to one slope, but a tail check is needed before tangent charging"
-                )
+            residual_label=proportional_residual_label(proportional_audit),
+            residual_reason=proportional_residual_reason(
+                row_set_audit.get("singularity_proof")
+                or "all tested scalar-multiple leading coefficients vanished",
+                proportional_audit,
             ),
-            residual_audit={
-                "residual_classification": "proportional_window_tangent"
-                if can_charge_tangent
-                else "proportional_window_single_slope",
-                "scalar_multiple_u_over_v": scalar,
-                "residual_single_slope": tangent_root,
-                "full_syndrome_proportional": full_proportional,
-                "residual_charge": "tangent_common_code_line"
-                if can_charge_tangent
-                else "tail_check_required",
-            },
+            residual_audit=proportional_audit,
         )
     if (
         spec.get("certificate_mode") == "rank_witness_bound"
@@ -1005,6 +1130,10 @@ def extract_for_agreement(
                 ),
             )
 
+    residual_reason = row_set_audit.get(
+        "singularity_proof"
+    ) or "all tested regular maximal minors vanished"
+    proportional_audit = proportional_residual_audit_mod(spec, u, v, t + j, prime)
     return ExtractionResult(
         exact_agreement,
         j,
@@ -1021,11 +1150,11 @@ def extract_for_agreement(
         rank_pivot_nodes_required=row_set_audit.get(
             "nodes_required_for_singularity_proof"
         ),
-        residual_label="unknown",
-        residual_reason=(
-            row_set_audit.get("singularity_proof")
-            or "all tested regular maximal minors vanished"
+        residual_label=proportional_residual_label(proportional_audit),
+        residual_reason=proportional_residual_reason(
+            residual_reason, proportional_audit
         ),
+        residual_audit=proportional_audit,
     )
 
 
@@ -1081,20 +1210,14 @@ def extract_for_agreement_field(
                 field,
                 syndrome_encoding,
             )
-        if any(
-            field.sub(u[index], field.mul(scalar, v[index])) != field.zero
-            for index in range(t + j)
+        proportional_audit = proportional_residual_audit_field(
+            spec, u, v, t + j, field
+        )
+        if (
+            proportional_audit is None
+            or proportional_audit["scalar_multiple_u_over_v"] != field.encode(scalar)
         ):
             raise ValueError("scalar-multiple closed-form roots need u=c*v on the visible window")
-        full_proportional = all(
-            field.sub(u_i, field.mul(scalar, v_i)) == field.zero
-            for u_i, v_i in zip(u, v)
-        )
-        tangent_root = field.encode(field.neg(scalar))
-        can_charge_tangent = (
-            full_proportional
-            and spec["line_syndrome"].get("tangent_root") == tangent_root
-        )
         tested = 0
         for row_set in row_sets:
             tested += 1
@@ -1137,32 +1260,13 @@ def extract_for_agreement_field(
             rank_pivot_nodes_required=row_set_audit.get(
                 "nodes_required_for_singularity_proof"
             ),
-            residual_label="tangent" if can_charge_tangent else "unknown",
-            residual_reason=(
-                (
-                    row_set_audit.get("singularity_proof")
-                    or "all tested scalar-multiple leading coefficients vanished"
-                )
-                + "; "
-                "visible Hankel window is proportional and all tested scalar-multiple "
-                "leading coefficients vanished; the proportional-window lemma "
-                + (
-                    "classifies the residual as tangent/common-code-line"
-                    if can_charge_tangent
-                    else "compresses the residual to one slope, but a tail check is needed before tangent charging"
-                )
+            residual_label=proportional_residual_label(proportional_audit),
+            residual_reason=proportional_residual_reason(
+                row_set_audit.get("singularity_proof")
+                or "all tested scalar-multiple leading coefficients vanished",
+                proportional_audit,
             ),
-            residual_audit={
-                "residual_classification": "proportional_window_tangent"
-                if can_charge_tangent
-                else "proportional_window_single_slope",
-                "scalar_multiple_u_over_v": field.encode(scalar),
-                "residual_single_slope": tangent_root,
-                "full_syndrome_proportional": full_proportional,
-                "residual_charge": "tangent_common_code_line"
-                if can_charge_tangent
-                else "tail_check_required",
-            },
+            residual_audit=proportional_audit,
         )
     if (
         spec.get("certificate_mode") == "rank_witness_bound"
@@ -1251,6 +1355,10 @@ def extract_for_agreement_field(
                 ),
             )
 
+    residual_reason = row_set_audit.get(
+        "singularity_proof"
+    ) or "all tested regular maximal minors vanished"
+    proportional_audit = proportional_residual_audit_field(spec, u, v, t + j, field)
     return ExtractionResult(
         exact_agreement,
         j,
@@ -1267,11 +1375,11 @@ def extract_for_agreement_field(
         rank_pivot_nodes_required=row_set_audit.get(
             "nodes_required_for_singularity_proof"
         ),
-        residual_label="unknown",
-        residual_reason=(
-            row_set_audit.get("singularity_proof")
-            or "all tested regular maximal minors vanished"
+        residual_label=proportional_residual_label(proportional_audit),
+        residual_reason=proportional_residual_reason(
+            residual_reason, proportional_audit
         ),
+        residual_audit=proportional_audit,
     )
 
 

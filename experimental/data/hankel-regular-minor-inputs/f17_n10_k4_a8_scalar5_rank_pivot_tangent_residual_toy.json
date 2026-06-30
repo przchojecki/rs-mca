@@ -10,12 +10,9 @@
   "agreement_threshold": 8,
   "exact_agreements": [8],
   "sampler": "finite_affine_line",
-  "certificate_mode": "scalar_multiple_roots",
   "line_syndrome": {
     "u": [5, 10, 3, 6, 12, 7],
     "v": [1, 2, 4, 8, 16, 15],
-    "scalar_multiple_u_over_v": 5,
-    "tangent_root": 12,
     "description": "rank-pivot proportional residual toy: u=5v and H(v) has rank one, so every maximal regular minor vanishes"
   },
   "row_set_strategy": {

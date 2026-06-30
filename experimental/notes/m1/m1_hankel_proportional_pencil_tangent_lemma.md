@@ -60,10 +60,11 @@ experimental/data/certificates/regular-minor-extractor-rank-pivot-proportional-r
 ```
 
 has rank-one `H(v)`, so every maximal regular minor vanishes.  Instead of
-leaving the singular bucket as `unknown`, the extractor records
-`residual_label=tangent` together with a `proportional_window_tangent` audit:
-the only possible slope is `12=-5`, and the supplied syndrome is fully
-proportional, so the tangent/common-code-line ledger may pay it.
+leaving the singular bucket as `unknown`, the extractor detects the visible
+scalar from ordinary syndrome-pencil data and records `residual_label=tangent`
+together with a `proportional_window_tangent` audit: the only possible slope is
+`12=-5`, and the supplied syndrome is fully proportional, so the
+tangent/common-code-line ledger may pay it.
 
 Run:
 

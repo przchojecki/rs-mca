@@ -12,9 +12,11 @@ v = (1,2,4,8,16,15),
 ```
 
 so the visible Hankel window is proportional, but `H(v)` has rank one.  The
-`rank_at_nodes` proof tests `j+2=4` finite slopes and proves all maximal
-regular minors vanish identically.  The proportional-window lemma then labels
-the residual as tangent/common-code-line with single slope `12=-5`.
+input does not use `certificate_mode=scalar_multiple_roots`; the extractor
+detects the visible scalar `c=5` from the ordinary syndrome-pencil data.  The
+`rank_at_nodes` proof tests `j+2=4` finite slopes and proves all maximal regular
+minors vanish identically.  The proportional-window lemma then labels the
+residual as tangent/common-code-line with single slope `12=-5`.
 
 Run:
 

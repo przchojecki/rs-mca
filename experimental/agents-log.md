@@ -42,15 +42,18 @@ Keep entries concise and link to the relevant files.
   `experimental/agents-log.md`.
 - **Status:** PROVED / AUDIT for a finite toy packet.
 - **What is being added:** The regular-minor extractor now classifies singular
-  scalar-multiple buckets using the proportional-window lemma.  The toy packet
-  has `u=5v` and rank-one `H(v)`, so rank-at-nodes proves every maximal regular
-  minor vanishes, while the residual audit labels the bucket as
-  tangent/common-code-line with single slope `12=-5`.
+  visible-proportional buckets using the proportional-window lemma, even when
+  the input is an ordinary syndrome pencil rather than a declared scalar-mode
+  certificate.  The toy packet has `u=5v` and rank-one `H(v)`, so
+  rank-at-nodes proves every maximal regular minor vanishes, while the residual
+  audit labels the bucket as tangent/common-code-line with single slope
+  `12=-5`.
 - **How it is useful:** Converts a class of singular buckets from `unknown` to
   a checked tangent residual, which is directly aligned with the v9 M5
   residual-classification program.
-- **What to do next:** Apply the same classifier to actual M3 row packets only
-  when the full-syndrome/tail condition proves the tangent charge is valid.
+- **What to do next:** Apply the same classifier to actual M3 row packets when
+  visible proportionality appears; charge the slope to tangent only when the
+  full-syndrome/tail condition proves it is valid.
 
 ### 2026-06-30 - Hankel proportional-window root compression
 

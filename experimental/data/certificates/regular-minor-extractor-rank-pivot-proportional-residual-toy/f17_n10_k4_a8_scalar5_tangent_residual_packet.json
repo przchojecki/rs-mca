@@ -17,16 +17,15 @@
       },
       "j": 2,
       "residual_label": "tangent",
-      "residual_reason": "all maximal minors have degree <= size and vanish at size+1 distinct slopes, so they vanish identically; visible Hankel window is proportional and all tested scalar-multiple leading coefficients vanished; the proportional-window lemma classifies the residual as tangent/common-code-line",
+      "residual_reason": "all maximal minors have degree <= size and vanish at size+1 distinct slopes, so they vanish identically; visible Hankel window is proportional; the proportional-window lemma classifies the residual as tangent/common-code-line",
       "status": "residual_obstruction",
       "t": 4
     }
   ],
   "extractor": {
-    "certificate_mode": "scalar_multiple_roots",
     "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_scalar5_rank_pivot_tangent_residual_toy.json",
-    "input_sha256": "feaa774519034e1d0e6e995103153aa1bdbd4422edabc364be9afe8de530b909",
-    "method": "scalar-multiple closed-form root certificate over the base prime field",
+    "input_sha256": "fd4745f7afe84d13d6eeec3f0586d954300b596cd14eafa0057c878bdfc80b06",
+    "method": "numeric determinant interpolation over the base prime field",
     "name": "regular-hankel-minor-extractor",
     "row_set_strategy": {
       "type": "rank_at_nodes"
