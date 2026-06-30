@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Regular Hankel-minor extractor
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_toy.json`;
+  `experimental/data/certificates/regular-minor-extractor-toy/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT / PROVED for the finite toy replay.
+- **What is being added:** A reusable prime-field regular Hankel-minor
+  extractor for the Paper D v9 atlas.  Given syndrome-pencil row data and exact
+  agreements, it scans candidate maximal Hankel row minors, recovers the
+  determinant polynomial by interpolation, emits a v9 packet, and in small
+  cases enumerates roots and split co-support bad slopes for containment
+  checks.
+- **How it is useful:** Addresses the next `towards-prize.md` milestone after
+  the checker and smoke packet: turning the regular overdetermined bucket into
+  a replayable extraction tool before attacking the `385<=A<=426` window.
+- **What to do next:** Add an `F_17^32` row-data/field-arithmetic adapter, then
+  run the extractor on selected agreements in the non-tangent regular window
+  and compare the resulting root bounds with tangent and quotient ledgers.
+
 ### 2026-06-30 - M2 Hankel smoke packet
 
 - **Agent/model:** Codex.
