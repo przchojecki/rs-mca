@@ -1,0 +1,469 @@
+{
+  "agreement_threshold": 13,
+  "claim_scope": {
+    "may_be_used_for_threshold_pinning": false,
+    "note": "Finite toy replay for the rank-node witness family common-gcd gate.",
+    "root_status": "enumerated",
+    "row_data": "toy_row",
+    "threshold_role": "toy_mechanism"
+  },
+  "declared_aperiodic_numerator": 1,
+  "enumerated_bad_slope_union_mod_17": [],
+  "exact_agreements": [
+    {
+      "A": 13,
+      "extractor_audit": {
+        "certificate_mode": "minor_gcd_roots",
+        "gcd_degree": 4,
+        "rank_pivot_node": 0,
+        "rank_pivot_nodes_required": 5,
+        "rank_pivot_nodes_tested": 17,
+        "rank_pivot_test_nodes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "rank_pivot_witness_records": [
+          {
+            "node": 0,
+            "row_set": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        ],
+        "root_count": 1,
+        "row_set_source": "rank_at_nodes_family_minor_gcd",
+        "tested_row_sets": 1
+      },
+      "j": 3,
+      "regular_minor_gcd": {
+        "containment": "rank-defect slopes make every audited maximal minor vanish, so they are contained in the common gcd roots",
+        "degree": 4,
+        "minor_count": 1,
+        "polynomial_ref": "inline:regular_minor_gcd_data.gcd_coefficients_mod_17_ascending",
+        "root_hash": "95bce61a71a78185f4b6f8f25fc6986108043727fe9d9c19dbe44b0081ef928a",
+        "row_sets": [
+          [
+            0,
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "regular_minor_gcd_data": {
+        "enumerated_bad_slopes_mod_17": [],
+        "gcd_coefficients_mod_17_ascending": [
+          4,
+          14,
+          12,
+          7,
+          1
+        ],
+        "minor_polynomials_mod_17_ascending": [
+          {
+            "coefficients": [
+              4,
+              14,
+              12,
+              7,
+              1
+            ],
+            "degree": 4,
+            "row_set": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        ],
+        "roots_mod_17": [
+          11
+        ]
+      },
+      "status": "regular_minor",
+      "t": 5
+    },
+    {
+      "A": 14,
+      "extractor_audit": {
+        "certificate_mode": "minor_gcd_roots",
+        "gcd_degree": 2,
+        "rank_pivot_node": 0,
+        "rank_pivot_nodes_required": 4,
+        "rank_pivot_nodes_tested": 17,
+        "rank_pivot_test_nodes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "rank_pivot_witness_records": [
+          {
+            "node": 0,
+            "row_set": [
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "node": 10,
+            "row_set": [
+              0,
+              1,
+              3
+            ]
+          }
+        ],
+        "root_count": 1,
+        "row_set_source": "rank_at_nodes_family_minor_gcd",
+        "tested_row_sets": 2
+      },
+      "j": 2,
+      "regular_minor_gcd": {
+        "containment": "rank-defect slopes make every audited maximal minor vanish, so they are contained in the common gcd roots",
+        "degree": 2,
+        "minor_count": 2,
+        "polynomial_ref": "inline:regular_minor_gcd_data.gcd_coefficients_mod_17_ascending",
+        "root_hash": "95bce61a71a78185f4b6f8f25fc6986108043727fe9d9c19dbe44b0081ef928a",
+        "row_sets": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            3
+          ]
+        ]
+      },
+      "regular_minor_gcd_data": {
+        "enumerated_bad_slopes_mod_17": [],
+        "gcd_coefficients_mod_17_ascending": [
+          2,
+          12,
+          1
+        ],
+        "minor_polynomials_mod_17_ascending": [
+          {
+            "coefficients": [
+              5,
+              4,
+              8,
+              4
+            ],
+            "degree": 3,
+            "row_set": [
+              0,
+              1,
+              2
+            ]
+          },
+          {
+            "coefficients": [
+              9,
+              4,
+              2,
+              9
+            ],
+            "degree": 3,
+            "row_set": [
+              0,
+              1,
+              3
+            ]
+          }
+        ],
+        "roots_mod_17": [
+          11
+        ]
+      },
+      "status": "regular_minor",
+      "t": 6
+    },
+    {
+      "A": 15,
+      "extractor_audit": {
+        "certificate_mode": "minor_gcd_roots",
+        "gcd_degree": 0,
+        "rank_pivot_node": 0,
+        "rank_pivot_nodes_required": 3,
+        "rank_pivot_nodes_tested": 17,
+        "rank_pivot_test_nodes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "rank_pivot_witness_records": [
+          {
+            "node": 0,
+            "row_set": [
+              0,
+              2
+            ]
+          },
+          {
+            "node": 1,
+            "row_set": [
+              0,
+              1
+            ]
+          },
+          {
+            "node": 2,
+            "row_set": [
+              1,
+              2
+            ]
+          }
+        ],
+        "root_count": 0,
+        "row_set_source": "rank_at_nodes_family_minor_gcd",
+        "tested_row_sets": 3
+      },
+      "j": 1,
+      "regular_minor_gcd": {
+        "containment": "rank-defect slopes make every audited maximal minor vanish, so they are contained in the common gcd roots",
+        "degree": 0,
+        "minor_count": 3,
+        "polynomial_ref": "inline:regular_minor_gcd_data.gcd_coefficients_mod_17_ascending",
+        "root_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "row_sets": [
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "regular_minor_gcd_data": {
+        "enumerated_bad_slopes_mod_17": [],
+        "gcd_coefficients_mod_17_ascending": [
+          1
+        ],
+        "minor_polynomials_mod_17_ascending": [
+          {
+            "coefficients": [
+              6,
+              4,
+              5
+            ],
+            "degree": 2,
+            "row_set": [
+              0,
+              2
+            ]
+          },
+          {
+            "coefficients": [
+              0,
+              3,
+              7
+            ],
+            "degree": 2,
+            "row_set": [
+              0,
+              1
+            ]
+          },
+          {
+            "coefficients": [
+              5,
+              14,
+              12
+            ],
+            "degree": 2,
+            "row_set": [
+              1,
+              2
+            ]
+          }
+        ],
+        "roots_mod_17": []
+      },
+      "status": "regular_minor",
+      "t": 7
+    },
+    {
+      "A": 16,
+      "extractor_audit": {
+        "certificate_mode": "minor_gcd_roots",
+        "gcd_degree": 0,
+        "rank_pivot_node": 0,
+        "rank_pivot_nodes_required": 2,
+        "rank_pivot_nodes_tested": 17,
+        "rank_pivot_test_nodes": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "rank_pivot_witness_records": [
+          {
+            "node": 0,
+            "row_set": [
+              0
+            ]
+          },
+          {
+            "node": 2,
+            "row_set": [
+              2
+            ]
+          }
+        ],
+        "root_count": 0,
+        "row_set_source": "rank_at_nodes_family_minor_gcd",
+        "tested_row_sets": 2
+      },
+      "j": 0,
+      "regular_minor_gcd": {
+        "containment": "rank-defect slopes make every audited maximal minor vanish, so they are contained in the common gcd roots",
+        "degree": 0,
+        "minor_count": 2,
+        "polynomial_ref": "inline:regular_minor_gcd_data.gcd_coefficients_mod_17_ascending",
+        "root_hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "row_sets": [
+          [
+            0
+          ],
+          [
+            2
+          ]
+        ]
+      },
+      "regular_minor_gcd_data": {
+        "enumerated_bad_slopes_mod_17": [],
+        "gcd_coefficients_mod_17_ascending": [
+          1
+        ],
+        "minor_polynomials_mod_17_ascending": [
+          {
+            "coefficients": [
+              3,
+              7
+            ],
+            "degree": 1,
+            "row_set": [
+              0
+            ]
+          },
+          {
+            "coefficients": [
+              12,
+              12
+            ],
+            "degree": 1,
+            "row_set": [
+              2
+            ]
+          }
+        ],
+        "roots_mod_17": []
+      },
+      "status": "regular_minor",
+      "t": 8
+    }
+  ],
+  "extractor": {
+    "certificate_mode": "minor_gcd_roots",
+    "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_rank_node_gcd_toy.json",
+    "input_sha256": "80165c8826ed081d5f27045e324021f4717cf255003db279d462abf7b88d7078",
+    "method": "common-gcd root certificate over audited maximal minors",
+    "name": "regular-hankel-minor-extractor",
+    "row_set_strategy": {
+      "node_limit": 17,
+      "type": "rank_at_nodes_family"
+    },
+    "scope": "prime-field syndrome pencils only"
+  },
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an F_17^32 row-data packet",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ],
+  "removed_ledgers": [],
+  "root_union_mod_17": [
+    11
+  ],
+  "root_union_table_ref": "inline:root_union_mod_17",
+  "row": {
+    "domain_description": "sorted nonzero elements of F_17",
+    "domain_hash": "c8aa3562cf53e860d2bff96611bbd511190e1ba0d75e502cbab10a106f04248e",
+    "field": "F_17",
+    "k": 8,
+    "n": 16
+  },
+  "sampler": "finite_affine_line",
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "status": "PROVED"
+}

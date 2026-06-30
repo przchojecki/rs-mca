@@ -1968,7 +1968,13 @@ def validate_extractor_audit(
                 f"{location}: local single-slope residual needs tail_check_required"
             )
 
-    if source != "rank_at_nodes":
+    rank_source = None
+    if isinstance(source, str):
+        if source.startswith("rank_at_nodes_family"):
+            rank_source = "rank_at_nodes_family"
+        elif source.startswith("rank_at_nodes"):
+            rank_source = "rank_at_nodes"
+    if rank_source is None:
         return
 
     expected_required = item["j"] + 2
@@ -1979,7 +1985,15 @@ def validate_extractor_audit(
             f"but rank_at_nodes needs j+2={expected_required}"
         )
     tested = audit.get("rank_pivot_nodes_tested")
-    if not isinstance(tested, int) or tested < 1 or tested > expected_required:
+    if not isinstance(tested, int):
+        raise PacketError(f"{location}.rank_pivot_nodes_tested must be an integer")
+    if rank_source == "rank_at_nodes_family":
+        if tested < expected_required:
+            raise PacketError(
+                f"{location}.rank_pivot_nodes_tested={tested} "
+                f"but a rank-node family needs at least j+2={expected_required} nodes"
+            )
+    elif tested < 1 or tested > expected_required:
         raise PacketError(
             f"{location}.rank_pivot_nodes_tested must be in "
             f"1..{expected_required}"
@@ -2013,7 +2027,7 @@ def validate_extractor_audit(
             raise PacketError(
                 f"{location}.rank_pivot_node must name the successful node"
             )
-        if test_nodes[-1] != node:
+        if rank_source == "rank_at_nodes" and test_nodes[-1] != node:
             raise PacketError(
                 f"{location}.rank_pivot_node must be the last tested node"
             )
@@ -2021,6 +2035,56 @@ def validate_extractor_audit(
             raise PacketError(
                 f"{location}.tested_row_sets must be positive for a regular minor"
             )
+        if rank_source == "rank_at_nodes_family":
+            witness_records = audit.get("rank_pivot_witness_records")
+            if not isinstance(witness_records, list) or not witness_records:
+                raise PacketError(
+                    f"{location}.rank_pivot_witness_records must be a nonempty list"
+                )
+            if "regular_minor_gcd" not in item:
+                raise PacketError(
+                    f"{location}: rank-node family packets must use regular_minor_gcd"
+                )
+            row_sets_raw = item["regular_minor_gcd"].get("row_sets")
+            if not isinstance(row_sets_raw, list):
+                raise PacketError(f"{location}: missing regular_minor_gcd.row_sets")
+            row_set_keys = {
+                tuple(
+                    normalize_int_list(
+                        row_set,
+                        f"A={item.get('A')} rank-node family gcd row_set",
+                    )
+                )
+                for row_set in row_sets_raw
+            }
+            witness_keys = set()
+            for index, record in enumerate(witness_records):
+                if not isinstance(record, dict):
+                    raise PacketError(
+                        f"{location}.rank_pivot_witness_records[{index}] must be an object"
+                    )
+                witness_node = record.get("node")
+                if not isinstance(witness_node, int) or witness_node not in test_nodes:
+                    raise PacketError(
+                        f"{location}.rank_pivot_witness_records[{index}].node "
+                        "must be one of the tested nodes"
+                    )
+                witness_row_set = normalize_int_list(
+                    record.get("row_set", []),
+                    f"{location}.rank_pivot_witness_records[{index}].row_set",
+                )
+                key = tuple(witness_row_set)
+                if key not in row_set_keys:
+                    raise PacketError(
+                        f"{location}.rank_pivot_witness_records[{index}].row_set "
+                        "is not one of the gcd row sets"
+                    )
+                witness_keys.add(key)
+            if witness_keys != row_set_keys:
+                raise PacketError(
+                    f"{location}.rank_pivot_witness_records must witness every "
+                    "gcd row set exactly"
+                )
         return
 
     if item.get("status") != "residual_obstruction":
@@ -2029,10 +2093,17 @@ def validate_extractor_audit(
         raise PacketError(
             f"{location}.rank_pivot_node must be null for a singular declaration"
         )
-    if tested != expected_required:
+    if rank_source == "rank_at_nodes" and tested != expected_required:
         raise PacketError(
             f"{location}.rank_pivot_nodes_tested={tested} "
             f"but a singular declaration needs all j+2={expected_required} nodes"
+        )
+    if (
+        rank_source == "rank_at_nodes_family"
+        and audit.get("rank_pivot_witness_records") not in ([], None)
+    ):
+        raise PacketError(
+            f"{location}.rank_pivot_witness_records must be empty for a singular declaration"
         )
     reason = item.get("residual_reason")
     if not isinstance(reason, str) or "size+1 distinct slopes" not in reason:

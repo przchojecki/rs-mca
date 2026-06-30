@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - Rank-node family regular-minor gcd gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_rank_node_gcd_toy.json`;
+  `experimental/data/certificates/regular-minor-gcd-rank-node-family-toy/`;
+  `experimental/notes/m1/rank_node_family_gcd_gate.md`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the finite toy replay and checker gate.
+- **What is being added:** The regular-minor extractor now has a
+  `rank_at_nodes_family` row-set strategy for `regular_minor_gcd` packets.  It
+  scans a deterministic prefix of finite slope nodes, records every distinct
+  full-rank row set witnessed there, and takes the common gcd of the witnessed
+  determinant polynomials; the checker verifies that every gcd row set is
+  backed by a witness node.
+- **How it is useful:** This combines the rank-at-nodes singularity gate with
+  the common-gcd root-sharpening gate, giving a deterministic row-set family
+  that can be much smaller than all contiguous minors while retaining the same
+  regular-bad slope containment theorem.
+- **What to do next:** Try this family selector on structured large-field
+  syndrome pencils where determinant interpolation is still feasible, or pair
+  it with closed-form determinant certificates to avoid interpolation in the
+  `F_17^32` M3 window.
+
 ### 2026-06-30 - Zero-u regular-minor gcd certificate
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -60,6 +60,18 @@ isolates this rank-at-nodes dichotomy as a reusable theorem.  Its companion
 certificate audits every current v9 packet item using the `rank_at_nodes`
 selector.
 
+The follow-up note
+
+```text
+experimental/notes/m1/rank_node_family_gcd_gate.md
+```
+
+combines this selector with the common-gcd gate.  A bounded deterministic scan
+of rank nodes records every distinct full-rank row set it witnesses; the common
+gcd of those determinant polynomials still contains every regular-bad finite
+slope, while extra scanned nodes only sharpen the gcd and do not change the
+`j+2` singularity proof obligation.
+
 The determinant polynomial is recovered by interpolation from numeric
 determinants, rather than by a factorial permutation determinant.  This is the
 right algorithmic shape for the future `385 <= A <= 426` window once row data
@@ -73,6 +85,7 @@ experimental/data/certificates/regular-minor-gcd-toy/
 experimental/data/certificates/regular-minor-gcd-f17-2-toy/
 experimental/data/certificates/regular-minor-gcd-f17-32-toy/
 experimental/data/certificates/regular-minor-gcd-f17-32-zero-u-toy/
+experimental/data/certificates/regular-minor-gcd-rank-node-family-toy/
 experimental/scripts/verify_m1_regular_minor_gcd_gate.py
 ```
 
@@ -96,6 +109,13 @@ split-linear root certificate.  The packet checker independently verifies the
 gcd divisibility, reconstructs the split-linear certificate, and uses the
 visible monomial form to require the exact large-field root table `{0}` without
 enumerating `F_17^32`.
+
+The rank-node family gcd replay uses the same `F_17`, `n=16`, `k=8` toy as the
+contiguous gcd packet, but obtains its row sets from deterministic full-rank
+specializations.  With `node_limit=17`, it audits row-set counts
+`1,2,3,2` for `A=13,14,15,16` and gets the same final root union `{11}` as the
+all-contiguous replay.  The checker verifies that each gcd row set is backed by
+a recorded full-rank witness node.
 
 When the field is small enough, the extractor enumerates roots in the full
 finite slope field.  For extension fields, root-table elements are encoded as
@@ -412,6 +432,16 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 ! python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-gcd-f17-32-zero-u-toy/invalid_zero_u_gcd_root_certificate_packet.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_rank_node_gcd_toy.json \
+  --check experimental/data/certificates/regular-minor-gcd-rank-node-family-toy/f17_n16_k8_a13_rank_node_family_gcd_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-gcd-rank-node-family-toy/f17_n16_k8_a13_rank_node_family_gcd_packet.json
+
+! python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-gcd-rank-node-family-toy/invalid_bad_rank_node_witness_packet.json
 
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_n10_k4_a8_rank_pivot_toy.json \

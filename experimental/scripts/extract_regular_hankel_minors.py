@@ -30,6 +30,7 @@ ZERO_U_MONOMIAL_MODE = "zero_u_monomial_roots"
 SCALAR_MULTIPLE_MODE = "scalar_multiple_roots"
 MINOR_GCD_MODE = "minor_gcd_roots"
 ZERO_U_GCD_METHOD = "zero_u_monomial"
+RANK_AT_NODES_FAMILY_STRATEGY = "rank_at_nodes_family"
 
 
 def mod(value: int, prime: int) -> int:
@@ -952,6 +953,8 @@ class ExtractionResult:
     rank_pivot_node: Any | None = None
     rank_pivot_nodes_tested: int | None = None
     rank_pivot_nodes_required: int | None = None
+    rank_pivot_test_nodes: list[Any] | None = None
+    rank_pivot_witness_records: list[dict[str, Any]] | None = None
     residual_label: str | None = None
     residual_reason: str | None = None
     residual_audit: dict[str, Any] | None = None
@@ -1045,6 +1048,70 @@ def rank_pivot_row_sets_mod(
     }
 
 
+def rank_node_family_row_sets_mod(
+    u: list[int],
+    v: list[int],
+    t: int,
+    size: int,
+    prime: int,
+    config: dict[str, Any],
+) -> tuple[list[list[int]], dict[str, Any]]:
+    if prime <= size:
+        raise ValueError(
+            f"{RANK_AT_NODES_FAMILY_STRATEGY} needs at least size+1 distinct "
+            f"slopes, got {prime} <= {size}"
+        )
+    required = size + 1
+    node_limit = int(config.get("node_limit", required))
+    if node_limit < required:
+        raise ValueError(
+            f"{RANK_AT_NODES_FAMILY_STRATEGY} node_limit must be at least "
+            f"size+1={required}"
+        )
+    if node_limit > prime:
+        raise ValueError(
+            f"{RANK_AT_NODES_FAMILY_STRATEGY} node_limit={node_limit} exceeds "
+            f"field size {prime}"
+        )
+    row_sets_by_key: dict[tuple[int, ...], list[int]] = {}
+    witness_records: list[dict[str, Any]] = []
+    first_node: int | None = None
+    nodes = list(range(node_limit))
+    for node in nodes:
+        matrix = matrix_at_slope(u, v, list(range(t)), size, node, prime)
+        row_set = full_rank_row_set_mod(matrix, prime, size)
+        if row_set is None:
+            continue
+        if first_node is None:
+            first_node = node
+        key = tuple(row_set)
+        if key in row_sets_by_key:
+            continue
+        row_sets_by_key[key] = row_set
+        witness_records.append({"node": node, "row_set": row_set})
+    if row_sets_by_key:
+        return list(row_sets_by_key.values()), {
+            "source": RANK_AT_NODES_FAMILY_STRATEGY,
+            "node": first_node,
+            "nodes_tested": len(nodes),
+            "nodes_required_for_singularity_proof": required,
+            "test_nodes": nodes,
+            "witness_records": witness_records,
+        }
+    return [], {
+        "source": RANK_AT_NODES_FAMILY_STRATEGY,
+        "node": None,
+        "nodes_tested": len(nodes),
+        "nodes_required_for_singularity_proof": required,
+        "test_nodes": nodes,
+        "witness_records": [],
+        "singularity_proof": (
+            "all maximal minors have degree <= size and vanish at size+1 "
+            "distinct slopes, so they vanish identically"
+        ),
+    }
+
+
 def full_rank_row_set_field(
     matrix: list[list[tuple[int, ...]]],
     field: PolynomialBasisField,
@@ -1105,6 +1172,73 @@ def rank_pivot_row_sets_field(
         "node": None,
         "nodes_tested": len(nodes),
         "nodes_required_for_singularity_proof": size + 1,
+        "field_encoding": "base-p low-to-high integer",
+        "singularity_proof": (
+            "all maximal minors have degree <= size and vanish at size+1 "
+            "distinct slopes, so they vanish identically"
+        ),
+    }
+
+
+def rank_node_family_row_sets_field(
+    u: list[tuple[int, ...]],
+    v: list[tuple[int, ...]],
+    t: int,
+    size: int,
+    field: PolynomialBasisField,
+    config: dict[str, Any],
+) -> tuple[list[list[int]], dict[str, Any]]:
+    if field.size <= size:
+        raise ValueError(
+            f"{RANK_AT_NODES_FAMILY_STRATEGY} needs at least size+1 distinct "
+            f"slopes, got {field.size} <= {size}"
+        )
+    required = size + 1
+    node_limit = int(config.get("node_limit", required))
+    if node_limit < required:
+        raise ValueError(
+            f"{RANK_AT_NODES_FAMILY_STRATEGY} node_limit must be at least "
+            f"size+1={required}"
+        )
+    if node_limit > field.size:
+        raise ValueError(
+            f"{RANK_AT_NODES_FAMILY_STRATEGY} node_limit={node_limit} exceeds "
+            f"field size {field.size}"
+        )
+    row_sets_by_key: dict[tuple[int, ...], list[int]] = {}
+    witness_records: list[dict[str, Any]] = []
+    first_node: int | None = None
+    node_encodings = list(range(node_limit))
+    for node_encoding in node_encodings:
+        node = field.decode(node_encoding)
+        matrix = matrix_at_slope_field(u, v, list(range(t)), size, node, field)
+        row_set = full_rank_row_set_field(matrix, field, size)
+        if row_set is None:
+            continue
+        if first_node is None:
+            first_node = node_encoding
+        key = tuple(row_set)
+        if key in row_sets_by_key:
+            continue
+        row_sets_by_key[key] = row_set
+        witness_records.append({"node": node_encoding, "row_set": row_set})
+    if row_sets_by_key:
+        return list(row_sets_by_key.values()), {
+            "source": RANK_AT_NODES_FAMILY_STRATEGY,
+            "node": first_node,
+            "nodes_tested": len(node_encodings),
+            "nodes_required_for_singularity_proof": required,
+            "test_nodes": node_encodings,
+            "witness_records": witness_records,
+            "field_encoding": "base-p low-to-high integer",
+        }
+    return [], {
+        "source": RANK_AT_NODES_FAMILY_STRATEGY,
+        "node": None,
+        "nodes_tested": len(node_encodings),
+        "nodes_required_for_singularity_proof": required,
+        "test_nodes": node_encodings,
+        "witness_records": [],
         "field_encoding": "base-p low-to-high integer",
         "singularity_proof": (
             "all maximal minors have degree <= size and vanish at size+1 "
@@ -1255,7 +1389,10 @@ def proportional_residual_reason(
 
 
 def add_rank_pivot_test_nodes(audit: dict[str, Any]) -> None:
-    if audit.get("row_set_source") != "rank_at_nodes":
+    source = audit.get("row_set_source")
+    if not isinstance(source, str) or not source.startswith("rank_at_nodes"):
+        return
+    if "rank_pivot_test_nodes" in audit:
         return
     tested = audit.get("rank_pivot_nodes_tested")
     if isinstance(tested, int):
@@ -1295,8 +1432,20 @@ def extract_for_agreement(
         )
 
     row_config = spec.get("row_set_strategy", {"type": "prefix"})
+    if (
+        row_config.get("type") == RANK_AT_NODES_FAMILY_STRATEGY
+        and spec.get("certificate_mode") != MINOR_GCD_MODE
+    ):
+        raise ValueError(
+            f"{RANK_AT_NODES_FAMILY_STRATEGY} is only supported with "
+            f"certificate_mode={MINOR_GCD_MODE}"
+        )
     if row_config.get("type") == "rank_at_nodes":
         row_sets, row_set_audit = rank_pivot_row_sets_mod(u, v, t, size, prime)
+    elif row_config.get("type") == RANK_AT_NODES_FAMILY_STRATEGY:
+        row_sets, row_set_audit = rank_node_family_row_sets_mod(
+            u, v, t, size, prime, row_config
+        )
     else:
         row_sets = candidate_row_sets(t, size, row_config)
         row_set_audit = {
@@ -1452,6 +1601,8 @@ def extract_for_agreement(
                 rank_pivot_nodes_required=row_set_audit.get(
                     "nodes_required_for_singularity_proof"
                 ),
+                rank_pivot_test_nodes=row_set_audit.get("test_nodes"),
+                rank_pivot_witness_records=row_set_audit.get("witness_records"),
                 minor_family_records=family_records,
             )
         residual_reason = row_set_audit.get(
@@ -1473,6 +1624,8 @@ def extract_for_agreement(
             rank_pivot_nodes_required=row_set_audit.get(
                 "nodes_required_for_singularity_proof"
             ),
+            rank_pivot_test_nodes=row_set_audit.get("test_nodes"),
+            rank_pivot_witness_records=row_set_audit.get("witness_records"),
             residual_label="unknown",
             residual_reason=residual_reason,
         )
@@ -1618,8 +1771,20 @@ def extract_for_agreement_field(
         )
 
     row_config = spec.get("row_set_strategy", {"type": "prefix"})
+    if (
+        row_config.get("type") == RANK_AT_NODES_FAMILY_STRATEGY
+        and spec.get("certificate_mode") != MINOR_GCD_MODE
+    ):
+        raise ValueError(
+            f"{RANK_AT_NODES_FAMILY_STRATEGY} is only supported with "
+            f"certificate_mode={MINOR_GCD_MODE}"
+        )
     if row_config.get("type") == "rank_at_nodes":
         row_sets, row_set_audit = rank_pivot_row_sets_field(u, v, t, size, field)
+    elif row_config.get("type") == RANK_AT_NODES_FAMILY_STRATEGY:
+        row_sets, row_set_audit = rank_node_family_row_sets_field(
+            u, v, t, size, field, row_config
+        )
     else:
         row_sets = candidate_row_sets(t, size, row_config)
         row_set_audit = {
@@ -1787,6 +1952,8 @@ def extract_for_agreement_field(
                 rank_pivot_nodes_required=row_set_audit.get(
                     "nodes_required_for_singularity_proof"
                 ),
+                rank_pivot_test_nodes=row_set_audit.get("test_nodes"),
+                rank_pivot_witness_records=row_set_audit.get("witness_records"),
                 minor_family_records=family_records,
             )
         residual_reason = row_set_audit.get(
@@ -1808,6 +1975,8 @@ def extract_for_agreement_field(
             rank_pivot_nodes_required=row_set_audit.get(
                 "nodes_required_for_singularity_proof"
             ),
+            rank_pivot_test_nodes=row_set_audit.get("test_nodes"),
+            rank_pivot_witness_records=row_set_audit.get("witness_records"),
             residual_label="unknown",
             residual_reason=residual_reason,
         )
@@ -2056,6 +2225,14 @@ def result_to_packet_item(
                 "gcd_degree": degree,
                 "certificate_mode": MINOR_GCD_MODE,
             }
+            if result.rank_pivot_test_nodes is not None:
+                item["extractor_audit"]["rank_pivot_test_nodes"] = (
+                    result.rank_pivot_test_nodes
+                )
+            if result.rank_pivot_witness_records is not None:
+                item["extractor_audit"]["rank_pivot_witness_records"] = (
+                    result.rank_pivot_witness_records
+                )
             if result.row_set_source and result.row_set_source.endswith(
                 f"_minor_gcd_{ZERO_U_GCD_METHOD}"
             ):
@@ -2257,6 +2434,14 @@ def result_to_packet_item_field(
                 "field_size": field.size,
                 "certificate_mode": MINOR_GCD_MODE,
             }
+            if result.rank_pivot_test_nodes is not None:
+                item["extractor_audit"]["rank_pivot_test_nodes"] = (
+                    result.rank_pivot_test_nodes
+                )
+            if result.rank_pivot_witness_records is not None:
+                item["extractor_audit"]["rank_pivot_witness_records"] = (
+                    result.rank_pivot_witness_records
+                )
             if result.row_set_source and result.row_set_source.endswith(
                 f"_minor_gcd_{ZERO_U_GCD_METHOD}"
             ):
