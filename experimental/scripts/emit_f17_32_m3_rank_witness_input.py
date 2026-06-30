@@ -80,6 +80,7 @@ def build_input(
     agreement: int = DEFAULT_AGREEMENT,
     agreement_max: int | None = None,
     witness_prefix_count: int | None = None,
+    syndrome_scalar: int = 0,
 ) -> dict[str, Any]:
     descriptor = load_json(ROW_DESCRIPTOR)
     field = Field(P, MODULUS)
@@ -103,25 +104,57 @@ def build_input(
         raise ValueError("witness prefix count exceeds the pinned domain size")
     nodes = [field.decode(value) for value in domain_encodings[:prefix_count]]
     v_syndrome = power_sum_syndrome(field, nodes, length)
+    scalar = field.normalize(syndrome_scalar)
+    u_syndrome = [
+        field.encode(field.mul(scalar, field.decode(value))) for value in v_syndrome
+    ]
+    proportional = any(value != 0 for value in scalar)
     if agreement_max is None:
         domain_description = (
             "order-512 subgroup from the pinned F_17^32 row descriptor; "
             "synthetic M3 rank-witness syndrome uses the first j+1 elements"
-        )
-        line_description = (
-            "synthetic M3 rank witness: u=0 and v_m=sum_i x_i^m for "
-            "the first j+1 descriptor-domain elements"
         )
     else:
         domain_description = (
             "order-512 subgroup from the pinned F_17^32 row descriptor; "
             f"fixed synthetic M3 window syndrome uses the first {prefix_count} elements"
         )
+    if proportional:
+        line_description = (
+            f"synthetic M3 proportional witness: u={syndrome_scalar}*v and "
+            f"v_m=sum_i x_i^m for the first {prefix_count} descriptor-domain elements"
+        )
+    elif agreement_max is None:
+        line_description = (
+            "synthetic M3 rank witness: u=0 and v_m=sum_i x_i^m for "
+            "the first j+1 descriptor-domain elements"
+        )
+    else:
         line_description = (
             "fixed synthetic M3 window witness: u=0 and v_m=sum_i x_i^m for "
             f"the first {prefix_count} descriptor-domain elements"
         )
-    return {
+    line_syndrome = {
+        "u": u_syndrome,
+        "v": v_syndrome,
+        "field_encoding": "base-p low-to-high integer",
+        "description": line_description,
+        "length": length,
+        "witness_slope": 1,
+        "witness_node_prefix_count": prefix_count,
+        "rank_witness_reason": (
+            "u=c*v makes the prefix determinant a nonzero scalar multiple "
+            "of (Z+c)^(j+1)"
+            if proportional
+            else "u=0 makes the prefix determinant a nonzero monomial in the slope"
+        ),
+    }
+    if proportional:
+        line_syndrome["scalar_multiple_u_over_v"] = field.encode(scalar)
+        line_syndrome["tangent_root"] = field.encode(
+            tuple((-coeff) % field.p for coeff in scalar)
+        )
+    packet = {
         "schema_version": "regular-hankel-minor-extractor-input-v1",
         "row": {
             "n": N,
@@ -140,19 +173,10 @@ def build_input(
         "agreement_threshold": agreement,
         "exact_agreements": agreements,
         "sampler": "finite_affine_line",
-        "certificate_mode": "zero_u_monomial_roots",
-        "line_syndrome": {
-            "u": [0 for _ in range(length)],
-            "v": v_syndrome,
-            "field_encoding": "base-p low-to-high integer",
-            "description": line_description,
-            "length": length,
-            "witness_slope": 1,
-            "witness_node_prefix_count": prefix_count,
-            "rank_witness_reason": (
-                "u=0 makes the prefix determinant a nonzero monomial in the slope"
-            ),
-        },
+        "certificate_mode": (
+            "scalar_multiple_roots" if proportional else "zero_u_monomial_roots"
+        ),
+        "line_syndrome": line_syndrome,
         "row_set_strategy": {"type": "prefix"},
         "status": "PROVED / AUDIT",
         "nonclaims": [
@@ -162,6 +186,18 @@ def build_input(
             "not a quotient/tangent subtraction table",
         ],
     }
+    if proportional:
+        packet["claim_scope"] = {
+            "row_data": "synthetic_syndrome_pencil",
+            "threshold_role": "synthetic_stress",
+            "root_status": "closed_form",
+            "may_be_used_for_threshold_pinning": False,
+            "note": (
+                "Proportional-pencil closed-form replay; the unique root is "
+                "a tangent/common-code-line slope, not an aperiodic row bound."
+            ),
+        }
+    return packet
 
 
 def check_input(
@@ -169,8 +205,11 @@ def check_input(
     agreement: int,
     agreement_max: int | None,
     witness_prefix_count: int | None,
+    syndrome_scalar: int,
 ) -> None:
-    expected = render(build_input(agreement, agreement_max, witness_prefix_count))
+    expected = render(
+        build_input(agreement, agreement_max, witness_prefix_count, syndrome_scalar)
+    )
     actual = path.read_text(encoding="utf-8")
     if actual != expected:
         raise AssertionError(f"rank-witness input mismatch: {path}")
@@ -207,12 +246,23 @@ def main() -> None:
     parser.add_argument("--agreement", type=int, default=DEFAULT_AGREEMENT)
     parser.add_argument("--agreement-max", type=int)
     parser.add_argument("--witness-prefix-count", type=int)
+    parser.add_argument(
+        "--syndrome-scalar",
+        type=int,
+        default=0,
+        help="emit the proportional pencil u=c*v; default c=0 keeps zero-u mode",
+    )
     parser.add_argument("--write", type=Path, help="write deterministic input JSON")
     parser.add_argument("--check", type=Path, help="check deterministic input JSON")
     parser.add_argument("--json", action="store_true", help="print input JSON")
     args = parser.parse_args()
 
-    packet = build_input(args.agreement, args.agreement_max, args.witness_prefix_count)
+    packet = build_input(
+        args.agreement,
+        args.agreement_max,
+        args.witness_prefix_count,
+        args.syndrome_scalar,
+    )
     if args.write:
         args.write.parent.mkdir(parents=True, exist_ok=True)
         args.write.write_text(render(packet), encoding="utf-8")
@@ -222,6 +272,7 @@ def main() -> None:
             args.agreement,
             args.agreement_max,
             args.witness_prefix_count,
+            args.syndrome_scalar,
         )
     if args.json:
         print(render(packet), end="")

@@ -30,6 +30,9 @@ experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/
 
 experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/
   f17_32_n512_k256_a421_426_fixed_prefix92_packet.json
+
+experimental/data/certificates/hankel-f17-32-m3-proportional-a426/
+  f17_32_n512_k256_a426_scalar5_packet.json
 ```
 
 ## Construction
@@ -155,6 +158,26 @@ the fixed top-window packet's single synthetic root `{0}` is the
 zero-codeword tangent/common-code-line slope, leaving no residual synthetic
 aperiodic root after that paid branch is removed.
 
+The proportional A=426 packet is a shifted version of the same closed-form
+mechanism.  It sets `u=5v`, so
+
+```text
+H(u)+Z H(v) = (5+Z) H(v),
+Delta_426(Z) = c_426 (Z+5)^87,
+```
+
+and the exact finite root union is `{12}`.  The sidecar
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-proportional-a426/
+  f17_32_n512_k256_a426_scalar5_subtraction.json
+```
+
+verifies that this root is the common-code-line slope `Z=-5`, because the
+stored syndrome of `f+Zg` vanishes there.  Thus it is removed by the tangent
+ledger and leaves no synthetic aperiodic residual.  This is still a synthetic
+packet, not actual worst-case M3 row data.
+
 The F1 denominator audit is recorded in
 `experimental/notes/f1/f17_32_m3_extension_denominator_audit.md`.  It checks
 that the line-value lift is genuinely `F_17^32`-valued, so finite affine
@@ -198,6 +221,21 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json
+
+python3 experimental/scripts/emit_f17_32_m3_rank_witness_input.py \
+  --agreement 426 \
+  --syndrome-scalar 5 \
+  --check experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_scalar5_rank_witness_input.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_scalar5_rank_witness_input.json \
+  --check experimental/data/certificates/hankel-f17-32-m3-proportional-a426/f17_32_n512_k256_a426_scalar5_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/hankel-f17-32-m3-proportional-a426/f17_32_n512_k256_a426_scalar5_packet.json
+
+python3 experimental/scripts/verify_f17_32_m3_proportional_slope_subtraction.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-proportional-a426/f17_32_n512_k256_a426_scalar5_subtraction.json
 
 python3 experimental/scripts/verify_f17_32_m3_line_value_lift.py \
   --check experimental/data/certificates/hankel-f17-32-m3-line-value-lift/f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json

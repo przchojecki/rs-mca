@@ -27,6 +27,7 @@ from typing import Any
 DEFAULT_MAX_ROOT_ENUM_FIELD_SIZE = 10000
 DEFAULT_MAX_BAD_SLOPE_SUBSETS = 200000
 ZERO_U_MONOMIAL_MODE = "zero_u_monomial_roots"
+SCALAR_MULTIPLE_MODE = "scalar_multiple_roots"
 
 
 def mod(value: int, prime: int) -> int:
@@ -74,6 +75,14 @@ def poly_eval(poly: list[int], value: int, prime: int) -> int:
 
 def poly_degree(poly: list[int], prime: int) -> int:
     return len(trim(poly, prime)) - 1
+
+
+def linear_power_mod(constant: int, exponent: int, prime: int) -> list[int]:
+    out = [1]
+    factor = [constant % prime, 1]
+    for _ in range(exponent):
+        out = poly_mul(out, factor, prime)
+    return out
 
 
 def hash_json(value: Any) -> str:
@@ -457,6 +466,18 @@ def fpoly_degree(
     return len(fpoly_trim(poly, field)) - 1
 
 
+def fpoly_linear_power(
+    constant: tuple[int, ...],
+    exponent: int,
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    out = [field.one]
+    factor = [constant, field.one]
+    for _ in range(exponent):
+        out = fpoly_mul(out, factor, field)
+    return out
+
+
 def determinant_field(
     matrix: list[list[tuple[int, ...]]], field: PolynomialBasisField
 ) -> tuple[int, ...]:
@@ -826,9 +847,12 @@ def extract_for_agreement(
             "node": None,
             "nodes_tested": None,
         }
-    if spec.get("certificate_mode") == ZERO_U_MONOMIAL_MODE:
-        if any(value % prime for value in u):
-            raise ValueError("zero_u_monomial_roots needs u=0")
+    if spec.get("certificate_mode") in {ZERO_U_MONOMIAL_MODE, SCALAR_MULTIPLE_MODE}:
+        scalar = 0
+        if spec.get("certificate_mode") == SCALAR_MULTIPLE_MODE:
+            scalar = int(spec["line_syndrome"]["scalar_multiple_u_over_v"]) % prime
+        if any((u_i - scalar * v_i) % prime for u_i, v_i in zip(u, v)):
+            raise ValueError("scalar-multiple closed-form roots need u=c*v")
         tested = 0
         for row_set in row_sets:
             tested += 1
@@ -844,8 +868,8 @@ def extract_for_agreement(
                 t,
                 "regular_minor",
                 row_set,
-                [0] * size + [leading],
-                [0],
+                poly_scale(linear_power_mod(scalar, size, prime), leading, prime),
+                [(-scalar) % prime],
                 None,
                 tested,
                 row_set_source=row_set_audit["source"],
@@ -872,7 +896,7 @@ def extract_for_agreement(
                 "nodes_required_for_singularity_proof"
             ),
             residual_label="unknown",
-            residual_reason="all tested zero-u monomial leading coefficients vanished",
+            residual_reason="all tested scalar-multiple leading coefficients vanished",
         )
     if (
         spec.get("certificate_mode") == "rank_witness_bound"
@@ -1021,9 +1045,19 @@ def extract_for_agreement_field(
             "node": None,
             "nodes_tested": None,
         }
-    if spec.get("certificate_mode") == ZERO_U_MONOMIAL_MODE:
-        if any(not field.is_zero(value) for value in u):
-            raise ValueError("zero_u_monomial_roots needs u=0")
+    if spec.get("certificate_mode") in {ZERO_U_MONOMIAL_MODE, SCALAR_MULTIPLE_MODE}:
+        scalar = field.zero
+        if spec.get("certificate_mode") == SCALAR_MULTIPLE_MODE:
+            scalar = normalize_field_input_value(
+                spec["line_syndrome"]["scalar_multiple_u_over_v"],
+                field,
+                syndrome_encoding,
+            )
+        if any(
+            field.sub(u_i, field.mul(scalar, v_i)) != field.zero
+            for u_i, v_i in zip(u, v)
+        ):
+            raise ValueError("scalar-multiple closed-form roots need u=c*v")
         tested = 0
         for row_set in row_sets:
             tested += 1
@@ -1039,8 +1073,8 @@ def extract_for_agreement_field(
                 t,
                 "regular_minor",
                 row_set,
-                [field.zero] * size + [leading],
-                [field.zero],
+                fpoly_scale(fpoly_linear_power(scalar, size, field), leading, field),
+                [field.neg(scalar)],
                 None,
                 tested,
                 row_set_source=row_set_audit["source"],
@@ -1067,7 +1101,7 @@ def extract_for_agreement_field(
                 "nodes_required_for_singularity_proof"
             ),
             residual_label="unknown",
-            residual_reason="all tested zero-u monomial leading coefficients vanished",
+            residual_reason="all tested scalar-multiple leading coefficients vanished",
         )
     if (
         spec.get("certificate_mode") == "rank_witness_bound"
@@ -1430,6 +1464,8 @@ def build_packet(spec: dict[str, Any], input_ref: str | None = None) -> dict[str
                 if spec.get("certificate_mode") == "rank_witness_bound"
                 else "zero-u monomial closed-form root certificate over the base prime field"
                 if spec.get("certificate_mode") == ZERO_U_MONOMIAL_MODE
+                else "scalar-multiple closed-form root certificate over the base prime field"
+                if spec.get("certificate_mode") == SCALAR_MULTIPLE_MODE
                 else "numeric determinant interpolation over the base prime field"
             ),
             "input_ref": input_ref,
@@ -1528,6 +1564,8 @@ def build_packet_field(
                 if spec.get("certificate_mode") == "rank_witness_bound"
                 else "zero-u monomial closed-form root certificate over a polynomial-basis finite field"
                 if spec.get("certificate_mode") == ZERO_U_MONOMIAL_MODE
+                else "scalar-multiple closed-form root certificate over a polynomial-basis finite field"
+                if spec.get("certificate_mode") == SCALAR_MULTIPLE_MODE
                 else "numeric determinant interpolation over a polynomial-basis finite field"
             ),
             "input_ref": input_ref,

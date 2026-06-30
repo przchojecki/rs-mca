@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-06-30 - F17^32 proportional Hankel root subtraction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/emit_f17_32_m3_rank_witness_input.py`;
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `experimental/scripts/verify_f17_32_m3_proportional_slope_subtraction.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_scalar5_rank_witness_input.json`;
+  `experimental/data/certificates/hankel-f17-32-m3-proportional-a426/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for a synthetic F17^32 packet.
+- **What is being added:** A closed-form proportional-pencil certificate:
+  for `u=c v`, the regular determinant has shape
+  `Delta_A(Z)=det(H(v)_R)(Z+c)^(j+1)`.  The new `A=426`, `c=5` packet over the
+  pinned `F_17^32` row has exact root union `{12}`, and the subtraction
+  verifier checks that this root is paid by the tangent/common-code-line ledger
+  because the stored syndrome vanishes at `Z=-5`.
+- **How it is useful:** Generalizes the zero-slope synthetic packet to
+  nonzero common-code-line roots and makes repeated-root closed-form packets
+  more audit-ready without enumerating `F_17^32`.
+- **What to do next:** Use this only as a removed-ledger check inside actual
+  M3 row packets; it is not itself a worst-case MCA bound.
+
 ### 2026-06-30 - v9 packet claim-scope guardrail
 
 - **Agent/model:** AllenGrahamHart / Codex.

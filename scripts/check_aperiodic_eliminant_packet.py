@@ -79,6 +79,25 @@ def poly_eval_mod(coefficients: list[int], value: int, modulus: int) -> int:
     return total
 
 
+def poly_mul_mod_coefficients(
+    left: list[int], right: list[int], modulus: int
+) -> list[int]:
+    out = [0] * (len(left) + len(right) - 1)
+    for i, left_coeff in enumerate(left):
+        for j, right_coeff in enumerate(right):
+            out[i + j] = (out[i + j] + left_coeff * right_coeff) % modulus
+    return out
+
+
+def poly_power_mod_coefficients(
+    factor: list[int], exponent: int, modulus: int
+) -> list[int]:
+    out = [1]
+    for _ in range(exponent):
+        out = poly_mul_mod_coefficients(out, factor, modulus)
+    return out
+
+
 def require_exact_roots(
     listed_roots: list[int],
     actual_roots: list[int],
@@ -110,6 +129,28 @@ def monomial_exact_roots(
     if len(nonzero_indices) != 1:
         return None
     return [0] if nonzero_indices[0] > 0 else []
+
+
+def repeated_root_power_exact_roots_mod(
+    coefficients: list[int],
+    roots: list[int],
+    modulus: int,
+) -> list[int] | None:
+    if len(roots) != 1:
+        return None
+    coefficients = [coefficient % modulus for coefficient in coefficients]
+    degree = poly_degree(coefficients)
+    if degree <= 0:
+        return [] if coefficients[0] % modulus else None
+    root = roots[0] % modulus
+    leading = coefficients[degree] % modulus
+    expected = poly_power_mod_coefficients([(-root) % modulus, 1], degree, modulus)
+    expected = [(leading * coefficient) % modulus for coefficient in expected]
+    while len(expected) < len(coefficients):
+        expected.append(0)
+    if expected[: len(coefficients)] == coefficients:
+        return [root]
+    return None
 
 
 def parse_prime_field(field_name: str) -> int | None:
@@ -341,6 +382,37 @@ class PolynomialBasisField:
             total = self.add(total, self.mul(self.decode(coefficient), power))
             power = self.mul(power, root)
         return total
+
+
+def repeated_root_power_exact_roots_extension(
+    coefficients: list[int],
+    roots: list[int],
+    field: PolynomialBasisField,
+) -> list[int] | None:
+    if len(roots) != 1:
+        return None
+    degree = poly_degree(coefficients)
+    if degree <= 0:
+        return [] if coefficients and field.decode(coefficients[0]) != field.zero else None
+    root = field.decode(roots[0])
+    leading = field.decode(coefficients[degree])
+    factor = [field.sub(field.zero, root), field.one]
+    expected = [field.one]
+    for _ in range(degree):
+        next_expected = [field.zero] * (len(expected) + 1)
+        for i, left_coeff in enumerate(expected):
+            for j, right_coeff in enumerate(factor):
+                next_expected[i + j] = field.add(
+                    next_expected[i + j], field.mul(left_coeff, right_coeff)
+                )
+        expected = next_expected
+    expected = [field.mul(leading, coefficient) for coefficient in expected]
+    decoded = [field.decode(coefficient) for coefficient in coefficients]
+    while len(expected) < len(decoded):
+        expected.append(field.zero)
+    if expected[: len(decoded)] == decoded:
+        return [roots[0]]
+    return None
 
 
 def first_matching_key(data: dict[str, Any], *patterns: str) -> str | None:
@@ -905,6 +977,11 @@ def validate_pivot_eliminant_target(
             exact_monomial_roots = monomial_exact_roots(coefficients, modulus)
             if exact_monomial_roots is not None:
                 require_exact_roots(roots, exact_monomial_roots, location)
+            exact_repeated_roots = repeated_root_power_exact_roots_mod(
+                coefficients, roots, modulus
+            )
+            if exact_repeated_roots is not None:
+                require_exact_roots(roots, exact_repeated_roots, location)
 
     if extension_field is not None:
         for coefficient in coefficients:
@@ -933,6 +1010,11 @@ def validate_pivot_eliminant_target(
             exact_monomial_roots = monomial_exact_roots(coefficients)
             if exact_monomial_roots is not None:
                 require_exact_roots(roots, exact_monomial_roots, location)
+            exact_repeated_roots = repeated_root_power_exact_roots_extension(
+                coefficients, roots, extension_field
+            )
+            if exact_repeated_roots is not None:
+                require_exact_roots(roots, exact_repeated_roots, location)
 
     return roots
 
@@ -1028,6 +1110,13 @@ def validate_regular_minor(
                 require_exact_roots(
                     roots, exact_monomial_roots, f"A={item.get('A')}"
                 )
+            exact_repeated_roots = repeated_root_power_exact_roots_mod(
+                coefficients, roots, modulus
+            )
+            if exact_repeated_roots is not None:
+                require_exact_roots(
+                    roots, exact_repeated_roots, f"A={item.get('A')}"
+                )
     if extension_field is not None:
         for coefficient in coefficients:
             extension_field.decode(coefficient)
@@ -1056,6 +1145,13 @@ def validate_regular_minor(
             if exact_monomial_roots is not None:
                 require_exact_roots(
                     roots, exact_monomial_roots, f"A={item.get('A')}"
+                )
+            exact_repeated_roots = repeated_root_power_exact_roots_extension(
+                coefficients, roots, extension_field
+            )
+            if exact_repeated_roots is not None:
+                require_exact_roots(
+                    roots, exact_repeated_roots, f"A={item.get('A')}"
                 )
 
     return roots, bad_slopes
