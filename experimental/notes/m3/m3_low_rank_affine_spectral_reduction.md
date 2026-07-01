@@ -487,6 +487,45 @@ The remaining spectral-disjointness target can therefore be viewed as a
 weighted Gram problem for a rank-one displacement inverse, not merely as a
 family of unrelated small dense matrices.
 
+## Shift-Two Core Displacement
+
+The displacement identity also relates the weighted Gram cores for different
+row shifts.  Put
+
+```text
+B_h = diag(alpha^(-h*i) gamma_i^2)_{0 <= i < m},
+S_h = T_{m,r} B_h T_{m,r}^T.
+```
+
+Since `V B_h V = B_{h+2}`, the identity `T-U T V=1_r 1_m^T` gives
+
+```text
+S_h - U S_{h+2} U
+  = T B_h 1_m 1_r^T
+    + 1_r 1_m^T B_h T^T
+    - 1_r 1_m^T B_h 1_m 1_r^T.
+```
+
+Equivalently, if
+
+```text
+w_h = T B_h 1_m,
+c_h = 1_m^T B_h 1_m,
+```
+
+then
+
+```text
+S_h - U S_{h+2} U = w_h 1_r^T + 1_r w_h^T - c_h 1_r 1_r^T.
+```
+
+The right-hand side has rank at most `2`.  Thus consecutive even shifts of the
+core kernel are related by a diagonal rescaling plus a rank-two correction
+(and the same statement holds separately for odd shifts).  The original target
+only uses `h=0,1`, but this identity is useful for any future pivot packet that
+uses more contiguous row shifts: all such cores live in two low-displacement
+chains rather than as unrelated dense matrices.
+
 ## Window Normalization
 
 Two elementary invariances reduce the consecutive-subgroup case to a normalized
