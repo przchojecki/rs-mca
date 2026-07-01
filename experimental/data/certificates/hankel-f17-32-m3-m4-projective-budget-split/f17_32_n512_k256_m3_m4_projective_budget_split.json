@@ -1,0 +1,625 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 127,
+      "maximal_row_set_count": 129,
+      "minor_size": 128,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 129
+    },
+    {
+      "A": 386,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 126,
+      "maximal_row_set_count": 357760,
+      "minor_size": 127,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 130
+    },
+    {
+      "A": 387,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 125,
+      "maximal_row_set_count": 297602656,
+      "minor_size": 126,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 131
+    },
+    {
+      "A": 388,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 124,
+      "maximal_row_set_count": 117850651776,
+      "minor_size": 125,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 132
+    },
+    {
+      "A": 389,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 123,
+      "maximal_row_set_count": 27212042858000,
+      "minor_size": 124,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 133
+    },
+    {
+      "A": 390,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 122,
+      "maximal_row_set_count": 4110502764804800,
+      "minor_size": 123,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 134
+    },
+    {
+      "A": 391,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 121,
+      "maximal_row_set_count": 437531400061434000,
+      "minor_size": 122,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 135
+    },
+    {
+      "A": 392,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 120,
+      "maximal_row_set_count": 34569147570568156800,
+      "minor_size": 121,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 136
+    },
+    {
+      "A": 393,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 119,
+      "maximal_row_set_count": 2106811614990104173800,
+      "minor_size": 120,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 137
+    },
+    {
+      "A": 394,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 118,
+      "maximal_row_set_count": 102014036094257675784000,
+      "minor_size": 119,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 138
+    },
+    {
+      "A": 395,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 117,
+      "maximal_row_set_count": 4017652788178848131293200,
+      "minor_size": 118,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 139
+    },
+    {
+      "A": 396,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 116,
+      "maximal_row_set_count": 131169217511293618831944000,
+      "minor_size": 117,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 140
+    },
+    {
+      "A": 397,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 115,
+      "maximal_row_set_count": 3606497635473018049784300280,
+      "minor_size": 116,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 141
+    },
+    {
+      "A": 398,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 114,
+      "maximal_row_set_count": 84624257908136115834824778080,
+      "minor_size": 115,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 142
+    },
+    {
+      "A": 399,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 113,
+      "maximal_row_set_count": 1713849656772535006039031373800,
+      "minor_size": 114,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 143
+    },
+    {
+      "A": 400,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 112,
+      "maximal_row_set_count": 30252210715675198558211547346560,
+      "minor_size": 113,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 144
+    },
+    {
+      "A": 401,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 111,
+      "maximal_row_set_count": 469396280848805045810886556130100,
+      "minor_size": 112,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 145
+    },
+    {
+      "A": 402,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 110,
+      "maximal_row_set_count": 6450057129781226982436652912470080,
+      "minor_size": 111,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 146
+    },
+    {
+      "A": 403,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 109,
+      "maximal_row_set_count": 79013199839820030534848998177758480,
+      "minor_size": 110,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 147
+    },
+    {
+      "A": 404,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 108,
+      "maximal_row_set_count": 867972262747820578345034878767819200,
+      "minor_size": 109,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 148
+    },
+    {
+      "A": 405,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 107,
+      "maximal_row_set_count": 8595571658102045129818116747602531480,
+      "minor_size": 108,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 149
+    },
+    {
+      "A": 406,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 106,
+      "maximal_row_set_count": 77103134474669507808999718333976196000,
+      "minor_size": 107,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 150
+    },
+    {
+      "A": 407,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 105,
+      "maximal_row_set_count": 629169365508704665489903257132350201400,
+      "minor_size": 106,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 151
+    },
+    {
+      "A": 408,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 104,
+      "maximal_row_set_count": 4688795937593084907665736021700474766400,
+      "minor_size": 105,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 152
+    },
+    {
+      "A": 409,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 103,
+      "maximal_row_set_count": 32026150823738481735395429076793421395500,
+      "minor_size": 104,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 153
+    },
+    {
+      "A": 410,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 102,
+      "maximal_row_set_count": 201149345722743342538860075330950367478560,
+      "minor_size": 103,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 154
+    },
+    {
+      "A": 411,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 101,
+      "maximal_row_set_count": 1165221082896806046310922025638106900143400,
+      "minor_size": 102,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 155
+    },
+    {
+      "A": 412,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 100,
+      "maximal_row_set_count": 6242760225944100272356697397964160604404640,
+      "minor_size": 101,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 156
+    },
+    {
+      "A": 413,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 99,
+      "maximal_row_set_count": 31012358678820676071040147443457924406028940,
+      "minor_size": 100,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 157
+    },
+    {
+      "A": 414,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 98,
+      "maximal_row_set_count": 143189733233596341882651762012459148338766000,
+      "minor_size": 99,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 158
+    },
+    {
+      "A": 415,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 97,
+      "maximal_row_set_count": 615833221538262299883830979737191107650414100,
+      "minor_size": 98,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 159
+    },
+    {
+      "A": 416,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 96,
+      "maximal_row_set_count": 2472162036282630021039034757367935629277648000,
+      "minor_size": 97,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 160
+    },
+    {
+      "A": 417,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 95,
+      "maximal_row_set_count": 9280710221304286788116972549474771808276208850,
+      "minor_size": 96,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 161
+    },
+    {
+      "A": 418,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 94,
+      "maximal_row_set_count": 32639892664342891933241781340893634365063681600,
+      "minor_size": 95,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 162
+    },
+    {
+      "A": 419,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 93,
+      "maximal_row_set_count": 107721384890739488829123824395511067379158378000,
+      "minor_size": 94,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 163
+    },
+    {
+      "A": 420,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 92,
+      "maximal_row_set_count": 334131362067533191104582067782937347025574558400,
+      "minor_size": 93,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 164
+    },
+    {
+      "A": 421,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 91,
+      "maximal_row_set_count": 975503377269082347317315797208746877874322983000,
+      "minor_size": 92,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 165
+    },
+    {
+      "A": 422,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 90,
+      "maximal_row_set_count": 2684304068045662271753161595490447264666064972320,
+      "minor_size": 91,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 166
+    },
+    {
+      "A": 423,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 89,
+      "maximal_row_set_count": 6970842262831498554995351463887273937308644802520,
+      "minor_size": 90,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 167
+    },
+    {
+      "A": 424,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 88,
+      "maximal_row_set_count": 17104695717950707262500765033102171686482750635200,
+      "minor_size": 89,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 168
+    },
+    {
+      "A": 425,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 87,
+      "maximal_row_set_count": 39702427205817374681369445503532371039565903133340,
+      "minor_size": 88,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 169
+    },
+    {
+      "A": 426,
+      "endpoint_sensitive_direction_rank": 6,
+      "finite_budget": 6,
+      "finite_safe_direction_rank_max": 6,
+      "j": 86,
+      "maximal_row_set_count": 87268338377759025159166456763568067991758141474400,
+      "minor_size": 87,
+      "projective_budget": 6,
+      "projective_safe_without_endpoint_payment_rank_max": 5,
+      "t": 170
+    }
+  ],
+  "budget_decision_table": {
+    "combined_bound": {
+      "direction_rank": "r = rank H_{t,j}(v)",
+      "endpoint_indicator": "e_infty=0 if the infinity chart is empty or paid; e_infty<=1 always by the M5 projective kernel chart",
+      "finite_affine_numerator_bound": "B_ap_regular_finite <= r",
+      "hypothesis": "nonsingular regular bucket after tangent/common-code-line finite overlap removal",
+      "projective_numerator_bound": "B_ap_regular_projective <= r + e_infty"
+    },
+    "input_theorems": {
+      "finite_direction_rank_degree_cap": {
+        "certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
+        "statement": "In a nonsingular regular bucket, if r=rank H_{t,j}(v), then the canonical finite regular root count is at most r."
+      },
+      "projective_infinity_kernel_chart": {
+        "certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json",
+        "statement": "The projective endpoint [0:1] is empty under kernel containment and otherwise contributes at most one projective parameter."
+      }
+    },
+    "rank_cutoffs_for_f17_32_row": {
+      "endpoint_sensitive": {
+        "condition": "r = 6",
+        "finite_upper_bound": 6,
+        "projective_upper_bound_before_endpoint_payment": 7,
+        "safe_if": "the endpoint is empty/paid or the exact finite root table has at most 5 surviving roots"
+      },
+      "finite_safe": {
+        "condition": "r <= 6",
+        "safe_against_finite_sampler": true,
+        "upper_bound": 6
+      },
+      "projective_safe_without_endpoint_payment": {
+        "condition": "r <= 5",
+        "safe_against_projective_sampler": true,
+        "upper_bound": "r + 1 <= 6"
+      },
+      "root_table_needed": {
+        "condition": "r > 6",
+        "reason": "the rank cap alone exceeds the 2^-128 numerator budget"
+      }
+    }
+  },
+  "checks": [
+    "finite and projective 2^-128 budgets both equal 6",
+    "dependency windows are both 385..426",
+    "dependency row-set totals agree with this certificate",
+    "the projective endpoint is counted separately from finite affine roots",
+    "rank<=5 is projective-safe without quotient or endpoint subtraction",
+    "rank=6 is finite-safe but projective endpoint-sensitive"
+  ],
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512,
+    "full_domain_distinct": true
+  },
+  "nonclaims": [
+    "does not compute exact finite root tables for rank>6",
+    "does not prove the endpoint is paid in the rank=6 case",
+    "does not classify singular all-minor-zero buckets",
+    "does not claim a worst-case support-wise MCA row bound",
+    "does not duplicate synthetic low-rank quotient-image packets"
+  ],
+  "object": "M4 finite/projective direction-rank budget split for the F_17^32 M3 window",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "finite_affine_denominator": 2367911594760467245844106297320951247361,
+    "finite_budget": 6,
+    "k": 256,
+    "n": 512,
+    "projective_budget": 6,
+    "projective_denominator": 2367911594760467245844106297320951247362,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "f17-32-m3-m4-projective-budget-split-v1",
+  "source_artifacts": {
+    "direction_rank_degree_cap": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
+      "sha256": "ed76390f8a0cac98793e9da0d767787750559e3b5816432f4a4106d56ec93fd0"
+    },
+    "projective_infinity_kernel_chart": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json",
+      "sha256": "35f42c9da014b138fb12f02136a215f41cd52ef5236423c4b9240ddbd21e736c"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement_count": 42,
+    "all_minor_sizes_exceed_budget": true,
+    "dependencies_checked": 2,
+    "endpoint_sensitive_direction_rank": 6,
+    "finite_budget": 6,
+    "finite_safe_direction_rank_max": 6,
+    "projective_budget": 6,
+    "projective_safe_without_endpoint_payment_rank_max": 5
+  },
+  "theorem": {
+    "proof_skeleton": [
+      "The direction-rank degree cap bounds the canonical finite regular root table by r.",
+      "The M5 projective-infinity kernel chart separates the single endpoint [0:1] from finite affine roots.",
+      "That endpoint is empty under kernel containment and otherwise has projective parameter degree 1.",
+      "Therefore projective counting adds at most one parameter to the finite rank cap.",
+      "For q_line=17^32, both finite and projective 2^-128 budgets equal 6, so r<=5 is projective-safe without endpoint payment, while r=6 is endpoint-sensitive."
+    ],
+    "statement": "For any nonsingular M3 regular bucket, let r=rank H_{t,j}(v).  After finite tangent/common-code-line overlap is removed, the finite affine regular contribution is at most r.  For the projective sampler, the same bucket contributes at most r+e_infty, where e_infty is 0 if the projective-infinity chart is empty or paid and is always at most 1 by the M5 projective kernel chart."
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551
+  }
+}

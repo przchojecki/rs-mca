@@ -520,14 +520,34 @@ For an arbitrary regular pencil, if `r=rank H_{t,j}(v)`, then every maximal
 minor `det(H_R(u)+Z H_R(v))` has degree at most `r`; hence any nonsingular
 canonical regular gcd has degree at most `r`.  Since the finite-slope budget is
 `6`, direction rank at most `6` is finite-root budget safe at each exact
-agreement.  This does not close projective infinity for deficient direction
-rank; the projective endpoint criterion above handles that accounting.
+agreement.  This does not by itself close projective infinity for deficient
+direction rank; the projective endpoint criterion above handles that
+accounting.
 
 Replay:
 
 ```sh
 python3 experimental/scripts/verify_m1_hankel_direction_rank_degree_cap.py \
   --check experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json
+```
+
+The M4 projective budget split is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/
+  f17_32_n512_k256_m3_m4_projective_budget_split.json
+```
+
+It combines the finite direction-rank cap with the one-point projective
+infinity chart.  For this row the finite and projective budgets are both `6`.
+Therefore direction rank at most `5` is projective-safe without endpoint
+payment, while direction rank `6` is finite-safe but endpoint-sensitive.
+
+Replay:
+
+```sh
+python3 experimental/scripts/verify_m1_hankel_m4_projective_budget_split.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/f17_32_n512_k256_m3_m4_projective_budget_split.json
 ```
 
 The current M4 regular-bucket synthesis table is:
@@ -538,11 +558,12 @@ experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/
 ```
 
 It composes the zero-`u`, proportional, tangent-overlap, M5 finite-affine
-kernel, M5 regular-root rank-drop, projective-infinity, zero-`v`, M5 infinity-kernel,
-lower-rank-contained, and direction-rank certificates into one decision table.
-It marks the currently closed branches, the finite-safe low-direction-rank
-branch with exact finite-root and infinity-kernel accounting, and the residual
-branches still requiring root tables, quotient, extension, or subfield ledgers.
+kernel, M5 regular-root rank-drop, projective-infinity, zero-`v`, M5
+infinity-kernel, projective-budget, lower-rank-contained, and direction-rank
+certificates into one decision table.  It marks the currently closed branches,
+the projective-safe rank-`<=5` branch, the endpoint-sensitive rank-`6`
+boundary, and the residual branches still requiring root tables, quotient,
+extension, or subfield ledgers.
 
 Replay:
 

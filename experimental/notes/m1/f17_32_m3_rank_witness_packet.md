@@ -106,6 +106,9 @@ experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/
 experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/
   f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json
 
+experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/
+  f17_32_n512_k256_m3_m4_projective_budget_split.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/
   f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json
 ```
@@ -379,18 +382,24 @@ then every maximal row-set determinant
 the v10 canonical gcd over all nonzero maximal minors also has degree at most
 `r`, giving at most `r` finite roots before paid-ledger subtraction.  Since
 the finite-slope budget is `6`, every nonsingular exact bucket with direction
-rank at most `6` is finite-root budget safe.  Projective infinity remains
-governed by the separate infinity criterion above.
+rank at most `6` is finite-root budget safe.  The projective sampler has one
+additional possible endpoint, governed by the separate infinity criterion.
+
+The M4 projective-budget split composes these two facts.  A nonsingular
+non-proportional regular bucket with direction rank at most `5` is projective
+safe before endpoint payment because finite roots contribute at most `5` and
+`[0:1]` contributes at most one.  Direction rank exactly `6` is finite-safe but
+projective endpoint-sensitive: it needs endpoint empty/paid, or an exact finite
+root table with at most five surviving roots.
 
 The M4 regular-bucket synthesis certificate composes these local lemmas into a
 decision table.  The closed branches are zero-`v` with full-rank `H(u)` and
 proportional nonzero-`v` with full-rank `H(v)`; the zero-`u` full-rank branch is
 the `c=0` proportional subcase.  A genuinely non-proportional nonsingular
-finite bucket with direction rank at most `6` is finite-root budget safe and
-has zero finite tangent overlap, but projective infinity is still a singular
-endpoint unless separately closed.  Rank-deficient finite buckets,
-direction-rank-deficient infinity endpoints, high-rank non-proportional finite
-root tables, and quotient/extension overlaps remain named residual work.
+bucket with direction rank at most `5` is now projective-budget safe by the
+rank-plus-endpoint split.  Rank `6` is the endpoint-sensitive boundary.
+Rank-deficient finite buckets, high-rank non-proportional finite root tables,
+and quotient/extension overlaps remain named residual work.
 
 In the selected-minor packets, the chosen prefix determinant has the closed form
 
@@ -620,6 +629,9 @@ python3 experimental/scripts/verify_m1_hankel_direction_rank_degree_cap.py \
 
 python3 experimental/scripts/verify_m1_hankel_m5_projective_infinity_kernel_chart.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json
+
+python3 experimental/scripts/verify_m1_hankel_m4_projective_budget_split.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/f17_32_n512_k256_m3_m4_projective_budget_split.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json

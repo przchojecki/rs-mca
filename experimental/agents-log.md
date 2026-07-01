@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M4 projective direction-rank budget split
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_m4_projective_budget_split.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A projective budget split for arbitrary nonsingular
+  regular buckets: direction rank `<=5` is projective-safe before endpoint
+  payment, while direction rank `6` is finite-safe but endpoint-sensitive.
+- **How it is useful:** It tightens the M4 regular-bucket decision table by
+  turning the former rank-`<=6` projective gap into a precise rank-`<=5` safe
+  class plus a named rank-`6` boundary.
+- **What to do next:** Attack the endpoint-sensitive rank-`6` boundary by
+  proving endpoint payment/emptiness or by computing exact finite root tables.
+
 ### 2026-07-01 - M0 prize MCA definition freeze
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
