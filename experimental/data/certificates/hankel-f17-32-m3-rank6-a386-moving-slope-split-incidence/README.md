@@ -36,10 +36,12 @@ line component, e_G <= 71:
   projective total <= 6.
 ```
 
-Conic components are finite-safe for `e_G<=19` but remain one endpoint over the
-projective budget under this incidence bound.  Line components with
-`e_G>=72` also remain residual for a sharper split-locator, paid-ledger, or
-exact-root-table argument.
+For irreducible conics, a pair-overlap packing step gives the missing saving:
+two distinct `Q`-classes can share at most one non-forced external root line.
+Therefore six conic `Q`-classes are impossible for `e_G<=68`, and conic
+components are projective-safe in that range.  Line components with `e_G>=72`
+and conic components with `e_G>=69` remain residual for a sharper
+split-locator, paid-ledger, or exact-root-table argument.
 
 Replay:
 
@@ -53,7 +55,7 @@ Nonclaims:
 ```text
 does not prove every moving-slope component is a line;
 does not close line components with forced external split-root core >=72 in projective accounting;
-does not close irreducible conic moving-slope components;
+does not close irreducible conic moving-slope components with forced external split-root core >=69 in projective accounting;
 does not rule out another independent noncontained vector at the same finite slope;
 does not cover A=385;
 does not classify overlapping-support rank-6 pencils;

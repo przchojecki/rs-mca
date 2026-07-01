@@ -82,8 +82,9 @@ experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md
 handles the next non-slope-free branch by counting split-root hyperplane
 incidences on the moving component, using the base-support cap that nonzero
 `Q` has at most two roots on `X`.  It closes line components with forced
-external split-root core `e_G<=71` and leaves conics and large-external-core
-lines as residual.
+external split-root core `e_G<=71`.  A conic pair-overlap packing step closes
+irreducible conics with `e_G<=68`; large-external-core lines and conics remain
+residual.
 
 Replay:
 

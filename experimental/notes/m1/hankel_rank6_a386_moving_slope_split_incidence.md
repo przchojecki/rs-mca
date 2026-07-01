@@ -111,11 +111,33 @@ c = 1 and e_G <= 80
 ```
 
 For an irreducible conic component (`c=2`), the base-sharpened incidence budget
-is close but still not projective-safe.  At `e_G=0` it gives
-`floor(770/124)=6` finite `Q`-classes, and the endpoint then gives total `7`.
-The conic branch is finite-safe for `e_G<=19`, but remains residual for
-projective accounting unless a sharper split-locator, paid-ledger, or
-exact-root-table argument cuts it further.
+is close but not enough by itself: at `e_G=0` it gives `floor(770/124)=6`
+finite `Q`-classes, and the endpoint would give total `7`.  The missing saving
+comes from pair overlap.  Two distinct `Q`-classes on an irreducible conic can
+share at most one non-forced external root hyperplane; otherwise two distinct
+lines `E_s,E_t` would both pass through the same two points.
+
+Thus, if there are `M` valid `Q`-classes on the conic and each requires
+`R=124-e_G` non-forced external roots, the union of their external root lines
+has size at least
+
+```text
+M R - binomial(M,2).
+```
+
+Only `385-e_G` non-forced external root lines are available.  Six valid
+`Q`-classes are therefore impossible for `e_G<=68`, and seven valid
+`Q`-classes are impossible for `e_G<=76`.  Hence
+
+```text
+c = 2 and e_G <= 68
+  => finite slopes <= 5,
+     endpoint contribution = 1,
+     total projective contribution <= 6.
+```
+
+Irreducible conics with `e_G>=69` remain residual unless a sharper
+split-locator, paid-ledger, or exact-root-table argument cuts them further.
 
 Replay:
 
@@ -129,7 +151,7 @@ Nonclaims:
 ```text
 no proof that every moving-slope component is a line;
 no closure of line components with forced external split-root core >=72 in projective accounting;
-no closure of irreducible conic moving-slope components;
+no closure of irreducible conic moving-slope components with forced external split-root core >=69 in projective accounting;
 no exclusion of another independent noncontained vector at the same finite slope;
 no A=385 closure;
 no overlapping-support rank-6 classification;

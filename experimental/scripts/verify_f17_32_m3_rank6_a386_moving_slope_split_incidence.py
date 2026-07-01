@@ -18,7 +18,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v2"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v3"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -191,6 +191,54 @@ def external_table_row(
     return row
 
 
+def conic_packing_excludes(
+    candidate_count: int,
+    forced_external_core_size: int,
+    locator_degree: int,
+    base_root_cap: int,
+    external_root_count: int,
+) -> bool:
+    require(candidate_count >= 2, "candidate count must be at least two")
+    require(0 <= forced_external_core_size < locator_degree - base_root_cap, "core out of range")
+    required_external_roots = locator_degree - base_root_cap - forced_external_core_size
+    available_external_roots = external_root_count - forced_external_core_size
+    lower_union_bound = (
+        candidate_count * required_external_roots
+        - candidate_count * (candidate_count - 1) // 2
+    )
+    return lower_union_bound > available_external_roots
+
+
+def conic_packing_row(
+    forced_external_core_size: int,
+    locator_degree: int,
+    base_root_cap: int,
+    external_root_count: int,
+) -> dict[str, Any]:
+    required_external_roots = locator_degree - base_root_cap - forced_external_core_size
+    available_external_roots = external_root_count - forced_external_core_size
+
+    def lower_union(candidate_count: int) -> int:
+        return (
+            candidate_count * required_external_roots
+            - candidate_count * (candidate_count - 1) // 2
+        )
+
+    six_excluded = lower_union(6) > available_external_roots
+    seven_excluded = lower_union(7) > available_external_roots
+    return {
+        "forced_external_split_root_core_size": forced_external_core_size,
+        "required_nonforced_external_roots_per_valid_Q": required_external_roots,
+        "available_nonforced_external_root_lines": available_external_roots,
+        "lower_union_bound_for_6_Q_classes": lower_union(6),
+        "six_Q_classes_excluded": six_excluded,
+        "projective_safe_consequence": six_excluded,
+        "lower_union_bound_for_7_Q_classes": lower_union(7),
+        "seven_Q_classes_excluded": seven_excluded,
+        "finite_safe_consequence": seven_excluded,
+    }
+
+
 def build_certificate() -> dict[str, Any]:
     descriptor = load_json(ROW_DESCRIPTOR_REF)
     low_degree = load_json(LOW_DEGREE_TRANSFER_REF)
@@ -280,6 +328,16 @@ def build_certificate() -> dict[str, Any]:
     conic_finite_safe_external_core_max = max_external_core_for_bound(
         2, j_value, base_root_cap, external_root_count, FINITE_BUDGET
     )
+    conic_projective_safe_packing_external_core_max = max(
+        core
+        for core in range(j_value - base_root_cap)
+        if conic_packing_excludes(6, core, j_value, base_root_cap, external_root_count)
+    )
+    conic_finite_safe_packing_external_core_max = max(
+        core
+        for core in range(j_value - base_root_cap)
+        if conic_packing_excludes(7, core, j_value, base_root_cap, external_root_count)
+    )
 
     require(line_projective_safe_core_max == 48, "line projective threshold changed")
     require(line_finite_safe_core_max == 61, "line finite threshold changed")
@@ -300,6 +358,14 @@ def build_certificate() -> dict[str, Any]:
     require(
         conic_finite_safe_external_core_max == 19,
         "base-sharpened conic finite threshold changed",
+    )
+    require(
+        conic_projective_safe_packing_external_core_max == 68,
+        "conic packing projective threshold changed",
+    )
+    require(
+        conic_finite_safe_packing_external_core_max == 76,
+        "conic packing finite threshold changed",
     )
 
     unrefined_sample_rows = [
@@ -358,6 +424,33 @@ def build_certificate() -> dict[str, Any]:
             external_root_count,
         ),
         external_table_row(2, j_value - base_root_cap, j_value, base_root_cap, external_root_count),
+    ]
+    conic_packing_sample_rows = [
+        conic_packing_row(0, j_value, base_root_cap, external_root_count),
+        conic_packing_row(
+            conic_projective_safe_packing_external_core_max,
+            j_value,
+            base_root_cap,
+            external_root_count,
+        ),
+        conic_packing_row(
+            conic_projective_safe_packing_external_core_max + 1,
+            j_value,
+            base_root_cap,
+            external_root_count,
+        ),
+        conic_packing_row(
+            conic_finite_safe_packing_external_core_max,
+            j_value,
+            base_root_cap,
+            external_root_count,
+        ),
+        conic_packing_row(
+            conic_finite_safe_packing_external_core_max + 1,
+            j_value,
+            base_root_cap,
+            external_root_count,
+        ),
     ]
 
     return {
@@ -471,8 +564,28 @@ def build_certificate() -> dict[str, Any]:
                 "For an irreducible conic c=2, the base-sharpened budget gives "
                 "six finite Q-classes at e_G=0 and finite safety through e_G<=19, "
                 "but the projective endpoint still makes total seven at best.  "
-                "Conics therefore remain residual for a sharper split, paid, or "
-                "exact-root-table argument."
+                "The conic pair-overlap packing lemma below supplies the needed "
+                "extra saving through e_G<=68."
+            ),
+            "conic_pair_overlap_packing": (
+                "On an irreducible conic, two distinct Q-classes can share at most "
+                "one non-forced external root hyperplane: two shared external "
+                "roots would give two distinct lines through the same two points.  "
+                "Thus M valid Q-classes, each requiring R=124-e_G non-forced "
+                "external roots, force a union of at least M*R-binomial(M,2) "
+                "external root lines.  Since only 385-e_G are available, six "
+                "Q-classes are impossible for e_G<=68 and seven are impossible "
+                "for e_G<=76."
+            ),
+            "conic_projective_safe_threshold": (
+                "For irreducible conics, e_G<=68 gives at most five finite "
+                "Q-classes by pair-overlap packing.  Adding the endpoint-uniform "
+                "contribution gives projective total at most 6."
+            ),
+            "conic_remaining_residual": (
+                "Irreducible conics with forced external split-root core e_G>=69 "
+                "remain residual for a sharper split, paid, or exact-root-table "
+                "argument."
             ),
         },
         "budget_formula": {
@@ -517,10 +630,17 @@ def build_certificate() -> dict[str, Any]:
                 "base_sharpened_smallest_finite_bound_by_this_budget": (
                     external_q_class_bound(2, 0, j_value, base_root_cap, external_root_count)
                 ),
+                "pair_overlap_projective_safe_if_external_core_at_most": (
+                    conic_projective_safe_packing_external_core_max
+                ),
+                "pair_overlap_finite_safe_if_external_core_at_most": (
+                    conic_finite_safe_packing_external_core_max
+                ),
             },
         },
         "unrefined_sample_budget_rows": unrefined_sample_rows,
         "base_sharpened_sample_budget_rows": base_sharpened_sample_rows,
+        "conic_pair_overlap_sample_rows": conic_packing_sample_rows,
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -542,11 +662,15 @@ def build_certificate() -> dict[str, Any]:
             "positive_dimensional_component_forced_core_upper_bound": j_value - 1,
             "line_projective_safe_for_external_core_at_most": line_projective_safe_external_core_max,
             "line_finite_safe_for_external_core_at_most": line_finite_safe_external_core_max,
-            "conic_finite_safe_for_external_core_at_most": conic_finite_safe_external_core_max,
-            "conic_projective_closed_by_this_incidence_budget": False,
+            "conic_projective_safe_for_external_core_at_most": (
+                conic_projective_safe_packing_external_core_max
+            ),
+            "conic_finite_safe_for_external_core_at_most": (
+                conic_finite_safe_packing_external_core_max
+            ),
             "remaining_unclosed_residuals": [
                 "moving-slope line component with forced external split-root core >=72 for projective accounting",
-                "irreducible moving-slope conic component; base-sharpened incidence is one endpoint over budget at best",
+                "irreducible moving-slope conic component with forced external split-root core >=69 for projective accounting",
                 "possible independent noncontained vectors at slopes also admitting a slope-free vector",
             ],
         },
@@ -563,12 +687,13 @@ def build_certificate() -> dict[str, Any]:
             "base-sharpened line projective-safe threshold is e<=71",
             "base-sharpened line finite-safe threshold is e<=80",
             "base-sharpened conic finite-safe threshold is e<=19",
-            "conic components are still not projective-closed by this incidence budget",
+            "conic pair-overlap packing excludes six Q-classes for e<=68",
+            "conic pair-overlap packing excludes seven Q-classes for e<=77",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",
             "does not close line components with forced external split-root core >=72 in projective accounting",
-            "does not close irreducible conic moving-slope components",
+            "does not close irreducible conic moving-slope components with forced external split-root core >=69 in projective accounting",
             "does not rule out another independent noncontained vector at the same finite slope",
             "does not cover A=385",
             "does not classify overlapping-support rank-6 pencils",
@@ -590,7 +715,7 @@ def print_summary(certificate: dict[str, Any]) -> None:
     print("F_17^32 M3 rank-6 A=386 moving-slope split-incidence budget")
     print(
         "line projective safe external core<= {line_projective_safe_for_external_core_at_most}; "
-        "conic projective closed={conic_projective_closed_by_this_incidence_budget}".format(
+        "conic projective safe external core<= {conic_projective_safe_for_external_core_at_most}".format(
             **summary
         )
     )

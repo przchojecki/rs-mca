@@ -313,8 +313,9 @@ core `r_G`, the unrefined finite source classes are bounded by
 `floor(c(512-r_G)/(126-r_G))`.  The packet then uses the base-support cap
 `deg Q<3` to sharpen this to `floor(c(385-e_G)/(124-e_G))` for forced external
 core `e_G`.  Thus line components with `e_G<=71` are projective-safe after
-adding the endpoint.  Large-external-core lines and conic components remain
-residual.
+adding the endpoint.  For irreducible conics, pair-overlap packing closes the
+projective accounting for `e_G<=68`.  Large-external-core lines and conics
+remain residual.
 
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets

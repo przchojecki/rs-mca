@@ -114,6 +114,11 @@ where `e_G` is the forced external split-root core.  This closes line
 components with `e_G<=71` in projective accounting and leaves large-external-
 core lines and irreducible conics as named residuals.
 
+For irreducible conics, the same companion adds a pair-overlap packing step:
+two distinct `Q`-classes can share at most one non-forced external root line.
+This closes conic components with `e_G<=68` in projective accounting, leaving
+only large-external-core conics as residual.
+
 The other cases remain residual:
 
 ```text

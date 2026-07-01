@@ -60,7 +60,8 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-in
 applies the split-locator divisor gate to the moving-slope component.  It
 uses the base-support fact that nonzero `Q` has at most two roots on `X` and
 closes line components whose forced external split-root core has size at most
-`71` in projective accounting; large-external-core lines and irreducible conics
+`71` in projective accounting.  For irreducible conics, pair-overlap packing
+closes forced external core up to `68`; large-external-core lines and conics
 remain residual.
 
 Replay:

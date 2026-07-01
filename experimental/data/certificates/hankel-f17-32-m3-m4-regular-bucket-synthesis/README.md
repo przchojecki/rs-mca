@@ -232,8 +232,9 @@ irreducible component `G` has degree `c` and forced split-root core `r_G`, its
 unrefined finite source classes are bounded by `floor(c(512-r_G)/(126-r_G))`.
 Using the base-support cap that `deg Q<3`, this sharpens to
 `floor(c(385-e_G)/(124-e_G))` for forced external split-root core `e_G`.  Line
-components with `e_G<=71` are projective-safe after the endpoint; large-
-external-core lines and conics remain residual.
+components with `e_G<=71` are projective-safe after the endpoint.  For
+irreducible conics, pair-overlap packing closes projective accounting for
+`e_G<=68`; large-external-core lines and conics remain residual.
 
 The rank-node dichotomy packet
 

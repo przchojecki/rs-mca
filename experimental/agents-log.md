@@ -50,7 +50,8 @@ Keep entries concise and link to the relevant files.
   `floor(c(385-e_G)/(124-e_G))` for forced external split-root core `e_G`.
 - **How it is useful:** It rules out an identically split positive-dimensional
   component and closes line components with `e_G<=71` in projective accounting;
-  large-external-core lines and irreducible conics are now the named residuals.
+  a pair-overlap packing step also closes irreducible conics with `e_G<=68`.
+  Large-external-core lines and conics are now the named residuals.
 - **What to do next:** Try to classify or pay the large-core line case, then
   attack irreducible moving conics with exact root tables or a sharper divisor
   incidence argument.
