@@ -56,6 +56,18 @@ endpoint `[0:1]`.  Thus a finite-affine rank-`<=6` bucket is finite-budget safe,
 but the projective sampler still needs either a smaller finite root table, an
 endpoint payment, or a separate projective budget comparison.
 
+For finite affine roots, the M5 kernel chart gives a per-root filter:
+
+```text
+z survives the ambient affine noncontainment test
+  iff ker(H(u)+zH(v)) is not contained in ker H(v).
+```
+
+If the containment holds, that root contributes nothing to the support-wise
+noncontainment numerator.  If containment fails, it contributes at most the
+single finite parameter `z` before split-locator, quotient, and extension
+audits.
+
 This is not a worst-case row bound.  It is the current M4 decision table for
 regular buckets after composing the proved local certificates.
 

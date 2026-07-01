@@ -342,6 +342,7 @@
     "all dependency windows match 385..426",
     "all dependency row-set totals agree where supplied",
     "the decision table separates closed, finite-safe, and residual cases",
+    "finite affine roots are assigned a per-root M5 kernel filter",
     "projective infinity is classified by the M5 kernel-containment chart",
     "projective infinity and finite affine accounting are not conflated"
   ],
@@ -371,13 +372,17 @@
         "B_ap_regular_finite_before_other_ledgers": "<= j+1",
         "B_tan_finite": 0,
         "condition": "rank H_{t,j}(v)=j+1",
-        "next_step": "actual finite root table unless degree/root table is within budget"
+        "finite_affine_kernel_certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json",
+        "finite_affine_kernel_filter": "apply after actual finite root table",
+        "next_step": "actual finite root table and kernel filter unless degree/root table is within budget"
       },
       "direction_rank_at_most_budget": {
         "B_ap_regular_finite_before_other_ledgers": "<= 6",
         "B_tan_finite": 0,
         "condition": "rank H_{t,j}(v)<= 6 and regular bucket nonsingular",
         "finite_affine_impact_of_infinity": 0,
+        "finite_affine_kernel_certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json",
+        "finite_affine_kernel_filter": "apply per root",
         "finite_budget_safe": true,
         "next_step": "quotient/extension overlap audit and projective budget comparison",
         "projective_infinity_extra_parameters": "<= 1",
@@ -388,8 +393,10 @@
         "B_ap_regular_finite_before_other_ledgers": "<= rank H_{t,j}(v)",
         "B_tan_finite": 0,
         "condition": "6 < rank H_{t,j}(v) <= j",
+        "finite_affine_kernel_certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json",
+        "finite_affine_kernel_filter": "apply after actual finite root table",
         "finite_budget_safe_by_rank_cap_alone": false,
-        "next_step": "actual finite root table plus quotient/extension overlap audit",
+        "next_step": "actual finite root table, kernel filter, plus quotient/extension overlap audit",
         "projective_infinity_extra_parameters": "<= 1",
         "projective_infinity_status": "empty_or_one_point_by_m5_kernel_chart"
       },
@@ -458,6 +465,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-lower-rank-contained/f17_32_n512_k256_m3_lower_rank_contained.json",
       "sha256": "f838bd62a4e8763de0fb50604f0ad452c99bedc46fbf2fc18434ed2001838798"
     },
+    "f17_32_n512_k256_m3_m5_finite_affine_kernel_chart": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json",
+      "sha256": "5ec3adaaf281cbc7c5a2e26ba9f0b75724dc5bf8eba5f0ac4c5daceeefc462d3"
+    },
     "f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json",
       "sha256": "35f42c9da014b138fb12f02136a215f41cd52ef5236423c4b9240ddbd21e736c"
@@ -487,9 +498,10 @@
   "summary": {
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 8,
+    "dependencies_checked": 9,
     "finite_safe_projective_kernel_classified_case_count": 1,
     "finite_slope_budget": 6,
+    "m5_finite_affine_filter_count": 1,
     "m5_projective_infinity_closed_case_count": 1,
     "projective_budget_gap_case_count": 1,
     "residual_case_count": 3
@@ -503,6 +515,10 @@
     "finite_safe_with_projective_kernel_accounting": [
       "non-proportional nonsingular finite buckets with direction rank <= 6; projective infinity is now empty or a one-point dimension-degree fallback by the M5 kernel chart"
     ],
+    "m5_finite_affine_filter": [
+      "for every finite root z, the ambient affine noncontainment chart is empty iff ker(H(u)+zH(v)) subset ker H(v)",
+      "if the kernel containment fails, the root contributes at most the single finite parameter z before split-locator and quotient/extension audits"
+    ],
     "m5_projective_infinity_closed_by_kernel_chart": [
       "proportional rank-deficient direction: infinity empty because ker H(v) subset ker H(u)",
       "arbitrary rank-deficient direction: infinity empty iff ker H(v) subset ker H(u), otherwise at most the single endpoint [0:1]"
@@ -510,7 +526,7 @@
     "not_a_row_bound": "This table composes proved local lemmas; it is not a worst-case support-wise MCA upper bound until every residual bucket is closed or assigned to a paid ledger.",
     "still_requires_m5_or_other_ledgers": [
       "rank-deficient finite regular buckets not covered by a paid family",
-      "non-proportional finite buckets with direction rank > 6 unless exact root tables improve the bound",
+      "non-proportional finite buckets with direction rank > 6 unless exact root tables plus kernel filters improve the bound",
       "quotient, quotient-image, extension, and subfield overlap for future non-proportional root tables"
     ]
   },

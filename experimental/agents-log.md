@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M5 finite-affine kernel chart
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_m5_finite_affine_kernel_chart.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the ambient finite-affine noncontainment chart; AUDIT
+  update for the M4 synthesis table.
+- **What is being added:** A per-root finite-affine filter: for
+  `M_z=H(u)+zH(v)`, the chart `M_z ell=0, H(v)ell!=0` is empty iff
+  `ker M_z subset ker H(v)`, equivalently
+  `rank stack(M_z,H(v)) = rank M_z`.  If containment fails, the fixed root
+  contributes at most one finite parameter.
+- **How it is useful:** Future regular root tables can subtract contained
+  roots before charging them to the aperiodic support-wise numerator.  This is
+  the finite-affine companion to the projective-infinity kernel chart.
+- **What to do next:** Compute or certify actual finite root tables for
+  non-proportional regular buckets, then apply the kernel filter and quotient
+  or extension overlap audits.
+
 ### 2026-07-01 - M5 projective-infinity kernel chart
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

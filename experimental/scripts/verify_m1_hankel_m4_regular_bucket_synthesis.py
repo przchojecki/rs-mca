@@ -47,6 +47,10 @@ TANGENT_OVERLAP_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-finite-tangent-overlap/"
     "f17_32_n512_k256_m3_finite_tangent_overlap_criterion.json"
 )
+M5_FINITE_AFFINE_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/"
+    "f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json"
+)
 PROJECTIVE_INFINITY_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/"
     "f17_32_n512_k256_m3_projective_infinity_rank_criterion.json"
@@ -73,6 +77,7 @@ EXPECTED_SCHEMAS = {
     ZERO_U_REF: "f17-32-m3-zero-u-rank-dichotomy-v1",
     PROPORTIONAL_REF: "hankel-proportional-pencil-tangent-lemma-v1",
     TANGENT_OVERLAP_REF: "f17-32-m3-finite-tangent-overlap-criterion-v1",
+    M5_FINITE_AFFINE_REF: "f17-32-m3-m5-finite-affine-kernel-chart-v1",
     PROJECTIVE_INFINITY_REF: "f17-32-m3-projective-infinity-rank-criterion-v1",
     ZERO_V_REF: "f17-32-m3-zero-v-projective-endpoint-v1",
     DIRECTION_RANK_REF: "f17-32-m3-direction-rank-degree-cap-v1",
@@ -152,6 +157,8 @@ def regular_bucket_decision_table() -> dict[str, Any]:
                 "B_ap_regular_finite_before_other_ledgers": f"<= {BUDGET}",
                 "B_tan_finite": 0,
                 "finite_budget_safe": True,
+                "finite_affine_kernel_filter": "apply per root",
+                "finite_affine_kernel_certificate_ref": M5_FINITE_AFFINE_REF,
                 "projective_infinity_status": "empty_or_one_point_by_m5_kernel_chart",
                 "projective_infinity_extra_parameters": "<= 1",
                 "finite_affine_impact_of_infinity": 0,
@@ -166,16 +173,20 @@ def regular_bucket_decision_table() -> dict[str, Any]:
                 "B_ap_regular_finite_before_other_ledgers": "<= rank H_{t,j}(v)",
                 "B_tan_finite": 0,
                 "finite_budget_safe_by_rank_cap_alone": False,
+                "finite_affine_kernel_filter": "apply after actual finite root table",
+                "finite_affine_kernel_certificate_ref": M5_FINITE_AFFINE_REF,
                 "projective_infinity_status": "empty_or_one_point_by_m5_kernel_chart",
                 "projective_infinity_extra_parameters": "<= 1",
-                "next_step": "actual finite root table plus quotient/extension overlap audit",
+                "next_step": "actual finite root table, kernel filter, plus quotient/extension overlap audit",
             },
             "direction_full_rank": {
                 "condition": "rank H_{t,j}(v)=j+1",
                 "B_ap_regular_finite_before_other_ledgers": "<= j+1",
                 "B_tan_finite": 0,
+                "finite_affine_kernel_filter": "apply after actual finite root table",
+                "finite_affine_kernel_certificate_ref": M5_FINITE_AFFINE_REF,
                 "B_ap_projective_infinity": 0,
-                "next_step": "actual finite root table unless degree/root table is within budget",
+                "next_step": "actual finite root table and kernel filter unless degree/root table is within budget",
             },
         },
         "known_paid_singular_example": {
@@ -287,9 +298,13 @@ def build_certificate() -> dict[str, Any]:
                 "proportional rank-deficient direction: infinity empty because ker H(v) subset ker H(u)",
                 "arbitrary rank-deficient direction: infinity empty iff ker H(v) subset ker H(u), otherwise at most the single endpoint [0:1]",
             ],
+            "m5_finite_affine_filter": [
+                "for every finite root z, the ambient affine noncontainment chart is empty iff ker(H(u)+zH(v)) subset ker H(v)",
+                "if the kernel containment fails, the root contributes at most the single finite parameter z before split-locator and quotient/extension audits",
+            ],
             "still_requires_m5_or_other_ledgers": [
                 "rank-deficient finite regular buckets not covered by a paid family",
-                "non-proportional finite buckets with direction rank > 6 unless exact root tables improve the bound",
+                "non-proportional finite buckets with direction rank > 6 unless exact root tables plus kernel filters improve the bound",
                 "quotient, quotient-image, extension, and subfield overlap for future non-proportional root tables",
             ],
             "not_a_row_bound": (
@@ -311,6 +326,7 @@ def build_certificate() -> dict[str, Any]:
             "closed_case_count": 3,
             "finite_safe_projective_kernel_classified_case_count": 1,
             "m5_projective_infinity_closed_case_count": 1,
+            "m5_finite_affine_filter_count": 1,
             "projective_budget_gap_case_count": 1,
             "residual_case_count": 3,
             "dependencies_checked": len(EXPECTED_SCHEMAS),
@@ -320,6 +336,7 @@ def build_certificate() -> dict[str, Any]:
             "all dependency windows match 385..426",
             "all dependency row-set totals agree where supplied",
             "the decision table separates closed, finite-safe, and residual cases",
+            "finite affine roots are assigned a per-root M5 kernel filter",
             "projective infinity is classified by the M5 kernel-containment chart",
             "projective infinity and finite affine accounting are not conflated",
         ],

@@ -72,6 +72,9 @@ experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/
 experimental/data/certificates/hankel-f17-32-m3-finite-tangent-overlap/
   f17_32_n512_k256_m3_finite_tangent_overlap_criterion.json
 
+experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/
+  f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json
+
 experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/
   f17_32_n512_k256_m3_projective_infinity_rank_criterion.json
 
@@ -277,6 +280,21 @@ uses the full stored syndrome.  A finite slope is tangent/common-code-line iff
 finite tangent overlap at all, while a nondegenerate proportional pencil has
 the unique paid slope `z=-c`.
 
+The M5 finite-affine kernel chart gives the per-root noncontainment filter.  For
+a fixed finite root `z`, put
+
+```text
+M_z = H_{t,j}(u) + z H_{t,j}(v).
+```
+
+The ambient affine pivot chart `M_z ell=0, H(v)ell!=0` is empty exactly when
+`ker M_z subset ker H(v)`, equivalently
+`rank stack(M_z,H(v)) = rank M_z`.  If containment fails, the fixed root `z`
+contributes at most one finite parameter before the split-locator,
+quotient-image, and extension audits.  This packet does not compute finite
+root tables; it explains how future root tables should subtract contained
+roots.
+
 The projective-infinity rank criterion supplies the corresponding endpoint
 rule.  For the homogenized pencil
 
@@ -472,6 +490,9 @@ python3 experimental/scripts/verify_m1_hankel_proportional_pencil_tangent_lemma.
 
 python3 experimental/scripts/verify_m1_hankel_finite_tangent_overlap_criterion.py \
   --check experimental/data/certificates/hankel-f17-32-m3-finite-tangent-overlap/f17_32_n512_k256_m3_finite_tangent_overlap_criterion.json
+
+python3 experimental/scripts/verify_m1_hankel_m5_finite_affine_kernel_chart.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json
 
 python3 experimental/scripts/verify_m1_hankel_projective_infinity_rank_criterion.py \
   --check experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/f17_32_n512_k256_m3_projective_infinity_rank_criterion.json

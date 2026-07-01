@@ -406,6 +406,27 @@ python3 experimental/scripts/verify_m1_hankel_finite_tangent_overlap_criterion.p
   --check experimental/data/certificates/hankel-f17-32-m3-finite-tangent-overlap/f17_32_n512_k256_m3_finite_tangent_overlap_criterion.json
 ```
 
+The M5 finite-affine kernel filter is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/
+  f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json
+```
+
+For a fixed finite root `z`, set `M_z=H(u)+zH(v)`.  The ambient affine
+noncontainment chart `M_z ell=0, H(v)ell!=0` is empty iff
+`ker M_z subset ker H(v)`, equivalently iff
+`rank stack(M_z,H(v)) = rank M_z`.  If containment fails, the root contributes
+at most the single finite parameter `z`.  This is a per-root filter for future
+root tables, not a root table by itself.
+
+Replay:
+
+```sh
+python3 experimental/scripts/verify_m1_hankel_m5_finite_affine_kernel_chart.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json
+```
+
 The projective-infinity endpoint criterion is:
 
 ```text
@@ -491,12 +512,12 @@ experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/
   f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json
 ```
 
-It composes the zero-`u`, proportional, tangent-overlap, projective-infinity,
-zero-`v`, M5 infinity-kernel, lower-rank-contained, and direction-rank
-certificates into one decision table.  It marks the currently closed branches,
-the finite-safe low-direction-rank branch with exact infinity-kernel
-accounting, and the residual branches still requiring M5 affine pivots, root
-tables, quotient, extension, or subfield ledgers.
+It composes the zero-`u`, proportional, tangent-overlap, M5 finite-affine
+kernel, projective-infinity, zero-`v`, M5 infinity-kernel,
+lower-rank-contained, and direction-rank certificates into one decision table.
+It marks the currently closed branches, the finite-safe low-direction-rank
+branch with exact finite-root and infinity-kernel accounting, and the residual
+branches still requiring root tables, quotient, extension, or subfield ledgers.
 
 Replay:
 
