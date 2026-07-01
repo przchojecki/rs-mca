@@ -78,6 +78,13 @@
       "status": "PROVED / AUDIT"
     },
     {
+      "name": "synthetic_low_rank2_11_projective_infinity",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json",
+      "schema_version": "f17-32-m3-low-rank2-11-projective-infinity-v1",
+      "sha256": "f7457c3ceea4493286386d547adae12b97589d80434af4f2139f0cbb9470817b",
+      "status": "PROVED / AUDIT"
+    },
+    {
       "name": "synthetic_low_rank6_11_tangent_exclusion",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json",
       "schema_version": "f17-32-m3-low-rank6-11-tangent-exclusion-v1",
@@ -174,6 +181,7 @@
       "the synthetic rank-7 low-rank slack family has exact Frobenius-gcd root histogram {0:16, 1:15, 2:6, 3:4, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 8",
       "the synthetic rank-8 low-rank slack family has exact Frobenius-gcd root histogram {0:22, 1:10, 2:7, 3:2, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 9",
       "the synthetic rank-9..11 low-rank slack sweep has exact Frobenius-gcd root histograms {9:{0:17, 1:17, 2:6, 3:2}, 10:{0:8, 1:23, 2:9, 3:2}, 11:{0:15, 1:16, 2:5, 3:6}}, so finite-root slack gives at most 4 projective regular roots per checked pair despite degree-only projective bounds 10, 11, and 12",
+      "the synthetic rank-2..11 low-rank endpoint audit proves the projective infinity point [0:1] is an actual support-wise noncontained endpoint in every checked rank/agreement row, witnessed on D minus the update nodes",
       "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
       "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
       "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
@@ -4112,6 +4120,111 @@
     "subgroup_syndrome_section_status": "proved explicit inverse-Fourier section for subgroup syndrome vectors",
     "syndrome_pencil_realizability_status": "all length-256 u,v pencils in the M3 window are realized by explicit line values on H",
     "synthetic_family_status": "proved closed-form root union {0} for all 42 synthetic pencils",
+    "synthetic_low_rank2_11_projective_infinity_contribution_sum": 420,
+    "synthetic_low_rank2_11_projective_infinity_rank_summaries": {
+      "10": {
+        "agreement_count": 42,
+        "endpoint_support_size": 502,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 138,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 10,
+        "thresholds_covered": true
+      },
+      "11": {
+        "agreement_count": 42,
+        "endpoint_support_size": 501,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 139,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 11,
+        "thresholds_covered": true
+      },
+      "2": {
+        "agreement_count": 42,
+        "endpoint_support_size": 510,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 130,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 2,
+        "thresholds_covered": true
+      },
+      "3": {
+        "agreement_count": 42,
+        "endpoint_support_size": 509,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 131,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 3,
+        "thresholds_covered": true
+      },
+      "4": {
+        "agreement_count": 42,
+        "endpoint_support_size": 508,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 132,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 4,
+        "thresholds_covered": true
+      },
+      "5": {
+        "agreement_count": 42,
+        "endpoint_support_size": 507,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 133,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 5,
+        "thresholds_covered": true
+      },
+      "6": {
+        "agreement_count": 42,
+        "endpoint_support_size": 506,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 134,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 6,
+        "thresholds_covered": true
+      },
+      "7": {
+        "agreement_count": 42,
+        "endpoint_support_size": 505,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 135,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 7,
+        "thresholds_covered": true
+      },
+      "8": {
+        "agreement_count": 42,
+        "endpoint_support_size": 504,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 136,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 8,
+        "thresholds_covered": true
+      },
+      "9": {
+        "agreement_count": 42,
+        "endpoint_support_size": 503,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 137,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 9,
+        "thresholds_covered": true
+      }
+    },
+    "synthetic_low_rank2_11_projective_infinity_status": "proved that the projective endpoint [0:1] is an actual support-wise noncontained endpoint for every rank/agreement row in the synthetic low-rank ladder at ranks 2..11",
+    "synthetic_low_rank2_11_projective_infinity_support_minimum": 501,
     "synthetic_low_rank2_common_code_line_tangent_overlap": 0,
     "synthetic_low_rank2_degree_bound_sum": 84,
     "synthetic_low_rank2_exact_root_count_sum": 40,

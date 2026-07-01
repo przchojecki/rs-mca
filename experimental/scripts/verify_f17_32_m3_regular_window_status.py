@@ -69,6 +69,10 @@ LOW_RANK9_11_SLACK_SWEEP_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank9-11-slack-sweep/"
     "f17_32_n512_k256_m3_low_rank9_11_slack_sweep_certificate.json"
 )
+LOW_RANK2_11_PROJECTIVE_INFINITY_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/"
+    "f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json"
+)
 LOW_RANK6_11_TANGENT_EXCLUSION_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/"
     "f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json"
@@ -164,6 +168,7 @@ def validate_inputs(
     low_rank7_slack_family: dict[str, Any],
     low_rank8_slack_family: dict[str, Any],
     low_rank9_11_slack_sweep: dict[str, Any],
+    low_rank2_11_projective_infinity: dict[str, Any],
     low_rank6_11_tangent_exclusion: dict[str, Any],
     low_rank6_11_subfield_exclusion: dict[str, Any],
     top_packet: dict[str, Any],
@@ -820,6 +825,64 @@ def validate_inputs(
         == plan["budget_context"]["degree_bound_sum"],
         "rank-9..11 low-rank slack sweep aggregate mismatch",
     )
+    require(
+        low_rank2_11_projective_infinity["schema_version"]
+        == "f17-32-m3-low-rank2-11-projective-infinity-v1",
+        "rank-2..11 projective infinity schema mismatch",
+    )
+    require(
+        low_rank2_11_projective_infinity["agreement_range"]
+        == [AGREEMENT_MIN, AGREEMENT_MAX],
+        "rank-2..11 projective infinity window mismatch",
+    )
+    require(
+        low_rank2_11_projective_infinity["construction"]["ranks"]
+        == [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        "rank-2..11 projective infinity rank list mismatch",
+    )
+    require(
+        low_rank2_11_projective_infinity["aggregate"]["record_count"] == 420
+        and low_rank2_11_projective_infinity["deterministic_records"][
+            "record_count"
+        ]
+        == 420
+        and low_rank2_11_projective_infinity["aggregate"][
+            "projective_infinity_contribution_sum"
+        ]
+        == 420
+        and low_rank2_11_projective_infinity["aggregate"][
+            "minimum_endpoint_support_size"
+        ]
+        == 501
+        and low_rank2_11_projective_infinity["aggregate"][
+            "maximum_agreement_threshold"
+        ]
+        == AGREEMENT_MAX
+        and low_rank2_11_projective_infinity["aggregate"][
+            "maximum_vandermonde_column_count"
+        ]
+        == 139
+        and low_rank2_11_projective_infinity["aggregate"][
+            "syndrome_length"
+        ]
+        == 256
+        and low_rank2_11_projective_infinity["aggregate"][
+            "all_endpoint_noncontainment_checks_pass"
+        ]
+        is True,
+        "rank-2..11 projective infinity aggregate mismatch",
+    )
+    for rank in [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]:
+        summary = low_rank2_11_projective_infinity["aggregate"]["rank_summaries"][
+            str(rank)
+        ]
+        require(
+            summary["agreement_count"] == 42
+            and summary["endpoint_support_size"] == 512 - rank
+            and summary["projective_infinity_contribution_sum"] == 42
+            and summary["thresholds_covered"] is True,
+            f"rank-{rank} projective infinity summary mismatch",
+        )
     require(
         low_rank6_11_tangent_exclusion["schema_version"]
         == "f17-32-m3-low-rank6-11-tangent-exclusion-v1",
@@ -1805,6 +1868,9 @@ def build_status() -> dict[str, Any]:
     low_rank7_slack_family = load_json(LOW_RANK7_SLACK_FAMILY_REF)
     low_rank8_slack_family = load_json(LOW_RANK8_SLACK_FAMILY_REF)
     low_rank9_11_slack_sweep = load_json(LOW_RANK9_11_SLACK_SWEEP_REF)
+    low_rank2_11_projective_infinity = load_json(
+        LOW_RANK2_11_PROJECTIVE_INFINITY_REF
+    )
     low_rank6_11_tangent_exclusion = load_json(
         LOW_RANK6_11_TANGENT_EXCLUSION_REF
     )
@@ -1832,6 +1898,7 @@ def build_status() -> dict[str, Any]:
         low_rank7_slack_family,
         low_rank8_slack_family,
         low_rank9_11_slack_sweep,
+        low_rank2_11_projective_infinity,
         low_rank6_11_tangent_exclusion,
         low_rank6_11_subfield_exclusion,
         top_packet,
@@ -1911,6 +1978,11 @@ def build_status() -> dict[str, Any]:
             "synthetic_low_rank9_11_slack_sweep",
             LOW_RANK9_11_SLACK_SWEEP_REF,
             "f17-32-m3-low-rank9-11-slack-sweep-v1",
+        ),
+        artifact_record(
+            "synthetic_low_rank2_11_projective_infinity",
+            LOW_RANK2_11_PROJECTIVE_INFINITY_REF,
+            "f17-32-m3-low-rank2-11-projective-infinity-v1",
         ),
         artifact_record(
             "synthetic_low_rank6_11_tangent_exclusion",
@@ -2179,6 +2251,24 @@ def build_status() -> dict[str, Any]:
                 "but exact finite-root slack lowers every checked pair to at "
                 "most 4 projective regular roots"
             ),
+            "synthetic_low_rank2_11_projective_infinity_status": (
+                "proved that the projective endpoint [0:1] is an actual "
+                "support-wise noncontained endpoint for every rank/agreement "
+                "row in the synthetic low-rank ladder at ranks 2..11"
+            ),
+            "synthetic_low_rank2_11_projective_infinity_rank_summaries": (
+                low_rank2_11_projective_infinity["aggregate"]["rank_summaries"]
+            ),
+            "synthetic_low_rank2_11_projective_infinity_support_minimum": (
+                low_rank2_11_projective_infinity["aggregate"][
+                    "minimum_endpoint_support_size"
+                ]
+            ),
+            "synthetic_low_rank2_11_projective_infinity_contribution_sum": (
+                low_rank2_11_projective_infinity["aggregate"][
+                    "projective_infinity_contribution_sum"
+                ]
+            ),
             "synthetic_low_rank6_11_tangent_exclusion_status": (
                 "proved that all 238 finite roots counted in the rank-6..11 "
                 "synthetic low-rank slack certificates have zero "
@@ -2285,6 +2375,7 @@ def build_status() -> dict[str, Any]:
                 "the synthetic rank-7 low-rank slack family has exact Frobenius-gcd root histogram {0:16, 1:15, 2:6, 3:4, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 8",
                 "the synthetic rank-8 low-rank slack family has exact Frobenius-gcd root histogram {0:22, 1:10, 2:7, 3:2, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 9",
                 "the synthetic rank-9..11 low-rank slack sweep has exact Frobenius-gcd root histograms {9:{0:17, 1:17, 2:6, 3:2}, 10:{0:8, 1:23, 2:9, 3:2}, 11:{0:15, 1:16, 2:5, 3:6}}, so finite-root slack gives at most 4 projective regular roots per checked pair despite degree-only projective bounds 10, 11, and 12",
+                "the synthetic rank-2..11 low-rank endpoint audit proves the projective infinity point [0:1] is an actual support-wise noncontained endpoint in every checked rank/agreement row, witnessed on D minus the update nodes",
                 "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
                 "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
                 "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
@@ -2349,6 +2440,10 @@ def print_summary(status: dict[str, Any]) -> None:
     print(
         "rank-9..11 low-rank slack: "
         f"{summary['synthetic_low_rank9_11_slack_sweep_status']}"
+    )
+    print(
+        "rank-2..11 low-rank infinity: "
+        f"{summary['synthetic_low_rank2_11_projective_infinity_status']}"
     )
     print(
         "rank-6..11 low-rank tangent: "

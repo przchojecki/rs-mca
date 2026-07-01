@@ -1,0 +1,250 @@
+{
+  "aggregate": {
+    "agreement_count": 42,
+    "all_endpoint_noncontainment_checks_pass": true,
+    "all_thresholds_covered": true,
+    "all_vandermonde_independence_checks_pass": true,
+    "maximum_agreement_threshold": 426,
+    "maximum_vandermonde_column_count": 139,
+    "minimum_endpoint_support_size": 501,
+    "projective_infinity_contribution_per_record": 1,
+    "projective_infinity_contribution_sum": 420,
+    "projective_point": "[0:1]",
+    "rank_count": 10,
+    "rank_summaries": {
+      "10": {
+        "agreement_count": 42,
+        "endpoint_support_size": 502,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 138,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 10,
+        "thresholds_covered": true
+      },
+      "11": {
+        "agreement_count": 42,
+        "endpoint_support_size": 501,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 139,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 11,
+        "thresholds_covered": true
+      },
+      "2": {
+        "agreement_count": 42,
+        "endpoint_support_size": 510,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 130,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 2,
+        "thresholds_covered": true
+      },
+      "3": {
+        "agreement_count": 42,
+        "endpoint_support_size": 509,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 131,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 3,
+        "thresholds_covered": true
+      },
+      "4": {
+        "agreement_count": 42,
+        "endpoint_support_size": 508,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 132,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 4,
+        "thresholds_covered": true
+      },
+      "5": {
+        "agreement_count": 42,
+        "endpoint_support_size": 507,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 133,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 5,
+        "thresholds_covered": true
+      },
+      "6": {
+        "agreement_count": 42,
+        "endpoint_support_size": 506,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 134,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 6,
+        "thresholds_covered": true
+      },
+      "7": {
+        "agreement_count": 42,
+        "endpoint_support_size": 505,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 135,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 7,
+        "thresholds_covered": true
+      },
+      "8": {
+        "agreement_count": 42,
+        "endpoint_support_size": 504,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 136,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 8,
+        "thresholds_covered": true
+      },
+      "9": {
+        "agreement_count": 42,
+        "endpoint_support_size": 503,
+        "maximum_threshold": 426,
+        "maximum_vandermonde_column_count": 137,
+        "minimum_threshold": 385,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 9,
+        "thresholds_covered": true
+      }
+    },
+    "record_count": 420,
+    "syndrome_length": 256
+  },
+  "agreement_range": [
+    385,
+    426
+  ],
+  "construction": {
+    "base_nodes": "first j+1 descriptor-domain elements",
+    "certificate_mode": "low_rank_projective_infinity_endpoint",
+    "projective_point": "[0:1]",
+    "ranks": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "update_nodes": "first s nodes after the base prefix"
+  },
+  "deterministic_records": {
+    "first_record": {
+      "A": 385,
+      "base_node_count": 128,
+      "base_node_range": [
+        0,
+        127
+      ],
+      "endpoint_co_support": "update nodes Y",
+      "endpoint_support_size": 510,
+      "j": 127,
+      "projective_infinity_contribution": 1,
+      "projective_point": "[0:1]",
+      "rank": 2,
+      "support_wise_noncontainment_audit": {
+        "f_explained_on_D_minus_Y": false,
+        "g_explained_on_D_minus_Y": true,
+        "reason_f": "Syn(f)=u lies in W_X and W_X intersects W_Y trivially because the scaled Vandermonde columns on X union Y are independent",
+        "reason_g": "Syn(g)=v lies in the parity-column span W_Y; equivalently the locator L_Y gives the syndrome recurrence on D minus Y",
+        "status": "support_wise_noncontained"
+      },
+      "t": 129,
+      "threshold_covered": true,
+      "update_node_count": 2,
+      "update_node_range": [
+        128,
+        129
+      ],
+      "vandermonde_independence_audit": {
+        "column_count": 130,
+        "column_sets": "X union Y",
+        "domain_points_distinct": true,
+        "status": "independent",
+        "syndrome_length": 256
+      }
+    },
+    "last_record": {
+      "A": 426,
+      "base_node_count": 87,
+      "base_node_range": [
+        0,
+        86
+      ],
+      "endpoint_co_support": "update nodes Y",
+      "endpoint_support_size": 501,
+      "j": 86,
+      "projective_infinity_contribution": 1,
+      "projective_point": "[0:1]",
+      "rank": 11,
+      "support_wise_noncontainment_audit": {
+        "f_explained_on_D_minus_Y": false,
+        "g_explained_on_D_minus_Y": true,
+        "reason_f": "Syn(f)=u lies in W_X and W_X intersects W_Y trivially because the scaled Vandermonde columns on X union Y are independent",
+        "reason_g": "Syn(g)=v lies in the parity-column span W_Y; equivalently the locator L_Y gives the syndrome recurrence on D minus Y",
+        "status": "support_wise_noncontained"
+      },
+      "t": 170,
+      "threshold_covered": true,
+      "update_node_count": 11,
+      "update_node_range": [
+        87,
+        97
+      ],
+      "vandermonde_independence_audit": {
+        "column_count": 98,
+        "column_sets": "X union Y",
+        "domain_points_distinct": true,
+        "status": "independent",
+        "syndrome_length": 256
+      }
+    },
+    "record_count": 420,
+    "record_sha256": "106982b15970db828b36f17c5a4e78afdc09e970621da3685c62ddedb57fa307",
+    "storage": "compressed; verifier rebuilds all rows from agreement_range and ranks"
+  },
+  "method": {
+    "agreement_check": "D\\Y has size n-s, which is at least every A in 385..426 for s<=11",
+    "consequence": "the projective infinity point contributes exactly one support-wise noncontained projective parameter in each checked rank/agreement row",
+    "g_endpoint_witness": "Syn(g)=v is in the parity-column span W_Y",
+    "noncontainment_test": "Syn(f)=u is not in W_Y because u is a nonzero vector in W_X and W_X cap W_Y is zero by Vandermonde independence on X union Y",
+    "theorem": "For u_m=sum_{x in X}x^m and v_m=sum_{y in Y}y^m with X and Y disjoint and |X|+|Y|<=n-k, the projective endpoint [0:1] is support-wise noncontained on D\\Y."
+  },
+  "nonclaims": [
+    "synthetic syndrome-pencil family only",
+    "does not enumerate finite affine roots",
+    "not a quotient-image subtraction audit",
+    "not a worst-case M3 row bound",
+    "does not classify arbitrary non-proportional pencils"
+  ],
+  "row": {
+    "domain_description": "order-512 multiplicative subgroup generated by generator_encoding",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "f17-32-m3-low-rank2-11-projective-infinity-v1",
+  "source_artifacts": {
+    "low_rank_template": {
+      "ref": "experimental/data/certificates/hankel-low-rank-update-template/hankel_low_rank_update_template_certificate.json",
+      "schema_version": "m1-hankel-low-rank-update-template-v4",
+      "sha256": "50eb568710b79364662a21ceef2a01921e5e32292fbc67bca5f454d032096283"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT"
+}

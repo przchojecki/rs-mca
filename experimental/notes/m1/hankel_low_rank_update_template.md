@@ -280,6 +280,19 @@ a compact multi-rank certificate.  Degree-only projective bounds are `10`,
 `{0:15, 1:16, 2:5, 3:6}`.  The whole sweep has projective bound
 `3+1=4 <= 6`.
 
+The rank-2..11 projective-infinity audit
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/
+  f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json
+```
+
+proves that the `+1` endpoint in these projective bounds is sharp for the
+synthetic low-rank ladder.  The endpoint `[0:1]` is explained on `D \ Y`; the
+base syndrome `u` is not explained there because the parity columns on
+`X union Y` are Vandermonde independent.  Since `|D \ Y| >= 501`, this covers
+every threshold `385 <= A <= 426`.
+
 The rank-6..11 tangent-exclusion audit
 
 ```text

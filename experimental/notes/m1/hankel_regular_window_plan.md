@@ -423,6 +423,19 @@ three finite roots, and at most four projective regular roots after the
 corrected infinity point, despite degree-only projective bounds `10`, `11`,
 and `12`.
 
+The low-rank projective-infinity companion is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/
+  f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json
+```
+
+It proves that the corrected projective endpoint `[0:1]` is an actual
+support-wise noncontained endpoint for the synthetic low-rank ladder at ranks
+`2..11`, not merely a point left unexcluded by the top-degree regular minor.
+The witness support is `D \ Y`, and simultaneous containment is ruled out by
+Vandermonde independence on `X union Y`.
+
 The tangent/common-code-line exclusion companion is:
 
 ```text
@@ -530,6 +543,9 @@ python3 experimental/scripts/verify_f17_32_m3_low_rank8_slack_family.py \
 
 python3 experimental/scripts/verify_f17_32_m3_low_rank9_11_slack_sweep.py \
   --check experimental/data/certificates/hankel-f17-32-m3-low-rank9-11-slack-sweep/f17_32_n512_k256_m3_low_rank9_11_slack_sweep_certificate.json
+
+python3 experimental/scripts/verify_f17_32_m3_low_rank2_11_projective_infinity.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json
 
 python3 experimental/scripts/verify_f17_32_m3_low_rank6_11_tangent_exclusion.py \
   --check experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json

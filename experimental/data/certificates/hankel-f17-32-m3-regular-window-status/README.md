@@ -78,6 +78,13 @@ sidecar certificates.  It recomputes exact Frobenius-gcd root counts for all
 finite roots and at most four projective regular roots, despite degree-only
 projective bounds `10`, `11`, and `12`.
 
+The rank-2..11 projective-infinity audit proves that the corrected one-point
+endpoint contribution in the low-rank ladder is exact for this synthetic
+family.  For `u_m=sum_{x in X}x^m` and `v_m=sum_{y in Y}y^m`, the endpoint
+`[0:1]` is witnessed on `D \ Y`, while simultaneous containment is ruled out by
+Vandermonde independence on `X union Y`.  The largest checked union has
+`139 <= n-k=256` columns, and `|D \ Y| >= 501 > 426`.
+
 The rank-6..11 tangent-exclusion audit is the first subtraction check for this
 beyond-envelope low-rank block.  It consumes the exact finite-root certificates
 above and checks the unique moment-zero common-code-line slope

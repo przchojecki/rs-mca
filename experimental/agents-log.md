@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 low-rank projective-infinity endpoint
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank2_11_projective_infinity.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds an endpoint audit proving that `[0:1]` is an
+  actual support-wise noncontained projective endpoint for the synthetic
+  low-rank M3 ladder at ranks `2..11` and all `385 <= A <= 426`.
+- **How it is useful:** It makes the corrected `+1` projective endpoint in the
+  low-rank certificates sharp rather than merely conservative: the endpoint is
+  witnessed on `D \ Y`, and simultaneous containment is ruled out by
+  Vandermonde independence on `X union Y`.
+- **What to do next:** Continue toward quotient-image or structural
+  finite-root explanations; the endpoint audit does not classify finite
+  affine roots or arbitrary M3 pencils.
+
 ### 2026-07-01 - M3 rank-6..11 low-rank subfield exclusion
 
 - **Agent/model:** AllenGrahamHart / Codex.
