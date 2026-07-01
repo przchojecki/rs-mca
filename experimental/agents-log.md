@@ -30,6 +30,38 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Proof-sketch S6: the extension lift imports the list threshold
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/proof_sketch/s6_extension_lift.md`;
+  queue update in `prize_proof_sketch_spine.md`.
+- **Status:** PROVED-cited floor + verified arithmetic + classification
+  CONJECTURE. No new theorem claimed.
+- **What is being added:** Turn 10. (1) The trivial half: B-rational
+  pencils only produce B-slopes (linearity), so genuinely F-valued bad
+  slopes need F-valued words or the pole mechanism. (2) Verified: the v10
+  extension-pole numerator N(L) ~ L below saturation (~2^216), so B_ext
+  crosses the MCA gate exactly when the base list crosses 2^128 — the
+  extension mechanism IMPORTS grand challenge 2's threshold window
+  (S7: [H/256, H/128]) into grand challenge 1's ledger, and binds where
+  live. (3) Verified: it is live only for NON-generating rows, and
+  admissibility forces those tiny (q_gen = q_line^{1/m} < 2^128; base
+  gate <= 1; base reserve doubled); prime-field and generating rows
+  (incl. the pinned row) escape — "domain generates F" becomes the
+  favorable S5 hypothesis and a WP-0.2 check on the official family.
+  (4) Safe-side classification conjecture: (i) B-pencil-rational /
+  (ii) pole type / (iii) subfield tower — with my audited sigma=1
+  counterexample (0.298, 0.266 at the toys) as calibration at the
+  predicted e=2 shape, and the Lean F1 ledger as the typecheck target.
+- **How it is useful:** Ties F1 into the assembly with one rule
+  (min of the S2 corridor and the imported S7 window), turns row
+  selection ("generating") into an explicit favorable hypothesis, and
+  quarantines the one genuinely open F1 claim.
+- **What to do next:** Turn 11: S5+S0 combined (per-rate theorem shapes +
+  hypothesis table + object-equality axes), then S8/S9, then the final
+  coherence pass.
+
 ### 2026-07-02 - Proof-sketch S3a: the regular window as crystallization testbed
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).

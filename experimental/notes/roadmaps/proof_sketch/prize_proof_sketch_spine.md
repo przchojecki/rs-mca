@@ -270,9 +270,20 @@ DONE    S3a      regular window
                  must be forced; window theorem prediction: aperiodic
                  numerator 0 throughout; fiber content invisible in the
                  window — only the deficiency ladder probes Conj F)
-next -> S6       extension lift: F-valued witnesses under the ledger;
-                 FM with the |F|/|B| denominator scale; the sigma=1
-                 counterexample as calibration; safe-side classification
+DONE    S6       extension lift
+                 -> s6_extension_lift.md (B-rational pencils lift free;
+                 the pole floor's N(L) ~ L below saturation 2^216 =>
+                 B_ext crosses the gate exactly at the S7 list window —
+                 the extension mechanism IMPORTS the list threshold into
+                 MCA; live only for non-generating rows, which are forced
+                 tiny (q_gen < 2^128, doubled reserve); classification
+                 conjecture (i) B-rational / (ii) pole / (iii) tower;
+                 sigma=1 audit as calibration)
+next -> S5+S0    per-rate theorem shapes + hypothesis table (incl.
+                 generating hypothesis, q_gen column, dither) AND the
+                 object-equality axes (S0) — one combined statement node
+next -> S8/S9    assembly + negative-branch bookkeeping
+next -> FINAL    coherence pass over the whole tree, then flag
         S2       Paid(A) as a single computable function (quotient closure)
         S3b.ii   the strip-periodic step: exact statement of the aperiodic
                  stratum via the proved confinement/equivariance results
