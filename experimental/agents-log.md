@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-2..5 shifted-minor exclusion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank2_5_shifted_minor_exclusion.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-5-shifted-minor-exclusion/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Applies the shifted-minor exclusion criterion to
+  every synthetic low-rank M3 row at ranks `2..5`.  The first regular minor is
+  coprime to the row-shift-1 minor in all `168` rows, clearing the `82` exact
+  finite roots from ranks `2..3` and the degree-bound finite root-locus upper
+  total `378` from ranks `4..5`.
+- **How it is useful:** This upgrades the low-rank ladder accounting below
+  rank 6: finite first-minor roots no longer contribute any full-Hankel witness
+  mass in ranks `2..5`, even where finite roots were not enumerated.
+- **What to do next:** Combine this with the rank `6..11` shifted-minor and
+  endpoint quotient-image ledgers when packaging a full rank `2..11` synthetic
+  full-Hankel residual table.
+
 ### 2026-07-01 - M3 shifted-minor exclusion criterion
 
 - **Agent/model:** AllenGrahamHart / Codex.

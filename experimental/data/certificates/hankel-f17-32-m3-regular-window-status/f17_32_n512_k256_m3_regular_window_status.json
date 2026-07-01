@@ -183,6 +183,13 @@
       "status": "PROVED / AUDIT"
     },
     {
+      "name": "synthetic_low_rank2_5_shifted_minor_exclusion",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-5-shifted-minor-exclusion/f17_32_n512_k256_m3_low_rank2_5_shifted_minor_exclusion.json",
+      "schema_version": "f17-32-m3-low-rank2-5-shifted-minor-exclusion-v1",
+      "sha256": "50124450f25c48c7a122e8f73545d301fcecfb148f86049c48a39ca890ef7e97",
+      "status": "PROVED / AUDIT"
+    },
+    {
       "name": "synthetic_low_rank6_11_shifted_minor_exclusion",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-shifted-minor-exclusion/f17_32_n512_k256_m3_low_rank6_11_shifted_minor_exclusion.json",
       "schema_version": "f17-32-m3-low-rank6-11-shifted-minor-exclusion-v1",
@@ -281,6 +288,7 @@
       "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
       "the synthetic rank-6..11 known-ledger table combines exact finite roots, projective infinity, endpoint quotient-support and quotient-image, tangent, proper-subfield, and shifted-minor audits into a compact M4-style table: regular-minor residual upper max is 5 <= 6, full-Hankel witness residual upper max is 1 <= 6 after finite first-minor roots are excluded, and aperiodic full-Hankel residual upper max is 0 after the endpoint is charged to quotient-image",
       "the representative shifted-minor exclusion proves that the 18 finite roots listed in the rank-6..11 representative projective-line packets do not give full-Hankel exact-support witnesses, because the row-shift-1 square minor is nonzero at each one",
+      "the synthetic rank-2..5 shifted-minor exclusion proves that the first regular minor is coprime to the row-shift-1 minor in every checked rank/agreement row, clearing 82 exact finite roots and a degree-bound finite root-locus upper total 378 as full-Hankel witnesses",
       "the synthetic rank-6..11 shifted-minor exclusion proves that all 238 finite roots counted by the low-rank slack ledgers are first-minor artifacts rather than actual full-Hankel exact-support witnesses, because the row-shift-1 square minor excludes them",
       "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
       "the fixed synthetic top-window packet is v9-checkable for A=421..426",
@@ -4421,6 +4429,10 @@
     },
     "synthetic_low_rank2_11_projective_infinity_status": "proved that the projective endpoint [0:1] is an actual support-wise noncontained endpoint for every rank/agreement row in the synthetic low-rank ladder at ranks 2..11",
     "synthetic_low_rank2_11_projective_infinity_support_minimum": 501,
+    "synthetic_low_rank2_5_shifted_minor_exact_roots_cleared": 82,
+    "synthetic_low_rank2_5_shifted_minor_exclusion_status": "proved that the first regular minor is coprime to the row-shift-1 minor in every synthetic rank-2..5 low-rank row; this clears all finite first-minor roots as actual full-Hankel witnesses, including the degree-bound root loci in ranks 4 and 5",
+    "synthetic_low_rank2_5_shifted_minor_finite_upper_cleared": 460,
+    "synthetic_low_rank2_5_shifted_minor_surviving_finite_upper": 0,
     "synthetic_low_rank2_common_code_line_tangent_overlap": 0,
     "synthetic_low_rank2_degree_bound_sum": 84,
     "synthetic_low_rank2_exact_root_count_sum": 40,

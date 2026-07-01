@@ -184,6 +184,14 @@ square Hankel minor is nonzero, so those first-minor roots are not actual
 full-Hankel exact-support witnesses.  This is a representative-packet audit
 only, not an all-row quotient or support-image theorem.
 
+The rank-2..5 shifted-minor exclusion applies the same criterion to every
+checked row in the lower-rank synthetic ladder.  It proves that the first
+regular minor is coprime to the row-shift-1 minor in all `168` rank/agreement
+rows, clearing the `82` exact finite roots from ranks 2..3 and the degree-bound
+finite root-locus upper total `378` from ranks 4..5 as full-Hankel witnesses.
+Thus the surviving finite full-Hankel witness upper bound is `0` in these
+ranks, even where finite roots were not enumerated.
+
 The rank-6..11 shifted-minor exclusion extends this test from the six
 representative packets to every root-bearing row in the synthetic low-rank
 slack ladder.  Across the source slack ledgers, all `238` finite first-minor
