@@ -311,6 +311,66 @@ Dividing gives the displayed formula.  In the current M3 window the relevant
 exponents are all strictly between `0` and `512`, so the displayed factors are
 nonzero in the order-512 subgroup.
 
+## Cauchy Factorization
+
+The closed product form separates the full Lagrange evaluation matrix into
+diagonal factors and one geometric Cauchy matrix.  Define
+
+```text
+rho_a = P_{a+m}/P_a,
+gamma_i =
+  (-1)^(m-1-i) alpha^((m-1-i)(m-i)/2) / (P_i P_{m-1-i}),
+C[a,i] = 1/(1-alpha^(m+a-i)).
+```
+
+Then, for `L[a,i]=L_i(alpha^(m+a))`,
+
+```text
+L = diag(rho_a) C diag(gamma_i).
+```
+
+This is just the closed product formula with the row factor, Cauchy factor, and
+column factor separated.
+
+Consequently, with `x_i=alpha^i` and `y_a=alpha^(m+a)`,
+
+```text
+K_h
+  = diag(y_a^h rho_a) C diag(alpha^(-h*i) gamma_i^2) C^T diag(rho_a).
+```
+
+Thus each principal minor of the shifted kernel has an explicit Cauchy-product
+expansion.  For a `d`-element subset `J` of update indices,
+
+```text
+det(K_h[J,J])
+  = (prod_{a in J} alpha^(h(m+a)) rho_a^2)
+    * sum_{I subset {0,...,m-1}, |I|=d}
+        (prod_{i in I} alpha^(-h*i) gamma_i^2) det(C[J,I])^2.
+```
+
+This follows by taking determinants of the two outer diagonal factors on the
+principal submatrix and applying Cauchy-Binet to the middle product
+`C[J,*] diag(alpha^(-h*i) gamma_i^2) C[J,*]^T`.
+
+Finally, if `u_a=alpha^(m+a)` and `v_i=alpha^(-i)`, then the Cauchy determinant
+has square
+
+```text
+det(C[J,I])^2
+  =
+  prod_{a<a' in J} (u_a-u_a')^2
+  * prod_{i<i' in I} (v_i-v_i')^2
+  / prod_{a in J, i in I} (1-u_a v_i)^2.
+```
+
+All denominators are nonzero in the current window.  Therefore every
+coefficient of `det(I+ZK_h)` is an explicit finite q-Cauchy sum.  This is a
+more rigid target than a black-box field gcd: a hand proof of spectral
+disjointness can try to compare these q-Cauchy sums across `h=0,1`, while a
+future symbolic checker can audit the same formulas without rebuilding the
+large Hankel minors.
+
 ## Window Normalization
 
 Two elementary invariances reduce the consecutive-subgroup case to a normalized

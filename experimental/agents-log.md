@@ -49,7 +49,9 @@ Keep entries concise and link to the relevant files.
   compression identifying replacement determinant ratios with Lagrange
   evaluation minors, and isolates the first nonconstant coefficient as
   `tr(K_h)` with an explicit normalized consecutive-window subgroup sum,
-  including a closed product form for the needed Lagrange values.
+  including a closed product form for the needed Lagrange values.  The closed
+  product is then repackaged as a diagonal-Cauchy-diagonal factorization, giving
+  an explicit q-Cauchy product expansion for every principal minor of `K_h`.
 - **How it is useful:** Turns the rank-by-rank affine-gcd computation into a
   concrete spectral-disjointness target.  Proving that target through the
   endpoint-capacity range would close the synthetic low-rank regular
