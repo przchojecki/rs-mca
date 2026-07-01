@@ -258,6 +258,20 @@ projective `Q`-plane have no common component, Bezout gives at most four
 finite roots; with the endpoint, the branch is projective-safe with total at
 most `5`.  The common-component case is the named residual for `A=386`.
 
+The `A=386` component-cut safety companion
+
+```text
+experimental/notes/m1/hankel_rank6_a386_component_cut_safety.md
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-component-cut-safety/
+  f17_32_n512_k256_m3_rank6_a386_component_cut_safety.json
+```
+
+narrows that residual.  If each irreducible component of a common conic
+component of degree `1` or `2` is cut by some direction-ratio conic, the finite
+roots are still bounded by `4`; with the endpoint, the projective total is at
+most `5`.  The residual after this criterion is an irreducible component
+contained in all direction-ratio conics.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 
@@ -809,6 +823,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safe
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a386_conic_pair_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-conic-pair-safety/f17_32_n512_k256_m3_rank6_a386_conic_pair_safety.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_component_cut_safety.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-component-cut-safety/f17_32_n512_k256_m3_rank6_a386_component_cut_safety.json
 ```
 
 The affine-pivot compression theorem is:

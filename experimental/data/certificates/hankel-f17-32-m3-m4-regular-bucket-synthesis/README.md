@@ -182,6 +182,20 @@ uses the `h=3` transfer.  If two direction-ratio conics in the `Q`-plane have
 no common component, Bezout gives at most four finite roots; with the endpoint,
 the projective total is at most `5`.
 
+The `A=386` component-cut safety packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-component-cut-safety/
+  f17_32_n512_k256_m3_rank6_a386_component_cut_safety.json
+```
+
+handles part of the common-component residual.  If each irreducible component
+of a common conic component of degree `1` or `2` is cut by some direction
+conic, the component cut plus the off-component residual intersection gives at
+most four finite roots; with the endpoint, the projective total is at most `5`.
+The remaining residual is an irreducible component contained in all direction
+conics.
+
 The rank-node dichotomy packet
 
 ```text
@@ -316,6 +330,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safe
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a386_conic_pair_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-conic-pair-safety/f17_32_n512_k256_m3_rank6_a386_conic_pair_safety.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_component_cut_safety.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-component-cut-safety/f17_32_n512_k256_m3_rank6_a386_component_cut_safety.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json

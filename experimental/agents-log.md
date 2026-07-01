@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M3 A386 component-cut safety criterion
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_component_cut_safety.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-component-cut-safety/`;
+  `experimental/notes/m1/hankel_rank6_a386_component_cut_safety.md`;
+  `experimental/notes/m1/hankel_rank6_a386_conic_pair_safety.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A component-cut criterion for the `A=386` separated
+  rank-6 residual: if each irreducible component of a common component of two
+  direction conics is cut by some direction conic, finite roots are `<=4` and
+  endpoint gives total `<=5<=6`.
+- **How it is useful:** It narrows the `A=386` residual from arbitrary common
+  components to irreducible components contained in all direction-consistency
+  conics.
+- **What to do next:** Classify or scan the global-component residual, then
+  attempt the harder `A=385` `Q`-space.
+
 ### 2026-07-01 - M3 rank-6 endpoint uniformity
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

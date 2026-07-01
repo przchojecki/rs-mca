@@ -104,6 +104,18 @@ shows that if two direction-consistency conics have no common component, then
 Bezout bounds the finite root count by `4`, and the endpoint gives total
 `<=5<=6`.  The common-component case is the named residual.
 
+The next companion
+
+```text
+experimental/notes/m1/hankel_rank6_a386_component_cut_safety.md
+```
+
+refines that residual: if each irreducible component of a common component of
+degree `1` or `2` is cut by some direction-consistency conic, the component
+plus off-component Bezout bound gives at most four finite `Q`-classes and
+again total projective contribution `<=5<=6`.  The remaining residual is an
+irreducible component contained in all direction-consistency conics.
+
 Replay:
 
 ```sh

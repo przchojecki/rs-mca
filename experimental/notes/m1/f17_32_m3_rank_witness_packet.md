@@ -139,6 +139,9 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-sa
 experimental/data/certificates/hankel-f17-32-m3-rank6-a386-conic-pair-safety/
   f17_32_n512_k256_m3_rank6_a386_conic_pair_safety.json
 
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-component-cut-safety/
+  f17_32_n512_k256_m3_rank6_a386_component_cut_safety.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
   f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 
@@ -532,6 +535,14 @@ criterion in the projective `Q`-plane.  If two direction consistency conics
 have no common component, Bezout gives at most four finite ambient roots; after
 the split gate and endpoint, total projective contribution is `<=5`.
 
+The `A=386` component-cut safety companion refines the common-component
+residual.  If each irreducible component of a common component of degree `1`
+or `2` is cut by some direction consistency conic, Bezout bounds the component
+cut plus the off-component residual intersection by at most four finite
+`Q`-classes.  With the split gate and endpoint, total projective contribution
+is again `<=5`; the remaining residual is an irreducible component contained
+in all direction consistency conics.
+
 The affine-pivot compression companion gives the finite-root route a concrete
 Hankel-chart target.  If a row-set chart has finite base slope `z0` with
 `M_R(z0)` invertible and `H_R(v)=P_R Q_R` has rank at most `r`, then
@@ -821,6 +832,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safe
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a386_conic_pair_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-conic-pair-safety/f17_32_n512_k256_m3_rank6_a386_conic_pair_safety.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_component_cut_safety.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-component-cut-safety/f17_32_n512_k256_m3_rank6_a386_component_cut_safety.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json

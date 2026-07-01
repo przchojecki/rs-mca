@@ -60,6 +60,16 @@ total projective contribution <= 5 <= 6.
 If every useful pair of comparison conics has a common component, that
 component is the named `A=386` conic-component residual.  It must be handled by
 component classification, exact root tables, or the split-locator divisor gate.
+The companion note
+
+```text
+experimental/notes/m1/hankel_rank6_a386_component_cut_safety.md
+```
+
+narrows this residual: if every irreducible component of such a common
+component is cut by some direction-consistency conic, the branch is still
+projective-safe with total `<=5<=6`.  The residual after that companion is an
+irreducible component contained in all direction-consistency conics.
 
 Replay:
 
