@@ -219,6 +219,17 @@ is the first all-window use of the v4 packet gate beyond exact root counting.
 It proves degree `4` for each synthetic row and uses the gate to conclude a
 projective bound `4+1=5 <= 6` without enumerating roots.
 
+The rank-5 budget companion
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank5-budget-family/
+  f17_32_n512_k256_m3_low_rank5_budget_family_certificate.json
+```
+
+completes the automatically projective-safe side of the low-rank ladder.  It
+proves degree `5` for each synthetic row, so the gate gives the sharp budget
+certificate `5+1=6`.
+
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform quotient/tangent
 subtraction.

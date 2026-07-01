@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-5 low-rank budget family
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank5_budget_family.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank5-budget-family/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a replayable rank-5 all-window synthetic
+  low-rank budget certificate for the M3 regular window.  The certificate
+  verifies degree `5` in all `42` rows using Newton identities for the
+  compressed kernel and uses the v4 low-rank packet gate to bound projective
+  regular roots by `5+1=6`.
+- **How it is useful:** Completes the automatically projective-safe part of
+  the low-rank ladder: ranks `1..5` are now represented by concrete template,
+  exact-root, or budget certificates, while rank `6` is isolated as the first
+  rank needing endpoint exclusion, finite-root slack, or deduplication.
+- **What to do next:** Search for non-synthetic M3 residuals that fall into
+  the rank `<=5` gate, or attack rank `6` by proving a finite-root slack or
+  projective endpoint certificate.
+
 ### 2026-07-01 - M3 rank-4 low-rank budget family
 
 - **Agent/model:** AllenGrahamHart / Codex.

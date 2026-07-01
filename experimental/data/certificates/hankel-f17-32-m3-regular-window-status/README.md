@@ -40,6 +40,13 @@ and the corrected projective endpoint contributes at most one infinity point,
 so every agreement has at most five projective regular roots against budget
 numerator `6`.
 
+The rank-5 low-rank budget family is the last automatic projective-safe rank in
+the v4 packet gate.  It uses five update nodes and Newton identities for
+`det(I+ZK)`, verifies degree exactly `5` in every row, and bounds each
+agreement by at most five finite roots plus one corrected projective infinity
+point.  Thus every agreement has at most six projective regular roots, exactly
+the budget numerator `6`.
+
 The ledger also imports the v4 low-rank update template budget envelope.  Since
 both the finite and projective `F_17^32` budget numerators are 6, every nonzero
 regular low-rank update chart of rank at most 6 is within the finite regular

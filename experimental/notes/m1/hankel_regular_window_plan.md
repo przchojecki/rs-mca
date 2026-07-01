@@ -354,6 +354,20 @@ strong enough at rank `4`: at most four finite roots plus the corrected
 projective infinity contribution gives at most five projective regular roots
 per agreement, below budget numerator `6`.
 
+The rank-5 budget companion is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank5-budget-family/
+  f17_32_n512_k256_m3_low_rank5_budget_family_certificate.json
+```
+
+It uses the next five descriptor nodes for `Y` and verifies that every
+compressed determinant has degree exactly `5`, using Newton identities from the
+traces of powers of the compressed kernel.  This is the last automatically
+projective-safe rank in the v4 gate: at most five finite roots plus the
+corrected projective infinity contribution gives at most six projective regular
+roots per agreement, exactly the budget numerator `6`.
+
 The current status ledger
 
 ```text
@@ -422,6 +436,9 @@ python3 experimental/scripts/verify_f17_32_m3_low_rank3_family.py \
 
 python3 experimental/scripts/verify_f17_32_m3_low_rank4_budget_family.py \
   --check experimental/data/certificates/hankel-f17-32-m3-low-rank4-budget-family/f17_32_n512_k256_m3_low_rank4_budget_family_certificate.json
+
+python3 experimental/scripts/verify_f17_32_m3_low_rank5_budget_family.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-low-rank5-budget-family/f17_32_n512_k256_m3_low_rank5_budget_family_certificate.json
 ```
 
 Non-claims: this note does not enumerate universal root sets for arbitrary

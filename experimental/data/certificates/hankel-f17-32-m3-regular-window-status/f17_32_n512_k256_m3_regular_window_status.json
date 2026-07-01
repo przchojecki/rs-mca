@@ -43,6 +43,13 @@
       "status": "PROVED / AUDIT"
     },
     {
+      "name": "synthetic_low_rank5_budget_family",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank5-budget-family/f17_32_n512_k256_m3_low_rank5_budget_family_certificate.json",
+      "schema_version": "f17-32-m3-low-rank5-budget-family-v1",
+      "sha256": "a979a3de87b5cd043d67de6ee8915df880ed66a489c3deb8b3bd99802c9008de",
+      "status": "PROVED / AUDIT"
+    },
+    {
       "name": "fixed_top_window_v9_packet",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json",
       "schema_version": "aperiodic-hankel-eliminant-v1",
@@ -120,6 +127,7 @@
       "the synthetic rank-2 low-rank family has exact split/nonsquare quadratic root table with 40 roots total, below degree cap 84",
       "the synthetic rank-3 low-rank family has exact Frobenius-gcd finite-root counts with 42 roots total, below degree cap 126",
       "the synthetic rank-4 low-rank budget family has degree 4 in all 42 rows and at most 5 projective regular roots per agreement by the v4 low-rank packet gate",
+      "the synthetic rank-5 low-rank budget family has degree 5 in all 42 rows and at most 6 projective regular roots per agreement by the v4 low-rank packet gate",
       "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
       "the fixed synthetic top-window packet is v9-checkable for A=421..426",
       "the fixed top-window syndrome input has an explicit line-value lift",
@@ -189,6 +197,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "fd236be39ae5e5311711cb1fad80cb7fd309677fb797b49e84e71538acb6a7c9",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "7907acfbf14557ad1b08ef50478ce11509ae2427e352d08e07056aa2bb1e6cc3",
       "synthetic_root_union": [
         0
       ],
@@ -244,6 +259,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "7ee70df05c877d4b83f033cdf5e489b9de709d3b6f1d27ff27fb4a373726bfa7",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "9b65c18aa4d63c1b2be858e132f82c6c15fd943dd103ae5c74817cfe281fd76c",
       "synthetic_root_union": [
         0
       ],
@@ -299,6 +321,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "cc7093b5d6efa4285e27bfdb426e8b246dfd7d89f7410cbf706e895acba93e9f",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "ceb12019777f0a1d834bd005d6f7fc08ef543069741fb005cbce61c6ac3f030c",
       "synthetic_root_union": [
         0
       ],
@@ -354,6 +383,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "11226f9d7285da4fb239e86da37a9feb555b89893ee2ed15c4afe3ee5db59e68",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "b6d35e5688bb385f39a11412a01fdee5afc1bd43d69b8044a36c4b97cc13a803",
       "synthetic_root_union": [
         0
       ],
@@ -409,6 +445,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "2c01214e54f9b02ba27333b94feebea675a7aa60943ecd02c8001fabaac4a9de",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "16a2d1520cc4b58049b307e9d396593ae8d7552eb2e1a7d3412e141cbadb9e56",
       "synthetic_root_union": [
         0
       ],
@@ -464,6 +507,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "3372d6982be22c836fd8837abdfc81d790d6c3a69d45c32ae0349b9d6f084724",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "41c24cda62f6eb8c317797f944556ba73dc1c03f43cd3b179f70c2856912b597",
       "synthetic_root_union": [
         0
       ],
@@ -519,6 +569,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "81f8667c785d6134b8fb9fdfd3c959af12d714b176acc69f62c6b25dbe368477",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "70e26242150b0575df033dbf6b6fef2ccc2d0209ea0b3ff4d112922999c598a3",
       "synthetic_root_union": [
         0
       ],
@@ -574,6 +631,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "0b646d302ff12b4a9b9be5adc0903652c013f1f5934566265fc60a38834cb27b",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "89fd06c413af88a1d4ab04a917d86e47bcc74555f86fd063a629fe0cdb1ff267",
       "synthetic_root_union": [
         0
       ],
@@ -629,6 +693,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "808cab7a7057f1c0e12d766c0d1593f22cfc063ec3112fa33315f58712992ebe",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "a2c648fc7f9124d349f2719530aced74e8a4d3f57826218eda10fd8336e9d206",
       "synthetic_root_union": [
         0
       ],
@@ -684,6 +755,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "b78a91d8c1e26f5f29fcfb4809d6a5ae70b325eee579e24a3d9aafa28105c968",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "a477d8d32414339f94beaf8548301c0d89cd1e14fc5327b8375aa7497efb79d6",
       "synthetic_root_union": [
         0
       ],
@@ -739,6 +817,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "f833f523e5718d6d5b552b808dae5c969f3d6ea057f56d6cfc6179d50f0ca8f5",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "3495bee2f28b8969dac8df470f470cf0a80ff237a873e9d1a2a8708490c0285b",
       "synthetic_root_union": [
         0
       ],
@@ -794,6 +879,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "bf26ad4880132ef53085cf0541c23abcc544b118aeb2db24001a4e8f42c49363",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "cadbdc8aa84f461ff4a9c296ce3a4341e90e1432538d6c2783ad26988c14a286",
       "synthetic_root_union": [
         0
       ],
@@ -849,6 +941,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "7ce2d3eb0d5b5e94dc516d495cdb2c94ce01e9eb0928970e56d6e50fb2d6091f",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "063bd2ab5bd4a1128e4124f49f4333cc042a31de9ad593286347c02a33fba172",
       "synthetic_root_union": [
         0
       ],
@@ -904,6 +1003,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "55c2630a6eb24180e46d191b0192f0731739d5ae087c07b67388a578c3cac1eb",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "b3d015c52ced2ff604958eec18b82eb3e37cb1361a009fdec60c5e481193927e",
       "synthetic_root_union": [
         0
       ],
@@ -959,6 +1065,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "2a317792e5ca6a6243c446ab0bd33a22f2b88fda3f2259b740aad20fb92298e5",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "a81cce51eac58e3a573906a5462363ff51e7dd315269783c9b7e1e178159887e",
       "synthetic_root_union": [
         0
       ],
@@ -1014,6 +1127,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "55595dafe6226a9fa9700e060dce68908e7ca2f19e9e98e1c801015779b4fd4a",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "85e4fb761f03538c695b579d23571c5c465a325b7875ef0ed472905a3b161fcc",
       "synthetic_root_union": [
         0
       ],
@@ -1069,6 +1189,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "b4c8d1af4b9cc7374e11fe06fbd423ef9e9c8151e834fc6022797fc40dfab3cd",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "26b571c4f51280991721e0b13fff792f9bb04744cc7a1461e56c5afaa410187c",
       "synthetic_root_union": [
         0
       ],
@@ -1124,6 +1251,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "588f539e708a25c00d5bf5c30ea42da6f89ab0a9a15a7b71e292d463959011db",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "419128f94058983c51d76eae781d4b2bc3d0d0fc5f030ed27f0c405cec163d21",
       "synthetic_root_union": [
         0
       ],
@@ -1179,6 +1313,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "ece0205bd76ff76e4a6de915657780a624976d976c6f576816c167e323066d3c",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "452261abb2c48f56cbfa15442c0f87282840c7cfe055c4a3ee2c9a2684756815",
       "synthetic_root_union": [
         0
       ],
@@ -1234,6 +1375,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "7aa50907e0e0e59f13edfa8a37e4567f5f65475d982bfb913b211ee23257e726",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "3c244fe9d135e2ea7f7ae1c8f388a14d5292546a502bfbcfb1956503f4319401",
       "synthetic_root_union": [
         0
       ],
@@ -1289,6 +1437,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "d9d466210649b8e92be14d10f9f76f9339e52f5bbf047a96551bbdc081964ba3",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "0cfa9709c5f6186b4320dca54c601671d71fda730be1756d5d3e045a720d7e36",
       "synthetic_root_union": [
         0
       ],
@@ -1344,6 +1499,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "a250ad9f6d9708351823db05a83cc78a84ed0f7dc5a1f644c7ede1760e8fc696",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "75795677ecaf73f1296ca10d83d835fddbcbfd8865323f1c2b6f7fb21d4ae4ea",
       "synthetic_root_union": [
         0
       ],
@@ -1399,6 +1561,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "f6d0cbbd719e1bc8652f62e8956a9a255519f22e4bfcd5b71446cbf0358fb806",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "d9b1279da6fbe0a3f1d28a2d4033bad294ad05132904c9f231cd17b1f53c7343",
       "synthetic_root_union": [
         0
       ],
@@ -1454,6 +1623,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "1618622cf259898d24b452a7bdf71d248e4ebbaea83654ffc76008ebe4339a13",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "ba0c943809058765d93301d6180dacdac390f57b48e3b89b79f1b90c488a2f1e",
       "synthetic_root_union": [
         0
       ],
@@ -1509,6 +1685,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "e3e1d151e6c092f505ee0839d6e28f2c5e356f9a1891130cb950f69d165df86b",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "3c9307a827cca613c57ce26896b0695fa19481eea0568ff295a3e10c9a50c8f1",
       "synthetic_root_union": [
         0
       ],
@@ -1564,6 +1747,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "cc3bf959975f07110eb6630223bfa8b711291dec49ec2a3690429277d3414641",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "f7d013d2bebc9092884dc8531d4ed25673917cf81d8bcc0da092166714e6d7e8",
       "synthetic_root_union": [
         0
       ],
@@ -1619,6 +1809,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "fe4a07a75b688fe91c1fcea1d084951c9a670456ae790efaa64c8c65498c76ea",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "3b3f492cb4c01cda78c771c32524aa3b12c706674613203f27c83e46b1ed1555",
       "synthetic_root_union": [
         0
       ],
@@ -1674,6 +1871,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "b7d7b5835d70b2b2f2f7578ad5ae38a301be13ce03d613f88df3d051a1583cd3",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "fdbe18c8b45ab985d384f6d2541139c710f4f5313bcc78b83ae4a4ced2d8edf6",
       "synthetic_root_union": [
         0
       ],
@@ -1729,6 +1933,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "aa9eb641ff004e2383ee014edd2100d1ed0da9bd67d0fb164c0955e2a81ab492",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "d72f8f905d6870ccf29a01ff9314e108eb866854def70004e1d5d427fc757754",
       "synthetic_root_union": [
         0
       ],
@@ -1784,6 +1995,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "b5ebce4470229984f5013bf853418e3b2d972e88963900face4b897498738ece",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "bfbd2adc6be0677cba9c3c312a41b525cb8eb58ee0f911215ca0938cc8d2ca22",
       "synthetic_root_union": [
         0
       ],
@@ -1839,6 +2057,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "a23ccdb23720ac41435c0d5bee7d7d5858c47b453bb9f78cc8778a98f9650578",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "866333b6a5bbed6f2443b89ea6bcdb3dab7794f8263cf2c914f93336b47b461c",
       "synthetic_root_union": [
         0
       ],
@@ -1894,6 +2119,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "8e45bc0caefeaf9190f0be1c1a4cf359b44de67a67dee2f429535b8c7cf01d9a",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "444e423ff94de7c39257ca0f7ccbb20ba062656bf9a25e353b67ec25967bcf8b",
       "synthetic_root_union": [
         0
       ],
@@ -1949,6 +2181,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "97a81cc6cd1b69db12e28b6be9896a350b732b340f56a6b574d5cb1499235422",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "162fda35659737bcfbcd1c0fb837151694c5d3411f0272fed379e061614b5bd0",
       "synthetic_root_union": [
         0
       ],
@@ -2004,6 +2243,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "8aeed625cfef0c027b20a72164454e20ab6fcab44d8a1cdfd4d9cb3d398e8ebb",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "190f01ce1572ce0a39e8af1a457d21093e3b8d3511c4b6aa826a4c96ea8dcf8a",
       "synthetic_root_union": [
         0
       ],
@@ -2059,6 +2305,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "7e4eebd6989eb88782bd15c53aced42845750d788b28547b6078eb0f42a2c213",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "9bd7e0c57756000bec40f263471e53dc810f5b5e6fb927ae48cc31f99044d689",
       "synthetic_root_union": [
         0
       ],
@@ -2114,6 +2367,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "814d410560dc0df7d94200b75caf0520579515da13289fa9afa56811f21b58c2",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "773cfc81078b9f69f8859cc6a7a1649dee2a4bd7aa16ad058230720b43424b50",
       "synthetic_root_union": [
         0
       ],
@@ -2185,6 +2445,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "c239c71ecbd855040163bb69cbbbe85aaaa8e4f4cca1b83d3428cd5c72e76caf",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "8a265df34d4a12565ae7d7efbe208220a0ee67df1be96d1ad2cddd7c507d6d8b",
       "synthetic_root_union": [
         0
       ],
@@ -2256,6 +2523,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "f2bb9d6b5064670b6c04240a7e7d43623bdde1fdc2b3be70accd00bfae5726b9",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "8f94e95dd1cb594579126e0dec712beeeabf22419b6ea1becf3bcce18da5410a",
       "synthetic_root_union": [
         0
       ],
@@ -2327,6 +2601,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "6fcd87356721e2a8a2a3c762e83d441062760175687f95b7370f19b27abcd16b",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "7c4bcf00a1ea5a4d3fce152e6dc203ce248ea3ee5041d7d4a10b746eda069b4c",
       "synthetic_root_union": [
         0
       ],
@@ -2398,6 +2679,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "317e37dc3d7197508b8c4807694a4ec79eceaf8e4cd89ad547379cf33b09981d",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "565e8286442c96441bf8b257195e455a4da5cc037ae49d6360dd95a91f870f99",
       "synthetic_root_union": [
         0
       ],
@@ -2469,6 +2757,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "a41e11f5027c9980e42bc0ef3a2734134aa3ea6a8b672081569df2e740e27584",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "72bdf8568817921e626c3c25d02a3f683238a7a4ce7d571514bd732d676de405",
       "synthetic_root_union": [
         0
       ],
@@ -2540,6 +2835,13 @@
       "synthetic_low_rank4_root_bound": 4,
       "synthetic_low_rank4_root_count_status": "not_enumerated_degree_bound_sufficient",
       "synthetic_low_rank4_sidecar_hash": "b56c4183a2e50d497fabd04d3132f8f0f141de0f44ccc672776d24879f46959b",
+      "synthetic_low_rank5_budget_family_status": "rank-5 prefix update witness has degree 5 and is exactly projective-budget safe by the v4 low-rank packet gate",
+      "synthetic_low_rank5_projective_budget_gap": 0,
+      "synthetic_low_rank5_projective_infinity_contribution": 1,
+      "synthetic_low_rank5_projective_regular_roots_bound": 6,
+      "synthetic_low_rank5_root_bound": 5,
+      "synthetic_low_rank5_root_count_status": "not_enumerated_degree_bound_sufficient",
+      "synthetic_low_rank5_sidecar_hash": "d2b40232cb7806599395875e71274aaf1446d32697b99fa0e088860775a3d8ef",
       "synthetic_root_union": [
         0
       ],
@@ -2656,6 +2958,10 @@
     "synthetic_low_rank4_budget_family_status": "proved degree-4 low-rank budget certificates for all 42 rank-4 synthetic pencils",
     "synthetic_low_rank4_degree_bound_sum": 168,
     "synthetic_low_rank4_max_projective_regular_roots_per_agreement_bound": 5,
-    "synthetic_low_rank4_projective_budget_status": "all 42 rows have at most 5 projective regular roots after including the nonexcluded infinity point, below projective budget numerator 6; exact finite roots are not enumerated"
+    "synthetic_low_rank4_projective_budget_status": "all 42 rows have at most 5 projective regular roots after including the nonexcluded infinity point, below projective budget numerator 6; exact finite roots are not enumerated",
+    "synthetic_low_rank5_budget_family_status": "proved degree-5 low-rank budget certificates for all 42 rank-5 synthetic pencils",
+    "synthetic_low_rank5_degree_bound_sum": 210,
+    "synthetic_low_rank5_max_projective_regular_roots_per_agreement_bound": 6,
+    "synthetic_low_rank5_projective_budget_status": "all 42 rows have at most 6 projective regular roots after including the nonexcluded infinity point, exactly meeting projective budget numerator 6; exact finite roots are not enumerated"
   }
 }
