@@ -53,6 +53,9 @@ experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-window/
 
 experimental/data/certificates/hankel-f17-32-m3-canonical-gcd-formula-window/
   f17_32_n512_k256_m3_canonical_gcd_formula_window.json
+
+experimental/data/certificates/hankel-f17-32-m3-support-uniform-canonical-gcd/
+  f17_32_n512_k256_m3_support_uniform_canonical_gcd.json
 ```
 
 The M4 zero-slope subtraction sidecar is
@@ -158,6 +161,22 @@ determinant, so the v10 canonical gcd over all nonzero maximal row-set minors
 is exactly `Z^(j+1)` at each agreement.  This covers
 `155193154203428426778689566118132250614039201839551` formal row-set charts
 across the M3 window without enumerating them.
+
+The support-uniform canonical certificate removes the nested-prefix support
+restriction from that formula.  For any distinct support subset
+`S={x_0,...,x_j}` of the descriptor domain and any maximal row set
+`R={r_0<...<r_j}`,
+
+```text
+(v_{r_a+b})_{a,b} = (x_i^{r_a})_{a,i} * (x_i^b)_{i,b},
+Delta_{A,S,R}(Z)
+  = Z^(j+1) * det(x_i^{r_a})_{a,i} * det(x_i^b)_{i,0<=b<=j}.
+```
+
+The prefix row set is nonzero for every distinct `S` by Vandermonde, so the
+v10 canonical gcd over all nonzero maximal row-set minors is `Z^(j+1)` for
+every support subset of size `j+1`.  This is still a zero-`u` rank-size
+power-sum family, not arbitrary M3 row data.
 
 In the selected-minor packets, the chosen prefix determinant has the closed form
 
@@ -270,6 +289,9 @@ python3 experimental/scripts/verify_f17_32_m3_all_contiguous_gcd_formula.py \
 
 python3 experimental/scripts/verify_f17_32_m3_canonical_gcd_formula.py \
   --check experimental/data/certificates/hankel-f17-32-m3-canonical-gcd-formula-window/f17_32_n512_k256_m3_canonical_gcd_formula_window.json
+
+python3 experimental/scripts/verify_f17_32_m3_support_uniform_canonical_gcd.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-support-uniform-canonical-gcd/f17_32_n512_k256_m3_support_uniform_canonical_gcd.json
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_rank_witness_zero_slope_subtraction.json

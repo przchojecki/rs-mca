@@ -1,0 +1,1303 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "all_row_set_count": 129,
+      "canonical_common_gcd": {
+        "degree": 128,
+        "monic_polynomial": "Z^128",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 127,
+      "minor_size": 128,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 127
+      },
+      "support_choice_count": 4462948667719540169329779376768164487451002775710324866543865388991060083485968174215585819306349455644382502945540999364380,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 128,
+      "support_row_chart_count": 575720378135820681843541539603093218881179358066631907784158635179846750769689894473810570690519079778125342879974788918005020,
+      "t": 129,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 386,
+      "all_row_set_count": 357760,
+      "canonical_common_gcd": {
+        "degree": 127,
+        "monic_polynomial": "Z^127",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 126,
+      "minor_size": 127,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 126
+      },
+      "support_choice_count": 1483785531085976991361588987600844297126567156599796319266531869586638157626503704674272687977175922915534962018257786801664,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 127,
+      "support_row_chart_count": 530839111601319128429522076204078055740000665945143131180794441663315667272457965384267796850714458182261788011651905806163312640,
+      "t": 130,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 387,
+      "all_row_set_count": 297602656,
+      "canonical_common_gcd": {
+        "degree": 126,
+        "monic_polynomial": "Z^126",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 125,
+      "minor_size": 126,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 125
+      },
+      "support_choice_count": 488188503751085694049020210946391776515735826135166146494428879371769549270896296615628578686791041995525751752121085294848,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 126,
+      "support_row_chart_count": 145286195344989065432591808975326466307641407652179660198027123704142229282941601373374876126694006214876003837827888617349307916288,
+      "t": 131,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 388,
+      "all_row_set_count": 117850651776,
+      "canonical_common_gcd": {
+        "degree": 125,
+        "monic_polynomial": "Z^125",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 124,
+      "minor_size": 125,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 124
+      },
+      "support_choice_count": 158945094244539528295029836122081043516751199206798280254000100260576132320756933781832560502676153207845593593713841723904,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 125,
+      "support_row_chart_count": 18731782953316729738564860208353719283943348000550791538089822646878244631270424139860239842939338847797036401788786383594989839253504,
+      "t": 132,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 389,
+      "all_row_set_count": 27212042858000,
+      "canonical_common_gcd": {
+        "degree": 124,
+        "monic_polynomial": "Z^124",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 123,
+      "minor_size": 124,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 123
+      },
+      "support_choice_count": 51206538094245982053811158544484872266994587373324188226159826114876331288903651347239871295965255543764688657768634576000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 124,
+      "support_row_chart_count": 1393434509230431306842608108551155243662112330456923455938320184995842358403452540293780817712210536335846802422226578730252658208000000,
+      "t": 133,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 390,
+      "all_row_set_count": 4110502764804800,
+      "canonical_common_gcd": {
+        "degree": 123,
+        "monic_polynomial": "Z^123",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 122,
+      "minor_size": 123,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 122
+      },
+      "support_choice_count": 16322906744695377312782991412637851313900588262961952030960972848958007917285482691665151775577613592356867335638330816000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 123,
+      "support_row_chart_count": 67095353303721266130348218395163903845700342413558256084132271466288237012777264752995122606243402516891735876651481355236104064716800000,
+      "t": 134,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 391,
+      "all_row_set_count": 437531400061434000,
+      "canonical_common_gcd": {
+        "degree": 122,
+        "monic_polynomial": "Z^122",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 121,
+      "minor_size": 122,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 121
+      },
+      "support_choice_count": 5147993665634695921723866522447322337460954759857231025149229898517525573913113771986701713836016594512550467393627411200,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 122,
+      "support_row_chart_count": 2252408876032542238060735642234692384500592781896574385274046897219248678475533813124400613705302744108110367036672177714571786379660800000,
+      "t": 135,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 392,
+      "all_row_set_count": 34569147570568156800,
+      "canonical_common_gcd": {
+        "degree": 121,
+        "monic_polynomial": "Z^121",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 120,
+      "minor_size": 121,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 120
+      },
+      "support_choice_count": 1606279353471695402686219221837783440333085628395350856951933625624394168842454936527819972092056328722586079340211110400,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 121,
+      "support_row_chart_count": 55527708009719848730925034035645816067754572199997702940652445578817883777109474574813380926525426158683419797886258704933642183809310720000,
+      "t": 136,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 393,
+      "all_row_set_count": 2106811614990104173800,
+      "canonical_common_gcd": {
+        "degree": 120,
+        "monic_polynomial": "Z^120",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 119,
+      "minor_size": 120,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 119
+      },
+      "support_choice_count": 495815820842028427869980933271356623164039186315911871661183593623856363341676141122107695467190856569981927551442715200,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 120,
+      "support_row_chart_count": 1044590530245838064806402489066973512976208665464461964654399257517704749251110396939042347781929497311411136786622353098306979331124701760000,
+      "t": 137,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 394,
+      "all_row_set_count": 102014036094257675784000,
+      "canonical_common_gcd": {
+        "degree": 119,
+        "monic_polynomial": "Z^119",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 118,
+      "minor_size": 119,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 118
+      },
+      "support_choice_count": 151394143768558298586253720082856984172225705745316602033949188892780568959290424770109219989981940937399061847768768000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 119,
+      "support_row_chart_count": 15444327646864942059009888146912264072930686576573804861101604128827454709699020734173064844666534954222551158596907430300400497945114112000000,
+      "t": 138,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 395,
+      "all_row_set_count": 4017652788178848131293200,
+      "canonical_common_gcd": {
+        "degree": 118,
+        "monic_polynomial": "Z^118",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 117,
+      "minor_size": 118,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 117
+      },
+      "support_choice_count": 45725642407254917593310133730609089128159540567747907720913587508225603315115635907723343093420941552158599898183968000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 118,
+      "support_row_chart_count": 183709754708776696792191350137364125233328691762809822568831970229014119374079337283725182534927903110089624286970159842562678461111347417600000,
+      "t": 139,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 396,
+      "all_row_set_count": 131169217511293618831944000,
+      "canonical_common_gcd": {
+        "degree": 117,
+        "monic_polynomial": "Z^117",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 116,
+      "minor_size": 117,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 116
+      },
+      "support_choice_count": 13659812162167291838001508304333854473728672878466463572323552723976256180211759587623682240566255957353708324014451200,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 117,
+      "support_row_chart_count": 1791746872662735486360264823654235909165165450416525520202022762223600158818508515171874327444274064175135388002442341475448956246320189132800000,
+      "t": 140,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 397,
+      "all_row_set_count": 3606497635473018049784300280,
+      "canonical_common_gcd": {
+        "degree": 116,
+        "monic_polynomial": "Z^116",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 115,
+      "minor_size": 116,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 115
+      },
+      "support_choice_count": 4035853593367608952136809271735002458147107895910546055459231486629348416880747150888815207440030169218141095731542400,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 116,
+      "support_row_chart_count": 14555296441595564967435937664610268458919338926582518166213863773077102790165763434555884096137365912009989032060294961938115856270533109151872000,
+      "t": 141,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 398,
+      "all_row_set_count": 84624257908136115834824778080,
+      "canonical_common_gcd": {
+        "degree": 115,
+        "monic_polynomial": "Z^115",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 114,
+      "minor_size": 115,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 114
+      },
+      "support_choice_count": 1179241855996580953269193641111486864345250669837842172375997109443336061355583550385648775977439545665754073311987200,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 115,
+      "support_row_chart_count": 99792466957923776445342033788059304033876024215251852394129305374836273154480587361423369891216402904637023269203042473512808846263764843800576000,
+      "t": 142,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 399,
+      "all_row_set_count": 1713849656772535006039031373800,
+      "canonical_common_gcd": {
+        "degree": 114,
+        "monic_polynomial": "Z^114",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 113,
+      "minor_size": 114,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 113
+      },
+      "support_choice_count": 340735712159816104587832333486987410552019665907919220661406199964783032803749015814948766928154642591863614147936000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 114,
+      "support_row_chart_count": 583969783335246113322213656797327321045701073394308122977781422792088487025412854924993940001798341347058328839811941016181852210043058514476800000,
+      "t": 143,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 400,
+      "all_row_set_count": 30252210715675198558211547346560,
+      "canonical_common_gcd": {
+        "degree": 113,
+        "monic_polynomial": "Z^113",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 112,
+      "minor_size": 113,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 112
+      },
+      "support_choice_count": 97353060617090315596523523853424974443434190259405491617544628561366580801071147375699647693758469311961032613696000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 113,
+      "support_row_chart_count": 2945145303604116803778021317967718986877489653100141980584718843795675761293142066497296626442249330738343940471383355982071055569913010314485760000,
+      "t": 144,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 401,
+      "all_row_set_count": 469396280848805045810886556130100,
+      "canonical_common_gcd": {
+        "degree": 112,
+        "monic_polynomial": "Z^112",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 111,
+      "minor_size": 112,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 111
+      },
+      "support_choice_count": 27502239624328014156017895488592555280270158748282051381956357568586059076302599133635150473486767580628991713369120,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 112,
+      "support_row_chart_count": 12909448994672207108851859281069653273670943371598433659475638879928770479197582864181053954405674353950514908860010986073826869656656695460042512000,
+      "t": 145,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 402,
+      "all_row_set_count": 6450057129781226982436652912470080,
+      "canonical_common_gcd": {
+        "degree": 111,
+        "monic_polynomial": "Z^111",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 110,
+      "minor_size": 111,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 110
+      },
+      "support_choice_count": 7681423535971914178239412206290190003466977007001470710172349246088874355476037663259692900325481219527299431165440,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 111,
+      "support_row_chart_count": 49545620645064968318954520279079001397932760102655734123455044028656653630826199206709953178803951776041970318833246212534362205691805846363530035200,
+      "t": 146,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 403,
+      "all_row_set_count": 79013199839820030534848998177758480,
+      "canonical_common_gcd": {
+        "degree": 110,
+        "monic_polynomial": "Z^110",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 109,
+      "minor_size": 110,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 109
+      },
+      "support_choice_count": 2120990080828065855185509340542813657673717531783988181166991956009614560840398459258273412776438844197836410097920,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 110,
+      "support_row_chart_count": 167586213114744006646015942660392219280694205347229190234746258999915136255014737242099151330543963749933007813516185416650743803953813431822910361600,
+      "t": 147,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 404,
+      "all_row_set_count": 867972262747820578345034878767819200,
+      "canonical_common_gcd": {
+        "degree": 109,
+        "monic_polynomial": "Z^109",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 108,
+      "minor_size": 109,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 108
+      },
+      "support_choice_count": 578930295015104823996044733150643926412180964010517865827218648042326555068098835033275621353370404123478920870400,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 109,
+      "support_row_chart_count": 502495438137523846290616178452815734702061098669255271483414875306068229850815897390943028840273740273488697107129700063521818487056404050773831680000,
+      "t": 148,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 405,
+      "all_row_set_count": 8595571658102045129818116747602531480,
+      "canonical_common_gcd": {
+        "degree": 108,
+        "monic_polynomial": "Z^108",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 107,
+      "minor_size": 108,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 107
+      },
+      "support_choice_count": 156196539991699073800913059191634128660712190785015958849422853060924738867383101531255056256231123884800005878400,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 108,
+      "support_row_chart_count": 1342598552246251210228572222309658986137531693854328453564467169604561246060393032870030374188062294615142118961515012982598868164789382610721052032000,
+      "t": 149,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 406,
+      "all_row_set_count": 77103134474669507808999718333976196000,
+      "canonical_common_gcd": {
+        "degree": 107,
+        "monic_polynomial": "Z^107",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 106,
+      "minor_size": 107,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 106
+      },
+      "support_choice_count": 41652410664453086346910149117769100976189917542670922359846094149579930364635493741668015001661633035946668234240,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 107,
+      "support_row_chart_count": 3211531420655484622473661129777257375478481128156533177961516153206923910842136158360205546230580904062798424093989399825485664713117460065512151040000,
+      "t": 150,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 407,
+      "all_row_set_count": 629169365508704665489903257132350201400,
+      "canonical_common_gcd": {
+        "degree": 106,
+        "monic_polynomial": "Z^106",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 105,
+      "minor_size": 106,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 105
+      },
+      "support_choice_count": 10977359460828769061870408757638654690769263982920661804195891807894218101024625197927284741817228410951461825280,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 106,
+      "support_row_chart_count": 6906618286930612976871974532887735449905237965711158881333894566537265325844621272375186580233221421559016087942559561662063730495064875160219611392000,
+      "t": 151,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 408,
+      "all_row_set_count": 4688795937593084907665736021700474766400,
+      "canonical_common_gcd": {
+        "degree": 105,
+        "monic_polynomial": "Z^105",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 104,
+      "minor_size": 105,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 104
+      },
+      "support_choice_count": 2858968311665477937489590487247413752387081037320860322468708922940508891175946611745189637918000519805540426240,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 105,
+      "support_row_chart_count": 13405119005444453613607717044041987828974171443511727403397847089828478507002689999129428633461228155385335632157224386936874933265526094536220430336000,
+      "t": 152,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 409,
+      "all_row_set_count": 32026150823738481735395429076793421395500,
+      "canonical_common_gcd": {
+        "degree": 104,
+        "monic_polynomial": "Z^104",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 103,
+      "minor_size": 104,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 103
+      },
+      "support_choice_count": 735763903737439175089232845982790303923145855192868465341211855168513317582045083905012039170073663185249374400,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 104,
+      "support_row_chart_count": 23563685751757828617669815116480056730618660740547958326285278087589122375590666014094698769756065116888285290901370992662475468630807588051949975200000,
+      "t": 153,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 410,
+      "all_row_set_count": 201149345722743342538860075330950367478560,
+      "canonical_common_gcd": {
+        "degree": 103,
+        "monic_polynomial": "Z^103",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 102,
+      "minor_size": 103,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 102
+      },
+      "support_choice_count": 187089109996806049411443070861149612733513860489140147666225019407152530632109263389049516072585968144904486400,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 103,
+      "support_row_chart_count": 37632852067707897642861474592431695876263676037915599460754246551115631557232706376816752798913626201502093897870407222898652417643669869451999811584000,
+      "t": 154,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 411,
+      "all_row_set_count": 1165221082896806046310922025638106900143400,
+      "canonical_common_gcd": {
+        "degree": 102,
+        "monic_polynomial": "Z^102",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 101,
+      "minor_size": 102,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 101
+      },
+      "support_choice_count": 47000434950417129486289356826093683198907140561905939535661407314479782085627449095297805257259401753476005120,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 102,
+      "support_row_chart_count": 54765897709545938214125450911909907023654472333859802271998105470478414239933870404709533274425264927624903266654225180801470443476904062955787134208000,
+      "t": 155,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 412,
+      "all_row_set_count": 6242760225944100272356697397964160604404640,
+      "canonical_common_gcd": {
+        "degree": 101,
+        "monic_polynomial": "Z^101",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 100,
+      "minor_size": 101,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 100
+      },
+      "support_choice_count": 11664341520541477390757942569979454224546297657699284264324728822571624751177615103942521012750508464366307840,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 101,
+      "support_row_chart_count": 72817687306264663524165209139940905352928945829086052514362975360349445626872479932932967577798087266741609935083361735641185385938590069285518164377600,
+      "t": 156,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 413,
+      "all_row_set_count": 31012358678820676071040147443457924406028940,
+      "canonical_common_gcd": {
+        "degree": 100,
+        "monic_polynomial": "Z^100",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 99,
+      "minor_size": 100,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 99
+      },
+      "support_choice_count": 2859462363045362175889689804776516690968873940358319686157275755047898300652764867714064617203401346847080320,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 100,
+      "support_row_chart_count": 88678672431350916520496827516710721398703694685130279435501392839802157920466372502819795814624220783041411616725600082767819079820037423348044424460800,
+      "t": 157,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 414,
+      "all_row_set_count": 143189733233596341882651762012459148338766000,
+      "canonical_common_gcd": {
+        "degree": 99,
+        "monic_polynomial": "Z^99",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 98,
+      "minor_size": 99,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 98
+      },
+      "support_choice_count": 692363768291855248399440630696493145513044537617026558391592192505544382724640403804858260824068122723264000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 99,
+      "support_row_chart_count": 99139383282318262618029887422929923462025264244113252029732269821456810238222743701172499683083444424699197723904749732731488280585570881541252224000000,
+      "t": 158,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 415,
+      "all_row_set_count": 615833221538262299883830979737191107650414100,
+      "canonical_common_gcd": {
+        "degree": 98,
+        "monic_polynomial": "Z^98",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 97,
+      "minor_size": 98,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 97
+      },
+      "support_choice_count": 165565248939356689834648846470900534796597606821462872658859002555673656738500966127248714544885855433824000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 98,
+      "support_row_chart_count": 101960580629108395643706896158040741134314187034523958791875577642284795376327549861022330082119158265508973539390777625161498736467523067888746518400000,
+      "t": 159,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 416,
+      "all_row_set_count": 2472162036282630021039034757367935629277648000,
+      "canonical_common_gcd": {
+        "degree": 97,
+        "monic_polynomial": "Z^97",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 96,
+      "minor_size": 97,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 96
+      },
+      "support_choice_count": 39097335894113146033242378202766873277268832454224967519441403013147032193670107663784033796141720078348800,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 97,
+      "support_row_chart_count": 96654949517216716378229208639344921595218078066324219173435793945823544850418550526802357384923770878976248526869039617720137334841951305708587622400000,
+      "t": 160,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 417,
+      "all_row_set_count": 9280710221304286788116972549474771808276208850,
+      "canonical_common_gcd": {
+        "degree": 96,
+        "monic_polynomial": "Z^96",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 95,
+      "minor_size": 96,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 95
+      },
+      "support_choice_count": 9116446109925421070251227609779775740132396028989956368715904067969380102850962604295796341888814537499600,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 96,
+      "support_row_chart_count": 84607094594354558980240002356522174980118869233481172042957215596706760293264429344822499238509146976843502163853918844688269878853085182542846391460000,
+      "t": 161,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 418,
+      "all_row_set_count": 32639892664342891933241781340893634365063681600,
+      "canonical_common_gcd": {
+        "degree": 95,
+        "monic_polynomial": "Z^95",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 94,
+      "minor_size": 95,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 94
+      },
+      "support_choice_count": 2098750183579953052144167507287430386217530021062435998553301655935396858210293549190399157844906943884800,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 95,
+      "support_row_chart_count": 68502980721319607391984096087183851327577086669678380503607306408961525197080569951845976561003706323002132341679757959585563257924800107189694279680000,
+      "t": 162,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 419,
+      "all_row_set_count": 107721384890739488829123824395511067379158378000,
+      "canonical_common_gcd": {
+        "degree": 94,
+        "monic_polynomial": "Z^94",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 93,
+      "minor_size": 94,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 93
+      },
+      "support_choice_count": 476988678086352966396401706201688724140347732059644545125750376348953831411430352088727081328387941792000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 94,
+      "support_row_chart_count": 51381880980665064348643422455535628236046422686583048617490076907636267615902921108673125777297062331031931494173402115989617097233469428613133376000000,
+      "t": 163,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 420,
+      "all_row_set_count": 334131362067533191104582067782937347025574558400,
+      "canonical_common_gcd": {
+        "degree": 93,
+        "monic_polynomial": "Z^93",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 92,
+      "minor_size": 93,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 92
+      },
+      "support_choice_count": 107009393174504006781054320723051885606665123660158919431552590398094654302325663714416099391094192192000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 93,
+      "support_row_chart_count": 35755194295417213259450055009775359084995805525668686142535086608992065014082291644983342180233804839609348720452862136969318581690337482115128012800000,
+      "t": 164,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 421,
+      "all_row_set_count": 975503377269082347317315797208746877874322983000,
+      "canonical_common_gcd": {
+        "degree": 92,
+        "monic_polynomial": "Z^92",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 91,
+      "minor_size": 92,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 91
+      },
+      "support_choice_count": 23694937060068744358662028160104346098618705953320903588415216445292387738372111251049279150885142556800,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 92,
+      "support_row_chart_count": 23114491126275401257683863228249469232356327067749735886297602772973038115451559746766078167028592891359492742411154944343362691233400044241622934400000,
+      "t": 165,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 422,
+      "all_row_set_count": 2684304068045662271753161595490447264666064972320,
+      "canonical_common_gcd": {
+        "degree": 91,
+        "monic_polynomial": "Z^91",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 90,
+      "minor_size": 91,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 90
+      },
+      "support_choice_count": 5177990996499583090253934894844655204448743343718582256850831147189785444014808159374189268126919513600,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 91,
+      "support_row_chart_count": 13899302296207643481490236566051649765133301697818580776747513658382516918158914759641463786587567866550889101843953934014289795590728494472851863552000,
+      "t": 166,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 423,
+      "all_row_set_count": 6970842262831498554995351463887273937308644802520,
+      "canonical_common_gcd": {
+        "degree": 90,
+        "monic_polynomial": "Z^90",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 89,
+      "minor_size": 90,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 89
+      },
+      "support_choice_count": 1116580996875502514723004918082615221812406739996187169131340365863200178685657683656519486728790700800,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 90,
+      "support_row_chart_count": 7783510002894278367555649295408427569926472869914104165726591152474286335484912806496539681007580940848035674985241681097635735239744416246828406016000,
+      "t": 167,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 424,
+      "all_row_set_count": 17104695717950707262500765033102171686482750635200,
+      "canonical_common_gcd": {
+        "degree": 89,
+        "monic_polynomial": "Z^89",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 88,
+      "minor_size": 89,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 88
+      },
+      "support_choice_count": 237570424867128194621915940017577706768597178722593014708795822524085144401203762480110529091232064000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 89,
+      "support_row_chart_count": 4063569828936497852915999134937379576169945851826957777793409787697114414100557349928790734454640446443276202316768326745124625081140261646607052800000,
+      "t": 168,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 425,
+      "all_row_set_count": 39702427205817374681369445503532371039565903133340,
+      "canonical_common_gcd": {
+        "degree": 88,
+        "monic_polynomial": "Z^88",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 87,
+      "minor_size": 88,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 87
+      },
+      "support_choice_count": 49867376917864172927713487409350037505672521005449948842176481614725419461573431275306219549810504000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 88,
+      "support_row_chart_count": 1979855902026559921059045730689781414606744207358747234700883057772447339171797474058360189511621381824643767817937486835049184078821384416844603360000,
+      "t": 169,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 426,
+      "all_row_set_count": 87268338377759025159166456763568067991758141474400,
+      "canonical_common_gcd": {
+        "degree": 87,
+        "monic_polynomial": "Z^87",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 86,
+      "minor_size": 87,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 86
+      },
+      "support_choice_count": 10325480397110699335620675040053654824703957290540224701438895016696086853219910475828111342078410240,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 87,
+      "support_row_chart_count": 901087517207974142149941236465569631190986020675059570115994028762258724334199214758033576701615984769323616690103314607735579283361316539761657856000,
+      "t": 170,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    }
+  ],
+  "checks": [
+    "all 512 descriptor-domain elements are distinct",
+    "domain encodings decode and re-encode in F_17^32",
+    "the prefix row set is nonzero for every distinct support subset by Vandermonde",
+    "every maximal row-set determinant has the displayed Z^(j+1) factor",
+    "per-agreement gcd degree and root table agree with the nested-prefix certificate"
+  ],
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512,
+    "field_principle": "Every support subset is distinct because it is a subset of the descriptor domain; distinct support nodes make the ordinary Vandermonde determinant nonzero.",
+    "full_domain_distinct": true
+  },
+  "formula": {
+    "canonical_common_gcd": "For every distinct S with |S|=j+1, every nonzero maximal minor is a scalar multiple of Z^(j+1), and the prefix row set is nonzero; hence the v10 canonical monic gcd is Z^(j+1).",
+    "determinant_factorization": "Delta_{A,S,R}(Z) = Z^(j+1) * det(x_i^{r_a})_{a,i} * det(x_i^b)_{i,0<=b<=j}",
+    "matrix_factorization": "(v_{r_a+b})_{a,b} = (x_i^{r_a})_{a,i} * (x_i^b)_{i,b}",
+    "nonzero_witness": "For R={0,...,j}, both determinants are ordinary Vandermonde determinants on the distinct support S.",
+    "row_set": "R={r_0<...<r_j} subset {0,...,t-1}",
+    "support": "S={x_0,...,x_j}, any distinct subset of the descriptor domain",
+    "syndrome": "u_m=0, v_m=sum_{x in S} x^m"
+  },
+  "nonclaims": [
+    "only zero-u power-sum syndromes from distinct supports of size j+1",
+    "not arbitrary length-256 M3 syndrome pencils",
+    "not supports of size different from j+1",
+    "not a worst-case support-wise MCA row bound",
+    "not a quotient, extension, or singular-bucket classification"
+  ],
+  "object": "support-uniform canonical regular-minor gcd formula over the M3 window",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "f17-32-m3-support-uniform-canonical-gcd-v1",
+  "source_artifacts": {
+    "prefix_canonical_formula_certificate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-canonical-gcd-formula-window/f17_32_n512_k256_m3_canonical_gcd_formula_window.json",
+      "sha256": "ddb985222229c9346b246508eabb275ed6b74760a348c3b4ebbcb758a7feb111"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT for all distinct zero-u rank-size supports",
+  "summary": {
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551,
+    "raw_aperiodic_numerator_before_subtraction": 1,
+    "residual_aperiodic_numerator_after_tangent": 0,
+    "root_certificate_template": {
+      "factor": {
+        "multiplicity": "degree",
+        "root": 0
+      },
+      "field_encoding": "base-p low-to-high integer",
+      "kind": "split_linear_factorization",
+      "leading_coefficient": 1
+    },
+    "root_union": [
+      0
+    ],
+    "support_choice_total": 6668863801358846384438784215999588662393159502296416400641669827596186824155396220386094074327280024104964169453842551838156,
+    "support_row_chart_total": 892804725401597958669436086223676963003909357617928888932360455518250212419765115220311773001100766565464888008158146499513738776992174538148701415918652
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551,
+    "support_choice_total": 6668863801358846384438784215999588662393159502296416400641669827596186824155396220386094074327280024104964169453842551838156,
+    "support_node_count_max": 128,
+    "support_node_count_min": 87,
+    "support_row_chart_total": 892804725401597958669436086223676963003909357617928888932360455518250212419765115220311773001100766565464888008158146499513738776992174538148701415918652
+  }
+}

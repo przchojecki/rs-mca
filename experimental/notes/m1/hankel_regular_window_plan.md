@@ -205,6 +205,29 @@ agreement in `385 <= A <= 426`.  This covers all
 for the synthetic zero-`u` nested-prefix family.  The remaining gap is
 arbitrary row data, not the canonical-gcd object for this family.
 
+The support-uniform companion
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-support-uniform-canonical-gcd/
+  f17_32_n512_k256_m3_support_uniform_canonical_gcd.json
+```
+
+extends this from the nested-prefix support to every distinct support subset
+`S={x_0,...,x_j}` of the descriptor domain with `|S|=j+1`.  For every maximal
+row set `R={r_0<...<r_j}`,
+
+```text
+(v_{r_a+b})_{a,b} = (x_i^{r_a})_{a,i} * (x_i^b)_{i,b},
+Delta_{A,S,R}(Z)
+  = Z^(j+1) * det(x_i^{r_a})_{a,i} * det(x_i^b)_{i,0<=b<=j}.
+```
+
+The prefix row set is nonzero for every such `S` by Vandermonde.  Hence the
+v10 canonical gcd is again `Z^(j+1)` with root table `{0}`, uniformly over all
+support choices of size `j+1`.  This removes support-choice dependence inside
+the zero-`u` rank-size power-sum branch, but does not classify arbitrary M3
+syndrome pencils or supports of other sizes.
+
 The syndrome-realizability sidecar
 
 ```text

@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 support-uniform canonical gcd formula
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_support_uniform_canonical_gcd.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-support-uniform-canonical-gcd/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for zero-`u` power-sum syndromes from every
+  distinct support subset of size `j+1`.
+- **What is being added:** A formula certificate showing that, for any support
+  `S={x_0,...,x_j}` and any maximal row set `R={r_0<...<r_j}`,
+  `Delta_{A,S,R}(Z)` factors as `Z^(j+1)` times two alternants.  The prefix
+  row set is nonzero by Vandermonde, so the v10 canonical gcd is `Z^(j+1)`
+  uniformly over all such support choices.
+- **How it is useful:** This removes the nested-prefix support restriction
+  inside the synthetic M3 zero-`u` branch and turns the previous canonical-gcd
+  formula into a support-uniform statement over the pinned row.
+- **What to do next:** Classify supports of other ranks or move to arbitrary
+  non-proportional M3 syndrome pencils after tangent, quotient, and extension
+  subtraction.
+
 ### 2026-07-01 - M3 canonical all-row-set gcd formula
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
