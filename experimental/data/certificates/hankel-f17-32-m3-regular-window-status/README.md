@@ -115,6 +115,13 @@ original top coefficient at degree `j+1=87`.  The resulting projective-line
 numerator is `2`, still below the M3 budget numerator `6`, and the companion
 pivot packet supplies the actual support witness for the endpoint.
 
+The rank-7, `A=393` projective-line packet packages a harder beyond-envelope
+row.  Its regular minor has degree `7`, so degree-only projective accounting
+would give `8 > 6`; the verifier splits the degree-4 Frobenius gcd
+deterministically and records four finite roots, while the top-degree audit
+adds the `[0:1]` endpoint.  This gives projective-line numerator `5 <= 6` for
+the unique rank-7 row where the finite-root count reaches four.
+
 The rank-6..11 tangent-exclusion audit is the first subtraction check for this
 beyond-envelope low-rank block.  It consumes the exact finite-root certificates
 above and checks the unique moment-zero common-code-line slope

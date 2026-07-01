@@ -93,6 +93,11 @@ LOW_RANK_RANK6_A426_PROJECTIVE_LINE_PACKET_REF = (
     "hankel-f17-32-m3-low-rank-rank6-a426-projective-line/"
     "f17_32_n512_k256_a426_rank6_projective_line_packet.json"
 )
+LOW_RANK_RANK7_A393_PROJECTIVE_LINE_PACKET_REF = (
+    "experimental/data/certificates/"
+    "hankel-f17-32-m3-low-rank-rank7-a393-projective-line/"
+    "f17_32_n512_k256_a393_rank7_projective_line_packet.json"
+)
 LOW_RANK6_11_TANGENT_EXCLUSION_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/"
     "f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json"
@@ -197,6 +202,7 @@ def validate_inputs(
     low_rank_rank6_a426_projective_pivot: dict[str, Any],
     low_rank_rank6_a426_finite_packet: dict[str, Any],
     low_rank_rank6_a426_projective_line_packet: dict[str, Any],
+    low_rank_rank7_a393_projective_line_packet: dict[str, Any],
     low_rank6_11_tangent_exclusion: dict[str, Any],
     low_rank6_11_subfield_exclusion: dict[str, Any],
     low_rank6_11_known_ledger_table: dict[str, Any],
@@ -1133,6 +1139,69 @@ def validate_inputs(
         and projective_line_infinity["top_coefficient"] == 0
         and projective_line_infinity["contribution"] == 1,
         "rank-6 A=426 projective-line agreement mismatch",
+    )
+    require(
+        low_rank_rank7_a393_projective_line_packet["schema_version"]
+        == "aperiodic-hankel-eliminant-v1",
+        "rank-7 A=393 projective-line packet schema mismatch",
+    )
+    require(
+        low_rank_rank7_a393_projective_line_packet["packet_certificate_schema"]
+        == "f17-32-m3-low-rank-rank7-a393-projective-line-v1",
+        "rank-7 A=393 projective-line certificate schema mismatch",
+    )
+    require(
+        low_rank_rank7_a393_projective_line_packet["sampler"] == "projective_line"
+        and low_rank_rank7_a393_projective_line_packet["sampler_audit"][
+            "denominator"
+        ]
+        == 17**32 + 1,
+        "rank-7 A=393 projective-line sampler mismatch",
+    )
+    require(
+        low_rank_rank7_a393_projective_line_packet["agreement_threshold"] == 393,
+        "rank-7 A=393 projective-line threshold mismatch",
+    )
+    require(
+        low_rank_rank7_a393_projective_line_packet[
+            "declared_aperiodic_numerator"
+        ]
+        == 5
+        and low_rank_rank7_a393_projective_line_packet[
+            "finite_affine_numerator"
+        ]
+        == 4
+        and low_rank_rank7_a393_projective_line_packet[
+            "projective_infinity_numerator"
+        ]
+        == 1
+        and len(low_rank_rank7_a393_projective_line_packet["root_union"]) == 4,
+        "rank-7 A=393 projective-line numerator mismatch",
+    )
+    rank7_projective_line_item = low_rank_rank7_a393_projective_line_packet[
+        "exact_agreements"
+    ][0]
+    rank7_projective_line_infinity = rank7_projective_line_item[
+        "projective_infinity"
+    ]
+    require(
+        rank7_projective_line_item["A"] == 393
+        and rank7_projective_line_item["j"] == 119
+        and rank7_projective_line_item["t"] == 137
+        and rank7_projective_line_item["status"] == "regular_minor"
+        and rank7_projective_line_item["regular_minor"]["degree"] == 7
+        and rank7_projective_line_item["regular_minor_data"]["roots"]
+        == low_rank_rank7_a393_projective_line_packet["root_union"]
+        and rank7_projective_line_item["regular_minor_data"][
+            "linear_root_count_certificate"
+        ]["linear_root_count"]
+        == 4
+        and rank7_projective_line_infinity["projective_point"] == "[0:1]"
+        and rank7_projective_line_infinity["status"] == "nonempty"
+        and rank7_projective_line_infinity["top_degree"] == 120
+        and rank7_projective_line_infinity["top_coefficient"] == 0
+        and rank7_projective_line_infinity["contribution"] == 1,
+        "rank-7 A=393 projective-line agreement mismatch",
     )
     require(
         low_rank6_11_tangent_exclusion["schema_version"]
@@ -2184,6 +2253,9 @@ def build_status() -> dict[str, Any]:
     low_rank_rank6_a426_projective_line_packet = load_json(
         LOW_RANK_RANK6_A426_PROJECTIVE_LINE_PACKET_REF
     )
+    low_rank_rank7_a393_projective_line_packet = load_json(
+        LOW_RANK_RANK7_A393_PROJECTIVE_LINE_PACKET_REF
+    )
     low_rank6_11_tangent_exclusion = load_json(
         LOW_RANK6_11_TANGENT_EXCLUSION_REF
     )
@@ -2219,6 +2291,7 @@ def build_status() -> dict[str, Any]:
         low_rank_rank6_a426_projective_pivot,
         low_rank_rank6_a426_finite_packet,
         low_rank_rank6_a426_projective_line_packet,
+        low_rank_rank7_a393_projective_line_packet,
         low_rank6_11_tangent_exclusion,
         low_rank6_11_subfield_exclusion,
         low_rank6_11_known_ledger_table,
@@ -2323,6 +2396,11 @@ def build_status() -> dict[str, Any]:
         artifact_record(
             "synthetic_low_rank_rank6_a426_projective_line_packet",
             LOW_RANK_RANK6_A426_PROJECTIVE_LINE_PACKET_REF,
+            "aperiodic-hankel-eliminant-v1",
+        ),
+        artifact_record(
+            "synthetic_low_rank_rank7_a393_projective_line_packet",
+            LOW_RANK_RANK7_A393_PROJECTIVE_LINE_PACKET_REF,
             "aperiodic-hankel-eliminant-v1",
         ),
         artifact_record(
@@ -2676,6 +2754,19 @@ def build_status() -> dict[str, Any]:
                     "declared_aperiodic_numerator"
                 ]
             ),
+            "synthetic_low_rank_rank7_a393_projective_line_packet_status": (
+                "v9 projective-line regular-minor packet checks the hard "
+                "rank-7 A=393 row with four finite Frobenius-gcd roots plus "
+                "the [0:1] endpoint, giving projective numerator 5 <= 6"
+            ),
+            "synthetic_low_rank_rank7_a393_projective_line_packet_root_union": (
+                low_rank_rank7_a393_projective_line_packet["root_union"]
+            ),
+            "synthetic_low_rank_rank7_a393_projective_line_packet_numerator": (
+                low_rank_rank7_a393_projective_line_packet[
+                    "declared_aperiodic_numerator"
+                ]
+            ),
             "synthetic_low_rank6_11_tangent_exclusion_status": (
                 "proved that all 238 finite roots counted in the rank-6..11 "
                 "synthetic low-rank slack certificates have zero "
@@ -2887,6 +2978,10 @@ def print_summary(status: dict[str, Any]) -> None:
     print(
         "rank-6 A=426 projective-line packet: "
         f"{summary['synthetic_low_rank_rank6_a426_projective_line_packet_status']}"
+    )
+    print(
+        "rank-7 A=393 projective-line packet: "
+        f"{summary['synthetic_low_rank_rank7_a393_projective_line_packet_status']}"
     )
     print(
         "rank-6..11 low-rank tangent: "

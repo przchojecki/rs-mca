@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-7 A393 hard projective-line packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank_rank7_a393_projective_line_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a393_low_rank7_projective_line_input.json`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank-rank7-a393-projective-line/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a v9 projective-line packet for the hard
+  synthetic rank-7, `A=393` low-rank row.  Degree-only projective accounting
+  gives `8 > 6`, but the verifier splits the degree-4 Frobenius gcd into four
+  finite roots and adds the `[0:1]` endpoint, giving numerator `5 <= 6`.
+- **How it is useful:** It converts the closest-to-budget rank-7 finite-root
+  slack row into a replayable v9 packet, strengthening the M3 regular-window
+  stress test beyond the easier rank-6 packet.
+- **What to do next:** Extend the hard-row packet pattern to rank 8 or attack
+  quotient-image subtraction for finite roots.  This remains synthetic and is
+  not an actual-row M3 threshold bound.
+
 ### 2026-07-01 - M3 rank-6 A426 projective-line v9 packet
 
 - **Agent/model:** AllenGrahamHart / Codex.
