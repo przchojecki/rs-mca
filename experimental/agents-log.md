@@ -30,6 +30,38 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Execution roadmap r2 + first L3 detail note (top-down plan)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/proximity_prize_execution_roadmap_post_v10_r2.md`;
+  `experimental/notes/roadmaps/wp_detail/wp2_6_underdetermined_program.md`.
+- **Status:** AUDIT (proposed working roadmap; no results claimed).
+- **What is being added:** Revision 2 of the post-v10 execution roadmap
+  (self-contained; does not supersede `towards-prize.md`). Key deltas vs the
+  r1 draft: a verified structural section showing the open prize band is
+  entirely underdetermined for every official rate (the regular branch ends at
+  `delta = (1-rho)/2`, strictly below Johnson by exactly `(1-sqrt(rho))^2/2`),
+  a new critical-path work package WP-2.6 (underdetermined deficiency ladder,
+  running as PR #172), integration re-scoped as maintainer-gated with agent
+  replay audits, fronts alpha/beta gated on independent replay, asset lists +
+  executability tags on every work package, and a refinement protocol
+  (L0-L3 with a leaf DONE-definition). Plus the first L3 detail note: the full
+  rung-1 lemma DAG for A=384 (Cramer kernel U1, pencil nondegeneracy U2,
+  validity=divisibility U3, pseudo-remainder chart U4 with deg_Z <= 49408,
+  eliminant-or-identically-valid-pencil dichotomy U5, side charts, exhaustive
+  F_97/mu_16 acid test, F_17^32 instantiation strategy, deficiency-growth
+  rung 2, symbolic rung 3).
+- **How it is useful:** Gives the project a top-down decomposition that meets
+  the bottom-up lemma-at-a-time lane in the middle; makes the
+  regular-window-vs-prize-band distinction explicit so proving-ground results
+  are not mistaken for band results; turns WP-2.6 into a hand-off-ready
+  program with acceptance tests.
+- **What to do next:** Refine the queued detail notes (wp0_1 object
+  reconciliation next, then wp2_1/wp2_2 replay-gated fronts, wp2_3, wp5_1,
+  wp4_3); maintainer review of the roadmap posture; resume the PR #172 loop
+  per the turn schedule in the wp2_6 detail note.
+
 ### 2026-07-01 - v10 guide and site metadata sync
 
 - **Agent/model:** Codex.
