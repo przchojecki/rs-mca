@@ -1,0 +1,109 @@
+{
+  "agreement_threshold": 426,
+  "claim_scope": {
+    "may_be_used_for_threshold_pinning": false,
+    "note": "Chart packet for the projective-infinity endpoint only; finite affine roots are intentionally outside this packet.",
+    "root_status": "not_enumerated",
+    "row_data": "synthetic_syndrome_pencil",
+    "threshold_role": "synthetic_stress"
+  },
+  "exact_agreements": [
+    {
+      "A": 426,
+      "charts": [
+        {
+          "chart_id": "projective_infinity",
+          "coverage_ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank-rank6-a426-projective-pivot/f17_32_n512_k256_a426_rank6_projective_infinity_pivot_packet.json#/projective_infinity_coverage",
+          "equations_ref": "inline:B=0",
+          "inequations_ref": "inline:A!=0",
+          "pivot_records": [
+            {
+              "dimension": 0,
+              "pivot": "projective_infinity_B_zero_A_nonzero",
+              "status": "dimension_degree",
+              "variety_degree": 1
+            }
+          ]
+        }
+      ],
+      "j": 86,
+      "status": "pivot_atlas",
+      "t": 170
+    }
+  ],
+  "finite_affine_roots_status": "not_enumerated_in_this_chart_packet",
+  "nonclaims": [
+    "synthetic syndrome-pencil chart only",
+    "finite affine roots are not enumerated in this packet",
+    "not a full projective-line numerator certificate",
+    "not a quotient-image subtraction table",
+    "not a worst-case or actual-row M3 threshold bound"
+  ],
+  "packet_certificate_schema": "f17-32-m3-low-rank-rank6-a426-projective-pivot-v1",
+  "projective_infinity_coverage": {
+    "A": 426,
+    "base_node_range": [
+      0,
+      86
+    ],
+    "endpoint_co_support": "update nodes Y",
+    "endpoint_support_size": 506,
+    "j": 86,
+    "projective_point": "[0:1]",
+    "rank": 6,
+    "source_endpoint_certificate": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json#/deterministic_records",
+    "status": "nonempty",
+    "support_count": 1,
+    "support_wise_noncontainment": {
+      "f_explained_on_D_minus_Y": false,
+      "g_explained_on_D_minus_Y": true,
+      "reason": "Syn(g)=v lies in W_Y, while Syn(f)=u lies in W_X and W_X cap W_Y is zero by scaled Vandermonde independence."
+    },
+    "t": 170,
+    "threshold_covered": true,
+    "update_node_range": [
+      87,
+      92
+    ],
+    "vandermonde_independence": {
+      "column_count": 93,
+      "column_sets": "X union Y",
+      "domain_points_distinct": true,
+      "status": "independent",
+      "syndrome_length": 256
+    },
+    "witness_support": "D minus the rank-6 update node set Y"
+  },
+  "projective_infinity_numerator": 1,
+  "removed_ledgers": [],
+  "root_union_table_ref": "not_enumerated",
+  "row": {
+    "domain_description": "order-512 subgroup from the pinned F_17^32 row descriptor; synthetic rank-6 low-rank update syndrome at A=426",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "sampler": "projective_line",
+  "sampler_audit": {
+    "denominator": 2367911594760467245844106297320951247362,
+    "denominator_formula": "|P^1(F)| = |F| + 1",
+    "extension_denominator_warning": "projective extension-valued line packets are divided by |P^1(F)|, not by the base field",
+    "field_role": "q_line",
+    "sampler": "projective_line",
+    "slope_field": "F_17^32",
+    "slope_field_order": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "source_artifacts": {
+    "rank2_11_projective_infinity_endpoint": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json",
+      "sha256": "f7457c3ceea4493286386d547adae12b97589d80434af4f2139f0cbb9470817b"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT"
+}

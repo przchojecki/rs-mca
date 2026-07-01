@@ -293,6 +293,18 @@ base syndrome `u` is not explained there because the parity columns on
 `X union Y` are Vandermonde independent.  Since `|D \ Y| >= 501`, this covers
 every threshold `385 <= A <= 426`.
 
+The first v9 chart packet using this endpoint audit is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank-rank6-a426-projective-pivot/
+  f17_32_n512_k256_a426_rank6_projective_infinity_pivot_packet.json
+```
+
+It records the rank-6, `A=426` projective-infinity chart as a checked
+`pivot_atlas` packet with nonempty coverage and contribution one.  This is a
+projective chart certificate only; finite affine roots are handled by the
+rank-6 slack family, not by this packet.
+
 The rank-6..11 tangent-exclusion audit
 
 ```text

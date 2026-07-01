@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-6 A426 projective-infinity pivot packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank_rank6_a426_projective_pivot.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank-rank6-a426-projective-pivot/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a v9 projective-line `pivot_atlas` packet for
+  the synthetic rank-6, `A=426` low-rank endpoint.  The `projective_infinity`
+  chart is checked as nonempty with contribution one, using the Vandermonde
+  endpoint witness from the rank-2..11 audit.
+- **How it is useful:** It turns the endpoint audit into a concrete v9 chart
+  packet, exercising roadmap item 6 for a projective-infinity pivot while
+  keeping finite affine roots out of scope.
+- **What to do next:** Build an affine-pivot packet or quotient-image
+  subtraction certificate for a finite-root residual; this packet does not
+  enumerate finite roots or prove a universal M3 row bound.
+
 ### 2026-07-01 - M3 low-rank projective-infinity endpoint
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -436,6 +436,19 @@ support-wise noncontained endpoint for the synthetic low-rank ladder at ranks
 The witness support is `D \ Y`, and simultaneous containment is ruled out by
 Vandermonde independence on `X union Y`.
 
+The first v9 projective-infinity pivot packet extracted from this audit is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank-rank6-a426-projective-pivot/
+  f17_32_n512_k256_a426_rank6_projective_infinity_pivot_packet.json
+```
+
+It packages the rank-6, `A=426` endpoint as a projective-line `pivot_atlas`
+record.  The `projective_infinity` chart is nonempty with contribution one,
+verified by the v9 packet checker through a coverage reference to the same
+Vandermonde endpoint witness.  Finite affine roots are deliberately not
+enumerated in this chart packet.
+
 The tangent/common-code-line exclusion companion is:
 
 ```text
@@ -546,6 +559,12 @@ python3 experimental/scripts/verify_f17_32_m3_low_rank9_11_slack_sweep.py \
 
 python3 experimental/scripts/verify_f17_32_m3_low_rank2_11_projective_infinity.py \
   --check experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json
+
+python3 experimental/scripts/verify_f17_32_m3_low_rank_rank6_a426_projective_pivot.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-low-rank-rank6-a426-projective-pivot/f17_32_n512_k256_a426_rank6_projective_infinity_pivot_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/hankel-f17-32-m3-low-rank-rank6-a426-projective-pivot/f17_32_n512_k256_a426_rank6_projective_infinity_pivot_packet.json
 
 python3 experimental/scripts/verify_f17_32_m3_low_rank6_11_tangent_exclusion.py \
   --check experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json

@@ -85,6 +85,13 @@
       "status": "PROVED / AUDIT"
     },
     {
+      "name": "synthetic_low_rank_rank6_a426_projective_pivot",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank-rank6-a426-projective-pivot/f17_32_n512_k256_a426_rank6_projective_infinity_pivot_packet.json",
+      "schema_version": "aperiodic-hankel-eliminant-v1",
+      "sha256": "20956c79e44158d861d37baa58ed7ab8bc2b5d15808a4bdceb7be70f0535f8eb",
+      "status": "PROVED / AUDIT"
+    },
+    {
       "name": "synthetic_low_rank6_11_tangent_exclusion",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json",
       "schema_version": "f17-32-m3-low-rank6-11-tangent-exclusion-v1",
@@ -182,6 +189,7 @@
       "the synthetic rank-8 low-rank slack family has exact Frobenius-gcd root histogram {0:22, 1:10, 2:7, 3:2, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 9",
       "the synthetic rank-9..11 low-rank slack sweep has exact Frobenius-gcd root histograms {9:{0:17, 1:17, 2:6, 3:2}, 10:{0:8, 1:23, 2:9, 3:2}, 11:{0:15, 1:16, 2:5, 3:6}}, so finite-root slack gives at most 4 projective regular roots per checked pair despite degree-only projective bounds 10, 11, and 12",
       "the synthetic rank-2..11 low-rank endpoint audit proves the projective infinity point [0:1] is an actual support-wise noncontained endpoint in every checked rank/agreement row, witnessed on D minus the update nodes",
+      "the synthetic rank-6 A=426 projective-line pivot packet is v9-checkable and closes the projective_infinity chart as nonempty with contribution one",
       "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
       "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
       "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
@@ -4588,6 +4596,8 @@
         ]
       }
     },
-    "synthetic_low_rank9_11_slack_sweep_status": "proved exact Frobenius-gcd finite-root slack for all 126 rank/agreement pairs in ranks 9..11"
+    "synthetic_low_rank9_11_slack_sweep_status": "proved exact Frobenius-gcd finite-root slack for all 126 rank/agreement pairs in ranks 9..11",
+    "synthetic_low_rank_rank6_a426_projective_pivot_status": "v9 projective-line pivot_atlas packet checks the rank-6 A=426 projective_infinity chart as nonempty with support_count 1, using the same Vandermonde endpoint witness",
+    "synthetic_low_rank_rank6_a426_projective_pivot_support": 506
   }
 }

@@ -73,6 +73,11 @@ LOW_RANK2_11_PROJECTIVE_INFINITY_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/"
     "f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json"
 )
+LOW_RANK_RANK6_A426_PROJECTIVE_PIVOT_REF = (
+    "experimental/data/certificates/"
+    "hankel-f17-32-m3-low-rank-rank6-a426-projective-pivot/"
+    "f17_32_n512_k256_a426_rank6_projective_infinity_pivot_packet.json"
+)
 LOW_RANK6_11_TANGENT_EXCLUSION_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/"
     "f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json"
@@ -169,6 +174,7 @@ def validate_inputs(
     low_rank8_slack_family: dict[str, Any],
     low_rank9_11_slack_sweep: dict[str, Any],
     low_rank2_11_projective_infinity: dict[str, Any],
+    low_rank_rank6_a426_projective_pivot: dict[str, Any],
     low_rank6_11_tangent_exclusion: dict[str, Any],
     low_rank6_11_subfield_exclusion: dict[str, Any],
     top_packet: dict[str, Any],
@@ -883,6 +889,75 @@ def validate_inputs(
             and summary["thresholds_covered"] is True,
             f"rank-{rank} projective infinity summary mismatch",
         )
+    require(
+        low_rank_rank6_a426_projective_pivot["schema_version"]
+        == "aperiodic-hankel-eliminant-v1",
+        "rank-6 A=426 projective pivot packet schema mismatch",
+    )
+    require(
+        low_rank_rank6_a426_projective_pivot["packet_certificate_schema"]
+        == "f17-32-m3-low-rank-rank6-a426-projective-pivot-v1",
+        "rank-6 A=426 projective pivot certificate schema mismatch",
+    )
+    require(
+        low_rank_rank6_a426_projective_pivot["sampler"] == "projective_line"
+        and low_rank_rank6_a426_projective_pivot["sampler_audit"][
+            "denominator"
+        ]
+        == 17**32 + 1,
+        "rank-6 A=426 projective pivot sampler mismatch",
+    )
+    require(
+        low_rank_rank6_a426_projective_pivot["agreement_threshold"] == 426,
+        "rank-6 A=426 projective pivot threshold mismatch",
+    )
+    require(
+        low_rank_rank6_a426_projective_pivot["exact_agreements"]
+        == [
+            {
+                "A": 426,
+                "charts": [
+                    {
+                        "chart_id": "projective_infinity",
+                        "coverage_ref": (
+                            LOW_RANK_RANK6_A426_PROJECTIVE_PIVOT_REF
+                            + "#/projective_infinity_coverage"
+                        ),
+                        "equations_ref": "inline:B=0",
+                        "inequations_ref": "inline:A!=0",
+                        "pivot_records": [
+                            {
+                                "dimension": 0,
+                                "pivot": (
+                                    "projective_infinity_B_zero_A_nonzero"
+                                ),
+                                "status": "dimension_degree",
+                                "variety_degree": 1,
+                            }
+                        ],
+                    }
+                ],
+                "j": 86,
+                "status": "pivot_atlas",
+                "t": 170,
+            }
+        ],
+        "rank-6 A=426 projective pivot chart mismatch",
+    )
+    pivot_coverage = low_rank_rank6_a426_projective_pivot[
+        "projective_infinity_coverage"
+    ]
+    require(
+        pivot_coverage["status"] == "nonempty"
+        and pivot_coverage["support_count"] == 1
+        and pivot_coverage["projective_point"] == "[0:1]"
+        and pivot_coverage["rank"] == 6
+        and pivot_coverage["A"] == 426
+        and pivot_coverage["endpoint_support_size"] == 506
+        and pivot_coverage["vandermonde_independence"]["column_count"] == 93
+        and pivot_coverage["vandermonde_independence"]["syndrome_length"] == 256,
+        "rank-6 A=426 projective pivot coverage mismatch",
+    )
     require(
         low_rank6_11_tangent_exclusion["schema_version"]
         == "f17-32-m3-low-rank6-11-tangent-exclusion-v1",
@@ -1871,6 +1946,9 @@ def build_status() -> dict[str, Any]:
     low_rank2_11_projective_infinity = load_json(
         LOW_RANK2_11_PROJECTIVE_INFINITY_REF
     )
+    low_rank_rank6_a426_projective_pivot = load_json(
+        LOW_RANK_RANK6_A426_PROJECTIVE_PIVOT_REF
+    )
     low_rank6_11_tangent_exclusion = load_json(
         LOW_RANK6_11_TANGENT_EXCLUSION_REF
     )
@@ -1899,6 +1977,7 @@ def build_status() -> dict[str, Any]:
         low_rank8_slack_family,
         low_rank9_11_slack_sweep,
         low_rank2_11_projective_infinity,
+        low_rank_rank6_a426_projective_pivot,
         low_rank6_11_tangent_exclusion,
         low_rank6_11_subfield_exclusion,
         top_packet,
@@ -1983,6 +2062,11 @@ def build_status() -> dict[str, Any]:
             "synthetic_low_rank2_11_projective_infinity",
             LOW_RANK2_11_PROJECTIVE_INFINITY_REF,
             "f17-32-m3-low-rank2-11-projective-infinity-v1",
+        ),
+        artifact_record(
+            "synthetic_low_rank_rank6_a426_projective_pivot",
+            LOW_RANK_RANK6_A426_PROJECTIVE_PIVOT_REF,
+            "aperiodic-hankel-eliminant-v1",
         ),
         artifact_record(
             "synthetic_low_rank6_11_tangent_exclusion",
@@ -2269,6 +2353,16 @@ def build_status() -> dict[str, Any]:
                     "projective_infinity_contribution_sum"
                 ]
             ),
+            "synthetic_low_rank_rank6_a426_projective_pivot_status": (
+                "v9 projective-line pivot_atlas packet checks the rank-6 "
+                "A=426 projective_infinity chart as nonempty with support_count "
+                "1, using the same Vandermonde endpoint witness"
+            ),
+            "synthetic_low_rank_rank6_a426_projective_pivot_support": (
+                low_rank_rank6_a426_projective_pivot[
+                    "projective_infinity_coverage"
+                ]["endpoint_support_size"]
+            ),
             "synthetic_low_rank6_11_tangent_exclusion_status": (
                 "proved that all 238 finite roots counted in the rank-6..11 "
                 "synthetic low-rank slack certificates have zero "
@@ -2376,6 +2470,7 @@ def build_status() -> dict[str, Any]:
                 "the synthetic rank-8 low-rank slack family has exact Frobenius-gcd root histogram {0:22, 1:10, 2:7, 3:2, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 9",
                 "the synthetic rank-9..11 low-rank slack sweep has exact Frobenius-gcd root histograms {9:{0:17, 1:17, 2:6, 3:2}, 10:{0:8, 1:23, 2:9, 3:2}, 11:{0:15, 1:16, 2:5, 3:6}}, so finite-root slack gives at most 4 projective regular roots per checked pair despite degree-only projective bounds 10, 11, and 12",
                 "the synthetic rank-2..11 low-rank endpoint audit proves the projective infinity point [0:1] is an actual support-wise noncontained endpoint in every checked rank/agreement row, witnessed on D minus the update nodes",
+                "the synthetic rank-6 A=426 projective-line pivot packet is v9-checkable and closes the projective_infinity chart as nonempty with contribution one",
                 "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
                 "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
                 "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
@@ -2444,6 +2539,10 @@ def print_summary(status: dict[str, Any]) -> None:
     print(
         "rank-2..11 low-rank infinity: "
         f"{summary['synthetic_low_rank2_11_projective_infinity_status']}"
+    )
+    print(
+        "rank-6 A=426 infinity pivot: "
+        f"{summary['synthetic_low_rank_rank6_a426_projective_pivot_status']}"
     )
     print(
         "rank-6..11 low-rank tangent: "

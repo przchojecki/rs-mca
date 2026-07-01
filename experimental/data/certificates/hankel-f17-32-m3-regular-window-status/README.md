@@ -85,6 +85,13 @@ family.  For `u_m=sum_{x in X}x^m` and `v_m=sum_{y in Y}y^m`, the endpoint
 Vandermonde independence on `X union Y`.  The largest checked union has
 `139 <= n-k=256` columns, and `|D \ Y| >= 501 > 426`.
 
+The rank-6, `A=426` projective-infinity pivot packet packages one row of that
+endpoint audit in the v9 `pivot_atlas` format.  Its projective-line
+`projective_infinity` chart has coverage target `status=nonempty` and
+`support_count=1`, and is accepted by `scripts/check_aperiodic_eliminant_packet.py`.
+It is a chart packet only: finite affine roots are intentionally left to the
+rank-6 finite-slack certificate.
+
 The rank-6..11 tangent-exclusion audit is the first subtraction check for this
 beyond-envelope low-rank block.  It consumes the exact finite-root certificates
 above and checks the unique moment-zero common-code-line slope
