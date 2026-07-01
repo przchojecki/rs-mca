@@ -67,8 +67,13 @@ Keep entries concise and link to the relevant files.
   a rank-two correction.  The determinant target is then restated as
   `Phi_{m,r,h}(Z)=det(I+Z D_h S_h)`, directly tying the displacement cores to
   the v10 affine gcd polynomials; combining these identities gives a two-by-two
-  transfer formula relating `Phi_{m,r,h}` and `Phi_{m,r,h+2}`.  A
-  counterexample-first search script probes the exact endpoint-capacity
+  transfer formula relating `Phi_{m,r,h}` and `Phi_{m,r,h+2}`.  The note also
+  separates the sufficient adjacent-pair target from the weaker contiguous
+  all-shift target
+  `gcd(Phi_{m,r,h}:0 <= h < 258-2m)=1`, which is weaker except at the
+  `m=128` endpoint and is the rank-drop containment condition obtained from
+  all contiguous shifted minors.  A counterexample-first search script probes the
+  endpoint-capacity adjacent
   spectral target without changing the certified low-rank2..12 packet; it
   switches from Newton identities to determinant interpolation at rank `17`,
   avoiding characteristic-17 division.
@@ -80,10 +85,11 @@ Keep entries concise and link to the relevant files.
   concrete spectral-disjointness target.  Proving that target through the
   endpoint-capacity range would close the synthetic low-rank regular
   projective packet after quotient-image endpoint subtraction.
-- **What to do next:** Prove or refute the exact endpoint-capacity target
-  `gcd(Phi_{m,r,0}, Phi_{m,r,1})=1` for `87 <= m <= 128` and
-  `2 <= r <= ceil((m-1)/2)`, or use a targeted scan to find the first
-  rank/agreement where the two kernel spectra collide.
+- **What to do next:** Prove or refute either the sufficient adjacent target
+  `gcd(Phi_{m,r,0}, Phi_{m,r,1})=1` or the weaker contiguous all-shift target
+  `gcd(Phi_{m,r,h}:0 <= h < 258-2m)=1` for `87 <= m <= 128` and
+  `2 <= r <= ceil((m-1)/2)`, using targeted scans to identify the first
+  rank/agreement where the selected target collides.
 
 ### 2026-07-01 - v10 guide and site metadata sync
 

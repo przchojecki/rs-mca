@@ -4,8 +4,8 @@ Status: PROVED / AUDIT.
 
 This note records the structural lemma behind the synthetic low-rank affine
 packets in PR #170.  It does not extend the packet to arbitrary M3 row data.
-Its role is to replace the opaque statement "two minors are coprime" by an
-explicit spectral-disjointness target for two small kernels.
+Its role is to replace the opaque statement "selected minors are coprime" by
+explicit spectral-disjointness targets for small kernels.
 
 ## Setup
 
@@ -681,6 +681,62 @@ minors.  The contiguous-shift lemma gives the same small-kernel representation
 for every contiguous row-set minor `h..h+m-1`; future pivot packets can use
 additional shifts by replacing `K_0,K_1` with the corresponding `K_h` family.
 
+## Contiguous All-Shift Target
+
+The two-minor test used by the current packet is sufficient but not necessary
+for the v10 regular bucket.  A less overdetermined sufficient test uses every
+contiguous maximal minor.  In the exact-agreement row `A`, put
+
+```text
+j = n-A,      m = j+1,      t = A-k.
+```
+
+The regular Hankel matrix has `t` rows and `m` columns.  Its contiguous maximal
+minors start at
+
+```text
+h = 0,1,...,t-m.
+```
+
+If a finite affine slope is a v10 rank-drop slope for this bucket, then the
+full `t x m` Hankel matrix has rank `< m`, so every maximal minor vanishes.  In
+particular, all contiguous minors vanish.  After the contiguous-shift reduction,
+the canonical finite affine root set is contained in the roots of the
+contiguous all-shift gcd
+
+```text
+G_{m,r}^{all}(Z)
+  =
+  gcd(Phi_{m,r,h}(Z) : 0 <= h <= t-m).
+```
+
+For the `F_17^32`, `n=512`, `k=256` M3 window, `A=513-m` and hence
+
+```text
+t-m+1 = 258-2m.
+```
+
+Thus the contiguous all-shift low-rank regular target is
+
+```text
+G_{m,r}^{all}(Z) = 1
+for every 87 <= m <= 128 and 2 <= r <= ceil((m-1)/2),
+```
+
+where the gcd uses `258-2m` shifted polynomials.  The adjacent target
+
+```text
+gcd(Phi_{m,r,0}, Phi_{m,r,1}) = 1
+```
+
+implies this all-shift target, and coincides with it only at the endpoint
+`m=128` where there are exactly two contiguous shifts.  For `m<128`, the
+all-shift target is weaker and is the more literal v10 canonical rank-drop
+condition among contiguous row-set minors.  It is still only a sufficient test
+for the full all-maximal-minor canonical gcd.  The shift-two transfer formula
+above gives a structured way to study the even and odd chains inside this
+all-shift gcd.
+
 ## Current Certified Instance
 
 The verifier
@@ -704,8 +760,8 @@ low-rank branches.
 ## Next Proof Target
 
 The endpoint side of the same synthetic ladder is now exact for the `c=2`
-full-fiber mechanism up to `rank <= 256-floor(A/2)`.  The affine bottleneck is
-therefore the following spectral problem:
+full-fiber mechanism up to `rank <= 256-floor(A/2)`.  The affine bottleneck can
+be attacked through the sufficient adjacent-pair spectral problem:
 
 ```text
 For the consecutive subgroup nodes X={alpha^0,...,alpha^j}
@@ -726,20 +782,24 @@ Using the explicit q-Cauchy coefficients above, define
 Phi_{m,r,h}(Z) = det(I_r+ZK_h)
 ```
 
-for the normalized consecutive subgroup window.  The finite symbolic target for
-the endpoint-capacity low-rank model is therefore:
+for the normalized consecutive subgroup window.  The sufficient adjacent
+symbolic target for the endpoint-capacity low-rank model is therefore:
 
 ```text
 gcd(Phi_{m,r,0}(Z), Phi_{m,r,1}(Z)) = 1
 for every 87 <= m <= 128 and 2 <= r <= ceil((m-1)/2).
 ```
 
-The current verifier proves this finite target only for `2 <= r <= 12`.
-A proof of the displayed range, together with the endpoint `c=2` capacity
-packet, would close the synthetic low-rank regular projective residual through
-the endpoint capacity range.  It would still not be an arbitrary-row M3 theorem;
-it would be a clean model result explaining why this low-rank branch has no
-unpaid regular projective residual.
+The current verifier proves this adjacent target only for `2 <= r <= 12`.
+A proof of the displayed adjacent range would imply the contiguous all-shift
+target above.  Alternatively, proving `G_{m,r}^{all}=1` directly would be
+enough for this sufficient contiguous-minor v10 regular rank-drop test and may
+be easier away from `m=128`, where many more shifted minors are available.
+Together with the endpoint `c=2` capacity packet, either proof would close the
+synthetic low-rank regular projective residual through the endpoint capacity
+range.  It would still not be an arbitrary-row M3 theorem; it would be a clean
+model result explaining why this low-rank branch has no unpaid regular
+projective residual.
 
 The script
 
