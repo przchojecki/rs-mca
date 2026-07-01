@@ -218,6 +218,13 @@
       "status": "PROVED / AUDIT"
     },
     {
+      "name": "synthetic_one_spike_v10_rank_drop",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-one-spike-v10-rank-drop/f17_32_n512_k256_m3_one_spike_v10_rank_drop.json",
+      "schema_version": "f17-32-m3-one-spike-v10-rank-drop-v1",
+      "sha256": "5aeb6c3853a80f4672f4bd3747a24a8d2be0e3ba9fe93ee6e07ce973b07017c3",
+      "status": "PROVED / AUDIT"
+    },
+    {
       "name": "fixed_top_window_v9_packet",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json",
       "schema_version": "aperiodic-hankel-eliminant-v1",
@@ -314,6 +321,7 @@
       "the synthetic rank-2..11 full-Hankel ledger combines the rank-2..5 and rank-6..11 shifted-minor exclusions with endpoint quotient-image charging: finite regular first-minor upper mass 698 contributes zero full-Hankel witnesses, the endpoint contributes at most one before charging, and the aperiodic full-Hankel residual max is zero in every checked row",
       "the synthetic one-spike non-proportional branch is closed for every A=385..426: its unique finite first-minor root is excluded by the row-shift-1 minor, its endpoint has a c=2 quotient-image witness, and the aperiodic full-Hankel residual max is zero",
       "the synthetic one-spike projective-line packet is v9-checkable for every A=385..426, with 42 finite roots plus the shared [0:1] endpoint before full-Hankel/quotient-image charging",
+      "the synthetic one-spike v10 rank-drop certificate strengthens the same branch: the prefix and row-shift-1 maximal minors are coprime in every row, so the canonical affine rank-drop gcd has zero roots and only the quotient-image endpoint remains",
       "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
       "the fixed synthetic top-window packet is v9-checkable for A=421..426",
       "the fixed top-window syndrome input has an explicit line-value lift",
@@ -4889,6 +4897,11 @@
       1221622901637454132031258720247822744832
     ],
     "synthetic_low_rank_rank9_a398_projective_line_packet_status": "v9 projective-line regular-minor packet rehydrates the compact rank-9 A=398 sweep row, checks three finite Frobenius-gcd roots plus the [0:1] endpoint, and gives projective numerator 4 <= 6",
+    "synthetic_one_spike_v10_affine_rank_drop_roots": 0,
+    "synthetic_one_spike_v10_endpoint_rows": 42,
+    "synthetic_one_spike_v10_nonclaim": "synthetic one-spike branch only; not arbitrary M3 row data and not an actual-row threshold certificate",
+    "synthetic_one_spike_v10_rank_drop_status": "v10 canonical rank-drop certificate proves the one-spike affine gcd is constant in every A=385..426 row: the prefix and row-shift-1 maximal minors are coprime, so the affine rank-drop root set is empty before the endpoint is charged",
+    "synthetic_one_spike_v10_residual_after_endpoint_image": 0,
     "synthetic_one_spike_window_finite_roots": 42,
     "synthetic_one_spike_window_finite_roots_excluded_by_shifted_minor": 42,
     "synthetic_one_spike_window_full_hankel_status": "proved a non-proportional one-spike branch across the whole M3 regular window: every A=385..426 has one finite first-minor root, the row-shift-1 minor excludes that root from the full-Hankel witness column, and the remaining [0:1] endpoint is charged to quotient-image",

@@ -1,0 +1,1500 @@
+{
+  "aggregate": {
+    "agreement_range": [
+      385,
+      426
+    ],
+    "all_projective_endpoints_charged_to_quotient_image": true,
+    "all_records_have_empty_affine_rank_drop_gcd": true,
+    "finite_prefix_roots_seen_before_v10_gcd": 42,
+    "max_aperiodic_projective_residual_after_endpoint_image": 0,
+    "projective_budget_numerator": 6,
+    "projective_endpoint_quotient_image_witness_sum": 42,
+    "projective_endpoint_rows": 42,
+    "record_count": 42,
+    "two_minor_common_gcd_degree_histogram": {
+      "0": 42
+    },
+    "v10_canonical_affine_rank_drop_root_count_sum": 0
+  },
+  "agreement_range": [
+    385,
+    426
+  ],
+  "claim": "For the synthetic non-proportional one-spike M3 branch over the pinned F_17^32 row and every A=385..426, the v10 canonical affine rank-drop gcd is constant because the prefix and row-shift-1 maximal minors are coprime.  Thus the affine rank-drop root set is empty.  The remaining projective endpoint is charged to quotient-image, leaving aperiodic projective residual zero for this branch.",
+  "construction": {
+    "argument": "The v10 affine rank-drop gcd divides the gcd of any two nonzero maximal minors.  In every row the prefix minor and row-shift-1 minor are coprime, so the canonical affine rank-drop gcd is 1 and has no finite roots.",
+    "branch": "non_proportional_one_spike",
+    "displayed_maximal_minors": [
+      "prefix rows 0..j",
+      "row-shift-1 rows 1..j+1"
+    ],
+    "v10_object": "canonical affine rank-drop gcd for regular Hankel buckets"
+  },
+  "deterministic_record_hash": "4d509b762811ba236a1403106eb190c26e968f0904624ac8d0c6d123cdd8b842",
+  "nonclaims": [
+    "synthetic one-spike branch only, not arbitrary M3 row data",
+    "not an actual-row safe-side threshold certificate",
+    "does not enumerate or classify arbitrary singular pivot charts"
+  ],
+  "records": [
+    {
+      "A": 385,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 127,
+      "minor_size": 128,
+      "prefix_first_minor_root": 629204083802912639967276867354692368091,
+      "prefix_minor_coefficients_ascending": [
+        1960127525760963954976810457703429629095,
+        2130117076624594454820915601558438880584
+      ],
+      "prefix_row_set": [
+        0,
+        127
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1461859293992564101657786539489658811916,
+        1318849660332205205447720726286428555287
+      ],
+      "shifted_minor_value_at_prefix_root": 2268131949953988572835243505178365469905,
+      "shifted_row_set": [
+        1,
+        128
+      ],
+      "t": 129,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 386,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 126,
+      "minor_size": 127,
+      "prefix_first_minor_root": 1302248187412394178443902615915651998662,
+      "prefix_minor_coefficients_ascending": [
+        496073742394775788598166928489200568658,
+        317284269882080866665082580844842696127
+      ],
+      "prefix_row_set": [
+        0,
+        126
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        397691351773278982853976478113205842644,
+        529935035711783328226189410929162530153
+      ],
+      "shifted_minor_value_at_prefix_root": 954104676563987899322945390126201568494,
+      "shifted_row_set": [
+        1,
+        127
+      ],
+      "t": 130,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 387,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 125,
+      "minor_size": 126,
+      "prefix_first_minor_root": 940719422729065362919955170418083746328,
+      "prefix_minor_coefficients_ascending": [
+        1812083095683987272151378733457441781395,
+        1526674947093719320856706785000439455395
+      ],
+      "prefix_row_set": [
+        0,
+        125
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        769575921538492260783268282382116686559,
+        214797478840507682102651198846375386547
+      ],
+      "shifted_minor_value_at_prefix_root": 869954022962137221080736325233511679311,
+      "shifted_row_set": [
+        1,
+        126
+      ],
+      "t": 131,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 388,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 124,
+      "minor_size": 125,
+      "prefix_first_minor_root": 1969786571373032176710344707632622146118,
+      "prefix_minor_coefficients_ascending": [
+        801602236823272202298702624015334190399,
+        1671906651767966966693418073353931775546
+      ],
+      "prefix_row_set": [
+        0,
+        124
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        816464298550177185322123437278634677227,
+        1311858832638523738889519645999567896440
+      ],
+      "shifted_minor_value_at_prefix_root": 9759884889564107604685696658345623840,
+      "shifted_row_set": [
+        1,
+        125
+      ],
+      "t": 132,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 389,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 123,
+      "minor_size": 124,
+      "prefix_first_minor_root": 1283290080487270328698291459651740755565,
+      "prefix_minor_coefficients_ascending": [
+        353908664811310541551848142583756076095,
+        1541196196637757810851687105463184309820
+      ],
+      "prefix_row_set": [
+        0,
+        123
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        182941174069724743081820683421208181888,
+        118180571562880330916202376521349817960
+      ],
+      "shifted_minor_value_at_prefix_root": 1839552402553346391508032336042768854600,
+      "shifted_row_set": [
+        1,
+        124
+      ],
+      "t": 133,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 390,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 122,
+      "minor_size": 123,
+      "prefix_first_minor_root": 390256649788199599455897311605616852768,
+      "prefix_minor_coefficients_ascending": [
+        342634331139171815574309265824355558334,
+        605528147024966448936086739085476129480
+      ],
+      "prefix_row_set": [
+        0,
+        122
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1894993165898710258716427314799900891673,
+        379526355202743156036616864359857601139
+      ],
+      "shifted_minor_value_at_prefix_root": 60907181227183263391173977091238492960,
+      "shifted_row_set": [
+        1,
+        123
+      ],
+      "t": 134,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 391,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 121,
+      "minor_size": 122,
+      "prefix_first_minor_root": 484192822159982620614393851193413633430,
+      "prefix_minor_coefficients_ascending": [
+        1710840598805328105053886624336408118149,
+        1683949112666928572693980210003651618968
+      ],
+      "prefix_row_set": [
+        0,
+        121
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        571946157278349080176911422545749273570,
+        2200633081401502575228728096728163714055
+      ],
+      "shifted_minor_value_at_prefix_root": 533898067225987960962229903035425754732,
+      "shifted_row_set": [
+        1,
+        122
+      ],
+      "t": 135,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 392,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 120,
+      "minor_size": 121,
+      "prefix_first_minor_root": 697591709566004912710637028801205091242,
+      "prefix_minor_coefficients_ascending": [
+        2195971428518805751996365415031908500830,
+        1227007856468885169298473890828462335566
+      ],
+      "prefix_row_set": [
+        0,
+        120
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        912548952193547048457599570729528678389,
+        1525729074008405912837626120567606610969
+      ],
+      "shifted_minor_value_at_prefix_root": 25955910997379903476872383968463068137,
+      "shifted_row_set": [
+        1,
+        121
+      ],
+      "t": 136,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 393,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 119,
+      "minor_size": 120,
+      "prefix_first_minor_root": 1459731121106437909489371411463461026137,
+      "prefix_minor_coefficients_ascending": [
+        1820799323371946193183878234070001430955,
+        961895198799860911618205405476252849008
+      ],
+      "prefix_row_set": [
+        0,
+        119
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        2070421545571790531005328127337888487325,
+        650226928356117957867297472294650441883
+      ],
+      "shifted_minor_value_at_prefix_root": 835023805984683045664397139648080278120,
+      "shifted_row_set": [
+        1,
+        120
+      ],
+      "t": 137,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 394,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 118,
+      "minor_size": 119,
+      "prefix_first_minor_root": 1471202223344974345375632128214370792708,
+      "prefix_minor_coefficients_ascending": [
+        470938990856930116960320685179333350339,
+        681396619231597176414689389361956663171
+      ],
+      "prefix_row_set": [
+        0,
+        118
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        282740310340056309204499968984548455909,
+        2196834531099510070190932670071523008260
+      ],
+      "shifted_minor_value_at_prefix_root": 2309836465837050371328802653971462918743,
+      "shifted_row_set": [
+        1,
+        119
+      ],
+      "t": 138,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 395,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 117,
+      "minor_size": 118,
+      "prefix_first_minor_root": 2027543285690064066195695710500509736454,
+      "prefix_minor_coefficients_ascending": [
+        100919767089740780499066295931668351702,
+        1400777783037554172942537384885240304780
+      ],
+      "prefix_row_set": [
+        0,
+        117
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        948918563062004779349632935428263118355,
+        1063835101980184874057767654411319068518
+      ],
+      "shifted_minor_value_at_prefix_root": 993369597508560197264883807239342943007,
+      "shifted_row_set": [
+        1,
+        118
+      ],
+      "t": 139,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 396,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 116,
+      "minor_size": 117,
+      "prefix_first_minor_root": 1303862217751998295254135769848712851020,
+      "prefix_minor_coefficients_ascending": [
+        1685443426320145250183393507716690895160,
+        1373491658645359603302711042560673401941
+      ],
+      "prefix_row_set": [
+        0,
+        116
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        14486281082188536020651095105551824635,
+        1073626410958720984211810003448142539816
+      ],
+      "shifted_minor_value_at_prefix_root": 490810960102831763702294693157131712203,
+      "shifted_row_set": [
+        1,
+        117
+      ],
+      "t": 140,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 397,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 115,
+      "minor_size": 116,
+      "prefix_first_minor_root": 1754835281139892320785833803937368109353,
+      "prefix_minor_coefficients_ascending": [
+        1664634994593716759843410256493381111947,
+        1794535979940364718435939599947916904251
+      ],
+      "prefix_row_set": [
+        0,
+        115
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        880671390970985605923903848340557682690,
+        1302502741349093069076250057990107666090
+      ],
+      "shifted_minor_value_at_prefix_root": 2342552777198987161598915797179010624400,
+      "shifted_row_set": [
+        1,
+        116
+      ],
+      "t": 141,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 398,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 114,
+      "minor_size": 115,
+      "prefix_first_minor_root": 616424794637340356853885516165974191449,
+      "prefix_minor_coefficients_ascending": [
+        294773241926924909066802979946567578729,
+        1491675141579707842851204503950641247134
+      ],
+      "prefix_row_set": [
+        0,
+        114
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        880269377726236469181716240637594240313,
+        1744040735760019739196599326252059831193
+      ],
+      "shifted_minor_value_at_prefix_root": 1223490795479913854052208338630474730055,
+      "shifted_row_set": [
+        1,
+        115
+      ],
+      "t": 142,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 399,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 113,
+      "minor_size": 114,
+      "prefix_first_minor_root": 1997790827990582126701267824521395130053,
+      "prefix_minor_coefficients_ascending": [
+        71846692608176055586320066844908846896,
+        2340490500193726469126821346059778289233
+      ],
+      "prefix_row_set": [
+        0,
+        113
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1438826508034453895896827534904378025097,
+        872838733486344761144126531714477941603
+      ],
+      "shifted_minor_value_at_prefix_root": 2195641377352782770629906891816976110451,
+      "shifted_row_set": [
+        1,
+        114
+      ],
+      "t": 143,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 400,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 112,
+      "minor_size": 113,
+      "prefix_first_minor_root": 868917922553180672499688727008279819708,
+      "prefix_minor_coefficients_ascending": [
+        1130307758722218882644531062134510475889,
+        1755822245344646738562236205269478619729
+      ],
+      "prefix_row_set": [
+        0,
+        112
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1252386352249036570713477093065062704992,
+        1711173082967228222139820631925034426494
+      ],
+      "shifted_minor_value_at_prefix_root": 1736820715394098824671164122996346212081,
+      "shifted_row_set": [
+        1,
+        113
+      ],
+      "t": 144,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 401,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 111,
+      "minor_size": 112,
+      "prefix_first_minor_root": 2058518899451993986196251050164780481590,
+      "prefix_minor_coefficients_ascending": [
+        1250918881245057304151093957424794294165,
+        663565543238223524665045724720347654343
+      ],
+      "prefix_row_set": [
+        0,
+        111
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1760660057974911022950058897042956912041,
+        1196970937927885872331896679517510470071
+      ],
+      "shifted_minor_value_at_prefix_root": 2293191577788053273678980444680821631864,
+      "shifted_row_set": [
+        1,
+        112
+      ],
+      "t": 145,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 402,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 110,
+      "minor_size": 111,
+      "prefix_first_minor_root": 582073240004540371939409744301081515515,
+      "prefix_minor_coefficients_ascending": [
+        24734832539777253207071787731201571446,
+        270453804973129480655183784277334098453
+      ],
+      "prefix_row_set": [
+        0,
+        110
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        284961829975424784039699485195766689478,
+        280021427920701352377023723292191791059
+      ],
+      "shifted_minor_value_at_prefix_root": 2291020680154328866293164704553828249999,
+      "shifted_row_set": [
+        1,
+        111
+      ],
+      "t": 146,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 403,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 109,
+      "minor_size": 110,
+      "prefix_first_minor_root": 919338743356768629492232825963478993805,
+      "prefix_minor_coefficients_ascending": [
+        459947468539296144349069142694475510118,
+        6587752761560880741371663558240611442
+      ],
+      "prefix_row_set": [
+        0,
+        109
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1534001753415527432378966762324117038332,
+        1270505511002287737565796666668648676471
+      ],
+      "shifted_minor_value_at_prefix_root": 1475945610720053400615922172009206478858,
+      "shifted_row_set": [
+        1,
+        110
+      ],
+      "t": 147,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 404,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 108,
+      "minor_size": 109,
+      "prefix_first_minor_root": 1828410026798507840569202947744540045726,
+      "prefix_minor_coefficients_ascending": [
+        1918575663998876397526365133514413501504,
+        1254773281997795881732273810640989211781
+      ],
+      "prefix_row_set": [
+        0,
+        108
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1955932830748237120290272366472711442167,
+        390455486657147614781298291180316030945
+      ],
+      "shifted_minor_value_at_prefix_root": 847900085592781739903753341377152541195,
+      "shifted_row_set": [
+        1,
+        109
+      ],
+      "t": 148,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 405,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 107,
+      "minor_size": 108,
+      "prefix_first_minor_root": 208761695533827150564379954085424216091,
+      "prefix_minor_coefficients_ascending": [
+        211041704907486732169007754589382378937,
+        1491655751203670482265671306156302296873
+      ],
+      "prefix_row_set": [
+        0,
+        107
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1820925566896360450014044175868410713099,
+        1784520817869223535212974927049558198014
+      ],
+      "shifted_minor_value_at_prefix_root": 2017255703757301187451521453314145447555,
+      "shifted_row_set": [
+        1,
+        108
+      ],
+      "t": 149,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 406,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 106,
+      "minor_size": 107,
+      "prefix_first_minor_root": 852951540126790407696265499705029684545,
+      "prefix_minor_coefficients_ascending": [
+        1521820178092625308093349612694629485453,
+        1083193034860959096849538414205227012943
+      ],
+      "prefix_row_set": [
+        0,
+        106
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        437892073547399334288351119902098986828,
+        2189722884638628227827536645950357890331
+      ],
+      "shifted_minor_value_at_prefix_root": 1528287361249390334493592345398198602488,
+      "shifted_row_set": [
+        1,
+        107
+      ],
+      "t": 150,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 407,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 105,
+      "minor_size": 106,
+      "prefix_first_minor_root": 1855118179712065002377922733312525209165,
+      "prefix_minor_coefficients_ascending": [
+        307621075849948038636009236451998818873,
+        1274395498768603467591047539193733182448
+      ],
+      "prefix_row_set": [
+        0,
+        105
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        212609501344932065993769979772473388739,
+        1969384252943148161330929350972486108679
+      ],
+      "shifted_minor_value_at_prefix_root": 985041974271468010915633300195788164231,
+      "shifted_row_set": [
+        1,
+        106
+      ],
+      "t": 151,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 408,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 104,
+      "minor_size": 105,
+      "prefix_first_minor_root": 465379144601726942478020366893200979407,
+      "prefix_minor_coefficients_ascending": [
+        1831202745295413043137036734163137881540,
+        2139098317210625279206528755271327216741
+      ],
+      "prefix_row_set": [
+        0,
+        104
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        2046315636737645515636801812871045902353,
+        830581950834133823311709415189689388169
+      ],
+      "shifted_minor_value_at_prefix_root": 1991790484989378458886678793743412712883,
+      "shifted_row_set": [
+        1,
+        105
+      ],
+      "t": 152,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 409,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 103,
+      "minor_size": 104,
+      "prefix_first_minor_root": 79689252647908876531900394973732716906,
+      "prefix_minor_coefficients_ascending": [
+        422187020011215957122005847265015724713,
+        1146078773451584901270824653170060059602
+      ],
+      "prefix_row_set": [
+        0,
+        103
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1978087947690523458600067946246782774245,
+        265298681136044472292096165331439408940
+      ],
+      "shifted_minor_value_at_prefix_root": 466234098692553376641062479475798213673,
+      "shifted_row_set": [
+        1,
+        104
+      ],
+      "t": 153,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 410,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 102,
+      "minor_size": 103,
+      "prefix_first_minor_root": 384269857208521653821916350173936657892,
+      "prefix_minor_coefficients_ascending": [
+        1656892761321802793161410105918804331374,
+        720107040331244775910066784774905964565
+      ],
+      "prefix_row_set": [
+        0,
+        102
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        2285370832436063875502194928898879876692,
+        1827743233022919764397073626582235171670
+      ],
+      "shifted_minor_value_at_prefix_root": 1240278323902938788154822158600513742729,
+      "shifted_row_set": [
+        1,
+        103
+      ],
+      "t": 154,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 411,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 101,
+      "minor_size": 102,
+      "prefix_first_minor_root": 1756808806095229710962217737957839281640,
+      "prefix_minor_coefficients_ascending": [
+        755831957698730571541985828703222995728,
+        162130225813894352521522901207338761227
+      ],
+      "prefix_row_set": [
+        0,
+        101
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        600775297079190966917188689293282637382,
+        1426671880012474274927201438158381616379
+      ],
+      "shifted_minor_value_at_prefix_root": 384835094231947551024308616756853281662,
+      "shifted_row_set": [
+        1,
+        102
+      ],
+      "t": 155,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 412,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 100,
+      "minor_size": 101,
+      "prefix_first_minor_root": 1631695512766522939228052027919005481742,
+      "prefix_minor_coefficients_ascending": [
+        476489136704274775061167902838876486766,
+        16907907974856644565953112788586447671
+      ],
+      "prefix_row_set": [
+        0,
+        100
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1933369788207659072372998930433851010493,
+        2358320616099515999239166717607524987128
+      ],
+      "shifted_minor_value_at_prefix_root": 1310653863373288766551413380095149631112,
+      "shifted_row_set": [
+        1,
+        101
+      ],
+      "t": 156,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 413,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 99,
+      "minor_size": 100,
+      "prefix_first_minor_root": 1651689564795105181562520487652880428971,
+      "prefix_minor_coefficients_ascending": [
+        262241965281328634739489740362727376348,
+        248102131763073749088258195326424406842
+      ],
+      "prefix_row_set": [
+        0,
+        99
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        837265887954309183987063058824684685597,
+        2045252538809214829783660877284524303142
+      ],
+      "shifted_minor_value_at_prefix_root": 2150686703421926789309451233086880117487,
+      "shifted_row_set": [
+        1,
+        100
+      ],
+      "t": 157,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 414,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 98,
+      "minor_size": 99,
+      "prefix_first_minor_root": 744653471227517535751150295528429930982,
+      "prefix_minor_coefficients_ascending": [
+        255878304015780547909485754516290276079,
+        940148905546841403929509041941042631272
+      ],
+      "prefix_row_set": [
+        0,
+        98
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1521729011523857986955193438774139461400,
+        1347924442915720187347084822439438765664
+      ],
+      "shifted_minor_value_at_prefix_root": 1763067580869981059488593127195220556072,
+      "shifted_row_set": [
+        1,
+        99
+      ],
+      "t": 158,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 415,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 97,
+      "minor_size": 98,
+      "prefix_first_minor_root": 1685677799954535210266202479096272379148,
+      "prefix_minor_coefficients_ascending": [
+        1687488083283963403905718093652314444446,
+        1584531628591603956137674074786652757456
+      ],
+      "prefix_row_set": [
+        0,
+        97
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        278874383281234520061398067305639257887,
+        774316006259858781632269493521948152723
+      ],
+      "shifted_minor_value_at_prefix_root": 279244165497983458351366940757829140691,
+      "shifted_row_set": [
+        1,
+        98
+      ],
+      "t": 159,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 416,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 96,
+      "minor_size": 97,
+      "prefix_first_minor_root": 990191127520891358561844745528491002803,
+      "prefix_minor_coefficients_ascending": [
+        1733401208212334985416239809861793981134,
+        1066592719576739099093499340564654181371
+      ],
+      "prefix_row_set": [
+        0,
+        96
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1737322209214702722529747068757818775870,
+        1589372995626965507331114553289337915886
+      ],
+      "shifted_minor_value_at_prefix_root": 1065546073752612614910067208245575470827,
+      "shifted_row_set": [
+        1,
+        97
+      ],
+      "t": 160,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 417,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 95,
+      "minor_size": 96,
+      "prefix_first_minor_root": 869484713314058641343125187567937696926,
+      "prefix_minor_coefficients_ascending": [
+        1768718544895380476887756296451774298197,
+        536648699020013730282301801619383620199
+      ],
+      "prefix_row_set": [
+        0,
+        95
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        17657012424061522016745761512671944547,
+        621280780599511699404570327972183546522
+      ],
+      "shifted_minor_value_at_prefix_root": 2291638545754623653880134566984954526653,
+      "shifted_row_set": [
+        1,
+        96
+      ],
+      "t": 161,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 418,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 94,
+      "minor_size": 95,
+      "prefix_first_minor_root": 2157103989214406855705597264402579553856,
+      "prefix_minor_coefficients_ascending": [
+        835436229860121537478496103576089233998,
+        180947512836425668054944163873606595153
+      ],
+      "prefix_row_set": [
+        0,
+        94
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        2166112028508037825865177604594383545315,
+        1468445824457605529676881718150329231278
+      ],
+      "shifted_minor_value_at_prefix_root": 2076972534901663146447742810395144420633,
+      "shifted_row_set": [
+        1,
+        95
+      ],
+      "t": 162,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 419,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 93,
+      "minor_size": 94,
+      "prefix_first_minor_root": 585377719124926058356148945257694497818,
+      "prefix_minor_coefficients_ascending": [
+        89993492769349859364812778941100020881,
+        1358951754210981637540790697505941659651
+      ],
+      "prefix_row_set": [
+        0,
+        93
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        672285516189144656694579360594609038224,
+        1406778324852320133414942563681848199883
+      ],
+      "shifted_minor_value_at_prefix_root": 991904729842594596452234777793713075892,
+      "shifted_row_set": [
+        1,
+        94
+      ],
+      "t": 163,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 420,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 92,
+      "minor_size": 93,
+      "prefix_first_minor_root": 109904047616309605913422463076927164677,
+      "prefix_minor_coefficients_ascending": [
+        2349370168658727426479015660687837002313,
+        163185792764771211618080525892162172579
+      ],
+      "prefix_row_set": [
+        0,
+        92
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1835269093209445837625807395509335677566,
+        1864858248256665307417061785839642261382
+      ],
+      "shifted_minor_value_at_prefix_root": 906094348467601796415688168553318070245,
+      "shifted_row_set": [
+        1,
+        93
+      ],
+      "t": 164,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 421,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 91,
+      "minor_size": 92,
+      "prefix_first_minor_root": 1053498096036649633819549477220974318864,
+      "prefix_minor_coefficients_ascending": [
+        265816049548075604963879353555399861332,
+        321752993726420701006893702723647481470
+      ],
+      "prefix_row_set": [
+        0,
+        91
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        974572103969233951920417020226571651615,
+        95443230071450339633215989636484570767
+      ],
+      "shifted_minor_value_at_prefix_root": 1033407530844578439543612232644838514526,
+      "shifted_row_set": [
+        1,
+        92
+      ],
+      "t": 165,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 422,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 90,
+      "minor_size": 91,
+      "prefix_first_minor_root": 713091301545582006424233239711868501855,
+      "prefix_minor_coefficients_ascending": [
+        184521148592075467316957239048914376974,
+        2044177988919498103257351843814066607432
+      ],
+      "prefix_row_set": [
+        0,
+        90
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        529645884461489957423130024408509326309,
+        357553608293148991515212699266729409375
+      ],
+      "shifted_minor_value_at_prefix_root": 1790296081679715208586724206461312638098,
+      "shifted_row_set": [
+        1,
+        91
+      ],
+      "t": 166,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 423,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 89,
+      "minor_size": 90,
+      "prefix_first_minor_root": 1472949051823733010708289969967682442887,
+      "prefix_minor_coefficients_ascending": [
+        2060256867170291804111877656520339314254,
+        1082239607187070279187389614247458047834
+      ],
+      "prefix_row_set": [
+        0,
+        89
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1817688036815481296025038513397208050633,
+        1767183600391691313808862809976348434656
+      ],
+      "shifted_minor_value_at_prefix_root": 251402931277506524290871550801888907927,
+      "shifted_row_set": [
+        1,
+        90
+      ],
+      "t": 167,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 424,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 88,
+      "minor_size": 89,
+      "prefix_first_minor_root": 1895746364396939397306640153084842933822,
+      "prefix_minor_coefficients_ascending": [
+        1283142822677126961532305606241471025383,
+        1545451860566140477386413299297534276549
+      ],
+      "prefix_row_set": [
+        0,
+        88
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1648527548911979204593013921859504853115,
+        1701508317457659894447051946675454114828
+      ],
+      "shifted_minor_value_at_prefix_root": 1895877529577795061842061774956653809900,
+      "shifted_row_set": [
+        1,
+        89
+      ],
+      "t": 168,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 425,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 87,
+      "minor_size": 88,
+      "prefix_first_minor_root": 2183980489489317823394065793048174858625,
+      "prefix_minor_coefficients_ascending": [
+        416884347478717958584104368471384620671,
+        2075025292770720365157881958740829027828
+      ],
+      "prefix_row_set": [
+        0,
+        87
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        1500097121283610984645539521353617754157,
+        1382249453522364505916447863500877770097
+      ],
+      "shifted_minor_value_at_prefix_root": 2320908568996200643869933435779183036241,
+      "shifted_row_set": [
+        1,
+        88
+      ],
+      "t": 169,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 426,
+      "aperiodic_projective_residual_after_endpoint_image": 0,
+      "j": 86,
+      "minor_size": 87,
+      "prefix_first_minor_root": 196650965339081050694857233713271598055,
+      "prefix_minor_coefficients_ascending": [
+        1679562971418113032387101671407887322647,
+        1109465705867283362225312749989855837122
+      ],
+      "prefix_row_set": [
+        0,
+        86
+      ],
+      "projective_endpoint": {
+        "point": "[0:1]",
+        "quotient_image_witness": 1,
+        "rank_drop_status": "nonempty",
+        "reason": "both displayed affine minors have degree 1, below the homogenizing degree j+1"
+      },
+      "shifted_minor_coefficients_ascending": [
+        652329166717053162598334732188565870980,
+        971394809726925938032667831967994691365
+      ],
+      "shifted_minor_value_at_prefix_root": 760401242754912746435339981167884380320,
+      "shifted_row_set": [
+        1,
+        87
+      ],
+      "t": 170,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    }
+  ],
+  "row": {
+    "domain_description": "order-512 subgroup from the pinned F_17^32 row descriptor",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "f17-32-m3-one-spike-v10-rank-drop-v1",
+  "source_artifacts": [
+    {
+      "name": "paper_d_v10",
+      "ref": "tex/cs25_cap_v10.tex",
+      "sha256": "8cdb57baaa34e0abc37c27e6b42888a7821ff49381d638f731542fae77e77ad7"
+    },
+    {
+      "name": "row_descriptor",
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "schema_version": "f17-32-hankel-row-descriptor-v1",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87",
+      "status": "AUDIT"
+    },
+    {
+      "name": "one_spike_window_full_hankel",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-one-spike-window-full-hankel/f17_32_n512_k256_m3_one_spike_window_full_hankel.json",
+      "schema_version": "f17-32-m3-one-spike-window-full-hankel-v1",
+      "sha256": "a415646fe004cc5b76f45c94ecd179873db5482af42d76a186ae36dd39ab597e",
+      "status": "PROVED / AUDIT"
+    }
+  ],
+  "status": "PROVED / AUDIT"
+}

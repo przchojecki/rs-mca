@@ -165,6 +165,11 @@ ONE_SPIKE_WINDOW_PROJECTIVE_PACKET_REF = (
     "hankel-f17-32-m3-one-spike-window-projective-line/"
     "f17_32_n512_k256_m3_one_spike_window_projective_line_packet.json"
 )
+ONE_SPIKE_V10_RANK_DROP_REF = (
+    "experimental/data/certificates/"
+    "hankel-f17-32-m3-one-spike-v10-rank-drop/"
+    "f17_32_n512_k256_m3_one_spike_v10_rank_drop.json"
+)
 TOP_PACKET_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/"
     "f17_32_n512_k256_a421_426_fixed_prefix92_packet.json"
@@ -328,6 +333,7 @@ def validate_inputs(
     low_rank2_11_full_hankel_ledger: dict[str, Any],
     one_spike_window_full_hankel: dict[str, Any],
     one_spike_window_projective_packet: dict[str, Any],
+    one_spike_v10_rank_drop: dict[str, Any],
     top_packet: dict[str, Any],
     line_value_lift: dict[str, Any],
     subgroup_section: dict[str, Any],
@@ -1940,6 +1946,46 @@ def validate_inputs(
         "one-spike window projective packet aggregate mismatch",
     )
     require(
+        one_spike_v10_rank_drop["schema_version"]
+        == "f17-32-m3-one-spike-v10-rank-drop-v1",
+        "one-spike v10 rank-drop schema mismatch",
+    )
+    require(
+        one_spike_v10_rank_drop["status"] == "PROVED / AUDIT"
+        and one_spike_v10_rank_drop["agreement_range"]
+        == [AGREEMENT_MIN, AGREEMENT_MAX]
+        and one_spike_v10_rank_drop["aggregate"]["record_count"] == 42
+        and one_spike_v10_rank_drop["aggregate"][
+            "two_minor_common_gcd_degree_histogram"
+        ]
+        == {"0": 42}
+        and one_spike_v10_rank_drop["aggregate"][
+            "finite_prefix_roots_seen_before_v10_gcd"
+        ]
+        == 42
+        and one_spike_v10_rank_drop["aggregate"][
+            "v10_canonical_affine_rank_drop_root_count_sum"
+        ]
+        == 0
+        and one_spike_v10_rank_drop["aggregate"][
+            "projective_endpoint_quotient_image_witness_sum"
+        ]
+        == 42
+        and one_spike_v10_rank_drop["aggregate"][
+            "max_aperiodic_projective_residual_after_endpoint_image"
+        ]
+        == 0
+        and one_spike_v10_rank_drop["aggregate"][
+            "all_records_have_empty_affine_rank_drop_gcd"
+        ]
+        is True
+        and one_spike_v10_rank_drop["aggregate"][
+            "all_projective_endpoints_charged_to_quotient_image"
+        ]
+        is True,
+        "one-spike v10 rank-drop aggregate mismatch",
+    )
+    require(
         top_packet["exact_agreements"][0]["A"] == TOP_WINDOW_MIN
         and top_packet["exact_agreements"][-1]["A"] == TOP_WINDOW_MAX,
         "top-window packet range mismatch",
@@ -2886,6 +2932,7 @@ def build_status() -> dict[str, Any]:
     one_spike_window_projective_packet = load_json(
         ONE_SPIKE_WINDOW_PROJECTIVE_PACKET_REF
     )
+    one_spike_v10_rank_drop = load_json(ONE_SPIKE_V10_RANK_DROP_REF)
     top_packet = load_json(TOP_PACKET_REF)
     line_value_lift = load_json(LINE_VALUE_LIFT_REF)
     subgroup_section = load_json(SUBGROUP_SECTION_REF)
@@ -2927,6 +2974,7 @@ def build_status() -> dict[str, Any]:
         low_rank2_11_full_hankel_ledger,
         one_spike_window_full_hankel,
         one_spike_window_projective_packet,
+        one_spike_v10_rank_drop,
         top_packet,
         line_value_lift,
         subgroup_section,
@@ -3104,6 +3152,11 @@ def build_status() -> dict[str, Any]:
             "synthetic_one_spike_window_projective_line_packet",
             ONE_SPIKE_WINDOW_PROJECTIVE_PACKET_REF,
             "aperiodic-hankel-eliminant-v1",
+        ),
+        artifact_record(
+            "synthetic_one_spike_v10_rank_drop",
+            ONE_SPIKE_V10_RANK_DROP_REF,
+            "f17-32-m3-one-spike-v10-rank-drop-v1",
         ),
         artifact_record("fixed_top_window_v9_packet", TOP_PACKET_REF, "aperiodic-hankel-eliminant-v1"),
         artifact_record(
@@ -3756,6 +3809,29 @@ def build_status() -> dict[str, Any]:
                 "43 before the companion full-Hankel ledger removes finite "
                 "roots by shifted minors and charges the endpoint to quotient-image"
             ),
+            "synthetic_one_spike_v10_rank_drop_status": (
+                "v10 canonical rank-drop certificate proves the one-spike "
+                "affine gcd is constant in every A=385..426 row: the prefix "
+                "and row-shift-1 maximal minors are coprime, so the affine "
+                "rank-drop root set is empty before the endpoint is charged"
+            ),
+            "synthetic_one_spike_v10_affine_rank_drop_roots": (
+                one_spike_v10_rank_drop["aggregate"][
+                    "v10_canonical_affine_rank_drop_root_count_sum"
+                ]
+            ),
+            "synthetic_one_spike_v10_endpoint_rows": (
+                one_spike_v10_rank_drop["aggregate"]["projective_endpoint_rows"]
+            ),
+            "synthetic_one_spike_v10_residual_after_endpoint_image": (
+                one_spike_v10_rank_drop["aggregate"][
+                    "max_aperiodic_projective_residual_after_endpoint_image"
+                ]
+            ),
+            "synthetic_one_spike_v10_nonclaim": (
+                "synthetic one-spike branch only; not arbitrary M3 row data "
+                "and not an actual-row threshold certificate"
+            ),
             "low_rank_budget_envelope_status": (
                 "proved that every nonzero regular low-rank update chart of "
                 "rank <= 6 is within the F_17^32 M3 finite regular-root "
@@ -3840,6 +3916,7 @@ def build_status() -> dict[str, Any]:
                 "the synthetic rank-2..11 full-Hankel ledger combines the rank-2..5 and rank-6..11 shifted-minor exclusions with endpoint quotient-image charging: finite regular first-minor upper mass 698 contributes zero full-Hankel witnesses, the endpoint contributes at most one before charging, and the aperiodic full-Hankel residual max is zero in every checked row",
                 "the synthetic one-spike non-proportional branch is closed for every A=385..426: its unique finite first-minor root is excluded by the row-shift-1 minor, its endpoint has a c=2 quotient-image witness, and the aperiodic full-Hankel residual max is zero",
                 "the synthetic one-spike projective-line packet is v9-checkable for every A=385..426, with 42 finite roots plus the shared [0:1] endpoint before full-Hankel/quotient-image charging",
+                "the synthetic one-spike v10 rank-drop certificate strengthens the same branch: the prefix and row-shift-1 maximal minors are coprime in every row, so the canonical affine rank-drop gcd has zero roots and only the quotient-image endpoint remains",
                 "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
                 "the fixed top-window syndrome input has an explicit line-value lift",
@@ -3982,6 +4059,10 @@ def print_summary(status: dict[str, Any]) -> None:
     print(
         "one-spike window v9 packet: "
         f"{summary['synthetic_one_spike_window_projective_packet_status']}"
+    )
+    print(
+        "one-spike v10 rank-drop: "
+        f"{summary['synthetic_one_spike_v10_rank_drop_status']}"
     )
     print(f"low-rank budget envelope: {summary['low_rank_budget_envelope_status']}")
     print(f"low-rank packet gate: {summary['low_rank_packet_gate_status']}")

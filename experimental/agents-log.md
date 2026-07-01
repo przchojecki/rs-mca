@@ -52,6 +52,27 @@ Keep entries concise and link to the relevant files.
   the `385 <= A <= 426` window, combine paid-root subtraction with quotient and
   tangent ledgers, and build pivot eliminants for any singular buckets.
 
+### 2026-07-01 - M3 one-spike v10 rank-drop certificate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_one_spike_v10_rank_drop.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-one-spike-v10-rank-drop/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Upgrades the all-window non-proportional one-spike
+  branch to the Paper D v10 canonical rank-drop language.  In every
+  `385 <= A <= 426` row, the prefix maximal minor and row-shift-1 maximal
+  minor are coprime, so the canonical affine rank-drop gcd has `0` finite roots.
+- **How it is useful:** This replaces the v9 single-minor numerator for this
+  branch with a v10 canonical-gcd closure; the only projective contribution is
+  the `[0:1]` endpoint already charged to quotient-image by the companion
+  full-Hankel ledger.
+- **What to do next:** Try the same two-minor or canonical-gcd witness method
+  on less structured non-proportional branches and first singular pivot charts.
+
 ### 2026-07-01 - M3 one-spike window v9 projective packet
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -223,6 +223,15 @@ agreement rows, plus the shared projective endpoint `[0:1]`.  The full-Hankel
 ledger above explains why this projective regular-minor packet has zero
 aperiodic full-Hankel residual after the paid ledgers are applied.
 
+The v10 one-spike rank-drop certificate strengthens the affine part of this
+same branch.  The v10 regular-Hankel ledger uses the gcd of all nonzero maximal
+minors, and the certificate displays two valid maximal minors in every row:
+the prefix rows `0..j` and the row-shifted rows `1..j+1`.  These two minors are
+coprime for all `42` agreements, so the canonical affine rank-drop gcd is
+constant and has `0` finite roots.  The only remaining projective contribution
+is again the `[0:1]` endpoint, charged to quotient-image by the full-Hankel
+ledger.
+
 The ledger also imports the v4 low-rank update template budget envelope.  Since
 both the finite and projective `F_17^32` budget numerators are 6, every nonzero
 regular low-rank update chart of rank at most 6 is within the finite regular
