@@ -176,6 +176,13 @@
       "status": "PROVED / AUDIT"
     },
     {
+      "name": "synthetic_low_rank6_11_shifted_minor_exclusion",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-shifted-minor-exclusion/f17_32_n512_k256_m3_low_rank6_11_shifted_minor_exclusion.json",
+      "schema_version": "f17-32-m3-low-rank6-11-shifted-minor-exclusion-v1",
+      "sha256": "ae3db719e58b838a3c9109a529db1fcbb2aae04942a7fc68c922c36fb66d590c",
+      "status": "PROVED / AUDIT"
+    },
+    {
       "name": "fixed_top_window_v9_packet",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json",
       "schema_version": "aperiodic-hankel-eliminant-v1",
@@ -266,6 +273,7 @@
       "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
       "the synthetic rank-6..11 known-ledger table combines exact finite roots, projective infinity, endpoint quotient-support exclusion, tangent, and proper-subfield audits into a compact M4-style residual table with max residual projective upper 5 <= 6; finite-root quotient support/image is explicitly not audited",
       "the representative shifted-minor exclusion proves that the 18 finite roots listed in the rank-6..11 representative projective-line packets do not give full-Hankel exact-support witnesses, because the row-shift-1 square minor is nonzero at each one",
+      "the synthetic rank-6..11 shifted-minor exclusion proves that all 238 finite roots counted by the low-rank slack ledgers are first-minor artifacts rather than actual full-Hankel exact-support witnesses, because the row-shift-1 square minor excludes them",
       "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
       "the fixed synthetic top-window packet is v9-checkable for A=421..426",
       "the fixed top-window syndrome input has an explicit line-value lift",
@@ -4444,6 +4452,10 @@
     "synthetic_low_rank6_11_proper_subfield_overlap": 0,
     "synthetic_low_rank6_11_roots_after_common_code_line": 238,
     "synthetic_low_rank6_11_roots_after_proper_subfield_exclusion": 238,
+    "synthetic_low_rank6_11_shifted_minor_exclusion_nonclaim": "synthetic low-rank slack ladder only; not quotient-image or quotient-support closure, and not arbitrary M3 rows",
+    "synthetic_low_rank6_11_shifted_minor_exclusion_root_bearing_records": 158,
+    "synthetic_low_rank6_11_shifted_minor_exclusion_roots_cleared": 238,
+    "synthetic_low_rank6_11_shifted_minor_exclusion_status": "proved that all 238 finite first-minor roots in the synthetic rank-6..11 low-rank slack ladder are row-shift-1 artifacts, hence not actual full-Hankel exact-support witnesses",
     "synthetic_low_rank6_11_subfield_exclusion_status": "proved that none of the 238 finite roots counted in the rank-6..11 synthetic low-rank slack certificates lies in a proper subfield F_17^d for d in {1,2,4,8,16}",
     "synthetic_low_rank6_11_subfield_rank_summaries": {
       "10": {

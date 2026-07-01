@@ -135,6 +135,11 @@ REPRESENTATIVE_SHIFTED_MINOR_EXCLUSION_REF = (
     "hankel-f17-32-m3-representative-shifted-minor-exclusion/"
     "f17_32_n512_k256_m3_representative_shifted_minor_exclusion.json"
 )
+LOW_RANK6_11_SHIFTED_MINOR_EXCLUSION_REF = (
+    "experimental/data/certificates/"
+    "hankel-f17-32-m3-low-rank6-11-shifted-minor-exclusion/"
+    "f17_32_n512_k256_m3_low_rank6_11_shifted_minor_exclusion.json"
+)
 TOP_PACKET_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/"
     "f17_32_n512_k256_a421_426_fixed_prefix92_packet.json"
@@ -292,6 +297,7 @@ def validate_inputs(
     low_rank6_11_subfield_exclusion: dict[str, Any],
     low_rank6_11_known_ledger_table: dict[str, Any],
     representative_shifted_minor_exclusion: dict[str, Any],
+    low_rank6_11_shifted_minor_exclusion: dict[str, Any],
     top_packet: dict[str, Any],
     line_value_lift: dict[str, Any],
     subgroup_section: dict[str, Any],
@@ -1568,6 +1574,51 @@ def validate_inputs(
         "representative shifted-minor exclusion aggregate mismatch",
     )
     require(
+        low_rank6_11_shifted_minor_exclusion["schema_version"]
+        == "f17-32-m3-low-rank6-11-shifted-minor-exclusion-v1",
+        "rank-6..11 shifted-minor exclusion schema mismatch",
+    )
+    require(
+        low_rank6_11_shifted_minor_exclusion["agreement_range"]
+        == [AGREEMENT_MIN, AGREEMENT_MAX]
+        and low_rank6_11_shifted_minor_exclusion["ranks"]
+        == [6, 7, 8, 9, 10, 11]
+        and low_rank6_11_shifted_minor_exclusion["row_shift_tested"] == 1
+        and low_rank6_11_shifted_minor_exclusion["aggregate"][
+            "source_record_count"
+        ]
+        == 252
+        and low_rank6_11_shifted_minor_exclusion["aggregate"][
+            "root_bearing_record_count"
+        ]
+        == 158
+        and low_rank6_11_shifted_minor_exclusion["aggregate"][
+            "finite_root_total"
+        ]
+        == 238
+        and low_rank6_11_shifted_minor_exclusion["aggregate"][
+            "cleared_root_total"
+        ]
+        == 238
+        and low_rank6_11_shifted_minor_exclusion["aggregate"][
+            "surviving_root_total"
+        ]
+        == 0
+        and low_rank6_11_shifted_minor_exclusion["aggregate"][
+            "all_finite_roots_excluded_as_support_witnesses"
+        ]
+        is True
+        and low_rank6_11_shifted_minor_exclusion["aggregate"][
+            "method_histogram"
+        ]
+        == {
+            "source_root_gcd": 72,
+            "listed_root_locator": 76,
+            "first_shifted_minor_gcd": 10,
+        },
+        "rank-6..11 shifted-minor exclusion aggregate mismatch",
+    )
+    require(
         top_packet["exact_agreements"][0]["A"] == TOP_WINDOW_MIN
         and top_packet["exact_agreements"][-1]["A"] == TOP_WINDOW_MAX,
         "top-window packet range mismatch",
@@ -2498,6 +2549,9 @@ def build_status() -> dict[str, Any]:
     representative_shifted_minor_exclusion = load_json(
         REPRESENTATIVE_SHIFTED_MINOR_EXCLUSION_REF
     )
+    low_rank6_11_shifted_minor_exclusion = load_json(
+        LOW_RANK6_11_SHIFTED_MINOR_EXCLUSION_REF
+    )
     top_packet = load_json(TOP_PACKET_REF)
     line_value_lift = load_json(LINE_VALUE_LIFT_REF)
     subgroup_section = load_json(SUBGROUP_SECTION_REF)
@@ -2533,6 +2587,7 @@ def build_status() -> dict[str, Any]:
         low_rank6_11_subfield_exclusion,
         low_rank6_11_known_ledger_table,
         representative_shifted_minor_exclusion,
+        low_rank6_11_shifted_minor_exclusion,
         top_packet,
         line_value_lift,
         subgroup_section,
@@ -2680,6 +2735,11 @@ def build_status() -> dict[str, Any]:
             "synthetic_representative_shifted_minor_exclusion",
             REPRESENTATIVE_SHIFTED_MINOR_EXCLUSION_REF,
             "f17-32-m3-representative-shifted-minor-exclusion-v1",
+        ),
+        artifact_record(
+            "synthetic_low_rank6_11_shifted_minor_exclusion",
+            LOW_RANK6_11_SHIFTED_MINOR_EXCLUSION_REF,
+            "f17-32-m3-low-rank6-11-shifted-minor-exclusion-v1",
         ),
         artifact_record("fixed_top_window_v9_packet", TOP_PACKET_REF, "aperiodic-hankel-eliminant-v1"),
         artifact_record(
@@ -3162,6 +3222,26 @@ def build_status() -> dict[str, Any]:
                 "representative packet rows only; not an all-row rank-6..11 "
                 "finite-root quotient or support-image audit"
             ),
+            "synthetic_low_rank6_11_shifted_minor_exclusion_status": (
+                "proved that all 238 finite first-minor roots in the "
+                "synthetic rank-6..11 low-rank slack ladder are "
+                "row-shift-1 artifacts, hence not actual full-Hankel "
+                "exact-support witnesses"
+            ),
+            "synthetic_low_rank6_11_shifted_minor_exclusion_roots_cleared": (
+                low_rank6_11_shifted_minor_exclusion["aggregate"][
+                    "cleared_root_total"
+                ]
+            ),
+            "synthetic_low_rank6_11_shifted_minor_exclusion_root_bearing_records": (
+                low_rank6_11_shifted_minor_exclusion["aggregate"][
+                    "root_bearing_record_count"
+                ]
+            ),
+            "synthetic_low_rank6_11_shifted_minor_exclusion_nonclaim": (
+                "synthetic low-rank slack ladder only; not quotient-image "
+                "or quotient-support closure, and not arbitrary M3 rows"
+            ),
             "low_rank_budget_envelope_status": (
                 "proved that every nonzero regular low-rank update chart of "
                 "rank <= 6 is within the F_17^32 M3 finite regular-root "
@@ -3240,6 +3320,7 @@ def build_status() -> dict[str, Any]:
                 "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
                 "the synthetic rank-6..11 known-ledger table combines exact finite roots, projective infinity, endpoint quotient-support exclusion, tangent, and proper-subfield audits into a compact M4-style residual table with max residual projective upper 5 <= 6; finite-root quotient support/image is explicitly not audited",
                 "the representative shifted-minor exclusion proves that the 18 finite roots listed in the rank-6..11 representative projective-line packets do not give full-Hankel exact-support witnesses, because the row-shift-1 square minor is nonzero at each one",
+                "the synthetic rank-6..11 shifted-minor exclusion proves that all 238 finite roots counted by the low-rank slack ledgers are first-minor artifacts rather than actual full-Hankel exact-support witnesses, because the row-shift-1 square minor excludes them",
                 "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
                 "the fixed top-window syndrome input has an explicit line-value lift",
@@ -3358,6 +3439,10 @@ def print_summary(status: dict[str, Any]) -> None:
     print(
         "representative shifted minors: "
         f"{summary['synthetic_representative_shifted_minor_exclusion_status']}"
+    )
+    print(
+        "rank-6..11 shifted minors: "
+        f"{summary['synthetic_low_rank6_11_shifted_minor_exclusion_status']}"
     )
     print(f"low-rank budget envelope: {summary['low_rank_budget_envelope_status']}")
     print(f"low-rank packet gate: {summary['low_rank_packet_gate_status']}")

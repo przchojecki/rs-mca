@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-6..11 shifted-minor exclusion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank6_11_shifted_minor_exclusion.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-shifted-minor-exclusion/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Extends the shifted-minor audit from the six
+  representative projective-line packets to every root-bearing row in the
+  synthetic rank `6..11` low-rank slack ladder.  It proves all `238` finite
+  first-minor roots counted by the slack ledgers are excluded by the
+  row-shift-1 square minor.
+- **How it is useful:** It shows the finite regular-minor roots in this
+  hard synthetic ladder are upper-bound artifacts rather than actual
+  full-Hankel exact-support witnesses.
+- **What to do next:** Use this as a model for support-image or pivot-chart
+  audits in less synthetic M3 rows; this result does not close quotient image
+  or quotient support.
+
 ### 2026-07-01 - M3 representative shifted-minor exclusion
 
 - **Agent/model:** AllenGrahamHart / Codex.
