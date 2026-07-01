@@ -151,7 +151,7 @@ def validate_inputs(
         "family root union mismatch",
     )
     require(
-        low_rank_family["schema_version"] == "f17-32-m3-low-rank2-family-v4",
+        low_rank_family["schema_version"] == "f17-32-m3-low-rank2-family-v5",
         "low-rank family schema mismatch",
     )
     require(
@@ -190,7 +190,7 @@ def validate_inputs(
         "low-rank family split/nonsquare count mismatch",
     )
     require(
-        low_rank_family["aggregate"]["projective_infinity_contribution_sum"] == 0,
+        low_rank_family["aggregate"]["projective_infinity_contribution_sum"] == 42,
         "low-rank family projective contribution mismatch",
     )
     require(
@@ -209,7 +209,7 @@ def validate_inputs(
     )
     require(
         low_rank_family["aggregate"]["max_projective_regular_roots_per_agreement"]
-        == 2,
+        == 3,
         "low-rank family max projective roots mismatch",
     )
     require(
@@ -242,7 +242,7 @@ def validate_inputs(
         "low-rank family endpoint root cross-check mismatch",
     )
     require(
-        low_rank3_family["schema_version"] == "f17-32-m3-low-rank3-family-v1",
+        low_rank3_family["schema_version"] == "f17-32-m3-low-rank3-family-v2",
         "rank-3 low-rank family schema mismatch",
     )
     require(
@@ -271,7 +271,7 @@ def validate_inputs(
         "rank-3 low-rank family root-count histogram mismatch",
     )
     require(
-        low_rank3_family["aggregate"]["projective_infinity_contribution_sum"] == 0,
+        low_rank3_family["aggregate"]["projective_infinity_contribution_sum"] == 42,
         "rank-3 low-rank family projective contribution mismatch",
     )
     require(
@@ -290,7 +290,7 @@ def validate_inputs(
     )
     require(
         low_rank3_family["aggregate"]["max_projective_regular_roots_per_agreement"]
-        == 3,
+        == 4,
         "rank-3 low-rank family max projective roots mismatch",
     )
     require(
@@ -477,7 +477,7 @@ def validate_inputs(
         "proportional lemma F17^32 replay residual mismatch",
     )
     require(
-        low_rank_template["schema_version"] == "m1-hankel-low-rank-update-template-v2",
+        low_rank_template["schema_version"] == "m1-hankel-low-rank-update-template-v3",
         "low-rank template schema mismatch",
     )
     envelope = low_rank_template["m3_budget_envelope"]
@@ -499,9 +499,11 @@ def validate_inputs(
         rank = row["update_rank"]
         require(
             row["finite_root_bound"] == rank
-            and row["projective_regular_root_bound"] == rank
+            and row["projective_regular_root_bound_without_infinity_exclusion"]
+            == rank + 1
             and row["within_finite_budget"] is True
-            and row["within_projective_budget"] is True,
+            and row["within_projective_budget_without_infinity_exclusion"]
+            == (rank <= 5),
             f"low-rank budget envelope rank {rank} mismatch",
         )
 
@@ -579,8 +581,9 @@ def per_agreement_records(
                 f"A={agreement}: nonsquare low-rank row mismatch",
             )
         require(
-            low_rank_item["projective_infinity"]["status"] == "empty"
-            and low_rank_item["projective_infinity"]["contribution"] == 0,
+            low_rank_item["projective_infinity"]["status"]
+            == "nonempty_not_excluded_by_regular_minor"
+            and low_rank_item["projective_infinity"]["contribution"] == 1,
             f"A={agreement}: low-rank projective endpoint mismatch",
         )
         require(
@@ -588,7 +591,7 @@ def per_agreement_records(
             and low_rank_item["regular_budget_table"]["within_projective_budget"]
             is True
             and low_rank_item["regular_budget_table"]["projective_regular_roots"]
-            == low_rank_item["root_count"],
+            == low_rank_item["root_count"] + 1,
             f"A={agreement}: low-rank budget table mismatch",
         )
         require(
@@ -641,8 +644,9 @@ def per_agreement_records(
                 f"A={agreement}: rank-3 split cubic should be count-only",
             )
         require(
-            low_rank3_item["projective_infinity"]["status"] == "empty"
-            and low_rank3_item["projective_infinity"]["contribution"] == 0,
+            low_rank3_item["projective_infinity"]["status"]
+            == "nonempty_not_excluded_by_regular_minor"
+            and low_rank3_item["projective_infinity"]["contribution"] == 1,
             f"A={agreement}: rank-3 low-rank projective endpoint mismatch",
         )
         require(
@@ -650,7 +654,7 @@ def per_agreement_records(
             and low_rank3_item["regular_budget_table"]["within_projective_budget"]
             is True
             and low_rank3_item["regular_budget_table"]["projective_regular_roots"]
-            == low_rank3_item["root_count"],
+            == low_rank3_item["root_count"] + 1,
             f"A={agreement}: rank-3 low-rank budget table mismatch",
         )
         require(
@@ -768,7 +772,7 @@ def per_agreement_records(
                 "synthetic_low_rank2_root_bound": low_rank_item["degree_bound"],
                 "synthetic_low_rank2_root_count": low_rank_item["root_count"],
                 "synthetic_low_rank2_root_status": low_rank_item["root_status"],
-                "synthetic_low_rank2_projective_infinity_contribution": 0,
+                "synthetic_low_rank2_projective_infinity_contribution": 1,
                 "synthetic_low_rank2_projective_regular_roots": low_rank_item[
                     "regular_budget_table"
                 ]["projective_regular_roots"],
@@ -788,7 +792,7 @@ def per_agreement_records(
                 "synthetic_low_rank3_root_bound": low_rank3_item["degree_bound"],
                 "synthetic_low_rank3_root_count": low_rank3_item["root_count"],
                 "synthetic_low_rank3_root_status": low_rank3_item["root_status"],
-                "synthetic_low_rank3_projective_infinity_contribution": 0,
+                "synthetic_low_rank3_projective_infinity_contribution": 1,
                 "synthetic_low_rank3_projective_regular_roots": low_rank3_item[
                     "regular_budget_table"
                 ]["projective_regular_roots"],
@@ -909,12 +913,12 @@ def build_status() -> dict[str, Any]:
         artifact_record(
             "synthetic_low_rank2_family",
             LOW_RANK_FAMILY_REF,
-            "f17-32-m3-low-rank2-family-v4",
+            "f17-32-m3-low-rank2-family-v5",
         ),
         artifact_record(
             "synthetic_low_rank3_family",
             LOW_RANK3_FAMILY_REF,
-            "f17-32-m3-low-rank3-family-v1",
+            "f17-32-m3-low-rank3-family-v2",
         ),
         artifact_record("fixed_top_window_v9_packet", TOP_PACKET_REF, "aperiodic-hankel-eliminant-v1"),
         artifact_record(
@@ -955,7 +959,7 @@ def build_status() -> dict[str, Any]:
         artifact_record(
             "hankel_low_rank_update_template",
             LOW_RANK_TEMPLATE_REF,
-            "m1-hankel-low-rank-update-template-v2",
+            "m1-hankel-low-rank-update-template-v3",
         ),
     ]
     low_rank_envelope = low_rank_template["m3_budget_envelope"]
@@ -983,15 +987,16 @@ def build_status() -> dict[str, Any]:
             "synthetic_low_rank2_nonsquare_rows": low_rank_family["aggregate"][
                 "nonsquare_quadratic_rows"
             ],
-            "synthetic_low_rank2_projective_infinity_contribution": 0,
+            "synthetic_low_rank2_projective_infinity_contribution": 42,
             "synthetic_low_rank2_max_projective_regular_roots_per_agreement": (
                 low_rank_family["aggregate"][
                     "max_projective_regular_roots_per_agreement"
                 ]
             ),
             "synthetic_low_rank2_projective_budget_status": (
-                "all 42 rows have at most 2 projective regular roots, below "
-                "projective budget numerator 6"
+                "all 42 rows have at most 3 projective regular roots after "
+                "including the nonexcluded infinity point, below projective "
+                "budget numerator 6"
             ),
             "synthetic_low_rank2_common_code_line_tangent_overlap": 0,
             "synthetic_low_rank2_roots_after_common_code_line": (
@@ -1016,15 +1021,16 @@ def build_status() -> dict[str, Any]:
             "synthetic_low_rank3_root_count_histogram": low_rank3_family[
                 "aggregate"
             ]["linear_root_count_histogram"],
-            "synthetic_low_rank3_projective_infinity_contribution": 0,
+            "synthetic_low_rank3_projective_infinity_contribution": 42,
             "synthetic_low_rank3_max_projective_regular_roots_per_agreement": (
                 low_rank3_family["aggregate"][
                     "max_projective_regular_roots_per_agreement"
                 ]
             ),
             "synthetic_low_rank3_projective_budget_status": (
-                "all 42 rows have at most 3 projective regular roots, below "
-                "projective budget numerator 6"
+                "all 42 rows have at most 4 projective regular roots after "
+                "including the nonexcluded infinity point, below projective "
+                "budget numerator 6"
             ),
             "synthetic_low_rank3_common_code_line_tangent_overlap": 0,
             "synthetic_low_rank3_roots_after_common_code_line": (
@@ -1039,8 +1045,9 @@ def build_status() -> dict[str, Any]:
             ),
             "low_rank_budget_envelope_status": (
                 "proved that every nonzero regular low-rank update chart of "
-                "rank <= 6 is within the F_17^32 M3 finite and projective "
-                "regular-root budgets"
+                "rank <= 6 is within the F_17^32 M3 finite regular-root "
+                "budget, and ranks <= 5 are projective-budget safe without "
+                "a separate infinity exclusion"
             ),
             "low_rank_budget_envelope_certificate": LOW_RANK_TEMPLATE_REF,
             "low_rank_budget_envelope_rank_range": [
@@ -1052,6 +1059,10 @@ def build_status() -> dict[str, Any]:
             "low_rank_budget_envelope_projective_budget": low_rank_envelope[
                 "endpoint_conventions"
             ]["projective_budget_numerator"],
+            "low_rank_budget_envelope_projective_auto_safe_ranks": [1, 2, 3, 4, 5],
+            "low_rank_budget_envelope_projective_rank6_status": (
+                "needs infinity exclusion or finite-root slack"
+            ),
             "fixed_top_window_status": "one v9 packet covers A=421..426 with root union {0}",
             "fixed_top_window_line_value_status": "explicit f,g line values replay the fixed top-window syndrome input",
             "subgroup_syndrome_section_status": "proved explicit inverse-Fourier section for subgroup syndrome vectors",
@@ -1078,7 +1089,7 @@ def build_status() -> dict[str, Any]:
                 "the synthetic u=0 family has exact root union {0}",
                 "the synthetic rank-2 low-rank family has exact split/nonsquare quadratic root table with 40 roots total, below degree cap 84",
                 "the synthetic rank-3 low-rank family has exact Frobenius-gcd finite-root counts with 42 roots total, below degree cap 126",
-                "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite and projective regular-root budgets",
+                "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; projective automatic safety without infinity exclusion holds through rank 5",
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
                 "the fixed top-window syndrome input has an explicit line-value lift",
                 "subgroup syndrome vectors have an explicit inverse-Fourier line-value section",

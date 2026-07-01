@@ -25,7 +25,7 @@ from typing import Any
 
 
 P = 17
-SCHEMA_VERSION = "m1-hankel-low-rank-update-template-v2"
+SCHEMA_VERSION = "m1-hankel-low-rank-update-template-v3"
 M3_FIELD_ORDER = 17**32
 M3_SECURITY_DENOMINATOR = 2**128
 M3_FINITE_BUDGET = M3_FIELD_ORDER // M3_SECURITY_DENOMINATOR
@@ -462,25 +462,38 @@ def check_case(
 def build_m3_budget_envelope() -> dict[str, Any]:
     rows = []
     for update_rank in range(1, M3_FINITE_BUDGET + 1):
+        projective_bound = update_rank + 1
         rows.append(
             {
                 "update_rank": update_rank,
                 "finite_root_bound": update_rank,
-                "projective_regular_root_bound": update_rank,
+                "projective_regular_root_bound_without_infinity_exclusion": (
+                    projective_bound
+                ),
                 "finite_budget_numerator": M3_FINITE_BUDGET,
                 "projective_budget_numerator": M3_PROJECTIVE_BUDGET,
                 "finite_budget_gap": M3_FINITE_BUDGET - update_rank,
-                "projective_budget_gap": M3_PROJECTIVE_BUDGET - update_rank,
+                "projective_budget_gap_without_infinity_exclusion": (
+                    M3_PROJECTIVE_BUDGET - projective_bound
+                ),
                 "within_finite_budget": update_rank <= M3_FINITE_BUDGET,
-                "within_projective_budget": update_rank <= M3_PROJECTIVE_BUDGET,
+                "within_projective_budget_without_infinity_exclusion": (
+                    projective_bound <= M3_PROJECTIVE_BUDGET
+                ),
+                "projective_status": (
+                    "automatic"
+                    if projective_bound <= M3_PROJECTIVE_BUDGET
+                    else "needs_infinity_exclusion_or_finite_root_slack"
+                ),
             }
         )
     require(M3_FINITE_BUDGET == 6, "unexpected F_17^32 finite budget")
     require(M3_PROJECTIVE_BUDGET == 6, "unexpected F_17^32 projective budget")
     require(all(row["within_finite_budget"] for row in rows), "finite budget fail")
     require(
-        all(row["within_projective_budget"] for row in rows),
-        "projective budget fail",
+        all(row["within_projective_budget_without_infinity_exclusion"] for row in rows[:-1])
+        and not rows[-1]["within_projective_budget_without_infinity_exclusion"],
+        "projective budget envelope mismatch",
     )
     return {
         "name": "F_17^32 M3 low-rank regular-budget envelope",
@@ -501,15 +514,20 @@ def build_m3_budget_envelope() -> dict[str, Any]:
         "statement": (
             "For any M3 regular low-rank update chart whose prefix determinant "
             "Delta_A(Z) is nonzero and has update rank s<=6, the finite "
-            "regular-root count and the projective regular-root count are both "
-            "<=s<=6.  If Delta_A is the zero polynomial, the chart is not "
-            "aperiodic evidence and must be routed to the singular residual "
-            "atlas."
+            "regular-root count is <=s<=6.  For projective slopes under the "
+            "original v9 regular-minor endpoint convention, the low-rank "
+            "direction may leave infinity nonexcluded, so the automatic "
+            "projective bound is <=s+1.  Hence ranks s<=5 are projective-budget "
+            "safe without more work, while rank 6 needs either an infinity "
+            "exclusion or finite-root slack.  If Delta_A is the zero polynomial, "
+            "the chart is not aperiodic evidence and must be routed to the "
+            "singular residual atlas."
         ),
         "proof": [
             "The low-rank determinant template gives degree Delta_A <= s.",
             "A nonzero affine polynomial of degree d has at most d finite roots.",
-            "After projectivizing to degree s, either the top coefficient is nonzero and infinity is empty, or the affine degree is <=s-1 and infinity contributes one point; in both cases the projective root count is <=s.",
+            "Under the original regular-minor projective endpoint, infinity is controlled by det(H(v)) at degree j+1; for update rank s<j+1 this top coefficient is zero, so one projective infinity point may remain.",
+            "Therefore the projective regular-root bound without a separate infinity exclusion is finite_root_bound+1 <= s+1.",
             "For F_17^32, floor(|F|/2^128)=floor((|F|+1)/2^128)=6.",
         ],
         "rows": rows,
@@ -556,7 +574,9 @@ def build_certificate() -> dict[str, Any]:
                 "the zero-determinant case is a singular residual bucket. "
                 "The bound is independent of the M3 minor size j+1.  For the "
                 "F_17^32 M3 row, ranks s<=6 are automatically within the "
-                "finite and projective regular-root budgets."
+                "finite regular-root budget, and ranks s<=5 are automatically "
+                "within the projective regular-root budget unless infinity is "
+                "separately excluded."
             ),
         },
         "identity": {
@@ -584,6 +604,7 @@ def build_certificate() -> dict[str, Any]:
             "does not classify arbitrary non-proportional pencils",
             "does not perform quotient/tangent subtraction for a prize row",
             "does not prove that arbitrary residuals have update rank <=6",
+            "rank 6 projective-line safety still needs an infinity exclusion or finite-root slack",
             "zero determinant rows are residual buckets, not aperiodic evidence",
         ],
     }
@@ -616,7 +637,7 @@ def print_summary(certificate: dict[str, Any]) -> None:
     envelope = certificate["m3_budget_envelope"]
     print(
         "m3_budget_envelope: ranks=1..{max_rank}, finite_budget={finite}, "
-        "projective_budget={projective}".format(
+        "projective_budget={projective}, projective_auto_safe_ranks=1..5".format(
             max_rank=max(row["update_rank"] for row in envelope["rows"]),
             finite=envelope["endpoint_conventions"]["finite_budget_numerator"],
             projective=envelope["endpoint_conventions"][

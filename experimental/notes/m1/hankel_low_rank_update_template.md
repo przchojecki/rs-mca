@@ -155,10 +155,12 @@ instead of one inversion per basis value.
 
 For the `F_17^32` M3 row the same template gives a budget envelope.  Since
 `floor(17^32/2^128)=floor((17^32+1)/2^128)=6`, any nonzero regular low-rank
-update chart of rank `s <= 6` has at most `s` finite regular roots and at most
-`s` projective regular roots, hence is within the regular-root budget before
-quotient/tangent deduplication.  If the determinant is identically zero, the
-template does not count it; that case is a singular bucket for the pivot atlas.
+update chart of rank `s <= 6` has at most `s` finite regular roots.  Under the
+original regular-minor projective endpoint convention, infinity may add one
+projective parameter, so automatic projective safety without a separate
+infinity exclusion holds for `s <= 5`; rank `6` needs infinity exclusion or
+finite-root slack.  If the determinant is identically zero, the template does
+not count it; that case is a singular bucket for the pivot atlas.
 
 The all-window synthetic family certificate is
 
@@ -174,11 +176,12 @@ Vandermonde denominators and base determinants, cross-checks the `A=426`
 endpoint against the exact-root v9 packet, and applies the rank-2 discriminant
 gate to every row.  The degree cap is `2 * 42 = 84`, but the exact synthetic
 finite-root total is `40`: 20 split quadratics and 22 nonsquare quadratics.
-Its projective endpoint is empty in all 42 rows because the quadratic leading
-coefficient is nonzero, so every agreement has at most 2 projective regular
-roots against budget numerator 6.  The 40 finite roots also have nonzero
-full-syndrome witness at moment `m=0`, so none are common-code-line tangent
-roots.  The generic degree-bound sum for the same window would be `4515`.
+Under the original regular-minor projective endpoint convention, infinity is
+not excluded by these rank-2 directions and contributes one projective point in
+each row, so every agreement has at most 3 projective regular roots against
+budget numerator 6.  The 40 finite roots also have nonzero full-syndrome witness
+at moment `m=0`, so none are common-code-line tangent roots.  The generic
+degree-bound sum for the same window would be `4515`.
 
 The rank-3 all-window companion is
 
@@ -191,9 +194,11 @@ It uses the next three descriptor nodes for `Y`, so every compressed determinant
 has degree at most 3.  Exact finite-root counts come from
 `gcd(Delta,Z^q-Z)`: 12 rows have no finite roots, 24 rows have one finite root,
 and 6 rows have three finite roots, for total `42` under degree cap `126`.
-The projective endpoint is empty in all rows, and the common-code-line tangent
-overlap is zero because the Frobenius gcd is nonzero at the only possible
-moment-0 common-code-line slope.
+The original regular-minor projective endpoint is not excluded by these rank-3
+directions and contributes one projective point in each row, so every agreement
+has at most 4 projective regular roots against budget numerator 6.  The
+common-code-line tangent overlap is zero because the Frobenius gcd is nonzero at
+the only possible moment-0 common-code-line slope.
 
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform quotient/tangent

@@ -25,11 +25,12 @@ gcd(Delta_r(Z), Z^q - Z).
 
 Across the 42 agreements, the exact finite-root total is `42` under degree cap
 `126`: 12 rows have no finite roots, 24 rows have one finite root, and 6 rows
-have three finite roots.  The projective endpoint `[0:1]` is empty in every
-row, so each agreement has at most 3 projective regular roots against budget
-numerator 6.  The common-code-line tangent overlap is also zero: evaluating the
-Frobenius gcd at the only possible slope from `Syn_0(u+zv)=|X|+3z` is nonzero
-for every row.
+have three finite roots.  Under the original regular-minor projective
+convention, the rank-3 update direction does not exclude `[0:1]`, so infinity
+contributes one projective parameter in every row; each agreement has at most
+4 projective regular roots against budget numerator 6.  The common-code-line
+tangent overlap is also zero: evaluating the Frobenius gcd at the only possible
+slope from `Syn_0(u+zv)=|X|+3z` is nonzero for every row.
 
 Run:
 

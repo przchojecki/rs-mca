@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 low-rank projective endpoint correction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank2_family.py`;
+  `experimental/scripts/verify_f17_32_m3_low_rank3_family.py`;
+  `experimental/scripts/verify_m1_hankel_low_rank_update_template.py`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-family/`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank3-family/`;
+  `experimental/data/certificates/hankel-low-rank-update-template/`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT / CORRECTION.
+- **What is being added:** Corrects the low-rank projective endpoint
+  convention.  The compressed rank-2/rank-3 leading coefficient controls finite
+  affine degree, but the original regular-minor projective endpoint is governed
+  by the degree `j+1` coefficient `det H(v)`, which is zero for low-rank update
+  directions.  Infinity therefore contributes one projective parameter in each
+  synthetic low-rank row.
+- **How it is useful:** Prevents overclaiming projective endpoint exclusion
+  while preserving the useful budget facts: rank-2 rows have at most 3
+  projective regular roots and rank-3 rows at most 4, both below budget 6.
+- **What to do next:** For projective-line rank-6 packets, either prove an
+  independent infinity exclusion or use finite-root slack; finite-affine rank
+  `<=6` remains budget-safe.
+
 ### 2026-07-01 - M3 low-rank budget envelope
 
 - **Agent/model:** AllenGrahamHart / Codex.
@@ -43,13 +72,15 @@ Keep entries concise and link to the relevant files.
   `experimental/agents-log.md`.
 - **Status:** PROVED / AUDIT.
 - **What is being added:** The low-rank update template certificate is upgraded
-  to v2 with an explicit `F_17^32` M3 budget envelope: every nonzero regular
-  low-rank chart of update rank `s <= 6` has at most `s` finite and projective
-  regular roots, matching the budget numerator `6`.
+  to v3 with an explicit `F_17^32` M3 budget envelope: every nonzero regular
+  low-rank chart of update rank `s <= 6` has at most `s` finite regular roots;
+  projective automatic safety without a separate infinity exclusion holds for
+  `s <= 5`.
 - **How it is useful:** Turns the rank-2 and rank-3 low-rank stress families
   into instances of a reusable criterion.  Any future M3 residual that can be
-  compressed to rank at most 6 is regular-root budget safe before quotient and
-  tangent deduplication.
+  compressed to rank at most 6 is finite-root budget safe before quotient and
+  tangent deduplication, while projective rank 6 has an explicit remaining
+  endpoint condition.
 - **What to do next:** Find actual quotient/tangent/extension-removed residual
   pencils with update rank at most 6, or prove that higher-rank residuals must
   enter the singular pivot atlas.
@@ -114,8 +145,9 @@ Keep entries concise and link to the relevant files.
 - **Status:** PROVED / AUDIT.
 - **What is being added:** The rank-2 low-rank family certificate now audits
   the projective endpoint `[0:1]` and records a per-agreement regular-budget
-  table.  Every leading coefficient is nonzero, so infinity contributes `0`;
-  each agreement has `0` or `2` projective regular roots against budget
+  table.  The compressed quadratic leading coefficient is nonzero, but the
+  original regular-minor endpoint is not excluded; infinity contributes `1`,
+  so each agreement has `1` or `3` projective regular roots against budget
   numerator `6`.
 - **How it is useful:** This upgrades the synthetic low-rank family from a
   finite-affine exact-root table to a projective regular-root budget audit,

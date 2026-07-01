@@ -10,10 +10,10 @@
     "finite_roots_checked_for_common_code_line": 40,
     "generic_degree_bound_sum_for_window": 4515,
     "max_finite_roots_per_agreement": 2,
-    "max_projective_regular_roots_per_agreement": 2,
+    "max_projective_regular_roots_per_agreement": 3,
     "nonsquare_quadratic_rows": 22,
     "per_agreement_degree_bound": 2,
-    "projective_infinity_contribution_sum": 0,
+    "projective_infinity_contribution_sum": 42,
     "split_quadratic_rows": 20
   },
   "agreement_range": [
@@ -101,11 +101,14 @@
         127
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 61024707999361259609246858258933946525,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 61024707999361259609246858258933946525,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 128
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -128,10 +131,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -233,11 +236,14 @@
         126
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 851772096358027108625697403210293401740,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 851772096358027108625697403210293401740,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 127
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -257,10 +263,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -326,11 +332,14 @@
         125
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 111157967155493443838813169531029408691,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 111157967155493443838813169531029408691,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 126
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -353,10 +362,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -458,11 +467,14 @@
         124
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1542585733760289997022324582898841054437,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1542585733760289997022324582898841054437,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 125
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -482,10 +494,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -551,11 +563,14 @@
         123
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1930849299939480013539693064526152443541,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1930849299939480013539693064526152443541,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 124
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -575,10 +590,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -644,11 +659,14 @@
         122
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1658817025167708727507772028717593448465,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1658817025167708727507772028717593448465,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 123
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -668,10 +686,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -737,11 +755,14 @@
         121
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 273671855928729942755870071100633813914,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 273671855928729942755870071100633813914,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 122
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -761,10 +782,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -830,11 +851,14 @@
         120
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1561771539780806356658327233433568806350,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1561771539780806356658327233433568806350,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 121
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -854,10 +878,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -923,11 +947,14 @@
         119
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1622861928506724654187944193429204470797,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1622861928506724654187944193429204470797,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 120
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -950,10 +977,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -1055,11 +1082,14 @@
         118
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 538396270111178813620132962734123142933,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 538396270111178813620132962734123142933,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 119
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -1079,10 +1109,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -1148,11 +1178,14 @@
         117
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 2076278398310656466826920269629329988776,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 2076278398310656466826920269629329988776,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 118
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -1175,10 +1208,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -1280,11 +1313,14 @@
         116
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 707861110016610225733249141040059357592,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 707861110016610225733249141040059357592,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 117
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -1307,10 +1343,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -1412,11 +1448,14 @@
         115
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 446248688919520311604417687453751188470,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 446248688919520311604417687453751188470,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 116
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -1439,10 +1478,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -1544,11 +1583,14 @@
         114
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 312425127447919188508980278616270161360,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 312425127447919188508980278616270161360,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 115
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -1571,10 +1613,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -1676,11 +1718,14 @@
         113
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 2172469151361678835600188166868273485720,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 2172469151361678835600188166868273485720,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 114
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -1703,10 +1748,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -1808,11 +1853,14 @@
         112
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 2200711452798782416464914031495678509857,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 2200711452798782416464914031495678509857,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 113
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -1832,10 +1880,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -1901,11 +1949,14 @@
         111
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 2160777122958607258806744374415317266236,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 2160777122958607258806744374415317266236,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 112
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -1925,10 +1976,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -1994,11 +2045,14 @@
         110
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 567215326858901155308548469230272618973,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 567215326858901155308548469230272618973,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 111
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -2021,10 +2075,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -2126,11 +2180,14 @@
         109
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 546794451712689346986196566637486595817,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 546794451712689346986196566637486595817,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 110
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -2150,10 +2207,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -2219,11 +2276,14 @@
         108
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 2157831494836363168609467084175673805000,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 2157831494836363168609467084175673805000,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 109
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -2243,10 +2303,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -2312,11 +2372,14 @@
         107
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 2173153818585287074662633897380806334189,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 2173153818585287074662633897380806334189,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 108
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -2339,10 +2402,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -2444,11 +2507,14 @@
         106
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 121722394707784037792026791117215307747,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 121722394707784037792026791117215307747,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 107
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -2468,10 +2534,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -2537,11 +2603,14 @@
         105
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1778162397187298823881080912216031678230,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1778162397187298823881080912216031678230,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 106
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -2564,10 +2633,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -2669,11 +2738,14 @@
         104
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1535960695934820368032800474990728573425,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1535960695934820368032800474990728573425,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 105
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -2693,10 +2765,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -2762,11 +2834,14 @@
         103
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 2312332176576382145517641647361659979925,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 2312332176576382145517641647361659979925,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 104
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -2789,10 +2864,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -2894,11 +2969,14 @@
         102
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1735793159818113513460493968126946955776,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1735793159818113513460493968126946955776,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 103
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -2918,10 +2996,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -2987,11 +3065,14 @@
         101
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1797336966757201685254594425411967260124,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1797336966757201685254594425411967260124,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 102
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -3011,10 +3092,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -3080,11 +3161,14 @@
         100
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 102397829386166183740740168768669917701,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 102397829386166183740740168768669917701,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 101
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -3107,10 +3191,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -3212,11 +3296,14 @@
         99
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1532727190284219361990127712640847895167,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1532727190284219361990127712640847895167,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 100
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -3236,10 +3323,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -3305,11 +3392,14 @@
         98
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1312949600739242533772658743323396598070,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1312949600739242533772658743323396598070,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 99
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -3329,10 +3419,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -3398,11 +3488,14 @@
         97
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 783828539638551535022085612401289275835,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 783828539638551535022085612401289275835,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 98
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -3422,10 +3515,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -3491,11 +3584,14 @@
         96
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1308989559011422536251275873762425605463,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1308989559011422536251275873762425605463,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 97
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -3518,10 +3614,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -3623,11 +3719,14 @@
         95
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 2139836229658451205251997549284513147152,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 2139836229658451205251997549284513147152,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 96
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -3647,10 +3746,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -3716,11 +3815,14 @@
         94
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1284436892574477414254857524960923736465,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1284436892574477414254857524960923736465,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 95
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -3740,10 +3842,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -3809,11 +3911,14 @@
         93
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 2341914142478851952946069605943416655231,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 2341914142478851952946069605943416655231,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 94
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -3833,10 +3938,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -3902,11 +4007,14 @@
         92
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 127159917583641329227734505497881446174,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 127159917583641329227734505497881446174,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 93
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -3929,10 +4037,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -4034,11 +4142,14 @@
         91
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1057201123910986946196412473327323470967,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1057201123910986946196412473327323470967,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 92
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -4061,10 +4172,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -4166,11 +4277,14 @@
         90
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1591540141368056720009298084721202874525,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1591540141368056720009298084721202874525,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 91
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -4193,10 +4307,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -4298,11 +4412,14 @@
         89
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 877157628171146350889924109544852731648,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 877157628171146350889924109544852731648,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 90
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -4325,10 +4442,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -4430,11 +4547,14 @@
         88
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1681500359278070378309090322985663911085,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1681500359278070378309090322985663911085,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 89
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -4457,10 +4577,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -4562,11 +4682,14 @@
         87
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 1480025558991458766539953377182718151095,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 1480025558991458766539953377182718151095,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 88
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -4586,10 +4709,10 @@
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 6,
+        "projective_budget_gap": 5,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 0,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 1,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
@@ -4655,11 +4778,14 @@
         86
       ],
       "projective_infinity": {
-        "contribution": 0,
-        "leading_coefficient_encoding": 2127859988470813504442687846078260636838,
+        "compressed_degree": 2,
+        "compressed_leading_coefficient_encoding": 2127859988470813504442687846078260636838,
+        "contribution": 1,
         "projective_point": "[0:1]",
-        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
-        "status": "empty"
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 2 < j+1, so the determinant of H(v) is zero and this regular minor does not exclude [0:1]; the nonzero compressed quadratic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 87
       },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
@@ -4682,10 +4808,10 @@
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
-        "projective_budget_gap": 4,
+        "projective_budget_gap": 3,
         "projective_budget_numerator": 6,
-        "projective_infinity_roots": 0,
-        "projective_regular_roots": 2,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots": 3,
         "quotient_image_subtraction_status": "not_audited",
         "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
@@ -4753,6 +4879,6 @@
     "k": 256,
     "n": 512
   },
-  "schema_version": "f17-32-m3-low-rank2-family-v4",
+  "schema_version": "f17-32-m3-low-rank2-family-v5",
   "status": "PROVED / AUDIT"
 }

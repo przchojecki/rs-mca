@@ -14,8 +14,9 @@ subgroup syndrome-section theorem behind the lift.  The synthetic families are
 the closed-form rank-witness family with root union `{0}` and the rank-2
 low-rank family with exact split/nonsquare quadratic root table: 20 split
 rows, 22 nonsquare rows, and 40 finite roots total under degree cap 84.  The
-rank-2 family also has empty projective endpoint `[0:1]`, so every agreement
-has at most 2 projective regular roots against budget numerator 6.
+rank-2 family also records that `[0:1]` is not excluded by the original
+regular-minor endpoint, so every agreement has at most 3 projective regular
+roots against budget numerator 6.
 Moreover, all 40 finite roots have a nonzero full-syndrome witness at moment
 `m=0`, so none are common-code-line tangent roots.  Quotient-image overlap is
 still not audited for this synthetic family.
@@ -24,15 +25,19 @@ The rank-3 low-rank family uses the same compressed Lagrange-kernel identity
 with three update nodes.  It computes exact finite-root counts by
 `gcd(Delta,Z^q-Z)`: 12 rows have no finite roots, 24 rows have one finite root,
 and 6 rows have three finite roots, for 42 finite roots total under degree cap
-126.  Its projective endpoint is empty in all rows, and the Frobenius gcd is
-nonzero at the only possible common-code-line slope, so none of these 42 roots
-are tangent/common-code-line roots.  Quotient-image overlap is also not audited
-for this synthetic family.
+126.  Its projective endpoint is likewise not excluded by the original
+regular-minor endpoint, so every agreement has at most 4 projective regular
+roots against budget numerator 6.  The Frobenius gcd is nonzero at the only
+possible common-code-line slope, so none of these 42 finite roots are
+tangent/common-code-line roots.  Quotient-image overlap is also not audited for
+this synthetic family.
 
-The ledger also imports the v2 low-rank update template budget envelope.  Since
+The ledger also imports the v3 low-rank update template budget envelope.  Since
 both the finite and projective `F_17^32` budget numerators are 6, every nonzero
-regular low-rank update chart of rank at most 6 is already within the regular
-root budget; zero determinants remain singular buckets, not aperiodic evidence.
+regular low-rank update chart of rank at most 6 is within the finite regular
+root budget.  Without a separate infinity exclusion, projective automatic
+safety holds through rank 5; rank 6 needs an infinity exclusion or finite-root
+slack.  Zero determinants remain singular buckets, not aperiodic evidence.
 
 The ledger also references the M3 syndrome-realizability certificate, which
 proves that every length-256 syndrome pencil in this window is realized by

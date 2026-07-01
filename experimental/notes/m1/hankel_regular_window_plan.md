@@ -276,10 +276,11 @@ Cauchy-Binet coefficients indexed by how many update nodes are selected.  Thus
 small-rank non-proportional directions give regular-minor root bounds
 independent of the minor size; identically zero determinants are explicitly
 singular residual buckets for the pivot atlas, not aperiodic evidence.
-The v2 certificate also records the M3 budget envelope: because both the finite
-and projective `F_17^32` budget numerators are `6`, every nonzero regular
-low-rank update chart of rank `s <= 6` is regular-root budget safe before
-quotient/tangent deduplication.
+The v3 certificate also records the corrected M3 budget envelope: because both
+the finite and projective `F_17^32` budget numerators are `6`, every nonzero
+regular low-rank update chart of rank `s <= 6` is finite-root budget safe.
+Projective automatic safety without a separate infinity exclusion holds for
+`s <= 5`; rank `6` needs infinity exclusion or finite-root slack.
 
 The corresponding rank-2 `F_17^32` endpoint packet is
 
@@ -310,12 +311,15 @@ update.  The degree cap is `84`, versus the generic window sum `4515`.
 Applying the rank-2 discriminant gate gives exact roots: 20 rows split, 22 rows
 have nonsquare discriminant, and the exact finite-root total is `40`.  The
 family also audits the projective endpoint `[0:1]`: every leading coefficient
-is nonzero, so projectivizing adds no root and every agreement has at most 2
-projective regular roots against budget numerator 6.  It also compares the 40
-finite roots against the common-code-line tangent ledger: at every finite root,
-the full syndrome has nonzero witness `Syn_0(u+zv)=|X|+2z`, so no finite
-low-rank-family root is tangent/common-code-line.  The family cross-checks the
-`A=426` endpoint against the exact-root v9 packet.
+of the compressed quadratic is nonzero, but the original regular-minor
+projective endpoint is not excluded because the update direction has rank
+`2 < j+1`.  Infinity therefore contributes one projective point in every row,
+and every agreement has at most 3 projective regular roots against budget
+numerator 6.  It also compares the 40 finite roots against the common-code-line
+tangent ledger: at every finite root, the full syndrome has nonzero witness
+`Syn_0(u+zv)=|X|+2z`, so no finite low-rank-family root is
+tangent/common-code-line.  The family cross-checks the `A=426` endpoint against
+the exact-root v9 packet.
 
 The rank-3 companion certificate is:
 
@@ -328,10 +332,11 @@ It uses the same nested prefixes and the next three descriptor-domain nodes as
 the update set.  The degree cap is `3 * 42 = 126`, and the exact finite-root
 count is computed by `gcd(Delta,Z^q-Z)`: 12 rows have no finite roots, 24 rows
 have one finite root, and 6 rows have three finite roots, for total `42`.  The
-projective endpoint `[0:1]` is empty in every row, so every agreement has at
-most 3 projective regular roots against budget numerator 6.  The
-common-code-line tangent overlap is also zero, because the Frobenius gcd is
-nonzero at the only possible slope from `Syn_0(u+zv)=|X|+3z`.
+original regular-minor projective endpoint is not excluded, so infinity
+contributes one projective point in every row and every agreement has at most 4
+projective regular roots against budget numerator 6.  The common-code-line
+tangent overlap is also zero, because the Frobenius gcd is nonzero at the only
+possible slope from `Syn_0(u+zv)=|X|+3z`.
 
 The current status ledger
 

@@ -32,10 +32,12 @@ The aggregate degree cap for this synthetic family is `84`, compared with the
 generic degree-bound sum `4515` for the same agreement window; the exact
 finite-root count is `40`.
 
-The projective endpoint is also audited.  In every row the quadratic leading
-coefficient is nonzero, so the homogenized determinant is nonzero at `[0:1]`
-and projectivizing adds no root.  Thus each agreement has `0` or `2`
-projective regular roots, below the budget numerator `6`.
+The projective endpoint is also audited using the original regular-minor
+projective convention.  Since the update direction has rank `2 < j+1`, the
+top-degree coefficient `det H(v)` is zero and this regular minor does not
+exclude `[0:1]`.  Thus infinity contributes one projective parameter in every
+row; each agreement has `1` or `3` projective regular roots, still below the
+budget numerator `6`.
 
 The finite roots are also compared with the common-code-line tangent ledger.
 For a finite root `z`, the full syndrome has zeroth moment

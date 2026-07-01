@@ -758,7 +758,8 @@
     "proof": [
       "The low-rank determinant template gives degree Delta_A <= s.",
       "A nonzero affine polynomial of degree d has at most d finite roots.",
-      "After projectivizing to degree s, either the top coefficient is nonzero and infinity is empty, or the affine degree is <=s-1 and infinity contributes one point; in both cases the projective root count is <=s.",
+      "Under the original regular-minor projective endpoint, infinity is controlled by det(H(v)) at degree j+1; for update rank s<j+1 this top coefficient is zero, so one projective infinity point may remain.",
+      "Therefore the projective regular-root bound without a separate infinity exclusion is finite_root_bound+1 <= s+1.",
       "For F_17^32, floor(|F|/2^128)=floor((|F|+1)/2^128)=6."
     ],
     "row": {
@@ -775,71 +776,77 @@
         "finite_budget_gap": 5,
         "finite_budget_numerator": 6,
         "finite_root_bound": 1,
-        "projective_budget_gap": 5,
+        "projective_budget_gap_without_infinity_exclusion": 4,
         "projective_budget_numerator": 6,
-        "projective_regular_root_bound": 1,
+        "projective_regular_root_bound_without_infinity_exclusion": 2,
+        "projective_status": "automatic",
         "update_rank": 1,
         "within_finite_budget": true,
-        "within_projective_budget": true
+        "within_projective_budget_without_infinity_exclusion": true
       },
       {
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
         "finite_root_bound": 2,
-        "projective_budget_gap": 4,
+        "projective_budget_gap_without_infinity_exclusion": 3,
         "projective_budget_numerator": 6,
-        "projective_regular_root_bound": 2,
+        "projective_regular_root_bound_without_infinity_exclusion": 3,
+        "projective_status": "automatic",
         "update_rank": 2,
         "within_finite_budget": true,
-        "within_projective_budget": true
+        "within_projective_budget_without_infinity_exclusion": true
       },
       {
         "finite_budget_gap": 3,
         "finite_budget_numerator": 6,
         "finite_root_bound": 3,
-        "projective_budget_gap": 3,
+        "projective_budget_gap_without_infinity_exclusion": 2,
         "projective_budget_numerator": 6,
-        "projective_regular_root_bound": 3,
+        "projective_regular_root_bound_without_infinity_exclusion": 4,
+        "projective_status": "automatic",
         "update_rank": 3,
         "within_finite_budget": true,
-        "within_projective_budget": true
+        "within_projective_budget_without_infinity_exclusion": true
       },
       {
         "finite_budget_gap": 2,
         "finite_budget_numerator": 6,
         "finite_root_bound": 4,
-        "projective_budget_gap": 2,
+        "projective_budget_gap_without_infinity_exclusion": 1,
         "projective_budget_numerator": 6,
-        "projective_regular_root_bound": 4,
+        "projective_regular_root_bound_without_infinity_exclusion": 5,
+        "projective_status": "automatic",
         "update_rank": 4,
         "within_finite_budget": true,
-        "within_projective_budget": true
+        "within_projective_budget_without_infinity_exclusion": true
       },
       {
         "finite_budget_gap": 1,
         "finite_budget_numerator": 6,
         "finite_root_bound": 5,
-        "projective_budget_gap": 1,
+        "projective_budget_gap_without_infinity_exclusion": 0,
         "projective_budget_numerator": 6,
-        "projective_regular_root_bound": 5,
+        "projective_regular_root_bound_without_infinity_exclusion": 6,
+        "projective_status": "automatic",
         "update_rank": 5,
         "within_finite_budget": true,
-        "within_projective_budget": true
+        "within_projective_budget_without_infinity_exclusion": true
       },
       {
         "finite_budget_gap": 0,
         "finite_budget_numerator": 6,
         "finite_root_bound": 6,
-        "projective_budget_gap": 0,
+        "projective_budget_gap_without_infinity_exclusion": -1,
         "projective_budget_numerator": 6,
-        "projective_regular_root_bound": 6,
+        "projective_regular_root_bound_without_infinity_exclusion": 7,
+        "projective_status": "needs_infinity_exclusion_or_finite_root_slack",
         "update_rank": 6,
         "within_finite_budget": true,
-        "within_projective_budget": true
+        "within_projective_budget_without_infinity_exclusion": false
       }
     ],
     "singular_bucket_rule": "A zero determinant is not counted by this envelope; it must be declared singular and handled by affine/projective/curve pivot charts or by a named residual obstruction.",
-    "statement": "For any M3 regular low-rank update chart whose prefix determinant Delta_A(Z) is nonzero and has update rank s<=6, the finite regular-root count and the projective regular-root count are both <=s<=6.  If Delta_A is the zero polynomial, the chart is not aperiodic evidence and must be routed to the singular residual atlas.",
+    "statement": "For any M3 regular low-rank update chart whose prefix determinant Delta_A(Z) is nonzero and has update rank s<=6, the finite regular-root count is <=s<=6.  For projective slopes under the original v9 regular-minor endpoint convention, the low-rank direction may leave infinity nonexcluded, so the automatic projective bound is <=s+1.  Hence ranks s<=5 are projective-budget safe without more work, while rank 6 needs either an infinity exclusion or finite-root slack.  If Delta_A is the zero polynomial, the chart is not aperiodic evidence and must be routed to the singular residual atlas.",
     "status": "PROVED / AUDIT"
   },
   "nonclaims": [
@@ -847,13 +854,14 @@
     "does not classify arbitrary non-proportional pencils",
     "does not perform quotient/tangent subtraction for a prize row",
     "does not prove that arbitrary residuals have update rank <=6",
+    "rank 6 projective-line safety still needs an infinity exclusion or finite-root slack",
     "zero determinant rows are residual buckets, not aperiodic evidence"
   ],
-  "schema_version": "m1-hankel-low-rank-update-template-v2",
+  "schema_version": "m1-hankel-low-rank-update-template-v3",
   "status": "PROVED / AUDIT",
   "theorem": {
     "compressed_statement": "If H_X=V_X V_X^T is invertible, the same determinant equals det(H_X) det(I+Z K), where K=V_Y^T H_X^{-1} V_Y.  Thus the large r x r determinant is reduced to a |Y| x |Y| determinant without changing the root-count bound.",
-    "m3_use": "A non-proportional syndrome pencil whose direction has power-sum rank s gives a regular-minor root bound <=s from one prefix minor when that minor determinant is nonzero; the zero-determinant case is a singular residual bucket. The bound is independent of the M3 minor size j+1.  For the F_17^32 M3 row, ranks s<=6 are automatically within the finite and projective regular-root budgets.",
+    "m3_use": "A non-proportional syndrome pencil whose direction has power-sum rank s gives a regular-minor root bound <=s from one prefix minor when that minor determinant is nonzero; the zero-determinant case is a singular residual bucket. The bound is independent of the M3 minor size j+1.  For the F_17^32 M3 row, ranks s<=6 are automatically within the finite regular-root budget, and ranks s<=5 are automatically within the projective regular-root budget unless infinity is separately excluded.",
     "name": "low-rank Hankel update determinant template",
     "proof_status": "Cauchy-Binet identity plus finite verifier",
     "statement": "Let X and Y be disjoint finite node sets in a field.  For u_m=sum_{x in X}x^m and v_m=sum_{y in Y}y^m, the prefix regular determinant det(H_r(u)+Z H_r(v)) has coefficient of Z^d equal to the sum of Vandermonde(S)^2 over all r-subsets S of X union Y with exactly d nodes from Y.  Hence the degree is at most |Y|; if the polynomial is nonzero, its finite root count is at most |Y|."

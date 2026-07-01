@@ -38,7 +38,7 @@ from experimental.scripts.extract_regular_hankel_minors import (
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-low-rank2-family-v4"
+SCHEMA_VERSION = "f17-32-m3-low-rank2-family-v5"
 N = 512
 K = 256
 AGREEMENT_MIN = 385
@@ -211,7 +211,7 @@ def build_records(
         ]
         require(
             not field.is_zero(coefficients[-1]),
-            f"A={agreement}: projective leading coefficient vanishes",
+            f"A={agreement}: compressed leading coefficient vanishes",
         )
         roots = quadratic_roots_field(coefficients, field)
         require(roots is not None, f"A={agreement}: low-rank row is not quadratic")
@@ -261,26 +261,39 @@ def build_records(
                 "root_certificate": root_certificate,
                 "projective_infinity": {
                     "projective_point": "[0:1]",
-                    "status": "empty",
-                    "contribution": 0,
-                    "leading_coefficient_encoding": encoded_coefficients[-1],
+                    "status": "nonempty_not_excluded_by_regular_minor",
+                    "contribution": 1,
+                    "top_degree": size,
+                    "top_coefficient_encoding": field.encode(field.zero),
+                    "compressed_degree": UPDATE_RANK,
+                    "compressed_leading_coefficient_encoding": (
+                        encoded_coefficients[-1]
+                    ),
                     "reason": (
-                        "the homogenized quadratic evaluates to the nonzero "
-                        "leading coefficient at [0:1]"
+                        "projective infinity is controlled by the original "
+                        "regular-minor top degree j+1.  The low-rank update "
+                        "direction has rank 2 < j+1, so the determinant of "
+                        "H(v) is zero and this regular minor does not exclude "
+                        "[0:1]; the nonzero compressed quadratic leading "
+                        "coefficient only controls the finite affine degree"
                     ),
                 },
                 "regular_budget_table": {
                     "finite_affine_roots": len(encoded_roots),
                     "B_tan_common_code_line": 0,
                     "regular_roots_after_common_code_line": len(encoded_roots),
-                    "projective_infinity_roots": 0,
-                    "projective_regular_roots": len(encoded_roots),
+                    "projective_infinity_roots": 1,
+                    "projective_regular_roots": len(encoded_roots) + 1,
                     "finite_budget_numerator": finite_budget,
                     "projective_budget_numerator": projective_budget,
                     "finite_budget_gap": finite_budget - len(encoded_roots),
-                    "projective_budget_gap": projective_budget - len(encoded_roots),
+                    "projective_budget_gap": (
+                        projective_budget - len(encoded_roots) - 1
+                    ),
                     "within_finite_budget": len(encoded_roots) <= finite_budget,
-                    "within_projective_budget": len(encoded_roots) <= projective_budget,
+                    "within_projective_budget": (
+                        len(encoded_roots) + 1 <= projective_budget
+                    ),
                     "quotient_image_subtraction_status": "not_audited",
                 },
                 "tangent_common_code_line_audit": {
@@ -424,12 +437,12 @@ def build_certificate() -> dict[str, Any]:
             "exact_regular_root_count_sum": exact_root_count_sum,
             "split_quadratic_rows": split_rows,
             "nonsquare_quadratic_rows": nonsquare_rows,
-            "projective_infinity_contribution_sum": 0,
+            "projective_infinity_contribution_sum": len(records),
             "common_code_line_tangent_overlap_sum": tangent_overlap_sum,
             "finite_roots_checked_for_common_code_line": tangent_checked_sum,
             "exact_regular_roots_after_common_code_line": roots_after_tangent_sum,
             "max_finite_roots_per_agreement": max_root_count,
-            "max_projective_regular_roots_per_agreement": max_root_count,
+            "max_projective_regular_roots_per_agreement": max_root_count + 1,
             "all_rows_within_finite_budget": True,
             "all_rows_within_projective_budget": True,
             "generic_degree_bound_sum_for_window": sum(
@@ -492,7 +505,8 @@ def print_summary(certificate: dict[str, Any]) -> None:
         )
     )
     print(
-        "projective infinity: contribution=0, max projective roots/agreement={roots}, budget={budget}".format(
+        "projective infinity: contribution={contribution}, max projective roots/agreement={roots}, budget={budget}".format(
+            contribution=aggregate["projective_infinity_contribution_sum"],
             roots=aggregate["max_projective_regular_roots_per_agreement"],
             budget=certificate["endpoint_conventions"][
                 "projective_budget_numerator"
