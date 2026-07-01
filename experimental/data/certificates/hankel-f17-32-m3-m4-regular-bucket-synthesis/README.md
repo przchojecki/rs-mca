@@ -88,6 +88,17 @@ finite pivot `z0` and `rank H_R(v)<=6`, the original `87..128` dimensional
 maximal-minor determinant compresses to a `6 x 6` determinant with the same
 finite roots in that affine pivot chart.
 
+The gcd-equivalence companion
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-gcd-equivalence/
+  f17_32_n512_k256_m3_m4_affine_pivot_gcd_equivalence.json
+```
+
+shows that good pivots are plentiful for nonzero rank-6 minors and that the
+v10 canonical gcd root set is preserved after replacing each chart by its
+compressed determinant translated back to the global slope variable.
+
 For finite affine roots, the M5 kernel chart gives a per-root filter:
 
 ```text
@@ -137,6 +148,9 @@ python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json
+
+python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_gcd_equivalence.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-gcd-equivalence/f17_32_n512_k256_m3_m4_affine_pivot_gcd_equivalence.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json

@@ -347,6 +347,7 @@
     "projective infinity is classified by the M5 kernel-containment chart",
     "rank<=5 buckets are separated from rank=6 endpoint-sensitive buckets",
     "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
+    "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
     "projective infinity and finite affine accounting are not conflated"
   ],
   "field_audit": {
@@ -385,6 +386,7 @@
         "B_ap_regular_finite_before_other_ledgers": "<= 6",
         "B_ap_regular_projective_before_endpoint_payment": "<= 7",
         "B_tan_finite": 0,
+        "compressed_gcd_equivalence_certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-gcd-equivalence/f17_32_n512_k256_m3_m4_affine_pivot_gcd_equivalence.json",
         "condition": "rank H_{t,j}(v)=6 and regular bucket nonsingular",
         "finite_affine_impact_of_infinity": 0,
         "finite_budget_safe": true,
@@ -398,6 +400,7 @@
       "direction_rank_intermediate": {
         "B_ap_regular_finite_before_other_ledgers": "<= rank H_{t,j}(v)",
         "B_tan_finite": 0,
+        "compressed_gcd_equivalence_certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-gcd-equivalence/f17_32_n512_k256_m3_m4_affine_pivot_gcd_equivalence.json",
         "condition": "6 < rank H_{t,j}(v) <= j",
         "finite_affine_kernel_certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json",
         "finite_affine_kernel_filter": "apply after actual finite root table",
@@ -493,6 +496,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json",
       "sha256": "78f94e7c3fe0f940bf2957bc817b4b1f47aadae37a0c2fd6d16b682ebe2b7c1c"
     },
+    "f17_32_n512_k256_m3_m4_affine_pivot_gcd_equivalence": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-gcd-equivalence/f17_32_n512_k256_m3_m4_affine_pivot_gcd_equivalence.json",
+      "sha256": "d76138c2af89cdee936107b8b4c9fb0fda3c551395b75ddadcb2cbd6604c9c9d"
+    },
     "f17_32_n512_k256_m3_m4_projective_budget_split": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/f17_32_n512_k256_m3_m4_projective_budget_split.json",
       "sha256": "5347a6cee7009d6b5041550ad2ce6f0f273e0bb5cc2cd9e042c2b741fdc1d9b7"
@@ -534,10 +541,11 @@
   "summary": {
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 12,
+    "dependencies_checked": 13,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
     "m4_affine_pivot_compression_count": 1,
+    "m4_affine_pivot_gcd_equivalence_count": 1,
     "m4_projective_budget_split_count": 1,
     "m5_finite_affine_filter_count": 1,
     "m5_projective_infinity_closed_case_count": 1,
@@ -558,6 +566,10 @@
     "m4_affine_pivot_compression": [
       "on any finite affine pivot with M_R(z0) invertible and rank H_R(v)<=r, det M_R(z) compresses to an r x r determinant",
       "rank-6 endpoint-sensitive finite-root refinement can therefore target 6x6 compressed determinants instead of 87..128 dimensional minors"
+    ],
+    "m4_affine_pivot_gcd_equivalence": [
+      "every nonzero rank-6 minor has at most six bad finite pivots and therefore many good pivots over F_17^32",
+      "after choosing good pivots per nonzero chart and translating local compressed determinants back to the global slope variable, monic gcd of original minors equals monic gcd of compressed polynomials"
     ],
     "m4_projective_budget_split": [
       "finite regular root count is <= r=rank H(v)",

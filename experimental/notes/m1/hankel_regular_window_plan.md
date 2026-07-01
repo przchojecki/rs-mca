@@ -606,6 +606,28 @@ python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 ```
 
+The affine-pivot gcd-equivalence packet is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-gcd-equivalence/
+  f17_32_n512_k256_m3_m4_affine_pivot_gcd_equivalence.json
+```
+
+It records two facts needed to use compression inside the v10 canonical gcd
+ledger.  First, a nonzero rank-6 minor has at most six bad pivots over
+`F_17^32`, so good finite pivots are abundant.  Second, replacing each nonzero
+row-set determinant by its affine-pivot compressed determinant only rescales
+that gcd input by a nonzero constant after translating the local compressed
+polynomial back to the global slope variable, so the monic gcd and root table
+are unchanged.
+
+Replay:
+
+```sh
+python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_gcd_equivalence.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-gcd-equivalence/f17_32_n512_k256_m3_m4_affine_pivot_gcd_equivalence.json
+```
+
 The current M4 regular-bucket synthesis table is:
 
 ```text

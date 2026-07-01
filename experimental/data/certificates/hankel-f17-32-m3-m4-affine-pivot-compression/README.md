@@ -52,6 +52,17 @@ This is not the synthetic low-rank Cauchy reduction.  It applies to any
 regular bucket once a finite affine pivot `z0` with `M_R(z0)` invertible and a
 rank factorization of `H_R(v)` are available.
 
+The companion gcd-equivalence packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-gcd-equivalence/
+  f17_32_n512_k256_m3_m4_affine_pivot_gcd_equivalence.json
+```
+
+records that good pivots always exist for nonzero rank-6 minors and that the
+monic gcd of the original minors is unchanged after replacing each chart by
+its compressed determinant translated back to the global slope variable.
+
 Regenerate and check:
 
 ```sh
@@ -60,4 +71,7 @@ python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json
+
+python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_gcd_equivalence.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-gcd-equivalence/f17_32_n512_k256_m3_m4_affine_pivot_gcd_equivalence.json
 ```

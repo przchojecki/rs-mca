@@ -115,6 +115,9 @@ experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/
 experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
   f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 
+experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-gcd-equivalence/
+  f17_32_n512_k256_m3_m4_affine_pivot_gcd_equivalence.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/
   f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json
 ```
@@ -423,6 +426,13 @@ det M_R(z0+w)
 Thus the rank-6 endpoint-sensitive finite-root problem can be attacked through
 `6 x 6` compressed determinants rather than `87..128` dimensional minors.
 
+The affine-pivot gcd-equivalence companion makes this compatible with the v10
+canonical gcd.  A nonzero rank-6 minor has at most six bad pivots, hence at
+least `17^32-6` good finite pivots.  After choosing a good pivot per nonzero
+row-set chart, replacing each original determinant by its compressed determinant
+translated back to the global slope variable only rescales the gcd inputs by
+nonzero constants, so the monic canonical gcd and its root table are unchanged.
+
 The M4 regular-bucket synthesis certificate composes these local lemmas into a
 decision table.  The closed branches are zero-`v` with full-rank `H(u)` and
 proportional nonzero-`v` with full-rank `H(v)`; the zero-`u` full-rank branch is
@@ -669,6 +679,9 @@ python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json
+
+python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_gcd_equivalence.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-gcd-equivalence/f17_32_n512_k256_m3_m4_affine_pivot_gcd_equivalence.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json

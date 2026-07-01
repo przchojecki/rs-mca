@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M4 affine-pivot gcd equivalence
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_m4_affine_pivot_gcd_equivalence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-gcd-equivalence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A bridge from affine-pivot compression to the v10
+  canonical gcd: nonzero rank-6 minors have at most six bad finite pivots, and
+  replacing each chart by its compressed determinant translated back to the
+  global slope variable preserves the monic gcd root set.
+- **How it is useful:** It makes the compressed `6 x 6` rank-6 chart
+  determinants usable for canonical root-table computation, not just for
+  individual selected minors.
+- **What to do next:** Choose concrete rank-6 Hankel charts and compute the
+  compressed canonical gcd/root table, or combine with an endpoint payment.
+
 ### 2026-07-01 - M4 affine-pivot compression
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

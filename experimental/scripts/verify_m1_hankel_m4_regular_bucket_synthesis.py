@@ -79,6 +79,10 @@ M4_AFFINE_PIVOT_COMPRESSION_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/"
     "f17_32_n512_k256_m3_m4_affine_pivot_compression.json"
 )
+M4_AFFINE_PIVOT_GCD_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-gcd-equivalence/"
+    "f17_32_n512_k256_m3_m4_affine_pivot_gcd_equivalence.json"
+)
 LOWER_RANK_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-lower-rank-contained/"
     "f17_32_n512_k256_m3_lower_rank_contained.json"
@@ -97,6 +101,7 @@ EXPECTED_SCHEMAS = {
     M5_PROJECTIVE_INFINITY_REF: "f17-32-m3-m5-projective-infinity-kernel-chart-v1",
     M4_PROJECTIVE_BUDGET_REF: "f17-32-m3-m4-projective-budget-split-v1",
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
+    M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
 }
 
@@ -193,6 +198,7 @@ def regular_bucket_decision_table() -> dict[str, Any]:
                 "projective_budget_safe_without_endpoint_payment": False,
                 "projective_budget_split_certificate_ref": M4_PROJECTIVE_BUDGET_REF,
                 "finite_root_compression_certificate_ref": M4_AFFINE_PIVOT_COMPRESSION_REF,
+                "compressed_gcd_equivalence_certificate_ref": M4_AFFINE_PIVOT_GCD_REF,
                 "projective_sampler_safe_if": (
                     "the infinity endpoint is empty/paid, or the exact finite "
                     f"root table has at most {BUDGET - 1} surviving roots"
@@ -211,6 +217,7 @@ def regular_bucket_decision_table() -> dict[str, Any]:
                 "projective_infinity_extra_parameters": "<= 1",
                 "projective_budget_split_certificate_ref": M4_PROJECTIVE_BUDGET_REF,
                 "finite_root_compression_certificate_ref": M4_AFFINE_PIVOT_COMPRESSION_REF,
+                "compressed_gcd_equivalence_certificate_ref": M4_AFFINE_PIVOT_GCD_REF,
                 "next_step": "actual finite root table, kernel filter, plus quotient/extension overlap audit",
             },
             "direction_full_rank": {
@@ -343,6 +350,10 @@ def build_certificate() -> dict[str, Any]:
                 "on any finite affine pivot with M_R(z0) invertible and rank H_R(v)<=r, det M_R(z) compresses to an r x r determinant",
                 "rank-6 endpoint-sensitive finite-root refinement can therefore target 6x6 compressed determinants instead of 87..128 dimensional minors",
             ],
+            "m4_affine_pivot_gcd_equivalence": [
+                "every nonzero rank-6 minor has at most six bad finite pivots and therefore many good pivots over F_17^32",
+                "after choosing good pivots per nonzero chart and translating local compressed determinants back to the global slope variable, monic gcd of original minors equals monic gcd of compressed polynomials",
+            ],
             "m5_projective_infinity_closed_by_kernel_chart": [
                 "proportional rank-deficient direction: infinity empty because ker H(v) subset ker H(u)",
                 "arbitrary rank-deficient direction: infinity empty iff ker H(v) subset ker H(u), otherwise at most the single endpoint [0:1]",
@@ -386,6 +397,7 @@ def build_certificate() -> dict[str, Any]:
             "m5_regular_root_rank_drop_bridge_count": 1,
             "m4_projective_budget_split_count": 1,
             "m4_affine_pivot_compression_count": 1,
+            "m4_affine_pivot_gcd_equivalence_count": 1,
             "residual_case_count": 3,
             "dependencies_checked": len(EXPECTED_SCHEMAS),
         },
@@ -399,6 +411,7 @@ def build_certificate() -> dict[str, Any]:
             "projective infinity is classified by the M5 kernel-containment chart",
             "rank<=5 buckets are separated from rank=6 endpoint-sensitive buckets",
             "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
+            "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
             "projective infinity and finite affine accounting are not conflated",
         ],
         "nonclaims": [
