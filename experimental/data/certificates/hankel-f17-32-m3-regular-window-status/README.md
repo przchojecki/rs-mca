@@ -166,6 +166,12 @@ is excluded from nontrivial proper quotient-remainder support families, while
 finite-root quotient-support and quotient-image subtraction remain explicitly
 unaudited in that table.
 
+The representative shifted-minor exclusion checks the finite roots in the six
+rank-6..11 projective-line packets.  For all `18` listed roots, the row-shift-1
+square Hankel minor is nonzero, so those first-minor roots are not actual
+full-Hankel exact-support witnesses.  This is a representative-packet audit
+only, not an all-row quotient or support-image theorem.
+
 The ledger also imports the v4 low-rank update template budget envelope.  Since
 both the finite and projective `F_17^32` budget numerators are 6, every nonzero
 regular low-rank update chart of rank at most 6 is within the finite regular

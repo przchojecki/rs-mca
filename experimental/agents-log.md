@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 representative shifted-minor exclusion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_representative_shifted_minor_exclusion.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-representative-shifted-minor-exclusion/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a shifted-minor audit for the six
+  representative rank `6..11` projective-line packets.  It recomputes the
+  first regular minor and the row-shift-1 minor, then proves the first-minor
+  root gcd has trivial gcd with the shifted minor, clearing all `18` listed
+  finite roots as actual full-Hankel support witnesses.
+- **How it is useful:** It separates first-minor upper-bound roots from genuine
+  support witnesses in the packetized hard rows, sharpening what remains to be
+  proved by pivot or support-image methods.
+- **What to do next:** Extend the shifted-minor exclusion to all rank `6..11`
+  rows if the verifier can be optimized, or build true pivot charts for roots
+  that survive a full-minor audit.
+
 ### 2026-07-01 - M3 rank-6..11 known-ledger endpoint quotient refinement
 
 - **Agent/model:** AllenGrahamHart / Codex.

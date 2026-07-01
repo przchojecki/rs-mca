@@ -169,6 +169,13 @@
       "status": "PROVED / AUDIT"
     },
     {
+      "name": "synthetic_representative_shifted_minor_exclusion",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-representative-shifted-minor-exclusion/f17_32_n512_k256_m3_representative_shifted_minor_exclusion.json",
+      "schema_version": "f17-32-m3-representative-shifted-minor-exclusion-v1",
+      "sha256": "6cef616a037a6ddff9637fbbc75485bb73ba0ce71f9a194724cc583a8573cd55",
+      "status": "PROVED / AUDIT"
+    },
+    {
       "name": "fixed_top_window_v9_packet",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json",
       "schema_version": "aperiodic-hankel-eliminant-v1",
@@ -258,6 +265,7 @@
       "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
       "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
       "the synthetic rank-6..11 known-ledger table combines exact finite roots, projective infinity, endpoint quotient-support exclusion, tangent, and proper-subfield audits into a compact M4-style residual table with max residual projective upper 5 <= 6; finite-root quotient support/image is explicitly not audited",
+      "the representative shifted-minor exclusion proves that the 18 finite roots listed in the rank-6..11 representative projective-line packets do not give full-Hankel exact-support witnesses, because the row-shift-1 square minor is nonzero at each one",
       "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
       "the fixed synthetic top-window packet is v9-checkable for A=421..426",
       "the fixed top-window syndrome input has an explicit line-value lift",
@@ -4811,6 +4819,9 @@
       1124115608826751349762102414697252486194,
       1221622901637454132031258720247822744832
     ],
-    "synthetic_low_rank_rank9_a398_projective_line_packet_status": "v9 projective-line regular-minor packet rehydrates the compact rank-9 A=398 sweep row, checks three finite Frobenius-gcd roots plus the [0:1] endpoint, and gives projective numerator 4 <= 6"
+    "synthetic_low_rank_rank9_a398_projective_line_packet_status": "v9 projective-line regular-minor packet rehydrates the compact rank-9 A=398 sweep row, checks three finite Frobenius-gcd roots plus the [0:1] endpoint, and gives projective numerator 4 <= 6",
+    "synthetic_representative_shifted_minor_exclusion_nonclaim": "representative packet rows only; not an all-row rank-6..11 finite-root quotient or support-image audit",
+    "synthetic_representative_shifted_minor_exclusion_roots_cleared": 18,
+    "synthetic_representative_shifted_minor_exclusion_status": "proved that the 18 listed finite roots in the representative rank-6..11 projective-line packets are first-minor artifacts: the row-shift-1 square minor is nonzero at every listed root"
   }
 }

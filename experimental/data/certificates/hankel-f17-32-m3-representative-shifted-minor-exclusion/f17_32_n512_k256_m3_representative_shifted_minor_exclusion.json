@@ -1,0 +1,260 @@
+{
+  "aggregate": {
+    "all_representative_roots_excluded_as_support_witnesses": true,
+    "cleared_root_total": 18,
+    "common_gcd_degree_histogram": {
+      "0": 6
+    },
+    "first_minor_root_total": 18,
+    "representative_agreements": [
+      426,
+      393,
+      393,
+      398,
+      411,
+      391
+    ],
+    "representative_ranks": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "claim": "For the six representative rank-6..11 projective-line packets, every listed finite root of the first regular minor is excluded as an actual full-Hankel support witness by the shifted row-1 minor.",
+  "method": {
+    "mathematical_reason": "a true exact-support witness makes the full t by j+1 Hankel matrix rank-deficient, so all consecutive square minors must vanish",
+    "shifted_minor_formula": "det(H_X^(q)+Z H_Y^(q)) = det(H_X^(q)) det(I+Z K_q), with K_q_ab=y_a^q sum_i x_i^{-q} L_i(y_a)L_i(y_b)",
+    "test": "compute gcd(root_gcd(first minor), shifted row-1 minor); degree zero means no listed first-minor root kills both minors"
+  },
+  "nonclaims": [
+    "representative packet rows only, not all rank-6..11 rows",
+    "does not audit quotient image or quotient support for finite roots",
+    "does not prove anything about roots not listed in these packets",
+    "does not replace the full singular/pivot chart program"
+  ],
+  "packet_count": 6,
+  "records": [
+    {
+      "A": 426,
+      "available_shift_count": 83,
+      "cleared_root_count": 1,
+      "cleared_roots": [
+        {
+          "root": 433103153921755587956025854474067902214,
+          "shifted_minor_value_hash": "1aea69290ae978b2f4ed30fae426407fa8516a9f3ed6b59e280d61ff042945ce"
+        }
+      ],
+      "common_gcd_degree": 0,
+      "first_minor_root_count": 1,
+      "first_minor_root_gcd_degree": 1,
+      "first_minor_row_shift": 0,
+      "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_low_rank6_projective_line_input.json",
+      "input_sha256": "4349efacf70d1a524049f70381637bddcdea24266196cfadebee9b03b01b86aa",
+      "j": 86,
+      "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank-rank6-a426-projective-line/f17_32_n512_k256_a426_rank6_projective_line_packet.json",
+      "packet_sha256": "917229a80ebead6a5ad658080cafa6c908a9c44cbe2e5af3577881b89ac895da",
+      "rank": 6,
+      "reason": "a full exact-support Hankel witness must make every consecutive (j+1)x(j+1) minor vanish; the row-shift-1 minor is nonzero at each listed finite root of the first minor",
+      "shifted_minor_coefficient_hash": "fbd666308c2452caa5a99cff8dff7b50f7e95c34dba0b036b4b418bc5d6fc618",
+      "shifted_minor_degree": 6,
+      "shifted_minor_row_shift": 1,
+      "support_witness_status": "excluded_by_shifted_minor",
+      "t": 170
+    },
+    {
+      "A": 393,
+      "available_shift_count": 17,
+      "cleared_root_count": 4,
+      "cleared_roots": [
+        {
+          "root": 214294062979531294481432491182491237796,
+          "shifted_minor_value_hash": "ea4117b8b8c9e4a382deef9ddf80056ad860f2e71ed0f08dbd33b3521c026db1"
+        },
+        {
+          "root": 644394598135933560462071046031209253822,
+          "shifted_minor_value_hash": "97a53f4e96e6c7b54dab0be1cbe3085bba75f300090682afe0aceb675920ee05"
+        },
+        {
+          "root": 1524910963904202840182633106847886912047,
+          "shifted_minor_value_hash": "a1bfe18fb785e3e8ece5c9c998ca35d86afedc03a3d3b2bd6a626c32b0044a06"
+        },
+        {
+          "root": 1553764623627933655605203858755254067209,
+          "shifted_minor_value_hash": "c76ea825056f135067ba4ffe8a07ce8a5207b9298892e033a6a9d981b7ea74e4"
+        }
+      ],
+      "common_gcd_degree": 0,
+      "first_minor_root_count": 4,
+      "first_minor_root_gcd_degree": 4,
+      "first_minor_row_shift": 0,
+      "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a393_low_rank7_projective_line_input.json",
+      "input_sha256": "3b334f5f7d8880eebf19cf3868ca02087b2d09c0482499f598b70922ee4d428c",
+      "j": 119,
+      "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank-rank7-a393-projective-line/f17_32_n512_k256_a393_rank7_projective_line_packet.json",
+      "packet_sha256": "5e8611a6ea405e18b35ec1d401f260aa52aeddda0ff8094db0b0dadabb9479d5",
+      "rank": 7,
+      "reason": "a full exact-support Hankel witness must make every consecutive (j+1)x(j+1) minor vanish; the row-shift-1 minor is nonzero at each listed finite root of the first minor",
+      "shifted_minor_coefficient_hash": "460a3d20688b18a3008f0ef81b69dc4c7f14fd81bab3601504e67699173de5a9",
+      "shifted_minor_degree": 7,
+      "shifted_minor_row_shift": 1,
+      "support_witness_status": "excluded_by_shifted_minor",
+      "t": 137
+    },
+    {
+      "A": 393,
+      "available_shift_count": 17,
+      "cleared_root_count": 4,
+      "cleared_roots": [
+        {
+          "root": 256851510299754207360371573187069051842,
+          "shifted_minor_value_hash": "de0fa3d9539d053afef6359f569f9349ef4d7129e2668ffb099a33a082e95e6d"
+        },
+        {
+          "root": 950145035153384681767534506712864338167,
+          "shifted_minor_value_hash": "b2b667d793dad6e47c796ff5e405f302c331bba0e60b90b41b46eb05b6d4c927"
+        },
+        {
+          "root": 1060145035037258219285765475092217760623,
+          "shifted_minor_value_hash": "d5955f6abe87461b0c2e542fb6ac5bf362d1232add01e0c0c50276a07b840672"
+        },
+        {
+          "root": 2277929252537063358244226726497438114551,
+          "shifted_minor_value_hash": "53e2c533d367c65004be15d54d8ae37290ca913dc26ef3909dc6803b012f44b0"
+        }
+      ],
+      "common_gcd_degree": 0,
+      "first_minor_root_count": 4,
+      "first_minor_root_gcd_degree": 4,
+      "first_minor_row_shift": 0,
+      "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a393_low_rank8_projective_line_input.json",
+      "input_sha256": "b045fee049d0a9866fe5920495f653dc5e0935909f8d9a6ec28d07c3edfc3780",
+      "j": 119,
+      "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank-rank8-a393-projective-line/f17_32_n512_k256_a393_rank8_projective_line_packet.json",
+      "packet_sha256": "70ef52ad3a74172f4ea6444b3d78ea91685066156f59e37c97fd93586d47ee62",
+      "rank": 8,
+      "reason": "a full exact-support Hankel witness must make every consecutive (j+1)x(j+1) minor vanish; the row-shift-1 minor is nonzero at each listed finite root of the first minor",
+      "shifted_minor_coefficient_hash": "756452868ed59d4c3d1ba5a1374e16ee74a4ece448146fec318a0eb683441eb5",
+      "shifted_minor_degree": 8,
+      "shifted_minor_row_shift": 1,
+      "support_witness_status": "excluded_by_shifted_minor",
+      "t": 137
+    },
+    {
+      "A": 398,
+      "available_shift_count": 27,
+      "cleared_root_count": 3,
+      "cleared_roots": [
+        {
+          "root": 102390564997564348879942855502100576083,
+          "shifted_minor_value_hash": "4a4843e8361195eca1b6d7163e6b05f1e11ebb8957bca47abcaeae6b39479682"
+        },
+        {
+          "root": 1124115608826751349762102414697252486194,
+          "shifted_minor_value_hash": "26012d418b9c52dcc9ffe1b9ee391bdaa4b9a2ebccc53b89557fc6b6b9374eea"
+        },
+        {
+          "root": 1221622901637454132031258720247822744832,
+          "shifted_minor_value_hash": "17a59d86ebea2748e7973d8ab68a3996bc6bb654fae85b3d1fdfbe71588d4544"
+        }
+      ],
+      "common_gcd_degree": 0,
+      "first_minor_root_count": 3,
+      "first_minor_root_gcd_degree": 3,
+      "first_minor_row_shift": 0,
+      "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a398_low_rank9_projective_line_input.json",
+      "input_sha256": "b2e1a71b1718965ec28ae5cf43da024013881336fd5ff0ae314da6105015c26f",
+      "j": 114,
+      "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank-rank9-a398-projective-line/f17_32_n512_k256_a398_rank9_projective_line_packet.json",
+      "packet_sha256": "945296eb550ba6906fded1c7370da41deba28bd38f092afbd3d3c912f4dc6dff",
+      "rank": 9,
+      "reason": "a full exact-support Hankel witness must make every consecutive (j+1)x(j+1) minor vanish; the row-shift-1 minor is nonzero at each listed finite root of the first minor",
+      "shifted_minor_coefficient_hash": "0addfc473475f5c0910b0327ca1105ee9aa2b5d29e597cc1ad7437955f8a815f",
+      "shifted_minor_degree": 9,
+      "shifted_minor_row_shift": 1,
+      "support_witness_status": "excluded_by_shifted_minor",
+      "t": 142
+    },
+    {
+      "A": 411,
+      "available_shift_count": 53,
+      "cleared_root_count": 3,
+      "cleared_roots": [
+        {
+          "root": 497168388726834234958643210904468835381,
+          "shifted_minor_value_hash": "7b1a1420a37d63fd165b7a168d20673bb81bf644e11fcfd3e44bd25d03809a3a"
+        },
+        {
+          "root": 1603506527162172031935031727489259313915,
+          "shifted_minor_value_hash": "0a34c15c820d3d62b75660e04dc8d5411dfdd3802dd61433024780545453d3d1"
+        },
+        {
+          "root": 1691674726965602897914611922773515782477,
+          "shifted_minor_value_hash": "899d4ff95ac5cc6c18fab6a9982d0b5c450b1ed6bdcb4e024c628f9897f84c4a"
+        }
+      ],
+      "common_gcd_degree": 0,
+      "first_minor_root_count": 3,
+      "first_minor_root_gcd_degree": 3,
+      "first_minor_row_shift": 0,
+      "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a411_low_rank10_projective_line_input.json",
+      "input_sha256": "90e87c0e71aa50bdd5f468ec8a4b9eaaaf0a0e0d236e538feedf6d9f293ff5a1",
+      "j": 101,
+      "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank-rank10-a411-projective-line/f17_32_n512_k256_a411_rank10_projective_line_packet.json",
+      "packet_sha256": "535e7632b4e1a51a4a772baa0699d30bc864b1263df42e4658afd06c9eb17283",
+      "rank": 10,
+      "reason": "a full exact-support Hankel witness must make every consecutive (j+1)x(j+1) minor vanish; the row-shift-1 minor is nonzero at each listed finite root of the first minor",
+      "shifted_minor_coefficient_hash": "d3a9e552fa6a5290796158e01ccb05053d84136d30f5536dce1822699f30f2b5",
+      "shifted_minor_degree": 10,
+      "shifted_minor_row_shift": 1,
+      "support_witness_status": "excluded_by_shifted_minor",
+      "t": 155
+    },
+    {
+      "A": 391,
+      "available_shift_count": 13,
+      "cleared_root_count": 3,
+      "cleared_roots": [
+        {
+          "root": 735335782167360171719637567716403974241,
+          "shifted_minor_value_hash": "9bc6a2c49b0583b2648b338bbd4cee02f1a27ae96a3ad17caad4a1021d9cc31b"
+        },
+        {
+          "root": 866506290426106927745780651918346038837,
+          "shifted_minor_value_hash": "1e3b2ca459ace50448751c49f4b3c7cea84567694880770575932755b8e2d884"
+        },
+        {
+          "root": 2311081050384733098427072368578074568196,
+          "shifted_minor_value_hash": "c77da55134bf5b82ccee956d467d8be2bf16e7cd84d2bf6c562b790ee17e5d28"
+        }
+      ],
+      "common_gcd_degree": 0,
+      "first_minor_root_count": 3,
+      "first_minor_root_gcd_degree": 3,
+      "first_minor_row_shift": 0,
+      "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a391_low_rank11_projective_line_input.json",
+      "input_sha256": "47126c6a5ea9220cdc91cc0ad8785f1bcb5a5693d06d8ba8bb0e6d868f1370a7",
+      "j": 121,
+      "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank-rank11-a391-projective-line/f17_32_n512_k256_a391_rank11_projective_line_packet.json",
+      "packet_sha256": "d4d7bb63e8e8f12eea1b482a4c6074f7c6c7346188ef5f9e321f975a5380b617",
+      "rank": 11,
+      "reason": "a full exact-support Hankel witness must make every consecutive (j+1)x(j+1) minor vanish; the row-shift-1 minor is nonzero at each listed finite root of the first minor",
+      "shifted_minor_coefficient_hash": "747c0dc9fe5ce2b2dd32f46ebcfd3576ace2a44a688867ffbb0c4687f47485fc",
+      "shifted_minor_degree": 11,
+      "shifted_minor_row_shift": 1,
+      "support_witness_status": "excluded_by_shifted_minor",
+      "t": 135
+    }
+  ],
+  "records_sha256": "42ac7514e9c973b357d22c8ba7b7224657eaf2c578fcbb89039a6a0f4abee7d1",
+  "row": {
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "row_shift_tested": 1,
+  "schema_version": "f17-32-m3-representative-shifted-minor-exclusion-v1",
+  "status": "PROVED / AUDIT"
+}
