@@ -75,6 +75,28 @@ Keep entries concise and link to the relevant files.
   same support/weight-uniform family, or move to overlapping-support rank-6
   cancellation strata.
 
+### 2026-07-01 - M3 rank-6 boundary barycentric obstruction
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_boundary_barycentric_obstruction.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-barycentric-obstruction/`;
+  `experimental/notes/m1/hankel_rank6_boundary_barycentric_obstruction.md`;
+  `experimental/notes/m1/hankel_rank6_separated_six_spike_closure.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / PROVED.
+- **What is being added:** A boundary obstruction for the support/weight-uniform
+  separated rank-6 closure: for `A=385,386,387`, barycentric-residue weights on
+  `S=X union Y` put the constant locator in `ker H(u+v)` at finite slope `z=1`.
+- **How it is useful:** It proves the tall cutoff `A>=388` in the separated
+  six-spike closure is sharp and prevents wasting effort on a false uniform
+  empty finite-root extension at the boundary.
+- **What to do next:** Treat the boundary agreements with a paid-root argument,
+  exact finite-root classification, or additional hypotheses on the weights.
+
 ### 2026-07-01 - M3 rank-6 boundary dual gcd
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

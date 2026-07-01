@@ -121,6 +121,9 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-unifor
 experimental/data/certificates/hankel-f17-32-m3-rank6-separated-six-spike-closure/
   f17_32_n512_k256_m3_rank6_separated_six_spike_closure.json
 
+experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-barycentric-obstruction/
+  f17_32_n512_k256_m3_rank6_boundary_barycentric_obstruction.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
   f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 
@@ -481,6 +484,12 @@ For `z=0`, the support has size `j+1`; for `z!=0`, the support has size
 `j+7`, and `t>=j+7`.  Weighted Vandermonde factorization gives full column
 rank at every finite slope, so only the projective endpoint `[0:1]` remains.
 
+The boundary barycentric obstruction explains why this support/weight-uniform
+argument cannot be pushed to `A=385,386,387`.  In those three agreements
+`|X union Y|>t`; barycentric-residue weights on `X union Y` make the constant
+locator a finite kernel vector at slope `z=1`, while the endpoint-uniform
+packet still gives `[0:1]`.
+
 The affine-pivot compression companion gives the finite-root route a concrete
 Hankel-chart target.  If a row-set chart has finite base slope `z0` with
 `M_R(z0)` invertible and `H_R(v)=P_R Q_R` has rank at most `r`, then
@@ -752,6 +761,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_projective_endpoint_uniform.
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_separated_six_spike_closure.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-separated-six-spike-closure/f17_32_n512_k256_m3_rank6_separated_six_spike_closure.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_barycentric_obstruction.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-barycentric-obstruction/f17_32_n512_k256_m3_rank6_boundary_barycentric_obstruction.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json

@@ -1,0 +1,303 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "base_support_size": 128,
+      "boundary_deficit": 5,
+      "combined_support_size": 134,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "finite_budget": 6,
+        "finite_root_lower_bound": 1,
+        "finite_root_witness": 1,
+        "z_one_rank_drop": true,
+        "z_zero_rank": 128
+      },
+      "j": 127,
+      "obstruction_weights": {
+        "finite_root": "z=1",
+        "kernel_locator": "ell(T)=1",
+        "moment_identity": "sum_{s in S} omega_s s^r = 0 for 0 <= r <= |S|-2",
+        "moment_range": "0 <= r < 129",
+        "sample_prefix_weight_hash": "a51cbccbc47942b5a5974bda7eb937ab9dbace8768bf74f807ebcca0d7b3457a",
+        "sample_top_moment_nonzero": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "support_uniform_formula": "for S=X union Y, set omega_s = 1 / prod_{r in S, r!=s}(s-r); use a_x=omega_x and b_y=omega_y"
+      },
+      "projective_infinity": {
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "projective_budget": 6,
+        "projective_endpoint_lower_bound": 1,
+        "projective_total_lower_bound": 2
+      },
+      "support_choice_count": 19108673448024592668062632560395267893748956513324437708971016771313846625611711585290308861878810749456112908863085428078473139216881920,
+      "t": 129
+    },
+    {
+      "A": 386,
+      "base_support_size": 127,
+      "boundary_deficit": 3,
+      "combined_support_size": 133,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "finite_budget": 6,
+        "finite_root_lower_bound": 1,
+        "finite_root_witness": 1,
+        "z_one_rank_drop": true,
+        "z_zero_rank": 127
+      },
+      "j": 126,
+      "obstruction_weights": {
+        "finite_root": "z=1",
+        "kernel_locator": "ell(T)=1",
+        "moment_identity": "sum_{s in S} omega_s s^r = 0 for 0 <= r <= |S|-2",
+        "moment_range": "0 <= r < 130",
+        "sample_prefix_weight_hash": "64919a94257370ca41b33b87f469833846a79b2835f7779d5d8dc2e2163bed6d",
+        "sample_top_moment_nonzero": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "support_uniform_formula": "for S=X union Y, set omega_s = 1 / prod_{r in S, r!=s}(s-r); use a_x=omega_x and b_y=omega_y"
+      },
+      "projective_infinity": {
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "projective_budget": 6,
+        "projective_endpoint_lower_bound": 1,
+        "projective_total_lower_bound": 2
+      },
+      "support_choice_count": 6453588921760284595018514426729800238522075022969730941288364503240560337937464598726014602428727640977262407214973442728349767334461440,
+      "t": 130
+    },
+    {
+      "A": 387,
+      "base_support_size": 126,
+      "boundary_deficit": 1,
+      "combined_support_size": 132,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "finite_budget": 6,
+        "finite_root_lower_bound": 1,
+        "finite_root_witness": 1,
+        "z_one_rank_drop": true,
+        "z_zero_rank": 126
+      },
+      "j": 125,
+      "obstruction_weights": {
+        "finite_root": "z=1",
+        "kernel_locator": "ell(T)=1",
+        "moment_identity": "sum_{s in S} omega_s s^r = 0 for 0 <= r <= |S|-2",
+        "moment_range": "0 <= r < 131",
+        "sample_prefix_weight_hash": "435ce1f7884c2880cf878958658208be9db6fa258b7e1d787542e46e872b2c99",
+        "sample_top_moment_nonzero": [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "support_uniform_formula": "for S=X union Y, set omega_s = 1 / prod_{r in S, r!=s}(s-r); use a_x=omega_x and b_y=omega_y"
+      },
+      "projective_infinity": {
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "projective_budget": 6,
+        "projective_endpoint_lower_bound": 1,
+        "projective_total_lower_bound": 2
+      },
+      "support_choice_count": 2156857350167253009387766663670222711295535599781989025114795505030397797152784221153168038180127395800295593990267440069737948556517376,
+      "t": 131
+    }
+  ],
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "domain has 512 distinct nonzero elements and X^512-1 is separable",
+    "boundary deficits are 5,3,1 for A=385,386,387",
+    "barycentric residues are nonzero on the sampled prefix supports",
+    "sampled barycentric moment sums vanish through the required t rows",
+    "z=0 is full rank by weighted Vandermonde on X",
+    "z=1 has the constant locator in the finite kernel",
+    "endpoint-uniform dependency supplies the projective split-locator witness"
+  ],
+  "family": {
+    "base_support": "any subset X of H with |X|=j+1",
+    "combined_support": "S=X union Y",
+    "direction_support": "any subset Y of H\\X with |Y|=6",
+    "finite_root": "z=1",
+    "kernel_locator": "constant locator ell(T)=1",
+    "weights": "choose barycentric residues omega_s=1/prod_{r in S,r!=s}(s-r); set a_x=omega_x and b_y=omega_y"
+  },
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512,
+    "full_domain_distinct": true,
+    "x_512_minus_1_squarefree": true
+  },
+  "nonclaims": [
+    "does not compute the exact finite root count for these weights",
+    "does not produce an over-budget support-wise MCA lower bound",
+    "does not classify overlapping-support rank-6 pencils",
+    "does not refute the prefix/unit-weight boundary dual-gcd closure",
+    "does not prove endpoint payment by quotient, tangent, or extension ledgers"
+  ],
+  "object": "M3 separated rank-6 boundary barycentric finite-root obstruction",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-boundary-barycentric-obstruction-v1",
+  "source_artifacts": {
+    "m4_projective_budget_split": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/f17_32_n512_k256_m3_m4_projective_budget_split.json",
+      "sha256": "5347a6cee7009d6b5041550ad2ce6f0f273e0bb5cc2cd9e042c2b741fdc1d9b7"
+    },
+    "rank6_projective_endpoint_uniform": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+      "sha256": "f933c4d38476d3056e6284de55e01b7375f8c90239d52aed40548018323454e2"
+    },
+    "regular_root_rank_drop": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/f17_32_n512_k256_m3_m5_regular_root_rank_drop.json",
+      "sha256": "55ee410863252e4c7633c110c458058135ccccaa5963a478e51cc18805d7fd12"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "COUNTEREXAMPLE / PROVED",
+  "summary": {
+    "agreement_count": 3,
+    "boundary_deficits": [
+      5,
+      3,
+      1
+    ],
+    "finite_budget": 6,
+    "finite_root_lower_bound_per_agreement": 1,
+    "finite_root_witness": 1,
+    "projective_budget": 6,
+    "projective_endpoint_lower_bound_per_agreement": 1,
+    "projective_total_lower_bound_per_agreement": 2,
+    "support_weight_uniform_empty_finite_table_refuted": true
+  },
+  "theorem": {
+    "barycentric_identity": "For any distinct support S and residues omega_s=1/prod_{r!=s}(s-r), sum_s omega_s s^e=0 for 0<=e<=|S|-2.",
+    "boundary_deficit": "For A=385,386,387, the combined separated support has size j+7, while t=A-256 is smaller by 5,3,1 respectively.",
+    "consequence": "The separated six-spike tall closure is sharp at A=388: it cannot be extended support/weight-uniformly to A=385,386,387 with an empty finite root table.",
+    "finite_root_obstruction": "Since t<=|S|-1 in the three boundary agreements, the constant locator ell=1 lies in ker H(u+v), giving a finite rank-drop slope z=1 with nonzero separated weights.",
+    "projective_endpoint": "The endpoint-uniform theorem applies to the same nonzero weights, so the projective endpoint [0:1] is also present.",
+    "regular_base": "At z=0, the base support X has size j+1 and t>=j+1, so H(u) has full column rank by weighted Vandermonde factorization."
+  },
+  "window": {
+    "agreement_count": 3,
+    "agreements": [
+      385,
+      386,
+      387
+    ]
+  }
+}

@@ -181,6 +181,20 @@ by a weighted Vandermonde factorization on `X union Y`, so the projective total
 is exactly the endpoint `1`.  It does not cover the boundary agreements
 `A=385,386,387`.
 
+The boundary barycentric obstruction companion
+
+```text
+experimental/notes/m1/hankel_rank6_boundary_barycentric_obstruction.md
+experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-barycentric-obstruction/
+  f17_32_n512_k256_m3_rank6_boundary_barycentric_obstruction.json
+```
+
+shows that this tall cutoff is sharp for support/weight-uniform separated
+families: at `A=385,386,387`, barycentric residues on `S=X union Y` force the
+constant locator into `ker H(u+v)` at the finite slope `z=1`.  Thus those
+boundary agreements need a separate finite-root classification or payment
+argument.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 
@@ -684,6 +698,11 @@ support/weight-uniform family in the tall range `388 <= A <= 426`: since
 `t >= j+7`, every finite pencil block on `X union Y` has full column rank, so
 no finite canonical roots remain and the projective count is exactly `1`.
 
+The boundary barycentric obstruction shows that the cutoff at `A=388` is
+genuine for support/weight-uniform separated families.  For `A=385,386,387`,
+choosing barycentric-residue weights on `S=X union Y` makes the constant
+locator vanish at finite slope `z=1`, while the endpoint remains present.
+
 Replay:
 
 ```sh
@@ -698,6 +717,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_projective_endpoint_uniform.
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_separated_six_spike_closure.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-separated-six-spike-closure/f17_32_n512_k256_m3_rank6_separated_six_spike_closure.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_barycentric_obstruction.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-barycentric-obstruction/f17_32_n512_k256_m3_rank6_boundary_barycentric_obstruction.json
 ```
 
 The affine-pivot compression theorem is:

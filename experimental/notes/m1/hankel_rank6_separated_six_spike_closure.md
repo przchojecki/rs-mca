@@ -69,6 +69,17 @@ split-locator endpoint at `[0:1]`.  Therefore this separated six-spike family
 has total projective contribution exactly `1`, safely below the projective
 budget `6`.
 
+The boundary agreements `A=385,386,387` are not an omission of this proof but
+a real obstruction to support/weight-uniform finite-root emptiness.  The
+companion note
+
+```text
+experimental/notes/m1/hankel_rank6_boundary_barycentric_obstruction.md
+```
+
+constructs barycentric-residue weights on `X union Y` for which the constant
+locator is killed at finite slope `z=1`.
+
 Replay:
 
 ```sh

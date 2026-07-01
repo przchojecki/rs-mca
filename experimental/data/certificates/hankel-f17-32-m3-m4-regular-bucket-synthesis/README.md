@@ -114,6 +114,18 @@ disjoint support/weight family, `t>=j+7`, so every finite slope has full column
 rank by weighted Vandermonde factorization.  The projective count is exactly
 the single endpoint `[0:1]`.
 
+The boundary barycentric obstruction packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-barycentric-obstruction/
+  f17_32_n512_k256_m3_rank6_boundary_barycentric_obstruction.json
+```
+
+shows that the cutoff is sharp for support/weight-uniform separated families.
+At `A=385,386,387`, barycentric-residue weights on `X union Y` make the
+constant locator a finite kernel vector at slope `z=1`; the endpoint remains
+present by the endpoint-uniform packet.
+
 The rank-node dichotomy packet
 
 ```text
@@ -230,6 +242,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_projective_endpoint_uniform.
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_separated_six_spike_closure.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-separated-six-spike-closure/f17_32_n512_k256_m3_rank6_separated_six_spike_closure.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_barycentric_obstruction.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-barycentric-obstruction/f17_32_n512_k256_m3_rank6_boundary_barycentric_obstruction.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json
