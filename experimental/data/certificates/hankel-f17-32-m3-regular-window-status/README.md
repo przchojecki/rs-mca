@@ -34,6 +34,12 @@ B_projective_infinity=0, deduped total upper bound=1 <= budget 6.
 
 This is a no-double-counting check for the fixed synthetic packet only.
 
+The ledger also imports the proportional-pencil tangent lemma.  Since
+`t+j=256` is the full stored syndrome length for every agreement in this
+window, any proportional syndrome pencil `u=c v` has no hidden tail check:
+after the tangent/common-code-line ledger is removed, that branch leaves
+aperiodic residual `0`.
+
 Run:
 
 ```sh

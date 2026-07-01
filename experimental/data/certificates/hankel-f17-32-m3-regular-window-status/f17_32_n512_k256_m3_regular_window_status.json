@@ -69,6 +69,13 @@
       "schema_version": "f17-32-m3-projective-endpoint-audit-v1",
       "sha256": "23b89822857d3cfc6a06d567ebd69fc39851e41ab900dca5643b94c98beef548",
       "status": "PROVED / AUDIT"
+    },
+    {
+      "name": "hankel_proportional_pencil_tangent_lemma",
+      "ref": "experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/hankel_proportional_pencil_tangent_lemma_certificate.json",
+      "schema_version": "m1-hankel-proportional-pencil-tangent-lemma-v2",
+      "sha256": "ce4140913f41564604c1c72151a6973d4265622655e941a3f6db570102707baa",
+      "status": "PROVED / AUDIT"
     }
   ],
   "claim_boundaries": {
@@ -89,7 +96,8 @@
       "the fixed synthetic top-window root {0} is the zero-codeword tangent slope and leaves no synthetic residual aperiodic roots after subtraction",
       "the fixed top-window line-value lift is extension-valued and must use q_line=17^32 for finite-affine slope accounting",
       "the fixed top-window projective endpoint [0:1] is empty and contributes no extra synthetic regular-minor root",
-      "the fixed synthetic top-window M4 table has deduped total upper bound 1, below the finite and projective budget numerator 6"
+      "the fixed synthetic top-window M4 table has deduped total upper bound 1, below the finite and projective budget numerator 6",
+      "full-syndrome proportional pencils in the M3 regular window are tangent-labelled and leave no aperiodic residual after the tangent/common-code-line ledger"
     ]
   },
   "nonclaims": [
@@ -1315,6 +1323,10 @@
     "fixed_top_window_status": "one v9 packet covers A=421..426 with root union {0}",
     "fixed_top_window_subtraction_status": "the synthetic root {0} is removed by the zero-codeword tangent slope, leaving aperiodic numerator 0",
     "generic_regular_minors_status": "proved generically nonzero for every row-set chart",
+    "proportional_branch_aperiodic_residual_after_tangent": 0,
+    "proportional_branch_certificate": "experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/hankel_proportional_pencil_tangent_lemma_certificate.json",
+    "proportional_branch_status": "all full-syndrome proportional pencils in the M3 window are tangent-labelled, because t+j equals the full stored syndrome length 256 for every A=385..426",
+    "proportional_branch_tail_check": "automatic for all 42 agreements because t+j=256 equals the stored syndrome length",
     "regular_window": {
       "A_max": 426,
       "A_min": 385

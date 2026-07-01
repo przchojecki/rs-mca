@@ -63,7 +63,7 @@
       "declared_aperiodic_numerator_before_subtraction": 1,
       "ref": "experimental/data/certificates/hankel-f17-32-m3-proportional-a426/f17_32_n512_k256_a426_scalar5_packet.json",
       "schema_version": "aperiodic-hankel-eliminant-v1",
-      "sha256": "ea0e878db6064db0edc48415dd4a34bfcad5c6fe526b664b889af2f3b6e3d693"
+      "sha256": "316a3f720d869a69162db581a21f491c18d3df8939bebdbde05e1b6afe51a51a"
     }
   },
   "status": "PROVED / AUDIT for this synthetic proportional packet",

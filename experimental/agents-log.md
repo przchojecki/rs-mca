@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 proportional branch status
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/data/certificates/hankel-f17-32-m3-proportional-a426/`;
+  `experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The M3 regular-window status ledger now consumes
+  the proportional-pencil tangent lemma and records, for every `A=385..426`,
+  that full-syndrome proportional pencils `u=c v` are tangent-labelled and
+  have residual aperiodic count `0` after the tangent/common-code-line ledger.
+- **How it is useful:** This classifies a universal branch of arbitrary
+  length-256 syndrome pencils in the M3 window.  The key row-specific point is
+  that `t+j=256` for every agreement, so the lemma's local-window tail caveat
+  is automatically discharged here.
+- **What to do next:** Continue with non-proportional row pencils: produce
+  root tables, quotient/extension classifications, or the first singular
+  bucket declaration.
+
 ### 2026-07-01 - M3 fixed top-window M4 mini-table
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -200,6 +200,20 @@ This closes only the subtraction/budget table for that synthetic packet; the
 universal row table still requires arbitrary length-256 syndrome pencils to be
 classified by root table or singular-bucket outcome.
 
+The status ledger also consumes
+
+```text
+experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/
+  hankel_proportional_pencil_tangent_lemma_certificate.json
+```
+
+For this M3 window, `t+j=256` is exactly the stored syndrome length for every
+agreement.  Therefore the lemma's tail caveat disappears here: if a length-256
+syndrome pencil satisfies `u=c v`, then the branch is tangent/common-code-line
+after the slope `Z=-c` and contributes no residual aperiodic roots.  This
+classifies a universal proportional branch of arbitrary pencils, but it still
+does not classify non-proportional pencils.
+
 The corresponding F1 denominator audit is
 
 ```text

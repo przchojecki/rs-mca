@@ -14,9 +14,9 @@
     "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_scalar5_rank_witness_input.json",
     "input_sha256": "32c2d72b06ffd754754f02fdce482caff39ab30f47c199d45a47673b5fdbc0d7",
     "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-proportional-a426/f17_32_n512_k256_a426_scalar5_packet.json",
-    "packet_sha256": "ea0e878db6064db0edc48415dd4a34bfcad5c6fe526b664b889af2f3b6e3d693",
+    "packet_sha256": "316a3f720d869a69162db581a21f491c18d3df8939bebdbde05e1b6afe51a51a",
     "subtraction_ref": "experimental/data/certificates/hankel-f17-32-m3-proportional-a426/f17_32_n512_k256_a426_scalar5_subtraction.json",
-    "subtraction_sha256": "d065ccd8afbfa0e48512af9150d48d934eede1869b8841504b6656198c2a8441"
+    "subtraction_sha256": "9253ff6fcdca2e2a14285f4778cff66940596b2751990a7bca09aaea6223bc3a"
   },
   "formal_identities": {
     "global_removed_slope": "if u=c v for the full syndrome vector, Z=-c makes u+Z v=0, a common-code-line syndrome",

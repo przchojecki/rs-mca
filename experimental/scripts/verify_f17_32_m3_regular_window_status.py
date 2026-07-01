@@ -65,6 +65,10 @@ PROJECTIVE_ENDPOINT_AUDIT_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-projective-endpoint-audit/"
     "f17_32_n512_k256_a421_426_projective_endpoint_audit.json"
 )
+PROPORTIONAL_LEMMA_REF = (
+    "experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/"
+    "hankel_proportional_pencil_tangent_lemma_certificate.json"
+)
 OUTPUT_PATH = ROOT / (
     "experimental/data/certificates/hankel-f17-32-m3-regular-window-status/"
     "f17_32_n512_k256_m3_regular_window_status.json"
@@ -115,6 +119,7 @@ def validate_inputs(
     zero_slope_subtraction: dict[str, Any],
     extension_denominator_audit: dict[str, Any],
     projective_endpoint_audit: dict[str, Any],
+    proportional_lemma: dict[str, Any],
 ) -> None:
     require(plan["window"]["A_min"] == AGREEMENT_MIN, "plan A_min mismatch")
     require(plan["window"]["A_max"] == AGREEMENT_MAX, "plan A_max mismatch")
@@ -267,6 +272,38 @@ def validate_inputs(
         == 0,
         "projective endpoint audit residual numerator mismatch",
     )
+    require(
+        proportional_lemma["schema_version"]
+        == "m1-hankel-proportional-pencil-tangent-lemma-v2",
+        "proportional lemma schema mismatch",
+    )
+    require(
+        proportional_lemma["status"] == "PROVED / AUDIT",
+        "proportional lemma status mismatch",
+    )
+    require(
+        proportional_lemma["theorem"]["v9_residual_label"]
+        == "single_slope; tangent when full syndrome proportional",
+        "proportional lemma residual label mismatch",
+    )
+    require(
+        proportional_lemma["consequence_for_packets"][
+            "if_full_syndrome_proportional"
+        ]
+        == "charge {-c} to tangent/common-code-line",
+        "proportional lemma full-syndrome consequence mismatch",
+    )
+    require(
+        proportional_lemma["consequence_for_packets"][
+            "if_only_window_proportional"
+        ]
+        == "do not charge to tangent without a tail check",
+        "proportional lemma tail-check consequence mismatch",
+    )
+    require(
+        proportional_lemma["f17_32_replay"]["checked_residual_after_tangent"] == [],
+        "proportional lemma F17^32 replay residual mismatch",
+    )
 
 
 def per_agreement_records(
@@ -315,6 +352,11 @@ def per_agreement_records(
             realizability_item["visible_syndrome_length"] == 256
             and realizability_item["section_applies"] is True,
             f"A={agreement}: syndrome realizability mismatch",
+        )
+        visible_window_length = plan_item["t"] + plan_item["j"]
+        require(
+            visible_window_length == plan["row"]["syndrome_length"] == 256,
+            f"A={agreement}: visible window is not the full stored syndrome",
         )
         if top_item is not None:
             b_ap_regular_before = top_item["extractor_audit"]["root_count"]
@@ -462,6 +504,7 @@ def build_status() -> dict[str, Any]:
     zero_slope_subtraction = load_json(ZERO_SLOPE_SUBTRACTION_REF)
     extension_denominator_audit = load_json(EXTENSION_DENOMINATOR_AUDIT_REF)
     projective_endpoint_audit = load_json(PROJECTIVE_ENDPOINT_AUDIT_REF)
+    proportional_lemma = load_json(PROPORTIONAL_LEMMA_REF)
     validate_inputs(
         plan,
         generic,
@@ -473,6 +516,7 @@ def build_status() -> dict[str, Any]:
         zero_slope_subtraction,
         extension_denominator_audit,
         projective_endpoint_audit,
+        proportional_lemma,
     )
     records = per_agreement_records(
         plan,
@@ -526,6 +570,11 @@ def build_status() -> dict[str, Any]:
             PROJECTIVE_ENDPOINT_AUDIT_REF,
             "f17-32-m3-projective-endpoint-audit-v1",
         ),
+        artifact_record(
+            "hankel_proportional_pencil_tangent_lemma",
+            PROPORTIONAL_LEMMA_REF,
+            "m1-hankel-proportional-pencil-tangent-lemma-v2",
+        ),
     ]
     return {
         "schema_version": SCHEMA_VERSION,
@@ -548,6 +597,10 @@ def build_status() -> dict[str, Any]:
             "fixed_top_window_m4_status": "for the fixed synthetic top-window packet, B_tan=1, B_quot_support=B_quot_image=B_ext=0, B_ap_after_removed=0, and the deduped total upper bound is 1 <= budget 6",
             "fixed_top_window_m4_deduped_total_upper": 1,
             "fixed_top_window_m4_budget_gap": 5,
+            "proportional_branch_status": "all full-syndrome proportional pencils in the M3 window are tangent-labelled, because t+j equals the full stored syndrome length 256 for every A=385..426",
+            "proportional_branch_certificate": PROPORTIONAL_LEMMA_REF,
+            "proportional_branch_aperiodic_residual_after_tangent": 0,
+            "proportional_branch_tail_check": "automatic for all 42 agreements because t+j=256 equals the stored syndrome length",
             "actual_row_status": "row-realizability is discharged; universal tangent/quotient-deduped row outcomes are not supplied",
             "first_actual_row_task": "classify arbitrary length-256 syndrome pencils by root table or singular-bucket outcome for A=385..426",
         },
@@ -566,6 +619,7 @@ def build_status() -> dict[str, Any]:
                 "the fixed top-window line-value lift is extension-valued and must use q_line=17^32 for finite-affine slope accounting",
                 "the fixed top-window projective endpoint [0:1] is empty and contributes no extra synthetic regular-minor root",
                 "the fixed synthetic top-window M4 table has deduped total upper bound 1, below the finite and projective budget numerator 6",
+                "full-syndrome proportional pencils in the M3 regular window are tangent-labelled and leave no aperiodic residual after the tangent/common-code-line ledger",
             ],
             "not_proved": [
                 "a universal root table for arbitrary length-256 syndrome pencils at any A in 385..426",
