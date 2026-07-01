@@ -30,6 +30,36 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Proof-sketch S8+S9: assembly contract and negative branches
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/proof_sketch/s8_s9_assembly_and_negative.md`;
+  queue update in `prize_proof_sketch_spine.md`.
+- **Status:** consolidation + verified arithmetic; the §4 bet is labelled
+  LOW-CONFIDENCE SKETCH. No result claimed.
+- **What is being added:** Turn 12, the last content node. (1) The
+  assembly compiler contract: gates (both, always), generating check,
+  Paid(A) with interval cells, four verdict classes with the exact
+  condition set H6 printed, refusal rule; the compiler IS the uniform
+  theorem in executable form. (2) Unconditional coverage today, verified:
+  every admissible row with q_line up to ~2^128 (n-k)/3 is already pinned
+  (log2 q <= 166.4 at n = 2^41) — the remaining prize content is a ~90-bit
+  band of field sizes. (3) Minimal win conditions: {R2, zone-(b),
+  S0 zero-OPEN} for grand MCA (+L1 at reserve and a-regularity-or-B<=1.6
+  for grand list) — at bottom ONE collision family plus care. (4) The
+  consolidated negative-branch table (every fork from turns 1-11, one
+  line each); the single genuinely bad scenario is zone-(b) unresolved AND
+  R2 unproven, leaving delta* bracketed at verified corridor widths
+  2.17/2.00/1.12/1.67 grid steps — a bracket does not win a determination
+  prize. (5) Handoff fix-list for the final coherence pass (s2 corridor
+  width correction, cross-ref and label audit, prediction ledger).
+- **How it is useful:** Turns eleven nodes of sketch into one executable
+  decision procedure with named upgrade conditions, and states exactly
+  how much of the prize is already resolved (in field-size terms).
+- **What to do next:** Turn 13 (terminal): the FINAL coherence pass over
+  the whole tree, then flag for review.
+
 ### 2026-07-02 - Proof-sketch S5+S0: per-rate theorem shapes and object axes
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).

@@ -288,8 +288,18 @@ DONE    S5+S0    statements + object axes
                  (rules question, F2); projective gate +1 edge case
                  demonstrated; S0 ledger: 3 verified, axes 1/2/4 open
                  definitional audits, 8/9 rules lookups — zero-OPEN gate)
-next -> S8/S9    assembly + negative-branch bookkeeping
-next -> FINAL    coherence pass over the whole tree, then flag
+DONE    S8/S9    assembly + negative branches
+                 -> s8_s9_assembly_and_negative.md (compiler contract with
+                 verdict logic + refusal rule; unconditional coverage =
+                 everything up to q ~ 2^128 (n-k)/3, a ~90-bit open band
+                 remains; minimal win set = {R2, zone-(b), S0 zero-OPEN}
+                 — at bottom ONE collision family + care; consolidated
+                 negative-branch table; corridor widths verified
+                 2.17/2.00/1.12/1.67 grid steps; low-confidence bet
+                 recorded)
+next -> FINAL    coherence pass over the whole tree (fix list in s8_s9 §5:
+                 s2 corridor width, cross-refs, label audit, prediction
+                 ledger), then terminus
         S2       Paid(A) as a single computable function (quotient closure)
         S3b.ii   the strip-periodic step: exact statement of the aperiodic
                  stratum via the proved confinement/equivariance results
