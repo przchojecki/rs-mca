@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 zero-v projective endpoint
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_zero_v_projective_endpoint.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-zero-v-projective-endpoint/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the zero-direction-syndrome branch in the
+  `F_17^32` M3 regular window.
+- **What is being added:** If `v=0`, then
+  `M_A(Z)=H_{t,j}(u)` and `M_A[Z0:Z1]=Z0 H_{t,j}(u)`.  Full rank of
+  `H_{t,j}(u)` gives no finite affine roots; rank deficiency is a finite
+  singular bucket.  In both cases the projective endpoint `[0:1]` has zero
+  direction syndrome and is paid by the tangent/common-code-line ledger.
+- **How it is useful:** This closes the projective endpoint accounting for
+  codeword directions and keeps the remaining zero-`v` difficulty localized to
+  finite rank-deficient singular buckets.
+- **What to do next:** Combine zero-`u`, zero-`v`, proportional, tangent
+  overlap, and infinity criteria into complete M4 tables for concrete
+  non-proportional root packets.
+
 ### 2026-07-01 - M3 projective-infinity rank criterion
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

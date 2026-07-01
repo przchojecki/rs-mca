@@ -426,6 +426,25 @@ python3 experimental/scripts/verify_m1_hankel_projective_infinity_rank_criterion
   --check experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/f17_32_n512_k256_m3_projective_infinity_rank_criterion.json
 ```
 
+The zero-direction-syndrome endpoint companion is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-zero-v-projective-endpoint/
+  f17_32_n512_k256_m3_zero_v_projective_endpoint.json
+```
+
+If `v=0`, the finite affine pencil is constant.  Full rank of `H_{t,j}(u)`
+excludes finite affine roots; finite rank deficiency remains singular.  The
+projective endpoint `[0:1]` is nevertheless paid in both cases, because the
+direction syndrome is zero and hence the endpoint is a codeword direction.
+
+Replay:
+
+```sh
+python3 experimental/scripts/verify_m1_hankel_zero_v_projective_endpoint.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-zero-v-projective-endpoint/f17_32_n512_k256_m3_zero_v_projective_endpoint.json
+```
+
 The corresponding F1 denominator audit is
 
 ```text

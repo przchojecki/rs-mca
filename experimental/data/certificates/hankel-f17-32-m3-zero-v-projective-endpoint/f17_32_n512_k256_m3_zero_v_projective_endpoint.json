@@ -1,0 +1,1323 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 127,
+      "maximal_row_set_count": 129,
+      "minor_size": 128,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 129,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 386,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 126,
+      "maximal_row_set_count": 357760,
+      "minor_size": 127,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 130,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 387,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 125,
+      "maximal_row_set_count": 297602656,
+      "minor_size": 126,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 131,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 388,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 124,
+      "maximal_row_set_count": 117850651776,
+      "minor_size": 125,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 132,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 389,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 123,
+      "maximal_row_set_count": 27212042858000,
+      "minor_size": 124,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 133,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 390,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 122,
+      "maximal_row_set_count": 4110502764804800,
+      "minor_size": 123,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 134,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 391,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 121,
+      "maximal_row_set_count": 437531400061434000,
+      "minor_size": 122,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 135,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 392,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 120,
+      "maximal_row_set_count": 34569147570568156800,
+      "minor_size": 121,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 136,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 393,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 119,
+      "maximal_row_set_count": 2106811614990104173800,
+      "minor_size": 120,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 137,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 394,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 118,
+      "maximal_row_set_count": 102014036094257675784000,
+      "minor_size": 119,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 138,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 395,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 117,
+      "maximal_row_set_count": 4017652788178848131293200,
+      "minor_size": 118,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 139,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 396,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 116,
+      "maximal_row_set_count": 131169217511293618831944000,
+      "minor_size": 117,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 140,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 397,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 115,
+      "maximal_row_set_count": 3606497635473018049784300280,
+      "minor_size": 116,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 141,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 398,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 114,
+      "maximal_row_set_count": 84624257908136115834824778080,
+      "minor_size": 115,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 142,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 399,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 113,
+      "maximal_row_set_count": 1713849656772535006039031373800,
+      "minor_size": 114,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 143,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 400,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 112,
+      "maximal_row_set_count": 30252210715675198558211547346560,
+      "minor_size": 113,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 144,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 401,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 111,
+      "maximal_row_set_count": 469396280848805045810886556130100,
+      "minor_size": 112,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 145,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 402,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 110,
+      "maximal_row_set_count": 6450057129781226982436652912470080,
+      "minor_size": 111,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 146,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 403,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 109,
+      "maximal_row_set_count": 79013199839820030534848998177758480,
+      "minor_size": 110,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 147,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 404,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 108,
+      "maximal_row_set_count": 867972262747820578345034878767819200,
+      "minor_size": 109,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 148,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 405,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 107,
+      "maximal_row_set_count": 8595571658102045129818116747602531480,
+      "minor_size": 108,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 149,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 406,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 106,
+      "maximal_row_set_count": 77103134474669507808999718333976196000,
+      "minor_size": 107,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 150,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 407,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 105,
+      "maximal_row_set_count": 629169365508704665489903257132350201400,
+      "minor_size": 106,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 151,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 408,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 104,
+      "maximal_row_set_count": 4688795937593084907665736021700474766400,
+      "minor_size": 105,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 152,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 409,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 103,
+      "maximal_row_set_count": 32026150823738481735395429076793421395500,
+      "minor_size": 104,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 153,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 410,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 102,
+      "maximal_row_set_count": 201149345722743342538860075330950367478560,
+      "minor_size": 103,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 154,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 411,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 101,
+      "maximal_row_set_count": 1165221082896806046310922025638106900143400,
+      "minor_size": 102,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 155,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 412,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 100,
+      "maximal_row_set_count": 6242760225944100272356697397964160604404640,
+      "minor_size": 101,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 156,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 413,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 99,
+      "maximal_row_set_count": 31012358678820676071040147443457924406028940,
+      "minor_size": 100,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 157,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 414,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 98,
+      "maximal_row_set_count": 143189733233596341882651762012459148338766000,
+      "minor_size": 99,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 158,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 415,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 97,
+      "maximal_row_set_count": 615833221538262299883830979737191107650414100,
+      "minor_size": 98,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 159,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 416,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 96,
+      "maximal_row_set_count": 2472162036282630021039034757367935629277648000,
+      "minor_size": 97,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 160,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 417,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 95,
+      "maximal_row_set_count": 9280710221304286788116972549474771808276208850,
+      "minor_size": 96,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 161,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 418,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 94,
+      "maximal_row_set_count": 32639892664342891933241781340893634365063681600,
+      "minor_size": 95,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 162,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 419,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 93,
+      "maximal_row_set_count": 107721384890739488829123824395511067379158378000,
+      "minor_size": 94,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 163,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 420,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 92,
+      "maximal_row_set_count": 334131362067533191104582067782937347025574558400,
+      "minor_size": 93,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 164,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 421,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 91,
+      "maximal_row_set_count": 975503377269082347317315797208746877874322983000,
+      "minor_size": 92,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 165,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 422,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 90,
+      "maximal_row_set_count": 2684304068045662271753161595490447264666064972320,
+      "minor_size": 91,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 166,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 423,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 89,
+      "maximal_row_set_count": 6970842262831498554995351463887273937308644802520,
+      "minor_size": 90,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 167,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 424,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 88,
+      "maximal_row_set_count": 17104695717950707262500765033102171686482750635200,
+      "minor_size": 89,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 168,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 425,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 87,
+      "maximal_row_set_count": 39702427205817374681369445503532371039565903133340,
+      "minor_size": 88,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 169,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    },
+    {
+      "A": 426,
+      "affine_pencil": "M_A(Z)=H_{t,j}(u)",
+      "j": 86,
+      "maximal_row_set_count": 87268338377759025159166456763568067991758141474400,
+      "minor_size": 87,
+      "outcomes": {
+        "base_full_column_rank": {
+          "condition": "rank H_{t,j}(u) = j+1",
+          "finite_affine_root_count": 0,
+          "finite_affine_status": "closed_by_nonzero_constant_minor",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint",
+          "reason": "Some det(H_R(u)) is nonzero, so no finite affine root exists.  At [0:1], the direction syndrome v is zero, so the endpoint is a codeword direction paid by the tangent/common-code-line ledger."
+        },
+        "base_rank_deficient": {
+          "condition": "rank H_{t,j}(u) <= j",
+          "finite_affine_residual_label": "unknown",
+          "finite_affine_status": "singular_all_maximal_minors_zero",
+          "next_step": "M5 pivot charts or separate paid classification for the finite singular bucket",
+          "projective_infinity_raw_endpoint_count": 1,
+          "projective_infinity_residual_after_tangent": 0,
+          "projective_infinity_status": "paid_common_code_line_endpoint"
+        }
+      },
+      "projective_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)",
+      "t": 170,
+      "zero_v_assumption": "v_m=0 for 0<=m<256"
+    }
+  ],
+  "checks": [
+    "v=0 makes finite regular minors independent of the affine slope",
+    "full column rank of H(u) gives a nonzero constant maximal minor",
+    "the projective infinity endpoint has zero direction syndrome and is tangent/common-code-line paid",
+    "rank-deficient finite buckets remain named singular residuals"
+  ],
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512,
+    "full_domain_distinct": true
+  },
+  "lemma": {
+    "affine_identity": "M_A(Z)=H_{t,j}(u), independent of Z.",
+    "full_rank_conclusion": "If H_{t,j}(u) has full column rank, some maximal minor is a nonzero constant in the finite affine patch.  Hence there are no finite regular roots.",
+    "hypothesis": "The full direction syndrome satisfies v=0.",
+    "infinity_payment": "The projective endpoint [0:1] has syndrome v=0.  It is a codeword direction and is paid by the tangent/common-code-line ledger, not counted as residual aperiodic mass.",
+    "projective_identity": "M_A[Z0:Z1]=Z0 H_{t,j}(u).",
+    "rank_deficient_conclusion": "If H_{t,j}(u) has rank at most j, the finite regular bucket is singular and still requires M5 pivots or a separate paid classification; only the infinity endpoint is removed here."
+  },
+  "nonclaims": [
+    "does not classify arbitrary v nonzero pencils",
+    "does not close finite rank-deficient zero-v singular buckets",
+    "does not prove rank-deficient finite buckets are empty",
+    "not a worst-case support-wise MCA row bound"
+  ],
+  "object": "zero-direction projective endpoint lemma for M3 regular buckets",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "f17-32-m3-zero-v-projective-endpoint-v1",
+  "source_artifacts": {
+    "projective_infinity_rank_criterion": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/f17_32_n512_k256_m3_projective_infinity_rank_criterion.json",
+      "sha256": "a1cf0404245aad0df1cb283a7551a846d914c343246bb9d0307a050a8b364263"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement_count": 42,
+    "full_rank_finite_affine_root_count": 0,
+    "projective_infinity_residual_after_tangent": 0,
+    "rank_deficient_finite_residual_label": "unknown"
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551
+  }
+}

@@ -74,6 +74,9 @@ experimental/data/certificates/hankel-f17-32-m3-finite-tangent-overlap/
 
 experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/
   f17_32_n512_k256_m3_projective_infinity_rank_criterion.json
+
+experimental/data/certificates/hankel-f17-32-m3-zero-v-projective-endpoint/
+  f17_32_n512_k256_m3_zero_v_projective_endpoint.json
 ```
 
 The M4 zero-slope subtraction sidecar is
@@ -278,6 +281,19 @@ Hankel block `H_{t,j}(v)` has full column rank, the projective-infinity point
 `rank H_{t,j}(v)<=j`, all infinity minors vanish and the endpoint is a named
 singular projective chart for M5 or a separate paid endpoint classification.
 
+The zero-`v` projective endpoint certificate handles the codeword-direction
+boundary.  If `v=0`, the finite affine pencil is constant:
+
+```text
+M_A(Z)=H_{t,j}(u).
+```
+
+Full column rank of `H_{t,j}(u)` gives no finite affine roots.  Rank deficiency
+leaves a finite singular bucket for M5 or a separate paid classification.  In
+both cases, the projective endpoint `[0:1]` has zero direction syndrome and is
+paid by the tangent/common-code-line ledger, so its residual projective
+aperiodic contribution is `0`.
+
 In the selected-minor packets, the chosen prefix determinant has the closed form
 
 ```text
@@ -410,6 +426,9 @@ python3 experimental/scripts/verify_m1_hankel_finite_tangent_overlap_criterion.p
 
 python3 experimental/scripts/verify_m1_hankel_projective_infinity_rank_criterion.py \
   --check experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/f17_32_n512_k256_m3_projective_infinity_rank_criterion.json
+
+python3 experimental/scripts/verify_m1_hankel_zero_v_projective_endpoint.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-zero-v-projective-endpoint/f17_32_n512_k256_m3_zero_v_projective_endpoint.json
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_rank_witness_zero_slope_subtraction.json
