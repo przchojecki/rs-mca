@@ -1,0 +1,451 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 127,
+      "maximal_row_set_count": 129,
+      "minor_size": 128,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 129
+    },
+    {
+      "A": 386,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 126,
+      "maximal_row_set_count": 357760,
+      "minor_size": 127,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 130
+    },
+    {
+      "A": 387,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 125,
+      "maximal_row_set_count": 297602656,
+      "minor_size": 126,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 131
+    },
+    {
+      "A": 388,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 124,
+      "maximal_row_set_count": 117850651776,
+      "minor_size": 125,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 132
+    },
+    {
+      "A": 389,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 123,
+      "maximal_row_set_count": 27212042858000,
+      "minor_size": 124,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 133
+    },
+    {
+      "A": 390,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 122,
+      "maximal_row_set_count": 4110502764804800,
+      "minor_size": 123,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 134
+    },
+    {
+      "A": 391,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 121,
+      "maximal_row_set_count": 437531400061434000,
+      "minor_size": 122,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 135
+    },
+    {
+      "A": 392,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 120,
+      "maximal_row_set_count": 34569147570568156800,
+      "minor_size": 121,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 136
+    },
+    {
+      "A": 393,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 119,
+      "maximal_row_set_count": 2106811614990104173800,
+      "minor_size": 120,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 137
+    },
+    {
+      "A": 394,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 118,
+      "maximal_row_set_count": 102014036094257675784000,
+      "minor_size": 119,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 138
+    },
+    {
+      "A": 395,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 117,
+      "maximal_row_set_count": 4017652788178848131293200,
+      "minor_size": 118,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 139
+    },
+    {
+      "A": 396,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 116,
+      "maximal_row_set_count": 131169217511293618831944000,
+      "minor_size": 117,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 140
+    },
+    {
+      "A": 397,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 115,
+      "maximal_row_set_count": 3606497635473018049784300280,
+      "minor_size": 116,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 141
+    },
+    {
+      "A": 398,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 114,
+      "maximal_row_set_count": 84624257908136115834824778080,
+      "minor_size": 115,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 142
+    },
+    {
+      "A": 399,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 113,
+      "maximal_row_set_count": 1713849656772535006039031373800,
+      "minor_size": 114,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 143
+    },
+    {
+      "A": 400,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 112,
+      "maximal_row_set_count": 30252210715675198558211547346560,
+      "minor_size": 113,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 144
+    },
+    {
+      "A": 401,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 111,
+      "maximal_row_set_count": 469396280848805045810886556130100,
+      "minor_size": 112,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 145
+    },
+    {
+      "A": 402,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 110,
+      "maximal_row_set_count": 6450057129781226982436652912470080,
+      "minor_size": 111,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 146
+    },
+    {
+      "A": 403,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 109,
+      "maximal_row_set_count": 79013199839820030534848998177758480,
+      "minor_size": 110,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 147
+    },
+    {
+      "A": 404,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 108,
+      "maximal_row_set_count": 867972262747820578345034878767819200,
+      "minor_size": 109,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 148
+    },
+    {
+      "A": 405,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 107,
+      "maximal_row_set_count": 8595571658102045129818116747602531480,
+      "minor_size": 108,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 149
+    },
+    {
+      "A": 406,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 106,
+      "maximal_row_set_count": 77103134474669507808999718333976196000,
+      "minor_size": 107,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 150
+    },
+    {
+      "A": 407,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 105,
+      "maximal_row_set_count": 629169365508704665489903257132350201400,
+      "minor_size": 106,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 151
+    },
+    {
+      "A": 408,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 104,
+      "maximal_row_set_count": 4688795937593084907665736021700474766400,
+      "minor_size": 105,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 152
+    },
+    {
+      "A": 409,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 103,
+      "maximal_row_set_count": 32026150823738481735395429076793421395500,
+      "minor_size": 104,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 153
+    },
+    {
+      "A": 410,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 102,
+      "maximal_row_set_count": 201149345722743342538860075330950367478560,
+      "minor_size": 103,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 154
+    },
+    {
+      "A": 411,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 101,
+      "maximal_row_set_count": 1165221082896806046310922025638106900143400,
+      "minor_size": 102,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 155
+    },
+    {
+      "A": 412,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 100,
+      "maximal_row_set_count": 6242760225944100272356697397964160604404640,
+      "minor_size": 101,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 156
+    },
+    {
+      "A": 413,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 99,
+      "maximal_row_set_count": 31012358678820676071040147443457924406028940,
+      "minor_size": 100,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 157
+    },
+    {
+      "A": 414,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 98,
+      "maximal_row_set_count": 143189733233596341882651762012459148338766000,
+      "minor_size": 99,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 158
+    },
+    {
+      "A": 415,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 97,
+      "maximal_row_set_count": 615833221538262299883830979737191107650414100,
+      "minor_size": 98,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 159
+    },
+    {
+      "A": 416,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 96,
+      "maximal_row_set_count": 2472162036282630021039034757367935629277648000,
+      "minor_size": 97,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 160
+    },
+    {
+      "A": 417,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 95,
+      "maximal_row_set_count": 9280710221304286788116972549474771808276208850,
+      "minor_size": 96,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 161
+    },
+    {
+      "A": 418,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 94,
+      "maximal_row_set_count": 32639892664342891933241781340893634365063681600,
+      "minor_size": 95,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 162
+    },
+    {
+      "A": 419,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 93,
+      "maximal_row_set_count": 107721384890739488829123824395511067379158378000,
+      "minor_size": 94,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 163
+    },
+    {
+      "A": 420,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 92,
+      "maximal_row_set_count": 334131362067533191104582067782937347025574558400,
+      "minor_size": 93,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 164
+    },
+    {
+      "A": 421,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 91,
+      "maximal_row_set_count": 975503377269082347317315797208746877874322983000,
+      "minor_size": 92,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 165
+    },
+    {
+      "A": 422,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 90,
+      "maximal_row_set_count": 2684304068045662271753161595490447264666064972320,
+      "minor_size": 91,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 166
+    },
+    {
+      "A": 423,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 89,
+      "maximal_row_set_count": 6970842262831498554995351463887273937308644802520,
+      "minor_size": 90,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 167
+    },
+    {
+      "A": 424,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 88,
+      "maximal_row_set_count": 17104695717950707262500765033102171686482750635200,
+      "minor_size": 89,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 168
+    },
+    {
+      "A": 425,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 87,
+      "maximal_row_set_count": 39702427205817374681369445503532371039565903133340,
+      "minor_size": 88,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 169
+    },
+    {
+      "A": 426,
+      "full_direction_consequence": "if rank H_{t,j}(v)=j+1, every finite regular root survives the ambient finite-affine kernel filter",
+      "j": 86,
+      "maximal_row_set_count": 87268338377759025159166456763568067991758141474400,
+      "minor_size": 87,
+      "regular_root_rank_drop": "z root of canonical gcd => rank M_A(z) <= j",
+      "t": 170
+    }
+  ],
+  "checks": [
+    "row descriptor, generic-minor, and finite-kernel schemas match",
+    "window is 385..426",
+    "row-set totals agree across dependencies",
+    "domain encodings round-trip in the printed F_17^32 model",
+    "maximal-minor vanishing is equivalent to rank <= j"
+  ],
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512,
+    "full_domain_distinct": true
+  },
+  "nonclaims": [
+    "does not compute a finite root table",
+    "does not prove ambient nonempty implies split-locator nonempty",
+    "does not audit quotient, extension, or subfield overlap for surviving roots",
+    "does not close singular buckets where every maximal minor is identically zero"
+  ],
+  "object": "M5 bridge from regular gcd roots to rank-drop/noncontainment tests",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "f17-32-m3-m5-regular-root-rank-drop-v1",
+  "source_artifacts": {
+    "finite_affine_kernel_chart": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json",
+      "sha256": "d3162ac558dd5ad4accc613abbbe35e01bc8c832b3d0916e260fb91ba6fc32ad"
+    },
+    "generic_regular_minor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-generic-regular-minor/f17_32_n512_k256_m3_generic_all_row_set_regular_minor_certificate.json",
+      "sha256": "8001a420576e6af2cd9e23b634a49b4bd62804db9e6c7c58ea7e7975050dd8ce"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED",
+  "summary": {
+    "agreement_count": 42,
+    "full_direction_roots_survive_finite_kernel_filter": true,
+    "nonsingular_rank_drop_implies_regular_root": true,
+    "regular_root_implies_rank_drop": true
+  },
+  "theorem": {
+    "canonical_gcd_root_rank_drop": "Let G_A be the gcd of all nonzero maximal minors of M_A(Z)=H(u)+Z H(v).  If z is a finite root of G_A, then all maximal minors of M_A(z) vanish, including those whose polynomials were identically zero.  Hence rank M_A(z)<=j.",
+    "finite_kernel_consequence": "Combining with the finite-affine kernel chart: if rank H(v)>rank M_A(z), then the root z survives the ambient noncontainment filter.",
+    "full_direction_consequence": "For rank H(v)=j+1, every finite regular root has rank M_A(z)<=j<j+1 and therefore cannot be removed by same-support kernel containment.",
+    "proof": [
+      "A maximal row-set minor evaluates to a maximal minor of M_A(z).",
+      "A root of the gcd of all nonzero minor polynomials is a root of each nonzero minor polynomial; identically zero minors vanish at every z.",
+      "All maximal minors vanish exactly when the column rank is at most j.",
+      "The converse holds in a nonsingular regular bucket because a finite field root common to all nonzero minor polynomials contributes the linear factor Z-z to their gcd.",
+      "The finite-affine kernel consequence is the rank-stratification corollary of the M5 kernel chart."
+    ],
+    "rank_drop_root_converse": "If the regular bucket is nonsingular and z in F is a finite slope with rank M_A(z)<=j, then every maximal minor vanishes at z, so z is a root of the canonical gcd G_A."
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551
+  }
+}

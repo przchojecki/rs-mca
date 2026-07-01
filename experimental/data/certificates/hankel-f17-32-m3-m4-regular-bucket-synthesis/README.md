@@ -68,6 +68,20 @@ noncontainment numerator.  If containment fails, it contributes at most the
 single finite parameter `z` before split-locator, quotient, and extension
 audits.
 
+The regular-root rank-drop bridge explains why this filter applies directly to
+v10 root tables:
+
+```text
+z root of canonical regular gcd
+  => rank(H(u)+zH(v)) <= j.
+```
+
+In a nonsingular regular bucket the converse also holds for finite field
+slopes.  Thus a regular root table is a rank-drop table.  Combining this with
+the kernel filter shows that full-direction-rank regular roots always survive
+same-support containment and must be handled by root counts plus the remaining
+quotient, extension, subfield, or split-locator audits.
+
 The filter also has a rank-stratification corollary: if
 `rank H(v) > rank(H(u)+zH(v))`, then containment is impossible and `z` survives
 the ambient noncontainment test.  Thus full-direction-rank finite regular roots

@@ -75,6 +75,9 @@ experimental/data/certificates/hankel-f17-32-m3-finite-tangent-overlap/
 experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/
   f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json
 
+experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/
+  f17_32_n512_k256_m3_m5_regular_root_rank_drop.json
+
 experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/
   f17_32_n512_k256_m3_projective_infinity_rank_criterion.json
 
@@ -295,6 +298,12 @@ quotient-image, and extension audits.  This packet does not compute finite
 root tables; it explains how future root tables should subtract contained
 roots.
 
+The regular-root rank-drop bridge links the root table to that filter.  If
+`G_A` is the v10 canonical gcd of the nonzero maximal minors, then every finite
+root `z` of `G_A` satisfies `rank(H(u)+zH(v))<=j`; conversely, in a nonsingular
+regular bucket every finite slope with that rank drop is a root of `G_A`.
+Thus finite regular root tables are exactly rank-drop tables.
+
 The rank-stratification corollary says that if
 `rank H(v) > rank M_z`, then containment is impossible and `z` automatically
 survives the ambient finite-affine kernel filter.  Thus full-direction-rank
@@ -499,6 +508,9 @@ python3 experimental/scripts/verify_m1_hankel_finite_tangent_overlap_criterion.p
 
 python3 experimental/scripts/verify_m1_hankel_m5_finite_affine_kernel_chart.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json
+
+python3 experimental/scripts/verify_m1_hankel_m5_regular_root_rank_drop.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/f17_32_n512_k256_m3_m5_regular_root_rank_drop.json
 
 python3 experimental/scripts/verify_m1_hankel_projective_infinity_rank_criterion.py \
   --check experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/f17_32_n512_k256_m3_projective_infinity_rank_criterion.json

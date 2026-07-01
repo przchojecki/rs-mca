@@ -51,6 +51,10 @@ M5_FINITE_AFFINE_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/"
     "f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json"
 )
+M5_REGULAR_ROOT_RANK_DROP_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/"
+    "f17_32_n512_k256_m3_m5_regular_root_rank_drop.json"
+)
 PROJECTIVE_INFINITY_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/"
     "f17_32_n512_k256_m3_projective_infinity_rank_criterion.json"
@@ -78,6 +82,7 @@ EXPECTED_SCHEMAS = {
     PROPORTIONAL_REF: "hankel-proportional-pencil-tangent-lemma-v1",
     TANGENT_OVERLAP_REF: "f17-32-m3-finite-tangent-overlap-criterion-v1",
     M5_FINITE_AFFINE_REF: "f17-32-m3-m5-finite-affine-kernel-chart-v1",
+    M5_REGULAR_ROOT_RANK_DROP_REF: "f17-32-m3-m5-regular-root-rank-drop-v1",
     PROJECTIVE_INFINITY_REF: "f17-32-m3-projective-infinity-rank-criterion-v1",
     ZERO_V_REF: "f17-32-m3-zero-v-projective-endpoint-v1",
     DIRECTION_RANK_REF: "f17-32-m3-direction-rank-degree-cap-v1",
@@ -159,6 +164,7 @@ def regular_bucket_decision_table() -> dict[str, Any]:
                 "finite_budget_safe": True,
                 "finite_affine_kernel_filter": "apply per root",
                 "finite_affine_kernel_certificate_ref": M5_FINITE_AFFINE_REF,
+                "regular_root_rank_drop_certificate_ref": M5_REGULAR_ROOT_RANK_DROP_REF,
                 "projective_infinity_status": "empty_or_one_point_by_m5_kernel_chart",
                 "projective_infinity_extra_parameters": "<= 1",
                 "finite_affine_impact_of_infinity": 0,
@@ -175,6 +181,7 @@ def regular_bucket_decision_table() -> dict[str, Any]:
                 "finite_budget_safe_by_rank_cap_alone": False,
                 "finite_affine_kernel_filter": "apply after actual finite root table",
                 "finite_affine_kernel_certificate_ref": M5_FINITE_AFFINE_REF,
+                "regular_root_rank_drop_certificate_ref": M5_REGULAR_ROOT_RANK_DROP_REF,
                 "projective_infinity_status": "empty_or_one_point_by_m5_kernel_chart",
                 "projective_infinity_extra_parameters": "<= 1",
                 "next_step": "actual finite root table, kernel filter, plus quotient/extension overlap audit",
@@ -189,6 +196,7 @@ def regular_bucket_decision_table() -> dict[str, Any]:
                     "rank M_z<=j<j+1 and automatically survives the ambient kernel filter."
                 ),
                 "finite_affine_kernel_certificate_ref": M5_FINITE_AFFINE_REF,
+                "regular_root_rank_drop_certificate_ref": M5_REGULAR_ROOT_RANK_DROP_REF,
                 "B_ap_projective_infinity": 0,
                 "next_step": "actual finite root table and kernel filter unless degree/root table is within budget",
             },
@@ -307,6 +315,10 @@ def build_certificate() -> dict[str, Any]:
                 "if the kernel containment fails, the root contributes at most the single finite parameter z before split-locator and quotient/extension audits",
                 "if rank H(v) exceeds rank(H(u)+zH(v)), the root automatically survives the ambient kernel filter",
             ],
+            "m5_regular_root_rank_drop_bridge": [
+                "finite roots of the v10 canonical regular gcd are exactly finite slopes with rank(H(u)+zH(v))<=j in nonsingular regular buckets",
+                "therefore full-direction-rank regular roots automatically survive the finite-affine kernel filter",
+            ],
             "still_requires_m5_or_other_ledgers": [
                 "rank-deficient finite regular buckets not covered by a paid family",
                 "non-proportional finite buckets with direction rank > 6 unless exact root tables plus kernel filters improve the bound",
@@ -332,6 +344,7 @@ def build_certificate() -> dict[str, Any]:
             "finite_safe_projective_kernel_classified_case_count": 1,
             "m5_projective_infinity_closed_case_count": 1,
             "m5_finite_affine_filter_count": 1,
+            "m5_regular_root_rank_drop_bridge_count": 1,
             "projective_budget_gap_case_count": 1,
             "residual_case_count": 3,
             "dependencies_checked": len(EXPECTED_SCHEMAS),
@@ -342,6 +355,7 @@ def build_certificate() -> dict[str, Any]:
             "all dependency row-set totals agree where supplied",
             "the decision table separates closed, finite-safe, and residual cases",
             "finite affine roots are assigned a per-root M5 kernel filter",
+            "regular gcd roots are linked to evaluated Hankel rank drop",
             "projective infinity is classified by the M5 kernel-containment chart",
             "projective infinity and finite affine accounting are not conflated",
         ],

@@ -431,11 +431,25 @@ Consequently full-direction-rank finite regular roots cannot be removed by
 same-support containment; after root-table computation they must be handled by
 quotient, extension, subfield, or split-locator audits.
 
+The regular-root rank-drop bridge is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/
+  f17_32_n512_k256_m3_m5_regular_root_rank_drop.json
+```
+
+It proves that finite roots of the v10 canonical regular gcd are exactly finite
+rank-drop slopes in nonsingular regular buckets.  Therefore root tables should
+be read as rank-drop tables before applying the finite-affine kernel filter.
+
 Replay:
 
 ```sh
 python3 experimental/scripts/verify_m1_hankel_m5_finite_affine_kernel_chart.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json
+
+python3 experimental/scripts/verify_m1_hankel_m5_regular_root_rank_drop.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/f17_32_n512_k256_m3_m5_regular_root_rank_drop.json
 ```
 
 The projective-infinity endpoint criterion is:
@@ -524,7 +538,7 @@ experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/
 ```
 
 It composes the zero-`u`, proportional, tangent-overlap, M5 finite-affine
-kernel, projective-infinity, zero-`v`, M5 infinity-kernel,
+kernel, M5 regular-root rank-drop, projective-infinity, zero-`v`, M5 infinity-kernel,
 lower-rank-contained, and direction-rank certificates into one decision table.
 It marks the currently closed branches, the finite-safe low-direction-rank
 branch with exact finite-root and infinity-kernel accounting, and the residual

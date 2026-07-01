@@ -343,6 +343,7 @@
     "all dependency row-set totals agree where supplied",
     "the decision table separates closed, finite-safe, and residual cases",
     "finite affine roots are assigned a per-root M5 kernel filter",
+    "regular gcd roots are linked to evaluated Hankel rank drop",
     "projective infinity is classified by the M5 kernel-containment chart",
     "projective infinity and finite affine accounting are not conflated"
   ],
@@ -375,7 +376,8 @@
         "finite_affine_kernel_certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json",
         "finite_affine_kernel_filter": "apply after actual finite root table",
         "finite_affine_kernel_rank_note": "With full-rank H(v), every finite regular root has rank M_z<=j<j+1 and automatically survives the ambient kernel filter.",
-        "next_step": "actual finite root table and kernel filter unless degree/root table is within budget"
+        "next_step": "actual finite root table and kernel filter unless degree/root table is within budget",
+        "regular_root_rank_drop_certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/f17_32_n512_k256_m3_m5_regular_root_rank_drop.json"
       },
       "direction_rank_at_most_budget": {
         "B_ap_regular_finite_before_other_ledgers": "<= 6",
@@ -388,7 +390,8 @@
         "next_step": "quotient/extension overlap audit and projective budget comparison",
         "projective_infinity_extra_parameters": "<= 1",
         "projective_infinity_status": "empty_or_one_point_by_m5_kernel_chart",
-        "projective_sampler_budget_note": "If the kernel chart is nonempty, projective counting needs one more subtraction or one fewer finite root to stay within budget 6."
+        "projective_sampler_budget_note": "If the kernel chart is nonempty, projective counting needs one more subtraction or one fewer finite root to stay within budget 6.",
+        "regular_root_rank_drop_certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/f17_32_n512_k256_m3_m5_regular_root_rank_drop.json"
       },
       "direction_rank_intermediate": {
         "B_ap_regular_finite_before_other_ledgers": "<= rank H_{t,j}(v)",
@@ -399,7 +402,8 @@
         "finite_budget_safe_by_rank_cap_alone": false,
         "next_step": "actual finite root table, kernel filter, plus quotient/extension overlap audit",
         "projective_infinity_extra_parameters": "<= 1",
-        "projective_infinity_status": "empty_or_one_point_by_m5_kernel_chart"
+        "projective_infinity_status": "empty_or_one_point_by_m5_kernel_chart",
+        "regular_root_rank_drop_certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/f17_32_n512_k256_m3_m5_regular_root_rank_drop.json"
       },
       "hypothesis": "v!=0 and u is not a scalar multiple of v",
       "tangent_overlap": 0
@@ -474,6 +478,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json",
       "sha256": "35f42c9da014b138fb12f02136a215f41cd52ef5236423c4b9240ddbd21e736c"
     },
+    "f17_32_n512_k256_m3_m5_regular_root_rank_drop": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/f17_32_n512_k256_m3_m5_regular_root_rank_drop.json",
+      "sha256": "55ee410863252e4c7633c110c458058135ccccaa5963a478e51cc18805d7fd12"
+    },
     "f17_32_n512_k256_m3_projective_infinity_rank_criterion": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/f17_32_n512_k256_m3_projective_infinity_rank_criterion.json",
       "sha256": "a1cf0404245aad0df1cb283a7551a846d914c343246bb9d0307a050a8b364263"
@@ -499,11 +507,12 @@
   "summary": {
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 9,
+    "dependencies_checked": 10,
     "finite_safe_projective_kernel_classified_case_count": 1,
     "finite_slope_budget": 6,
     "m5_finite_affine_filter_count": 1,
     "m5_projective_infinity_closed_case_count": 1,
+    "m5_regular_root_rank_drop_bridge_count": 1,
     "projective_budget_gap_case_count": 1,
     "residual_case_count": 3
   },
@@ -524,6 +533,10 @@
     "m5_projective_infinity_closed_by_kernel_chart": [
       "proportional rank-deficient direction: infinity empty because ker H(v) subset ker H(u)",
       "arbitrary rank-deficient direction: infinity empty iff ker H(v) subset ker H(u), otherwise at most the single endpoint [0:1]"
+    ],
+    "m5_regular_root_rank_drop_bridge": [
+      "finite roots of the v10 canonical regular gcd are exactly finite slopes with rank(H(u)+zH(v))<=j in nonsingular regular buckets",
+      "therefore full-direction-rank regular roots automatically survive the finite-affine kernel filter"
     ],
     "not_a_row_bound": "This table composes proved local lemmas; it is not a worst-case support-wise MCA upper bound until every residual bucket is closed or assigned to a paid ledger.",
     "still_requires_m5_or_other_ledgers": [
