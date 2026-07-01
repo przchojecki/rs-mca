@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 low-rank budget envelope
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_low_rank_update_template.py`;
+  `experimental/data/certificates/hankel-low-rank-update-template/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The low-rank update template certificate is upgraded
+  to v2 with an explicit `F_17^32` M3 budget envelope: every nonzero regular
+  low-rank chart of update rank `s <= 6` has at most `s` finite and projective
+  regular roots, matching the budget numerator `6`.
+- **How it is useful:** Turns the rank-2 and rank-3 low-rank stress families
+  into instances of a reusable criterion.  Any future M3 residual that can be
+  compressed to rank at most 6 is regular-root budget safe before quotient and
+  tangent deduplication.
+- **What to do next:** Find actual quotient/tangent/extension-removed residual
+  pencils with update rank at most 6, or prove that higher-rank residuals must
+  enter the singular pivot atlas.
+
 ### 2026-07-01 - M3 rank-3 low-rank family counts
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -29,6 +29,11 @@ nonzero at the only possible common-code-line slope, so none of these 42 roots
 are tangent/common-code-line roots.  Quotient-image overlap is also not audited
 for this synthetic family.
 
+The ledger also imports the v2 low-rank update template budget envelope.  Since
+both the finite and projective `F_17^32` budget numerators are 6, every nonzero
+regular low-rank update chart of rank at most 6 is already within the regular
+root budget; zero determinants remain singular buckets, not aperiodic evidence.
+
 The ledger also references the M3 syndrome-realizability certificate, which
 proves that every length-256 syndrome pencil in this window is realized by
 explicit line values on the pinned subgroup row.  The zero-slope subtraction

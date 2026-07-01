@@ -153,6 +153,13 @@ with batch inversion for the denominators and update differences, so a
 large-field endpoint packet needs only a few exponentiation-based inversions
 instead of one inversion per basis value.
 
+For the `F_17^32` M3 row the same template gives a budget envelope.  Since
+`floor(17^32/2^128)=floor((17^32+1)/2^128)=6`, any nonzero regular low-rank
+update chart of rank `s <= 6` has at most `s` finite regular roots and at most
+`s` projective regular roots, hence is within the regular-root budget before
+quotient/tangent deduplication.  If the determinant is identically zero, the
+template does not count it; that case is a singular bucket for the pivot atlas.
+
 The all-window synthetic family certificate is
 
 ```text

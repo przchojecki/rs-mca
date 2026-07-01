@@ -90,6 +90,13 @@
       "schema_version": "m1-hankel-proportional-pencil-tangent-lemma-v2",
       "sha256": "ce4140913f41564604c1c72151a6973d4265622655e941a3f6db570102707baa",
       "status": "PROVED / AUDIT"
+    },
+    {
+      "name": "hankel_low_rank_update_template",
+      "ref": "experimental/data/certificates/hankel-low-rank-update-template/hankel_low_rank_update_template_certificate.json",
+      "schema_version": "m1-hankel-low-rank-update-template-v2",
+      "sha256": "f931bdfdeb808531c53f4a3c0c17b4d9f9598b2be3d7a0db6dcf80bae6eb112a",
+      "status": "PROVED / AUDIT"
     }
   ],
   "claim_boundaries": {
@@ -105,6 +112,7 @@
       "the synthetic u=0 family has exact root union {0}",
       "the synthetic rank-2 low-rank family has exact split/nonsquare quadratic root table with 40 roots total, below degree cap 84",
       "the synthetic rank-3 low-rank family has exact Frobenius-gcd finite-root counts with 42 roots total, below degree cap 126",
+      "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite and projective regular-root budgets",
       "the fixed synthetic top-window packet is v9-checkable for A=421..426",
       "the fixed top-window syndrome input has an explicit line-value lift",
       "subgroup syndrome vectors have an explicit inverse-Fourier line-value section",
@@ -2263,6 +2271,18 @@
     "fixed_top_window_status": "one v9 packet covers A=421..426 with root union {0}",
     "fixed_top_window_subtraction_status": "the synthetic root {0} is removed by the zero-codeword tangent slope, leaving aperiodic numerator 0",
     "generic_regular_minors_status": "proved generically nonzero for every row-set chart",
+    "low_rank_budget_envelope_certificate": "experimental/data/certificates/hankel-low-rank-update-template/hankel_low_rank_update_template_certificate.json",
+    "low_rank_budget_envelope_finite_budget": 6,
+    "low_rank_budget_envelope_projective_budget": 6,
+    "low_rank_budget_envelope_rank_range": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "low_rank_budget_envelope_status": "proved that every nonzero regular low-rank update chart of rank <= 6 is within the F_17^32 M3 finite and projective regular-root budgets",
     "proportional_branch_aperiodic_residual_after_tangent": 0,
     "proportional_branch_certificate": "experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/hankel_proportional_pencil_tangent_lemma_certificate.json",
     "proportional_branch_status": "all full-syndrome proportional pencils in the M3 window are tangent-labelled, because t+j equals the full stored syndrome length 256 for every A=385..426",

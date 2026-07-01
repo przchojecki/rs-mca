@@ -25,7 +25,11 @@ from typing import Any
 
 
 P = 17
-SCHEMA_VERSION = "m1-hankel-low-rank-update-template-v1"
+SCHEMA_VERSION = "m1-hankel-low-rank-update-template-v2"
+M3_FIELD_ORDER = 17**32
+M3_SECURITY_DENOMINATOR = 2**128
+M3_FINITE_BUDGET = M3_FIELD_ORDER // M3_SECURITY_DENOMINATOR
+M3_PROJECTIVE_BUDGET = (M3_FIELD_ORDER + 1) // M3_SECURITY_DENOMINATOR
 OUTPUT_PATH = Path(
     "experimental/data/certificates/hankel-low-rank-update-template/"
     "hankel_low_rank_update_template_certificate.json"
@@ -455,6 +459,68 @@ def check_case(
     }
 
 
+def build_m3_budget_envelope() -> dict[str, Any]:
+    rows = []
+    for update_rank in range(1, M3_FINITE_BUDGET + 1):
+        rows.append(
+            {
+                "update_rank": update_rank,
+                "finite_root_bound": update_rank,
+                "projective_regular_root_bound": update_rank,
+                "finite_budget_numerator": M3_FINITE_BUDGET,
+                "projective_budget_numerator": M3_PROJECTIVE_BUDGET,
+                "finite_budget_gap": M3_FINITE_BUDGET - update_rank,
+                "projective_budget_gap": M3_PROJECTIVE_BUDGET - update_rank,
+                "within_finite_budget": update_rank <= M3_FINITE_BUDGET,
+                "within_projective_budget": update_rank <= M3_PROJECTIVE_BUDGET,
+            }
+        )
+    require(M3_FINITE_BUDGET == 6, "unexpected F_17^32 finite budget")
+    require(M3_PROJECTIVE_BUDGET == 6, "unexpected F_17^32 projective budget")
+    require(all(row["within_finite_budget"] for row in rows), "finite budget fail")
+    require(
+        all(row["within_projective_budget"] for row in rows),
+        "projective budget fail",
+    )
+    return {
+        "name": "F_17^32 M3 low-rank regular-budget envelope",
+        "status": "PROVED / AUDIT",
+        "row": {
+            "n": 512,
+            "k": 256,
+            "field": "F_17^32",
+            "regular_window": {"A_min": 385, "A_max": 426},
+        },
+        "endpoint_conventions": {
+            "finite_affine_slope_denominator": M3_FIELD_ORDER,
+            "projective_slope_denominator": M3_FIELD_ORDER + 1,
+            "finite_budget_numerator": M3_FINITE_BUDGET,
+            "projective_budget_numerator": M3_PROJECTIVE_BUDGET,
+            "extra_projective_point": "[0:1]",
+        },
+        "statement": (
+            "For any M3 regular low-rank update chart whose prefix determinant "
+            "Delta_A(Z) is nonzero and has update rank s<=6, the finite "
+            "regular-root count and the projective regular-root count are both "
+            "<=s<=6.  If Delta_A is the zero polynomial, the chart is not "
+            "aperiodic evidence and must be routed to the singular residual "
+            "atlas."
+        ),
+        "proof": [
+            "The low-rank determinant template gives degree Delta_A <= s.",
+            "A nonzero affine polynomial of degree d has at most d finite roots.",
+            "After projectivizing to degree s, either the top coefficient is nonzero and infinity is empty, or the affine degree is <=s-1 and infinity contributes one point; in both cases the projective root count is <=s.",
+            "For F_17^32, floor(|F|/2^128)=floor((|F|+1)/2^128)=6.",
+        ],
+        "rows": rows,
+        "singular_bucket_rule": (
+            "A zero determinant is not counted by this envelope; it must be "
+            "declared singular and handled by affine/projective/curve pivot "
+            "charts or by a named residual obstruction."
+        ),
+    }
+
+
 def build_certificate() -> dict[str, Any]:
     cases = [
         check_case("rank_one_linear_template", (1, 2, 4, 8), (3,), 4),
@@ -488,7 +554,9 @@ def build_certificate() -> dict[str, Any]:
                 "power-sum rank s gives a regular-minor root bound <=s from "
                 "one prefix minor when that minor determinant is nonzero; "
                 "the zero-determinant case is a singular residual bucket. "
-                "The bound is independent of the M3 minor size j+1."
+                "The bound is independent of the M3 minor size j+1.  For the "
+                "F_17^32 M3 row, ranks s<=6 are automatically within the "
+                "finite and projective regular-root budgets."
             ),
         },
         "identity": {
@@ -509,11 +577,13 @@ def build_certificate() -> dict[str, Any]:
                 "Delta_r(Z)=det(H_X) det(I+Z V_Y^T H_X^{-1} V_Y)"
             ),
         },
+        "m3_budget_envelope": build_m3_budget_envelope(),
         "cases": cases,
         "nonclaims": [
             "not an actual F_17^32 M3 row packet",
             "does not classify arbitrary non-proportional pencils",
             "does not perform quotient/tangent subtraction for a prize row",
+            "does not prove that arbitrary residuals have update rank <=6",
             "zero determinant rows are residual buckets, not aperiodic evidence",
         ],
     }
@@ -543,6 +613,17 @@ def print_summary(certificate: dict[str, Any]) -> None:
             f"{case['name']}: rows={len(case['rows'])}, "
             f"max_nonzero_roots={max_roots}, singular_rows={singular_rows}"
         )
+    envelope = certificate["m3_budget_envelope"]
+    print(
+        "m3_budget_envelope: ranks=1..{max_rank}, finite_budget={finite}, "
+        "projective_budget={projective}".format(
+            max_rank=max(row["update_rank"] for row in envelope["rows"]),
+            finite=envelope["endpoint_conventions"]["finite_budget_numerator"],
+            projective=envelope["endpoint_conventions"][
+                "projective_budget_numerator"
+            ],
+        )
+    )
 
 
 def main() -> None:

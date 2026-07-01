@@ -276,6 +276,10 @@ Cauchy-Binet coefficients indexed by how many update nodes are selected.  Thus
 small-rank non-proportional directions give regular-minor root bounds
 independent of the minor size; identically zero determinants are explicitly
 singular residual buckets for the pivot atlas, not aperiodic evidence.
+The v2 certificate also records the M3 budget envelope: because both the finite
+and projective `F_17^32` budget numerators are `6`, every nonzero regular
+low-rank update chart of rank `s <= 6` is regular-root budget safe before
+quotient/tangent deduplication.
 
 The corresponding rank-2 `F_17^32` endpoint packet is
 

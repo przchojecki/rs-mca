@@ -77,6 +77,10 @@ PROPORTIONAL_LEMMA_REF = (
     "experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/"
     "hankel_proportional_pencil_tangent_lemma_certificate.json"
 )
+LOW_RANK_TEMPLATE_REF = (
+    "experimental/data/certificates/hankel-low-rank-update-template/"
+    "hankel_low_rank_update_template_certificate.json"
+)
 OUTPUT_PATH = ROOT / (
     "experimental/data/certificates/hankel-f17-32-m3-regular-window-status/"
     "f17_32_n512_k256_m3_regular_window_status.json"
@@ -130,6 +134,7 @@ def validate_inputs(
     extension_denominator_audit: dict[str, Any],
     projective_endpoint_audit: dict[str, Any],
     proportional_lemma: dict[str, Any],
+    low_rank_template: dict[str, Any],
 ) -> None:
     require(plan["window"]["A_min"] == AGREEMENT_MIN, "plan A_min mismatch")
     require(plan["window"]["A_max"] == AGREEMENT_MAX, "plan A_max mismatch")
@@ -471,6 +476,34 @@ def validate_inputs(
         proportional_lemma["f17_32_replay"]["checked_residual_after_tangent"] == [],
         "proportional lemma F17^32 replay residual mismatch",
     )
+    require(
+        low_rank_template["schema_version"] == "m1-hankel-low-rank-update-template-v2",
+        "low-rank template schema mismatch",
+    )
+    envelope = low_rank_template["m3_budget_envelope"]
+    require(
+        envelope["endpoint_conventions"]["finite_budget_numerator"]
+        == 17**32 // TWO128,
+        "low-rank budget envelope finite budget mismatch",
+    )
+    require(
+        envelope["endpoint_conventions"]["projective_budget_numerator"]
+        == (17**32 + 1) // TWO128,
+        "low-rank budget envelope projective budget mismatch",
+    )
+    require(
+        [row["update_rank"] for row in envelope["rows"]] == [1, 2, 3, 4, 5, 6],
+        "low-rank budget envelope rank range mismatch",
+    )
+    for row in envelope["rows"]:
+        rank = row["update_rank"]
+        require(
+            row["finite_root_bound"] == rank
+            and row["projective_regular_root_bound"] == rank
+            and row["within_finite_budget"] is True
+            and row["within_projective_budget"] is True,
+            f"low-rank budget envelope rank {rank} mismatch",
+        )
 
 
 def per_agreement_records(
@@ -833,6 +866,7 @@ def build_status() -> dict[str, Any]:
     extension_denominator_audit = load_json(EXTENSION_DENOMINATOR_AUDIT_REF)
     projective_endpoint_audit = load_json(PROJECTIVE_ENDPOINT_AUDIT_REF)
     proportional_lemma = load_json(PROPORTIONAL_LEMMA_REF)
+    low_rank_template = load_json(LOW_RANK_TEMPLATE_REF)
     validate_inputs(
         plan,
         generic,
@@ -847,6 +881,7 @@ def build_status() -> dict[str, Any]:
         extension_denominator_audit,
         projective_endpoint_audit,
         proportional_lemma,
+        low_rank_template,
     )
     records = per_agreement_records(
         plan,
@@ -917,7 +952,13 @@ def build_status() -> dict[str, Any]:
             PROPORTIONAL_LEMMA_REF,
             "m1-hankel-proportional-pencil-tangent-lemma-v2",
         ),
+        artifact_record(
+            "hankel_low_rank_update_template",
+            LOW_RANK_TEMPLATE_REF,
+            "m1-hankel-low-rank-update-template-v2",
+        ),
     ]
+    low_rank_envelope = low_rank_template["m3_budget_envelope"]
     return {
         "schema_version": SCHEMA_VERSION,
         "status": "AUDIT",
@@ -996,6 +1037,21 @@ def build_status() -> dict[str, Any]:
                 "common-code-line slope from Syn_0(u+zv)=|X|+3z, so none "
                 "of the 42 finite roots are common-code-line tangent roots"
             ),
+            "low_rank_budget_envelope_status": (
+                "proved that every nonzero regular low-rank update chart of "
+                "rank <= 6 is within the F_17^32 M3 finite and projective "
+                "regular-root budgets"
+            ),
+            "low_rank_budget_envelope_certificate": LOW_RANK_TEMPLATE_REF,
+            "low_rank_budget_envelope_rank_range": [
+                row["update_rank"] for row in low_rank_envelope["rows"]
+            ],
+            "low_rank_budget_envelope_finite_budget": low_rank_envelope[
+                "endpoint_conventions"
+            ]["finite_budget_numerator"],
+            "low_rank_budget_envelope_projective_budget": low_rank_envelope[
+                "endpoint_conventions"
+            ]["projective_budget_numerator"],
             "fixed_top_window_status": "one v9 packet covers A=421..426 with root union {0}",
             "fixed_top_window_line_value_status": "explicit f,g line values replay the fixed top-window syndrome input",
             "subgroup_syndrome_section_status": "proved explicit inverse-Fourier section for subgroup syndrome vectors",
@@ -1022,6 +1078,7 @@ def build_status() -> dict[str, Any]:
                 "the synthetic u=0 family has exact root union {0}",
                 "the synthetic rank-2 low-rank family has exact split/nonsquare quadratic root table with 40 roots total, below degree cap 84",
                 "the synthetic rank-3 low-rank family has exact Frobenius-gcd finite-root counts with 42 roots total, below degree cap 126",
+                "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite and projective regular-root budgets",
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
                 "the fixed top-window syndrome input has an explicit line-value lift",
                 "subgroup syndrome vectors have an explicit inverse-Fourier line-value section",
@@ -1075,6 +1132,7 @@ def print_summary(status: dict[str, Any]) -> None:
     print(f"low-rank tangent: {summary['synthetic_low_rank2_tangent_status']}")
     print(f"rank-3 low-rank synthetic: {summary['synthetic_low_rank3_family_status']}")
     print(f"rank-3 low-rank tangent: {summary['synthetic_low_rank3_tangent_status']}")
+    print(f"low-rank budget envelope: {summary['low_rank_budget_envelope_status']}")
     print(f"actual row: {summary['actual_row_status']}")
 
 

@@ -746,17 +746,114 @@
     "matrix_factorization": "H_r(u)+Z H_r(v)=V_X V_X^T + Z V_Y V_Y^T",
     "root_rule": "if Delta_r is nonzero, finite roots are bounded by degree(Delta_r)<=|Y|; if Delta_r is zero, the bucket is singular and must be passed to the pivot/residual atlas"
   },
+  "m3_budget_envelope": {
+    "endpoint_conventions": {
+      "extra_projective_point": "[0:1]",
+      "finite_affine_slope_denominator": 2367911594760467245844106297320951247361,
+      "finite_budget_numerator": 6,
+      "projective_budget_numerator": 6,
+      "projective_slope_denominator": 2367911594760467245844106297320951247362
+    },
+    "name": "F_17^32 M3 low-rank regular-budget envelope",
+    "proof": [
+      "The low-rank determinant template gives degree Delta_A <= s.",
+      "A nonzero affine polynomial of degree d has at most d finite roots.",
+      "After projectivizing to degree s, either the top coefficient is nonzero and infinity is empty, or the affine degree is <=s-1 and infinity contributes one point; in both cases the projective root count is <=s.",
+      "For F_17^32, floor(|F|/2^128)=floor((|F|+1)/2^128)=6."
+    ],
+    "row": {
+      "field": "F_17^32",
+      "k": 256,
+      "n": 512,
+      "regular_window": {
+        "A_max": 426,
+        "A_min": 385
+      }
+    },
+    "rows": [
+      {
+        "finite_budget_gap": 5,
+        "finite_budget_numerator": 6,
+        "finite_root_bound": 1,
+        "projective_budget_gap": 5,
+        "projective_budget_numerator": 6,
+        "projective_regular_root_bound": 1,
+        "update_rank": 1,
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      {
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "finite_root_bound": 2,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_regular_root_bound": 2,
+        "update_rank": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      {
+        "finite_budget_gap": 3,
+        "finite_budget_numerator": 6,
+        "finite_root_bound": 3,
+        "projective_budget_gap": 3,
+        "projective_budget_numerator": 6,
+        "projective_regular_root_bound": 3,
+        "update_rank": 3,
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      {
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "finite_root_bound": 4,
+        "projective_budget_gap": 2,
+        "projective_budget_numerator": 6,
+        "projective_regular_root_bound": 4,
+        "update_rank": 4,
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      {
+        "finite_budget_gap": 1,
+        "finite_budget_numerator": 6,
+        "finite_root_bound": 5,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_regular_root_bound": 5,
+        "update_rank": 5,
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      {
+        "finite_budget_gap": 0,
+        "finite_budget_numerator": 6,
+        "finite_root_bound": 6,
+        "projective_budget_gap": 0,
+        "projective_budget_numerator": 6,
+        "projective_regular_root_bound": 6,
+        "update_rank": 6,
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      }
+    ],
+    "singular_bucket_rule": "A zero determinant is not counted by this envelope; it must be declared singular and handled by affine/projective/curve pivot charts or by a named residual obstruction.",
+    "statement": "For any M3 regular low-rank update chart whose prefix determinant Delta_A(Z) is nonzero and has update rank s<=6, the finite regular-root count and the projective regular-root count are both <=s<=6.  If Delta_A is the zero polynomial, the chart is not aperiodic evidence and must be routed to the singular residual atlas.",
+    "status": "PROVED / AUDIT"
+  },
   "nonclaims": [
     "not an actual F_17^32 M3 row packet",
     "does not classify arbitrary non-proportional pencils",
     "does not perform quotient/tangent subtraction for a prize row",
+    "does not prove that arbitrary residuals have update rank <=6",
     "zero determinant rows are residual buckets, not aperiodic evidence"
   ],
-  "schema_version": "m1-hankel-low-rank-update-template-v1",
+  "schema_version": "m1-hankel-low-rank-update-template-v2",
   "status": "PROVED / AUDIT",
   "theorem": {
     "compressed_statement": "If H_X=V_X V_X^T is invertible, the same determinant equals det(H_X) det(I+Z K), where K=V_Y^T H_X^{-1} V_Y.  Thus the large r x r determinant is reduced to a |Y| x |Y| determinant without changing the root-count bound.",
-    "m3_use": "A non-proportional syndrome pencil whose direction has power-sum rank s gives a regular-minor root bound <=s from one prefix minor when that minor determinant is nonzero; the zero-determinant case is a singular residual bucket. The bound is independent of the M3 minor size j+1.",
+    "m3_use": "A non-proportional syndrome pencil whose direction has power-sum rank s gives a regular-minor root bound <=s from one prefix minor when that minor determinant is nonzero; the zero-determinant case is a singular residual bucket. The bound is independent of the M3 minor size j+1.  For the F_17^32 M3 row, ranks s<=6 are automatically within the finite and projective regular-root budgets.",
     "name": "low-rank Hankel update determinant template",
     "proof_status": "Cauchy-Binet identity plus finite verifier",
     "statement": "Let X and Y be disjoint finite node sets in a field.  For u_m=sum_{x in X}x^m and v_m=sum_{y in Y}y^m, the prefix regular determinant det(H_r(u)+Z H_r(v)) has coefficient of Z^d equal to the sum of Vandermonde(S)^2 over all r-subsets S of X union Y with exactly d nodes from Y.  Hence the degree is at most |Y|; if the polynomial is nonzero, its finite root count is at most |Y|."
