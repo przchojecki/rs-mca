@@ -47,6 +47,14 @@ agreement by at most five finite roots plus one corrected projective infinity
 point.  Thus every agreement has at most six projective regular roots, exactly
 the budget numerator `6`.
 
+The rank-6 low-rank slack family tests the first rank where degree-only
+projective accounting fails.  It verifies degree exactly `6`, then computes
+`gcd(Delta,Z^q-Z)` for every agreement.  The exact finite-root histogram is
+`{0:16, 1:17, 2:9}`, so every agreement has at most two finite roots and at
+most three projective regular roots after the corrected infinity point.  Thus
+this synthetic rank-6 family is projective-safe by finite-root slack, not by
+degree alone.
+
 The ledger also imports the v4 low-rank update template budget envelope.  Since
 both the finite and projective `F_17^32` budget numerators are 6, every nonzero
 regular low-rank update chart of rank at most 6 is within the finite regular

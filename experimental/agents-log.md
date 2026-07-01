@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-6 low-rank finite slack
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank6_slack_family.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank6-slack-family/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a replayable rank-6 synthetic low-rank
+  finite-slack certificate for the M3 regular window.  The certificate computes
+  `gcd(Delta,Z^q-Z)` in all `42` rows and obtains exact finite-root histogram
+  `{0:16, 1:17, 2:9}`, so the maximum projective regular-root count is
+  `2+1=3`.
+- **How it is useful:** Resolves the first non-automatic low-rank projective
+  gate case for the nested synthetic ladder.  Degree-only accounting would give
+  `7 > 6`; this certificate shows finite-root slack can close rank `6` in a
+  concrete M3 family.
+- **What to do next:** Look for non-synthetic residual pencils that admit the
+  same rank-6 slack mechanism, or isolate conditions forcing small
+  Frobenius-gcd degree in rank-6 low-rank charts.
+
 ### 2026-07-01 - M3 rank-5 low-rank budget family
 
 - **Agent/model:** AllenGrahamHart / Codex.
