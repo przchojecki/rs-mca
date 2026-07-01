@@ -85,6 +85,13 @@
       "status": "PROVED / AUDIT"
     },
     {
+      "name": "synthetic_low_rank6_11_subfield_exclusion",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-subfield-exclusion/f17_32_n512_k256_m3_low_rank6_11_subfield_exclusion_certificate.json",
+      "schema_version": "f17-32-m3-low-rank6-11-subfield-exclusion-v1",
+      "sha256": "7503930e38aaee5fbca8073b192fa5c702dd1e457f3908cb659040afa5955881",
+      "status": "PROVED / AUDIT"
+    },
+    {
       "name": "fixed_top_window_v9_packet",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json",
       "schema_version": "aperiodic-hankel-eliminant-v1",
@@ -168,6 +175,7 @@
       "the synthetic rank-8 low-rank slack family has exact Frobenius-gcd root histogram {0:22, 1:10, 2:7, 3:2, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 9",
       "the synthetic rank-9..11 low-rank slack sweep has exact Frobenius-gcd root histograms {9:{0:17, 1:17, 2:6, 3:2}, 10:{0:8, 1:23, 2:9, 3:2}, 11:{0:15, 1:16, 2:5, 3:6}}, so finite-root slack gives at most 4 projective regular roots per checked pair despite degree-only projective bounds 10, 11, and 12",
       "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
+      "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
       "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
       "the fixed synthetic top-window packet is v9-checkable for A=421..426",
       "the fixed top-window syndrome input has an explicit line-value lift",
@@ -4138,7 +4146,133 @@
     "synthetic_low_rank5_max_projective_regular_roots_per_agreement_bound": 6,
     "synthetic_low_rank5_projective_budget_status": "all 42 rows have at most 6 projective regular roots after including the nonexcluded infinity point, exactly meeting projective budget numerator 6; exact finite roots are not enumerated",
     "synthetic_low_rank6_11_common_code_line_tangent_overlap": 0,
+    "synthetic_low_rank6_11_proper_subfield_overlap": 0,
     "synthetic_low_rank6_11_roots_after_common_code_line": 238,
+    "synthetic_low_rank6_11_roots_after_proper_subfield_exclusion": 238,
+    "synthetic_low_rank6_11_subfield_exclusion_status": "proved that none of the 238 finite roots counted in the rank-6..11 synthetic low-rank slack certificates lies in a proper subfield F_17^d for d in {1,2,4,8,16}",
+    "synthetic_low_rank6_11_subfield_rank_summaries": {
+      "10": {
+        "agreement_count": 42,
+        "finite_roots_checked_for_proper_subfield": 47,
+        "proper_subfield_overlap_sum": 0,
+        "proper_subfield_root_counts": {
+          "1": 0,
+          "16": 0,
+          "2": 0,
+          "4": 0,
+          "8": 0
+        },
+        "rank": 10,
+        "regular_roots_after_proper_subfield_exclusion": 47,
+        "root_count_histogram": {
+          "0": 8,
+          "1": 23,
+          "2": 9,
+          "3": 2
+        }
+      },
+      "11": {
+        "agreement_count": 42,
+        "finite_roots_checked_for_proper_subfield": 44,
+        "proper_subfield_overlap_sum": 0,
+        "proper_subfield_root_counts": {
+          "1": 0,
+          "16": 0,
+          "2": 0,
+          "4": 0,
+          "8": 0
+        },
+        "rank": 11,
+        "regular_roots_after_proper_subfield_exclusion": 44,
+        "root_count_histogram": {
+          "0": 15,
+          "1": 16,
+          "2": 5,
+          "3": 6
+        }
+      },
+      "6": {
+        "agreement_count": 42,
+        "finite_roots_checked_for_proper_subfield": 35,
+        "proper_subfield_overlap_sum": 0,
+        "proper_subfield_root_counts": {
+          "1": 0,
+          "16": 0,
+          "2": 0,
+          "4": 0,
+          "8": 0
+        },
+        "rank": 6,
+        "regular_roots_after_proper_subfield_exclusion": 35,
+        "root_count_histogram": {
+          "0": 16,
+          "1": 17,
+          "2": 9
+        }
+      },
+      "7": {
+        "agreement_count": 42,
+        "finite_roots_checked_for_proper_subfield": 43,
+        "proper_subfield_overlap_sum": 0,
+        "proper_subfield_root_counts": {
+          "1": 0,
+          "16": 0,
+          "2": 0,
+          "4": 0,
+          "8": 0
+        },
+        "rank": 7,
+        "regular_roots_after_proper_subfield_exclusion": 43,
+        "root_count_histogram": {
+          "0": 16,
+          "1": 15,
+          "2": 6,
+          "3": 4,
+          "4": 1
+        }
+      },
+      "8": {
+        "agreement_count": 42,
+        "finite_roots_checked_for_proper_subfield": 34,
+        "proper_subfield_overlap_sum": 0,
+        "proper_subfield_root_counts": {
+          "1": 0,
+          "16": 0,
+          "2": 0,
+          "4": 0,
+          "8": 0
+        },
+        "rank": 8,
+        "regular_roots_after_proper_subfield_exclusion": 34,
+        "root_count_histogram": {
+          "0": 22,
+          "1": 10,
+          "2": 7,
+          "3": 2,
+          "4": 1
+        }
+      },
+      "9": {
+        "agreement_count": 42,
+        "finite_roots_checked_for_proper_subfield": 35,
+        "proper_subfield_overlap_sum": 0,
+        "proper_subfield_root_counts": {
+          "1": 0,
+          "16": 0,
+          "2": 0,
+          "4": 0,
+          "8": 0
+        },
+        "rank": 9,
+        "regular_roots_after_proper_subfield_exclusion": 35,
+        "root_count_histogram": {
+          "0": 17,
+          "1": 17,
+          "2": 6,
+          "3": 2
+        }
+      }
+    },
     "synthetic_low_rank6_11_tangent_exclusion_status": "proved that all 238 finite roots counted in the rank-6..11 synthetic low-rank slack certificates have zero common-code-line tangent overlap",
     "synthetic_low_rank6_11_tangent_rank_summaries": {
       "10": {

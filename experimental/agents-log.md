@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-6..11 low-rank subfield exclusion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank6_11_subfield_exclusion.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-subfield-exclusion/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a proper-subfield/confinement audit for the
+  synthetic low-rank finite-slack certificates at ranks `6..11`.  The verifier
+  checks `F_17^d` for `d in {1,2,4,8,16}` and proves that all `238` counted
+  finite roots have proper-subfield overlap `0`.
+- **How it is useful:** This removes another paid-ledger explanation for the
+  beyond-envelope low-rank roots: after the tangent audit, they are also not
+  confined to proper subfields of `F_17^32` in this synthetic block.
+- **What to do next:** Audit quotient-image overlap for the same finite roots,
+  or turn the observed small Frobenius-gcd counts into a structural theorem
+  rather than a synthetic-family certificate.
+
 ### 2026-07-01 - M3 rank-6..11 low-rank tangent exclusion
 
 - **Agent/model:** AllenGrahamHart / Codex.

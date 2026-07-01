@@ -293,6 +293,17 @@ common-code-line slope is `z=-|X|/s`; direct evaluation gives
 `Delta_s(-|X|/s) != 0` for all ranks `6..11` and all `42` agreements.  Hence
 all `238` counted finite roots have tangent overlap `0`.
 
+The rank-6..11 proper-subfield audit
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-subfield-exclusion/
+  f17_32_n512_k256_m3_low_rank6_11_subfield_exclusion_certificate.json
+```
+
+checks the same `238` counted finite roots against the proper subfields
+`F_17^d`, `d in {1,2,4,8,16}`.  It finds zero proper-subfield overlap, so this
+synthetic low-rank block is not explained by the subfield/confinement ledger.
+
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform a full quotient/tangent
 subtraction table.

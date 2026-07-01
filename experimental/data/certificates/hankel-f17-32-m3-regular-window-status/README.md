@@ -85,6 +85,13 @@ above and checks the unique moment-zero common-code-line slope
 finite roots counted in ranks `6..11`, so the low-rank slack roots are not
 removed by the common-code-line tangent ledger.
 
+The rank-6..11 subfield-exclusion audit checks the corresponding
+subfield/confinement ledger for the same `238` finite roots.  It tests the
+proper subfields `F_17^d` with `d in {1,2,4,8,16}` by Frobenius fixedness or
+subfield gcds, and finds zero proper-subfield overlap.  Thus these counted
+roots are genuinely outside all proper subfields of `F_17^32` for this
+synthetic low-rank block.
+
 The ledger also imports the v4 low-rank update template budget envelope.  Since
 both the finite and projective `F_17^32` budget numerators are 6, every nonzero
 regular low-rank update chart of rank at most 6 is within the finite regular
