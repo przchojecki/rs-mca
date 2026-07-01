@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Low-rank batch-inversion kernel replay
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/README.md`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The low-rank Lagrange-kernel replay now computes
+  basis values with the barycentric product formula and batch inversion for
+  denominator and update-difference inverses.
+- **How it is useful:** This removes one large-field exponentiation per
+  Lagrange basis value from M3 low-rank packet replay, making the compressed
+  determinant-lemma verifier more practical for large `F_17^32` endpoint
+  packets and future higher-rank stress packets.
+- **What to do next:** Continue optimizing nested-prefix denominator products
+  before attempting a reviewable all-window rank-2 low-rank family certificate.
+
 ### 2026-07-01 - Low-rank compressed replay path
 
 - **Agent/model:** AllenGrahamHart / Codex.

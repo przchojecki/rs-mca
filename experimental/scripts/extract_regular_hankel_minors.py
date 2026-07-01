@@ -1280,23 +1280,62 @@ def low_rank_update_coefficients_field(
     return coefficients
 
 
+def field_batch_inverses(
+    values: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    if not values:
+        return []
+    prefixes = []
+    product_value = field.one
+    normalized_values = [field.normalize(value) for value in values]
+    for value in normalized_values:
+        if field.is_zero(value):
+            raise ZeroDivisionError("batch inversion of zero")
+        prefixes.append(product_value)
+        product_value = field.mul(product_value, value)
+    inverse_product = field.inv(product_value)
+    inverses = [field.zero] * len(normalized_values)
+    for index in range(len(normalized_values) - 1, -1, -1):
+        inverses[index] = field.mul(inverse_product, prefixes[index])
+        inverse_product = field.mul(inverse_product, normalized_values[index])
+    return inverses
+
+
 def low_rank_lagrange_kernel_field(
     base_nodes: list[tuple[int, ...]],
     update_nodes: list[tuple[int, ...]],
     field: PolynomialBasisField,
 ) -> list[list[tuple[int, ...]]]:
+    denominators = []
+    for index, base in enumerate(base_nodes):
+        denominator = field.one
+        for other_index, other in enumerate(base_nodes):
+            if other_index == index:
+                continue
+            denominator = field.mul(denominator, field.sub(base, other))
+        denominators.append(denominator)
+    denominator_inverses = field_batch_inverses(denominators, field)
+
     basis_values_by_update = []
     for update in update_nodes:
+        update_differences = []
+        product_all = field.one
+        for base in base_nodes:
+            difference = field.sub(update, base)
+            update_differences.append(difference)
+            product_all = field.mul(product_all, difference)
+        difference_inverses = field_batch_inverses(update_differences, field)
         basis_values = []
-        for index, base in enumerate(base_nodes):
-            numerator = field.one
-            denominator = field.one
-            for other_index, other in enumerate(base_nodes):
-                if other_index == index:
-                    continue
-                numerator = field.mul(numerator, field.sub(update, other))
-                denominator = field.mul(denominator, field.sub(base, other))
-            basis_values.append(field.div(numerator, denominator))
+        for difference_inverse, denominator_inverse in zip(
+            difference_inverses, denominator_inverses
+        ):
+            basis_values.append(
+                field.mul(
+                    product_all,
+                    field.mul(difference_inverse, denominator_inverse),
+                )
+            )
         basis_values_by_update.append(basis_values)
 
     kernel = []

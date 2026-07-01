@@ -142,7 +142,16 @@ Delta_r(Z)=det(H_X) det(I+ZK).
 The Cauchy-Binet identity remains the theorem behind the template certificate,
 but packet replay no longer has to recompute the large-minor coefficient sums
 before checking the small kernel sidecar.  This is the scalable path for future
-rank-3 or higher low-rank stress packets.
+rank-3 or higher low-rank stress packets.  The Lagrange-kernel replay also uses
+the barycentric formula
+
+```text
+L_i(y)=prod_j(y-x_j)/((y-x_i) prod_{j != i}(x_i-x_j))
+```
+
+with batch inversion for the denominators and update differences, so a
+large-field endpoint packet needs only a few exponentiation-based inversions
+instead of one inversion per basis value.
 
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform quotient/tangent

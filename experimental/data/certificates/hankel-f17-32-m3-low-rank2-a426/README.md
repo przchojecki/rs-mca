@@ -29,7 +29,10 @@ Delta(Z)=det(H_X) det(I+ZK)
 
 with `K` computed from the Lagrange kernel on `X`; the checker recomputes this
 sidecar from the replay input and uses the same compressed determinant-lemma
-coefficients for low-rank coefficient replay.
+coefficients for low-rank coefficient replay.  The kernel replay uses the
+barycentric Lagrange formula with batch inversion, so verifier cost is driven
+by the small update-rank kernel rather than by one large-field inversion for
+each basis value.
 
 Run:
 
