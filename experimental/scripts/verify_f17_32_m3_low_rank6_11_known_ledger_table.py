@@ -7,15 +7,15 @@ This combines existing synthetic-family certificates:
 * the projective-infinity endpoint audit for ranks 2..11,
 * the endpoint quotient-support exclusion for ranks 2..11,
 * common-code-line tangent exclusion for ranks 6..11,
-* proper-subfield/confinement exclusion for ranks 6..11.
+* proper-subfield/confinement exclusion for ranks 6..11,
+* shifted-minor exclusion for finite first-minor roots in ranks 6..11.
 
-It deliberately leaves finite-root quotient-support and quotient-image
-subtraction as ``not_audited``.  The projective endpoint is sharper: the existing
-endpoint quotient-support certificate excludes the actual ``D minus Y`` endpoint
-support from all nontrivial proper quotient-remainder support families.  After
-the known ledgers above, every checked synthetic rank/agreement row still has
-projective regular-root upper count at most five, hence below the F_17^32 budget
-numerator six even before any finite-root quotient-image subtraction.
+It keeps two distinct columns.  The regular-minor upper-bound column still has
+projective count at most five, while the full-Hankel witness column removes all
+finite first-minor roots by the shifted row-1 minor and leaves only the
+projective endpoint.  The projective endpoint is sharper: the existing endpoint
+quotient-support certificate excludes the actual ``D minus Y`` endpoint support
+from all nontrivial proper quotient-remainder support families.
 """
 
 from __future__ import annotations
@@ -29,7 +29,7 @@ from typing import Any
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-SCHEMA_VERSION = "f17-32-m3-low-rank6-11-known-ledger-table-v2"
+SCHEMA_VERSION = "f17-32-m3-low-rank6-11-known-ledger-table-v3"
 N = 512
 K = 256
 AGREEMENT_MIN = 385
@@ -69,6 +69,11 @@ TANGENT_EXCLUSION_REF = (
 SUBFIELD_EXCLUSION_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-subfield-exclusion/"
     "f17_32_n512_k256_m3_low_rank6_11_subfield_exclusion_certificate.json"
+)
+SHIFTED_MINOR_EXCLUSION_REF = (
+    "experimental/data/certificates/"
+    "hankel-f17-32-m3-low-rank6-11-shifted-minor-exclusion/"
+    "f17_32_n512_k256_m3_low_rank6_11_shifted_minor_exclusion.json"
 )
 OUTPUT_PATH = REPO_ROOT / (
     "experimental/data/certificates/"
@@ -110,6 +115,7 @@ def validate_sources(sources: dict[str, dict[str, Any]]) -> None:
         ),
         "tangent": "f17-32-m3-low-rank6-11-tangent-exclusion-v1",
         "subfield": "f17-32-m3-low-rank6-11-subfield-exclusion-v1",
+        "shifted_minor": "f17-32-m3-low-rank6-11-shifted-minor-exclusion-v1",
     }
     for name, schema in expected_schemas.items():
         require(
@@ -156,6 +162,24 @@ def validate_sources(sources: dict[str, dict[str, Any]]) -> None:
         sources["subfield"]["aggregate"]["proper_subfield_overlap_sum"] == 0,
         "proper-subfield overlap is not zero",
     )
+    require(
+        sources["shifted_minor"]["agreement_range"]
+        == [AGREEMENT_MIN, AGREEMENT_MAX]
+        and sources["shifted_minor"]["ranks"] == RANKS
+        and sources["shifted_minor"]["row_shift_tested"] == 1,
+        "shifted-minor source range/rank mismatch",
+    )
+    require(
+        sources["shifted_minor"]["aggregate"]["root_bearing_record_count"] == 158
+        and sources["shifted_minor"]["aggregate"]["finite_root_total"] == 238
+        and sources["shifted_minor"]["aggregate"]["cleared_root_total"] == 238
+        and sources["shifted_minor"]["aggregate"]["surviving_root_total"] == 0
+        and sources["shifted_minor"]["aggregate"][
+            "all_finite_roots_excluded_as_support_witnesses"
+        ]
+        is True,
+        "shifted-minor aggregate mismatch",
+    )
 
 
 def root_count_records(sources: dict[str, dict[str, Any]]) -> dict[tuple[int, int], int]:
@@ -177,7 +201,11 @@ def root_count_records(sources: dict[str, dict[str, Any]]) -> dict[tuple[int, in
 
 def audit_maps(
     sources: dict[str, dict[str, Any]],
-) -> tuple[dict[tuple[int, int], dict[str, Any]], dict[tuple[int, int], dict[str, Any]]]:
+) -> tuple[
+    dict[tuple[int, int], dict[str, Any]],
+    dict[tuple[int, int], dict[str, Any]],
+    dict[tuple[int, int], dict[str, Any]],
+]:
     tangent = {
         (record["rank"], record["A"]): record
         for record in sources["tangent"]["records"]
@@ -186,14 +214,19 @@ def audit_maps(
         (record["rank"], record["A"]): record
         for record in sources["subfield"]["records"]
     }
+    shifted_minor = {
+        (record["rank"], record["A"]): record
+        for record in sources["shifted_minor"]["records"]
+    }
     require(len(tangent) == len(RANKS) * 42, "tangent record total mismatch")
     require(len(subfield) == len(RANKS) * 42, "subfield record total mismatch")
-    return tangent, subfield
+    require(len(shifted_minor) == 158, "shifted-minor record total mismatch")
+    return tangent, subfield, shifted_minor
 
 
 def build_records(sources: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
     root_counts = root_count_records(sources)
-    tangent, subfield = audit_maps(sources)
+    tangent, subfield, shifted_minor = audit_maps(sources)
     endpoint_summaries = sources["projective_infinity"]["aggregate"][
         "rank_summaries"
     ]
@@ -231,7 +264,24 @@ def build_records(sources: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
                 == 0,
                 f"{key}: proper-subfield overlap mismatch",
             )
-            residual = finite_roots + 1
+            if finite_roots:
+                shifted_record = shifted_minor[key]
+                require(
+                    shifted_record["root_count"] == finite_roots
+                    and shifted_record["cleared_root_count"] == finite_roots,
+                    f"{key}: shifted-minor cleared-root mismatch",
+                )
+                finite_full_hankel_witness_upper = 0
+                finite_shifted_status = "excluded_by_row_shift_1_minor"
+            else:
+                require(
+                    key not in shifted_minor,
+                    f"{key}: unexpected shifted-minor zero-root record",
+                )
+                finite_full_hankel_witness_upper = 0
+                finite_shifted_status = "no_finite_roots"
+            regular_residual = finite_roots + 1
+            full_hankel_residual = finite_full_hankel_witness_upper + 1
             records.append(
                 {
                     "rank": rank,
@@ -242,6 +292,13 @@ def build_records(sources: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
                     "projective_infinity_contribution": 1,
                     "known_tangent_overlap_removed": 0,
                     "known_proper_subfield_overlap_removed": 0,
+                    "finite_regular_roots_excluded_by_shifted_minor": finite_roots,
+                    "finite_regular_root_full_hankel_witness_upper": (
+                        finite_full_hankel_witness_upper
+                    ),
+                    "finite_regular_root_full_hankel_witness_status": (
+                        finite_shifted_status
+                    ),
                     "projective_endpoint_quotient_support_status": (
                         "excluded_nontrivial_proper_quotient_remainder_support"
                     ),
@@ -250,10 +307,16 @@ def build_records(sources: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
                     ),
                     "finite_regular_root_quotient_support_status": "not_audited",
                     "finite_regular_root_quotient_image_status": "not_audited",
-                    "known_residual_projective_upper": residual,
+                    "known_residual_projective_upper": regular_residual,
+                    "known_residual_full_hankel_projective_upper": (
+                        full_hankel_residual
+                    ),
                     "projective_budget_numerator": BUDGET_NUMERATOR,
                     "within_projective_budget_after_known_ledgers": (
-                        residual <= BUDGET_NUMERATOR
+                        regular_residual <= BUDGET_NUMERATOR
+                    ),
+                    "within_projective_budget_after_shifted_minor": (
+                        full_hankel_residual <= BUDGET_NUMERATOR
                     ),
                     "quotient_support_status": (
                         "endpoint_excluded_finite_roots_not_audited"
@@ -275,16 +338,29 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
         residual_counts = [
             record["known_residual_projective_upper"] for record in rank_records
         ]
+        full_hankel_counts = [
+            record["known_residual_full_hankel_projective_upper"]
+            for record in rank_records
+        ]
         rank_summaries[str(rank)] = {
             "rank": rank,
             "agreement_count": len(rank_records),
             "finite_root_count_sum": sum(finite_counts),
+            "finite_roots_excluded_by_shifted_minor_sum": sum(finite_counts),
+            "finite_full_hankel_witness_upper_sum": sum(
+                record["finite_regular_root_full_hankel_witness_upper"]
+                for record in rank_records
+            ),
             "finite_root_histogram": {
                 str(key): value for key, value in sorted(Counter(finite_counts).items())
             },
             "projective_infinity_contribution_sum": len(rank_records),
             "known_residual_projective_sum": sum(residual_counts),
             "max_known_residual_projective_per_record": max(residual_counts),
+            "known_residual_full_hankel_projective_sum": sum(full_hankel_counts),
+            "max_known_residual_full_hankel_projective_per_record": max(
+                full_hankel_counts
+            ),
             "worst_agreements": [
                 record["A"]
                 for record in rank_records
@@ -298,12 +374,24 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
     residual_counts = [
         record["known_residual_projective_upper"] for record in records
     ]
+    full_hankel_counts = [
+        record["known_residual_full_hankel_projective_upper"]
+        for record in records
+    ]
     return {
         "record_count": len(records),
         "rank_count": len(RANKS),
         "agreement_count_per_rank": AGREEMENT_MAX - AGREEMENT_MIN + 1,
         "finite_regular_root_count_sum": sum(
             record["finite_regular_root_count"] for record in records
+        ),
+        "finite_regular_roots_excluded_by_shifted_minor_sum": sum(
+            record["finite_regular_roots_excluded_by_shifted_minor"]
+            for record in records
+        ),
+        "finite_regular_root_full_hankel_witness_upper_sum": sum(
+            record["finite_regular_root_full_hankel_witness_upper"]
+            for record in records
         ),
         "projective_infinity_contribution_sum": len(records),
         "known_tangent_overlap_removed_sum": 0,
@@ -316,9 +404,17 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
         "finite_regular_root_quotient_image_status": "not_audited",
         "known_residual_projective_sum": sum(residual_counts),
         "max_known_residual_projective_per_record": max(residual_counts),
+        "known_residual_full_hankel_projective_sum": sum(full_hankel_counts),
+        "max_known_residual_full_hankel_projective_per_record": max(
+            full_hankel_counts
+        ),
         "projective_budget_numerator": BUDGET_NUMERATOR,
         "all_records_within_projective_budget_after_known_ledgers": all(
             record["within_projective_budget_after_known_ledgers"]
+            for record in records
+        ),
+        "all_records_within_projective_budget_after_shifted_minor": all(
+            record["within_projective_budget_after_shifted_minor"]
             for record in records
         ),
         "quotient_support_status": "endpoint_excluded_finite_roots_not_audited",
@@ -347,6 +443,7 @@ def build_certificate() -> dict[str, Any]:
         "endpoint_quotient_support": ENDPOINT_QUOTIENT_SUPPORT_REF,
         "tangent": TANGENT_EXCLUSION_REF,
         "subfield": SUBFIELD_EXCLUSION_REF,
+        "shifted_minor": SHIFTED_MINOR_EXCLUSION_REF,
     }
     sources = {name: load_json(ref) for name, ref in refs.items()}
     validate_sources(sources)
@@ -362,8 +459,21 @@ def build_certificate() -> dict[str, Any]:
         "residual maximum mismatch",
     )
     require(
+        aggregate["finite_regular_roots_excluded_by_shifted_minor_sum"] == 238
+        and aggregate["finite_regular_root_full_hankel_witness_upper_sum"] == 0,
+        "shifted-minor finite-root removal mismatch",
+    )
+    require(
+        aggregate["max_known_residual_full_hankel_projective_per_record"] == 1,
+        "full-Hankel residual maximum mismatch",
+    )
+    require(
         aggregate["all_records_within_projective_budget_after_known_ledgers"],
         "known-ledger projective budget failure",
+    )
+    require(
+        aggregate["all_records_within_projective_budget_after_shifted_minor"],
+        "shifted-minor projective budget failure",
     )
     worst_records = [
         record
@@ -395,6 +505,9 @@ def build_certificate() -> dict[str, Any]:
             ),
             "tangent_common_code_line_overlap": "proved zero",
             "proper_subfield_overlap": "proved zero for F_17^d, d in {1,2,4,8,16}",
+            "shifted_minor_finite_roots": (
+                "proved all finite first-minor roots are not full-Hankel witnesses"
+            ),
             "finite_regular_root_quotient_support": "not_audited",
             "finite_regular_root_quotient_image": "not_audited",
             "known_lower_bound": "not_supplied",
@@ -410,17 +523,20 @@ def build_certificate() -> dict[str, Any]:
         },
         "claim": (
             "For the synthetic low-rank ranks 6..11 block, known ledgers leave "
-            "at most five projective regular-root parameters in every checked "
-            "rank/agreement row, below budget numerator six.  The projective "
-            "endpoint support is excluded from all nontrivial proper "
-            "quotient-remainder support families; finite-root quotient support "
-            "and quotient-image subtraction are not audited here."
+            "at most five projective regular-minor upper-bound parameters in "
+            "every checked rank/agreement row, below budget numerator six.  "
+            "The shifted-minor ledger further proves all finite first-minor "
+            "roots are not full-Hankel exact-support witnesses, leaving at "
+            "most the projective endpoint in the full-Hankel witness column.  "
+            "The projective endpoint support is excluded from all nontrivial "
+            "proper quotient-remainder support families; finite-root quotient "
+            "support and quotient-image subtraction are not audited here."
         ),
         "nonclaims": [
             "synthetic low-rank family only",
             "not a finite-root quotient-support or quotient-image subtraction table",
             "not an actual-row M3 threshold bound",
-            "does not prove finite affine roots are actual bad slopes",
+            "finite affine first-minor roots are proved not to be full-Hankel witnesses, but arbitrary M3 rows are not covered",
             "does not classify arbitrary singular buckets",
             "trivial quotient fiber sizes c=1 and c=512 are not excluded",
         ],
@@ -446,8 +562,16 @@ def print_summary(certificate: dict[str, Any]) -> None:
         )
     )
     print(
-        "max residual projective upper={max_residual} <= budget={budget}".format(
+        "max regular-minor residual upper={max_residual} <= budget={budget}".format(
             max_residual=aggregate["max_known_residual_projective_per_record"],
+            budget=aggregate["projective_budget_numerator"],
+        )
+    )
+    print(
+        "max full-Hankel witness residual upper={max_residual} <= budget={budget}".format(
+            max_residual=aggregate[
+                "max_known_residual_full_hankel_projective_per_record"
+            ],
             budget=aggregate["projective_budget_numerator"],
         )
     )

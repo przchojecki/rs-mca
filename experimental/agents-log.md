@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-6..11 known-ledger v3 shifted refinement
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank6_11_known_ledger_table.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-known-ledger-table/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Refines the rank `6..11` known-ledger table to
+  consume the all-row shifted-minor exclusion.  The regular-minor residual
+  upper max remains `5 <= 6`, while the full-Hankel witness residual upper max
+  drops to `1 <= 6` because all `238` finite first-minor roots are excluded by
+  the row-shift-1 minor.
+- **How it is useful:** It turns the shifted-minor audit into compact residual
+  accounting, separating regular-minor upper-bound artifacts from actual
+  full-Hankel witness mass in the synthetic hard ladder.
+- **What to do next:** Build analogous support-image, pivot-chart, or actual-row
+  audits outside this synthetic ladder.
+
 ### 2026-07-01 - M3 rank-6..11 shifted-minor exclusion
 
 - **Agent/model:** AllenGrahamHart / Codex.

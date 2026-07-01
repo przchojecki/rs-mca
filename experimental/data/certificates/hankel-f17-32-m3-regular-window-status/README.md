@@ -159,12 +159,15 @@ synthetic low-rank block.
 
 The rank-6..11 known-ledger table combines the exact finite-root counts,
 projective-infinity endpoint, endpoint quotient-support exclusion, tangent
-exclusion, and proper-subfield exclusion into one compact M4-style residual
-ledger.  It rebuilds `252` rank/agreement rows and records maximum residual
-projective regular-root upper count `5 <= 6`.  The projective endpoint support
-is excluded from nontrivial proper quotient-remainder support families, while
-finite-root quotient-support and quotient-image subtraction remain explicitly
-unaudited in that table.
+exclusion, proper-subfield exclusion, and shifted-minor exclusion into one
+compact M4-style residual ledger.  It rebuilds `252` rank/agreement rows and
+records maximum residual projective regular-minor upper count `5 <= 6`.  After
+the shifted-minor exclusion removes all finite first-minor roots from the
+full-Hankel witness column, the maximum residual projective full-Hankel witness
+upper count is `1 <= 6`.  The projective endpoint support is excluded from
+nontrivial proper quotient-remainder support families, while finite-root
+quotient-support and quotient-image subtraction remain explicitly unaudited as
+separate quotient ledgers.
 
 The representative shifted-minor exclusion checks the finite roots in the six
 rank-6..11 projective-line packets.  For all `18` listed roots, the row-shift-1

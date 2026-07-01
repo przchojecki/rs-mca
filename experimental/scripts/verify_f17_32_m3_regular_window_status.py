@@ -1483,7 +1483,7 @@ def validate_inputs(
         )
     require(
         low_rank6_11_known_ledger_table["schema_version"]
-        == "f17-32-m3-low-rank6-11-known-ledger-table-v2",
+        == "f17-32-m3-low-rank6-11-known-ledger-table-v3",
         "rank-6..11 known-ledger table schema mismatch",
     )
     require(
@@ -1505,6 +1505,14 @@ def validate_inputs(
             "finite_regular_root_count_sum"
         ]
         == 238
+        and low_rank6_11_known_ledger_table["aggregate"][
+            "finite_regular_roots_excluded_by_shifted_minor_sum"
+        ]
+        == 238
+        and low_rank6_11_known_ledger_table["aggregate"][
+            "finite_regular_root_full_hankel_witness_upper_sum"
+        ]
+        == 0
         and low_rank6_11_known_ledger_table["aggregate"][
             "projective_infinity_contribution_sum"
         ]
@@ -1530,7 +1538,15 @@ def validate_inputs(
         ]
         == 5
         and low_rank6_11_known_ledger_table["aggregate"][
+            "max_known_residual_full_hankel_projective_per_record"
+        ]
+        == 1
+        and low_rank6_11_known_ledger_table["aggregate"][
             "all_records_within_projective_budget_after_known_ledgers"
+        ]
+        is True
+        and low_rank6_11_known_ledger_table["aggregate"][
+            "all_records_within_projective_budget_after_shifted_minor"
         ]
         is True
         and low_rank6_11_known_ledger_table["aggregate"][
@@ -2729,7 +2745,7 @@ def build_status() -> dict[str, Any]:
         artifact_record(
             "synthetic_low_rank6_11_known_ledger_table",
             LOW_RANK6_11_KNOWN_LEDGER_TABLE_REF,
-            "f17-32-m3-low-rank6-11-known-ledger-table-v2",
+            "f17-32-m3-low-rank6-11-known-ledger-table-v3",
         ),
         artifact_record(
             "synthetic_representative_shifted_minor_exclusion",
@@ -3185,12 +3201,24 @@ def build_status() -> dict[str, Any]:
                 "combined M4-style table for ranks 6..11: exact finite roots "
                 "plus projective infinity, tangent exclusion, and "
                 "proper-subfield exclusion leave at most 5 projective regular "
-                "roots per checked synthetic row; endpoint quotient-support is "
-                "excluded, while finite-root quotient support/image is not audited"
+                "minor upper-bound roots per checked synthetic row; the "
+                "shifted-minor ledger removes all finite roots from the "
+                "full-Hankel witness column, leaving at most 1 projective "
+                "full-Hankel witness per row"
             ),
             "synthetic_low_rank6_11_known_ledger_max_residual_projective": (
                 low_rank6_11_known_ledger_table["aggregate"][
                     "max_known_residual_projective_per_record"
+                ]
+            ),
+            "synthetic_low_rank6_11_known_ledger_max_full_hankel_residual_projective": (
+                low_rank6_11_known_ledger_table["aggregate"][
+                    "max_known_residual_full_hankel_projective_per_record"
+                ]
+            ),
+            "synthetic_low_rank6_11_known_ledger_finite_roots_excluded_by_shifted_minor": (
+                low_rank6_11_known_ledger_table["aggregate"][
+                    "finite_regular_roots_excluded_by_shifted_minor_sum"
                 ]
             ),
             "synthetic_low_rank6_11_known_ledger_quotient_image_status": (
@@ -3318,7 +3346,7 @@ def build_status() -> dict[str, Any]:
                 "the synthetic rank-6 A=426 finite-affine regular-minor packet is v9-checkable with degree 6 and one exact finite root certified by gcd(Delta,Z^q-Z)",
                 "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
                 "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
-                "the synthetic rank-6..11 known-ledger table combines exact finite roots, projective infinity, endpoint quotient-support exclusion, tangent, and proper-subfield audits into a compact M4-style residual table with max residual projective upper 5 <= 6; finite-root quotient support/image is explicitly not audited",
+                "the synthetic rank-6..11 known-ledger table combines exact finite roots, projective infinity, endpoint quotient-support exclusion, tangent, proper-subfield, and shifted-minor audits into a compact M4-style table: regular-minor residual upper max is 5 <= 6, while full-Hankel witness residual upper max is 1 <= 6 after all finite first-minor roots are excluded by the row-shift-1 minor; finite-root quotient support/image is still not audited as a separate quotient ledger",
                 "the representative shifted-minor exclusion proves that the 18 finite roots listed in the rank-6..11 representative projective-line packets do not give full-Hankel exact-support witnesses, because the row-shift-1 square minor is nonzero at each one",
                 "the synthetic rank-6..11 shifted-minor exclusion proves that all 238 finite roots counted by the low-rank slack ledgers are first-minor artifacts rather than actual full-Hankel exact-support witnesses, because the row-shift-1 square minor excludes them",
                 "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
