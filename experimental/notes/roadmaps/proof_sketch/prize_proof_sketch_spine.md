@@ -206,9 +206,11 @@ not optimism, is the deliverable.
 ## 5. Refinement queue (one node per loop turn)
 
 ```text
-next -> S3b.iii  rigidity mechanisms: one child file per candidate, starting
-                 with the divisor-variety/pencil-incidence geometry (ties to
-                 WP-2.6) and the displacement-rank route (#170 identities)
+DONE    S3b.iii.1  divisor-variety/pencil-incidence rigidity
+                 -> s3b_iii_1_divisor_pencil_incidence.md (R2, SPI wall,
+                 WP-2.6 = SPI at dim 1, budget B <= 3 at n = 2^41)
+next -> S3b.iii.2  displacement/spectral route (#170 identities as a
+                 dimension-free handle on the alignment variety)
         S2       Paid(A) as a single computable function (quotient closure)
         S3b.ii   the strip-periodic step: exact statement of the aperiodic
                  stratum via the proved confinement/equivariance results

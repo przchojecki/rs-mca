@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Proof-sketch S3b.iii.1: divisor/pencil incidence mechanism
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/proof_sketch/s3b_iii_1_divisor_pencil_incidence.md`;
+  queue update in `prize_proof_sketch_spine.md`.
+- **Status:** SKETCH / CONJECTURE / GAP-WALL (no result claimed).
+- **What is being added:** Turn 2 of the proof-sketch loop: the first
+  rigidity-mechanism child. Frames the aperiodic count exactly as
+  `#(D_j cap X_{u,v})` — the C(n,j)-point divisor set (the WP-2.6 remainder
+  system with the locator free) against the alignment variety cut by the
+  t(t-1)/2 quadratic 2x2 minors of (H_u l ; H_v l), of dimension exactly the
+  deficiency d (machine-checked). States Conjecture R2 (incidence rigidity,
+  poly exponent budget B <= 3 at n = 2^41, verified) and freezes the SPI
+  wall (structured-pencil incidence hypothesis) with its consumer chain.
+  Identifies paid ledgers with Elekes-Szabo-type special/group-structured
+  exceptional varieties, and WP-2.6/PR #172 as SPI at dimension 1 (eliminant
+  degree 49408 = the provable base case). Honest stall risk recorded:
+  without a dimension-free form the route never reaches the band (d = 239
+  already at A=265); forks F1-F4 recorded, incl. re-reading prop:noanchor
+  against incidence methods.
+- **How it is useful:** Connects the running PR #172 ladder, the paid
+  ledgers, and the aperiodic core as one incidence statement; gives the M1
+  lane a precisely shaped worst-case target and the Hooley-Katz lane its
+  averaged version.
+- **What to do next:** Turn 3: mechanism 2 (displacement/spectral route —
+  the #170 identities as a dimension-free handle); then the unpaid-fibers
+  O(1) sub-sketch; then the prop:noanchor-vs-incidence check.
+
 ### 2026-07-01 - Prize proof-sketch spine (heuristic, NOT rigorous)
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
