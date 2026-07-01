@@ -63,6 +63,17 @@ ambient finite-root tables, but its displayed root is filtered before becoming
 a support-wise MCA witness.  The boundary still needs exact root tables or
 paid-root audits for other possible roots and other weight strata.
 
+The companion exact-root note
+
+```text
+experimental/notes/m1/hankel_rank6_barycentric_exact_root_table.md
+```
+
+proves that for the same barycentric family there are no other finite ambient
+roots: the ambient root table is exactly `{1}`.  Combined with this filter and
+the endpoint-uniform theorem, that barycentric boundary family has
+support-wise projective total exactly `1`.
+
 Replay:
 
 ```sh

@@ -137,6 +137,17 @@ filters that displayed finite root through the null-polynomial split-locator
 gate: the `z=1` kernel consists only of polynomials of degree `< |S|-t`, so it
 contains no monic degree-`j` divisor of `X^512-1`.
 
+The barycentric exact-root packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-exact-root-table/
+  f17_32_n512_k256_m3_rank6_barycentric_exact_root_table.json
+```
+
+proves the ambient finite root table of the same barycentric boundary family
+is exactly `{1}`.  After the split filter, the finite support-wise contribution
+is zero and the endpoint-uniform packet leaves projective total `1`.
+
 The rank-node dichotomy packet
 
 ```text
@@ -259,6 +270,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_barycentric_obstruc
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_split_filter.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-split-filter/f17_32_n512_k256_m3_rank6_barycentric_split_filter.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_exact_root_table.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-exact-root-table/f17_32_n512_k256_m3_rank6_barycentric_exact_root_table.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json

@@ -208,6 +208,18 @@ has only polynomials of degree `< |S|-t` (`5,3,1`), so it contains no
 degree-`j` split locator.  The obstruction is therefore ambient-table
 sharpness, not a displayed support-wise bad slope.
 
+The barycentric exact-root companion
+
+```text
+experimental/notes/m1/hankel_rank6_barycentric_exact_root_table.md
+experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-exact-root-table/
+  f17_32_n512_k256_m3_rank6_barycentric_exact_root_table.json
+```
+
+closes that barycentric boundary family: the ambient finite root table is
+exactly `{1}`, that root is split-filtered, and the endpoint-uniform theorem
+leaves support-wise projective total exactly `1`.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 
@@ -717,6 +729,8 @@ choosing barycentric-residue weights on `S=X union Y` makes the constant
 locator vanish at finite slope `z=1`, while the endpoint remains present.
 The split-filter companion proves that this displayed root has only
 low-degree kernel polynomials and no degree-`j` split-locator witness.
+The exact-root companion proves there are no other finite ambient roots in
+that barycentric family, so after filtering only the endpoint remains.
 
 Replay:
 
@@ -738,6 +752,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_barycentric_obstruc
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_split_filter.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-split-filter/f17_32_n512_k256_m3_rank6_barycentric_split_filter.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_exact_root_table.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-exact-root-table/f17_32_n512_k256_m3_rank6_barycentric_exact_root_table.json
 ```
 
 The affine-pivot compression theorem is:

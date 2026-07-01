@@ -127,6 +127,9 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-barycentric-obstr
 experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-split-filter/
   f17_32_n512_k256_m3_rank6_barycentric_split_filter.json
 
+experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-exact-root-table/
+  f17_32_n512_k256_m3_rank6_barycentric_exact_root_table.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
   f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 
@@ -499,6 +502,11 @@ only of polynomials of degree `< |X union Y|-t` (`5,3,1`), so no monic
 degree-`j` divisor of `X^512-1` occurs there.  This filters the displayed
 ambient root but does not classify all boundary roots.
 
+The barycentric exact-root companion closes that remaining issue for the
+barycentric weights: the ambient finite root table is exactly `{1}`.  Since
+that root is split-filtered and the endpoint is present, the support-wise
+projective total of the barycentric boundary family is exactly `1`.
+
 The affine-pivot compression companion gives the finite-root route a concrete
 Hankel-chart target.  If a row-set chart has finite base slope `z0` with
 `M_R(z0)` invertible and `H_R(v)=P_R Q_R` has rank at most `r`, then
@@ -776,6 +784,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_barycentric_obstruc
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_split_filter.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-split-filter/f17_32_n512_k256_m3_rank6_barycentric_split_filter.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_exact_root_table.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-exact-root-table/f17_32_n512_k256_m3_rank6_barycentric_exact_root_table.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json

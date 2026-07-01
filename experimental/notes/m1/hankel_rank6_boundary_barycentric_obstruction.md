@@ -76,6 +76,17 @@ shows that this displayed ambient root is not itself a support-wise
 split-locator witness: its kernel consists only of polynomials of degree
 `< |S|-t`, while the split-locator gate requires degree `j`.
 
+The exact-root companion
+
+```text
+experimental/notes/m1/hankel_rank6_barycentric_exact_root_table.md
+```
+
+then proves the ambient finite root table of the same barycentric family is
+exactly `{1}`.  Thus, after the split filter, the finite support-wise
+contribution is zero and the only support-wise projective contribution in
+this family is the endpoint `[0:1]`.
+
 Replay:
 
 ```sh

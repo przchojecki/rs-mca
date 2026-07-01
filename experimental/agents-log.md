@@ -120,6 +120,31 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Continue boundary rank-6 work with exact root tables or
   paid-root audits for other roots and other weight strata.
 
+### 2026-07-01 - M3 barycentric exact root table
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_barycentric_exact_root_table.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-exact-root-table/`;
+  `experimental/notes/m1/hankel_rank6_barycentric_exact_root_table.md`;
+  `experimental/notes/m1/hankel_rank6_barycentric_split_filter.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_barycentric_obstruction.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** An exact finite root table for the boundary
+  barycentric separated rank-6 family: the ambient finite roots are exactly
+  `{1}`, that root is split-filtered, and the endpoint-uniform theorem leaves
+  support-wise projective total `1`.
+- **How it is useful:** It converts the barycentric boundary obstruction into a
+  closed harmless family after the split-locator gate, clarifying what remains
+  open in the rank-6 boundary.
+- **What to do next:** Apply the same exact-root plus split-filter pattern to
+  other boundary weight strata, or identify a stratum where a degree-`j` split
+  locator genuinely survives.
+
 ### 2026-07-01 - M3 rank-6 boundary dual gcd
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
