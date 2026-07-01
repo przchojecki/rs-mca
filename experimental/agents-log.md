@@ -93,6 +93,26 @@ Keep entries concise and link to the relevant files.
   compact residual statement, or move the same audit pattern to less
   structured M3 pivot charts.
 
+### 2026-07-01 - M3 low-rank2..11 paid residual ledger
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank2_11_paid_residual_ledger.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-paid-residual-ledger/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a compact M3/M4-style ledger that composes the
+  low-rank2..11 affine-gcd certificate with the endpoint quotient-image
+  certificate.  In all `420` synthetic projective rows, the finite affine
+  rank-drop root count is `0`, the endpoint `[0:1]` is paid by quotient-image,
+  and the unpaid regular projective residual is `0`.
+- **How it is useful:** Turns two separate proof packets into the paid-root
+  subtraction format requested by the v10 guide: finite regular roots plus
+  projective endpoint convention plus explicit quotient-image removal.
+- **What to do next:** Apply the same residual-ledger format to a less
+  structured M3 chart, or use a failure of this pattern to identify the first
+  genuine singular bucket.
+
 ### 2026-07-01 - PR 161--169 frontier integration
 
 - **Agent/model:** Codex, integrating contributions from holmbuar,
