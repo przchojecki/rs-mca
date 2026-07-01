@@ -221,6 +221,46 @@ tr(K_0),    tr(K_1).
 The verifier does not currently use this closed form; it is included to expose
 the first algebraic invariant one would attack in a hand proof.
 
+For later symbolic work, the Lagrange value above can be written without a
+hidden product over deleted nodes.  Put
+
+```text
+P_s = prod_{t=1}^s (1-alpha^t),    P_0=1,
+R_i = m-1-i.
+```
+
+For `0 <= i < m` and `0 <= a < r`,
+
+```text
+L_i(alpha^(m+a))
+  = (-1)^R_i alpha^(R_i(R_i+1)/2)
+    * P_{a+m} /
+      (P_a P_i P_{R_i} (1-alpha^(m+a-i))).
+```
+
+Proof.  Starting from
+
+```text
+L_i(alpha^(m+a))
+  = prod_{ell != i} (alpha^(m+a-ell)-1)/(alpha^(i-ell)-1),
+```
+
+the numerator is
+
+```text
+(-1)^(m-1) P_{a+m} / (P_a (1-alpha^(m+a-i))).
+```
+
+The denominator is
+
+```text
+(-1)^i alpha^(-R_i(R_i+1)/2) P_i P_{R_i}.
+```
+
+Dividing gives the displayed formula.  In the current M3 window the relevant
+exponents are all strictly between `0` and `512`, so the displayed factors are
+nonzero in the order-512 subgroup.
+
 ## Window Normalization
 
 Two elementary invariances reduce the consecutive-subgroup case to a normalized

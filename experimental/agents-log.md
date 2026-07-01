@@ -47,7 +47,8 @@ Keep entries concise and link to the relevant files.
   replacement-subset coefficient formula and window-normalization lemmas for
   the same shifted determinants.  It now isolates the first nonconstant
   coefficient as `tr(K_h)` and gives its explicit normalized consecutive-window
-  subgroup sum.
+  subgroup sum, including a closed product form for the needed Lagrange
+  values.
 - **How it is useful:** Turns the rank-by-rank affine-gcd computation into a
   concrete spectral-disjointness target.  Proving that target through the
   endpoint-capacity range would close the synthetic low-rank regular
