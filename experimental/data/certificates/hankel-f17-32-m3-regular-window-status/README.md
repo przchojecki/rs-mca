@@ -100,6 +100,14 @@ endpoint audit in the v9 `pivot_atlas` format.  Its projective-line
 It is a chart packet only: finite affine roots are intentionally left to the
 rank-6 finite-slack certificate.
 
+The rank-6, `A=426` finite-affine companion packages the corresponding prefix
+regular minor as a v9 packet.  The checker replays the rank-6 low-rank update
+input, verifies degree `6`, and checks the exact one-root table by replaying
+the `gcd(Delta,Z^q-Z)` certificate over `F_17^32`.  Together with the
+projective-infinity packet, this gives one synthetic rank-6 row with both its
+finite-affine regular-minor roots and projective endpoint represented in v9
+packet form.
+
 The rank-6..11 tangent-exclusion audit is the first subtraction check for this
 beyond-envelope low-rank block.  It consumes the exact finite-root certificates
 above and checks the unique moment-zero common-code-line slope

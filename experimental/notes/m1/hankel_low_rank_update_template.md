@@ -319,6 +319,18 @@ It records the rank-6, `A=426` projective-infinity chart as a checked
 projective chart certificate only; finite affine roots are handled by the
 rank-6 slack family, not by this packet.
 
+The finite-affine v9 companion for the same synthetic row is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank-rank6-a426-finite-affine/
+  f17_32_n512_k256_a426_rank6_finite_affine_packet.json
+```
+
+It packages the rank-6, `A=426` prefix regular minor with degree `6` and one
+exact finite root.  The v9 checker replays the low-rank update input and the
+`gcd(Delta,Z^q-Z)` certificate over `F_17^32`, so the finite root table is a
+checked exact count rather than a sampled root.
+
 The rank-6..11 tangent-exclusion audit
 
 ```text

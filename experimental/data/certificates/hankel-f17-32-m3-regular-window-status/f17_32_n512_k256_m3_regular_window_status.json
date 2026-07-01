@@ -99,6 +99,13 @@
       "status": "PROVED / AUDIT"
     },
     {
+      "name": "synthetic_low_rank_rank6_a426_finite_affine_packet",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank-rank6-a426-finite-affine/f17_32_n512_k256_a426_rank6_finite_affine_packet.json",
+      "schema_version": "aperiodic-hankel-eliminant-v1",
+      "sha256": "03a220806a136db4ef9a8c9b9634ba9d2a00097f7c031aa926d9db5105c58517",
+      "status": "PROVED / AUDIT"
+    },
+    {
       "name": "synthetic_low_rank6_11_tangent_exclusion",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json",
       "schema_version": "f17-32-m3-low-rank6-11-tangent-exclusion-v1",
@@ -205,6 +212,7 @@
       "the synthetic rank-2..11 low-rank endpoint audit proves the projective infinity point [0:1] is an actual support-wise noncontained endpoint in every checked rank/agreement row, witnessed on D minus the update nodes",
       "the synthetic rank-2..11 low-rank endpoint quotient-support audit proves that those actual D minus Y endpoint supports are not nontrivial proper quotient-remainder supports; trivial c=1 and c=512 and quotient-image supports are not claimed",
       "the synthetic rank-6 A=426 projective-line pivot packet is v9-checkable and closes the projective_infinity chart as nonempty with contribution one",
+      "the synthetic rank-6 A=426 finite-affine regular-minor packet is v9-checkable with degree 6 and one exact finite root certified by gcd(Delta,Z^q-Z)",
       "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
       "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
       "the synthetic rank-6..11 known-ledger table combines exact finite roots, projective infinity, tangent, and proper-subfield audits into a compact M4-style residual table with max residual projective upper 5 <= 6; quotient-image is explicitly not audited",
@@ -4711,6 +4719,11 @@
       }
     },
     "synthetic_low_rank9_11_slack_sweep_status": "proved exact Frobenius-gcd finite-root slack for all 126 rank/agreement pairs in ranks 9..11",
+    "synthetic_low_rank_rank6_a426_finite_packet_numerator": 1,
+    "synthetic_low_rank_rank6_a426_finite_packet_root_union": [
+      433103153921755587956025854474067902214
+    ],
+    "synthetic_low_rank_rank6_a426_finite_packet_status": "v9 finite-affine regular-minor packet checks the rank-6 A=426 low-rank row with degree 6 and one exact finite root, certified by gcd(Delta,Z^q-Z)",
     "synthetic_low_rank_rank6_a426_projective_pivot_status": "v9 projective-line pivot_atlas packet checks the rank-6 A=426 projective_infinity chart as nonempty with support_count 1, using the same Vandermonde endpoint witness",
     "synthetic_low_rank_rank6_a426_projective_pivot_support": 506
   }

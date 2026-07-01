@@ -120,6 +120,28 @@
                     }
                   }
                 }
+              },
+              "linear_root_count_certificate": {
+                "type": "object",
+                "properties": {
+                  "kind": {"type": "string", "enum": ["frobenius_linear_root_gcd"]},
+                  "field_order": {"type": "integer", "minimum": 1},
+                  "polynomial": {"type": "string", "const": "Z^q-Z"},
+                  "monic_delta_coefficients_ascending": {
+                    "type": "array",
+                    "items": {"type": "integer", "minimum": 0}
+                  },
+                  "frobenius_remainder_coefficients_ascending": {
+                    "type": "array",
+                    "items": {"type": "integer", "minimum": 0}
+                  },
+                  "linear_root_gcd_coefficients_ascending": {
+                    "type": "array",
+                    "items": {"type": "integer", "minimum": 0}
+                  },
+                  "linear_root_count": {"type": "integer", "minimum": 0},
+                  "listed_roots_status": {"type": "string"}
+                }
               }
             }
           },

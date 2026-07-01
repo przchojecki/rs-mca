@@ -83,6 +83,11 @@ LOW_RANK_RANK6_A426_PROJECTIVE_PIVOT_REF = (
     "hankel-f17-32-m3-low-rank-rank6-a426-projective-pivot/"
     "f17_32_n512_k256_a426_rank6_projective_infinity_pivot_packet.json"
 )
+LOW_RANK_RANK6_A426_FINITE_PACKET_REF = (
+    "experimental/data/certificates/"
+    "hankel-f17-32-m3-low-rank-rank6-a426-finite-affine/"
+    "f17_32_n512_k256_a426_rank6_finite_affine_packet.json"
+)
 LOW_RANK6_11_TANGENT_EXCLUSION_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/"
     "f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json"
@@ -185,6 +190,7 @@ def validate_inputs(
     low_rank2_11_projective_infinity: dict[str, Any],
     low_rank2_11_endpoint_quotient_support: dict[str, Any],
     low_rank_rank6_a426_projective_pivot: dict[str, Any],
+    low_rank_rank6_a426_finite_packet: dict[str, Any],
     low_rank6_11_tangent_exclusion: dict[str, Any],
     low_rank6_11_subfield_exclusion: dict[str, Any],
     low_rank6_11_known_ledger_table: dict[str, Any],
@@ -1024,6 +1030,46 @@ def validate_inputs(
         and pivot_coverage["vandermonde_independence"]["column_count"] == 93
         and pivot_coverage["vandermonde_independence"]["syndrome_length"] == 256,
         "rank-6 A=426 projective pivot coverage mismatch",
+    )
+    require(
+        low_rank_rank6_a426_finite_packet["schema_version"]
+        == "aperiodic-hankel-eliminant-v1",
+        "rank-6 A=426 finite packet schema mismatch",
+    )
+    require(
+        low_rank_rank6_a426_finite_packet["packet_certificate_schema"]
+        == "f17-32-m3-low-rank-rank6-a426-finite-affine-v1",
+        "rank-6 A=426 finite packet certificate schema mismatch",
+    )
+    require(
+        low_rank_rank6_a426_finite_packet["sampler"] == "finite_affine_line"
+        and low_rank_rank6_a426_finite_packet["sampler_audit"]["denominator"]
+        == 17**32,
+        "rank-6 A=426 finite packet sampler mismatch",
+    )
+    require(
+        low_rank_rank6_a426_finite_packet["agreement_threshold"] == 426,
+        "rank-6 A=426 finite packet threshold mismatch",
+    )
+    require(
+        low_rank_rank6_a426_finite_packet["declared_aperiodic_numerator"] == 1
+        and low_rank_rank6_a426_finite_packet["finite_affine_numerator"] == 1
+        and len(low_rank_rank6_a426_finite_packet["root_union"]) == 1,
+        "rank-6 A=426 finite packet numerator mismatch",
+    )
+    finite_item = low_rank_rank6_a426_finite_packet["exact_agreements"][0]
+    require(
+        finite_item["A"] == 426
+        and finite_item["j"] == 86
+        and finite_item["t"] == 170
+        and finite_item["status"] == "regular_minor"
+        and finite_item["regular_minor"]["degree"] == 6
+        and finite_item["extractor_audit"]["root_count"] == 1
+        and finite_item["extractor_audit"]["finite_root_count_certificate"]
+        == "frobenius_linear_root_gcd"
+        and finite_item["regular_minor_data"]["roots"]
+        == low_rank_rank6_a426_finite_packet["root_union"],
+        "rank-6 A=426 finite packet agreement mismatch",
     )
     require(
         low_rank6_11_tangent_exclusion["schema_version"]
@@ -2069,6 +2115,9 @@ def build_status() -> dict[str, Any]:
     low_rank_rank6_a426_projective_pivot = load_json(
         LOW_RANK_RANK6_A426_PROJECTIVE_PIVOT_REF
     )
+    low_rank_rank6_a426_finite_packet = load_json(
+        LOW_RANK_RANK6_A426_FINITE_PACKET_REF
+    )
     low_rank6_11_tangent_exclusion = load_json(
         LOW_RANK6_11_TANGENT_EXCLUSION_REF
     )
@@ -2102,6 +2151,7 @@ def build_status() -> dict[str, Any]:
         low_rank2_11_projective_infinity,
         low_rank2_11_endpoint_quotient_support,
         low_rank_rank6_a426_projective_pivot,
+        low_rank_rank6_a426_finite_packet,
         low_rank6_11_tangent_exclusion,
         low_rank6_11_subfield_exclusion,
         low_rank6_11_known_ledger_table,
@@ -2196,6 +2246,11 @@ def build_status() -> dict[str, Any]:
         artifact_record(
             "synthetic_low_rank_rank6_a426_projective_pivot",
             LOW_RANK_RANK6_A426_PROJECTIVE_PIVOT_REF,
+            "aperiodic-hankel-eliminant-v1",
+        ),
+        artifact_record(
+            "synthetic_low_rank_rank6_a426_finite_affine_packet",
+            LOW_RANK_RANK6_A426_FINITE_PACKET_REF,
             "aperiodic-hankel-eliminant-v1",
         ),
         artifact_record(
@@ -2523,6 +2578,19 @@ def build_status() -> dict[str, Any]:
                     "projective_infinity_coverage"
                 ]["endpoint_support_size"]
             ),
+            "synthetic_low_rank_rank6_a426_finite_packet_status": (
+                "v9 finite-affine regular-minor packet checks the rank-6 "
+                "A=426 low-rank row with degree 6 and one exact finite root, "
+                "certified by gcd(Delta,Z^q-Z)"
+            ),
+            "synthetic_low_rank_rank6_a426_finite_packet_root_union": (
+                low_rank_rank6_a426_finite_packet["root_union"]
+            ),
+            "synthetic_low_rank_rank6_a426_finite_packet_numerator": (
+                low_rank_rank6_a426_finite_packet[
+                    "declared_aperiodic_numerator"
+                ]
+            ),
             "synthetic_low_rank6_11_tangent_exclusion_status": (
                 "proved that all 238 finite roots counted in the rank-6..11 "
                 "synthetic low-rank slack certificates have zero "
@@ -2648,6 +2716,7 @@ def build_status() -> dict[str, Any]:
                 "the synthetic rank-2..11 low-rank endpoint audit proves the projective infinity point [0:1] is an actual support-wise noncontained endpoint in every checked rank/agreement row, witnessed on D minus the update nodes",
                 "the synthetic rank-2..11 low-rank endpoint quotient-support audit proves that those actual D minus Y endpoint supports are not nontrivial proper quotient-remainder supports; trivial c=1 and c=512 and quotient-image supports are not claimed",
                 "the synthetic rank-6 A=426 projective-line pivot packet is v9-checkable and closes the projective_infinity chart as nonempty with contribution one",
+                "the synthetic rank-6 A=426 finite-affine regular-minor packet is v9-checkable with degree 6 and one exact finite root certified by gcd(Delta,Z^q-Z)",
                 "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
                 "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
                 "the synthetic rank-6..11 known-ledger table combines exact finite roots, projective infinity, tangent, and proper-subfield audits into a compact M4-style residual table with max residual projective upper 5 <= 6; quotient-image is explicitly not audited",
@@ -2725,6 +2794,10 @@ def print_summary(status: dict[str, Any]) -> None:
     print(
         "rank-6 A=426 infinity pivot: "
         f"{summary['synthetic_low_rank_rank6_a426_projective_pivot_status']}"
+    )
+    print(
+        "rank-6 A=426 finite packet: "
+        f"{summary['synthetic_low_rank_rank6_a426_finite_packet_status']}"
     )
     print(
         "rank-6..11 low-rank tangent: "

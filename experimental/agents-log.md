@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-6 A426 finite-affine v9 packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `scripts/aperiodic_eliminant_schema.json`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/scripts/verify_f17_32_m3_low_rank_rank6_a426_finite_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_low_rank6_input.json`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank-rank6-a426-finite-affine/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds checker support for extension-field
+  `gcd(Delta,Z^q-Z)` root-count certificates and uses it to package the
+  synthetic rank-6, `A=426` finite-affine low-rank row as a v9 regular-minor
+  packet with one exact finite root.
+- **How it is useful:** It turns one beyond-envelope low-rank finite-root slack
+  row into a replayable v9 packet, pairing with the existing projective-infinity
+  chart packet for the same synthetic row.
+- **What to do next:** Extend this finite/projective packet pattern to more
+  rows or audit quotient-image subtraction for the finite roots.  This remains
+  synthetic evidence and not an actual-row M3 threshold bound.
+
 ### 2026-07-01 - M3 endpoint quotient-support exclusion
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -1,0 +1,292 @@
+{
+  "agreement_threshold": 426,
+  "claim_scope": {
+    "may_be_used_for_threshold_pinning": false,
+    "note": "Finite-affine regular-minor packet for one synthetic rank-6 low-rank row.  It is a v9 replay packet, not an actual-row safe-side threshold certificate.",
+    "root_status": "enumerated",
+    "row_data": "synthetic_syndrome_pencil",
+    "threshold_role": "synthetic_stress"
+  },
+  "declared_aperiodic_numerator": 1,
+  "enumerated_bad_slope_union": [],
+  "exact_agreements": [
+    {
+      "A": 426,
+      "extractor_audit": {
+        "certificate_mode": "low_rank_update_bound",
+        "degree_bound": 6,
+        "field_size": 2367911594760467245844106297320951247361,
+        "finite_root_count_certificate": "frobenius_linear_root_gcd",
+        "projective_infinity_status": "handled by the companion projective-infinity packet",
+        "root_count": 1,
+        "row_set_source": "low_rank_update_prefix_rank6",
+        "tested_row_sets": 1
+      },
+      "j": 86,
+      "regular_minor": {
+        "degree": 6,
+        "polynomial_ref": "inline:regular_minor.coefficients_ascending",
+        "root_hash": "0d5ec39d8fb57f494bc207b690bcb17585428c29e123c7b5f1a557aa09971d45",
+        "row_set": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86
+        ]
+      },
+      "regular_minor_data": {
+        "coefficients_ascending": [
+          1679562971418113032387101671407887322647,
+          1775511806720955307094170120167309074026,
+          1221073069817096989939932622913031861968,
+          578116441428579985463166760090433740352,
+          485111652955650877761258530902175238686,
+          1700571408275479438714423609439709547463,
+          1645907182528223233792281845513359485250
+        ],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 32,
+        "linear_root_count_certificate": {
+          "field_encoding": "base-p low-to-high integer",
+          "field_order": 2367911594760467245844106297320951247361,
+          "frobenius_remainder_coefficients_ascending": [
+            1014739824693269838998964234476127392461,
+            1136713608189232366877835981862684172786,
+            570109243314587771747170204464252792715,
+            82475082975876020434691678823474905490,
+            811570095097886086806357600207507223721,
+            76318686798744309523008420836273270639
+          ],
+          "kind": "frobenius_linear_root_gcd",
+          "linear_root_count": 1,
+          "linear_root_gcd_coefficients_ascending": [
+            2082802915510066297049575676084131971240,
+            1
+          ],
+          "listed_roots_status": "listed",
+          "monic_delta_coefficients_ascending": [
+            1918494004916494593506695469108940101514,
+            1657612431120464443902836244865425248858,
+            13166857172133448812135043560531118896,
+            1314119175872439547888303325103825785610,
+            717647740902705547581748118988085191947,
+            1465338143623067536937768653550764807288,
+            1
+          ],
+          "polynomial": "Z^q-Z",
+          "reason": "gcd(Delta,Z^q-Z) is the squarefree product of the finite field linear factors of Delta"
+        },
+        "p": 17,
+        "roots": [
+          433103153921755587956025854474067902214
+        ]
+      },
+      "regular_minor_polynomial_data": {
+        "coefficients_ascending": [
+          1679562971418113032387101671407887322647,
+          1775511806720955307094170120167309074026,
+          1221073069817096989939932622913031861968,
+          578116441428579985463166760090433740352,
+          485111652955650877761258530902175238686,
+          1700571408275479438714423609439709547463,
+          1645907182528223233792281845513359485250
+        ],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 32,
+        "p": 17
+      },
+      "status": "regular_minor",
+      "t": 170
+    }
+  ],
+  "extractor": {
+    "certificate_mode": "low_rank_update_bound",
+    "field_model": {
+      "degree": 32,
+      "encoding": "base-p low-to-high integer",
+      "kind": "polynomial_basis",
+      "modulus": [
+        16,
+        7,
+        8,
+        5,
+        13,
+        3,
+        11,
+        9,
+        5,
+        4,
+        3,
+        9,
+        3,
+        12,
+        1,
+        6,
+        7,
+        11,
+        11,
+        6,
+        12,
+        5,
+        5,
+        7,
+        14,
+        2,
+        0,
+        2,
+        4,
+        4,
+        0,
+        14,
+        1
+      ],
+      "p": 17
+    },
+    "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_low_rank6_input.json",
+    "input_sha256": "4f757247872f51f3edc3af53752c9af12532610d54463562e9cdbcb3571d505a",
+    "method": "low-rank update regular-minor replay plus Frobenius-gcd exact root count over a polynomial-basis finite field",
+    "name": "regular-hankel-minor-extractor",
+    "row_set_strategy": {
+      "type": "prefix"
+    },
+    "scope": "prime-power syndrome pencils with explicit polynomial-basis model"
+  },
+  "finite_affine_numerator": 1,
+  "nonclaims": [
+    "synthetic syndrome-pencil packet only",
+    "regular-minor roots are an upper-bound root table, not proved actual bad slopes",
+    "projective infinity is handled by the companion rank-6 A=426 projective packet",
+    "not a quotient-image subtraction table",
+    "not a worst-case or actual-row M3 threshold bound"
+  ],
+  "packet_certificate_schema": "f17-32-m3-low-rank-rank6-a426-finite-affine-v1",
+  "removed_ledgers": [
+    {
+      "certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json#/aggregate/common_code_line_tangent_overlap_sum",
+      "name": "common_code_line_tangent_overlap",
+      "numerator": 0
+    },
+    {
+      "certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-subfield-exclusion/f17_32_n512_k256_m3_low_rank6_11_subfield_exclusion_certificate.json#/aggregate/proper_subfield_overlap_sum",
+      "name": "proper_subfield_overlap",
+      "numerator": 0
+    }
+  ],
+  "root_union": [
+    433103153921755587956025854474067902214
+  ],
+  "root_union_table_ref": "inline:root_union",
+  "row": {
+    "domain_description": "order-512 subgroup from the pinned F_17^32 row descriptor; synthetic rank-6 low-rank update syndrome at A=426",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "sampler": "finite_affine_line",
+  "sampler_audit": {
+    "denominator": 2367911594760467245844106297320951247361,
+    "denominator_formula": "|F|",
+    "extension_denominator_warning": "finite affine extension-valued line packets are divided by the slope field order, not by the base field",
+    "field_role": "q_line",
+    "sampler": "finite_affine_line",
+    "slope_field": "F_17^32",
+    "slope_field_order": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "source_artifacts": {
+    "rank6_slack_family": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-slack-family/f17_32_n512_k256_m3_low_rank6_slack_family_certificate.json",
+      "schema_version": "f17-32-m3-low-rank6-slack-family-v1",
+      "sha256": "68208eb6d4b9530be259ccfc633dd443e101adbaa43fb3070b7be8fa8283f772"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT"
+}

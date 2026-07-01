@@ -646,6 +646,30 @@ def extension_poly_monic(
     return extension_poly_trim([field.mul(coeff, inv_lead) for coeff in out], field)
 
 
+def extension_x_power_mod_monic(
+    exponent: int,
+    modulus: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    monic = extension_poly_monic(modulus, field)
+    if extension_poly_is_zero(monic, field) or monic[-1] != field.one:
+        raise PacketError("Frobenius root-count modulus must be monic and nonzero")
+    result = [field.one]
+    base = [field.zero, field.one]
+    remaining = exponent
+    while remaining:
+        if remaining & 1:
+            result = extension_poly_mod(
+                extension_poly_mul(result, base, field), monic, field
+            )
+        remaining >>= 1
+        if remaining:
+            base = extension_poly_mod(
+                extension_poly_mul(base, base, field), monic, field
+            )
+    return extension_poly_trim(result, field)
+
+
 def extension_poly_gcd(
     left: list[tuple[int, ...]],
     right: list[tuple[int, ...]],
@@ -1036,6 +1060,107 @@ def validate_quadratic_root_certificate_extension(
         certificate_roots, formula_roots, f"{location}.quadratic_root_certificate"
     )
     require_exact_roots(roots, formula_roots, location)
+
+
+def encoded_extension_polynomial(
+    coefficients: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[int]:
+    return [
+        field.encode(coefficient)
+        for coefficient in extension_poly_trim(coefficients, field)
+    ]
+
+
+def validate_frobenius_linear_root_count_certificate_extension(
+    certificate: Any,
+    coefficients: list[int],
+    roots: list[int],
+    field: PolynomialBasisField,
+    location: str,
+) -> None:
+    if certificate is None:
+        return
+    if not isinstance(certificate, dict):
+        raise PacketError(f"{location}.linear_root_count_certificate must be an object")
+    if certificate.get("kind") != "frobenius_linear_root_gcd":
+        raise PacketError(
+            f"{location}.linear_root_count_certificate.kind is unsupported"
+        )
+    if certificate.get("field_order") != field.size:
+        raise PacketError(
+            f"{location}.linear_root_count_certificate field_order mismatch"
+        )
+    if certificate.get("polynomial") != "Z^q-Z":
+        raise PacketError(
+            f"{location}.linear_root_count_certificate polynomial must be Z^q-Z"
+        )
+
+    decoded = extension_poly_trim(
+        [field.decode(coefficient) for coefficient in coefficients], field
+    )
+    if extension_poly_is_zero(decoded, field):
+        raise PacketError(f"{location}.linear_root_count_certificate zero Delta")
+    monic_delta = extension_poly_monic(decoded, field)
+    recorded_monic = require_int_list(
+        certificate.get("monic_delta_coefficients_ascending"),
+        f"{location}.linear_root_count_certificate.monic_delta_coefficients_ascending",
+    )
+    if recorded_monic != encoded_extension_polynomial(monic_delta, field):
+        raise PacketError(
+            f"{location}.linear_root_count_certificate monic Delta mismatch"
+        )
+
+    frobenius_remainder = extension_x_power_mod_monic(field.size, monic_delta, field)
+    if len(frobenius_remainder) < 2:
+        frobenius_remainder += [field.zero] * (2 - len(frobenius_remainder))
+    frobenius_remainder[1] = field.sub(frobenius_remainder[1], field.one)
+    frobenius_remainder = extension_poly_trim(frobenius_remainder, field)
+    recorded_remainder = require_int_list(
+        certificate.get("frobenius_remainder_coefficients_ascending"),
+        (
+            f"{location}.linear_root_count_certificate."
+            "frobenius_remainder_coefficients_ascending"
+        ),
+    )
+    if recorded_remainder != encoded_extension_polynomial(frobenius_remainder, field):
+        raise PacketError(
+            f"{location}.linear_root_count_certificate Frobenius remainder mismatch"
+        )
+
+    linear_root_gcd = extension_poly_gcd(monic_delta, frobenius_remainder, field)
+    recorded_gcd = require_int_list(
+        certificate.get("linear_root_gcd_coefficients_ascending"),
+        (
+            f"{location}.linear_root_count_certificate."
+            "linear_root_gcd_coefficients_ascending"
+        ),
+    )
+    if recorded_gcd != encoded_extension_polynomial(linear_root_gcd, field):
+        raise PacketError(
+            f"{location}.linear_root_count_certificate gcd mismatch"
+        )
+    root_count = extension_poly_degree(linear_root_gcd, field)
+    if certificate.get("linear_root_count") != root_count:
+        raise PacketError(
+            f"{location}.linear_root_count_certificate root count mismatch"
+        )
+
+    if len(set(roots)) != len(roots):
+        raise PacketError(f"{location}: duplicate roots in Frobenius-gcd root table")
+    if len(roots) != root_count:
+        raise PacketError(
+            f"{location}: Frobenius-gcd certificate proves {root_count} roots, "
+            f"but packet lists {len(roots)}"
+        )
+    for root in roots:
+        root_value = field.decode(root)
+        if not field.is_zero(extension_poly_eval(linear_root_gcd, root_value, field)):
+            raise PacketError(
+                f"{location}: listed root {root} is not a root of the Frobenius gcd"
+            )
+    if roots != sorted(roots):
+        raise PacketError(f"{location}: Frobenius-gcd roots must be sorted")
 
 
 def first_matching_key(data: dict[str, Any], *patterns: str) -> str | None:
@@ -3789,6 +3914,7 @@ def validate_regular_minor(
     )
     root_certificate = data.get("root_certificate")
     quadratic_root_certificate = data.get("quadratic_root_certificate")
+    linear_root_count_certificate = data.get("linear_root_count_certificate")
 
     if not coefficients:
         raise PacketError(f"A={item.get('A')}: empty coefficient list")
@@ -3824,6 +3950,11 @@ def validate_regular_minor(
             f"A={item.get('A')}: regular_minor",
         )
     if modulus is not None:
+        if linear_root_count_certificate is not None:
+            raise PacketError(
+                f"A={item.get('A')}: linear_root_count_certificate is only "
+                "implemented for polynomial-basis extension fields"
+            )
         validate_split_linear_root_certificate_mod(
             root_certificate,
             coefficients,
@@ -3875,6 +4006,13 @@ def validate_regular_minor(
         )
         validate_quadratic_root_certificate_extension(
             quadratic_root_certificate,
+            coefficients,
+            roots,
+            extension_field,
+            f"A={item.get('A')}",
+        )
+        validate_frobenius_linear_root_count_certificate_extension(
+            linear_root_count_certificate,
             coefficients,
             roots,
             extension_field,

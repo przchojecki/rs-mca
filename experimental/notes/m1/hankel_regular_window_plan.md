@@ -463,6 +463,18 @@ verified by the v9 packet checker through a coverage reference to the same
 Vandermonde endpoint witness.  Finite affine roots are deliberately not
 enumerated in this chart packet.
 
+The finite-affine v9 companion for the same synthetic row is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank-rank6-a426-finite-affine/
+  f17_32_n512_k256_a426_rank6_finite_affine_packet.json
+```
+
+It records the rank-6, `A=426` prefix regular minor with degree `6` and one
+exact finite root.  The packet checker replays both the low-rank update input
+and the `gcd(Delta,Z^q-Z)` certificate, giving one concrete v9 finite/projective
+chart pair inside the synthetic low-rank ladder.
+
 The tangent/common-code-line exclusion companion is:
 
 ```text
