@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Proof-sketch S3a: the regular window as crystallization testbed
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/proof_sketch/s3a_regular_window.md`;
+  queue update in `prize_proof_sketch_spine.md`.
+- **Status:** SKETCH on verified arithmetic; falsifiable predictions.
+- **What is being added:** Turn 9. The 4515-vs-6 reconciliation: 4515 is
+  eliminant degree CAPACITY; FM (exact, Lemma FM1) puts the expected
+  aligned-locator count per generic pair at 2^-16333..2^-21775 across the
+  window, so by Markov the fraction of all pairs carrying any window
+  alignment is <= ~2^-16000 — every real alignment is structured, and
+  crystallization says structured = paid. Concrete prediction: the M3/M4/M5
+  window theorem should end with aperiodic numerator 0 throughout (like the
+  506/507 smoke packet). Front alpha: unstructured two-shift collisions
+  have probability ~m^2/q = 2^-116.8 — P1 refined to P1a (gcd = 1
+  everywhere) / P1b (collisions paid) / P1c (unpaid collision = a
+  candidate_new_obstruction in the EASIEST regime, high evidential weight).
+  Front beta: ambient pencil dim 29580 vs Hankel 512 (codim ~29068,
+  verified) — realizability must be structure-forced, predicted paid
+  (P-beta). Honest limit recorded: the window cannot probe fiber growth
+  (kernels trivial) — Conjecture F's content is only tested by the
+  deficiency ladder (PR #172).
+- **How it is useful:** Gives the running M3 campaign a sharp end-state
+  prediction and gives every scan outcome a defined evidential meaning for
+  the in-band program.
+- **What to do next:** Turn 10: S6 extension lift (F-valued witnesses,
+  |F|/|B| denominator scale, sigma=1 calibration, safe-side classification).
+
 ### 2026-07-02 - Proof-sketch S7: the list side at the prize gate
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).

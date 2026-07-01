@@ -262,9 +262,17 @@ DONE    S7       list side
                  challenge 2's safe side binds first; interleaved budgets
                  re-derived B <= 1.60 worst / 3.20 a-regular; L1 petal
                  battle = Conjecture F fourth appearance)
-next -> S3a      regular window: why FM + paid structure predicts fronts
-                 alpha/beta land paid-or-empty; what an unpaid collision
-                 would mean (P1); the 4515-vs-6 reconciliation
+DONE    S3a      regular window
+                 -> s3a_regular_window.md (4515 = capacity not count; FM
+                 in-window ~2^-16000 => any alignment is structured; P1
+                 refined to P1a/b/c; alpha shift-collision ~2^-116.8;
+                 beta ambient-vs-Hankel codim ~29068 => realizability
+                 must be forced; window theorem prediction: aperiodic
+                 numerator 0 throughout; fiber content invisible in the
+                 window — only the deficiency ladder probes Conj F)
+next -> S6       extension lift: F-valued witnesses under the ledger;
+                 FM with the |F|/|B| denominator scale; the sigma=1
+                 counterexample as calibration; safe-side classification
         S2       Paid(A) as a single computable function (quotient closure)
         S3b.ii   the strip-periodic step: exact statement of the aperiodic
                  stratum via the proved confinement/equivariance results
