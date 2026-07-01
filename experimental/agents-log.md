@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 weight-uniform canonical gcd formula
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_weight_uniform_canonical_gcd.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-weight-uniform-canonical-gcd/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for zero-`u` weighted power-sum syndromes from
+  every distinct support subset of size `j+1`, with all weights nonzero.
+- **What is being added:** A formula certificate showing that
+  `(v_{r_a+b})` factors as `(x_i^{r_a}) diag(w_i) (x_i^b)`, so every maximal
+  minor is `Z^(j+1)` times two alternants and `prod_i w_i`.  The prefix row
+  set is nonzero by Vandermonde and nonzero weights, so the v10 canonical gcd
+  is `Z^(j+1)`.
+- **How it is useful:** This removes the unit-weight restriction from the M3
+  support-uniform synthetic branch and classifies the full simple rank-size
+  zero-`u` weighted power-sum family.
+- **What to do next:** Move from simple rank-size weighted power sums to
+  lower-rank paid ledgers, higher-rank nonsynthetic pencils, or the first
+  non-proportional singular bucket.
+
 ### 2026-07-01 - M3 support-uniform canonical gcd formula
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

@@ -56,6 +56,9 @@ experimental/data/certificates/hankel-f17-32-m3-canonical-gcd-formula-window/
 
 experimental/data/certificates/hankel-f17-32-m3-support-uniform-canonical-gcd/
   f17_32_n512_k256_m3_support_uniform_canonical_gcd.json
+
+experimental/data/certificates/hankel-f17-32-m3-weight-uniform-canonical-gcd/
+  f17_32_n512_k256_m3_weight_uniform_canonical_gcd.json
 ```
 
 The M4 zero-slope subtraction sidecar is
@@ -178,6 +181,23 @@ v10 canonical gcd over all nonzero maximal row-set minors is `Z^(j+1)` for
 every support subset of size `j+1`.  This is still a zero-`u` rank-size
 power-sum family, not arbitrary M3 row data.
 
+The weight-uniform canonical certificate removes the unit-weight restriction.
+For any distinct support subset `S={x_0,...,x_j}`, any nonzero weights
+`w_i in F_17^32`, and any maximal row set `R={r_0<...<r_j}`,
+
+```text
+(v_{r_a+b})_{a,b}
+  = (x_i^{r_a})_{a,i} * diag(w_i) * (x_i^b)_{i,b},
+Delta_{A,S,w,R}(Z)
+  = Z^(j+1) * det(x_i^{r_a})_{a,i}
+      * (prod_i w_i) * det(x_i^b)_{i,0<=b<=j}.
+```
+
+The prefix row set is nonzero because the two Vandermonde determinants and
+the weight product are nonzero.  Thus the same canonical gcd `Z^(j+1)` holds
+uniformly over every nonzero residue weighting on every support subset of size
+`j+1`.
+
 In the selected-minor packets, the chosen prefix determinant has the closed form
 
 ```text
@@ -292,6 +312,9 @@ python3 experimental/scripts/verify_f17_32_m3_canonical_gcd_formula.py \
 
 python3 experimental/scripts/verify_f17_32_m3_support_uniform_canonical_gcd.py \
   --check experimental/data/certificates/hankel-f17-32-m3-support-uniform-canonical-gcd/f17_32_n512_k256_m3_support_uniform_canonical_gcd.json
+
+python3 experimental/scripts/verify_f17_32_m3_weight_uniform_canonical_gcd.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-weight-uniform-canonical-gcd/f17_32_n512_k256_m3_weight_uniform_canonical_gcd.json
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_rank_witness_zero_slope_subtraction.json

@@ -1,0 +1,1391 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "all_row_set_count": 129,
+      "canonical_common_gcd": {
+        "degree": 128,
+        "monic_polynomial": "Z^128",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 127,
+      "minor_size": 128,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 127
+      },
+      "support_choice_count": 4462948667719540169329779376768164487451002775710324866543865388991060083485968174215585819306349455644382502945540999364380,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 128,
+      "t": 129,
+      "weight_choice_count_formula": "(17^32 - 1)^128",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,128) * (17^32 - 1)^128 * binom(129,128)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 386,
+      "all_row_set_count": 357760,
+      "canonical_common_gcd": {
+        "degree": 127,
+        "monic_polynomial": "Z^127",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 126,
+      "minor_size": 127,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 126
+      },
+      "support_choice_count": 1483785531085976991361588987600844297126567156599796319266531869586638157626503704674272687977175922915534962018257786801664,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 127,
+      "t": 130,
+      "weight_choice_count_formula": "(17^32 - 1)^127",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,127) * (17^32 - 1)^127 * binom(130,127)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 387,
+      "all_row_set_count": 297602656,
+      "canonical_common_gcd": {
+        "degree": 126,
+        "monic_polynomial": "Z^126",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 125,
+      "minor_size": 126,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 125
+      },
+      "support_choice_count": 488188503751085694049020210946391776515735826135166146494428879371769549270896296615628578686791041995525751752121085294848,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 126,
+      "t": 131,
+      "weight_choice_count_formula": "(17^32 - 1)^126",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,126) * (17^32 - 1)^126 * binom(131,126)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 388,
+      "all_row_set_count": 117850651776,
+      "canonical_common_gcd": {
+        "degree": 125,
+        "monic_polynomial": "Z^125",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 124,
+      "minor_size": 125,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 124
+      },
+      "support_choice_count": 158945094244539528295029836122081043516751199206798280254000100260576132320756933781832560502676153207845593593713841723904,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 125,
+      "t": 132,
+      "weight_choice_count_formula": "(17^32 - 1)^125",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,125) * (17^32 - 1)^125 * binom(132,125)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 389,
+      "all_row_set_count": 27212042858000,
+      "canonical_common_gcd": {
+        "degree": 124,
+        "monic_polynomial": "Z^124",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 123,
+      "minor_size": 124,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 123
+      },
+      "support_choice_count": 51206538094245982053811158544484872266994587373324188226159826114876331288903651347239871295965255543764688657768634576000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 124,
+      "t": 133,
+      "weight_choice_count_formula": "(17^32 - 1)^124",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,124) * (17^32 - 1)^124 * binom(133,124)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 390,
+      "all_row_set_count": 4110502764804800,
+      "canonical_common_gcd": {
+        "degree": 123,
+        "monic_polynomial": "Z^123",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 122,
+      "minor_size": 123,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 122
+      },
+      "support_choice_count": 16322906744695377312782991412637851313900588262961952030960972848958007917285482691665151775577613592356867335638330816000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 123,
+      "t": 134,
+      "weight_choice_count_formula": "(17^32 - 1)^123",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,123) * (17^32 - 1)^123 * binom(134,123)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 391,
+      "all_row_set_count": 437531400061434000,
+      "canonical_common_gcd": {
+        "degree": 122,
+        "monic_polynomial": "Z^122",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 121,
+      "minor_size": 122,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 121
+      },
+      "support_choice_count": 5147993665634695921723866522447322337460954759857231025149229898517525573913113771986701713836016594512550467393627411200,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 122,
+      "t": 135,
+      "weight_choice_count_formula": "(17^32 - 1)^122",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,122) * (17^32 - 1)^122 * binom(135,122)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 392,
+      "all_row_set_count": 34569147570568156800,
+      "canonical_common_gcd": {
+        "degree": 121,
+        "monic_polynomial": "Z^121",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 120,
+      "minor_size": 121,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 120
+      },
+      "support_choice_count": 1606279353471695402686219221837783440333085628395350856951933625624394168842454936527819972092056328722586079340211110400,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 121,
+      "t": 136,
+      "weight_choice_count_formula": "(17^32 - 1)^121",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,121) * (17^32 - 1)^121 * binom(136,121)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 393,
+      "all_row_set_count": 2106811614990104173800,
+      "canonical_common_gcd": {
+        "degree": 120,
+        "monic_polynomial": "Z^120",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 119,
+      "minor_size": 120,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 119
+      },
+      "support_choice_count": 495815820842028427869980933271356623164039186315911871661183593623856363341676141122107695467190856569981927551442715200,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 120,
+      "t": 137,
+      "weight_choice_count_formula": "(17^32 - 1)^120",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,120) * (17^32 - 1)^120 * binom(137,120)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 394,
+      "all_row_set_count": 102014036094257675784000,
+      "canonical_common_gcd": {
+        "degree": 119,
+        "monic_polynomial": "Z^119",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 118,
+      "minor_size": 119,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 118
+      },
+      "support_choice_count": 151394143768558298586253720082856984172225705745316602033949188892780568959290424770109219989981940937399061847768768000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 119,
+      "t": 138,
+      "weight_choice_count_formula": "(17^32 - 1)^119",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,119) * (17^32 - 1)^119 * binom(138,119)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 395,
+      "all_row_set_count": 4017652788178848131293200,
+      "canonical_common_gcd": {
+        "degree": 118,
+        "monic_polynomial": "Z^118",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 117,
+      "minor_size": 118,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 117
+      },
+      "support_choice_count": 45725642407254917593310133730609089128159540567747907720913587508225603315115635907723343093420941552158599898183968000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 118,
+      "t": 139,
+      "weight_choice_count_formula": "(17^32 - 1)^118",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,118) * (17^32 - 1)^118 * binom(139,118)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 396,
+      "all_row_set_count": 131169217511293618831944000,
+      "canonical_common_gcd": {
+        "degree": 117,
+        "monic_polynomial": "Z^117",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 116,
+      "minor_size": 117,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 116
+      },
+      "support_choice_count": 13659812162167291838001508304333854473728672878466463572323552723976256180211759587623682240566255957353708324014451200,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 117,
+      "t": 140,
+      "weight_choice_count_formula": "(17^32 - 1)^117",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,117) * (17^32 - 1)^117 * binom(140,117)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 397,
+      "all_row_set_count": 3606497635473018049784300280,
+      "canonical_common_gcd": {
+        "degree": 116,
+        "monic_polynomial": "Z^116",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 115,
+      "minor_size": 116,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 115
+      },
+      "support_choice_count": 4035853593367608952136809271735002458147107895910546055459231486629348416880747150888815207440030169218141095731542400,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 116,
+      "t": 141,
+      "weight_choice_count_formula": "(17^32 - 1)^116",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,116) * (17^32 - 1)^116 * binom(141,116)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 398,
+      "all_row_set_count": 84624257908136115834824778080,
+      "canonical_common_gcd": {
+        "degree": 115,
+        "monic_polynomial": "Z^115",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 114,
+      "minor_size": 115,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 114
+      },
+      "support_choice_count": 1179241855996580953269193641111486864345250669837842172375997109443336061355583550385648775977439545665754073311987200,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 115,
+      "t": 142,
+      "weight_choice_count_formula": "(17^32 - 1)^115",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,115) * (17^32 - 1)^115 * binom(142,115)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 399,
+      "all_row_set_count": 1713849656772535006039031373800,
+      "canonical_common_gcd": {
+        "degree": 114,
+        "monic_polynomial": "Z^114",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 113,
+      "minor_size": 114,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 113
+      },
+      "support_choice_count": 340735712159816104587832333486987410552019665907919220661406199964783032803749015814948766928154642591863614147936000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 114,
+      "t": 143,
+      "weight_choice_count_formula": "(17^32 - 1)^114",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,114) * (17^32 - 1)^114 * binom(143,114)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 400,
+      "all_row_set_count": 30252210715675198558211547346560,
+      "canonical_common_gcd": {
+        "degree": 113,
+        "monic_polynomial": "Z^113",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 112,
+      "minor_size": 113,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 112
+      },
+      "support_choice_count": 97353060617090315596523523853424974443434190259405491617544628561366580801071147375699647693758469311961032613696000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 113,
+      "t": 144,
+      "weight_choice_count_formula": "(17^32 - 1)^113",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,113) * (17^32 - 1)^113 * binom(144,113)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 401,
+      "all_row_set_count": 469396280848805045810886556130100,
+      "canonical_common_gcd": {
+        "degree": 112,
+        "monic_polynomial": "Z^112",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 111,
+      "minor_size": 112,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 111
+      },
+      "support_choice_count": 27502239624328014156017895488592555280270158748282051381956357568586059076302599133635150473486767580628991713369120,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 112,
+      "t": 145,
+      "weight_choice_count_formula": "(17^32 - 1)^112",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,112) * (17^32 - 1)^112 * binom(145,112)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 402,
+      "all_row_set_count": 6450057129781226982436652912470080,
+      "canonical_common_gcd": {
+        "degree": 111,
+        "monic_polynomial": "Z^111",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 110,
+      "minor_size": 111,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 110
+      },
+      "support_choice_count": 7681423535971914178239412206290190003466977007001470710172349246088874355476037663259692900325481219527299431165440,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 111,
+      "t": 146,
+      "weight_choice_count_formula": "(17^32 - 1)^111",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,111) * (17^32 - 1)^111 * binom(146,111)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 403,
+      "all_row_set_count": 79013199839820030534848998177758480,
+      "canonical_common_gcd": {
+        "degree": 110,
+        "monic_polynomial": "Z^110",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 109,
+      "minor_size": 110,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 109
+      },
+      "support_choice_count": 2120990080828065855185509340542813657673717531783988181166991956009614560840398459258273412776438844197836410097920,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 110,
+      "t": 147,
+      "weight_choice_count_formula": "(17^32 - 1)^110",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,110) * (17^32 - 1)^110 * binom(147,110)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 404,
+      "all_row_set_count": 867972262747820578345034878767819200,
+      "canonical_common_gcd": {
+        "degree": 109,
+        "monic_polynomial": "Z^109",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 108,
+      "minor_size": 109,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 108
+      },
+      "support_choice_count": 578930295015104823996044733150643926412180964010517865827218648042326555068098835033275621353370404123478920870400,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 109,
+      "t": 148,
+      "weight_choice_count_formula": "(17^32 - 1)^109",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,109) * (17^32 - 1)^109 * binom(148,109)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 405,
+      "all_row_set_count": 8595571658102045129818116747602531480,
+      "canonical_common_gcd": {
+        "degree": 108,
+        "monic_polynomial": "Z^108",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 107,
+      "minor_size": 108,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 107
+      },
+      "support_choice_count": 156196539991699073800913059191634128660712190785015958849422853060924738867383101531255056256231123884800005878400,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 108,
+      "t": 149,
+      "weight_choice_count_formula": "(17^32 - 1)^108",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,108) * (17^32 - 1)^108 * binom(149,108)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 406,
+      "all_row_set_count": 77103134474669507808999718333976196000,
+      "canonical_common_gcd": {
+        "degree": 107,
+        "monic_polynomial": "Z^107",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 106,
+      "minor_size": 107,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 106
+      },
+      "support_choice_count": 41652410664453086346910149117769100976189917542670922359846094149579930364635493741668015001661633035946668234240,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 107,
+      "t": 150,
+      "weight_choice_count_formula": "(17^32 - 1)^107",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,107) * (17^32 - 1)^107 * binom(150,107)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 407,
+      "all_row_set_count": 629169365508704665489903257132350201400,
+      "canonical_common_gcd": {
+        "degree": 106,
+        "monic_polynomial": "Z^106",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 105,
+      "minor_size": 106,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 105
+      },
+      "support_choice_count": 10977359460828769061870408757638654690769263982920661804195891807894218101024625197927284741817228410951461825280,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 106,
+      "t": 151,
+      "weight_choice_count_formula": "(17^32 - 1)^106",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,106) * (17^32 - 1)^106 * binom(151,106)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 408,
+      "all_row_set_count": 4688795937593084907665736021700474766400,
+      "canonical_common_gcd": {
+        "degree": 105,
+        "monic_polynomial": "Z^105",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 104,
+      "minor_size": 105,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 104
+      },
+      "support_choice_count": 2858968311665477937489590487247413752387081037320860322468708922940508891175946611745189637918000519805540426240,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 105,
+      "t": 152,
+      "weight_choice_count_formula": "(17^32 - 1)^105",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,105) * (17^32 - 1)^105 * binom(152,105)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 409,
+      "all_row_set_count": 32026150823738481735395429076793421395500,
+      "canonical_common_gcd": {
+        "degree": 104,
+        "monic_polynomial": "Z^104",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 103,
+      "minor_size": 104,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 103
+      },
+      "support_choice_count": 735763903737439175089232845982790303923145855192868465341211855168513317582045083905012039170073663185249374400,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 104,
+      "t": 153,
+      "weight_choice_count_formula": "(17^32 - 1)^104",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,104) * (17^32 - 1)^104 * binom(153,104)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 410,
+      "all_row_set_count": 201149345722743342538860075330950367478560,
+      "canonical_common_gcd": {
+        "degree": 103,
+        "monic_polynomial": "Z^103",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 102,
+      "minor_size": 103,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 102
+      },
+      "support_choice_count": 187089109996806049411443070861149612733513860489140147666225019407152530632109263389049516072585968144904486400,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 103,
+      "t": 154,
+      "weight_choice_count_formula": "(17^32 - 1)^103",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,103) * (17^32 - 1)^103 * binom(154,103)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 411,
+      "all_row_set_count": 1165221082896806046310922025638106900143400,
+      "canonical_common_gcd": {
+        "degree": 102,
+        "monic_polynomial": "Z^102",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 101,
+      "minor_size": 102,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 101
+      },
+      "support_choice_count": 47000434950417129486289356826093683198907140561905939535661407314479782085627449095297805257259401753476005120,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 102,
+      "t": 155,
+      "weight_choice_count_formula": "(17^32 - 1)^102",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,102) * (17^32 - 1)^102 * binom(155,102)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 412,
+      "all_row_set_count": 6242760225944100272356697397964160604404640,
+      "canonical_common_gcd": {
+        "degree": 101,
+        "monic_polynomial": "Z^101",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 100,
+      "minor_size": 101,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 100
+      },
+      "support_choice_count": 11664341520541477390757942569979454224546297657699284264324728822571624751177615103942521012750508464366307840,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 101,
+      "t": 156,
+      "weight_choice_count_formula": "(17^32 - 1)^101",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,101) * (17^32 - 1)^101 * binom(156,101)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 413,
+      "all_row_set_count": 31012358678820676071040147443457924406028940,
+      "canonical_common_gcd": {
+        "degree": 100,
+        "monic_polynomial": "Z^100",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 99,
+      "minor_size": 100,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 99
+      },
+      "support_choice_count": 2859462363045362175889689804776516690968873940358319686157275755047898300652764867714064617203401346847080320,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 100,
+      "t": 157,
+      "weight_choice_count_formula": "(17^32 - 1)^100",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,100) * (17^32 - 1)^100 * binom(157,100)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 414,
+      "all_row_set_count": 143189733233596341882651762012459148338766000,
+      "canonical_common_gcd": {
+        "degree": 99,
+        "monic_polynomial": "Z^99",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 98,
+      "minor_size": 99,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 98
+      },
+      "support_choice_count": 692363768291855248399440630696493145513044537617026558391592192505544382724640403804858260824068122723264000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 99,
+      "t": 158,
+      "weight_choice_count_formula": "(17^32 - 1)^99",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,99) * (17^32 - 1)^99 * binom(158,99)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 415,
+      "all_row_set_count": 615833221538262299883830979737191107650414100,
+      "canonical_common_gcd": {
+        "degree": 98,
+        "monic_polynomial": "Z^98",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 97,
+      "minor_size": 98,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 97
+      },
+      "support_choice_count": 165565248939356689834648846470900534796597606821462872658859002555673656738500966127248714544885855433824000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 98,
+      "t": 159,
+      "weight_choice_count_formula": "(17^32 - 1)^98",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,98) * (17^32 - 1)^98 * binom(159,98)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 416,
+      "all_row_set_count": 2472162036282630021039034757367935629277648000,
+      "canonical_common_gcd": {
+        "degree": 97,
+        "monic_polynomial": "Z^97",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 96,
+      "minor_size": 97,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 96
+      },
+      "support_choice_count": 39097335894113146033242378202766873277268832454224967519441403013147032193670107663784033796141720078348800,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 97,
+      "t": 160,
+      "weight_choice_count_formula": "(17^32 - 1)^97",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,97) * (17^32 - 1)^97 * binom(160,97)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 417,
+      "all_row_set_count": 9280710221304286788116972549474771808276208850,
+      "canonical_common_gcd": {
+        "degree": 96,
+        "monic_polynomial": "Z^96",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 95,
+      "minor_size": 96,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 95
+      },
+      "support_choice_count": 9116446109925421070251227609779775740132396028989956368715904067969380102850962604295796341888814537499600,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 96,
+      "t": 161,
+      "weight_choice_count_formula": "(17^32 - 1)^96",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,96) * (17^32 - 1)^96 * binom(161,96)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 418,
+      "all_row_set_count": 32639892664342891933241781340893634365063681600,
+      "canonical_common_gcd": {
+        "degree": 95,
+        "monic_polynomial": "Z^95",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 94,
+      "minor_size": 95,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 94
+      },
+      "support_choice_count": 2098750183579953052144167507287430386217530021062435998553301655935396858210293549190399157844906943884800,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 95,
+      "t": 162,
+      "weight_choice_count_formula": "(17^32 - 1)^95",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,95) * (17^32 - 1)^95 * binom(162,95)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 419,
+      "all_row_set_count": 107721384890739488829123824395511067379158378000,
+      "canonical_common_gcd": {
+        "degree": 94,
+        "monic_polynomial": "Z^94",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 93,
+      "minor_size": 94,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 93
+      },
+      "support_choice_count": 476988678086352966396401706201688724140347732059644545125750376348953831411430352088727081328387941792000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 94,
+      "t": 163,
+      "weight_choice_count_formula": "(17^32 - 1)^94",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,94) * (17^32 - 1)^94 * binom(163,94)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 420,
+      "all_row_set_count": 334131362067533191104582067782937347025574558400,
+      "canonical_common_gcd": {
+        "degree": 93,
+        "monic_polynomial": "Z^93",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 92,
+      "minor_size": 93,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 92
+      },
+      "support_choice_count": 107009393174504006781054320723051885606665123660158919431552590398094654302325663714416099391094192192000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 93,
+      "t": 164,
+      "weight_choice_count_formula": "(17^32 - 1)^93",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,93) * (17^32 - 1)^93 * binom(164,93)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 421,
+      "all_row_set_count": 975503377269082347317315797208746877874322983000,
+      "canonical_common_gcd": {
+        "degree": 92,
+        "monic_polynomial": "Z^92",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 91,
+      "minor_size": 92,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 91
+      },
+      "support_choice_count": 23694937060068744358662028160104346098618705953320903588415216445292387738372111251049279150885142556800,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 92,
+      "t": 165,
+      "weight_choice_count_formula": "(17^32 - 1)^92",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,92) * (17^32 - 1)^92 * binom(165,92)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 422,
+      "all_row_set_count": 2684304068045662271753161595490447264666064972320,
+      "canonical_common_gcd": {
+        "degree": 91,
+        "monic_polynomial": "Z^91",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 90,
+      "minor_size": 91,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 90
+      },
+      "support_choice_count": 5177990996499583090253934894844655204448743343718582256850831147189785444014808159374189268126919513600,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 91,
+      "t": 166,
+      "weight_choice_count_formula": "(17^32 - 1)^91",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,91) * (17^32 - 1)^91 * binom(166,91)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 423,
+      "all_row_set_count": 6970842262831498554995351463887273937308644802520,
+      "canonical_common_gcd": {
+        "degree": 90,
+        "monic_polynomial": "Z^90",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 89,
+      "minor_size": 90,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 89
+      },
+      "support_choice_count": 1116580996875502514723004918082615221812406739996187169131340365863200178685657683656519486728790700800,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 90,
+      "t": 167,
+      "weight_choice_count_formula": "(17^32 - 1)^90",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,90) * (17^32 - 1)^90 * binom(167,90)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 424,
+      "all_row_set_count": 17104695717950707262500765033102171686482750635200,
+      "canonical_common_gcd": {
+        "degree": 89,
+        "monic_polynomial": "Z^89",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 88,
+      "minor_size": 89,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 88
+      },
+      "support_choice_count": 237570424867128194621915940017577706768597178722593014708795822524085144401203762480110529091232064000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 89,
+      "t": 168,
+      "weight_choice_count_formula": "(17^32 - 1)^89",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,89) * (17^32 - 1)^89 * binom(168,89)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 425,
+      "all_row_set_count": 39702427205817374681369445503532371039565903133340,
+      "canonical_common_gcd": {
+        "degree": 88,
+        "monic_polynomial": "Z^88",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 87,
+      "minor_size": 88,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 87
+      },
+      "support_choice_count": 49867376917864172927713487409350037505672521005449948842176481614725419461573431275306219549810504000,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 88,
+      "t": 169,
+      "weight_choice_count_formula": "(17^32 - 1)^88",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,88) * (17^32 - 1)^88 * binom(169,88)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 426,
+      "all_row_set_count": 87268338377759025159166456763568067991758141474400,
+      "canonical_common_gcd": {
+        "degree": 87,
+        "monic_polynomial": "Z^87",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 86,
+      "minor_size": 87,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 86
+      },
+      "support_choice_count": 10325480397110699335620675040053654824703957290540224701438895016696086853219910475828111342078410240,
+      "support_condition": "any distinct support subset S of the descriptor domain with |S|=j+1",
+      "support_node_count": 87,
+      "t": 170,
+      "weight_choice_count_formula": "(17^32 - 1)^87",
+      "weight_condition": "all weights w_i are nonzero elements of F_17^32",
+      "weighted_support_row_chart_count_formula": "binom(512,87) * (17^32 - 1)^87 * binom(170,87)",
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    }
+  ],
+  "checks": [
+    "all 512 descriptor-domain elements are distinct",
+    "domain encodings decode and re-encode in F_17^32",
+    "nonzero weights have nonzero product in the field",
+    "the prefix row set is nonzero for every distinct support and nonzero weight vector",
+    "every maximal row-set determinant has the displayed Z^(j+1) factor",
+    "per-agreement gcd degree and root table agree with the support-uniform unweighted certificate"
+  ],
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512,
+    "field_has_nonzero_weights": true,
+    "field_principle": "Products of nonzero field elements are nonzero, and distinct support nodes make the ordinary Vandermonde determinant nonzero.",
+    "full_domain_distinct": true
+  },
+  "formula": {
+    "canonical_common_gcd": "For every distinct S and nonzero weight vector w, every nonzero maximal minor is a scalar multiple of Z^(j+1), and the prefix row set is nonzero; hence the v10 canonical monic gcd is Z^(j+1).",
+    "determinant_factorization": "Delta_{A,S,w,R}(Z) = Z^(j+1) * det(x_i^{r_a})_{a,i} * (prod_i w_i) * det(x_i^b)_{i,0<=b<=j}",
+    "matrix_factorization": "(v_{r_a+b})_{a,b} = (x_i^{r_a})_{a,i} * diag(w_i) * (x_i^b)_{i,b}",
+    "nonzero_witness": "For R={0,...,j}, both determinant factors are ordinary Vandermonde determinants on S, and prod_i w_i is nonzero.",
+    "row_set": "R={r_0<...<r_j} subset {0,...,t-1}",
+    "support": "S={x_0,...,x_j}, any distinct subset of the descriptor domain",
+    "syndrome": "u_m=0, v_m=sum_i w_i x_i^m",
+    "weights": "w_i in F_17^32^* for every support node"
+  },
+  "nonclaims": [
+    "only zero-u weighted power-sum syndromes from distinct supports of size j+1",
+    "all support weights must be nonzero",
+    "not arbitrary length-256 M3 syndrome pencils",
+    "not supports of size different from j+1",
+    "not a worst-case support-wise MCA row bound",
+    "not a quotient, extension, or singular-bucket classification"
+  ],
+  "object": "weight-uniform canonical regular-minor gcd formula over the M3 window",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "f17-32-m3-weight-uniform-canonical-gcd-v1",
+  "source_artifacts": {
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    },
+    "support_uniform_formula_certificate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-support-uniform-canonical-gcd/f17_32_n512_k256_m3_support_uniform_canonical_gcd.json",
+      "sha256": "cb7f98073a2fd508c742018f83cd0e76e60547c77ceb21208a7b7be612b2140c"
+    }
+  },
+  "status": "PROVED / AUDIT for all distinct rank-size supports with nonzero weights",
+  "summary": {
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551,
+    "raw_aperiodic_numerator_before_subtraction": 1,
+    "residual_aperiodic_numerator_after_tangent": 0,
+    "root_certificate_template": {
+      "factor": {
+        "multiplicity": "degree",
+        "root": 0
+      },
+      "field_encoding": "base-p low-to-high integer",
+      "kind": "split_linear_factorization",
+      "leading_coefficient": 1
+    },
+    "root_union": [
+      0
+    ],
+    "support_choice_total": 6668863801358846384438784215999588662393159502296416400641669827596186824155396220386094074327280024104964169453842551838156
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551,
+    "support_choice_total": 6668863801358846384438784215999588662393159502296416400641669827596186824155396220386094074327280024104964169453842551838156,
+    "support_node_count_max": 128,
+    "support_node_count_min": 87,
+    "weight_choice_formula_per_agreement": "(17^32 - 1)^(j+1)",
+    "weighted_support_row_chart_formula_per_agreement": "binom(512,j+1) * (17^32 - 1)^(j+1) * binom(t,j+1)"
+  }
+}

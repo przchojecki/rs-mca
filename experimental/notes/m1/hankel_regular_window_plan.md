@@ -228,6 +228,33 @@ support choices of size `j+1`.  This removes support-choice dependence inside
 the zero-`u` rank-size power-sum branch, but does not classify arbitrary M3
 syndrome pencils or supports of other sizes.
 
+The weight-uniform companion
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-weight-uniform-canonical-gcd/
+  f17_32_n512_k256_m3_weight_uniform_canonical_gcd.json
+```
+
+further extends the same branch from unit weights to arbitrary nonzero residue
+weights.  For
+
+```text
+v_m = sum_i w_i x_i^m,        w_i in F_17^32^*,
+```
+
+the Hankel block factors as
+
+```text
+(v_{r_a+b})_{a,b}
+  = (x_i^{r_a})_{a,i} * diag(w_i) * (x_i^b)_{i,b}.
+```
+
+The determinant is therefore `Z^(j+1)` times two alternants and
+`prod_i w_i`.  The prefix row set is nonzero for every distinct support and
+nonzero weight vector, so the v10 canonical gcd remains `Z^(j+1)` with root
+table `{0}`.  This classifies the simple rank-size zero-`u` weighted
+power-sum branch; arbitrary length-256 M3 pencils remain open.
+
 The syndrome-realizability sidecar
 
 ```text
