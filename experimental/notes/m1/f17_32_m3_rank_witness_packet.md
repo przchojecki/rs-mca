@@ -133,6 +133,9 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-exact-root-tab
 experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/
   f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json
 
+experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/
+  f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
   f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 
@@ -516,6 +519,11 @@ comes from an auxiliary polynomial `Q` of degree `< h=|X union Y|-t`, where
 `h=5,3,1`, satisfying six direction-node consistency equations before the
 split-locator divisor gate is tested.
 
+The `A=387` separated-boundary safety companion uses the `h=1` specialization
+to close that agreement for arbitrary nonzero separated weights: the finite
+root table has at most one ambient root, the split-locator gate cannot increase
+it, and the endpoint adds one projective parameter, giving total `<=2`.
+
 The affine-pivot compression companion gives the finite-root route a concrete
 Hankel-chart target.  If a row-set chart has finite base slope `z0` with
 `M_R(z0)` invertible and `H_R(v)=P_R Q_R` has rank at most `r`, then
@@ -799,6 +807,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_exact_root_table
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json

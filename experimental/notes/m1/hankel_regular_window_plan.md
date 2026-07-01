@@ -233,6 +233,18 @@ is the general reduction for arbitrary nonzero separated-support weights at
 `Q` of degree `< h`, with `h=5,3,1`, satisfying six direction-node consistency
 equations before the split-locator gate is applied.
 
+The `A=387` separated-boundary safety companion
+
+```text
+experimental/notes/m1/hankel_rank6_a387_separated_boundary_safety.md
+experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/
+  f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json
+```
+
+uses the `h=1` case of this transfer to close arbitrary nonzero separated
+weights at `A=387`: at most one finite split-locator root plus the endpoint,
+so total projective contribution is at most `2 <= 6`.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 
@@ -747,6 +759,8 @@ that barycentric family, so after filtering only the endpoint remains.
 The low-degree transfer theorem gives the corresponding search object for
 arbitrary separated-support boundary weights: projective `Q`-spaces of
 dimensions `4,2,0` plus six consistency equations and the split-locator gate.
+For `A=387`, the projective `Q`-space is a point, so the arbitrary-weight
+separated branch is already projective-safe with total at most `2`.
 
 Replay:
 
@@ -774,6 +788,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_exact_root_table
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json
 ```
 
 The affine-pivot compression theorem is:

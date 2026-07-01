@@ -160,6 +160,17 @@ weights at `A=385,386,387` reduce to an auxiliary `Q` of degree `< h` with
 `h=5,3,1`, six direction-node consistency equations, and then the
 split-locator gate.
 
+The `A=387` separated-boundary safety packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/
+  f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json
+```
+
+uses the `h=1` specialization to close arbitrary nonzero separated weights at
+`A=387`: at most one finite split-locator root plus the endpoint, so projective
+total is at most `2`.
+
 The rank-node dichotomy packet
 
 ```text
@@ -288,6 +299,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_exact_root_table
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json

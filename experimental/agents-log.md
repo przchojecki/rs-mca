@@ -168,6 +168,29 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Solve or falsify the six consistency equations for
   natural weight strata, then apply the split-locator divisor gate to `L_Q`.
 
+### 2026-07-01 - M3 A387 separated rank-6 safety
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/`;
+  `experimental/notes/m1/hankel_rank6_a387_separated_boundary_safety.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A projective-safety theorem for arbitrary nonzero
+  separated rank-6 weights at `A=387`: the low-degree transfer has `h=1`, so
+  there is at most one finite split-locator root and the endpoint adds one more
+  parameter, giving total `<=2<=6`.
+- **How it is useful:** It closes one of the three separated boundary
+  agreements for arbitrary weights, leaving only the harder `A=385,386`
+  consistency spaces in this separated rank-6 boundary lane.
+- **What to do next:** Attack `A=386` next, where the transfer leaves a
+  projective `Q`-plane and six consistency equations before the split gate.
+
 ### 2026-07-01 - M3 rank-6 boundary dual gcd
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

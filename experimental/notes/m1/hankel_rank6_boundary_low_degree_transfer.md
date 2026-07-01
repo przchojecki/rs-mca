@@ -83,6 +83,16 @@ The barycentric exact-root packet is the special case `a_s=b_s=Omega_s`.  In
 that case the consistency equations force the ambient root table `{1}`, and
 the split-locator filter removes that root from finite support-wise counting.
 
+At `A=387`, this transfer already closes the separated branch for arbitrary
+nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at
+most one finite slope.  The companion note
+
+```text
+experimental/notes/m1/hankel_rank6_a387_separated_boundary_safety.md
+```
+
+records the resulting projective bound `1 finite + 1 endpoint <= 2`.
+
 Replay:
 
 ```sh
