@@ -1,4 +1,4 @@
-# F17^32 M3 Low-Rank2-11 v10 Affine GCD Certificate
+# F17^32 M3 Low-Rank2-12 v10 Affine GCD Certificate
 
 This directory contains a standalone Paper D v10 affine rank-drop certificate
 for the synthetic low-rank M3 ladder at ranks `2..12` over the accepted row
@@ -17,6 +17,12 @@ both from the low-rank Lagrange-kernel formula and checks that their gcd in
 `F_17^32[Z]` is constant.  Since the Paper D v10 affine rank-drop gcd divides
 the gcd of any two nonzero maximal minors, the canonical affine rank-drop root
 set is empty for these structured branches.
+
+The structural reduction behind the two displayed minors is written out in
+`experimental/notes/m3/m3_low_rank_affine_spectral_reduction.md`: the prefix
+and row-shift-1 minors reduce to `det(I+ZK_0)` and `det(I+ZK_1)` for two
+explicit `rank x rank` kernels, so the affine task is spectral disjointness of
+those kernels.
 
 Run:
 

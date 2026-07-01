@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 low-rank affine spectral reduction
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m3/m3_low_rank_affine_spectral_reduction.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-v10-affine-gcd/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Records the matrix-determinant-lemma reduction
+  behind the synthetic low-rank affine packets: the prefix and row-shift-1
+  maximal minors are nonzero scalar multiples of `det(I+ZK_0)` and
+  `det(I+ZK_1)` for two explicit `rank x rank` Lagrange kernels.
+- **How it is useful:** Turns the rank-by-rank affine-gcd computation into a
+  concrete spectral-disjointness target.  Proving that target through the
+  endpoint-capacity range would close the synthetic low-rank regular
+  projective packet after quotient-image endpoint subtraction.
+- **What to do next:** Try to prove spectral disjointness for consecutive
+  subgroup nodes, or use a targeted scan to find the first rank/agreement
+  where the two kernel spectra collide.
+
 ### 2026-07-01 - v10 guide and site metadata sync
 
 - **Agent/model:** Codex.
