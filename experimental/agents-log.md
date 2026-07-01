@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 canonical all-row-set gcd formula
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_canonical_gcd_formula.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-canonical-gcd-formula-window/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the synthetic M3 zero-`u` nested-prefix
+  family.
+- **What is being added:** A formula certificate for the v10 canonical gcd
+  over all nonzero maximal row-set minors across `385 <= A <= 426`.  For any
+  maximal row set, the determinant factors as `Z^(j+1)` times two alternants,
+  and the prefix row set is nonzero by Vandermonde, so the canonical monic gcd
+  at agreement `A` is `Z^(j+1)` with root table `{0}`.
+- **How it is useful:** This removes the contiguous-subatlas limitation for
+  the synthetic family and exercises the actual v10 regular-gcd object across
+  all formal row-set charts in the M3 window.
+- **What to do next:** Move from this synthetic zero-`u` family to arbitrary
+  M3 row data, or classify the first regular-rank-drop singular bucket that
+  survives tangent, quotient, and extension subtraction.
+
 ### 2026-07-01 - M3 all-contiguous gcd formula window
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

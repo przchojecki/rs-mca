@@ -1,0 +1,1171 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "all_row_set_count": 129,
+      "canonical_common_gcd": {
+        "degree": 128,
+        "monic_polynomial": "Z^128",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 127,
+      "minor_size": 128,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 127
+      },
+      "support_node_count": 128,
+      "t": 129,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 386,
+      "all_row_set_count": 357760,
+      "canonical_common_gcd": {
+        "degree": 127,
+        "monic_polynomial": "Z^127",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 126,
+      "minor_size": 127,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 126
+      },
+      "support_node_count": 127,
+      "t": 130,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 387,
+      "all_row_set_count": 297602656,
+      "canonical_common_gcd": {
+        "degree": 126,
+        "monic_polynomial": "Z^126",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 125,
+      "minor_size": 126,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 125
+      },
+      "support_node_count": 126,
+      "t": 131,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 388,
+      "all_row_set_count": 117850651776,
+      "canonical_common_gcd": {
+        "degree": 125,
+        "monic_polynomial": "Z^125",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 124,
+      "minor_size": 125,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 124
+      },
+      "support_node_count": 125,
+      "t": 132,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 389,
+      "all_row_set_count": 27212042858000,
+      "canonical_common_gcd": {
+        "degree": 124,
+        "monic_polynomial": "Z^124",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 123,
+      "minor_size": 124,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 123
+      },
+      "support_node_count": 124,
+      "t": 133,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 390,
+      "all_row_set_count": 4110502764804800,
+      "canonical_common_gcd": {
+        "degree": 123,
+        "monic_polynomial": "Z^123",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 122,
+      "minor_size": 123,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 122
+      },
+      "support_node_count": 123,
+      "t": 134,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 391,
+      "all_row_set_count": 437531400061434000,
+      "canonical_common_gcd": {
+        "degree": 122,
+        "monic_polynomial": "Z^122",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 121,
+      "minor_size": 122,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 121
+      },
+      "support_node_count": 122,
+      "t": 135,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 392,
+      "all_row_set_count": 34569147570568156800,
+      "canonical_common_gcd": {
+        "degree": 121,
+        "monic_polynomial": "Z^121",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 120,
+      "minor_size": 121,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 120
+      },
+      "support_node_count": 121,
+      "t": 136,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 393,
+      "all_row_set_count": 2106811614990104173800,
+      "canonical_common_gcd": {
+        "degree": 120,
+        "monic_polynomial": "Z^120",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 119,
+      "minor_size": 120,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 119
+      },
+      "support_node_count": 120,
+      "t": 137,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 394,
+      "all_row_set_count": 102014036094257675784000,
+      "canonical_common_gcd": {
+        "degree": 119,
+        "monic_polynomial": "Z^119",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 118,
+      "minor_size": 119,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 118
+      },
+      "support_node_count": 119,
+      "t": 138,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 395,
+      "all_row_set_count": 4017652788178848131293200,
+      "canonical_common_gcd": {
+        "degree": 118,
+        "monic_polynomial": "Z^118",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 117,
+      "minor_size": 118,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 117
+      },
+      "support_node_count": 118,
+      "t": 139,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 396,
+      "all_row_set_count": 131169217511293618831944000,
+      "canonical_common_gcd": {
+        "degree": 117,
+        "monic_polynomial": "Z^117",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 116,
+      "minor_size": 117,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 116
+      },
+      "support_node_count": 117,
+      "t": 140,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 397,
+      "all_row_set_count": 3606497635473018049784300280,
+      "canonical_common_gcd": {
+        "degree": 116,
+        "monic_polynomial": "Z^116",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 115,
+      "minor_size": 116,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 115
+      },
+      "support_node_count": 116,
+      "t": 141,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 398,
+      "all_row_set_count": 84624257908136115834824778080,
+      "canonical_common_gcd": {
+        "degree": 115,
+        "monic_polynomial": "Z^115",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 114,
+      "minor_size": 115,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 114
+      },
+      "support_node_count": 115,
+      "t": 142,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 399,
+      "all_row_set_count": 1713849656772535006039031373800,
+      "canonical_common_gcd": {
+        "degree": 114,
+        "monic_polynomial": "Z^114",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 113,
+      "minor_size": 114,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 113
+      },
+      "support_node_count": 114,
+      "t": 143,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 400,
+      "all_row_set_count": 30252210715675198558211547346560,
+      "canonical_common_gcd": {
+        "degree": 113,
+        "monic_polynomial": "Z^113",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 112,
+      "minor_size": 113,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 112
+      },
+      "support_node_count": 113,
+      "t": 144,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 401,
+      "all_row_set_count": 469396280848805045810886556130100,
+      "canonical_common_gcd": {
+        "degree": 112,
+        "monic_polynomial": "Z^112",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 111,
+      "minor_size": 112,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 111
+      },
+      "support_node_count": 112,
+      "t": 145,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 402,
+      "all_row_set_count": 6450057129781226982436652912470080,
+      "canonical_common_gcd": {
+        "degree": 111,
+        "monic_polynomial": "Z^111",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 110,
+      "minor_size": 111,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 110
+      },
+      "support_node_count": 111,
+      "t": 146,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 403,
+      "all_row_set_count": 79013199839820030534848998177758480,
+      "canonical_common_gcd": {
+        "degree": 110,
+        "monic_polynomial": "Z^110",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 109,
+      "minor_size": 110,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 109
+      },
+      "support_node_count": 110,
+      "t": 147,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 404,
+      "all_row_set_count": 867972262747820578345034878767819200,
+      "canonical_common_gcd": {
+        "degree": 109,
+        "monic_polynomial": "Z^109",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 108,
+      "minor_size": 109,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 108
+      },
+      "support_node_count": 109,
+      "t": 148,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 405,
+      "all_row_set_count": 8595571658102045129818116747602531480,
+      "canonical_common_gcd": {
+        "degree": 108,
+        "monic_polynomial": "Z^108",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 107,
+      "minor_size": 108,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 107
+      },
+      "support_node_count": 108,
+      "t": 149,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 406,
+      "all_row_set_count": 77103134474669507808999718333976196000,
+      "canonical_common_gcd": {
+        "degree": 107,
+        "monic_polynomial": "Z^107",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 106,
+      "minor_size": 107,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 106
+      },
+      "support_node_count": 107,
+      "t": 150,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 407,
+      "all_row_set_count": 629169365508704665489903257132350201400,
+      "canonical_common_gcd": {
+        "degree": 106,
+        "monic_polynomial": "Z^106",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 105,
+      "minor_size": 106,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 105
+      },
+      "support_node_count": 106,
+      "t": 151,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 408,
+      "all_row_set_count": 4688795937593084907665736021700474766400,
+      "canonical_common_gcd": {
+        "degree": 105,
+        "monic_polynomial": "Z^105",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 104,
+      "minor_size": 105,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 104
+      },
+      "support_node_count": 105,
+      "t": 152,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 409,
+      "all_row_set_count": 32026150823738481735395429076793421395500,
+      "canonical_common_gcd": {
+        "degree": 104,
+        "monic_polynomial": "Z^104",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 103,
+      "minor_size": 104,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 103
+      },
+      "support_node_count": 104,
+      "t": 153,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 410,
+      "all_row_set_count": 201149345722743342538860075330950367478560,
+      "canonical_common_gcd": {
+        "degree": 103,
+        "monic_polynomial": "Z^103",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 102,
+      "minor_size": 103,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 102
+      },
+      "support_node_count": 103,
+      "t": 154,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 411,
+      "all_row_set_count": 1165221082896806046310922025638106900143400,
+      "canonical_common_gcd": {
+        "degree": 102,
+        "monic_polynomial": "Z^102",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 101,
+      "minor_size": 102,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 101
+      },
+      "support_node_count": 102,
+      "t": 155,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 412,
+      "all_row_set_count": 6242760225944100272356697397964160604404640,
+      "canonical_common_gcd": {
+        "degree": 101,
+        "monic_polynomial": "Z^101",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 100,
+      "minor_size": 101,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 100
+      },
+      "support_node_count": 101,
+      "t": 156,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 413,
+      "all_row_set_count": 31012358678820676071040147443457924406028940,
+      "canonical_common_gcd": {
+        "degree": 100,
+        "monic_polynomial": "Z^100",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 99,
+      "minor_size": 100,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 99
+      },
+      "support_node_count": 100,
+      "t": 157,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 414,
+      "all_row_set_count": 143189733233596341882651762012459148338766000,
+      "canonical_common_gcd": {
+        "degree": 99,
+        "monic_polynomial": "Z^99",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 98,
+      "minor_size": 99,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 98
+      },
+      "support_node_count": 99,
+      "t": 158,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 415,
+      "all_row_set_count": 615833221538262299883830979737191107650414100,
+      "canonical_common_gcd": {
+        "degree": 98,
+        "monic_polynomial": "Z^98",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 97,
+      "minor_size": 98,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 97
+      },
+      "support_node_count": 98,
+      "t": 159,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 416,
+      "all_row_set_count": 2472162036282630021039034757367935629277648000,
+      "canonical_common_gcd": {
+        "degree": 97,
+        "monic_polynomial": "Z^97",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 96,
+      "minor_size": 97,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 96
+      },
+      "support_node_count": 97,
+      "t": 160,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 417,
+      "all_row_set_count": 9280710221304286788116972549474771808276208850,
+      "canonical_common_gcd": {
+        "degree": 96,
+        "monic_polynomial": "Z^96",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 95,
+      "minor_size": 96,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 95
+      },
+      "support_node_count": 96,
+      "t": 161,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 418,
+      "all_row_set_count": 32639892664342891933241781340893634365063681600,
+      "canonical_common_gcd": {
+        "degree": 95,
+        "monic_polynomial": "Z^95",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 94,
+      "minor_size": 95,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 94
+      },
+      "support_node_count": 95,
+      "t": 162,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 419,
+      "all_row_set_count": 107721384890739488829123824395511067379158378000,
+      "canonical_common_gcd": {
+        "degree": 94,
+        "monic_polynomial": "Z^94",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 93,
+      "minor_size": 94,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 93
+      },
+      "support_node_count": 94,
+      "t": 163,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 420,
+      "all_row_set_count": 334131362067533191104582067782937347025574558400,
+      "canonical_common_gcd": {
+        "degree": 93,
+        "monic_polynomial": "Z^93",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 92,
+      "minor_size": 93,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 92
+      },
+      "support_node_count": 93,
+      "t": 164,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 421,
+      "all_row_set_count": 975503377269082347317315797208746877874322983000,
+      "canonical_common_gcd": {
+        "degree": 92,
+        "monic_polynomial": "Z^92",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 91,
+      "minor_size": 92,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 91
+      },
+      "support_node_count": 92,
+      "t": 165,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 422,
+      "all_row_set_count": 2684304068045662271753161595490447264666064972320,
+      "canonical_common_gcd": {
+        "degree": 91,
+        "monic_polynomial": "Z^91",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 90,
+      "minor_size": 91,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 90
+      },
+      "support_node_count": 91,
+      "t": 166,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 423,
+      "all_row_set_count": 6970842262831498554995351463887273937308644802520,
+      "canonical_common_gcd": {
+        "degree": 90,
+        "monic_polynomial": "Z^90",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 89,
+      "minor_size": 90,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 89
+      },
+      "support_node_count": 90,
+      "t": 167,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 424,
+      "all_row_set_count": 17104695717950707262500765033102171686482750635200,
+      "canonical_common_gcd": {
+        "degree": 89,
+        "monic_polynomial": "Z^89",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 88,
+      "minor_size": 89,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 88
+      },
+      "support_node_count": 89,
+      "t": 168,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 425,
+      "all_row_set_count": 39702427205817374681369445503532371039565903133340,
+      "canonical_common_gcd": {
+        "degree": 88,
+        "monic_polynomial": "Z^88",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 87,
+      "minor_size": 88,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 87
+      },
+      "support_node_count": 88,
+      "t": 169,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    },
+    {
+      "A": 426,
+      "all_row_set_count": 87268338377759025159166456763568067991758141474400,
+      "canonical_common_gcd": {
+        "degree": 87,
+        "monic_polynomial": "Z^87",
+        "raw_aperiodic_numerator_before_subtraction": 1,
+        "residual_aperiodic_numerator_after_tangent": 0,
+        "roots": [
+          0
+        ],
+        "tangent_paid_roots": [
+          0
+        ]
+      },
+      "j": 86,
+      "minor_size": 87,
+      "nonzero_witness_row_set": {
+        "first": 0,
+        "kind": "prefix",
+        "last": 86
+      },
+      "support_node_count": 87,
+      "t": 170,
+      "zero_minor_policy": "ignored in the canonical gcd over nonzero maximal minors"
+    }
+  ],
+  "checks": [
+    "first 128 descriptor-domain elements are distinct",
+    "prefix maximal row set is nonzero for every agreement by Vandermonde",
+    "every maximal row-set determinant has a common Z^(j+1) factor",
+    "every nonzero maximal row-set determinant has no additional Z factor",
+    "per-agreement canonical gcd matches the all-contiguous gcd certificate"
+  ],
+  "field_audit": {
+    "decoded_prefix_hash": "725f4b906ca9e32b6358b11072ab2fee76f85b41dac78f2613f9b76b6413f7e5",
+    "field_principle": "Distinct support nodes make the ordinary Vandermonde determinant nonzero in the field.",
+    "max_support_prefix_distinct": true,
+    "max_support_prefix_hash": "725f4b906ca9e32b6358b11072ab2fee76f85b41dac78f2613f9b76b6413f7e5",
+    "max_support_prefix_size": 128
+  },
+  "formula": {
+    "canonical_common_gcd": "Every nonzero maximal minor is a scalar multiple of Z^(j+1), and at least one such minor is nonzero; hence the v10 canonical monic gcd over all nonzero maximal minors is Z^(j+1).",
+    "factorization": "Delta_{A,R}(Z) = Z^(j+1) * det(x_i^{r_a})_{a,i} * det(x_i^b)_{i,0<=b<=j}",
+    "prefix_witness": "For R={0,...,j}, both factors are ordinary Vandermonde determinants, so the minor is nonzero.",
+    "row_set": "R={r_0<...<r_j} subset {0,...,t-1}",
+    "support": "X_A = first j+1 descriptor-domain elements",
+    "syndrome": "u_m=0, v_m=sum_{x in X_A} x^m"
+  },
+  "nonclaims": [
+    "only the synthetic zero-u nested-prefix family",
+    "not arbitrary M3 row data",
+    "not a worst-case support-wise MCA row bound",
+    "not a quotient, extension, or singular-bucket classification"
+  ],
+  "object": "canonical all-row-set regular-minor gcd formula over the M3 window",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "f17-32-m3-canonical-gcd-formula-v1",
+  "source_artifacts": {
+    "all_contiguous_formula_certificate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-window/f17_32_n512_k256_m3_contiguous_gcd_formula_window.json",
+      "sha256": "0dbbab087cd80a3a537bdabb3aa8bc968a65b7fb0692aec24711116e586f37a6"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT for the synthetic zero-u prefix family",
+  "summary": {
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551,
+    "raw_aperiodic_numerator_before_subtraction": 1,
+    "residual_aperiodic_numerator_after_tangent": 0,
+    "root_certificate_template": {
+      "factor": {
+        "multiplicity": "degree",
+        "root": 0
+      },
+      "field_encoding": "base-p low-to-high integer",
+      "kind": "split_linear_factorization",
+      "leading_coefficient": 1
+    },
+    "root_union": [
+      0
+    ]
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551,
+    "support_node_count_max": 128,
+    "support_node_count_min": 87
+  }
+}

@@ -182,6 +182,29 @@ agreement `A` is `Z^(j+1)` with root table `{0}`.  This upgrades the synthetic
 contiguous audit from one endpoint to the full M3 window, but still does not
 claim the canonical all-row-set gcd/lcm ledger for arbitrary row data.
 
+The canonical formula companion
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-canonical-gcd-formula-window/
+  f17_32_n512_k256_m3_canonical_gcd_formula_window.json
+```
+
+removes the contiguous-row-set restriction for this synthetic family.  For any
+maximal row set `R={r_0<...<r_j}`,
+
+```text
+Delta_{A,R}(Z)
+  = Z^(j+1) * det(x_i^{r_a})_{a,i} * det(x_i^b)_{i,0<=b<=j}.
+```
+
+Thus every nonzero maximal row-set minor is a scalar multiple of `Z^(j+1)`.
+The prefix row set is nonzero by Vandermonde, so the v10 canonical monic gcd
+over all nonzero maximal row-set minors is exactly `Z^(j+1)` at every
+agreement in `385 <= A <= 426`.  This covers all
+`155193154203428426778689566118132250614039201839551` formal row-set charts
+for the synthetic zero-`u` nested-prefix family.  The remaining gap is
+arbitrary row data, not the canonical-gcd object for this family.
+
 The syndrome-realizability sidecar
 
 ```text
