@@ -19,7 +19,7 @@ import argparse
 from dataclasses import dataclass
 from hashlib import sha256
 import json
-from itertools import combinations, product
+from itertools import combinations, permutations, product
 from pathlib import Path
 from typing import Any
 
@@ -616,6 +616,33 @@ def fpoly_scale(
     return fpoly_trim([field.mul(coeff, scalar) for coeff in poly], field)
 
 
+def permutation_sign(permutation: tuple[int, ...]) -> int:
+    inversions = 0
+    for left_index, left in enumerate(permutation):
+        for right in permutation[left_index + 1 :]:
+            if left > right:
+                inversions += 1
+    return -1 if inversions % 2 else 1
+
+
+def fpoly_determinant(
+    matrix: list[list[list[tuple[int, ...]]]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    size = len(matrix)
+    if size == 0:
+        return [field.one]
+    total = [field.zero]
+    for permutation in permutations(range(size)):
+        term = [field.one]
+        for row, col in enumerate(permutation):
+            term = fpoly_mul(term, matrix[row][col], field)
+        if permutation_sign(permutation) < 0:
+            term = fpoly_scale(term, field.neg(field.one), field)
+        total = fpoly_add(total, term, field)
+    return fpoly_trim(total, field)
+
+
 def fpoly_eval(
     poly: list[tuple[int, ...]],
     value: tuple[int, ...],
@@ -1131,6 +1158,74 @@ def low_rank_update_coefficients_field(
     return coefficients
 
 
+def low_rank_lagrange_kernel_field(
+    base_nodes: list[tuple[int, ...]],
+    update_nodes: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[list[tuple[int, ...]]]:
+    basis_values_by_update = []
+    for update in update_nodes:
+        basis_values = []
+        for index, base in enumerate(base_nodes):
+            numerator = field.one
+            denominator = field.one
+            for other_index, other in enumerate(base_nodes):
+                if other_index == index:
+                    continue
+                numerator = field.mul(numerator, field.sub(update, other))
+                denominator = field.mul(denominator, field.sub(base, other))
+            basis_values.append(field.div(numerator, denominator))
+        basis_values_by_update.append(basis_values)
+
+    kernel = []
+    for left_values in basis_values_by_update:
+        row = []
+        for right_values in basis_values_by_update:
+            entry = field.zero
+            for left, right in zip(left_values, right_values):
+                entry = field.add(entry, field.mul(left, right))
+            row.append(entry)
+        kernel.append(row)
+    return kernel
+
+
+def low_rank_compression_audit_field(
+    base_nodes: list[tuple[int, ...]],
+    update_nodes: list[tuple[int, ...]],
+    coefficients: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> dict[str, Any]:
+    """Return the square-base determinant-lemma sidecar for low-rank packets."""
+
+    kernel = low_rank_lagrange_kernel_field(base_nodes, update_nodes, field)
+    kernel_polynomial_matrix = [
+        [
+            [field.one if row == col else field.zero, kernel[row][col]]
+            for col in range(len(update_nodes))
+        ]
+        for row in range(len(update_nodes))
+    ]
+    kernel_coefficients = fpoly_determinant(kernel_polynomial_matrix, field)
+    base_determinant = vandermonde_square_field(base_nodes, field)
+    hankel_coefficients = fpoly_scale(kernel_coefficients, base_determinant, field)
+    if fpoly_trim(hankel_coefficients, field) != fpoly_trim(coefficients, field):
+        raise ValueError("low-rank compression does not reproduce coefficients")
+    return {
+        "kind": "square_base_lagrange_kernel",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "base_node_count": len(base_nodes),
+        "update_rank": len(update_nodes),
+        "base_hankel_determinant": field.encode(base_determinant),
+        "kernel": [[field.encode(entry) for entry in row] for row in kernel],
+        "kernel_det_coefficients_ascending": [
+            field.encode(coefficient) for coefficient in kernel_coefficients
+        ],
+        "hankel_coefficients_ascending": [
+            field.encode(coefficient) for coefficient in hankel_coefficients
+        ],
+    }
+
+
 def low_rank_update_data_field(
     spec: dict[str, Any],
     size: int,
@@ -1185,6 +1280,7 @@ class ExtractionResult:
     residual_label: str | None = None
     residual_reason: str | None = None
     residual_audit: dict[str, Any] | None = None
+    regular_minor_audit: dict[str, Any] | None = None
     minor_family_records: list[dict[str, Any]] | None = None
 
 
@@ -2065,8 +2161,11 @@ def extract_for_agreement_field(
         )
     if spec.get("certificate_mode") == LOW_RANK_UPDATE_MODE:
         row_set = list(range(size))
-        _base_nodes, update_nodes, polynomial = low_rank_update_data_field(
+        base_nodes, update_nodes, polynomial = low_rank_update_data_field(
             spec, size, t + j, u, v, field
+        )
+        compression_audit = low_rank_compression_audit_field(
+            base_nodes, update_nodes, polynomial, field
         )
         if fpoly_is_zero(polynomial, field):
             return ExtractionResult(
@@ -2085,6 +2184,7 @@ def extract_for_agreement_field(
                     "low-rank update determinant vanished identically for "
                     "the prefix row set"
                 ),
+                regular_minor_audit=compression_audit,
             )
         return ExtractionResult(
             exact_agreement,
@@ -2097,6 +2197,7 @@ def extract_for_agreement_field(
             None,
             1,
             row_set_source=f"low_rank_update_prefix_rank{len(update_nodes)}",
+            regular_minor_audit=compression_audit,
         )
     if spec.get("certificate_mode") in {ZERO_U_MONOMIAL_MODE, SCALAR_MULTIPLE_MODE}:
         scalar = field.zero
@@ -2901,6 +3002,10 @@ def result_to_packet_item_field(
             "p": field.p,
             "field_extension_degree": field.degree,
         }
+        if result.regular_minor_audit is not None:
+            item["regular_minor_polynomial_data"]["low_rank_compression"] = (
+                result.regular_minor_audit
+            )
         if roots_encoded is not None:
             item["regular_minor_data"] = {
                 "coefficients_ascending": polynomial_encoded,

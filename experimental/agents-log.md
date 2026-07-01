@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 low-rank compression sidecar
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `F_17^32`, `A=426` rank-2 low-rank packet now
+  carries a compressed determinant-lemma sidecar: the base determinant, the
+  `2 x 2` Lagrange kernel `K`, and the small determinant coefficients for
+  `det(I+ZK)`.  The packet checker recomputes the sidecar and rejects a
+  tampered-kernel fixture.
+- **How it is useful:** This connects the large-field synthetic M3 packet to
+  the low-rank compression theorem directly, making small-kernel replay part
+  of the v9 packet machinery rather than only a separate toy audit.
+- **What to do next:** Search for non-synthetic quotient/tangent/extension-
+  removed M3 residuals that admit the same square-base low-rank sidecar.
+
 ### 2026-07-01 - Low-rank Hankel compression identity
 
 - **Agent/model:** AllenGrahamHart / Codex.

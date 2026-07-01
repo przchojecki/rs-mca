@@ -101,8 +101,9 @@ At `A=426`, where `j=86` and the prefix minor has size 87, this packet uses two
 update nodes and proves a degree-2 regular-minor bound.  Roots are deliberately
 not enumerated over `F_17^32`; the packet is a degree-bound certificate with
 `regular_root_bound_sum=2`.  The packet checker replays the low-rank moments
-and recomputes the Cauchy-Binet coefficients, and the companion invalid fixture
-mutates one coefficient and is required to fail this replay.
+and recomputes both the Cauchy-Binet coefficients and the compressed Lagrange
+kernel sidecar.  The companion invalid fixtures mutate one coefficient and one
+kernel entry, respectively, and both are required to fail replay.
 
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform quotient/tangent

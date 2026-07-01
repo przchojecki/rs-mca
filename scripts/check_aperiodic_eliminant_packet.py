@@ -21,7 +21,7 @@ JSON pointer fragments.
 from __future__ import annotations
 
 import argparse
-from itertools import combinations
+from itertools import combinations, permutations
 import json
 from hashlib import sha256
 from pathlib import Path
@@ -517,6 +517,58 @@ def extension_poly_mul(
     while len(out) > 1 and out[-1] == field.zero:
         out.pop()
     return out
+
+
+def extension_poly_add(
+    left: list[tuple[int, ...]],
+    right: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    size = max(len(left), len(right))
+    out = [field.zero] * size
+    for index in range(size):
+        left_coeff = left[index] if index < len(left) else field.zero
+        right_coeff = right[index] if index < len(right) else field.zero
+        out[index] = field.add(left_coeff, right_coeff)
+    return extension_poly_trim(out, field)
+
+
+def extension_poly_scale(
+    coefficients: list[tuple[int, ...]],
+    scalar: tuple[int, ...],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    return extension_poly_trim(
+        [field.mul(coefficient, scalar) for coefficient in coefficients],
+        field,
+    )
+
+
+def permutation_sign(permutation: tuple[int, ...]) -> int:
+    inversions = 0
+    for left_index, left in enumerate(permutation):
+        for right in permutation[left_index + 1 :]:
+            if left > right:
+                inversions += 1
+    return -1 if inversions % 2 else 1
+
+
+def extension_polynomial_determinant(
+    matrix: list[list[list[tuple[int, ...]]]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    size = len(matrix)
+    if size == 0:
+        return [field.one]
+    total = [field.zero]
+    for permutation in permutations(range(size)):
+        term = [field.one]
+        for row, col in enumerate(permutation):
+            term = extension_poly_mul(term, matrix[row][col], field)
+        if permutation_sign(permutation) < 0:
+            term = extension_poly_scale(term, field.neg(field.one), field)
+        total = extension_poly_add(total, term, field)
+    return extension_poly_trim(total, field)
 
 
 def extension_poly_trim(
@@ -2488,6 +2540,96 @@ def low_rank_update_coefficients_field(
     return extension_poly_trim(coefficients, field)
 
 
+def low_rank_lagrange_kernel_field(
+    base_nodes: list[tuple[int, ...]],
+    update_nodes: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[list[tuple[int, ...]]]:
+    basis_values_by_update = []
+    for update in update_nodes:
+        basis_values = []
+        for index, base in enumerate(base_nodes):
+            numerator = field.one
+            denominator = field.one
+            for other_index, other in enumerate(base_nodes):
+                if other_index == index:
+                    continue
+                numerator = field.mul(numerator, field.sub(update, other))
+                denominator = field.mul(denominator, field.sub(base, other))
+            basis_values.append(field.div(numerator, denominator))
+        basis_values_by_update.append(basis_values)
+
+    kernel = []
+    for left_values in basis_values_by_update:
+        row = []
+        for right_values in basis_values_by_update:
+            entry = field.zero
+            for left, right in zip(left_values, right_values):
+                entry = field.add(entry, field.mul(left, right))
+            row.append(entry)
+        kernel.append(row)
+    return kernel
+
+
+def low_rank_compression_sidecar_field(
+    base_nodes: list[tuple[int, ...]],
+    update_nodes: list[tuple[int, ...]],
+    coefficients: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+    location: str,
+) -> dict[str, Any]:
+    kernel = low_rank_lagrange_kernel_field(base_nodes, update_nodes, field)
+    kernel_polynomial_matrix = [
+        [
+            [field.one if row == col else field.zero, kernel[row][col]]
+            for col in range(len(update_nodes))
+        ]
+        for row in range(len(update_nodes))
+    ]
+    kernel_coefficients = extension_polynomial_determinant(
+        kernel_polynomial_matrix, field
+    )
+    base_determinant = vandermonde_square_field(base_nodes, field, location)
+    hankel_coefficients = extension_poly_scale(
+        kernel_coefficients, base_determinant, field
+    )
+    if extension_poly_trim(hankel_coefficients, field) != extension_poly_trim(
+        coefficients, field
+    ):
+        raise PacketError(f"{location}: low-rank compression does not replay")
+    return {
+        "kind": "square_base_lagrange_kernel",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "base_node_count": len(base_nodes),
+        "update_rank": len(update_nodes),
+        "base_hankel_determinant": field.encode(base_determinant),
+        "kernel": [[field.encode(entry) for entry in row] for row in kernel],
+        "kernel_det_coefficients_ascending": [
+            field.encode(coefficient) for coefficient in kernel_coefficients
+        ],
+        "hankel_coefficients_ascending": [
+            field.encode(coefficient) for coefficient in hankel_coefficients
+        ],
+    }
+
+
+def validate_low_rank_compression_sidecar_field(
+    sidecar: Any,
+    base_nodes: list[tuple[int, ...]],
+    update_nodes: list[tuple[int, ...]],
+    coefficients: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+    location: str,
+) -> None:
+    if not isinstance(sidecar, dict):
+        raise PacketError(f"{location}: low_rank_compression must be an object")
+    expected = low_rank_compression_sidecar_field(
+        base_nodes, update_nodes, coefficients, field, location
+    )
+    if sidecar != expected:
+        raise PacketError(f"{location}: low_rank_compression sidecar mismatch")
+
+
 def require_low_rank_update_metadata(
     rank_replay_input: dict[str, Any],
     size: int,
@@ -2560,6 +2702,7 @@ def validate_low_rank_update_replay_field(
     size: int,
     field: PolynomialBasisField,
     location: str,
+    compression_sidecar: Any = None,
 ) -> bool:
     if row_set != list(range(size)):
         raise PacketError(f"{location}: low-rank replay needs the prefix row set")
@@ -2583,6 +2726,15 @@ def validate_low_rank_update_replay_field(
     if decoded != expected:
         raise PacketError(
             f"{location}: low-rank extension coefficients do not match replay"
+        )
+    if compression_sidecar is not None:
+        validate_low_rank_compression_sidecar_field(
+            compression_sidecar,
+            base_nodes,
+            update_nodes,
+            decoded,
+            field,
+            location,
         )
     return True
 
@@ -2884,6 +3036,10 @@ def validate_closed_form_regular_minor_replay(
             location,
         )
     if mode == "low_rank_update_bound":
+        compression_sidecar = None
+        polynomial_data = item.get("regular_minor_polynomial_data")
+        if isinstance(polynomial_data, dict):
+            compression_sidecar = polynomial_data.get("low_rank_compression")
         return validate_low_rank_update_replay_field(
             row_set,
             coefficients,
@@ -2894,6 +3050,7 @@ def validate_closed_form_regular_minor_replay(
             size,
             extension_field,
             location,
+            compression_sidecar,
         )
     scalar = extension_field.zero
     if mode == "scalar_multiple_roots":
