@@ -9,6 +9,10 @@ where Phi_{m,r,h}=det(I+Z K_h) for the consecutive F_17^32 subgroup window.
 It deliberately does not write a certificate.  Use it to probe ranks beyond the
 current low-rank2..12 packet before deciding whether a larger packet is worth
 emitting.
+
+For ranks below the characteristic it uses the fast Newton-identity coefficient
+routine from the certified packet.  At rank 17 and above it switches to
+determinant interpolation, avoiding division by zero in characteristic 17.
 """
 
 from __future__ import annotations
@@ -26,9 +30,13 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from experimental.scripts.extract_regular_hankel_minors import (  # noqa: E402
+    PolynomialBasisField,
+    determinant_field,
     fpoly_degree,
+    fpoly_eval,
     fpoly_gcd,
     hash_json,
+    interpolate_field,
 )
 from experimental.scripts import (  # noqa: E402
     verify_f17_32_m3_low_rank2_12_v10_affine_gcd as packet,
@@ -173,18 +181,19 @@ def probe_records(
         shifted_scale = field.mul(base_determinant, base_product)
 
         for rank in ranks:
-            prefix_coefficients = packet.determinant_coefficients_from_kernel(
+            prefix_coefficients, prefix_method = determinant_coefficients_from_kernel(
                 field,
                 prefix_kernel,
                 rank,
                 base_determinant,
             )
-            shifted_coefficients = packet.determinant_coefficients_from_kernel(
+            shifted_coefficients, shifted_method = determinant_coefficients_from_kernel(
                 field,
                 shifted_kernel,
                 rank,
                 shifted_scale,
             )
+            require(prefix_method == shifted_method, "coefficient method mismatch")
             prefix_degree = fpoly_degree(prefix_coefficients, field)
             shifted_degree = fpoly_degree(shifted_coefficients, field)
             common_degree = fpoly_degree(
@@ -200,6 +209,7 @@ def probe_records(
                 "rank": rank,
                 "rank_capacity": size // 2,
                 "within_endpoint_capacity": rank <= size // 2,
+                "coefficient_method": prefix_method,
                 "prefix_degree": prefix_degree,
                 "shifted_degree": shifted_degree,
                 "common_gcd_degree": common_degree,
@@ -217,6 +227,68 @@ def probe_records(
     return summary(records, gcd_histogram, degree_failures)
 
 
+def determinant_coefficients_from_kernel(
+    field: PolynomialBasisField,
+    kernel: list[list[tuple[int, ...]]],
+    rank: int,
+    scale: tuple[int, ...],
+) -> tuple[list[tuple[int, ...]], str]:
+    """Return scaled coefficients of det(I+ZK) and the method used.
+
+    Newton identities are fast but divide by 1,2,...,rank.  Over the
+    characteristic-17 row field they are only valid for rank < 17.  The
+    interpolation path is slower but works uniformly through the endpoint
+    capacity range.
+    """
+
+    if rank < field.p:
+        return (
+            packet.determinant_coefficients_from_kernel(
+                field,
+                kernel,
+                rank,
+                scale,
+            ),
+            "newton",
+        )
+
+    subkernel = [row[:rank] for row in kernel[:rank]]
+    coefficients = characteristic_coefficients_by_interpolation(field, subkernel)
+    return (
+        [field.mul(scale, coefficient) for coefficient in coefficients],
+        "interpolation",
+    )
+
+
+def characteristic_coefficients_by_interpolation(
+    field: PolynomialBasisField,
+    kernel: list[list[tuple[int, ...]]],
+) -> list[tuple[int, ...]]:
+    """Compute det(I+ZK) by interpolation over the extension field."""
+
+    rank = len(kernel)
+    require(field.size > rank, "field too small for interpolation nodes")
+    points = []
+    for index in range(rank + 1):
+        slope = field.decode(index)
+        matrix = []
+        for row_index in range(rank):
+            row = []
+            for col_index in range(rank):
+                entry = field.mul(slope, kernel[row_index][col_index])
+                if row_index == col_index:
+                    entry = field.add(field.one, entry)
+                row.append(entry)
+            matrix.append(row)
+        points.append((slope, determinant_field(matrix, field)))
+
+    coefficients = interpolate_field(points, field)
+    for slope, value in points:
+        if fpoly_eval(coefficients, slope, field) != value:
+            raise AssertionError("kernel determinant interpolation check failed")
+    return coefficients
+
+
 def summary(
     records: list[dict[str, Any]],
     gcd_histogram: Counter[int],
@@ -228,11 +300,14 @@ def summary(
         if record["common_gcd_degree"] > 0
     ]
     return {
-        "schema_version": "f17-32-m3-low-rank-spectral-target-search-v1",
+        "schema_version": "f17-32-m3-low-rank-spectral-target-search-v2",
         "status": "EXPERIMENTAL / AUDIT",
         "claim": "counterexample-first exact probe for the PR #170 synthetic low-rank spectral target",
         "record_count": len(records),
         "degree_failure_count": degree_failures,
+        "coefficient_method_histogram": dict(
+            sorted(Counter(record["coefficient_method"] for record in records).items())
+        ),
         "common_gcd_degree_histogram": {
             str(key): value for key, value in sorted(gcd_histogram.items())
         },
@@ -247,6 +322,7 @@ def print_summary(result: dict[str, Any]) -> None:
     print(f"status: {result['status']}")
     print(f"records: {result['record_count']}")
     print(f"degree failures: {result['degree_failure_count']}")
+    print(f"coefficient methods: {result['coefficient_method_histogram']}")
     print(f"common gcd degree histogram: {result['common_gcd_degree_histogram']}")
     if result["first_collision"] is None:
         print("first collision: none")

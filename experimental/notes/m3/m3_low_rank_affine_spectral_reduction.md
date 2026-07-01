@@ -542,6 +542,9 @@ experimental/scripts/search_f17_32_m3_low_rank_spectral_target.py
 is a counterexample-first probe for this exact target.  Its default run checks
 the first uncertified boundary case `A=426`, `r=13`; larger ranges can be
 selected explicitly before promoting any new range into a certificate packet.
+The script uses Newton identities below rank `17` and determinant interpolation
+from rank `17` upward, so it remains valid across the characteristic-17
+threshold where Newton identities would divide by zero.
 
 A stronger pivot-ready form is:
 

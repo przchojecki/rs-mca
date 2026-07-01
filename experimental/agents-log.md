@@ -58,7 +58,8 @@ Keep entries concise and link to the relevant files.
   window are nonzero, so coefficient vanishing can only come from cancellation
   among explicit nonzero q-Cauchy terms.  A counterexample-first search script
   probes the exact endpoint-capacity spectral target without changing the
-  certified low-rank2..12 packet.
+  certified low-rank2..12 packet; it switches from Newton identities to
+  determinant interpolation at rank `17`, avoiding characteristic-17 division.
 - **How it is useful:** Turns the rank-by-rank affine-gcd computation into a
   concrete spectral-disjointness target.  Proving that target through the
   endpoint-capacity range would close the synthetic low-rank regular
