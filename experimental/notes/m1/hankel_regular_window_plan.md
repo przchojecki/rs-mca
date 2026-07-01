@@ -195,6 +195,19 @@ constant locator into `ker H(u+v)` at the finite slope `z=1`.  Thus those
 boundary agreements need a separate finite-root classification or payment
 argument.
 
+The barycentric split-filter companion
+
+```text
+experimental/notes/m1/hankel_rank6_barycentric_split_filter.md
+experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-split-filter/
+  f17_32_n512_k256_m3_rank6_barycentric_split_filter.json
+```
+
+then applies the split-locator gate to that explicit root: the `z=1` kernel
+has only polynomials of degree `< |S|-t` (`5,3,1`), so it contains no
+degree-`j` split locator.  The obstruction is therefore ambient-table
+sharpness, not a displayed support-wise bad slope.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 
@@ -702,6 +715,8 @@ The boundary barycentric obstruction shows that the cutoff at `A=388` is
 genuine for support/weight-uniform separated families.  For `A=385,386,387`,
 choosing barycentric-residue weights on `S=X union Y` makes the constant
 locator vanish at finite slope `z=1`, while the endpoint remains present.
+The split-filter companion proves that this displayed root has only
+low-degree kernel polynomials and no degree-`j` split-locator witness.
 
 Replay:
 
@@ -720,6 +735,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_separated_six_spike_closure.
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_barycentric_obstruction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-barycentric-obstruction/f17_32_n512_k256_m3_rank6_boundary_barycentric_obstruction.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_split_filter.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-split-filter/f17_32_n512_k256_m3_rank6_barycentric_split_filter.json
 ```
 
 The affine-pivot compression theorem is:

@@ -97,6 +97,29 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Treat the boundary agreements with a paid-root argument,
   exact finite-root classification, or additional hypotheses on the weights.
 
+### 2026-07-01 - M3 barycentric split-locator filter
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_barycentric_split_filter.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-split-filter/`;
+  `experimental/notes/m1/hankel_rank6_barycentric_split_filter.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_barycentric_obstruction.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A split-locator filter for the barycentric boundary
+  root: at `A=385,386,387`, the displayed ambient root `z=1` has kernel
+  polynomials only of degree `< |S|-t` (`5,3,1`), so it contains no degree-`j`
+  split locator.
+- **How it is useful:** It separates ambient rank-drop sharpness from actual
+  support-wise split-locator witnesses, showing the barycentric obstruction's
+  displayed root is not itself an MCA bad slope.
+- **What to do next:** Continue boundary rank-6 work with exact root tables or
+  paid-root audits for other roots and other weight strata.
+
 ### 2026-07-01 - M3 rank-6 boundary dual gcd
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

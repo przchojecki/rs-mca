@@ -66,6 +66,16 @@ to show that the tall closure beginning at `A=388` is sharp, and that
 `A=385,386,387` require a boundary-specific finite-root classification or a
 paid-root argument.
 
+The companion split-filter note
+
+```text
+experimental/notes/m1/hankel_rank6_barycentric_split_filter.md
+```
+
+shows that this displayed ambient root is not itself a support-wise
+split-locator witness: its kernel consists only of polynomials of degree
+`< |S|-t`, while the split-locator gate requires degree `j`.
+
 Replay:
 
 ```sh
