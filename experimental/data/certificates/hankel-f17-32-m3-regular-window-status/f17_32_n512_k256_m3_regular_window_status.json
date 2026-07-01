@@ -164,8 +164,8 @@
     {
       "name": "synthetic_low_rank6_11_known_ledger_table",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-known-ledger-table/f17_32_n512_k256_m3_low_rank6_11_known_ledger_table.json",
-      "schema_version": "f17-32-m3-low-rank6-11-known-ledger-table-v1",
-      "sha256": "1d6b39971c6c78c95921f8adc7e6651d0cd2923d09a9b4077d837ec7f00324db",
+      "schema_version": "f17-32-m3-low-rank6-11-known-ledger-table-v2",
+      "sha256": "95a3f153096bdf085165827d6cf56160ff94610b1f06fd05cedb19a04fc51849",
       "status": "PROVED / AUDIT"
     },
     {
@@ -257,7 +257,7 @@
       "the synthetic rank-6 A=426 finite-affine regular-minor packet is v9-checkable with degree 6 and one exact finite root certified by gcd(Delta,Z^q-Z)",
       "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
       "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
-      "the synthetic rank-6..11 known-ledger table combines exact finite roots, projective infinity, tangent, and proper-subfield audits into a compact M4-style residual table with max residual projective upper 5 <= 6; quotient-image is explicitly not audited",
+      "the synthetic rank-6..11 known-ledger table combines exact finite roots, projective infinity, endpoint quotient-support exclusion, tangent, and proper-subfield audits into a compact M4-style residual table with max residual projective upper 5 <= 6; finite-root quotient support/image is explicitly not audited",
       "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
       "the fixed synthetic top-window packet is v9-checkable for A=421..426",
       "the fixed top-window syndrome input has an explicit line-value lift",
@@ -4428,9 +4428,11 @@
     "synthetic_low_rank5_max_projective_regular_roots_per_agreement_bound": 6,
     "synthetic_low_rank5_projective_budget_status": "all 42 rows have at most 6 projective regular roots after including the nonexcluded infinity point, exactly meeting projective budget numerator 6; exact finite roots are not enumerated",
     "synthetic_low_rank6_11_common_code_line_tangent_overlap": 0,
+    "synthetic_low_rank6_11_known_ledger_endpoint_quotient_support_status": "excluded_nontrivial_proper_quotient_remainder_supports",
     "synthetic_low_rank6_11_known_ledger_max_residual_projective": 5,
-    "synthetic_low_rank6_11_known_ledger_quotient_image_status": "not_audited",
-    "synthetic_low_rank6_11_known_ledger_table_status": "combined M4-style table for ranks 6..11: exact finite roots plus projective infinity, tangent exclusion, and proper-subfield exclusion leave at most 5 projective regular roots per checked synthetic row; quotient-image is not audited",
+    "synthetic_low_rank6_11_known_ledger_quotient_image_status": "finite_roots_not_audited",
+    "synthetic_low_rank6_11_known_ledger_quotient_support_status": "endpoint_excluded_finite_roots_not_audited",
+    "synthetic_low_rank6_11_known_ledger_table_status": "combined M4-style table for ranks 6..11: exact finite roots plus projective infinity, tangent exclusion, and proper-subfield exclusion leave at most 5 projective regular roots per checked synthetic row; endpoint quotient-support is excluded, while finite-root quotient support/image is not audited",
     "synthetic_low_rank6_11_proper_subfield_overlap": 0,
     "synthetic_low_rank6_11_roots_after_common_code_line": 238,
     "synthetic_low_rank6_11_roots_after_proper_subfield_exclusion": 238,

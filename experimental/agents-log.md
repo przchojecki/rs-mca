@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-6..11 known-ledger endpoint quotient refinement
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank6_11_known_ledger_table.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-known-ledger-table/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Refines the rank `6..11` synthetic low-rank
+  known-ledger table to consume the existing rank `2..11` endpoint
+  quotient-support exclusion.  The ledger now records that the `[0:1]`
+  endpoint support is not a nontrivial proper quotient-remainder support, while
+  finite regular-root quotient support/image remain unaudited.
+- **How it is useful:** This makes the M4 residual accounting more precise:
+  the remaining quotient gap is localized to finite regular-minor roots, not to
+  the projective endpoint.
+- **What to do next:** Build a finite-root quotient-support or quotient-image
+  audit only if actual support witnesses are supplied; regular-minor roots
+  alone remain upper-bound roots.
+
 ### 2026-07-01 - M3 rank-10 and rank-11 compact-sweep projective-line packets
 
 - **Agent/model:** AllenGrahamHart / Codex.

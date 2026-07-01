@@ -5,14 +5,17 @@ This combines existing synthetic-family certificates:
 
 * exact finite-root slack for ranks 6..11,
 * the projective-infinity endpoint audit for ranks 2..11,
+* the endpoint quotient-support exclusion for ranks 2..11,
 * common-code-line tangent exclusion for ranks 6..11,
 * proper-subfield/confinement exclusion for ranks 6..11.
 
-It deliberately leaves quotient-support and quotient-image subtraction as
-``not_audited``.  The useful conclusion is narrower: after the known ledgers
-above, every checked synthetic rank/agreement row still has projective
-regular-root upper count at most five, hence below the F_17^32 budget numerator
-six even before any quotient-image subtraction.
+It deliberately leaves finite-root quotient-support and quotient-image
+subtraction as ``not_audited``.  The projective endpoint is sharper: the existing
+endpoint quotient-support certificate excludes the actual ``D minus Y`` endpoint
+support from all nontrivial proper quotient-remainder support families.  After
+the known ledgers above, every checked synthetic rank/agreement row still has
+projective regular-root upper count at most five, hence below the F_17^32 budget
+numerator six even before any finite-root quotient-image subtraction.
 """
 
 from __future__ import annotations
@@ -26,7 +29,7 @@ from typing import Any
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-SCHEMA_VERSION = "f17-32-m3-low-rank6-11-known-ledger-table-v1"
+SCHEMA_VERSION = "f17-32-m3-low-rank6-11-known-ledger-table-v2"
 N = 512
 K = 256
 AGREEMENT_MIN = 385
@@ -53,6 +56,11 @@ LOW_RANK9_11_SWEEP_REF = (
 PROJECTIVE_INFINITY_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/"
     "f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json"
+)
+ENDPOINT_QUOTIENT_SUPPORT_REF = (
+    "experimental/data/certificates/"
+    "hankel-f17-32-m3-low-rank2-11-endpoint-quotient-support/"
+    "f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_support.json"
 )
 TANGENT_EXCLUSION_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/"
@@ -97,6 +105,9 @@ def validate_sources(sources: dict[str, dict[str, Any]]) -> None:
         "rank8": "f17-32-m3-low-rank8-slack-family-v1",
         "rank9_11": "f17-32-m3-low-rank9-11-slack-sweep-v1",
         "projective_infinity": "f17-32-m3-low-rank2-11-projective-infinity-v1",
+        "endpoint_quotient_support": (
+            "f17-32-m3-low-rank2-11-endpoint-quotient-support-v1"
+        ),
         "tangent": "f17-32-m3-low-rank6-11-tangent-exclusion-v1",
         "subfield": "f17-32-m3-low-rank6-11-subfield-exclusion-v1",
     }
@@ -115,6 +126,27 @@ def validate_sources(sources: dict[str, dict[str, Any]]) -> None:
         == [AGREEMENT_MIN, AGREEMENT_MAX],
         "projective infinity agreement range mismatch",
     )
+    require(
+        sources["endpoint_quotient_support"]["agreement_range"]
+        == [AGREEMENT_MIN, AGREEMENT_MAX],
+        "endpoint quotient-support agreement range mismatch",
+    )
+    require(
+        sources["endpoint_quotient_support"]["aggregate"][
+            "all_nontrivial_quotient_supports_excluded"
+        ]
+        is True,
+        "endpoint quotient-support audit not passed",
+    )
+    for rank in RANKS:
+        summary = sources["endpoint_quotient_support"]["aggregate"][
+            "rank_summaries"
+        ][str(rank)]
+        require(
+            summary["all_nontrivial_quotient_supports_excluded"] is True
+            and summary["endpoint_support_size"] == N - rank,
+            f"rank={rank}: endpoint quotient-support summary mismatch",
+        )
     require(
         sources["tangent"]["aggregate"]["common_code_line_tangent_overlap_sum"]
         == 0,
@@ -210,13 +242,23 @@ def build_records(sources: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
                     "projective_infinity_contribution": 1,
                     "known_tangent_overlap_removed": 0,
                     "known_proper_subfield_overlap_removed": 0,
+                    "projective_endpoint_quotient_support_status": (
+                        "excluded_nontrivial_proper_quotient_remainder_support"
+                    ),
+                    "projective_endpoint_quotient_support_certificate": (
+                        ENDPOINT_QUOTIENT_SUPPORT_REF
+                    ),
+                    "finite_regular_root_quotient_support_status": "not_audited",
+                    "finite_regular_root_quotient_image_status": "not_audited",
                     "known_residual_projective_upper": residual,
                     "projective_budget_numerator": BUDGET_NUMERATOR,
                     "within_projective_budget_after_known_ledgers": (
                         residual <= BUDGET_NUMERATOR
                     ),
-                    "quotient_support_status": "not_audited",
-                    "quotient_image_status": "not_audited",
+                    "quotient_support_status": (
+                        "endpoint_excluded_finite_roots_not_audited"
+                    ),
+                    "quotient_image_status": "finite_roots_not_audited",
                     "known_lower_bound_status": "not_supplied",
                 }
             )
@@ -266,6 +308,12 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
         "projective_infinity_contribution_sum": len(records),
         "known_tangent_overlap_removed_sum": 0,
         "known_proper_subfield_overlap_removed_sum": 0,
+        "projective_endpoint_quotient_support_excluded_sum": len(records),
+        "projective_endpoint_quotient_support_status": (
+            "excluded_nontrivial_proper_quotient_remainder_supports"
+        ),
+        "finite_regular_root_quotient_support_status": "not_audited",
+        "finite_regular_root_quotient_image_status": "not_audited",
         "known_residual_projective_sum": sum(residual_counts),
         "max_known_residual_projective_per_record": max(residual_counts),
         "projective_budget_numerator": BUDGET_NUMERATOR,
@@ -273,8 +321,8 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
             record["within_projective_budget_after_known_ledgers"]
             for record in records
         ),
-        "quotient_support_status": "not_audited",
-        "quotient_image_status": "not_audited",
+        "quotient_support_status": "endpoint_excluded_finite_roots_not_audited",
+        "quotient_image_status": "finite_roots_not_audited",
         "rank_summaries": rank_summaries,
     }
 
@@ -296,6 +344,7 @@ def build_certificate() -> dict[str, Any]:
         "rank8": LOW_RANK8_SLACK_REF,
         "rank9_11": LOW_RANK9_11_SWEEP_REF,
         "projective_infinity": PROJECTIVE_INFINITY_REF,
+        "endpoint_quotient_support": ENDPOINT_QUOTIENT_SUPPORT_REF,
         "tangent": TANGENT_EXCLUSION_REF,
         "subfield": SUBFIELD_EXCLUSION_REF,
     }
@@ -341,10 +390,13 @@ def build_certificate() -> dict[str, Any]:
         "ledger_columns": {
             "finite_regular_roots": "exact Frobenius-gcd counts from slack certificates",
             "projective_infinity": "proved nonempty endpoint contribution [0:1]",
+            "projective_endpoint_quotient_support": (
+                "proved not a nontrivial proper quotient-remainder support"
+            ),
             "tangent_common_code_line_overlap": "proved zero",
             "proper_subfield_overlap": "proved zero for F_17^d, d in {1,2,4,8,16}",
-            "quotient_support": "not_audited",
-            "quotient_image": "not_audited",
+            "finite_regular_root_quotient_support": "not_audited",
+            "finite_regular_root_quotient_image": "not_audited",
             "known_lower_bound": "not_supplied",
         },
         "aggregate": aggregate,
@@ -359,15 +411,18 @@ def build_certificate() -> dict[str, Any]:
         "claim": (
             "For the synthetic low-rank ranks 6..11 block, known ledgers leave "
             "at most five projective regular-root parameters in every checked "
-            "rank/agreement row, below budget numerator six.  Quotient-support "
+            "rank/agreement row, below budget numerator six.  The projective "
+            "endpoint support is excluded from all nontrivial proper "
+            "quotient-remainder support families; finite-root quotient support "
             "and quotient-image subtraction are not audited here."
         ),
         "nonclaims": [
             "synthetic low-rank family only",
-            "not a quotient-support or quotient-image subtraction table",
+            "not a finite-root quotient-support or quotient-image subtraction table",
             "not an actual-row M3 threshold bound",
             "does not prove finite affine roots are actual bad slopes",
             "does not classify arbitrary singular buckets",
+            "trivial quotient fiber sizes c=1 and c=512 are not excluded",
         ],
     }
 

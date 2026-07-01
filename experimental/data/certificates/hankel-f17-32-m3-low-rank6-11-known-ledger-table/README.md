@@ -15,13 +15,15 @@ python3 experimental/scripts/verify_f17_32_m3_low_rank6_11_known_ledger_table.py
 
 The verifier rebuilds all `252` rank/agreement rows from existing certificates:
 exact finite-root slack, the projective-infinity endpoint audit,
-tangent/common-code-line exclusion, and proper-subfield exclusion.
+tangent/common-code-line exclusion, proper-subfield exclusion, and the
+rank-2..11 endpoint quotient-support audit.
 
 Result: after these known ledgers, every checked synthetic row has projective
 regular-root upper count at most `5`, below the `F_17^32` projective budget
-numerator `6`.  Quotient-support and quotient-image subtraction are explicitly
-recorded as `not_audited`.
+numerator `6`.  The projective endpoint support is excluded from all
+nontrivial proper quotient-remainder support families; finite regular-root
+quotient support and quotient image are explicitly recorded as `not_audited`.
 
 Non-claims: this is a synthetic-family ledger only.  It is not an actual-row M3
-threshold bound, not a quotient-image subtraction certificate, and not a proof
-that finite regular-minor roots are actual bad slopes.
+threshold bound, not a finite-root quotient-image subtraction certificate, and
+not a proof that finite regular-minor roots are actual bad slopes.
