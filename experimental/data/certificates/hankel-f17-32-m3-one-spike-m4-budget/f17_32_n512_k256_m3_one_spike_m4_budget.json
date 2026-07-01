@@ -33,6 +33,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -71,6 +73,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -109,6 +113,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -147,6 +153,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -185,6 +193,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -223,6 +233,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -261,6 +273,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -299,6 +313,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -337,6 +353,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -375,6 +393,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -413,6 +433,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -451,6 +473,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -489,6 +513,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -527,6 +553,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -565,6 +593,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -603,6 +633,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -641,6 +673,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -679,6 +713,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -717,6 +753,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -755,6 +793,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -793,6 +833,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -831,6 +873,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -869,6 +913,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -907,6 +953,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -945,6 +993,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -983,6 +1033,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1021,6 +1073,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1059,6 +1113,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1097,6 +1153,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1135,6 +1193,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1173,6 +1233,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1211,6 +1273,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1249,6 +1313,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1287,6 +1353,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1325,6 +1393,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1363,6 +1433,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1401,6 +1473,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1439,6 +1513,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1477,6 +1553,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1515,6 +1593,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1553,6 +1633,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1591,6 +1673,8 @@
         "denominator": 2367911594760467245844106297320951247362,
         "denominator_formula": "|P^1(F)| = |F| + 1",
         "finite_canonical_roots": 0,
+        "projective_infinity_exact": true,
+        "projective_infinity_split_witness_lower_bound": 1,
         "projective_infinity_upper_bound": 1,
         "status": "safe"
       },
@@ -1598,11 +1682,12 @@
     }
   ],
   "checks": [
-    "row descriptor and one-spike canonical-empty schemas match",
+    "row descriptor, one-spike canonical-empty, and projective witness schemas match",
     "finite affine denominator is |F|",
     "projective denominator is |F|+1",
     "finite canonical root count is zero for each agreement",
     "projective endpoint upper bound is one for each agreement",
+    "projective endpoint split-locator lower bound is one for each agreement",
     "deduped upper bounds are within the 2^-128 budgets"
   ],
   "field_audit": {
@@ -1643,6 +1728,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/f17_32_n512_k256_m3_one_spike_canonical_empty.json",
       "sha256": "975ca21e19bd1656ae9bab79f9d8c903527ad3b4c3ba731fb9d21ae6f288478f"
     },
+    "one_spike_projective_witness": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-one-spike-projective-witness/f17_32_n512_k256_m3_one_spike_projective_witness.json",
+      "sha256": "ac839a4bbf4a455b3a0fc6a6a5692ef634029bb6d69e1f080ffdb787409c9e28"
+    },
     "row_descriptor": {
       "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
       "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
@@ -1653,16 +1742,18 @@
     "agreement_count": 42,
     "finite_budget": 6,
     "finite_safe": true,
-    "known_lower_bound": "not claimed",
+    "known_lower_bound": "projective endpoint contribution is exactly 1 for this synthetic family",
     "max_finite_affine_total_upper_bound": 0,
     "max_projective_total_upper_bound": 1,
     "projective_budget": 6,
-    "projective_safe": true
+    "projective_safe": true,
+    "projective_total_exact": 1,
+    "projective_total_lower_bound": 1
   },
   "theorem": {
     "budget": "Both finite and projective denominators have 2^-128 budget 6, so the family is safe with a large margin: 0<=6 finite and 1<=6 projective.",
     "finite_affine": "The one-spike canonical-empty packet gives zero finite v10 regular roots at every agreement; hence the finite affine aperiodic contribution is 0.",
-    "projective": "Adding the M5 projective-infinity one-point dimension-degree fallback gives projective numerator at most 1 at every agreement."
+    "projective": "Adding the M5 projective-infinity one-point dimension-degree fallback gives projective numerator at most 1 at every agreement; the split-locator witness proves this endpoint is actually present."
   },
   "window": {
     "A_max": 426,

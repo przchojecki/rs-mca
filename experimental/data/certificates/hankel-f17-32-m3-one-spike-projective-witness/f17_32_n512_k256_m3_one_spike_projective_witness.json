@@ -1,0 +1,1201 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "j": 127,
+      "locator_degree": 127,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          125
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 127,
+        "spike_index": 128
+      },
+      "surviving_base_indices": [
+        126,
+        127
+      ],
+      "t": 129
+    },
+    {
+      "A": 386,
+      "j": 126,
+      "locator_degree": 126,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          124
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 126,
+        "spike_index": 127
+      },
+      "surviving_base_indices": [
+        125,
+        126
+      ],
+      "t": 130
+    },
+    {
+      "A": 387,
+      "j": 125,
+      "locator_degree": 125,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          123
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 125,
+        "spike_index": 126
+      },
+      "surviving_base_indices": [
+        124,
+        125
+      ],
+      "t": 131
+    },
+    {
+      "A": 388,
+      "j": 124,
+      "locator_degree": 124,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          122
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 124,
+        "spike_index": 125
+      },
+      "surviving_base_indices": [
+        123,
+        124
+      ],
+      "t": 132
+    },
+    {
+      "A": 389,
+      "j": 123,
+      "locator_degree": 123,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          121
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 123,
+        "spike_index": 124
+      },
+      "surviving_base_indices": [
+        122,
+        123
+      ],
+      "t": 133
+    },
+    {
+      "A": 390,
+      "j": 122,
+      "locator_degree": 122,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          120
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 122,
+        "spike_index": 123
+      },
+      "surviving_base_indices": [
+        121,
+        122
+      ],
+      "t": 134
+    },
+    {
+      "A": 391,
+      "j": 121,
+      "locator_degree": 121,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          119
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 121,
+        "spike_index": 122
+      },
+      "surviving_base_indices": [
+        120,
+        121
+      ],
+      "t": 135
+    },
+    {
+      "A": 392,
+      "j": 120,
+      "locator_degree": 120,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          118
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 120,
+        "spike_index": 121
+      },
+      "surviving_base_indices": [
+        119,
+        120
+      ],
+      "t": 136
+    },
+    {
+      "A": 393,
+      "j": 119,
+      "locator_degree": 119,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          117
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 119,
+        "spike_index": 120
+      },
+      "surviving_base_indices": [
+        118,
+        119
+      ],
+      "t": 137
+    },
+    {
+      "A": 394,
+      "j": 118,
+      "locator_degree": 118,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          116
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 118,
+        "spike_index": 119
+      },
+      "surviving_base_indices": [
+        117,
+        118
+      ],
+      "t": 138
+    },
+    {
+      "A": 395,
+      "j": 117,
+      "locator_degree": 117,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          115
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 117,
+        "spike_index": 118
+      },
+      "surviving_base_indices": [
+        116,
+        117
+      ],
+      "t": 139
+    },
+    {
+      "A": 396,
+      "j": 116,
+      "locator_degree": 116,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          114
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 116,
+        "spike_index": 117
+      },
+      "surviving_base_indices": [
+        115,
+        116
+      ],
+      "t": 140
+    },
+    {
+      "A": 397,
+      "j": 115,
+      "locator_degree": 115,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          113
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 115,
+        "spike_index": 116
+      },
+      "surviving_base_indices": [
+        114,
+        115
+      ],
+      "t": 141
+    },
+    {
+      "A": 398,
+      "j": 114,
+      "locator_degree": 114,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          112
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 114,
+        "spike_index": 115
+      },
+      "surviving_base_indices": [
+        113,
+        114
+      ],
+      "t": 142
+    },
+    {
+      "A": 399,
+      "j": 113,
+      "locator_degree": 113,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          111
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 113,
+        "spike_index": 114
+      },
+      "surviving_base_indices": [
+        112,
+        113
+      ],
+      "t": 143
+    },
+    {
+      "A": 400,
+      "j": 112,
+      "locator_degree": 112,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          110
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 112,
+        "spike_index": 113
+      },
+      "surviving_base_indices": [
+        111,
+        112
+      ],
+      "t": 144
+    },
+    {
+      "A": 401,
+      "j": 111,
+      "locator_degree": 111,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          109
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 111,
+        "spike_index": 112
+      },
+      "surviving_base_indices": [
+        110,
+        111
+      ],
+      "t": 145
+    },
+    {
+      "A": 402,
+      "j": 110,
+      "locator_degree": 110,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          108
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 110,
+        "spike_index": 111
+      },
+      "surviving_base_indices": [
+        109,
+        110
+      ],
+      "t": 146
+    },
+    {
+      "A": 403,
+      "j": 109,
+      "locator_degree": 109,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          107
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 109,
+        "spike_index": 110
+      },
+      "surviving_base_indices": [
+        108,
+        109
+      ],
+      "t": 147
+    },
+    {
+      "A": 404,
+      "j": 108,
+      "locator_degree": 108,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          106
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 108,
+        "spike_index": 109
+      },
+      "surviving_base_indices": [
+        107,
+        108
+      ],
+      "t": 148
+    },
+    {
+      "A": 405,
+      "j": 107,
+      "locator_degree": 107,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          105
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 107,
+        "spike_index": 108
+      },
+      "surviving_base_indices": [
+        106,
+        107
+      ],
+      "t": 149
+    },
+    {
+      "A": 406,
+      "j": 106,
+      "locator_degree": 106,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          104
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 106,
+        "spike_index": 107
+      },
+      "surviving_base_indices": [
+        105,
+        106
+      ],
+      "t": 150
+    },
+    {
+      "A": 407,
+      "j": 105,
+      "locator_degree": 105,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          103
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 105,
+        "spike_index": 106
+      },
+      "surviving_base_indices": [
+        104,
+        105
+      ],
+      "t": 151
+    },
+    {
+      "A": 408,
+      "j": 104,
+      "locator_degree": 104,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          102
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 104,
+        "spike_index": 105
+      },
+      "surviving_base_indices": [
+        103,
+        104
+      ],
+      "t": 152
+    },
+    {
+      "A": 409,
+      "j": 103,
+      "locator_degree": 103,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          101
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 103,
+        "spike_index": 104
+      },
+      "surviving_base_indices": [
+        102,
+        103
+      ],
+      "t": 153
+    },
+    {
+      "A": 410,
+      "j": 102,
+      "locator_degree": 102,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          100
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 102,
+        "spike_index": 103
+      },
+      "surviving_base_indices": [
+        101,
+        102
+      ],
+      "t": 154
+    },
+    {
+      "A": 411,
+      "j": 101,
+      "locator_degree": 101,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          99
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 101,
+        "spike_index": 102
+      },
+      "surviving_base_indices": [
+        100,
+        101
+      ],
+      "t": 155
+    },
+    {
+      "A": 412,
+      "j": 100,
+      "locator_degree": 100,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          98
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 100,
+        "spike_index": 101
+      },
+      "surviving_base_indices": [
+        99,
+        100
+      ],
+      "t": 156
+    },
+    {
+      "A": 413,
+      "j": 99,
+      "locator_degree": 99,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          97
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 99,
+        "spike_index": 100
+      },
+      "surviving_base_indices": [
+        98,
+        99
+      ],
+      "t": 157
+    },
+    {
+      "A": 414,
+      "j": 98,
+      "locator_degree": 98,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          96
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 98,
+        "spike_index": 99
+      },
+      "surviving_base_indices": [
+        97,
+        98
+      ],
+      "t": 158
+    },
+    {
+      "A": 415,
+      "j": 97,
+      "locator_degree": 97,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          95
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 97,
+        "spike_index": 98
+      },
+      "surviving_base_indices": [
+        96,
+        97
+      ],
+      "t": 159
+    },
+    {
+      "A": 416,
+      "j": 96,
+      "locator_degree": 96,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          94
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 96,
+        "spike_index": 97
+      },
+      "surviving_base_indices": [
+        95,
+        96
+      ],
+      "t": 160
+    },
+    {
+      "A": 417,
+      "j": 95,
+      "locator_degree": 95,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          93
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 95,
+        "spike_index": 96
+      },
+      "surviving_base_indices": [
+        94,
+        95
+      ],
+      "t": 161
+    },
+    {
+      "A": 418,
+      "j": 94,
+      "locator_degree": 94,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          92
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 94,
+        "spike_index": 95
+      },
+      "surviving_base_indices": [
+        93,
+        94
+      ],
+      "t": 162
+    },
+    {
+      "A": 419,
+      "j": 93,
+      "locator_degree": 93,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          91
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 93,
+        "spike_index": 94
+      },
+      "surviving_base_indices": [
+        92,
+        93
+      ],
+      "t": 163
+    },
+    {
+      "A": 420,
+      "j": 92,
+      "locator_degree": 92,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          90
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 92,
+        "spike_index": 93
+      },
+      "surviving_base_indices": [
+        91,
+        92
+      ],
+      "t": 164
+    },
+    {
+      "A": 421,
+      "j": 91,
+      "locator_degree": 91,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          89
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 91,
+        "spike_index": 92
+      },
+      "surviving_base_indices": [
+        90,
+        91
+      ],
+      "t": 165
+    },
+    {
+      "A": 422,
+      "j": 90,
+      "locator_degree": 90,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          88
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 90,
+        "spike_index": 91
+      },
+      "surviving_base_indices": [
+        89,
+        90
+      ],
+      "t": 166
+    },
+    {
+      "A": 423,
+      "j": 89,
+      "locator_degree": 89,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          87
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 89,
+        "spike_index": 90
+      },
+      "surviving_base_indices": [
+        88,
+        89
+      ],
+      "t": 167
+    },
+    {
+      "A": 424,
+      "j": 88,
+      "locator_degree": 88,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          86
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 88,
+        "spike_index": 89
+      },
+      "surviving_base_indices": [
+        87,
+        88
+      ],
+      "t": 168
+    },
+    {
+      "A": 425,
+      "j": 87,
+      "locator_degree": 87,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          85
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 87,
+        "spike_index": 88
+      },
+      "surviving_base_indices": [
+        86,
+        87
+      ],
+      "t": 169
+    },
+    {
+      "A": 426,
+      "j": 86,
+      "locator_degree": 86,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_endpoint": "[0:1]",
+        "reason": "Only the two surviving base nodes contribute to H(u)ell; their first two moment equations form an invertible 2x2 Vandermonde system with nonzero weights.",
+        "split_locator_chart_nonempty": true
+      },
+      "split_locator_roots": {
+        "base_prefix_range": [
+          0,
+          84
+        ],
+        "description": "{spike_index} union {0,1,...,j-2}",
+        "root_count": 86,
+        "spike_index": 87
+      },
+      "surviving_base_indices": [
+        85,
+        86
+      ],
+      "t": 170
+    }
+  ],
+  "checks": [
+    "row descriptor, canonical-empty, and M5 projective-kernel schemas match",
+    "the needed one-spike support prefix has distinct domain elements",
+    "each locator has exactly j distinct descriptor-domain roots",
+    "H(v)ell vanishes because the spike is a locator root",
+    "H(u)ell is nonzero by the two surviving base nodes and a 2x2 Vandermonde"
+  ],
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512,
+    "full_domain_distinct": true,
+    "largest_one_spike_support_needed": 129
+  },
+  "nonclaims": [
+    "does not classify arbitrary projective-infinity charts",
+    "does not change the one-point upper bound",
+    "does not address quotient or extension overlap for other families",
+    "not a worst-case support-wise MCA row bound"
+  ],
+  "object": "M3 one-spike projective-infinity split-locator witness",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "f17-32-m3-one-spike-projective-witness-v1",
+  "source_artifacts": {
+    "one_spike_canonical_empty": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/f17_32_n512_k256_m3_one_spike_canonical_empty.json",
+      "sha256": "975ca21e19bd1656ae9bab79f9d8c903527ad3b4c3ba731fb9d21ae6f288478f"
+    },
+    "projective_infinity_kernel_chart": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json",
+      "sha256": "35f42c9da014b138fb12f02136a215f41cd52ef5236423c4b9240ddbd21e736c"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED",
+  "summary": {
+    "agreement_count": 42,
+    "exact_projective_endpoint_contribution": 1,
+    "finite_canonical_roots_from_dependency": 0,
+    "projective_infinity_split_nonempty": true
+  },
+  "theorem": {
+    "Hu_nonzero": "The locator vanishes on the first j-1 base nodes but not on the last two base nodes.  If H(u)ell_A were zero, the first two rows would give a 2x2 Vandermonde system forcing two nonzero locator values to be zero, contradiction.",
+    "Hv_zero": "Since v_m=y_A^m, H(v)ell_A has rows y_A^r ell_A(y_A)=0.",
+    "consequence": "The M5 projective-infinity one-point upper bound is exact for this synthetic family.",
+    "locator": "Let ell_A be the monic locator with roots y_A and the first j-1 base nodes.  It splits over the descriptor domain and has degree j.",
+    "statement": "For the one-spike family and every A in 385..426, the projective-infinity split-locator chart at [0:1] is nonempty."
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42
+  }
+}

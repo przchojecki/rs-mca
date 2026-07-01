@@ -6,9 +6,9 @@ This directory records the M4 budget table for the one-spike canonical-empty
 family in the M3 regular window.
 
 The finite affine contribution is zero at every agreement because the v10
-canonical finite root table is empty.  The projective sampler adds only the
-M5 projective-infinity one-point upper bound, so the projective numerator is at
-most one.
+canonical finite root table is empty.  The projective sampler adds exactly the
+M5 projective-infinity endpoint: the projective witness packet supplies a
+split locator, and the projective line has only one infinity parameter.
 
 Both printed denominators have the same `2^-128` budget:
 
@@ -18,11 +18,11 @@ floor((|F_17^32| + 1) / 2^128) = 6.
 ```
 
 Thus the synthetic family is safe for both finite affine and projective
-samplers:
+samplers, with an exact projective numerator:
 
 ```text
 finite:     0 <= 6,
-projective: 1 <= 6.
+projective: 1 = 1 <= 6.
 ```
 
 This is not a threshold-pinning theorem and does not classify arbitrary

@@ -52,6 +52,9 @@ experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/
 experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/
   f17_32_n512_k256_m3_one_spike_canonical_empty.json
 
+experimental/data/certificates/hankel-f17-32-m3-one-spike-projective-witness/
+  f17_32_n512_k256_m3_one_spike_projective_witness.json
+
 experimental/data/certificates/hankel-f17-32-m3-one-spike-m4-budget/
   f17_32_n512_k256_m3_one_spike_m4_budget.json
 
@@ -431,15 +434,20 @@ extension, so the canonical gcd is constant.  The only projective issue is
 because `rank H(v)=1` and `H(u)` has full column rank.
 
 The M4 one-spike budget companion packages this as a safe-side table for the
-synthetic family.  It prints both denominator conventions:
+synthetic family.  The projective witness companion proves the infinity
+endpoint is actually present: choose the split locator with roots at the spike
+node and the first `j-1` base nodes.  Then `H(v)ell=0`, while `H(u)ell` is a
+nonzero two-node Vandermonde combination on the two remaining base nodes.
+
+The M4 packet prints both denominator conventions:
 
 ```text
 finite affine sampler: |F_17^32|,
 projective sampler:    |F_17^32| + 1.
 ```
 
-The resulting upper bounds are `0 <= 6` for finite affine slopes and `1 <= 6`
-for projective slopes.
+The resulting finite upper bound is `0 <= 6`, and the projective contribution
+is exact with `1 = 1 <= 6`.
 
 The subtraction sidecar verifies that every zero-`u` source input, including
 the contiguous-gcd input, has `u_m=0` for all
@@ -548,6 +556,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 experimental/scripts/verify_f17_32_m3_one_spike_canonical_empty.py \
   --check experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/f17_32_n512_k256_m3_one_spike_canonical_empty.json
+
+python3 experimental/scripts/verify_f17_32_m3_one_spike_projective_witness.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-one-spike-projective-witness/f17_32_n512_k256_m3_one_spike_projective_witness.json
 
 python3 experimental/scripts/verify_f17_32_m3_one_spike_m4_budget.py \
   --check experimental/data/certificates/hankel-f17-32-m3-one-spike-m4-budget/f17_32_n512_k256_m3_one_spike_m4_budget.json

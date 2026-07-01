@@ -599,6 +599,19 @@ scalar extension, so the canonical gcd is constant.  At projective infinity,
 `H(v)` has rank one while `H(u)` has full column rank, so the M5 kernel chart
 gives the one-point dimension-degree fallback.
 
+The projective-infinity split witness is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-one-spike-projective-witness/
+  f17_32_n512_k256_m3_one_spike_projective_witness.json
+```
+
+For each agreement it chooses the split locator with roots consisting of the
+spike node and the first `j-1` base nodes.  The direction syndrome vanishes on
+this locator, while the base syndrome survives on the two remaining base nodes.
+Thus the projective endpoint `[0:1]` is actually present, not merely bounded by
+dimension degree.
+
 The M4 budget companion is:
 
 ```text
@@ -611,7 +624,7 @@ safe-side upper-bound table for this synthetic family:
 
 ```text
 finite affine numerator: 0 <= floor(|F|/2^128) = 6,
-projective numerator:    1 <= floor((|F|+1)/2^128) = 6.
+projective numerator:    1 = 1 <= floor((|F|+1)/2^128) = 6.
 ```
 
 A broader low-rank update theorem is recorded in
@@ -917,6 +930,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 experimental/scripts/verify_f17_32_m3_one_spike_canonical_empty.py \
   --check experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/f17_32_n512_k256_m3_one_spike_canonical_empty.json
+
+python3 experimental/scripts/verify_f17_32_m3_one_spike_projective_witness.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-one-spike-projective-witness/f17_32_n512_k256_m3_one_spike_projective_witness.json
 
 python3 experimental/scripts/verify_f17_32_m3_one_spike_m4_budget.py \
   --check experimental/data/certificates/hankel-f17-32-m3-one-spike-m4-budget/f17_32_n512_k256_m3_one_spike_m4_budget.json

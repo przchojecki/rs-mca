@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 one-spike projective witness
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_one_spike_projective_witness.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-one-spike-projective-witness/`;
+  `experimental/scripts/verify_f17_32_m3_one_spike_m4_budget.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-one-spike-m4-budget/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** An explicit split-locator witness for the one-spike
+  projective-infinity endpoint at every `385 <= A <= 426`.
+- **How it is useful:** It upgrades the one-spike projective endpoint from an
+  M5 one-point upper bound to an exact contribution `1`, and the M4 budget
+  table now records this lower/upper match.
+- **What to do next:** Use the same explicit chart-closure standard for the
+  next projective or singular M5 packet.
+
 ### 2026-07-01 - M3 one-spike M4 budget table
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

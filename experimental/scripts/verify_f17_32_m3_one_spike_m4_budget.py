@@ -40,6 +40,10 @@ CANONICAL_EMPTY_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/"
     "f17_32_n512_k256_m3_one_spike_canonical_empty.json"
 )
+PROJECTIVE_WITNESS_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-one-spike-projective-witness/"
+    "f17_32_n512_k256_m3_one_spike_projective_witness.json"
+)
 
 
 def load_json(ref: str | Path) -> dict[str, Any]:
@@ -103,6 +107,8 @@ def agreement_record(source: dict[str, Any]) -> dict[str, Any]:
             "denominator_formula": "|P^1(F)| = |F| + 1",
             "finite_canonical_roots": 0,
             "projective_infinity_upper_bound": 1,
+            "projective_infinity_split_witness_lower_bound": 1,
+            "projective_infinity_exact": True,
             "B_tan": 0,
             "B_quot_support": 0,
             "B_quot_image": 0,
@@ -128,6 +134,7 @@ def build_certificate() -> dict[str, Any]:
     field = Field(P, MODULUS)
     descriptor = load_json(ROW_DESCRIPTOR_REF)
     canonical = load_json(CANONICAL_EMPTY_REF)
+    projective_witness = load_json(PROJECTIVE_WITNESS_REF)
 
     require(descriptor["row"]["n"] == N, "descriptor n mismatch")
     require(descriptor["row"]["k"] == K, "descriptor k mismatch")
@@ -148,6 +155,16 @@ def build_certificate() -> dict[str, Any]:
         canonical["summary"]["projective_endpoint_upper_bound_per_agreement"] == 1,
         "canonical projective endpoint summary mismatch",
     )
+    require(
+        projective_witness["schema_version"] == "f17-32-m3-one-spike-projective-witness-v1",
+        "unexpected one-spike projective witness schema",
+    )
+    require(projective_witness["window"]["A_min"] == A_MIN, "projective witness A_min mismatch")
+    require(projective_witness["window"]["A_max"] == A_MAX, "projective witness A_max mismatch")
+    require(
+        projective_witness["summary"]["exact_projective_endpoint_contribution"] == 1,
+        "projective witness contribution mismatch",
+    )
 
     domain_encodings = descriptor["domain"]["domain_encodings"]
     require(len(domain_encodings) == N, "domain length mismatch")
@@ -160,6 +177,17 @@ def build_certificate() -> dict[str, Any]:
 
     records = [agreement_record(record) for record in canonical["agreement_records"]]
     require([record["A"] for record in records] == list(range(A_MIN, A_MAX + 1)), "A list mismatch")
+    witness_by_a = {record["A"]: record for record in projective_witness["agreement_records"]}
+    for record in records:
+        witness = witness_by_a[record["A"]]
+        require(
+            witness["projective_infinity"]["exact_projective_endpoint_contribution"] == 1,
+            f"A={record['A']}: projective witness contribution mismatch",
+        )
+        require(
+            witness["projective_infinity"]["split_locator_chart_nonempty"] is True,
+            f"A={record['A']}: projective witness nonempty mismatch",
+        )
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -177,6 +205,10 @@ def build_certificate() -> dict[str, Any]:
             "one_spike_canonical_empty": {
                 "ref": CANONICAL_EMPTY_REF,
                 "sha256": sha256_file(CANONICAL_EMPTY_REF),
+            },
+            "one_spike_projective_witness": {
+                "ref": PROJECTIVE_WITNESS_REF,
+                "sha256": sha256_file(PROJECTIVE_WITNESS_REF),
             },
         },
         "sampler_denominators": {
@@ -204,7 +236,8 @@ def build_certificate() -> dict[str, Any]:
             ),
             "projective": (
                 "Adding the M5 projective-infinity one-point dimension-degree "
-                "fallback gives projective numerator at most 1 at every agreement."
+                "fallback gives projective numerator at most 1 at every agreement; "
+                "the split-locator witness proves this endpoint is actually present."
             ),
             "budget": (
                 "Both finite and projective denominators have 2^-128 budget 6, "
@@ -222,18 +255,21 @@ def build_certificate() -> dict[str, Any]:
             "agreement_count": len(records),
             "max_finite_affine_total_upper_bound": 0,
             "max_projective_total_upper_bound": 1,
+            "projective_total_lower_bound": 1,
+            "projective_total_exact": 1,
             "finite_budget": FINITE_BUDGET,
             "projective_budget": PROJECTIVE_BUDGET,
             "finite_safe": True,
             "projective_safe": True,
-            "known_lower_bound": "not claimed",
+            "known_lower_bound": "projective endpoint contribution is exactly 1 for this synthetic family",
         },
         "checks": [
-            "row descriptor and one-spike canonical-empty schemas match",
+            "row descriptor, one-spike canonical-empty, and projective witness schemas match",
             "finite affine denominator is |F|",
             "projective denominator is |F|+1",
             "finite canonical root count is zero for each agreement",
             "projective endpoint upper bound is one for each agreement",
+            "projective endpoint split-locator lower bound is one for each agreement",
             "deduped upper bounds are within the 2^-128 budgets",
         ],
         "nonclaims": [

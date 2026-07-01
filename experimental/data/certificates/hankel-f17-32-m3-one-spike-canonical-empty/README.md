@@ -33,6 +33,11 @@ injective and the column Vandermonde has rank `j+1`.
 At projective infinity, `H(v)` has rank one while `H(u)` has full column rank.
 Thus the M5 kernel chart gives the one-point `dimension_degree` fallback for
 `[0:1]`.  The packet does not claim split-locator nonemptiness at infinity.
+That nonemptiness is proved separately in:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-one-spike-projective-witness/
+```
 
 Regenerate and check:
 
