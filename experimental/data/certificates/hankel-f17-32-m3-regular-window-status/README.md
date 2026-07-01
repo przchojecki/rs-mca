@@ -198,6 +198,15 @@ slack ladder.  Across the source slack ledgers, all `238` finite first-minor
 roots are excluded by the row-shift-1 square minor.  This is still a synthetic
 ladder statement and does not audit quotient image or quotient support.
 
+The rank-2..11 full-Hankel ledger packages the lower-rank and higher-rank
+shifted-minor exclusions with the endpoint quotient-image audit.  It rebuilds
+all `420` synthetic rank/agreement rows and records finite regular
+first-minor upper mass `698`, all cleared from the full-Hankel witness column.
+The only remaining projective full-Hankel contribution is the endpoint
+`[0:1]`, which has a quotient-image witness in every row, so the aperiodic
+full-Hankel residual upper bound is `0` throughout the synthetic low-rank
+ladder.  This is not an arbitrary M3-row theorem.
+
 The ledger also imports the v4 low-rank update template budget envelope.  Since
 both the finite and projective `F_17^32` budget numerators are 6, every nonzero
 regular low-rank update chart of rank at most 6 is within the finite regular

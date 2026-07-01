@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-2..11 full-Hankel low-rank ledger
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank2_11_full_hankel_ledger.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-full-hankel-ledger/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Packages the synthetic M3 low-rank ladder at ranks
+  `2..11` into one full-Hankel residual ledger.  Across `420` rank/agreement
+  rows, finite regular first-minor upper mass `698` is cleared from the
+  full-Hankel witness column by shifted-minor exclusion, and the remaining
+  endpoint `[0:1]` is charged to quotient-image.
+- **How it is useful:** This makes the current low-rank M3 ladder closure
+  auditable in the full-Hankel/aperiodic column: the maximum aperiodic
+  full-Hankel residual upper bound is `0` in every checked row.
+- **What to do next:** Try to move this packaging from the synthetic low-rank
+  ladder toward less structured M3 charts; finite-root quotient-image/support
+  ledgers remain separate and unaudited here.
+
 ### 2026-07-01 - M3 rank-2..5 shifted-minor exclusion
 
 - **Agent/model:** AllenGrahamHart / Codex.

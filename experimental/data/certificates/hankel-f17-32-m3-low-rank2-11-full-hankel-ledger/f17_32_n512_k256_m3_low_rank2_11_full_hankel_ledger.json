@@ -1,0 +1,393 @@
+{
+  "aggregate": {
+    "agreement_count_per_rank": 42,
+    "all_records_within_aperiodic_full_hankel_budget": true,
+    "all_records_within_full_hankel_projective_budget": true,
+    "all_records_within_regular_projective_budget": true,
+    "aperiodic_full_hankel_projective_upper_sum": 0,
+    "finite_full_hankel_witness_upper_sum": 0,
+    "finite_regular_root_upper_sum": 698,
+    "finite_regular_roots_or_loci_excluded_by_shifted_minor_sum": 698,
+    "full_hankel_projective_upper_before_endpoint_image_sum": 420,
+    "max_aperiodic_full_hankel_projective_upper_per_record": 0,
+    "max_full_hankel_projective_upper_before_endpoint_image_per_record": 1,
+    "max_regular_projective_upper_per_record": 6,
+    "projective_budget_numerator": 6,
+    "projective_endpoint_quotient_image_witness_sum": 420,
+    "projective_infinity_contribution_sum": 420,
+    "rank_count": 10,
+    "rank_summaries": {
+      "10": {
+        "agreement_count": 42,
+        "all_records_within_aperiodic_full_hankel_budget": true,
+        "all_records_within_full_hankel_projective_budget": true,
+        "all_records_within_regular_projective_budget": true,
+        "endpoint_quotient_image_witness_sum": 42,
+        "finite_full_hankel_witness_upper_sum": 0,
+        "finite_regular_root_upper_histogram": {
+          "0": 8,
+          "1": 23,
+          "2": 9,
+          "3": 2
+        },
+        "finite_regular_root_upper_sum": 47,
+        "max_aperiodic_full_hankel_projective_upper": 0,
+        "max_full_hankel_projective_upper_before_endpoint_image": 1,
+        "max_regular_projective_upper": 4,
+        "projective_endpoint_contribution_sum": 42,
+        "rank": 10,
+        "source_kind_histogram": {
+          "exact_finite_roots": 42
+        }
+      },
+      "11": {
+        "agreement_count": 42,
+        "all_records_within_aperiodic_full_hankel_budget": true,
+        "all_records_within_full_hankel_projective_budget": true,
+        "all_records_within_regular_projective_budget": true,
+        "endpoint_quotient_image_witness_sum": 42,
+        "finite_full_hankel_witness_upper_sum": 0,
+        "finite_regular_root_upper_histogram": {
+          "0": 15,
+          "1": 16,
+          "2": 5,
+          "3": 6
+        },
+        "finite_regular_root_upper_sum": 44,
+        "max_aperiodic_full_hankel_projective_upper": 0,
+        "max_full_hankel_projective_upper_before_endpoint_image": 1,
+        "max_regular_projective_upper": 4,
+        "projective_endpoint_contribution_sum": 42,
+        "rank": 11,
+        "source_kind_histogram": {
+          "exact_finite_roots": 42
+        }
+      },
+      "2": {
+        "agreement_count": 42,
+        "all_records_within_aperiodic_full_hankel_budget": true,
+        "all_records_within_full_hankel_projective_budget": true,
+        "all_records_within_regular_projective_budget": true,
+        "endpoint_quotient_image_witness_sum": 42,
+        "finite_full_hankel_witness_upper_sum": 0,
+        "finite_regular_root_upper_histogram": {
+          "0": 22,
+          "2": 20
+        },
+        "finite_regular_root_upper_sum": 40,
+        "max_aperiodic_full_hankel_projective_upper": 0,
+        "max_full_hankel_projective_upper_before_endpoint_image": 1,
+        "max_regular_projective_upper": 3,
+        "projective_endpoint_contribution_sum": 42,
+        "rank": 2,
+        "source_kind_histogram": {
+          "exact_finite_roots": 42
+        }
+      },
+      "3": {
+        "agreement_count": 42,
+        "all_records_within_aperiodic_full_hankel_budget": true,
+        "all_records_within_full_hankel_projective_budget": true,
+        "all_records_within_regular_projective_budget": true,
+        "endpoint_quotient_image_witness_sum": 42,
+        "finite_full_hankel_witness_upper_sum": 0,
+        "finite_regular_root_upper_histogram": {
+          "0": 12,
+          "1": 24,
+          "3": 6
+        },
+        "finite_regular_root_upper_sum": 42,
+        "max_aperiodic_full_hankel_projective_upper": 0,
+        "max_full_hankel_projective_upper_before_endpoint_image": 1,
+        "max_regular_projective_upper": 4,
+        "projective_endpoint_contribution_sum": 42,
+        "rank": 3,
+        "source_kind_histogram": {
+          "exact_finite_roots": 42
+        }
+      },
+      "4": {
+        "agreement_count": 42,
+        "all_records_within_aperiodic_full_hankel_budget": true,
+        "all_records_within_full_hankel_projective_budget": true,
+        "all_records_within_regular_projective_budget": true,
+        "endpoint_quotient_image_witness_sum": 42,
+        "finite_full_hankel_witness_upper_sum": 0,
+        "finite_regular_root_upper_histogram": {
+          "4": 42
+        },
+        "finite_regular_root_upper_sum": 168,
+        "max_aperiodic_full_hankel_projective_upper": 0,
+        "max_full_hankel_projective_upper_before_endpoint_image": 1,
+        "max_regular_projective_upper": 5,
+        "projective_endpoint_contribution_sum": 42,
+        "rank": 4,
+        "source_kind_histogram": {
+          "degree_bound_root_locus": 42
+        }
+      },
+      "5": {
+        "agreement_count": 42,
+        "all_records_within_aperiodic_full_hankel_budget": true,
+        "all_records_within_full_hankel_projective_budget": true,
+        "all_records_within_regular_projective_budget": true,
+        "endpoint_quotient_image_witness_sum": 42,
+        "finite_full_hankel_witness_upper_sum": 0,
+        "finite_regular_root_upper_histogram": {
+          "5": 42
+        },
+        "finite_regular_root_upper_sum": 210,
+        "max_aperiodic_full_hankel_projective_upper": 0,
+        "max_full_hankel_projective_upper_before_endpoint_image": 1,
+        "max_regular_projective_upper": 6,
+        "projective_endpoint_contribution_sum": 42,
+        "rank": 5,
+        "source_kind_histogram": {
+          "degree_bound_root_locus": 42
+        }
+      },
+      "6": {
+        "agreement_count": 42,
+        "all_records_within_aperiodic_full_hankel_budget": true,
+        "all_records_within_full_hankel_projective_budget": true,
+        "all_records_within_regular_projective_budget": true,
+        "endpoint_quotient_image_witness_sum": 42,
+        "finite_full_hankel_witness_upper_sum": 0,
+        "finite_regular_root_upper_histogram": {
+          "0": 16,
+          "1": 17,
+          "2": 9
+        },
+        "finite_regular_root_upper_sum": 35,
+        "max_aperiodic_full_hankel_projective_upper": 0,
+        "max_full_hankel_projective_upper_before_endpoint_image": 1,
+        "max_regular_projective_upper": 3,
+        "projective_endpoint_contribution_sum": 42,
+        "rank": 6,
+        "source_kind_histogram": {
+          "exact_finite_roots": 42
+        }
+      },
+      "7": {
+        "agreement_count": 42,
+        "all_records_within_aperiodic_full_hankel_budget": true,
+        "all_records_within_full_hankel_projective_budget": true,
+        "all_records_within_regular_projective_budget": true,
+        "endpoint_quotient_image_witness_sum": 42,
+        "finite_full_hankel_witness_upper_sum": 0,
+        "finite_regular_root_upper_histogram": {
+          "0": 16,
+          "1": 15,
+          "2": 6,
+          "3": 4,
+          "4": 1
+        },
+        "finite_regular_root_upper_sum": 43,
+        "max_aperiodic_full_hankel_projective_upper": 0,
+        "max_full_hankel_projective_upper_before_endpoint_image": 1,
+        "max_regular_projective_upper": 5,
+        "projective_endpoint_contribution_sum": 42,
+        "rank": 7,
+        "source_kind_histogram": {
+          "exact_finite_roots": 42
+        }
+      },
+      "8": {
+        "agreement_count": 42,
+        "all_records_within_aperiodic_full_hankel_budget": true,
+        "all_records_within_full_hankel_projective_budget": true,
+        "all_records_within_regular_projective_budget": true,
+        "endpoint_quotient_image_witness_sum": 42,
+        "finite_full_hankel_witness_upper_sum": 0,
+        "finite_regular_root_upper_histogram": {
+          "0": 22,
+          "1": 10,
+          "2": 7,
+          "3": 2,
+          "4": 1
+        },
+        "finite_regular_root_upper_sum": 34,
+        "max_aperiodic_full_hankel_projective_upper": 0,
+        "max_full_hankel_projective_upper_before_endpoint_image": 1,
+        "max_regular_projective_upper": 5,
+        "projective_endpoint_contribution_sum": 42,
+        "rank": 8,
+        "source_kind_histogram": {
+          "exact_finite_roots": 42
+        }
+      },
+      "9": {
+        "agreement_count": 42,
+        "all_records_within_aperiodic_full_hankel_budget": true,
+        "all_records_within_full_hankel_projective_budget": true,
+        "all_records_within_regular_projective_budget": true,
+        "endpoint_quotient_image_witness_sum": 42,
+        "finite_full_hankel_witness_upper_sum": 0,
+        "finite_regular_root_upper_histogram": {
+          "0": 17,
+          "1": 17,
+          "2": 6,
+          "3": 2
+        },
+        "finite_regular_root_upper_sum": 35,
+        "max_aperiodic_full_hankel_projective_upper": 0,
+        "max_full_hankel_projective_upper_before_endpoint_image": 1,
+        "max_regular_projective_upper": 4,
+        "projective_endpoint_contribution_sum": 42,
+        "rank": 9,
+        "source_kind_histogram": {
+          "exact_finite_roots": 42
+        }
+      }
+    },
+    "record_count": 420,
+    "regular_projective_upper_sum": 1118
+  },
+  "agreement_range": [
+    385,
+    426
+  ],
+  "claim": "For the synthetic rank-2..11 low-rank M3 ladder, finite first-minor roots/loci contribute zero full-Hankel witness mass after shifted-minor exclusion, and the remaining projective endpoint is charged to quotient-image.  The aperiodic full-Hankel projective residual upper bound is therefore zero in every checked rank/agreement row.",
+  "deterministic_records": {
+    "first_record": {
+      "A": 385,
+      "aperiodic_full_hankel_projective_upper": 0,
+      "endpoint_quotient_image_witness": 1,
+      "finite_full_hankel_witness_upper": 0,
+      "finite_regular_root_upper": 2,
+      "full_hankel_projective_upper_before_endpoint_image": 1,
+      "j": 127,
+      "projective_endpoint_contribution": 1,
+      "rank": 2,
+      "regular_projective_upper": 3,
+      "source_kind": "exact_finite_roots",
+      "t": 129,
+      "within_aperiodic_full_hankel_budget": true,
+      "within_full_hankel_projective_budget": true,
+      "within_regular_projective_budget": true
+    },
+    "last_record": {
+      "A": 426,
+      "aperiodic_full_hankel_projective_upper": 0,
+      "endpoint_quotient_image_witness": 1,
+      "finite_full_hankel_witness_upper": 0,
+      "finite_regular_root_upper": 1,
+      "full_hankel_projective_upper_before_endpoint_image": 1,
+      "j": 86,
+      "projective_endpoint_contribution": 1,
+      "rank": 11,
+      "regular_projective_upper": 2,
+      "source_kind": "exact_finite_roots",
+      "t": 170,
+      "within_aperiodic_full_hankel_budget": true,
+      "within_full_hankel_projective_budget": true,
+      "within_regular_projective_budget": true
+    },
+    "record_count": 420,
+    "record_sha256": "bf69f7747c8444f3f5dec7f5dd92da1f6b75ee93086867e4a14a89e51402feb3",
+    "storage": "compressed; verifier rebuilds all 420 rank/agreement rows"
+  },
+  "method": {
+    "aperiodic_column": "the endpoint quotient-image certificate charges that endpoint, leaving zero aperiodic full-Hankel residual",
+    "endpoint_column": "the projective endpoint contributes one full-Hankel witness before quotient-image charging",
+    "finite_full_hankel_column": "shifted-minor exclusion removes every finite first-minor root or degree-bound root locus from the full-Hankel witness column"
+  },
+  "nonclaims": [
+    "synthetic low-rank ladder only, not arbitrary M3 rows",
+    "ranks 4 and 5 use degree-bound root loci rather than enumerated root tables",
+    "finite-root quotient image/support is not audited as a regular-minor ledger",
+    "does not replace the singular/pivot chart program outside this ladder"
+  ],
+  "ranks": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "row": {
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "f17-32-m3-low-rank2-11-full-hankel-ledger-v1",
+  "source_artifacts": [
+    {
+      "name": "rank2_5_shifted",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-5-shifted-minor-exclusion/f17_32_n512_k256_m3_low_rank2_5_shifted_minor_exclusion.json",
+      "schema_version": "f17-32-m3-low-rank2-5-shifted-minor-exclusion-v1",
+      "sha256": "50124450f25c48c7a122e8f73545d301fcecfb148f86049c48a39ca890ef7e97",
+      "status": "PROVED / AUDIT"
+    },
+    {
+      "name": "rank6_11_known",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-known-ledger-table/f17_32_n512_k256_m3_low_rank6_11_known_ledger_table.json",
+      "schema_version": "f17-32-m3-low-rank6-11-known-ledger-table-v4",
+      "sha256": "6e3165cf1845507e60b0fd7e1653bdb832ac8c7632be1ed89884d00b145d5bb1",
+      "status": "PROVED / AUDIT"
+    },
+    {
+      "name": "rank6_slack",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-slack-family/f17_32_n512_k256_m3_low_rank6_slack_family_certificate.json",
+      "schema_version": "f17-32-m3-low-rank6-slack-family-v1",
+      "sha256": "68208eb6d4b9530be259ccfc633dd443e101adbaa43fb3070b7be8fa8283f772",
+      "status": "PROVED / AUDIT"
+    },
+    {
+      "name": "rank7_slack",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank7-slack-family/f17_32_n512_k256_m3_low_rank7_slack_family_certificate.json",
+      "schema_version": "f17-32-m3-low-rank7-slack-family-v1",
+      "sha256": "2a6f3657846e62220c413c236844db6d5ebaba274198b29068641cc8c12dfc85",
+      "status": "PROVED / AUDIT"
+    },
+    {
+      "name": "rank8_slack",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank8-slack-family/f17_32_n512_k256_m3_low_rank8_slack_family_certificate.json",
+      "schema_version": "f17-32-m3-low-rank8-slack-family-v1",
+      "sha256": "9e7c96f6e544603ccb73e050085ffbcd6c3c615760a862a3b5412f3a8aff03ef",
+      "status": "PROVED / AUDIT"
+    },
+    {
+      "name": "rank9_11_slack",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank9-11-slack-sweep/f17_32_n512_k256_m3_low_rank9_11_slack_sweep_certificate.json",
+      "schema_version": "f17-32-m3-low-rank9-11-slack-sweep-v1",
+      "sha256": "621d61a8cec12110c86cf351d1ac8540f36086a5cab44d4257c30aac9282701c",
+      "status": "PROVED / AUDIT"
+    },
+    {
+      "name": "rank6_11_shifted",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-shifted-minor-exclusion/f17_32_n512_k256_m3_low_rank6_11_shifted_minor_exclusion.json",
+      "schema_version": "f17-32-m3-low-rank6-11-shifted-minor-exclusion-v1",
+      "sha256": "daa52a0820516c14039526a628e91fe06d83ce6ecef4a3663655383becdc22c3",
+      "status": "PROVED / AUDIT"
+    },
+    {
+      "name": "projective_infinity",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json",
+      "schema_version": "f17-32-m3-low-rank2-11-projective-infinity-v1",
+      "sha256": "f7457c3ceea4493286386d547adae12b97589d80434af4f2139f0cbb9470817b",
+      "status": "PROVED / AUDIT"
+    },
+    {
+      "name": "endpoint_quotient_support",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-support/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_support.json",
+      "schema_version": "f17-32-m3-low-rank2-11-endpoint-quotient-support-v1",
+      "sha256": "21a464229566bac456fe333baa3a20ece8deead0df980514172a6d5c12fe7ef1",
+      "status": "PROVED / AUDIT"
+    },
+    {
+      "name": "endpoint_quotient_image",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_image.json",
+      "schema_version": "f17-32-m3-low-rank2-11-endpoint-quotient-image-v1",
+      "sha256": "3bcea4abdf8a984ca6ad57fb6ea7f6be7489eed61ffe9d938587ec765e3ed4fe",
+      "status": "PROVED / AUDIT"
+    }
+  ],
+  "status": "PROVED / AUDIT"
+}

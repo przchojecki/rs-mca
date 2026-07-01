@@ -150,6 +150,11 @@ LOW_RANK6_11_SHIFTED_MINOR_EXCLUSION_REF = (
     "hankel-f17-32-m3-low-rank6-11-shifted-minor-exclusion/"
     "f17_32_n512_k256_m3_low_rank6_11_shifted_minor_exclusion.json"
 )
+LOW_RANK2_11_FULL_HANKEL_LEDGER_REF = (
+    "experimental/data/certificates/"
+    "hankel-f17-32-m3-low-rank2-11-full-hankel-ledger/"
+    "f17_32_n512_k256_m3_low_rank2_11_full_hankel_ledger.json"
+)
 TOP_PACKET_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/"
     "f17_32_n512_k256_a421_426_fixed_prefix92_packet.json"
@@ -310,6 +315,7 @@ def validate_inputs(
     representative_shifted_minor_exclusion: dict[str, Any],
     low_rank2_5_shifted_minor_exclusion: dict[str, Any],
     low_rank6_11_shifted_minor_exclusion: dict[str, Any],
+    low_rank2_11_full_hankel_ledger: dict[str, Any],
     top_packet: dict[str, Any],
     line_value_lift: dict[str, Any],
     subgroup_section: dict[str, Any],
@@ -1763,6 +1769,68 @@ def validate_inputs(
         "rank-6..11 shifted-minor exclusion aggregate mismatch",
     )
     require(
+        low_rank2_11_full_hankel_ledger["schema_version"]
+        == "f17-32-m3-low-rank2-11-full-hankel-ledger-v1",
+        "rank-2..11 full-Hankel ledger schema mismatch",
+    )
+    require(
+        low_rank2_11_full_hankel_ledger["agreement_range"]
+        == [AGREEMENT_MIN, AGREEMENT_MAX]
+        and low_rank2_11_full_hankel_ledger["ranks"]
+        == [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+        and low_rank2_11_full_hankel_ledger["aggregate"]["record_count"]
+        == 420
+        and low_rank2_11_full_hankel_ledger["deterministic_records"][
+            "record_count"
+        ]
+        == 420
+        and low_rank2_11_full_hankel_ledger["aggregate"][
+            "finite_regular_root_upper_sum"
+        ]
+        == 698
+        and low_rank2_11_full_hankel_ledger["aggregate"][
+            "finite_regular_roots_or_loci_excluded_by_shifted_minor_sum"
+        ]
+        == 698
+        and low_rank2_11_full_hankel_ledger["aggregate"][
+            "finite_full_hankel_witness_upper_sum"
+        ]
+        == 0
+        and low_rank2_11_full_hankel_ledger["aggregate"][
+            "projective_infinity_contribution_sum"
+        ]
+        == 420
+        and low_rank2_11_full_hankel_ledger["aggregate"][
+            "projective_endpoint_quotient_image_witness_sum"
+        ]
+        == 420
+        and low_rank2_11_full_hankel_ledger["aggregate"][
+            "max_regular_projective_upper_per_record"
+        ]
+        == 6
+        and low_rank2_11_full_hankel_ledger["aggregate"][
+            "max_full_hankel_projective_upper_before_endpoint_image_per_record"
+        ]
+        == 1
+        and low_rank2_11_full_hankel_ledger["aggregate"][
+            "max_aperiodic_full_hankel_projective_upper_per_record"
+        ]
+        == 0
+        and low_rank2_11_full_hankel_ledger["aggregate"][
+            "all_records_within_regular_projective_budget"
+        ]
+        is True
+        and low_rank2_11_full_hankel_ledger["aggregate"][
+            "all_records_within_full_hankel_projective_budget"
+        ]
+        is True
+        and low_rank2_11_full_hankel_ledger["aggregate"][
+            "all_records_within_aperiodic_full_hankel_budget"
+        ]
+        is True,
+        "rank-2..11 full-Hankel ledger aggregate mismatch",
+    )
+    require(
         top_packet["exact_agreements"][0]["A"] == TOP_WINDOW_MIN
         and top_packet["exact_agreements"][-1]["A"] == TOP_WINDOW_MAX,
         "top-window packet range mismatch",
@@ -2702,6 +2770,9 @@ def build_status() -> dict[str, Any]:
     low_rank6_11_shifted_minor_exclusion = load_json(
         LOW_RANK6_11_SHIFTED_MINOR_EXCLUSION_REF
     )
+    low_rank2_11_full_hankel_ledger = load_json(
+        LOW_RANK2_11_FULL_HANKEL_LEDGER_REF
+    )
     top_packet = load_json(TOP_PACKET_REF)
     line_value_lift = load_json(LINE_VALUE_LIFT_REF)
     subgroup_section = load_json(SUBGROUP_SECTION_REF)
@@ -2740,6 +2811,7 @@ def build_status() -> dict[str, Any]:
         representative_shifted_minor_exclusion,
         low_rank2_5_shifted_minor_exclusion,
         low_rank6_11_shifted_minor_exclusion,
+        low_rank2_11_full_hankel_ledger,
         top_packet,
         line_value_lift,
         subgroup_section,
@@ -2902,6 +2974,11 @@ def build_status() -> dict[str, Any]:
             "synthetic_low_rank6_11_shifted_minor_exclusion",
             LOW_RANK6_11_SHIFTED_MINOR_EXCLUSION_REF,
             "f17-32-m3-low-rank6-11-shifted-minor-exclusion-v1",
+        ),
+        artifact_record(
+            "synthetic_low_rank2_11_full_hankel_ledger",
+            LOW_RANK2_11_FULL_HANKEL_LEDGER_REF,
+            "f17-32-m3-low-rank2-11-full-hankel-ledger-v1",
         ),
         artifact_record("fixed_top_window_v9_packet", TOP_PACKET_REF, "aperiodic-hankel-eliminant-v1"),
         artifact_record(
@@ -3462,6 +3539,39 @@ def build_status() -> dict[str, Any]:
                 "synthetic low-rank slack ladder only; not quotient-image "
                 "or quotient-support closure, and not arbitrary M3 rows"
             ),
+            "synthetic_low_rank2_11_full_hankel_ledger_status": (
+                "combined rank-2..11 synthetic low-rank ledger: shifted-minor "
+                "exclusion removes every finite first-minor root or "
+                "degree-bound root locus from the full-Hankel witness column, "
+                "and endpoint quotient-image charging removes the remaining "
+                "[0:1] endpoint, leaving zero aperiodic full-Hankel residual "
+                "in every checked row"
+            ),
+            "synthetic_low_rank2_11_full_hankel_finite_upper_cleared": (
+                low_rank2_11_full_hankel_ledger["aggregate"][
+                    "finite_regular_roots_or_loci_excluded_by_shifted_minor_sum"
+                ]
+            ),
+            "synthetic_low_rank2_11_full_hankel_max_regular_projective_upper": (
+                low_rank2_11_full_hankel_ledger["aggregate"][
+                    "max_regular_projective_upper_per_record"
+                ]
+            ),
+            "synthetic_low_rank2_11_full_hankel_max_before_endpoint_image": (
+                low_rank2_11_full_hankel_ledger["aggregate"][
+                    "max_full_hankel_projective_upper_before_endpoint_image_per_record"
+                ]
+            ),
+            "synthetic_low_rank2_11_full_hankel_max_aperiodic_residual": (
+                low_rank2_11_full_hankel_ledger["aggregate"][
+                    "max_aperiodic_full_hankel_projective_upper_per_record"
+                ]
+            ),
+            "synthetic_low_rank2_11_full_hankel_nonclaim": (
+                "synthetic rank-2..11 low-rank ladder only; finite roots are "
+                "not audited as quotient-image/support roots, and this is "
+                "not an arbitrary M3-row theorem"
+            ),
             "low_rank_budget_envelope_status": (
                 "proved that every nonzero regular low-rank update chart of "
                 "rank <= 6 is within the F_17^32 M3 finite regular-root "
@@ -3543,6 +3653,7 @@ def build_status() -> dict[str, Any]:
                 "the representative shifted-minor exclusion proves that the 18 finite roots listed in the rank-6..11 representative projective-line packets do not give full-Hankel exact-support witnesses, because the row-shift-1 square minor is nonzero at each one",
                 "the synthetic rank-2..5 shifted-minor exclusion proves that the first regular minor is coprime to the row-shift-1 minor in every checked rank/agreement row, clearing 82 exact finite roots and a degree-bound finite root-locus upper total 378 as full-Hankel witnesses",
                 "the synthetic rank-6..11 shifted-minor exclusion proves that all 238 finite roots counted by the low-rank slack ledgers are first-minor artifacts rather than actual full-Hankel exact-support witnesses, because the row-shift-1 square minor excludes them",
+                "the synthetic rank-2..11 full-Hankel ledger combines the rank-2..5 and rank-6..11 shifted-minor exclusions with endpoint quotient-image charging: finite regular first-minor upper mass 698 contributes zero full-Hankel witnesses, the endpoint contributes at most one before charging, and the aperiodic full-Hankel residual max is zero in every checked row",
                 "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
                 "the fixed top-window syndrome input has an explicit line-value lift",
@@ -3673,6 +3784,10 @@ def print_summary(status: dict[str, Any]) -> None:
     print(
         "rank-6..11 shifted minors: "
         f"{summary['synthetic_low_rank6_11_shifted_minor_exclusion_status']}"
+    )
+    print(
+        "rank-2..11 full-Hankel ledger: "
+        f"{summary['synthetic_low_rank2_11_full_hankel_ledger_status']}"
     )
     print(f"low-rank budget envelope: {summary['low_rank_budget_envelope_status']}")
     print(f"low-rank packet gate: {summary['low_rank_packet_gate_status']}")
