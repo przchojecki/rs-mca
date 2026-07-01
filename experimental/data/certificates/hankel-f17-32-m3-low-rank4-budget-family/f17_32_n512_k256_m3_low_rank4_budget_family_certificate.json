@@ -1,0 +1,4229 @@
+{
+  "aggregate": {
+    "agreement_count": 42,
+    "all_rows_within_finite_budget": true,
+    "all_rows_within_projective_budget": true,
+    "degree_bound_sum": 168,
+    "generic_degree_bound_sum_for_window": 4515,
+    "max_finite_roots_per_agreement_bound": 4,
+    "max_projective_regular_roots_per_agreement_bound": 5,
+    "per_agreement_degree_bound": 4,
+    "polynomial_degree_histogram": {
+      "4": 42
+    },
+    "projective_infinity_contribution_sum": 42
+  },
+  "agreement_range": [
+    385,
+    426
+  ],
+  "construction": {
+    "base_nodes": "first j+1 descriptor-domain elements",
+    "certificate_mode": "low_rank_update_budget_bound",
+    "rank": 4,
+    "update_nodes": "next four descriptor-domain elements"
+  },
+  "endpoint_conventions": {
+    "extra_projective_point": "[0:1]",
+    "finite_affine_slope_denominator": 2367911594760467245844106297320951247361,
+    "finite_budget_numerator": 6,
+    "projective_budget_numerator": 6,
+    "projective_slope_denominator": 2367911594760467245844106297320951247362
+  },
+  "method": {
+    "coefficient_replay": "principal-minor coefficients of det(I+ZK)",
+    "exact_root_counts": "not enumerated; unnecessary for rank-4 projective budget",
+    "finite_root_bound": "degree Delta_r = 4, so at most 4 finite roots",
+    "identity": "Delta_r(Z)=det(H_X) det(I+ZK)",
+    "kernel": "K_ab=sum_i L_i(y_a)L_i(y_b)",
+    "projective_root_bound": "corrected low-rank endpoint contributes one possible infinity point, so at most 5 projective regular roots"
+  },
+  "nonclaims": [
+    "synthetic syndrome-pencil family only",
+    "not a worst-case MCA row bound",
+    "does not enumerate exact finite roots",
+    "does not perform a quotient/tangent subtraction table",
+    "budget comparison is per-agreement regular-root accounting before removed-ledger subtraction",
+    "quotient-image overlap is not audited here"
+  ],
+  "records": [
+    {
+      "A": 385,
+      "base_node_count": 128,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1960127525760963954976810457703429629095,
+        226043352554509470397959548489737809303,
+        146664984170075390545541990713248936722,
+        29294710953728590035855476409527285880,
+        2365429674318291677389081323219821966276
+      ],
+      "j": 127,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1960127525760963954976810457703429629095,
+        "base_node_count": 128,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1960127525760963954976810457703429629095,
+          226043352554509470397959548489737809303,
+          146664984170075390545541990713248936722,
+          29294710953728590035855476409527285880,
+          2365429674318291677389081323219821966276
+        ],
+        "kernel": [
+          [
+            999316016136615397188383482312064871132,
+            862118261296032290548583498138619915656,
+            2154269387941700796950244836408615900120,
+            1888727964202729853022097512507735654087
+          ],
+          [
+            862118261296032290548583498138619915656,
+            214464487063629724896666301677868002627,
+            1278906092109596941150988191338233778449,
+            332748893855689128894559289923107979077
+          ],
+          [
+            2154269387941700796950244836408615900120,
+            1278906092109596941150988191338233778449,
+            1258977270026552682637927116648951585896,
+            1990241992914685998466547615481361883417
+          ],
+          [
+            1888727964202729853022097512507735654087,
+            332748893855689128894559289923107979077,
+            1990241992914685998466547615481361883417,
+            964188957745769042208439656017826475260
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          912818844721205579797389113236177059160,
+          709345202877308174169840276783717217734,
+          485549757181555233576751267190845212970,
+          281908076867167493572681657530558560711
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        127
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 2365429674318291677389081323219821966276,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 128
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "fd236be39ae5e5311711cb1fad80cb7fd309677fb797b49e84e71538acb6a7c9",
+      "t": 129,
+      "update_node_encodings": [
+        4,
+        908175381791583557904899778291937649926,
+        1645100780238694736070198252078690200260,
+        1397318256378902653769921225763486164214
+      ]
+    },
+    {
+      "A": 386,
+      "base_node_count": 127,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        496073742394775788598166928489200568658,
+        1352641832752921778081753660057223209236,
+        802186098512470701991707978894832041892,
+        1598466951551433311795443244572553971438,
+        289456459473077511964479371691310248090
+      ],
+      "j": 126,
+      "low_rank_compression": {
+        "base_hankel_determinant": 496073742394775788598166928489200568658,
+        "base_node_count": 127,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          496073742394775788598166928489200568658,
+          1352641832752921778081753660057223209236,
+          802186098512470701991707978894832041892,
+          1598466951551433311795443244572553971438,
+          289456459473077511964479371691310248090
+        ],
+        "kernel": [
+          [
+            467403679085646608188946174128705635194,
+            518865809668833015082566834193239978373,
+            1822801534343022749574102353427670571323,
+            1342713611061323730595598935544706055106
+          ],
+          [
+            518865809668833015082566834193239978373,
+            1899582437133746120791367626606683188053,
+            2310806663982297887982481566907472378695,
+            547451652502761689772078835256433047992
+          ],
+          [
+            1822801534343022749574102353427670571323,
+            2310806663982297887982481566907472378695,
+            94324405463142700309375317825894457261,
+            1000573629397393594293228809122316951046
+          ],
+          [
+            1342713611061323730595598935544706055106,
+            547451652502761689772078835256433047992,
+            1000573629397393594293228809122316951046,
+            2031226679568838134494296511500296547159
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1828695125502137228466598769466032957991,
+          2243645102092029870913806000434667996602,
+          2045774795876156918133774054829190953845,
+          2122340662073298010049241825418633936053
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        126
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 289456459473077511964479371691310248090,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 127
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "7ee70df05c877d4b83f033cdf5e489b9de709d3b6f1d27ff27fb4a373726bfa7",
+      "t": 130,
+      "update_node_encodings": [
+        1333031548949790234483639924600856562997,
+        4,
+        908175381791583557904899778291937649926,
+        1645100780238694736070198252078690200260
+      ]
+    },
+    {
+      "A": 387,
+      "base_node_count": 126,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1812083095683987272151378733457441781395,
+        1332150864175943632677658053065187719807,
+        506849549966642153858407186145509984719,
+        1717317244686180120768613965274263501793,
+        979108448616901499714895559368439079657
+      ],
+      "j": 125,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1812083095683987272151378733457441781395,
+        "base_node_count": 126,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1812083095683987272151378733457441781395,
+          1332150864175943632677658053065187719807,
+          506849549966642153858407186145509984719,
+          1717317244686180120768613965274263501793,
+          979108448616901499714895559368439079657
+        ],
+        "kernel": [
+          [
+            1959865512493780919275020990722021729183,
+            1409563934468145408885941773409045808816,
+            1429662365834033830960915659781430918474,
+            1017534576037208066298816902640816749382
+          ],
+          [
+            1409563934468145408885941773409045808816,
+            1929139728082565102214587584341456277906,
+            1986302888605054398077410849828698609531,
+            1815443134231593762532754529659525831140
+          ],
+          [
+            1429662365834033830960915659781430918474,
+            1986302888605054398077410849828698609531,
+            1339883497758514511865815014588338068257,
+            824404494464668869825320777381159251788
+          ],
+          [
+            1017534576037208066298816902640816749382,
+            1815443134231593762532754529659525831140,
+            824404494464668869825320777381159251788,
+            1837762341408420032391704689822293262792
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          2183313618289963570462807466878936367916,
+          2209100038473645058779781091008973861148,
+          613472668240711975159883615009600676451,
+          192599216645964429082971496201266760772
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        125
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 979108448616901499714895559368439079657,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 126
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "cc7093b5d6efa4285e27bfdb426e8b246dfd7d89f7410cbf706e895acba93e9f",
+      "t": 131,
+      "update_node_encodings": [
+        166827846988267072408940645183775914176,
+        1333031548949790234483639924600856562997,
+        4,
+        908175381791583557904899778291937649926
+      ]
+    },
+    {
+      "A": 388,
+      "base_node_count": 125,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        801602236823272202298702624015334190399,
+        1852622520031718584810916009760834270079,
+        1332475830494548764018445270618857396105,
+        1704829145693213805755199990432847337582,
+        1853264102488367915361465568141297932211
+      ],
+      "j": 124,
+      "low_rank_compression": {
+        "base_hankel_determinant": 801602236823272202298702624015334190399,
+        "base_node_count": 125,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          801602236823272202298702624015334190399,
+          1852622520031718584810916009760834270079,
+          1332475830494548764018445270618857396105,
+          1704829145693213805755199990432847337582,
+          1853264102488367915361465568141297932211
+        ],
+        "kernel": [
+          [
+            361641856483202636264713885717311478172,
+            1029525207099160278435865680155971598348,
+            1778787027204256495053073967034244419503,
+            463529486616211074444809067062400594553
+          ],
+          [
+            1029525207099160278435865680155971598348,
+            1719212506815030671247092921677280498438,
+            451694294544376037900864830708680076993,
+            1570015540202184834664963900244982962976
+          ],
+          [
+            1778787027204256495053073967034244419503,
+            451694294544376037900864830708680076993,
+            30613751962734099608050626337600831293,
+            486945945208163720895044494856304140361
+          ],
+          [
+            463529486616211074444809067062400594553,
+            1570015540202184834664963900244982962976,
+            486945945208163720895044494856304140361,
+            1022160876409941019016043461680934466396
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          609501110849624508214787700464477670464,
+          54059072321136094511664776634552545709,
+          2258022172666534745598993686198775872006,
+          57727490707132676341592388784220568233
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        124
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 1853264102488367915361465568141297932211,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 125
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "11226f9d7285da4fb239e86da37a9feb555b89893ee2ed15c4afe3ee5db59e68",
+      "t": 132,
+      "update_node_encodings": [
+        1342769889772733378528420462197660316702,
+        166827846988267072408940645183775914176,
+        1333031548949790234483639924600856562997,
+        4
+      ]
+    },
+    {
+      "A": 389,
+      "base_node_count": 124,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        353908664811310541551848142583756076095,
+        321360660279457313702728055397461475472,
+        1287313729906071889385424289857797008168,
+        250826187047273994084030639474544147583,
+        1609961019690803413188726399254268567875
+      ],
+      "j": 123,
+      "low_rank_compression": {
+        "base_hankel_determinant": 353908664811310541551848142583756076095,
+        "base_node_count": 124,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          353908664811310541551848142583756076095,
+          321360660279457313702728055397461475472,
+          1287313729906071889385424289857797008168,
+          250826187047273994084030639474544147583,
+          1609961019690803413188726399254268567875
+        ],
+        "kernel": [
+          [
+            157263005737047171509062204551002329103,
+            930268476258391249391008280310938514731,
+            1497205673589139882643712597235057126782,
+            1267976466596598130273624498867588475470
+          ],
+          [
+            930268476258391249391008280310938514731,
+            2197789036998444629959502113397784625498,
+            1336504926081124063317109890029199645430,
+            2293708328349724035325490956501881096453
+          ],
+          [
+            1497205673589139882643712597235057126782,
+            1336504926081124063317109890029199645430,
+            829354360074125396138379373849895132543,
+            346233825561016003980885032286259893569
+          ],
+          [
+            1267976466596598130273624498867588475470,
+            2293708328349724035325490956501881096453,
+            346233825561016003980885032286259893569,
+            1768857885615179664441819817826078156780
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          2298039178977852636086471402835568907697,
+          1667756381303227643977124950456189035841,
+          1199806904973672992989147965397906922865,
+          2353151028667564094104460113849694106849
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        123
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 1609961019690803413188726399254268567875,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 124
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "2c01214e54f9b02ba27333b94feebea675a7aa60943ecd02c8001fabaac4a9de",
+      "t": 133,
+      "update_node_encodings": [
+        2200374208321043868420434334978582910460,
+        1342769889772733378528420462197660316702,
+        166827846988267072408940645183775914176,
+        1333031548949790234483639924600856562997
+      ]
+    },
+    {
+      "A": 390,
+      "base_node_count": 123,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        342634331139171815574309265824355558334,
+        1060053397742182559576097863378185938393,
+        1753847923242997900630346783517061639633,
+        768781768694625993577118552706148684535,
+        2159431209119633130528768676586409979727
+      ],
+      "j": 122,
+      "low_rank_compression": {
+        "base_hankel_determinant": 342634331139171815574309265824355558334,
+        "base_node_count": 123,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          342634331139171815574309265824355558334,
+          1060053397742182559576097863378185938393,
+          1753847923242997900630346783517061639633,
+          768781768694625993577118552706148684535,
+          2159431209119633130528768676586409979727
+        ],
+        "kernel": [
+          [
+            1028638946453797656537810396984647861564,
+            1425616406118449523136519344690215474876,
+            922185050501748470914134279571603529246,
+            562626696851348012804396598916514305371
+          ],
+          [
+            1425616406118449523136519344690215474876,
+            1752583791274677025260875821309303074190,
+            2254217590925817048076330887649479965695,
+            1770890263764768532804331426070142965744
+          ],
+          [
+            922185050501748470914134279571603529246,
+            2254217590925817048076330887649479965695,
+            2066565067461557390487304948795456931692,
+            996434803278410606520446877735141755857
+          ],
+          [
+            562626696851348012804396598916514305371,
+            1770890263764768532804331426070142965744,
+            996434803278410606520446877735141755857,
+            1097169240912707574682503275091013849918
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          913656895312765422267652592079786516585,
+          1216119051507499068465073939373901997443,
+          272774470143520987933237627638174050581,
+          1476309859662679827887721262271821025873
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        122
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 2159431209119633130528768676586409979727,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 123
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "3372d6982be22c836fd8837abdfc81d790d6c3a69d45c32ae0349b9d6f084724",
+      "t": 134,
+      "update_node_encodings": [
+        2238996876511071889967474529857845163901,
+        2200374208321043868420434334978582910460,
+        1342769889772733378528420462197660316702,
+        166827846988267072408940645183775914176
+      ]
+    },
+    {
+      "A": 391,
+      "base_node_count": 122,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1710840598805328105053886624336408118149,
+        1677629401494824703107840975559932769475,
+        715144424833415492621158743039477612533,
+        440997099905648938308102502252216735654,
+        1082661512797207941833976597229356864533
+      ],
+      "j": 121,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1710840598805328105053886624336408118149,
+        "base_node_count": 122,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1710840598805328105053886624336408118149,
+          1677629401494824703107840975559932769475,
+          715144424833415492621158743039477612533,
+          440997099905648938308102502252216735654,
+          1082661512797207941833976597229356864533
+        ],
+        "kernel": [
+          [
+            984982192092276953593590845403746365715,
+            2179774756634102001337467630060017050447,
+            54440708968106722140013699439400076238,
+            125480096568774080962438202247592799856
+          ],
+          [
+            2179774756634102001337467630060017050447,
+            2268825884897310619739282474684215611474,
+            512302439281941625384142565397177289727,
+            1524066168668140184747538968425456545968
+          ],
+          [
+            54440708968106722140013699439400076238,
+            512302439281941625384142565397177289727,
+            879313135898048134893890651555501223208,
+            1979494981272825195190028891925501629546
+          ],
+          [
+            125480096568774080962438202247592799856,
+            1524066168668140184747538968425456545968,
+            1979494981272825195190028891925501629546,
+            126414005776624640129737406080584356754
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1743627475409861568998314122288850621778,
+          1998051947652874129142202212042678379860,
+          273336674503163527861893650546865345894,
+          161894057259538001212549529131693492153
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        121
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 1082661512797207941833976597229356864533,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 122
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "81f8667c785d6134b8fb9fdfd3c959af12d714b176acc69f62c6b25dbe368477",
+      "t": 135,
+      "update_node_encodings": [
+        577584215837689911959348734796612442524,
+        2238996876511071889967474529857845163901,
+        2200374208321043868420434334978582910460,
+        1342769889772733378528420462197660316702
+      ]
+    },
+    {
+      "A": 392,
+      "base_node_count": 121,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        2195971428518805751996365415031908500830,
+        89775857412150788452866198171314091434,
+        1386770850742602442353681366956899431962,
+        1627860587517395041613866569853032882449,
+        631349231931496869214496632800633007225
+      ],
+      "j": 120,
+      "low_rank_compression": {
+        "base_hankel_determinant": 2195971428518805751996365415031908500830,
+        "base_node_count": 121,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          2195971428518805751996365415031908500830,
+          89775857412150788452866198171314091434,
+          1386770850742602442353681366956899431962,
+          1627860587517395041613866569853032882449,
+          631349231931496869214496632800633007225
+        ],
+        "kernel": [
+          [
+            1070341988574722267759565083271025004993,
+            493187518203032351620278556514469897458,
+            1988015224206729719978860119350305367611,
+            1259862747048825611803533510937253359574
+          ],
+          [
+            493187518203032351620278556514469897458,
+            1119303658496698472803250957145909047375,
+            2109698809582199910956711475009205681145,
+            1411333540291959888578114927356193741426
+          ],
+          [
+            1988015224206729719978860119350305367611,
+            2109698809582199910956711475009205681145,
+            2068191139120161277332697228429845479612,
+            2164611895851991556740803059200497469623
+          ],
+          [
+            1259862747048825611803533510937253359574,
+            1411333540291959888578114927356193741426,
+            2164611895851991556740803059200497469623,
+            25816638083239605131301807495291979337
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1767775595932960916969091785711832168060,
+          821537578944610361961557627379463007815,
+          883281629006316065048846640840103987051,
+          67173875804696145888131796187608394494
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        120
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 631349231931496869214496632800633007225,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 121
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "0b646d302ff12b4a9b9be5adc0903652c013f1f5934566265fc60a38834cb27b",
+      "t": 136,
+      "update_node_encodings": [
+        1423058465184625907468805430928316662242,
+        577584215837689911959348734796612442524,
+        2238996876511071889967474529857845163901,
+        2200374208321043868420434334978582910460
+      ]
+    },
+    {
+      "A": 393,
+      "base_node_count": 120,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1820799323371946193183878234070001430955,
+        1636948311323238179045549426033892644285,
+        1897148321708699992676299584684049141956,
+        1282788199776053215259545384429896643322,
+        229955077140324221124850929893258803755
+      ],
+      "j": 119,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1820799323371946193183878234070001430955,
+        "base_node_count": 120,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1820799323371946193183878234070001430955,
+          1636948311323238179045549426033892644285,
+          1897148321708699992676299584684049141956,
+          1282788199776053215259545384429896643322,
+          229955077140324221124850929893258803755
+        ],
+        "kernel": [
+          [
+            217845013754437159324762604991777017130,
+            1703100110816641633452345944175868182759,
+            1743431316665691749892169652864890855393,
+            2257489900849837364768258436894096351640
+          ],
+          [
+            1703100110816641633452345944175868182759,
+            1551105928412332762873503658247955943996,
+            1161169052909158161480147109761164057662,
+            503208946404586062452005202788437740556
+          ],
+          [
+            1743431316665691749892169652864890855393,
+            1161169052909158161480147109761164057662,
+            637438961470022609224380579977373035246,
+            609098133500196085263514349342745129430
+          ],
+          [
+            2257489900849837364768258436894096351640,
+            503208946404586062452005202788437740556,
+            609098133500196085263514349342745129430,
+            2152588275628604685336435307677417365853
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          2034848625281640530195368190919575366755,
+          2331255764251921993606126667023885054786,
+          709365754954727650606562893441121858331,
+          1844870251888976517268243679189888992671
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        119
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 229955077140324221124850929893258803755,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 120
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "808cab7a7057f1c0e12d766c0d1593f22cfc063ec3112fa33315f58712992ebe",
+      "t": 137,
+      "update_node_encodings": [
+        2061949620025024682415118345528019524128,
+        1423058465184625907468805430928316662242,
+        577584215837689911959348734796612442524,
+        2238996876511071889967474529857845163901
+      ]
+    },
+    {
+      "A": 394,
+      "base_node_count": 119,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        470938990856930116960320685179333350339,
+        974796302266871739014324349956548654070,
+        1153047488076041663596213337630009438697,
+        602457027313992127092632571613948135253,
+        2355925337983077069968019180156991747233
+      ],
+      "j": 118,
+      "low_rank_compression": {
+        "base_hankel_determinant": 470938990856930116960320685179333350339,
+        "base_node_count": 119,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          470938990856930116960320685179333350339,
+          974796302266871739014324349956548654070,
+          1153047488076041663596213337630009438697,
+          602457027313992127092632571613948135253,
+          2355925337983077069968019180156991747233
+        ],
+        "kernel": [
+          [
+            1964493963951108772454402315120661764187,
+            1339643708670981594383346886446990051832,
+            1759459331856518869829309129796461447670,
+            792670642150356703969714078328619181556
+          ],
+          [
+            1339643708670981594383346886446990051832,
+            967032602175461177968567907291499248739,
+            2039849286005607347672293454013236362852,
+            235780759207519434226091201226447093702
+          ],
+          [
+            1759459331856518869829309129796461447670,
+            2039849286005607347672293454013236362852,
+            1363027782235039982063174392167891906845,
+            2106313390708486638382699111933542671246
+          ],
+          [
+            792670642150356703969714078328619181556,
+            235780759207519434226091201226447093702,
+            2106313390708486638382699111933542671246,
+            2111296915716107670946772391173564944650
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1522005052929893452744941583935927332616,
+          1586376546150332289890898890816823335580,
+          1590079315995933257945816139227034442152,
+          560193696513350513588891191116905787515
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        118
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 2355925337983077069968019180156991747233,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 119
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "b78a91d8c1e26f5f29fcfb4809d6a5ae70b325eee579e24a3d9aafa28105c968",
+      "t": 138,
+      "update_node_encodings": [
+        642585449820627675623054126886198517378,
+        2061949620025024682415118345528019524128,
+        1423058465184625907468805430928316662242,
+        577584215837689911959348734796612442524
+      ]
+    },
+    {
+      "A": 395,
+      "base_node_count": 118,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        100919767089740780499066295931668351702,
+        1665119298591364673687404075540388343889,
+        1378865077416569366440930263621767367076,
+        1310472199724611014952021075779888626606,
+        740795330214320942510268999665706392578
+      ],
+      "j": 117,
+      "low_rank_compression": {
+        "base_hankel_determinant": 100919767089740780499066295931668351702,
+        "base_node_count": 118,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          100919767089740780499066295931668351702,
+          1665119298591364673687404075540388343889,
+          1378865077416569366440930263621767367076,
+          1310472199724611014952021075779888626606,
+          740795330214320942510268999665706392578
+        ],
+        "kernel": [
+          [
+            1443084216262897946445768780617026355547,
+            646405919657109662058112875583421952620,
+            97240325416367917047161748416502256006,
+            2344312317120777515004334615668751949973
+          ],
+          [
+            646405919657109662058112875583421952620,
+            1044550793145382847259100861029049160764,
+            857861023408008274970904318772415672897,
+            699231839889875528096211449692700881493
+          ],
+          [
+            97240325416367917047161748416502256006,
+            857861023408008274970904318772415672897,
+            2235966933055064318396074490344694476182,
+            1442488843260836970037601129127638321828
+          ],
+          [
+            2344312317120777515004334615668751949973,
+            699231839889875528096211449692700881493,
+            1442488843260836970037601129127638321828,
+            282086075528367045218469450084339260824
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          261639566207215922042446506620817098971,
+          1714346081153950946126773280730261720473,
+          188438358494366466572944469244788350331,
+          1892677271893173133440298943196816509012
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        117
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 740795330214320942510268999665706392578,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 118
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "f833f523e5718d6d5b552b808dae5c969f3d6ea057f56d6cfc6179d50f0ca8f5",
+      "t": 139,
+      "update_node_encodings": [
+        1304851727127684213341388299811711909093,
+        642585449820627675623054126886198517378,
+        2061949620025024682415118345528019524128,
+        1423058465184625907468805430928316662242
+      ]
+    },
+    {
+      "A": 396,
+      "base_node_count": 117,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1685443426320145250183393507716690895160,
+        1328384853070688554958714469544505096619,
+        1702778736396077435835332950151045263042,
+        1161771618837103960740341137090539631920,
+        1968054442204689164047822843196073139719
+      ],
+      "j": 116,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1685443426320145250183393507716690895160,
+        "base_node_count": 117,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1685443426320145250183393507716690895160,
+          1328384853070688554958714469544505096619,
+          1702778736396077435835332950151045263042,
+          1161771618837103960740341137090539631920,
+          1968054442204689164047822843196073139719
+        ],
+        "kernel": [
+          [
+            124968416952081054722092644326009529454,
+            1508208652028937723801324707313369850987,
+            443466365963743984668592367282547673065,
+            1461103620585122320010521731536350841188
+          ],
+          [
+            1508208652028937723801324707313369850987,
+            1206456061493381667861301571606994144921,
+            2205477777721998064558020343687138135730,
+            2081621430378478228787266738486418206195
+          ],
+          [
+            443466365963743984668592367282547673065,
+            2205477777721998064558020343687138135730,
+            982517593162492871546196132760108910678,
+            591122010167356960821227682162683809964
+          ],
+          [
+            1461103620585122320010521731536350841188,
+            2081621430378478228787266738486418206195,
+            591122010167356960821227682162683809964,
+            2283674713082968790195768240419301023844
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          2073488898078976646402389936970692664520,
+          2021414785094616193041624943245773924943,
+          2079268762712917852998734842119879638348,
+          2239338837764756947797683772231950701304
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        116
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 1968054442204689164047822843196073139719,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 117
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "bf26ad4880132ef53085cf0541c23abcc544b118aeb2db24001a4e8f42c49363",
+      "t": 140,
+      "update_node_encodings": [
+        1587617964958802262010635883782000064782,
+        1304851727127684213341388299811711909093,
+        642585449820627675623054126886198517378,
+        2061949620025024682415118345528019524128
+      ]
+    },
+    {
+      "A": 397,
+      "base_node_count": 116,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1664634994593716759843410256493381111947,
+        1586175429898205462926466007066122289972,
+        2003634356579142856752474382285247884483,
+        184707433777492864274763962507115413135,
+        680639297625816633806086142405412753068
+      ],
+      "j": 115,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1664634994593716759843410256493381111947,
+        "base_node_count": 116,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1664634994593716759843410256493381111947,
+          1586175429898205462926466007066122289972,
+          2003634356579142856752474382285247884483,
+          184707433777492864274763962507115413135,
+          680639297625816633806086142405412753068
+        ],
+        "kernel": [
+          [
+            1876007783141648667778568928488153421711,
+            1953983181095633282247806305964267897666,
+            855227598984907799581857070982172289427,
+            332191406344641789926754419955450456074
+          ],
+          [
+            1953983181095633282247806305964267897666,
+            993185189885924070603272537441669779705,
+            861076579596252407013597991621421081309,
+            2249560001319355455072001700177308449762
+          ],
+          [
+            855227598984907799581857070982172289427,
+            861076579596252407013597991621421081309,
+            1618230992596651398588835025378480291676,
+            933791612816928648553574738933606305370
+          ],
+          [
+            332191406344641789926754419955450456074,
+            2249560001319355455072001700177308449762,
+            933791612816928648553574738933606305370,
+            1616938523278777046466413177569531608993
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1220032837312554568548207838597107359524,
+          1900283343888838500607304519826496122471,
+          870377384271037407750360346346744292262,
+          1965271838783654513280424975267825180339
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        115
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 680639297625816633806086142405412753068,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 116
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "7ce2d3eb0d5b5e94dc516d495cdb2c94ce01e9eb0928970e56d6e50fb2d6091f",
+      "t": 141,
+      "update_node_encodings": [
+        1347158992066732266415346068812726203362,
+        1587617964958802262010635883782000064782,
+        1304851727127684213341388299811711909093,
+        642585449820627675623054126886198517378
+      ]
+    },
+    {
+      "A": 398,
+      "base_node_count": 115,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        294773241926924909066802979946567578729,
+        1742066511052978286908827630306035119572,
+        1355245606340327381062978581185837200355,
+        2308941205022332251862389066991769028338,
+        626630563112556906807070962203039238118
+      ],
+      "j": 114,
+      "low_rank_compression": {
+        "base_hankel_determinant": 294773241926924909066802979946567578729,
+        "base_node_count": 115,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          294773241926924909066802979946567578729,
+          1742066511052978286908827630306035119572,
+          1355245606340327381062978581185837200355,
+          2308941205022332251862389066991769028338,
+          626630563112556906807070962203039238118
+        ],
+        "kernel": [
+          [
+            842366901893979590099439534865529255030,
+            1569788685930330138367794947521243479900,
+            758112251448905710219951788708273245483,
+            131166457416774072376848248388343165348
+          ],
+          [
+            1569788685930330138367794947521243479900,
+            780289977897018980408623473605240266240,
+            767380871044536884464647106410017342946,
+            1592037351630220618188297757481540265973
+          ],
+          [
+            758112251448905710219951788708273245483,
+            767380871044536884464647106410017342946,
+            1950251226756332039943739734025454900372,
+            828654440714155534700218840958949126913
+          ],
+          [
+            131166457416774072376848248388343165348,
+            1592037351630220618188297757481540265973,
+            828654440714155534700218840958949126913,
+            1010644393586882260675442450478325188849
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          2206451705605383162853019445452626670094,
+          2277556989985263926800670355816342750877,
+          1888086851958163303401366852864180821348,
+          1386987398431360387974466523068385936364
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        114
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 626630563112556906807070962203039238118,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 115
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "55c2630a6eb24180e46d191b0192f0731739d5ae087c07b67388a578c3cac1eb",
+      "t": 142,
+      "update_node_encodings": [
+        1977055114912469630279202580954678041065,
+        1347158992066732266415346068812726203362,
+        1587617964958802262010635883782000064782,
+        1304851727127684213341388299811711909093
+      ]
+    },
+    {
+      "A": 399,
+      "base_node_count": 114,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        71846692608176055586320066844908846896,
+        2227298930676959459404424062890597508208,
+        1364822494412043611407057956603948228535,
+        1195360934405871886712754467708230111675,
+        2012843962183684631698873195651371736721
+      ],
+      "j": 113,
+      "low_rank_compression": {
+        "base_hankel_determinant": 71846692608176055586320066844908846896,
+        "base_node_count": 114,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          71846692608176055586320066844908846896,
+          2227298930676959459404424062890597508208,
+          1364822494412043611407057956603948228535,
+          1195360934405871886712754467708230111675,
+          2012843962183684631698873195651371736721
+        ],
+        "kernel": [
+          [
+            2262691848514888007803319858627859221949,
+            231914870209447874142470029912367795419,
+            154674251168909668609797816154621959805,
+            1820960023014894518651979623766396619307
+          ],
+          [
+            231914870209447874142470029912367795419,
+            2088149483982591882414649053887977200233,
+            830984890806631683130883946012949435469,
+            2263761902867743776159678545355927379297
+          ],
+          [
+            154674251168909668609797816154621959805,
+            830984890806631683130883946012949435469,
+            1998143218043155482637355319484379244885,
+            2083271116459325188006510766027926281700
+          ],
+          [
+            1820960023014894518651979623766396619307,
+            2263761902867743776159678545355927379297,
+            2083271116459325188006510766027926281700,
+            767235253962024911221168509044802233906
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          2223694915265439902131992989990773760823,
+          1577764651327785569804256367888149997921,
+          1084066836157749834492674376974025190143,
+          640497037170879591397407335523824407243
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        113
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 2012843962183684631698873195651371736721,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 114
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "2a317792e5ca6a6243c446ab0bd33a22f2b88fda3f2259b740aad20fb92298e5",
+      "t": 143,
+      "update_node_encodings": [
+        478503583670220909999029929946431163543,
+        1977055114912469630279202580954678041065,
+        1347158992066732266415346068812726203362,
+        1587617964958802262010635883782000064782
+      ]
+    },
+    {
+      "A": 400,
+      "base_node_count": 113,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1130307758722218882644531062134510475889,
+        1061189330632531533149386252717196579333,
+        1972376014077152546577631271629294951824,
+        1170857216356584973645451178734699477140,
+        750702839696462992463441889240853318093
+      ],
+      "j": 112,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1130307758722218882644531062134510475889,
+        "base_node_count": 113,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1130307758722218882644531062134510475889,
+          1061189330632531533149386252717196579333,
+          1972376014077152546577631271629294951824,
+          1170857216356584973645451178734699477140,
+          750702839696462992463441889240853318093
+        ],
+        "kernel": [
+          [
+            459634909538974884178938738658847085121,
+            1783135867638737681463057735822083822312,
+            2077254861230639562614568757999450245341,
+            1415620653384856768519273733199070202226
+          ],
+          [
+            1783135867638737681463057735822083822312,
+            435364564775868293119131718150978803777,
+            2150406425422178609217367579105561263324,
+            2355010286826214921452630576099291594044
+          ],
+          [
+            2077254861230639562614568757999450245341,
+            2150406425422178609217367579105561263324,
+            852505466079511242078397349532210062573,
+            539052782970690923179745107122806562385
+          ],
+          [
+            1415620653384856768519273733199070202226,
+            2355010286826214921452630576099291594044,
+            539052782970690923179745107122806562385,
+            1449209693569933474740778429218512265085
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          819615409406770653550710229864147422069,
+          362966343114073471355960062119801706018,
+          2066022654490973931621434979504157924595,
+          233883967464666733452863915347254568051
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        112
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 750702839696462992463441889240853318093,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 113
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "55595dafe6226a9fa9700e060dce68908e7ca2f19e9e98e1c801015779b4fd4a",
+      "t": 144,
+      "update_node_encodings": [
+        1977704477316255062523287777393127253255,
+        478503583670220909999029929946431163543,
+        1977055114912469630279202580954678041065,
+        1347158992066732266415346068812726203362
+      ]
+    },
+    {
+      "A": 401,
+      "base_node_count": 112,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1250918881245057304151093957424794294165,
+        1003466866092262934348473906759042663102,
+        234772119553434673807667547915609723385,
+        1589574810774023235118425075791049871597,
+        2215424198565356120827197333954576805882
+      ],
+      "j": 111,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1250918881245057304151093957424794294165,
+        "base_node_count": 112,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1250918881245057304151093957424794294165,
+          1003466866092262934348473906759042663102,
+          234772119553434673807667547915609723385,
+          1589574810774023235118425075791049871597,
+          2215424198565356120827197333954576805882
+        ],
+        "kernel": [
+          [
+            916780479482386452796488277575147339514,
+            229169275586661436722033545032319354393,
+            2208219000824431565853556499123711197314,
+            1930253415197718827270615490045632198834
+          ],
+          [
+            229169275586661436722033545032319354393,
+            1738735623957612675068803610792702797957,
+            2283803979248369448704339846781281284372,
+            1496191623722934208265143581762169471313
+          ],
+          [
+            2208219000824431565853556499123711197314,
+            2283803979248369448704339846781281284372,
+            281346084821270007032194271722965595869,
+            503355754260833736811535576513957602264
+          ],
+          [
+            1930253415197718827270615490045632198834,
+            1496191623722934208265143581762169471313,
+            503355754260833736811535576513957602264,
+            1807618448533970045808249446910199113649
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          2228542881166529220858883860831778658799,
+          866123178080752400684448806636071786286,
+          445107712403559716849982226383165509774,
+          1134144502333396844773059924667253409621
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        111
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 2215424198565356120827197333954576805882,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 112
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "b4c8d1af4b9cc7374e11fe06fbd423ef9e9c8151e834fc6022797fc40dfab3cd",
+      "t": 145,
+      "update_node_encodings": [
+        1258698567415585807923054910901642040310,
+        1977704477316255062523287777393127253255,
+        478503583670220909999029929946431163543,
+        1977055114912469630279202580954678041065
+      ]
+    },
+    {
+      "A": 402,
+      "base_node_count": 111,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        24734832539777253207071787731201571446,
+        2002374304749633099256943826383890595305,
+        78056717630021801896973131982568840814,
+        194490792125790173105996704799351595515,
+        1150929990531154645907179421970045096639
+      ],
+      "j": 110,
+      "low_rank_compression": {
+        "base_hankel_determinant": 24734832539777253207071787731201571446,
+        "base_node_count": 111,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          24734832539777253207071787731201571446,
+          2002374304749633099256943826383890595305,
+          78056717630021801896973131982568840814,
+          194490792125790173105996704799351595515,
+          1150929990531154645907179421970045096639
+        ],
+        "kernel": [
+          [
+            659753968721218173063524720707456457771,
+            944043749950343242325201053942699524986,
+            590509324812446483351659413386504581978,
+            352101071781931449090583727525392566872
+          ],
+          [
+            944043749950343242325201053942699524986,
+            1542141623427197431046314279473108936851,
+            856068695732058358839433647061116885386,
+            1633901001589553628422429630664199913789
+          ],
+          [
+            590509324812446483351659413386504581978,
+            856068695732058358839433647061116885386,
+            561071886809632522928557906311199682102,
+            930786753675437225771678481355113623607
+          ],
+          [
+            352101071781931449090583727525392566872,
+            1633901001589553628422429630664199913789,
+            930786753675437225771678481355113623607,
+            1690312648785783354605942633380361077988
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          2076634722298316686413307999405442581626,
+          1564993823394870367200573433211127194675,
+          1131657126144808140683715134187660178225,
+          1868331848774256490144950312462667047581
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        110
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 1150929990531154645907179421970045096639,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 111
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "588f539e708a25c00d5bf5c30ea42da6f89ab0a9a15a7b71e292d463959011db",
+      "t": 146,
+      "update_node_encodings": [
+        1701914356139003143342270589769735291077,
+        1258698567415585807923054910901642040310,
+        1977704477316255062523287777393127253255,
+        478503583670220909999029929946431163543
+      ]
+    },
+    {
+      "A": 403,
+      "base_node_count": 110,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        459947468539296144349069142694475510118,
+        1327649297823590439158564441922551658376,
+        2003148324751821642040992490818388048035,
+        253055014463913394867962686556414232439,
+        1475120680964131743804796324265335015784
+      ],
+      "j": 109,
+      "low_rank_compression": {
+        "base_hankel_determinant": 459947468539296144349069142694475510118,
+        "base_node_count": 110,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          459947468539296144349069142694475510118,
+          1327649297823590439158564441922551658376,
+          2003148324751821642040992490818388048035,
+          253055014463913394867962686556414232439,
+          1475120680964131743804796324265335015784
+        ],
+        "kernel": [
+          [
+            1717798154002677690125914421904514296731,
+            1706536894402622072948061679271656231817,
+            55022337771446608111554622466760147739,
+            761590958254727785059178572900704622552
+          ],
+          [
+            1706536894402622072948061679271656231817,
+            1717098410452641066159571823685537689441,
+            1683274175828845978791002078131814839630,
+            1273640340035872345871340640984379581840
+          ],
+          [
+            55022337771446608111554622466760147739,
+            1683274175828845978791002078131814839630,
+            1795793499404155246915957757912759887084,
+            452180503722105363234140401012713792721
+          ],
+          [
+            761590958254727785059178572900704622552,
+            1273640340035872345871340640984379581840,
+            452180503722105363234140401012713792721,
+            2174833484540085258608903620774651353208
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          14023207312192101057666775598257166480,
+          1555980552392407743468701262368951710453,
+          807887749643549338292086591998616496124,
+          1502213757603888305939186268689332254939
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        109
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 1475120680964131743804796324265335015784,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 110
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "ece0205bd76ff76e4a6de915657780a624976d976c6f576816c167e323066d3c",
+      "t": 147,
+      "update_node_encodings": [
+        2323311756962067766299684932998890901717,
+        1701914356139003143342270589769735291077,
+        1258698567415585807923054910901642040310,
+        1977704477316255062523287777393127253255
+      ]
+    },
+    {
+      "A": 404,
+      "base_node_count": 109,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1918575663998876397526365133514413501504,
+        905468143059363133698708521732406669237,
+        648994918446395740264231199771012660772,
+        322551786928979292024068552184979507717,
+        157130030460997199386036304133211446264
+      ],
+      "j": 108,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1918575663998876397526365133514413501504,
+        "base_node_count": 109,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1918575663998876397526365133514413501504,
+          905468143059363133698708521732406669237,
+          648994918446395740264231199771012660772,
+          322551786928979292024068552184979507717,
+          157130030460997199386036304133211446264
+        ],
+        "kernel": [
+          [
+            2142865650651193379669795553603071970246,
+            817386383152485297262723857892499698006,
+            2174810868244678296015293428873927008579,
+            547257044329650306843504461092769420062
+          ],
+          [
+            817386383152485297262723857892499698006,
+            2367868408678558810256147687353177543072,
+            1945369486207155045305222834974919847688,
+            1843634507728328609624590570557856641118
+          ],
+          [
+            2174810868244678296015293428873927008579,
+            1945369486207155045305222834974919847688,
+            1239347146843233255137290812261854038416,
+            532907711465391786039834045150393253746
+          ],
+          [
+            547257044329650306843504461092769420062,
+            1843634507728328609624590570557856641118,
+            532907711465391786039834045150393253746,
+            2195664768627179520091777149962591578758
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          546534240431488921220072076115030215470,
+          1399058429581428151852528082343855910427,
+          1918408988970093949994884927908636339897,
+          1495882881125826154906037993096860629692
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        108
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 157130030460997199386036304133211446264,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 109
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "7aa50907e0e0e59f13edfa8a37e4567f5f65475d982bfb913b211ee23257e726",
+      "t": 148,
+      "update_node_encodings": [
+        1722696989284674603106643399328274827069,
+        2323311756962067766299684932998890901717,
+        1701914356139003143342270589769735291077,
+        1258698567415585807923054910901642040310
+      ]
+    },
+    {
+      "A": 405,
+      "base_node_count": 108,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        211041704907486732169007754589382378937,
+        428185714650300062562074184633060935982,
+        2310919715718711840778675582538988146271,
+        521212316540857566382142340297951625659,
+        1070662124886878154510348945792301178928
+      ],
+      "j": 107,
+      "low_rank_compression": {
+        "base_hankel_determinant": 211041704907486732169007754589382378937,
+        "base_node_count": 108,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          211041704907486732169007754589382378937,
+          428185714650300062562074184633060935982,
+          2310919715718711840778675582538988146271,
+          521212316540857566382142340297951625659,
+          1070662124886878154510348945792301178928
+        ],
+        "kernel": [
+          [
+            1097287017654070045591711407129598909812,
+            1722678397295308434085291075227765343875,
+            484774938058467716731420908060784551467,
+            2353640811343623671391854756384479493820
+          ],
+          [
+            1722678397295308434085291075227765343875,
+            1384832003170704101524077907965977954337,
+            97470887770660576746098035264585466083,
+            503733439842154371666895353294602273528
+          ],
+          [
+            484774938058467716731420908060784551467,
+            97470887770660576746098035264585466083,
+            2315639465515684600410609709543633759242,
+            438288422969682921809598615432489744148
+          ],
+          [
+            2353640811343623671391854756384479493820,
+            503733439842154371666895353294602273528,
+            438288422969682921809598615432489744148,
+            1859666585131953101689490799341046427601
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1626125018422512591443367373672853159362,
+          1347161149969500996847062287930835203567,
+          285571422776973410485731079742761712653,
+          1679107886535745056214875030806539286658
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        107
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 1070662124886878154510348945792301178928,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 108
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "d9d466210649b8e92be14d10f9f76f9339e52f5bbf047a96551bbdc081964ba3",
+      "t": 149,
+      "update_node_encodings": [
+        1505939466099614085537386225396941054554,
+        1722696989284674603106643399328274827069,
+        2323311756962067766299684932998890901717,
+        1701914356139003143342270589769735291077
+      ]
+    },
+    {
+      "A": 406,
+      "base_node_count": 107,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1521820178092625308093349612694629485453,
+        1067978396781816021675011146995752697884,
+        126470207230928409041320923973787520607,
+        696844812958619350821313916529457168655,
+        820633510022710929585974337450919743856
+      ],
+      "j": 106,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1521820178092625308093349612694629485453,
+        "base_node_count": 107,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1521820178092625308093349612694629485453,
+          1067978396781816021675011146995752697884,
+          126470207230928409041320923973787520607,
+          696844812958619350821313916529457168655,
+          820633510022710929585974337450919743856
+        ],
+        "kernel": [
+          [
+            356948146369986739015037413242310095810,
+            740224661807801161755027432942146408235,
+            1637707191652700914248228783350123547813,
+            829010483235038949526627660265977837418
+          ],
+          [
+            740224661807801161755027432942146408235,
+            346209545016306524912031347410550248481,
+            580552741253073915271084859099532396740,
+            424143806242103833501378173627045020775
+          ],
+          [
+            1637707191652700914248228783350123547813,
+            580552741253073915271084859099532396740,
+            156789248524641593639456182153569794218,
+            171186123305873229643990466294973911738
+          ],
+          [
+            829010483235038949526627660265977837418,
+            424143806242103833501378173627045020775,
+            171186123305873229643990466294973911738,
+            14032091023810667270509238491331639386
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          725982882439574415682911653547655304561,
+          617694643381080737711607436951813290414,
+          323681863486178055881557601188283840347,
+          1813289466589766443052093187885399768946
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        106
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 820633510022710929585974337450919743856,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 107
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "a250ad9f6d9708351823db05a83cc78a84ed0f7dc5a1f644c7ede1760e8fc696",
+      "t": 150,
+      "update_node_encodings": [
+        1650205511813328174392735183275311436408,
+        1505939466099614085537386225396941054554,
+        1722696989284674603106643399328274827069,
+        2323311756962067766299684932998890901717
+      ]
+    },
+    {
+      "A": 407,
+      "base_node_count": 106,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        307621075849948038636009236451998818873,
+        2213390269961790106956578833335528118129,
+        1145277011186964733922866805069921505075,
+        1162798766130523655179305175082712907751,
+        1157275946768850015076423748571944505569
+      ],
+      "j": 105,
+      "low_rank_compression": {
+        "base_hankel_determinant": 307621075849948038636009236451998818873,
+        "base_node_count": 106,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          307621075849948038636009236451998818873,
+          2213390269961790106956578833335528118129,
+          1145277011186964733922866805069921505075,
+          1162798766130523655179305175082712907751,
+          1157275946768850015076423748571944505569
+        ],
+        "kernel": [
+          [
+            772061427275613961888952194613377012684,
+            1427879837645320337522626814295773782945,
+            933826972519724455410667455174268052411,
+            2006103569874373289211605488745676901690
+          ],
+          [
+            1427879837645320337522626814295773782945,
+            2181397329994270196058211106793790457962,
+            2245096572106184635339417096348253636386,
+            1660076320716649846037366402824755494858
+          ],
+          [
+            933826972519724455410667455174268052411,
+            2245096572106184635339417096348253636386,
+            1307441272354247166899291966487150129962,
+            2294536142101196859786724333635556318302
+          ],
+          [
+            2006103569874373289211605488745676901690,
+            1660076320716649846037366402824755494858,
+            2294536142101196859786724333635556318302,
+            1086814116938629065483665973573236976845
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          324153947530848229148468263990900559312,
+          1566868141837494096798635331775372201583,
+          1716782152884589156274967048928177353996,
+          1181514403293790516980461090287735676450
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        105
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 1157275946768850015076423748571944505569,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 106
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "f6d0cbbd719e1bc8652f62e8956a9a255519f22e4bfcd5b71446cbf0358fb806",
+      "t": 151,
+      "update_node_encodings": [
+        1422455804207963970167328641537460550577,
+        1650205511813328174392735183275311436408,
+        1505939466099614085537386225396941054554,
+        1722696989284674603106643399328274827069
+      ]
+    },
+    {
+      "A": 408,
+      "base_node_count": 105,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1831202745295413043137036734163137881540,
+        1741301287503950575076403439545472865253,
+        484734102257276001492812690802503923229,
+        1361980768791234484718173874030946353207,
+        2210292832890545283685358425253006664766
+      ],
+      "j": 104,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1831202745295413043137036734163137881540,
+        "base_node_count": 105,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1831202745295413043137036734163137881540,
+          1741301287503950575076403439545472865253,
+          484734102257276001492812690802503923229,
+          1361980768791234484718173874030946353207,
+          2210292832890545283685358425253006664766
+        ],
+        "kernel": [
+          [
+            1559191520248825794062714979421695461485,
+            1727537293826500595010970047055237621161,
+            1554248074605678789387503841607876727394,
+            2211264810568315160740601483048008853169
+          ],
+          [
+            1727537293826500595010970047055237621161,
+            1184995456271042718490862736733008405702,
+            622766423647084525600038454569532425015,
+            1546463774177424058783957849427746677743
+          ],
+          [
+            1554248074605678789387503841607876727394,
+            622766423647084525600038454569532425015,
+            2048287835743700923334560920260875050544,
+            1737980626374920554581087949744339948863
+          ],
+          [
+            2211264810568315160740601483048008853169,
+            1546463774177424058783957849427746677743,
+            1737980626374920554581087949744339948863,
+            149737028194520562548754118059736185329
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          49715308423426632090405614612554933060,
+          2026852461343954874042873171619503064196,
+          2010259638186628361025862769185945607493,
+          85655465732533502395119443890628791778
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        104
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 2210292832890545283685358425253006664766,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 105
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "1618622cf259898d24b452a7bdf71d248e4ebbaea83654ffc76008ebe4339a13",
+      "t": 152,
+      "update_node_encodings": [
+        1370562835132677428231882160532250368312,
+        1422455804207963970167328641537460550577,
+        1650205511813328174392735183275311436408,
+        1505939466099614085537386225396941054554
+      ]
+    },
+    {
+      "A": 409,
+      "base_node_count": 104,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        422187020011215957122005847265015724713,
+        207136755063539761391370704735286181221,
+        868216768106483441367618939190677109413,
+        2084517084009505903762771160691943139202,
+        714606951669921109116474564247110584373
+      ],
+      "j": 103,
+      "low_rank_compression": {
+        "base_hankel_determinant": 422187020011215957122005847265015724713,
+        "base_node_count": 104,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          422187020011215957122005847265015724713,
+          207136755063539761391370704735286181221,
+          868216768106483441367618939190677109413,
+          2084517084009505903762771160691943139202,
+          714606951669921109116474564247110584373
+        ],
+        "kernel": [
+          [
+            1266470689488770691788109956348480428570,
+            997778588382453233570555840369448898716,
+            54333601228440728219592116696926603517,
+            1055999470145120525696421345618988064983
+          ],
+          [
+            997778588382453233570555840369448898716,
+            2164221750818395724989031406567699394212,
+            1801822698828229086805640090470973737876,
+            1576597675983601666491093458318629815156
+          ],
+          [
+            54333601228440728219592116696926603517,
+            1801822698828229086805640090470973737876,
+            757662801346282531531565848700217745784,
+            1471320702225075518947674779283870397827
+          ],
+          [
+            1055999470145120525696421345618988064983,
+            1576597675983601666491093458318629815156,
+            1471320702225075518947674779283870397827,
+            285985974353688957647422119912560214256
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1950240013136935403766051807299343133035,
+          1911071722396800202846321200439723436400,
+          2215727655903569662661253882835009496535,
+          392214890046179849010811894428946164497
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        103
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 714606951669921109116474564247110584373,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 104
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "e3e1d151e6c092f505ee0839d6e28f2c5e356f9a1891130cb950f69d165df86b",
+      "t": 153,
+      "update_node_encodings": [
+        2141316650093184889605656576471772061548,
+        1370562835132677428231882160532250368312,
+        1422455804207963970167328641537460550577,
+        1650205511813328174392735183275311436408
+      ]
+    },
+    {
+      "A": 410,
+      "base_node_count": 103,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1656892761321802793161410105918804331374,
+        1821715395814697662251710058052290106434,
+        151750640828440122258561199168906866226,
+        649050991190256790608630461263006551076,
+        1762937182910949714640927216734584316858
+      ],
+      "j": 102,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1656892761321802793161410105918804331374,
+        "base_node_count": 103,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1656892761321802793161410105918804331374,
+          1821715395814697662251710058052290106434,
+          151750640828440122258561199168906866226,
+          649050991190256790608630461263006551076,
+          1762937182910949714640927216734584316858
+        ],
+        "kernel": [
+          [
+            2179646294009074734922302559367768054123,
+            1685377738081050729193443189601394731649,
+            1452873200159747046161593239812557193581,
+            2050767316457398797289076014420951277174
+          ],
+          [
+            1685377738081050729193443189601394731649,
+            244035330990119297499897767781826658940,
+            1401266346017555705333831814007359784132,
+            360691976923919019752561784530199773409
+          ],
+          [
+            1452873200159747046161593239812557193581,
+            1401266346017555705333831814007359784132,
+            222815831617345589789764815611894988544,
+            1022656462753957163318831102146239238943
+          ],
+          [
+            2050767316457398797289076014420951277174,
+            360691976923919019752561784530199773409,
+            1022656462753957163318831102146239238943,
+            771658019432173050915773717595689171477
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          763412335532120939604948305838919200644,
+          675813984357734017797084865055441352620,
+          643967507147237338140853286876617928425,
+          2237492190207508917073692416671341363031
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        102
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 1762937182910949714640927216734584316858,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 103
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "cc3bf959975f07110eb6630223bfa8b711291dec49ec2a3690429277d3414641",
+      "t": 154,
+      "update_node_encodings": [
+        352167258053539527362505015932942293728,
+        2141316650093184889605656576471772061548,
+        1370562835132677428231882160532250368312,
+        1422455804207963970167328641537460550577
+      ]
+    },
+    {
+      "A": 411,
+      "base_node_count": 102,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        755831957698730571541985828703222995728,
+        2049538632038520776004444363040270313340,
+        1963692020819276066060389399020904862800,
+        1817442989423435458655592195703160734059,
+        788233281204059721886212190736082407744
+      ],
+      "j": 101,
+      "low_rank_compression": {
+        "base_hankel_determinant": 755831957698730571541985828703222995728,
+        "base_node_count": 102,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          755831957698730571541985828703222995728,
+          2049538632038520776004444363040270313340,
+          1963692020819276066060389399020904862800,
+          1817442989423435458655592195703160734059,
+          788233281204059721886212190736082407744
+        ],
+        "kernel": [
+          [
+            1135971566906509257415590096029563722993,
+            1627753930680959510028554400335396803388,
+            1769021514604427809159338975144348520612,
+            1854746478251529789326201192181086242806
+          ],
+          [
+            1627753930680959510028554400335396803388,
+            41130435245013823753594218864187188279,
+            564931643850550416206295773936733611540,
+            817970949589061872188757227262711837576
+          ],
+          [
+            1769021514604427809159338975144348520612,
+            564931643850550416206295773936733611540,
+            279079708483410798462636236508809908520,
+            1295472943677676194432699781194800877223
+          ],
+          [
+            1854746478251529789326201192181086242806,
+            817970949589061872188757227262711837576,
+            1295472943677676194432699781194800877223,
+            2015680163475799897420716312553752059230
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1103406298894658511004868523079775174491,
+          2217837580220684444023513335831018812971,
+          230952085410286010541469473887888830729,
+          379012325461399089798216335205265174856
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        101
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 788233281204059721886212190736082407744,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 102
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "fe4a07a75b688fe91c1fcea1d084951c9a670456ae790efaa64c8c65498c76ea",
+      "t": 155,
+      "update_node_encodings": [
+        2239771040742748131378187953945252946972,
+        352167258053539527362505015932942293728,
+        2141316650093184889605656576471772061548,
+        1370562835132677428231882160532250368312
+      ]
+    },
+    {
+      "A": 412,
+      "base_node_count": 101,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        476489136704274775061167902838876486766,
+        2307940509116812002547253548957606153418,
+        635838007819044048003574323500403388616,
+        1473363512228789857794513243229358737978,
+        2140858359495962089994842190140647692737
+      ],
+      "j": 100,
+      "low_rank_compression": {
+        "base_hankel_determinant": 476489136704274775061167902838876486766,
+        "base_node_count": 101,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          476489136704274775061167902838876486766,
+          2307940509116812002547253548957606153418,
+          635838007819044048003574323500403388616,
+          1473363512228789857794513243229358737978,
+          2140858359495962089994842190140647692737
+        ],
+        "kernel": [
+          [
+            1512800219434197681656379654361436588075,
+            2276709695520067691918146310454538910502,
+            558771534034030262092445937400054656414,
+            1261798928268297596175909738542134390395
+          ],
+          [
+            2276709695520067691918146310454538910502,
+            544573103550015609067485885801056705099,
+            608594109057376698733855681647398592112,
+            769640039350635331936438576381757279442
+          ],
+          [
+            558771534034030262092445937400054656414,
+            608594109057376698733855681647398592112,
+            1220766716194807628574206153036001380462,
+            1043157972018128495407741257151759303269
+          ],
+          [
+            1261798928268297596175909738542134390395,
+            769640039350635331936438576381757279442,
+            1043157972018128495407741257151759303269,
+            2038553423618226315196836537496883105171
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          145112204192879885711737528243309265671,
+          540589292696373761327544606423680195521,
+          326219336552023025333839226978183571677,
+          287772177892863452727602350128042934854
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        100
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 2140858359495962089994842190140647692737,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 101
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "b7d7b5835d70b2b2f2f7578ad5ae38a301be13ce03d613f88df3d051a1583cd3",
+      "t": 156,
+      "update_node_encodings": [
+        860554648284508129931531987913264592377,
+        2239771040742748131378187953945252946972,
+        352167258053539527362505015932942293728,
+        2141316650093184889605656576471772061548
+      ]
+    },
+    {
+      "A": 413,
+      "base_node_count": 100,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        262241965281328634739489740362727376348,
+        513633903294759121024459745705137781739,
+        637204778714122218032993427939688040300,
+        2251767084140963471064289645261173232555,
+        2037686937000082259610635418693854137672
+      ],
+      "j": 99,
+      "low_rank_compression": {
+        "base_hankel_determinant": 262241965281328634739489740362727376348,
+        "base_node_count": 100,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          262241965281328634739489740362727376348,
+          513633903294759121024459745705137781739,
+          637204778714122218032993427939688040300,
+          2251767084140963471064289645261173232555,
+          2037686937000082259610635418693854137672
+        ],
+        "kernel": [
+          [
+            1636674176832352053859116019995784303951,
+            1129096269036379098607488674141966564035,
+            800171274842005963390392093242181365515,
+            1367832255932520645081934808813962465575
+          ],
+          [
+            1129096269036379098607488674141966564035,
+            1529363310228105805989994602364060565756,
+            367885636115368652598695910241981090027,
+            1242233274954080054786920434281873070625
+          ],
+          [
+            800171274842005963390392093242181365515,
+            367885636115368652598695910241981090027,
+            1083763114064984111801644065287916082796,
+            1040912023313981650738733694532647599121
+          ],
+          [
+            1367832255932520645081934808813962465575,
+            1242233274954080054786920434281873070625,
+            1040912023313981650738733694532647599121,
+            1643050983802846226139214105918479856899
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          722234361229347371250873444855487836679,
+          742495942008776735261993353578150728828,
+          1905157280716920519198250683585436036485,
+          642551674961036772158788336753321311718
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        99
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 2037686937000082259610635418693854137672,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 100
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "aa9eb641ff004e2383ee014edd2100d1ed0da9bd67d0fb164c0955e2a81ab492",
+      "t": 157,
+      "update_node_encodings": [
+        645601843769207020882740676401778645916,
+        860554648284508129931531987913264592377,
+        2239771040742748131378187953945252946972,
+        352167258053539527362505015932942293728
+      ]
+    },
+    {
+      "A": 414,
+      "base_node_count": 99,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        255878304015780547909485754516290276079,
+        1423031427293458842697972912999131004848,
+        1810996610010006998667742578224123346712,
+        888506099979436515092592727459923343466,
+        215398302852665404357940235224893693667
+      ],
+      "j": 98,
+      "low_rank_compression": {
+        "base_hankel_determinant": 255878304015780547909485754516290276079,
+        "base_node_count": 99,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          255878304015780547909485754516290276079,
+          1423031427293458842697972912999131004848,
+          1810996610010006998667742578224123346712,
+          888506099979436515092592727459923343466,
+          215398302852665404357940235224893693667
+        ],
+        "kernel": [
+          [
+            260039846339914587814301904603091462480,
+            178905478269011808614493586469581080773,
+            1160016733968787436967719291821577064220,
+            2026269571242920024373125432316209589166
+          ],
+          [
+            178905478269011808614493586469581080773,
+            1313992345969152382036053213986058379395,
+            1480697369802335490479414808318861887148,
+            1532292732870896983133300549394296473762
+          ],
+          [
+            1160016733968787436967719291821577064220,
+            1480697369802335490479414808318861887148,
+            188722552840469050342626856100025391973,
+            1281671493214353830910796511082115470768
+          ],
+          [
+            2026269571242920024373125432316209589166,
+            1532292732870896983133300549394296473762,
+            1281671493214353830910796511082115470768,
+            318729346322310481663780221172911024818
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1933487845195486180186735900258302930328,
+          1610122588921043182528171961214145843761,
+          1430695404961063943364012349999793876855,
+          27872508218748727083338613497123219177
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        98
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 215398302852665404357940235224893693667,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 99
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "b5ebce4470229984f5013bf853418e3b2d972e88963900face4b897498738ece",
+      "t": 158,
+      "update_node_encodings": [
+        2234376035844641335346433340765130587373,
+        645601843769207020882740676401778645916,
+        860554648284508129931531987913264592377,
+        2239771040742748131378187953945252946972
+      ]
+    },
+    {
+      "A": 415,
+      "base_node_count": 98,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1687488083283963403905718093652314444446,
+        639051835659107700216360285279941625596,
+        1075978772877548219444482736314101089807,
+        46597543945227776457625595740870972712,
+        2363670191101613880344734106298059827676
+      ],
+      "j": 97,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1687488083283963403905718093652314444446,
+        "base_node_count": 98,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1687488083283963403905718093652314444446,
+          639051835659107700216360285279941625596,
+          1075978772877548219444482736314101089807,
+          46597543945227776457625595740870972712,
+          2363670191101613880344734106298059827676
+        ],
+        "kernel": [
+          [
+            1737577709984697957328492758820656598887,
+            1061600415651132766249196962820007687887,
+            231614964351901071716959926953782654898,
+            688844437701391669369982243963831449135
+          ],
+          [
+            1061600415651132766249196962820007687887,
+            68183846321101903348422574009605114070,
+            1710630799395935819470572486478198536614,
+            765109438418955094198499097110623761929
+          ],
+          [
+            231614964351901071716959926953782654898,
+            1710630799395935819470572486478198536614,
+            92686732211647325265439110176687589432,
+            1095864683292339303217806715938939072123
+          ],
+          [
+            688844437701391669369982243963831449135,
+            765109438418955094198499097110623761929,
+            1095864683292339303217806715938939072123,
+            866216000008932630935519499851367062793
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          248729758019536515558381590632465759729,
+          1867596093187488036996513160379242739349,
+          464454797126863666891217091981327198817,
+          321319895994658085112983776022282607788
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        97
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 2363670191101613880344734106298059827676,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 98
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "a23ccdb23720ac41435c0d5bee7d7d5858c47b453bb9f78cc8778a98f9650578",
+      "t": 159,
+      "update_node_encodings": [
+        678839582300633335214584764758085461420,
+        2234376035844641335346433340765130587373,
+        645601843769207020882740676401778645916,
+        860554648284508129931531987913264592377
+      ]
+    },
+    {
+      "A": 416,
+      "base_node_count": 97,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1733401208212334985416239809861793981134,
+        1344902188081560460148270368749622476539,
+        2193577029891200835196184560558387364889,
+        285571788007225192906309521687530423662,
+        930399218148513326217373994874163072061
+      ],
+      "j": 96,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1733401208212334985416239809861793981134,
+        "base_node_count": 97,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1733401208212334985416239809861793981134,
+          1344902188081560460148270368749622476539,
+          2193577029891200835196184560558387364889,
+          285571788007225192906309521687530423662,
+          930399218148513326217373994874163072061
+        ],
+        "kernel": [
+          [
+            1588633170844064491315118027641742645431,
+            2189154326971091088447855325006263262420,
+            1776279422544548426007581201803295334023,
+            545124205285226603650888386527737425453
+          ],
+          [
+            2189154326971091088447855325006263262420,
+            612187478342922785469649209752029360411,
+            1671028349608034043308946440188335930192,
+            747160127632269574398097964057266839446
+          ],
+          [
+            1776279422544548426007581201803295334023,
+            1671028349608034043308946440188335930192,
+            434629101749821008961385023552523016265,
+            1745078115914659157468212132967435061467
+          ],
+          [
+            545124205285226603650888386527737425453,
+            747160127632269574398097964057266839446,
+            1745078115914659157468212132967435061467,
+            768229417954920584780605607103335264544
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          879577861789638077090588607791083907576,
+          2195598131309269756922338772565344055219,
+          475924527877835248748351688973746004901,
+          761736484445236540303201022724482147725
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        96
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 930399218148513326217373994874163072061,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 97
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "8e45bc0caefeaf9190f0be1c1a4cf359b44de67a67dee2f429535b8c7cf01d9a",
+      "t": 160,
+      "update_node_encodings": [
+        1861124879038525266333496668868237423130,
+        678839582300633335214584764758085461420,
+        2234376035844641335346433340765130587373,
+        645601843769207020882740676401778645916
+      ]
+    },
+    {
+      "A": 417,
+      "base_node_count": 96,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1768718544895380476887756296451774298197,
+        615195149482311527078485991962829725886,
+        1153206486575853185018689383178148233616,
+        931139364667553117750926591796304067864,
+        1608562965936120278123030504134344831247
+      ],
+      "j": 95,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1768718544895380476887756296451774298197,
+        "base_node_count": 96,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1768718544895380476887756296451774298197,
+          615195149482311527078485991962829725886,
+          1153206486575853185018689383178148233616,
+          931139364667553117750926591796304067864,
+          1608562965936120278123030504134344831247
+        ],
+        "kernel": [
+          [
+            1867733714876273985959439183123307343221,
+            999988504751005103538518333556650834569,
+            309817584857214582361851161328914394574,
+            433718216119746266917647296531174966404
+          ],
+          [
+            999988504751005103538518333556650834569,
+            2330577682728430247492113333748288903775,
+            492065512254747713058240828640348956593,
+            2244266475659653212617955276710617236341
+          ],
+          [
+            309817584857214582361851161328914394574,
+            492065512254747713058240828640348956593,
+            1003251355502757230228499709171486105204,
+            230460635278542273762881532802518122818
+          ],
+          [
+            433718216119746266917647296531174966404,
+            2244266475659653212617955276710617236341,
+            230460635278542273762881532802518122818,
+            528688962697891678399193464048343795403
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          698439583410023067187150275862741091489,
+          173693763002345282560399269408492100458,
+          114129838214880530478730151830906067277,
+          971321844930711952105799201213060139561
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        95
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 1608562965936120278123030504134344831247,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 96
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "97a81cc6cd1b69db12e28b6be9896a350b732b340f56a6b574d5cb1499235422",
+      "t": 161,
+      "update_node_encodings": [
+        3,
+        1861124879038525266333496668868237423130,
+        678839582300633335214584764758085461420,
+        2234376035844641335346433340765130587373
+      ]
+    },
+    {
+      "A": 418,
+      "base_node_count": 95,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        835436229860121537478496103576089233998,
+        2089425459857679221341107706996296727490,
+        406939372563320711420209868034378120829,
+        2099773536593049479381463673516737607069,
+        1853922819776050172465090979815168805475
+      ],
+      "j": 94,
+      "low_rank_compression": {
+        "base_hankel_determinant": 835436229860121537478496103576089233998,
+        "base_node_count": 95,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          835436229860121537478496103576089233998,
+          2089425459857679221341107706996296727490,
+          406939372563320711420209868034378120829,
+          2099773536593049479381463673516737607069,
+          1853922819776050172465090979815168805475
+        ],
+        "kernel": [
+          [
+            1879235160190202528745842122677450888104,
+            1272090550359820158115870857917058677208,
+            1194341062276216804646924949236639838591,
+            2058532347934377984092644899751509718261
+          ],
+          [
+            1272090550359820158115870857917058677208,
+            1687703326775453122296001831116235695869,
+            2044469502155966329257694593189092715566,
+            1589498732839029259348683883183878260167
+          ],
+          [
+            1194341062276216804646924949236639838591,
+            2044469502155966329257694593189092715566,
+            264313645391976922132963353814040520900,
+            128584264628690490639700985239623635443
+          ],
+          [
+            2058532347934377984092644899751509718261,
+            1589498732839029259348683883183878260167,
+            128584264628690490639700985239623635443,
+            30222743288736896781062443832815067749
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1337373568903767876795720487415924009396,
+          51179125843744450833779809033107724458,
+          2218707304106264859082555541143470729492,
+          627993285314886511365054291566273643198
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        94
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 1853922819776050172465090979815168805475,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 95
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "8aeed625cfef0c027b20a72164454e20ab6fcab44d8a1cdfd4d9cb3d398e8ebb",
+      "t": 162,
+      "update_node_encodings": [
+        1624638387670605858685165804654066083512,
+        3,
+        1861124879038525266333496668868237423130,
+        678839582300633335214584764758085461420
+      ]
+    },
+    {
+      "A": 419,
+      "base_node_count": 94,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        89993492769349859364812778941100020881,
+        1793456034158083682625275432532972809301,
+        1258733344263718549326253679609956423476,
+        806306852144354697045217305762514547022,
+        1395056398913336798515176684196616727071
+      ],
+      "j": 93,
+      "low_rank_compression": {
+        "base_hankel_determinant": 89993492769349859364812778941100020881,
+        "base_node_count": 94,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          89993492769349859364812778941100020881,
+          1793456034158083682625275432532972809301,
+          1258733344263718549326253679609956423476,
+          806306852144354697045217305762514547022,
+          1395056398913336798515176684196616727071
+        ],
+        "kernel": [
+          [
+            1110222658863188026990839280073648851145,
+            1264940819861533237983220239354055730890,
+            295569701678376194879099729373996495246,
+            2194898797535979571598749200829745328009
+          ],
+          [
+            1264940819861533237983220239354055730890,
+            688735304062032291975168297162204046829,
+            1774154629865678661462189310525142151625,
+            92581845943062199485032651162916045778
+          ],
+          [
+            295569701678376194879099729373996495246,
+            1774154629865678661462189310525142151625,
+            1237860614208946532217620571872655307706,
+            2351011033143276400905844698534959000987
+          ],
+          [
+            2194898797535979571598749200829745328009,
+            92581845943062199485032651162916045778,
+            2351011033143276400905844698534959000987,
+            9680444537412591180619081062450473396
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          399951112333301495746749830890116894173,
+          1330653150001228191971067647772094785006,
+          237617834249421908099711531518224790232,
+          221760789883569564049439415632650063319
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        93
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 1395056398913336798515176684196616727071,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 94
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "7e4eebd6989eb88782bd15c53aced42845750d788b28547b6078eb0f42a2c213",
+      "t": 163,
+      "update_node_encodings": [
+        825917418098222932158499870100209411004,
+        1624638387670605858685165804654066083512,
+        3,
+        1861124879038525266333496668868237423130
+      ]
+    },
+    {
+      "A": 420,
+      "base_node_count": 93,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        2349370168658727426479015660687837002313,
+        1149406032078320599050161007227932073160,
+        544415809964354883828615202335940530959,
+        322531623174022547686832070290616395525,
+        42145424781615717838633282743083142416
+      ],
+      "j": 92,
+      "low_rank_compression": {
+        "base_hankel_determinant": 2349370168658727426479015660687837002313,
+        "base_node_count": 93,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          2349370168658727426479015660687837002313,
+          1149406032078320599050161007227932073160,
+          544415809964354883828615202335940530959,
+          322531623174022547686832070290616395525,
+          42145424781615717838633282743083142416
+        ],
+        "kernel": [
+          [
+            1541200728562678483205614205735920379867,
+            2074144892365160770222708458945066807442,
+            933341998768302971136990972821992848178,
+            967738337343741790410818405574165014164
+          ],
+          [
+            2074144892365160770222708458945066807442,
+            1957824278960174470399369903415707615614,
+            1703712970538959148012835163868876200699,
+            1430255270160123368454688138159756688105
+          ],
+          [
+            933341998768302971136990972821992848178,
+            1703712970538959148012835163868876200699,
+            1421107777259506616931072472738292452056,
+            1712282991768645386829118131345832394231
+          ],
+          [
+            967738337343741790410818405574165014164,
+            1430255270160123368454688138159756688105,
+            1712282991768645386829118131345832394231,
+            974950274802662701890930666224631225673
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1002588287272169731179742172566765505308,
+          1124927108849350578666417710132982155976,
+          1409144229461755154295018369731859641455,
+          1204186783479689654424604258209412023031
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        92
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 42145424781615717838633282743083142416,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 93
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "814d410560dc0df7d94200b75caf0520579515da13289fa9afa56811f21b58c2",
+      "t": 164,
+      "update_node_encodings": [
+        1666672697804398126549568319622958331784,
+        825917418098222932158499870100209411004,
+        1624638387670605858685165804654066083512,
+        3
+      ]
+    },
+    {
+      "A": 421,
+      "base_node_count": 92,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        265816049548075604963879353555399861332,
+        156159180205930093566287088688149405364,
+        162082373722103585229609019413792000540,
+        1784054184347296180531363545934308864181,
+        1318332296786963529319523047976554319662
+      ],
+      "j": 91,
+      "low_rank_compression": {
+        "base_hankel_determinant": 265816049548075604963879353555399861332,
+        "base_node_count": 92,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          265816049548075604963879353555399861332,
+          156159180205930093566287088688149405364,
+          162082373722103585229609019413792000540,
+          1784054184347296180531363545934308864181,
+          1318332296786963529319523047976554319662
+        ],
+        "kernel": [
+          [
+            966918235816064498637770145737929761331,
+            1156198645919925903198076229001668177934,
+            732288780510374031006146502086125979616,
+            341954273937526060936333454101961383035
+          ],
+          [
+            1156198645919925903198076229001668177934,
+            549026170468689915636792960039427062149,
+            633586595549145538795160661431792463742,
+            252874341538227941774564659651848141807
+          ],
+          [
+            732288780510374031006146502086125979616,
+            633586595549145538795160661431792463742,
+            1708253937173081987175739833219669442131,
+            1535781667711651983923822859532308631927
+          ],
+          [
+            341954273937526060936333454101961383035,
+            252874341538227941774564659651848141807,
+            1535781667711651983923822859532308631927,
+            744268539116338932198838799689248077418
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1313753858604981757031414008609287278927,
+          1792302098509064630134498263127874797781,
+          580995262692519335079875079196145170810,
+          2126597216539101685332274363084715683323
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        91
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 1318332296786963529319523047976554319662,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 92
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "c239c71ecbd855040163bb69cbbbe85aaaa8e4f4cca1b83d3428cd5c72e76caf",
+      "t": 165,
+      "update_node_encodings": [
+        1095428954522840613118879339372247893691,
+        1666672697804398126549568319622958331784,
+        825917418098222932158499870100209411004,
+        1624638387670605858685165804654066083512
+      ]
+    },
+    {
+      "A": 422,
+      "base_node_count": 91,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        184521148592075467316957239048914376974,
+        1178635596916358598765966796822650340697,
+        1086452066118937801301637716630563322679,
+        1998388179285180300903164889793965544393,
+        1184611643867284529347290831372056458589
+      ],
+      "j": 90,
+      "low_rank_compression": {
+        "base_hankel_determinant": 184521148592075467316957239048914376974,
+        "base_node_count": 91,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          184521148592075467316957239048914376974,
+          1178635596916358598765966796822650340697,
+          1086452066118937801301637716630563322679,
+          1998388179285180300903164889793965544393,
+          1184611643867284529347290831372056458589
+        ],
+        "kernel": [
+          [
+            9219661578329987747164250136195903754,
+            1713170021607455808609645220741447324130,
+            674307786659822371933772106734715480784,
+            2221002637572166806585009348094384523909
+          ],
+          [
+            1713170021607455808609645220741447324130,
+            2330754113412970992880736395694422303820,
+            1800992654449805576534547452168405876863,
+            2064808134630884408119508508503595505278
+          ],
+          [
+            674307786659822371933772106734715480784,
+            1800992654449805576534547452168405876863,
+            2244032906949483108123581244965503701199,
+            1785301044681186438974964029563975159833
+          ],
+          [
+            2221002637572166806585009348094384523909,
+            2064808134630884408119508508503595505278,
+            1785301044681186438974964029563975159833,
+            1490252717893614075766232657102049751583
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1182248264143317476047416021616681687208,
+          2271580931565146394528806123066553339813,
+          1014187360281400400627999573130638447656,
+          1716444578921672711833854260300354815157
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        90
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 1184611643867284529347290831372056458589,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 91
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "f2bb9d6b5064670b6c04240a7e7d43623bdde1fdc2b3be70accd00bfae5726b9",
+      "t": 166,
+      "update_node_encodings": [
+        1714063658858840635328671883021454754512,
+        1095428954522840613118879339372247893691,
+        1666672697804398126549568319622958331784,
+        825917418098222932158499870100209411004
+      ]
+    },
+    {
+      "A": 423,
+      "base_node_count": 90,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        2060256867170291804111877656520339314254,
+        2279285776066756894422533234887434041531,
+        670500908540793001024114850626989949436,
+        2246635610249216578339865779869642924650,
+        921574228462687425288512469772187565528
+      ],
+      "j": 89,
+      "low_rank_compression": {
+        "base_hankel_determinant": 2060256867170291804111877656520339314254,
+        "base_node_count": 90,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          2060256867170291804111877656520339314254,
+          2279285776066756894422533234887434041531,
+          670500908540793001024114850626989949436,
+          2246635610249216578339865779869642924650,
+          921574228462687425288512469772187565528
+        ],
+        "kernel": [
+          [
+            1714356761984607909241095564386521595817,
+            2000549201926440635028732025632039128458,
+            802878281733616873994990831613982860519,
+            2063885568292046815962720717369232149534
+          ],
+          [
+            2000549201926440635028732025632039128458,
+            2189184245601745400999832072244981475403,
+            1555660222542532252945542778199836456719,
+            748377397743485081478144903261864737231
+          ],
+          [
+            802878281733616873994990831613982860519,
+            1555660222542532252945542778199836456719,
+            1928247238716374144806695430788309593861,
+            1433123097404701692631215226642254181619
+          ],
+          [
+            2063885568292046815962720717369232149534,
+            748377397743485081478144903261864737231,
+            1433123097404701692631215226642254181619,
+            837695408876412049651076981952022415057
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1793857690899502383024373808510680000353,
+          337440491445157125723491253962083216854,
+          434448561829351560595791937194137308754,
+          1391344633565234708124557751893878613042
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        89
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 921574228462687425288512469772187565528,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 90
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "6fcd87356721e2a8a2a3c762e83d441062760175687f95b7370f19b27abcd16b",
+      "t": 167,
+      "update_node_encodings": [
+        503080251074602891226323264931382616656,
+        1714063658858840635328671883021454754512,
+        1095428954522840613118879339372247893691,
+        1666672697804398126549568319622958331784
+      ]
+    },
+    {
+      "A": 424,
+      "base_node_count": 89,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1283142822677126961532305606241471025383,
+        943107380627848007086004708145919562423,
+        1234478177776920093239288967880474128702,
+        1325498258370293090192301816848884079317,
+        322222082105383261317587709214803224295
+      ],
+      "j": 88,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1283142822677126961532305606241471025383,
+        "base_node_count": 89,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1283142822677126961532305606241471025383,
+          943107380627848007086004708145919562423,
+          1234478177776920093239288967880474128702,
+          1325498258370293090192301816848884079317,
+          322222082105383261317587709214803224295
+        ],
+        "kernel": [
+          [
+            68284657413762105124023688341413225825,
+            2110742450111131734664842472042439604912,
+            1187398374299233857367553748787477415036,
+            1123742391094282070206592816501208346849
+          ],
+          [
+            2110742450111131734664842472042439604912,
+            661933382864454489313139571151724675098,
+            409967341829691782736251808389006291062,
+            253893071324916085492649385682546440390
+          ],
+          [
+            1187398374299233857367553748787477415036,
+            409967341829691782736251808389006291062,
+            2075417579343254977538945802414538246890,
+            2172869601645275729289156832420702064693
+          ],
+          [
+            1123742391094282070206592816501208346849,
+            253893071324916085492649385682546440390,
+            2172869601645275729289156832420702064693,
+            693954621741826812964200420375520247528
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          696912865754844981831566113989649934739,
+          1291065330222519663209633019953115019585,
+          1878267686713310919387620612791546647714,
+          1470815136049875567058806594735300433562
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        88
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 322222082105383261317587709214803224295,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 89
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "317e37dc3d7197508b8c4807694a4ec79eceaf8e4cd89ad547379cf33b09981d",
+      "t": 168,
+      "update_node_encodings": [
+        2353923127838429096174387292112256583007,
+        503080251074602891226323264931382616656,
+        1714063658858840635328671883021454754512,
+        1095428954522840613118879339372247893691
+      ]
+    },
+    {
+      "A": 425,
+      "base_node_count": 88,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        416884347478717958584104368471384620671,
+        921644737120306804319880547179654980242,
+        340640235838764878840285095355876451154,
+        904973128795240775539908467598387838829,
+        39846871367904875116441731046683177554
+      ],
+      "j": 87,
+      "low_rank_compression": {
+        "base_hankel_determinant": 416884347478717958584104368471384620671,
+        "base_node_count": 88,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          416884347478717958584104368471384620671,
+          921644737120306804319880547179654980242,
+          340640235838764878840285095355876451154,
+          904973128795240775539908467598387838829,
+          39846871367904875116441731046683177554
+        ],
+        "kernel": [
+          [
+            1422771669692330255747542999044979373363,
+            764826538700739544755709885699236518645,
+            140486697597258253241574615384348114808,
+            49716657509537895348221277851864402103
+          ],
+          [
+            764826538700739544755709885699236518645,
+            912149423118088939956941447320626183954,
+            1775109844201345303562231343898485606875,
+            1740857156883715185194658636661911299348
+          ],
+          [
+            140486697597258253241574615384348114808,
+            1775109844201345303562231343898485606875,
+            1804409202637552709807246215935930232254,
+            920197163840143479529033652536547895206
+          ],
+          [
+            49716657509537895348221277851864402103,
+            1740857156883715185194658636661911299348,
+            920197163840143479529033652536547895206,
+            2289165400678130616676408784505000971640
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1405415699514791156880644596013105711311,
+          1400165495462568838778308554338334587678,
+          1204629352542994794479932347402029549371,
+          2242712917886981203830335865450385593861
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        87
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 39846871367904875116441731046683177554,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 88
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "a41e11f5027c9980e42bc0ef3a2734134aa3ea6a8b672081569df2e740e27584",
+      "t": 169,
+      "update_node_encodings": [
+        395649261511807867412289215314441649611,
+        2353923127838429096174387292112256583007,
+        503080251074602891226323264931382616656,
+        1714063658858840635328671883021454754512
+      ]
+    },
+    {
+      "A": 426,
+      "base_node_count": 87,
+      "degree_bound": 4,
+      "finite_root_bound": 4,
+      "hankel_coefficients_ascending": [
+        1679562971418113032387101671407887322647,
+        2138325375017408396027822562704272741448,
+        424934374537276917770327990354968356534,
+        350228997333691060084410046421562373729,
+        1687619841316353677053886343448867294975
+      ],
+      "j": 86,
+      "low_rank_compression": {
+        "base_hankel_determinant": 1679562971418113032387101671407887322647,
+        "base_node_count": 87,
+        "coefficient_method": "principal-minor coefficients of det(I+ZK)",
+        "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
+        "hankel_coefficients_ascending": [
+          1679562971418113032387101671407887322647,
+          2138325375017408396027822562704272741448,
+          424934374537276917770327990354968356534,
+          350228997333691060084410046421562373729,
+          1687619841316353677053886343448867294975
+        ],
+        "kernel": [
+          [
+            486660009649424699669708828300318059668,
+            2097675059082263782410000085891113087008,
+            2167935203184221470403922869770143746424,
+            1644880385790794080714850042207471350701
+          ],
+          [
+            2097675059082263782410000085891113087008,
+            140474074686915792515351624371521793063,
+            291199172724005718268259442456814742811,
+            907219599217473521543058365787659360293
+          ],
+          [
+            2167935203184221470403922869770143746424,
+            291199172724005718268259442456814742811,
+            792497064285282983684562327711843158320,
+            345778926350324783485545305016592384046
+          ],
+          [
+            1644880385790794080714850042207471350701,
+            907219599217473521543058365787659360293,
+            345778926350324783485545305016592384046,
+            711435390135143932143443620944405036089
+          ]
+        ],
+        "kernel_det_coefficients_ascending": [
+          1,
+          1974850246926493821353840568395143927783,
+          2006751487702743178961980075418041560286,
+          78974981371818688101925067223932771702,
+          1931152560855435372252384031660642301477
+        ],
+        "kind": "square_base_lagrange_kernel_rank4_budget",
+        "update_rank": 4
+      },
+      "polynomial_degree": 4,
+      "prefix_row_set": [
+        0,
+        86
+      ],
+      "projective_infinity": {
+        "compressed_degree": 4,
+        "compressed_leading_coefficient_encoding": 1687619841316353677053886343448867294975,
+        "contribution": 1,
+        "projective_point": "[0:1]",
+        "reason": "projective infinity is controlled by the original regular-minor top degree j+1.  The low-rank update direction has rank 4 < j+1, so det H(v)=0 and this regular minor does not exclude [0:1]; the nonzero compressed quartic leading coefficient only controls the finite affine degree",
+        "status": "nonempty_not_excluded_by_regular_minor",
+        "top_coefficient_encoding": 0,
+        "top_degree": 87
+      },
+      "regular_budget_table": {
+        "finite_affine_roots_bound": 4,
+        "finite_budget_gap": 2,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 1,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 1,
+        "projective_regular_roots_bound": 5,
+        "quotient_image_subtraction_status": "not_audited",
+        "tangent_overlap_status": "not_enumerated_not_needed_for_upper_bound",
+        "within_finite_budget": true,
+        "within_projective_budget": true
+      },
+      "root_count_status": "not_enumerated_degree_bound_sufficient",
+      "sidecar_hash": "b56c4183a2e50d497fabd04d3132f8f0f141de0f44ccc672776d24879f46959b",
+      "t": 170,
+      "update_node_encodings": [
+        549535154999028637962874732692053007164,
+        395649261511807867412289215314441649611,
+        2353923127838429096174387292112256583007,
+        503080251074602891226323264931382616656
+      ]
+    }
+  ],
+  "row": {
+    "domain_description": "order-512 multiplicative subgroup generated by generator_encoding",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "f17-32-m3-low-rank4-budget-family-v1",
+  "source_artifacts": {
+    "low_rank_template": {
+      "ref": "experimental/data/certificates/hankel-low-rank-update-template/hankel_low_rank_update_template_certificate.json",
+      "schema_version": "m1-hankel-low-rank-update-template-v4",
+      "sha256": "50eb568710b79364662a21ceef2a01921e5e32292fbc67bca5f454d032096283"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT"
+}

@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-4 low-rank budget family
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank4_budget_family.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank4-budget-family/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a replayable rank-4 all-window synthetic
+  low-rank budget certificate for the M3 regular window.  The certificate
+  verifies degree `4` in all `42` rows and uses the v4 low-rank packet gate to
+  bound projective regular roots by `4+1=5 <= 6` without enumerating finite
+  roots.
+- **How it is useful:** Extends the low-rank ladder beyond the exact rank-2
+  and rank-3 root tables and demonstrates the intended use of the packet gate:
+  for ranks below the projective cutoff, degree plus the corrected infinity
+  point is already a budget certificate.
+- **What to do next:** Apply the same gate to non-synthetic residual pencils,
+  or look for rank-5 budget packets and rank-6 packets with finite-root slack
+  or a projective endpoint exclusion.
+
 ### 2026-07-01 - M3 low-rank packet gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

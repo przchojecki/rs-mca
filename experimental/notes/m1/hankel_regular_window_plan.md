@@ -340,6 +340,20 @@ projective regular roots against budget numerator 6.  The common-code-line
 tangent overlap is also zero, because the Frobenius gcd is nonzero at the only
 possible slope from `Syn_0(u+zv)=|X|+3z`.
 
+The rank-4 budget companion is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank4-budget-family/
+  f17_32_n512_k256_m3_low_rank4_budget_family_certificate.json
+```
+
+It uses the next four descriptor nodes for `Y` and verifies that every
+compressed determinant has degree exactly `4`.  Exact finite roots are not
+enumerated, because the v4 low-rank packet gate makes degree-only accounting
+strong enough at rank `4`: at most four finite roots plus the corrected
+projective infinity contribution gives at most five projective regular roots
+per agreement, below budget numerator `6`.
+
 The current status ledger
 
 ```text
@@ -405,6 +419,9 @@ python3 experimental/scripts/verify_f17_32_m3_low_rank2_family.py \
 
 python3 experimental/scripts/verify_f17_32_m3_low_rank3_family.py \
   --check experimental/data/certificates/hankel-f17-32-m3-low-rank3-family/f17_32_n512_k256_m3_low_rank3_family_certificate.json
+
+python3 experimental/scripts/verify_f17_32_m3_low_rank4_budget_family.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-low-rank4-budget-family/f17_32_n512_k256_m3_low_rank4_budget_family_certificate.json
 ```
 
 Non-claims: this note does not enumerate universal root sets for arbitrary

@@ -208,6 +208,17 @@ has at most 4 projective regular roots against budget numerator 6.  The
 common-code-line tangent overlap is zero because the Frobenius gcd is nonzero at
 the only possible moment-0 common-code-line slope.
 
+The rank-4 budget companion
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank4-budget-family/
+  f17_32_n512_k256_m3_low_rank4_budget_family_certificate.json
+```
+
+is the first all-window use of the v4 packet gate beyond exact root counting.
+It proves degree `4` for each synthetic row and uses the gate to conclude a
+projective bound `4+1=5 <= 6` without enumerating roots.
+
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform quotient/tangent
 subtraction.
