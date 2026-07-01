@@ -35,9 +35,11 @@ Keep entries concise and link to the relevant files.
 - **Agent/model:** AllenGrahamHart / Codex.
 - **Files added or changed:**
   `experimental/notes/m3/m3_low_rank_affine_spectral_reduction.md`;
+  `experimental/scripts/search_f17_32_m3_low_rank_spectral_target.py`;
   `experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-v10-affine-gcd/README.md`;
   `experimental/agents-log.md`.
-- **Status:** PROVED / AUDIT.
+- **Status:** PROVED / AUDIT for the proof note and certificates;
+  EXPERIMENTAL / AUDIT for the search script.
 - **What is being added:** Records the matrix-determinant-lemma reduction
   behind the synthetic low-rank affine packets: the prefix and row-shift-1
   maximal minors are nonzero scalar multiples of `det(I+ZK_0)` and
@@ -54,7 +56,9 @@ Keep entries concise and link to the relevant files.
   an explicit q-Cauchy product expansion for every principal minor of `K_h`;
   in particular, all square replacement Lagrange minors in the consecutive
   window are nonzero, so coefficient vanishing can only come from cancellation
-  among explicit nonzero q-Cauchy terms.
+  among explicit nonzero q-Cauchy terms.  A counterexample-first search script
+  probes the exact endpoint-capacity spectral target without changing the
+  certified low-rank2..12 packet.
 - **How it is useful:** Turns the rank-by-rank affine-gcd computation into a
   concrete spectral-disjointness target.  Proving that target through the
   endpoint-capacity range would close the synthetic low-rank regular
