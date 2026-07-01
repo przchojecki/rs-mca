@@ -23,6 +23,16 @@ generator and checks character orthogonality for exponents `-(255)..255`.
 It then applies the section formula to the `u` and `v` components of the
 A=385, A=426, A=421..426, and A=426 contiguous-gcd synthetic inputs.
 
+The reusable section theorem is recorded separately at
+
+```text
+experimental/data/certificates/subgroup-syndrome-section/
+  subgroup_syndrome_section_certificate.json
+```
+
+This packet checks that the listed synthetic inputs use the same row descriptor
+and consumes that general theorem as a dependency.
+
 This is not a worst-case M3 theorem.  It only removes the possible ambiguity
 that the synthetic rank-witness packets are free syndrome vectors rather than
 actual received-line data on the pinned row.
@@ -32,6 +42,9 @@ Regenerate and check:
 ```sh
 python3 experimental/scripts/verify_f17_32_m3_syndrome_realizability.py \
   --write experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_rank_witness_syndrome_realizability.json
+
+python3 experimental/scripts/verify_m1_subgroup_syndrome_section.py \
+  --check experimental/data/certificates/subgroup-syndrome-section/subgroup_syndrome_section_certificate.json
 
 python3 experimental/scripts/verify_f17_32_m3_syndrome_realizability.py \
   --check experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_rank_witness_syndrome_realizability.json

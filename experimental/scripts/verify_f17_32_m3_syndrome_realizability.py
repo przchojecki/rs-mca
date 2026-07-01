@@ -32,6 +32,10 @@ ROW_DESCRIPTOR_REF = (
     "experimental/data/certificates/hankel-f17-32-row-descriptor/"
     "f17_32_n512_k256_hankel_row_descriptor.json"
 )
+SUBGROUP_SECTION_REF = (
+    "experimental/data/certificates/subgroup-syndrome-section/"
+    "subgroup_syndrome_section_certificate.json"
+)
 SOURCES = [
     {
         "packet_id": "rank_witness_a385",
@@ -91,7 +95,10 @@ def validate_subgroup(row_descriptor: dict[str, Any], field: Field) -> dict[str,
     domain_encodings = row_descriptor["domain"]["domain_encodings"]
     generator = field.decode(row_descriptor["domain"]["generator_encoding"])
     require(len(domain_encodings) == N, "domain length mismatch")
-    require(hash_json(domain_encodings) == row_descriptor["row"]["domain_hash"], "domain hash mismatch")
+    require(
+        hash_json(domain_encodings) == row_descriptor["row"]["domain_hash"],
+        "domain hash mismatch",
+    )
     require(field.pow(generator, N) == field.one, "generator does not close at order 512")
     require(
         field.pow(generator, N // 2) != field.one,
@@ -186,11 +193,25 @@ def validate_source(source: dict[str, str], row_descriptor: dict[str, Any]) -> d
 def build_certificate() -> dict[str, Any]:
     field = Field(P, MODULUS)
     row_descriptor = load_json(ROW_DESCRIPTOR_REF)
+    subgroup_section = load_json(SUBGROUP_SECTION_REF)
     require(row_descriptor["row"]["n"] == N, "row descriptor n mismatch")
     require(row_descriptor["row"]["k"] == K, "row descriptor k mismatch")
     require(row_descriptor["row"]["field"] == "F_17^32", "row descriptor field mismatch")
     require(row_descriptor["row"]["field_order"] == Q_LINE, "row descriptor order mismatch")
     require(row_descriptor["row"]["syndrome_length"] == R, "row descriptor syndrome mismatch")
+    require(
+        subgroup_section["schema_version"] == "f17-32-m3-subgroup-syndrome-section-v1",
+        "unexpected subgroup-section schema",
+    )
+    require(
+        subgroup_section["row"]["domain_hash"] == row_descriptor["row"]["domain_hash"],
+        "section domain mismatch",
+    )
+    require(subgroup_section["row"]["syndrome_length"] == R, "section syndrome length mismatch")
+    require(
+        subgroup_section["summary"]["all_basis_coordinates_checked"] == R * R,
+        "section basis replay mismatch",
+    )
 
     subgroup_audit = validate_subgroup(row_descriptor, field)
     input_records = [validate_source(source, row_descriptor) for source in SOURCES]
@@ -211,6 +232,10 @@ def build_certificate() -> dict[str, Any]:
             "row_descriptor": {
                 "ref": ROW_DESCRIPTOR_REF,
                 "sha256": sha256_file(ROW_DESCRIPTOR_REF),
+            },
+            "subgroup_syndrome_section": {
+                "ref": SUBGROUP_SECTION_REF,
+                "sha256": sha256_file(SUBGROUP_SECTION_REF),
             }
         },
         "subgroup_audit": subgroup_audit,
@@ -218,6 +243,7 @@ def build_certificate() -> dict[str, Any]:
             "domain": "multiplicative subgroup H of order 512",
             "weighted_syndrome": "s_m=(1/512) sum_{x in H} x*y(x)*x^m",
             "section": "y_s(x)=sum_{a=0}^{255} s_a x^(-a-1)",
+            "general_section_ref": SUBGROUP_SECTION_REF,
             "proof": (
                 "Substituting the section gives (1/512) sum_a s_a "
                 "sum_{x in H} x^(m-a), which equals s_m by the audited "
@@ -253,7 +279,10 @@ def print_summary(certificate: dict[str, Any]) -> None:
     summary = certificate["summary"]
     print("F_17^32 M3 syndrome-realizability certificate")
     print(
-        "inputs={inputs_checked}, components={components_realized}, syndrome coordinates={syndrome_coordinates_per_component}".format(
+        (
+            "inputs={inputs_checked}, components={components_realized}, "
+            "syndrome coordinates={syndrome_coordinates_per_component}"
+        ).format(
             **summary
         )
     )

@@ -136,6 +136,13 @@ experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/
   f17_32_n512_k256_rank_witness_syndrome_realizability.json
 ```
 
+It depends on the reusable subgroup-section theorem
+
+```text
+experimental/data/certificates/subgroup-syndrome-section/
+  subgroup_syndrome_section_certificate.json
+```
+
 ## Construction
 
 For exact agreement `A`,

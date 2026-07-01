@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 subgroup syndrome section
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_subgroup_syndrome_section.py`;
+  `experimental/data/certificates/subgroup-syndrome-section/`;
+  `experimental/notes/m1/subgroup_syndrome_section.md`;
+  `experimental/scripts/verify_f17_32_m3_syndrome_realizability.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A reusable subgroup-section theorem for the pinned
+  `F_17^32` M3 row: every length-256 syndrome vector has explicit received-line
+  values on the order-512 subgroup.
+- **How it is useful:** It removes the row-data ambiguity for future M3
+  regular-window packets; the remaining hard work is root-table and residual
+  classification, not realizing syndrome pencils as line values.
+- **What to do next:** Use this section theorem when constructing actual
+  M3/M4 root-table or singular-pivot packets.
+
 ### 2026-07-01 - M4 affine-pivot gcd equivalence
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

@@ -340,7 +340,8 @@ experimental/data/certificates/subgroup-syndrome-section/
   subgroup_syndrome_section_certificate.json
 ```
 
-For the whole M3 window this applies uniformly.  Since every exact bucket has
+This theorem is now a checked packet.  For the whole M3 window it applies
+uniformly.  Since every exact bucket has
 
 ```text
 t+j = (A-k)+(n-A) = n-k = 256 <= |H| = 512,

@@ -125,6 +125,7 @@
   "schema_version": "f17-32-m3-syndrome-realizability-v1",
   "section_formula": {
     "domain": "multiplicative subgroup H of order 512",
+    "general_section_ref": "experimental/data/certificates/subgroup-syndrome-section/subgroup_syndrome_section_certificate.json",
     "proof": "Substituting the section gives (1/512) sum_a s_a sum_{x in H} x^(m-a), which equals s_m by the audited character orthogonality for 0<=a,m<256.",
     "section": "y_s(x)=sum_{a=0}^{255} s_a x^(-a-1)",
     "weighted_syndrome": "s_m=(1/512) sum_{x in H} x*y(x)*x^m"
@@ -133,6 +134,10 @@
     "row_descriptor": {
       "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
       "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    },
+    "subgroup_syndrome_section": {
+      "ref": "experimental/data/certificates/subgroup-syndrome-section/subgroup_syndrome_section_certificate.json",
+      "sha256": "85adb9437c04c034ca7386b54aaf58bcd2c2e6e0f060567dea55018b1d05c22b"
     }
   },
   "status": "PROVED / AUDIT for the listed synthetic syndrome inputs",
