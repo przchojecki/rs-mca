@@ -129,6 +129,13 @@ finite roots and the `[0:1]` endpoint contributes one point.  This supplies a
 checked v9 packet for the unique rank-8 row where the finite-root count reaches
 four, also with projective-line numerator `5 <= 6`.
 
+The rank-9, `A=398` projective-line packet promotes one compact sweep row back
+into a full v9 replay artifact.  Degree-only projective accounting would give
+`10 > 6`, but the generator recomputes the degree-9 determinant and
+Frobenius-gcd hashes, splits the degree-3 gcd into three finite roots, and adds
+the `[0:1]` endpoint.  This gives projective-line numerator `4 <= 6` for a
+representative rank-9 max-root row from the compact sweep.
+
 The rank-6..11 tangent-exclusion audit is the first subtraction check for this
 beyond-envelope low-rank block.  It consumes the exact finite-root certificates
 above and checks the unique moment-zero common-code-line slope

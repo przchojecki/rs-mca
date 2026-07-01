@@ -127,6 +127,13 @@
       "status": "PROVED / AUDIT"
     },
     {
+      "name": "synthetic_low_rank_rank9_a398_projective_line_packet",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank-rank9-a398-projective-line/f17_32_n512_k256_a398_rank9_projective_line_packet.json",
+      "schema_version": "aperiodic-hankel-eliminant-v1",
+      "sha256": "945296eb550ba6906fded1c7370da41deba28bd38f092afbd3d3c912f4dc6dff",
+      "status": "PROVED / AUDIT"
+    },
+    {
       "name": "synthetic_low_rank6_11_tangent_exclusion",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json",
       "schema_version": "f17-32-m3-low-rank6-11-tangent-exclusion-v1",
@@ -4767,6 +4774,13 @@
       1060145035037258219285765475092217760623,
       2277929252537063358244226726497438114551
     ],
-    "synthetic_low_rank_rank8_a393_projective_line_packet_status": "v9 projective-line regular-minor packet checks the hard rank-8 A=393 row with four finite Frobenius-gcd roots plus the [0:1] endpoint, giving projective numerator 5 <= 6"
+    "synthetic_low_rank_rank8_a393_projective_line_packet_status": "v9 projective-line regular-minor packet checks the hard rank-8 A=393 row with four finite Frobenius-gcd roots plus the [0:1] endpoint, giving projective numerator 5 <= 6",
+    "synthetic_low_rank_rank9_a398_projective_line_packet_numerator": 4,
+    "synthetic_low_rank_rank9_a398_projective_line_packet_root_union": [
+      102390564997564348879942855502100576083,
+      1124115608826751349762102414697252486194,
+      1221622901637454132031258720247822744832
+    ],
+    "synthetic_low_rank_rank9_a398_projective_line_packet_status": "v9 projective-line regular-minor packet rehydrates the compact rank-9 A=398 sweep row, checks three finite Frobenius-gcd roots plus the [0:1] endpoint, and gives projective numerator 4 <= 6"
   }
 }

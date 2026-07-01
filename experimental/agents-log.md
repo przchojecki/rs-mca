@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-9 A398 compact-sweep projective-line packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/scripts/verify_f17_32_m3_low_rank_rank9_a398_projective_line_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a398_low_rank9_projective_line_input.json`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank-rank9-a398-projective-line/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Promotes the compact synthetic rank-9, `A=398`
+  low-rank sweep row to a v9 projective-line packet.  The generator rehydrates
+  the degree-9 determinant from the sweep hashes, splits the degree-3
+  Frobenius gcd into three finite roots, and adds the `[0:1]` endpoint, giving
+  projective numerator `4 <= 6`.
+- **How it is useful:** It shows that the compact rank-9 max-root row survives
+  full packet replay by exact finite-root slack, extending the M3
+  beyond-envelope packet ladder beyond ranks 6 through 8.
+- **What to do next:** Audit quotient support/image for the finite roots, or
+  package the remaining rank `10..11` max-root rows.  This remains synthetic
+  and is not an actual-row M3 threshold bound.
+
 ### 2026-07-01 - M3 rank-8 A393 hard projective-line packet
 
 - **Agent/model:** AllenGrahamHart / Codex.

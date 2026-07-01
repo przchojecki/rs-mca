@@ -2972,6 +2972,71 @@ def low_rank_lagrange_kernel_field(
     return kernel
 
 
+def matrix_multiply_field(
+    left: list[list[tuple[int, ...]]],
+    right: list[list[tuple[int, ...]]],
+    field: PolynomialBasisField,
+) -> list[list[tuple[int, ...]]]:
+    rows = len(left)
+    inner = len(right)
+    cols = len(right[0])
+    out = []
+    for row in range(rows):
+        out_row = []
+        for col in range(cols):
+            entry = field.zero
+            for index in range(inner):
+                entry = field.add(entry, field.mul(left[row][index], right[index][col]))
+            out_row.append(entry)
+        out.append(out_row)
+    return out
+
+
+def matrix_trace_field(
+    matrix: list[list[tuple[int, ...]]],
+    field: PolynomialBasisField,
+) -> tuple[int, ...]:
+    total = field.zero
+    for index in range(len(matrix)):
+        total = field.add(total, matrix[index][index])
+    return total
+
+
+def det_i_plus_z_kernel_coefficients_field(
+    kernel: list[list[tuple[int, ...]]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    """Return coefficients of det(I+ZK) using Newton identities."""
+
+    size = len(kernel)
+    if size >= field.p:
+        polynomial_matrix = [
+            [
+                [field.one if row == col else field.zero, kernel[row][col]]
+                for col in range(size)
+            ]
+            for row in range(size)
+        ]
+        return extension_polynomial_determinant(polynomial_matrix, field)
+    coefficients = [field.one]
+    current_power = kernel
+    traces = []
+    for power in range(1, size + 1):
+        if power > 1:
+            current_power = matrix_multiply_field(current_power, kernel, field)
+        traces.append(matrix_trace_field(current_power, field))
+    for degree in range(1, size + 1):
+        total = field.zero
+        for index in range(1, degree + 1):
+            term = field.mul(coefficients[degree - index], traces[index - 1])
+            if index % 2:
+                total = field.add(total, term)
+            else:
+                total = field.sub(total, term)
+        coefficients.append(field.div(total, field.normalize(degree)))
+    return coefficients
+
+
 def low_rank_compression_coefficients_field(
     base_nodes: list[tuple[int, ...]],
     update_nodes: list[tuple[int, ...]],
@@ -2981,16 +3046,7 @@ def low_rank_compression_coefficients_field(
     kernel = low_rank_lagrange_kernel_field(
         base_nodes, update_nodes, field, location
     )
-    kernel_polynomial_matrix = [
-        [
-            [field.one if row == col else field.zero, kernel[row][col]]
-            for col in range(len(update_nodes))
-        ]
-        for row in range(len(update_nodes))
-    ]
-    kernel_coefficients = extension_polynomial_determinant(
-        kernel_polynomial_matrix, field
-    )
+    kernel_coefficients = det_i_plus_z_kernel_coefficients_field(kernel, field)
     base_determinant = vandermonde_square_field(base_nodes, field, location)
     hankel_coefficients = extension_poly_scale(
         kernel_coefficients, base_determinant, field
