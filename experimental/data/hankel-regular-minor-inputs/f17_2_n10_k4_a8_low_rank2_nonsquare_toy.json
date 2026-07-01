@@ -1,0 +1,89 @@
+{
+  "schema_version": "regular-hankel-minor-extractor-input-v1",
+  "agreement_threshold": 8,
+  "certificate_mode": "low_rank_update_bound",
+  "claim_scope": {
+    "may_be_used_for_threshold_pinning": false,
+    "note": "Small extension-field low-rank update replay whose rank-2 compressed quadratic has nonsquare discriminant.",
+    "root_status": "closed_form",
+    "row_data": "synthetic_syndrome_pencil",
+    "threshold_role": "toy_mechanism"
+  },
+  "emit_split_root_certificate": true,
+  "exact_agreements": [
+    8
+  ],
+  "field_model": {
+    "kind": "polynomial_basis",
+    "p": 17,
+    "modulus": [
+      14,
+      0,
+      1
+    ],
+    "description": "F_17[x]/(x^2-3), coefficients low-to-high"
+  },
+  "line_syndrome": {
+    "description": "synthetic low-rank update witness over F_17^2: u_m=sum_{x in {1,2,3}} x^m and v_m=4^m+(1+x)^m",
+    "field_encoding": "base-p low-to-high integer",
+    "length": 6,
+    "rank_witness_reason": "low-rank Cauchy-Binet update makes the prefix determinant a quadratic with nonsquare discriminant",
+    "u": [
+      3,
+      6,
+      14,
+      2,
+      13,
+      4
+    ],
+    "v": [
+      2,
+      22,
+      37,
+      108,
+      284,
+      182
+    ]
+  },
+  "low_rank_update": {
+    "base_node_encodings": [
+      1,
+      2,
+      3
+    ],
+    "coefficient_formula": "Cauchy-Binet Vandermonde-square low-rank update",
+    "update_node_encodings": [
+      4,
+      18
+    ]
+  },
+  "nonclaims": [
+    "not a prize-row threshold theorem",
+    "not an F_17^32 row-data packet",
+    "not a singular pivot-chart certificate",
+    "toy row only"
+  ],
+  "row": {
+    "n": 10,
+    "k": 4,
+    "field": "F_17^2",
+    "domain": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "domain_description": "first ten embedded F_17 points; synthetic low-rank no-root replay"
+  },
+  "row_set_strategy": {
+    "type": "prefix"
+  },
+  "sampler": "finite_affine_line",
+  "status": "PROVED"
+}

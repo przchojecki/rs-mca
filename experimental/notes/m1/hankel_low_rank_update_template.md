@@ -87,6 +87,17 @@ formula and the compressed determinant-lemma formula against direct determinant
 evaluation at every finite slope.  For rank-two rows it also checks that the
 discriminant formula gives the same roots as direct evaluation.
 
+The extension-field packet
+
+```text
+experimental/data/certificates/hankel-f17-2-low-rank2-nonsquare-toy/
+  f17_2_n10_k4_a8_low_rank2_nonsquare_packet.json
+```
+
+exercises the packet-level no-root branch: its compressed quadratic has
+nonsquare discriminant over `F_17^2`, and the checker verifies the Euler
+witness before accepting the empty root table.
+
 Run:
 
 ```sh

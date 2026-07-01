@@ -862,7 +862,7 @@ def quadratic_roots_field(
     )
     sqrt_discriminant = field_square_root(discriminant, field)
     if sqrt_discriminant is None:
-        return None
+        return []
     denominator_inverse = field.inv(field.mul(field.normalize(2), c2))
     roots = {
         field.encode(
@@ -890,6 +890,20 @@ def quadratic_root_certificate_field(
     )
     sqrt_discriminant = field_square_root(discriminant, field)
     if sqrt_discriminant is None:
+        if roots == []:
+            return {
+                "kind": "quadratic_discriminant_nonsquare",
+                "field_encoding": "base-p low-to-high integer",
+                "coefficients_ascending": [
+                    field.encode(coefficient) for coefficient in polynomial
+                ],
+                "discriminant": field.encode(discriminant),
+                "euler_witness": field.encode(
+                    field.pow(discriminant, (field.size - 1) // 2)
+                ),
+                "root_formula": "no roots because the discriminant is nonsquare",
+                "roots": [],
+            }
         return None
     formula_roots = quadratic_roots_field(polynomial, field)
     if formula_roots is None:

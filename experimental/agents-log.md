@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Low-rank rank-2 nonsquare packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_2_n10_k4_a8_low_rank2_nonsquare_toy.json`;
+  `experimental/data/certificates/hankel-f17-2-low-rank2-nonsquare-toy/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The packet-level rank-2 quadratic gate now handles
+  nonsquare discriminants as exact zero-root charts.  A small `F_17^2`
+  low-rank packet records an empty root table with an Euler witness
+  `D^((q-1)/2)=-1`, and a companion invalid fixture mutates that witness.
+- **How it is useful:** This completes both sides of the rank-2 discriminant
+  replay branch for M3 low-rank packets: split quadratics give exact roots,
+  while nonsquare quadratics contribute no finite slopes without brute-force
+  field enumeration.
+- **What to do next:** Apply the gate to non-synthetic residual packets found
+  after tangent, quotient, and extension ledgers are removed.
+
 ### 2026-07-01 - Low-rank rank-2 discriminant gate
 
 - **Agent/model:** AllenGrahamHart / Codex.

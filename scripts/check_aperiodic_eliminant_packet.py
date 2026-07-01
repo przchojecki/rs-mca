@@ -818,7 +818,11 @@ def validate_quadratic_root_certificate_mod(
         raise PacketError(
             f"{location}.quadratic_root_certificate must be an object"
         )
-    if certificate.get("kind") != "quadratic_discriminant_split":
+    kind = certificate.get("kind")
+    if kind not in {
+        "quadratic_discriminant_split",
+        "quadratic_discriminant_nonsquare",
+    }:
         raise PacketError(
             f"{location}.quadratic_root_certificate.kind is unsupported"
         )
@@ -850,6 +854,30 @@ def validate_quadratic_root_certificate_mod(
         raise PacketError(
             f"{location}.quadratic_root_certificate discriminant mismatch"
         )
+    if kind == "quadratic_discriminant_nonsquare":
+        witness_raw = certificate.get("euler_witness")
+        if not isinstance(witness_raw, int):
+            raise PacketError(
+                f"{location}.quadratic_root_certificate.euler_witness must be int"
+            )
+        euler_witness = pow(discriminant, (modulus - 1) // 2, modulus)
+        if witness_raw % modulus != euler_witness:
+            raise PacketError(
+                f"{location}.quadratic_root_certificate Euler witness mismatch"
+            )
+        if euler_witness != (-1) % modulus:
+            raise PacketError(
+                f"{location}.quadratic_root_certificate discriminant is not nonsquare"
+            )
+        certificate_roots = normalize_int_list(
+            certificate.get("roots"),
+            f"{location}.quadratic_root_certificate.roots",
+        )
+        require_exact_roots(
+            certificate_roots, [], f"{location}.quadratic_root_certificate"
+        )
+        require_exact_roots(roots, [], location)
+        return
     sqrt_raw = certificate.get("sqrt_discriminant")
     if not isinstance(sqrt_raw, int):
         raise PacketError(
@@ -893,7 +921,11 @@ def validate_quadratic_root_certificate_extension(
         raise PacketError(
             f"{location}.quadratic_root_certificate must be an object"
         )
-    if certificate.get("kind") != "quadratic_discriminant_split":
+    kind = certificate.get("kind")
+    if kind not in {
+        "quadratic_discriminant_split",
+        "quadratic_discriminant_nonsquare",
+    }:
         raise PacketError(
             f"{location}.quadratic_root_certificate.kind is unsupported"
         )
@@ -940,6 +972,36 @@ def validate_quadratic_root_certificate_extension(
         raise PacketError(
             f"{location}.quadratic_root_certificate discriminant mismatch"
         )
+    if kind == "quadratic_discriminant_nonsquare":
+        witness_raw = certificate.get("euler_witness")
+        if (
+            not isinstance(witness_raw, int)
+            or witness_raw < 0
+            or witness_raw >= field.size
+        ):
+            raise PacketError(
+                f"{location}.quadratic_root_certificate.euler_witness must be "
+                "an encoded field element"
+            )
+        recorded_witness = field.decode(witness_raw)
+        euler_witness = field.pow(discriminant, (field.size - 1) // 2)
+        if recorded_witness != euler_witness:
+            raise PacketError(
+                f"{location}.quadratic_root_certificate Euler witness mismatch"
+            )
+        if euler_witness != field.neg(field.one):
+            raise PacketError(
+                f"{location}.quadratic_root_certificate discriminant is not nonsquare"
+            )
+        certificate_roots = normalize_int_list(
+            certificate.get("roots"),
+            f"{location}.quadratic_root_certificate.roots",
+        )
+        require_exact_roots(
+            certificate_roots, [], f"{location}.quadratic_root_certificate"
+        )
+        require_exact_roots(roots, [], location)
+        return
     sqrt_raw = certificate.get("sqrt_discriminant")
     if not isinstance(sqrt_raw, int) or sqrt_raw < 0 or sqrt_raw >= field.size:
         raise PacketError(
