@@ -393,6 +393,53 @@ disjointness can try to compare these q-Cauchy sums across `h=0,1`, while a
 future symbolic checker can audit the same formulas without rebuilding the
 large Hankel minors.
 
+## Toeplitz-Cauchy Form
+
+The normalized consecutive-window Cauchy matrix has one more useful structure:
+it is Toeplitz.  With
+
+```text
+tau_s = 1/(1-alpha^(m+s)),
+```
+
+the middle Cauchy factor satisfies
+
+```text
+C[a,i] = tau_{a-i}.
+```
+
+Thus all square replacement minors split as
+
+```text
+det(L[J,I])^2
+  = (prod_{a in J} rho_a^2)
+    * (prod_{i in I} gamma_i^2)
+    * det((tau_{a-i})_{a in J, i in I})^2.
+```
+
+Equivalently, the shifted kernel can be written from one rectangular
+Toeplitz-Cauchy array `T_{m,r}[a,i]=tau_{a-i}` as
+
+```text
+K_h = diag(alpha^(h(m+a)) rho_a)
+      T_{m,r}
+      diag(alpha^(-h*i) gamma_i^2)
+      T_{m,r}^T
+      diag(rho_a).
+```
+
+For the endpoint-capacity target
+
+```text
+87 <= m <= 128,    2 <= r <= ceil((m-1)/2),
+```
+
+the exponents `m+a-i` appearing in `tau_{a-i}` lie between `1` and `191`, so
+none is `0` modulo the subgroup order `512`.  The finite target is therefore a
+Toeplitz-Cauchy spectral-disjointness problem with explicit nonzero diagonal
+weights.  This is still not a proof of coprimality, but it removes arbitrary
+matrix structure from the normalized low-rank branch.
+
 ## Window Normalization
 
 Two elementary invariances reduce the consecutive-subgroup case to a normalized
