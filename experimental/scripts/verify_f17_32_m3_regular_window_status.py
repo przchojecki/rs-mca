@@ -78,6 +78,11 @@ LOW_RANK2_11_ENDPOINT_QUOTIENT_SUPPORT_REF = (
     "hankel-f17-32-m3-low-rank2-11-endpoint-quotient-support/"
     "f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_support.json"
 )
+LOW_RANK2_11_ENDPOINT_QUOTIENT_IMAGE_REF = (
+    "experimental/data/certificates/"
+    "hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/"
+    "f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_image.json"
+)
 LOW_RANK_RANK6_A426_PROJECTIVE_PIVOT_REF = (
     "experimental/data/certificates/"
     "hankel-f17-32-m3-low-rank-rank6-a426-projective-pivot/"
@@ -285,6 +290,7 @@ def validate_inputs(
     low_rank9_11_slack_sweep: dict[str, Any],
     low_rank2_11_projective_infinity: dict[str, Any],
     low_rank2_11_endpoint_quotient_support: dict[str, Any],
+    low_rank2_11_endpoint_quotient_image: dict[str, Any],
     low_rank_rank6_a426_projective_pivot: dict[str, Any],
     low_rank_rank6_a426_finite_packet: dict[str, Any],
     low_rank_rank6_a426_projective_line_packet: dict[str, Any],
@@ -1067,6 +1073,45 @@ def validate_inputs(
             f"rank-{rank} endpoint quotient-support summary mismatch",
         )
     require(
+        low_rank2_11_endpoint_quotient_image["schema_version"]
+        == "f17-32-m3-low-rank2-11-endpoint-quotient-image-v1",
+        "rank-2..11 endpoint quotient-image schema mismatch",
+    )
+    require(
+        low_rank2_11_endpoint_quotient_image["agreement_range"]
+        == [AGREEMENT_MIN, AGREEMENT_MAX]
+        and low_rank2_11_endpoint_quotient_image["ranks"]
+        == [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+        and low_rank2_11_endpoint_quotient_image["aggregate"]["record_count"]
+        == 420
+        and low_rank2_11_endpoint_quotient_image["aggregate"]["fiber_size"]
+        == 2
+        and low_rank2_11_endpoint_quotient_image["aggregate"][
+            "endpoint_quotient_image_witness_count"
+        ]
+        == 420
+        and low_rank2_11_endpoint_quotient_image["aggregate"][
+            "all_projective_endpoints_have_quotient_image_witness"
+        ]
+        is True
+        and low_rank2_11_endpoint_quotient_image["aggregate"][
+            "maximum_vandermonde_union_bound"
+        ]
+        == 255,
+        "rank-2..11 endpoint quotient-image aggregate mismatch",
+    )
+    for rank in [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]:
+        summary = low_rank2_11_endpoint_quotient_image["aggregate"][
+            "rank_summaries"
+        ][str(rank)]
+        require(
+            summary["agreement_count"] == 42
+            and summary["endpoint_quotient_image_witness_count"] == 42
+            and summary["fiber_size"] == 2
+            and summary["all_witnesses_use_c2"] is True,
+            f"rank-{rank} endpoint quotient-image summary mismatch",
+        )
+    require(
         low_rank_rank6_a426_projective_pivot["schema_version"]
         == "aperiodic-hankel-eliminant-v1",
         "rank-6 A=426 projective pivot packet schema mismatch",
@@ -1483,7 +1528,7 @@ def validate_inputs(
         )
     require(
         low_rank6_11_known_ledger_table["schema_version"]
-        == "f17-32-m3-low-rank6-11-known-ledger-table-v3",
+        == "f17-32-m3-low-rank6-11-known-ledger-table-v4",
         "rank-6..11 known-ledger table schema mismatch",
     )
     require(
@@ -1518,6 +1563,14 @@ def validate_inputs(
         ]
         == 252
         and low_rank6_11_known_ledger_table["aggregate"][
+            "projective_endpoint_quotient_image_witness_sum"
+        ]
+        == 252
+        and low_rank6_11_known_ledger_table["aggregate"][
+            "projective_endpoint_quotient_image_status"
+        ]
+        == "covered_by_c2_quotient_remainder_image"
+        and low_rank6_11_known_ledger_table["aggregate"][
             "known_tangent_overlap_removed_sum"
         ]
         == 0
@@ -1542,11 +1595,19 @@ def validate_inputs(
         ]
         == 1
         and low_rank6_11_known_ledger_table["aggregate"][
+            "max_known_residual_aperiodic_full_hankel_projective_per_record"
+        ]
+        == 0
+        and low_rank6_11_known_ledger_table["aggregate"][
             "all_records_within_projective_budget_after_known_ledgers"
         ]
         is True
         and low_rank6_11_known_ledger_table["aggregate"][
             "all_records_within_projective_budget_after_shifted_minor"
+        ]
+        is True
+        and low_rank6_11_known_ledger_table["aggregate"][
+            "all_records_within_projective_budget_after_endpoint_quotient_image"
         ]
         is True
         and low_rank6_11_known_ledger_table["aggregate"][
@@ -2529,6 +2590,9 @@ def build_status() -> dict[str, Any]:
     low_rank2_11_endpoint_quotient_support = load_json(
         LOW_RANK2_11_ENDPOINT_QUOTIENT_SUPPORT_REF
     )
+    low_rank2_11_endpoint_quotient_image = load_json(
+        LOW_RANK2_11_ENDPOINT_QUOTIENT_IMAGE_REF
+    )
     low_rank_rank6_a426_projective_pivot = load_json(
         LOW_RANK_RANK6_A426_PROJECTIVE_PIVOT_REF
     )
@@ -2591,6 +2655,7 @@ def build_status() -> dict[str, Any]:
         low_rank9_11_slack_sweep,
         low_rank2_11_projective_infinity,
         low_rank2_11_endpoint_quotient_support,
+        low_rank2_11_endpoint_quotient_image,
         low_rank_rank6_a426_projective_pivot,
         low_rank_rank6_a426_finite_packet,
         low_rank_rank6_a426_projective_line_packet,
@@ -2693,6 +2758,11 @@ def build_status() -> dict[str, Any]:
             "f17-32-m3-low-rank2-11-endpoint-quotient-support-v1",
         ),
         artifact_record(
+            "synthetic_low_rank2_11_endpoint_quotient_image",
+            LOW_RANK2_11_ENDPOINT_QUOTIENT_IMAGE_REF,
+            "f17-32-m3-low-rank2-11-endpoint-quotient-image-v1",
+        ),
+        artifact_record(
             "synthetic_low_rank_rank6_a426_projective_pivot",
             LOW_RANK_RANK6_A426_PROJECTIVE_PIVOT_REF,
             "aperiodic-hankel-eliminant-v1",
@@ -2745,7 +2815,7 @@ def build_status() -> dict[str, Any]:
         artifact_record(
             "synthetic_low_rank6_11_known_ledger_table",
             LOW_RANK6_11_KNOWN_LEDGER_TABLE_REF,
-            "f17-32-m3-low-rank6-11-known-ledger-table-v3",
+            "f17-32-m3-low-rank6-11-known-ledger-table-v4",
         ),
         artifact_record(
             "synthetic_representative_shifted_minor_exclusion",
@@ -3057,6 +3127,19 @@ def build_status() -> dict[str, Any]:
                 "regular-minor roots, and quotient-image supports are not "
                 "audited by this endpoint support certificate"
             ),
+            "synthetic_low_rank2_11_endpoint_quotient_image_status": (
+                "proved that every synthetic low-rank projective endpoint "
+                "[0:1] has an explicit c=2 quotient-remainder witness support, "
+                "so the endpoint is in the quotient-image branch"
+            ),
+            "synthetic_low_rank2_11_endpoint_quotient_image_witness_count": (
+                low_rank2_11_endpoint_quotient_image["aggregate"][
+                    "endpoint_quotient_image_witness_count"
+                ]
+            ),
+            "synthetic_low_rank2_11_endpoint_quotient_image_fiber_size": (
+                low_rank2_11_endpoint_quotient_image["aggregate"]["fiber_size"]
+            ),
             "synthetic_low_rank_rank6_a426_projective_pivot_status": (
                 "v9 projective-line pivot_atlas packet checks the rank-6 "
                 "A=426 projective_infinity chart as nonempty with support_count "
@@ -3203,8 +3286,9 @@ def build_status() -> dict[str, Any]:
                 "proper-subfield exclusion leave at most 5 projective regular "
                 "minor upper-bound roots per checked synthetic row; the "
                 "shifted-minor ledger removes all finite roots from the "
-                "full-Hankel witness column, leaving at most 1 projective "
-                "full-Hankel witness per row"
+                "full-Hankel witness column, and the endpoint quotient-image "
+                "ledger charges the remaining [0:1] endpoint, leaving zero "
+                "aperiodic full-Hankel residual"
             ),
             "synthetic_low_rank6_11_known_ledger_max_residual_projective": (
                 low_rank6_11_known_ledger_table["aggregate"][
@@ -3214,6 +3298,16 @@ def build_status() -> dict[str, Any]:
             "synthetic_low_rank6_11_known_ledger_max_full_hankel_residual_projective": (
                 low_rank6_11_known_ledger_table["aggregate"][
                     "max_known_residual_full_hankel_projective_per_record"
+                ]
+            ),
+            "synthetic_low_rank6_11_known_ledger_max_aperiodic_full_hankel_residual_projective": (
+                low_rank6_11_known_ledger_table["aggregate"][
+                    "max_known_residual_aperiodic_full_hankel_projective_per_record"
+                ]
+            ),
+            "synthetic_low_rank6_11_known_ledger_endpoint_quotient_image_status": (
+                low_rank6_11_known_ledger_table["aggregate"][
+                    "projective_endpoint_quotient_image_status"
                 ]
             ),
             "synthetic_low_rank6_11_known_ledger_finite_roots_excluded_by_shifted_minor": (
@@ -3342,11 +3436,12 @@ def build_status() -> dict[str, Any]:
                 "the synthetic rank-9..11 low-rank slack sweep has exact Frobenius-gcd root histograms {9:{0:17, 1:17, 2:6, 3:2}, 10:{0:8, 1:23, 2:9, 3:2}, 11:{0:15, 1:16, 2:5, 3:6}}, so finite-root slack gives at most 4 projective regular roots per checked pair despite degree-only projective bounds 10, 11, and 12",
                 "the synthetic rank-2..11 low-rank endpoint audit proves the projective infinity point [0:1] is an actual support-wise noncontained endpoint in every checked rank/agreement row, witnessed on D minus the update nodes",
                 "the synthetic rank-2..11 low-rank endpoint quotient-support audit proves that those actual D minus Y endpoint supports are not nontrivial proper quotient-remainder supports; trivial c=1 and c=512 and quotient-image supports are not claimed",
+                "the synthetic rank-2..11 low-rank endpoint quotient-image audit proves that every projective endpoint [0:1] has an explicit c=2 quotient-remainder witness support of size A, so the endpoint parameter is in the quotient-image branch even though the minimal support D minus Y is not quotient-remainder",
                 "the synthetic rank-6 A=426 projective-line pivot packet is v9-checkable and closes the projective_infinity chart as nonempty with contribution one",
                 "the synthetic rank-6 A=426 finite-affine regular-minor packet is v9-checkable with degree 6 and one exact finite root certified by gcd(Delta,Z^q-Z)",
                 "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
                 "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
-                "the synthetic rank-6..11 known-ledger table combines exact finite roots, projective infinity, endpoint quotient-support exclusion, tangent, proper-subfield, and shifted-minor audits into a compact M4-style table: regular-minor residual upper max is 5 <= 6, while full-Hankel witness residual upper max is 1 <= 6 after all finite first-minor roots are excluded by the row-shift-1 minor; finite-root quotient support/image is still not audited as a separate quotient ledger",
+                "the synthetic rank-6..11 known-ledger table combines exact finite roots, projective infinity, endpoint quotient-support and quotient-image, tangent, proper-subfield, and shifted-minor audits into a compact M4-style table: regular-minor residual upper max is 5 <= 6, full-Hankel witness residual upper max is 1 <= 6 after finite first-minor roots are excluded, and aperiodic full-Hankel residual upper max is 0 after the endpoint is charged to quotient-image",
                 "the representative shifted-minor exclusion proves that the 18 finite roots listed in the rank-6..11 representative projective-line packets do not give full-Hankel exact-support witnesses, because the row-shift-1 square minor is nonzero at each one",
                 "the synthetic rank-6..11 shifted-minor exclusion proves that all 238 finite roots counted by the low-rank slack ledgers are first-minor artifacts rather than actual full-Hankel exact-support witnesses, because the row-shift-1 square minor excludes them",
                 "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
@@ -3419,6 +3514,10 @@ def print_summary(status: dict[str, Any]) -> None:
     print(
         "rank-2..11 endpoint quotient support: "
         f"{summary['synthetic_low_rank2_11_endpoint_quotient_support_status']}"
+    )
+    print(
+        "rank-2..11 endpoint quotient image: "
+        f"{summary['synthetic_low_rank2_11_endpoint_quotient_image_status']}"
     )
     print(
         "rank-6 A=426 infinity pivot: "

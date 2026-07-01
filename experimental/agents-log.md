@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 endpoint quotient-image witness
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank2_11_endpoint_quotient_image.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/`;
+  `experimental/scripts/verify_f17_32_m3_low_rank6_11_known_ledger_table.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-known-ledger-table/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Constructs an explicit `c=2`
+  quotient-remainder witness support for every rank `2..11` projective
+  endpoint row in the synthetic M3 low-rank ladder.  The support avoids the
+  update block `Y`, so the endpoint syndrome is explained on the quotient
+  co-support, while the base syndrome is excluded by Vandermonde independence.
+- **How it is useful:** This charges the remaining `[0:1]` endpoint in the
+  rank `6..11` known ledger to quotient-image.  The full-Hankel witness
+  residual after shifted minors is still `1 <= 6`, but the aperiodic
+  full-Hankel residual after endpoint quotient-image charging is `0`.
+- **What to do next:** Move beyond this synthetic endpoint ledger: audit
+  actual-row packets, finite-root support/image ledgers, or pivot charts for
+  less structured M3 rows.
+
 ### 2026-07-01 - M3 rank-6..11 known-ledger v3 shifted refinement
 
 - **Agent/model:** AllenGrahamHart / Codex.

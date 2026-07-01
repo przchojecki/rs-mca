@@ -1,6 +1,7 @@
 {
   "aggregate": {
     "agreement_count_per_rank": 42,
+    "all_records_within_projective_budget_after_endpoint_quotient_image": true,
     "all_records_within_projective_budget_after_known_ledgers": true,
     "all_records_within_projective_budget_after_shifted_minor": true,
     "finite_regular_root_count_sum": 238,
@@ -9,12 +10,16 @@
     "finite_regular_root_quotient_support_status": "not_audited",
     "finite_regular_roots_excluded_by_shifted_minor_sum": 238,
     "known_proper_subfield_overlap_removed_sum": 0,
+    "known_residual_aperiodic_full_hankel_projective_sum": 0,
     "known_residual_full_hankel_projective_sum": 252,
     "known_residual_projective_sum": 490,
     "known_tangent_overlap_removed_sum": 0,
+    "max_known_residual_aperiodic_full_hankel_projective_per_record": 0,
     "max_known_residual_full_hankel_projective_per_record": 1,
     "max_known_residual_projective_per_record": 5,
     "projective_budget_numerator": 6,
+    "projective_endpoint_quotient_image_status": "covered_by_c2_quotient_remainder_image",
+    "projective_endpoint_quotient_image_witness_sum": 252,
     "projective_endpoint_quotient_support_excluded_sum": 252,
     "projective_endpoint_quotient_support_status": "excluded_nontrivial_proper_quotient_remainder_supports",
     "projective_infinity_contribution_sum": 252,
@@ -34,10 +39,13 @@
           "3": 2
         },
         "finite_roots_excluded_by_shifted_minor_sum": 47,
+        "known_residual_aperiodic_full_hankel_projective_sum": 0,
         "known_residual_full_hankel_projective_sum": 42,
         "known_residual_projective_sum": 89,
+        "max_known_residual_aperiodic_full_hankel_projective_per_record": 0,
         "max_known_residual_full_hankel_projective_per_record": 1,
         "max_known_residual_projective_per_record": 4,
+        "projective_endpoint_quotient_image_witness_sum": 42,
         "projective_infinity_contribution_sum": 42,
         "rank": 10,
         "worst_agreements": [
@@ -57,10 +65,13 @@
           "3": 6
         },
         "finite_roots_excluded_by_shifted_minor_sum": 44,
+        "known_residual_aperiodic_full_hankel_projective_sum": 0,
         "known_residual_full_hankel_projective_sum": 42,
         "known_residual_projective_sum": 86,
+        "max_known_residual_aperiodic_full_hankel_projective_per_record": 0,
         "max_known_residual_full_hankel_projective_per_record": 1,
         "max_known_residual_projective_per_record": 4,
+        "projective_endpoint_quotient_image_witness_sum": 42,
         "projective_infinity_contribution_sum": 42,
         "rank": 11,
         "worst_agreements": [
@@ -83,10 +94,13 @@
           "2": 9
         },
         "finite_roots_excluded_by_shifted_minor_sum": 35,
+        "known_residual_aperiodic_full_hankel_projective_sum": 0,
         "known_residual_full_hankel_projective_sum": 42,
         "known_residual_projective_sum": 77,
+        "max_known_residual_aperiodic_full_hankel_projective_per_record": 0,
         "max_known_residual_full_hankel_projective_per_record": 1,
         "max_known_residual_projective_per_record": 3,
+        "projective_endpoint_quotient_image_witness_sum": 42,
         "projective_infinity_contribution_sum": 42,
         "rank": 6,
         "worst_agreements": [
@@ -114,10 +128,13 @@
           "4": 1
         },
         "finite_roots_excluded_by_shifted_minor_sum": 43,
+        "known_residual_aperiodic_full_hankel_projective_sum": 0,
         "known_residual_full_hankel_projective_sum": 42,
         "known_residual_projective_sum": 85,
+        "max_known_residual_aperiodic_full_hankel_projective_per_record": 0,
         "max_known_residual_full_hankel_projective_per_record": 1,
         "max_known_residual_projective_per_record": 5,
+        "projective_endpoint_quotient_image_witness_sum": 42,
         "projective_infinity_contribution_sum": 42,
         "rank": 7,
         "worst_agreements": [
@@ -137,10 +154,13 @@
           "4": 1
         },
         "finite_roots_excluded_by_shifted_minor_sum": 34,
+        "known_residual_aperiodic_full_hankel_projective_sum": 0,
         "known_residual_full_hankel_projective_sum": 42,
         "known_residual_projective_sum": 76,
+        "max_known_residual_aperiodic_full_hankel_projective_per_record": 0,
         "max_known_residual_full_hankel_projective_per_record": 1,
         "max_known_residual_projective_per_record": 5,
+        "projective_endpoint_quotient_image_witness_sum": 42,
         "projective_infinity_contribution_sum": 42,
         "rank": 8,
         "worst_agreements": [
@@ -159,10 +179,13 @@
           "3": 2
         },
         "finite_roots_excluded_by_shifted_minor_sum": 35,
+        "known_residual_aperiodic_full_hankel_projective_sum": 0,
         "known_residual_full_hankel_projective_sum": 42,
         "known_residual_projective_sum": 77,
+        "max_known_residual_aperiodic_full_hankel_projective_per_record": 0,
         "max_known_residual_full_hankel_projective_per_record": 1,
         "max_known_residual_projective_per_record": 4,
+        "projective_endpoint_quotient_image_witness_sum": 42,
         "projective_infinity_contribution_sum": 42,
         "rank": 9,
         "worst_agreements": [
@@ -177,7 +200,7 @@
     385,
     426
   ],
-  "claim": "For the synthetic low-rank ranks 6..11 block, known ledgers leave at most five projective regular-minor upper-bound parameters in every checked rank/agreement row, below budget numerator six.  The shifted-minor ledger further proves all finite first-minor roots are not full-Hankel exact-support witnesses, leaving at most the projective endpoint in the full-Hankel witness column.  The projective endpoint support is excluded from all nontrivial proper quotient-remainder support families; finite-root quotient support and quotient-image subtraction are not audited here.",
+  "claim": "For the synthetic low-rank ranks 6..11 block, known ledgers leave at most five projective regular-minor upper-bound parameters in every checked rank/agreement row, below budget numerator six.  The shifted-minor ledger further proves all finite first-minor roots are not full-Hankel exact-support witnesses, leaving at most the projective endpoint in the full-Hankel witness column.  The endpoint quotient-image ledger charges that endpoint to an explicit c=2 quotient-remainder witness support, leaving zero aperiodic full-Hankel projective residual in every row.  The minimal endpoint support D minus Y is excluded from all nontrivial proper quotient-remainder support families.",
   "deterministic_records": {
     "first_record": {
       "A": 385,
@@ -190,10 +213,14 @@
       "j": 127,
       "known_lower_bound_status": "not_supplied",
       "known_proper_subfield_overlap_removed": 0,
+      "known_residual_aperiodic_full_hankel_projective_upper": 0,
       "known_residual_full_hankel_projective_upper": 1,
       "known_residual_projective_upper": 1,
       "known_tangent_overlap_removed": 0,
       "projective_budget_numerator": 6,
+      "projective_endpoint_quotient_image_certificate": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_image.json",
+      "projective_endpoint_quotient_image_fiber_size": 2,
+      "projective_endpoint_quotient_image_status": "covered_by_c2_quotient_remainder_image",
       "projective_endpoint_quotient_support_certificate": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-support/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_support.json",
       "projective_endpoint_quotient_support_status": "excluded_nontrivial_proper_quotient_remainder_support",
       "projective_infinity_contribution": 1,
@@ -201,6 +228,7 @@
       "quotient_support_status": "endpoint_excluded_finite_roots_not_audited",
       "rank": 6,
       "t": 129,
+      "within_projective_budget_after_endpoint_quotient_image": true,
       "within_projective_budget_after_known_ledgers": true,
       "within_projective_budget_after_shifted_minor": true
     },
@@ -215,10 +243,14 @@
       "j": 86,
       "known_lower_bound_status": "not_supplied",
       "known_proper_subfield_overlap_removed": 0,
+      "known_residual_aperiodic_full_hankel_projective_upper": 0,
       "known_residual_full_hankel_projective_upper": 1,
       "known_residual_projective_upper": 2,
       "known_tangent_overlap_removed": 0,
       "projective_budget_numerator": 6,
+      "projective_endpoint_quotient_image_certificate": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_image.json",
+      "projective_endpoint_quotient_image_fiber_size": 2,
+      "projective_endpoint_quotient_image_status": "covered_by_c2_quotient_remainder_image",
       "projective_endpoint_quotient_support_certificate": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-support/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_support.json",
       "projective_endpoint_quotient_support_status": "excluded_nontrivial_proper_quotient_remainder_support",
       "projective_infinity_contribution": 1,
@@ -226,11 +258,12 @@
       "quotient_support_status": "endpoint_excluded_finite_roots_not_audited",
       "rank": 11,
       "t": 170,
+      "within_projective_budget_after_endpoint_quotient_image": true,
       "within_projective_budget_after_known_ledgers": true,
       "within_projective_budget_after_shifted_minor": true
     },
     "record_count": 252,
-    "record_sha256": "78bf0ed321dfad09d80b226c7df7efe37a98c4ebfed57243553d0301f0aa96eb",
+    "record_sha256": "3dd8ebcff81a832887425592e449b67c1fd9d9df6fa8fd8b0c17d992152489ed",
     "storage": "compressed; verifier rebuilds all 252 rank/agreement rows",
     "worst_records": [
       {
@@ -244,10 +277,14 @@
         "j": 119,
         "known_lower_bound_status": "not_supplied",
         "known_proper_subfield_overlap_removed": 0,
+        "known_residual_aperiodic_full_hankel_projective_upper": 0,
         "known_residual_full_hankel_projective_upper": 1,
         "known_residual_projective_upper": 5,
         "known_tangent_overlap_removed": 0,
         "projective_budget_numerator": 6,
+        "projective_endpoint_quotient_image_certificate": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_image.json",
+        "projective_endpoint_quotient_image_fiber_size": 2,
+        "projective_endpoint_quotient_image_status": "covered_by_c2_quotient_remainder_image",
         "projective_endpoint_quotient_support_certificate": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-support/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_support.json",
         "projective_endpoint_quotient_support_status": "excluded_nontrivial_proper_quotient_remainder_support",
         "projective_infinity_contribution": 1,
@@ -255,6 +292,7 @@
         "quotient_support_status": "endpoint_excluded_finite_roots_not_audited",
         "rank": 7,
         "t": 137,
+        "within_projective_budget_after_endpoint_quotient_image": true,
         "within_projective_budget_after_known_ledgers": true,
         "within_projective_budget_after_shifted_minor": true
       },
@@ -269,10 +307,14 @@
         "j": 119,
         "known_lower_bound_status": "not_supplied",
         "known_proper_subfield_overlap_removed": 0,
+        "known_residual_aperiodic_full_hankel_projective_upper": 0,
         "known_residual_full_hankel_projective_upper": 1,
         "known_residual_projective_upper": 5,
         "known_tangent_overlap_removed": 0,
         "projective_budget_numerator": 6,
+        "projective_endpoint_quotient_image_certificate": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_image.json",
+        "projective_endpoint_quotient_image_fiber_size": 2,
+        "projective_endpoint_quotient_image_status": "covered_by_c2_quotient_remainder_image",
         "projective_endpoint_quotient_support_certificate": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-support/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_support.json",
         "projective_endpoint_quotient_support_status": "excluded_nontrivial_proper_quotient_remainder_support",
         "projective_infinity_contribution": 1,
@@ -280,6 +322,7 @@
         "quotient_support_status": "endpoint_excluded_finite_roots_not_audited",
         "rank": 8,
         "t": 137,
+        "within_projective_budget_after_endpoint_quotient_image": true,
         "within_projective_budget_after_known_ledgers": true,
         "within_projective_budget_after_shifted_minor": true
       }
@@ -290,6 +333,7 @@
     "finite_regular_root_quotient_support": "not_audited",
     "finite_regular_roots": "exact Frobenius-gcd counts from slack certificates",
     "known_lower_bound": "not_supplied",
+    "projective_endpoint_quotient_image": "proved the endpoint parameter has a c=2 quotient-remainder witness",
     "projective_endpoint_quotient_support": "proved not a nontrivial proper quotient-remainder support",
     "projective_infinity": "proved nonempty endpoint contribution [0:1]",
     "proper_subfield_overlap": "proved zero for F_17^d, d in {1,2,4,8,16}",
@@ -301,6 +345,7 @@
     "not a finite-root quotient-support or quotient-image subtraction table",
     "not an actual-row M3 threshold bound",
     "finite affine first-minor roots are proved not to be full-Hankel witnesses, but arbitrary M3 rows are not covered",
+    "does not claim the minimal endpoint support D minus Y is quotient-remainder",
     "does not classify arbitrary singular buckets",
     "trivial quotient fiber sizes c=1 and c=512 are not excluded"
   ],
@@ -319,8 +364,15 @@
     "k": 256,
     "n": 512
   },
-  "schema_version": "f17-32-m3-low-rank6-11-known-ledger-table-v3",
+  "schema_version": "f17-32-m3-low-rank6-11-known-ledger-table-v4",
   "source_artifacts": {
+    "endpoint_quotient_image": {
+      "name": "endpoint_quotient_image",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_image.json",
+      "schema_version": "f17-32-m3-low-rank2-11-endpoint-quotient-image-v1",
+      "sha256": "f54ae577d6e09d58740df3ff643f06b63a47377923e82ac8ccb2632c1965b4c7",
+      "status": "PROVED / AUDIT"
+    },
     "endpoint_quotient_support": {
       "name": "endpoint_quotient_support",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-support/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_support.json",

@@ -93,6 +93,14 @@ support.  This is an endpoint-support audit only: the trivial fiber sizes
 `c=1,512`, finite affine roots, and quotient-image supports remain outside its
 scope.
 
+The rank-2..11 endpoint quotient-image audit proves the complementary image
+statement for the same projective parameter.  Although the minimal endpoint
+support `D \ Y` is not quotient-remainder, every checked endpoint `[0:1]` has
+an explicit agreement-size witness support built from `c=2` quotient fibers
+that avoids `Y`.  The co-support therefore contains `Y`, while the base
+syndrome is excluded from that co-support by Vandermonde independence with
+maximum column count `255 <= n-k`.
+
 The rank-6, `A=426` projective-infinity pivot packet packages one row of that
 endpoint audit in the v9 `pivot_atlas` format.  Its projective-line
 `projective_infinity` chart has coverage target `status=nonempty` and
@@ -158,16 +166,17 @@ roots are genuinely outside all proper subfields of `F_17^32` for this
 synthetic low-rank block.
 
 The rank-6..11 known-ledger table combines the exact finite-root counts,
-projective-infinity endpoint, endpoint quotient-support exclusion, tangent
-exclusion, proper-subfield exclusion, and shifted-minor exclusion into one
-compact M4-style residual ledger.  It rebuilds `252` rank/agreement rows and
-records maximum residual projective regular-minor upper count `5 <= 6`.  After
-the shifted-minor exclusion removes all finite first-minor roots from the
-full-Hankel witness column, the maximum residual projective full-Hankel witness
-upper count is `1 <= 6`.  The projective endpoint support is excluded from
-nontrivial proper quotient-remainder support families, while finite-root
-quotient-support and quotient-image subtraction remain explicitly unaudited as
-separate quotient ledgers.
+projective-infinity endpoint, endpoint quotient-support exclusion, endpoint
+quotient-image witness, tangent exclusion, proper-subfield exclusion, and
+shifted-minor exclusion into one compact M4-style residual ledger.  It rebuilds
+`252` rank/agreement rows and records maximum residual projective regular-minor
+upper count `5 <= 6`.  After the shifted-minor exclusion removes all finite
+first-minor roots from the full-Hankel witness column, the maximum residual
+projective full-Hankel witness upper count is `1 <= 6`.  After charging the
+remaining endpoint to quotient-image, the aperiodic full-Hankel residual upper
+count is `0` in every checked row.  Finite-root quotient-support and
+quotient-image subtraction remain explicitly unaudited as separate quotient
+ledgers.
 
 The representative shifted-minor exclusion checks the finite roots in the six
 rank-6..11 projective-line packets.  For all `18` listed roots, the row-shift-1

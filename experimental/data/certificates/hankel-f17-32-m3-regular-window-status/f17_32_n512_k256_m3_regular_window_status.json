@@ -92,6 +92,13 @@
       "status": "PROVED / AUDIT"
     },
     {
+      "name": "synthetic_low_rank2_11_endpoint_quotient_image",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_image.json",
+      "schema_version": "f17-32-m3-low-rank2-11-endpoint-quotient-image-v1",
+      "sha256": "f54ae577d6e09d58740df3ff643f06b63a47377923e82ac8ccb2632c1965b4c7",
+      "status": "PROVED / AUDIT"
+    },
+    {
       "name": "synthetic_low_rank_rank6_a426_projective_pivot",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank-rank6-a426-projective-pivot/f17_32_n512_k256_a426_rank6_projective_infinity_pivot_packet.json",
       "schema_version": "aperiodic-hankel-eliminant-v1",
@@ -164,8 +171,8 @@
     {
       "name": "synthetic_low_rank6_11_known_ledger_table",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-known-ledger-table/f17_32_n512_k256_m3_low_rank6_11_known_ledger_table.json",
-      "schema_version": "f17-32-m3-low-rank6-11-known-ledger-table-v3",
-      "sha256": "d5d7539bbcb820e548d0a782c1cbef155fef5b61f54f5d46d1451f5634b8b4b7",
+      "schema_version": "f17-32-m3-low-rank6-11-known-ledger-table-v4",
+      "sha256": "d328515b1bc28b4c3960d25e0895a7f92542c6f7abd8c207f4eb9280d55a3163",
       "status": "PROVED / AUDIT"
     },
     {
@@ -267,11 +274,12 @@
       "the synthetic rank-9..11 low-rank slack sweep has exact Frobenius-gcd root histograms {9:{0:17, 1:17, 2:6, 3:2}, 10:{0:8, 1:23, 2:9, 3:2}, 11:{0:15, 1:16, 2:5, 3:6}}, so finite-root slack gives at most 4 projective regular roots per checked pair despite degree-only projective bounds 10, 11, and 12",
       "the synthetic rank-2..11 low-rank endpoint audit proves the projective infinity point [0:1] is an actual support-wise noncontained endpoint in every checked rank/agreement row, witnessed on D minus the update nodes",
       "the synthetic rank-2..11 low-rank endpoint quotient-support audit proves that those actual D minus Y endpoint supports are not nontrivial proper quotient-remainder supports; trivial c=1 and c=512 and quotient-image supports are not claimed",
+      "the synthetic rank-2..11 low-rank endpoint quotient-image audit proves that every projective endpoint [0:1] has an explicit c=2 quotient-remainder witness support of size A, so the endpoint parameter is in the quotient-image branch even though the minimal support D minus Y is not quotient-remainder",
       "the synthetic rank-6 A=426 projective-line pivot packet is v9-checkable and closes the projective_infinity chart as nonempty with contribution one",
       "the synthetic rank-6 A=426 finite-affine regular-minor packet is v9-checkable with degree 6 and one exact finite root certified by gcd(Delta,Z^q-Z)",
       "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
       "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
-      "the synthetic rank-6..11 known-ledger table combines exact finite roots, projective infinity, endpoint quotient-support exclusion, tangent, proper-subfield, and shifted-minor audits into a compact M4-style table: regular-minor residual upper max is 5 <= 6, while full-Hankel witness residual upper max is 1 <= 6 after all finite first-minor roots are excluded by the row-shift-1 minor; finite-root quotient support/image is still not audited as a separate quotient ledger",
+      "the synthetic rank-6..11 known-ledger table combines exact finite roots, projective infinity, endpoint quotient-support and quotient-image, tangent, proper-subfield, and shifted-minor audits into a compact M4-style table: regular-minor residual upper max is 5 <= 6, full-Hankel witness residual upper max is 1 <= 6 after finite first-minor roots are excluded, and aperiodic full-Hankel residual upper max is 0 after the endpoint is charged to quotient-image",
       "the representative shifted-minor exclusion proves that the 18 finite roots listed in the rank-6..11 representative projective-line packets do not give full-Hankel exact-support witnesses, because the row-shift-1 square minor is nonzero at each one",
       "the synthetic rank-6..11 shifted-minor exclusion proves that all 238 finite roots counted by the low-rank slack ledgers are first-minor artifacts rather than actual full-Hankel exact-support witnesses, because the row-shift-1 square minor excludes them",
       "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
@@ -4210,6 +4218,9 @@
     "subgroup_syndrome_section_status": "proved explicit inverse-Fourier section for subgroup syndrome vectors",
     "syndrome_pencil_realizability_status": "all length-256 u,v pencils in the M3 window are realized by explicit line values on H",
     "synthetic_family_status": "proved closed-form root union {0} for all 42 synthetic pencils",
+    "synthetic_low_rank2_11_endpoint_quotient_image_fiber_size": 2,
+    "synthetic_low_rank2_11_endpoint_quotient_image_status": "proved that every synthetic low-rank projective endpoint [0:1] has an explicit c=2 quotient-remainder witness support, so the endpoint is in the quotient-image branch",
+    "synthetic_low_rank2_11_endpoint_quotient_image_witness_count": 420,
     "synthetic_low_rank2_11_endpoint_quotient_support_fiber_sizes": [
       2,
       4,
@@ -4444,13 +4455,15 @@
     "synthetic_low_rank5_max_projective_regular_roots_per_agreement_bound": 6,
     "synthetic_low_rank5_projective_budget_status": "all 42 rows have at most 6 projective regular roots after including the nonexcluded infinity point, exactly meeting projective budget numerator 6; exact finite roots are not enumerated",
     "synthetic_low_rank6_11_common_code_line_tangent_overlap": 0,
+    "synthetic_low_rank6_11_known_ledger_endpoint_quotient_image_status": "covered_by_c2_quotient_remainder_image",
     "synthetic_low_rank6_11_known_ledger_endpoint_quotient_support_status": "excluded_nontrivial_proper_quotient_remainder_supports",
     "synthetic_low_rank6_11_known_ledger_finite_roots_excluded_by_shifted_minor": 238,
+    "synthetic_low_rank6_11_known_ledger_max_aperiodic_full_hankel_residual_projective": 0,
     "synthetic_low_rank6_11_known_ledger_max_full_hankel_residual_projective": 1,
     "synthetic_low_rank6_11_known_ledger_max_residual_projective": 5,
     "synthetic_low_rank6_11_known_ledger_quotient_image_status": "finite_roots_not_audited",
     "synthetic_low_rank6_11_known_ledger_quotient_support_status": "endpoint_excluded_finite_roots_not_audited",
-    "synthetic_low_rank6_11_known_ledger_table_status": "combined M4-style table for ranks 6..11: exact finite roots plus projective infinity, tangent exclusion, and proper-subfield exclusion leave at most 5 projective regular minor upper-bound roots per checked synthetic row; the shifted-minor ledger removes all finite roots from the full-Hankel witness column, leaving at most 1 projective full-Hankel witness per row",
+    "synthetic_low_rank6_11_known_ledger_table_status": "combined M4-style table for ranks 6..11: exact finite roots plus projective infinity, tangent exclusion, and proper-subfield exclusion leave at most 5 projective regular minor upper-bound roots per checked synthetic row; the shifted-minor ledger removes all finite roots from the full-Hankel witness column, and the endpoint quotient-image ledger charges the remaining [0:1] endpoint, leaving zero aperiodic full-Hankel residual",
     "synthetic_low_rank6_11_proper_subfield_overlap": 0,
     "synthetic_low_rank6_11_roots_after_common_code_line": 238,
     "synthetic_low_rank6_11_roots_after_proper_subfield_exclusion": 238,

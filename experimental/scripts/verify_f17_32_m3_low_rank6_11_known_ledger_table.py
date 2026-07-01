@@ -6,6 +6,7 @@ This combines existing synthetic-family certificates:
 * exact finite-root slack for ranks 6..11,
 * the projective-infinity endpoint audit for ranks 2..11,
 * the endpoint quotient-support exclusion for ranks 2..11,
+* the endpoint quotient-image witness for ranks 2..11,
 * common-code-line tangent exclusion for ranks 6..11,
 * proper-subfield/confinement exclusion for ranks 6..11,
 * shifted-minor exclusion for finite first-minor roots in ranks 6..11.
@@ -13,9 +14,8 @@ This combines existing synthetic-family certificates:
 It keeps two distinct columns.  The regular-minor upper-bound column still has
 projective count at most five, while the full-Hankel witness column removes all
 finite first-minor roots by the shifted row-1 minor and leaves only the
-projective endpoint.  The projective endpoint is sharper: the existing endpoint
-quotient-support certificate excludes the actual ``D minus Y`` endpoint support
-from all nontrivial proper quotient-remainder support families.
+projective endpoint.  The endpoint has an explicit c=2 quotient-image witness,
+so the aperiodic full-Hankel residual column is zero.
 """
 
 from __future__ import annotations
@@ -29,7 +29,7 @@ from typing import Any
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-SCHEMA_VERSION = "f17-32-m3-low-rank6-11-known-ledger-table-v3"
+SCHEMA_VERSION = "f17-32-m3-low-rank6-11-known-ledger-table-v4"
 N = 512
 K = 256
 AGREEMENT_MIN = 385
@@ -61,6 +61,11 @@ ENDPOINT_QUOTIENT_SUPPORT_REF = (
     "experimental/data/certificates/"
     "hankel-f17-32-m3-low-rank2-11-endpoint-quotient-support/"
     "f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_support.json"
+)
+ENDPOINT_QUOTIENT_IMAGE_REF = (
+    "experimental/data/certificates/"
+    "hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/"
+    "f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_image.json"
 )
 TANGENT_EXCLUSION_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/"
@@ -113,6 +118,9 @@ def validate_sources(sources: dict[str, dict[str, Any]]) -> None:
         "endpoint_quotient_support": (
             "f17-32-m3-low-rank2-11-endpoint-quotient-support-v1"
         ),
+        "endpoint_quotient_image": (
+            "f17-32-m3-low-rank2-11-endpoint-quotient-image-v1"
+        ),
         "tangent": "f17-32-m3-low-rank6-11-tangent-exclusion-v1",
         "subfield": "f17-32-m3-low-rank6-11-subfield-exclusion-v1",
         "shifted_minor": "f17-32-m3-low-rank6-11-shifted-minor-exclusion-v1",
@@ -144,6 +152,21 @@ def validate_sources(sources: dict[str, dict[str, Any]]) -> None:
         is True,
         "endpoint quotient-support audit not passed",
     )
+    require(
+        sources["endpoint_quotient_image"]["agreement_range"]
+        == [AGREEMENT_MIN, AGREEMENT_MAX]
+        and sources["endpoint_quotient_image"]["ranks"] == list(range(2, 12))
+        and sources["endpoint_quotient_image"]["aggregate"]["fiber_size"] == 2
+        and sources["endpoint_quotient_image"]["aggregate"][
+            "endpoint_quotient_image_witness_count"
+        ]
+        == 420
+        and sources["endpoint_quotient_image"]["aggregate"][
+            "all_projective_endpoints_have_quotient_image_witness"
+        ]
+        is True,
+        "endpoint quotient-image aggregate mismatch",
+    )
     for rank in RANKS:
         summary = sources["endpoint_quotient_support"]["aggregate"][
             "rank_summaries"
@@ -152,6 +175,14 @@ def validate_sources(sources: dict[str, dict[str, Any]]) -> None:
             summary["all_nontrivial_quotient_supports_excluded"] is True
             and summary["endpoint_support_size"] == N - rank,
             f"rank={rank}: endpoint quotient-support summary mismatch",
+        )
+        image_summary = sources["endpoint_quotient_image"]["aggregate"][
+            "rank_summaries"
+        ][str(rank)]
+        require(
+            image_summary["endpoint_quotient_image_witness_count"] == 42
+            and image_summary["all_witnesses_use_c2"] is True,
+            f"rank={rank}: endpoint quotient-image summary mismatch",
         )
     require(
         sources["tangent"]["aggregate"]["common_code_line_tangent_overlap_sum"]
@@ -282,6 +313,7 @@ def build_records(sources: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
                 finite_shifted_status = "no_finite_roots"
             regular_residual = finite_roots + 1
             full_hankel_residual = finite_full_hankel_witness_upper + 1
+            aperiodic_full_hankel_residual = 0
             records.append(
                 {
                     "rank": rank,
@@ -299,6 +331,13 @@ def build_records(sources: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
                     "finite_regular_root_full_hankel_witness_status": (
                         finite_shifted_status
                     ),
+                    "projective_endpoint_quotient_image_status": (
+                        "covered_by_c2_quotient_remainder_image"
+                    ),
+                    "projective_endpoint_quotient_image_certificate": (
+                        ENDPOINT_QUOTIENT_IMAGE_REF
+                    ),
+                    "projective_endpoint_quotient_image_fiber_size": 2,
                     "projective_endpoint_quotient_support_status": (
                         "excluded_nontrivial_proper_quotient_remainder_support"
                     ),
@@ -311,12 +350,18 @@ def build_records(sources: dict[str, dict[str, Any]]) -> list[dict[str, Any]]:
                     "known_residual_full_hankel_projective_upper": (
                         full_hankel_residual
                     ),
+                    "known_residual_aperiodic_full_hankel_projective_upper": (
+                        aperiodic_full_hankel_residual
+                    ),
                     "projective_budget_numerator": BUDGET_NUMERATOR,
                     "within_projective_budget_after_known_ledgers": (
                         regular_residual <= BUDGET_NUMERATOR
                     ),
                     "within_projective_budget_after_shifted_minor": (
                         full_hankel_residual <= BUDGET_NUMERATOR
+                    ),
+                    "within_projective_budget_after_endpoint_quotient_image": (
+                        aperiodic_full_hankel_residual <= BUDGET_NUMERATOR
                     ),
                     "quotient_support_status": (
                         "endpoint_excluded_finite_roots_not_audited"
@@ -342,6 +387,10 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
             record["known_residual_full_hankel_projective_upper"]
             for record in rank_records
         ]
+        aperiodic_counts = [
+            record["known_residual_aperiodic_full_hankel_projective_upper"]
+            for record in rank_records
+        ]
         rank_summaries[str(rank)] = {
             "rank": rank,
             "agreement_count": len(rank_records),
@@ -355,11 +404,18 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
                 str(key): value for key, value in sorted(Counter(finite_counts).items())
             },
             "projective_infinity_contribution_sum": len(rank_records),
+            "projective_endpoint_quotient_image_witness_sum": len(rank_records),
             "known_residual_projective_sum": sum(residual_counts),
             "max_known_residual_projective_per_record": max(residual_counts),
             "known_residual_full_hankel_projective_sum": sum(full_hankel_counts),
             "max_known_residual_full_hankel_projective_per_record": max(
                 full_hankel_counts
+            ),
+            "known_residual_aperiodic_full_hankel_projective_sum": sum(
+                aperiodic_counts
+            ),
+            "max_known_residual_aperiodic_full_hankel_projective_per_record": max(
+                aperiodic_counts
             ),
             "worst_agreements": [
                 record["A"]
@@ -378,6 +434,10 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
         record["known_residual_full_hankel_projective_upper"]
         for record in records
     ]
+    aperiodic_counts = [
+        record["known_residual_aperiodic_full_hankel_projective_upper"]
+        for record in records
+    ]
     return {
         "record_count": len(records),
         "rank_count": len(RANKS),
@@ -394,6 +454,10 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
             for record in records
         ),
         "projective_infinity_contribution_sum": len(records),
+        "projective_endpoint_quotient_image_witness_sum": len(records),
+        "projective_endpoint_quotient_image_status": (
+            "covered_by_c2_quotient_remainder_image"
+        ),
         "known_tangent_overlap_removed_sum": 0,
         "known_proper_subfield_overlap_removed_sum": 0,
         "projective_endpoint_quotient_support_excluded_sum": len(records),
@@ -408,6 +472,12 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
         "max_known_residual_full_hankel_projective_per_record": max(
             full_hankel_counts
         ),
+        "known_residual_aperiodic_full_hankel_projective_sum": sum(
+            aperiodic_counts
+        ),
+        "max_known_residual_aperiodic_full_hankel_projective_per_record": max(
+            aperiodic_counts
+        ),
         "projective_budget_numerator": BUDGET_NUMERATOR,
         "all_records_within_projective_budget_after_known_ledgers": all(
             record["within_projective_budget_after_known_ledgers"]
@@ -415,6 +485,10 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
         ),
         "all_records_within_projective_budget_after_shifted_minor": all(
             record["within_projective_budget_after_shifted_minor"]
+            for record in records
+        ),
+        "all_records_within_projective_budget_after_endpoint_quotient_image": all(
+            record["within_projective_budget_after_endpoint_quotient_image"]
             for record in records
         ),
         "quotient_support_status": "endpoint_excluded_finite_roots_not_audited",
@@ -441,6 +515,7 @@ def build_certificate() -> dict[str, Any]:
         "rank9_11": LOW_RANK9_11_SWEEP_REF,
         "projective_infinity": PROJECTIVE_INFINITY_REF,
         "endpoint_quotient_support": ENDPOINT_QUOTIENT_SUPPORT_REF,
+        "endpoint_quotient_image": ENDPOINT_QUOTIENT_IMAGE_REF,
         "tangent": TANGENT_EXCLUSION_REF,
         "subfield": SUBFIELD_EXCLUSION_REF,
         "shifted_minor": SHIFTED_MINOR_EXCLUSION_REF,
@@ -468,12 +543,24 @@ def build_certificate() -> dict[str, Any]:
         "full-Hankel residual maximum mismatch",
     )
     require(
+        aggregate["projective_endpoint_quotient_image_witness_sum"] == 252
+        and aggregate[
+            "max_known_residual_aperiodic_full_hankel_projective_per_record"
+        ]
+        == 0,
+        "endpoint quotient-image residual mismatch",
+    )
+    require(
         aggregate["all_records_within_projective_budget_after_known_ledgers"],
         "known-ledger projective budget failure",
     )
     require(
         aggregate["all_records_within_projective_budget_after_shifted_minor"],
         "shifted-minor projective budget failure",
+    )
+    require(
+        aggregate["all_records_within_projective_budget_after_endpoint_quotient_image"],
+        "endpoint quotient-image projective budget failure",
     )
     worst_records = [
         record
@@ -503,6 +590,9 @@ def build_certificate() -> dict[str, Any]:
             "projective_endpoint_quotient_support": (
                 "proved not a nontrivial proper quotient-remainder support"
             ),
+            "projective_endpoint_quotient_image": (
+                "proved the endpoint parameter has a c=2 quotient-remainder witness"
+            ),
             "tangent_common_code_line_overlap": "proved zero",
             "proper_subfield_overlap": "proved zero for F_17^d, d in {1,2,4,8,16}",
             "shifted_minor_finite_roots": (
@@ -528,15 +618,18 @@ def build_certificate() -> dict[str, Any]:
             "The shifted-minor ledger further proves all finite first-minor "
             "roots are not full-Hankel exact-support witnesses, leaving at "
             "most the projective endpoint in the full-Hankel witness column.  "
-            "The projective endpoint support is excluded from all nontrivial "
-            "proper quotient-remainder support families; finite-root quotient "
-            "support and quotient-image subtraction are not audited here."
+            "The endpoint quotient-image ledger charges that endpoint to an "
+            "explicit c=2 quotient-remainder witness support, leaving zero "
+            "aperiodic full-Hankel projective residual in every row.  The "
+            "minimal endpoint support D minus Y is excluded from all "
+            "nontrivial proper quotient-remainder support families."
         ),
         "nonclaims": [
             "synthetic low-rank family only",
             "not a finite-root quotient-support or quotient-image subtraction table",
             "not an actual-row M3 threshold bound",
             "finite affine first-minor roots are proved not to be full-Hankel witnesses, but arbitrary M3 rows are not covered",
+            "does not claim the minimal endpoint support D minus Y is quotient-remainder",
             "does not classify arbitrary singular buckets",
             "trivial quotient fiber sizes c=1 and c=512 are not excluded",
         ],
@@ -571,6 +664,14 @@ def print_summary(certificate: dict[str, Any]) -> None:
         "max full-Hankel witness residual upper={max_residual} <= budget={budget}".format(
             max_residual=aggregate[
                 "max_known_residual_full_hankel_projective_per_record"
+            ],
+            budget=aggregate["projective_budget_numerator"],
+        )
+    )
+    print(
+        "max aperiodic full-Hankel residual upper={max_residual} <= budget={budget}".format(
+            max_residual=aggregate[
+                "max_known_residual_aperiodic_full_hankel_projective_per_record"
             ],
             budget=aggregate["projective_budget_numerator"],
         )
