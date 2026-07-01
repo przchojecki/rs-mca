@@ -28,6 +28,8 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
+SEARCH_SCRIPT_REF = "experimental/scripts/search_f17_32_m3_low_rank_spectral_target.py"
+
 from experimental.scripts.extract_regular_hankel_minors import (  # noqa: E402
     PolynomialBasisField,
     determinant_field,
@@ -130,6 +132,13 @@ def probe_records(
     records: list[dict[str, Any]] = []
     gcd_histogram: Counter[int] = Counter()
     degree_failures = 0
+    parameters = {
+        "agreement_min": agreement_min,
+        "agreement_max": agreement_max,
+        "rank_min": rank_min,
+        "rank_max": rank_max,
+        "stop_on_collision": stop_on_collision,
+    }
 
     for size in range(1, packet.N - agreement_min + 2):
         new_node = domain[size - 1]
@@ -224,9 +233,21 @@ def probe_records(
             }
             records.append(record)
             if stop_on_collision and common_degree > 0:
-                return summary(records, gcd_histogram, degree_failures)
+                return summary(
+                    row_descriptor,
+                    parameters,
+                    records,
+                    gcd_histogram,
+                    degree_failures,
+                )
 
-    return summary(records, gcd_histogram, degree_failures)
+    return summary(
+        row_descriptor,
+        parameters,
+        records,
+        gcd_histogram,
+        degree_failures,
+    )
 
 
 def determinant_coefficients_from_kernel(
@@ -292,6 +313,8 @@ def characteristic_coefficients_by_interpolation(
 
 
 def summary(
+    row_descriptor: dict[str, Any],
+    parameters: dict[str, Any],
     records: list[dict[str, Any]],
     gcd_histogram: Counter[int],
     degree_failures: int,
@@ -302,9 +325,38 @@ def summary(
         if record["common_gcd_degree"] > 0
     ]
     return {
-        "schema_version": "f17-32-m3-low-rank-spectral-target-search-v2",
+        "schema_version": "f17-32-m3-low-rank-spectral-target-search-v3",
         "status": "EXPERIMENTAL / AUDIT",
         "claim": "counterexample-first exact probe for the PR #170 synthetic low-rank spectral target",
+        "row": {
+            "n": packet.N,
+            "k": packet.K,
+            "field": row_descriptor["row"]["field"],
+            "domain_hash": row_descriptor["row"]["domain_hash"],
+            "domain_description": (
+                "order-512 subgroup from the accepted F_17^32 row descriptor"
+            ),
+        },
+        "target": {
+            "formula": "gcd(Phi_{m,r,0}(Z), Phi_{m,r,1}(Z)) = 1",
+            "window": "normalized consecutive subgroup window",
+            "m_range": [87, 128],
+            "rank_range": "2 <= r <= ceil((m-1)/2)",
+            "recorded_probe": "top-window frontier beyond low-rank2..12",
+        },
+        "parameters": parameters,
+        "source_artifacts": [
+            packet.source_record(
+                "row_descriptor",
+                packet.ROW_DESCRIPTOR_REF,
+                row_descriptor,
+            ),
+            packet.source_record(
+                "low_rank2_12_affine_verifier",
+                "experimental/scripts/verify_f17_32_m3_low_rank2_12_v10_affine_gcd.py",
+            ),
+            packet.source_record("search_script", SEARCH_SCRIPT_REF),
+        ],
         "record_count": len(records),
         "degree_failure_count": degree_failures,
         "coefficient_method_histogram": dict(

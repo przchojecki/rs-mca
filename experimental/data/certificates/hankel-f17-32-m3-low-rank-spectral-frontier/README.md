@@ -18,6 +18,8 @@ A = 426,    m = 87,    ranks 13..20.
 
 It crosses the characteristic-17 boundary: ranks `13..16` use Newton
 identities, while ranks `17..20` use determinant interpolation.
+The JSON includes the row descriptor, target, probe parameters, and source
+artifact hashes.
 
 Reproduce or check the recorded JSON:
 

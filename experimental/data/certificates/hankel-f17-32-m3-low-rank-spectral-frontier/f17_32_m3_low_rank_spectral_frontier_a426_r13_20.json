@@ -10,6 +10,13 @@
   },
   "degree_failure_count": 0,
   "first_collision": null,
+  "parameters": {
+    "agreement_max": 426,
+    "agreement_min": 426,
+    "rank_max": 20,
+    "rank_min": 13,
+    "stop_on_collision": true
+  },
   "record_count": 8,
   "records": [
     {
@@ -117,6 +124,42 @@
       "within_endpoint_capacity": true
     }
   ],
-  "schema_version": "f17-32-m3-low-rank-spectral-target-search-v2",
-  "status": "EXPERIMENTAL / AUDIT"
+  "row": {
+    "domain_description": "order-512 subgroup from the accepted F_17^32 row descriptor",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "f17-32-m3-low-rank-spectral-target-search-v3",
+  "source_artifacts": [
+    {
+      "name": "row_descriptor",
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "schema_version": "f17-32-hankel-row-descriptor-v1",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87",
+      "status": "AUDIT"
+    },
+    {
+      "name": "low_rank2_12_affine_verifier",
+      "ref": "experimental/scripts/verify_f17_32_m3_low_rank2_12_v10_affine_gcd.py",
+      "sha256": "7cf4f4f789b482ef7cc3051a95feaef47a4a7fab1b2a6e836bc34336d41af38c"
+    },
+    {
+      "name": "search_script",
+      "ref": "experimental/scripts/search_f17_32_m3_low_rank_spectral_target.py",
+      "sha256": "46ba42e7e84ac2b993bab1e27e27dc959de3635ba2bbad90bb51295ee7391066"
+    }
+  ],
+  "status": "EXPERIMENTAL / AUDIT",
+  "target": {
+    "formula": "gcd(Phi_{m,r,0}(Z), Phi_{m,r,1}(Z)) = 1",
+    "m_range": [
+      87,
+      128
+    ],
+    "rank_range": "2 <= r <= ceil((m-1)/2)",
+    "recorded_probe": "top-window frontier beyond low-rank2..12",
+    "window": "normalized consecutive subgroup window"
+  }
 }
