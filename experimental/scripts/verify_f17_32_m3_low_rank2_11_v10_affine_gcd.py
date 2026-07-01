@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify a v10 affine rank-drop gcd packet for M3 low-rank ranks 2..8."""
+"""Verify a v10 affine rank-drop gcd packet for M3 low-rank ranks 2..11."""
 
 from __future__ import annotations
 
@@ -26,12 +26,12 @@ from experimental.scripts.extract_regular_hankel_minors import (  # noqa: E402
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-low-rank2-8-v10-affine-gcd-v1"
+SCHEMA_VERSION = "f17-32-m3-low-rank2-11-v10-affine-gcd-v1"
 N = 512
 K = 256
 AGREEMENT_MIN = 385
 AGREEMENT_MAX = 426
-RANKS = list(range(2, 9))
+RANKS = list(range(2, 12))
 SHIFT = 1
 EXPECTED_RECORDS = len(RANKS) * (AGREEMENT_MAX - AGREEMENT_MIN + 1)
 EXPECTED_DEGREE_SUM = (AGREEMENT_MAX - AGREEMENT_MIN + 1) * sum(RANKS)
@@ -51,8 +51,8 @@ GENERIC_REGULAR_REF = (
 )
 OUTPUT_PATH = REPO_ROOT / (
     "experimental/data/certificates/"
-    "hankel-f17-32-m3-low-rank2-8-v10-affine-gcd/"
-    "f17_32_n512_k256_m3_low_rank2_8_v10_affine_gcd.json"
+    "hankel-f17-32-m3-low-rank2-11-v10-affine-gcd/"
+    "f17_32_n512_k256_m3_low_rank2_11_v10_affine_gcd.json"
 )
 
 
@@ -453,7 +453,7 @@ def build_certificate() -> dict[str, Any]:
             "projective_endpoint_status": "not_claimed_in_this_packet",
         },
         "claim": (
-            "For the synthetic low-rank M3 ladder of ranks 2..8 over the "
+            "For the synthetic low-rank M3 ladder of ranks 2..11 over the "
             "accepted F_17^32 row and every A=385..426, the v10 canonical "
             "affine rank-drop gcd is constant because the prefix and "
             "row-shift-1 maximal minors are coprime.  Thus the finite affine "
@@ -474,12 +474,12 @@ def check_certificate(certificate: dict[str, Any], path: Path) -> None:
     actual = path.read_text(encoding="utf-8")
     expected = render(certificate)
     if actual != expected:
-        raise AssertionError(f"low-rank2..8 v10 affine-gcd certificate mismatch: {path}")
+        raise AssertionError(f"low-rank2..11 v10 affine-gcd certificate mismatch: {path}")
 
 
 def print_summary(certificate: dict[str, Any]) -> None:
     aggregate = certificate["aggregate"]
-    print("F_17^32 M3 low-rank2..8 v10 affine-gcd certificate")
+    print("F_17^32 M3 low-rank2..11 v10 affine-gcd certificate")
     print(f"status: {certificate['status']}")
     print(
         "records={records}, prefix_degree_sum={prefix}, shifted_degree_sum={shifted}, affine_roots={roots}".format(
