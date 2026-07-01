@@ -287,7 +287,7 @@ def build_certificate() -> dict[str, Any]:
         "nonclaims": [
             "does not prove all global components have constant slope",
             "does not close moving-slope global components",
-            "does not close slope-free global components",
+            "does not close slope-free base loci or global components",
             "does not cover A=385",
             "does not classify overlapping-support rank-6 pencils",
             "does not prove endpoint payment",
