@@ -30,6 +30,37 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Prize proof-sketch spine (heuristic, NOT rigorous)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/proof_sketch/prize_proof_sketch_spine.md`.
+- **Status:** CONJECTURAL / SKETCH (labelled per node: PROVED-cited / SKETCH /
+  CONJECTURE / GAP-WALL). No result claimed or promoted.
+- **What is being added:** Turn 1 of a top-down proof-sketch loop: the spine
+  of a heuristic path from current results to a prize resolution. Core frame
+  (machine-checked arithmetic): valid locators are the C(n,j) squarefree
+  degree-j divisors of X^n-1; the Hankel pencil is linear in the slope, so
+  each locator yields at most one uncontained bad slope (the v8
+  one-support-one-slope ledger; the degenerate pencil case is exactly the
+  noncontainment exclusion). First-moment model E[B_ap] ~ C(n,j) q^(1-t)
+  gives a per-rate crossover reserve 2^-8.00 / 2^-8.29 / 2^-8.86 / 2^-9.55
+  vs the proved Paper D caps 2^-9 / 2^-9 / 2^-9 / 2^-10 — conjectured-unsafe
+  contains proved-unsafe with a thin corridor (Conjecture R1: delta* =
+  1 - rho - c_rho/log2 q). Pinned-row consistency: FM ~ 0 at A=506 (matches
+  the smoke packet's aperiodic numerator 0); FM ~ 2^-542 at A=265 (predicts
+  the open LD_sw(C,265) <= 6 TRUE); FM crossover A=261->260 vs proved cap
+  A<=258. Spine nodes S0-S9 with forks; falsifiable predictions P1-P4;
+  negative-resolution branch kept first-class.
+- **How it is useful:** Gives the M1/M3/M5/L1 lanes one shared quantitative
+  target (make the first moment rigorous on the aperiodic stratum after paid
+  removal) and concrete falsification tests the existing fronts
+  (alpha/beta, A=265, WP-2.6 rung 1) already exercise.
+- **What to do next:** Loop turns refine spine nodes into child files,
+  starting with S3b.iii (divisor-variety/pencil-incidence rigidity, then the
+  displacement-rank route), then S2 Paid(A), S3b.ii strip-periodic, S7 list
+  side. Maintainer review of the spine's labels welcome.
+
 ### 2026-07-01 - Execution roadmap r2 + first L3 detail note (top-down plan)
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
