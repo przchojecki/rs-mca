@@ -119,6 +119,57 @@ det(V_X D_X^h V_X^T + Z V_Y D_Y^h V_Y^T)
 and substituting the Lagrange coordinates of `V_X^(-1)v(y_a)` gives `K_h`.
 The adjacent-shift lemma is the special case `h=0,1`.
 
+## Cauchy-Binet Coefficient Formula
+
+The same shifted determinant also has a replacement-subset expansion.  Let
+`S` run through the `m`-element subsets of `X union Y`, and put
+
+```text
+c_s = 1 if s in X,
+c_s = Z if s in Y.
+```
+
+Then
+
+```text
+det(H_X^(h) + Z H_Y^(h))
+  = sum_{|S|=m} det(V_S)^2 * prod_{s in S} s^h c_s.
+```
+
+Equivalently, the coefficient of `Z^d` is
+
+```text
+sum_{I subset X, J subset Y, |I|=|J|=d}
+  det(V_{(X minus I) union J})^2
+  * prod_{s in (X minus I) union J} s^h.
+```
+
+Proof.  Write the shifted pencil as one weighted Vandermonde Gram matrix over
+`X union Y`:
+
+```text
+H_X^(h) + Z H_Y^(h)
+  = V_{X union Y} diag(s^h c_s) V_{X union Y}^T.
+```
+
+Cauchy-Binet gives the displayed sum over `m` chosen columns.  Grouping terms
+by the number `d` of chosen elements from `Y` gives the replacement formula.
+
+After dividing by the nonzero base factor `det(V_X)^2 prod_{x in X} x^h`, the
+normalized coefficient is
+
+```text
+sum_{I,J, |I|=|J|=d}
+  (det(V_{(X minus I) union J}) / det(V_X))^2
+  * prod_{y in J} y^h / prod_{x in I} x^h.
+```
+
+Thus, for consecutive subgroup nodes, the affine spectral-disjointness problem
+can be attacked either through the small kernels `K_h` or through explicit
+replacement sums over the interval of exponents.  The PR #170 verifier uses the
+kernel form; this formula is the coefficient-level proof target for a future
+symbolic or q-binomial argument.
+
 ## Consequence For The v10 GCD Ledger
 
 The common finite affine roots of the two displayed maximal minors are exactly
