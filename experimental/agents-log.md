@@ -30,6 +30,37 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Proof-sketch S7: the list side at the prize gate
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/proof_sketch/s7_list_side.md`;
+  queue update in `prize_proof_sketch_spine.md`.
+- **Status:** PROVED-cited lower bounds + verified arithmetic; L1 input
+  quarantined as CONJECTURE. No new theorem claimed.
+- **What is being added:** Turn 8. (1) The poly-list threshold (slack
+  ~n/log n, quotient cores) and the PRIZE gate (list crossing 2^-128 |F|)
+  are different questions: at the gate both mechanisms land at the tau*
+  scale ~1/log q. (2) The list-side unsafe half at the gate is
+  UNCONDITIONAL: thm:qcore's C(n/M-1, k/M) codewords is a pure count
+  (independent of q, no norm threshold) — verified exponent (n/M)H(rho);
+  per-rate crossing windows [H/256, H/128] computed, sitting FARTHER from
+  capacity than the MCA corridor because lists pay full entropy H while
+  MCA value sets compress to beta < H. Consequence: grand challenge 2's
+  safe side binds before grand challenge 1's, and only the list SAFE side
+  is open. (3) Interleaved conversion budgets re-derived at n = 2^40,
+  mu = 2: base-list exponent B <= 1.60 (worst) / 3.20 (a-regular) — the
+  worst-case branch is TIGHTER than R2's B <= 3, making a-regularity
+  reduction worth a full exponent point (fork F4). (4) The L1 full-petal
+  sunflower battle mapped into the sketch: petal extras are structured
+  plane sections of the divisor set — Conjecture F's fourth appearance.
+- **How it is useful:** Separates the two threshold scales cleanly (a
+  likely community confusion), records that the list unsafe half at the
+  gate needs only convention checks, and prices the a-regularity question
+  in exponent points.
+- **What to do next:** Turn 9: S3a (why FM + paid structure predicts
+  fronts alpha/beta land paid-or-empty; the 4515-vs-6 reconciliation).
+
 ### 2026-07-02 - Proof-sketch S4: the reserve dictionary
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).

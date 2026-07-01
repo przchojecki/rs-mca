@@ -253,9 +253,18 @@ DONE    S4       reserve dictionary
                  GAP-2 seam closed via pullback => M | t_denom; 128 bits
                  shift crossover by ~2^-42 only; q_gen-vs-q_line column is
                  the real asymmetry, pinned row generates: ord(17)=32)
-next -> S7       list side: L2 codegree consumption + L1 ImgFib target +
-                 the full-petal growth sub-battle; FM applied at q_gen;
-                 never let the reduction claim its input
+DONE    S7       list side
+                 -> s7_list_side.md (poly-threshold 1/log n vs prize-gate
+                 1/log q distinguished; list-unsafe half at the gate is
+                 UNCONDITIONAL via thm:qcore pure counting — crossing
+                 window [H/256, H/128] per rate, FARTHER from capacity
+                 than the MCA corridor (H vs beta compression) => grand
+                 challenge 2's safe side binds first; interleaved budgets
+                 re-derived B <= 1.60 worst / 3.20 a-regular; L1 petal
+                 battle = Conjecture F fourth appearance)
+next -> S3a      regular window: why FM + paid structure predicts fronts
+                 alpha/beta land paid-or-empty; what an unpaid collision
+                 would mean (P1); the 4515-vs-6 reconciliation
         S2       Paid(A) as a single computable function (quotient closure)
         S3b.ii   the strip-periodic step: exact statement of the aperiodic
                  stratum via the proved confinement/equivariance results
