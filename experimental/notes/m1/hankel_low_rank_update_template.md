@@ -98,12 +98,13 @@ experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/
 ```
 
 At `A=426`, where `j=86` and the prefix minor has size 87, this packet uses two
-update nodes and proves a degree-2 regular-minor bound.  Roots are deliberately
-not enumerated over `F_17^32`; the packet is a degree-bound certificate with
-`regular_root_bound_sum=2`.  The packet checker replays the low-rank moments
-and recomputes both the Cauchy-Binet coefficients and the compressed Lagrange
-kernel sidecar.  The companion invalid fixtures mutate one coefficient and one
-kernel entry, respectively, and both are required to fail replay.
+update nodes and proves a degree-2 regular-minor bound.  The compressed
+quadratic splits over `F_17^32`, so the packet now records the exact two roots,
+their split-linear factorization certificate, and `declared_aperiodic_numerator
+= 2`.  The packet checker replays the low-rank moments, the Cauchy-Binet
+coefficients, and the compressed Lagrange kernel sidecar.  The companion
+invalid fixtures mutate one coefficient, one kernel entry, and one root table,
+respectively, and all are required to fail replay.
 
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform quotient/tangent

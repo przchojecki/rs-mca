@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 low-rank quadratic exact roots
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/emit_f17_32_m3_rank_witness_input.py`;
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_low_rank2_input.json`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The rank-2 low-rank extractor now solves split
+  quadratic regular-minor polynomials over the explicit polynomial-basis field.
+  The `F_17^32`, `A=426` packet records the two exact roots and a split-linear
+  factorization certificate instead of leaving the root table unenumerated.
+- **How it is useful:** This converts the first large-field low-rank M3 stress
+  packet from a degree-bound-only certificate into an exact root-count packet,
+  while retaining the compressed Lagrange-kernel replay path.
+- **What to do next:** Look for non-synthetic M3 residuals whose low-rank
+  compressed quadratics split, and combine such exact root tables with the
+  tangent, quotient, and extension ledgers.
+
 ### 2026-07-01 - M3 low-rank compression sidecar
 
 - **Agent/model:** AllenGrahamHart / Codex.

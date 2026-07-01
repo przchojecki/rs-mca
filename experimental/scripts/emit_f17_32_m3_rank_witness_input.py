@@ -335,14 +335,20 @@ def build_input(
             ],
             "coefficient_formula": "Cauchy-Binet Vandermonde-square low-rank update",
         }
+        root_status = (
+            "closed_form"
+            if low_rank_update_count == 2
+            else "degree_bound_only"
+        )
         packet["claim_scope"] = {
             "row_data": "synthetic_syndrome_pencil",
             "threshold_role": "synthetic_stress",
-            "root_status": "degree_bound_only",
+            "root_status": root_status,
             "may_be_used_for_threshold_pinning": False,
             "note": (
                 "Non-proportional low-rank update closed-form replay; this "
-                "emits a degree bound, not an enumerated root table."
+                "emits exact roots when the low-rank polynomial is split and "
+                "otherwise remains a degree-bound certificate."
             ),
         }
     return packet

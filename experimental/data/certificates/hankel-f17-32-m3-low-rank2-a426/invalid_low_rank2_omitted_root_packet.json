@@ -7,7 +7,7 @@
     "row_data": "synthetic_syndrome_pencil",
     "threshold_role": "synthetic_stress"
   },
-  "declared_aperiodic_numerator": 2,
+  "declared_aperiodic_numerator": 1,
   "enumerated_bad_slope_union": [],
   "exact_agreements": [
     {
@@ -142,14 +142,13 @@
           "leading_coefficient": 2127859988470813504442687846078260636838
         },
         "roots": [
-          344695097512796882540303623469788543556,
-          843473851308575985591116218312875860749
+          344695097512796882540303623469788543556
         ]
       },
       "regular_minor_polynomial_data": {
         "coefficients_ascending": [
           1679562971418113032387101671407887322647,
-          1974573552609951618938640232952089017133,
+          1974573552609951618938640232952089017132,
           2127859988470813504442687846078260636838
         ],
         "field_encoding": "base-p low-to-high integer",
@@ -247,8 +246,7 @@
   ],
   "removed_ledgers": [],
   "root_union": [
-    344695097512796882540303623469788543556,
-    843473851308575985591116218312875860749
+    344695097512796882540303623469788543556
   ],
   "root_union_table_ref": "inline:root_union",
   "row": {

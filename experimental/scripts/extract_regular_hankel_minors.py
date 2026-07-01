@@ -803,6 +803,76 @@ def split_linear_root_certificate_field(
     return None
 
 
+def field_square_root(
+    value: tuple[int, ...],
+    field: PolynomialBasisField,
+) -> tuple[int, ...] | None:
+    value = field.normalize(value)
+    if field.is_zero(value):
+        return field.zero
+    if field.pow(value, (field.size - 1) // 2) != field.one:
+        return None
+
+    odd_part = field.size - 1
+    two_power = 0
+    while odd_part % 2 == 0:
+        two_power += 1
+        odd_part //= 2
+
+    nonsquare = None
+    for encoding in range(2, min(field.size, 10000)):
+        candidate = field.decode(encoding)
+        if field.pow(candidate, (field.size - 1) // 2) != field.one:
+            nonsquare = candidate
+            break
+    if nonsquare is None:
+        raise ValueError("could not find a nonsquare for Tonelli-Shanks")
+
+    m = two_power
+    c = field.pow(nonsquare, odd_part)
+    t = field.pow(value, odd_part)
+    root = field.pow(value, (odd_part + 1) // 2)
+    while t != field.one:
+        i = 1
+        t_power = field.mul(t, t)
+        while t_power != field.one:
+            i += 1
+            if i >= m:
+                raise ValueError("Tonelli-Shanks failed to converge")
+            t_power = field.mul(t_power, t_power)
+        b = field.pow(c, 1 << (m - i - 1))
+        root = field.mul(root, b)
+        t = field.mul(t, field.mul(b, b))
+        c = field.mul(b, b)
+        m = i
+    return root
+
+
+def quadratic_roots_field(
+    coefficients: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]] | None:
+    polynomial = fpoly_trim(coefficients, field)
+    if len(polynomial) != 3 or field.is_zero(polynomial[2]):
+        return None
+    c0, c1, c2 = polynomial
+    discriminant = field.sub(
+        field.mul(c1, c1),
+        field.mul(field.mul(field.normalize(4), c2), c0),
+    )
+    sqrt_discriminant = field_square_root(discriminant, field)
+    if sqrt_discriminant is None:
+        return None
+    denominator_inverse = field.inv(field.mul(field.normalize(2), c2))
+    roots = {
+        field.encode(
+            field.mul(field.add(field.neg(c1), signed_sqrt), denominator_inverse)
+        )
+        for signed_sqrt in (sqrt_discriminant, field.neg(sqrt_discriminant))
+    }
+    return [field.decode(root) for root in sorted(roots)]
+
+
 def determinant_field(
     matrix: list[list[tuple[int, ...]]], field: PolynomialBasisField
 ) -> tuple[int, ...]:
@@ -2186,6 +2256,11 @@ def extract_for_agreement_field(
                 ),
                 regular_minor_audit=compression_audit,
             )
+        roots = (
+            quadratic_roots_field(polynomial, field)
+            if len(update_nodes) == 2
+            else None
+        )
         return ExtractionResult(
             exact_agreement,
             j,
@@ -2193,7 +2268,7 @@ def extract_for_agreement_field(
             "regular_minor",
             row_set,
             polynomial,
-            None,
+            roots,
             None,
             1,
             row_set_source=f"low_rank_update_prefix_rank{len(update_nodes)}",
@@ -3255,7 +3330,7 @@ def build_packet_field(
                 if spec.get("certificate_mode") == SCALAR_MULTIPLE_MODE
                 else "one-spike linear closed-form root certificate over a polynomial-basis finite field"
                 if spec.get("certificate_mode") == ONE_SPIKE_LINEAR_MODE
-                else "low-rank update closed-form degree-bound certificate over a polynomial-basis finite field"
+                else "low-rank update closed-form root/degree-bound certificate over a polynomial-basis finite field"
                 if spec.get("certificate_mode") == LOW_RANK_UPDATE_MODE
                 else "common-gcd audit of numeric determinant minors over a polynomial-basis finite field"
                 if spec.get("certificate_mode") == MINOR_GCD_MODE

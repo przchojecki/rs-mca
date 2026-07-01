@@ -2,11 +2,13 @@
   "agreement_threshold": 426,
   "claim_scope": {
     "may_be_used_for_threshold_pinning": false,
-    "note": "Non-proportional low-rank update closed-form replay; this emits a degree bound, not an enumerated root table.",
-    "root_status": "degree_bound_only",
+    "note": "Non-proportional low-rank update closed-form replay; this emits exact roots when the low-rank polynomial is split and otherwise remains a degree-bound certificate.",
+    "root_status": "closed_form",
     "row_data": "synthetic_syndrome_pencil",
     "threshold_role": "synthetic_stress"
   },
+  "declared_aperiodic_numerator": 2,
+  "enumerated_bad_slope_union": [],
   "exact_agreements": [
     {
       "A": 426,
@@ -16,7 +18,7 @@
         "rank_pivot_node": null,
         "rank_pivot_nodes_required": null,
         "rank_pivot_nodes_tested": null,
-        "root_count": "not_enumerated",
+        "root_count": 2,
         "row_set_source": "low_rank_update_prefix_rank2",
         "tested_row_sets": 1
       },
@@ -24,7 +26,7 @@
       "regular_minor": {
         "degree": 2,
         "polynomial_ref": "inline:regular_minor.coefficients_ascending",
-        "root_hash": "65dfdb3814da34c5a7148deea9b2b918c49912024b1797763bff6de632ba85a5",
+        "root_hash": "d10b4c40ba39416be03de84bb0d92d0c667b6588d3ba8baba42dbd0c4cae22fe",
         "row_set": [
           0,
           1,
@@ -115,6 +117,35 @@
           86
         ]
       },
+      "regular_minor_data": {
+        "coefficients_ascending": [
+          1679562971418113032387101671407887322647,
+          1974573552609951618938640232952089017132,
+          2127859988470813504442687846078260636838
+        ],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 32,
+        "p": 17,
+        "root_certificate": {
+          "factors": [
+            {
+              "multiplicity": 1,
+              "root": 344695097512796882540303623469788543556
+            },
+            {
+              "multiplicity": 1,
+              "root": 843473851308575985591116218312875860749
+            }
+          ],
+          "field_encoding": "base-p low-to-high integer",
+          "kind": "split_linear_factorization",
+          "leading_coefficient": 2127859988470813504442687846078260636838
+        },
+        "roots": [
+          344695097512796882540303623469788543556,
+          843473851308575985591116218312875860749
+        ]
+      },
       "regular_minor_polynomial_data": {
         "coefficients_ascending": [
           1679562971418113032387101671407887322647,
@@ -200,8 +231,8 @@
       "p": 17
     },
     "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_low_rank2_input.json",
-    "input_sha256": "28d633d6ea1ee684c3fdffce41bb4e9ad4c36b96bd4c77d6203534d5ec7603f2",
-    "method": "low-rank update closed-form degree-bound certificate over a polynomial-basis finite field",
+    "input_sha256": "d46601cfc46faf8ddea0dd88b59b1f1a6b7b2053fec8c4eba53ecd1bc0b52fad",
+    "method": "low-rank update closed-form root/degree-bound certificate over a polynomial-basis finite field",
     "name": "regular-hankel-minor-extractor",
     "row_set_strategy": {
       "type": "prefix"
@@ -214,9 +245,12 @@
     "not a worst-case row root table over F_17^32",
     "not a quotient/tangent subtraction table"
   ],
-  "regular_root_bound_sum": 2,
   "removed_ledgers": [],
-  "root_union_table_ref": "not_enumerated",
+  "root_union": [
+    344695097512796882540303623469788543556,
+    843473851308575985591116218312875860749
+  ],
+  "root_union_table_ref": "inline:root_union",
   "row": {
     "domain_description": "order-512 subgroup from the pinned F_17^32 row descriptor; synthetic M3 low-rank update syndrome uses the first j+1 elements and the next 2 descriptor-domain elements as update nodes",
     "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",

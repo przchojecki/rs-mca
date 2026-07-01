@@ -3513,6 +3513,22 @@ def validate_regular_minor(
     coefficients = require_int_list(
         data[coefficient_key], f"A={item.get('A')} coefficients"
     )
+    if isinstance(polynomial_data, dict):
+        polynomial_coefficient_key = first_matching_key(
+            polynomial_data,
+            r"coefficients_mod_\d+_ascending",
+            r"coefficients_ascending",
+        )
+        if polynomial_coefficient_key is not None:
+            polynomial_coefficients = require_int_list(
+                polynomial_data[polynomial_coefficient_key],
+                f"A={item.get('A')} polynomial_data coefficients",
+            )
+            if polynomial_coefficients != coefficients:
+                raise PacketError(
+                    f"A={item.get('A')}: regular_minor_data coefficients "
+                    "do not match regular_minor_polynomial_data"
+                )
     roots = normalize_int_list(data[root_key], f"A={item.get('A')} roots")
     bad_slopes = normalize_int_list(
         data.get(bad_slope_key, []), f"A={item.get('A')} bad_slopes"
