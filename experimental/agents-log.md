@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-3 low-rank family counts
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank3_family.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank3-family/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A rank-3 all-window synthetic low-rank family for
+  the M3 regular window.  The verifier uses the compressed Lagrange-kernel
+  determinant and computes exact finite-root counts by
+  `gcd(Delta,Z^q-Z)`: 12 rows have no roots, 24 have one root, and 6 have
+  three roots, for total `42` under degree cap `126`.
+- **How it is useful:** Tests the low-rank compression mechanism beyond
+  quadratics while preserving exact regular-root accounting, projective
+  endpoint accounting, and common-code-line tangent non-overlap.
+- **What to do next:** Either attack quotient-image overlap for these
+  synthetic low-rank families or look for non-synthetic M3 residual pencils
+  whose regular minors admit the same low-rank compression.
+
 ### 2026-07-01 - M3 low-rank tangent non-overlap audit
 
 - **Agent/model:** AllenGrahamHart / Codex.

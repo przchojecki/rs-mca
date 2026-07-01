@@ -41,6 +41,10 @@ LOW_RANK_FAMILY_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank2-family/"
     "f17_32_n512_k256_m3_low_rank2_family_certificate.json"
 )
+LOW_RANK3_FAMILY_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-low-rank3-family/"
+    "f17_32_n512_k256_m3_low_rank3_family_certificate.json"
+)
 TOP_PACKET_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/"
     "f17_32_n512_k256_a421_426_fixed_prefix92_packet.json"
@@ -117,6 +121,7 @@ def validate_inputs(
     generic: dict[str, Any],
     family: dict[str, Any],
     low_rank_family: dict[str, Any],
+    low_rank3_family: dict[str, Any],
     top_packet: dict[str, Any],
     line_value_lift: dict[str, Any],
     subgroup_section: dict[str, Any],
@@ -230,6 +235,72 @@ def validate_inputs(
         ]
         is True,
         "low-rank family endpoint root cross-check mismatch",
+    )
+    require(
+        low_rank3_family["schema_version"] == "f17-32-m3-low-rank3-family-v1",
+        "rank-3 low-rank family schema mismatch",
+    )
+    require(
+        low_rank3_family["agreement_range"] == [AGREEMENT_MIN, AGREEMENT_MAX],
+        "rank-3 low-rank family window mismatch",
+    )
+    require(
+        low_rank3_family["aggregate"]["agreement_count"] == 42,
+        "rank-3 low-rank family agreement count mismatch",
+    )
+    require(
+        low_rank3_family["aggregate"]["per_agreement_degree_bound"] == 3,
+        "rank-3 low-rank family per-agreement bound mismatch",
+    )
+    require(
+        low_rank3_family["aggregate"]["degree_bound_sum"] == 126,
+        "rank-3 low-rank family degree-bound aggregate mismatch",
+    )
+    require(
+        low_rank3_family["aggregate"]["exact_regular_root_count_sum"] == 42,
+        "rank-3 low-rank family exact-root-count aggregate mismatch",
+    )
+    require(
+        low_rank3_family["aggregate"]["linear_root_count_histogram"]
+        == {"0": 12, "1": 24, "3": 6},
+        "rank-3 low-rank family root-count histogram mismatch",
+    )
+    require(
+        low_rank3_family["aggregate"]["projective_infinity_contribution_sum"] == 0,
+        "rank-3 low-rank family projective contribution mismatch",
+    )
+    require(
+        low_rank3_family["aggregate"]["common_code_line_tangent_overlap_sum"] == 0,
+        "rank-3 low-rank family tangent overlap mismatch",
+    )
+    require(
+        low_rank3_family["aggregate"]["finite_roots_checked_for_common_code_line"]
+        == low_rank3_family["aggregate"]["exact_regular_root_count_sum"],
+        "rank-3 low-rank family tangent check coverage mismatch",
+    )
+    require(
+        low_rank3_family["aggregate"]["exact_regular_roots_after_common_code_line"]
+        == 42,
+        "rank-3 low-rank family post-tangent root count mismatch",
+    )
+    require(
+        low_rank3_family["aggregate"]["max_projective_regular_roots_per_agreement"]
+        == 3,
+        "rank-3 low-rank family max projective roots mismatch",
+    )
+    require(
+        low_rank3_family["aggregate"]["all_rows_within_finite_budget"] is True
+        and low_rank3_family["aggregate"]["all_rows_within_projective_budget"] is True,
+        "rank-3 low-rank family budget status mismatch",
+    )
+    require(
+        low_rank3_family["aggregate"]["generic_degree_bound_sum_for_window"]
+        == plan["budget_context"]["degree_bound_sum"],
+        "rank-3 low-rank family generic degree sum mismatch",
+    )
+    require(
+        len(low_rank3_family["records"]) == 42,
+        "rank-3 low-rank family record count mismatch",
     )
     require(
         top_packet["exact_agreements"][0]["A"] == TOP_WINDOW_MIN
@@ -407,6 +478,7 @@ def per_agreement_records(
     generic: dict[str, Any],
     family: dict[str, Any],
     low_rank_family: dict[str, Any],
+    low_rank3_family: dict[str, Any],
     top_packet: dict[str, Any],
     syndrome_realizability: dict[str, Any],
     zero_slope_subtraction: dict[str, Any],
@@ -417,6 +489,9 @@ def per_agreement_records(
     family_by_a = {int(item["A"]): item for item in family["agreements"]}
     low_rank_family_by_a = {
         int(item["A"]): item for item in low_rank_family["records"]
+    }
+    low_rank3_family_by_a = {
+        int(item["A"]): item for item in low_rank3_family["records"]
     }
     realizability_by_a = {
         int(item["A"]): item for item in syndrome_realizability["per_agreement"]
@@ -442,6 +517,7 @@ def per_agreement_records(
         generic_item = generic_by_a[agreement]
         family_item = family_by_a[agreement]
         low_rank_item = low_rank_family_by_a[agreement]
+        low_rank3_item = low_rank3_family_by_a[agreement]
         realizability_item = realizability_by_a[agreement]
         top_item = top_by_a.get(agreement)
         require(plan_item["degree_bound"] == generic_item["generic_degree"], f"A={agreement}: degree mismatch")
@@ -498,6 +574,64 @@ def per_agreement_records(
                 and witness["syndrome_index"] == 0,
                 f"A={agreement}: bad tangent non-overlap witness",
             )
+        require(
+            low_rank3_item["degree_bound"] == 3
+            and low_rank3_item["root_status"]
+            in {
+                "exact_no_finite_roots",
+                "exact_one_finite_root",
+                "exact_two_finite_roots",
+                "exact_three_finite_roots_count_only",
+            }
+            and low_rank3_item["root_count"] in {0, 1, 2, 3},
+            f"A={agreement}: rank-3 low-rank family status mismatch",
+        )
+        require(
+            low_rank3_item["linear_root_count_certificate"]["kind"]
+            == "frobenius_linear_root_gcd"
+            and low_rank3_item["linear_root_count_certificate"][
+                "linear_root_count"
+            ]
+            == low_rank3_item["root_count"],
+            f"A={agreement}: rank-3 low-rank root-count certificate mismatch",
+        )
+        if low_rank3_item["root_count"] < 3:
+            require(
+                low_rank3_item["listed_roots"] is not None
+                and len(low_rank3_item["listed_roots"])
+                == low_rank3_item["root_count"],
+                f"A={agreement}: rank-3 listed root count mismatch",
+            )
+        else:
+            require(
+                low_rank3_item["listed_roots"] is None,
+                f"A={agreement}: rank-3 split cubic should be count-only",
+            )
+        require(
+            low_rank3_item["projective_infinity"]["status"] == "empty"
+            and low_rank3_item["projective_infinity"]["contribution"] == 0,
+            f"A={agreement}: rank-3 low-rank projective endpoint mismatch",
+        )
+        require(
+            low_rank3_item["regular_budget_table"]["within_finite_budget"] is True
+            and low_rank3_item["regular_budget_table"]["within_projective_budget"]
+            is True
+            and low_rank3_item["regular_budget_table"]["projective_regular_roots"]
+            == low_rank3_item["root_count"],
+            f"A={agreement}: rank-3 low-rank budget table mismatch",
+        )
+        require(
+            low_rank3_item["tangent_common_code_line_audit"]["overlap_count"] == 0
+            and low_rank3_item["tangent_common_code_line_audit"][
+                "finite_roots_checked"
+            ]
+            == low_rank3_item["root_count"]
+            and low_rank3_item["tangent_common_code_line_audit"][
+                "method"
+            ]
+            == "frobenius_gcd_exclusion_at_moment_0",
+            f"A={agreement}: rank-3 low-rank tangent audit mismatch",
+        )
         require(
             realizability_item["visible_syndrome_length"] == 256
             and realizability_item["section_applies"] is True,
@@ -614,6 +748,28 @@ def per_agreement_records(
                 ]["regular_roots_after_common_code_line"],
                 "synthetic_low_rank2_tangent_witness_moment": 0,
                 "synthetic_low_rank2_sidecar_hash": low_rank_item["sidecar_hash"],
+                "synthetic_low_rank3_family_status": (
+                    "rank-3 prefix update witness has exact finite-root "
+                    "counts from the Frobenius gcd"
+                ),
+                "synthetic_low_rank3_root_bound": low_rank3_item["degree_bound"],
+                "synthetic_low_rank3_root_count": low_rank3_item["root_count"],
+                "synthetic_low_rank3_root_status": low_rank3_item["root_status"],
+                "synthetic_low_rank3_projective_infinity_contribution": 0,
+                "synthetic_low_rank3_projective_regular_roots": low_rank3_item[
+                    "regular_budget_table"
+                ]["projective_regular_roots"],
+                "synthetic_low_rank3_projective_budget_gap": low_rank3_item[
+                    "regular_budget_table"
+                ]["projective_budget_gap"],
+                "synthetic_low_rank3_B_tan_common_code_line": 0,
+                "synthetic_low_rank3_roots_after_common_code_line": low_rank3_item[
+                    "regular_budget_table"
+                ]["regular_roots_after_common_code_line"],
+                "synthetic_low_rank3_tangent_method": low_rank3_item[
+                    "tangent_common_code_line_audit"
+                ]["method"],
+                "synthetic_low_rank3_sidecar_hash": low_rank3_item["sidecar_hash"],
                 "syndrome_pencil_realizability": (
                     "all length-256 u,v syndrome pencils are realized by explicit "
                     "line values on H"
@@ -668,6 +824,7 @@ def build_status() -> dict[str, Any]:
     generic = load_json(GENERIC_REF)
     family = load_json(FAMILY_REF)
     low_rank_family = load_json(LOW_RANK_FAMILY_REF)
+    low_rank3_family = load_json(LOW_RANK3_FAMILY_REF)
     top_packet = load_json(TOP_PACKET_REF)
     line_value_lift = load_json(LINE_VALUE_LIFT_REF)
     subgroup_section = load_json(SUBGROUP_SECTION_REF)
@@ -681,6 +838,7 @@ def build_status() -> dict[str, Any]:
         generic,
         family,
         low_rank_family,
+        low_rank3_family,
         top_packet,
         line_value_lift,
         subgroup_section,
@@ -695,6 +853,7 @@ def build_status() -> dict[str, Any]:
         generic,
         family,
         low_rank_family,
+        low_rank3_family,
         top_packet,
         syndrome_realizability,
         zero_slope_subtraction,
@@ -716,6 +875,11 @@ def build_status() -> dict[str, Any]:
             "synthetic_low_rank2_family",
             LOW_RANK_FAMILY_REF,
             "f17-32-m3-low-rank2-family-v4",
+        ),
+        artifact_record(
+            "synthetic_low_rank3_family",
+            LOW_RANK3_FAMILY_REF,
+            "f17-32-m3-low-rank3-family-v1",
         ),
         artifact_record("fixed_top_window_v9_packet", TOP_PACKET_REF, "aperiodic-hankel-eliminant-v1"),
         artifact_record(
@@ -798,6 +962,40 @@ def build_status() -> dict[str, Any]:
                 "all 40 finite roots have nonzero full-syndrome witness at "
                 "moment m=0, so none are common-code-line tangent roots"
             ),
+            "synthetic_low_rank3_family_status": (
+                "proved exact Frobenius-gcd finite-root counts for all 42 "
+                "rank-3 synthetic pencils"
+            ),
+            "synthetic_low_rank3_degree_bound_sum": low_rank3_family["aggregate"][
+                "degree_bound_sum"
+            ],
+            "synthetic_low_rank3_exact_root_count_sum": low_rank3_family[
+                "aggregate"
+            ]["exact_regular_root_count_sum"],
+            "synthetic_low_rank3_root_count_histogram": low_rank3_family[
+                "aggregate"
+            ]["linear_root_count_histogram"],
+            "synthetic_low_rank3_projective_infinity_contribution": 0,
+            "synthetic_low_rank3_max_projective_regular_roots_per_agreement": (
+                low_rank3_family["aggregate"][
+                    "max_projective_regular_roots_per_agreement"
+                ]
+            ),
+            "synthetic_low_rank3_projective_budget_status": (
+                "all 42 rows have at most 3 projective regular roots, below "
+                "projective budget numerator 6"
+            ),
+            "synthetic_low_rank3_common_code_line_tangent_overlap": 0,
+            "synthetic_low_rank3_roots_after_common_code_line": (
+                low_rank3_family["aggregate"][
+                    "exact_regular_roots_after_common_code_line"
+                ]
+            ),
+            "synthetic_low_rank3_tangent_status": (
+                "the Frobenius gcd is nonzero at the only possible "
+                "common-code-line slope from Syn_0(u+zv)=|X|+3z, so none "
+                "of the 42 finite roots are common-code-line tangent roots"
+            ),
             "fixed_top_window_status": "one v9 packet covers A=421..426 with root union {0}",
             "fixed_top_window_line_value_status": "explicit f,g line values replay the fixed top-window syndrome input",
             "subgroup_syndrome_section_status": "proved explicit inverse-Fourier section for subgroup syndrome vectors",
@@ -823,6 +1021,7 @@ def build_status() -> dict[str, Any]:
                 "every maximal row-set regular minor is generically nonzero",
                 "the synthetic u=0 family has exact root union {0}",
                 "the synthetic rank-2 low-rank family has exact split/nonsquare quadratic root table with 40 roots total, below degree cap 84",
+                "the synthetic rank-3 low-rank family has exact Frobenius-gcd finite-root counts with 42 roots total, below degree cap 126",
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
                 "the fixed top-window syndrome input has an explicit line-value lift",
                 "subgroup syndrome vectors have an explicit inverse-Fourier line-value section",
@@ -874,6 +1073,8 @@ def print_summary(status: dict[str, Any]) -> None:
         f"{summary['synthetic_low_rank2_projective_budget_status']}"
     )
     print(f"low-rank tangent: {summary['synthetic_low_rank2_tangent_status']}")
+    print(f"rank-3 low-rank synthetic: {summary['synthetic_low_rank3_family_status']}")
+    print(f"rank-3 low-rank tangent: {summary['synthetic_low_rank3_tangent_status']}")
     print(f"actual row: {summary['actual_row_status']}")
 
 

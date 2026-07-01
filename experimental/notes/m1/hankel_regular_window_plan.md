@@ -313,6 +313,22 @@ the full syndrome has nonzero witness `Syn_0(u+zv)=|X|+2z`, so no finite
 low-rank-family root is tangent/common-code-line.  The family cross-checks the
 `A=426` endpoint against the exact-root v9 packet.
 
+The rank-3 companion certificate is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank3-family/
+  f17_32_n512_k256_m3_low_rank3_family_certificate.json
+```
+
+It uses the same nested prefixes and the next three descriptor-domain nodes as
+the update set.  The degree cap is `3 * 42 = 126`, and the exact finite-root
+count is computed by `gcd(Delta,Z^q-Z)`: 12 rows have no finite roots, 24 rows
+have one finite root, and 6 rows have three finite roots, for total `42`.  The
+projective endpoint `[0:1]` is empty in every row, so every agreement has at
+most 3 projective regular roots against budget numerator 6.  The
+common-code-line tangent overlap is also zero, because the Frobenius gcd is
+nonzero at the only possible slope from `Syn_0(u+zv)=|X|+3z`.
+
 The current status ledger
 
 ```text
@@ -375,6 +391,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 experimental/scripts/verify_f17_32_m3_low_rank2_family.py \
   --check experimental/data/certificates/hankel-f17-32-m3-low-rank2-family/f17_32_n512_k256_m3_low_rank2_family_certificate.json
+
+python3 experimental/scripts/verify_f17_32_m3_low_rank3_family.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-low-rank3-family/f17_32_n512_k256_m3_low_rank3_family_certificate.json
 ```
 
 Non-claims: this note does not enumerate universal root sets for arbitrary

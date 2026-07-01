@@ -173,6 +173,21 @@ roots against budget numerator 6.  The 40 finite roots also have nonzero
 full-syndrome witness at moment `m=0`, so none are common-code-line tangent
 roots.  The generic degree-bound sum for the same window would be `4515`.
 
+The rank-3 all-window companion is
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank3-family/
+  f17_32_n512_k256_m3_low_rank3_family_certificate.json
+```
+
+It uses the next three descriptor nodes for `Y`, so every compressed determinant
+has degree at most 3.  Exact finite-root counts come from
+`gcd(Delta,Z^q-Z)`: 12 rows have no finite roots, 24 rows have one finite root,
+and 6 rows have three finite roots, for total `42` under degree cap `126`.
+The projective endpoint is empty in all rows, and the common-code-line tangent
+overlap is zero because the Frobenius gcd is nonzero at the only possible
+moment-0 common-code-line slope.
+
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform quotient/tangent
 subtraction.
