@@ -272,6 +272,28 @@ both line generators are zero codeword restrictions.  Thus this lower-rank
 singular bucket is removed by the contained/common-code-line filter and
 contributes no support-wise noncontained aperiodic slopes.
 
+The zero-`u` rank dichotomy companion
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-zero-u-rank-dichotomy/
+  f17_32_n512_k256_m3_zero_u_rank_dichotomy.json
+```
+
+is the general regular-bucket version of these zero-`u` certificates.  For any
+zero-`u` syndrome vector `v`,
+
+```text
+H_{t,j}(u)+Z H_{t,j}(v) = Z H_{t,j}(v),
+Delta_R(Z)=Z^(j+1) det(H_R(v)).
+```
+
+Therefore full column rank of `H_{t,j}(v)` closes the regular bucket with
+canonical gcd `Z^(j+1)` and paid root `Z=0`, while rank deficiency is exactly
+the singular boundary that must be sent to M5 pivots or to a separate paid
+classification.  The lower-rank weighted power-sum certificate is one such
+paid singular classification; arbitrary rank-deficient zero-`u` data remains
+outside this claim.
+
 The syndrome-realizability sidecar
 
 ```text

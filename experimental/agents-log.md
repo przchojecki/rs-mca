@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 zero-u regular-rank dichotomy
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_zero_u_rank_dichotomy.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-zero-u-rank-dichotomy/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for arbitrary zero-`u` regular buckets.
+- **What is being added:** A dichotomy theorem for `385 <= A <= 426`: if
+  `u=0`, every maximal regular minor is
+  `Delta_R(Z)=Z^(j+1) det(H_R(v))`.  Full column rank of `H_{t,j}(v)` closes
+  the regular bucket with canonical gcd `Z^(j+1)` and paid root `Z=0`; rank
+  deficiency is exactly the singular boundary.
+- **How it is useful:** This consolidates the special zero-`u` rank-witness,
+  weighted, and lower-rank certificates into one v10 regular-bucket principle
+  and cleanly identifies what still needs M5 pivot work.
+- **What to do next:** Attack nonzero-`u` pencils or rank-deficient zero-`u`
+  buckets not covered by a separate contained/quotient/extension
+  classification.
+
 ### 2026-07-01 - M3 lower-rank contained branch
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

@@ -62,6 +62,9 @@ experimental/data/certificates/hankel-f17-32-m3-weight-uniform-canonical-gcd/
 
 experimental/data/certificates/hankel-f17-32-m3-lower-rank-contained/
   f17_32_n512_k256_m3_lower_rank_contained.json
+
+experimental/data/certificates/hankel-f17-32-m3-zero-u-rank-dichotomy/
+  f17_32_n512_k256_m3_zero_u_rank_dichotomy.json
 ```
 
 The M4 zero-slope subtraction sidecar is
@@ -216,6 +219,21 @@ support is therefore contained in `D\S`, where both line generators are zero
 codeword restrictions, so the support-wise noncontained aperiodic contribution
 is `0`.
 
+The zero-`u` rank dichotomy certificate abstracts the preceding formulas.  For
+an arbitrary zero-`u` syndrome vector `v`, every maximal regular minor has the
+form
+
+```text
+Delta_R(Z) = det(Z H_R(v)) = Z^(j+1) det(H_R(v)).
+```
+
+Thus if `H_{t,j}(v)` has full column rank `j+1`, the v10 canonical gcd over
+all nonzero maximal minors is `Z^(j+1)`, and the only root `Z=0` is paid by
+the tangent/common-code-line ledger.  If `H_{t,j}(v)` has rank at most `j`,
+all maximal regular minors vanish and the bucket is a named singular residual
+for M5 pivots unless a separate paid-branch classification applies.  The
+lower-rank weighted power-sum certificate is one such paid singular boundary.
+
 In the selected-minor packets, the chosen prefix determinant has the closed form
 
 ```text
@@ -336,6 +354,9 @@ python3 experimental/scripts/verify_f17_32_m3_weight_uniform_canonical_gcd.py \
 
 python3 experimental/scripts/verify_f17_32_m3_lower_rank_contained.py \
   --check experimental/data/certificates/hankel-f17-32-m3-lower-rank-contained/f17_32_n512_k256_m3_lower_rank_contained.json
+
+python3 experimental/scripts/verify_f17_32_m3_zero_u_rank_dichotomy.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-zero-u-rank-dichotomy/f17_32_n512_k256_m3_zero_u_rank_dichotomy.json
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_rank_witness_zero_slope_subtraction.json
