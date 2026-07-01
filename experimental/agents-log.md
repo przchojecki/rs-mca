@@ -66,10 +66,12 @@ Keep entries concise and link to the relevant files.
   cores `S_h=T B_h T^T` satisfy a shift-two diagonal-rescaling relation up to
   a rank-two correction.  The determinant target is then restated as
   `Phi_{m,r,h}(Z)=det(I+Z D_h S_h)`, directly tying the displacement cores to
-  the v10 affine gcd polynomials.  A counterexample-first search script probes
-  the exact endpoint-capacity spectral target without changing the certified
-  low-rank2..12 packet; it switches from Newton identities to determinant
-  interpolation at rank `17`, avoiding characteristic-17 division.
+  the v10 affine gcd polynomials; combining these identities gives a two-by-two
+  transfer formula relating `Phi_{m,r,h}` and `Phi_{m,r,h+2}`.  A
+  counterexample-first search script probes the exact endpoint-capacity
+  spectral target without changing the certified low-rank2..12 packet; it
+  switches from Newton identities to determinant interpolation at rank `17`,
+  avoiding characteristic-17 division.
   The first top-window frontier probe `A=426`, ranks `13..20`, records eight
   exact checks with common gcd degree `0`, and can be replayed with the
   script's deterministic `--check` mode.  The recorded JSON now carries row

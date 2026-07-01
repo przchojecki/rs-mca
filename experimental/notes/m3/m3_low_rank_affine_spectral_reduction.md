@@ -561,6 +561,46 @@ for the stated `(m,r)` range.  The shift-two displacement relation acts on
 `S_h`, while this identity records exactly how `S_h` feeds the characteristic
 polynomials used by the v10 affine gcd ledger.
 
+## Shift-Two Transfer Formula
+
+Combining the preceding two reductions gives a determinant-level transfer
+between shifts of the same parity.  Write the rank-two correction as
+
+```text
+S_h = U S_{h+2} U + P_h Q_h^T,
+
+P_h = [ w_h, 1_r ],
+Q_h = [ 1_r, w_h - c_h 1_r ].
+```
+
+For
+
+```text
+M_h(Z) = I_r + Z D_h U S_{h+2} U,
+```
+
+one has
+
+```text
+det M_h(Z) = Phi_{m,r,h+2}(Z),
+```
+
+because `det(I+AB)=det(I+BA)` and `U D_h U = D_{h+2}`.  Since `M_h(0)=I`,
+`M_h(Z)` is invertible over the rational function field `F(Z)`, and the matrix
+determinant lemma gives
+
+```text
+Phi_{m,r,h}(Z)
+  =
+  Phi_{m,r,h+2}(Z)
+  * det(I_2 + Z Q_h^T M_h(Z)^(-1) D_h P_h).
+```
+
+Thus every two-step shift changes the determinant polynomial by a two-by-two
+transfer factor over `F(Z)`.  The displayed identity is not yet a coprimality
+proof, but it localizes multi-shift comparisons to rank-two transfer data
+instead of full `r x r` determinant recomputation.
+
 ## Window Normalization
 
 Two elementary invariances reduce the consecutive-subgroup case to a normalized
