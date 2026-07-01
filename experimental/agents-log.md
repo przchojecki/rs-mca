@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 one-spike M4 budget table
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_one_spike_m4_budget.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-one-spike-m4-budget/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for this synthetic family.
+- **What is being added:** A finite/projective M4 budget table for the
+  one-spike canonical-empty family: finite numerator `0`, projective numerator
+  at most `1`, and both denominators have `2^-128` budget `6`.
+- **How it is useful:** It turns the one-spike rank closure into a complete
+  local safe-side upper-bound packet with endpoint and denominator conventions
+  printed.
+- **What to do next:** Repeat this root-table plus budget-table pattern for a
+  less structured non-proportional family or for the first genuine singular
+  pivot packet.
+
 ### 2026-07-01 - M3 one-spike canonical finite closure
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

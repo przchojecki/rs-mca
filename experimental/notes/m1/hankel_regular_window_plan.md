@@ -599,6 +599,21 @@ scalar extension, so the canonical gcd is constant.  At projective infinity,
 `H(v)` has rank one while `H(u)` has full column rank, so the M5 kernel chart
 gives the one-point dimension-degree fallback.
 
+The M4 budget companion is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-one-spike-m4-budget/
+  f17_32_n512_k256_m3_one_spike_m4_budget.json
+```
+
+It prints both sampler denominators and turns the canonical closure into a
+safe-side upper-bound table for this synthetic family:
+
+```text
+finite affine numerator: 0 <= floor(|F|/2^128) = 6,
+projective numerator:    1 <= floor((|F|+1)/2^128) = 6.
+```
+
 A broader low-rank update theorem is recorded in
 
 ```text
@@ -902,6 +917,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 experimental/scripts/verify_f17_32_m3_one_spike_canonical_empty.py \
   --check experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/f17_32_n512_k256_m3_one_spike_canonical_empty.json
+
+python3 experimental/scripts/verify_f17_32_m3_one_spike_m4_budget.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-one-spike-m4-budget/f17_32_n512_k256_m3_one_spike_m4_budget.json
 
 python3 experimental/scripts/verify_m1_hankel_low_rank_update_template.py \
   --check experimental/data/certificates/hankel-low-rank-update-template/hankel_low_rank_update_template_certificate.json

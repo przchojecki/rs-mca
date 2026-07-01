@@ -52,6 +52,9 @@ experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/
 experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/
   f17_32_n512_k256_m3_one_spike_canonical_empty.json
 
+experimental/data/certificates/hankel-f17-32-m3-one-spike-m4-budget/
+  f17_32_n512_k256_m3_one_spike_m4_budget.json
+
 experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-a426/
   f17_32_n512_k256_a426_contiguous_gcd_formula.json
 
@@ -427,6 +430,17 @@ extension, so the canonical gcd is constant.  The only projective issue is
 `[0:1]`, where the M5 kernel chart gives a one-point dimension-degree fallback
 because `rank H(v)=1` and `H(u)` has full column rank.
 
+The M4 one-spike budget companion packages this as a safe-side table for the
+synthetic family.  It prints both denominator conventions:
+
+```text
+finite affine sampler: |F_17^32|,
+projective sampler:    |F_17^32| + 1.
+```
+
+The resulting upper bounds are `0 <= 6` for finite affine slopes and `1 <= 6`
+for projective slopes.
+
 The subtraction sidecar verifies that every zero-`u` source input, including
 the contiguous-gcd input, has `u_m=0` for all
 stored syndrome coordinates.  Since `Syn(f+Zg)=u+Zv`, the unique raw root
@@ -534,6 +548,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 experimental/scripts/verify_f17_32_m3_one_spike_canonical_empty.py \
   --check experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/f17_32_n512_k256_m3_one_spike_canonical_empty.json
+
+python3 experimental/scripts/verify_f17_32_m3_one_spike_m4_budget.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-one-spike-m4-budget/f17_32_n512_k256_m3_one_spike_m4_budget.json
 
 python3 experimental/scripts/verify_f17_32_m3_a426_contiguous_gcd_formula.py \
   --check experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-a426/f17_32_n512_k256_a426_contiguous_gcd_formula.json
