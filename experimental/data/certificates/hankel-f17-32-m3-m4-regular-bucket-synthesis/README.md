@@ -76,6 +76,18 @@ finite roots, and one projective endpoint can occur simultaneously.  The M3
 rank-6 boundary must be attacked with Hankel-specific structure, exact root
 tables, or a paid/empty endpoint ledger.
 
+The rank-node dichotomy packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/
+  f17_32_n512_k256_m3_rank_node_dichotomy.json
+```
+
+gives the finite regular/singular gate.  If one tested finite slope has full
+column rank, row elimination supplies a nonzero maximal minor.  If all `j+2`
+deterministic finite test nodes have rank at most `j`, then every maximal minor
+vanishes identically and the bucket is genuinely singular.
+
 The affine-pivot compression packet
 
 ```text
@@ -145,6 +157,9 @@ python3 experimental/scripts/verify_m1_hankel_m4_projective_budget_split.py \
 
 python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
+
+python3 experimental/scripts/verify_m1_hankel_m3_rank_node_dichotomy.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json

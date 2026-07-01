@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-node dichotomy
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_m3_rank_node_dichotomy.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/`;
+  `experimental/notes/m1/hankel_rank_node_dichotomy.md`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A finite rank-node dichotomy for M3 regular buckets:
+  one full-rank finite specialization gives a nonzero maximal minor, while
+  rank deficiency at `j+2` distinct finite nodes forces every maximal minor to
+  vanish identically.
+- **How it is useful:** It gives future M3/M4 packets a replayable
+  regular-versus-singular gate before root-table computation or M5 pivot charts.
+- **What to do next:** Use the gate on concrete arbitrary syndrome pencils to
+  produce actual root tables or singular residual declarations.
+
 ### 2026-07-01 - M3 subgroup syndrome section
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

@@ -143,6 +143,13 @@ experimental/data/certificates/subgroup-syndrome-section/
   subgroup_syndrome_section_certificate.json
 ```
 
+The rank-node dichotomy companion is
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/
+  f17_32_n512_k256_m3_rank_node_dichotomy.json
+```
+
 ## Construction
 
 For exact agreement `A`,

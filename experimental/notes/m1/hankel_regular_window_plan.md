@@ -99,6 +99,19 @@ with `1806` contiguous charts singled out as the practical first-search
 subatlas.  Thus vanished regular minors for an actual syndrome pencil are
 special singular strata, not a forced failure of the regular Hankel chart.
 
+The finite rank-node dichotomy
+
+```text
+experimental/notes/m1/hankel_rank_node_dichotomy.md
+experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/
+  f17_32_n512_k256_m3_rank_node_dichotomy.json
+```
+
+turns this into a replayable regular/singular gate.  For a `t x (j+1)` affine
+Hankel pencil, one full-rank finite specialization gives a nonzero maximal
+minor, while rank deficiency at `j+2` distinct finite nodes forces all maximal
+minors to vanish identically.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 
@@ -1022,6 +1035,9 @@ python3 experimental/scripts/verify_f17_32_m3_line_value_lift.py \
 
 python3 experimental/scripts/verify_m1_subgroup_syndrome_section.py \
   --check experimental/data/certificates/subgroup-syndrome-section/subgroup_syndrome_section_certificate.json
+
+python3 experimental/scripts/verify_m1_hankel_m3_rank_node_dichotomy.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_a421_426_zero_slope_subtraction.json
