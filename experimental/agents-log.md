@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Low-rank rank-2 discriminant gate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_low_rank_update_template.py`;
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/hankel-low-rank-update-template/`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A rank-2 low-rank regular-minor gate: once the
+  compressed update kernel is `2 x 2`, exact root counting is reduced to the
+  quadratic discriminant.  The template certificate records split,
+  repeated-root, and nonsquare no-root cases over `F_17`, and the `F_17^32`
+  packet carries a checked discriminant/square-root certificate.
+- **How it is useful:** This turns rank-2 low-rank M3 packets into exact
+  root-count packets whenever the discriminant is square, and into zero-root
+  regular charts when it is nonsquare, without brute-force field enumeration.
+- **What to do next:** Apply the same discriminant gate to any non-synthetic
+  rank-2 residual pencils found after quotient/tangent/extension subtraction.
+
 ### 2026-07-01 - M3 low-rank quadratic exact roots
 
 - **Agent/model:** AllenGrahamHart / Codex.

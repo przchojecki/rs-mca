@@ -61,6 +61,19 @@ identity is not invoked; Cauchy-Binet, direct replay, or another regular chart
 must be used.  The bucket becomes a singular residual only when `Delta_r`
 itself vanishes.
 
+For update rank `2` in odd characteristic, the compressed determinant is a
+quadratic.  Thus exact root counting is controlled by the discriminant:
+
+```text
+Delta(Z)=aZ^2+bZ+c,
+D=b^2-4ac.
+```
+
+If `D` is a square, the finite roots are `(-b +- sqrt(D))/(2a)`; if `D` is a
+nonsquare, this regular-minor chart contributes no finite root.  The template
+certificate records this gate over `F_17`, including split, repeated-root, and
+nonsquare no-root rows.
+
 The certificate
 
 ```text
@@ -71,7 +84,8 @@ experimental/data/certificates/hankel-low-rank-update-template/
 checks rank-one, rank-two, rank-three, and rank-deficient cases over `F_17`.
 For each nonsingular base block it verifies both the Cauchy-Binet coefficient
 formula and the compressed determinant-lemma formula against direct determinant
-evaluation at every finite slope.
+evaluation at every finite slope.  For rank-two rows it also checks that the
+discriminant formula gives the same roots as direct evaluation.
 
 Run:
 
@@ -100,11 +114,12 @@ experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/
 At `A=426`, where `j=86` and the prefix minor has size 87, this packet uses two
 update nodes and proves a degree-2 regular-minor bound.  The compressed
 quadratic splits over `F_17^32`, so the packet now records the exact two roots,
-their split-linear factorization certificate, and `declared_aperiodic_numerator
-= 2`.  The packet checker replays the low-rank moments, the Cauchy-Binet
-coefficients, and the compressed Lagrange kernel sidecar.  The companion
-invalid fixtures mutate one coefficient, one kernel entry, and one root table,
-respectively, and all are required to fail replay.
+their split-linear factorization certificate, a quadratic discriminant
+certificate, and `declared_aperiodic_numerator = 2`.  The packet checker
+replays the low-rank moments, the Cauchy-Binet coefficients, the compressed
+Lagrange kernel sidecar, and the quadratic formula.  The companion invalid
+fixtures mutate one coefficient, one kernel entry, one root table, and one
+quadratic square root, respectively, and all are required to fail replay.
 
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform quotient/tangent

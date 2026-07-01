@@ -20,8 +20,8 @@ where `X` is the first 87 nodes of the pinned `F_17^32` row descriptor and
 `y_1,y_2` are the next two descriptor nodes.  The prefix regular minor has
 degree at most `2` by the low-rank Cauchy-Binet formula.  In this instance the
 compressed quadratic splits over `F_17^32`, so the packet records the exact two
-roots and a split-linear factorization certificate.  It also records the
-compressed determinant-lemma sidecar
+roots, a split-linear factorization certificate, and a quadratic discriminant
+certificate.  It also records the compressed determinant-lemma sidecar
 
 ```text
 Delta(Z)=det(H_X) det(I+ZK)
@@ -56,13 +56,18 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 python3 scripts/check_aperiodic_eliminant_packet.py \
   --expect-fail \
   experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/invalid_low_rank2_omitted_root_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  --expect-fail \
+  experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/invalid_low_rank2_quadratic_root_packet.json
 ```
 
 The invalid fixture changes one determinant coefficient and must fail the
 low-rank coefficient replay.  The compression fixture changes one Lagrange
 kernel entry and must fail the low-rank compression sidecar replay.  The
 omitted-root fixture removes one of the two split roots and must fail exact root
-certificate replay.
+certificate replay.  The quadratic-root fixture changes the recorded square
+root of the discriminant and must fail the quadratic formula replay.
 
 Non-claims: this is a synthetic syndrome-pencil stress packet and exact-root
 certificate, not an actual-row M3 root table, quotient/tangent subtraction

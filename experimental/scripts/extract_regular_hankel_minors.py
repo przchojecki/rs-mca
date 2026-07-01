@@ -873,6 +873,44 @@ def quadratic_roots_field(
     return [field.decode(root) for root in sorted(roots)]
 
 
+def quadratic_root_certificate_field(
+    coefficients: list[tuple[int, ...]],
+    roots: list[tuple[int, ...]] | None,
+    field: PolynomialBasisField,
+) -> dict[str, Any] | None:
+    if roots is None:
+        return None
+    polynomial = fpoly_trim(coefficients, field)
+    if len(polynomial) != 3 or field.is_zero(polynomial[2]):
+        return None
+    c0, c1, c2 = polynomial
+    discriminant = field.sub(
+        field.mul(c1, c1),
+        field.mul(field.mul(field.normalize(4), c2), c0),
+    )
+    sqrt_discriminant = field_square_root(discriminant, field)
+    if sqrt_discriminant is None:
+        return None
+    formula_roots = quadratic_roots_field(polynomial, field)
+    if formula_roots is None:
+        return None
+    if sorted(field.encode(root) for root in formula_roots) != sorted(
+        field.encode(root) for root in roots
+    ):
+        return None
+    return {
+        "kind": "quadratic_discriminant_split",
+        "field_encoding": "base-p low-to-high integer",
+        "coefficients_ascending": [
+            field.encode(coefficient) for coefficient in polynomial
+        ],
+        "discriminant": field.encode(discriminant),
+        "sqrt_discriminant": field.encode(sqrt_discriminant),
+        "root_formula": "(-b +/- sqrt(discriminant))/(2a)",
+        "roots": sorted(field.encode(root) for root in roots),
+    }
+
+
 def determinant_field(
     matrix: list[list[tuple[int, ...]]], field: PolynomialBasisField
 ) -> tuple[int, ...]:
@@ -3095,6 +3133,13 @@ def result_to_packet_item_field(
                 )
                 if root_certificate is not None:
                     item["regular_minor_data"]["root_certificate"] = root_certificate
+                quadratic_certificate = quadratic_root_certificate_field(
+                    polynomial, roots, field
+                )
+                if quadratic_certificate is not None:
+                    item["regular_minor_data"]["quadratic_root_certificate"] = (
+                        quadratic_certificate
+                    )
             if result.enumerated_bad_slopes is not None:
                 item["regular_minor_data"]["enumerated_bad_slopes"] = sorted(
                     field.encode(slope) for slope in result.enumerated_bad_slopes

@@ -34,6 +34,7 @@
             ]
           },
           "polynomial_degree": 1,
+          "quadratic_root_gate": null,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
           "roots_mod_17": [
@@ -72,6 +73,7 @@
             ]
           },
           "polynomial_degree": 1,
+          "quadratic_root_gate": null,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
           "roots_mod_17": [
@@ -110,6 +112,7 @@
             ]
           },
           "polynomial_degree": 1,
+          "quadratic_root_gate": null,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
           "roots_mod_17": [
@@ -148,6 +151,7 @@
             ]
           },
           "polynomial_degree": 1,
+          "quadratic_root_gate": null,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
           "roots_mod_17": [
@@ -208,6 +212,10 @@
             ]
           },
           "polynomial_degree": 1,
+          "quadratic_root_gate": {
+            "reason": "polynomial degree is 1",
+            "status": "not_quadratic"
+          },
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
           "roots_mod_17": [
@@ -254,6 +262,17 @@
             ]
           },
           "polynomial_degree": 2,
+          "quadratic_root_gate": {
+            "discriminant_mod_17": 0,
+            "formula_roots_mod_17": [
+              15
+            ],
+            "matches_direct_roots": true,
+            "sqrt_discriminants_mod_17": [
+              0
+            ],
+            "status": "split"
+          },
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
           "roots_mod_17": [
@@ -280,6 +299,17 @@
             "compressed_identity_status": "base_singular_not_applied"
           },
           "polynomial_degree": 2,
+          "quadratic_root_gate": {
+            "discriminant_mod_17": 0,
+            "formula_roots_mod_17": [
+              0
+            ],
+            "matches_direct_roots": true,
+            "sqrt_discriminants_mod_17": [
+              0
+            ],
+            "status": "split"
+          },
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
           "roots_mod_17": [
@@ -326,6 +356,19 @@
             ]
           },
           "polynomial_degree": 2,
+          "quadratic_root_gate": {
+            "discriminant_mod_17": 13,
+            "formula_roots_mod_17": [
+              4,
+              14
+            ],
+            "matches_direct_roots": true,
+            "sqrt_discriminants_mod_17": [
+              8,
+              9
+            ],
+            "status": "split"
+          },
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 2,
           "roots_mod_17": [
@@ -373,6 +416,13 @@
             ]
           },
           "polynomial_degree": 2,
+          "quadratic_root_gate": {
+            "discriminant_mod_17": 14,
+            "formula_roots_mod_17": [],
+            "matches_direct_roots": true,
+            "sqrt_discriminants_mod_17": [],
+            "status": "nonsquare_no_roots"
+          },
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 0,
           "roots_mod_17": [],
@@ -437,6 +487,7 @@
             ]
           },
           "polynomial_degree": 1,
+          "quadratic_root_gate": null,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
           "roots_mod_17": [
@@ -491,6 +542,7 @@
             ]
           },
           "polynomial_degree": 2,
+          "quadratic_root_gate": null,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 0,
           "roots_mod_17": [],
@@ -516,6 +568,7 @@
             "compressed_identity_status": "base_singular_not_applied"
           },
           "polynomial_degree": 3,
+          "quadratic_root_gate": null,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 3,
           "roots_mod_17": [
@@ -545,6 +598,7 @@
             "compressed_identity_status": "base_singular_not_applied"
           },
           "polynomial_degree": 2,
+          "quadratic_root_gate": null,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
           "roots_mod_17": [
@@ -597,6 +651,7 @@
             ]
           },
           "polynomial_degree": 1,
+          "quadratic_root_gate": null,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
           "roots_mod_17": [
@@ -622,6 +677,7 @@
             "compressed_identity_status": "base_singular_not_applied"
           },
           "polynomial_degree": 1,
+          "quadratic_root_gate": null,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
           "roots_mod_17": [
@@ -647,6 +703,7 @@
             "compressed_identity_status": "base_singular_not_applied"
           },
           "polynomial_degree": -1,
+          "quadratic_root_gate": null,
           "root_bound_status": "singular_residual",
           "root_count": 17,
           "roots_mod_17": [

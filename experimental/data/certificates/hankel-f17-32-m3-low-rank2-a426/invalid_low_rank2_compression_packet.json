@@ -126,6 +126,22 @@
         "field_encoding": "base-p low-to-high integer",
         "field_extension_degree": 32,
         "p": 17,
+        "quadratic_root_certificate": {
+          "coefficients_ascending": [
+            1679562971418113032387101671407887322647,
+            1974573552609951618938640232952089017132,
+            2127859988470813504442687846078260636838
+          ],
+          "discriminant": 136588237100112210291412712086498977112,
+          "field_encoding": "base-p low-to-high integer",
+          "kind": "quadratic_discriminant_split",
+          "root_formula": "(-b +/- sqrt(discriminant))/(2a)",
+          "roots": [
+            344695097512796882540303623469788543556,
+            843473851308575985591116218312875860749
+          ],
+          "sqrt_discriminant": 1199888225991676476216326008773155006048
+        },
         "root_certificate": {
           "factors": [
             {

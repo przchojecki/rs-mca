@@ -315,6 +315,43 @@ def determinant_lemma_coefficients(
     return result
 
 
+def quadratic_root_gate_mod(
+    coefficients: list[int],
+    roots: list[int],
+    p: int,
+) -> dict[str, Any]:
+    trimmed = trim_polynomial(coefficients, p)
+    degree = polynomial_degree(trimmed, p)
+    if degree != 2:
+        return {
+            "status": "not_quadratic",
+            "reason": f"polynomial degree is {degree}",
+        }
+    c0, c1, c2 = trimmed
+    discriminant = (c1 * c1 - 4 * c2 * c0) % p
+    square_roots = [
+        value for value in range(p) if value * value % p == discriminant
+    ]
+    denominator_inverse = pow((2 * c2) % p, -1, p)
+    formula_roots = sorted(
+        {
+            ((-c1 + sqrt_value) * denominator_inverse) % p
+            for sqrt_value in square_roots
+        }
+    )
+    require(
+        formula_roots == roots,
+        "quadratic discriminant root gate did not match direct roots",
+    )
+    return {
+        "status": "split" if square_roots else "nonsquare_no_roots",
+        "discriminant_mod_17": discriminant,
+        "sqrt_discriminants_mod_17": square_roots,
+        "formula_roots_mod_17": formula_roots,
+        "matches_direct_roots": True,
+    }
+
+
 def visible_proportional_scalar(
     base_nodes: tuple[int, ...],
     update_nodes: tuple[int, ...],
@@ -391,6 +428,11 @@ def check_case(
                 "update_rank_bound": len(update_nodes),
                 "coefficients_mod_17_ascending": coefficients,
                 "compressed_determinant_lemma": compressed,
+                "quadratic_root_gate": quadratic_root_gate_mod(
+                    coefficients, roots, P
+                )
+                if len(update_nodes) == 2
+                else None,
                 "polynomial_degree": degree,
                 "zero_polynomial": zero_polynomial,
                 "roots_mod_17": roots,

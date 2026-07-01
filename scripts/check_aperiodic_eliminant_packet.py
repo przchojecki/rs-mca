@@ -805,6 +805,177 @@ def validate_split_linear_root_certificate_extension(
     return exact_roots
 
 
+def validate_quadratic_root_certificate_mod(
+    certificate: Any,
+    coefficients: list[int],
+    roots: list[int],
+    modulus: int,
+    location: str,
+) -> None:
+    if certificate is None:
+        return
+    if not isinstance(certificate, dict):
+        raise PacketError(
+            f"{location}.quadratic_root_certificate must be an object"
+        )
+    if certificate.get("kind") != "quadratic_discriminant_split":
+        raise PacketError(
+            f"{location}.quadratic_root_certificate.kind is unsupported"
+        )
+    trimmed = trim_mod_coefficients(coefficients, modulus)
+    if len(trimmed) != 3 or trimmed[2] == 0:
+        raise PacketError(
+            f"{location}.quadratic_root_certificate needs a quadratic polynomial"
+        )
+    if modulus == 2:
+        raise PacketError(
+            f"{location}.quadratic_root_certificate needs odd characteristic"
+        )
+    expected_coefficients = require_int_list(
+        certificate.get("coefficients_ascending"),
+        f"{location}.quadratic_root_certificate.coefficients_ascending",
+    )
+    if trim_mod_coefficients(expected_coefficients, modulus) != trimmed:
+        raise PacketError(
+            f"{location}.quadratic_root_certificate coefficients mismatch"
+        )
+    c0, c1, c2 = trimmed
+    discriminant = (c1 * c1 - 4 * c2 * c0) % modulus
+    discriminant_raw = certificate.get("discriminant")
+    if not isinstance(discriminant_raw, int):
+        raise PacketError(
+            f"{location}.quadratic_root_certificate.discriminant must be int"
+        )
+    if discriminant_raw % modulus != discriminant:
+        raise PacketError(
+            f"{location}.quadratic_root_certificate discriminant mismatch"
+        )
+    sqrt_raw = certificate.get("sqrt_discriminant")
+    if not isinstance(sqrt_raw, int):
+        raise PacketError(
+            f"{location}.quadratic_root_certificate.sqrt_discriminant must be int"
+        )
+    sqrt_discriminant = sqrt_raw % modulus
+    if sqrt_discriminant * sqrt_discriminant % modulus != discriminant:
+        raise PacketError(
+            f"{location}.quadratic_root_certificate sqrt mismatch"
+        )
+    denominator_inverse = pow((2 * c2) % modulus, -1, modulus)
+    formula_roots = sorted(
+        {
+            ((-c1 + signed_sqrt) * denominator_inverse) % modulus
+            for signed_sqrt in (
+                sqrt_discriminant,
+                (-sqrt_discriminant) % modulus,
+            )
+        }
+    )
+    certificate_roots = normalize_int_list(
+        certificate.get("roots"),
+        f"{location}.quadratic_root_certificate.roots",
+    )
+    require_exact_roots(
+        certificate_roots, formula_roots, f"{location}.quadratic_root_certificate"
+    )
+    require_exact_roots(roots, formula_roots, location)
+
+
+def validate_quadratic_root_certificate_extension(
+    certificate: Any,
+    coefficients: list[int],
+    roots: list[int],
+    field: PolynomialBasisField,
+    location: str,
+) -> None:
+    if certificate is None:
+        return
+    if not isinstance(certificate, dict):
+        raise PacketError(
+            f"{location}.quadratic_root_certificate must be an object"
+        )
+    if certificate.get("kind") != "quadratic_discriminant_split":
+        raise PacketError(
+            f"{location}.quadratic_root_certificate.kind is unsupported"
+        )
+    decoded = extension_poly_trim(
+        [field.decode(coefficient) for coefficient in coefficients], field
+    )
+    if len(decoded) != 3 or field.is_zero(decoded[2]):
+        raise PacketError(
+            f"{location}.quadratic_root_certificate needs a quadratic polynomial"
+        )
+    if field.p == 2:
+        raise PacketError(
+            f"{location}.quadratic_root_certificate needs odd characteristic"
+        )
+    expected_coefficients = require_int_list(
+        certificate.get("coefficients_ascending"),
+        f"{location}.quadratic_root_certificate.coefficients_ascending",
+    )
+    expected_decoded = extension_poly_trim(
+        [field.decode(coefficient) for coefficient in expected_coefficients],
+        field,
+    )
+    if expected_decoded != decoded:
+        raise PacketError(
+            f"{location}.quadratic_root_certificate coefficients mismatch"
+        )
+    c0, c1, c2 = decoded
+    discriminant = field.sub(
+        field.mul(c1, c1),
+        field.mul(field.mul(field.normalize(4), c2), c0),
+    )
+    discriminant_raw = certificate.get("discriminant")
+    if (
+        not isinstance(discriminant_raw, int)
+        or discriminant_raw < 0
+        or discriminant_raw >= field.size
+    ):
+        raise PacketError(
+            f"{location}.quadratic_root_certificate.discriminant must be "
+            "an encoded field element"
+        )
+    recorded_discriminant = field.decode(discriminant_raw)
+    if recorded_discriminant != discriminant:
+        raise PacketError(
+            f"{location}.quadratic_root_certificate discriminant mismatch"
+        )
+    sqrt_raw = certificate.get("sqrt_discriminant")
+    if not isinstance(sqrt_raw, int) or sqrt_raw < 0 or sqrt_raw >= field.size:
+        raise PacketError(
+            f"{location}.quadratic_root_certificate.sqrt_discriminant must be "
+            "an encoded field element"
+        )
+    sqrt_discriminant = field.decode(sqrt_raw)
+    if field.mul(sqrt_discriminant, sqrt_discriminant) != discriminant:
+        raise PacketError(
+            f"{location}.quadratic_root_certificate sqrt mismatch"
+        )
+    denominator_inverse = field.inv(field.mul(field.normalize(2), c2))
+    formula_roots = sorted(
+        {
+            field.encode(
+                field.mul(
+                    field.add(field.neg(c1), signed_sqrt),
+                    denominator_inverse,
+                )
+            )
+            for signed_sqrt in (
+                sqrt_discriminant,
+                field.neg(sqrt_discriminant),
+            )
+        }
+    )
+    certificate_roots = normalize_int_list(
+        certificate.get("roots"),
+        f"{location}.quadratic_root_certificate.roots",
+    )
+    require_exact_roots(
+        certificate_roots, formula_roots, f"{location}.quadratic_root_certificate"
+    )
+    require_exact_roots(roots, formula_roots, location)
+
+
 def first_matching_key(data: dict[str, Any], *patterns: str) -> str | None:
     for pattern in patterns:
         regex = re.compile(pattern)
@@ -3534,6 +3705,7 @@ def validate_regular_minor(
         data.get(bad_slope_key, []), f"A={item.get('A')} bad_slopes"
     )
     root_certificate = data.get("root_certificate")
+    quadratic_root_certificate = data.get("quadratic_root_certificate")
 
     if not coefficients:
         raise PacketError(f"A={item.get('A')}: empty coefficient list")
@@ -3576,6 +3748,13 @@ def validate_regular_minor(
             modulus,
             f"A={item.get('A')}",
         )
+        validate_quadratic_root_certificate_mod(
+            quadratic_root_certificate,
+            coefficients,
+            roots,
+            modulus,
+            f"A={item.get('A')}",
+        )
         exact_monomial_roots = monomial_exact_roots(coefficients, modulus)
         if modulus <= ROOT_COMPLETENESS_ENUMERATION_LIMIT:
             actual_roots = [
@@ -3606,6 +3785,13 @@ def validate_regular_minor(
             extension_field.decode(coefficient)
         validate_split_linear_root_certificate_extension(
             root_certificate,
+            coefficients,
+            roots,
+            extension_field,
+            f"A={item.get('A')}",
+        )
+        validate_quadratic_root_certificate_extension(
+            quadratic_root_certificate,
             coefficients,
             roots,
             extension_field,
