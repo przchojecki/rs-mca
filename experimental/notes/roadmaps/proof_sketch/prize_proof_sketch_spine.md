@@ -245,10 +245,17 @@ DONE    S3b.ii   strip-periodic
                  exactly as the counting does; GAP-1 non-equivariant
                  periodic mass; GAP-2 gcd(n,j)-vs-gcd(n,k) seam;
                  operative R2 stated)
-next -> S4       reserve dictionary: per-pair aligned counts <-> Lambda^aper
-                 packing <-> L1 reserve (sigma log q vs log C); read
-                 thm:normalform/def:residue for the GAP-2 seam; where the
-                 128 bits sit
+DONE    S4       reserve dictionary
+                 -> s4_reserve_dictionary.md (FM crossover = tau* IDENTITY,
+                 verified 6 digits all rates — pigeonhole and alignment-FM
+                 are one entropy budget; thm:normalform quoted: emca =
+                 (1/q)max_t Lambda^NC exact; three t's disambiguated;
+                 GAP-2 seam closed via pullback => M | t_denom; 128 bits
+                 shift crossover by ~2^-42 only; q_gen-vs-q_line column is
+                 the real asymmetry, pinned row generates: ord(17)=32)
+next -> S7       list side: L2 codegree consumption + L1 ImgFib target +
+                 the full-petal growth sub-battle; FM applied at q_gen;
+                 never let the reduction claim its input
         S2       Paid(A) as a single computable function (quotient closure)
         S3b.ii   the strip-periodic step: exact statement of the aperiodic
                  stratum via the proved confinement/equivariance results

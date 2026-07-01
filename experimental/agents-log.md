@@ -30,6 +30,37 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Proof-sketch S4: the reserve dictionary
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/proof_sketch/s4_reserve_dictionary.md`;
+  queue update in `prize_proof_sketch_spine.md`.
+- **Status:** VERIFIED-DICTIONARY core + textually grounded correspondences
+  + named GAPs. No new theorem claimed.
+- **What is being added:** Turn 7. (1) The identity: the sketch's FM
+  crossover equation is def:taustar's equation via H(x) = H(1-x) — solved
+  numerically, matches to six digits at all four rates. The list-side
+  pigeonhole scale and the MCA-side alignment first moment are ONE entropy
+  budget; spine S4 upgraded from CONJECTURE to verified dictionary.
+  (2) thm:normalform quoted: emca = (1/q) max_t Lambda^NC exact, so packing
+  numbers = per-line slope counts after the max; the three distinct t's
+  (denominator degree, monomial slack, syndrome window) disambiguated;
+  def:residue's noncontainment = the degenerate-pencil exclusion.
+  (3) GAP-2 closed at sketch level: a pullback denominator forces
+  M | t_denom, so rem:aper's line-side strip coincides with the
+  rate-preserving support-side strip; non-rate-preserving folds stay
+  aperiodic (no boost mechanism). (4) The 128 bits move the crossover by
+  ~2^-42 (sharp transition, ~2^49 bits per unit delta) — invisible; the
+  real cross-lane asymmetry is the field argument (tau* of q_gen vs
+  q_line); pinned row generates (ord(17 mod 512) = 32, verified), general
+  rows need both columns in the S5 tables.
+- **How it is useful:** Makes cross-lane bookkeeping mechanical (MCA, list,
+  L1, assembly all in one reserve currency); closes a definitional seam;
+  flags the q_gen split as an official-family check.
+- **What to do next:** Turn 8: S7 list side (L2 codegree consumption, L1
+  ImgFib target, full-petal growth sub-battle, FM at q_gen).
+
 ### 2026-07-01 - Proof-sketch S3b.ii: the strip-periodic step
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
