@@ -366,6 +366,17 @@ one table saying which repo theorem uses which convention
 no "officially solved" language
 ```
 
+Status: supplied by the audit note
+
+```text
+experimental/notes/audits/m0_prize_mca_definition_freeze.md
+```
+
+The note freezes the repository-side object, sampler, denominator, and endpoint
+conventions for the prize-facing row, and points to the packets that consume
+those conventions.  It is an audit convention file, not an external acceptance
+claim.
+
 ### M1. v10 Schema Verifier
 
 Write a checker for `scripts/aperiodic_eliminant_schema.json`.

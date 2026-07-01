@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M0 prize MCA definition freeze
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/audits/m0_prize_mca_definition_freeze.md`;
+  `towards-prize.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** A compact M0 convention note for the
+  prize-facing `RS[F_17^32,H,256]` row, including the support-wise MCA object,
+  same-support noncontainment, finite/projective samplers, endpoint convention,
+  and `q_gen/q_line/q_chal` separation.
+- **How it is useful:** It satisfies the current `towards-prize.md` M0 exit
+  criterion and gives later M1/M3/M4 packets a single convention reference.
+- **What to do next:** Human-review the predicate-level match to the external
+  sampler and keep future packets explicit about sampler, denominator, and
+  endpoint choices.
+
 ### 2026-07-01 - M3 support-uniform one-spike theorem
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
