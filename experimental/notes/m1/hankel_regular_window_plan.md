@@ -2,6 +2,13 @@
 
 Status: AUDIT.
 
+Tracked-artifact note: this file has accumulated draft packet descriptions
+across several M3 branches.  The files present in the current tree are the row
+descriptor, the regular-window plan, the generic regular-minor certificate, and
+the synthetic endpoint/top-window rank-witness packets explicitly listed
+below.  Later sidecar descriptions are plans or archived branch summaries
+unless their referenced files are present.
+
 This note fixes the arithmetic target for the M3 regular-window audit in
 `towards-prize.md`.
 
@@ -106,16 +113,8 @@ experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/
 They use synthetic `F_17^32` syndrome pencils at `A=385` and `A=426` and prove
 nonzero regular minors by rank witnesses.  This exercises the pinned
 field/domain arithmetic at the largest and smallest minor sizes in the window,
-but it is not a worst-case safe-side bound and does not provide a root table.
-The compact family certificate
-
-```text
-experimental/data/certificates/hankel-f17-32-m3-rank-witness-family/
-  f17_32_n512_k256_m3_rank_witness_family_certificate.json
-```
-
-records the same synthetic Vandermonde prefix witness for all 42 agreements in
-the window without storing 42 full v9 packets.  The fixed top-window packet
+and each endpoint packet carries the exact synthetic root table `{0}`.  The
+fixed top-window packet
 
 ```text
 experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/
@@ -123,21 +122,12 @@ experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/
 ```
 
 is a single v9 packet for one synthetic syndrome pencil covering
-`421 <= A <= 426`.
+`421 <= A <= 426`; it has root union `{0}` across the six exact agreements.
+These packets are not worst-case safe-side bounds.  They are selected
+synthetic replays that replace degree-only evidence by exact finite root tables
+for a small audited part of the window.
 
-The line-value lift
-
-```text
-experimental/data/certificates/hankel-f17-32-m3-line-value-lift/
-  f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json
-```
-
-uses the subgroup identity `lambda_x=x/512` to give explicit values
-`f,g:H -> F_17^32` whose weighted syndromes are exactly the fixed top-window
-input.  Thus that packet is not merely a free syndrome vector; it is the
-syndrome image of an explicit received line on the pinned row.
-
-The reusable theorem behind this lift is recorded in
+A later line-value lift would rely on the subgroup-section theorem
 
 ```text
 experimental/notes/m1/subgroup_syndrome_section.md
@@ -145,7 +135,8 @@ experimental/data/certificates/subgroup-syndrome-section/
   subgroup_syndrome_section_certificate.json
 ```
 
-It proves that for any multiplicative subgroup row, every syndrome vector of
+The intended statement is that for any multiplicative subgroup row, every
+syndrome vector of
 length at most the subgroup order has the explicit inverse-Fourier section
 `y_s(x)=sum_m s_m x^(-m-1)`.
 
@@ -157,19 +148,19 @@ t+j = (A-k)+(n-A) = n-k = 256 <= |H| = 512,
 ```
 
 every length-256 syndrome pencil `(u,v)` is realized by explicit line values
-`f,g:H -> F_17^32`.  The certificate
+`f,g:H -> F_17^32`.  A future certificate
 
 ```text
 experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/
   f17_32_n512_k256_m3_syndrome_realizability_certificate.json
 ```
 
-records this reduction.  Thus the remaining M3 regular-window gap is not
+should record this reduction.  Thus the remaining M3 regular-window gap is not
 construction of actual row data; it is universal classification of arbitrary
 length-256 syndrome pencils after tangent, quotient, and extension-confined
 branches are removed.
 
-The first subtraction sidecar for this packet is
+A later subtraction sidecar for this packet should record
 
 ```text
 experimental/notes/m1/f17_32_m3_zero_slope_subtraction.md
@@ -177,11 +168,11 @@ experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/
   f17_32_n512_k256_a421_426_zero_slope_subtraction.json
 ```
 
-It verifies that the synthetic root `{0}` is the zero-codeword
-tangent/common-code-line slope because the line-value lift has `f=0`.  Thus the
-fixed top-window packet has residual synthetic aperiodic numerator `0` after
-that paid tangent branch is removed.  This is a no-double-counting check for
-one synthetic packet, not the full M4 row table.
+that the synthetic root `{0}` is the zero-codeword
+tangent/common-code-line slope once a line-value lift with `f=0` is supplied.
+Such a sidecar would give residual synthetic aperiodic numerator `0` after
+that paid tangent branch is removed.  It would be a no-double-counting check
+for one synthetic packet, not the full M4 row table.
 
 The regular-window status ledger now records this as an explicit M4 mini-table
 for every `A=421..426`:

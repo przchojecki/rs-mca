@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-witness endpoint and top-window packets
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/data/hankel-regular-minor-inputs/`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank-witness-a385/`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/`;
+  `experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the synthetic finite replay.
+- **What is being added:** Selected M3 regular-window packets for the pinned
+  `F_17^32`, `n=512`, `k=256` row: endpoint replays at `A=385` and `A=426`,
+  plus a fixed-prefix top-window replay for `421 <= A <= 426`.  The extractor
+  checks the declared prefix row sets and records exact finite root tables
+  `Delta_A(Z)=c_A Z^(j+1)`, with root union `{0}`.
+- **How it is useful:** This addresses the immediate M3 instruction in
+  `towards-prize.md` to begin replacing degree-only regular-minor evidence by
+  actual selected-agreement root tables.  The top-window packet also tests one
+  multi-agreement root-union packet shape.  These are checker replays and
+  stress packets, not worst-case row bounds or safe-side closures.
+- **What to do next:** Extend from this synthetic selected-agreement packet to
+  row-level/adversarial M3 pencils, combine the roots with tangent/quotient/
+  extension subtraction, and classify singular buckets when the regular
+  extractor fails.
+
 ### 2026-07-01 - v10 guide and site metadata sync
 
 - **Agent/model:** Codex.
