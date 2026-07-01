@@ -45,7 +45,9 @@ Keep entries concise and link to the relevant files.
   also gives the all-contiguous-shift formula `det(H_X^(h)+Z H_Y^(h)) =
   det(V_X)^2 prod(X)^h det(I+ZK_h)`, plus the Cauchy-Binet
   replacement-subset coefficient formula and window-normalization lemmas for
-  the same shifted determinants.
+  the same shifted determinants.  It now isolates the first nonconstant
+  coefficient as `tr(K_h)` and gives its explicit normalized consecutive-window
+  subgroup sum.
 - **How it is useful:** Turns the rank-by-rank affine-gcd computation into a
   concrete spectral-disjointness target.  Proving that target through the
   endpoint-capacity range would close the synthetic low-rank regular

@@ -170,6 +170,57 @@ replacement sums over the interval of exponents.  The PR #170 verifier uses the
 kernel form; this formula is the coefficient-level proof target for a future
 symbolic or q-binomial argument.
 
+## Trace / One-Replacement Coefficient
+
+The first nonconstant coefficient of the normalized shifted determinant is the
+trace of the shifted kernel:
+
+```text
+[Z] det(I_r+ZK_h)
+  = tr(K_h)
+  = sum_a y_a^h sum_i x_i^(-h) L_i(y_a)^2.
+```
+
+This follows either from the determinant identity
+`det(I+ZK_h)=1+Z tr(K_h)+O(Z^2)` or from the `d=1` case of the replacement
+formula.
+
+For the normalized consecutive subgroup window
+
+```text
+X={1,alpha,...,alpha^(m-1)},
+Y={alpha^m,...,alpha^(m+r-1)},
+```
+
+this becomes
+
+```text
+[Z] det(I_r+ZK_h)
+  = sum_{a=0}^{r-1} sum_{i=0}^{m-1}
+      L_i(alpha^(m+a))^2 * alpha^(h(m+a-i)).
+```
+
+Equivalently,
+
+```text
+L_i(alpha^(m+a))
+  = prod_{0 <= ell < m, ell != i}
+      (alpha^(m+a-ell)-1)/(alpha^(i-ell)-1).
+```
+
+All denominators are nonzero because the row domain has order `512` and the
+M3 window has `m <= 128`; hence the exponents `i-ell` are nonzero modulo the
+domain order.  Thus the trace is a completely explicit subgroup sum.  Any
+eventual proof that the adjacent spectra are disjoint must, in particular,
+control the two first coefficients
+
+```text
+tr(K_0),    tr(K_1).
+```
+
+The verifier does not currently use this closed form; it is included to expose
+the first algebraic invariant one would attack in a hand proof.
+
 ## Window Normalization
 
 Two elementary invariances reduce the consecutive-subgroup case to a normalized
