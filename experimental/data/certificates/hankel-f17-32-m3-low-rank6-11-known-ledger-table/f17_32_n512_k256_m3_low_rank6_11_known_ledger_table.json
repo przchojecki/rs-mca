@@ -370,7 +370,7 @@
       "name": "endpoint_quotient_image",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_image.json",
       "schema_version": "f17-32-m3-low-rank2-11-endpoint-quotient-image-v1",
-      "sha256": "f54ae577d6e09d58740df3ff643f06b63a47377923e82ac8ccb2632c1965b4c7",
+      "sha256": "3bcea4abdf8a984ca6ad57fb6ea7f6be7489eed61ffe9d938587ec765e3ed4fe",
       "status": "PROVED / AUDIT"
     },
     "endpoint_quotient_support": {

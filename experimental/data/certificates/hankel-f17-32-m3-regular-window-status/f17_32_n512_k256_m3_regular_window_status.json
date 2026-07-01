@@ -95,7 +95,7 @@
       "name": "synthetic_low_rank2_11_endpoint_quotient_image",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_image.json",
       "schema_version": "f17-32-m3-low-rank2-11-endpoint-quotient-image-v1",
-      "sha256": "f54ae577d6e09d58740df3ff643f06b63a47377923e82ac8ccb2632c1965b4c7",
+      "sha256": "3bcea4abdf8a984ca6ad57fb6ea7f6be7489eed61ffe9d938587ec765e3ed4fe",
       "status": "PROVED / AUDIT"
     },
     {
@@ -172,7 +172,7 @@
       "name": "synthetic_low_rank6_11_known_ledger_table",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-known-ledger-table/f17_32_n512_k256_m3_low_rank6_11_known_ledger_table.json",
       "schema_version": "f17-32-m3-low-rank6-11-known-ledger-table-v4",
-      "sha256": "d328515b1bc28b4c3960d25e0895a7f92542c6f7abd8c207f4eb9280d55a3163",
+      "sha256": "6c344497b39a6903f4dd53985a130f5380dda1702673ce5b3e8f1239a754bb2e",
       "status": "PROVED / AUDIT"
     },
     {

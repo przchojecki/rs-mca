@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 endpoint quotient-image criterion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/hankel_endpoint_quotient_image_criterion.md`;
+  `experimental/scripts/verify_f17_32_m3_low_rank2_11_endpoint_quotient_image.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-known-ledger-table/`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Extracts the endpoint quotient-image argument into a
+  reusable criterion: if a quotient-remainder support avoids the endpoint
+  update block `Y` and the relevant Vandermonde columns are independent, then
+  the endpoint syndrome is explained on the quotient co-support while the base
+  syndrome is not.
+- **How it is useful:** This makes the rank `2..11` endpoint-image audit a
+  theorem-backed application rather than a one-off construction, and clarifies
+  why it is compatible with the separate proof that the minimal support `D\Y`
+  is not quotient-remainder.
+- **What to do next:** Look for less synthetic M3 endpoint or pivot charts
+  where the same criterion can charge projective endpoints to quotient-image.
+
 ### 2026-07-01 - M3 endpoint quotient-image witness
 
 - **Agent/model:** AllenGrahamHart / Codex.

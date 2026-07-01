@@ -207,6 +207,7 @@
     "storage": "compressed; verifier rebuilds all quotient-image witnesses"
   },
   "method": {
+    "criterion": "Hankel endpoint quotient-image criterion",
     "image_map": "because the quotient co-support contains Y, [0:1] is explained there by v; because |X|=j+1 and |T|=j with |X union T|<=n-k, u is not explained there",
     "quotient_remainder_witness": "construct an agreement-size support from c=2 quotient fibers that avoids the update block Y",
     "relation_to_support_exclusion": "the minimal endpoint support D minus Y is not itself a quotient-remainder support, but the same projective parameter has a different quotient-remainder witness support"
@@ -238,6 +239,11 @@
   },
   "schema_version": "f17-32-m3-low-rank2-11-endpoint-quotient-image-v1",
   "source_artifacts": {
+    "endpoint_quotient_image_criterion": {
+      "ref": "experimental/notes/m1/hankel_endpoint_quotient_image_criterion.md",
+      "sha256": "e2c20e21e0c2c8194d44a7f509aa4c60b94eaa155f0cf49a76ff543d208158d3",
+      "status": "PROVED / AUDIT"
+    },
     "endpoint_quotient_support_exclusion": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-support/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_support.json",
       "schema_version": "f17-32-m3-low-rank2-11-endpoint-quotient-support-v1",

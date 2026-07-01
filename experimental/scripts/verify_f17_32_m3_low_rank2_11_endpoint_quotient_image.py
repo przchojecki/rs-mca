@@ -46,6 +46,9 @@ ENDPOINT_QUOTIENT_SUPPORT_CERT = REPO_ROOT / (
     "hankel-f17-32-m3-low-rank2-11-endpoint-quotient-support/"
     "f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_support.json"
 )
+CRITERION_NOTE = REPO_ROOT / (
+    "experimental/notes/m1/hankel_endpoint_quotient_image_criterion.md"
+)
 OUTPUT_PATH = REPO_ROOT / (
     "experimental/data/certificates/"
     "hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/"
@@ -283,8 +286,14 @@ def build_certificate() -> dict[str, Any]:
                 "sha256": file_sha256(ENDPOINT_QUOTIENT_SUPPORT_CERT),
                 "schema_version": quotient_support["schema_version"],
             },
+            "endpoint_quotient_image_criterion": {
+                "ref": str(CRITERION_NOTE.relative_to(REPO_ROOT)),
+                "sha256": file_sha256(CRITERION_NOTE),
+                "status": "PROVED / AUDIT",
+            },
         },
         "method": {
+            "criterion": "Hankel endpoint quotient-image criterion",
             "quotient_remainder_witness": (
                 "construct an agreement-size support from c=2 quotient fibers "
                 "that avoids the update block Y"

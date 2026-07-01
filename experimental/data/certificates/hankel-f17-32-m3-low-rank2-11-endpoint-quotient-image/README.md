@@ -19,6 +19,12 @@ certificate proves a complementary quotient-image fact: the same projective
 parameter `[0:1]` has another witness support, of size exactly `A`, built from
 `c=2` quotient fibers and avoiding the update block `Y`.
 
+The reusable criterion behind the construction is recorded in
+`experimental/notes/m1/hankel_endpoint_quotient_image_criterion.md`.  It says
+that if a quotient-remainder support `S` avoids `Y` and the Vandermonde columns
+on `X union (D\S)` are independent, then the endpoint syndrome is explained on
+the quotient co-support while the base syndrome is not.
+
 Result: all `420` projective endpoint rows in ranks `2..11` have an explicit
 `c=2` quotient-image witness.
 
