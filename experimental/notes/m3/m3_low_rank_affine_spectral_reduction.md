@@ -35,7 +35,7 @@ H_X^(h) + Z H_Y^(h).
 In the `F_17^32` M3 packet, `m=j+1`, `X` is the first `j+1` descriptor-domain
 nodes, and `Y` is the next `rank` descriptor-domain nodes.
 
-## Lemma
+## Adjacent-Shift Lemma
 
 Define two `r x r` kernels
 
@@ -82,6 +82,43 @@ det(V_X D_X V_X^T + Z V_Y D_Y V_Y^T)
 The coordinate vector `V_X^(-1) v(y)` is `(L_i(y))_i`.  Substituting these
 coordinates gives the displayed formulas.
 
+## Contiguous-Shift Lemma
+
+More generally, for every integer `h >= 0`, put
+
+```text
+H_X^(h)[a,b] = sum_i x_i^(a+b+h),
+H_Y^(h)[a,b] = sum_c y_c^(a+b+h),
+
+K_h[a,b] = y_a^h * sum_i x_i^(-h) L_i(y_a)L_i(y_b).
+```
+
+Then
+
+```text
+det(H_X^(h) + Z H_Y^(h))
+  = det(V_X)^2 * (prod_i x_i^h) * det(I_r + Z K_h).
+```
+
+Proof.  The same determinant-lemma computation applies with
+`D_X^h=diag(x_i^h)` and `D_Y^h=diag(y_a^h)`:
+
+```text
+H_X^(h) = V_X D_X^h V_X^T,
+H_Y^(h) = V_Y D_Y^h V_Y^T.
+```
+
+Since every `x_i` is nonzero, `D_X^h` is invertible.  Therefore
+
+```text
+det(V_X D_X^h V_X^T + Z V_Y D_Y^h V_Y^T)
+  = det(V_X)^2 det(D_X^h)
+    det(I_r + Z D_Y^h V_Y^T V_X^(-T) D_X^(-h) V_X^(-1) V_Y),
+```
+
+and substituting the Lagrange coordinates of `V_X^(-1)v(y_a)` gives `K_h`.
+The adjacent-shift lemma is the special case `h=0,1`.
+
 ## Consequence For The v10 GCD Ledger
 
 The common finite affine roots of the two displayed maximal minors are exactly
@@ -102,7 +139,9 @@ gcd(det(I_r + Z K_0), det(I_r + Z K_1)) = 1.
 This is the formal reason the PR #170 affine packet can certify zero finite
 affine roots by checking only the prefix and row-shift-1 maximal minors: the
 canonical v10 affine rank-drop gcd divides the gcd of any two nonzero maximal
-minors.
+minors.  The contiguous-shift lemma gives the same small-kernel representation
+for every contiguous row-set minor `h..h+m-1`; future pivot packets can use
+additional shifts by replacing `K_0,K_1` with the corresponding `K_h` family.
 
 ## Current Certified Instance
 
@@ -141,3 +180,14 @@ synthetic low-rank regular projective packet after quotient-image endpoint
 subtraction.  It would still not be an arbitrary-row M3 theorem; it would be a
 clean model result explaining why this low-rank branch has no unpaid regular
 projective residual.
+
+A stronger pivot-ready form is:
+
+```text
+For the same consecutive subgroup nodes, prove that the reciprocal spectra of
+the kernels K_h have empty total intersection over the contiguous shifts needed
+by the v10 regular gcd.
+```
+
+The current PR only uses `h=0,1`; the all-shift formula identifies the exact
+small matrices that have to be compared if a later packet needs more shifts.
