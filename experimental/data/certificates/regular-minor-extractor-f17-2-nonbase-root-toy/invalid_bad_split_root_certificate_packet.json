@@ -114,6 +114,15 @@
     "n": 5
   },
   "sampler": "finite_affine_line",
+  "sampler_audit": {
+    "denominator": 289,
+    "denominator_formula": "|F|",
+    "extension_denominator_warning": "extension-valued slope packets are divided by the slope field order, not by the base field",
+    "field_role": "q_line",
+    "sampler": "finite_affine_line",
+    "slope_field": "F_17^2",
+    "slope_field_order": 289
+  },
   "schema_version": "aperiodic-hankel-eliminant-v1",
   "status": "PROVED"
 }

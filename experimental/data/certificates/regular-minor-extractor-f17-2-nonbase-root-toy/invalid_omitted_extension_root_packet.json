@@ -70,7 +70,7 @@
       "p": 17
     },
     "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_2_n5_k2_a4_nonbase_root_toy.json",
-    "input_sha256": "6c51ebac3e4375f8bd6c52d339f7e58c403a41917bd7ab567230dd33f4921106",
+    "input_sha256": "a36687aa9213832db25d3023df33e9a56994d68e7a9295b1b507c714a16589ee",
     "method": "numeric determinant interpolation over a polynomial-basis finite field",
     "name": "regular-hankel-minor-extractor",
     "row_set_strategy": {
@@ -97,6 +97,15 @@
     "n": 5
   },
   "sampler": "finite_affine_line",
+  "sampler_audit": {
+    "denominator": 289,
+    "denominator_formula": "|F|",
+    "extension_denominator_warning": "extension-valued slope packets are divided by the slope field order, not by the base field",
+    "field_role": "q_line",
+    "sampler": "finite_affine_line",
+    "slope_field": "F_17^2",
+    "slope_field_order": 289
+  },
   "schema_version": "aperiodic-hankel-eliminant-v1",
   "status": "INTENTIONALLY_INVALID"
 }

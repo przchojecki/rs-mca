@@ -300,6 +300,21 @@ experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/
 must fail because it corrupts the split-factor leading coefficient while
 leaving the root table unchanged.
 
+Extension-valued line packets now also carry a packet-level `sampler_audit`.
+For `finite_affine_line` over `F_p^d`, the checker requires denominator
+`p^d`; for `projective_line`, it requires `p^d+1`.  This is an F1-style
+denominator audit only: it prevents accidentally dividing an extension-valued
+slope count by the base field, but it does not assert any extension-line lift
+theorem.  The negative packet
+
+```text
+experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/
+  invalid_base_field_denominator_packet.json
+```
+
+must fail because it keeps the same non-base roots `x` and `-x` but changes the
+finite-affine denominator from `|F_17^2|=289` to `17`.
+
 The prime-field rank-pivot replay is
 
 ```text
@@ -490,6 +505,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 ! python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/invalid_omitted_extension_root_packet.json
+
+! python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/invalid_base_field_denominator_packet.json
 
 python3 experimental/scripts/extract_regular_hankel_minors.py \
   experimental/data/hankel-regular-minor-inputs/f17_n16_k8_a13_gcd_toy.json \

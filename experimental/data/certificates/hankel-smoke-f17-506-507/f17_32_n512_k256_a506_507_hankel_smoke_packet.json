@@ -9,6 +9,15 @@
   },
   "agreement_threshold": 506,
   "sampler": "finite_affine_line",
+  "sampler_audit": {
+    "sampler": "finite_affine_line",
+    "slope_field": "F_17^32",
+    "slope_field_order": 2367911594760467245844106297320951247361,
+    "denominator": 2367911594760467245844106297320951247361,
+    "denominator_formula": "|F|",
+    "field_role": "q_line",
+    "extension_denominator_warning": "extension-valued slope packets are divided by the slope field order, not by the base field"
+  },
   "removed_ledgers": [
     {
       "name": "tangent_common_code_line_A506",

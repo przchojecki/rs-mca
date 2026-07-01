@@ -1186,6 +1186,65 @@ def validate_claim_scope(packet: dict[str, Any]) -> None:
                 )
 
 
+def validate_sampler_audit(
+    packet: dict[str, Any],
+    modulus: int | None,
+    extension_field: PolynomialBasisField | None,
+) -> None:
+    row = packet.get("row")
+    row_field = row.get("field") if isinstance(row, dict) else None
+    parsed = parse_prime_power_field(row_field) if isinstance(row_field, str) else None
+    if parsed is None:
+        return
+    prime, degree = parsed
+    field_order = prime**degree
+    if modulus is not None and field_order != modulus:
+        raise PacketError("sampler_audit row.field does not match prime field")
+    if extension_field is not None:
+        if (prime, degree) != (extension_field.p, extension_field.degree):
+            raise PacketError("sampler_audit row.field does not match field_model")
+        field_order = extension_field.size
+
+    sampler = packet.get("sampler", "finite_affine_line")
+    if sampler not in {"finite_affine_line", "projective_line", "finite_power_curve"}:
+        return
+    audit = packet.get("sampler_audit")
+    audit_required = degree > 1 and sampler in {"finite_affine_line", "projective_line"}
+    if audit is None:
+        if audit_required:
+            raise PacketError("extension-field line packets need sampler_audit")
+        return
+    if not isinstance(audit, dict):
+        raise PacketError("sampler_audit must be an object")
+
+    if audit.get("sampler") != sampler:
+        raise PacketError("sampler_audit.sampler must match packet sampler")
+    if audit.get("slope_field") != row_field:
+        raise PacketError("sampler_audit.slope_field must match row.field")
+    if audit.get("slope_field_order") != field_order:
+        raise PacketError("sampler_audit.slope_field_order mismatch")
+
+    if sampler == "finite_affine_line":
+        expected_denominator = field_order
+        expected_formula = "|F|"
+    elif sampler == "projective_line":
+        expected_denominator = field_order + 1
+        expected_formula = "|P^1(F)| = |F| + 1"
+    else:
+        expected_denominator = None
+        expected_formula = None
+
+    if expected_denominator is not None:
+        if audit.get("denominator") != expected_denominator:
+            raise PacketError(
+                "sampler_audit.denominator must be the slope sampler size"
+            )
+        if audit.get("denominator_formula") != expected_formula:
+            raise PacketError("sampler_audit.denominator_formula mismatch")
+        if audit.get("field_role") != "q_line":
+            raise PacketError("sampler_audit.field_role must be q_line")
+
+
 def validate_pivot_atlas(packet: dict[str, Any]) -> list[int]:
     row = packet.get("row", {})
     row_field = row.get("field") if isinstance(row, dict) else None
@@ -3555,6 +3614,7 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     k = row["k"]
     modulus = parse_prime_field(row["field"])
     extension_field = PolynomialBasisField.from_packet(packet)
+    validate_sampler_audit(packet, modulus, extension_field)
     rank_replay_input = load_rank_replay_input(packet)
     projective_infinity_count = validate_projective_infinity(
         packet, modulus, extension_field

@@ -18,6 +18,18 @@
     },
     "agreement_threshold": {"type": "integer", "minimum": 0},
     "sampler": {"type": "string", "enum": ["finite_affine_line", "projective_line", "finite_power_curve"]},
+    "sampler_audit": {
+      "type": "object",
+      "properties": {
+        "sampler": {"type": "string", "enum": ["finite_affine_line", "projective_line", "finite_power_curve"]},
+        "slope_field": {"type": "string"},
+        "slope_field_order": {"type": "integer", "minimum": 1},
+        "denominator": {"type": "integer", "minimum": 1},
+        "denominator_formula": {"type": "string"},
+        "field_role": {"type": "string"},
+        "extension_denominator_warning": {"type": "string"}
+      }
+    },
     "claim_scope": {
       "type": "object",
       "required": ["row_data", "threshold_role", "root_status", "may_be_used_for_threshold_pinning"],

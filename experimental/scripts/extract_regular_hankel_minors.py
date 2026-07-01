@@ -33,6 +33,30 @@ ZERO_U_GCD_METHOD = "zero_u_monomial"
 RANK_AT_NODES_FAMILY_STRATEGY = "rank_at_nodes_family"
 
 
+def sampler_audit(row_field: str, sampler: str, field_size: int) -> dict[str, Any]:
+    if sampler == "finite_affine_line":
+        denominator = field_size
+        denominator_formula = "|F|"
+    elif sampler == "projective_line":
+        denominator = field_size + 1
+        denominator_formula = "|P^1(F)| = |F| + 1"
+    else:
+        denominator = field_size
+        denominator_formula = "sampler-specific parameter count"
+    return {
+        "sampler": sampler,
+        "slope_field": row_field,
+        "slope_field_order": field_size,
+        "denominator": denominator,
+        "denominator_formula": denominator_formula,
+        "field_role": "q_line",
+        "extension_denominator_warning": (
+            "extension-valued slope packets are divided by the slope field "
+            "order, not by the base field"
+        ),
+    }
+
+
 def mod(value: int, prime: int) -> int:
     return value % prime
 
@@ -2830,6 +2854,7 @@ def build_packet_field(
         },
         "agreement_threshold": int(spec.get("agreement_threshold", min(agreements))),
         "sampler": sampler,
+        "sampler_audit": sampler_audit(row["field"], sampler, field.size),
         "removed_ledgers": spec.get("removed_ledgers", []),
         "exact_agreements": exact_items,
         "extractor": {

@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Extension slope denominator audit
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `scripts/aperiodic_eliminant_schema.json`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/`;
+  extension-valued v9 packets under `experimental/data/certificates/`;
+  `experimental/notes/m1/hankel_regular_minor_extractor.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** Extension-valued line packets now carry a
+  `sampler_audit` recording the slope field, slope-field order, denominator,
+  denominator formula, and `q_line` role.  The checker requires denominator
+  `|F|` for finite-affine line packets and `|F|+1` for projective-line packets
+  over `F_p^d`.
+- **How it is useful:** This implements the roadmap's F1 denominator discipline
+  for current extension-valued Hankel packets: roots in `F_17^2` or `F_17^32`
+  cannot be accidentally divided by the base-field size.
+- **What to do next:** Keep this as denominator bookkeeping only; a genuine F1
+  lift theorem or counterexample is still needed before transferring base-field
+  MCA bounds to extension-valued lines.
+
 ### 2026-07-01 - Descriptor-backed closed-form leading replay
 
 - **Agent/model:** AllenGrahamHart / Codex.

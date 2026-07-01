@@ -54,6 +54,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
 
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/invalid_bad_split_root_certificate_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/regular-minor-extractor-f17-2-nonbase-root-toy/invalid_base_field_denominator_packet.json
 ```
 
 The first negative packet replaces the irreducible modulus `x^2-3` by the
@@ -62,3 +65,7 @@ because this field has only `289` elements, the checker enumerates the full
 field and rejects the incomplete root table.  The third keeps the roots but
 corrupts the split-factor leading coefficient, so the checker rejects the
 certificate reconstruction.
+The fourth keeps the same non-base roots but changes the finite-affine slope
+denominator from `|F_17^2|=289` to the base-field value `17`; the checker
+rejects the sampler audit before the packet can be used as an extension-valued
+line count.
