@@ -21,6 +21,7 @@ JSON pointer fragments.
 from __future__ import annotations
 
 import argparse
+from itertools import combinations
 import json
 from hashlib import sha256
 from pathlib import Path
@@ -1619,6 +1620,7 @@ CLOSED_FORM_REGULAR_MINOR_MODES = {
     "zero_u_monomial_roots",
     "scalar_multiple_roots",
     "one_spike_linear_roots",
+    "low_rank_update_bound",
 }
 
 
@@ -1658,7 +1660,10 @@ def packet_has_rank_replay_items(packet: dict[str, Any]) -> bool:
             and isinstance(minor, dict)
             and isinstance(minor.get("polynomial_ref"), str)
             and minor["polynomial_ref"].startswith("inline:")
-            and isinstance(item.get("regular_minor_data"), dict)
+            and (
+                isinstance(item.get("regular_minor_data"), dict)
+                or isinstance(item.get("regular_minor_polynomial_data"), dict)
+            )
         ):
             return True
         if item.get("regular_minor_gcd") is not None:
@@ -2324,6 +2329,264 @@ def validate_one_spike_linear_replay_field(
     return True
 
 
+def low_rank_update_coefficients_mod(
+    base_nodes: list[int],
+    update_nodes: list[int],
+    modulus: int,
+    location: str,
+) -> list[int]:
+    if not update_nodes:
+        raise PacketError(f"{location}: low-rank update needs update nodes")
+    if len(set(base_nodes)) != len(base_nodes):
+        raise PacketError(f"{location}: repeated low-rank base node")
+    if len(set(update_nodes)) != len(update_nodes):
+        raise PacketError(f"{location}: repeated low-rank update node")
+    if set(base_nodes).intersection(update_nodes):
+        raise PacketError(f"{location}: low-rank base/update nodes overlap")
+
+    c0 = vandermonde_square_mod(base_nodes, modulus, location)
+    coefficients = [0] * (len(update_nodes) + 1)
+    coefficients[0] = c0
+    base_denominators = []
+    for index, node in enumerate(base_nodes):
+        denominator = 1
+        for other_index, other in enumerate(base_nodes):
+            if other_index == index:
+                continue
+            diff = (node - other) % modulus
+            denominator = denominator * diff * diff % modulus
+        base_denominators.append(denominator)
+    base_denominator_inverses = [
+        pow(value, -1, modulus) for value in base_denominators
+    ]
+
+    update_to_all_base = {}
+    update_to_base_inverse_squares = {}
+    for update in update_nodes:
+        product_all = 1
+        inverse_squares = []
+        for base in base_nodes:
+            diff = (update - base) % modulus
+            diff_square = diff * diff % modulus
+            product_all = product_all * diff_square % modulus
+            inverse_squares.append(pow(diff_square, -1, modulus))
+        update_to_all_base[update] = product_all
+        update_to_base_inverse_squares[update] = inverse_squares
+
+    base_indices = range(len(base_nodes))
+    for update_count in range(1, len(update_nodes) + 1):
+        if update_count > len(base_nodes):
+            break
+        total = 0
+        for update_subset in combinations(update_nodes, update_count):
+            update_vandermonde = vandermonde_square_mod(
+                list(update_subset), modulus, location
+            )
+            for removed_indices in combinations(base_indices, update_count):
+                removed_nodes = [base_nodes[index] for index in removed_indices]
+                removed_vandermonde = vandermonde_square_mod(
+                    removed_nodes, modulus, location
+                )
+                numerator = update_vandermonde
+                for update in update_subset:
+                    update_product = update_to_all_base[update]
+                    for index in removed_indices:
+                        update_product = (
+                            update_product
+                            * update_to_base_inverse_squares[update][index]
+                        ) % modulus
+                    numerator = numerator * update_product % modulus
+
+                denominator_inverse = removed_vandermonde
+                for index in removed_indices:
+                    denominator_inverse = (
+                        denominator_inverse * base_denominator_inverses[index]
+                    ) % modulus
+                total = (
+                    total + c0 * numerator * denominator_inverse
+                ) % modulus
+        coefficients[update_count] = total
+    return trim_mod_coefficients(coefficients, modulus)
+
+
+def low_rank_update_coefficients_field(
+    base_nodes: list[tuple[int, ...]],
+    update_nodes: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+    location: str,
+) -> list[tuple[int, ...]]:
+    if not update_nodes:
+        raise PacketError(f"{location}: low-rank update needs update nodes")
+    if len(set(base_nodes)) != len(base_nodes):
+        raise PacketError(f"{location}: repeated low-rank base node")
+    if len(set(update_nodes)) != len(update_nodes):
+        raise PacketError(f"{location}: repeated low-rank update node")
+    if set(base_nodes).intersection(update_nodes):
+        raise PacketError(f"{location}: low-rank base/update nodes overlap")
+
+    c0 = vandermonde_square_field(base_nodes, field, location)
+    coefficients = [field.zero] * (len(update_nodes) + 1)
+    coefficients[0] = c0
+    base_denominators = []
+    for index, node in enumerate(base_nodes):
+        denominator = field.one
+        for other_index, other in enumerate(base_nodes):
+            if other_index == index:
+                continue
+            diff = field.sub(node, other)
+            denominator = field.mul(denominator, field.mul(diff, diff))
+        base_denominators.append(denominator)
+    base_denominator_inverses = [field.inv(value) for value in base_denominators]
+
+    update_to_all_base: dict[tuple[int, ...], tuple[int, ...]] = {}
+    update_to_base_inverse_squares: dict[tuple[int, ...], list[tuple[int, ...]]] = {}
+    for update in update_nodes:
+        product_all = field.one
+        inverse_squares = []
+        for base in base_nodes:
+            diff = field.sub(update, base)
+            diff_square = field.mul(diff, diff)
+            product_all = field.mul(product_all, diff_square)
+            inverse_squares.append(field.inv(diff_square))
+        update_to_all_base[update] = product_all
+        update_to_base_inverse_squares[update] = inverse_squares
+
+    base_indices = range(len(base_nodes))
+    for update_count in range(1, len(update_nodes) + 1):
+        if update_count > len(base_nodes):
+            break
+        total = field.zero
+        for update_subset in combinations(update_nodes, update_count):
+            update_vandermonde = vandermonde_square_field(
+                list(update_subset), field, location
+            )
+            for removed_indices in combinations(base_indices, update_count):
+                removed_nodes = [base_nodes[index] for index in removed_indices]
+                removed_vandermonde = vandermonde_square_field(
+                    removed_nodes, field, location
+                )
+                numerator = update_vandermonde
+                for update in update_subset:
+                    update_product = update_to_all_base[update]
+                    for index in removed_indices:
+                        update_product = field.mul(
+                            update_product,
+                            update_to_base_inverse_squares[update][index],
+                        )
+                    numerator = field.mul(numerator, update_product)
+
+                denominator_inverse = removed_vandermonde
+                for index in removed_indices:
+                    denominator_inverse = field.mul(
+                        denominator_inverse, base_denominator_inverses[index]
+                    )
+                total = field.add(
+                    total,
+                    field.mul(c0, field.mul(numerator, denominator_inverse)),
+                )
+        coefficients[update_count] = total
+    return extension_poly_trim(coefficients, field)
+
+
+def require_low_rank_update_metadata(
+    rank_replay_input: dict[str, Any],
+    size: int,
+    location: str,
+) -> tuple[list[int], list[int]]:
+    data = rank_replay_input.get("low_rank_update")
+    if not isinstance(data, dict):
+        raise PacketError(f"{location}: low_rank_update_bound needs metadata")
+    base_encodings = require_int_list(
+        data.get("base_node_encodings"),
+        f"{location}: low_rank_update.base_node_encodings",
+    )
+    if len(base_encodings) != size:
+        raise PacketError(
+            f"{location}: low-rank base-node count {len(base_encodings)} "
+            f"does not equal minor size {size}"
+        )
+    update_encodings = require_int_list(
+        data.get("update_node_encodings"),
+        f"{location}: low_rank_update.update_node_encodings",
+    )
+    if not update_encodings:
+        raise PacketError(f"{location}: low-rank update nodes cannot be empty")
+    return base_encodings, update_encodings
+
+
+def validate_low_rank_update_replay_mod(
+    row_set: list[int],
+    coefficients: list[int],
+    rank_replay_input: dict[str, Any],
+    u: list[int],
+    v: list[int],
+    visible_length: int,
+    size: int,
+    modulus: int,
+    location: str,
+) -> bool:
+    if row_set != list(range(size)):
+        raise PacketError(f"{location}: low-rank replay needs the prefix row set")
+    base_encodings, update_encodings = require_low_rank_update_metadata(
+        rank_replay_input, size, location
+    )
+    if any(value < 0 or value >= modulus for value in base_encodings):
+        raise PacketError(f"{location}: low-rank base node outside F_{modulus}")
+    if any(value < 0 or value >= modulus for value in update_encodings):
+        raise PacketError(f"{location}: low-rank update node outside F_{modulus}")
+    expected_u = one_spike_syndrome_mod(base_encodings, visible_length, modulus)
+    expected_v = one_spike_syndrome_mod(update_encodings, visible_length, modulus)
+    if [value % modulus for value in u[:visible_length]] != expected_u:
+        raise PacketError(f"{location}: low-rank u moments do not replay")
+    if [value % modulus for value in v[:visible_length]] != expected_v:
+        raise PacketError(f"{location}: low-rank v moments do not replay")
+    expected = low_rank_update_coefficients_mod(
+        base_encodings, update_encodings, modulus, location
+    )
+    if trim_mod_coefficients(coefficients, modulus) != expected:
+        raise PacketError(
+            f"{location}: low-rank update coefficients do not match replay"
+        )
+    return True
+
+
+def validate_low_rank_update_replay_field(
+    row_set: list[int],
+    coefficients: list[int],
+    rank_replay_input: dict[str, Any],
+    u_field: list[tuple[int, ...]],
+    v_field: list[tuple[int, ...]],
+    visible_length: int,
+    size: int,
+    field: PolynomialBasisField,
+    location: str,
+) -> bool:
+    if row_set != list(range(size)):
+        raise PacketError(f"{location}: low-rank replay needs the prefix row set")
+    base_encodings, update_encodings = require_low_rank_update_metadata(
+        rank_replay_input, size, location
+    )
+    base_nodes = [field.decode(value) for value in base_encodings]
+    update_nodes = [field.decode(value) for value in update_encodings]
+    expected_u = one_spike_syndrome_field(base_nodes, visible_length, field)
+    expected_v = one_spike_syndrome_field(update_nodes, visible_length, field)
+    if u_field[:visible_length] != expected_u:
+        raise PacketError(f"{location}: low-rank extension u moments do not replay")
+    if v_field[:visible_length] != expected_v:
+        raise PacketError(f"{location}: low-rank extension v moments do not replay")
+    decoded = extension_poly_trim(
+        [field.decode(coefficient) for coefficient in coefficients], field
+    )
+    expected = low_rank_update_coefficients_field(
+        base_nodes, update_nodes, field, location
+    )
+    if decoded != expected:
+        raise PacketError(
+            f"{location}: low-rank extension coefficients do not match replay"
+        )
+    return True
+
+
 def validate_rank_specializations(
     item: dict[str, Any],
     row_set: list[int],
@@ -2546,6 +2809,18 @@ def validate_closed_form_regular_minor_replay(
                 modulus,
                 location,
             )
+        if mode == "low_rank_update_bound":
+            return validate_low_rank_update_replay_mod(
+                row_set,
+                coefficients,
+                rank_replay_input,
+                u,
+                v,
+                visible_length,
+                size,
+                modulus,
+                location,
+            )
         scalar = 0
         if mode == "scalar_multiple_roots":
             scalar_raw = syndrome.get("scalar_multiple_u_over_v")
@@ -2598,6 +2873,18 @@ def validate_closed_form_regular_minor_replay(
         )
     if mode == "one_spike_linear_roots":
         return validate_one_spike_linear_replay_field(
+            row_set,
+            coefficients,
+            rank_replay_input,
+            u_field,
+            v_field,
+            visible_length,
+            size,
+            extension_field,
+            location,
+        )
+    if mode == "low_rank_update_bound":
+        return validate_low_rank_update_replay_field(
             row_set,
             coefficients,
             rank_replay_input,
@@ -2969,6 +3256,7 @@ def validate_regular_minor(
         )
 
     data = item.get("regular_minor_data")
+    polynomial_data = item.get("regular_minor_polynomial_data")
     if str(minor["polynomial_ref"]).startswith("rank_witness:"):
         validate_rank_witness_minor(
             item,
@@ -2983,6 +3271,73 @@ def validate_regular_minor(
             )
         return None, []
     if data is None:
+        if polynomial_data is None:
+            return None, []
+        if not isinstance(polynomial_data, dict):
+            raise PacketError(
+                f"A={item.get('A')}: regular_minor_polynomial_data must be an object"
+            )
+        coefficient_key = first_matching_key(
+            polynomial_data,
+            r"coefficients_mod_\d+_ascending",
+            r"coefficients_ascending",
+        )
+        if coefficient_key is None:
+            raise PacketError(
+                f"A={item.get('A')}: regular_minor_polynomial_data needs coefficients"
+            )
+        coefficients = require_int_list(
+            polynomial_data[coefficient_key],
+            f"A={item.get('A')} polynomial coefficients",
+        )
+        if not coefficients:
+            raise PacketError(f"A={item.get('A')}: empty coefficient list")
+        if all(coefficient == 0 for coefficient in coefficients):
+            raise PacketError(f"A={item.get('A')}: zero regular-minor polynomial")
+        actual_degree = poly_degree(coefficients)
+        if actual_degree != minor["degree"]:
+            raise PacketError(
+                f"A={item.get('A')}: degree field {minor['degree']} "
+                f"!= actual {actual_degree}"
+            )
+        expected_hash = hash_json(
+            {
+                "roots": "not_enumerated",
+                "degree_bound": actual_degree,
+                "row_set": row_set,
+            }
+        )
+        if minor["root_hash"] != expected_hash:
+            raise PacketError(f"A={item.get('A')}: degree-bound root_hash mismatch")
+        if validate_closed_form_regular_minor_replay(
+            item,
+            row_set,
+            coefficients,
+            rank_replay_input,
+            modulus,
+            extension_field,
+            f"A={item.get('A')}: regular_minor",
+        ):
+            pass
+        elif expected_size <= INLINE_MINOR_REPLAY_SIZE_LIMIT:
+            validate_minor_polynomial_replay(
+                item,
+                row_set,
+                coefficients,
+                rank_replay_input,
+                modulus,
+                extension_field,
+                f"A={item.get('A')}: regular_minor",
+            )
+        if modulus is not None:
+            for coefficient in coefficients:
+                if coefficient < 0:
+                    raise PacketError(
+                        f"A={item.get('A')}: negative polynomial coefficient"
+                    )
+        if extension_field is not None:
+            for coefficient in coefficients:
+                extension_field.decode(coefficient)
         return None, []
     if not isinstance(data, dict):
         raise PacketError(f"A={item.get('A')}: regular_minor_data must be an object")

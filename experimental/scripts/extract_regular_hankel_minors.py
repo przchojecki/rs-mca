@@ -29,6 +29,7 @@ DEFAULT_MAX_BAD_SLOPE_SUBSETS = 200000
 ZERO_U_MONOMIAL_MODE = "zero_u_monomial_roots"
 SCALAR_MULTIPLE_MODE = "scalar_multiple_roots"
 ONE_SPIKE_LINEAR_MODE = "one_spike_linear_roots"
+LOW_RANK_UPDATE_MODE = "low_rank_update_bound"
 MINOR_GCD_MODE = "minor_gcd_roots"
 ZERO_U_GCD_METHOD = "zero_u_monomial"
 RANK_AT_NODES_FAMILY_STRATEGY = "rank_at_nodes_family"
@@ -1049,6 +1050,121 @@ def one_spike_linear_data_field(
     )
 
 
+def low_rank_update_coefficients_field(
+    base_nodes: list[tuple[int, ...]],
+    update_nodes: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    """Return coefficients for det(V_X V_X^T + Z V_Y V_Y^T).
+
+    This optimized form assumes ``len(base_nodes)`` is the prefix minor size.
+    It computes Cauchy-Binet terms by replacing d base nodes with d update
+    nodes and scaling the base Vandermonde square.
+    """
+
+    if not update_nodes:
+        raise ValueError("low-rank update needs at least one update node")
+    if len(set(base_nodes)) != len(base_nodes):
+        raise ValueError("low-rank update base nodes must be distinct")
+    if len(set(update_nodes)) != len(update_nodes):
+        raise ValueError("low-rank update nodes must be distinct")
+    if set(base_nodes).intersection(update_nodes):
+        raise ValueError("low-rank update nodes must be disjoint from base nodes")
+
+    c0 = vandermonde_square_field(base_nodes, field)
+    coefficients = [field.zero] * (len(update_nodes) + 1)
+    coefficients[0] = c0
+    base_denominators = []
+    for index, node in enumerate(base_nodes):
+        denominator = field.one
+        for other_index, other in enumerate(base_nodes):
+            if other_index == index:
+                continue
+            diff = field.sub(node, other)
+            denominator = field.mul(denominator, field.mul(diff, diff))
+        base_denominators.append(denominator)
+    base_denominator_inverses = [field.inv(value) for value in base_denominators]
+
+    update_to_all_base: dict[tuple[int, ...], tuple[int, ...]] = {}
+    update_to_base_inverse_squares: dict[tuple[int, ...], list[tuple[int, ...]]] = {}
+    for update in update_nodes:
+        product_all = field.one
+        inverse_squares = []
+        for base in base_nodes:
+            diff = field.sub(update, base)
+            diff_square = field.mul(diff, diff)
+            product_all = field.mul(product_all, diff_square)
+            inverse_squares.append(field.inv(diff_square))
+        update_to_all_base[update] = product_all
+        update_to_base_inverse_squares[update] = inverse_squares
+
+    base_indices = range(len(base_nodes))
+    for update_count in range(1, len(update_nodes) + 1):
+        if update_count > len(base_nodes):
+            break
+        total = field.zero
+        for update_subset in combinations(update_nodes, update_count):
+            update_vandermonde = vandermonde_square_field(list(update_subset), field)
+            for removed_indices in combinations(base_indices, update_count):
+                removed_nodes = [base_nodes[index] for index in removed_indices]
+                removed_vandermonde = vandermonde_square_field(removed_nodes, field)
+                numerator = update_vandermonde
+                for update in update_subset:
+                    update_product = update_to_all_base[update]
+                    for index in removed_indices:
+                        update_product = field.mul(
+                            update_product,
+                            update_to_base_inverse_squares[update][index],
+                        )
+                    numerator = field.mul(numerator, update_product)
+
+                denominator_inverse = removed_vandermonde
+                for index in removed_indices:
+                    denominator_inverse = field.mul(
+                        denominator_inverse, base_denominator_inverses[index]
+                    )
+                total = field.add(
+                    total,
+                    field.mul(c0, field.mul(numerator, denominator_inverse)),
+                )
+        coefficients[update_count] = total
+    return coefficients
+
+
+def low_rank_update_data_field(
+    spec: dict[str, Any],
+    size: int,
+    visible_length: int,
+    u: list[tuple[int, ...]],
+    v: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> tuple[list[tuple[int, ...]], list[tuple[int, ...]], list[tuple[int, ...]]]:
+    data = spec.get("low_rank_update")
+    if not isinstance(data, dict):
+        raise ValueError("low_rank_update_bound needs low_rank_update metadata")
+    base_encodings = data.get("base_node_encodings")
+    if not isinstance(base_encodings, list):
+        raise ValueError("low_rank_update.base_node_encodings must be a list")
+    if len(base_encodings) != size:
+        raise ValueError("low-rank update base-node count must equal minor size")
+    update_encodings = data.get("update_node_encodings")
+    if not isinstance(update_encodings, list) or not update_encodings:
+        raise ValueError("low_rank_update.update_node_encodings must be a nonempty list")
+    if not all(isinstance(value, int) for value in update_encodings):
+        raise ValueError("low_rank_update.update_node_encodings must be integers")
+    base_nodes = [field.decode(int(value)) for value in base_encodings]
+    update_nodes = [field.decode(int(value)) for value in update_encodings]
+    expected_u = one_spike_syndrome_field(base_nodes, visible_length, field)
+    expected_v = one_spike_syndrome_field(update_nodes, visible_length, field)
+    if u[:visible_length] != expected_u:
+        raise ValueError("low_rank_update u moments do not match base nodes")
+    if v[:visible_length] != expected_v:
+        raise ValueError("low_rank_update v moments do not match update nodes")
+    return base_nodes, update_nodes, low_rank_update_coefficients_field(
+        base_nodes, update_nodes, field
+    )
+
+
 @dataclass(frozen=True)
 class ExtractionResult:
     exact_agreement: int
@@ -1564,9 +1680,10 @@ def extract_for_agreement(
             "node": None,
             "nodes_tested": None,
         }
-    if spec.get("certificate_mode") == ONE_SPIKE_LINEAR_MODE:
+    if spec.get("certificate_mode") in {ONE_SPIKE_LINEAR_MODE, LOW_RANK_UPDATE_MODE}:
         raise ValueError(
-            "one_spike_linear_roots currently requires a polynomial-basis field_model"
+            f"{spec.get('certificate_mode')} currently requires a "
+            "polynomial-basis field_model"
         )
     if spec.get("certificate_mode") in {ZERO_U_MONOMIAL_MODE, SCALAR_MULTIPLE_MODE}:
         scalar = 0
@@ -1945,6 +2062,41 @@ def extract_for_agreement_field(
             None,
             1,
             row_set_source="one_spike_linear_prefix",
+        )
+    if spec.get("certificate_mode") == LOW_RANK_UPDATE_MODE:
+        row_set = list(range(size))
+        _base_nodes, update_nodes, polynomial = low_rank_update_data_field(
+            spec, size, t + j, u, v, field
+        )
+        if fpoly_is_zero(polynomial, field):
+            return ExtractionResult(
+                exact_agreement,
+                j,
+                t,
+                "residual_obstruction",
+                None,
+                None,
+                None,
+                None,
+                1,
+                row_set_source="low_rank_update_prefix",
+                residual_label="unknown",
+                residual_reason=(
+                    "low-rank update determinant vanished identically for "
+                    "the prefix row set"
+                ),
+            )
+        return ExtractionResult(
+            exact_agreement,
+            j,
+            t,
+            "regular_minor",
+            row_set,
+            polynomial,
+            None,
+            None,
+            1,
+            row_set_source=f"low_rank_update_prefix_rank{len(update_nodes)}",
         )
     if spec.get("certificate_mode") in {ZERO_U_MONOMIAL_MODE, SCALAR_MULTIPLE_MODE}:
         scalar = field.zero
@@ -2998,6 +3150,8 @@ def build_packet_field(
                 if spec.get("certificate_mode") == SCALAR_MULTIPLE_MODE
                 else "one-spike linear closed-form root certificate over a polynomial-basis finite field"
                 if spec.get("certificate_mode") == ONE_SPIKE_LINEAR_MODE
+                else "low-rank update closed-form degree-bound certificate over a polynomial-basis finite field"
+                if spec.get("certificate_mode") == LOW_RANK_UPDATE_MODE
                 else "common-gcd audit of numeric determinant minors over a polynomial-basis finite field"
                 if spec.get("certificate_mode") == MINOR_GCD_MODE
                 and spec.get("minor_gcd_method") != ZERO_U_GCD_METHOD

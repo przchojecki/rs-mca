@@ -277,6 +277,21 @@ small-rank non-proportional directions give regular-minor root bounds
 independent of the minor size; identically zero determinants are explicitly
 singular residual buckets for the pivot atlas, not aperiodic evidence.
 
+The corresponding rank-2 `F_17^32` endpoint packet is
+
+```text
+experimental/data/hankel-regular-minor-inputs/
+  f17_32_n512_k256_a426_low_rank2_input.json
+
+experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/
+  f17_32_n512_k256_a426_low_rank2_packet.json
+```
+
+It proves a degree-2 prefix regular-minor bound at `A=426`.  Since roots are
+not enumerated over `F_17^32`, the packet records `root_union_table_ref =
+not_enumerated` and `regular_root_bound_sum = 2`; the checker still replays
+the determinant coefficients from the low-rank input.
+
 The current status ledger
 
 ```text
@@ -324,6 +339,18 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 experimental/scripts/verify_m1_hankel_low_rank_update_template.py \
   --check experimental/data/certificates/hankel-low-rank-update-template/hankel_low_rank_update_template_certificate.json
+
+python3 experimental/scripts/emit_f17_32_m3_rank_witness_input.py \
+  --agreement 426 \
+  --low-rank-update-count 2 \
+  --check experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_low_rank2_input.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_low_rank2_input.json \
+  --check experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/f17_32_n512_k256_a426_low_rank2_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/f17_32_n512_k256_a426_low_rank2_packet.json
 ```
 
 Non-claims: this note does not enumerate universal root sets for arbitrary

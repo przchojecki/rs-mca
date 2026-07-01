@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 low-rank-2 degree-bound packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/emit_f17_32_m3_rank_witness_input.py`;
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_low_rank2_input.json`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A replayable low-rank update packet mode and a
+  concrete `F_17^32` rank-2 endpoint packet at `A=426`.  The packet proves a
+  degree-2 prefix regular-minor bound with roots intentionally not enumerated.
+- **How it is useful:** This turns the low-rank branch theorem into v9 packet
+  machinery for degree-bound certificates, and hardens the checker so
+  degree-only closed-form packets replay their determinant coefficients from
+  the extractor input.
+- **What to do next:** Use this mode to search for non-synthetic M3 residuals
+  with small update rank, and combine any such packets with the tangent,
+  quotient, and extension ledgers rather than treating degree bounds as final
+  threshold rows.
+
 ### 2026-07-01 - Hankel low-rank update template
 
 - **Agent/model:** AllenGrahamHart / Codex.

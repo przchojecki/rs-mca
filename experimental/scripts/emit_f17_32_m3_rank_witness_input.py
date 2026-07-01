@@ -83,9 +83,15 @@ def build_input(
     syndrome_scalar: int = 0,
     minor_gcd_contiguous_limit: int | None = None,
     one_spike_linear: bool = False,
+    low_rank_update_count: int | None = None,
 ) -> dict[str, Any]:
     descriptor = load_json(ROW_DESCRIPTOR)
     field = Field(P, MODULUS)
+    low_rank_update = low_rank_update_count is not None
+    if low_rank_update_count is not None and low_rank_update_count <= 0:
+        raise ValueError("low-rank update count must be positive")
+    if one_spike_linear and low_rank_update:
+        raise ValueError("choose either one-spike or low-rank update mode")
     if agreement_max is not None and agreement_max < agreement:
         raise ValueError("agreement-max must be at least agreement")
     agreements = list(range(agreement, (agreement_max or agreement) + 1))
@@ -101,6 +107,15 @@ def build_input(
         if minor_gcd_contiguous_limit is not None:
             raise ValueError("one-spike linear input is not a minor-gcd mode")
         prefix_count = size + 1
+    if low_rank_update:
+        if agreement_max is not None:
+            raise ValueError("low-rank update input currently supports one agreement")
+        if syndrome_scalar:
+            raise ValueError("low-rank update input is not a scalar-multiple mode")
+        if minor_gcd_contiguous_limit is not None:
+            raise ValueError("low-rank update input is not a minor-gcd mode")
+        assert low_rank_update_count is not None
+        prefix_count = size + low_rank_update_count
     if prefix_count < size:
         raise ValueError("witness prefix count must cover the largest minor")
     if t_value < size:
@@ -120,6 +135,14 @@ def build_input(
         v_syndrome = power_sum_syndrome(field, [spike_node], length)
         scalar = field.zero
         proportional = False
+    elif low_rank_update:
+        assert low_rank_update_count is not None
+        base_nodes = nodes[:size]
+        update_nodes = nodes[size : size + low_rank_update_count]
+        u_syndrome = power_sum_syndrome(field, base_nodes, length)
+        v_syndrome = power_sum_syndrome(field, update_nodes, length)
+        scalar = field.zero
+        proportional = False
     else:
         v_syndrome = power_sum_syndrome(field, nodes, length)
         scalar = field.normalize(syndrome_scalar)
@@ -137,6 +160,14 @@ def build_input(
             "synthetic M3 one-spike syndrome uses the first j+1 elements "
             "and the next descriptor-domain element as spike"
         )
+    elif low_rank_update:
+        assert low_rank_update_count is not None
+        domain_description = (
+            "order-512 subgroup from the pinned F_17^32 row descriptor; "
+            "synthetic M3 low-rank update syndrome uses the first j+1 "
+            f"elements and the next {low_rank_update_count} descriptor-domain "
+            "elements as update nodes"
+        )
     elif agreement_max is None:
         domain_description = (
             "order-512 subgroup from the pinned F_17^32 row descriptor; "
@@ -152,6 +183,14 @@ def build_input(
             "synthetic M3 one-spike linear witness: "
             f"u_m=sum_i x_i^m for the first {size} descriptor-domain elements "
             f"and v_m=y^m for descriptor-domain element {size}"
+        )
+    elif low_rank_update:
+        assert low_rank_update_count is not None
+        line_description = (
+            "synthetic M3 low-rank update witness: "
+            f"u_m=sum_i x_i^m for the first {size} descriptor-domain elements "
+            f"and v_m=sum_i y_i^m for the next {low_rank_update_count} "
+            "descriptor-domain elements"
         )
     elif proportional:
         line_description = (
@@ -181,10 +220,15 @@ def build_input(
             "determinant affine in the slope"
             if one_spike_linear
             else (
-                "u=c*v makes the prefix determinant a nonzero scalar multiple "
-                "of (Z+c)^(j+1)"
-                if proportional
-                else "u=0 makes the prefix determinant a nonzero monomial in the slope"
+                "low-rank Cauchy-Binet update makes the prefix determinant "
+                "degree-bounded by the update rank"
+                if low_rank_update
+                else (
+                    "u=c*v makes the prefix determinant a nonzero scalar multiple "
+                    "of (Z+c)^(j+1)"
+                    if proportional
+                    else "u=0 makes the prefix determinant a nonzero monomial in the slope"
+                )
             )
         ),
     }
@@ -217,7 +261,15 @@ def build_input(
         else (
             "one_spike_linear_roots"
             if one_spike_linear
-            else ("scalar_multiple_roots" if proportional else "zero_u_monomial_roots")
+            else (
+                "low_rank_update_bound"
+                if low_rank_update
+                else (
+                    "scalar_multiple_roots"
+                    if proportional
+                    else "zero_u_monomial_roots"
+                )
+            )
         ),
         "line_syndrome": line_syndrome,
         "row_set_strategy": (
@@ -274,6 +326,25 @@ def build_input(
                 "synthetic packet and not an actual-row MCA bound."
             ),
         }
+    if low_rank_update:
+        assert low_rank_update_count is not None
+        packet["low_rank_update"] = {
+            "base_node_encodings": domain_encodings[:size],
+            "update_node_encodings": domain_encodings[
+                size : size + low_rank_update_count
+            ],
+            "coefficient_formula": "Cauchy-Binet Vandermonde-square low-rank update",
+        }
+        packet["claim_scope"] = {
+            "row_data": "synthetic_syndrome_pencil",
+            "threshold_role": "synthetic_stress",
+            "root_status": "degree_bound_only",
+            "may_be_used_for_threshold_pinning": False,
+            "note": (
+                "Non-proportional low-rank update closed-form replay; this "
+                "emits a degree bound, not an enumerated root table."
+            ),
+        }
     return packet
 
 
@@ -285,6 +356,7 @@ def check_input(
     syndrome_scalar: int,
     minor_gcd_contiguous_limit: int | None,
     one_spike_linear: bool,
+    low_rank_update_count: int | None,
 ) -> None:
     expected = render(
         build_input(
@@ -294,6 +366,7 @@ def check_input(
             syndrome_scalar,
             minor_gcd_contiguous_limit,
             one_spike_linear,
+            low_rank_update_count,
         )
     )
     actual = path.read_text(encoding="utf-8")
@@ -354,6 +427,14 @@ def main() -> None:
             "u_m=sum x_i^m and v_m=y^m"
         ),
     )
+    parser.add_argument(
+        "--low-rank-update-count",
+        type=int,
+        help=(
+            "emit a non-proportional low-rank update pencil with COUNT "
+            "descriptor-domain update nodes"
+        ),
+    )
     parser.add_argument("--write", type=Path, help="write deterministic input JSON")
     parser.add_argument("--check", type=Path, help="check deterministic input JSON")
     parser.add_argument("--json", action="store_true", help="print input JSON")
@@ -366,6 +447,7 @@ def main() -> None:
         args.syndrome_scalar,
         args.minor_gcd_contiguous_limit,
         args.one_spike_linear,
+        args.low_rank_update_count,
     )
     if args.write:
         args.write.parent.mkdir(parents=True, exist_ok=True)
@@ -379,6 +461,7 @@ def main() -> None:
             args.syndrome_scalar,
             args.minor_gcd_contiguous_limit,
             args.one_spike_linear,
+            args.low_rank_update_count,
         )
     if args.json:
         print(render(packet), end="")

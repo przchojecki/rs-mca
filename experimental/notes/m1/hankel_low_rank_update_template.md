@@ -65,6 +65,23 @@ find quotient/tangent/extension-removed M3 residuals whose regular direction
 has bounded update rank, or prove that remaining high-rank directions must
 enter the singular pivot atlas.
 
+The first `F_17^32` rank-2 instantiation is
+
+```text
+experimental/data/hankel-regular-minor-inputs/
+  f17_32_n512_k256_a426_low_rank2_input.json
+
+experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/
+  f17_32_n512_k256_a426_low_rank2_packet.json
+```
+
+At `A=426`, where `j=86` and the prefix minor has size 87, this packet uses two
+update nodes and proves a degree-2 regular-minor bound.  Roots are deliberately
+not enumerated over `F_17^32`; the packet is a degree-bound certificate with
+`regular_root_bound_sum=2`.  The packet checker replays the low-rank moments
+and recomputes the Cauchy-Binet coefficients, and the companion invalid fixture
+mutates one coefficient and is required to fail this replay.
+
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform quotient/tangent
 subtraction.
