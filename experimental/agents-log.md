@@ -30,6 +30,39 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Proof-sketch S3b.iii.3: fiber rigidity + noanchor ground-truth
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/proof_sketch/s3b_iii_3_fibers_and_noanchor.md`;
+  corrections + queue update in `prize_proof_sketch_spine.md`.
+- **Status:** SKETCH / CONJECTURE, with one recorded CORRECTION.
+- **What is being added:** Turn 4. (1) Fiber bookkeeping: fibers are
+  linear-plane sections of the divisor set; toy-verified planted-fiber law
+  fiber = C(A_0, A_0-A) with ZERO unstructured extras, and the verified
+  fact that tangent slopes are rank-drop singularities whose fibers are
+  common-divisor planes. Also caught and fixed a window off-by-one: the
+  alignment window is m = 1..t, not 0..t-1. (2) Conjecture F (fiber
+  rigidity for linear sections) installed as the PARENT of the paper's
+  frozen core: prob:perfiber is exactly F for coordinate/prefix planes
+  (e_i(A) = locator coefficients), fiber(Z) is F for kernel planes, and
+  L1/#106 Q_1 is the list-side sibling. (3) prop:noanchor read from source:
+  it forecloses characteristic-zero-anchor/prime-averaging only; the
+  four-tool termination list lives in prob:perfiber with per-tool reasons —
+  earlier paraphrase corrected in the spine. Assessment: ES-incidence and
+  exchange/expansion are fixed-prime technology (the category noanchor
+  demands), but any moments-only version reduces to the foreclosed
+  even-moment counts — the mechanisms' essential content must be the
+  structure-crystallization step; odd-moment inputs (Hooley-Katz lane) are
+  the cheapest rigid information beyond that line. beta(rho) constants for
+  the quotient-paid term machine-verified for the S2 turn.
+- **How it is useful:** Ties the sketch's fiber step and the paper's frozen
+  core into one statement family; grounds the toolkit-foreclosure claims in
+  the actual source text; sharpens where the genuinely new idea must live.
+- **What to do next:** Turn 5: S2 — Paid(A) as one computable function
+  (tangent staircase + quotient-profile term with beta(rho) + extension
+  floor; conj:B's two-term bound as the template).
+
 ### 2026-07-01 - Proof-sketch S3b.iii.2: displacement/spectral exchange-rigidity
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).

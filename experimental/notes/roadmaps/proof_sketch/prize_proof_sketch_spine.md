@@ -162,8 +162,10 @@ exists (extension-pole floor), safe side = S6. Refinement target: a single
   [PROVED-cited x1 notes]; (iii) the residual rigidity step: worst-case
   aligned-count over aperiodic locators <= poly(n) * FM. THIS is
   prob:perfiber / conj:B / T2 / the M1 lane in one sentence. [GAP-WALL:
-  prop:noanchor forecloses prime-averaging, polynomial method, subgroup
-  exponential sums, anticoncentration.] Candidate mechanisms to refine in
+  prop:noanchor forecloses characteristic-zero-anchor / prime-averaging
+  methods ("the words being quantified after the prime"); prob:perfiber
+  records where the polynomial method, subgroup exponential sums, and
+  anticoncentration each terminate — see s3b_iii_3, corrected turn 4.] Candidate mechanisms to refine in
   later turns: Hankel displacement rank (the #170 spectral identities),
   Hooley-Katz odd moments, the BETA_2 monodromy route (M1 instantiation),
   Graver/projection route, and the WP-2.6 divisor-variety/pencil-incidence
@@ -215,8 +217,17 @@ DONE    S3b.iii.2  displacement/spectral exchange-rigidity
                  one-exchange = Cauchy rank-one; Johnson gap lam0-lam1 = n;
                  XR wall frozen; alpha = XR's regular shadow; averaged XR
                  = Hooley-Katz-shaped and plausibly provable)
-next -> S3b.iii.3  fiber bookkeeping ("unpaid fibers are O(1)") +
-                 prop:noanchor re-read vs incidence/exchange methods
+DONE    S3b.iii.3  fiber rigidity + noanchor ground-truth
+                 -> s3b_iii_3_fibers_and_noanchor.md (window correction
+                 m=1..t; planted-fiber law verified, tangent = rank-drop
+                 common-divisor planes; Conjecture F = parent of
+                 prob:perfiber (coordinate planes), fiber(Z) (kernel
+                 planes), L1 Q_1; noanchor attribution corrected —
+                 mechanisms are fixed-prime tech, crystallization must
+                 exceed even moments)
+next -> S2       Paid(A) as one computable function (tangent staircase +
+                 quotient-profile term with the beta(rho) constants +
+                 extension floor; conj:B two-term shape as the template)
         S2       Paid(A) as a single computable function (quotient closure)
         S3b.ii   the strip-periodic step: exact statement of the aperiodic
                  stratum via the proved confinement/equivariance results
