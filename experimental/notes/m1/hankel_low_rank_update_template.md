@@ -167,7 +167,10 @@ Vandermonde denominators and base determinants, cross-checks the `A=426`
 endpoint against the exact-root v9 packet, and applies the rank-2 discriminant
 gate to every row.  The degree cap is `2 * 42 = 84`, but the exact synthetic
 finite-root total is `40`: 20 split quadratics and 22 nonsquare quadratics.
-The generic degree-bound sum for the same window would be `4515`.
+Its projective endpoint is empty in all 42 rows because the quadratic leading
+coefficient is nonzero, so every agreement has at most 2 projective regular
+roots against budget numerator 6.  The generic degree-bound sum for the same
+window would be `4515`.
 
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform quotient/tangent

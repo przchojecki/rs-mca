@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 low-rank projective budget audit
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank2_family.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-family/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The rank-2 low-rank family certificate now audits
+  the projective endpoint `[0:1]` and records a per-agreement regular-budget
+  table.  Every leading coefficient is nonzero, so infinity contributes `0`;
+  each agreement has `0` or `2` projective regular roots against budget
+  numerator `6`.
+- **How it is useful:** This upgrades the synthetic low-rank family from a
+  finite-affine exact-root table to a projective regular-root budget audit,
+  matching the M3/M4 bookkeeping shape without claiming a universal row bound.
+- **What to do next:** Try to find non-synthetic residual packets whose
+  projective regular-root table can be closed by the same rank-2 gate.
+
 ### 2026-07-01 - M3 low-rank family exact roots
 
 - **Agent/model:** AllenGrahamHart / Codex.

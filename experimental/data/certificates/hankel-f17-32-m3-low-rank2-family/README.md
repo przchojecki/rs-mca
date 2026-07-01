@@ -32,6 +32,11 @@ The aggregate degree cap for this synthetic family is `84`, compared with the
 generic degree-bound sum `4515` for the same agreement window; the exact
 finite-root count is `40`.
 
+The projective endpoint is also audited.  In every row the quadratic leading
+coefficient is nonzero, so the homogenized determinant is nonzero at `[0:1]`
+and projectivizing adds no root.  Thus each agreement has `0` or `2`
+projective regular roots, below the budget numerator `6`.
+
 Run:
 
 ```sh
@@ -41,4 +46,5 @@ python3 experimental/scripts/verify_f17_32_m3_low_rank2_family.py \
 
 Non-claims: this is a synthetic syndrome-pencil family certificate, not a
 worst-case MCA row bound, not a worst-case root table over arbitrary
-`F_17^32` row data, and not a quotient/tangent subtraction ledger.
+`F_17^32` row data, and not a quotient/tangent subtraction ledger.  The budget
+comparison is regular-root accounting before removed-ledger subtraction.

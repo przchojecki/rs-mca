@@ -38,12 +38,13 @@ from experimental.scripts.extract_regular_hankel_minors import (
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-low-rank2-family-v2"
+SCHEMA_VERSION = "f17-32-m3-low-rank2-family-v3"
 N = 512
 K = 256
 AGREEMENT_MIN = 385
 AGREEMENT_MAX = 426
 UPDATE_RANK = 2
+TWO128 = 2**128
 ROW_DESCRIPTOR = REPO_ROOT / (
     "experimental/data/certificates/hankel-f17-32-row-descriptor/"
     "f17_32_n512_k256_hankel_row_descriptor.json"
@@ -142,6 +143,8 @@ def build_records(
     base_nodes: list[tuple[int, ...]] = []
     denominators: list[tuple[int, ...]] = []
     base_determinant = field.one
+    finite_budget = field.size // TWO128
+    projective_budget = (field.size + 1) // TWO128
 
     for size in range(1, N - AGREEMENT_MIN + 2):
         new_node = domain[size - 1]
@@ -174,6 +177,10 @@ def build_records(
         encoded_coefficients = [
             field.encode(coefficient) for coefficient in coefficients
         ]
+        require(
+            not field.is_zero(coefficients[-1]),
+            f"A={agreement}: projective leading coefficient vanishes",
+        )
         roots = quadratic_roots_field(coefficients, field)
         require(roots is not None, f"A={agreement}: low-rank row is not quadratic")
         encoded_roots = sorted(field.encode(root) for root in roots)
@@ -219,6 +226,27 @@ def build_records(
                 "root_hash": hash_json(encoded_roots),
                 "quadratic_root_certificate": quadratic_certificate,
                 "root_certificate": root_certificate,
+                "projective_infinity": {
+                    "projective_point": "[0:1]",
+                    "status": "empty",
+                    "contribution": 0,
+                    "leading_coefficient_encoding": encoded_coefficients[-1],
+                    "reason": (
+                        "the homogenized quadratic evaluates to the nonzero "
+                        "leading coefficient at [0:1]"
+                    ),
+                },
+                "regular_budget_table": {
+                    "finite_affine_roots": len(encoded_roots),
+                    "projective_infinity_roots": 0,
+                    "projective_regular_roots": len(encoded_roots),
+                    "finite_budget_numerator": finite_budget,
+                    "projective_budget_numerator": projective_budget,
+                    "finite_budget_gap": finite_budget - len(encoded_roots),
+                    "projective_budget_gap": projective_budget - len(encoded_roots),
+                    "within_finite_budget": len(encoded_roots) <= finite_budget,
+                    "within_projective_budget": len(encoded_roots) <= projective_budget,
+                },
                 "hankel_coefficients_ascending": encoded_coefficients,
                 "low_rank_compression": sidecar,
                 "sidecar_hash": hash_json(sidecar),
@@ -282,6 +310,18 @@ def build_certificate() -> dict[str, Any]:
     )
     exact_root_count_sum = sum(record["root_count"] for record in records)
     degree_bound_sum = UPDATE_RANK * len(records)
+    finite_budget = field.size // TWO128
+    projective_budget = (field.size + 1) // TWO128
+    max_root_count = max(record["root_count"] for record in records)
+    require(max_root_count <= finite_budget, "low-rank family exceeds finite budget")
+    require(
+        max(
+            record["regular_budget_table"]["projective_regular_roots"]
+            for record in records
+        )
+        <= projective_budget,
+        "low-rank family exceeds projective budget",
+    )
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -299,6 +339,13 @@ def build_certificate() -> dict[str, Any]:
             "update_nodes": "next two descriptor-domain elements",
             "certificate_mode": "low_rank_update_bound",
             "rank": UPDATE_RANK,
+        },
+        "endpoint_conventions": {
+            "finite_affine_slope_denominator": field.size,
+            "projective_slope_denominator": field.size + 1,
+            "finite_budget_numerator": finite_budget,
+            "projective_budget_numerator": projective_budget,
+            "extra_projective_point": "[0:1]",
         },
         "method": {
             "identity": "Delta_r(Z)=det(H_X) det(I+ZK)",
@@ -318,6 +365,11 @@ def build_certificate() -> dict[str, Any]:
             "exact_regular_root_count_sum": exact_root_count_sum,
             "split_quadratic_rows": split_rows,
             "nonsquare_quadratic_rows": nonsquare_rows,
+            "projective_infinity_contribution_sum": 0,
+            "max_finite_roots_per_agreement": max_root_count,
+            "max_projective_regular_roots_per_agreement": max_root_count,
+            "all_rows_within_finite_budget": True,
+            "all_rows_within_projective_budget": True,
             "generic_degree_bound_sum_for_window": sum(
                 N - agreement + 1
                 for agreement in range(AGREEMENT_MIN, AGREEMENT_MAX + 1)
@@ -340,6 +392,7 @@ def build_certificate() -> dict[str, Any]:
             "not a worst-case row root table over F_17^32",
             "does not perform quotient/tangent subtraction",
             "exact roots are for this synthetic rank-2 family only",
+            "budget comparison is per-agreement regular-root accounting before removed-ledger subtraction",
         ],
     }
 
@@ -373,6 +426,14 @@ def print_summary(certificate: dict[str, Any]) -> None:
         "quadratics: split={split}, nonsquare={nonsquare}".format(
             split=aggregate["split_quadratic_rows"],
             nonsquare=aggregate["nonsquare_quadratic_rows"],
+        )
+    )
+    print(
+        "projective infinity: contribution=0, max projective roots/agreement={roots}, budget={budget}".format(
+            roots=aggregate["max_projective_regular_roots_per_agreement"],
+            budget=certificate["endpoint_conventions"][
+                "projective_budget_numerator"
+            ],
         )
     )
     print("endpoint A=426 crosscheck: PASS")

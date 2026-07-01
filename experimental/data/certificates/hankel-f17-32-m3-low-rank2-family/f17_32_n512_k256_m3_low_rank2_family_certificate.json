@@ -1,11 +1,16 @@
 {
   "aggregate": {
     "agreement_count": 42,
+    "all_rows_within_finite_budget": true,
+    "all_rows_within_projective_budget": true,
     "degree_bound_sum": 84,
     "exact_regular_root_count_sum": 40,
     "generic_degree_bound_sum_for_window": 4515,
+    "max_finite_roots_per_agreement": 2,
+    "max_projective_regular_roots_per_agreement": 2,
     "nonsquare_quadratic_rows": 22,
     "per_agreement_degree_bound": 2,
+    "projective_infinity_contribution_sum": 0,
     "split_quadratic_rows": 20
   },
   "agreement_range": [
@@ -17,6 +22,13 @@
     "certificate_mode": "low_rank_update_bound",
     "rank": 2,
     "update_nodes": "next two descriptor-domain elements"
+  },
+  "endpoint_conventions": {
+    "extra_projective_point": "[0:1]",
+    "finite_affine_slope_denominator": 2367911594760467245844106297320951247361,
+    "finite_budget_numerator": 6,
+    "projective_budget_numerator": 6,
+    "projective_slope_denominator": 2367911594760467245844106297320951247362
   },
   "endpoint_crosscheck": {
     "agreement": 426,
@@ -39,7 +51,8 @@
     "not a worst-case MCA row bound",
     "not a worst-case row root table over F_17^32",
     "does not perform quotient/tangent subtraction",
-    "exact roots are for this synthetic rank-2 family only"
+    "exact roots are for this synthetic rank-2 family only",
+    "budget comparison is per-agreement regular-root accounting before removed-ledger subtraction"
   ],
   "records": [
     {
@@ -83,6 +96,13 @@
         0,
         127
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 61024707999361259609246858258933946525,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1960127525760963954976810457703429629095,
@@ -98,6 +118,17 @@
           1078701463041935402335295727204872255831
         ],
         "sqrt_discriminant": 1676876783900979352869064829053941022205
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -169,6 +200,13 @@
         0,
         126
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 851772096358027108625697403210293401740,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           496073742394775788598166928489200568658,
@@ -181,6 +219,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -235,6 +284,13 @@
         0,
         125
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 111157967155493443838813169531029408691,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1812083095683987272151378733457441781395,
@@ -250,6 +306,17 @@
           1566389636032966425028120258844551640234
         ],
         "sqrt_discriminant": 1653187450943311844567333482118760688099
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -321,6 +388,13 @@
         0,
         124
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1542585733760289997022324582898841054437,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           801602236823272202298702624015334190399,
@@ -333,6 +407,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -387,6 +472,13 @@
         0,
         123
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1930849299939480013539693064526152443541,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           353908664811310541551848142583756076095,
@@ -399,6 +491,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -453,6 +556,13 @@
         0,
         122
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1658817025167708727507772028717593448465,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           342634331139171815574309265824355558334,
@@ -465,6 +575,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -519,6 +640,13 @@
         0,
         121
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 273671855928729942755870071100633813914,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1710840598805328105053886624336408118149,
@@ -531,6 +659,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -585,6 +724,13 @@
         0,
         120
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1561771539780806356658327233433568806350,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           2195971428518805751996365415031908500830,
@@ -597,6 +743,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -651,6 +808,13 @@
         0,
         119
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1622861928506724654187944193429204470797,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1820799323371946193183878234070001430955,
@@ -666,6 +830,17 @@
           866031634573658530652491251299540465144
         ],
         "sqrt_discriminant": 996201184239392808390039919476418439220
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -737,6 +912,13 @@
         0,
         118
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 538396270111178813620132962734123142933,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           470938990856930116960320685179333350339,
@@ -749,6 +931,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -803,6 +996,13 @@
         0,
         117
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 2076278398310656466826920269629329988776,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           100919767089740780499066295931668351702,
@@ -818,6 +1018,17 @@
           2264973658788320887416978525149136536996
         ],
         "sqrt_discriminant": 171002174105197287587981248538796778302
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -889,6 +1100,13 @@
         0,
         116
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 707861110016610225733249141040059357592,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1685443426320145250183393507716690895160,
@@ -904,6 +1122,17 @@
           466778937618868764951200944605661991768
         ],
         "sqrt_discriminant": 1929999610918277751707696556704899143833
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -975,6 +1204,13 @@
         0,
         115
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 446248688919520311604417687453751188470,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1664634994593716759843410256493381111947,
@@ -990,6 +1226,17 @@
           1435284470937442759821098022482633509700
         ],
         "sqrt_discriminant": 327703001219173477064390801959221569157
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -1061,6 +1308,13 @@
         0,
         114
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 312425127447919188508980278616270161360,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           294773241926924909066802979946567578729,
@@ -1076,6 +1330,17 @@
           838605936119681804871733622290833432275
         ],
         "sqrt_discriminant": 115418436885403209143600343208378052933
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -1147,6 +1412,13 @@
         0,
         113
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 2172469151361678835600188166868273485720,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           71846692608176055586320066844908846896,
@@ -1162,6 +1434,17 @@
           1707957194763797203734055771930286919887
         ],
         "sqrt_discriminant": 2197131866877510912625182936866110327449
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -1233,6 +1516,13 @@
         0,
         112
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 2200711452798782416464914031495678509857,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1130307758722218882644531062134510475889,
@@ -1245,6 +1535,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -1299,6 +1600,13 @@
         0,
         111
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 2160777122958607258806744374415317266236,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1250918881245057304151093957424794294165,
@@ -1311,6 +1619,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -1365,6 +1684,13 @@
         0,
         110
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 567215326858901155308548469230272618973,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           24734832539777253207071787731201571446,
@@ -1380,6 +1706,17 @@
           2161215411356170680601785265304066309972
         ],
         "sqrt_discriminant": 2321445693073439060641206388652392415317
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -1451,6 +1788,13 @@
         0,
         109
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 546794451712689346986196566637486595817,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           459947468539296144349069142694475510118,
@@ -1463,6 +1807,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -1517,6 +1872,13 @@
         0,
         108
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 2157831494836363168609467084175673805000,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1918575663998876397526365133514413501504,
@@ -1529,6 +1891,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -1583,6 +1956,13 @@
         0,
         107
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 2173153818585287074662633897380806334189,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           211041704907486732169007754589382378937,
@@ -1598,6 +1978,17 @@
           1358175721232900856070915387636065644156
         ],
         "sqrt_discriminant": 271478057566474598099979009929347630884
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -1669,6 +2060,13 @@
         0,
         106
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 121722394707784037792026791117215307747,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1521820178092625308093349612694629485453,
@@ -1681,6 +2079,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -1735,6 +2144,13 @@
         0,
         105
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1778162397187298823881080912216031678230,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           307621075849948038636009236451998818873,
@@ -1750,6 +2166,17 @@
           880116031484459045164202765059134348353
         ],
         "sqrt_discriminant": 1149469534195996550564996466568209836883
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -1821,6 +2248,13 @@
         0,
         104
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1535960695934820368032800474990728573425,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1831202745295413043137036734163137881540,
@@ -1833,6 +2267,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -1887,6 +2332,13 @@
         0,
         103
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 2312332176576382145517641647361659979925,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           422187020011215957122005847265015724713,
@@ -1902,6 +2354,17 @@
           2295082569920745080133261693549859071143
         ],
         "sqrt_discriminant": 1740068099702498740765569994855940337410
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -1973,6 +2436,13 @@
         0,
         102
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1735793159818113513460493968126946955776,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1656892761321802793161410105918804331374,
@@ -1985,6 +2455,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -2039,6 +2520,13 @@
         0,
         101
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1797336966757201685254594425411967260124,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           755831957698730571541985828703222995728,
@@ -2051,6 +2539,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -2105,6 +2604,13 @@
         0,
         100
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 102397829386166183740740168768669917701,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           476489136704274775061167902838876486766,
@@ -2120,6 +2626,17 @@
           1564027818904423137284770734224821228388
         ],
         "sqrt_discriminant": 460486179481246865990158122761953323489
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -2191,6 +2708,13 @@
         0,
         99
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1532727190284219361990127712640847895167,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           262241965281328634739489740362727376348,
@@ -2203,6 +2727,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -2257,6 +2792,13 @@
         0,
         98
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1312949600739242533772658743323396598070,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           255878304015780547909485754516290276079,
@@ -2269,6 +2811,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -2323,6 +2876,13 @@
         0,
         97
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 783828539638551535022085612401289275835,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1687488083283963403905718093652314444446,
@@ -2335,6 +2895,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -2389,6 +2960,13 @@
         0,
         96
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1308989559011422536251275873762425605463,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1733401208212334985416239809861793981134,
@@ -2404,6 +2982,17 @@
           1199935854501313142526244598127332013992
         ],
         "sqrt_discriminant": 2208051639124879106945843423883572573514
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -2475,6 +3064,13 @@
         0,
         95
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 2139836229658451205251997549284513147152,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1768718544895380476887756296451774298197,
@@ -2487,6 +3083,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -2541,6 +3148,13 @@
         0,
         94
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1284436892574477414254857524960923736465,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           835436229860121537478496103576089233998,
@@ -2553,6 +3167,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -2607,6 +3232,13 @@
         0,
         93
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 2341914142478851952946069605943416655231,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           89993492769349859364812778941100020881,
@@ -2619,6 +3251,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -2673,6 +3316,13 @@
         0,
         92
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 127159917583641329227734505497881446174,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           2349370168658727426479015660687837002313,
@@ -2688,6 +3338,17 @@
           758185270666470029302470202683465698087
         ],
         "sqrt_discriminant": 1228069439162420131049497015754324994251
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -2759,6 +3420,13 @@
         0,
         91
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1057201123910986946196412473327323470967,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           265816049548075604963879353555399861332,
@@ -2774,6 +3442,17 @@
           1457069595183812481126876930728896929243
         ],
         "sqrt_discriminant": 1003728692717598564785049628744715971754
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -2845,6 +3524,13 @@
         0,
         90
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1591540141368056720009298084721202874525,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           184521148592075467316957239048914376974,
@@ -2860,6 +3546,17 @@
           1616231347682577202777346280279051625633
         ],
         "sqrt_discriminant": 2244746615614757645979217799078228853875
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -2931,6 +3628,13 @@
         0,
         89
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 877157628171146350889924109544852731648,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           2060256867170291804111877656520339314254,
@@ -2946,6 +3650,17 @@
           2000645144231855746994358946910745748836
         ],
         "sqrt_discriminant": 2074502270117705634813525190692231147379
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -3017,6 +3732,13 @@
         0,
         88
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1681500359278070378309090322985663911085,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1283142822677126961532305606241471025383,
@@ -3032,6 +3754,17 @@
           838577879349353785921179396385204502691
         ],
         "sqrt_discriminant": 1301850228072641417114913844962798431214
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -3103,6 +3836,13 @@
         0,
         87
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 1480025558991458766539953377182718151095,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           416884347478717958584104368471384620671,
@@ -3115,6 +3855,17 @@
         "kind": "quadratic_discriminant_nonsquare",
         "root_formula": "no roots because the discriminant is nonsquare",
         "roots": []
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 0,
+        "finite_budget_gap": 6,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 6,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 0,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": null,
       "root_count": 0,
@@ -3169,6 +3920,13 @@
         0,
         86
       ],
+      "projective_infinity": {
+        "contribution": 0,
+        "leading_coefficient_encoding": 2127859988470813504442687846078260636838,
+        "projective_point": "[0:1]",
+        "reason": "the homogenized quadratic evaluates to the nonzero leading coefficient at [0:1]",
+        "status": "empty"
+      },
       "quadratic_root_certificate": {
         "coefficients_ascending": [
           1679562971418113032387101671407887322647,
@@ -3184,6 +3942,17 @@
           843473851308575985591116218312875860749
         ],
         "sqrt_discriminant": 1199888225991676476216326008773155006048
+      },
+      "regular_budget_table": {
+        "finite_affine_roots": 2,
+        "finite_budget_gap": 4,
+        "finite_budget_numerator": 6,
+        "projective_budget_gap": 4,
+        "projective_budget_numerator": 6,
+        "projective_infinity_roots": 0,
+        "projective_regular_roots": 2,
+        "within_finite_budget": true,
+        "within_projective_budget": true
       },
       "root_certificate": {
         "factors": [
@@ -3222,6 +3991,6 @@
     "k": 256,
     "n": 512
   },
-  "schema_version": "f17-32-m3-low-rank2-family-v2",
+  "schema_version": "f17-32-m3-low-rank2-family-v3",
   "status": "PROVED / AUDIT"
 }

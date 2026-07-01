@@ -305,7 +305,10 @@ the square base and the next two descriptor-domain nodes as the low-rank
 update.  The degree cap is `84`, versus the generic window sum `4515`.
 Applying the rank-2 discriminant gate gives exact roots: 20 rows split, 22 rows
 have nonsquare discriminant, and the exact finite-root total is `40`.  The
-family cross-checks the `A=426` endpoint against the exact-root v9 packet.
+family also audits the projective endpoint `[0:1]`: every leading coefficient
+is nonzero, so projectivizing adds no root and every agreement has at most 2
+projective regular roots against budget numerator 6.  The family cross-checks
+the `A=426` endpoint against the exact-root v9 packet.
 
 The current status ledger
 

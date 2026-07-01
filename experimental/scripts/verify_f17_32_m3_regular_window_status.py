@@ -141,8 +141,18 @@ def validate_inputs(
         "family root union mismatch",
     )
     require(
-        low_rank_family["schema_version"] == "f17-32-m3-low-rank2-family-v2",
+        low_rank_family["schema_version"] == "f17-32-m3-low-rank2-family-v3",
         "low-rank family schema mismatch",
+    )
+    require(
+        low_rank_family["endpoint_conventions"]["finite_budget_numerator"]
+        == 17**32 // TWO128,
+        "low-rank family finite budget mismatch",
+    )
+    require(
+        low_rank_family["endpoint_conventions"]["projective_budget_numerator"]
+        == (17**32 + 1) // TWO128,
+        "low-rank family projective budget mismatch",
     )
     require(
         low_rank_family["agreement_range"] == [AGREEMENT_MIN, AGREEMENT_MAX],
@@ -168,6 +178,20 @@ def validate_inputs(
         low_rank_family["aggregate"]["split_quadratic_rows"] == 20
         and low_rank_family["aggregate"]["nonsquare_quadratic_rows"] == 22,
         "low-rank family split/nonsquare count mismatch",
+    )
+    require(
+        low_rank_family["aggregate"]["projective_infinity_contribution_sum"] == 0,
+        "low-rank family projective contribution mismatch",
+    )
+    require(
+        low_rank_family["aggregate"]["max_projective_regular_roots_per_agreement"]
+        == 2,
+        "low-rank family max projective roots mismatch",
+    )
+    require(
+        low_rank_family["aggregate"]["all_rows_within_finite_budget"] is True
+        and low_rank_family["aggregate"]["all_rows_within_projective_budget"] is True,
+        "low-rank family budget status mismatch",
     )
     require(
         low_rank_family["aggregate"]["generic_degree_bound_sum_for_window"]
@@ -432,6 +456,19 @@ def per_agreement_records(
                 f"A={agreement}: nonsquare low-rank row mismatch",
             )
         require(
+            low_rank_item["projective_infinity"]["status"] == "empty"
+            and low_rank_item["projective_infinity"]["contribution"] == 0,
+            f"A={agreement}: low-rank projective endpoint mismatch",
+        )
+        require(
+            low_rank_item["regular_budget_table"]["within_finite_budget"] is True
+            and low_rank_item["regular_budget_table"]["within_projective_budget"]
+            is True
+            and low_rank_item["regular_budget_table"]["projective_regular_roots"]
+            == low_rank_item["root_count"],
+            f"A={agreement}: low-rank budget table mismatch",
+        )
+        require(
             realizability_item["visible_syndrome_length"] == 256
             and realizability_item["section_applies"] is True,
             f"A={agreement}: syndrome realizability mismatch",
@@ -534,6 +571,13 @@ def per_agreement_records(
                 "synthetic_low_rank2_root_bound": low_rank_item["degree_bound"],
                 "synthetic_low_rank2_root_count": low_rank_item["root_count"],
                 "synthetic_low_rank2_root_status": low_rank_item["root_status"],
+                "synthetic_low_rank2_projective_infinity_contribution": 0,
+                "synthetic_low_rank2_projective_regular_roots": low_rank_item[
+                    "regular_budget_table"
+                ]["projective_regular_roots"],
+                "synthetic_low_rank2_projective_budget_gap": low_rank_item[
+                    "regular_budget_table"
+                ]["projective_budget_gap"],
                 "synthetic_low_rank2_sidecar_hash": low_rank_item["sidecar_hash"],
                 "syndrome_pencil_realizability": (
                     "all length-256 u,v syndrome pencils are realized by explicit "
@@ -636,7 +680,7 @@ def build_status() -> dict[str, Any]:
         artifact_record(
             "synthetic_low_rank2_family",
             LOW_RANK_FAMILY_REF,
-            "f17-32-m3-low-rank2-family-v2",
+            "f17-32-m3-low-rank2-family-v3",
         ),
         artifact_record("fixed_top_window_v9_packet", TOP_PACKET_REF, "aperiodic-hankel-eliminant-v1"),
         artifact_record(
@@ -699,6 +743,16 @@ def build_status() -> dict[str, Any]:
             "synthetic_low_rank2_nonsquare_rows": low_rank_family["aggregate"][
                 "nonsquare_quadratic_rows"
             ],
+            "synthetic_low_rank2_projective_infinity_contribution": 0,
+            "synthetic_low_rank2_max_projective_regular_roots_per_agreement": (
+                low_rank_family["aggregate"][
+                    "max_projective_regular_roots_per_agreement"
+                ]
+            ),
+            "synthetic_low_rank2_projective_budget_status": (
+                "all 42 rows have at most 2 projective regular roots, below "
+                "projective budget numerator 6"
+            ),
             "fixed_top_window_status": "one v9 packet covers A=421..426 with root union {0}",
             "fixed_top_window_line_value_status": "explicit f,g line values replay the fixed top-window syndrome input",
             "subgroup_syndrome_section_status": "proved explicit inverse-Fourier section for subgroup syndrome vectors",
@@ -770,6 +824,10 @@ def print_summary(status: dict[str, Any]) -> None:
     print(f"generic: {summary['generic_regular_minors_status']}")
     print(f"synthetic: {summary['synthetic_family_status']}")
     print(f"low-rank synthetic: {summary['synthetic_low_rank2_family_status']}")
+    print(
+        "low-rank projective: "
+        f"{summary['synthetic_low_rank2_projective_budget_status']}"
+    )
     print(f"actual row: {summary['actual_row_status']}")
 
 
