@@ -473,6 +473,19 @@ It checks the proper subfields `F_17^d` for `d in {1,2,4,8,16}` by Frobenius
 fixedness on listed roots and by subfield gcds on count-only rows.  The result
 is zero proper-subfield overlap for the same `238` counted finite roots.
 
+The rank-6..11 known-ledger table is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-known-ledger-table/
+  f17_32_n512_k256_m3_low_rank6_11_known_ledger_table.json
+```
+
+It combines the exact finite-root counts, projective-infinity endpoint,
+tangent exclusion, and proper-subfield exclusion into one M4-style residual
+table.  Across all `252` rank/agreement rows, the maximum residual projective
+regular-root upper count after these known ledgers is `5 <= 6`.  Quotient
+support/image subtraction is deliberately recorded as `not_audited`.
+
 The current status ledger
 
 ```text
@@ -571,6 +584,9 @@ python3 experimental/scripts/verify_f17_32_m3_low_rank6_11_tangent_exclusion.py 
 
 python3 experimental/scripts/verify_f17_32_m3_low_rank6_11_subfield_exclusion.py \
   --check experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-subfield-exclusion/f17_32_n512_k256_m3_low_rank6_11_subfield_exclusion_certificate.json
+
+python3 experimental/scripts/verify_f17_32_m3_low_rank6_11_known_ledger_table.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-known-ledger-table/f17_32_n512_k256_m3_low_rank6_11_known_ledger_table.json
 ```
 
 Non-claims: this note does not enumerate universal root sets for arbitrary

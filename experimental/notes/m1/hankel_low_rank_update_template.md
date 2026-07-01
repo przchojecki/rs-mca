@@ -329,6 +329,19 @@ checks the same `238` counted finite roots against the proper subfields
 `F_17^d`, `d in {1,2,4,8,16}`.  It finds zero proper-subfield overlap, so this
 synthetic low-rank block is not explained by the subfield/confinement ledger.
 
+The rank-6..11 known-ledger table
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-known-ledger-table/
+  f17_32_n512_k256_m3_low_rank6_11_known_ledger_table.json
+```
+
+combines the finite-root slack, projective-infinity endpoint, tangent
+exclusion, and proper-subfield exclusion into a compact M4-style residual
+ledger.  The maximum residual projective regular-root upper count in the
+synthetic rank-6..11 block is `5 <= 6`; quotient support/image subtraction is
+still explicitly unaudited.
+
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform a full quotient/tangent
 subtraction table.

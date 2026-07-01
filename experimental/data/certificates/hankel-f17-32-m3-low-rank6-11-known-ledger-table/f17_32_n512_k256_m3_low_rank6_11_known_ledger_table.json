@@ -1,0 +1,303 @@
+{
+  "aggregate": {
+    "agreement_count_per_rank": 42,
+    "all_records_within_projective_budget_after_known_ledgers": true,
+    "finite_regular_root_count_sum": 238,
+    "known_proper_subfield_overlap_removed_sum": 0,
+    "known_residual_projective_sum": 490,
+    "known_tangent_overlap_removed_sum": 0,
+    "max_known_residual_projective_per_record": 5,
+    "projective_budget_numerator": 6,
+    "projective_infinity_contribution_sum": 252,
+    "quotient_image_status": "not_audited",
+    "quotient_support_status": "not_audited",
+    "rank_count": 6,
+    "rank_summaries": {
+      "10": {
+        "agreement_count": 42,
+        "all_records_within_projective_budget_after_known_ledgers": true,
+        "finite_root_count_sum": 47,
+        "finite_root_histogram": {
+          "0": 8,
+          "1": 23,
+          "2": 9,
+          "3": 2
+        },
+        "known_residual_projective_sum": 89,
+        "max_known_residual_projective_per_record": 4,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 10,
+        "worst_agreements": [
+          411,
+          419
+        ]
+      },
+      "11": {
+        "agreement_count": 42,
+        "all_records_within_projective_budget_after_known_ledgers": true,
+        "finite_root_count_sum": 44,
+        "finite_root_histogram": {
+          "0": 15,
+          "1": 16,
+          "2": 5,
+          "3": 6
+        },
+        "known_residual_projective_sum": 86,
+        "max_known_residual_projective_per_record": 4,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 11,
+        "worst_agreements": [
+          391,
+          396,
+          397,
+          406,
+          412,
+          423
+        ]
+      },
+      "6": {
+        "agreement_count": 42,
+        "all_records_within_projective_budget_after_known_ledgers": true,
+        "finite_root_count_sum": 35,
+        "finite_root_histogram": {
+          "0": 16,
+          "1": 17,
+          "2": 9
+        },
+        "known_residual_projective_sum": 77,
+        "max_known_residual_projective_per_record": 3,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 6,
+        "worst_agreements": [
+          388,
+          393,
+          395,
+          398,
+          410,
+          412,
+          415,
+          417,
+          420
+        ]
+      },
+      "7": {
+        "agreement_count": 42,
+        "all_records_within_projective_budget_after_known_ledgers": true,
+        "finite_root_count_sum": 43,
+        "finite_root_histogram": {
+          "0": 16,
+          "1": 15,
+          "2": 6,
+          "3": 4,
+          "4": 1
+        },
+        "known_residual_projective_sum": 85,
+        "max_known_residual_projective_per_record": 5,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 7,
+        "worst_agreements": [
+          393
+        ]
+      },
+      "8": {
+        "agreement_count": 42,
+        "all_records_within_projective_budget_after_known_ledgers": true,
+        "finite_root_count_sum": 34,
+        "finite_root_histogram": {
+          "0": 22,
+          "1": 10,
+          "2": 7,
+          "3": 2,
+          "4": 1
+        },
+        "known_residual_projective_sum": 76,
+        "max_known_residual_projective_per_record": 5,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 8,
+        "worst_agreements": [
+          393
+        ]
+      },
+      "9": {
+        "agreement_count": 42,
+        "all_records_within_projective_budget_after_known_ledgers": true,
+        "finite_root_count_sum": 35,
+        "finite_root_histogram": {
+          "0": 17,
+          "1": 17,
+          "2": 6,
+          "3": 2
+        },
+        "known_residual_projective_sum": 77,
+        "max_known_residual_projective_per_record": 4,
+        "projective_infinity_contribution_sum": 42,
+        "rank": 9,
+        "worst_agreements": [
+          398,
+          400
+        ]
+      }
+    },
+    "record_count": 252
+  },
+  "agreement_range": [
+    385,
+    426
+  ],
+  "claim": "For the synthetic low-rank ranks 6..11 block, known ledgers leave at most five projective regular-root parameters in every checked rank/agreement row, below budget numerator six.  Quotient-support and quotient-image subtraction are not audited here.",
+  "deterministic_records": {
+    "first_record": {
+      "A": 385,
+      "finite_regular_root_count": 0,
+      "j": 127,
+      "known_lower_bound_status": "not_supplied",
+      "known_proper_subfield_overlap_removed": 0,
+      "known_residual_projective_upper": 1,
+      "known_tangent_overlap_removed": 0,
+      "projective_budget_numerator": 6,
+      "projective_infinity_contribution": 1,
+      "quotient_image_status": "not_audited",
+      "quotient_support_status": "not_audited",
+      "rank": 6,
+      "t": 129,
+      "within_projective_budget_after_known_ledgers": true
+    },
+    "last_record": {
+      "A": 426,
+      "finite_regular_root_count": 1,
+      "j": 86,
+      "known_lower_bound_status": "not_supplied",
+      "known_proper_subfield_overlap_removed": 0,
+      "known_residual_projective_upper": 2,
+      "known_tangent_overlap_removed": 0,
+      "projective_budget_numerator": 6,
+      "projective_infinity_contribution": 1,
+      "quotient_image_status": "not_audited",
+      "quotient_support_status": "not_audited",
+      "rank": 11,
+      "t": 170,
+      "within_projective_budget_after_known_ledgers": true
+    },
+    "record_count": 252,
+    "record_sha256": "2845dad4d6201714819f9a040d49217aeb09237b987fc10f0b8066da8f895327",
+    "storage": "compressed; verifier rebuilds all 252 rank/agreement rows",
+    "worst_records": [
+      {
+        "A": 393,
+        "finite_regular_root_count": 4,
+        "j": 119,
+        "known_lower_bound_status": "not_supplied",
+        "known_proper_subfield_overlap_removed": 0,
+        "known_residual_projective_upper": 5,
+        "known_tangent_overlap_removed": 0,
+        "projective_budget_numerator": 6,
+        "projective_infinity_contribution": 1,
+        "quotient_image_status": "not_audited",
+        "quotient_support_status": "not_audited",
+        "rank": 7,
+        "t": 137,
+        "within_projective_budget_after_known_ledgers": true
+      },
+      {
+        "A": 393,
+        "finite_regular_root_count": 4,
+        "j": 119,
+        "known_lower_bound_status": "not_supplied",
+        "known_proper_subfield_overlap_removed": 0,
+        "known_residual_projective_upper": 5,
+        "known_tangent_overlap_removed": 0,
+        "projective_budget_numerator": 6,
+        "projective_infinity_contribution": 1,
+        "quotient_image_status": "not_audited",
+        "quotient_support_status": "not_audited",
+        "rank": 8,
+        "t": 137,
+        "within_projective_budget_after_known_ledgers": true
+      }
+    ]
+  },
+  "ledger_columns": {
+    "finite_regular_roots": "exact Frobenius-gcd counts from slack certificates",
+    "known_lower_bound": "not_supplied",
+    "projective_infinity": "proved nonempty endpoint contribution [0:1]",
+    "proper_subfield_overlap": "proved zero for F_17^d, d in {1,2,4,8,16}",
+    "quotient_image": "not_audited",
+    "quotient_support": "not_audited",
+    "tangent_common_code_line_overlap": "proved zero"
+  },
+  "nonclaims": [
+    "synthetic low-rank family only",
+    "not a quotient-support or quotient-image subtraction table",
+    "not an actual-row M3 threshold bound",
+    "does not prove finite affine roots are actual bad slopes",
+    "does not classify arbitrary singular buckets"
+  ],
+  "ranks": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "row": {
+    "domain_description": "order-512 multiplicative subgroup generated by generator_encoding",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "f17-32-m3-low-rank6-11-known-ledger-table-v1",
+  "source_artifacts": {
+    "projective_infinity": {
+      "name": "projective_infinity",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json",
+      "schema_version": "f17-32-m3-low-rank2-11-projective-infinity-v1",
+      "sha256": "f7457c3ceea4493286386d547adae12b97589d80434af4f2139f0cbb9470817b",
+      "status": "PROVED / AUDIT"
+    },
+    "rank6": {
+      "name": "rank6",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-slack-family/f17_32_n512_k256_m3_low_rank6_slack_family_certificate.json",
+      "schema_version": "f17-32-m3-low-rank6-slack-family-v1",
+      "sha256": "68208eb6d4b9530be259ccfc633dd443e101adbaa43fb3070b7be8fa8283f772",
+      "status": "PROVED / AUDIT"
+    },
+    "rank7": {
+      "name": "rank7",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank7-slack-family/f17_32_n512_k256_m3_low_rank7_slack_family_certificate.json",
+      "schema_version": "f17-32-m3-low-rank7-slack-family-v1",
+      "sha256": "2a6f3657846e62220c413c236844db6d5ebaba274198b29068641cc8c12dfc85",
+      "status": "PROVED / AUDIT"
+    },
+    "rank8": {
+      "name": "rank8",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank8-slack-family/f17_32_n512_k256_m3_low_rank8_slack_family_certificate.json",
+      "schema_version": "f17-32-m3-low-rank8-slack-family-v1",
+      "sha256": "9e7c96f6e544603ccb73e050085ffbcd6c3c615760a862a3b5412f3a8aff03ef",
+      "status": "PROVED / AUDIT"
+    },
+    "rank9_11": {
+      "name": "rank9_11",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank9-11-slack-sweep/f17_32_n512_k256_m3_low_rank9_11_slack_sweep_certificate.json",
+      "schema_version": "f17-32-m3-low-rank9-11-slack-sweep-v1",
+      "sha256": "621d61a8cec12110c86cf351d1ac8540f36086a5cab44d4257c30aac9282701c",
+      "status": "PROVED / AUDIT"
+    },
+    "subfield": {
+      "name": "subfield",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-subfield-exclusion/f17_32_n512_k256_m3_low_rank6_11_subfield_exclusion_certificate.json",
+      "schema_version": "f17-32-m3-low-rank6-11-subfield-exclusion-v1",
+      "sha256": "7503930e38aaee5fbca8073b192fa5c702dd1e457f3908cb659040afa5955881",
+      "status": "PROVED / AUDIT"
+    },
+    "tangent": {
+      "name": "tangent",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json",
+      "schema_version": "f17-32-m3-low-rank6-11-tangent-exclusion-v1",
+      "sha256": "8113f932492c2f13392a39a940ad8c1771b39644706e0324357479e9a30cff54",
+      "status": "PROVED / AUDIT"
+    }
+  },
+  "status": "PROVED / AUDIT"
+}

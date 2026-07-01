@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-6..11 known-ledger residual table
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank6_11_known_ledger_table.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-known-ledger-table/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a compact M4-style residual ledger for the
+  synthetic low-rank M3 block at ranks `6..11`.  It combines exact finite-root
+  slack, the projective-infinity endpoint, tangent exclusion, and
+  proper-subfield exclusion across all `252` rank/agreement rows.
+- **How it is useful:** It gives a checked subtraction table for the known
+  ledgers: the maximum residual projective regular-root upper count is
+  `5 <= 6` in this synthetic block, even before quotient-image subtraction.
+- **What to do next:** Audit quotient-support/image overlap or build an affine
+  pivot packet for a finite-root residual.  This table deliberately marks
+  quotient support/image as unaudited and is not an actual-row threshold proof.
+
 ### 2026-07-01 - M3 rank-6 A426 projective-infinity pivot packet
 
 - **Agent/model:** AllenGrahamHart / Codex.

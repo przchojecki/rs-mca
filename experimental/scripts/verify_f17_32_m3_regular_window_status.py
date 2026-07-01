@@ -86,6 +86,10 @@ LOW_RANK6_11_SUBFIELD_EXCLUSION_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-subfield-exclusion/"
     "f17_32_n512_k256_m3_low_rank6_11_subfield_exclusion_certificate.json"
 )
+LOW_RANK6_11_KNOWN_LEDGER_TABLE_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-known-ledger-table/"
+    "f17_32_n512_k256_m3_low_rank6_11_known_ledger_table.json"
+)
 TOP_PACKET_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/"
     "f17_32_n512_k256_a421_426_fixed_prefix92_packet.json"
@@ -177,6 +181,7 @@ def validate_inputs(
     low_rank_rank6_a426_projective_pivot: dict[str, Any],
     low_rank6_11_tangent_exclusion: dict[str, Any],
     low_rank6_11_subfield_exclusion: dict[str, Any],
+    low_rank6_11_known_ledger_table: dict[str, Any],
     top_packet: dict[str, Any],
     line_value_lift: dict[str, Any],
     subgroup_section: dict[str, Any],
@@ -1054,6 +1059,56 @@ def validate_inputs(
             == {"1": 0, "2": 0, "4": 0, "8": 0, "16": 0},
             f"rank-{rank} subfield exclusion summary mismatch",
         )
+    require(
+        low_rank6_11_known_ledger_table["schema_version"]
+        == "f17-32-m3-low-rank6-11-known-ledger-table-v1",
+        "rank-6..11 known-ledger table schema mismatch",
+    )
+    require(
+        low_rank6_11_known_ledger_table["agreement_range"]
+        == [AGREEMENT_MIN, AGREEMENT_MAX],
+        "rank-6..11 known-ledger table window mismatch",
+    )
+    require(
+        low_rank6_11_known_ledger_table["ranks"] == [6, 7, 8, 9, 10, 11],
+        "rank-6..11 known-ledger table rank mismatch",
+    )
+    require(
+        low_rank6_11_known_ledger_table["aggregate"]["record_count"] == 252
+        and low_rank6_11_known_ledger_table["deterministic_records"][
+            "record_count"
+        ]
+        == 252
+        and low_rank6_11_known_ledger_table["aggregate"][
+            "finite_regular_root_count_sum"
+        ]
+        == 238
+        and low_rank6_11_known_ledger_table["aggregate"][
+            "projective_infinity_contribution_sum"
+        ]
+        == 252
+        and low_rank6_11_known_ledger_table["aggregate"][
+            "known_tangent_overlap_removed_sum"
+        ]
+        == 0
+        and low_rank6_11_known_ledger_table["aggregate"][
+            "known_proper_subfield_overlap_removed_sum"
+        ]
+        == 0
+        and low_rank6_11_known_ledger_table["aggregate"][
+            "max_known_residual_projective_per_record"
+        ]
+        == 5
+        and low_rank6_11_known_ledger_table["aggregate"][
+            "all_records_within_projective_budget_after_known_ledgers"
+        ]
+        is True
+        and low_rank6_11_known_ledger_table["aggregate"][
+            "quotient_image_status"
+        ]
+        == "not_audited",
+        "rank-6..11 known-ledger aggregate mismatch",
+    )
     require(
         top_packet["exact_agreements"][0]["A"] == TOP_WINDOW_MIN
         and top_packet["exact_agreements"][-1]["A"] == TOP_WINDOW_MAX,
@@ -1955,6 +2010,9 @@ def build_status() -> dict[str, Any]:
     low_rank6_11_subfield_exclusion = load_json(
         LOW_RANK6_11_SUBFIELD_EXCLUSION_REF
     )
+    low_rank6_11_known_ledger_table = load_json(
+        LOW_RANK6_11_KNOWN_LEDGER_TABLE_REF
+    )
     top_packet = load_json(TOP_PACKET_REF)
     line_value_lift = load_json(LINE_VALUE_LIFT_REF)
     subgroup_section = load_json(SUBGROUP_SECTION_REF)
@@ -1980,6 +2038,7 @@ def build_status() -> dict[str, Any]:
         low_rank_rank6_a426_projective_pivot,
         low_rank6_11_tangent_exclusion,
         low_rank6_11_subfield_exclusion,
+        low_rank6_11_known_ledger_table,
         top_packet,
         line_value_lift,
         subgroup_section,
@@ -2077,6 +2136,11 @@ def build_status() -> dict[str, Any]:
             "synthetic_low_rank6_11_subfield_exclusion",
             LOW_RANK6_11_SUBFIELD_EXCLUSION_REF,
             "f17-32-m3-low-rank6-11-subfield-exclusion-v1",
+        ),
+        artifact_record(
+            "synthetic_low_rank6_11_known_ledger_table",
+            LOW_RANK6_11_KNOWN_LEDGER_TABLE_REF,
+            "f17-32-m3-low-rank6-11-known-ledger-table-v1",
         ),
         artifact_record("fixed_top_window_v9_packet", TOP_PACKET_REF, "aperiodic-hankel-eliminant-v1"),
         artifact_record(
@@ -2399,6 +2463,22 @@ def build_status() -> dict[str, Any]:
             "synthetic_low_rank6_11_subfield_rank_summaries": (
                 low_rank6_11_subfield_exclusion["aggregate"]["rank_summaries"]
             ),
+            "synthetic_low_rank6_11_known_ledger_table_status": (
+                "combined M4-style table for ranks 6..11: exact finite roots "
+                "plus projective infinity, tangent exclusion, and "
+                "proper-subfield exclusion leave at most 5 projective regular "
+                "roots per checked synthetic row; quotient-image is not audited"
+            ),
+            "synthetic_low_rank6_11_known_ledger_max_residual_projective": (
+                low_rank6_11_known_ledger_table["aggregate"][
+                    "max_known_residual_projective_per_record"
+                ]
+            ),
+            "synthetic_low_rank6_11_known_ledger_quotient_image_status": (
+                low_rank6_11_known_ledger_table["aggregate"][
+                    "quotient_image_status"
+                ]
+            ),
             "low_rank_budget_envelope_status": (
                 "proved that every nonzero regular low-rank update chart of "
                 "rank <= 6 is within the F_17^32 M3 finite regular-root "
@@ -2473,6 +2553,7 @@ def build_status() -> dict[str, Any]:
                 "the synthetic rank-6 A=426 projective-line pivot packet is v9-checkable and closes the projective_infinity chart as nonempty with contribution one",
                 "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
                 "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
+                "the synthetic rank-6..11 known-ledger table combines exact finite roots, projective infinity, tangent, and proper-subfield audits into a compact M4-style residual table with max residual projective upper 5 <= 6; quotient-image is explicitly not audited",
                 "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
                 "the fixed top-window syndrome input has an explicit line-value lift",
@@ -2551,6 +2632,10 @@ def print_summary(status: dict[str, Any]) -> None:
     print(
         "rank-6..11 low-rank subfield: "
         f"{summary['synthetic_low_rank6_11_subfield_exclusion_status']}"
+    )
+    print(
+        "rank-6..11 known ledger: "
+        f"{summary['synthetic_low_rank6_11_known_ledger_table_status']}"
     )
     print(f"low-rank budget envelope: {summary['low_rank_budget_envelope_status']}")
     print(f"low-rank packet gate: {summary['low_rank_packet_gate_status']}")

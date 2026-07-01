@@ -106,6 +106,13 @@ subfield gcds, and finds zero proper-subfield overlap.  Thus these counted
 roots are genuinely outside all proper subfields of `F_17^32` for this
 synthetic low-rank block.
 
+The rank-6..11 known-ledger table combines the exact finite-root counts,
+projective-infinity endpoint, tangent exclusion, and proper-subfield exclusion
+into one compact M4-style residual ledger.  It rebuilds `252` rank/agreement
+rows and records maximum residual projective regular-root upper count `5 <= 6`.
+Quotient-support and quotient-image subtraction remain explicitly unaudited in
+that table.
+
 The ledger also imports the v4 low-rank update template budget envelope.  Since
 both the finite and projective `F_17^32` budget numerators are 6, every nonzero
 regular low-rank update chart of rank at most 6 is within the finite regular
