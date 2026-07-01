@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Hankel one-spike linear template
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_one_spike_linear_template.py`;
+  `experimental/notes/m1/hankel_one_spike_linear_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/data/certificates/hankel-one-spike-linear-template/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A reusable non-proportional Hankel template: if
+  `u_m=sum_{x in X}x^m` and the direction is the one-spike sequence
+  `v_m=y^m`, then every prefix regular determinant is affine in the slope,
+  with explicit Cauchy-Binet coefficients and therefore an exact one-root
+  table when the linear coefficient is nonzero.
+- **How it is useful:** This gives the M3 regular-window program a
+  non-proportional exact-root construction that does not require enumerating
+  `F_17^32`; future packets can use it as a compact replay shape for
+  one-spike directions.
+- **What to do next:** Turn the template into a v9 packet mode or a compact
+  large-field coefficient replay before using it for the `F_17^32` top window.
+
 ### 2026-07-01 - M3 proportional branch status
 
 - **Agent/model:** AllenGrahamHart / Codex.

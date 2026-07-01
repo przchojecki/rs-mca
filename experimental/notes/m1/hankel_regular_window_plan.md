@@ -226,6 +226,21 @@ It verifies that `g` is non-base-valued at all 512 positions, so finite affine
 slopes for this packet are sampled from `F_17^32` and the denominator is
 `q_line=17^32`.
 
+A reusable non-proportional exact-root template for future packets is recorded
+in
+
+```text
+experimental/notes/m1/hankel_one_spike_linear_template.md
+experimental/data/certificates/hankel-one-spike-linear-template/
+  hankel_one_spike_linear_template_certificate.json
+```
+
+It proves that moments `u_m=sum_{x in X}x^m` with a one-spike direction
+`v_m=y^m` give prefix determinants affine in the slope.  Thus such directions
+have at most one regular-minor root per exact agreement, with explicit
+Cauchy-Binet coefficients.  This is a template for non-proportional M3 root
+packets, not yet a large `F_17^32` row certificate.
+
 The current status ledger
 
 ```text

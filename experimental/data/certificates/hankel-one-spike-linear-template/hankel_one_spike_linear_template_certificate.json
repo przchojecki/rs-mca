@@ -1,0 +1,240 @@
+{
+  "cases": [
+    {
+      "base_nodes": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "field": "F_17",
+      "name": "four_base_nodes_one_spike",
+      "rows": [
+        {
+          "checked_all_z_mod_17": true,
+          "constant_coefficient": 4,
+          "linear_coefficient": 1,
+          "root_count": 1,
+          "roots_mod_17": [
+            13
+          ],
+          "size": 1,
+          "visible_moment_indices": [
+            0,
+            0
+          ],
+          "visible_proportional_scalar": 4
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "constant_coefficient": 13,
+          "linear_coefficient": 14,
+          "root_count": 1,
+          "roots_mod_17": [
+            10
+          ],
+          "size": 2,
+          "visible_moment_indices": [
+            0,
+            2
+          ],
+          "visible_proportional_scalar": null
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "constant_coefficient": 8,
+          "linear_coefficient": 5,
+          "root_count": 1,
+          "roots_mod_17": [
+            12
+          ],
+          "size": 3,
+          "visible_moment_indices": [
+            0,
+            4
+          ],
+          "visible_proportional_scalar": null
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "constant_coefficient": 8,
+          "linear_coefficient": 1,
+          "root_count": 1,
+          "roots_mod_17": [
+            9
+          ],
+          "size": 4,
+          "visible_moment_indices": [
+            0,
+            6
+          ],
+          "visible_proportional_scalar": null
+        }
+      ],
+      "spike": 3
+    },
+    {
+      "base_nodes": [
+        1,
+        2
+      ],
+      "field": "F_17",
+      "name": "singular_base_closed_by_spike",
+      "rows": [
+        {
+          "checked_all_z_mod_17": true,
+          "constant_coefficient": 2,
+          "linear_coefficient": 1,
+          "root_count": 1,
+          "roots_mod_17": [
+            15
+          ],
+          "size": 1,
+          "visible_moment_indices": [
+            0,
+            0
+          ],
+          "visible_proportional_scalar": 2
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "constant_coefficient": 1,
+          "linear_coefficient": 13,
+          "root_count": 1,
+          "roots_mod_17": [
+            13
+          ],
+          "size": 2,
+          "visible_moment_indices": [
+            0,
+            2
+          ],
+          "visible_proportional_scalar": null
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "constant_coefficient": 0,
+          "linear_coefficient": 2,
+          "root_count": 1,
+          "roots_mod_17": [
+            0
+          ],
+          "size": 3,
+          "visible_moment_indices": [
+            0,
+            4
+          ],
+          "visible_proportional_scalar": null
+        }
+      ],
+      "spike": 4
+    },
+    {
+      "base_nodes": [
+        1,
+        3,
+        5,
+        7,
+        11
+      ],
+      "field": "F_17",
+      "name": "longer_nonproportional_window",
+      "rows": [
+        {
+          "checked_all_z_mod_17": true,
+          "constant_coefficient": 5,
+          "linear_coefficient": 1,
+          "root_count": 1,
+          "roots_mod_17": [
+            12
+          ],
+          "size": 1,
+          "visible_moment_indices": [
+            0,
+            0
+          ],
+          "visible_proportional_scalar": 5
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "constant_coefficient": 7,
+          "linear_coefficient": 15,
+          "root_count": 1,
+          "roots_mod_17": [
+            12
+          ],
+          "size": 2,
+          "visible_moment_indices": [
+            0,
+            2
+          ],
+          "visible_proportional_scalar": null
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "constant_coefficient": 16,
+          "linear_coefficient": 5,
+          "root_count": 1,
+          "roots_mod_17": [
+            7
+          ],
+          "size": 3,
+          "visible_moment_indices": [
+            0,
+            4
+          ],
+          "visible_proportional_scalar": null
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "constant_coefficient": 14,
+          "linear_coefficient": 7,
+          "root_count": 1,
+          "roots_mod_17": [
+            15
+          ],
+          "size": 4,
+          "visible_moment_indices": [
+            0,
+            6
+          ],
+          "visible_proportional_scalar": null
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "constant_coefficient": 9,
+          "linear_coefficient": 6,
+          "root_count": 1,
+          "roots_mod_17": [
+            7
+          ],
+          "size": 5,
+          "visible_moment_indices": [
+            0,
+            8
+          ],
+          "visible_proportional_scalar": null
+        }
+      ],
+      "spike": 2
+    }
+  ],
+  "identity": {
+    "determinant_shape": "Delta_r(Z)=C_0 + Z C_1",
+    "matrix_factorization": "H_r(u)+Z H_r(v)=V_X V_X^T + Z w_y w_y^T",
+    "root_rule": "if C_1!=0 then roots={-C_0/C_1}; if C_1=0 and C_0!=0 then roots=empty"
+  },
+  "nonclaims": [
+    "not an actual F_17^32 M3 row packet",
+    "does not classify arbitrary non-proportional pencils",
+    "does not perform quotient/tangent subtraction for a prize row"
+  ],
+  "schema_version": "m1-hankel-one-spike-linear-template-v1",
+  "status": "PROVED / AUDIT",
+  "theorem": {
+    "m3_use": "A nonzero linear coefficient gives an exact one-root regular-minor containment certificate for a non-proportional one-spike direction, without field enumeration.",
+    "name": "one-spike Hankel linear determinant template",
+    "proof_status": "Cauchy-Binet identity plus finite verifier",
+    "statement": "For prefix size r, base moments u_m=sum_{x in X}x^m, and one-spike direction v_m=y^m, the regular Hankel determinant det(H_r(u)+Z H_r(v)) is affine in Z.  Its coefficients are sum_{|S|=r,S subset X} Vandermonde(S)^2 and sum_{|T|=r-1,T subset X} Vandermonde(T union {y})^2."
+  }
+}
