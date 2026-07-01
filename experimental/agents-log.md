@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 one-spike canonical finite closure
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_one_spike_canonical_empty.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A proof that the non-proportional one-spike family
+  has no finite v10 canonical regular roots for any `385 <= A <= 426`, even
+  though a selected prefix minor can have a root.
+- **How it is useful:** It converts the one-spike packet from selected-minor
+  evidence into a canonical-gcd lesson: selected minors can overcount, while
+  the full overdetermined Hankel rank stays maximal at every finite slope.
+- **What to do next:** Use canonical-gcd/rank-drop closure rather than
+  selected-minor roots when building the next M3 root-table or M4 subtraction
+  packet.
+
 ### 2026-07-01 - M3 one-spike endpoint root table
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

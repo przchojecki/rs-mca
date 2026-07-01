@@ -39,6 +39,16 @@ c1 != 0.
 The packet records the exact split-linear root table, with one encoded
 `F_17^32` root, and declares numerator `1`.
 
+The all-window companion
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/
+```
+
+proves that this selected-prefix root is an overcount for the v10 canonical
+regular gcd: the full overdetermined Hankel matrix has rank `j+1` at every
+finite slope, so the canonical finite root table is empty.
+
 This is the first non-proportional selected-root packet in this PR.  It is not
 a worst-case row bound, not a complete M3 root table, and not a
 quotient/extension subtraction table.

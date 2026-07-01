@@ -1,0 +1,1432 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "base_plus_spike_support_size": 129,
+      "base_support_size": 128,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 128,
+        "z_nonzero_rank": 128
+      },
+      "j": 127,
+      "maximal_row_set_count": 129,
+      "minor_size": 128,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 127,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 128,
+      "t": 129
+    },
+    {
+      "A": 386,
+      "base_plus_spike_support_size": 128,
+      "base_support_size": 127,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 127,
+        "z_nonzero_rank": 127
+      },
+      "j": 126,
+      "maximal_row_set_count": 357760,
+      "minor_size": 127,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 126,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 127,
+      "t": 130
+    },
+    {
+      "A": 387,
+      "base_plus_spike_support_size": 127,
+      "base_support_size": 126,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 126,
+        "z_nonzero_rank": 126
+      },
+      "j": 125,
+      "maximal_row_set_count": 297602656,
+      "minor_size": 126,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 125,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 126,
+      "t": 131
+    },
+    {
+      "A": 388,
+      "base_plus_spike_support_size": 126,
+      "base_support_size": 125,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 125,
+        "z_nonzero_rank": 125
+      },
+      "j": 124,
+      "maximal_row_set_count": 117850651776,
+      "minor_size": 125,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 124,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 125,
+      "t": 132
+    },
+    {
+      "A": 389,
+      "base_plus_spike_support_size": 125,
+      "base_support_size": 124,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 124,
+        "z_nonzero_rank": 124
+      },
+      "j": 123,
+      "maximal_row_set_count": 27212042858000,
+      "minor_size": 124,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 123,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 124,
+      "t": 133
+    },
+    {
+      "A": 390,
+      "base_plus_spike_support_size": 124,
+      "base_support_size": 123,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 123,
+        "z_nonzero_rank": 123
+      },
+      "j": 122,
+      "maximal_row_set_count": 4110502764804800,
+      "minor_size": 123,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 122,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 123,
+      "t": 134
+    },
+    {
+      "A": 391,
+      "base_plus_spike_support_size": 123,
+      "base_support_size": 122,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 122,
+        "z_nonzero_rank": 122
+      },
+      "j": 121,
+      "maximal_row_set_count": 437531400061434000,
+      "minor_size": 122,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 121,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 122,
+      "t": 135
+    },
+    {
+      "A": 392,
+      "base_plus_spike_support_size": 122,
+      "base_support_size": 121,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 121,
+        "z_nonzero_rank": 121
+      },
+      "j": 120,
+      "maximal_row_set_count": 34569147570568156800,
+      "minor_size": 121,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 120,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 121,
+      "t": 136
+    },
+    {
+      "A": 393,
+      "base_plus_spike_support_size": 121,
+      "base_support_size": 120,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 120,
+        "z_nonzero_rank": 120
+      },
+      "j": 119,
+      "maximal_row_set_count": 2106811614990104173800,
+      "minor_size": 120,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 119,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 120,
+      "t": 137
+    },
+    {
+      "A": 394,
+      "base_plus_spike_support_size": 120,
+      "base_support_size": 119,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 119,
+        "z_nonzero_rank": 119
+      },
+      "j": 118,
+      "maximal_row_set_count": 102014036094257675784000,
+      "minor_size": 119,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 118,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 119,
+      "t": 138
+    },
+    {
+      "A": 395,
+      "base_plus_spike_support_size": 119,
+      "base_support_size": 118,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 118,
+        "z_nonzero_rank": 118
+      },
+      "j": 117,
+      "maximal_row_set_count": 4017652788178848131293200,
+      "minor_size": 118,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 117,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 118,
+      "t": 139
+    },
+    {
+      "A": 396,
+      "base_plus_spike_support_size": 118,
+      "base_support_size": 117,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 117,
+        "z_nonzero_rank": 117
+      },
+      "j": 116,
+      "maximal_row_set_count": 131169217511293618831944000,
+      "minor_size": 117,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 116,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 117,
+      "t": 140
+    },
+    {
+      "A": 397,
+      "base_plus_spike_support_size": 117,
+      "base_support_size": 116,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 116,
+        "z_nonzero_rank": 116
+      },
+      "j": 115,
+      "maximal_row_set_count": 3606497635473018049784300280,
+      "minor_size": 116,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 115,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 116,
+      "t": 141
+    },
+    {
+      "A": 398,
+      "base_plus_spike_support_size": 116,
+      "base_support_size": 115,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 115,
+        "z_nonzero_rank": 115
+      },
+      "j": 114,
+      "maximal_row_set_count": 84624257908136115834824778080,
+      "minor_size": 115,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 114,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 115,
+      "t": 142
+    },
+    {
+      "A": 399,
+      "base_plus_spike_support_size": 115,
+      "base_support_size": 114,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 114,
+        "z_nonzero_rank": 114
+      },
+      "j": 113,
+      "maximal_row_set_count": 1713849656772535006039031373800,
+      "minor_size": 114,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 113,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 114,
+      "t": 143
+    },
+    {
+      "A": 400,
+      "base_plus_spike_support_size": 114,
+      "base_support_size": 113,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 113,
+        "z_nonzero_rank": 113
+      },
+      "j": 112,
+      "maximal_row_set_count": 30252210715675198558211547346560,
+      "minor_size": 113,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 112,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 113,
+      "t": 144
+    },
+    {
+      "A": 401,
+      "base_plus_spike_support_size": 113,
+      "base_support_size": 112,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 112,
+        "z_nonzero_rank": 112
+      },
+      "j": 111,
+      "maximal_row_set_count": 469396280848805045810886556130100,
+      "minor_size": 112,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 111,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 112,
+      "t": 145
+    },
+    {
+      "A": 402,
+      "base_plus_spike_support_size": 112,
+      "base_support_size": 111,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 111,
+        "z_nonzero_rank": 111
+      },
+      "j": 110,
+      "maximal_row_set_count": 6450057129781226982436652912470080,
+      "minor_size": 111,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 110,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 111,
+      "t": 146
+    },
+    {
+      "A": 403,
+      "base_plus_spike_support_size": 111,
+      "base_support_size": 110,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 110,
+        "z_nonzero_rank": 110
+      },
+      "j": 109,
+      "maximal_row_set_count": 79013199839820030534848998177758480,
+      "minor_size": 110,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 109,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 110,
+      "t": 147
+    },
+    {
+      "A": 404,
+      "base_plus_spike_support_size": 110,
+      "base_support_size": 109,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 109,
+        "z_nonzero_rank": 109
+      },
+      "j": 108,
+      "maximal_row_set_count": 867972262747820578345034878767819200,
+      "minor_size": 109,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 108,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 109,
+      "t": 148
+    },
+    {
+      "A": 405,
+      "base_plus_spike_support_size": 109,
+      "base_support_size": 108,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 108,
+        "z_nonzero_rank": 108
+      },
+      "j": 107,
+      "maximal_row_set_count": 8595571658102045129818116747602531480,
+      "minor_size": 108,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 107,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 108,
+      "t": 149
+    },
+    {
+      "A": 406,
+      "base_plus_spike_support_size": 108,
+      "base_support_size": 107,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 107,
+        "z_nonzero_rank": 107
+      },
+      "j": 106,
+      "maximal_row_set_count": 77103134474669507808999718333976196000,
+      "minor_size": 107,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 106,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 107,
+      "t": 150
+    },
+    {
+      "A": 407,
+      "base_plus_spike_support_size": 107,
+      "base_support_size": 106,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 106,
+        "z_nonzero_rank": 106
+      },
+      "j": 105,
+      "maximal_row_set_count": 629169365508704665489903257132350201400,
+      "minor_size": 106,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 105,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 106,
+      "t": 151
+    },
+    {
+      "A": 408,
+      "base_plus_spike_support_size": 106,
+      "base_support_size": 105,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 105,
+        "z_nonzero_rank": 105
+      },
+      "j": 104,
+      "maximal_row_set_count": 4688795937593084907665736021700474766400,
+      "minor_size": 105,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 104,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 105,
+      "t": 152
+    },
+    {
+      "A": 409,
+      "base_plus_spike_support_size": 105,
+      "base_support_size": 104,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 104,
+        "z_nonzero_rank": 104
+      },
+      "j": 103,
+      "maximal_row_set_count": 32026150823738481735395429076793421395500,
+      "minor_size": 104,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 103,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 104,
+      "t": 153
+    },
+    {
+      "A": 410,
+      "base_plus_spike_support_size": 104,
+      "base_support_size": 103,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 103,
+        "z_nonzero_rank": 103
+      },
+      "j": 102,
+      "maximal_row_set_count": 201149345722743342538860075330950367478560,
+      "minor_size": 103,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 102,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 103,
+      "t": 154
+    },
+    {
+      "A": 411,
+      "base_plus_spike_support_size": 103,
+      "base_support_size": 102,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 102,
+        "z_nonzero_rank": 102
+      },
+      "j": 101,
+      "maximal_row_set_count": 1165221082896806046310922025638106900143400,
+      "minor_size": 102,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 101,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 102,
+      "t": 155
+    },
+    {
+      "A": 412,
+      "base_plus_spike_support_size": 102,
+      "base_support_size": 101,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 101,
+        "z_nonzero_rank": 101
+      },
+      "j": 100,
+      "maximal_row_set_count": 6242760225944100272356697397964160604404640,
+      "minor_size": 101,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 100,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 101,
+      "t": 156
+    },
+    {
+      "A": 413,
+      "base_plus_spike_support_size": 101,
+      "base_support_size": 100,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 100,
+        "z_nonzero_rank": 100
+      },
+      "j": 99,
+      "maximal_row_set_count": 31012358678820676071040147443457924406028940,
+      "minor_size": 100,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 99,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 100,
+      "t": 157
+    },
+    {
+      "A": 414,
+      "base_plus_spike_support_size": 100,
+      "base_support_size": 99,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 99,
+        "z_nonzero_rank": 99
+      },
+      "j": 98,
+      "maximal_row_set_count": 143189733233596341882651762012459148338766000,
+      "minor_size": 99,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 98,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 99,
+      "t": 158
+    },
+    {
+      "A": 415,
+      "base_plus_spike_support_size": 99,
+      "base_support_size": 98,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 98,
+        "z_nonzero_rank": 98
+      },
+      "j": 97,
+      "maximal_row_set_count": 615833221538262299883830979737191107650414100,
+      "minor_size": 98,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 97,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 98,
+      "t": 159
+    },
+    {
+      "A": 416,
+      "base_plus_spike_support_size": 98,
+      "base_support_size": 97,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 97,
+        "z_nonzero_rank": 97
+      },
+      "j": 96,
+      "maximal_row_set_count": 2472162036282630021039034757367935629277648000,
+      "minor_size": 97,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 96,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 97,
+      "t": 160
+    },
+    {
+      "A": 417,
+      "base_plus_spike_support_size": 97,
+      "base_support_size": 96,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 96,
+        "z_nonzero_rank": 96
+      },
+      "j": 95,
+      "maximal_row_set_count": 9280710221304286788116972549474771808276208850,
+      "minor_size": 96,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 95,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 96,
+      "t": 161
+    },
+    {
+      "A": 418,
+      "base_plus_spike_support_size": 96,
+      "base_support_size": 95,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 95,
+        "z_nonzero_rank": 95
+      },
+      "j": 94,
+      "maximal_row_set_count": 32639892664342891933241781340893634365063681600,
+      "minor_size": 95,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 94,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 95,
+      "t": 162
+    },
+    {
+      "A": 419,
+      "base_plus_spike_support_size": 95,
+      "base_support_size": 94,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 94,
+        "z_nonzero_rank": 94
+      },
+      "j": 93,
+      "maximal_row_set_count": 107721384890739488829123824395511067379158378000,
+      "minor_size": 94,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 93,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 94,
+      "t": 163
+    },
+    {
+      "A": 420,
+      "base_plus_spike_support_size": 94,
+      "base_support_size": 93,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 93,
+        "z_nonzero_rank": 93
+      },
+      "j": 92,
+      "maximal_row_set_count": 334131362067533191104582067782937347025574558400,
+      "minor_size": 93,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 92,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 93,
+      "t": 164
+    },
+    {
+      "A": 421,
+      "base_plus_spike_support_size": 93,
+      "base_support_size": 92,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 92,
+        "z_nonzero_rank": 92
+      },
+      "j": 91,
+      "maximal_row_set_count": 975503377269082347317315797208746877874322983000,
+      "minor_size": 92,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 91,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 92,
+      "t": 165
+    },
+    {
+      "A": 422,
+      "base_plus_spike_support_size": 92,
+      "base_support_size": 91,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 91,
+        "z_nonzero_rank": 91
+      },
+      "j": 90,
+      "maximal_row_set_count": 2684304068045662271753161595490447264666064972320,
+      "minor_size": 91,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 90,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 91,
+      "t": 166
+    },
+    {
+      "A": 423,
+      "base_plus_spike_support_size": 91,
+      "base_support_size": 90,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 90,
+        "z_nonzero_rank": 90
+      },
+      "j": 89,
+      "maximal_row_set_count": 6970842262831498554995351463887273937308644802520,
+      "minor_size": 90,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 89,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 90,
+      "t": 167
+    },
+    {
+      "A": 424,
+      "base_plus_spike_support_size": 90,
+      "base_support_size": 89,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 89,
+        "z_nonzero_rank": 89
+      },
+      "j": 88,
+      "maximal_row_set_count": 17104695717950707262500765033102171686482750635200,
+      "minor_size": 89,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 88,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 89,
+      "t": 168
+    },
+    {
+      "A": 425,
+      "base_plus_spike_support_size": 89,
+      "base_support_size": 88,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 88,
+        "z_nonzero_rank": 88
+      },
+      "j": 87,
+      "maximal_row_set_count": 39702427205817374681369445503532371039565903133340,
+      "minor_size": 88,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 87,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 88,
+      "t": 169
+    },
+    {
+      "A": 426,
+      "base_plus_spike_support_size": 88,
+      "base_support_size": 87,
+      "budget_comparison": {
+        "finite_affine_count": 0,
+        "finite_slope_budget": 6,
+        "projective_count_upper_bound": 1,
+        "projective_safe_for_this_synthetic_family": true
+      },
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "regular_status": "finite_closed",
+        "z_equals_0_rank": 87,
+        "z_nonzero_rank": 87
+      },
+      "j": 86,
+      "maximal_row_set_count": 87268338377759025159166456763568067991758141474400,
+      "minor_size": 87,
+      "projective_infinity": {
+        "ambient_m5_end_state": "dimension_degree",
+        "direction_rank": 1,
+        "ker_Hu_dimension": 0,
+        "ker_Hv_dimension": 86,
+        "kernel_containment": false,
+        "projective_endpoint_upper_bound": 1
+      },
+      "spike_domain_index": 87,
+      "t": 170
+    }
+  ],
+  "checks": [
+    "row descriptor, rank-drop bridge, and projective kernel schemas match",
+    "A=426 one-spike selected-minor packet is present and has one affine root",
+    "the first 129 descriptor-domain elements are distinct",
+    "for every A in 385..426, t>=j+2 for the base-plus-spike rank factorization",
+    "finite canonical root table is empty for every agreement in the window",
+    "projective infinity has the M5 dimension-degree one-point fallback"
+  ],
+  "family": {
+    "finite_pencil_factorization": "H_{t,j}(u+zv)=V_t(X_A union {y_A}) diag(1,...,1,z) V_{j+1}(X_A union {y_A})^T, with the z=0 column removed by its zero weight.",
+    "for_each_A": "s=j+1, X_A={first s descriptor-domain elements}, y_A=descriptor-domain element s",
+    "non_proportional": "If u=c v, then a nonzero signed measure on the distinct set X_A union {y_A} has its first s+1 moments zero; the Vandermonde matrix is invertible, contradiction.",
+    "syndrome": "u_m=sum_{x in X_A} x^m, v_m=y_A^m"
+  },
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512,
+    "full_domain_distinct": true,
+    "largest_one_spike_support_needed": 129
+  },
+  "nonclaims": [
+    "does not classify arbitrary non-proportional syndrome pencils",
+    "does not make the selected prefix minor root a v10 canonical root",
+    "does not prove split-locator nonemptiness at projective infinity",
+    "does not audit quotient or extension overlap for other families",
+    "not a worst-case support-wise MCA row bound"
+  ],
+  "object": "M3 one-spike canonical finite root table over the regular window",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "finite_slope_budget": 6,
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "f17-32-m3-one-spike-canonical-empty-v1",
+  "source_artifacts": {
+    "one_spike_a426_input": {
+      "ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_one_spike_input.json",
+      "sha256": "96a395ed9391f0c549366c614f4ab64baef0ccceac945e512011b54245dc49bf"
+    },
+    "one_spike_a426_selected_minor_packet": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/f17_32_n512_k256_a426_one_spike_packet.json",
+      "sha256": "e857cb6a857505401e44236ebe438edb92d1dd38b62b150948ac31b8142a0d53"
+    },
+    "projective_infinity_kernel_chart": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json",
+      "sha256": "35f42c9da014b138fb12f02136a215f41cd52ef5236423c4b9240ddbd21e736c"
+    },
+    "regular_root_rank_drop_bridge": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/f17_32_n512_k256_m3_m5_regular_root_rank_drop.json",
+      "sha256": "55ee410863252e4c7633c110c458058135ccccaa5963a478e51cc18805d7fd12"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED",
+  "summary": {
+    "agreement_count": 42,
+    "finite_canonical_root_count_per_agreement": 0,
+    "finite_canonical_root_union_size": 0,
+    "projective_count_upper_bound_safe_for_this_synthetic_family": true,
+    "projective_endpoint_upper_bound_per_agreement": 1,
+    "selected_minor_a426_root_count_before_canonical_gcd": 1,
+    "selected_minor_root_is_overcount_for_canonical_v10_gcd": true
+  },
+  "theorem": {
+    "finite_closure": "For every A in 385..426 and every finite z over any extension field, rank H_{t,j}(u+zv)=j+1.  Hence the v10 canonical finite regular gcd is constant and has no finite roots.",
+    "projective_infinity": "At infinity H(v) has rank one while H(u) has full column rank.  Thus ker H(v) is not contained in ker H(u), and the M5 projective kernel chart gives a one-point dimension-degree fallback for [0:1].",
+    "rank_drop_bridge_use": "The M5 bridge says a finite v10 canonical regular root would force rank H_{t,j}(u+zv)<=j.  The rank computation excludes this for every finite z, even after scalar extension.",
+    "z_nonzero_case": "At z!=0 the support X_A union {y_A} has size j+2.  Since t>=j+2, the row Vandermonde has full column rank j+2; the column Vandermonde has rank j+1; the nonzero diagonal weights cannot reduce rank.",
+    "z_zero_case": "At z=0 the base support X_A has size j+1, and the first j+1 rows and columns form invertible Vandermonde factors."
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551
+  }
+}

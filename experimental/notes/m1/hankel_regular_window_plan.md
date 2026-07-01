@@ -584,6 +584,21 @@ proves a degree-1 prefix regular minor with one explicit root.  The checker
 replays both the declared moments and the Cauchy-Binet coefficients.  It is
 still not a universal M3 row table or a safe-side MCA bound.
 
+The canonical-gcd companion is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/
+  f17_32_n512_k256_m3_one_spike_canonical_empty.json
+```
+
+It proves that the selected-prefix root is an overcount for the v10 regular
+branch.  For every `385 <= A <= 426` and every finite slope `z`, the full
+overdetermined Hankel matrix for the one-spike family has rank `j+1`; hence the
+canonical finite root table is empty.  The same rank argument works after
+scalar extension, so the canonical gcd is constant.  At projective infinity,
+`H(v)` has rank one while `H(u)` has full column rank, so the M5 kernel chart
+gives the one-point dimension-degree fallback.
+
 A broader low-rank update theorem is recorded in
 
 ```text
@@ -884,6 +899,9 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/f17_32_n512_k256_a426_one_spike_packet.json
+
+python3 experimental/scripts/verify_f17_32_m3_one_spike_canonical_empty.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/f17_32_n512_k256_m3_one_spike_canonical_empty.json
 
 python3 experimental/scripts/verify_m1_hankel_low_rank_update_template.py \
   --check experimental/data/certificates/hankel-low-rank-update-template/hankel_low_rank_update_template_certificate.json

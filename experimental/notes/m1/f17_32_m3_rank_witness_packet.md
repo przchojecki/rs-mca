@@ -49,6 +49,9 @@ experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-a426/
 experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/
   f17_32_n512_k256_a426_one_spike_packet.json
 
+experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/
+  f17_32_n512_k256_m3_one_spike_canonical_empty.json
+
 experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-a426/
   f17_32_n512_k256_a426_contiguous_gcd_formula.json
 
@@ -409,6 +412,21 @@ prefix determinant `c0+c1 Z` with `c1 != 0`, and the packet records the exact
 split-linear root table with one encoded `F_17^32` root.  Unlike the zero-`u`
 packets, this root is not removed by the zero-slope subtraction sidecar.
 
+The canonical one-spike companion then proves that this selected-prefix root is
+not a v10 canonical regular root.  For every `385 <= A <= 426`, the full
+overdetermined Hankel matrix has rank `j+1` at every finite slope:
+
+```text
+z = 0:     rank comes from the base support X of size j+1;
+z != 0:   rank comes from X union {y}, with t >= j+2 and nonzero weights.
+```
+
+By the regular-root rank-drop bridge, the canonical finite root table is empty
+for the whole one-spike family.  The same rank argument works after scalar
+extension, so the canonical gcd is constant.  The only projective issue is
+`[0:1]`, where the M5 kernel chart gives a one-point dimension-degree fallback
+because `rank H(v)=1` and `H(u)` has full column rank.
+
 The subtraction sidecar verifies that every zero-`u` source input, including
 the contiguous-gcd input, has `u_m=0` for all
 stored syndrome coordinates.  Since `Syn(f+Zg)=u+Zv`, the unique raw root
@@ -428,7 +446,7 @@ These packets prove, for the pinned `F_17^32` arithmetic model and the listed
 synthetic syndrome pencils, that the selected regular prefix minors are not the
 zero polynomial and have the stated exact finite root tables.  The zero-`u`
 packets have root set `{0}`; the one-spike packet has one nonzero encoded
-root.
+selected-prefix root, but its canonical finite root table is empty.
 
 This is stronger than the generic-minor audit in one direction: it is an
 actual finite-field replay through the aperiodic packet checker at both
@@ -513,6 +531,9 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/f17_32_n512_k256_a426_one_spike_packet.json
+
+python3 experimental/scripts/verify_f17_32_m3_one_spike_canonical_empty.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/f17_32_n512_k256_m3_one_spike_canonical_empty.json
 
 python3 experimental/scripts/verify_f17_32_m3_a426_contiguous_gcd_formula.py \
   --check experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-a426/f17_32_n512_k256_a426_contiguous_gcd_formula.json
