@@ -71,6 +71,13 @@
       "status": "PROVED / AUDIT"
     },
     {
+      "name": "synthetic_low_rank9_11_slack_sweep",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank9-11-slack-sweep/f17_32_n512_k256_m3_low_rank9_11_slack_sweep_certificate.json",
+      "schema_version": "f17-32-m3-low-rank9-11-slack-sweep-v1",
+      "sha256": "621d61a8cec12110c86cf351d1ac8540f36086a5cab44d4257c30aac9282701c",
+      "status": "PROVED / AUDIT"
+    },
+    {
       "name": "fixed_top_window_v9_packet",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json",
       "schema_version": "aperiodic-hankel-eliminant-v1",
@@ -152,6 +159,7 @@
       "the synthetic rank-6 low-rank slack family has exact Frobenius-gcd root histogram {0:16, 1:17, 2:9}, so finite-root slack gives at most 3 projective regular roots per agreement",
       "the synthetic rank-7 low-rank slack family has exact Frobenius-gcd root histogram {0:16, 1:15, 2:6, 3:4, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 8",
       "the synthetic rank-8 low-rank slack family has exact Frobenius-gcd root histogram {0:22, 1:10, 2:7, 3:2, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 9",
+      "the synthetic rank-9..11 low-rank slack sweep has exact Frobenius-gcd root histograms {9:{0:17, 1:17, 2:6, 3:2}, 10:{0:8, 1:23, 2:9, 3:2}, 11:{0:15, 1:16, 2:5, 3:6}}, so finite-root slack gives at most 4 projective regular roots per checked pair despite degree-only projective bounds 10, 11, and 12",
       "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
       "the fixed synthetic top-window packet is v9-checkable for A=421..426",
       "the fixed top-window syndrome input has an explicit line-value lift",
@@ -4154,6 +4162,93 @@
       "3": 2,
       "4": 1
     },
-    "synthetic_low_rank8_slack_family_status": "proved exact Frobenius-gcd finite-root slack beyond the degree envelope for all 42 rank-8 synthetic pencils"
+    "synthetic_low_rank8_slack_family_status": "proved exact Frobenius-gcd finite-root slack beyond the degree envelope for all 42 rank-8 synthetic pencils",
+    "synthetic_low_rank9_11_max_projective_regular_roots_over_sweep": 4,
+    "synthetic_low_rank9_11_projective_budget_status": "degree-only projective accounting gives 10, 11, and 12 > 6, but exact finite-root slack lowers every checked pair to at most 4 projective regular roots",
+    "synthetic_low_rank9_11_rank_summaries": {
+      "10": {
+        "agreement_count": 42,
+        "all_rows_within_finite_budget": true,
+        "all_rows_within_projective_budget": true,
+        "degree_bound_sum": 420,
+        "degree_only_projective_bound_within_budget": false,
+        "degree_only_projective_bound_without_slack": 11,
+        "exact_regular_root_count_sum": 47,
+        "linear_root_count_histogram": {
+          "0": 8,
+          "1": 23,
+          "2": 9,
+          "3": 2
+        },
+        "max_finite_roots_per_agreement": 3,
+        "max_projective_regular_roots_per_agreement": 4,
+        "polynomial_degree_histogram": {
+          "10": 42
+        },
+        "projective_infinity_contribution_sum": 42,
+        "rank": 10,
+        "worst_agreements": [
+          411,
+          419
+        ]
+      },
+      "11": {
+        "agreement_count": 42,
+        "all_rows_within_finite_budget": true,
+        "all_rows_within_projective_budget": true,
+        "degree_bound_sum": 462,
+        "degree_only_projective_bound_within_budget": false,
+        "degree_only_projective_bound_without_slack": 12,
+        "exact_regular_root_count_sum": 44,
+        "linear_root_count_histogram": {
+          "0": 15,
+          "1": 16,
+          "2": 5,
+          "3": 6
+        },
+        "max_finite_roots_per_agreement": 3,
+        "max_projective_regular_roots_per_agreement": 4,
+        "polynomial_degree_histogram": {
+          "11": 42
+        },
+        "projective_infinity_contribution_sum": 42,
+        "rank": 11,
+        "worst_agreements": [
+          391,
+          396,
+          397,
+          406,
+          412,
+          423
+        ]
+      },
+      "9": {
+        "agreement_count": 42,
+        "all_rows_within_finite_budget": true,
+        "all_rows_within_projective_budget": true,
+        "degree_bound_sum": 378,
+        "degree_only_projective_bound_within_budget": false,
+        "degree_only_projective_bound_without_slack": 10,
+        "exact_regular_root_count_sum": 35,
+        "linear_root_count_histogram": {
+          "0": 17,
+          "1": 17,
+          "2": 6,
+          "3": 2
+        },
+        "max_finite_roots_per_agreement": 3,
+        "max_projective_regular_roots_per_agreement": 4,
+        "polynomial_degree_histogram": {
+          "9": 42
+        },
+        "projective_infinity_contribution_sum": 42,
+        "rank": 9,
+        "worst_agreements": [
+          398,
+          400
+        ]
+      }
+    },
+    "synthetic_low_rank9_11_slack_sweep_status": "proved exact Frobenius-gcd finite-root slack for all 126 rank/agreement pairs in ranks 9..11"
   }
 }

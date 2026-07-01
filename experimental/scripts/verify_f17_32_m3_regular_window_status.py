@@ -65,6 +65,10 @@ LOW_RANK8_SLACK_FAMILY_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank8-slack-family/"
     "f17_32_n512_k256_m3_low_rank8_slack_family_certificate.json"
 )
+LOW_RANK9_11_SLACK_SWEEP_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-low-rank9-11-slack-sweep/"
+    "f17_32_n512_k256_m3_low_rank9_11_slack_sweep_certificate.json"
+)
 TOP_PACKET_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/"
     "f17_32_n512_k256_a421_426_fixed_prefix92_packet.json"
@@ -151,6 +155,7 @@ def validate_inputs(
     low_rank6_slack_family: dict[str, Any],
     low_rank7_slack_family: dict[str, Any],
     low_rank8_slack_family: dict[str, Any],
+    low_rank9_11_slack_sweep: dict[str, Any],
     top_packet: dict[str, Any],
     line_value_lift: dict[str, Any],
     subgroup_section: dict[str, Any],
@@ -725,6 +730,85 @@ def validate_inputs(
     require(
         len(low_rank8_slack_family["records"]) == 42,
         "rank-8 low-rank slack family record count mismatch",
+    )
+    require(
+        low_rank9_11_slack_sweep["schema_version"]
+        == "f17-32-m3-low-rank9-11-slack-sweep-v1",
+        "rank-9..11 low-rank slack sweep schema mismatch",
+    )
+    require(
+        low_rank9_11_slack_sweep["agreement_range"]
+        == [AGREEMENT_MIN, AGREEMENT_MAX],
+        "rank-9..11 low-rank slack sweep window mismatch",
+    )
+    require(
+        low_rank9_11_slack_sweep["source_artifacts"]["low_rank_template"][
+            "schema_version"
+        ]
+        == "m1-hankel-low-rank-update-template-v4",
+        "rank-9..11 low-rank slack sweep template schema mismatch",
+    )
+    require(
+        low_rank9_11_slack_sweep["construction"]["ranks"] == [9, 10, 11],
+        "rank-9..11 low-rank slack sweep rank list mismatch",
+    )
+    require(
+        low_rank9_11_slack_sweep["aggregate"]["record_count"] == 126,
+        "rank-9..11 low-rank slack sweep record count mismatch",
+    )
+    expected_rank_summaries = {
+        "9": {
+            "degree_bound_sum": 378,
+            "exact_regular_root_count_sum": 35,
+            "linear_root_count_histogram": {"0": 17, "1": 17, "2": 6, "3": 2},
+            "degree_only_projective_bound_without_slack": 10,
+        },
+        "10": {
+            "degree_bound_sum": 420,
+            "exact_regular_root_count_sum": 47,
+            "linear_root_count_histogram": {"0": 8, "1": 23, "2": 9, "3": 2},
+            "degree_only_projective_bound_without_slack": 11,
+        },
+        "11": {
+            "degree_bound_sum": 462,
+            "exact_regular_root_count_sum": 44,
+            "linear_root_count_histogram": {"0": 15, "1": 16, "2": 5, "3": 6},
+            "degree_only_projective_bound_without_slack": 12,
+        },
+    }
+    for rank, expected_summary in expected_rank_summaries.items():
+        summary = low_rank9_11_slack_sweep["aggregate"]["rank_summaries"][rank]
+        require(
+            summary["agreement_count"] == 42
+            and summary["degree_bound_sum"]
+            == expected_summary["degree_bound_sum"]
+            and summary["exact_regular_root_count_sum"]
+            == expected_summary["exact_regular_root_count_sum"]
+            and summary["linear_root_count_histogram"]
+            == expected_summary["linear_root_count_histogram"]
+            and summary["max_finite_roots_per_agreement"] == 3
+            and summary["max_projective_regular_roots_per_agreement"] == 4
+            and summary["degree_only_projective_bound_without_slack"]
+            == expected_summary["degree_only_projective_bound_without_slack"]
+            and summary["degree_only_projective_bound_within_budget"] is False
+            and summary["all_rows_within_finite_budget"] is True
+            and summary["all_rows_within_projective_budget"] is True,
+            f"rank-{rank} low-rank slack sweep summary mismatch",
+        )
+    require(
+        low_rank9_11_slack_sweep["aggregate"][
+            "max_projective_regular_roots_over_sweep"
+        ]
+        == 4
+        and low_rank9_11_slack_sweep["aggregate"][
+            "all_rows_within_projective_budget"
+        ]
+        is True
+        and low_rank9_11_slack_sweep["aggregate"][
+            "generic_degree_bound_sum_for_window"
+        ]
+        == plan["budget_context"]["degree_bound_sum"],
+        "rank-9..11 low-rank slack sweep aggregate mismatch",
     )
     require(
         top_packet["exact_agreements"][0]["A"] == TOP_WINDOW_MIN
@@ -1614,6 +1698,7 @@ def build_status() -> dict[str, Any]:
     low_rank6_slack_family = load_json(LOW_RANK6_SLACK_FAMILY_REF)
     low_rank7_slack_family = load_json(LOW_RANK7_SLACK_FAMILY_REF)
     low_rank8_slack_family = load_json(LOW_RANK8_SLACK_FAMILY_REF)
+    low_rank9_11_slack_sweep = load_json(LOW_RANK9_11_SLACK_SWEEP_REF)
     top_packet = load_json(TOP_PACKET_REF)
     line_value_lift = load_json(LINE_VALUE_LIFT_REF)
     subgroup_section = load_json(SUBGROUP_SECTION_REF)
@@ -1634,6 +1719,7 @@ def build_status() -> dict[str, Any]:
         low_rank6_slack_family,
         low_rank7_slack_family,
         low_rank8_slack_family,
+        low_rank9_11_slack_sweep,
         top_packet,
         line_value_lift,
         subgroup_section,
@@ -1706,6 +1792,11 @@ def build_status() -> dict[str, Any]:
             "synthetic_low_rank8_slack_family",
             LOW_RANK8_SLACK_FAMILY_REF,
             "f17-32-m3-low-rank8-slack-family-v1",
+        ),
+        artifact_record(
+            "synthetic_low_rank9_11_slack_sweep",
+            LOW_RANK9_11_SLACK_SWEEP_REF,
+            "f17-32-m3-low-rank9-11-slack-sweep-v1",
         ),
         artifact_record("fixed_top_window_v9_packet", TOP_PACKET_REF, "aperiodic-hankel-eliminant-v1"),
         artifact_record(
@@ -1947,6 +2038,23 @@ def build_status() -> dict[str, Any]:
                 "finite-root slack lowers every row to at most 5 projective "
                 "regular roots"
             ),
+            "synthetic_low_rank9_11_slack_sweep_status": (
+                "proved exact Frobenius-gcd finite-root slack for all 126 "
+                "rank/agreement pairs in ranks 9..11"
+            ),
+            "synthetic_low_rank9_11_rank_summaries": (
+                low_rank9_11_slack_sweep["aggregate"]["rank_summaries"]
+            ),
+            "synthetic_low_rank9_11_max_projective_regular_roots_over_sweep": (
+                low_rank9_11_slack_sweep["aggregate"][
+                    "max_projective_regular_roots_over_sweep"
+                ]
+            ),
+            "synthetic_low_rank9_11_projective_budget_status": (
+                "degree-only projective accounting gives 10, 11, and 12 > 6, "
+                "but exact finite-root slack lowers every checked pair to at "
+                "most 4 projective regular roots"
+            ),
             "low_rank_budget_envelope_status": (
                 "proved that every nonzero regular low-rank update chart of "
                 "rank <= 6 is within the F_17^32 M3 finite regular-root "
@@ -2016,6 +2124,7 @@ def build_status() -> dict[str, Any]:
                 "the synthetic rank-6 low-rank slack family has exact Frobenius-gcd root histogram {0:16, 1:17, 2:9}, so finite-root slack gives at most 3 projective regular roots per agreement",
                 "the synthetic rank-7 low-rank slack family has exact Frobenius-gcd root histogram {0:16, 1:15, 2:6, 3:4, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 8",
                 "the synthetic rank-8 low-rank slack family has exact Frobenius-gcd root histogram {0:22, 1:10, 2:7, 3:2, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 9",
+                "the synthetic rank-9..11 low-rank slack sweep has exact Frobenius-gcd root histograms {9:{0:17, 1:17, 2:6, 3:2}, 10:{0:8, 1:23, 2:9, 3:2}, 11:{0:15, 1:16, 2:5, 3:6}}, so finite-root slack gives at most 4 projective regular roots per checked pair despite degree-only projective bounds 10, 11, and 12",
                 "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
                 "the fixed top-window syndrome input has an explicit line-value lift",
@@ -2075,6 +2184,10 @@ def print_summary(status: dict[str, Any]) -> None:
     print(f"rank-6 low-rank slack: {summary['synthetic_low_rank6_slack_family_status']}")
     print(f"rank-7 low-rank slack: {summary['synthetic_low_rank7_slack_family_status']}")
     print(f"rank-8 low-rank slack: {summary['synthetic_low_rank8_slack_family_status']}")
+    print(
+        "rank-9..11 low-rank slack: "
+        f"{summary['synthetic_low_rank9_11_slack_sweep_status']}"
+    )
     print(f"low-rank budget envelope: {summary['low_rank_budget_envelope_status']}")
     print(f"low-rank packet gate: {summary['low_rank_packet_gate_status']}")
     print(f"actual row: {summary['actual_row_status']}")

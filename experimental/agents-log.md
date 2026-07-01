@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-9..11 low-rank finite-slack sweep
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank9_11_slack_sweep.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank9-11-slack-sweep/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a compact replayable sweep for synthetic
+  low-rank update ranks `9`, `10`, and `11` in the M3 regular window.  The
+  exact finite-root histograms are `{0:17, 1:17, 2:6, 3:2}`,
+  `{0:8, 1:23, 2:9, 3:2}`, and `{0:15, 1:16, 2:5, 3:6}`, so every checked
+  rank/agreement pair has at most four projective regular roots after the
+  corrected infinity point.
+- **How it is useful:** Extends the finite-root slack phenomenon three more
+  ranks beyond the v4 low-rank degree envelope while avoiding one bulky
+  sidecar certificate per rank.  Degree-only projective accounting would give
+  `10`, `11`, and `12` against budget `6`.
+- **What to do next:** Look for a structural explanation of the small
+  Frobenius-gcd degrees in nested low-rank families, or search for the first
+  rank where this synthetic slack actually fails.
+
 ### 2026-07-01 - M3 rank-8 low-rank finite slack
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -266,6 +266,20 @@ again fail, now at `8` and `9`, but exact Frobenius-gcd root counts have
 histogram `{0:22, 1:10, 2:7, 3:2, 4:1}`, so finite-root slack still gives
 projective bound `4+1=5 <= 6`.
 
+The rank-9..11 finite-slack sweep
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank9-11-slack-sweep/
+  f17_32_n512_k256_m3_low_rank9_11_slack_sweep_certificate.json
+```
+
+checks the same nested ladder three more ranks beyond the degree envelope with
+a compact multi-rank certificate.  Degree-only projective bounds are `10`,
+`11`, and `12`, but exact Frobenius-gcd root counts have histograms
+`{0:17, 1:17, 2:6, 3:2}`, `{0:8, 1:23, 2:9, 3:2}`, and
+`{0:15, 1:16, 2:5, 3:6}`.  The whole sweep has projective bound
+`3+1=4 <= 6`.
+
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform quotient/tangent
 subtraction.

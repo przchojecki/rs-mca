@@ -70,6 +70,14 @@ histogram `{0:22, 1:10, 2:7, 3:2, 4:1}`, so every agreement again has at most
 four finite roots and at most five projective regular roots after the corrected
 infinity point.
 
+The rank-9..11 low-rank slack sweep avoids adding three more bulky per-rank
+sidecar certificates.  It recomputes exact Frobenius-gcd root counts for all
+`126` rank/agreement pairs and records compact hashes.  The root histograms are
+`rank 9: {0:17, 1:17, 2:6, 3:2}`, `rank 10: {0:8, 1:23, 2:9, 3:2}`, and
+`rank 11: {0:15, 1:16, 2:5, 3:6}`.  Thus every checked pair has at most three
+finite roots and at most four projective regular roots, despite degree-only
+projective bounds `10`, `11`, and `12`.
+
 The ledger also imports the v4 low-rank update template budget envelope.  Since
 both the finite and projective `F_17^32` budget numerators are 6, every nonzero
 regular low-rank update chart of rank at most 6 is within the finite regular
