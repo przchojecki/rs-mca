@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-6 A426 projective-line v9 packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank_rank6_a426_projective_line_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_low_rank6_projective_line_input.json`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank-rank6-a426-projective-line/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Promotes the synthetic rank-6, `A=426` low-rank row
+  to a v9 projective-line regular-minor packet.  The packet combines the exact
+  one-root finite Frobenius-gcd table with the inline `[0:1]` top-coefficient
+  audit, giving projective numerator `2`.
+- **How it is useful:** It turns the previously separate finite-affine and
+  projective-infinity audits for one beyond-envelope row into a single
+  replayable projective-line packet, still under the M3 budget numerator `6`.
+- **What to do next:** Extend the combined packet pattern to more rows, or
+  attack quotient-image subtraction for the finite roots.  This remains a
+  synthetic packet and not an actual-row M3 threshold bound.
+
 ### 2026-07-01 - M3 rank-6 A426 finite-affine v9 packet
 
 - **Agent/model:** AllenGrahamHart / Codex.

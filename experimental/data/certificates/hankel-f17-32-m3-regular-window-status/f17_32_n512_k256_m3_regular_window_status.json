@@ -106,6 +106,13 @@
       "status": "PROVED / AUDIT"
     },
     {
+      "name": "synthetic_low_rank_rank6_a426_projective_line_packet",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank-rank6-a426-projective-line/f17_32_n512_k256_a426_rank6_projective_line_packet.json",
+      "schema_version": "aperiodic-hankel-eliminant-v1",
+      "sha256": "917229a80ebead6a5ad658080cafa6c908a9c44cbe2e5af3577881b89ac895da",
+      "status": "PROVED / AUDIT"
+    },
+    {
       "name": "synthetic_low_rank6_11_tangent_exclusion",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json",
       "schema_version": "f17-32-m3-low-rank6-11-tangent-exclusion-v1",
@@ -4724,6 +4731,11 @@
       433103153921755587956025854474067902214
     ],
     "synthetic_low_rank_rank6_a426_finite_packet_status": "v9 finite-affine regular-minor packet checks the rank-6 A=426 low-rank row with degree 6 and one exact finite root, certified by gcd(Delta,Z^q-Z)",
+    "synthetic_low_rank_rank6_a426_projective_line_packet_numerator": 2,
+    "synthetic_low_rank_rank6_a426_projective_line_packet_root_union": [
+      433103153921755587956025854474067902214
+    ],
+    "synthetic_low_rank_rank6_a426_projective_line_packet_status": "v9 projective-line regular-minor packet combines the rank-6 A=426 finite root table with the inline [0:1] top-coefficient audit, giving projective numerator 2",
     "synthetic_low_rank_rank6_a426_projective_pivot_status": "v9 projective-line pivot_atlas packet checks the rank-6 A=426 projective_infinity chart as nonempty with support_count 1, using the same Vandermonde endpoint witness",
     "synthetic_low_rank_rank6_a426_projective_pivot_support": 506
   }

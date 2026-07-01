@@ -108,6 +108,13 @@ projective-infinity packet, this gives one synthetic rank-6 row with both its
 finite-affine regular-minor roots and projective endpoint represented in v9
 packet form.
 
+The rank-6, `A=426` projective-line packet combines those two audits in the
+regular-minor packet format.  The finite root table is the same one-root
+Frobenius-gcd table, while the `[0:1]` endpoint is checked inline by the
+original top coefficient at degree `j+1=87`.  The resulting projective-line
+numerator is `2`, still below the M3 budget numerator `6`, and the companion
+pivot packet supplies the actual support witness for the endpoint.
+
 The rank-6..11 tangent-exclusion audit is the first subtraction check for this
 beyond-envelope low-rank block.  It consumes the exact finite-root certificates
 above and checks the unique moment-zero common-code-line slope
