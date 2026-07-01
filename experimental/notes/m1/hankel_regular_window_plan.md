@@ -406,6 +406,26 @@ python3 experimental/scripts/verify_m1_hankel_finite_tangent_overlap_criterion.p
   --check experimental/data/certificates/hankel-f17-32-m3-finite-tangent-overlap/f17_32_n512_k256_m3_finite_tangent_overlap_criterion.json
 ```
 
+The projective-infinity endpoint criterion is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/
+  f17_32_n512_k256_m3_projective_infinity_rank_criterion.json
+```
+
+For the homogenized pencil
+`Z0 H_{t,j}(u)+Z1 H_{t,j}(v)`, every maximal minor specializes at infinity to
+`det(H_R(v))`.  Hence full column rank of the direction Hankel block excludes
+the projective endpoint `[0:1]`, while direction-rank deficiency is a singular
+infinity chart to send to M5 or to a separate paid endpoint classification.
+
+Replay:
+
+```sh
+python3 experimental/scripts/verify_m1_hankel_projective_infinity_rank_criterion.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/f17_32_n512_k256_m3_projective_infinity_rank_criterion.json
+```
+
 The corresponding F1 denominator audit is
 
 ```text

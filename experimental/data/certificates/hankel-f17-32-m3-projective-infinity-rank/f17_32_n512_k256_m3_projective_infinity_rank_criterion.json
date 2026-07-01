@@ -1,0 +1,1112 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 127,
+      "maximal_row_set_count": 129,
+      "minor_size": 128,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 129
+    },
+    {
+      "A": 386,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 126,
+      "maximal_row_set_count": 357760,
+      "minor_size": 127,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 130
+    },
+    {
+      "A": 387,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 125,
+      "maximal_row_set_count": 297602656,
+      "minor_size": 126,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 131
+    },
+    {
+      "A": 388,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 124,
+      "maximal_row_set_count": 117850651776,
+      "minor_size": 125,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 132
+    },
+    {
+      "A": 389,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 123,
+      "maximal_row_set_count": 27212042858000,
+      "minor_size": 124,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 133
+    },
+    {
+      "A": 390,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 122,
+      "maximal_row_set_count": 4110502764804800,
+      "minor_size": 123,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 134
+    },
+    {
+      "A": 391,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 121,
+      "maximal_row_set_count": 437531400061434000,
+      "minor_size": 122,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 135
+    },
+    {
+      "A": 392,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 120,
+      "maximal_row_set_count": 34569147570568156800,
+      "minor_size": 121,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 136
+    },
+    {
+      "A": 393,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 119,
+      "maximal_row_set_count": 2106811614990104173800,
+      "minor_size": 120,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 137
+    },
+    {
+      "A": 394,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 118,
+      "maximal_row_set_count": 102014036094257675784000,
+      "minor_size": 119,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 138
+    },
+    {
+      "A": 395,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 117,
+      "maximal_row_set_count": 4017652788178848131293200,
+      "minor_size": 118,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 139
+    },
+    {
+      "A": 396,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 116,
+      "maximal_row_set_count": 131169217511293618831944000,
+      "minor_size": 117,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 140
+    },
+    {
+      "A": 397,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 115,
+      "maximal_row_set_count": 3606497635473018049784300280,
+      "minor_size": 116,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 141
+    },
+    {
+      "A": 398,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 114,
+      "maximal_row_set_count": 84624257908136115834824778080,
+      "minor_size": 115,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 142
+    },
+    {
+      "A": 399,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 113,
+      "maximal_row_set_count": 1713849656772535006039031373800,
+      "minor_size": 114,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 143
+    },
+    {
+      "A": 400,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 112,
+      "maximal_row_set_count": 30252210715675198558211547346560,
+      "minor_size": 113,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 144
+    },
+    {
+      "A": 401,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 111,
+      "maximal_row_set_count": 469396280848805045810886556130100,
+      "minor_size": 112,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 145
+    },
+    {
+      "A": 402,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 110,
+      "maximal_row_set_count": 6450057129781226982436652912470080,
+      "minor_size": 111,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 146
+    },
+    {
+      "A": 403,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 109,
+      "maximal_row_set_count": 79013199839820030534848998177758480,
+      "minor_size": 110,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 147
+    },
+    {
+      "A": 404,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 108,
+      "maximal_row_set_count": 867972262747820578345034878767819200,
+      "minor_size": 109,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 148
+    },
+    {
+      "A": 405,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 107,
+      "maximal_row_set_count": 8595571658102045129818116747602531480,
+      "minor_size": 108,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 149
+    },
+    {
+      "A": 406,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 106,
+      "maximal_row_set_count": 77103134474669507808999718333976196000,
+      "minor_size": 107,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 150
+    },
+    {
+      "A": 407,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 105,
+      "maximal_row_set_count": 629169365508704665489903257132350201400,
+      "minor_size": 106,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 151
+    },
+    {
+      "A": 408,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 104,
+      "maximal_row_set_count": 4688795937593084907665736021700474766400,
+      "minor_size": 105,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 152
+    },
+    {
+      "A": 409,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 103,
+      "maximal_row_set_count": 32026150823738481735395429076793421395500,
+      "minor_size": 104,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 153
+    },
+    {
+      "A": 410,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 102,
+      "maximal_row_set_count": 201149345722743342538860075330950367478560,
+      "minor_size": 103,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 154
+    },
+    {
+      "A": 411,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 101,
+      "maximal_row_set_count": 1165221082896806046310922025638106900143400,
+      "minor_size": 102,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 155
+    },
+    {
+      "A": 412,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 100,
+      "maximal_row_set_count": 6242760225944100272356697397964160604404640,
+      "minor_size": 101,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 156
+    },
+    {
+      "A": 413,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 99,
+      "maximal_row_set_count": 31012358678820676071040147443457924406028940,
+      "minor_size": 100,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 157
+    },
+    {
+      "A": 414,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 98,
+      "maximal_row_set_count": 143189733233596341882651762012459148338766000,
+      "minor_size": 99,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 158
+    },
+    {
+      "A": 415,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 97,
+      "maximal_row_set_count": 615833221538262299883830979737191107650414100,
+      "minor_size": 98,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 159
+    },
+    {
+      "A": 416,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 96,
+      "maximal_row_set_count": 2472162036282630021039034757367935629277648000,
+      "minor_size": 97,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 160
+    },
+    {
+      "A": 417,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 95,
+      "maximal_row_set_count": 9280710221304286788116972549474771808276208850,
+      "minor_size": 96,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 161
+    },
+    {
+      "A": 418,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 94,
+      "maximal_row_set_count": 32639892664342891933241781340893634365063681600,
+      "minor_size": 95,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 162
+    },
+    {
+      "A": 419,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 93,
+      "maximal_row_set_count": 107721384890739488829123824395511067379158378000,
+      "minor_size": 94,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 163
+    },
+    {
+      "A": 420,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 92,
+      "maximal_row_set_count": 334131362067533191104582067782937347025574558400,
+      "minor_size": 93,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 164
+    },
+    {
+      "A": 421,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 91,
+      "maximal_row_set_count": 975503377269082347317315797208746877874322983000,
+      "minor_size": 92,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 165
+    },
+    {
+      "A": 422,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 90,
+      "maximal_row_set_count": 2684304068045662271753161595490447264666064972320,
+      "minor_size": 91,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 166
+    },
+    {
+      "A": 423,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 89,
+      "maximal_row_set_count": 6970842262831498554995351463887273937308644802520,
+      "minor_size": 90,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 167
+    },
+    {
+      "A": 424,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 88,
+      "maximal_row_set_count": 17104695717950707262500765033102171686482750635200,
+      "minor_size": 89,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 168
+    },
+    {
+      "A": 425,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 87,
+      "maximal_row_set_count": 39702427205817374681369445503532371039565903133340,
+      "minor_size": 88,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 169
+    },
+    {
+      "A": 426,
+      "infinity_minor_value": "Delta_R(0,1)=det(H_R(v))",
+      "infinity_point": "[0:1]",
+      "j": 86,
+      "maximal_row_set_count": 87268338377759025159166456763568067991758141474400,
+      "minor_size": 87,
+      "outcomes": {
+        "direction_full_column_rank": {
+          "condition": "rank H_{t,j}(v) = j+1",
+          "projective_infinity_contribution": 0,
+          "projective_infinity_status": "excluded_by_regular_minor",
+          "reason": "Some maximal row set R has det(H_R(v)) nonzero, so the projective regular minors do not all vanish at [0:1]."
+        },
+        "direction_rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "projective infinity pivot chart or separate paid endpoint classification",
+          "projective_infinity_status": "singular_infinity_chart_required",
+          "reason": "Every maximal row-set determinant det(H_R(v)) vanishes, so the regular minors alone do not close the infinity endpoint.",
+          "residual_label": "unknown"
+        }
+      },
+      "projective_pencil": "Z0 H_{t,j}(u) + Z1 H_{t,j}(v)",
+      "t": 170
+    }
+  ],
+  "checks": [
+    "homogenized maximal minors specialize at infinity to maximal minors of H(v)",
+    "full column rank of H(v) gives a nonzero infinity minor",
+    "rank deficiency of H(v) makes all infinity minors vanish",
+    "row-set counts match the zero-u rank dichotomy certificate"
+  ],
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512,
+    "full_domain_distinct": true
+  },
+  "nonclaims": [
+    "does not prove rank-deficient infinity endpoints are actual bad projective slopes",
+    "does not classify quotient, tangent, or extension payment for rank-deficient infinity charts",
+    "does not compute arbitrary finite affine root tables",
+    "not a worst-case support-wise MCA row bound"
+  ],
+  "object": "projective-infinity rank criterion for M3 regular buckets",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "f17-32-m3-projective-infinity-rank-criterion-v1",
+  "source_artifacts": {
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    },
+    "zero_u_rank_dichotomy": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-zero-u-rank-dichotomy/f17_32_n512_k256_m3_zero_u_rank_dichotomy.json",
+      "sha256": "d47c5028dddf0ea24bf723623a47e6c20bbe1eaed42c8c1a5d4f3308977d07e3"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement_count": 42,
+    "direction_full_rank_projective_infinity_contribution": 0,
+    "direction_rank_deficient_residual_label": "unknown",
+    "direction_rank_deficient_status": "singular_infinity_chart_required"
+  },
+  "theorem": {
+    "full_rank_conclusion": "If H_{t,j}(v) has full column rank j+1, at least one maximal minor is nonzero at [0:1], so projective infinity is excluded by the regular-minor chart.",
+    "homogenized_pencil": "M_A[Z0:Z1]=Z0 H_{t,j}(u)+Z1 H_{t,j}(v)",
+    "m4_consequence": "A projective regular-root table may add the infinity endpoint only in the direction-rank-deficient branch.  Full-rank direction pencils have projective-infinity contribution 0.",
+    "minor_identity_at_infinity": "For every maximal row set R, Delta_R(0,1)=det(H_R(v)).",
+    "rank_deficient_conclusion": "If rank H_{t,j}(v)<=j, every maximal minor vanishes at [0:1].  The endpoint is a singular projective-infinity chart requiring a pivot packet or separate paid classification."
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551
+  }
+}

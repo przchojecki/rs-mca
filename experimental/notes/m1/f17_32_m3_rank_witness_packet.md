@@ -71,6 +71,9 @@ experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/
 
 experimental/data/certificates/hankel-f17-32-m3-finite-tangent-overlap/
   f17_32_n512_k256_m3_finite_tangent_overlap_criterion.json
+
+experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/
+  f17_32_n512_k256_m3_projective_infinity_rank_criterion.json
 ```
 
 The M4 zero-slope subtraction sidecar is
@@ -262,6 +265,19 @@ uses the full stored syndrome.  A finite slope is tangent/common-code-line iff
 finite tangent overlap at all, while a nondegenerate proportional pencil has
 the unique paid slope `z=-c`.
 
+The projective-infinity rank criterion supplies the corresponding endpoint
+rule.  For the homogenized pencil
+
+```text
+M_A[Z0:Z1] = Z0 H_{t,j}(u) + Z1 H_{t,j}(v),
+```
+
+each maximal minor satisfies `Delta_R(0,1)=det(H_R(v))`.  Thus if the direction
+Hankel block `H_{t,j}(v)` has full column rank, the projective-infinity point
+`[0:1]` is excluded by a nonzero regular minor and contributes `0`.  If
+`rank H_{t,j}(v)<=j`, all infinity minors vanish and the endpoint is a named
+singular projective chart for M5 or a separate paid endpoint classification.
+
 In the selected-minor packets, the chosen prefix determinant has the closed form
 
 ```text
@@ -391,6 +407,9 @@ python3 experimental/scripts/verify_m1_hankel_proportional_pencil_tangent_lemma.
 
 python3 experimental/scripts/verify_m1_hankel_finite_tangent_overlap_criterion.py \
   --check experimental/data/certificates/hankel-f17-32-m3-finite-tangent-overlap/f17_32_n512_k256_m3_finite_tangent_overlap_criterion.json
+
+python3 experimental/scripts/verify_m1_hankel_projective_infinity_rank_criterion.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/f17_32_n512_k256_m3_projective_infinity_rank_criterion.json
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_rank_witness_zero_slope_subtraction.json

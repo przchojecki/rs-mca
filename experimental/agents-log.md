@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 projective-infinity rank criterion
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_projective_infinity_rank_criterion.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for projective infinity in the `F_17^32`
+  M3 regular window.
+- **What is being added:** A projective endpoint criterion: after
+  homogenizing the regular pencil as
+  `Z0 H_{t,j}(u)+Z1 H_{t,j}(v)`, every maximal minor satisfies
+  `Delta_R(0,1)=det(H_R(v))`.  Thus full column rank of `H_{t,j}(v)`
+  excludes `[0:1]`; rank deficiency is exactly the singular infinity chart.
+- **How it is useful:** This gives M4 projective accounting a clean endpoint
+  rule: full-rank direction pencils contribute no projective-infinity point,
+  while direction-rank-deficient endpoints must be handled by pivot charts or
+  a separate paid classification.
+- **What to do next:** Combine finite root tables with this infinity criterion
+  and the tangent-overlap criterion to build complete projective residual
+  tables for non-proportional packets.
+
 ### 2026-07-01 - M3 finite tangent-overlap criterion
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
