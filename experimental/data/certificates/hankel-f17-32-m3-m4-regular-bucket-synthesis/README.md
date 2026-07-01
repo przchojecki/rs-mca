@@ -76,6 +76,18 @@ finite roots, and one projective endpoint can occur simultaneously.  The M3
 rank-6 boundary must be attacked with Hankel-specific structure, exact root
 tables, or a paid/empty endpoint ledger.
 
+The affine-pivot compression packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
+  f17_32_n512_k256_m3_m4_affine_pivot_compression.json
+```
+
+gives the finite-root table route a smaller target.  On a row-set chart with
+finite pivot `z0` and `rank H_R(v)<=6`, the original `87..128` dimensional
+maximal-minor determinant compresses to a `6 x 6` determinant with the same
+finite roots in that affine pivot chart.
+
 For finite affine roots, the M5 kernel chart gives a per-root filter:
 
 ```text
@@ -122,6 +134,9 @@ python3 experimental/scripts/verify_m1_hankel_m4_projective_budget_split.py \
 
 python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
+
+python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json

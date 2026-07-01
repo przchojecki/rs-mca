@@ -68,6 +68,17 @@ alone: there are ambient regular pencils in the same M3 dimensions with rank
 positive rank-6 closure must therefore use Hankel structure, exact root tables,
 endpoint payment, or split-locator constraints.
 
+The affine-pivot compression packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
+  f17_32_n512_k256_m3_m4_affine_pivot_compression.json
+```
+
+turns the exact-root-table route into a smaller chart problem: on any finite
+base slope `z0` with `M_R(z0)` invertible and `rank H_R(v)<=6`, the maximal
+minor determinant is equivalent to a `6 x 6` compressed determinant.
+
 Regenerate and check:
 
 ```sh
@@ -79,4 +90,7 @@ python3 experimental/scripts/verify_m1_hankel_m4_projective_budget_split.py \
 
 python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
+
+python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 ```

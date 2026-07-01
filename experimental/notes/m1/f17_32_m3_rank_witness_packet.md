@@ -112,6 +112,9 @@ experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/
 experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/
   f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
 
+experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
+  f17_32_n512_k256_m3_m4_affine_pivot_compression.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/
   f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json
 ```
@@ -408,6 +411,18 @@ with `C` Vandermonde, direction rank `6`, canonical finite gcd
 Hankel realizability, but it proves that rank, regularity, and the one-point
 endpoint bound alone cannot close rank `6`.
 
+The affine-pivot compression companion gives the finite-root route a concrete
+Hankel-chart target.  If a row-set chart has finite base slope `z0` with
+`M_R(z0)` invertible and `H_R(v)=P_R Q_R` has rank at most `r`, then
+
+```text
+det M_R(z0+w)
+  = det M_R(z0) det(I_r + w Q_R M_R(z0)^(-1) P_R).
+```
+
+Thus the rank-6 endpoint-sensitive finite-root problem can be attacked through
+`6 x 6` compressed determinants rather than `87..128` dimensional minors.
+
 The M4 regular-bucket synthesis certificate composes these local lemmas into a
 decision table.  The closed branches are zero-`v` with full-rank `H(u)` and
 proportional nonzero-`v` with full-rank `H(v)`; the zero-`u` full-rank branch is
@@ -651,6 +666,9 @@ python3 experimental/scripts/verify_m1_hankel_m4_projective_budget_split.py \
 
 python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
+
+python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json

@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M4 affine-pivot compression
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A chart-local affine-pivot compression theorem:
+  if `M_R(z0)` is invertible and `H_R(v)=P_R Q_R` has rank `r`, then
+  `det M_R(z0+w)` equals `det M_R(z0)` times an `r x r` determinant.
+- **How it is useful:** It turns the rank-6 endpoint-sensitive finite-root
+  problem from an `87..128` dimensional determinant problem into a `6 x 6`
+  compressed determinant problem on each affine pivot chart.
+- **What to do next:** Use this compression to compute or bound the common
+  rank-6 finite root table, or pair it with an endpoint payment/emptiness
+  certificate.
+
 ### 2026-07-01 - M4 rank-6 ambient sharpness
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

@@ -75,6 +75,10 @@ M4_PROJECTIVE_BUDGET_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/"
     "f17_32_n512_k256_m3_m4_projective_budget_split.json"
 )
+M4_AFFINE_PIVOT_COMPRESSION_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/"
+    "f17_32_n512_k256_m3_m4_affine_pivot_compression.json"
+)
 LOWER_RANK_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-lower-rank-contained/"
     "f17_32_n512_k256_m3_lower_rank_contained.json"
@@ -92,6 +96,7 @@ EXPECTED_SCHEMAS = {
     DIRECTION_RANK_REF: "f17-32-m3-direction-rank-degree-cap-v1",
     M5_PROJECTIVE_INFINITY_REF: "f17-32-m3-m5-projective-infinity-kernel-chart-v1",
     M4_PROJECTIVE_BUDGET_REF: "f17-32-m3-m4-projective-budget-split-v1",
+    M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
 }
 
@@ -187,11 +192,12 @@ def regular_bucket_decision_table() -> dict[str, Any]:
                 "B_ap_regular_projective_before_endpoint_payment": f"<= {BUDGET + 1}",
                 "projective_budget_safe_without_endpoint_payment": False,
                 "projective_budget_split_certificate_ref": M4_PROJECTIVE_BUDGET_REF,
+                "finite_root_compression_certificate_ref": M4_AFFINE_PIVOT_COMPRESSION_REF,
                 "projective_sampler_safe_if": (
                     "the infinity endpoint is empty/paid, or the exact finite "
                     f"root table has at most {BUDGET - 1} surviving roots"
                 ),
-                "next_step": "endpoint payment, endpoint emptiness, or exact root table refinement",
+                "next_step": "endpoint payment, endpoint emptiness, or compressed 6x6 affine-pivot root table refinement",
             },
             "direction_rank_intermediate": {
                 "condition": f"{BUDGET} < rank H_{{t,j}}(v) <= j",
@@ -204,6 +210,7 @@ def regular_bucket_decision_table() -> dict[str, Any]:
                 "projective_infinity_status": "empty_or_one_point_by_m5_kernel_chart",
                 "projective_infinity_extra_parameters": "<= 1",
                 "projective_budget_split_certificate_ref": M4_PROJECTIVE_BUDGET_REF,
+                "finite_root_compression_certificate_ref": M4_AFFINE_PIVOT_COMPRESSION_REF,
                 "next_step": "actual finite root table, kernel filter, plus quotient/extension overlap audit",
             },
             "direction_full_rank": {
@@ -332,6 +339,10 @@ def build_certificate() -> dict[str, Any]:
                 "projective counting adds at most the single endpoint [0:1]",
                 "for this row both finite and projective budgets equal 6, so r<=5 is projective-safe and r=6 needs endpoint empty/paid or one fewer finite root",
             ],
+            "m4_affine_pivot_compression": [
+                "on any finite affine pivot with M_R(z0) invertible and rank H_R(v)<=r, det M_R(z) compresses to an r x r determinant",
+                "rank-6 endpoint-sensitive finite-root refinement can therefore target 6x6 compressed determinants instead of 87..128 dimensional minors",
+            ],
             "m5_projective_infinity_closed_by_kernel_chart": [
                 "proportional rank-deficient direction: infinity empty because ker H(v) subset ker H(u)",
                 "arbitrary rank-deficient direction: infinity empty iff ker H(v) subset ker H(u), otherwise at most the single endpoint [0:1]",
@@ -347,7 +358,7 @@ def build_certificate() -> dict[str, Any]:
             ],
             "still_requires_m5_or_other_ledgers": [
                 "rank-deficient finite regular buckets not covered by a paid family",
-                "non-proportional direction-rank-6 buckets when the projective endpoint is not empty or paid and the exact finite root table has six surviving roots",
+                "non-proportional direction-rank-6 buckets when the projective endpoint is not empty or paid and the 6x6 compressed exact finite root table has six surviving roots",
                 "non-proportional finite buckets with direction rank > 6 unless exact root tables plus kernel filters improve the bound",
                 "quotient, quotient-image, extension, and subfield overlap for future non-proportional root tables",
             ],
@@ -374,6 +385,7 @@ def build_certificate() -> dict[str, Any]:
             "m5_finite_affine_filter_count": 1,
             "m5_regular_root_rank_drop_bridge_count": 1,
             "m4_projective_budget_split_count": 1,
+            "m4_affine_pivot_compression_count": 1,
             "residual_case_count": 3,
             "dependencies_checked": len(EXPECTED_SCHEMAS),
         },
@@ -386,6 +398,7 @@ def build_certificate() -> dict[str, Any]:
             "regular gcd roots are linked to evaluated Hankel rank drop",
             "projective infinity is classified by the M5 kernel-containment chart",
             "rank<=5 buckets are separated from rank=6 endpoint-sensitive buckets",
+            "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
             "projective infinity and finite affine accounting are not conflated",
         ],
         "nonclaims": [

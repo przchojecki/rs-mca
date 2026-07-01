@@ -1,0 +1,499 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "compression_ratio_note": "128x128 determinant -> 6x6 determinant",
+      "j": 127,
+      "maximal_row_set_count": 129,
+      "minor_size": 128,
+      "rank6_compressed_size": 6,
+      "t": 129
+    },
+    {
+      "A": 386,
+      "compression_ratio_note": "127x127 determinant -> 6x6 determinant",
+      "j": 126,
+      "maximal_row_set_count": 357760,
+      "minor_size": 127,
+      "rank6_compressed_size": 6,
+      "t": 130
+    },
+    {
+      "A": 387,
+      "compression_ratio_note": "126x126 determinant -> 6x6 determinant",
+      "j": 125,
+      "maximal_row_set_count": 297602656,
+      "minor_size": 126,
+      "rank6_compressed_size": 6,
+      "t": 131
+    },
+    {
+      "A": 388,
+      "compression_ratio_note": "125x125 determinant -> 6x6 determinant",
+      "j": 124,
+      "maximal_row_set_count": 117850651776,
+      "minor_size": 125,
+      "rank6_compressed_size": 6,
+      "t": 132
+    },
+    {
+      "A": 389,
+      "compression_ratio_note": "124x124 determinant -> 6x6 determinant",
+      "j": 123,
+      "maximal_row_set_count": 27212042858000,
+      "minor_size": 124,
+      "rank6_compressed_size": 6,
+      "t": 133
+    },
+    {
+      "A": 390,
+      "compression_ratio_note": "123x123 determinant -> 6x6 determinant",
+      "j": 122,
+      "maximal_row_set_count": 4110502764804800,
+      "minor_size": 123,
+      "rank6_compressed_size": 6,
+      "t": 134
+    },
+    {
+      "A": 391,
+      "compression_ratio_note": "122x122 determinant -> 6x6 determinant",
+      "j": 121,
+      "maximal_row_set_count": 437531400061434000,
+      "minor_size": 122,
+      "rank6_compressed_size": 6,
+      "t": 135
+    },
+    {
+      "A": 392,
+      "compression_ratio_note": "121x121 determinant -> 6x6 determinant",
+      "j": 120,
+      "maximal_row_set_count": 34569147570568156800,
+      "minor_size": 121,
+      "rank6_compressed_size": 6,
+      "t": 136
+    },
+    {
+      "A": 393,
+      "compression_ratio_note": "120x120 determinant -> 6x6 determinant",
+      "j": 119,
+      "maximal_row_set_count": 2106811614990104173800,
+      "minor_size": 120,
+      "rank6_compressed_size": 6,
+      "t": 137
+    },
+    {
+      "A": 394,
+      "compression_ratio_note": "119x119 determinant -> 6x6 determinant",
+      "j": 118,
+      "maximal_row_set_count": 102014036094257675784000,
+      "minor_size": 119,
+      "rank6_compressed_size": 6,
+      "t": 138
+    },
+    {
+      "A": 395,
+      "compression_ratio_note": "118x118 determinant -> 6x6 determinant",
+      "j": 117,
+      "maximal_row_set_count": 4017652788178848131293200,
+      "minor_size": 118,
+      "rank6_compressed_size": 6,
+      "t": 139
+    },
+    {
+      "A": 396,
+      "compression_ratio_note": "117x117 determinant -> 6x6 determinant",
+      "j": 116,
+      "maximal_row_set_count": 131169217511293618831944000,
+      "minor_size": 117,
+      "rank6_compressed_size": 6,
+      "t": 140
+    },
+    {
+      "A": 397,
+      "compression_ratio_note": "116x116 determinant -> 6x6 determinant",
+      "j": 115,
+      "maximal_row_set_count": 3606497635473018049784300280,
+      "minor_size": 116,
+      "rank6_compressed_size": 6,
+      "t": 141
+    },
+    {
+      "A": 398,
+      "compression_ratio_note": "115x115 determinant -> 6x6 determinant",
+      "j": 114,
+      "maximal_row_set_count": 84624257908136115834824778080,
+      "minor_size": 115,
+      "rank6_compressed_size": 6,
+      "t": 142
+    },
+    {
+      "A": 399,
+      "compression_ratio_note": "114x114 determinant -> 6x6 determinant",
+      "j": 113,
+      "maximal_row_set_count": 1713849656772535006039031373800,
+      "minor_size": 114,
+      "rank6_compressed_size": 6,
+      "t": 143
+    },
+    {
+      "A": 400,
+      "compression_ratio_note": "113x113 determinant -> 6x6 determinant",
+      "j": 112,
+      "maximal_row_set_count": 30252210715675198558211547346560,
+      "minor_size": 113,
+      "rank6_compressed_size": 6,
+      "t": 144
+    },
+    {
+      "A": 401,
+      "compression_ratio_note": "112x112 determinant -> 6x6 determinant",
+      "j": 111,
+      "maximal_row_set_count": 469396280848805045810886556130100,
+      "minor_size": 112,
+      "rank6_compressed_size": 6,
+      "t": 145
+    },
+    {
+      "A": 402,
+      "compression_ratio_note": "111x111 determinant -> 6x6 determinant",
+      "j": 110,
+      "maximal_row_set_count": 6450057129781226982436652912470080,
+      "minor_size": 111,
+      "rank6_compressed_size": 6,
+      "t": 146
+    },
+    {
+      "A": 403,
+      "compression_ratio_note": "110x110 determinant -> 6x6 determinant",
+      "j": 109,
+      "maximal_row_set_count": 79013199839820030534848998177758480,
+      "minor_size": 110,
+      "rank6_compressed_size": 6,
+      "t": 147
+    },
+    {
+      "A": 404,
+      "compression_ratio_note": "109x109 determinant -> 6x6 determinant",
+      "j": 108,
+      "maximal_row_set_count": 867972262747820578345034878767819200,
+      "minor_size": 109,
+      "rank6_compressed_size": 6,
+      "t": 148
+    },
+    {
+      "A": 405,
+      "compression_ratio_note": "108x108 determinant -> 6x6 determinant",
+      "j": 107,
+      "maximal_row_set_count": 8595571658102045129818116747602531480,
+      "minor_size": 108,
+      "rank6_compressed_size": 6,
+      "t": 149
+    },
+    {
+      "A": 406,
+      "compression_ratio_note": "107x107 determinant -> 6x6 determinant",
+      "j": 106,
+      "maximal_row_set_count": 77103134474669507808999718333976196000,
+      "minor_size": 107,
+      "rank6_compressed_size": 6,
+      "t": 150
+    },
+    {
+      "A": 407,
+      "compression_ratio_note": "106x106 determinant -> 6x6 determinant",
+      "j": 105,
+      "maximal_row_set_count": 629169365508704665489903257132350201400,
+      "minor_size": 106,
+      "rank6_compressed_size": 6,
+      "t": 151
+    },
+    {
+      "A": 408,
+      "compression_ratio_note": "105x105 determinant -> 6x6 determinant",
+      "j": 104,
+      "maximal_row_set_count": 4688795937593084907665736021700474766400,
+      "minor_size": 105,
+      "rank6_compressed_size": 6,
+      "t": 152
+    },
+    {
+      "A": 409,
+      "compression_ratio_note": "104x104 determinant -> 6x6 determinant",
+      "j": 103,
+      "maximal_row_set_count": 32026150823738481735395429076793421395500,
+      "minor_size": 104,
+      "rank6_compressed_size": 6,
+      "t": 153
+    },
+    {
+      "A": 410,
+      "compression_ratio_note": "103x103 determinant -> 6x6 determinant",
+      "j": 102,
+      "maximal_row_set_count": 201149345722743342538860075330950367478560,
+      "minor_size": 103,
+      "rank6_compressed_size": 6,
+      "t": 154
+    },
+    {
+      "A": 411,
+      "compression_ratio_note": "102x102 determinant -> 6x6 determinant",
+      "j": 101,
+      "maximal_row_set_count": 1165221082896806046310922025638106900143400,
+      "minor_size": 102,
+      "rank6_compressed_size": 6,
+      "t": 155
+    },
+    {
+      "A": 412,
+      "compression_ratio_note": "101x101 determinant -> 6x6 determinant",
+      "j": 100,
+      "maximal_row_set_count": 6242760225944100272356697397964160604404640,
+      "minor_size": 101,
+      "rank6_compressed_size": 6,
+      "t": 156
+    },
+    {
+      "A": 413,
+      "compression_ratio_note": "100x100 determinant -> 6x6 determinant",
+      "j": 99,
+      "maximal_row_set_count": 31012358678820676071040147443457924406028940,
+      "minor_size": 100,
+      "rank6_compressed_size": 6,
+      "t": 157
+    },
+    {
+      "A": 414,
+      "compression_ratio_note": "99x99 determinant -> 6x6 determinant",
+      "j": 98,
+      "maximal_row_set_count": 143189733233596341882651762012459148338766000,
+      "minor_size": 99,
+      "rank6_compressed_size": 6,
+      "t": 158
+    },
+    {
+      "A": 415,
+      "compression_ratio_note": "98x98 determinant -> 6x6 determinant",
+      "j": 97,
+      "maximal_row_set_count": 615833221538262299883830979737191107650414100,
+      "minor_size": 98,
+      "rank6_compressed_size": 6,
+      "t": 159
+    },
+    {
+      "A": 416,
+      "compression_ratio_note": "97x97 determinant -> 6x6 determinant",
+      "j": 96,
+      "maximal_row_set_count": 2472162036282630021039034757367935629277648000,
+      "minor_size": 97,
+      "rank6_compressed_size": 6,
+      "t": 160
+    },
+    {
+      "A": 417,
+      "compression_ratio_note": "96x96 determinant -> 6x6 determinant",
+      "j": 95,
+      "maximal_row_set_count": 9280710221304286788116972549474771808276208850,
+      "minor_size": 96,
+      "rank6_compressed_size": 6,
+      "t": 161
+    },
+    {
+      "A": 418,
+      "compression_ratio_note": "95x95 determinant -> 6x6 determinant",
+      "j": 94,
+      "maximal_row_set_count": 32639892664342891933241781340893634365063681600,
+      "minor_size": 95,
+      "rank6_compressed_size": 6,
+      "t": 162
+    },
+    {
+      "A": 419,
+      "compression_ratio_note": "94x94 determinant -> 6x6 determinant",
+      "j": 93,
+      "maximal_row_set_count": 107721384890739488829123824395511067379158378000,
+      "minor_size": 94,
+      "rank6_compressed_size": 6,
+      "t": 163
+    },
+    {
+      "A": 420,
+      "compression_ratio_note": "93x93 determinant -> 6x6 determinant",
+      "j": 92,
+      "maximal_row_set_count": 334131362067533191104582067782937347025574558400,
+      "minor_size": 93,
+      "rank6_compressed_size": 6,
+      "t": 164
+    },
+    {
+      "A": 421,
+      "compression_ratio_note": "92x92 determinant -> 6x6 determinant",
+      "j": 91,
+      "maximal_row_set_count": 975503377269082347317315797208746877874322983000,
+      "minor_size": 92,
+      "rank6_compressed_size": 6,
+      "t": 165
+    },
+    {
+      "A": 422,
+      "compression_ratio_note": "91x91 determinant -> 6x6 determinant",
+      "j": 90,
+      "maximal_row_set_count": 2684304068045662271753161595490447264666064972320,
+      "minor_size": 91,
+      "rank6_compressed_size": 6,
+      "t": 166
+    },
+    {
+      "A": 423,
+      "compression_ratio_note": "90x90 determinant -> 6x6 determinant",
+      "j": 89,
+      "maximal_row_set_count": 6970842262831498554995351463887273937308644802520,
+      "minor_size": 90,
+      "rank6_compressed_size": 6,
+      "t": 167
+    },
+    {
+      "A": 424,
+      "compression_ratio_note": "89x89 determinant -> 6x6 determinant",
+      "j": 88,
+      "maximal_row_set_count": 17104695717950707262500765033102171686482750635200,
+      "minor_size": 89,
+      "rank6_compressed_size": 6,
+      "t": 168
+    },
+    {
+      "A": 425,
+      "compression_ratio_note": "88x88 determinant -> 6x6 determinant",
+      "j": 87,
+      "maximal_row_set_count": 39702427205817374681369445503532371039565903133340,
+      "minor_size": 88,
+      "rank6_compressed_size": 6,
+      "t": 169
+    },
+    {
+      "A": 426,
+      "compression_ratio_note": "87x87 determinant -> 6x6 determinant",
+      "j": 86,
+      "maximal_row_set_count": 87268338377759025159166456763568067991758141474400,
+      "minor_size": 87,
+      "rank6_compressed_size": 6,
+      "t": 170
+    }
+  ],
+  "checks": [
+    "dependency windows are 385..426",
+    "dependency row-set totals agree",
+    "all M3 minor sizes are larger than the rank-6 boundary",
+    "determinant identity sanity checks pass over F_17",
+    "the theorem is chart-local and requires an invertible finite base slope"
+  ],
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512
+  },
+  "nonclaims": [
+    "does not compute rank-6 root tables",
+    "does not prove rank-6 projective safety",
+    "does not assert that every row set has an invertible z0 in a chosen finite subatlas",
+    "does not duplicate synthetic low-rank Cauchy packets"
+  ],
+  "object": "affine-pivot compression for low-direction-rank M3 regular buckets",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "finite_budget": 6,
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sanity_checks": [
+    {
+      "base_slope": 3,
+      "matrix_size": 4,
+      "prime": 17,
+      "rank": 2,
+      "result": "passed",
+      "tested_offsets": [
+        0,
+        1,
+        2,
+        6,
+        11
+      ]
+    },
+    {
+      "base_slope": 5,
+      "matrix_size": 7,
+      "prime": 17,
+      "rank": 6,
+      "result": "passed",
+      "tested_offsets": [
+        0,
+        1,
+        2,
+        6,
+        11
+      ]
+    },
+    {
+      "base_slope": 0,
+      "matrix_size": 8,
+      "prime": 17,
+      "rank": 3,
+      "result": "passed",
+      "tested_offsets": [
+        0,
+        1,
+        2,
+        6,
+        11
+      ]
+    }
+  ],
+  "schema_version": "f17-32-m3-m4-affine-pivot-compression-v1",
+  "source_artifacts": {
+    "projective_budget_split": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/f17_32_n512_k256_m3_m4_projective_budget_split.json",
+      "sha256": "5347a6cee7009d6b5041550ad2ce6f0f273e0bb5cc2cd9e042c2b741fdc1d9b7"
+    },
+    "rank6_ambient_sharpness": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json",
+      "sha256": "e31a866f295d6a213c0fc8f65a974044274878d1869587dc6755784907b76027"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement_count": 42,
+    "finite_budget": 6,
+    "minor_size_max": 128,
+    "minor_size_min": 87,
+    "rank6_compressed_size": 6,
+    "sanity_check_count": 3
+  },
+  "theorem": {
+    "proof_skeleton": [
+      "Write M_R(z0+w)=M_R(z0)+w P_R Q_R.",
+      "Factor out M_R(z0) on the left.",
+      "Apply Sylvester's determinant identity det(I_m+w M^{-1}P Q)=det(I_r+w Q M^{-1}P).",
+      "The compressed determinant has degree at most r and has exactly the same finite roots inside the affine pivot chart."
+    ],
+    "rank6_boundary_use": [
+      "The ambient sharpness packet shows rank 6 cannot be closed by rank and endpoint counting alone.",
+      "This compression theorem identifies the next Hankel-specific finite-root object: the gcd of 6x6 affine-pivot compressed determinants across row-set charts.",
+      "A rank-6 closure can now target endpoint payment/emptiness or prove that the compressed common root table has at most five surviving roots."
+    ],
+    "rank6_consequence": "For the endpoint-sensitive rank-6 boundary, every affine pivot chart reduces the original 87..128 dimensional maximal-minor determinant to a 6x6 determinant.",
+    "statement": "Fix an exact agreement A, a maximal row set R, and a finite base slope z0 for which M_R(z0)=H_R(u)+z0 H_R(v) is invertible.  If H_R(v)=P_R Q_R has rank at most r, then for w=z-z0 the determinant satisfies det(M_R(z))=det(M_R(z0))*det(I_r+w Q_R M_R(z0)^{-1} P_R)."
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551
+  }
+}

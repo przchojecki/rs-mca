@@ -578,6 +578,34 @@ python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
 ```
 
+The affine-pivot compression theorem is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
+  f17_32_n512_k256_m3_m4_affine_pivot_compression.json
+```
+
+For a row-set chart with finite pivot `z0` and `M_R(z0)` invertible, a rank
+factorization `H_R(v)=P_R Q_R` gives
+
+```text
+det M_R(z0+w)
+  = det M_R(z0) det(I_r + w Q_R M_R(z0)^(-1) P_R).
+```
+
+Thus the endpoint-sensitive rank-6 finite-root problem has a concrete `6 x 6`
+compressed determinant target on each affine pivot chart.  This complements the
+ambient sharpness packet: rank-only accounting is insufficient, but exact
+rank-6 root tables need not be computed from the full `87..128` dimensional
+minors.
+
+Replay:
+
+```sh
+python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json
+```
+
 The current M4 regular-bucket synthesis table is:
 
 ```text
