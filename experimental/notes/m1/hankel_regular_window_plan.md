@@ -127,6 +127,18 @@ These packets are not worst-case safe-side bounds.  They are selected
 synthetic replays that replace degree-only evidence by exact finite root tables
 for a small audited part of the window.
 
+The bounded common-gcd replay
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-a426/
+  f17_32_n512_k256_a426_contiguous_gcd4_packet.json
+```
+
+checks the first four contiguous maximal row sets at `A=426`.  Each nonzero
+minor is a scalar multiple of `Z^87`, so the monic common gcd is `Z^87` with
+exact root table `{0}`.  This is still a synthetic bounded subatlas, but it
+tests the v10 common-gcd packet path rather than only a selected prefix minor.
+
 The syndrome-realizability sidecar
 
 ```text
@@ -155,10 +167,11 @@ experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/
   f17_32_n512_k256_rank_witness_zero_slope_subtraction.json
 ```
 
-checks the endpoint and top-window rank-witness packets above.  In all three
-source inputs, the `u` syndrome is identically zero.  Therefore the raw root
-`Z=0` is a zero-syndrome common-code-line slope, paid by the tangent ledger,
-and the residual synthetic aperiodic numerator after this subtraction is `0`.
+checks the endpoint, top-window, and contiguous-gcd rank-witness packets above.
+In all four source inputs, the `u` syndrome is identically zero.  Therefore the
+raw root `Z=0` is a zero-syndrome common-code-line slope, paid by the tangent
+ledger, and the residual synthetic aperiodic numerator after this subtraction is
+`0`.
 The resulting synthetic total upper bound is `1 <= 6` against the finite-slope
 budget.  This is an M4 no-double-counting sidecar for the synthetic packets
 only, not a universal row table.
@@ -179,7 +192,7 @@ t+j = (A-k)+(n-A) = n-k = 256 <= |H| = 512,
 ```
 
 the same line-value section is available for any length-256 syndrome pencil;
-the current sidecar records it for the three synthetic rank-witness inputs.
+the current sidecar records it for the four synthetic rank-witness inputs.
 
 For the synthetic packets above, the sidecar records this M4 mini-table:
 

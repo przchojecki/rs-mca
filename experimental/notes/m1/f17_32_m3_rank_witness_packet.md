@@ -27,6 +27,7 @@ experimental/data/hankel-regular-minor-inputs/
   f17_32_n512_k256_a385_rank_witness_input.json
   f17_32_n512_k256_a426_rank_witness_input.json
   f17_32_n512_k256_a421_426_fixed_prefix92_input.json
+  f17_32_n512_k256_a426_contiguous_gcd4_input.json
 ```
 
 The generated packets are
@@ -40,6 +41,9 @@ experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/
 
 experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/
   f17_32_n512_k256_a421_426_fixed_prefix92_packet.json
+
+experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-a426/
+  f17_32_n512_k256_a426_contiguous_gcd4_packet.json
 ```
 
 The M4 zero-slope subtraction sidecar is
@@ -96,18 +100,25 @@ For the fixed top-window packet, one synthetic syndrome pencil from the first
 421 <= A <= 426.
 ```
 
-In all three packets, the selected prefix determinant has the closed form
+The A=426 contiguous-gcd packet uses the same zero-`u` synthetic pencil as the
+endpoint packet but checks the first four contiguous maximal row sets and emits
+their monic common gcd.  This is a bounded subatlas step toward the v10
+canonical common-gcd branch.
+
+In the selected-minor packets, the chosen prefix determinant has the closed form
 
 ```text
 Delta_A(Z) = c_A Z^(j+1)
 ```
 
-with `c_A != 0`.  Hence the exact finite root table is `{0}`.  The endpoint
-packets each have declared aperiodic numerator `1`, and the top-window packet
-has root union `{0}` across all six exact agreements, again with declared
-aperiodic numerator `1`.
+with `c_A != 0`; in the contiguous-gcd packet each audited nonzero minor has
+this form and the common gcd is `Z^87`.  Hence the exact finite root table is
+`{0}`.  The endpoint and contiguous-gcd packets each have declared aperiodic
+numerator `1`, and the top-window packet has root union `{0}` across all six
+exact agreements, again with declared aperiodic numerator `1`.
 
-The subtraction sidecar verifies that every source input has `u_m=0` for all
+The subtraction sidecar verifies that every source input, including the
+contiguous-gcd input, has `u_m=0` for all
 stored syndrome coordinates.  Since `Syn(f+Zg)=u+Zv`, the unique raw root
 `Z=0` is a zero-syndrome common-code-line slope and is paid by the tangent
 ledger.  For these synthetic packets, the residual aperiodic numerator after
@@ -184,6 +195,18 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json
+
+python3 experimental/scripts/emit_f17_32_m3_rank_witness_input.py \
+  --agreement 426 \
+  --minor-gcd-contiguous-limit 4 \
+  --check experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_contiguous_gcd4_input.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_contiguous_gcd4_input.json \
+  --check experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-a426/f17_32_n512_k256_a426_contiguous_gcd4_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-a426/f17_32_n512_k256_a426_contiguous_gcd4_packet.json
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_rank_witness_zero_slope_subtraction.json

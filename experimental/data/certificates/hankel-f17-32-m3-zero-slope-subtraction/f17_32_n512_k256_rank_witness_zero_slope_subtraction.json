@@ -39,6 +39,7 @@
           "j": 127,
           "paid_root": 0,
           "paid_root_label": "tangent_common_code_line_zero_slope",
+          "regular_certificate": "regular_minor",
           "residual_after_removed_ledgers": 0,
           "t": 129
         }
@@ -78,6 +79,7 @@
           "j": 86,
           "paid_root": 0,
           "paid_root_label": "tangent_common_code_line_zero_slope",
+          "regular_certificate": "regular_minor",
           "residual_after_removed_ledgers": 0,
           "t": 170
         }
@@ -122,6 +124,7 @@
           "j": 91,
           "paid_root": 0,
           "paid_root_label": "tangent_common_code_line_zero_slope",
+          "regular_certificate": "regular_minor",
           "residual_after_removed_ledgers": 0,
           "t": 165
         },
@@ -140,6 +143,7 @@
           "j": 90,
           "paid_root": 0,
           "paid_root_label": "tangent_common_code_line_zero_slope",
+          "regular_certificate": "regular_minor",
           "residual_after_removed_ledgers": 0,
           "t": 166
         },
@@ -158,6 +162,7 @@
           "j": 89,
           "paid_root": 0,
           "paid_root_label": "tangent_common_code_line_zero_slope",
+          "regular_certificate": "regular_minor",
           "residual_after_removed_ledgers": 0,
           "t": 167
         },
@@ -176,6 +181,7 @@
           "j": 88,
           "paid_root": 0,
           "paid_root_label": "tangent_common_code_line_zero_slope",
+          "regular_certificate": "regular_minor",
           "residual_after_removed_ledgers": 0,
           "t": 168
         },
@@ -194,6 +200,7 @@
           "j": 87,
           "paid_root": 0,
           "paid_root_label": "tangent_common_code_line_zero_slope",
+          "regular_certificate": "regular_minor",
           "residual_after_removed_ledgers": 0,
           "t": 169
         },
@@ -212,6 +219,47 @@
           "j": 86,
           "paid_root": 0,
           "paid_root_label": "tangent_common_code_line_zero_slope",
+          "regular_certificate": "regular_minor",
+          "residual_after_removed_ledgers": 0,
+          "t": 170
+        }
+      ],
+      "tangent_paid_roots": [
+        0
+      ]
+    },
+    {
+      "agreement_threshold": 426,
+      "budget": 6,
+      "comparison_to_budget": "1 <= 6",
+      "deduped_total_upper_bound": 1,
+      "exact_agreements": [
+        426
+      ],
+      "packet_id": "contiguous_gcd_a426",
+      "raw_declared_aperiodic_numerator": 1,
+      "raw_root_union": [
+        0
+      ],
+      "residual_aperiodic_numerator": 0,
+      "residual_aperiodic_roots": [],
+      "rows": [
+        {
+          "A": 426,
+          "B_ap_pivot": 0,
+          "B_ap_regular_after_tangent": 0,
+          "B_ap_regular_before_removed": 1,
+          "B_ext": 0,
+          "B_quot_image": 0,
+          "B_quot_support": 0,
+          "B_tan": 1,
+          "budget": 6,
+          "comparison_to_budget": "1 <= 6",
+          "deduped_total_upper_bound": 1,
+          "j": 86,
+          "paid_root": 0,
+          "paid_root_label": "tangent_common_code_line_zero_slope",
+          "regular_certificate": "regular_minor_gcd",
           "residual_after_removed_ledgers": 0,
           "t": 170
         }
@@ -240,6 +288,12 @@
   },
   "schema_version": "f17-32-m3-zero-slope-subtraction-v1",
   "source_artifacts": {
+    "contiguous_gcd_a426": {
+      "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_contiguous_gcd4_input.json",
+      "input_sha256": "63a3518e94630c3e68fcae3125e2a7c86ec442ff65797b253d6dda38a96b5a02",
+      "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-a426/f17_32_n512_k256_a426_contiguous_gcd4_packet.json",
+      "packet_sha256": "dcb3c8f9bae70224fe9039e201d254e69d378a037dfb5145ef0b6d2b0f676533"
+    },
     "fixed_top_window_a421_426": {
       "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a421_426_fixed_prefix92_input.json",
       "input_sha256": "8f1a978726a8cc48048acc7eea83a832c988de1d082cbe7a5f769c69e1d9b370",
@@ -263,10 +317,10 @@
   "summary": {
     "budget": 6,
     "comparison_to_budget": "1 <= 6",
-    "exact_agreement_instances": 8,
+    "exact_agreement_instances": 9,
     "max_deduped_total_upper_bound": 1,
     "max_residual_aperiodic_numerator": 0,
-    "packets_checked": 3,
+    "packets_checked": 4,
     "paid_roots": [
       0
     ],

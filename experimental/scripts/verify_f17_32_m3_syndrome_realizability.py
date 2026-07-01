@@ -54,6 +54,13 @@ SOURCES = [
             "f17_32_n512_k256_a421_426_fixed_prefix92_input.json"
         ),
     },
+    {
+        "packet_id": "contiguous_gcd_a426",
+        "input_ref": (
+            "experimental/data/hankel-regular-minor-inputs/"
+            "f17_32_n512_k256_a426_contiguous_gcd4_input.json"
+        ),
+    },
 ]
 
 

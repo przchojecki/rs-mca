@@ -21,7 +21,7 @@ y_s(x) = sum_{m=0}^{255} s_m x^(-m-1).
 The verifier audits the pinned subgroup as the powers of an exact order-512
 generator and checks character orthogonality for exponents `-(255)..255`.
 It then applies the section formula to the `u` and `v` components of the
-A=385, A=426, and A=421..426 synthetic inputs.
+A=385, A=426, A=421..426, and A=426 contiguous-gcd synthetic inputs.
 
 This is not a worst-case M3 theorem.  It only removes the possible ambiguity
 that the synthetic rank-witness packets are free syndrome vectors rather than

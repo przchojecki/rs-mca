@@ -61,6 +61,17 @@ SOURCES = [
             "f17_32_n512_k256_a421_426_fixed_prefix92_packet.json"
         ),
     },
+    {
+        "packet_id": "contiguous_gcd_a426",
+        "input_ref": (
+            "experimental/data/hankel-regular-minor-inputs/"
+            "f17_32_n512_k256_a426_contiguous_gcd4_input.json"
+        ),
+        "packet_ref": (
+            "experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-a426/"
+            "f17_32_n512_k256_a426_contiguous_gcd4_packet.json"
+        ),
+    },
 ]
 
 
@@ -172,14 +183,21 @@ def validate_packet_source(
     row_records = []
     for item in packet["exact_agreements"]:
         agreement = item["A"]
-        degree = item["regular_minor"]["degree"]
+        if "regular_minor_gcd" in item:
+            minor = item["regular_minor_gcd"]
+            minor_data = item["regular_minor_gcd_data"]
+            root_field = "regular_minor_gcd"
+        else:
+            minor = item["regular_minor"]
+            minor_data = item["regular_minor_data"]
+            root_field = "regular_minor"
+        degree = minor["degree"]
         require(item["j"] == N - agreement, f"{source['packet_id']}: bad j at A={agreement}")
         require(item["t"] == agreement - K, f"{source['packet_id']}: bad t at A={agreement}")
         require(
             degree == item["j"] + 1,
-            f"{source['packet_id']}: degree is not j+1 at A={agreement}",
+            f"{source['packet_id']}: {root_field} degree is not j+1 at A={agreement}",
         )
-        minor_data = item["regular_minor_data"]
         require(
             minor_data["roots"] == [0],
             f"{source['packet_id']}: exact roots are not {{0}} at A={agreement}",
@@ -198,6 +216,7 @@ def validate_packet_source(
                 "A": agreement,
                 "j": item["j"],
                 "t": item["t"],
+                "regular_certificate": root_field,
                 "B_tan": 1,
                 "B_quot_support": 0,
                 "B_quot_image": 0,

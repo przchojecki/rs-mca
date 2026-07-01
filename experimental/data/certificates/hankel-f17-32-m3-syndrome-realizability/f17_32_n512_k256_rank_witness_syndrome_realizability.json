@@ -79,6 +79,31 @@
       "input_sha256": "8f1a978726a8cc48048acc7eea83a832c988de1d082cbe7a5f769c69e1d9b370",
       "packet_id": "fixed_top_window_a421_426",
       "witness_node_prefix_count": 92
+    },
+    {
+      "components": [
+        {
+          "component": "u",
+          "line_value_coordinates": 512,
+          "realized_by_section": true,
+          "syndrome_hash": "2d673de942048a8b5ede075bd8fc7c56c7d9cce7335d5be36ef4b87dbb16cb82",
+          "syndrome_nonzero_count": 0
+        },
+        {
+          "component": "v",
+          "line_value_coordinates": 512,
+          "realized_by_section": true,
+          "syndrome_hash": "f73475735e61a840c75438e8793ac776d9d71e72864f95f1a4f64fe9a3dcd09f",
+          "syndrome_nonzero_count": 256
+        }
+      ],
+      "exact_agreements": [
+        426
+      ],
+      "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_contiguous_gcd4_input.json",
+      "input_sha256": "63a3518e94630c3e68fcae3125e2a7c86ec442ff65797b253d6dda38a96b5a02",
+      "packet_id": "contiguous_gcd_a426",
+      "witness_node_prefix_count": 87
     }
   ],
   "nonclaims": [
@@ -122,8 +147,8 @@
     "zero_exponent_sum_mod_17": 2
   },
   "summary": {
-    "components_realized": 6,
-    "inputs_checked": 3,
+    "components_realized": 8,
+    "inputs_checked": 4,
     "line_value_coordinates_per_component": 512,
     "syndrome_coordinates_per_component": 256
   }

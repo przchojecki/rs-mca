@@ -3,8 +3,9 @@
 
 The JSON schema catches the structural contract.  This script adds the
 arithmetical checks that are easiest to get wrong in generated packets:
-``j=n-A``, ``t=A-k``, residual labels, regular-minor degree/root hashes, and
-declared root-union numerators when the packet includes inline root tables.
+``j=n-A``, ``t=A-k``, residual labels, regular-minor or regular-minor-gcd
+degree/root hashes, and declared root-union numerators when the packet includes
+inline root tables.
 """
 
 from __future__ import annotations
@@ -327,6 +328,151 @@ def validate_regular_minor(
     return roots, bad_slopes
 
 
+def is_zero_u_monomial(coefficients: list[int], degree: int) -> bool:
+    return (
+        len(coefficients) == degree + 1
+        and degree >= 0
+        and all(coefficient == 0 for coefficient in coefficients[:degree])
+        and coefficients[degree] != 0
+    )
+
+
+def validate_zero_root_certificate(
+    certificate: Any,
+    coefficients: list[int],
+    degree: int,
+    roots: list[int],
+    field: str,
+) -> None:
+    if not isinstance(certificate, dict):
+        raise PacketError(f"{field}: root_certificate must be an object")
+    if certificate.get("kind") != "split_linear_factorization":
+        raise PacketError(f"{field}: unsupported root_certificate kind")
+    if certificate.get("leading_coefficient") != coefficients[degree]:
+        raise PacketError(f"{field}: root_certificate leading coefficient mismatch")
+    if roots != [0]:
+        raise PacketError(f"{field}: zero-u monomial certificate needs roots [0]")
+    factors = certificate.get("factors")
+    if factors != [{"root": 0, "multiplicity": degree}]:
+        raise PacketError(f"{field}: zero-u monomial factors mismatch")
+
+
+def validate_regular_minor_gcd(
+    item: dict[str, Any], modulus: int | None
+) -> tuple[list[int] | None, list[int]]:
+    gcd = item.get("regular_minor_gcd")
+    if not isinstance(gcd, dict):
+        raise PacketError(f"A={item.get('A')}: regular_minor_gcd status needs data")
+
+    for field in ("row_sets", "polynomial_ref", "degree", "root_hash", "minor_count"):
+        if field not in gcd:
+            raise PacketError(f"A={item.get('A')}: missing regular_minor_gcd.{field}")
+
+    expected_size = item["j"] + 1
+    row_sets_raw = gcd["row_sets"]
+    if not isinstance(row_sets_raw, list) or not row_sets_raw:
+        raise PacketError(f"A={item.get('A')}: regular_minor_gcd.row_sets must be nonempty")
+    row_sets = [
+        normalize_int_list(row_set, f"A={item.get('A')} gcd row_set[{index}]")
+        for index, row_set in enumerate(row_sets_raw)
+    ]
+    for row_set in row_sets:
+        if len(row_set) != expected_size:
+            raise PacketError(
+                f"A={item.get('A')}: gcd row_set has {len(row_set)} rows, expected {expected_size}"
+            )
+    if gcd["minor_count"] != len(row_sets):
+        raise PacketError(
+            f"A={item.get('A')}: minor_count={gcd['minor_count']} but row_sets has {len(row_sets)}"
+        )
+
+    if not isinstance(gcd["degree"], int) or gcd["degree"] < 0:
+        raise PacketError(f"A={item.get('A')}: bad regular_minor_gcd.degree")
+    if gcd["degree"] > expected_size:
+        raise PacketError(
+            f"A={item.get('A')}: gcd degree {gcd['degree']} exceeds j+1={expected_size}"
+        )
+
+    data = item.get("regular_minor_gcd_data")
+    if data is None:
+        return None, []
+    if not isinstance(data, dict):
+        raise PacketError(f"A={item.get('A')}: regular_minor_gcd_data must be an object")
+
+    coefficient_key = first_matching_key(
+        data, r"gcd_coefficients_mod_\d+_ascending", r"gcd_coefficients_ascending"
+    )
+    root_key = first_matching_key(data, r"roots_mod_\d+", r"roots")
+    bad_slope_key = first_matching_key(
+        data, r"enumerated_bad_slopes_mod_\d+", r"enumerated_bad_slopes"
+    )
+    if coefficient_key is None or root_key is None:
+        raise PacketError(
+            f"A={item.get('A')}: inline regular_minor_gcd_data needs coefficients and roots"
+        )
+    coefficients = require_int_list(
+        data[coefficient_key], f"A={item.get('A')} gcd coefficients"
+    )
+    roots = normalize_int_list(data[root_key], f"A={item.get('A')} gcd roots")
+    bad_slopes = normalize_int_list(
+        data.get(bad_slope_key, []), f"A={item.get('A')} gcd bad_slopes"
+    )
+    if not coefficients:
+        raise PacketError(f"A={item.get('A')}: empty gcd coefficient list")
+    if all(coefficient == 0 for coefficient in coefficients):
+        raise PacketError(f"A={item.get('A')}: zero regular-minor gcd polynomial")
+    actual_degree = poly_degree(coefficients)
+    if actual_degree != gcd["degree"]:
+        raise PacketError(
+            f"A={item.get('A')}: gcd degree field {gcd['degree']} != actual {actual_degree}"
+        )
+    if hash_json(roots) != gcd["root_hash"]:
+        raise PacketError(f"A={item.get('A')}: gcd root_hash mismatch")
+    if not set(bad_slopes).issubset(roots):
+        raise PacketError(f"A={item.get('A')}: gcd bad slopes are not roots")
+    if modulus is not None:
+        non_roots = [root for root in roots if poly_eval_mod(coefficients, root, modulus)]
+        if non_roots:
+            raise PacketError(f"A={item.get('A')}: listed gcd non-roots {non_roots}")
+    elif is_zero_u_monomial(coefficients, actual_degree):
+        validate_zero_root_certificate(
+            data.get("root_certificate"),
+            coefficients,
+            actual_degree,
+            roots,
+            f"A={item.get('A')} gcd",
+        )
+
+    minor_records = data.get("minor_polynomials_ascending", [])
+    if not isinstance(minor_records, list):
+        raise PacketError(f"A={item.get('A')}: minor_polynomials_ascending must be a list")
+    if minor_records and len(minor_records) != len(row_sets):
+        raise PacketError(
+            f"A={item.get('A')}: minor polynomial count does not match row_sets"
+        )
+    for index, record in enumerate(minor_records):
+        if not isinstance(record, dict):
+            raise PacketError(f"A={item.get('A')}: minor record {index} must be object")
+        record_row_set = normalize_int_list(
+            record.get("row_set"), f"A={item.get('A')} minor record row_set[{index}]"
+        )
+        if record_row_set != row_sets[index]:
+            raise PacketError(f"A={item.get('A')}: minor record row_set mismatch at {index}")
+        record_coefficients = require_int_list(
+            record.get("coefficients"), f"A={item.get('A')} minor record coefficients[{index}]"
+        )
+        record_degree = poly_degree(record_coefficients)
+        if record.get("degree") != record_degree:
+            raise PacketError(f"A={item.get('A')}: minor record degree mismatch at {index}")
+        if is_zero_u_monomial(coefficients, actual_degree):
+            if not is_zero_u_monomial(record_coefficients, actual_degree):
+                raise PacketError(
+                    f"A={item.get('A')}: zero-u gcd minor {index} is not a matching monomial"
+                )
+
+    return roots, bad_slopes
+
+
 def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     validate_schema(packet, schema_path)
     validate_residual_labels(packet)
@@ -349,7 +495,10 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
                 f"A={agreement}: below threshold {packet['agreement_threshold']}"
             )
         if item["status"] == "regular_minor":
-            roots, bad_slopes = validate_regular_minor(item, modulus)
+            if "regular_minor_gcd" in item:
+                roots, bad_slopes = validate_regular_minor_gcd(item, modulus)
+            else:
+                roots, bad_slopes = validate_regular_minor(item, modulus)
             if roots is not None:
                 all_roots.update(roots)
             all_bad.update(bad_slopes)

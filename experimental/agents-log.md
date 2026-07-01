@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - A=426 contiguous-gcd M3 packet
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_contiguous_gcd4_input.json`;
+  `experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-a426/`;
+  `experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py`;
+  `experimental/scripts/verify_f17_32_m3_syndrome_realizability.py`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the synthetic bounded common-gcd replay.
+- **What is being added:** The packet checker now validates inline
+  `regular_minor_gcd` data.  A compact A=426 packet checks the first four
+  contiguous maximal row sets for the zero-`u` synthetic pencil and records
+  common gcd `Z^87`, exact root table `{0}`.
+- **How it is useful:** This moves the M3 synthetic stress packet from a
+  selected prefix-minor replay toward the v10 regular common-gcd branch,
+  while preserving the bounded-subatlas nonclaim.
+- **What to do next:** Replace bounded synthetic contiguous scans by canonical
+  row-data gcd/lcm ledgers or classify the singular buckets that obstruct that
+  computation.
+
 ### 2026-07-01 - M3 syndrome-realizability sidecar
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
@@ -41,10 +65,10 @@ Keep entries concise and link to the relevant files.
   `experimental/agents-log.md`.
 - **Status:** PROVED / AUDIT for the listed synthetic syndrome inputs.
 - **What is being added:** A subgroup-section certificate showing that the
-  A=385, A=426, and A=421..426 synthetic M3 rank-witness syndrome pencils are
-  realized by received-line values on the pinned order-512 subgroup row.
-  The verifier audits the generator orbit and character orthogonality for
-  exponents `-255..255`.
+  A=385, A=426, A=421..426, and A=426 contiguous-gcd synthetic M3
+  rank-witness syndrome pencils are realized by received-line values on the
+  pinned order-512 subgroup row.  The verifier audits the generator orbit and
+  character orthogonality for exponents `-255..255`.
 - **How it is useful:** This removes the possible ambiguity that the
   rank-witness packets are only formal syndrome vectors.  The remaining M3
   gap is universal classification of arbitrary length-256 syndrome pencils,
