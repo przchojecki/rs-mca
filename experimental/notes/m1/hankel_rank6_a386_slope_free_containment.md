@@ -73,6 +73,16 @@ about the displayed vector.  If the same finite slope also has another
 independent kernel vector with `H(v)ell != 0`, that other vector is outside
 this slope-free filter and must be counted by another branch.
 
+The moving-slope companion
+
+```text
+experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md
+```
+
+handles the next non-slope-free branch by counting split-root hyperplane
+incidences on the moving component.  It closes line components with small
+forced split-root core and leaves conics and large-core lines as residual.
+
 Replay:
 
 ```sh

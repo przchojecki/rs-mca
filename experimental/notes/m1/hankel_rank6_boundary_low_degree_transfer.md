@@ -138,6 +138,23 @@ gates.  The remaining unclosed branch is the nonconstant moving-slope case, or
 another independent noncontained vector at a slope that also has a slope-free
 contained vector.
 
+The moving-slope split-incidence companion
+
+```text
+experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md
+```
+
+then applies the split-locator divisor gate to the moving component.  If an
+irreducible component `G` has degree `c` and forced split-root core `r_G`, its
+finite split-locator source classes are bounded by
+
+```text
+floor(c(512-r_G)/(126-r_G)).
+```
+
+In particular, a line component with `r_G<=48` is projective-safe after adding
+the endpoint.  Irreducible conics and large-core lines remain residual.
+
 Replay:
 
 ```sh

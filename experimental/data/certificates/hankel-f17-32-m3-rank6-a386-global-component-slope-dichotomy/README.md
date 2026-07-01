@@ -51,6 +51,17 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containmen
 filters the displayed slope-free transfer vectors: they satisfy
 `H(v)L_Q=H(u)L_Q=0`, hence fail finite and projective noncontainment gates.
 
+The next companion packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/
+```
+
+applies the split-locator divisor gate to the moving-slope component.  It
+closes line components whose forced split-root core has size at most `48` in
+projective accounting; large-core lines and irreducible conics remain
+residual.
+
 Replay:
 
 ```sh

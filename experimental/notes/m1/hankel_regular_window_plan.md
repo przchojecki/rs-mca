@@ -299,6 +299,21 @@ they satisfy `H(v)L_Q=H(u)L_Q=0`, so they fail both finite-affine and
 projective noncontainment gates.  This does not rule out a different
 independent noncontained vector at the same finite slope.
 
+The `A=386` moving-slope split-incidence companion
+
+```text
+experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/
+  f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json
+```
+
+attacks the remaining moving-slope component with the split-locator divisor
+gate.  For an irreducible component `G` of degree `c` and forced split-root
+core `r_G`, the finite source classes are bounded by
+`floor(c(512-r_G)/(126-r_G))`.  Thus line components with `r_G<=48` are
+projective-safe after adding the endpoint.  Large-core lines and conic
+components remain residual.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 

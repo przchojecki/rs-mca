@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M3 A386 moving-slope split incidence
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md`;
+  `experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A split-locator incidence budget for the remaining
+  `A=386` moving-slope rank-6 component: if `G` has degree `c` and forced
+  split-root core `r_G`, finite source classes are bounded by
+  `floor(c(512-r_G)/(126-r_G))`.
+- **How it is useful:** It rules out an identically split positive-dimensional
+  component and closes line components with `r_G<=48` in projective accounting;
+  large-core lines and irreducible conics are now the named residuals.
+- **What to do next:** Try to classify or pay the large-core line case, then
+  attack irreducible moving conics with exact root tables or a sharper divisor
+  incidence argument.
+
 ### 2026-07-02 - M3 A386 slope-free containment filter
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

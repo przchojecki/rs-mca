@@ -220,6 +220,19 @@ filters the displayed slope-free transfer vectors.  They satisfy
 noncontainment gates and do not contribute support-wise parameters by
 themselves.
 
+The `A=386` moving-slope split-incidence packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/
+  f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json
+```
+
+then applies the split-locator divisor gate to the moving component.  If an
+irreducible component `G` has degree `c` and forced split-root core `r_G`, its
+finite source classes are bounded by `floor(c(512-r_G)/(126-r_G))`.  Line
+components with `r_G<=48` are projective-safe after the endpoint; large-core
+lines and conics remain residual.
+
 The rank-node dichotomy packet
 
 ```text
@@ -363,6 +376,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a386_global_component_slope_
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a386_slope_free_containment.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/f17_32_n512_k256_m3_rank6_a386_slope_free_containment.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json

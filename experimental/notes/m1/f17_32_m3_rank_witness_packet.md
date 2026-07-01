@@ -148,6 +148,9 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slop
 experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/
   f17_32_n512_k256_m3_rank6_a386_slope_free_containment.json
 
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/
+  f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
   f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 

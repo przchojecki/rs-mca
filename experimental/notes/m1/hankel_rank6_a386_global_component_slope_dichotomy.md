@@ -89,6 +89,23 @@ slope-free locus.  The displayed slope-free transfer vectors satisfy
 projective endpoint witness.  A different independent noncontained vector at
 the same finite slope remains outside that filter.
 
+The split-incidence companion
+
+```text
+experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md
+```
+
+applies the split-locator divisor gate to the moving-slope component.  It
+proves the incidence budget
+
+```text
+finite Q-classes on G <= floor(c(512-r_G)/(126-r_G)),
+```
+
+where `c` is the component degree and `r_G` is the forced split-root core.
+This closes line components with `r_G<=48` in projective accounting and leaves
+large-core lines and irreducible conics as named residuals.
+
 The other cases remain residual:
 
 ```text
