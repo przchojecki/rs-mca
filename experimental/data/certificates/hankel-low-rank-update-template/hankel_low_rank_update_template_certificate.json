@@ -1,0 +1,446 @@
+{
+  "cases": [
+    {
+      "base_nodes": [
+        1,
+        2,
+        4,
+        8
+      ],
+      "field": "F_17",
+      "name": "rank_one_linear_template",
+      "rows": [
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            4,
+            1
+          ],
+          "polynomial_degree": 1,
+          "root_bound_status": "bounded_by_update_rank",
+          "root_count": 1,
+          "roots_mod_17": [
+            13
+          ],
+          "size": 1,
+          "update_rank_bound": 1,
+          "visible_moment_indices": [
+            0,
+            0
+          ],
+          "visible_proportional_scalar": 4,
+          "zero_polynomial": false
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            13,
+            14
+          ],
+          "polynomial_degree": 1,
+          "root_bound_status": "bounded_by_update_rank",
+          "root_count": 1,
+          "roots_mod_17": [
+            10
+          ],
+          "size": 2,
+          "update_rank_bound": 1,
+          "visible_moment_indices": [
+            0,
+            2
+          ],
+          "visible_proportional_scalar": null,
+          "zero_polynomial": false
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            8,
+            5
+          ],
+          "polynomial_degree": 1,
+          "root_bound_status": "bounded_by_update_rank",
+          "root_count": 1,
+          "roots_mod_17": [
+            12
+          ],
+          "size": 3,
+          "update_rank_bound": 1,
+          "visible_moment_indices": [
+            0,
+            4
+          ],
+          "visible_proportional_scalar": null,
+          "zero_polynomial": false
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            8,
+            1
+          ],
+          "polynomial_degree": 1,
+          "root_bound_status": "bounded_by_update_rank",
+          "root_count": 1,
+          "roots_mod_17": [
+            9
+          ],
+          "size": 4,
+          "update_rank_bound": 1,
+          "visible_moment_indices": [
+            0,
+            6
+          ],
+          "visible_proportional_scalar": null,
+          "zero_polynomial": false
+        }
+      ],
+      "update_nodes": [
+        3
+      ]
+    },
+    {
+      "base_nodes": [
+        1,
+        2,
+        4,
+        8,
+        9
+      ],
+      "field": "F_17",
+      "name": "rank_two_quadratic_template",
+      "rows": [
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            5,
+            2,
+            0
+          ],
+          "polynomial_degree": 1,
+          "root_bound_status": "bounded_by_update_rank",
+          "root_count": 1,
+          "roots_mod_17": [
+            6
+          ],
+          "size": 1,
+          "update_rank_bound": 2,
+          "visible_moment_indices": [
+            0,
+            0
+          ],
+          "visible_proportional_scalar": 11,
+          "zero_polynomial": false
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            16,
+            16,
+            4
+          ],
+          "polynomial_degree": 2,
+          "root_bound_status": "bounded_by_update_rank",
+          "root_count": 1,
+          "roots_mod_17": [
+            15
+          ],
+          "size": 2,
+          "update_rank_bound": 2,
+          "visible_moment_indices": [
+            0,
+            2
+          ],
+          "visible_proportional_scalar": null,
+          "zero_polynomial": false
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            0,
+            0,
+            15
+          ],
+          "polynomial_degree": 2,
+          "root_bound_status": "bounded_by_update_rank",
+          "root_count": 1,
+          "roots_mod_17": [
+            0
+          ],
+          "size": 3,
+          "update_rank_bound": 2,
+          "visible_moment_indices": [
+            0,
+            4
+          ],
+          "visible_proportional_scalar": null,
+          "zero_polynomial": false
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            13,
+            11,
+            6
+          ],
+          "polynomial_degree": 2,
+          "root_bound_status": "bounded_by_update_rank",
+          "root_count": 2,
+          "roots_mod_17": [
+            4,
+            14
+          ],
+          "size": 4,
+          "update_rank_bound": 2,
+          "visible_moment_indices": [
+            0,
+            6
+          ],
+          "visible_proportional_scalar": null,
+          "zero_polynomial": false
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            2,
+            3,
+            10
+          ],
+          "polynomial_degree": 2,
+          "root_bound_status": "bounded_by_update_rank",
+          "root_count": 0,
+          "roots_mod_17": [],
+          "size": 5,
+          "update_rank_bound": 2,
+          "visible_moment_indices": [
+            0,
+            8
+          ],
+          "visible_proportional_scalar": null,
+          "zero_polynomial": false
+        }
+      ],
+      "update_nodes": [
+        3,
+        5
+      ]
+    },
+    {
+      "base_nodes": [
+        1,
+        2
+      ],
+      "field": "F_17",
+      "name": "rank_three_base_deficient_template",
+      "rows": [
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            2,
+            3,
+            0,
+            0
+          ],
+          "polynomial_degree": 1,
+          "root_bound_status": "bounded_by_update_rank",
+          "root_count": 1,
+          "roots_mod_17": [
+            5
+          ],
+          "size": 1,
+          "update_rank_bound": 3,
+          "visible_moment_indices": [
+            0,
+            0
+          ],
+          "visible_proportional_scalar": 12,
+          "zero_polynomial": false
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            1,
+            9,
+            6,
+            0
+          ],
+          "polynomial_degree": 2,
+          "root_bound_status": "bounded_by_update_rank",
+          "root_count": 0,
+          "roots_mod_17": [],
+          "size": 2,
+          "update_rank_bound": 3,
+          "visible_moment_indices": [
+            0,
+            2
+          ],
+          "visible_proportional_scalar": null,
+          "zero_polynomial": false
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            0,
+            14,
+            2,
+            4
+          ],
+          "polynomial_degree": 3,
+          "root_bound_status": "bounded_by_update_rank",
+          "root_count": 3,
+          "roots_mod_17": [
+            0,
+            2,
+            6
+          ],
+          "size": 3,
+          "update_rank_bound": 3,
+          "visible_moment_indices": [
+            0,
+            4
+          ],
+          "visible_proportional_scalar": null,
+          "zero_polynomial": false
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            0,
+            0,
+            16,
+            0
+          ],
+          "polynomial_degree": 2,
+          "root_bound_status": "bounded_by_update_rank",
+          "root_count": 1,
+          "roots_mod_17": [
+            0
+          ],
+          "size": 4,
+          "update_rank_bound": 3,
+          "visible_moment_indices": [
+            0,
+            6
+          ],
+          "visible_proportional_scalar": null,
+          "zero_polynomial": false
+        }
+      ],
+      "update_nodes": [
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "base_nodes": [
+        1
+      ],
+      "field": "F_17",
+      "name": "rank_deficient_singular_residual",
+      "rows": [
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            1,
+            1
+          ],
+          "polynomial_degree": 1,
+          "root_bound_status": "bounded_by_update_rank",
+          "root_count": 1,
+          "roots_mod_17": [
+            16
+          ],
+          "size": 1,
+          "update_rank_bound": 1,
+          "visible_moment_indices": [
+            0,
+            0
+          ],
+          "visible_proportional_scalar": 1,
+          "zero_polynomial": false
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            0,
+            1
+          ],
+          "polynomial_degree": 1,
+          "root_bound_status": "bounded_by_update_rank",
+          "root_count": 1,
+          "roots_mod_17": [
+            0
+          ],
+          "size": 2,
+          "update_rank_bound": 1,
+          "visible_moment_indices": [
+            0,
+            2
+          ],
+          "visible_proportional_scalar": null,
+          "zero_polynomial": false
+        },
+        {
+          "checked_all_z_mod_17": true,
+          "coefficients_mod_17_ascending": [
+            0,
+            0
+          ],
+          "polynomial_degree": -1,
+          "root_bound_status": "singular_residual",
+          "root_count": 17,
+          "roots_mod_17": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "size": 3,
+          "update_rank_bound": 1,
+          "visible_moment_indices": [
+            0,
+            4
+          ],
+          "visible_proportional_scalar": null,
+          "zero_polynomial": true
+        }
+      ],
+      "update_nodes": [
+        2
+      ]
+    }
+  ],
+  "identity": {
+    "cauchy_binet_formula": "Delta_r(Z)=sum_{S subset X union Y, |S|=r} Vandermonde(S)^2 Z^{|S cap Y|}",
+    "matrix_factorization": "H_r(u)+Z H_r(v)=V_X V_X^T + Z V_Y V_Y^T",
+    "root_rule": "if Delta_r is nonzero, finite roots are bounded by degree(Delta_r)<=|Y|; if Delta_r is zero, the bucket is singular and must be passed to the pivot/residual atlas"
+  },
+  "nonclaims": [
+    "not an actual F_17^32 M3 row packet",
+    "does not classify arbitrary non-proportional pencils",
+    "does not perform quotient/tangent subtraction for a prize row",
+    "zero determinant rows are residual buckets, not aperiodic evidence"
+  ],
+  "schema_version": "m1-hankel-low-rank-update-template-v1",
+  "status": "PROVED / AUDIT",
+  "theorem": {
+    "m3_use": "A non-proportional syndrome pencil whose direction has power-sum rank s gives a regular-minor root bound <=s from one prefix minor when that minor determinant is nonzero; the zero-determinant case is a singular residual bucket. The bound is independent of the M3 minor size j+1.",
+    "name": "low-rank Hankel update determinant template",
+    "proof_status": "Cauchy-Binet identity plus finite verifier",
+    "statement": "Let X and Y be disjoint finite node sets in a field.  For u_m=sum_{x in X}x^m and v_m=sum_{y in Y}y^m, the prefix regular determinant det(H_r(u)+Z H_r(v)) has coefficient of Z^d equal to the sum of Vandermonde(S)^2 over all r-subsets S of X union Y with exactly d nodes from Y.  Hence the degree is at most |Y|; if the polynomial is nonzero, its finite root count is at most |Y|."
+  }
+}

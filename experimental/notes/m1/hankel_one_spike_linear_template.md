@@ -5,6 +5,9 @@ Status: **PROVED / AUDIT**.
 This note records a reusable non-proportional regular-minor template for the
 Paper D v9 Hankel atlas.
 
+It is the rank-one case of the low-rank update template in
+`experimental/notes/m1/hankel_low_rank_update_template.md`.
+
 Let `F` be a field, let `X` be a finite set of base nodes, and let `y` be a
 single spike node.  Define syndrome moments
 

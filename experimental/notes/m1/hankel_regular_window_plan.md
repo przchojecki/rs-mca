@@ -257,6 +257,26 @@ replays both the declared moments and the Cauchy-Binet coefficients, and the
 directory includes a tampered-coefficient fixture that must fail.  It is still
 not a universal M3 row table or a safe-side MCA bound.
 
+A broader low-rank update theorem is recorded in
+
+```text
+experimental/notes/m1/hankel_low_rank_update_template.md
+experimental/data/certificates/hankel-low-rank-update-template/
+  hankel_low_rank_update_template_certificate.json
+```
+
+It proves that if
+
+```text
+u_m = sum_{x in X} x^m,    v_m = sum_{y in Y} y^m,
+```
+
+then every prefix determinant has degree at most `|Y|` in the slope, with
+Cauchy-Binet coefficients indexed by how many update nodes are selected.  Thus
+small-rank non-proportional directions give regular-minor root bounds
+independent of the minor size; identically zero determinants are explicitly
+singular residual buckets for the pivot atlas, not aperiodic evidence.
+
 The current status ledger
 
 ```text
@@ -301,6 +321,9 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/f17_32_n512_k256_a426_one_spike_packet.json
+
+python3 experimental/scripts/verify_m1_hankel_low_rank_update_template.py \
+  --check experimental/data/certificates/hankel-low-rank-update-template/hankel_low_rank_update_template_certificate.json
 ```
 
 Non-claims: this note does not enumerate universal root sets for arbitrary

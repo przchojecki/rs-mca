@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Hankel low-rank update template
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_low_rank_update_template.py`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_one_spike_linear_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/data/certificates/hankel-low-rank-update-template/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A finite-rank Hankel update theorem: for
+  `u_m=sum_{x in X}x^m` and `v_m=sum_{y in Y}y^m`, the prefix determinant
+  `det(H_r(u)+Z H_r(v))` has degree at most `|Y|`, with coefficients given by
+  the Cauchy-Binet sum over subsets selecting a fixed number of update nodes.
+- **How it is useful:** This generalizes the one-spike packet from a single
+  exact root to a branch theorem for small-rank non-proportional directions.
+  Such directions can close regular buckets with root count bounded by update
+  rank rather than by the M3 minor size; rank-deficient zero determinants are
+  explicitly routed to the singular pivot atlas.
+- **What to do next:** Search for quotient/tangent/extension-removed M3
+  residuals whose direction has bounded update rank, then package the first
+  non-synthetic occurrence as a v9 packet or residual obstruction.
+
 ### 2026-07-01 - M3 one-spike large-field packet
 
 - **Agent/model:** AllenGrahamHart / Codex.
