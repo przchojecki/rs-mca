@@ -40,6 +40,27 @@ If `Delta_r` vanishes identically, the bucket is a singular residual bucket and
 must be passed to the v9 pivot/residual atlas rather than counted as aperiodic
 evidence.
 
+There is also a compressed form when the base block is nonsingular.  Put
+
+```text
+H_X = V_X V_X^T,
+K = V_Y^T H_X^{-1} V_Y.
+```
+
+Then the matrix determinant lemma gives
+
+```text
+Delta_r(Z) = det(H_X) det(I + Z K).
+```
+
+This replaces the `r x r` determinant by a `|Y| x |Y|` determinant without
+weakening the root bound.  This is the useful form for large M3 packets: the
+minor size may be `87` or `128`, while the update kernel can still be rank
+`1`, `2`, or another small constant.  If `H_X` is singular, this compressed
+identity is not invoked; Cauchy-Binet, direct replay, or another regular chart
+must be used.  The bucket becomes a singular residual only when `Delta_r`
+itself vanishes.
+
 The certificate
 
 ```text
@@ -47,8 +68,9 @@ experimental/data/certificates/hankel-low-rank-update-template/
   hankel_low_rank_update_template_certificate.json
 ```
 
-checks rank-one, rank-two, rank-three, and rank-deficient cases over `F_17` by
-comparing the Cauchy-Binet coefficient formula with direct determinant
+checks rank-one, rank-two, rank-three, and rank-deficient cases over `F_17`.
+For each nonsingular base block it verifies both the Cauchy-Binet coefficient
+formula and the compressed determinant-lemma formula against direct determinant
 evaluation at every finite slope.
 
 Run:

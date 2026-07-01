@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Low-rank Hankel compression identity
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_low_rank_update_template.py`;
+  `experimental/data/certificates/hankel-low-rank-update-template/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The low-rank Hankel update certificate now verifies
+  the compressed determinant-lemma identity
+  `Delta(Z)=det(H_X) det(I+Z V_Y^T H_X^{-1} V_Y)` whenever the base Hankel
+  block is nonsingular, in addition to the Cauchy-Binet coefficient formula.
+- **How it is useful:** This gives future M3 packets an explicit small-kernel
+  replay route for low-rank directions, so a large regular minor can be checked
+  through a rank-`s` determinant rather than a large determinant or brute-force
+  root enumeration.
+- **What to do next:** Use the compressed kernel form when searching for
+  quotient/tangent/extension-removed M3 residuals with bounded update rank, and
+  keep genuinely zero determinant rows routed to the pivot/residual atlas.
+
 ### 2026-07-01 - M3 low-rank-2 degree-bound packet
 
 - **Agent/model:** AllenGrahamHart / Codex.

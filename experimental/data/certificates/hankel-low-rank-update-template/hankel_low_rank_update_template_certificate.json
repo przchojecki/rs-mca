@@ -16,6 +16,23 @@
             4,
             1
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 4,
+            "compressed_hankel_coefficients_mod_17_ascending": [
+              4,
+              1
+            ],
+            "compressed_identity_status": "verified_matrix_determinant_lemma",
+            "compressed_kernel_det_coefficients_mod_17_ascending": [
+              1,
+              13
+            ],
+            "compressed_kernel_mod_17": [
+              [
+                13
+              ]
+            ]
+          },
           "polynomial_degree": 1,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
@@ -37,6 +54,23 @@
             13,
             14
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 13,
+            "compressed_hankel_coefficients_mod_17_ascending": [
+              13,
+              14
+            ],
+            "compressed_identity_status": "verified_matrix_determinant_lemma",
+            "compressed_kernel_det_coefficients_mod_17_ascending": [
+              1,
+              5
+            ],
+            "compressed_kernel_mod_17": [
+              [
+                5
+              ]
+            ]
+          },
           "polynomial_degree": 1,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
@@ -58,6 +92,23 @@
             8,
             5
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 8,
+            "compressed_hankel_coefficients_mod_17_ascending": [
+              8,
+              5
+            ],
+            "compressed_identity_status": "verified_matrix_determinant_lemma",
+            "compressed_kernel_det_coefficients_mod_17_ascending": [
+              1,
+              7
+            ],
+            "compressed_kernel_mod_17": [
+              [
+                7
+              ]
+            ]
+          },
           "polynomial_degree": 1,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
@@ -79,6 +130,23 @@
             8,
             1
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 8,
+            "compressed_hankel_coefficients_mod_17_ascending": [
+              8,
+              1
+            ],
+            "compressed_identity_status": "verified_matrix_determinant_lemma",
+            "compressed_kernel_det_coefficients_mod_17_ascending": [
+              1,
+              15
+            ],
+            "compressed_kernel_mod_17": [
+              [
+                15
+              ]
+            ]
+          },
           "polynomial_degree": 1,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
@@ -117,6 +185,28 @@
             2,
             0
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 5,
+            "compressed_hankel_coefficients_mod_17_ascending": [
+              5,
+              2
+            ],
+            "compressed_identity_status": "verified_matrix_determinant_lemma",
+            "compressed_kernel_det_coefficients_mod_17_ascending": [
+              1,
+              14
+            ],
+            "compressed_kernel_mod_17": [
+              [
+                7,
+                7
+              ],
+              [
+                7,
+                7
+              ]
+            ]
+          },
           "polynomial_degree": 1,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
@@ -139,6 +229,30 @@
             16,
             4
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 16,
+            "compressed_hankel_coefficients_mod_17_ascending": [
+              16,
+              16,
+              4
+            ],
+            "compressed_identity_status": "verified_matrix_determinant_lemma",
+            "compressed_kernel_det_coefficients_mod_17_ascending": [
+              1,
+              1,
+              13
+            ],
+            "compressed_kernel_mod_17": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                0
+              ]
+            ]
+          },
           "polynomial_degree": 2,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
@@ -161,6 +275,10 @@
             0,
             15
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 0,
+            "compressed_identity_status": "base_singular_not_applied"
+          },
           "polynomial_degree": 2,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
@@ -183,6 +301,30 @@
             11,
             6
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 13,
+            "compressed_hankel_coefficients_mod_17_ascending": [
+              13,
+              11,
+              6
+            ],
+            "compressed_identity_status": "verified_matrix_determinant_lemma",
+            "compressed_kernel_det_coefficients_mod_17_ascending": [
+              1,
+              10,
+              7
+            ],
+            "compressed_kernel_mod_17": [
+              [
+                6,
+                0
+              ],
+              [
+                0,
+                4
+              ]
+            ]
+          },
           "polynomial_degree": 2,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 2,
@@ -206,6 +348,30 @@
             3,
             10
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 2,
+            "compressed_hankel_coefficients_mod_17_ascending": [
+              2,
+              3,
+              10
+            ],
+            "compressed_identity_status": "verified_matrix_determinant_lemma",
+            "compressed_kernel_det_coefficients_mod_17_ascending": [
+              1,
+              10,
+              5
+            ],
+            "compressed_kernel_mod_17": [
+              [
+                7,
+                13
+              ],
+              [
+                13,
+                3
+              ]
+            ]
+          },
           "polynomial_degree": 2,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 0,
@@ -241,6 +407,35 @@
             0,
             0
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 2,
+            "compressed_hankel_coefficients_mod_17_ascending": [
+              2,
+              3
+            ],
+            "compressed_identity_status": "verified_matrix_determinant_lemma",
+            "compressed_kernel_det_coefficients_mod_17_ascending": [
+              1,
+              10
+            ],
+            "compressed_kernel_mod_17": [
+              [
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9
+              ],
+              [
+                9,
+                9,
+                9
+              ]
+            ]
+          },
           "polynomial_degree": 1,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
@@ -264,6 +459,37 @@
             6,
             0
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 1,
+            "compressed_hankel_coefficients_mod_17_ascending": [
+              1,
+              9,
+              6
+            ],
+            "compressed_identity_status": "verified_matrix_determinant_lemma",
+            "compressed_kernel_det_coefficients_mod_17_ascending": [
+              1,
+              9,
+              6
+            ],
+            "compressed_kernel_mod_17": [
+              [
+                5,
+                8,
+                11
+              ],
+              [
+                8,
+                13,
+                1
+              ],
+              [
+                11,
+                1,
+                8
+              ]
+            ]
+          },
           "polynomial_degree": 2,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 0,
@@ -285,6 +511,10 @@
             2,
             4
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 0,
+            "compressed_identity_status": "base_singular_not_applied"
+          },
           "polynomial_degree": 3,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 3,
@@ -310,6 +540,10 @@
             16,
             0
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 0,
+            "compressed_identity_status": "base_singular_not_applied"
+          },
           "polynomial_degree": 2,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
@@ -345,6 +579,23 @@
             1,
             1
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 1,
+            "compressed_hankel_coefficients_mod_17_ascending": [
+              1,
+              1
+            ],
+            "compressed_identity_status": "verified_matrix_determinant_lemma",
+            "compressed_kernel_det_coefficients_mod_17_ascending": [
+              1,
+              1
+            ],
+            "compressed_kernel_mod_17": [
+              [
+                1
+              ]
+            ]
+          },
           "polynomial_degree": 1,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
@@ -366,6 +617,10 @@
             0,
             1
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 0,
+            "compressed_identity_status": "base_singular_not_applied"
+          },
           "polynomial_degree": 1,
           "root_bound_status": "bounded_by_update_rank",
           "root_count": 1,
@@ -387,6 +642,10 @@
             0,
             0
           ],
+          "compressed_determinant_lemma": {
+            "base_hankel_determinant_mod_17": 0,
+            "compressed_identity_status": "base_singular_not_applied"
+          },
           "polynomial_degree": -1,
           "root_bound_status": "singular_residual",
           "root_count": 17,
@@ -426,6 +685,7 @@
   ],
   "identity": {
     "cauchy_binet_formula": "Delta_r(Z)=sum_{S subset X union Y, |S|=r} Vandermonde(S)^2 Z^{|S cap Y|}",
+    "compressed_formula": "when H_X is nonsingular, Delta_r(Z)=det(H_X) det(I+Z V_Y^T H_X^{-1} V_Y)",
     "matrix_factorization": "H_r(u)+Z H_r(v)=V_X V_X^T + Z V_Y V_Y^T",
     "root_rule": "if Delta_r is nonzero, finite roots are bounded by degree(Delta_r)<=|Y|; if Delta_r is zero, the bucket is singular and must be passed to the pivot/residual atlas"
   },
@@ -438,6 +698,7 @@
   "schema_version": "m1-hankel-low-rank-update-template-v1",
   "status": "PROVED / AUDIT",
   "theorem": {
+    "compressed_statement": "If H_X=V_X V_X^T is invertible, the same determinant equals det(H_X) det(I+Z K), where K=V_Y^T H_X^{-1} V_Y.  Thus the large r x r determinant is reduced to a |Y| x |Y| determinant without changing the root-count bound.",
     "m3_use": "A non-proportional syndrome pencil whose direction has power-sum rank s gives a regular-minor root bound <=s from one prefix minor when that minor determinant is nonzero; the zero-determinant case is a singular residual bucket. The bound is independent of the M3 minor size j+1.",
     "name": "low-rank Hankel update determinant template",
     "proof_status": "Cauchy-Binet identity plus finite verifier",

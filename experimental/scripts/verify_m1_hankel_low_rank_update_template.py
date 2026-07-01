@@ -18,7 +18,7 @@ F_17 for the identity and root-count consequence.
 from __future__ import annotations
 
 import argparse
-from itertools import combinations
+from itertools import combinations, permutations
 import json
 from pathlib import Path
 from typing import Any
@@ -93,6 +93,113 @@ def determinant_mod(matrix: list[list[int]], p: int) -> int:
     return det % p
 
 
+def inverse_matrix_mod(matrix: list[list[int]], p: int) -> list[list[int]] | None:
+    size = len(matrix)
+    work = [
+        [entry % p for entry in row]
+        + [1 if row_index == col_index else 0 for col_index in range(size)]
+        for row_index, row in enumerate(matrix)
+    ]
+    for col in range(size):
+        pivot = None
+        for row in range(col, size):
+            if work[row][col] % p:
+                pivot = row
+                break
+        if pivot is None:
+            return None
+        if pivot != col:
+            work[col], work[pivot] = work[pivot], work[col]
+        inv = pow(work[col][col], -1, p)
+        for entry_col in range(2 * size):
+            work[col][entry_col] = work[col][entry_col] * inv % p
+        for row in range(size):
+            if row == col:
+                continue
+            factor = work[row][col] % p
+            if factor == 0:
+                continue
+            for entry_col in range(2 * size):
+                work[row][entry_col] = (
+                    work[row][entry_col] - factor * work[col][entry_col]
+                ) % p
+    return [row[size:] for row in work]
+
+
+def matrix_multiply_mod(
+    left: list[list[int]],
+    right: list[list[int]],
+    p: int,
+) -> list[list[int]]:
+    if not left or not right:
+        return []
+    rows = len(left)
+    inner = len(right)
+    cols = len(right[0])
+    return [
+        [
+            sum(left[row][index] * right[index][col] for index in range(inner)) % p
+            for col in range(cols)
+        ]
+        for row in range(rows)
+    ]
+
+
+def matrix_transpose(matrix: list[list[int]]) -> list[list[int]]:
+    if not matrix:
+        return []
+    return [list(row) for row in zip(*matrix)]
+
+
+def polynomial_add(left: list[int], right: list[int], p: int) -> list[int]:
+    length = max(len(left), len(right))
+    result = [0] * length
+    for index in range(length):
+        result[index] = (
+            (left[index] if index < len(left) else 0)
+            + (right[index] if index < len(right) else 0)
+        ) % p
+    return trim_polynomial(result, p)
+
+
+def polynomial_mul(left: list[int], right: list[int], p: int) -> list[int]:
+    result = [0] * (len(left) + len(right) - 1)
+    for left_index, left_value in enumerate(left):
+        for right_index, right_value in enumerate(right):
+            result[left_index + right_index] = (
+                result[left_index + right_index] + left_value * right_value
+            ) % p
+    return trim_polynomial(result, p)
+
+
+def polynomial_scale(coefficients: list[int], scalar: int, p: int) -> list[int]:
+    return trim_polynomial([scalar * coefficient % p for coefficient in coefficients], p)
+
+
+def permutation_sign(permutation: tuple[int, ...]) -> int:
+    inversions = 0
+    for left_index, left in enumerate(permutation):
+        for right in permutation[left_index + 1 :]:
+            if left > right:
+                inversions += 1
+    return -1 if inversions % 2 else 1
+
+
+def polynomial_determinant_mod(matrix: list[list[list[int]]], p: int) -> list[int]:
+    size = len(matrix)
+    if size == 0:
+        return [1]
+    total = [0]
+    for permutation in permutations(range(size)):
+        term = [1]
+        for row, col in enumerate(permutation):
+            term = polynomial_mul(term, matrix[row][col], p)
+        if permutation_sign(permutation) < 0:
+            term = polynomial_scale(term, -1, p)
+        total = polynomial_add(total, term, p)
+    return trim_polynomial(total, p)
+
+
 def vandermonde_square(nodes: tuple[int, ...], p: int) -> int:
     value = 1
     for left_index, left in enumerate(nodes):
@@ -129,6 +236,14 @@ def hankel_matrix(
     ]
 
 
+def vandermonde_matrix(
+    nodes: tuple[int, ...],
+    size: int,
+    p: int,
+) -> list[list[int]]:
+    return [[pow(node, row, p) for node in nodes] for row in range(size)]
+
+
 def cauchy_binet_coefficients(
     base_nodes: tuple[int, ...],
     update_nodes: tuple[int, ...],
@@ -147,6 +262,57 @@ def cauchy_binet_coefficients(
                     coefficients[update_count] + vandermonde_square(nodes, p)
                 ) % p
     return coefficients
+
+
+def determinant_lemma_coefficients(
+    base_nodes: tuple[int, ...],
+    update_nodes: tuple[int, ...],
+    size: int,
+    p: int,
+) -> dict[str, Any]:
+    base_hankel = hankel_matrix(base_nodes, (), size, 0, p)
+    base_determinant = determinant_mod(base_hankel, p)
+    result: dict[str, Any] = {
+        "base_hankel_determinant_mod_17": base_determinant,
+        "compressed_identity_status": (
+            "base_singular_not_applied"
+            if base_determinant == 0
+            else "verified_matrix_determinant_lemma"
+        ),
+    }
+    base_inverse = inverse_matrix_mod(base_hankel, p)
+    if base_inverse is None:
+        return result
+
+    update_vandermonde = vandermonde_matrix(update_nodes, size, p)
+    kernel = matrix_multiply_mod(
+        matrix_multiply_mod(matrix_transpose(update_vandermonde), base_inverse, p),
+        update_vandermonde,
+        p,
+    )
+    kernel_polynomial_matrix = [
+        [
+            [1 if row == col else 0, kernel[row][col] % p]
+            for col in range(len(update_nodes))
+        ]
+        for row in range(len(update_nodes))
+    ]
+    kernel_coefficients = polynomial_determinant_mod(kernel_polynomial_matrix, p)
+    determinant_coefficients = polynomial_scale(
+        kernel_coefficients, base_determinant, p
+    )
+    result.update(
+        {
+            "compressed_kernel_mod_17": kernel,
+            "compressed_kernel_det_coefficients_mod_17_ascending": (
+                kernel_coefficients
+            ),
+            "compressed_hankel_coefficients_mod_17_ascending": (
+                determinant_coefficients
+            ),
+        }
+    )
+    return result
 
 
 def visible_proportional_scalar(
@@ -183,6 +349,18 @@ def check_case(
     rows = []
     for size in range(1, max_size + 1):
         coefficients = cauchy_binet_coefficients(base_nodes, update_nodes, size, P)
+        compressed = determinant_lemma_coefficients(
+            base_nodes, update_nodes, size, P
+        )
+        if (
+            compressed["compressed_identity_status"]
+            == "verified_matrix_determinant_lemma"
+        ):
+            require(
+                compressed["compressed_hankel_coefficients_mod_17_ascending"]
+                == trim_polynomial(coefficients, P),
+                f"{name}, size={size}: determinant lemma coefficient mismatch",
+            )
         degree = polynomial_degree(coefficients, P)
         zero_polynomial = degree == -1
         for z_value in range(P):
@@ -212,6 +390,7 @@ def check_case(
                 "visible_moment_indices": [0, visible_length - 1],
                 "update_rank_bound": len(update_nodes),
                 "coefficients_mod_17_ascending": coefficients,
+                "compressed_determinant_lemma": compressed,
                 "polynomial_degree": degree,
                 "zero_polynomial": zero_polynomial,
                 "roots_mod_17": roots,
@@ -256,6 +435,12 @@ def build_certificate() -> dict[str, Any]:
                 "degree is at most |Y|; if the polynomial is nonzero, its "
                 "finite root count is at most |Y|."
             ),
+            "compressed_statement": (
+                "If H_X=V_X V_X^T is invertible, the same determinant equals "
+                "det(H_X) det(I+Z K), where K=V_Y^T H_X^{-1} V_Y.  Thus the "
+                "large r x r determinant is reduced to a |Y| x |Y| determinant "
+                "without changing the root-count bound."
+            ),
             "m3_use": (
                 "A non-proportional syndrome pencil whose direction has "
                 "power-sum rank s gives a regular-minor root bound <=s from "
@@ -276,6 +461,10 @@ def build_certificate() -> dict[str, Any]:
                 "if Delta_r is nonzero, finite roots are bounded by "
                 "degree(Delta_r)<=|Y|; if Delta_r is zero, the bucket is "
                 "singular and must be passed to the pivot/residual atlas"
+            ),
+            "compressed_formula": (
+                "when H_X is nonsingular, "
+                "Delta_r(Z)=det(H_X) det(I+Z V_Y^T H_X^{-1} V_Y)"
             ),
         },
         "cases": cases,
