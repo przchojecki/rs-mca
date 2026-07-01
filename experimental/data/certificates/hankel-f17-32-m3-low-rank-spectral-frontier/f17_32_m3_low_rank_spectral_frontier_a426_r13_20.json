@@ -148,7 +148,7 @@
     {
       "name": "search_script",
       "ref": "experimental/scripts/search_f17_32_m3_low_rank_spectral_target.py",
-      "sha256": "46ba42e7e84ac2b993bab1e27e27dc959de3635ba2bbad90bb51295ee7391066"
+      "sha256": "a4ed401c2f5017a72c898cf3b22afc563d5ef3a3721820be078296cb3dfe1a48"
     }
   ],
   "status": "EXPERIMENTAL / AUDIT",

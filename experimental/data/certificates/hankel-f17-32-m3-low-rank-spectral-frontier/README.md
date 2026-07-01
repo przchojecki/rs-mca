@@ -21,6 +21,17 @@ identities, while ranks `17..20` use determinant interpolation.
 The JSON includes the row descriptor, target, probe parameters, and source
 artifact hashes.
 
+The same script also has an opt-in contiguous all-shift mode.  For example, at
+`A=426`, rank `13`, there are `84` available contiguous shifts, and the running
+gcd is already constant after checking the first two:
+
+```bash
+python3 experimental/scripts/search_f17_32_m3_low_rank_spectral_target.py \
+  --agreement-min 426 --agreement-max 426 \
+  --rank-min 13 --rank-max 13 \
+  --shift-mode all-contiguous
+```
+
 Reproduce or check the recorded JSON:
 
 ```bash

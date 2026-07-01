@@ -6,9 +6,11 @@ This is a counterexample-first utility for PR #170's normalized low-rank target:
     gcd(Phi_{m,r,0}, Phi_{m,r,1}) = 1,
 
 where Phi_{m,r,h}=det(I+Z K_h) for the consecutive F_17^32 subgroup window.
-It deliberately does not write a certificate.  Use it to probe ranks beyond the
-current low-rank2..12 packet before deciding whether a larger packet is worth
-emitting.
+With --shift-mode all-contiguous it instead probes the weaker contiguous-shift
+target gcd(Phi_{m,r,h}: 0 <= h < 258-2m)=1, stopping once the running gcd is
+constant.  It deliberately does not write a certificate.  Use it to probe ranks
+beyond the current low-rank2..12 packet before deciding whether a larger packet
+is worth emitting.
 
 For ranks below the characteristic it uses the fast Newton-identity coefficient
 routine from the certified packet.  At rank 17 and above it switches to
@@ -82,6 +84,16 @@ def parse_args() -> argparse.Namespace:
         help="stop at the first positive common gcd degree",
     )
     parser.add_argument(
+        "--shift-mode",
+        choices=["adjacent", "all-contiguous"],
+        default="adjacent",
+        help=(
+            "which shifted minors to gcd: adjacent keeps the saved h=0,1 "
+            "target; all-contiguous uses every available contiguous shift and "
+            "stops once the running gcd is constant"
+        ),
+    )
+    parser.add_argument(
         "--json",
         action="store_true",
         help="print the full probe record JSON instead of the compact summary",
@@ -114,6 +126,7 @@ def probe_records(
     rank_min: int,
     rank_max: int,
     stop_on_collision: bool,
+    shift_mode: str,
 ) -> dict[str, Any]:
     row_descriptor = packet.load_json(packet.ROW_DESCRIPTOR_REF)
     field = packet.field_from_descriptor(row_descriptor)
@@ -139,6 +152,8 @@ def probe_records(
         "rank_max": rank_max,
         "stop_on_collision": stop_on_collision,
     }
+    if shift_mode != "adjacent":
+        parameters["shift_mode"] = shift_mode
 
     for size in range(1, packet.N - agreement_min + 2):
         new_node = domain[size - 1]
@@ -167,8 +182,9 @@ def probe_records(
 
         j = packet.N - agreement
         t = agreement - packet.K
+        shift_count = t - j
         require(size == j + 1, f"A={agreement}: size mismatch")
-        require(t > j + packet.SHIFT, f"A={agreement}: shifted rows unavailable")
+        require(shift_count >= 2, f"A={agreement}: shifted rows unavailable")
 
         update_nodes = domain[size : size + rank_max]
         basis_values = packet.lagrange_basis_values(
@@ -177,60 +193,44 @@ def probe_records(
             denominators,
             update_nodes,
         )
-        prefix_kernel = packet.weighted_kernel(
-            field,
-            basis_values,
-            [field.one] * size,
-            [field.one] * rank_max,
-        )
-        shifted_kernel = packet.weighted_kernel(
-            field,
-            basis_values,
-            [field.inv(node) for node in base_nodes],
-            update_nodes,
-        )
-        shifted_scale = field.mul(base_determinant, base_product)
+        kernel_cache: dict[int, tuple[list[list[tuple[int, ...]]], tuple[int, ...]]] = {}
+
+        def shifted_kernel_and_scale(
+            shift: int,
+        ) -> tuple[list[list[tuple[int, ...]]], tuple[int, ...]]:
+            if shift not in kernel_cache:
+                kernel_cache[shift] = (
+                    packet.weighted_kernel(
+                        field,
+                        basis_values,
+                        [field.pow(node, -shift) for node in base_nodes],
+                        [field.pow(node, shift) for node in update_nodes],
+                    ),
+                    field.mul(base_determinant, field.pow(base_product, shift)),
+                )
+            return kernel_cache[shift]
 
         for rank in ranks:
-            prefix_coefficients, prefix_method = determinant_coefficients_from_kernel(
-                field,
-                prefix_kernel,
-                rank,
-                base_determinant,
-            )
-            shifted_coefficients, shifted_method = determinant_coefficients_from_kernel(
-                field,
-                shifted_kernel,
-                rank,
-                shifted_scale,
-            )
-            require(prefix_method == shifted_method, "coefficient method mismatch")
-            prefix_degree = fpoly_degree(prefix_coefficients, field)
-            shifted_degree = fpoly_degree(shifted_coefficients, field)
-            common_degree = fpoly_degree(
-                fpoly_gcd(prefix_coefficients, shifted_coefficients, field),
-                field,
-            )
-            if prefix_degree != rank or shifted_degree != rank:
+            if shift_mode == "adjacent":
+                record, common_degree, degree_failed = adjacent_record(
+                    field,
+                    agreement,
+                    size,
+                    rank,
+                    shifted_kernel_and_scale,
+                )
+            else:
+                record, common_degree, degree_failed = all_contiguous_record(
+                    field,
+                    agreement,
+                    size,
+                    rank,
+                    shift_count,
+                    shifted_kernel_and_scale,
+                )
+            if degree_failed:
                 degree_failures += 1
             gcd_histogram[common_degree] += 1
-            record = {
-                "A": agreement,
-                "m": size,
-                "rank": rank,
-                "rank_capacity": size // 2,
-                "within_endpoint_capacity": rank <= size // 2,
-                "coefficient_method": prefix_method,
-                "prefix_degree": prefix_degree,
-                "shifted_degree": shifted_degree,
-                "common_gcd_degree": common_degree,
-                "prefix_hash": hash_json(
-                    [field.encode(coefficient) for coefficient in prefix_coefficients]
-                ),
-                "shifted_hash": hash_json(
-                    [field.encode(coefficient) for coefficient in shifted_coefficients]
-                ),
-            }
             records.append(record)
             if stop_on_collision and common_degree > 0:
                 return summary(
@@ -248,6 +248,123 @@ def probe_records(
         gcd_histogram,
         degree_failures,
     )
+
+
+def adjacent_record(
+    field: PolynomialBasisField,
+    agreement: int,
+    size: int,
+    rank: int,
+    shifted_kernel_and_scale,
+) -> tuple[dict[str, Any], int, bool]:
+    prefix_kernel, prefix_scale = shifted_kernel_and_scale(0)
+    shifted_kernel, shifted_scale = shifted_kernel_and_scale(1)
+    prefix_coefficients, prefix_method = determinant_coefficients_from_kernel(
+        field,
+        prefix_kernel,
+        rank,
+        prefix_scale,
+    )
+    shifted_coefficients, shifted_method = determinant_coefficients_from_kernel(
+        field,
+        shifted_kernel,
+        rank,
+        shifted_scale,
+    )
+    require(prefix_method == shifted_method, "coefficient method mismatch")
+    prefix_degree = fpoly_degree(prefix_coefficients, field)
+    shifted_degree = fpoly_degree(shifted_coefficients, field)
+    common_degree = fpoly_degree(
+        fpoly_gcd(prefix_coefficients, shifted_coefficients, field),
+        field,
+    )
+    record = {
+        "A": agreement,
+        "m": size,
+        "rank": rank,
+        "rank_capacity": size // 2,
+        "within_endpoint_capacity": rank <= size // 2,
+        "coefficient_method": prefix_method,
+        "prefix_degree": prefix_degree,
+        "shifted_degree": shifted_degree,
+        "common_gcd_degree": common_degree,
+        "prefix_hash": hash_json(
+            [field.encode(coefficient) for coefficient in prefix_coefficients]
+        ),
+        "shifted_hash": hash_json(
+            [field.encode(coefficient) for coefficient in shifted_coefficients]
+        ),
+    }
+    return record, common_degree, prefix_degree != rank or shifted_degree != rank
+
+
+def all_contiguous_record(
+    field: PolynomialBasisField,
+    agreement: int,
+    size: int,
+    rank: int,
+    shift_count: int,
+    shifted_kernel_and_scale,
+) -> tuple[dict[str, Any], int, bool]:
+    common_coefficients: list[tuple[int, ...]] | None = None
+    coefficient_method: str | None = None
+    checked_degrees: list[int] = []
+    first_shift_hash: str | None = None
+    last_checked_shift_hash: str | None = None
+    common_degree = -1
+
+    for shift in range(shift_count):
+        kernel, scale = shifted_kernel_and_scale(shift)
+        coefficients, method = determinant_coefficients_from_kernel(
+            field,
+            kernel,
+            rank,
+            scale,
+        )
+        if coefficient_method is None:
+            coefficient_method = method
+        require(coefficient_method == method, "coefficient method mismatch")
+        degree = fpoly_degree(coefficients, field)
+        checked_degrees.append(degree)
+        coefficient_hash = hash_json(
+            [field.encode(coefficient) for coefficient in coefficients]
+        )
+        if first_shift_hash is None:
+            first_shift_hash = coefficient_hash
+        last_checked_shift_hash = coefficient_hash
+        if common_coefficients is None:
+            common_coefficients = coefficients
+        else:
+            common_coefficients = fpoly_gcd(
+                common_coefficients,
+                coefficients,
+                field,
+            )
+        common_degree = fpoly_degree(common_coefficients, field)
+        if common_degree == 0:
+            break
+
+    require(coefficient_method is not None, "no shifts checked")
+    degree_histogram = Counter(checked_degrees)
+    record = {
+        "A": agreement,
+        "m": size,
+        "rank": rank,
+        "rank_capacity": size // 2,
+        "within_endpoint_capacity": rank <= size // 2,
+        "shift_mode": "all-contiguous",
+        "available_shift_count": shift_count,
+        "checked_shift_count": len(checked_degrees),
+        "gcd_stopped_early": len(checked_degrees) < shift_count,
+        "coefficient_method": coefficient_method,
+        "checked_shift_degree_histogram": {
+            str(key): value for key, value in sorted(degree_histogram.items())
+        },
+        "common_gcd_degree": common_degree,
+        "first_shift_hash": first_shift_hash,
+        "last_checked_shift_hash": last_checked_shift_hash,
+    }
+    return record, common_degree, any(degree != rank for degree in checked_degrees)
 
 
 def determinant_coefficients_from_kernel(
@@ -319,13 +436,21 @@ def summary(
     gcd_histogram: Counter[int],
     degree_failures: int,
 ) -> dict[str, Any]:
+    shift_mode = parameters.get("shift_mode", "adjacent")
+    schema_version = "f17-32-m3-low-rank-spectral-target-search-v3"
+    target_formula = "gcd(Phi_{m,r,0}(Z), Phi_{m,r,1}(Z)) = 1"
+    recorded_probe = "top-window frontier beyond low-rank2..12"
+    if shift_mode == "all-contiguous":
+        schema_version = "f17-32-m3-low-rank-spectral-target-search-v4"
+        target_formula = "gcd(Phi_{m,r,h}(Z): 0 <= h < 258-2m) = 1"
+        recorded_probe = "contiguous all-shift target probe"
     collisions = [
         record
         for record in records
         if record["common_gcd_degree"] > 0
     ]
     return {
-        "schema_version": "f17-32-m3-low-rank-spectral-target-search-v3",
+        "schema_version": schema_version,
         "status": "EXPERIMENTAL / AUDIT",
         "claim": "counterexample-first exact probe for the PR #170 synthetic low-rank spectral target",
         "row": {
@@ -338,11 +463,11 @@ def summary(
             ),
         },
         "target": {
-            "formula": "gcd(Phi_{m,r,0}(Z), Phi_{m,r,1}(Z)) = 1",
+            "formula": target_formula,
             "window": "normalized consecutive subgroup window",
             "m_range": [87, 128],
             "rank_range": "2 <= r <= ceil((m-1)/2)",
-            "recorded_probe": "top-window frontier beyond low-rank2..12",
+            "recorded_probe": recorded_probe,
         },
         "parameters": parameters,
         "source_artifacts": [
@@ -398,6 +523,7 @@ def main() -> None:
         args.rank_min,
         args.rank_max,
         args.stop_on_collision,
+        args.shift_mode,
     )
     if args.write:
         args.write.parent.mkdir(parents=True, exist_ok=True)

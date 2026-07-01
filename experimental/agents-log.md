@@ -72,11 +72,12 @@ Keep entries concise and link to the relevant files.
   all-shift target
   `gcd(Phi_{m,r,h}:0 <= h < 258-2m)=1`, which is weaker except at the
   `m=128` endpoint and is the rank-drop containment condition obtained from
-  all contiguous shifted minors.  A counterexample-first search script probes the
-  endpoint-capacity adjacent
-  spectral target without changing the certified low-rank2..12 packet; it
-  switches from Newton identities to determinant interpolation at rank `17`,
-  avoiding characteristic-17 division.
+  all contiguous shifted minors.  A counterexample-first search script probes
+  the endpoint-capacity adjacent spectral target without changing the certified
+  low-rank2..12 packet; it also has an opt-in contiguous all-shift mode that
+  checks shifted minors until the running gcd is constant or all available
+  shifts are exhausted.  The script switches from Newton identities to
+  determinant interpolation at rank `17`, avoiding characteristic-17 division.
   The first top-window frontier probe `A=426`, ranks `13..20`, records eight
   exact checks with common gcd degree `0`, and can be replayed with the
   script's deterministic `--check` mode.  The recorded JSON now carries row
