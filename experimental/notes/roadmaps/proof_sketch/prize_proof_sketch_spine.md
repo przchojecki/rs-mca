@@ -209,8 +209,14 @@ not optimism, is the deliverable.
 DONE    S3b.iii.1  divisor-variety/pencil-incidence rigidity
                  -> s3b_iii_1_divisor_pencil_incidence.md (R2, SPI wall,
                  WP-2.6 = SPI at dim 1, budget B <= 3 at n = 2^41)
-next -> S3b.iii.2  displacement/spectral route (#170 identities as a
-                 dimension-free handle on the alignment variety)
+DONE    S3b.iii.2  displacement/spectral exchange-rigidity
+                 -> s3b_iii_2_displacement_spectral.md (subgroup Hankel =
+                 V^T D V verified; alignment = first-t Fourier vanishing;
+                 one-exchange = Cauchy rank-one; Johnson gap lam0-lam1 = n;
+                 XR wall frozen; alpha = XR's regular shadow; averaged XR
+                 = Hooley-Katz-shaped and plausibly provable)
+next -> S3b.iii.3  fiber bookkeeping ("unpaid fibers are O(1)") +
+                 prop:noanchor re-read vs incidence/exchange methods
         S2       Paid(A) as a single computable function (quotient closure)
         S3b.ii   the strip-periodic step: exact statement of the aperiodic
                  stratum via the proved confinement/equivariance results

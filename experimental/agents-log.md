@@ -30,6 +30,36 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Proof-sketch S3b.iii.2: displacement/spectral exchange-rigidity
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/proof_sketch/s3b_iii_2_displacement_spectral.md`;
+  queue update in `prize_proof_sketch_spine.md`.
+- **Status:** SKETCH / CONJECTURE / GAP-WALL (no result claimed).
+- **What is being added:** Turn 3 of the proof-sketch loop: the
+  dimension-free rigidity mechanism. Machine-verified backbone: subgroup
+  Hankels factor as V^T diag(u) V (F_13/mu_12 entrywise check), so alignment
+  = "the windowed product w_Z * ell misses Fourier frequencies 0..t-1"
+  (verified), with no deficiency variables anywhere. One-exchange of a
+  co-support point is a Cauchy rank-one update (the #152 t=2 ledger and
+  #170 replacement/Cauchy-Binet sums are instances). Johnson graph J(n,j)
+  spectra verified (trace checks; exact gap lam_0 - lam_1 = n at every j).
+  Freezes the XR wall (exchange-rigidity hypothesis): dense aligned
+  neighborhoods force tangent/quotient structure; consumer chain identical
+  to SPI (either wall gives R2). Front alpha identified as XR's
+  regular-window shadow; averaged XR laid out as a Johnson-scheme second
+  moment (Hooley-Katz-shaped, plausibly provable now). Fork F2 notes that
+  a small-t partial XR (generalizing #152 beyond t=2) targets exactly the
+  A=265 / P2 prediction — a concrete bottom-up lemma hand-off.
+- **How it is useful:** Complements mechanism 1 (same wall, two languages);
+  supplies the counting language that survives in-band dimensions; names
+  the #152-generalization as a Codex-lane-shaped lemma; gives the alpha
+  scan a sharper interpretation.
+- **What to do next:** Turn 4: S3b.iii.3 — fiber bookkeeping ("unpaid
+  fibers are O(1)") + prop:noanchor re-read against incidence/exchange
+  methods; then S2 Paid(A).
+
 ### 2026-07-01 - Proof-sketch S3b.iii.1: divisor/pencil incidence mechanism
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
