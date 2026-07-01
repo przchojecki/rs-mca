@@ -1,0 +1,1619 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 127,
+      "maximal_row_set_count": 129,
+      "minor_size": 128,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 128,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 129,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 386,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 126,
+      "maximal_row_set_count": 357760,
+      "minor_size": 127,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 127,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 130,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 387,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 125,
+      "maximal_row_set_count": 297602656,
+      "minor_size": 126,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 126,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 131,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 388,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 124,
+      "maximal_row_set_count": 117850651776,
+      "minor_size": 125,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 125,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 132,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 389,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 123,
+      "maximal_row_set_count": 27212042858000,
+      "minor_size": 124,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 124,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 133,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 390,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 122,
+      "maximal_row_set_count": 4110502764804800,
+      "minor_size": 123,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 123,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 134,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 391,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 121,
+      "maximal_row_set_count": 437531400061434000,
+      "minor_size": 122,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 122,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 135,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 392,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 120,
+      "maximal_row_set_count": 34569147570568156800,
+      "minor_size": 121,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 121,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 136,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 393,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 119,
+      "maximal_row_set_count": 2106811614990104173800,
+      "minor_size": 120,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 120,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 137,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 394,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 118,
+      "maximal_row_set_count": 102014036094257675784000,
+      "minor_size": 119,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 119,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 138,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 395,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 117,
+      "maximal_row_set_count": 4017652788178848131293200,
+      "minor_size": 118,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 118,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 139,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 396,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 116,
+      "maximal_row_set_count": 131169217511293618831944000,
+      "minor_size": 117,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 117,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 140,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 397,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 115,
+      "maximal_row_set_count": 3606497635473018049784300280,
+      "minor_size": 116,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 116,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 141,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 398,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 114,
+      "maximal_row_set_count": 84624257908136115834824778080,
+      "minor_size": 115,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 115,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 142,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 399,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 113,
+      "maximal_row_set_count": 1713849656772535006039031373800,
+      "minor_size": 114,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 114,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 143,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 400,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 112,
+      "maximal_row_set_count": 30252210715675198558211547346560,
+      "minor_size": 113,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 113,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 144,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 401,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 111,
+      "maximal_row_set_count": 469396280848805045810886556130100,
+      "minor_size": 112,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 112,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 145,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 402,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 110,
+      "maximal_row_set_count": 6450057129781226982436652912470080,
+      "minor_size": 111,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 111,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 146,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 403,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 109,
+      "maximal_row_set_count": 79013199839820030534848998177758480,
+      "minor_size": 110,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 110,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 147,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 404,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 108,
+      "maximal_row_set_count": 867972262747820578345034878767819200,
+      "minor_size": 109,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 109,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 148,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 405,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 107,
+      "maximal_row_set_count": 8595571658102045129818116747602531480,
+      "minor_size": 108,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 108,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 149,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 406,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 106,
+      "maximal_row_set_count": 77103134474669507808999718333976196000,
+      "minor_size": 107,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 107,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 150,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 407,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 105,
+      "maximal_row_set_count": 629169365508704665489903257132350201400,
+      "minor_size": 106,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 106,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 151,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 408,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 104,
+      "maximal_row_set_count": 4688795937593084907665736021700474766400,
+      "minor_size": 105,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 105,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 152,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 409,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 103,
+      "maximal_row_set_count": 32026150823738481735395429076793421395500,
+      "minor_size": 104,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 104,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 153,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 410,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 102,
+      "maximal_row_set_count": 201149345722743342538860075330950367478560,
+      "minor_size": 103,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 103,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 154,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 411,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 101,
+      "maximal_row_set_count": 1165221082896806046310922025638106900143400,
+      "minor_size": 102,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 102,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 155,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 412,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 100,
+      "maximal_row_set_count": 6242760225944100272356697397964160604404640,
+      "minor_size": 101,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 101,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 156,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 413,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 99,
+      "maximal_row_set_count": 31012358678820676071040147443457924406028940,
+      "minor_size": 100,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 100,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 157,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 414,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 98,
+      "maximal_row_set_count": 143189733233596341882651762012459148338766000,
+      "minor_size": 99,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 99,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 158,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 415,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 97,
+      "maximal_row_set_count": 615833221538262299883830979737191107650414100,
+      "minor_size": 98,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 98,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 159,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 416,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 96,
+      "maximal_row_set_count": 2472162036282630021039034757367935629277648000,
+      "minor_size": 97,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 97,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 160,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 417,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 95,
+      "maximal_row_set_count": 9280710221304286788116972549474771808276208850,
+      "minor_size": 96,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 96,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 161,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 418,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 94,
+      "maximal_row_set_count": 32639892664342891933241781340893634365063681600,
+      "minor_size": 95,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 95,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 162,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 419,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 93,
+      "maximal_row_set_count": 107721384890739488829123824395511067379158378000,
+      "minor_size": 94,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 94,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 163,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 420,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 92,
+      "maximal_row_set_count": 334131362067533191104582067782937347025574558400,
+      "minor_size": 93,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 93,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 164,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 421,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 91,
+      "maximal_row_set_count": 975503377269082347317315797208746877874322983000,
+      "minor_size": 92,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 92,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 165,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 422,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 90,
+      "maximal_row_set_count": 2684304068045662271753161595490447264666064972320,
+      "minor_size": 91,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 91,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 166,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 423,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 89,
+      "maximal_row_set_count": 6970842262831498554995351463887273937308644802520,
+      "minor_size": 90,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 90,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 167,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 424,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 88,
+      "maximal_row_set_count": 17104695717950707262500765033102171686482750635200,
+      "minor_size": 89,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 89,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 168,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 425,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 87,
+      "maximal_row_set_count": 39702427205817374681369445503532371039565903133340,
+      "minor_size": 88,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 88,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 169,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    },
+    {
+      "A": 426,
+      "input_relation": "u_m = c v_m for every stored syndrome coordinate 0<=m<256",
+      "j": 86,
+      "maximal_row_set_count": 87268338377759025159166456763568067991758141474400,
+      "minor_size": 87,
+      "outcomes": {
+        "full_column_rank": {
+          "canonical_common_gcd": {
+            "degree": 87,
+            "monic_polynomial_template": "(Z+c)^{j+1}",
+            "raw_aperiodic_numerator_before_subtraction": 1,
+            "residual_aperiodic_numerator_after_tangent": 0,
+            "root_template": "-c",
+            "tangent_paid_root_template": "-c"
+          },
+          "condition": "rank H_{t,j}(v) = j+1",
+          "paid_root": {
+            "ledger": "tangent/common-code-line",
+            "reason": "Syn(f+Zg)=u+Zv=(c+Z)v, so at Z=-c the full stored syndrome is zero and the line point is a codeword",
+            "root_template": "-c"
+          },
+          "regular_bucket_status": "closed_by_translated_canonical_gcd",
+          "residual_aperiodic_slope_count_after_tangent": 0
+        },
+        "rank_deficient": {
+          "condition": "rank H_{t,j}(v) <= j",
+          "next_step": "M5 pivot charts or a separate paid-branch classification",
+          "regular_bucket_status": "singular_all_maximal_minors_zero",
+          "residual_label": "unknown"
+        }
+      },
+      "stored_syndrome_length": 256,
+      "t": 170,
+      "translated_zero_syndrome_slope": "-c",
+      "visible_hankel_syndrome_length": 256
+    }
+  ],
+  "checks": [
+    "the proportional identity is checked over the full stored syndrome relation",
+    "translation by c reduces the full-rank case to the zero-u rank dichotomy",
+    "t+j equals the full stored syndrome length throughout the M3 window",
+    "the row-set counts match the zero-u dichotomy certificate"
+  ],
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512,
+    "full_domain_distinct": true
+  },
+  "lemma": {
+    "full_rank_conclusion": "If rank H_{t,j}(v)=j+1, the v10 canonical monic gcd over all nonzero maximal minors is (Z+c)^(j+1), with the single finite root Z=-c.",
+    "hypothesis": "The full stored syndrome vectors satisfy u=c v for some c in F_17^32.",
+    "m3_no_tail_caveat": "For every A in 385..426, t+j=(A-256)+(512-A)=256, exactly the stored syndrome length.  Thus the proportionality needed for tangent payment is the full syndrome relation, not merely a proper visible prefix relation.",
+    "minor_identity": "For every maximal row set R, Delta_R(Z)=(Z+c)^(j+1) det(H_R(v)).",
+    "pencil_identity": "M_A(Z)=H_{t,j}(u)+Z H_{t,j}(v)=(Z+c)H_{t,j}(v)",
+    "rank_deficient_conclusion": "If rank H_{t,j}(v)<=j, every maximal regular minor vanishes; this is a singular bucket for M5 pivots or a separate paid classification.",
+    "tangent_subtraction": "At Z=-c the full stored syndrome u+Zv is zero, so the root is paid by the tangent/common-code-line ledger and the residual aperiodic numerator is 0."
+  },
+  "nonclaims": [
+    "does not classify non-proportional pencils",
+    "does not prove every rank-deficient proportional bucket is contained",
+    "does not replace M5 pivot charts for arbitrary rank-deficient data",
+    "not a worst-case support-wise MCA row bound"
+  ],
+  "object": "finite common-code-line proportional-pencil tangent subtraction",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "hankel-proportional-pencil-tangent-lemma-v1",
+  "source_artifacts": {
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    },
+    "zero_u_rank_dichotomy": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-zero-u-rank-dichotomy/f17_32_n512_k256_m3_zero_u_rank_dichotomy.json",
+      "sha256": "d47c5028dddf0ea24bf723623a47e6c20bbe1eaed42c8c1a5d4f3308977d07e3"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement_count": 42,
+    "full_rank_regular_outcome": "canonical gcd (Z+c)^(j+1), root {-c}, residual after tangent 0",
+    "full_rank_residual_aperiodic_slope_count_after_tangent": 0,
+    "rank_deficient_regular_outcome": "singular bucket; send to M5 pivots unless separately paid",
+    "rank_deficient_residual_label": "unknown"
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551
+  }
+}

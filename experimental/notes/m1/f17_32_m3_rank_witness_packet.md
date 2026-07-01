@@ -65,6 +65,9 @@ experimental/data/certificates/hankel-f17-32-m3-lower-rank-contained/
 
 experimental/data/certificates/hankel-f17-32-m3-zero-u-rank-dichotomy/
   f17_32_n512_k256_m3_zero_u_rank_dichotomy.json
+
+experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/
+  hankel_proportional_pencil_tangent_lemma_certificate.json
 ```
 
 The M4 zero-slope subtraction sidecar is
@@ -234,6 +237,21 @@ all maximal regular minors vanish and the bucket is a named singular residual
 for M5 pivots unless a separate paid-branch classification applies.  The
 lower-rank weighted power-sum certificate is one such paid singular boundary.
 
+The proportional-pencil tangent lemma translates this statement to every
+finite common-code-line slope.  If the full stored syndrome vectors satisfy
+`u=c v`, then throughout the M3 window
+
+```text
+H_{t,j}(u)+Z H_{t,j}(v) = (Z+c) H_{t,j}(v),
+Delta_R(Z) = (Z+c)^(j+1) det(H_R(v)).
+```
+
+Thus full column rank gives canonical gcd `(Z+c)^(j+1)` and the single finite
+root `Z=-c`.  Since `Syn(f+Zg)=u+Zv`, the full stored syndrome is zero at
+`Z=-c`, so that root is paid by the tangent/common-code-line ledger and the
+residual aperiodic numerator is `0`.  Rank deficiency remains a singular
+boundary for M5 pivots unless separately paid.
+
 In the selected-minor packets, the chosen prefix determinant has the closed form
 
 ```text
@@ -357,6 +375,9 @@ python3 experimental/scripts/verify_f17_32_m3_lower_rank_contained.py \
 
 python3 experimental/scripts/verify_f17_32_m3_zero_u_rank_dichotomy.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-u-rank-dichotomy/f17_32_n512_k256_m3_zero_u_rank_dichotomy.json
+
+python3 experimental/scripts/verify_m1_hankel_proportional_pencil_tangent_lemma.py \
+  --check experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/hankel_proportional_pencil_tangent_lemma_certificate.json
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_rank_witness_zero_slope_subtraction.json

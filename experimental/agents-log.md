@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 proportional-pencil tangent lemma
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_proportional_pencil_tangent_lemma.py`;
+  `experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for proportional regular Hankel pencils in the
+  `F_17^32` M3 window.
+- **What is being added:** A finite common-code-line translation lemma: if the
+  full stored syndrome vectors satisfy `u=c v`, then every maximal regular
+  minor has
+  `Delta_R(Z)=(Z+c)^(j+1) det(H_R(v))`.  Full column rank gives canonical gcd
+  `(Z+c)^(j+1)` and the only root `Z=-c`, paid by the
+  tangent/common-code-line ledger; rank deficiency is the singular boundary.
+- **How it is useful:** This turns the zero-`u` dichotomy into a reusable M4
+  paid-root subtraction rule for any finite common-code-line slope in the
+  regular M3 window, and makes the existing proportional-branch reference in
+  the regular-window plan replayable.
+- **What to do next:** Attack genuinely non-proportional pencils or the
+  rank-deficient singular buckets that are not covered by a separate paid
+  classification.
+
 ### 2026-07-01 - M3 zero-u regular-rank dichotomy
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

@@ -379,6 +379,13 @@ after the slope `Z=-c` and contributes no residual aperiodic roots.  This
 classifies a universal proportional branch of arbitrary pencils, but it still
 does not classify non-proportional pencils.
 
+The certificate is replayed by
+
+```sh
+python3 experimental/scripts/verify_m1_hankel_proportional_pencil_tangent_lemma.py \
+  --check experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/hankel_proportional_pencil_tangent_lemma_certificate.json
+```
+
 The corresponding F1 denominator audit is
 
 ```text
