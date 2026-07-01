@@ -51,7 +51,10 @@ Keep entries concise and link to the relevant files.
   `tr(K_h)` with an explicit normalized consecutive-window subgroup sum,
   including a closed product form for the needed Lagrange values.  The closed
   product is then repackaged as a diagonal-Cauchy-diagonal factorization, giving
-  an explicit q-Cauchy product expansion for every principal minor of `K_h`.
+  an explicit q-Cauchy product expansion for every principal minor of `K_h`;
+  in particular, all square replacement Lagrange minors in the consecutive
+  window are nonzero, so coefficient vanishing can only come from cancellation
+  among explicit nonzero q-Cauchy terms.
 - **How it is useful:** Turns the rank-by-rank affine-gcd computation into a
   concrete spectral-disjointness target.  Proving that target through the
   endpoint-capacity range would close the synthetic low-rank regular

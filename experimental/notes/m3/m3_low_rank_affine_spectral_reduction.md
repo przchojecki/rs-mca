@@ -332,6 +332,28 @@ L = diag(rho_a) C diag(gamma_i).
 This is just the closed product formula with the row factor, Cauchy factor, and
 column factor separated.
 
+Therefore every square replacement minor has the closed form
+
+```text
+det(L[J,I])^2
+  = (prod_{a in J} rho_a^2)
+    * (prod_{i in I} gamma_i^2)
+    * prod_{a<a' in J} (u_a-u_a')^2
+    * prod_{i<i' in I} (v_i-v_i')^2
+    / prod_{a in J, i in I} (1-u_a v_i)^2,
+```
+
+where `u_a=alpha^(m+a)` and `v_i=alpha^(-i)`.  In particular, every such
+minor is nonzero whenever the update window is disjoint from the base window.
+The rectangular evaluation matrix `L[Y,X]` is totally nonsingular on these
+consecutive subgroup windows.
+
+For the current M3 range, and for the endpoint-capacity ranks targeted by this
+low-rank model, the exponents `m+a-i` lie strictly between `0` and `512`, so
+the denominators are nonzero in the order-512 subgroup.  Thus the only possible
+vanishing in coefficients of `det(I+ZK_h)` comes from cancellation among
+explicit nonzero q-Cauchy terms, not from singular replacement minors.
+
 Consequently, with `x_i=alpha^i` and `y_a=alpha^(m+a)`,
 
 ```text
