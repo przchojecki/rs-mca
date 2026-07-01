@@ -170,6 +170,56 @@ replacement sums over the interval of exponents.  The PR #170 verifier uses the
 kernel form; this formula is the coefficient-level proof target for a future
 symbolic or q-binomial argument.
 
+## Replacement-Minor Compression
+
+The replacement determinant in the coefficient formula is itself a Lagrange
+minor.  Let `I` be a `d`-element subset of the indices of `X`, and let `J` be a
+`d`-element subset of `Y`.  Write
+
+```text
+L[J,I] = (L_i(y))_{y in J, i in I}.
+```
+
+Then
+
+```text
+(det(V_{(X minus I) union J}) / det(V_X))^2 = det(L[J,I])^2.
+```
+
+The unsquared identity has a sign depending only on the ordering convention for
+the replaced columns; the square is canonical.
+
+Proof.  In the column basis `v(x_0),...,v(x_{m-1})` of `V_X`, the column
+`v(y)` has coordinate vector `(L_i(y))_i`.  Replacing the columns indexed by
+`I` and expanding by multilinearity leaves only the determinant of the
+coordinate submatrix on those replaced columns; all terms using a column outside
+`I` repeat an existing basis column and vanish.
+
+Consequently the normalized coefficient can be written as
+
+```text
+[Z^d] det(I_r+ZK_h)
+  = sum_{J subset Y, |J|=d}
+      sum_{I subset X, |I|=d}
+        det(L[J,I])^2
+        * prod_{y in J} y^h / prod_{x_i in I} x_i^h.
+```
+
+Equivalently, by Cauchy-Binet applied to
+
+```text
+K_h[J,J] = diag(y^h)_{y in J} L[J,X] diag(x_i^(-h)) L[J,X]^T,
+```
+
+the same coefficient is the sum of principal minors
+
+```text
+[Z^d] det(I_r+ZK_h) = sum_{J subset Y, |J|=d} det(K_h[J,J]).
+```
+
+This is the precise bridge between the q-binomial-looking replacement sums and
+the rank-size kernels used by the verifier.
+
 ## Trace / One-Replacement Coefficient
 
 The first nonconstant coefficient of the normalized shifted determinant is the
