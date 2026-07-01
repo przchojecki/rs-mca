@@ -49,6 +49,13 @@ experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/
   f17_32_n512_k256_rank_witness_zero_slope_subtraction.json
 ```
 
+The subgroup syndrome-realizability sidecar is
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/
+  f17_32_n512_k256_rank_witness_syndrome_realizability.json
+```
+
 ## Construction
 
 For exact agreement `A`,
@@ -105,6 +112,12 @@ stored syndrome coordinates.  Since `Syn(f+Zg)=u+Zv`, the unique raw root
 `Z=0` is a zero-syndrome common-code-line slope and is paid by the tangent
 ledger.  For these synthetic packets, the residual aperiodic numerator after
 this paid-root subtraction is therefore `0`.
+
+The syndrome-realizability sidecar verifies that these syndrome pencils are
+not free formal vectors: on the pinned order-512 subgroup, the inverse section
+`y_s(x)=sum_a s_a x^(-a-1)` realizes every stored length-256 syndrome vector
+under the weighted syndrome map.  Thus the synthetic packets correspond to
+actual received-line values on the pinned row.
 
 ## What This Proves
 
@@ -174,6 +187,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_rank_witness_zero_slope_subtraction.json
+
+python3 experimental/scripts/verify_f17_32_m3_syndrome_realizability.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_rank_witness_syndrome_realizability.json
 ```
 
 ## Next Steps

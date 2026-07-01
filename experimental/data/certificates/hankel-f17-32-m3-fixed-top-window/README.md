@@ -37,6 +37,13 @@ The tangent subtraction for the raw root `{0}` is recorded separately in:
 experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/
 ```
 
+The subgroup line-value realization of the synthetic syndrome input is
+recorded in:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/
+```
+
 Regenerate and check:
 
 ```sh

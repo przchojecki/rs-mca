@@ -127,6 +127,27 @@ These packets are not worst-case safe-side bounds.  They are selected
 synthetic replays that replace degree-only evidence by exact finite root tables
 for a small audited part of the window.
 
+The syndrome-realizability sidecar
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/
+  f17_32_n512_k256_rank_witness_syndrome_realizability.json
+```
+
+checks that the synthetic rank-witness syndrome pencils are actual row data.
+It audits the pinned subgroup as the powers of an exact order-512 generator and
+uses character orthogonality for exponents `-255..255` to verify the inverse
+section
+
+```text
+y_s(x)=sum_{a=0}^{255} s_a x^(-a-1)
+```
+
+for the weighted syndrome map.  Thus the remaining M3 regular-window gap is
+not construction of actual received-line values for these packets; it is
+universal classification of arbitrary length-256 syndrome pencils after
+tangent, quotient, and extension-confined branches are removed.
+
 The zero-slope subtraction sidecar
 
 ```text
@@ -142,7 +163,8 @@ The resulting synthetic total upper bound is `1 <= 6` against the finite-slope
 budget.  This is an M4 no-double-counting sidecar for the synthetic packets
 only, not a universal row table.
 
-A later line-value lift would rely on the subgroup-section theorem
+The reusable theorem behind this realizability audit is the subgroup-section
+identity
 
 ```text
 experimental/notes/m1/subgroup_syndrome_section.md
@@ -150,30 +172,14 @@ experimental/data/certificates/subgroup-syndrome-section/
   subgroup_syndrome_section_certificate.json
 ```
 
-The intended statement is that for any multiplicative subgroup row, every
-syndrome vector of
-length at most the subgroup order has the explicit inverse-Fourier section
-`y_s(x)=sum_m s_m x^(-m-1)`.
-
-For the whole M3 window this applies uniformly, not only to the fixed
-top-window packet.  Since every exact bucket has
+For the whole M3 window this applies uniformly.  Since every exact bucket has
 
 ```text
 t+j = (A-k)+(n-A) = n-k = 256 <= |H| = 512,
 ```
 
-every length-256 syndrome pencil `(u,v)` is realized by explicit line values
-`f,g:H -> F_17^32`.  A future certificate
-
-```text
-experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/
-  f17_32_n512_k256_m3_syndrome_realizability_certificate.json
-```
-
-should record this reduction.  Thus the remaining M3 regular-window gap is not
-construction of actual row data; it is universal classification of arbitrary
-length-256 syndrome pencils after tangent, quotient, and extension-confined
-branches are removed.
+the same line-value section is available for any length-256 syndrome pencil;
+the current sidecar records it for the three synthetic rank-witness inputs.
 
 For the synthetic packets above, the sidecar records this M4 mini-table:
 

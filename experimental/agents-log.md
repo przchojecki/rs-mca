@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 syndrome-realizability sidecar
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_syndrome_realizability.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the listed synthetic syndrome inputs.
+- **What is being added:** A subgroup-section certificate showing that the
+  A=385, A=426, and A=421..426 synthetic M3 rank-witness syndrome pencils are
+  realized by received-line values on the pinned order-512 subgroup row.
+  The verifier audits the generator orbit and character orthogonality for
+  exponents `-255..255`.
+- **How it is useful:** This removes the possible ambiguity that the
+  rank-witness packets are only formal syndrome vectors.  The remaining M3
+  gap is universal classification of arbitrary length-256 syndrome pencils,
+  not realization of these packet inputs as row data.
+- **What to do next:** Use the same section lemma when building non-synthetic
+  M3 packets, then combine their root tables with tangent, quotient, and
+  extension ledgers.
+
 ### 2026-07-01 - M3 zero-slope subtraction sidecar
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
