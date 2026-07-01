@@ -59,6 +59,9 @@ experimental/data/certificates/hankel-f17-32-m3-support-uniform-canonical-gcd/
 
 experimental/data/certificates/hankel-f17-32-m3-weight-uniform-canonical-gcd/
   f17_32_n512_k256_m3_weight_uniform_canonical_gcd.json
+
+experimental/data/certificates/hankel-f17-32-m3-lower-rank-contained/
+  f17_32_n512_k256_m3_lower_rank_contained.json
 ```
 
 The M4 zero-slope subtraction sidecar is
@@ -198,6 +201,21 @@ the weight product are nonzero.  Thus the same canonical gcd `Z^(j+1)` holds
 uniformly over every nonzero residue weighting on every support subset of size
 `j+1`.
 
+The lower-rank companion treats the singular boundary `0 <= r <= j` for the
+same zero-`u` weighted power-sum family.  There `rank H(v) <= r < j+1`, so
+every maximal regular minor vanishes.  This singular bucket is contained, not
+aperiodic: if a degree-`<256` codeword explains an agreement-at-least-`A`
+support `W`, then it has at least
+
+```text
+|W \ S| >= A-r >= A-j = 2A-512 >= 258 > 256
+```
+
+zeros outside the rank support `S`, hence is the zero codeword.  The witness
+support is therefore contained in `D\S`, where both line generators are zero
+codeword restrictions, so the support-wise noncontained aperiodic contribution
+is `0`.
+
 In the selected-minor packets, the chosen prefix determinant has the closed form
 
 ```text
@@ -315,6 +333,9 @@ python3 experimental/scripts/verify_f17_32_m3_support_uniform_canonical_gcd.py \
 
 python3 experimental/scripts/verify_f17_32_m3_weight_uniform_canonical_gcd.py \
   --check experimental/data/certificates/hankel-f17-32-m3-weight-uniform-canonical-gcd/f17_32_n512_k256_m3_weight_uniform_canonical_gcd.json
+
+python3 experimental/scripts/verify_f17_32_m3_lower_rank_contained.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-lower-rank-contained/f17_32_n512_k256_m3_lower_rank_contained.json
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_rank_witness_zero_slope_subtraction.json

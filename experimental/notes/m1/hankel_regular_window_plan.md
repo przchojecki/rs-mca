@@ -255,6 +255,23 @@ nonzero weight vector, so the v10 canonical gcd remains `Z^(j+1)` with root
 table `{0}`.  This classifies the simple rank-size zero-`u` weighted
 power-sum branch; arbitrary length-256 M3 pencils remain open.
 
+The lower-rank companion
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-lower-rank-contained/
+  f17_32_n512_k256_m3_lower_rank_contained.json
+```
+
+classifies the adjacent singular bucket for the same family.  If the weighted
+support rank is `r <= j`, then all `(j+1)x(j+1)` regular minors vanish because
+`rank H(v) <= r`.  This is not an aperiodic residual: any agreement-at-least
+`A` explanation has at least `A-r >= A-j = 2A-512 >= 258 > k` zeros outside
+the rank support, so the explaining codeword is forced to be zero.  The
+agreement support is contained in the complement of the rank support, where
+both line generators are zero codeword restrictions.  Thus this lower-rank
+singular bucket is removed by the contained/common-code-line filter and
+contributes no support-wise noncontained aperiodic slopes.
+
 The syndrome-realizability sidecar
 
 ```text

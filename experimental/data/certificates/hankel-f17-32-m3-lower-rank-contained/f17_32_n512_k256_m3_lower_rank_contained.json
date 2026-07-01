@@ -1,0 +1,1122 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 127,
+      "lower_support_rank_range": {
+        "max": 127,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 258,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 128,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 2205915133639306215109007477459654625170609131328760399869192382536264834410709402996407338552013095202806111015318432870457,
+      "t": 129,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 386,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 126,
+      "lower_support_rank_range": {
+        "max": 126,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 260,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 127,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 722129602553329223747418489858810328044041974728964080602660512949626676784205698322134650574837172287271148997060646068793,
+      "t": 130,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 387,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 125,
+      "lower_support_rank_range": {
+        "max": 125,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 262,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 126,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 233941098802243529698398278912418551528306148593797934108231633577857127513309401706506071888046130291745397244939560773945,
+      "t": 131,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 388,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 124,
+      "lower_support_rank_range": {
+        "max": 124,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 264,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 125,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 74996004557704001403368442790337508011554949386999653854231533317280995192552467924673511385369977083899803651225719050041,
+      "t": 132,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 389,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 123,
+      "lower_support_rank_range": {
+        "max": 123,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 266,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 124,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 23789466463458019349557284245852635744560362013675465628071707202404663903648816577433640089404721540135114993457084474041,
+      "t": 133,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 390,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 122,
+      "lower_support_rank_range": {
+        "max": 122,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 268,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 123,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 7466559718762642036774292833214784430659773750713513597110734353446655986363333885768488313827107947778247657818753658041,
+      "t": 134,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 391,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 121,
+      "lower_support_rank_range": {
+        "max": 121,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 270,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 122,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 2318566053127946115050426310767462093198818990856282571961504454929130412450220113781786599991091353265697190425126246841,
+      "t": 135,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 392,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 120,
+      "lower_support_rank_range": {
+        "max": 120,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 272,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 121,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 712286699656250712364207088929678652865733362460931715009570829304736243607765177253966627899035024543111111084915136441,
+      "t": 136,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 393,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 119,
+      "lower_support_rank_range": {
+        "max": 119,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 274,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 120,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 216470878814222284494226155658322029701694176145019843348387235680879880266089036131858932431844167973129183533472421241,
+      "t": 137,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 394,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 118,
+      "lower_support_rank_range": {
+        "max": 118,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 276,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 119,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 65076735045663985907972435575465045529468470399703241314438046788099311306798611361749712441862227035730121685703653241,
+      "t": 138,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 395,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 117,
+      "lower_support_rank_range": {
+        "max": 117,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 278,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 118,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 19351092638409068314662301844855956401308929831955333593524459279873707991682975454026369348441285483571521787519685241,
+      "t": 139,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 396,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 116,
+      "lower_support_rank_range": {
+        "max": 116,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 280,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 117,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 5691280476241776476660793540522101927580256953488870021200906555897451811471215866402687107875029526217813463505234041,
+      "t": 140,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 397,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 115,
+      "lower_support_rank_range": {
+        "max": 115,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 282,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 116,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 1655426882874167524523984268787099469433149057578323965741675069268103394590468715513871900434999356999672367773691641,
+      "t": 141,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 398,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 114,
+      "lower_support_rank_range": {
+        "max": 114,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 284,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 115,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 476185026877586571254790627675612605087898387740481793365677959824767333234885165128223124457559811333918294461704441,
+      "t": 142,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 399,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 113,
+      "lower_support_rank_range": {
+        "max": 113,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 286,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 114,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 135449314717770466666958294188625194535878721832562572704271759859984300431136149313274357529405168742054680313768441,
+      "t": 143,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 400,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 112,
+      "lower_support_rank_range": {
+        "max": 112,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 288,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 113,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 38096254100680151070434770335200220092444531573157081086727131298617719630065001937574709835646699430093647700072441,
+      "t": 144,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 401,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 111,
+      "lower_support_rank_range": {
+        "max": 111,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 290,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 112,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 10594014476352136914416874846607664812174372824875029704770773730031660553762402803939559362159931849464655986703321,
+      "t": 145,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 402,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 110,
+      "lower_support_rank_range": {
+        "max": 110,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 292,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 111,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 2912590940380222736177462640317474808707395817873558994598424483942786198286365140679866461834450629937356555537881,
+      "t": 146,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 403,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 109,
+      "lower_support_rank_range": {
+        "max": 109,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 294,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 110,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 791600859552156880991953299774661151033678286089570813431432527933171637445966681421593049058011785739520145439961,
+      "t": 147,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 404,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 108,
+      "lower_support_rank_range": {
+        "max": 108,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 296,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 109,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 212670564537052056995908566624017224621497322079052947604213879890845082377867846388317427704641381616041224569561,
+      "t": 148,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 405,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 107,
+      "lower_support_rank_range": {
+        "max": 107,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 298,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 108,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 56474024545352983194995507432383095960785131294036988754791026829920343510484744857062371448410257731241218691161,
+      "t": 149,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 406,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 106,
+      "lower_support_rank_range": {
+        "max": 106,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 300,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 107,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 14821613880899896848085358314613994984595213751366066394944932680340413145849251115394356446748624695294550456921,
+      "t": 150,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 407,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 105,
+      "lower_support_rank_range": {
+        "max": 105,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 302,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 106,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 3844254420071127786214949556975340293825949768445404590749040872446195044824625917467071704931396284343088631641,
+      "t": 151,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 408,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 104,
+      "lower_support_rank_range": {
+        "max": 104,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 304,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 105,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 985286108405649848725359069727926541438868731124544268280331949505686153648679305721882067013395764537548205401,
+      "t": 152,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 409,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 103,
+      "lower_support_rank_range": {
+        "max": 103,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 306,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 104,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 249522204668210673636126223745136237515722875931675802939120094337172836066634221816870027843322101352298831001,
+      "t": 153,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 410,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 102,
+      "lower_support_rank_range": {
+        "max": 102,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 308,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 103,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 62433094671404624224683152883986624782209015442535655272895074930020305434524958427820511770736133207394344601,
+      "t": 154,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 411,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 101,
+      "lower_support_rank_range": {
+        "max": 101,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 310,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 102,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 15432659720987494738393796057892941583301874880629715737233667615540523348897509332522706513476731453918339481,
+      "t": 155,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 412,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 100,
+      "lower_support_rank_range": {
+        "max": 100,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 312,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 101,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 3768318200446017347635853487913487358755577222930431472908938792968898597719894228580185500726222989552031641,
+      "t": 156,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 413,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 99,
+      "lower_support_rank_range": {
+        "max": 99,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 314,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 100,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 908855837400655171746163683136970667786703282572111786751663037921000297067129360866120883522821642704951321,
+      "t": 157,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 414,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 98,
+      "lower_support_rank_range": {
+        "max": 98,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 316,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 99,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 216492069108799923346723052440477522273658744955085228360070845415455914342488957061262622698753519981687321,
+      "t": 158,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 415,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 97,
+      "lower_support_rank_range": {
+        "max": 97,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 318,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 98,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 50926820169443233512074205969576987477061138133622355701211842859782257603987990934013908153867664547863321,
+      "t": 159,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 416,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 96,
+      "lower_support_rank_range": {
+        "max": 96,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 320,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 97,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 11829484275330087478831827766810114199792305679397388181770439846635225410317883270229874357725944469514521,
+      "t": 160,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 417,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 95,
+      "lower_support_rank_range": {
+        "max": 95,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 322,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 96,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 2713038165404666408580600157030338459659909650407431813054535778665845307466920665934078015837129932014921,
+      "t": 161,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 418,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 94,
+      "lower_support_rank_range": {
+        "max": 94,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 324,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 95,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 614287981824713356436432649742908073442379629344995814501234122730448449256627116743678857992222988130121,
+      "t": 162,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 419,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 93,
+      "lower_support_rank_range": {
+        "max": 93,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 326,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 94,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 137299303738360390040030943541219349302031897285351269375483746381494617845196764654951776663835046338121,
+      "t": 163,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 420,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 92,
+      "lower_support_rank_range": {
+        "max": 92,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 328,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 93,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 30289910563856383258976622818167463695366773625192349943931155983399963542871100940535677272740854146121,
+      "t": 164,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 421,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 91,
+      "lower_support_rank_range": {
+        "max": 91,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 330,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 92,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 6594973503787638900314594658063117596748067671871446355515939538107575804498989689486398121855711589321,
+      "t": 165,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 422,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 90,
+      "lower_support_rank_range": {
+        "max": 90,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 332,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 91,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 1416982507288055810060659763218462392299324328152864098665108390917790360484181530112208853728792075721,
+      "t": 166,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 423,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 89,
+      "lower_support_rank_range": {
+        "max": 89,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 334,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 90,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 300401510412553295337654845135847170486917588156676929533768025054590181798523846455689367000001374921,
+      "t": 167,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 424,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 88,
+      "lower_support_rank_range": {
+        "max": 88,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 336,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 89,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 62831085545425100715738905118269463718320409434083914824972202530505037397320083975578837908769310921,
+      "t": 168,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 425,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 87,
+      "lower_support_rank_range": {
+        "max": 87,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 338,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 88,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 12963708627560927788025417708919426212647888428633965982795720915779617935746652700272618358958806921,
+      "t": 169,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    },
+    {
+      "A": 426,
+      "agreement_witness": "zero codeword on D\\S gives agreement n-r >= A",
+      "hankel_rank_bound": "rank H(v) <= r <= j < j+1",
+      "j": 86,
+      "lower_support_rank_range": {
+        "max": 86,
+        "min": 0
+      },
+      "noncontainment_filter": {
+        "contained_support": "W subset D\\S, where both f=0 and g=0 are codeword restrictions",
+        "forced_zero_count_min": 340,
+        "reason": "Any degree-<k codeword agreeing with the line word on an agreement support W has at least |W\\S| >= A-r >= A-j zeros outside S; in this window A-j >= k, so the codeword is zero.",
+        "residual_aperiodic_slope_count": 0,
+        "supportwise_noncontained_slope_count": 0,
+        "zero_forcing_threshold": 256
+      },
+      "paid_or_removed_as": "contained/common-code-line branch",
+      "regular_bucket_status": "singular_all_maximal_minors_zero",
+      "regular_minor_size": 87,
+      "schema_residual_label_if_packetized": "tangent",
+      "support_choice_count_sum": 2638228230450228452404742668865771387943931138093741281356825899083531082526742224444507016880396681,
+      "t": 170,
+      "weight_choice_formula_by_rank": "(17^32 - 1)^r for rank r>=1; 1 for rank 0"
+    }
+  ],
+  "branch": {
+    "conclusion": "The lower-rank zero-u singular bucket contributes no support-wise noncontained aperiodic slopes after the contained/common-code-line filter.",
+    "contained_filter": "For any slope and any agreement-at-least-A support W with a degree-<k explaining codeword p, p has at least A-r >= A-j zeros outside S. Since A-j >= k throughout 385<=A<=426, p=0. Thus W is contained in D\\S, where both line generators are zero codeword restrictions.",
+    "regular_singularity": "H(v) has rank at most r, so every (j+1)x(j+1) maximal regular minor of H(u)+Z H(v)=Z H(v) is the zero polynomial.",
+    "support": "S subset H with rank r <= j",
+    "syndrome": "u_m=0, v_m=sum_{x_i in S} w_i x_i^m",
+    "weights": "nonzero weights w_i for x_i in S; rank 0 has no weights"
+  },
+  "checks": [
+    "all 512 descriptor-domain elements are distinct",
+    "rank r<=j makes every (j+1)x(j+1) regular minor vanish",
+    "A-j=2A-512 is at least k=256 for every A in 385..426",
+    "any degree-<k explaining codeword is forced to be zero",
+    "the resulting agreement support is contained/common-code-line, not aperiodic"
+  ],
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512,
+    "full_domain_distinct": true
+  },
+  "nonclaims": [
+    "only zero-u weighted power-sum syndromes with support rank r<=j",
+    "not rank j+1, which is handled by the weight-uniform gcd certificate",
+    "not arbitrary length-256 M3 syndrome pencils",
+    "not a quotient or extension ledger",
+    "not a worst-case support-wise MCA row bound"
+  ],
+  "object": "lower-rank singular bucket classified as contained/common-code-line",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "f17-32-m3-lower-rank-contained-v1",
+  "source_artifacts": {
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    },
+    "weight_uniform_formula_certificate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-weight-uniform-canonical-gcd/f17_32_n512_k256_m3_weight_uniform_canonical_gcd.json",
+      "sha256": "b54698dd3d3714e8719acced4eee13e20096f1607e02921afbbbad3892b9269d"
+    }
+  },
+  "status": "PROVED / AUDIT for lower-rank zero-u weighted branches",
+  "summary": {
+    "agreement_count": 42,
+    "regular_bucket_status": "singular_all_maximal_minors_zero",
+    "residual_aperiodic_slope_count_after_filter": 0,
+    "residual_label": "contained/common-code-line",
+    "schema_residual_label_if_packetized": "tangent",
+    "supportwise_noncontained_slope_count_after_filter": 0
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42,
+    "forced_zero_count_min_range": [
+      258,
+      340
+    ],
+    "lower_rank_condition": "0 <= r <= j = 512-A",
+    "zero_forcing_threshold": 256
+  }
+}

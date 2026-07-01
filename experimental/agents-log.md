@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 lower-rank contained branch
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_lower_rank_contained.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-lower-rank-contained/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for lower-rank zero-`u` weighted power-sum
+  branches.
+- **What is being added:** A singular-bucket classification: if the weighted
+  support rank is `r <= j`, every `(j+1)x(j+1)` regular minor vanishes, but
+  any agreement-at-least-`A` explaining codeword has at least
+  `A-r >= A-j >= 258 > k` zeros outside the rank support and is forced to be
+  zero.  The branch is therefore contained/common-code-line, with zero
+  support-wise noncontained aperiodic slopes.
+- **How it is useful:** This names the first singular boundary adjacent to the
+  weight-uniform rank-size formula and removes it from the aperiodic residual
+  ledger instead of leaving it as unexplained regular-minor failure.
+- **What to do next:** Move to higher-rank or genuinely non-proportional M3
+  syndrome pencils, where regular minors need not be monomial and singular
+  buckets may require pivot charts.
+
 ### 2026-07-01 - M3 weight-uniform canonical gcd formula
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
