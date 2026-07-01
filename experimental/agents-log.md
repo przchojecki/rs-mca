@@ -50,6 +50,27 @@ Keep entries concise and link to the relevant files.
   `385 <= A <= 426`, including regular roots, tangent/quotient/extension
   subtraction, and residual chart labels.
 
+### 2026-07-01 - M3 low-rank2..8 v10 affine-gcd packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank2_8_v10_affine_gcd.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-8-v10-affine-gcd/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a standalone Paper D v10 affine rank-drop
+  packet for the synthetic low-rank M3 ladder at ranks `2..8`.  In all `294`
+  rank/agreement rows, the prefix maximal minor and row-shift-1 maximal minor
+  are coprime, so the canonical affine rank-drop gcd has `0` finite roots.
+- **How it is useful:** This follows the PR #161 split guidance by using only
+  accepted upstream inputs: the F_17^32 row descriptor, regular-window plan,
+  generic regular-minor certificate, and Paper D v10.  It gives a larger
+  structured M3 test family for the v10 canonical-gcd ledger without importing
+  the broad unmerged low-rank packet.
+- **What to do next:** Add a separate endpoint/quotient-image packet if needed,
+  and then attempt the same two-minor affine-gcd method for ranks `9..11` or
+  less structured M3 pivot charts.
+
 ### 2026-07-01 - PR 161--169 frontier integration
 
 - **Agent/model:** Codex, integrating contributions from holmbuar,
