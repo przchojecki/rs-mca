@@ -59,9 +59,10 @@ Keep entries concise and link to the relevant files.
   concrete spectral-disjointness target.  Proving that target through the
   endpoint-capacity range would close the synthetic low-rank regular
   projective packet after quotient-image endpoint subtraction.
-- **What to do next:** Try to prove spectral disjointness for consecutive
-  subgroup nodes, or use a targeted scan to find the first rank/agreement
-  where the two kernel spectra collide.
+- **What to do next:** Prove or refute the exact endpoint-capacity target
+  `gcd(Phi_{m,r,0}, Phi_{m,r,1})=1` for `87 <= m <= 128` and
+  `2 <= r <= ceil((m-1)/2)`, or use a targeted scan to find the first
+  rank/agreement where the two kernel spectra collide.
 
 ### 2026-07-01 - v10 guide and site metadata sync
 

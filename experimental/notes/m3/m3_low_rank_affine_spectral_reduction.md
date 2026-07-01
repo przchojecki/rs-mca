@@ -505,11 +505,33 @@ and Y={alpha^(j+1),...,alpha^(j+r)}, prove that K_0 and K_1 have no common
 nonzero reciprocal eigenvalue for the desired rank range.
 ```
 
-A proof of this statement through the endpoint capacity range would close the
-synthetic low-rank regular projective packet after quotient-image endpoint
-subtraction.  It would still not be an arbitrary-row M3 theorem; it would be a
-clean model result explaining why this low-rank branch has no unpaid regular
-projective residual.
+In the `F_17^32`, `n=512`, `k=256` M3 window, `m=j+1=513-A`, so
+
+```text
+385 <= A <= 426        <=>        87 <= m <= 128,
+rank_capacity(A) = 256-floor(A/2) = ceil((m-1)/2).
+```
+
+Using the explicit q-Cauchy coefficients above, define
+
+```text
+Phi_{m,r,h}(Z) = det(I_r+ZK_h)
+```
+
+for the normalized consecutive subgroup window.  The finite symbolic target for
+the endpoint-capacity low-rank model is therefore:
+
+```text
+gcd(Phi_{m,r,0}(Z), Phi_{m,r,1}(Z)) = 1
+for every 87 <= m <= 128 and 2 <= r <= ceil((m-1)/2).
+```
+
+The current verifier proves this finite target only for `2 <= r <= 12`.
+A proof of the displayed range, together with the endpoint `c=2` capacity
+packet, would close the synthetic low-rank regular projective residual through
+the endpoint capacity range.  It would still not be an arbitrary-row M3 theorem;
+it would be a clean model result explaining why this low-rank branch has no
+unpaid regular projective residual.
 
 A stronger pivot-ready form is:
 
