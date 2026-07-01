@@ -1,11 +1,14 @@
 {
   "aggregate": {
     "agreement_count": 42,
+    "all_ranks_above_capacity_obstructed_for_c2_full_fiber_avoidance": true,
     "all_recorded_projective_endpoints_have_quotient_image_witness": true,
     "endpoint_quotient_image_witness_count": 2205,
     "fiber_size": 2,
+    "maximum_blocked_rank_count_to_square_size": 64,
     "maximum_rank_capacity": 64,
     "maximum_vandermonde_union_bound": 255,
+    "minimum_blocked_rank_count_to_square_size": 44,
     "odd_boundary_uses_paired_residual": true,
     "projective_point": "[0:1]",
     "quotient_order": 256,
@@ -21,10 +24,37 @@
   "capacity_table": [
     {
       "A": 385,
+      "blocked_rank_count_to_square_size": 64,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 192,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 65,
+        "remainder_size": 1,
+        "required_full_fiber_count": 192,
+        "safe_full_fiber_count": 191,
+        "update_node_range": [
+          128,
+          192
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 65,
       "full_fiber_count": 192,
       "j": 127,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 64,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 128,
+        "remainder_size": 1,
+        "required_full_fiber_count": 192,
+        "safe_full_fiber_count": 128,
+        "update_node_range": [
+          128,
+          255
+        ]
+      },
+      "max_square_update_rank_audited": 128,
       "rank_capacity": 64,
       "rank_min_recorded": 2,
       "record_count": 63,
@@ -33,10 +63,37 @@
     },
     {
       "A": 386,
+      "blocked_rank_count_to_square_size": 64,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 193,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 64,
+        "remainder_size": 0,
+        "required_full_fiber_count": 193,
+        "safe_full_fiber_count": 192,
+        "update_node_range": [
+          127,
+          190
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 64,
       "full_fiber_count": 193,
       "j": 126,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 64,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 127,
+        "remainder_size": 0,
+        "required_full_fiber_count": 193,
+        "safe_full_fiber_count": 129,
+        "update_node_range": [
+          127,
+          253
+        ]
+      },
+      "max_square_update_rank_audited": 127,
       "rank_capacity": 63,
       "rank_min_recorded": 2,
       "record_count": 62,
@@ -45,10 +102,37 @@
     },
     {
       "A": 387,
+      "blocked_rank_count_to_square_size": 63,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 193,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 64,
+        "remainder_size": 1,
+        "required_full_fiber_count": 193,
+        "safe_full_fiber_count": 192,
+        "update_node_range": [
+          126,
+          189
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 64,
       "full_fiber_count": 193,
       "j": 125,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 63,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 126,
+        "remainder_size": 1,
+        "required_full_fiber_count": 193,
+        "safe_full_fiber_count": 130,
+        "update_node_range": [
+          126,
+          251
+        ]
+      },
+      "max_square_update_rank_audited": 126,
       "rank_capacity": 63,
       "rank_min_recorded": 2,
       "record_count": 62,
@@ -57,10 +141,37 @@
     },
     {
       "A": 388,
+      "blocked_rank_count_to_square_size": 63,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 194,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 63,
+        "remainder_size": 0,
+        "required_full_fiber_count": 194,
+        "safe_full_fiber_count": 193,
+        "update_node_range": [
+          125,
+          187
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 63,
       "full_fiber_count": 194,
       "j": 124,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 63,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 125,
+        "remainder_size": 0,
+        "required_full_fiber_count": 194,
+        "safe_full_fiber_count": 131,
+        "update_node_range": [
+          125,
+          249
+        ]
+      },
+      "max_square_update_rank_audited": 125,
       "rank_capacity": 62,
       "rank_min_recorded": 2,
       "record_count": 61,
@@ -69,10 +180,37 @@
     },
     {
       "A": 389,
+      "blocked_rank_count_to_square_size": 62,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 194,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 63,
+        "remainder_size": 1,
+        "required_full_fiber_count": 194,
+        "safe_full_fiber_count": 193,
+        "update_node_range": [
+          124,
+          186
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 63,
       "full_fiber_count": 194,
       "j": 123,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 62,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 124,
+        "remainder_size": 1,
+        "required_full_fiber_count": 194,
+        "safe_full_fiber_count": 132,
+        "update_node_range": [
+          124,
+          247
+        ]
+      },
+      "max_square_update_rank_audited": 124,
       "rank_capacity": 62,
       "rank_min_recorded": 2,
       "record_count": 61,
@@ -81,10 +219,37 @@
     },
     {
       "A": 390,
+      "blocked_rank_count_to_square_size": 62,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 195,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 62,
+        "remainder_size": 0,
+        "required_full_fiber_count": 195,
+        "safe_full_fiber_count": 194,
+        "update_node_range": [
+          123,
+          184
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 62,
       "full_fiber_count": 195,
       "j": 122,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 62,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 123,
+        "remainder_size": 0,
+        "required_full_fiber_count": 195,
+        "safe_full_fiber_count": 133,
+        "update_node_range": [
+          123,
+          245
+        ]
+      },
+      "max_square_update_rank_audited": 123,
       "rank_capacity": 61,
       "rank_min_recorded": 2,
       "record_count": 60,
@@ -93,10 +258,37 @@
     },
     {
       "A": 391,
+      "blocked_rank_count_to_square_size": 61,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 195,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 62,
+        "remainder_size": 1,
+        "required_full_fiber_count": 195,
+        "safe_full_fiber_count": 194,
+        "update_node_range": [
+          122,
+          183
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 62,
       "full_fiber_count": 195,
       "j": 121,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 61,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 122,
+        "remainder_size": 1,
+        "required_full_fiber_count": 195,
+        "safe_full_fiber_count": 134,
+        "update_node_range": [
+          122,
+          243
+        ]
+      },
+      "max_square_update_rank_audited": 122,
       "rank_capacity": 61,
       "rank_min_recorded": 2,
       "record_count": 60,
@@ -105,10 +297,37 @@
     },
     {
       "A": 392,
+      "blocked_rank_count_to_square_size": 61,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 196,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 61,
+        "remainder_size": 0,
+        "required_full_fiber_count": 196,
+        "safe_full_fiber_count": 195,
+        "update_node_range": [
+          121,
+          181
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 61,
       "full_fiber_count": 196,
       "j": 120,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 61,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 121,
+        "remainder_size": 0,
+        "required_full_fiber_count": 196,
+        "safe_full_fiber_count": 135,
+        "update_node_range": [
+          121,
+          241
+        ]
+      },
+      "max_square_update_rank_audited": 121,
       "rank_capacity": 60,
       "rank_min_recorded": 2,
       "record_count": 59,
@@ -117,10 +336,37 @@
     },
     {
       "A": 393,
+      "blocked_rank_count_to_square_size": 60,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 196,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 61,
+        "remainder_size": 1,
+        "required_full_fiber_count": 196,
+        "safe_full_fiber_count": 195,
+        "update_node_range": [
+          120,
+          180
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 61,
       "full_fiber_count": 196,
       "j": 119,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 60,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 120,
+        "remainder_size": 1,
+        "required_full_fiber_count": 196,
+        "safe_full_fiber_count": 136,
+        "update_node_range": [
+          120,
+          239
+        ]
+      },
+      "max_square_update_rank_audited": 120,
       "rank_capacity": 60,
       "rank_min_recorded": 2,
       "record_count": 59,
@@ -129,10 +375,37 @@
     },
     {
       "A": 394,
+      "blocked_rank_count_to_square_size": 60,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 197,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 60,
+        "remainder_size": 0,
+        "required_full_fiber_count": 197,
+        "safe_full_fiber_count": 196,
+        "update_node_range": [
+          119,
+          178
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 60,
       "full_fiber_count": 197,
       "j": 118,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 60,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 119,
+        "remainder_size": 0,
+        "required_full_fiber_count": 197,
+        "safe_full_fiber_count": 137,
+        "update_node_range": [
+          119,
+          237
+        ]
+      },
+      "max_square_update_rank_audited": 119,
       "rank_capacity": 59,
       "rank_min_recorded": 2,
       "record_count": 58,
@@ -141,10 +414,37 @@
     },
     {
       "A": 395,
+      "blocked_rank_count_to_square_size": 59,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 197,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 60,
+        "remainder_size": 1,
+        "required_full_fiber_count": 197,
+        "safe_full_fiber_count": 196,
+        "update_node_range": [
+          118,
+          177
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 60,
       "full_fiber_count": 197,
       "j": 117,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 59,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 118,
+        "remainder_size": 1,
+        "required_full_fiber_count": 197,
+        "safe_full_fiber_count": 138,
+        "update_node_range": [
+          118,
+          235
+        ]
+      },
+      "max_square_update_rank_audited": 118,
       "rank_capacity": 59,
       "rank_min_recorded": 2,
       "record_count": 58,
@@ -153,10 +453,37 @@
     },
     {
       "A": 396,
+      "blocked_rank_count_to_square_size": 59,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 198,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 59,
+        "remainder_size": 0,
+        "required_full_fiber_count": 198,
+        "safe_full_fiber_count": 197,
+        "update_node_range": [
+          117,
+          175
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 59,
       "full_fiber_count": 198,
       "j": 116,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 59,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 117,
+        "remainder_size": 0,
+        "required_full_fiber_count": 198,
+        "safe_full_fiber_count": 139,
+        "update_node_range": [
+          117,
+          233
+        ]
+      },
+      "max_square_update_rank_audited": 117,
       "rank_capacity": 58,
       "rank_min_recorded": 2,
       "record_count": 57,
@@ -165,10 +492,37 @@
     },
     {
       "A": 397,
+      "blocked_rank_count_to_square_size": 58,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 198,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 59,
+        "remainder_size": 1,
+        "required_full_fiber_count": 198,
+        "safe_full_fiber_count": 197,
+        "update_node_range": [
+          116,
+          174
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 59,
       "full_fiber_count": 198,
       "j": 115,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 58,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 116,
+        "remainder_size": 1,
+        "required_full_fiber_count": 198,
+        "safe_full_fiber_count": 140,
+        "update_node_range": [
+          116,
+          231
+        ]
+      },
+      "max_square_update_rank_audited": 116,
       "rank_capacity": 58,
       "rank_min_recorded": 2,
       "record_count": 57,
@@ -177,10 +531,37 @@
     },
     {
       "A": 398,
+      "blocked_rank_count_to_square_size": 58,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 199,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 58,
+        "remainder_size": 0,
+        "required_full_fiber_count": 199,
+        "safe_full_fiber_count": 198,
+        "update_node_range": [
+          115,
+          172
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 58,
       "full_fiber_count": 199,
       "j": 114,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 58,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 115,
+        "remainder_size": 0,
+        "required_full_fiber_count": 199,
+        "safe_full_fiber_count": 141,
+        "update_node_range": [
+          115,
+          229
+        ]
+      },
+      "max_square_update_rank_audited": 115,
       "rank_capacity": 57,
       "rank_min_recorded": 2,
       "record_count": 56,
@@ -189,10 +570,37 @@
     },
     {
       "A": 399,
+      "blocked_rank_count_to_square_size": 57,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 199,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 58,
+        "remainder_size": 1,
+        "required_full_fiber_count": 199,
+        "safe_full_fiber_count": 198,
+        "update_node_range": [
+          114,
+          171
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 58,
       "full_fiber_count": 199,
       "j": 113,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 57,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 114,
+        "remainder_size": 1,
+        "required_full_fiber_count": 199,
+        "safe_full_fiber_count": 142,
+        "update_node_range": [
+          114,
+          227
+        ]
+      },
+      "max_square_update_rank_audited": 114,
       "rank_capacity": 57,
       "rank_min_recorded": 2,
       "record_count": 56,
@@ -201,10 +609,37 @@
     },
     {
       "A": 400,
+      "blocked_rank_count_to_square_size": 57,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 200,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 57,
+        "remainder_size": 0,
+        "required_full_fiber_count": 200,
+        "safe_full_fiber_count": 199,
+        "update_node_range": [
+          113,
+          169
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 57,
       "full_fiber_count": 200,
       "j": 112,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 57,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 113,
+        "remainder_size": 0,
+        "required_full_fiber_count": 200,
+        "safe_full_fiber_count": 143,
+        "update_node_range": [
+          113,
+          225
+        ]
+      },
+      "max_square_update_rank_audited": 113,
       "rank_capacity": 56,
       "rank_min_recorded": 2,
       "record_count": 55,
@@ -213,10 +648,37 @@
     },
     {
       "A": 401,
+      "blocked_rank_count_to_square_size": 56,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 200,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 57,
+        "remainder_size": 1,
+        "required_full_fiber_count": 200,
+        "safe_full_fiber_count": 199,
+        "update_node_range": [
+          112,
+          168
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 57,
       "full_fiber_count": 200,
       "j": 111,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 56,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 112,
+        "remainder_size": 1,
+        "required_full_fiber_count": 200,
+        "safe_full_fiber_count": 144,
+        "update_node_range": [
+          112,
+          223
+        ]
+      },
+      "max_square_update_rank_audited": 112,
       "rank_capacity": 56,
       "rank_min_recorded": 2,
       "record_count": 55,
@@ -225,10 +687,37 @@
     },
     {
       "A": 402,
+      "blocked_rank_count_to_square_size": 56,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 201,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 56,
+        "remainder_size": 0,
+        "required_full_fiber_count": 201,
+        "safe_full_fiber_count": 200,
+        "update_node_range": [
+          111,
+          166
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 56,
       "full_fiber_count": 201,
       "j": 110,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 56,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 111,
+        "remainder_size": 0,
+        "required_full_fiber_count": 201,
+        "safe_full_fiber_count": 145,
+        "update_node_range": [
+          111,
+          221
+        ]
+      },
+      "max_square_update_rank_audited": 111,
       "rank_capacity": 55,
       "rank_min_recorded": 2,
       "record_count": 54,
@@ -237,10 +726,37 @@
     },
     {
       "A": 403,
+      "blocked_rank_count_to_square_size": 55,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 201,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 56,
+        "remainder_size": 1,
+        "required_full_fiber_count": 201,
+        "safe_full_fiber_count": 200,
+        "update_node_range": [
+          110,
+          165
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 56,
       "full_fiber_count": 201,
       "j": 109,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 55,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 110,
+        "remainder_size": 1,
+        "required_full_fiber_count": 201,
+        "safe_full_fiber_count": 146,
+        "update_node_range": [
+          110,
+          219
+        ]
+      },
+      "max_square_update_rank_audited": 110,
       "rank_capacity": 55,
       "rank_min_recorded": 2,
       "record_count": 54,
@@ -249,10 +765,37 @@
     },
     {
       "A": 404,
+      "blocked_rank_count_to_square_size": 55,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 202,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 55,
+        "remainder_size": 0,
+        "required_full_fiber_count": 202,
+        "safe_full_fiber_count": 201,
+        "update_node_range": [
+          109,
+          163
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 55,
       "full_fiber_count": 202,
       "j": 108,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 55,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 109,
+        "remainder_size": 0,
+        "required_full_fiber_count": 202,
+        "safe_full_fiber_count": 147,
+        "update_node_range": [
+          109,
+          217
+        ]
+      },
+      "max_square_update_rank_audited": 109,
       "rank_capacity": 54,
       "rank_min_recorded": 2,
       "record_count": 53,
@@ -261,10 +804,37 @@
     },
     {
       "A": 405,
+      "blocked_rank_count_to_square_size": 54,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 202,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 55,
+        "remainder_size": 1,
+        "required_full_fiber_count": 202,
+        "safe_full_fiber_count": 201,
+        "update_node_range": [
+          108,
+          162
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 55,
       "full_fiber_count": 202,
       "j": 107,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 54,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 108,
+        "remainder_size": 1,
+        "required_full_fiber_count": 202,
+        "safe_full_fiber_count": 148,
+        "update_node_range": [
+          108,
+          215
+        ]
+      },
+      "max_square_update_rank_audited": 108,
       "rank_capacity": 54,
       "rank_min_recorded": 2,
       "record_count": 53,
@@ -273,10 +843,37 @@
     },
     {
       "A": 406,
+      "blocked_rank_count_to_square_size": 54,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 203,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 54,
+        "remainder_size": 0,
+        "required_full_fiber_count": 203,
+        "safe_full_fiber_count": 202,
+        "update_node_range": [
+          107,
+          160
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 54,
       "full_fiber_count": 203,
       "j": 106,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 54,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 107,
+        "remainder_size": 0,
+        "required_full_fiber_count": 203,
+        "safe_full_fiber_count": 149,
+        "update_node_range": [
+          107,
+          213
+        ]
+      },
+      "max_square_update_rank_audited": 107,
       "rank_capacity": 53,
       "rank_min_recorded": 2,
       "record_count": 52,
@@ -285,10 +882,37 @@
     },
     {
       "A": 407,
+      "blocked_rank_count_to_square_size": 53,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 203,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 54,
+        "remainder_size": 1,
+        "required_full_fiber_count": 203,
+        "safe_full_fiber_count": 202,
+        "update_node_range": [
+          106,
+          159
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 54,
       "full_fiber_count": 203,
       "j": 105,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 53,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 106,
+        "remainder_size": 1,
+        "required_full_fiber_count": 203,
+        "safe_full_fiber_count": 150,
+        "update_node_range": [
+          106,
+          211
+        ]
+      },
+      "max_square_update_rank_audited": 106,
       "rank_capacity": 53,
       "rank_min_recorded": 2,
       "record_count": 52,
@@ -297,10 +921,37 @@
     },
     {
       "A": 408,
+      "blocked_rank_count_to_square_size": 53,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 204,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 53,
+        "remainder_size": 0,
+        "required_full_fiber_count": 204,
+        "safe_full_fiber_count": 203,
+        "update_node_range": [
+          105,
+          157
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 53,
       "full_fiber_count": 204,
       "j": 104,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 53,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 105,
+        "remainder_size": 0,
+        "required_full_fiber_count": 204,
+        "safe_full_fiber_count": 151,
+        "update_node_range": [
+          105,
+          209
+        ]
+      },
+      "max_square_update_rank_audited": 105,
       "rank_capacity": 52,
       "rank_min_recorded": 2,
       "record_count": 51,
@@ -309,10 +960,37 @@
     },
     {
       "A": 409,
+      "blocked_rank_count_to_square_size": 52,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 204,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 53,
+        "remainder_size": 1,
+        "required_full_fiber_count": 204,
+        "safe_full_fiber_count": 203,
+        "update_node_range": [
+          104,
+          156
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 53,
       "full_fiber_count": 204,
       "j": 103,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 52,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 104,
+        "remainder_size": 1,
+        "required_full_fiber_count": 204,
+        "safe_full_fiber_count": 152,
+        "update_node_range": [
+          104,
+          207
+        ]
+      },
+      "max_square_update_rank_audited": 104,
       "rank_capacity": 52,
       "rank_min_recorded": 2,
       "record_count": 51,
@@ -321,10 +999,37 @@
     },
     {
       "A": 410,
+      "blocked_rank_count_to_square_size": 52,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 205,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 52,
+        "remainder_size": 0,
+        "required_full_fiber_count": 205,
+        "safe_full_fiber_count": 204,
+        "update_node_range": [
+          103,
+          154
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 52,
       "full_fiber_count": 205,
       "j": 102,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 52,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 103,
+        "remainder_size": 0,
+        "required_full_fiber_count": 205,
+        "safe_full_fiber_count": 153,
+        "update_node_range": [
+          103,
+          205
+        ]
+      },
+      "max_square_update_rank_audited": 103,
       "rank_capacity": 51,
       "rank_min_recorded": 2,
       "record_count": 50,
@@ -333,10 +1038,37 @@
     },
     {
       "A": 411,
+      "blocked_rank_count_to_square_size": 51,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 205,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 52,
+        "remainder_size": 1,
+        "required_full_fiber_count": 205,
+        "safe_full_fiber_count": 204,
+        "update_node_range": [
+          102,
+          153
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 52,
       "full_fiber_count": 205,
       "j": 101,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 51,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 102,
+        "remainder_size": 1,
+        "required_full_fiber_count": 205,
+        "safe_full_fiber_count": 154,
+        "update_node_range": [
+          102,
+          203
+        ]
+      },
+      "max_square_update_rank_audited": 102,
       "rank_capacity": 51,
       "rank_min_recorded": 2,
       "record_count": 50,
@@ -345,10 +1077,37 @@
     },
     {
       "A": 412,
+      "blocked_rank_count_to_square_size": 51,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 206,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 51,
+        "remainder_size": 0,
+        "required_full_fiber_count": 206,
+        "safe_full_fiber_count": 205,
+        "update_node_range": [
+          101,
+          151
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 51,
       "full_fiber_count": 206,
       "j": 100,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 51,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 101,
+        "remainder_size": 0,
+        "required_full_fiber_count": 206,
+        "safe_full_fiber_count": 155,
+        "update_node_range": [
+          101,
+          201
+        ]
+      },
+      "max_square_update_rank_audited": 101,
       "rank_capacity": 50,
       "rank_min_recorded": 2,
       "record_count": 49,
@@ -357,10 +1116,37 @@
     },
     {
       "A": 413,
+      "blocked_rank_count_to_square_size": 50,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 206,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 51,
+        "remainder_size": 1,
+        "required_full_fiber_count": 206,
+        "safe_full_fiber_count": 205,
+        "update_node_range": [
+          100,
+          150
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 51,
       "full_fiber_count": 206,
       "j": 99,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 50,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 100,
+        "remainder_size": 1,
+        "required_full_fiber_count": 206,
+        "safe_full_fiber_count": 156,
+        "update_node_range": [
+          100,
+          199
+        ]
+      },
+      "max_square_update_rank_audited": 100,
       "rank_capacity": 50,
       "rank_min_recorded": 2,
       "record_count": 49,
@@ -369,10 +1155,37 @@
     },
     {
       "A": 414,
+      "blocked_rank_count_to_square_size": 50,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 207,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 50,
+        "remainder_size": 0,
+        "required_full_fiber_count": 207,
+        "safe_full_fiber_count": 206,
+        "update_node_range": [
+          99,
+          148
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 50,
       "full_fiber_count": 207,
       "j": 98,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 50,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 99,
+        "remainder_size": 0,
+        "required_full_fiber_count": 207,
+        "safe_full_fiber_count": 157,
+        "update_node_range": [
+          99,
+          197
+        ]
+      },
+      "max_square_update_rank_audited": 99,
       "rank_capacity": 49,
       "rank_min_recorded": 2,
       "record_count": 48,
@@ -381,10 +1194,37 @@
     },
     {
       "A": 415,
+      "blocked_rank_count_to_square_size": 49,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 207,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 50,
+        "remainder_size": 1,
+        "required_full_fiber_count": 207,
+        "safe_full_fiber_count": 206,
+        "update_node_range": [
+          98,
+          147
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 50,
       "full_fiber_count": 207,
       "j": 97,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 49,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 98,
+        "remainder_size": 1,
+        "required_full_fiber_count": 207,
+        "safe_full_fiber_count": 158,
+        "update_node_range": [
+          98,
+          195
+        ]
+      },
+      "max_square_update_rank_audited": 98,
       "rank_capacity": 49,
       "rank_min_recorded": 2,
       "record_count": 48,
@@ -393,10 +1233,37 @@
     },
     {
       "A": 416,
+      "blocked_rank_count_to_square_size": 49,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 208,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 49,
+        "remainder_size": 0,
+        "required_full_fiber_count": 208,
+        "safe_full_fiber_count": 207,
+        "update_node_range": [
+          97,
+          145
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 49,
       "full_fiber_count": 208,
       "j": 96,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 49,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 97,
+        "remainder_size": 0,
+        "required_full_fiber_count": 208,
+        "safe_full_fiber_count": 159,
+        "update_node_range": [
+          97,
+          193
+        ]
+      },
+      "max_square_update_rank_audited": 97,
       "rank_capacity": 48,
       "rank_min_recorded": 2,
       "record_count": 47,
@@ -405,10 +1272,37 @@
     },
     {
       "A": 417,
+      "blocked_rank_count_to_square_size": 48,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 208,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 49,
+        "remainder_size": 1,
+        "required_full_fiber_count": 208,
+        "safe_full_fiber_count": 207,
+        "update_node_range": [
+          96,
+          144
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 49,
       "full_fiber_count": 208,
       "j": 95,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 48,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 96,
+        "remainder_size": 1,
+        "required_full_fiber_count": 208,
+        "safe_full_fiber_count": 160,
+        "update_node_range": [
+          96,
+          191
+        ]
+      },
+      "max_square_update_rank_audited": 96,
       "rank_capacity": 48,
       "rank_min_recorded": 2,
       "record_count": 47,
@@ -417,10 +1311,37 @@
     },
     {
       "A": 418,
+      "blocked_rank_count_to_square_size": 48,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 209,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 48,
+        "remainder_size": 0,
+        "required_full_fiber_count": 209,
+        "safe_full_fiber_count": 208,
+        "update_node_range": [
+          95,
+          142
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 48,
       "full_fiber_count": 209,
       "j": 94,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 48,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 95,
+        "remainder_size": 0,
+        "required_full_fiber_count": 209,
+        "safe_full_fiber_count": 161,
+        "update_node_range": [
+          95,
+          189
+        ]
+      },
+      "max_square_update_rank_audited": 95,
       "rank_capacity": 47,
       "rank_min_recorded": 2,
       "record_count": 46,
@@ -429,10 +1350,37 @@
     },
     {
       "A": 419,
+      "blocked_rank_count_to_square_size": 47,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 209,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 48,
+        "remainder_size": 1,
+        "required_full_fiber_count": 209,
+        "safe_full_fiber_count": 208,
+        "update_node_range": [
+          94,
+          141
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 48,
       "full_fiber_count": 209,
       "j": 93,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 47,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 94,
+        "remainder_size": 1,
+        "required_full_fiber_count": 209,
+        "safe_full_fiber_count": 162,
+        "update_node_range": [
+          94,
+          187
+        ]
+      },
+      "max_square_update_rank_audited": 94,
       "rank_capacity": 47,
       "rank_min_recorded": 2,
       "record_count": 46,
@@ -441,10 +1389,37 @@
     },
     {
       "A": 420,
+      "blocked_rank_count_to_square_size": 47,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 210,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 47,
+        "remainder_size": 0,
+        "required_full_fiber_count": 210,
+        "safe_full_fiber_count": 209,
+        "update_node_range": [
+          93,
+          139
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 47,
       "full_fiber_count": 210,
       "j": 92,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 47,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 93,
+        "remainder_size": 0,
+        "required_full_fiber_count": 210,
+        "safe_full_fiber_count": 163,
+        "update_node_range": [
+          93,
+          185
+        ]
+      },
+      "max_square_update_rank_audited": 93,
       "rank_capacity": 46,
       "rank_min_recorded": 2,
       "record_count": 45,
@@ -453,10 +1428,37 @@
     },
     {
       "A": 421,
+      "blocked_rank_count_to_square_size": 46,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 210,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 47,
+        "remainder_size": 1,
+        "required_full_fiber_count": 210,
+        "safe_full_fiber_count": 209,
+        "update_node_range": [
+          92,
+          138
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 47,
       "full_fiber_count": 210,
       "j": 91,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 46,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 92,
+        "remainder_size": 1,
+        "required_full_fiber_count": 210,
+        "safe_full_fiber_count": 164,
+        "update_node_range": [
+          92,
+          183
+        ]
+      },
+      "max_square_update_rank_audited": 92,
       "rank_capacity": 46,
       "rank_min_recorded": 2,
       "record_count": 45,
@@ -465,10 +1467,37 @@
     },
     {
       "A": 422,
+      "blocked_rank_count_to_square_size": 46,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 211,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 46,
+        "remainder_size": 0,
+        "required_full_fiber_count": 211,
+        "safe_full_fiber_count": 210,
+        "update_node_range": [
+          91,
+          136
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 46,
       "full_fiber_count": 211,
       "j": 90,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 46,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 91,
+        "remainder_size": 0,
+        "required_full_fiber_count": 211,
+        "safe_full_fiber_count": 165,
+        "update_node_range": [
+          91,
+          181
+        ]
+      },
+      "max_square_update_rank_audited": 91,
       "rank_capacity": 45,
       "rank_min_recorded": 2,
       "record_count": 44,
@@ -477,10 +1506,37 @@
     },
     {
       "A": 423,
+      "blocked_rank_count_to_square_size": 45,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 211,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 46,
+        "remainder_size": 1,
+        "required_full_fiber_count": 211,
+        "safe_full_fiber_count": 210,
+        "update_node_range": [
+          90,
+          135
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 46,
       "full_fiber_count": 211,
       "j": 89,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 45,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 90,
+        "remainder_size": 1,
+        "required_full_fiber_count": 211,
+        "safe_full_fiber_count": 166,
+        "update_node_range": [
+          90,
+          179
+        ]
+      },
+      "max_square_update_rank_audited": 90,
       "rank_capacity": 45,
       "rank_min_recorded": 2,
       "record_count": 44,
@@ -489,10 +1545,37 @@
     },
     {
       "A": 424,
+      "blocked_rank_count_to_square_size": 45,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 212,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 45,
+        "remainder_size": 0,
+        "required_full_fiber_count": 212,
+        "safe_full_fiber_count": 211,
+        "update_node_range": [
+          89,
+          133
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 45,
       "full_fiber_count": 212,
       "j": 88,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 45,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 89,
+        "remainder_size": 0,
+        "required_full_fiber_count": 212,
+        "safe_full_fiber_count": 167,
+        "update_node_range": [
+          89,
+          177
+        ]
+      },
+      "max_square_update_rank_audited": 89,
       "rank_capacity": 44,
       "rank_min_recorded": 2,
       "record_count": 43,
@@ -501,10 +1584,37 @@
     },
     {
       "A": 425,
+      "blocked_rank_count_to_square_size": 44,
       "boundary_residual_strategy": "paired_point_of_blocked_residue",
       "boundary_safe_full_fiber_count": 212,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 45,
+        "remainder_size": 1,
+        "required_full_fiber_count": 212,
+        "safe_full_fiber_count": 211,
+        "update_node_range": [
+          88,
+          132
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 45,
       "full_fiber_count": 212,
       "j": 87,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 44,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 88,
+        "remainder_size": 1,
+        "required_full_fiber_count": 212,
+        "safe_full_fiber_count": 168,
+        "update_node_range": [
+          88,
+          175
+        ]
+      },
+      "max_square_update_rank_audited": 88,
       "rank_capacity": 44,
       "rank_min_recorded": 2,
       "record_count": 43,
@@ -513,10 +1623,37 @@
     },
     {
       "A": 426,
+      "blocked_rank_count_to_square_size": 44,
       "boundary_residual_strategy": "none",
       "boundary_safe_full_fiber_count": 213,
+      "first_blocked_obstruction": {
+        "full_fiber_deficit": 1,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 44,
+        "remainder_size": 0,
+        "required_full_fiber_count": 213,
+        "safe_full_fiber_count": 212,
+        "update_node_range": [
+          87,
+          130
+        ]
+      },
+      "first_rank_without_c2_full_fiber_avoidance_witness": 44,
       "full_fiber_count": 213,
       "j": 86,
+      "last_blocked_obstruction": {
+        "full_fiber_deficit": 44,
+        "obstructed_by_full_fiber_count": true,
+        "rank": 87,
+        "remainder_size": 0,
+        "required_full_fiber_count": 213,
+        "safe_full_fiber_count": 169,
+        "update_node_range": [
+          87,
+          173
+        ]
+      },
+      "max_square_update_rank_audited": 87,
       "rank_capacity": 43,
       "rank_min_recorded": 2,
       "record_count": 42,
@@ -524,7 +1661,7 @@
       "t": 170
     }
   ],
-  "claim": "For every A=385..426 and every synthetic rank 2 <= rank <= 256-floor(A/2), the projective endpoint [0:1] lies in the c=2 quotient-image branch.  In particular, endpoint charging is available uniformly through rank 43 across the M3 window.",
+  "claim": "For every A=385..426 and every synthetic rank 2 <= rank <= 256-floor(A/2), the projective endpoint [0:1] lies in the c=2 quotient-image branch.  In particular, endpoint charging is available uniformly through rank 43 across the M3 window.  Conversely, for rank_capacity(A)<rank<=j+1, this specific c=2 full-fiber avoidance mechanism is obstructed by the full-fiber count.",
   "deterministic_records": {
     "first_record": {
       "A": 385,
@@ -607,6 +1744,7 @@
   "method": {
     "capacity_argument": "A c=2 quotient-remainder support of size A needs floor(A/2) full c=2 fibers avoiding the update block Y.  In this synthetic ladder Y occupies rank distinct residues below the quotient modulus, so exactly 256-rank full fibers avoid Y.  Thus rank <= 256-floor(A/2) is the full-fiber capacity.",
     "image_map": "The quotient co-support contains Y and explains v.  The base syndrome u is excluded by Vandermonde independence because |X|=j+1, |T|=j, and |X union T|<=n-k.",
+    "necessity_argument": "For rank > 256-floor(A/2), fewer than floor(A/2) complete c=2 fibers avoid Y.  Therefore no c=2 quotient-remainder support whose complete fibers avoid Y can pay the endpoint in that rank range.  The verifier checks every rank up to the square-minor update size j+1.",
     "odd_agreement_residual": "When A is odd and the boundary rank exhausts the safe full fibers, the single residual point is taken from the paired point residue+256 of a blocked residue; this point is outside Y."
   },
   "nonclaims": [
@@ -614,9 +1752,12 @@
     "synthetic low-rank update blocks only",
     "does not audit finite affine regular-minor roots",
     "does not claim an arbitrary-row M3 threshold bound",
+    "does not rule out other endpoint ledgers beyond the c=2 full-fiber avoidance mechanism",
     "does not claim the minimal endpoint support D minus Y is quotient-remainder"
   ],
   "rank_policy": {
+    "max_square_update_rank_formula": "j+1 = 513-A",
+    "necessity_audit_range": "rank_capacity(A)+1 <= rank <= j+1",
     "rank_1_omitted_by_low_rank2_convention": true,
     "rank_capacity_formula": "256 - floor(A/2) = ceil((512-A)/2)",
     "rank_min_recorded": 2,

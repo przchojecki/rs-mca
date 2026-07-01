@@ -18,8 +18,14 @@ modulus, so exactly `256-rank` complete fibers avoid it.  For odd `A`, the
 single residual point can be taken from the paired point of a blocked residue at
 the boundary rank.
 
-Thus endpoint quotient-image charging is available uniformly through rank `43`
-across the whole M3 window, and through rank `64` at the low-agreement end.
+The verifier also checks the converse for this mechanism up to the square-minor
+update size `j+1`: once `rank > 256 - floor(A/2)`, fewer than `floor(A/2)`
+complete `c=2` fibers avoid `Y`, so no `c=2` quotient-remainder support whose
+complete fibers avoid `Y` can pay the endpoint in that range.
+
+Thus endpoint quotient-image charging by this mechanism is available uniformly
+through rank `43` across the whole M3 window, and through rank `64` at the
+low-agreement end; it is then obstructed for the remaining ranks up to `j+1`.
 This does not audit finite affine rank-drop roots; it is a reusable endpoint
 subledger for future affine-gcd or pivot-chart packets.
 
@@ -35,4 +41,5 @@ python3 experimental/scripts/verify_f17_32_m3_endpoint_c2_capacity.py \
 
 Nonclaims: endpoint quotient-image witnesses only, synthetic low-rank update
 blocks only, no finite affine regular-minor roots, no arbitrary-row M3
-threshold theorem.
+threshold theorem, and no exclusion of other endpoint ledgers beyond this
+`c=2` full-fiber avoidance mechanism.

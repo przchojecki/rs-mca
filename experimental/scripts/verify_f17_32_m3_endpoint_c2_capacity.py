@@ -89,6 +89,33 @@ def rank_capacity(agreement: int) -> int:
     return QUOTIENT_ORDER - agreement // FIBER_SIZE
 
 
+def max_square_update_rank(agreement: int) -> int:
+    return N - agreement + 1
+
+
+def full_fiber_avoidance_obstruction(
+    agreement: int,
+    rank: int,
+) -> dict[str, Any]:
+    j = N - agreement
+    update_start = j + 1
+    update_exponents = set(range(update_start, update_start + rank))
+    require(max(update_exponents) < QUOTIENT_ORDER, "update block crosses residue line")
+    hit_residues = {exponent % QUOTIENT_ORDER for exponent in update_exponents}
+    safe_full_fibers = QUOTIENT_ORDER - len(hit_residues)
+    required_full_fibers = agreement // FIBER_SIZE
+    full_fiber_deficit = required_full_fibers - safe_full_fibers
+    return {
+        "rank": rank,
+        "update_node_range": [update_start, update_start + rank - 1],
+        "required_full_fiber_count": required_full_fibers,
+        "safe_full_fiber_count": safe_full_fibers,
+        "full_fiber_deficit": full_fiber_deficit,
+        "remainder_size": agreement % FIBER_SIZE,
+        "obstructed_by_full_fiber_count": full_fiber_deficit > 0,
+    }
+
+
 def quotient_remainder_support(
     agreement: int,
     update_start: int,
@@ -195,8 +222,24 @@ def build_capacity_table(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
         agreement_records = [record for record in records if record["A"] == agreement]
         j = N - agreement
         capacity = rank_capacity(agreement)
+        max_update_rank = max_square_update_rank(agreement)
         require(len(agreement_records) == capacity - RANK_MIN + 1, "agreement count")
         boundary = agreement_records[-1]
+        first_blocked_rank = capacity + 1
+        first_blocked = full_fiber_avoidance_obstruction(
+            agreement,
+            first_blocked_rank,
+        )
+        last_blocked = full_fiber_avoidance_obstruction(
+            agreement,
+            max_update_rank,
+        )
+        for blocked_rank in range(first_blocked_rank, max_update_rank + 1):
+            blocked = full_fiber_avoidance_obstruction(agreement, blocked_rank)
+            require(
+                blocked["obstructed_by_full_fiber_count"],
+                "rank above capacity unexpectedly has enough full fibers",
+            )
         table.append(
             {
                 "A": agreement,
@@ -213,6 +256,11 @@ def build_capacity_table(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 "boundary_safe_full_fiber_count": boundary[
                     "quotient_remainder_witness_support"
                 ]["safe_full_fiber_count"],
+                "max_square_update_rank_audited": max_update_rank,
+                "first_rank_without_c2_full_fiber_avoidance_witness": first_blocked_rank,
+                "blocked_rank_count_to_square_size": max_update_rank - capacity,
+                "first_blocked_obstruction": first_blocked,
+                "last_blocked_obstruction": last_blocked,
             }
         )
     return table
@@ -220,12 +268,16 @@ def build_capacity_table(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 def summarize(records: list[dict[str, Any]], capacity_table: list[dict[str, Any]]) -> dict[str, Any]:
     capacities = [row["rank_capacity"] for row in capacity_table]
+    blocked_counts = [row["blocked_rank_count_to_square_size"] for row in capacity_table]
     return {
         "record_count": len(records),
         "agreement_count": AGREEMENT_MAX - AGREEMENT_MIN + 1,
         "rank_min_recorded": RANK_MIN,
         "uniform_rank_capacity": min(capacities),
         "maximum_rank_capacity": max(capacities),
+        "minimum_blocked_rank_count_to_square_size": min(blocked_counts),
+        "maximum_blocked_rank_count_to_square_size": max(blocked_counts),
+        "all_ranks_above_capacity_obstructed_for_c2_full_fiber_avoidance": True,
         "fiber_size": FIBER_SIZE,
         "quotient_order": QUOTIENT_ORDER,
         "projective_point": "[0:1]",
@@ -254,6 +306,14 @@ def build_certificate() -> dict[str, Any]:
     require(aggregate["record_count"] == expected_records, "record total")
     require(aggregate["uniform_rank_capacity"] == 43, "uniform capacity")
     require(aggregate["maximum_rank_capacity"] == 64, "maximum capacity")
+    require(
+        aggregate["minimum_blocked_rank_count_to_square_size"] == 44,
+        "minimum blocked rank count",
+    )
+    require(
+        aggregate["maximum_blocked_rank_count_to_square_size"] == 64,
+        "maximum blocked rank count",
+    )
     require(aggregate["maximum_vandermonde_union_bound"] == 255, "Vandermonde maximum")
 
     return {
@@ -271,6 +331,8 @@ def build_certificate() -> dict[str, Any]:
             "rank_min_recorded": RANK_MIN,
             "rank_capacity_formula": "256 - floor(A/2) = ceil((512-A)/2)",
             "uniform_rank_capacity_over_window": aggregate["uniform_rank_capacity"],
+            "necessity_audit_range": "rank_capacity(A)+1 <= rank <= j+1",
+            "max_square_update_rank_formula": "j+1 = 513-A",
             "rank_1_omitted_by_low_rank2_convention": True,
         },
         "source_artifacts": {
@@ -291,6 +353,13 @@ def build_certificate() -> dict[str, Any]:
                 "synthetic ladder Y occupies rank distinct residues below the "
                 "quotient modulus, so exactly 256-rank full fibers avoid Y.  "
                 "Thus rank <= 256-floor(A/2) is the full-fiber capacity."
+            ),
+            "necessity_argument": (
+                "For rank > 256-floor(A/2), fewer than floor(A/2) complete "
+                "c=2 fibers avoid Y.  Therefore no c=2 quotient-remainder "
+                "support whose complete fibers avoid Y can pay the endpoint "
+                "in that rank range.  The verifier checks every rank up to "
+                "the square-minor update size j+1."
             ),
             "odd_agreement_residual": (
                 "When A is odd and the boundary rank exhausts the safe full "
@@ -316,13 +385,17 @@ def build_certificate() -> dict[str, Any]:
             "For every A=385..426 and every synthetic rank "
             "2 <= rank <= 256-floor(A/2), the projective endpoint [0:1] "
             "lies in the c=2 quotient-image branch.  In particular, endpoint "
-            "charging is available uniformly through rank 43 across the M3 window."
+            "charging is available uniformly through rank 43 across the M3 "
+            "window.  Conversely, for rank_capacity(A)<rank<=j+1, this "
+            "specific c=2 full-fiber avoidance mechanism is obstructed by "
+            "the full-fiber count."
         ),
         "nonclaims": [
             "endpoint quotient-image witnesses only",
             "synthetic low-rank update blocks only",
             "does not audit finite affine regular-minor roots",
             "does not claim an arbitrary-row M3 threshold bound",
+            "does not rule out other endpoint ledgers beyond the c=2 full-fiber avoidance mechanism",
             "does not claim the minimal endpoint support D minus Y is quotient-remainder",
         ],
     }

@@ -1,4 +1,4 @@
-# F17^32 M3 Low-Rank2-11 Paid-Residual Ledger
+# F17^32 M3 Low-Rank2-12 Paid-Residual Ledger
 
 This certificate composes the two standalone low-rank2..12 packets in this PR:
 

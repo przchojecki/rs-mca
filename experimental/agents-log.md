@@ -125,14 +125,18 @@ Keep entries concise and link to the relevant files.
   capacity for the synthetic M3 low-rank update blocks.  For each
   `385 <= A <= 426`, the endpoint `[0:1]` is quotient-image witnessed for
   every `2 <= rank <= 256-floor(A/2)=ceil((512-A)/2)`, uniformly through
-  rank `43` across the whole window.
+  rank `43` across the whole window.  The certificate now also checks the
+  converse up to the square-minor update size `j+1`: above that capacity,
+  too few complete `c=2` fibers avoid the update block, so this full-fiber
+  avoidance mechanism is obstructed.
 - **How it is useful:** Separates the projective-endpoint convention from the
   harder affine rank-drop computation.  Any future affine-gcd or pivot-chart
   packet inside this rank range can reuse this endpoint charge instead of
   redoing quotient-image bookkeeping.
 - **What to do next:** Try to extend finite affine regular-root exclusions
   beyond rank `12`; the endpoint side is no longer the bottleneck up to the
-  capacity range recorded here.
+  capacity range recorded here, and a different endpoint ledger would be
+  needed beyond the recorded `c=2` capacity.
 
 ### 2026-07-01 - PR 161--169 frontier integration
 
