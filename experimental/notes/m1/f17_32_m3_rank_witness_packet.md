@@ -77,6 +77,9 @@ experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/
 
 experimental/data/certificates/hankel-f17-32-m3-zero-v-projective-endpoint/
   f17_32_n512_k256_m3_zero_v_projective_endpoint.json
+
+experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/
+  f17_32_n512_k256_m3_direction_rank_degree_cap.json
 ```
 
 The M4 zero-slope subtraction sidecar is
@@ -294,6 +297,22 @@ both cases, the projective endpoint `[0:1]` has zero direction syndrome and is
 paid by the tangent/common-code-line ledger, so its residual projective
 aperiodic contribution is `0`.
 
+The direction-rank degree cap is a finite-affine theorem for arbitrary regular
+pencils.  If
+
+```text
+r = rank H_{t,j}(v),
+```
+
+then every maximal row-set determinant
+`det(H_R(u)+Z H_R(v))` has degree at most `r`: the coefficient of `Z^d` uses
+`d` columns from `H_R(v)`, and these columns are dependent once `d>r`.  Thus
+the v10 canonical gcd over all nonzero maximal minors also has degree at most
+`r`, giving at most `r` finite roots before paid-ledger subtraction.  Since
+the finite-slope budget is `6`, every nonsingular exact bucket with direction
+rank at most `6` is finite-root budget safe.  Projective infinity remains
+governed by the separate infinity criterion above.
+
 In the selected-minor packets, the chosen prefix determinant has the closed form
 
 ```text
@@ -429,6 +448,9 @@ python3 experimental/scripts/verify_m1_hankel_projective_infinity_rank_criterion
 
 python3 experimental/scripts/verify_m1_hankel_zero_v_projective_endpoint.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-v-projective-endpoint/f17_32_n512_k256_m3_zero_v_projective_endpoint.json
+
+python3 experimental/scripts/verify_m1_hankel_direction_rank_degree_cap.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_rank_witness_zero_slope_subtraction.json

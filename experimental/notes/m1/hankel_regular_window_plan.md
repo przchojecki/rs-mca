@@ -445,6 +445,27 @@ python3 experimental/scripts/verify_m1_hankel_zero_v_projective_endpoint.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-v-projective-endpoint/f17_32_n512_k256_m3_zero_v_projective_endpoint.json
 ```
 
+The finite direction-rank degree cap is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/
+  f17_32_n512_k256_m3_direction_rank_degree_cap.json
+```
+
+For an arbitrary regular pencil, if `r=rank H_{t,j}(v)`, then every maximal
+minor `det(H_R(u)+Z H_R(v))` has degree at most `r`; hence any nonsingular
+canonical regular gcd has degree at most `r`.  Since the finite-slope budget is
+`6`, direction rank at most `6` is finite-root budget safe at each exact
+agreement.  This does not close projective infinity for deficient direction
+rank; the projective endpoint criterion above handles that accounting.
+
+Replay:
+
+```sh
+python3 experimental/scripts/verify_m1_hankel_direction_rank_degree_cap.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json
+```
+
 The corresponding F1 denominator audit is
 
 ```text

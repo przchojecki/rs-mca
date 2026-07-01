@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 direction-rank degree cap
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_direction_rank_degree_cap.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for finite affine regular minors in the
+  `F_17^32` M3 window.
+- **What is being added:** A rank-theoretic finite-root cap: if
+  `r=rank H_{t,j}(v)`, then every maximal regular minor
+  `det(H_R(u)+Z H_R(v))` has degree at most `r`, so the v10 canonical gcd of
+  nonzero minors also has degree at most `r`.  Direction rank `r<=6` is
+  finite-budget safe for this row.
+- **How it is useful:** This gives arbitrary low-direction-rank pencils a
+  finite affine root bound independent of the synthetic support model and
+  explains why low-rank directions are worth isolating before building pivot
+  charts.
+- **What to do next:** Pair this finite cap with projective-infinity,
+  tangent-overlap, quotient, and extension ledgers for concrete low-rank
+  non-proportional packets.
+
 ### 2026-07-01 - M3 zero-v projective endpoint
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
