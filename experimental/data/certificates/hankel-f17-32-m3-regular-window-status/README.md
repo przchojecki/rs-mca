@@ -207,6 +207,15 @@ The only remaining projective full-Hankel contribution is the endpoint
 full-Hankel residual upper bound is `0` throughout the synthetic low-rank
 ladder.  This is not an arbitrary M3-row theorem.
 
+The one-spike window full-Hankel ledger closes a separate non-proportional
+rank-one branch across all `42` agreements.  In each row
+`u_m=sum_{x in X}x^m` for `|X|=j+1` and `v_m=y^m` for the next domain point.
+The Cauchy-Binet one-spike formula gives one finite first-minor root; the
+row-shift-1 minor is nonzero at that root in every row, so it is not a
+full-Hankel witness.  The remaining `[0:1]` endpoint has a `c=2`
+quotient-image witness, leaving aperiodic full-Hankel residual upper bound
+`0` for this whole one-spike branch.
+
 The ledger also imports the v4 low-rank update template budget envelope.  Since
 both the finite and projective `F_17^32` budget numerators are 6, every nonzero
 regular low-rank update chart of rank at most 6 is within the finite regular

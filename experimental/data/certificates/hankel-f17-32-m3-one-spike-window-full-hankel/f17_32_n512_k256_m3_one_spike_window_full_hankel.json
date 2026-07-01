@@ -1,0 +1,230 @@
+{
+  "aggregate": {
+    "agreement_range": [
+      385,
+      426
+    ],
+    "all_finite_roots_excluded_by_shifted_minor": true,
+    "all_projective_endpoints_have_quotient_image_witness": true,
+    "all_records_within_aperiodic_full_hankel_budget": true,
+    "all_records_within_full_hankel_projective_budget": true,
+    "all_records_within_regular_projective_budget": true,
+    "aperiodic_full_hankel_projective_upper_sum": 0,
+    "common_gcd_degree_histogram": {
+      "0": 42
+    },
+    "endpoint_quotient_image_witness_sum": 42,
+    "finite_full_hankel_witness_upper_sum": 0,
+    "finite_regular_root_count_sum": 42,
+    "finite_regular_roots_excluded_by_shifted_minor_sum": 42,
+    "finite_root_hash": "a3a5c123a7aac86885dc099f67e3246677a9b65d733c9177b2d1d75d84d84358",
+    "first_finite_root": 629204083802912639967276867354692368091,
+    "full_hankel_projective_upper_before_endpoint_image_sum": 42,
+    "last_finite_root": 196650965339081050694857233713271598055,
+    "max_aperiodic_full_hankel_projective_upper_per_record": 0,
+    "max_full_hankel_projective_upper_before_endpoint_image_per_record": 1,
+    "max_regular_projective_upper_per_record": 2,
+    "maximum_endpoint_noncontainment_vandermonde_columns": 129,
+    "maximum_quotient_image_vandermonde_union_bound": 255,
+    "minimum_endpoint_support_size": 511,
+    "projective_budget_numerator": 6,
+    "projective_endpoint_contribution_sum": 42,
+    "record_count": 42,
+    "regular_projective_upper_sum": 84
+  },
+  "agreement_range": [
+    385,
+    426
+  ],
+  "claim": "For the non-proportional one-spike M3 branch over the pinned F_17^32 row and every A=385..426, the unique finite regular first-minor root is excluded by the shifted minor, and the only remaining projective full-Hankel contribution is the endpoint, which is charged to quotient-image.  The aperiodic full-Hankel projective residual upper bound is zero in every checked row.",
+  "construction": {
+    "base_nodes": "first j+1 descriptor-domain points",
+    "branch": "non_proportional_one_spike",
+    "projective_endpoint": "[0:1]",
+    "regular_minor_shape": "C0(A)+Z*C1(A)",
+    "shifted_minor_test": "row-shift-1 square minor",
+    "spike": "descriptor-domain point j+1",
+    "u_m": "sum_{x in X} x^m",
+    "v_m": "y^m"
+  },
+  "deterministic_records": {
+    "first_record": {
+      "A": 385,
+      "aperiodic_full_hankel_projective_upper": 0,
+      "base_node_range": [
+        0,
+        127
+      ],
+      "common_gcd_degree": 0,
+      "endpoint_noncontainment_vandermonde_columns": 129,
+      "endpoint_quotient_image_support": {
+        "co_support_contains_spike": true,
+        "co_support_size": 127,
+        "fiber_size": 2,
+        "full_fiber_count": 192,
+        "full_fiber_residue_count": 192,
+        "full_fiber_residue_range": [
+          0,
+          192
+        ],
+        "hit_spike_residue": 128,
+        "quotient_order": 256,
+        "remainder_exponents": [
+          193
+        ],
+        "remainder_size": 1,
+        "support_avoids_spike": true,
+        "support_exponent_hash": "84367828fa042d7993a18a5943e600cda936e9df9d1a23f27f3cf492c36e70ce",
+        "support_size": 385
+      },
+      "endpoint_quotient_image_witness": 1,
+      "finite_full_hankel_witness_upper": 0,
+      "finite_regular_root_count": 1,
+      "finite_regular_roots_excluded_by_shifted_minor": 1,
+      "finite_root": 629204083802912639967276867354692368091,
+      "full_hankel_projective_upper_before_endpoint_image": 1,
+      "j": 127,
+      "minor_size": 128,
+      "projective_endpoint_contribution": 1,
+      "projective_endpoint_support_size": 511,
+      "quotient_image_vandermonde_union_bound": 255,
+      "regular_minor_coefficients_ascending": [
+        1960127525760963954976810457703429629095,
+        2130117076624594454820915601558438880584
+      ],
+      "regular_minor_degree": 1,
+      "regular_projective_upper": 2,
+      "shifted_minor_coefficients_ascending": [
+        1461859293992564101657786539489658811916,
+        1318849660332205205447720726286428555287
+      ],
+      "shifted_minor_row_shift": 1,
+      "shifted_minor_value_at_root": 2268131949953988572835243505178365469905,
+      "spike_encoding": 4,
+      "spike_exponent": 128,
+      "t": 129,
+      "within_aperiodic_full_hankel_budget": true,
+      "within_full_hankel_projective_budget": true,
+      "within_regular_projective_budget": true
+    },
+    "last_record": {
+      "A": 426,
+      "aperiodic_full_hankel_projective_upper": 0,
+      "base_node_range": [
+        0,
+        86
+      ],
+      "common_gcd_degree": 0,
+      "endpoint_noncontainment_vandermonde_columns": 88,
+      "endpoint_quotient_image_support": {
+        "co_support_contains_spike": true,
+        "co_support_size": 86,
+        "fiber_size": 2,
+        "full_fiber_count": 213,
+        "full_fiber_residue_count": 213,
+        "full_fiber_residue_range": [
+          0,
+          213
+        ],
+        "hit_spike_residue": 87,
+        "quotient_order": 256,
+        "remainder_exponents": [],
+        "remainder_size": 0,
+        "support_avoids_spike": true,
+        "support_exponent_hash": "9de13090a62b252b4719ad6ba4b6241bb9a4436d1f8c8d2f72532433bceb22da",
+        "support_size": 426
+      },
+      "endpoint_quotient_image_witness": 1,
+      "finite_full_hankel_witness_upper": 0,
+      "finite_regular_root_count": 1,
+      "finite_regular_roots_excluded_by_shifted_minor": 1,
+      "finite_root": 196650965339081050694857233713271598055,
+      "full_hankel_projective_upper_before_endpoint_image": 1,
+      "j": 86,
+      "minor_size": 87,
+      "projective_endpoint_contribution": 1,
+      "projective_endpoint_support_size": 511,
+      "quotient_image_vandermonde_union_bound": 173,
+      "regular_minor_coefficients_ascending": [
+        1679562971418113032387101671407887322647,
+        1109465705867283362225312749989855837122
+      ],
+      "regular_minor_degree": 1,
+      "regular_projective_upper": 2,
+      "shifted_minor_coefficients_ascending": [
+        652329166717053162598334732188565870980,
+        971394809726925938032667831967994691365
+      ],
+      "shifted_minor_row_shift": 1,
+      "shifted_minor_value_at_root": 760401242754912746435339981167884380320,
+      "spike_encoding": 549535154999028637962874732692053007164,
+      "spike_exponent": 87,
+      "t": 170,
+      "within_aperiodic_full_hankel_budget": true,
+      "within_full_hankel_projective_budget": true,
+      "within_regular_projective_budget": true
+    },
+    "record_count": 42,
+    "record_sha256": "2fc6de8dfebb1e0429ee59f54b15b6412cbd4b67a10972873aa2db3c2ef0dbef",
+    "storage": "compressed; verifier rebuilds all 42 agreement rows"
+  },
+  "method": {
+    "endpoint_column": "the projective endpoint support D\\{y} is noncontained by Vandermonde independence",
+    "endpoint_quotient_image": "a c=2 quotient-remainder support of size A avoiding y gives a quotient-image witness for the endpoint",
+    "finite_full_hankel_column": "the row-shift-1 minor is nonzero at that root, so the root is not an actual full-Hankel exact-support witness",
+    "finite_regular_root": "Cauchy-Binet rank-one update gives one finite first-minor root in every agreement row"
+  },
+  "nonclaims": [
+    "synthetic one-spike branch only, not arbitrary M3 row data",
+    "not a finite-root quotient-image/support audit; finite roots are removed by shifted-minor exclusion",
+    "does not replace affine/projective/curve pivot charts for arbitrary singular buckets",
+    "not a worst-case MCA threshold theorem"
+  ],
+  "row": {
+    "domain_description": "order-512 subgroup from the pinned F_17^32 row descriptor",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "f17-32-m3-one-spike-window-full-hankel-v1",
+  "source_artifacts": [
+    {
+      "name": "row_descriptor",
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "schema_version": "f17-32-hankel-row-descriptor-v1",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87",
+      "status": "AUDIT"
+    },
+    {
+      "name": "one_spike_template",
+      "ref": "experimental/data/certificates/hankel-one-spike-linear-template/hankel_one_spike_linear_template_certificate.json",
+      "schema_version": "m1-hankel-one-spike-linear-template-v1",
+      "sha256": "8df3dbc0fe56327547ddd6f8b0ee52c2ce1fc401c2f8c19b3fe6508ac7cfd3a9",
+      "status": "PROVED / AUDIT"
+    },
+    {
+      "name": "one_spike_template_note",
+      "ref": "experimental/notes/m1/hankel_one_spike_linear_template.md",
+      "sha256": "f12da3a9b52c21cdaa81e4512a19b1ec3ece26b68b98e6ff96879e3b29e258c7"
+    },
+    {
+      "name": "shifted_minor_exclusion_criterion",
+      "ref": "experimental/notes/m1/hankel_shifted_minor_exclusion_criterion.md",
+      "sha256": "ee712e336ceb6ec57cae27bb27ce8050202f972a3be306c2230d9a4fb7bb57c2"
+    },
+    {
+      "name": "endpoint_quotient_image_criterion",
+      "ref": "experimental/notes/m1/hankel_endpoint_quotient_image_criterion.md",
+      "sha256": "e2c20e21e0c2c8194d44a7f509aa4c60b94eaa155f0cf49a76ff543d208158d3"
+    },
+    {
+      "name": "one_spike_a426_packet",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/f17_32_n512_k256_a426_one_spike_packet.json",
+      "schema_version": "aperiodic-hankel-eliminant-v1",
+      "sha256": "e857cb6a857505401e44236ebe438edb92d1dd38b62b150948ac31b8142a0d53",
+      "status": "PROVED / AUDIT"
+    }
+  ],
+  "status": "PROVED / AUDIT"
+}

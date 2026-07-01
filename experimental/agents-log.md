@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 one-spike window full-Hankel ledger
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_one_spike_window_full_hankel.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-one-spike-window-full-hankel/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Extends the non-proportional one-spike M3 branch
+  from the single `A=426` packet to the whole `385 <= A <= 426` regular
+  window.  Each row has one finite first-minor root, that root is excluded by
+  the row-shift-1 minor, and the remaining projective endpoint has a `c=2`
+  quotient-image witness.
+- **How it is useful:** This gives a full-window, non-proportional rank-one
+  model branch with aperiodic full-Hankel residual upper bound `0`, a cleaner
+  stepping stone toward arbitrary M3 residual classification than another
+  proportional or tangent example.
+- **What to do next:** Try to extend the same shifted-minor plus endpoint-image
+  closure from one-spike directions to less structured low-rank or pivot-chart
+  branches.
+
 ### 2026-07-01 - M3 rank-2..11 full-Hankel low-rank ledger
 
 - **Agent/model:** AllenGrahamHart / Codex.
