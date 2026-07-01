@@ -170,6 +170,62 @@ replacement sums over the interval of exponents.  The PR #170 verifier uses the
 kernel form; this formula is the coefficient-level proof target for a future
 symbolic or q-binomial argument.
 
+## Window Normalization
+
+Two elementary invariances reduce the consecutive-subgroup case to a normalized
+window.
+
+First, if `beta` is nonzero and
+
+```text
+beta X = (beta x_0,...,beta x_{m-1}),
+beta Y = (beta y_0,...,beta y_{r-1}),
+```
+
+then
+
+```text
+det(H_{beta X}^(h) + Z H_{beta Y}^(h))
+  = beta^(hm+m(m-1)) det(H_X^(h) + Z H_Y^(h)).
+```
+
+Indeed, with `D_beta=diag(1,beta,...,beta^(m-1))`, the shifted moment matrix
+for `beta X` is
+
+```text
+H_{beta X}^(h) = beta^h D_beta H_X^(h) D_beta,
+```
+
+and the same formula holds for `Y`.  Taking determinants gives the displayed
+scalar factor.  Since this factor is nonzero, affine roots and gcds of shifted
+minors are unchanged by multiplying the whole window by `beta`.
+
+Second, if all nodes lie in a multiplicative subgroup of order `N`, then
+
+```text
+H_X^(h+N) = H_X^(h),     H_Y^(h+N) = H_Y^(h),
+```
+
+so the shifted determinants and kernels are periodic in `h` modulo `N`.
+
+For the accepted `F_17^32` row, the domain is the order-512 subgroup
+
+```text
+1, alpha, alpha^2, ..., alpha^511.
+```
+
+Therefore a consecutive low-rank window
+
+```text
+X = beta {1,alpha,...,alpha^(m-1)},
+Y = beta {alpha^m,...,alpha^(m+r-1)}
+```
+
+has the same finite affine root data as the normalized window with `beta=1`,
+and only `h mod 512` matters.  This is why the synthetic packet can use the
+prefix `X={1,alpha,...,alpha^j}` without losing any case that differs only by
+a cyclic domain rotation.
+
 ## Consequence For The v10 GCD Ledger
 
 The common finite affine roots of the two displayed maximal minors are exactly

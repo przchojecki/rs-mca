@@ -44,7 +44,8 @@ Keep entries concise and link to the relevant files.
   `det(I+ZK_1)` for two explicit `rank x rank` Lagrange kernels.  The note
   also gives the all-contiguous-shift formula `det(H_X^(h)+Z H_Y^(h)) =
   det(V_X)^2 prod(X)^h det(I+ZK_h)`, plus the Cauchy-Binet
-  replacement-subset coefficient formula for the same shifted determinants.
+  replacement-subset coefficient formula and window-normalization lemmas for
+  the same shifted determinants.
 - **How it is useful:** Turns the rank-by-rank affine-gcd computation into a
   concrete spectral-disjointness target.  Proving that target through the
   endpoint-capacity range would close the synthetic low-rank regular
