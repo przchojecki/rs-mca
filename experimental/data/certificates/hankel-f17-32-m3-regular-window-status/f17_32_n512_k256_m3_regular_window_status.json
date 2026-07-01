@@ -134,6 +134,20 @@
       "status": "PROVED / AUDIT"
     },
     {
+      "name": "synthetic_low_rank_rank10_a411_projective_line_packet",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank-rank10-a411-projective-line/f17_32_n512_k256_a411_rank10_projective_line_packet.json",
+      "schema_version": "aperiodic-hankel-eliminant-v1",
+      "sha256": "535e7632b4e1a51a4a772baa0699d30bc864b1263df42e4658afd06c9eb17283",
+      "status": "PROVED / AUDIT"
+    },
+    {
+      "name": "synthetic_low_rank_rank11_a391_projective_line_packet",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank-rank11-a391-projective-line/f17_32_n512_k256_a391_rank11_projective_line_packet.json",
+      "schema_version": "aperiodic-hankel-eliminant-v1",
+      "sha256": "d4d7bb63e8e8f12eea1b482a4c6074f7c6c7346188ef5f9e321f975a5380b617",
+      "status": "PROVED / AUDIT"
+    },
+    {
       "name": "synthetic_low_rank6_11_tangent_exclusion",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json",
       "schema_version": "f17-32-m3-low-rank6-11-tangent-exclusion-v1",
@@ -4747,6 +4761,20 @@
       }
     },
     "synthetic_low_rank9_11_slack_sweep_status": "proved exact Frobenius-gcd finite-root slack for all 126 rank/agreement pairs in ranks 9..11",
+    "synthetic_low_rank_rank10_a411_projective_line_packet_numerator": 4,
+    "synthetic_low_rank_rank10_a411_projective_line_packet_root_union": [
+      497168388726834234958643210904468835381,
+      1603506527162172031935031727489259313915,
+      1691674726965602897914611922773515782477
+    ],
+    "synthetic_low_rank_rank10_a411_projective_line_packet_status": "v9 projective-line regular-minor packet rehydrates the compact rank-10 A=411 sweep row, checks three finite Frobenius-gcd roots plus the [0:1] endpoint, and gives projective numerator 4 <= 6",
+    "synthetic_low_rank_rank11_a391_projective_line_packet_numerator": 4,
+    "synthetic_low_rank_rank11_a391_projective_line_packet_root_union": [
+      735335782167360171719637567716403974241,
+      866506290426106927745780651918346038837,
+      2311081050384733098427072368578074568196
+    ],
+    "synthetic_low_rank_rank11_a391_projective_line_packet_status": "v9 projective-line regular-minor packet rehydrates the compact rank-11 A=391 sweep row, checks three finite Frobenius-gcd roots plus the [0:1] endpoint, and gives projective numerator 4 <= 6",
     "synthetic_low_rank_rank6_a426_finite_packet_numerator": 1,
     "synthetic_low_rank_rank6_a426_finite_packet_root_union": [
       433103153921755587956025854474067902214

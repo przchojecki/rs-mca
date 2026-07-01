@@ -1,0 +1,363 @@
+{
+  "agreement_threshold": 411,
+  "claim_scope": {
+    "may_be_used_for_threshold_pinning": false,
+    "note": "Projective-line regular-minor packet for one compact-sweep rank-10 low-rank row. It is a v9 replay packet, not an actual-row safe-side threshold certificate.",
+    "root_status": "enumerated",
+    "row_data": "synthetic_syndrome_pencil",
+    "threshold_role": "synthetic_stress"
+  },
+  "declared_aperiodic_numerator": 4,
+  "enumerated_bad_slope_union": [],
+  "exact_agreements": [
+    {
+      "A": 411,
+      "extractor_audit": {
+        "certificate_mode": "low_rank_update_bound",
+        "degree_bound": 10,
+        "field_size": 2367911594760467245844106297320951247361,
+        "finite_root_count_certificate": "frobenius_linear_root_gcd",
+        "projective_budget_numerator": 6,
+        "projective_infinity_contribution": 1,
+        "projective_regular_root_count": 4,
+        "root_count": 3,
+        "root_listing": "deterministic_small_degree_split",
+        "row_set_source": "low_rank_update_prefix_rank10",
+        "tested_row_sets": 1
+      },
+      "j": 101,
+      "projective_infinity": {
+        "contribution": 1,
+        "field_encoding": "base-p low-to-high integer",
+        "projective_point": "[0:1]",
+        "reason": "The projective-line regular minor is homogenized to the original degree j+1. Since the rank-10 compressed determinant has degree 10 < j+1=102, the top coefficient is zero and the regular minor does not exclude [0:1].",
+        "status": "nonempty",
+        "support_certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json#/deterministic_records",
+        "top_coefficient": 0,
+        "top_degree": 102
+      },
+      "regular_minor": {
+        "degree": 10,
+        "polynomial_ref": "inline:regular_minor.coefficients_ascending",
+        "root_hash": "4af121759b3fa8ed49555bec8cd53b52f31304b4afbbfdad0557ba6ab375df5c",
+        "row_set": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101
+        ]
+      },
+      "regular_minor_data": {
+        "coefficients_ascending": [
+          755831957698730571541985828703222995728,
+          1712292323792758150208582032995189313354,
+          2020635644023426015263557591720380477998,
+          451127787048058369932646652917450165550,
+          1870729841026031987596706090243199504082,
+          604154557853478917947521874337741436611,
+          1896336404556628230612103250210834930517,
+          2333995886131176120052343144060984378571,
+          263318221765245986643424190195765029286,
+          448400837378602395402789446396950031579,
+          1241655060524528901782277035018219179310
+        ],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 32,
+        "linear_root_count_certificate": {
+          "field_encoding": "base-p low-to-high integer",
+          "field_order": 2367911594760467245844106297320951247361,
+          "frobenius_remainder_coefficients_ascending": [
+            506031718710356591958319597513642205131,
+            1889505466405225969203812921882261086328,
+            1399629705627812193231395970232730547232,
+            584844208932358717713171010802217368203,
+            1250946162543770273488136141440290084765,
+            2199352427280070628742161075938257483837,
+            2053519224820363188498587074465624047515,
+            173721642372730330058784725825818411965,
+            2165295132836540778265924404525988994190,
+            839420384219449102966722735054543796276
+          ],
+          "kind": "frobenius_linear_root_gcd",
+          "linear_root_count": 3,
+          "linear_root_gcd_coefficients_ascending": [
+            587395656751481954395673642943231760927,
+            117152693351513817920375832010324356322,
+            1239942692999700329638133582652355338095,
+            1
+          ],
+          "listed_roots_status": "listed",
+          "monic_delta_coefficients_ascending": [
+            437822879070249482163891340403386645373,
+            1511062349806195977021684992929980351795,
+            2321095965349324711063096873939115729487,
+            2059664064088606572582574425179091856025,
+            1627231593827749214046443380847110134120,
+            686378222854254904724255701055243975826,
+            521468741663806872640046786715174439738,
+            1805652336830630668826280009019492013879,
+            2268634705784508771409225142219646656767,
+            258307697766494702290014365996854728361,
+            1
+          ],
+          "polynomial": "Z^q-Z",
+          "reason": "gcd(Delta,Z^q-Z) is the squarefree product of the finite field linear factors of Delta"
+        },
+        "p": 17,
+        "root_listing_certificate": {
+          "degree": 3,
+          "input": "linear_root_gcd_coefficients_ascending",
+          "kind": "deterministic_cantor_zassenhaus_small_degree",
+          "roots": [
+            497168388726834234958643210904468835381,
+            1603506527162172031935031727489259313915,
+            1691674726965602897914611922773515782477
+          ],
+          "seed_range": [
+            0,
+            199
+          ]
+        },
+        "roots": [
+          497168388726834234958643210904468835381,
+          1603506527162172031935031727489259313915,
+          1691674726965602897914611922773515782477
+        ]
+      },
+      "regular_minor_polynomial_data": {
+        "coefficients_ascending": [
+          755831957698730571541985828703222995728,
+          1712292323792758150208582032995189313354,
+          2020635644023426015263557591720380477998,
+          451127787048058369932646652917450165550,
+          1870729841026031987596706090243199504082,
+          604154557853478917947521874337741436611,
+          1896336404556628230612103250210834930517,
+          2333995886131176120052343144060984378571,
+          263318221765245986643424190195765029286,
+          448400837378602395402789446396950031579,
+          1241655060524528901782277035018219179310
+        ],
+        "field_encoding": "base-p low-to-high integer",
+        "field_extension_degree": 32,
+        "p": 17
+      },
+      "status": "regular_minor",
+      "t": 155
+    }
+  ],
+  "extractor": {
+    "certificate_mode": "low_rank_update_bound",
+    "field_model": {
+      "degree": 32,
+      "encoding": "base-p low-to-high integer",
+      "kind": "polynomial_basis",
+      "modulus": [
+        16,
+        7,
+        8,
+        5,
+        13,
+        3,
+        11,
+        9,
+        5,
+        4,
+        3,
+        9,
+        3,
+        12,
+        1,
+        6,
+        7,
+        11,
+        11,
+        6,
+        12,
+        5,
+        5,
+        7,
+        14,
+        2,
+        0,
+        2,
+        4,
+        4,
+        0,
+        14,
+        1
+      ],
+      "p": 17
+    },
+    "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a411_low_rank10_projective_line_input.json",
+    "input_sha256": "90e87c0e71aa50bdd5f468ec8a4b9eaaaf0a0e0d236e538feedf6d9f293ff5a1",
+    "method": "compact sweep hash replay, low-rank update regular-minor replay, deterministic splitting of the Frobenius-gcd finite root table, and original-top-degree projective infinity audit",
+    "name": "regular-hankel-minor-extractor",
+    "row_set_strategy": {
+      "type": "prefix"
+    },
+    "scope": "prime-power syndrome pencils with explicit polynomial-basis model"
+  },
+  "finite_affine_numerator": 3,
+  "nonclaims": [
+    "synthetic syndrome-pencil packet only",
+    "regular-minor roots are an upper-bound root table, not proved actual bad slopes",
+    "projective infinity is counted as a regular-minor endpoint",
+    "not a quotient-image subtraction table",
+    "not a worst-case or actual-row M3 threshold bound"
+  ],
+  "packet_certificate_schema": "f17-32-m3-low-rank-rank10-a411-projective-line-v1",
+  "projective_infinity_numerator": 1,
+  "projective_line_numerator": 4,
+  "removed_ledgers": [
+    {
+      "certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json#/aggregate/common_code_line_tangent_overlap_sum",
+      "name": "common_code_line_tangent_overlap",
+      "numerator": 0
+    },
+    {
+      "certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-subfield-exclusion/f17_32_n512_k256_m3_low_rank6_11_subfield_exclusion_certificate.json#/aggregate/proper_subfield_overlap_sum",
+      "name": "proper_subfield_overlap",
+      "numerator": 0
+    }
+  ],
+  "root_union": [
+    497168388726834234958643210904468835381,
+    1603506527162172031935031727489259313915,
+    1691674726965602897914611922773515782477
+  ],
+  "root_union_table_ref": "inline:root_union",
+  "row": {
+    "domain_description": "order-512 subgroup from the pinned F_17^32 row descriptor; synthetic rank-10 low-rank update syndrome at A=411",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "sampler": "projective_line",
+  "sampler_audit": {
+    "denominator": 2367911594760467245844106297320951247362,
+    "denominator_formula": "|P^1(F)| = |F| + 1",
+    "extension_denominator_warning": "projective extension-valued line packets are divided by |P^1(F)|, not by the base field",
+    "field_role": "q_line",
+    "sampler": "projective_line",
+    "slope_field": "F_17^32",
+    "slope_field_order": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "source_artifacts": {
+    "rank2_11_projective_infinity_endpoint": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json",
+      "schema_version": "f17-32-m3-low-rank2-11-projective-infinity-v1",
+      "sha256": "f7457c3ceea4493286386d547adae12b97589d80434af4f2139f0cbb9470817b"
+    },
+    "rank9_11_slack_sweep": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank9-11-slack-sweep/f17_32_n512_k256_m3_low_rank9_11_slack_sweep_certificate.json",
+      "schema_version": "f17-32-m3-low-rank9-11-slack-sweep-v1",
+      "sha256": "621d61a8cec12110c86cf351d1ac8540f36086a5cab44d4257c30aac9282701c"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT"
+}

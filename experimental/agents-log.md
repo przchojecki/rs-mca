@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-10 and rank-11 compact-sweep projective-line packets
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank_rank10_11_projective_line_packets.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a411_low_rank10_projective_line_input.json`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a391_low_rank11_projective_line_input.json`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank-rank10-a411-projective-line/`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank-rank11-a391-projective-line/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds v9 projective-line packets for representative
+  maximum-root compact-sweep rows in ranks `10` and `11`.  The verifier
+  rehydrates the stored sweep hashes, splits degree-3 Frobenius gcds into three
+  finite roots for each row, and adds the `[0:1]` endpoint, giving projective
+  numerator `4 <= 6` in both packets.
+- **How it is useful:** It completes the representative rank `9..11`
+  compact-sweep packet ladder, showing that exact finite-root slack continues
+  to close projective packets two more ranks beyond the degree envelope.
+- **What to do next:** Audit quotient support/image for the finite roots, or
+  decide whether all max-root rows should be packetized.  These packets remain
+  synthetic and are not actual-row M3 threshold bounds.
+
 ### 2026-07-01 - M3 rank-9 A398 compact-sweep projective-line packet
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -136,6 +136,13 @@ Frobenius-gcd hashes, splits the degree-3 gcd into three finite roots, and adds
 the `[0:1]` endpoint.  This gives projective-line numerator `4 <= 6` for a
 representative rank-9 max-root row from the compact sweep.
 
+The rank-10, `A=411` and rank-11, `A=391` projective-line packets finish the
+same representative compact-sweep promotion for the remaining high-rank rows.
+Degree-only projective accounting would give `11` and `12`, respectively, but
+each packet replays the compact sweep hashes, splits a degree-3 Frobenius gcd,
+and counts the `[0:1]` endpoint.  Both representative rows have projective-line
+numerator `4 <= 6`.
+
 The rank-6..11 tangent-exclusion audit is the first subtraction check for this
 beyond-envelope low-rank block.  It consumes the exact finite-root certificates
 above and checks the unique moment-zero common-code-line slope
