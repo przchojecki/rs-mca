@@ -220,6 +220,19 @@ closes that barycentric boundary family: the ambient finite root table is
 exactly `{1}`, that root is split-filtered, and the endpoint-uniform theorem
 leaves support-wise projective total exactly `1`.
 
+The boundary low-degree transfer companion
+
+```text
+experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md
+experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/
+  f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json
+```
+
+is the general reduction for arbitrary nonzero separated-support weights at
+`A=385,386,387`: every finite ambient root comes from a polynomial
+`Q` of degree `< h`, with `h=5,3,1`, satisfying six direction-node consistency
+equations before the split-locator gate is applied.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 
@@ -731,6 +744,9 @@ The split-filter companion proves that this displayed root has only
 low-degree kernel polynomials and no degree-`j` split-locator witness.
 The exact-root companion proves there are no other finite ambient roots in
 that barycentric family, so after filtering only the endpoint remains.
+The low-degree transfer theorem gives the corresponding search object for
+arbitrary separated-support boundary weights: projective `Q`-spaces of
+dimensions `4,2,0` plus six consistency equations and the split-locator gate.
 
 Replay:
 
@@ -755,6 +771,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_split_filter.py 
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_exact_root_table.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-exact-root-table/f17_32_n512_k256_m3_rank6_barycentric_exact_root_table.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json
 ```
 
 The affine-pivot compression theorem is:

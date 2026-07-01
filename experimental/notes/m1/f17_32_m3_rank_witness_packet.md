@@ -130,6 +130,9 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-split-filter/
 experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-exact-root-table/
   f17_32_n512_k256_m3_rank6_barycentric_exact_root_table.json
 
+experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/
+  f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
   f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 
@@ -507,6 +510,12 @@ barycentric weights: the ambient finite root table is exactly `{1}`.  Since
 that root is split-filtered and the endpoint is present, the support-wise
 projective total of the barycentric boundary family is exactly `1`.
 
+The boundary low-degree transfer companion gives the general separated-support
+reduction at `A=385,386,387`: for arbitrary nonzero weights, every finite root
+comes from an auxiliary polynomial `Q` of degree `< h=|X union Y|-t`, where
+`h=5,3,1`, satisfying six direction-node consistency equations before the
+split-locator divisor gate is tested.
+
 The affine-pivot compression companion gives the finite-root route a concrete
 Hankel-chart target.  If a row-set chart has finite base slope `z0` with
 `M_R(z0)` invertible and `H_R(v)=P_R Q_R` has rank at most `r`, then
@@ -787,6 +796,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_split_filter.py 
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_exact_root_table.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-exact-root-table/f17_32_n512_k256_m3_rank6_barycentric_exact_root_table.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json

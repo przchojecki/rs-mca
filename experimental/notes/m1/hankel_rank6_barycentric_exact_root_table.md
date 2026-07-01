@@ -63,6 +63,16 @@ contribution is zero.  The endpoint-uniform theorem supplies the single
 projective endpoint `[0:1]`.  Hence this barycentric boundary family has
 support-wise projective total exactly `1`.
 
+The general separated-support boundary reduction is recorded in
+
+```text
+experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md
+```
+
+It shows that arbitrary nonzero weights at these boundary agreements reduce to
+the same low-degree `Q`-space plus six direction-node consistency equations;
+the barycentric calculation here is the solved `a_s=b_s=Omega_s` specialization.
+
 Replay:
 
 ```sh

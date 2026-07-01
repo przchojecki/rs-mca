@@ -148,6 +148,18 @@ proves the ambient finite root table of the same barycentric boundary family
 is exactly `{1}`.  After the split filter, the finite support-wise contribution
 is zero and the endpoint-uniform packet leaves projective total `1`.
 
+The boundary low-degree transfer packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/
+  f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json
+```
+
+records the general separated-support boundary reduction: arbitrary nonzero
+weights at `A=385,386,387` reduce to an auxiliary `Q` of degree `< h` with
+`h=5,3,1`, six direction-node consistency equations, and then the
+split-locator gate.
+
 The rank-node dichotomy packet
 
 ```text
@@ -273,6 +285,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_split_filter.py 
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_exact_root_table.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-barycentric-exact-root-table/f17_32_n512_k256_m3_rank6_barycentric_exact_root_table.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json

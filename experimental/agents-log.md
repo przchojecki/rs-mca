@@ -145,6 +145,29 @@ Keep entries concise and link to the relevant files.
   other boundary weight strata, or identify a stratum where a degree-`j` split
   locator genuinely survives.
 
+### 2026-07-01 - M3 rank-6 boundary low-degree transfer
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_rank6_barycentric_exact_root_table.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A general transfer theorem for separated rank-6
+  boundary finite roots: arbitrary nonzero weights at `A=385,386,387` reduce
+  to an auxiliary polynomial `Q` of degree `< h` with `h=5,3,1`, six
+  direction-node consistency equations, and then the split-locator gate.
+- **How it is useful:** It turns the remaining separated boundary root-table
+  problem into projective `Q`-spaces of dimensions `4,2,0`, making future
+  exact-root or counterexample searches much smaller and more structured.
+- **What to do next:** Solve or falsify the six consistency equations for
+  natural weight strata, then apply the split-locator divisor gate to `L_Q`.
+
 ### 2026-07-01 - M3 rank-6 boundary dual gcd
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

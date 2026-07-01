@@ -1,0 +1,100 @@
+# Hankel Rank-6 Boundary Low-Degree Transfer
+
+Status: PROVED / AUDIT.
+
+This note records the exact finite-root reduction for separated rank-6
+supports at the boundary agreements
+
+```text
+A = 385, 386, 387.
+```
+
+It is the general version of the barycentric boundary calculation: arbitrary
+nonzero weights reduce to a low-degree auxiliary polynomial and six consistency
+equations.
+
+Work with
+
+```text
+j = 512-A,       t = A-256,       m = j+1,
+|X| = m,         |Y| = 6,         S = X union Y.
+```
+
+Let `a_x` and `b_y` be arbitrary nonzero weights.  Set
+
+```text
+h = |S|-t.
+```
+
+For the three boundary agreements,
+
+```text
+h = 5, 3, 1.
+```
+
+Let
+
+```text
+Omega_s = 1 / prod_{r in S, r != s} (s-r)
+```
+
+be the barycentric residues of the combined support.  The nullspace of the
+first `t` Vandermonde rows on `S` is
+
+```text
+{ Omega_s Q(s) : deg Q < h }.
+```
+
+Thus a finite root `z` with ambient kernel polynomial `L` of degree `<m`
+exists iff there is a nonzero `Q` with `deg Q<h` such that
+
+```text
+a_x L(x)       = Omega_x Q(x)        for x in X,
+z b_y L(y)     = Omega_y Q(y)        for y in Y.
+```
+
+For fixed `Q`, the first set of equations determines a unique polynomial
+`L_Q` of degree `<m`, because `|X|=m` and all `a_x` are nonzero.  The finite
+root condition is therefore exactly the six direction-node consistency
+equations
+
+```text
+z b_y L_Q(y) = Omega_y Q(y)          for y in Y.
+```
+
+Equivalently, all defined ratios
+
+```text
+Omega_y Q(y) / (b_y L_Q(y))
+```
+
+are equal, and any zero denominator has zero numerator.  This reduces the
+boundary finite-root problem to projective `Q`-spaces of dimensions
+
+```text
+4, 2, 0
+```
+
+for `A=385,386,387`, respectively.  Any resulting `L_Q` still has to pass the
+null-polynomial split-locator gate: it must normalize to a monic degree-`j`
+divisor of `X^512-1`.
+
+The barycentric exact-root packet is the special case `a_s=b_s=Omega_s`.  In
+that case the consistency equations force the ambient root table `{1}`, and
+the split-locator filter removes that root from finite support-wise counting.
+
+Replay:
+
+```sh
+python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json
+```
+
+Nonclaims:
+
+```text
+no solution of the Q-consistency equations for arbitrary weights;
+no overlapping-support rank-6 classification;
+no endpoint payment theorem;
+no row-level M3 safe-side bound.
+```
