@@ -158,6 +158,30 @@ where `X` is the first `87` support nodes in the synthetic input.  This covers
 all `84` contiguous row starts `0..83`.  It is still a contiguous-subatlas
 result, not the all-row-set canonical gcd.
 
+The all-window formula companion
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-window/
+  f17_32_n512_k256_m3_contiguous_gcd_formula_window.json
+```
+
+extends the same zero-`u` nested-prefix formula to every agreement
+`385 <= A <= 426`.  For each agreement, let `X_A` be the first `j+1`
+descriptor-domain elements.  For a contiguous row set `R_s={s,...,s+j}`, the
+leading determinant is
+
+```text
+(prod_{x in X_A} x)^s * Vandermonde(X_A)^2.
+```
+
+The first `128` descriptor-domain elements are distinct and nonzero, so this
+coefficient is nonzero for every nested prefix and every allowed contiguous
+start.  The certificate covers all `1806` contiguous row windows in the M3
+regular window and proves that the monic contiguous-subatlas common gcd at
+agreement `A` is `Z^(j+1)` with root table `{0}`.  This upgrades the synthetic
+contiguous audit from one endpoint to the full M3 window, but still does not
+claim the canonical all-row-set gcd/lcm ledger for arbitrary row data.
+
 The syndrome-realizability sidecar
 
 ```text

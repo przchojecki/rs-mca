@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 all-contiguous gcd formula window
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_all_contiguous_gcd_formula.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-window/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the synthetic M3 contiguous subatlas.
+- **What is being added:** A compact formula certificate for the zero-`u`
+  nested-prefix family across the full M3 regular window `385 <= A <= 426`.
+  It covers all `1806` contiguous maximal row sets and proves that the monic
+  common gcd at agreement `A` is `Z^(j+1)` with root table `{0}`.
+- **How it is useful:** This strengthens the M3 regular-window audit from an
+  endpoint-only contiguous formula to a full-window synthetic subatlas, while
+  keeping the nonclaim clear that arbitrary row data and the canonical
+  all-row-set gcd/lcm ledger remain open.
+- **What to do next:** Move from synthetic contiguous subatlases toward actual
+  root tables for arbitrary M3 row data, or identify the first singular bucket
+  that requires affine/projective pivot charts.
+
 ### 2026-07-01 - A=426 all-contiguous gcd formula
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

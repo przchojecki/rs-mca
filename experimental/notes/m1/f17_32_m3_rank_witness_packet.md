@@ -47,6 +47,9 @@ experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-a426/
 
 experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-a426/
   f17_32_n512_k256_a426_contiguous_gcd_formula.json
+
+experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-window/
+  f17_32_n512_k256_m3_contiguous_gcd_formula_window.json
 ```
 
 The M4 zero-slope subtraction sidecar is
@@ -120,6 +123,22 @@ det(v_{s+a+b})_{0<=a,b<87}
 where `X` is the first `87` descriptor-domain elements.  Since the nodes in
 `X` are distinct and nonzero, every contiguous determinant is nonzero and the
 monic common gcd over the all-contiguous subatlas is `Z^87`.
+
+The all-window formula certificate applies the same argument for every
+agreement in the M3 regular window `385 <= A <= 426`, with
+`X_A` the first `j+1` descriptor-domain elements.  For each contiguous row set
+`R_s={s,...,s+j}`,
+
+```text
+det(v_{s+a+b})_{0<=a,b<=j}
+  = (prod_{x in X_A} x)^s * Vandermonde(X_A)^2.
+```
+
+The first `128` descriptor-domain elements are distinct and nonzero, so all
+nested prefixes used in this window have nonzero support product and
+Vandermonde square.  This covers all `1806` contiguous row windows in
+`385 <= A <= 426`; at agreement `A`, the monic contiguous-subatlas common gcd
+is `Z^(j+1)` with root table `{0}`.
 
 In the selected-minor packets, the chosen prefix determinant has the closed form
 
@@ -226,6 +245,9 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 
 python3 experimental/scripts/verify_f17_32_m3_a426_contiguous_gcd_formula.py \
   --check experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-a426/f17_32_n512_k256_a426_contiguous_gcd_formula.json
+
+python3 experimental/scripts/verify_f17_32_m3_all_contiguous_gcd_formula.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-window/f17_32_n512_k256_m3_contiguous_gcd_formula_window.json
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_rank_witness_zero_slope_subtraction.json
