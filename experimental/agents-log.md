@@ -36,6 +36,7 @@ Keep entries concise and link to the relevant files.
 - **Files added or changed:**
   `experimental/notes/m3/m3_low_rank_affine_spectral_reduction.md`;
   `experimental/scripts/search_f17_32_m3_low_rank_spectral_target.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank-spectral-frontier/`;
   `experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-v10-affine-gcd/README.md`;
   `experimental/agents-log.md`.
 - **Status:** PROVED / AUDIT for the proof note and certificates;
@@ -60,6 +61,8 @@ Keep entries concise and link to the relevant files.
   probes the exact endpoint-capacity spectral target without changing the
   certified low-rank2..12 packet; it switches from Newton identities to
   determinant interpolation at rank `17`, avoiding characteristic-17 division.
+  The first top-window frontier probe `A=426`, ranks `13..20`, records eight
+  exact checks with common gcd degree `0`.
 - **How it is useful:** Turns the rank-by-rank affine-gcd computation into a
   concrete spectral-disjointness target.  Proving that target through the
   endpoint-capacity range would close the synthetic low-rank regular
