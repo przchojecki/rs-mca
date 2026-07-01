@@ -9,7 +9,9 @@ nodes as X, with the next two descriptor nodes as Y.  The low-rank theorem gives
     K_ab=sum_i L_i(y_a)L_i(y_b),
 
 so each regular minor has degree at most 2.  The verifier reuses prefix
-Vandermonde denominators across all r to keep the certificate replayable.
+Vandermonde denominators across all r to keep the certificate replayable.  It
+also applies the rank-2 discriminant gate to produce exact split/nonsquare root
+certificates for every row in the family.
 """
 
 from __future__ import annotations
@@ -29,11 +31,14 @@ from experimental.scripts.extract_regular_hankel_minors import (
     PolynomialBasisField,
     field_batch_inverses,
     hash_json,
+    quadratic_root_certificate_field,
+    quadratic_roots_field,
     render,
+    split_linear_root_certificate_field,
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-low-rank2-family-v1"
+SCHEMA_VERSION = "f17-32-m3-low-rank2-family-v2"
 N = 512
 K = 256
 AGREEMENT_MIN = 385
@@ -169,6 +174,34 @@ def build_records(
         encoded_coefficients = [
             field.encode(coefficient) for coefficient in coefficients
         ]
+        roots = quadratic_roots_field(coefficients, field)
+        require(roots is not None, f"A={agreement}: low-rank row is not quadratic")
+        encoded_roots = sorted(field.encode(root) for root in roots)
+        quadratic_certificate = quadratic_root_certificate_field(
+            coefficients, roots, field
+        )
+        require(
+            quadratic_certificate is not None,
+            f"A={agreement}: quadratic certificate missing",
+        )
+        root_status = (
+            "exact_nonsquare"
+            if quadratic_certificate["kind"] == "quadratic_discriminant_nonsquare"
+            else "exact_split"
+        )
+        root_certificate = split_linear_root_certificate_field(
+            coefficients, roots, field
+        )
+        if root_status == "exact_split":
+            require(
+                root_certificate is not None,
+                f"A={agreement}: split root certificate missing",
+            )
+        else:
+            require(
+                root_certificate is None and encoded_roots == [],
+                f"A={agreement}: nonsquare row should have no split roots",
+            )
         records.append(
             {
                 "A": agreement,
@@ -180,7 +213,12 @@ def build_records(
                     field.encode(node) for node in update_nodes
                 ],
                 "degree_bound": UPDATE_RANK,
-                "root_status": "degree_bound_only",
+                "root_status": root_status,
+                "root_count": len(encoded_roots),
+                "roots": encoded_roots,
+                "root_hash": hash_json(encoded_roots),
+                "quadratic_root_certificate": quadratic_certificate,
+                "root_certificate": root_certificate,
                 "hankel_coefficients_ascending": encoded_coefficients,
                 "low_rank_compression": sidecar,
                 "sidecar_hash": hash_json(sidecar),
@@ -212,6 +250,11 @@ def build_certificate() -> dict[str, Any]:
     endpoint_sidecar = endpoint_item["regular_minor_polynomial_data"][
         "low_rank_compression"
     ]
+    endpoint_roots = endpoint_item["regular_minor_data"]["roots"]
+    endpoint_root_certificate = endpoint_item["regular_minor_data"]["root_certificate"]
+    endpoint_quadratic_certificate = endpoint_item["regular_minor_data"][
+        "quadratic_root_certificate"
+    ]
     require(
         endpoint_record["hankel_coefficients_ascending"] == endpoint_coefficients,
         "A=426 endpoint coefficients do not match v9 packet",
@@ -220,6 +263,25 @@ def build_certificate() -> dict[str, Any]:
         endpoint_record["low_rank_compression"] == endpoint_sidecar,
         "A=426 endpoint sidecar does not match v9 packet",
     )
+    require(
+        endpoint_record["roots"] == endpoint_roots,
+        "A=426 endpoint roots do not match v9 packet",
+    )
+    require(
+        endpoint_record["root_certificate"] == endpoint_root_certificate,
+        "A=426 endpoint root certificate does not match v9 packet",
+    )
+    require(
+        endpoint_record["quadratic_root_certificate"] == endpoint_quadratic_certificate,
+        "A=426 endpoint quadratic certificate does not match v9 packet",
+    )
+
+    split_rows = sum(record["root_status"] == "exact_split" for record in records)
+    nonsquare_rows = sum(
+        record["root_status"] == "exact_nonsquare" for record in records
+    )
+    exact_root_count_sum = sum(record["root_count"] for record in records)
+    degree_bound_sum = UPDATE_RANK * len(records)
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -252,7 +314,10 @@ def build_certificate() -> dict[str, Any]:
         "aggregate": {
             "agreement_count": len(records),
             "per_agreement_degree_bound": UPDATE_RANK,
-            "regular_root_bound_sum": UPDATE_RANK * len(records),
+            "degree_bound_sum": degree_bound_sum,
+            "exact_regular_root_count_sum": exact_root_count_sum,
+            "split_quadratic_rows": split_rows,
+            "nonsquare_quadratic_rows": nonsquare_rows,
             "generic_degree_bound_sum_for_window": sum(
                 N - agreement + 1
                 for agreement in range(AGREEMENT_MIN, AGREEMENT_MAX + 1)
@@ -264,6 +329,9 @@ def build_certificate() -> dict[str, Any]:
             "agreement": AGREEMENT_MAX,
             "coefficients_match": True,
             "sidecar_match": True,
+            "roots_match": True,
+            "root_certificate_match": True,
+            "quadratic_certificate_match": True,
         },
         "records": records,
         "nonclaims": [
@@ -271,7 +339,7 @@ def build_certificate() -> dict[str, Any]:
             "not a worst-case MCA row bound",
             "not a worst-case row root table over F_17^32",
             "does not perform quotient/tangent subtraction",
-            "degree-bound family certificate only; roots are not enumerated here",
+            "exact roots are for this synthetic rank-2 family only",
         ],
     }
 
@@ -295,9 +363,16 @@ def print_summary(certificate: dict[str, Any]) -> None:
         )
     )
     print(
-        "regular_root_bound_sum={bound} (generic window sum={generic})".format(
-            bound=aggregate["regular_root_bound_sum"],
+        "exact_root_count_sum={exact} (degree cap={cap}, generic window sum={generic})".format(
+            exact=aggregate["exact_regular_root_count_sum"],
+            cap=aggregate["degree_bound_sum"],
             generic=aggregate["generic_degree_bound_sum_for_window"],
+        )
+    )
+    print(
+        "quadratics: split={split}, nonsquare={nonsquare}".format(
+            split=aggregate["split_quadratic_rows"],
+            nonsquare=aggregate["nonsquare_quadratic_rows"],
         )
     )
     print("endpoint A=426 crosscheck: PASS")

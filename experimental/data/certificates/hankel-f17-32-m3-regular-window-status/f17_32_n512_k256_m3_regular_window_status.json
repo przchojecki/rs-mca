@@ -24,8 +24,8 @@
     {
       "name": "synthetic_low_rank2_family",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-family/f17_32_n512_k256_m3_low_rank2_family_certificate.json",
-      "schema_version": "f17-32-m3-low-rank2-family-v1",
-      "sha256": "37cea8b9cc14b7566b5a948d29e16fd527f3945bd0740b8782009d5ce1eaf23c",
+      "schema_version": "f17-32-m3-low-rank2-family-v2",
+      "sha256": "36db07866526f99a2721e90e8e538a0d192f3268fe1b81c75680ea55412383df",
       "status": "PROVED / AUDIT"
     },
     {
@@ -96,7 +96,7 @@
       "the v9 regular window is exactly 385 <= A <= 426",
       "every maximal row-set regular minor is generically nonzero",
       "the synthetic u=0 family has exact root union {0}",
-      "the synthetic rank-2 low-rank family has regular root bound 2 for every agreement, aggregate 84",
+      "the synthetic rank-2 low-rank family has exact split/nonsquare quadratic root table with 40 roots total, below degree cap 84",
       "the fixed synthetic top-window packet is v9-checkable for A=421..426",
       "the fixed top-window syndrome input has an explicit line-value lift",
       "subgroup syndrome vectors have an explicit inverse-Fourier line-value section",
@@ -136,9 +136,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "334469f4219dd40251a3602b8ef1e9fbfbdf85a9d6be55b4243092a2a5ea06ab",
       "synthetic_root_union": [
         0
@@ -166,9 +167,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "89891e32a342024ed82e27d75eca10b2dbf5a4b8710708511d4dd2c57a5e5914",
       "synthetic_root_union": [
         0
@@ -196,9 +198,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "2e684be5906702698e4c31f277aeca8e1a1c9de2d87653c14e7a214b4dc03c7d",
       "synthetic_root_union": [
         0
@@ -226,9 +229,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "c344808d340e7cfe4e5b9e551b45e3bfa5111a0216cd5ddae4ac24d0ba667522",
       "synthetic_root_union": [
         0
@@ -256,9 +260,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "4c7b44e36cf0254e4094ea8cc9445600f925ddc9f25428bc6a299b891389c1cf",
       "synthetic_root_union": [
         0
@@ -286,9 +291,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "9e8a4bc3cdb0fa66e871e615dbd9085de8ca4611c55e73cda09471e444b8af48",
       "synthetic_root_union": [
         0
@@ -316,9 +322,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "d64c9bd1688c519313f4c51fa5ad105bff8103a77bcca314ebb327ee300c5a58",
       "synthetic_root_union": [
         0
@@ -346,9 +353,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "4e460a2c55db8a5d135616e6a265d19aac8665896626e4a0fd3df5359b7774d4",
       "synthetic_root_union": [
         0
@@ -376,9 +384,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "af806bba52f8c65708448dbf11db3acc37256ee88b05089b7ce7aac122903281",
       "synthetic_root_union": [
         0
@@ -406,9 +415,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "5b69311654c41162d76da9f253028d67d2aabe1076b3fb9f02a11eb9c2b51028",
       "synthetic_root_union": [
         0
@@ -436,9 +446,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "597a2906188681376a5ccaa9ad9935f2662795083d7e55114e09ce28aa0bec2e",
       "synthetic_root_union": [
         0
@@ -466,9 +477,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "f82589c021cec381b04e41b7ab04fb86ddede81765885a1699d0143a25afa148",
       "synthetic_root_union": [
         0
@@ -496,9 +508,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "6db8507cf3035831b5fb1b8aa865afdafd0a8e06a4c522ef6a11e50940ef03ee",
       "synthetic_root_union": [
         0
@@ -526,9 +539,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "d3cae66df5ee95d290f67c28daa055d95fe5f25fb0582d36f2f970817bd6cd3e",
       "synthetic_root_union": [
         0
@@ -556,9 +570,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "1b13279f04bab2a4abc4649bb4e28bd85f5830a59d37b03730c757dc6e400d06",
       "synthetic_root_union": [
         0
@@ -586,9 +601,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "bde3554c99e3e53fc328f35c8806d807209227e2544b95fe222f3aa1fcb78dad",
       "synthetic_root_union": [
         0
@@ -616,9 +632,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "b13a9f99e14e755f8f3c18f9b016515caa55d3949c2726c5bbfe708df6ec166b",
       "synthetic_root_union": [
         0
@@ -646,9 +663,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "0578747f04538bd1265b8e1ecb959c7e8ef90b1d42c374d66e6259eea808287e",
       "synthetic_root_union": [
         0
@@ -676,9 +694,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "0ff5e63e756d4d1065b33d39a9a86bc8b2ca3fdb813dade6c152182eca6edfae",
       "synthetic_root_union": [
         0
@@ -706,9 +725,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "02eb2ff9a6990367efacc65e53b6d3f72bf9c25e55da4fc6ea93801cb397a7f2",
       "synthetic_root_union": [
         0
@@ -736,9 +756,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "3439d48c1bc74ea02dc9c1110e0bc0013fef7ba5cf8bc2b27f85a9e59017fa8f",
       "synthetic_root_union": [
         0
@@ -766,9 +787,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "8517752a8be049d9864a5ad61514fbb4b1ffdd5216a113f2b1c6d1e577f9ce4e",
       "synthetic_root_union": [
         0
@@ -796,9 +818,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "7a9cab7264c1ba07e76130a5685f148212acbdbe260f65da2a91419d8e0db23c",
       "synthetic_root_union": [
         0
@@ -826,9 +849,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "09dfbf6844a9b0b8e429cc5cab3ff8c376cb20c2a2981a6b3a0d7f2f120cf8a6",
       "synthetic_root_union": [
         0
@@ -856,9 +880,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "d6c2cbaee9ffde822c5939efc78ff6a6ce91c61463773cc20b485ce1118e2a71",
       "synthetic_root_union": [
         0
@@ -886,9 +911,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "ece581841397356a61d6275370b5b7a8dc2078185d10ae8b58a0f51c1205c8ec",
       "synthetic_root_union": [
         0
@@ -916,9 +942,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "a0761afc4916d31cc9ec154107d635f27ffce654ab4db5a22577b0586309ebc1",
       "synthetic_root_union": [
         0
@@ -946,9 +973,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "ac3cb1139fa8d5de476a13a030be0013e213bc8ef454b7587f6de54dc8d4f677",
       "synthetic_root_union": [
         0
@@ -976,9 +1004,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "5185a2b887e5ad1784c627db5bbcb8fee0aaffdd7f48036f2bdf139a0560179c",
       "synthetic_root_union": [
         0
@@ -1006,9 +1035,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "8c04d7e8b26f2e7257e2f33ad6901885de9e13c1b197c74b2f5ca7c66df5153e",
       "synthetic_root_union": [
         0
@@ -1036,9 +1066,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "5058adb61cf811b96ed320a1a0ebaacdc9d440b5b3c70f975ee9283527563c94",
       "synthetic_root_union": [
         0
@@ -1066,9 +1097,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "4e72be09078df5803ae6c0c7529c201a93f91d99b4923e51aa563861f67b424c",
       "synthetic_root_union": [
         0
@@ -1096,9 +1128,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "3c0f1e140e14102b3921ac41bae15f6b14fb34227ef344794f0a2cad2aabc9a2",
       "synthetic_root_union": [
         0
@@ -1126,9 +1159,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "887cd79803360e1fb92bb3f794fc5bc0d0b5ed4c20448fb3ff51d65608127fd3",
       "synthetic_root_union": [
         0
@@ -1156,9 +1190,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "dd6165133320764aa8b1a6220581802d9a6414fccee0a295fdc5f676fa19049f",
       "synthetic_root_union": [
         0
@@ -1186,9 +1221,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "95faac7f3ceae4acbbe6ad4ecfcd4a7ca522326bf46d559b6f79674c7ceb437d",
       "synthetic_root_union": [
         0
@@ -1232,9 +1268,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "21c7f2a3715aff10091e7af2619cfb3df157dcb8b1d22d3279712f648d8e9d82",
       "synthetic_root_union": [
         0
@@ -1278,9 +1315,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "b3f25b8053f6dcf89931fe5c7b70d216d9bd78bf5e50c03795d196230bab06f3",
       "synthetic_root_union": [
         0
@@ -1324,9 +1362,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "d529b46193d6c9eb43f5f6e7a177d68ed508a895dfc965ff21fb88869b6a8240",
       "synthetic_root_union": [
         0
@@ -1370,9 +1409,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "17a64e9ffac3d6ea6906b1a8e02ea2544964213824a4a8f1c6cccd9b90e5fe9a",
       "synthetic_root_union": [
         0
@@ -1416,9 +1456,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 0,
+      "synthetic_low_rank2_root_status": "exact_nonsquare",
       "synthetic_low_rank2_sidecar_hash": "b2fce5c3311f0aef0da93e8f27cd90f7a37c43f066ba7aed0de794f16fbc0910",
       "synthetic_root_union": [
         0
@@ -1462,9 +1503,10 @@
       "syndrome_pencil_realizability": "all length-256 u,v syndrome pencils are realized by explicit line values on H",
       "syndrome_realizability_certificate": "experimental/data/certificates/hankel-f17-32-m3-syndrome-realizability/f17_32_n512_k256_m3_syndrome_realizability_certificate.json",
       "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
-      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has degree-bound-only regular root bound 2",
+      "synthetic_low_rank2_family_status": "rank-2 prefix update witness has an exact split/nonsquare quadratic root certificate",
       "synthetic_low_rank2_root_bound": 2,
-      "synthetic_low_rank2_root_status": "degree_bound_only",
+      "synthetic_low_rank2_root_count": 2,
+      "synthetic_low_rank2_root_status": "exact_split",
       "synthetic_low_rank2_sidecar_hash": "15286ea8092f965b6a86165c221910f028eb0133eb6bcadb4608dffcf43674d3",
       "synthetic_root_union": [
         0
@@ -1510,7 +1552,10 @@
     "subgroup_syndrome_section_status": "proved explicit inverse-Fourier section for subgroup syndrome vectors",
     "syndrome_pencil_realizability_status": "all length-256 u,v pencils in the M3 window are realized by explicit line values on H",
     "synthetic_family_status": "proved closed-form root union {0} for all 42 synthetic pencils",
-    "synthetic_low_rank2_family_status": "proved degree-bound-only rank-2 regular root bound 2 for all 42 synthetic pencils",
-    "synthetic_low_rank2_regular_root_bound_sum": 84
+    "synthetic_low_rank2_degree_bound_sum": 84,
+    "synthetic_low_rank2_exact_root_count_sum": 40,
+    "synthetic_low_rank2_family_status": "proved exact split/nonsquare quadratic root table for all 42 rank-2 synthetic pencils",
+    "synthetic_low_rank2_nonsquare_rows": 22,
+    "synthetic_low_rank2_split_rows": 20
   }
 }

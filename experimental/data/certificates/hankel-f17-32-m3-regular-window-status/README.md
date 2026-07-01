@@ -12,7 +12,8 @@ minor certificate, two synthetic all-window families, the fixed top-window v9
 packet, the explicit line-value lift of that fixed packet, and the reusable
 subgroup syndrome-section theorem behind the lift.  The synthetic families are
 the closed-form rank-witness family with root union `{0}` and the rank-2
-low-rank family with degree-bound-only aggregate `84`.
+low-rank family with exact split/nonsquare quadratic root table: 20 split
+rows, 22 nonsquare rows, and 40 finite roots total under degree cap 84.
 
 The ledger also references the M3 syndrome-realizability certificate, which
 proves that every length-256 syndrome pencil in this window is realized by

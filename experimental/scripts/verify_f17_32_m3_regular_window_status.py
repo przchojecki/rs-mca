@@ -141,7 +141,7 @@ def validate_inputs(
         "family root union mismatch",
     )
     require(
-        low_rank_family["schema_version"] == "f17-32-m3-low-rank2-family-v1",
+        low_rank_family["schema_version"] == "f17-32-m3-low-rank2-family-v2",
         "low-rank family schema mismatch",
     )
     require(
@@ -157,8 +157,17 @@ def validate_inputs(
         "low-rank family per-agreement bound mismatch",
     )
     require(
-        low_rank_family["aggregate"]["regular_root_bound_sum"] == 84,
-        "low-rank family aggregate bound mismatch",
+        low_rank_family["aggregate"]["degree_bound_sum"] == 84,
+        "low-rank family degree-bound aggregate mismatch",
+    )
+    require(
+        low_rank_family["aggregate"]["exact_regular_root_count_sum"] == 40,
+        "low-rank family exact-root aggregate mismatch",
+    )
+    require(
+        low_rank_family["aggregate"]["split_quadratic_rows"] == 20
+        and low_rank_family["aggregate"]["nonsquare_quadratic_rows"] == 22,
+        "low-rank family split/nonsquare count mismatch",
     )
     require(
         low_rank_family["aggregate"]["generic_degree_bound_sum_for_window"]
@@ -174,6 +183,15 @@ def validate_inputs(
         and low_rank_family["endpoint_crosscheck"]["coefficients_match"] is True
         and low_rank_family["endpoint_crosscheck"]["sidecar_match"] is True,
         "low-rank family endpoint cross-check mismatch",
+    )
+    require(
+        low_rank_family["endpoint_crosscheck"]["roots_match"] is True
+        and low_rank_family["endpoint_crosscheck"]["root_certificate_match"] is True
+        and low_rank_family["endpoint_crosscheck"][
+            "quadratic_certificate_match"
+        ]
+        is True,
+        "low-rank family endpoint root cross-check mismatch",
     )
     require(
         top_packet["exact_agreements"][0]["A"] == TOP_WINDOW_MIN
@@ -395,9 +413,24 @@ def per_agreement_records(
         )
         require(
             low_rank_item["degree_bound"] == 2
-            and low_rank_item["root_status"] == "degree_bound_only",
+            and low_rank_item["root_status"] in {"exact_split", "exact_nonsquare"}
+            and low_rank_item["root_count"] in {0, 2},
             f"A={agreement}: low-rank family status mismatch",
         )
+        if low_rank_item["root_status"] == "exact_split":
+            require(
+                low_rank_item["root_count"] == 2
+                and low_rank_item["quadratic_root_certificate"]["kind"]
+                == "quadratic_discriminant_split",
+                f"A={agreement}: split low-rank row mismatch",
+            )
+        else:
+            require(
+                low_rank_item["root_count"] == 0
+                and low_rank_item["quadratic_root_certificate"]["kind"]
+                == "quadratic_discriminant_nonsquare",
+                f"A={agreement}: nonsquare low-rank row mismatch",
+            )
         require(
             realizability_item["visible_syndrome_length"] == 256
             and realizability_item["section_applies"] is True,
@@ -495,10 +528,11 @@ def per_agreement_records(
                 "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
                 "synthetic_root_union": ROOT_UNION,
                 "synthetic_low_rank2_family_status": (
-                    "rank-2 prefix update witness has degree-bound-only "
-                    "regular root bound 2"
+                    "rank-2 prefix update witness has an exact "
+                    "split/nonsquare quadratic root certificate"
                 ),
                 "synthetic_low_rank2_root_bound": low_rank_item["degree_bound"],
+                "synthetic_low_rank2_root_count": low_rank_item["root_count"],
                 "synthetic_low_rank2_root_status": low_rank_item["root_status"],
                 "synthetic_low_rank2_sidecar_hash": low_rank_item["sidecar_hash"],
                 "syndrome_pencil_realizability": (
@@ -602,7 +636,7 @@ def build_status() -> dict[str, Any]:
         artifact_record(
             "synthetic_low_rank2_family",
             LOW_RANK_FAMILY_REF,
-            "f17-32-m3-low-rank2-family-v1",
+            "f17-32-m3-low-rank2-family-v2",
         ),
         artifact_record("fixed_top_window_v9_packet", TOP_PACKET_REF, "aperiodic-hankel-eliminant-v1"),
         artifact_record(
@@ -652,10 +686,19 @@ def build_status() -> dict[str, Any]:
             "finite_slope_budget_numerator": plan["budget_context"]["budget_numerator"],
             "generic_regular_minors_status": "proved generically nonzero for every row-set chart",
             "synthetic_family_status": "proved closed-form root union {0} for all 42 synthetic pencils",
-            "synthetic_low_rank2_family_status": "proved degree-bound-only rank-2 regular root bound 2 for all 42 synthetic pencils",
-            "synthetic_low_rank2_regular_root_bound_sum": low_rank_family[
+            "synthetic_low_rank2_family_status": "proved exact split/nonsquare quadratic root table for all 42 rank-2 synthetic pencils",
+            "synthetic_low_rank2_degree_bound_sum": low_rank_family["aggregate"][
+                "degree_bound_sum"
+            ],
+            "synthetic_low_rank2_exact_root_count_sum": low_rank_family[
                 "aggregate"
-            ]["regular_root_bound_sum"],
+            ]["exact_regular_root_count_sum"],
+            "synthetic_low_rank2_split_rows": low_rank_family["aggregate"][
+                "split_quadratic_rows"
+            ],
+            "synthetic_low_rank2_nonsquare_rows": low_rank_family["aggregate"][
+                "nonsquare_quadratic_rows"
+            ],
             "fixed_top_window_status": "one v9 packet covers A=421..426 with root union {0}",
             "fixed_top_window_line_value_status": "explicit f,g line values replay the fixed top-window syndrome input",
             "subgroup_syndrome_section_status": "proved explicit inverse-Fourier section for subgroup syndrome vectors",
@@ -680,7 +723,7 @@ def build_status() -> dict[str, Any]:
                 "the v9 regular window is exactly 385 <= A <= 426",
                 "every maximal row-set regular minor is generically nonzero",
                 "the synthetic u=0 family has exact root union {0}",
-                "the synthetic rank-2 low-rank family has regular root bound 2 for every agreement, aggregate 84",
+                "the synthetic rank-2 low-rank family has exact split/nonsquare quadratic root table with 40 roots total, below degree cap 84",
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
                 "the fixed top-window syndrome input has an explicit line-value lift",
                 "subgroup syndrome vectors have an explicit inverse-Fourier line-value section",

@@ -19,13 +19,18 @@ K_ab=sum_i L_i(y_a)L_i(y_b),
 ```
 
 where the `L_i` are the Lagrange basis polynomials on `X`.  Thus every row in
-the family has degree at most `2`, independent of the prefix minor size.  The
-certificate records the 42 compressed kernels and determinant coefficients,
-cross-checking the `A=426` endpoint against the existing exact-root v9 packet.
+the family has degree at most `2`, independent of the prefix minor size.
 
-The aggregate regular root bound for this synthetic family is therefore `84`,
-compared with the generic degree-bound sum `4515` for the same agreement
-window.
+The certificate now applies the rank-2 discriminant gate to every row.  Of the
+42 quadratics, 20 split over `F_17^32` and 22 have nonsquare discriminant, so
+the exact finite-root total is `40`.  The certificate records the compressed
+kernels, determinant coefficients, split-linear or nonsquare quadratic
+certificates, and cross-checks the `A=426` endpoint against the existing
+exact-root v9 packet.
+
+The aggregate degree cap for this synthetic family is `84`, compared with the
+generic degree-bound sum `4515` for the same agreement window; the exact
+finite-root count is `40`.
 
 Run:
 
@@ -35,6 +40,5 @@ python3 experimental/scripts/verify_f17_32_m3_low_rank2_family.py \
 ```
 
 Non-claims: this is a synthetic syndrome-pencil family certificate, not a
-worst-case MCA row bound, not a worst-case root table over `F_17^32`, and not a
-quotient/tangent subtraction ledger.  Roots are not enumerated here; the rows
-are degree-bound-only charts.
+worst-case MCA row bound, not a worst-case root table over arbitrary
+`F_17^32` row data, and not a quotient/tangent subtraction ledger.

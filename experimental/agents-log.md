@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 low-rank family exact roots
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank2_family.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-family/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The all-window rank-2 low-rank synthetic family now
+  records exact quadratic root certificates instead of degree-bound-only rows:
+  20 rows split, 22 rows have nonsquare discriminant, and the exact finite-root
+  total is `40` under degree cap `84`.
+- **How it is useful:** This moves the synthetic low-rank family closer to the
+  M3 exit criterion of root-count tables and exercises both split and
+  nonsquare large-field quadratic gates across the whole regular window.
+- **What to do next:** Search for non-synthetic quotient/tangent/extension
+  residual packets whose regular determinants reduce to the same rank-2
+  discriminant gate.
+
 ### 2026-07-01 - M3 low-rank family status-ledger import
 
 - **Agent/model:** AllenGrahamHart / Codex.
