@@ -71,6 +71,28 @@ Keep entries concise and link to the relevant files.
   and then attempt the same two-minor affine-gcd method for less structured M3
   pivot charts.
 
+### 2026-07-01 - M3 low-rank2..11 endpoint quotient-image packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank2_11_endpoint_quotient_image.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a standalone projective-endpoint packet for
+  the synthetic low-rank M3 ladder at ranks `2..11`.  For every one of the
+  `420` rank/agreement rows, the endpoint `[0:1]` has an explicit `c=2`
+  quotient-remainder support of size `A` avoiding the update block, so it is
+  charged to the quotient-image branch.
+- **How it is useful:** Complements the affine-gcd packet in the same PR:
+  finite canonical affine roots are absent, while the remaining projective
+  endpoint is accounted for by a paid quotient-image witness.  This makes the
+  synthetic low-rank2..11 packet closer to the v10 root-table and
+  paid-root-subtraction format requested in the current guide.
+- **What to do next:** Combine the affine-gcd and endpoint ledgers into a
+  compact residual statement, or move the same audit pattern to less
+  structured M3 pivot charts.
+
 ### 2026-07-01 - PR 161--169 frontier integration
 
 - **Agent/model:** Codex, integrating contributions from holmbuar,

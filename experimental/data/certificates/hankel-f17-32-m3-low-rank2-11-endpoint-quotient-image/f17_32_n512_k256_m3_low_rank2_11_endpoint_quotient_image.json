@@ -1,0 +1,252 @@
+{
+  "aggregate": {
+    "agreement_count": 42,
+    "all_projective_endpoints_have_quotient_image_witness": true,
+    "endpoint_quotient_image_witness_count": 420,
+    "fiber_size": 2,
+    "maximum_vandermonde_union_bound": 255,
+    "projective_point": "[0:1]",
+    "quotient_order": 256,
+    "rank_count": 10,
+    "rank_summaries": {
+      "10": {
+        "agreement_count": 42,
+        "all_witnesses_use_c2": true,
+        "endpoint_quotient_image_witness_count": 42,
+        "fiber_size": 2,
+        "maximum_vandermonde_union_bound": 255,
+        "rank": 10
+      },
+      "11": {
+        "agreement_count": 42,
+        "all_witnesses_use_c2": true,
+        "endpoint_quotient_image_witness_count": 42,
+        "fiber_size": 2,
+        "maximum_vandermonde_union_bound": 255,
+        "rank": 11
+      },
+      "2": {
+        "agreement_count": 42,
+        "all_witnesses_use_c2": true,
+        "endpoint_quotient_image_witness_count": 42,
+        "fiber_size": 2,
+        "maximum_vandermonde_union_bound": 255,
+        "rank": 2
+      },
+      "3": {
+        "agreement_count": 42,
+        "all_witnesses_use_c2": true,
+        "endpoint_quotient_image_witness_count": 42,
+        "fiber_size": 2,
+        "maximum_vandermonde_union_bound": 255,
+        "rank": 3
+      },
+      "4": {
+        "agreement_count": 42,
+        "all_witnesses_use_c2": true,
+        "endpoint_quotient_image_witness_count": 42,
+        "fiber_size": 2,
+        "maximum_vandermonde_union_bound": 255,
+        "rank": 4
+      },
+      "5": {
+        "agreement_count": 42,
+        "all_witnesses_use_c2": true,
+        "endpoint_quotient_image_witness_count": 42,
+        "fiber_size": 2,
+        "maximum_vandermonde_union_bound": 255,
+        "rank": 5
+      },
+      "6": {
+        "agreement_count": 42,
+        "all_witnesses_use_c2": true,
+        "endpoint_quotient_image_witness_count": 42,
+        "fiber_size": 2,
+        "maximum_vandermonde_union_bound": 255,
+        "rank": 6
+      },
+      "7": {
+        "agreement_count": 42,
+        "all_witnesses_use_c2": true,
+        "endpoint_quotient_image_witness_count": 42,
+        "fiber_size": 2,
+        "maximum_vandermonde_union_bound": 255,
+        "rank": 7
+      },
+      "8": {
+        "agreement_count": 42,
+        "all_witnesses_use_c2": true,
+        "endpoint_quotient_image_witness_count": 42,
+        "fiber_size": 2,
+        "maximum_vandermonde_union_bound": 255,
+        "rank": 8
+      },
+      "9": {
+        "agreement_count": 42,
+        "all_witnesses_use_c2": true,
+        "endpoint_quotient_image_witness_count": 42,
+        "fiber_size": 2,
+        "maximum_vandermonde_union_bound": 255,
+        "rank": 9
+      }
+    },
+    "record_count": 420,
+    "syndrome_length": 256
+  },
+  "agreement_range": [
+    385,
+    426
+  ],
+  "claim": "For every synthetic rank-2..11 projective endpoint row in the F_17^32 M3 regular window, the endpoint [0:1] lies in the quotient-image branch: it has an explicit c=2 quotient-remainder witness support of size A.",
+  "deterministic_records": {
+    "first_record": {
+      "A": 385,
+      "base_node_count": 128,
+      "base_node_range": [
+        0,
+        127
+      ],
+      "endpoint_image_audit": {
+        "reason_u": "Syn(f)=u lies in W_X with |X|=j+1, while the quotient co-support T has size j; if u lay in W_T then the Vandermonde columns on X union T would satisfy a nontrivial relation",
+        "reason_v": "the quotient co-support contains Y, and Syn(g)=v lies in the parity-column span W_Y",
+        "status": "quotient_image_witness",
+        "syndrome_length": 256,
+        "u_explained_on_quotient_co_support": false,
+        "v_explained_on_quotient_co_support": true,
+        "vandermonde_union_bound": 255
+      },
+      "j": 127,
+      "projective_point": "[0:1]",
+      "quotient_remainder_witness_support": {
+        "co_support_contains_update_block": true,
+        "co_support_size": 127,
+        "fiber_size": 2,
+        "full_fiber_count": 192,
+        "full_fiber_residue_count": 192,
+        "full_fiber_residue_range": [
+          0,
+          193
+        ],
+        "hit_update_residues": [
+          128,
+          129
+        ],
+        "quotient_order": 256,
+        "remainder_exponents": [
+          194
+        ],
+        "remainder_size": 1,
+        "support_avoids_update_block": true,
+        "support_exponent_hash": "df3bd442ea19052a601a856094c8bcf4010f1ece8081a444415deddc67125edf",
+        "support_size": 385
+      },
+      "rank": 2,
+      "t": 129,
+      "update_node_range": [
+        128,
+        129
+      ]
+    },
+    "last_record": {
+      "A": 426,
+      "base_node_count": 87,
+      "base_node_range": [
+        0,
+        86
+      ],
+      "endpoint_image_audit": {
+        "reason_u": "Syn(f)=u lies in W_X with |X|=j+1, while the quotient co-support T has size j; if u lay in W_T then the Vandermonde columns on X union T would satisfy a nontrivial relation",
+        "reason_v": "the quotient co-support contains Y, and Syn(g)=v lies in the parity-column span W_Y",
+        "status": "quotient_image_witness",
+        "syndrome_length": 256,
+        "u_explained_on_quotient_co_support": false,
+        "v_explained_on_quotient_co_support": true,
+        "vandermonde_union_bound": 173
+      },
+      "j": 86,
+      "projective_point": "[0:1]",
+      "quotient_remainder_witness_support": {
+        "co_support_contains_update_block": true,
+        "co_support_size": 86,
+        "fiber_size": 2,
+        "full_fiber_count": 213,
+        "full_fiber_residue_count": 213,
+        "full_fiber_residue_range": [
+          0,
+          223
+        ],
+        "hit_update_residues": [
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97
+        ],
+        "quotient_order": 256,
+        "remainder_exponents": [],
+        "remainder_size": 0,
+        "support_avoids_update_block": true,
+        "support_exponent_hash": "02df4eb4e975e6d53c8a9e98b0886c96124e21e1a73496e059bdf2a77c8160ff",
+        "support_size": 426
+      },
+      "rank": 11,
+      "t": 170,
+      "update_node_range": [
+        87,
+        97
+      ]
+    },
+    "record_count": 420,
+    "record_sha256": "567d6421d38e61de896c1d394c7b0ea7358d670bdb86086c21730ad720d2869a",
+    "storage": "compressed; verifier rebuilds all quotient-image witnesses"
+  },
+  "method": {
+    "image_map": "because the quotient co-support contains Y, [0:1] is explained there by v; because |X|=j+1, |T|=j, and |X union T|<=n-k, u is not explained there",
+    "projective_endpoint": "for projective line Z0*u + Z1*v, this witness contributes the single quotient-image point [0:1]",
+    "quotient_remainder_witness": "construct an agreement-size support from c=2 quotient fibers plus the parity remainder, choosing only residues that avoid the update block Y"
+  },
+  "nonclaims": [
+    "synthetic low-rank endpoint rows only",
+    "finite affine regular-minor roots are not audited here",
+    "does not claim the minimal endpoint support D minus Y is quotient-remainder",
+    "not an arbitrary-row M3 threshold bound"
+  ],
+  "ranks": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "row": {
+    "domain_description": "order-512 multiplicative subgroup generated by generator_encoding",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "f17-32-m3-low-rank2-11-endpoint-quotient-image-v1",
+  "source_artifacts": {
+    "paper_d_v10": {
+      "ref": "tex/cs25_cap_v10.tex",
+      "sha256": "64fb843392bef75b05b50fcdae7f2e6ff9ae3b229d6848cacc39ecb28fd153ea"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "schema_version": "f17-32-hankel-row-descriptor-v1",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT"
+}
