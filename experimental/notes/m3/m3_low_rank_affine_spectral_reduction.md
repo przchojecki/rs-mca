@@ -440,6 +440,53 @@ Toeplitz-Cauchy spectral-disjointness problem with explicit nonzero diagonal
 weights.  This is still not a proof of coprimality, but it removes arbitrary
 matrix structure from the normalized low-rank branch.
 
+## Rank-One Displacement
+
+The same Toeplitz-Cauchy factor has displacement rank one.  Let
+
+```text
+U = diag(alpha^(m+a))_{0 <= a < r},
+V = diag(alpha^(-i))_{0 <= i < m},
+1_r = column vector of r ones,
+1_m = column vector of m ones.
+```
+
+Then
+
+```text
+T_{m,r} - U T_{m,r} V = 1_r 1_m^T.
+```
+
+This is an entrywise identity:
+
+```text
+(1-alpha^(m+a-i)) T_{m,r}[a,i] = 1.
+```
+
+In the endpoint-capacity range the factors `1-alpha^(m+a-i)` are all nonzero,
+so the Sylvester operator
+
+```text
+Delta(X) = X - U X V
+```
+
+is invertible on `r x m` matrices, with explicit inverse
+
+```text
+Delta^(-1)(B)[a,i] = B[a,i]/(1-alpha^(m+a-i)).
+```
+
+Thus `T_{m,r}` is the unique solution of a rank-one displacement equation, and
+the normalized Lagrange evaluation matrix is
+
+```text
+L = diag(rho_a) Delta^(-1)(1_r 1_m^T) diag(gamma_i).
+```
+
+The remaining spectral-disjointness target can therefore be viewed as a
+weighted Gram problem for a rank-one displacement inverse, not merely as a
+family of unrelated small dense matrices.
+
 ## Window Normalization
 
 Two elementary invariances reduce the consecutive-subgroup case to a normalized
