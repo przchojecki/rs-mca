@@ -2804,13 +2804,12 @@ def low_rank_lagrange_kernel_field(
     return kernel
 
 
-def low_rank_compression_sidecar_field(
+def low_rank_compression_coefficients_field(
     base_nodes: list[tuple[int, ...]],
     update_nodes: list[tuple[int, ...]],
-    coefficients: list[tuple[int, ...]],
     field: PolynomialBasisField,
     location: str,
-) -> dict[str, Any]:
+) -> tuple[list[tuple[int, ...]], dict[str, Any]]:
     kernel = low_rank_lagrange_kernel_field(base_nodes, update_nodes, field)
     kernel_polynomial_matrix = [
         [
@@ -2826,11 +2825,7 @@ def low_rank_compression_sidecar_field(
     hankel_coefficients = extension_poly_scale(
         kernel_coefficients, base_determinant, field
     )
-    if extension_poly_trim(hankel_coefficients, field) != extension_poly_trim(
-        coefficients, field
-    ):
-        raise PacketError(f"{location}: low-rank compression does not replay")
-    return {
+    sidecar = {
         "kind": "square_base_lagrange_kernel",
         "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
         "base_node_count": len(base_nodes),
@@ -2844,23 +2839,7 @@ def low_rank_compression_sidecar_field(
             field.encode(coefficient) for coefficient in hankel_coefficients
         ],
     }
-
-
-def validate_low_rank_compression_sidecar_field(
-    sidecar: Any,
-    base_nodes: list[tuple[int, ...]],
-    update_nodes: list[tuple[int, ...]],
-    coefficients: list[tuple[int, ...]],
-    field: PolynomialBasisField,
-    location: str,
-) -> None:
-    if not isinstance(sidecar, dict):
-        raise PacketError(f"{location}: low_rank_compression must be an object")
-    expected = low_rank_compression_sidecar_field(
-        base_nodes, update_nodes, coefficients, field, location
-    )
-    if sidecar != expected:
-        raise PacketError(f"{location}: low_rank_compression sidecar mismatch")
+    return hankel_coefficients, sidecar
 
 
 def require_low_rank_update_metadata(
@@ -2953,22 +2932,19 @@ def validate_low_rank_update_replay_field(
     decoded = extension_poly_trim(
         [field.decode(coefficient) for coefficient in coefficients], field
     )
-    expected = low_rank_update_coefficients_field(
+    expected, expected_sidecar = low_rank_compression_coefficients_field(
         base_nodes, update_nodes, field, location
     )
-    if decoded != expected:
+    if decoded != extension_poly_trim(expected, field):
         raise PacketError(
-            f"{location}: low-rank extension coefficients do not match replay"
+            f"{location}: low-rank extension coefficients do not match "
+            "compressed replay"
         )
     if compression_sidecar is not None:
-        validate_low_rank_compression_sidecar_field(
-            compression_sidecar,
-            base_nodes,
-            update_nodes,
-            decoded,
-            field,
-            location,
-        )
+        if not isinstance(compression_sidecar, dict):
+            raise PacketError(f"{location}: low_rank_compression must be an object")
+        if compression_sidecar != expected_sidecar:
+            raise PacketError(f"{location}: low_rank_compression sidecar mismatch")
     return True
 
 

@@ -127,10 +127,22 @@ update nodes and proves a degree-2 regular-minor bound.  The compressed
 quadratic splits over `F_17^32`, so the packet now records the exact two roots,
 their split-linear factorization certificate, a quadratic discriminant
 certificate, and `declared_aperiodic_numerator = 2`.  The packet checker
-replays the low-rank moments, the Cauchy-Binet coefficients, the compressed
-Lagrange kernel sidecar, and the quadratic formula.  The companion invalid
-fixtures mutate one coefficient, one kernel entry, one root table, and one
-quadratic square root, respectively, and all are required to fail replay.
+replays the low-rank moments, the compressed Lagrange-kernel determinant
+coefficients, the sidecar itself, and the quadratic formula.  The companion
+invalid fixtures mutate one coefficient, one kernel entry, one root table, and
+one quadratic square root, respectively, and all are required to fail replay.
+
+For extension-field low-rank packets, the extractor and checker now use the
+compressed determinant-lemma coefficients as the primary replay path:
+
+```text
+Delta_r(Z)=det(H_X) det(I+ZK).
+```
+
+The Cauchy-Binet identity remains the theorem behind the template certificate,
+but packet replay no longer has to recompute the large-minor coefficient sums
+before checking the small kernel sidecar.  This is the scalable path for future
+rank-3 or higher low-rank stress packets.
 
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform quotient/tangent

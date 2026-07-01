@@ -28,7 +28,8 @@ Delta(Z)=det(H_X) det(I+ZK)
 ```
 
 with `K` computed from the Lagrange kernel on `X`; the checker recomputes this
-sidecar from the replay input.
+sidecar from the replay input and uses the same compressed determinant-lemma
+coefficients for low-rank coefficient replay.
 
 Run:
 

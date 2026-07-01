@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Low-rank compressed replay path
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/README.md`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Extension-field low-rank packets now replay their
+  determinant coefficients through the compressed determinant-lemma identity
+  `Delta(Z)=det(H_X)det(I+ZK)`, instead of recomputing the larger
+  Cauchy-Binet coefficient sums before checking the sidecar.
+- **How it is useful:** This makes the small-kernel theorem the primary
+  scalable packet verifier path for M3 low-rank charts, especially future
+  rank-3 or higher stress packets where direct coefficient sums become much
+  more expensive.
+- **What to do next:** Use the compressed replay path when searching for
+  non-synthetic quotient/tangent/extension-removed low-rank residual packets.
+
 ### 2026-07-01 - Low-rank rank-2 nonsquare packet
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -1311,13 +1311,12 @@ def low_rank_lagrange_kernel_field(
     return kernel
 
 
-def low_rank_compression_audit_field(
+def low_rank_compression_coefficients_field(
     base_nodes: list[tuple[int, ...]],
     update_nodes: list[tuple[int, ...]],
-    coefficients: list[tuple[int, ...]],
     field: PolynomialBasisField,
-) -> dict[str, Any]:
-    """Return the square-base determinant-lemma sidecar for low-rank packets."""
+) -> tuple[list[tuple[int, ...]], dict[str, Any]]:
+    """Return det(H_X)det(I+ZK) coefficients and sidecar data."""
 
     kernel = low_rank_lagrange_kernel_field(base_nodes, update_nodes, field)
     kernel_polynomial_matrix = [
@@ -1330,9 +1329,7 @@ def low_rank_compression_audit_field(
     kernel_coefficients = fpoly_determinant(kernel_polynomial_matrix, field)
     base_determinant = vandermonde_square_field(base_nodes, field)
     hankel_coefficients = fpoly_scale(kernel_coefficients, base_determinant, field)
-    if fpoly_trim(hankel_coefficients, field) != fpoly_trim(coefficients, field):
-        raise ValueError("low-rank compression does not reproduce coefficients")
-    return {
+    sidecar = {
         "kind": "square_base_lagrange_kernel",
         "formula": "Delta(Z)=det(H_X) det(I+Z K), K_ab=sum_i L_i(y_a)L_i(y_b)",
         "base_node_count": len(base_nodes),
@@ -1346,6 +1343,7 @@ def low_rank_compression_audit_field(
             field.encode(coefficient) for coefficient in hankel_coefficients
         ],
     }
+    return hankel_coefficients, sidecar
 
 
 def low_rank_update_data_field(
@@ -1355,7 +1353,12 @@ def low_rank_update_data_field(
     u: list[tuple[int, ...]],
     v: list[tuple[int, ...]],
     field: PolynomialBasisField,
-) -> tuple[list[tuple[int, ...]], list[tuple[int, ...]], list[tuple[int, ...]]]:
+) -> tuple[
+    list[tuple[int, ...]],
+    list[tuple[int, ...]],
+    list[tuple[int, ...]],
+    dict[str, Any],
+]:
     data = spec.get("low_rank_update")
     if not isinstance(data, dict):
         raise ValueError("low_rank_update_bound needs low_rank_update metadata")
@@ -1377,9 +1380,10 @@ def low_rank_update_data_field(
         raise ValueError("low_rank_update u moments do not match base nodes")
     if v[:visible_length] != expected_v:
         raise ValueError("low_rank_update v moments do not match update nodes")
-    return base_nodes, update_nodes, low_rank_update_coefficients_field(
+    polynomial, compression_audit = low_rank_compression_coefficients_field(
         base_nodes, update_nodes, field
     )
+    return base_nodes, update_nodes, polynomial, compression_audit
 
 
 @dataclass(frozen=True)
@@ -2283,11 +2287,10 @@ def extract_for_agreement_field(
         )
     if spec.get("certificate_mode") == LOW_RANK_UPDATE_MODE:
         row_set = list(range(size))
-        base_nodes, update_nodes, polynomial = low_rank_update_data_field(
-            spec, size, t + j, u, v, field
-        )
-        compression_audit = low_rank_compression_audit_field(
-            base_nodes, update_nodes, polynomial, field
+        base_nodes, update_nodes, polynomial, compression_audit = (
+            low_rank_update_data_field(
+                spec, size, t + j, u, v, field
+            )
         )
         if fpoly_is_zero(polynomial, field):
             return ExtractionResult(
