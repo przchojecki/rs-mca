@@ -1,0 +1,182 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "base_support_size": 128,
+      "common_gcd_degree_in_u": 0,
+      "common_gcd_encoded_low_to_high": [
+        1
+      ],
+      "direction_support_size": 6,
+      "dual_bases": "barycentric weights times powers of the support nodes",
+      "dual_kernel_dimension": 5,
+      "dual_parity_dimension": 6,
+      "dual_pencil_shape": [
+        6,
+        5
+      ],
+      "finite_canonical_root_count": 0,
+      "finite_nonzero_root_table": [],
+      "finite_z_zero_full_rank": true,
+      "j": 127,
+      "maximal_minor_count": 6,
+      "maximal_minor_degrees": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "moment_annihilation_identity": "For m distinct nodes, barycentric weights times powers 0..d-1 span the nullspace of the first m-d moment rows.",
+      "projective_endpoint_from_rank6_witness": true,
+      "support_union_size": 134,
+      "t": 129
+    },
+    {
+      "A": 386,
+      "base_support_size": 127,
+      "common_gcd_degree_in_u": 0,
+      "common_gcd_encoded_low_to_high": [
+        1
+      ],
+      "direction_support_size": 6,
+      "dual_bases": "barycentric weights times powers of the support nodes",
+      "dual_kernel_dimension": 3,
+      "dual_parity_dimension": 6,
+      "dual_pencil_shape": [
+        6,
+        3
+      ],
+      "finite_canonical_root_count": 0,
+      "finite_nonzero_root_table": [],
+      "finite_z_zero_full_rank": true,
+      "j": 126,
+      "maximal_minor_count": 20,
+      "maximal_minor_degrees": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "moment_annihilation_identity": "For m distinct nodes, barycentric weights times powers 0..d-1 span the nullspace of the first m-d moment rows.",
+      "projective_endpoint_from_rank6_witness": true,
+      "support_union_size": 133,
+      "t": 130
+    },
+    {
+      "A": 387,
+      "base_support_size": 126,
+      "common_gcd_degree_in_u": 0,
+      "common_gcd_encoded_low_to_high": [
+        1
+      ],
+      "direction_support_size": 6,
+      "dual_bases": "barycentric weights times powers of the support nodes",
+      "dual_kernel_dimension": 1,
+      "dual_parity_dimension": 6,
+      "dual_pencil_shape": [
+        6,
+        1
+      ],
+      "finite_canonical_root_count": 0,
+      "finite_nonzero_root_table": [],
+      "finite_z_zero_full_rank": true,
+      "j": 125,
+      "maximal_minor_count": 6,
+      "maximal_minor_degrees": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "moment_annihilation_identity": "For m distinct nodes, barycentric weights times powers 0..d-1 span the nullspace of the first m-d moment rows.",
+      "projective_endpoint_from_rank6_witness": true,
+      "support_union_size": 132,
+      "t": 131
+    }
+  ],
+  "agreements": [
+    385,
+    386,
+    387
+  ],
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "domain elements used by the prefix-plus-six-spikes family are distinct",
+    "dual kernel dimensions are 5, 3, and 1 for A=385,386,387",
+    "parity-check codimension is 6",
+    "all maximal-minor gcds in u are constant",
+    "z=0 is full rank by the base Vandermonde block",
+    "the same split-locator endpoint construction applies at A=385,386,387"
+  ],
+  "dual_gcd_method": {
+    "code": "C=Eval_{<=j}(S), codimension 6",
+    "criterion": "A finite nonzero rank-drop slope exists iff the 6 x d pencil P diag(1 on X, u on Y) K has rank < d.",
+    "finite_nonzero_parameter": "u=1/z",
+    "kernel": "K=ker V_t(S), dimension d=m-t",
+    "root_test": "The gcd of all d x d minors is constant for A=385,386,387; therefore there are no finite nonzero roots over F_17^32 or over scalar extensions.",
+    "support_union_size": "m=j+7"
+  },
+  "family": {
+    "base_support": "prefix X_A={x_0,...,x_j}",
+    "direction_rank": 6,
+    "direction_support": "next six descriptor-domain nodes Y_A={x_{j+1},...,x_{j+6}}",
+    "syndrome": "u_m=sum_{x in X_A} x^m, v_m=sum_{y in Y_A} y^m",
+    "weights": "unit weights in both u and v"
+  },
+  "nonclaims": [
+    "does not classify arbitrary rank-6 Hankel pencils",
+    "does not compute root tables for any family other than prefix-plus-six-spikes",
+    "does not prove endpoint payment or quotient/extension status",
+    "not a worst-case support-wise MCA row bound"
+  ],
+  "object": "rank-6 prefix-plus-six-spikes finite-root closure at A=385..387",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "f17-32-m3-rank6-boundary-dual-gcd-v1",
+  "source_artifacts": {
+    "regular_root_rank_drop_bridge": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/f17_32_n512_k256_m3_m5_regular_root_rank_drop.json",
+      "sha256": "55ee410863252e4c7633c110c458058135ccccaa5963a478e51cc18805d7fd12"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / COMPUTATIONAL",
+  "summary": {
+    "agreement_count": 3,
+    "extends_rank6_projective_witness_to_full_window": true,
+    "finite_canonical_root_count_per_agreement": 0,
+    "full_window": [
+      385,
+      426
+    ]
+  }
+}

@@ -9,10 +9,10 @@ regular M3 window for
 C = RS[F_17^32,H,256],    |H| = 512.
 ```
 
-It applies on the subwindow
+It applies on the full regular M3 window
 
 ```text
-388 <= A <= 426.
+385 <= A <= 426.
 ```
 
 For each agreement, put `j=512-A` and use the prefix base support
@@ -23,16 +23,16 @@ six domain nodes
 Y_A={x_{j+1},...,x_{j+6}}.
 ```
 
-Then `rank H(v)=6`.  Every finite slope has full column rank, so the v10
-canonical finite root table is empty.  At projective infinity, the locator
-whose roots are all six direction nodes and the first `j-6` base nodes divides
-`X^512-1`, satisfies `H(v)ell=0`, and has `H(u)ell!=0` by a 7x7 Vandermonde
-argument on the surviving base nodes.
+Then `rank H(v)=6`.  The finite canonical root table is empty: for
+`388<=A<=426` this is a direct full-support Vandermonde rank argument, while
+`A=385,386,387` are closed by the boundary dual-gcd packet.  At projective
+infinity, the locator whose roots are all six direction nodes and the first
+`j-6` base nodes divides `X^512-1`, satisfies `H(v)ell=0`, and has
+`H(u)ell!=0` by a 7x7 Vandermonde argument on the surviving base nodes.
 
 This proves that a genuine support-wise endpoint can occur in a
 Hankel-realizable rank-6 direction family.  It does not prove simultaneous
-rank-6 finite sharpness and endpoint sharpness, and it makes no claim for
-`A=385..387`.
+rank-6 finite sharpness and endpoint sharpness.
 
 Replay:
 

@@ -1,6 +1,153 @@
 {
   "agreement_records": [
     {
+      "A": 385,
+      "base_plus_direction_support_size": 134,
+      "base_support_size": 128,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "method": "dual-gcd boundary certificate",
+        "support_union_size": 134,
+        "t_at_least_support_union_size": false,
+        "z_nonzero_rank": "full_rank_by_boundary_dual_gcd",
+        "z_zero_rank": 128
+      },
+      "j": 127,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 122,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            120
+          ],
+          "direction_index_range": [
+            128,
+            133
+          ],
+          "root_count": 127
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          121,
+          127
+        ]
+      },
+      "t": 129
+    },
+    {
+      "A": 386,
+      "base_plus_direction_support_size": 133,
+      "base_support_size": 127,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "method": "dual-gcd boundary certificate",
+        "support_union_size": 133,
+        "t_at_least_support_union_size": false,
+        "z_nonzero_rank": "full_rank_by_boundary_dual_gcd",
+        "z_zero_rank": 127
+      },
+      "j": 126,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 121,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            119
+          ],
+          "direction_index_range": [
+            127,
+            132
+          ],
+          "root_count": 126
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          120,
+          126
+        ]
+      },
+      "t": 130
+    },
+    {
+      "A": 387,
+      "base_plus_direction_support_size": 132,
+      "base_support_size": 126,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "method": "dual-gcd boundary certificate",
+        "support_union_size": 132,
+        "t_at_least_support_union_size": false,
+        "z_nonzero_rank": "full_rank_by_boundary_dual_gcd",
+        "z_zero_rank": 126
+      },
+      "j": 125,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 120,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            118
+          ],
+          "direction_index_range": [
+            126,
+            131
+          ],
+          "root_count": 125
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          119,
+          125
+        ]
+      },
+      "t": 131
+    },
+    {
       "A": 388,
       "base_plus_direction_support_size": 131,
       "base_support_size": 125,
@@ -13,6 +160,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 131,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 125,
@@ -61,6 +209,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 130,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 124,
@@ -109,6 +258,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 129,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 123,
@@ -157,6 +307,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 128,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 122,
@@ -205,6 +356,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 127,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 121,
@@ -253,6 +405,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 126,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 120,
@@ -301,6 +454,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 125,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 119,
@@ -349,6 +503,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 124,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 118,
@@ -397,6 +552,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 123,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 117,
@@ -445,6 +601,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 122,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 116,
@@ -493,6 +650,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 121,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 115,
@@ -541,6 +699,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 120,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 114,
@@ -589,6 +748,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 119,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 113,
@@ -637,6 +797,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 118,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 112,
@@ -685,6 +846,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 117,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 111,
@@ -733,6 +895,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 116,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 110,
@@ -781,6 +944,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 115,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 109,
@@ -829,6 +993,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 114,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 108,
@@ -877,6 +1042,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 113,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 107,
@@ -925,6 +1091,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 112,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 106,
@@ -973,6 +1140,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 111,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 105,
@@ -1021,6 +1189,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 110,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 104,
@@ -1069,6 +1238,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 109,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 103,
@@ -1117,6 +1287,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 108,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 102,
@@ -1165,6 +1336,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 107,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 101,
@@ -1213,6 +1385,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 106,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 100,
@@ -1261,6 +1434,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 105,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 99,
@@ -1309,6 +1483,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 104,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 98,
@@ -1357,6 +1532,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 103,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 97,
@@ -1405,6 +1581,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 102,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 96,
@@ -1453,6 +1630,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 101,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 95,
@@ -1501,6 +1679,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 100,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 94,
@@ -1549,6 +1728,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 99,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 93,
@@ -1597,6 +1777,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 98,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 92,
@@ -1645,6 +1826,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 97,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 91,
@@ -1693,6 +1875,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 96,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 90,
@@ -1741,6 +1924,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 95,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 89,
@@ -1789,6 +1973,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 94,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 88,
@@ -1837,6 +2022,7 @@
         "comparison_to_budget": "0 <= 6",
         "finite_budget": 6,
         "finite_upper_bound": 0,
+        "method": "Vandermonde full-support rank for every z!=0",
         "support_union_size": 93,
         "t_at_least_support_union_size": true,
         "z_nonzero_rank": 87,
@@ -1878,6 +2064,7 @@
     "the needed prefix domain nodes are distinct",
     "direction rank is exactly 6 by Vandermonde factorization",
     "finite slopes have full column rank for A=388..426",
+    "finite nonzero roots at A=385,386,387 are excluded by the dual-gcd certificate",
     "the projective locator divides X^512-1 by construction",
     "H(v)ell=0 because all direction nodes are locator roots",
     "H(u)ell!=0 because seven surviving base nodes form an invertible Vandermonde system",
@@ -1895,12 +2082,11 @@
     "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
     "domain_size": 512,
     "full_domain_distinct": true,
-    "largest_prefix_support_needed": 131
+    "largest_prefix_support_needed": 134
   },
   "nonclaims": [
     "does not classify arbitrary rank-6 Hankel pencils",
     "does not prove simultaneous rank-6 finite sharpness and projective endpoint sharpness",
-    "does not make a claim for A=385..387",
     "does not prove endpoint payment or quotient/extension status",
     "not a worst-case support-wise MCA row bound"
   ],
@@ -1939,6 +2125,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-projective-split-locator-gate/f17_32_n512_k256_m3_projective_split_locator_gate.json",
       "sha256": "c596c4408b77037de13978bba8dbbc21dd444e2119d2301d593d8421ce7693ff"
     },
+    "rank6_boundary_dual_gcd": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json",
+      "sha256": "0b0303a959784915f2b3a39a0d5f48084b0cad120fb3f4e287bd1a1494b7ffe6"
+    },
     "regular_root_rank_drop_bridge": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/f17_32_n512_k256_m3_m5_regular_root_rank_drop.json",
       "sha256": "55ee410863252e4c7633c110c458058135ccccaa5963a478e51cc18805d7fd12"
@@ -1950,8 +2140,8 @@
   },
   "status": "PROVED / AUDIT for this synthetic family",
   "summary": {
-    "agreement_count": 39,
-    "ambient_projective_kernel_dimension_max": 119,
+    "agreement_count": 42,
+    "ambient_projective_kernel_dimension_max": 122,
     "ambient_projective_kernel_dimension_min": 81,
     "direction_rank": 6,
     "finite_budget": 6,
@@ -1964,20 +2154,23 @@
   "theorem": {
     "canonical_finite_roots": "By the regular-root rank-drop bridge, finite v10 canonical roots are exactly finite rank-drop slopes in nonsingular regular buckets.  The preceding rank computation makes the finite canonical root table empty, even after scalar extension.",
     "direction_rank": "H(v)=V_t(Y_A) V_{j+1}(Y_A)^T has rank 6 because Y_A is distinct and both Vandermonde factors have rank 6.",
-    "finite_z_nonzero": "At z!=0, H(u+zv)=V_t(X_A union Y_A) diag(1,z) V_{j+1}(X_A union Y_A)^T has rank j+1.  The proof uses t>=|X_A union Y_A|=j+7, so the left Vandermonde is injective, while the right Vandermonde has full column rank j+1.",
+    "finite_z_nonzero": "For 388<=A<=426 and z!=0, H(u+zv)=V_t(X_A union Y_A) diag(1,z) V_{j+1}(X_A union Y_A)^T has rank j+1 because t>=|X_A union Y_A|=j+7.  For A=385,386,387, the companion dual-gcd certificate shows the finite nonzero root gcd is constant.",
     "finite_z_zero": "At z=0, H(u)=V_t(X_A) V_{j+1}(X_A)^T has rank j+1 because X_A is distinct and t>=j+1.",
     "projective_witness": "At infinity, choose the monic locator whose roots are all six direction nodes and the first j-6 base nodes.  It divides X^512-1, has degree j, and satisfies H(v)ell=0.  The seven surviving base nodes give H(u)ell!=0 by a 7x7 Vandermonde argument.",
     "rank6_boundary_consequence": "This shows that a genuine support-wise projective endpoint can occur in a Hankel-realizable rank-6 direction family.  Thus the rank-6 boundary cannot be closed by asserting endpoint emptiness from Hankel realizability alone; one needs endpoint payment or finite root-table refinement."
   },
   "window": {
     "A_max": 426,
-    "A_min": 388,
-    "agreement_count": 39,
-    "omission_reason": "For rank 6, the finite-root emptiness proof uses t >= j+7; this starts at A=388.  No claim is made for A=385..387.",
-    "omitted_regular_agreements": [
+    "A_min": 385,
+    "agreement_count": 42,
+    "boundary_dual_gcd_agreements": [
       385,
       386,
       387
+    ],
+    "direct_vandermonde_rank_agreements": [
+      388,
+      426
     ]
   }
 }

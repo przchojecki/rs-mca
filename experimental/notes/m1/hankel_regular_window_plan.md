@@ -147,10 +147,11 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-projective-witness/
   f17_32_n512_k256_m3_rank6_projective_witness.json
 ```
 
-shows that this endpoint issue is not only ambient.  For `388 <= A <= 426`,
+shows that this endpoint issue is not only ambient.  For `385 <= A <= 426`,
 a Hankel-realizable direction-rank-6 prefix-plus-six-spikes family has empty
 finite canonical root table and a genuine split-locator endpoint at `[0:1]`.
-It does not close rank 6, but it rules out endpoint emptiness as a universal
+The first three agreements are closed by a boundary dual-gcd computation.  This
+does not close rank 6, but it rules out endpoint emptiness as a universal
 Hankel-realizability argument.
 
 The first concrete large-field stress packets for this window are the endpoint
@@ -641,16 +642,20 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-projective-witness/
 ```
 
 Unlike the ambient sharpness packet, this is a Hankel moment-pencil family.  On
-`388 <= A <= 426`, it has direction rank `6`, empty finite canonical root
-table, and an actual split-locator projective endpoint.  Thus the endpoint
-half of the rank-6 boundary survives Hankel realizability, although the packet
-does not show simultaneous six finite roots.
+`385 <= A <= 426`, it has direction rank `6`, empty finite canonical root
+table, and an actual split-locator projective endpoint.  The finite roots at
+`A=385,386,387` are excluded by the boundary dual-gcd packet.  Thus the
+endpoint half of the rank-6 boundary survives Hankel realizability, although
+the packet does not show simultaneous six finite roots.
 
 Replay:
 
 ```sh
 python3 experimental/scripts/verify_f17_32_m3_rank6_projective_witness.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-projective-witness/f17_32_n512_k256_m3_rank6_projective_witness.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json
 ```
 
 The affine-pivot compression theorem is:

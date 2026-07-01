@@ -84,9 +84,10 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-projective-witness/
 ```
 
 proves that the endpoint part of the boundary is Hankel-realizable.  On
-`388 <= A <= 426`, a prefix-plus-six-spikes Hankel family has direction rank
+`385 <= A <= 426`, a prefix-plus-six-spikes Hankel family has direction rank
 `6`, empty finite canonical root table, and a genuine split-locator endpoint
-at `[0:1]`.  Thus endpoint emptiness cannot be used as a universal rank-6
+at `[0:1]`; the first three finite-root closures come from the boundary
+dual-gcd packet.  Thus endpoint emptiness cannot be used as a universal rank-6
 closure argument.
 
 The rank-node dichotomy packet
@@ -199,6 +200,9 @@ python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_projective_witness.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-projective-witness/f17_32_n512_k256_m3_rank6_projective_witness.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json
 
 python3 experimental/scripts/verify_m1_hankel_m3_rank_node_dichotomy.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json

@@ -453,14 +453,14 @@ Hankel realizability, but it proves that rank, regularity, and the one-point
 endpoint bound alone cannot close rank `6`.
 
 The rank-6 projective witness companion proves the endpoint half is genuinely
-Hankel-realizable in a structured family.  For `388 <= A <= 426`, take a
+Hankel-realizable in a structured family.  For `385 <= A <= 426`, take a
 prefix base support of size `j+1` and let the direction support be the next six
-domain nodes.  The direction block has rank `6`, every finite slope has full
-column rank by a Vandermonde factorization through `j+7` nodes, and a locator
-containing the six direction nodes plus `j-6` base nodes gives a split
-projective endpoint.  This does not prove the ambient sharpness example is
-Hankel-realizable, but it shows rank-6 endpoint emptiness is not a universal
-Hankel consequence.
+domain nodes.  The direction block has rank `6`; finite roots are excluded by
+a direct Vandermonde factorization for `388 <= A <= 426` and by a boundary
+dual-gcd computation for `A=385,386,387`.  A locator containing the six
+direction nodes plus `j-6` base nodes gives a split projective endpoint.  This
+does not prove the ambient sharpness example is Hankel-realizable, but it shows
+rank-6 endpoint emptiness is not a universal Hankel consequence.
 
 The affine-pivot compression companion gives the finite-root route a concrete
 Hankel-chart target.  If a row-set chart has finite base slope `z0` with

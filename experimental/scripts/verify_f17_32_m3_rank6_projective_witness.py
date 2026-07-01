@@ -31,12 +31,17 @@ TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
 PROJECTIVE_BUDGET = PROJECTIVE_DENOMINATOR // 2**TARGET_BITS
 RANK = 6
-FULL_M3_A_MIN = 385
-A_MIN = 388
+A_MIN = 385
+A_BOUNDARY_MAX = 387
+A_VANDERMONDE_MIN = 388
 A_MAX = 426
 ROW_DESCRIPTOR_REF = (
     "experimental/data/certificates/hankel-f17-32-row-descriptor/"
     "f17_32_n512_k256_hankel_row_descriptor.json"
+)
+BOUNDARY_DUAL_GCD_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/"
+    "f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json"
 )
 RANK_DROP_BRIDGE_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/"
@@ -96,7 +101,16 @@ def agreement_record(agreement: int) -> dict[str, Any]:
     surviving_base_last = j_value
 
     require(j_value >= RANK, f"A={agreement}: locator needs j>=6")
-    require(t_value >= union_size, f"A={agreement}: finite-rank proof needs t>=j+7")
+    if agreement >= A_VANDERMONDE_MIN:
+        require(t_value >= union_size, f"A={agreement}: finite-rank proof needs t>=j+7")
+        finite_method = "Vandermonde full-support rank for every z!=0"
+        z_nonzero_rank: int | str = base_size
+        t_at_least_support_union_size = True
+    else:
+        require(agreement <= A_BOUNDARY_MAX, f"A={agreement}: unexpected boundary agreement")
+        finite_method = "dual-gcd boundary certificate"
+        z_nonzero_rank = "full_rank_by_boundary_dual_gcd"
+        t_at_least_support_union_size = False
     require(base_locator_last + 1 == j_value - RANK, "base locator count mismatch")
     require(surviving_base_last - surviving_base_first + 1 == RANK + 1, "survivor count mismatch")
 
@@ -109,10 +123,11 @@ def agreement_record(agreement: int) -> dict[str, Any]:
         "base_plus_direction_support_size": union_size,
         "direction_rank": RANK,
         "finite_rank_hypothesis": {
-            "t_at_least_support_union_size": True,
+            "method": finite_method,
+            "t_at_least_support_union_size": t_at_least_support_union_size,
             "support_union_size": union_size,
             "z_zero_rank": base_size,
-            "z_nonzero_rank": base_size,
+            "z_nonzero_rank": z_nonzero_rank,
             "canonical_finite_roots": [],
             "canonical_finite_root_count": 0,
             "canonical_common_gcd": "1",
@@ -143,7 +158,7 @@ def agreement_record(agreement: int) -> dict[str, Any]:
 
 def check_dependency_window(ref: str, data: dict[str, Any]) -> None:
     if "window" in data:
-        require(data["window"]["A_min"] <= FULL_M3_A_MIN, f"{ref}: A_min too large")
+        require(data["window"]["A_min"] <= A_MIN, f"{ref}: A_min too large")
         require(data["window"]["A_max"] >= A_MAX, f"{ref}: A_max too small")
     if "row" in data:
         require(data["row"]["n"] == N, f"{ref}: n mismatch")
@@ -153,6 +168,7 @@ def check_dependency_window(ref: str, data: dict[str, Any]) -> None:
 def build_certificate() -> dict[str, Any]:
     field = Field(P, MODULUS)
     descriptor = load_json(ROW_DESCRIPTOR_REF)
+    boundary_dual_gcd = load_json(BOUNDARY_DUAL_GCD_REF)
     rank_drop = load_json(RANK_DROP_BRIDGE_REF)
     projective_kernel = load_json(PROJECTIVE_KERNEL_REF)
     projective_split = load_json(PROJECTIVE_SPLIT_LOCATOR_REF)
@@ -164,9 +180,18 @@ def build_certificate() -> dict[str, Any]:
     require(descriptor["row"]["field_order"] == Q_LINE, "descriptor q mismatch")
     require(descriptor["row"]["syndrome_length"] == N - K, "descriptor syndrome mismatch")
     require(
-        descriptor["m3_regular_window"]["A_min"] == FULL_M3_A_MIN
+        descriptor["m3_regular_window"]["A_min"] == A_MIN
         and descriptor["m3_regular_window"]["A_max"] == A_MAX,
         "descriptor M3 window mismatch",
+    )
+    require(
+        boundary_dual_gcd["schema_version"] == "f17-32-m3-rank6-boundary-dual-gcd-v1",
+        "boundary dual-gcd schema mismatch",
+    )
+    require(boundary_dual_gcd["agreements"] == [385, 386, 387], "boundary agreement mismatch")
+    require(
+        boundary_dual_gcd["summary"]["finite_canonical_root_count_per_agreement"] == 0,
+        "boundary finite-root count mismatch",
     )
     require(
         rank_drop["schema_version"] == "f17-32-m3-m5-regular-root-rank-drop-v1",
@@ -186,6 +211,7 @@ def build_certificate() -> dict[str, Any]:
         "projective budget schema mismatch",
     )
     for ref, data in {
+        BOUNDARY_DUAL_GCD_REF: boundary_dual_gcd,
         RANK_DROP_BRIDGE_REF: rank_drop,
         PROJECTIVE_KERNEL_REF: projective_kernel,
         PROJECTIVE_SPLIT_LOCATOR_REF: projective_split,
@@ -234,6 +260,10 @@ def build_certificate() -> dict[str, Any]:
         },
         "source_artifacts": {
             "row_descriptor": {"ref": ROW_DESCRIPTOR_REF, "sha256": sha256_file(ROW_DESCRIPTOR_REF)},
+            "rank6_boundary_dual_gcd": {
+                "ref": BOUNDARY_DUAL_GCD_REF,
+                "sha256": sha256_file(BOUNDARY_DUAL_GCD_REF),
+            },
             "regular_root_rank_drop_bridge": {
                 "ref": RANK_DROP_BRIDGE_REF,
                 "sha256": sha256_file(RANK_DROP_BRIDGE_REF),
@@ -255,11 +285,8 @@ def build_certificate() -> dict[str, Any]:
             "A_min": A_MIN,
             "A_max": A_MAX,
             "agreement_count": len(records),
-            "omitted_regular_agreements": [385, 386, 387],
-            "omission_reason": (
-                "For rank 6, the finite-root emptiness proof uses t >= j+7; "
-                "this starts at A=388.  No claim is made for A=385..387."
-            ),
+            "boundary_dual_gcd_agreements": [385, 386, 387],
+            "direct_vandermonde_rank_agreements": [388, 426],
         },
         "family": {
             "base_support": "prefix X_A={x_0,...,x_j}",
@@ -278,10 +305,10 @@ def build_certificate() -> dict[str, Any]:
                 "X_A is distinct and t>=j+1."
             ),
             "finite_z_nonzero": (
-                "At z!=0, H(u+zv)=V_t(X_A union Y_A) diag(1,z) "
-                "V_{j+1}(X_A union Y_A)^T has rank j+1.  The proof uses "
-                "t>=|X_A union Y_A|=j+7, so the left Vandermonde is injective, "
-                "while the right Vandermonde has full column rank j+1."
+                "For 388<=A<=426 and z!=0, H(u+zv)=V_t(X_A union Y_A) "
+                "diag(1,z) V_{j+1}(X_A union Y_A)^T has rank j+1 because "
+                "t>=|X_A union Y_A|=j+7.  For A=385,386,387, the companion "
+                "dual-gcd certificate shows the finite nonzero root gcd is constant."
             ),
             "canonical_finite_roots": (
                 "By the regular-root rank-drop bridge, finite v10 canonical "
@@ -347,6 +374,7 @@ def build_certificate() -> dict[str, Any]:
             "the needed prefix domain nodes are distinct",
             "direction rank is exactly 6 by Vandermonde factorization",
             "finite slopes have full column rank for A=388..426",
+            "finite nonzero roots at A=385,386,387 are excluded by the dual-gcd certificate",
             "the projective locator divides X^512-1 by construction",
             "H(v)ell=0 because all direction nodes are locator roots",
             "H(u)ell!=0 because seven surviving base nodes form an invertible Vandermonde system",
@@ -355,7 +383,6 @@ def build_certificate() -> dict[str, Any]:
         "nonclaims": [
             "does not classify arbitrary rank-6 Hankel pencils",
             "does not prove simultaneous rank-6 finite sharpness and projective endpoint sharpness",
-            "does not make a claim for A=385..387",
             "does not prove endpoint payment or quotient/extension status",
             "not a worst-case support-wise MCA row bound",
         ],

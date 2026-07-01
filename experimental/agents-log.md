@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-6 boundary dual gcd
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/`;
+  `experimental/notes/m1/hankel_rank6_boundary_dual_gcd.md`;
+  `experimental/scripts/verify_f17_32_m3_rank6_projective_witness.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-projective-witness/`;
+  `experimental/notes/m1/hankel_rank6_projective_witness.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / COMPUTATIONAL.
+- **What is being added:** An exact dual-gcd computation for the
+  prefix-plus-six-spikes rank-6 family at `A=385,386,387`, proving the finite
+  canonical root table is empty there and upgrading the projective witness
+  family to the full `385 <= A <= 426` regular window.
+- **How it is useful:** It removes the only gap in that synthetic rank-6
+  endpoint family and clarifies that the remaining rank-6 wall is not this
+  family, but simultaneous finite-root sharpness or endpoint payment in more
+  general Hankel pencils.
+- **What to do next:** Use the same small dual-pencil method on other
+  rank-6 structured families when direct full-support Vandermonde rank is not
+  available.
+
 ### 2026-07-01 - M3 rank-6 projective witness family
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
@@ -43,15 +70,16 @@ Keep entries concise and link to the relevant files.
   `experimental/agents-log.md`.
 - **Status:** PROVED / AUDIT for this synthetic family.
 - **What is being added:** A rank-6 Hankel-realizable prefix-plus-six-spikes
-  family for `388 <= A <= 426` with empty finite canonical root table and a
-  genuine split-locator projective endpoint.
+  family for `385 <= A <= 426` with empty finite canonical root table and a
+  genuine split-locator projective endpoint; the three boundary agreements are
+  closed by a dual-gcd companion.
 - **How it is useful:** It shows the rank-6 endpoint-sensitive boundary cannot
   be closed by claiming endpoint emptiness from Hankel realizability alone;
   future work needs endpoint payment, exact finite root tables, or sharper
   Hankel-specific classification.
 - **What to do next:** Search for or rule out simultaneous Hankel-realizable
-  six finite roots plus a split projective endpoint; no claim is made here for
-  `A=385,386,387`.
+  six finite roots plus a split projective endpoint; this remains a synthetic
+  family result, not a worst-case row bound.
 
 ### 2026-07-01 - M3 projective split-locator gate
 
