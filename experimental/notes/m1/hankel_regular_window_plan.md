@@ -423,6 +423,19 @@ three finite roots, and at most four projective regular roots after the
 corrected infinity point, despite degree-only projective bounds `10`, `11`,
 and `12`.
 
+The tangent/common-code-line exclusion companion is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/
+  f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json
+```
+
+For rank `s`, moment zero gives `Syn_0(u+zv)=|X|+s z`, so the only possible
+common-code-line slope is `z=-|X|/s`.  Since `6 <= s <= 11` is nonzero in
+characteristic `17`, the verifier checks `Delta_s(-|X|/s) != 0` for every
+rank/agreement pair.  This proves that the `238` finite roots counted by the
+rank `6..11` slack certificates have zero common-code-line tangent overlap.
+
 The current status ledger
 
 ```text
@@ -506,6 +519,9 @@ python3 experimental/scripts/verify_f17_32_m3_low_rank8_slack_family.py \
 
 python3 experimental/scripts/verify_f17_32_m3_low_rank9_11_slack_sweep.py \
   --check experimental/data/certificates/hankel-f17-32-m3-low-rank9-11-slack-sweep/f17_32_n512_k256_m3_low_rank9_11_slack_sweep_certificate.json
+
+python3 experimental/scripts/verify_f17_32_m3_low_rank6_11_tangent_exclusion.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json
 ```
 
 Non-claims: this note does not enumerate universal root sets for arbitrary

@@ -78,6 +78,13 @@
       "status": "PROVED / AUDIT"
     },
     {
+      "name": "synthetic_low_rank6_11_tangent_exclusion",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json",
+      "schema_version": "f17-32-m3-low-rank6-11-tangent-exclusion-v1",
+      "sha256": "8113f932492c2f13392a39a940ad8c1771b39644706e0324357479e9a30cff54",
+      "status": "PROVED / AUDIT"
+    },
+    {
       "name": "fixed_top_window_v9_packet",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json",
       "schema_version": "aperiodic-hankel-eliminant-v1",
@@ -160,6 +167,7 @@
       "the synthetic rank-7 low-rank slack family has exact Frobenius-gcd root histogram {0:16, 1:15, 2:6, 3:4, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 8",
       "the synthetic rank-8 low-rank slack family has exact Frobenius-gcd root histogram {0:22, 1:10, 2:7, 3:2, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 9",
       "the synthetic rank-9..11 low-rank slack sweep has exact Frobenius-gcd root histograms {9:{0:17, 1:17, 2:6, 3:2}, 10:{0:8, 1:23, 2:9, 3:2}, 11:{0:15, 1:16, 2:5, 3:6}}, so finite-root slack gives at most 4 projective regular roots per checked pair despite degree-only projective bounds 10, 11, and 12",
+      "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
       "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
       "the fixed synthetic top-window packet is v9-checkable for A=421..426",
       "the fixed top-window syndrome input has an explicit line-value lift",
@@ -4129,6 +4137,90 @@
     "synthetic_low_rank5_degree_bound_sum": 210,
     "synthetic_low_rank5_max_projective_regular_roots_per_agreement_bound": 6,
     "synthetic_low_rank5_projective_budget_status": "all 42 rows have at most 6 projective regular roots after including the nonexcluded infinity point, exactly meeting projective budget numerator 6; exact finite roots are not enumerated",
+    "synthetic_low_rank6_11_common_code_line_tangent_overlap": 0,
+    "synthetic_low_rank6_11_roots_after_common_code_line": 238,
+    "synthetic_low_rank6_11_tangent_exclusion_status": "proved that all 238 finite roots counted in the rank-6..11 synthetic low-rank slack certificates have zero common-code-line tangent overlap",
+    "synthetic_low_rank6_11_tangent_rank_summaries": {
+      "10": {
+        "agreement_count": 42,
+        "common_code_line_tangent_overlap_sum": 0,
+        "finite_roots_checked_for_common_code_line": 47,
+        "rank": 10,
+        "regular_roots_after_common_code_line": 47,
+        "root_count_histogram": {
+          "0": 8,
+          "1": 23,
+          "2": 9,
+          "3": 2
+        }
+      },
+      "11": {
+        "agreement_count": 42,
+        "common_code_line_tangent_overlap_sum": 0,
+        "finite_roots_checked_for_common_code_line": 44,
+        "rank": 11,
+        "regular_roots_after_common_code_line": 44,
+        "root_count_histogram": {
+          "0": 15,
+          "1": 16,
+          "2": 5,
+          "3": 6
+        }
+      },
+      "6": {
+        "agreement_count": 42,
+        "common_code_line_tangent_overlap_sum": 0,
+        "finite_roots_checked_for_common_code_line": 35,
+        "rank": 6,
+        "regular_roots_after_common_code_line": 35,
+        "root_count_histogram": {
+          "0": 16,
+          "1": 17,
+          "2": 9
+        }
+      },
+      "7": {
+        "agreement_count": 42,
+        "common_code_line_tangent_overlap_sum": 0,
+        "finite_roots_checked_for_common_code_line": 43,
+        "rank": 7,
+        "regular_roots_after_common_code_line": 43,
+        "root_count_histogram": {
+          "0": 16,
+          "1": 15,
+          "2": 6,
+          "3": 4,
+          "4": 1
+        }
+      },
+      "8": {
+        "agreement_count": 42,
+        "common_code_line_tangent_overlap_sum": 0,
+        "finite_roots_checked_for_common_code_line": 34,
+        "rank": 8,
+        "regular_roots_after_common_code_line": 34,
+        "root_count_histogram": {
+          "0": 22,
+          "1": 10,
+          "2": 7,
+          "3": 2,
+          "4": 1
+        }
+      },
+      "9": {
+        "agreement_count": 42,
+        "common_code_line_tangent_overlap_sum": 0,
+        "finite_roots_checked_for_common_code_line": 35,
+        "rank": 9,
+        "regular_roots_after_common_code_line": 35,
+        "root_count_histogram": {
+          "0": 17,
+          "1": 17,
+          "2": 6,
+          "3": 2
+        }
+      }
+    },
     "synthetic_low_rank6_degree_bound_sum": 252,
     "synthetic_low_rank6_exact_root_count_sum": 35,
     "synthetic_low_rank6_max_projective_regular_roots_per_agreement": 3,

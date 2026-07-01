@@ -78,6 +78,13 @@ sidecar certificates.  It recomputes exact Frobenius-gcd root counts for all
 finite roots and at most four projective regular roots, despite degree-only
 projective bounds `10`, `11`, and `12`.
 
+The rank-6..11 tangent-exclusion audit is the first subtraction check for this
+beyond-envelope low-rank block.  It consumes the exact finite-root certificates
+above and checks the unique moment-zero common-code-line slope
+`z=-|X|/s` for each rank `s`.  The result is zero tangent overlap for all `238`
+finite roots counted in ranks `6..11`, so the low-rank slack roots are not
+removed by the common-code-line tangent ledger.
+
 The ledger also imports the v4 low-rank update template budget envelope.  Since
 both the finite and projective `F_17^32` budget numerators are 6, every nonzero
 regular low-rank update chart of rank at most 6 is within the finite regular

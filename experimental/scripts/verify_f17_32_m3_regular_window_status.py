@@ -69,6 +69,10 @@ LOW_RANK9_11_SLACK_SWEEP_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank9-11-slack-sweep/"
     "f17_32_n512_k256_m3_low_rank9_11_slack_sweep_certificate.json"
 )
+LOW_RANK6_11_TANGENT_EXCLUSION_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/"
+    "f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json"
+)
 TOP_PACKET_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/"
     "f17_32_n512_k256_a421_426_fixed_prefix92_packet.json"
@@ -156,6 +160,7 @@ def validate_inputs(
     low_rank7_slack_family: dict[str, Any],
     low_rank8_slack_family: dict[str, Any],
     low_rank9_11_slack_sweep: dict[str, Any],
+    low_rank6_11_tangent_exclusion: dict[str, Any],
     top_packet: dict[str, Any],
     line_value_lift: dict[str, Any],
     subgroup_section: dict[str, Any],
@@ -810,6 +815,55 @@ def validate_inputs(
         == plan["budget_context"]["degree_bound_sum"],
         "rank-9..11 low-rank slack sweep aggregate mismatch",
     )
+    require(
+        low_rank6_11_tangent_exclusion["schema_version"]
+        == "f17-32-m3-low-rank6-11-tangent-exclusion-v1",
+        "rank-6..11 tangent exclusion schema mismatch",
+    )
+    require(
+        low_rank6_11_tangent_exclusion["agreement_range"]
+        == [AGREEMENT_MIN, AGREEMENT_MAX],
+        "rank-6..11 tangent exclusion window mismatch",
+    )
+    require(
+        low_rank6_11_tangent_exclusion["construction"]["ranks"]
+        == [6, 7, 8, 9, 10, 11],
+        "rank-6..11 tangent exclusion rank list mismatch",
+    )
+    require(
+        low_rank6_11_tangent_exclusion["aggregate"]["record_count"] == 252
+        and low_rank6_11_tangent_exclusion["aggregate"][
+            "finite_roots_checked_for_common_code_line"
+        ]
+        == 238
+        and low_rank6_11_tangent_exclusion["aggregate"][
+            "common_code_line_tangent_overlap_sum"
+        ]
+        == 0
+        and low_rank6_11_tangent_exclusion["aggregate"][
+            "regular_roots_after_common_code_line"
+        ]
+        == 238,
+        "rank-6..11 tangent exclusion aggregate mismatch",
+    )
+    expected_tangent_checked = {
+        "6": 35,
+        "7": 43,
+        "8": 34,
+        "9": 35,
+        "10": 47,
+        "11": 44,
+    }
+    for rank, checked in expected_tangent_checked.items():
+        summary = low_rank6_11_tangent_exclusion["aggregate"]["rank_summaries"][
+            rank
+        ]
+        require(
+            summary["finite_roots_checked_for_common_code_line"] == checked
+            and summary["common_code_line_tangent_overlap_sum"] == 0
+            and summary["regular_roots_after_common_code_line"] == checked,
+            f"rank-{rank} tangent exclusion summary mismatch",
+        )
     require(
         top_packet["exact_agreements"][0]["A"] == TOP_WINDOW_MIN
         and top_packet["exact_agreements"][-1]["A"] == TOP_WINDOW_MAX,
@@ -1699,6 +1753,9 @@ def build_status() -> dict[str, Any]:
     low_rank7_slack_family = load_json(LOW_RANK7_SLACK_FAMILY_REF)
     low_rank8_slack_family = load_json(LOW_RANK8_SLACK_FAMILY_REF)
     low_rank9_11_slack_sweep = load_json(LOW_RANK9_11_SLACK_SWEEP_REF)
+    low_rank6_11_tangent_exclusion = load_json(
+        LOW_RANK6_11_TANGENT_EXCLUSION_REF
+    )
     top_packet = load_json(TOP_PACKET_REF)
     line_value_lift = load_json(LINE_VALUE_LIFT_REF)
     subgroup_section = load_json(SUBGROUP_SECTION_REF)
@@ -1720,6 +1777,7 @@ def build_status() -> dict[str, Any]:
         low_rank7_slack_family,
         low_rank8_slack_family,
         low_rank9_11_slack_sweep,
+        low_rank6_11_tangent_exclusion,
         top_packet,
         line_value_lift,
         subgroup_section,
@@ -1797,6 +1855,11 @@ def build_status() -> dict[str, Any]:
             "synthetic_low_rank9_11_slack_sweep",
             LOW_RANK9_11_SLACK_SWEEP_REF,
             "f17-32-m3-low-rank9-11-slack-sweep-v1",
+        ),
+        artifact_record(
+            "synthetic_low_rank6_11_tangent_exclusion",
+            LOW_RANK6_11_TANGENT_EXCLUSION_REF,
+            "f17-32-m3-low-rank6-11-tangent-exclusion-v1",
         ),
         artifact_record("fixed_top_window_v9_packet", TOP_PACKET_REF, "aperiodic-hankel-eliminant-v1"),
         artifact_record(
@@ -2055,6 +2118,24 @@ def build_status() -> dict[str, Any]:
                 "but exact finite-root slack lowers every checked pair to at "
                 "most 4 projective regular roots"
             ),
+            "synthetic_low_rank6_11_tangent_exclusion_status": (
+                "proved that all 238 finite roots counted in the rank-6..11 "
+                "synthetic low-rank slack certificates have zero "
+                "common-code-line tangent overlap"
+            ),
+            "synthetic_low_rank6_11_common_code_line_tangent_overlap": (
+                low_rank6_11_tangent_exclusion["aggregate"][
+                    "common_code_line_tangent_overlap_sum"
+                ]
+            ),
+            "synthetic_low_rank6_11_roots_after_common_code_line": (
+                low_rank6_11_tangent_exclusion["aggregate"][
+                    "regular_roots_after_common_code_line"
+                ]
+            ),
+            "synthetic_low_rank6_11_tangent_rank_summaries": (
+                low_rank6_11_tangent_exclusion["aggregate"]["rank_summaries"]
+            ),
             "low_rank_budget_envelope_status": (
                 "proved that every nonzero regular low-rank update chart of "
                 "rank <= 6 is within the F_17^32 M3 finite regular-root "
@@ -2125,6 +2206,7 @@ def build_status() -> dict[str, Any]:
                 "the synthetic rank-7 low-rank slack family has exact Frobenius-gcd root histogram {0:16, 1:15, 2:6, 3:4, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 8",
                 "the synthetic rank-8 low-rank slack family has exact Frobenius-gcd root histogram {0:22, 1:10, 2:7, 3:2, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 9",
                 "the synthetic rank-9..11 low-rank slack sweep has exact Frobenius-gcd root histograms {9:{0:17, 1:17, 2:6, 3:2}, 10:{0:8, 1:23, 2:9, 3:2}, 11:{0:15, 1:16, 2:5, 3:6}}, so finite-root slack gives at most 4 projective regular roots per checked pair despite degree-only projective bounds 10, 11, and 12",
+                "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
                 "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
                 "the fixed top-window syndrome input has an explicit line-value lift",
@@ -2187,6 +2269,10 @@ def print_summary(status: dict[str, Any]) -> None:
     print(
         "rank-9..11 low-rank slack: "
         f"{summary['synthetic_low_rank9_11_slack_sweep_status']}"
+    )
+    print(
+        "rank-6..11 low-rank tangent: "
+        f"{summary['synthetic_low_rank6_11_tangent_exclusion_status']}"
     )
     print(f"low-rank budget envelope: {summary['low_rank_budget_envelope_status']}")
     print(f"low-rank packet gate: {summary['low_rank_packet_gate_status']}")

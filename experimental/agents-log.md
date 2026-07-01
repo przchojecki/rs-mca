@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-6..11 low-rank tangent exclusion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank6_11_tangent_exclusion.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a tangent/common-code-line exclusion audit for
+  the synthetic low-rank finite-slack certificates at ranks `6..11`.  It checks
+  `Delta_s(-|X|/s) != 0` for all `252` rank/agreement pairs and proves that
+  all `238` counted finite roots have tangent overlap `0`.
+- **How it is useful:** This is an M4-style subtraction check: the beyond-envelope
+  low-rank roots are not removed by the common-code-line tangent ledger, so any
+  later deduped table must handle them through quotient-image accounting or
+  as residual aperiodic roots for this synthetic family.
+- **What to do next:** Audit quotient-image overlap for the same synthetic
+  low-rank block, or search for structural conditions forcing small
+  Frobenius-gcd degree before quotient/tangent subtraction.
+
 ### 2026-07-01 - M3 rank-9..11 low-rank finite-slack sweep
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -280,6 +280,19 @@ a compact multi-rank certificate.  Degree-only projective bounds are `10`,
 `{0:15, 1:16, 2:5, 3:6}`.  The whole sweep has projective bound
 `3+1=4 <= 6`.
 
+The rank-6..11 tangent-exclusion audit
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-tangent-exclusion/
+  f17_32_n512_k256_m3_low_rank6_11_tangent_exclusion_certificate.json
+```
+
+then checks the M4 common-code-line subtraction branch for these finite-root
+slack certificates.  For each rank `s`, the only possible moment-zero
+common-code-line slope is `z=-|X|/s`; direct evaluation gives
+`Delta_s(-|X|/s) != 0` for all ranks `6..11` and all `42` agreements.  Hence
+all `238` counted finite roots have tangent overlap `0`.
+
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
-arbitrary non-proportional pencils, and does not perform quotient/tangent
-subtraction.
+arbitrary non-proportional pencils, and does not perform a full quotient/tangent
+subtraction table.
