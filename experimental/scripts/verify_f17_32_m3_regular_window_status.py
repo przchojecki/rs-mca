@@ -477,7 +477,7 @@ def validate_inputs(
         "proportional lemma F17^32 replay residual mismatch",
     )
     require(
-        low_rank_template["schema_version"] == "m1-hankel-low-rank-update-template-v3",
+        low_rank_template["schema_version"] == "m1-hankel-low-rank-update-template-v4",
         "low-rank template schema mismatch",
     )
     envelope = low_rank_template["m3_budget_envelope"]
@@ -506,6 +506,39 @@ def validate_inputs(
             == (rank <= 5),
             f"low-rank budget envelope rank {rank} mismatch",
         )
+    gate = low_rank_template["m3_low_rank_packet_gate"]
+    require(
+        gate["status"] == "PROVED / AUDIT"
+        and gate["source"] == "m3_budget_envelope",
+        "low-rank packet gate status mismatch",
+    )
+    require(
+        gate["finite_safe_update_ranks"] == [1, 2, 3, 4, 5, 6],
+        "low-rank packet gate finite-safe ranks mismatch",
+    )
+    require(
+        gate["projective_safe_without_extra_certificate_update_ranks"]
+        == [1, 2, 3, 4, 5],
+        "low-rank packet gate projective-safe ranks mismatch",
+    )
+    require(
+        gate["projective_requires_extra_certificate_update_ranks"] == [6],
+        "low-rank packet gate rank-6 caveat mismatch",
+    )
+    gate_by_label = {
+        item["residual_label"]: item for item in gate["decision_table"]
+    }
+    require(
+        "low_rank_regular_budget_safe" in gate_by_label
+        and "rank6_projective_gate_needed" in gate_by_label
+        and "singular_bucket" in gate_by_label,
+        "low-rank packet gate labels mismatch",
+    )
+    require(
+        "finite-root slack: exact finite root count <= 5"
+        in gate["rank6_extra_certificates"],
+        "low-rank packet gate missing rank-6 finite-root slack option",
+    )
 
 
 def per_agreement_records(
@@ -959,10 +992,11 @@ def build_status() -> dict[str, Any]:
         artifact_record(
             "hankel_low_rank_update_template",
             LOW_RANK_TEMPLATE_REF,
-            "m1-hankel-low-rank-update-template-v3",
+            "m1-hankel-low-rank-update-template-v4",
         ),
     ]
     low_rank_envelope = low_rank_template["m3_budget_envelope"]
+    low_rank_gate = low_rank_template["m3_low_rank_packet_gate"]
     return {
         "schema_version": SCHEMA_VERSION,
         "status": "AUDIT",
@@ -1061,8 +1095,26 @@ def build_status() -> dict[str, Any]:
             ]["projective_budget_numerator"],
             "low_rank_budget_envelope_projective_auto_safe_ranks": [1, 2, 3, 4, 5],
             "low_rank_budget_envelope_projective_rank6_status": (
-                "needs infinity exclusion or finite-root slack"
+                "needs infinity exclusion, finite-root slack, or packet-level deduction"
             ),
+            "low_rank_packet_gate_status": (
+                "v4 gate accepts nonzero low-rank regular packets of rank <=5 "
+                "for projective accounting, accepts rank 6 for finite-affine "
+                "accounting, and routes rank-6 projective use to an extra "
+                "endpoint/slack/deduplication certificate"
+            ),
+            "low_rank_packet_gate_finite_safe_update_ranks": low_rank_gate[
+                "finite_safe_update_ranks"
+            ],
+            "low_rank_packet_gate_projective_safe_update_ranks": low_rank_gate[
+                "projective_safe_without_extra_certificate_update_ranks"
+            ],
+            "low_rank_packet_gate_projective_extra_certificate_update_ranks": (
+                low_rank_gate["projective_requires_extra_certificate_update_ranks"]
+            ),
+            "low_rank_packet_gate_rank6_extra_certificates": low_rank_gate[
+                "rank6_extra_certificates"
+            ],
             "fixed_top_window_status": "one v9 packet covers A=421..426 with root union {0}",
             "fixed_top_window_line_value_status": "explicit f,g line values replay the fixed top-window syndrome input",
             "subgroup_syndrome_section_status": "proved explicit inverse-Fourier section for subgroup syndrome vectors",
@@ -1089,7 +1141,7 @@ def build_status() -> dict[str, Any]:
                 "the synthetic u=0 family has exact root union {0}",
                 "the synthetic rank-2 low-rank family has exact split/nonsquare quadratic root table with 40 roots total, below degree cap 84",
                 "the synthetic rank-3 low-rank family has exact Frobenius-gcd finite-root counts with 42 roots total, below degree cap 126",
-                "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; projective automatic safety without infinity exclusion holds through rank 5",
+                "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
                 "the fixed top-window syndrome input has an explicit line-value lift",
                 "subgroup syndrome vectors have an explicit inverse-Fourier line-value section",
@@ -1144,6 +1196,7 @@ def print_summary(status: dict[str, Any]) -> None:
     print(f"rank-3 low-rank synthetic: {summary['synthetic_low_rank3_family_status']}")
     print(f"rank-3 low-rank tangent: {summary['synthetic_low_rank3_tangent_status']}")
     print(f"low-rank budget envelope: {summary['low_rank_budget_envelope_status']}")
+    print(f"low-rank packet gate: {summary['low_rank_packet_gate_status']}")
     print(f"actual row: {summary['actual_row_status']}")
 
 

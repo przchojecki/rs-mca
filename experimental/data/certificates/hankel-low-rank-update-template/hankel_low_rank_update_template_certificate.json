@@ -846,7 +846,67 @@
       }
     ],
     "singular_bucket_rule": "A zero determinant is not counted by this envelope; it must be declared singular and handled by affine/projective/curve pivot charts or by a named residual obstruction.",
-    "statement": "For any M3 regular low-rank update chart whose prefix determinant Delta_A(Z) is nonzero and has update rank s<=6, the finite regular-root count is <=s<=6.  For projective slopes under the original v9 regular-minor endpoint convention, the low-rank direction may leave infinity nonexcluded, so the automatic projective bound is <=s+1.  Hence ranks s<=5 are projective-budget safe without more work, while rank 6 needs either an infinity exclusion or finite-root slack.  If Delta_A is the zero polynomial, the chart is not aperiodic evidence and must be routed to the singular residual atlas.",
+    "statement": "For any M3 regular low-rank update chart whose prefix determinant Delta_A(Z) is nonzero and has update rank s<=6, the finite regular-root count is <=s<=6.  For projective slopes under the original v9 regular-minor endpoint convention, the low-rank direction may leave infinity nonexcluded, so the automatic projective bound is <=s+1.  Hence ranks s<=5 are projective-budget safe without more work, while rank 6 needs either an infinity exclusion, finite-root slack, or a separate packet-level deduplication/removal certificate before projective acceptance.  If Delta_A is the zero polynomial, the chart is not aperiodic evidence and must be routed to the singular residual atlas.",
+    "status": "PROVED / AUDIT"
+  },
+  "m3_low_rank_packet_gate": {
+    "decision_table": [
+      {
+        "condition": "Delta_A(Z) is nonzero and update rank s <= 5",
+        "finite_affine_outcome": "accept: finite roots <= s <= 6",
+        "projective_outcome": "accept: finite roots plus possible infinity are <= s+1 <= 6",
+        "residual_label": "low_rank_regular_budget_safe"
+      },
+      {
+        "condition": "Delta_A(Z) is nonzero and update rank s = 6",
+        "finite_affine_outcome": "accept: finite roots <= 6",
+        "projective_outcome": "hold unless a separate certificate excludes infinity, proves at most five finite roots, or supplies an equivalent deduplication/removal before projective accounting",
+        "residual_label": "rank6_projective_gate_needed"
+      },
+      {
+        "condition": "Delta_A(Z) is the zero polynomial",
+        "finite_affine_outcome": "do not count as aperiodic evidence",
+        "projective_outcome": "route to the singular pivot/residual atlas",
+        "residual_label": "singular_bucket"
+      }
+    ],
+    "finite_safe_update_ranks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "input_fields": [
+      "update_rank",
+      "prefix_determinant_status",
+      "finite_root_count",
+      "projective_infinity_status"
+    ],
+    "name": "F_17^32 M3 low-rank packet classification gate",
+    "nonclaims": [
+      "does not prove arbitrary residual pencils have rank <= 6",
+      "does not classify zero-determinant singular buckets",
+      "does not make rank-6 projective packets safe without an extra certificate"
+    ],
+    "packet_use": "A future M3 v9 packet can consume this gate after it has proved a nonzero low-rank regular determinant and stated the update rank. The gate decides finite/projective budget safety before any universal row claim is made.",
+    "projective_requires_extra_certificate_update_ranks": [
+      6
+    ],
+    "projective_safe_without_extra_certificate_update_ranks": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "rank6_extra_certificates": [
+      "projective infinity chart empty for the chosen regular minor",
+      "finite-root slack: exact finite root count <= 5",
+      "an explicit removed-ledger or deduplication certificate leaving projective total <= 6"
+    ],
+    "source": "m3_budget_envelope",
     "status": "PROVED / AUDIT"
   },
   "nonclaims": [
@@ -854,10 +914,10 @@
     "does not classify arbitrary non-proportional pencils",
     "does not perform quotient/tangent subtraction for a prize row",
     "does not prove that arbitrary residuals have update rank <=6",
-    "rank 6 projective-line safety still needs an infinity exclusion or finite-root slack",
+    "rank 6 projective-line safety still needs an infinity exclusion, finite-root slack, or an equivalent packet-level deduction",
     "zero determinant rows are residual buckets, not aperiodic evidence"
   ],
-  "schema_version": "m1-hankel-low-rank-update-template-v3",
+  "schema_version": "m1-hankel-low-rank-update-template-v4",
   "status": "PROVED / AUDIT",
   "theorem": {
     "compressed_statement": "If H_X=V_X V_X^T is invertible, the same determinant equals det(H_X) det(I+Z K), where K=V_Y^T H_X^{-1} V_Y.  Thus the large r x r determinant is reduced to a |Y| x |Y| determinant without changing the root-count bound.",

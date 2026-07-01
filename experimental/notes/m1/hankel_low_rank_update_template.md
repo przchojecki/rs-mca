@@ -162,6 +162,14 @@ infinity exclusion holds for `s <= 5`; rank `6` needs infinity exclusion or
 finite-root slack.  If the determinant is identically zero, the template does
 not count it; that case is a singular bucket for the pivot atlas.
 
+The v4 certificate packages this as a packet gate.  A nonzero low-rank regular
+determinant of update rank `s <= 5` is accepted for finite and projective
+budget accounting.  A nonzero rank-6 determinant is accepted for finite-affine
+accounting, but projective accounting must also supply an endpoint exclusion,
+an exact finite-root count at most `5`, or an equivalent
+deduplication/removal certificate.  A zero determinant is routed to the
+singular pivot/residual atlas.
+
 The all-window synthetic family certificate is
 
 ```text

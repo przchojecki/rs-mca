@@ -94,8 +94,8 @@
     {
       "name": "hankel_low_rank_update_template",
       "ref": "experimental/data/certificates/hankel-low-rank-update-template/hankel_low_rank_update_template_certificate.json",
-      "schema_version": "m1-hankel-low-rank-update-template-v3",
-      "sha256": "085ec4fc7e9db94d47b2a44b3b0cbd6bd6519396b45d19bbd73fef19490216f9",
+      "schema_version": "m1-hankel-low-rank-update-template-v4",
+      "sha256": "50eb568710b79364662a21ceef2a01921e5e32292fbc67bca5f454d032096283",
       "status": "PROVED / AUDIT"
     }
   ],
@@ -112,7 +112,7 @@
       "the synthetic u=0 family has exact root union {0}",
       "the synthetic rank-2 low-rank family has exact split/nonsquare quadratic root table with 40 roots total, below degree cap 84",
       "the synthetic rank-3 low-rank family has exact Frobenius-gcd finite-root counts with 42 roots total, below degree cap 126",
-      "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; projective automatic safety without infinity exclusion holds through rank 5",
+      "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
       "the fixed synthetic top-window packet is v9-checkable for A=421..426",
       "the fixed top-window syndrome input has an explicit line-value lift",
       "subgroup syndrome vectors have an explicit inverse-Fourier line-value section",
@@ -2281,7 +2281,7 @@
       5
     ],
     "low_rank_budget_envelope_projective_budget": 6,
-    "low_rank_budget_envelope_projective_rank6_status": "needs infinity exclusion or finite-root slack",
+    "low_rank_budget_envelope_projective_rank6_status": "needs infinity exclusion, finite-root slack, or packet-level deduction",
     "low_rank_budget_envelope_rank_range": [
       1,
       2,
@@ -2291,6 +2291,30 @@
       6
     ],
     "low_rank_budget_envelope_status": "proved that every nonzero regular low-rank update chart of rank <= 6 is within the F_17^32 M3 finite regular-root budget, and ranks <= 5 are projective-budget safe without a separate infinity exclusion",
+    "low_rank_packet_gate_finite_safe_update_ranks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "low_rank_packet_gate_projective_extra_certificate_update_ranks": [
+      6
+    ],
+    "low_rank_packet_gate_projective_safe_update_ranks": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "low_rank_packet_gate_rank6_extra_certificates": [
+      "projective infinity chart empty for the chosen regular minor",
+      "finite-root slack: exact finite root count <= 5",
+      "an explicit removed-ledger or deduplication certificate leaving projective total <= 6"
+    ],
+    "low_rank_packet_gate_status": "v4 gate accepts nonzero low-rank regular packets of rank <=5 for projective accounting, accepts rank 6 for finite-affine accounting, and routes rank-6 projective use to an extra endpoint/slack/deduplication certificate",
     "proportional_branch_aperiodic_residual_after_tangent": 0,
     "proportional_branch_certificate": "experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/hankel_proportional_pencil_tangent_lemma_certificate.json",
     "proportional_branch_status": "all full-syndrome proportional pencils in the M3 window are tangent-labelled, because t+j equals the full stored syndrome length 256 for every A=385..426",

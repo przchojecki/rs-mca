@@ -22,7 +22,7 @@ the update-rank kernel.  For rank-2 update rows it also records the exact
 quadratic discriminant gate, including split, repeated-root, and nonsquare
 no-root cases over `F_17`.
 
-The v3 certificate also records the `F_17^32` M3 budget envelope.  Since
+The v4 certificate also records the `F_17^32` M3 budget envelope.  Since
 `floor(17^32/2^128)=floor((17^32+1)/2^128)=6`, every nonzero regular
 low-rank update chart of rank `s <= 6` has at most `s` finite regular roots.
 For projective slopes under the original regular-minor endpoint convention,
@@ -30,6 +30,12 @@ infinity may add one parameter; automatic projective safety without a separate
 infinity exclusion holds for `s <= 5`, while rank `6` needs infinity exclusion
 or finite-root slack.  A zero determinant is not counted by this envelope; it
 remains a singular bucket for the pivot/residual atlas.
+
+The v4 packet gate makes this a deterministic packet decision rule: ranks
+`1..5` are accepted for projective accounting once the nonzero low-rank
+determinant is proved, rank `6` is accepted only for finite-affine accounting
+unless an extra endpoint/slack/deduplication certificate is supplied, and zero
+determinants are routed to the singular pivot/residual atlas.
 
 This is a reusable algebraic template for future v9 packets, not an actual
 `F_17^32` safe-side row bound.

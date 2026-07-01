@@ -25,7 +25,7 @@ from typing import Any
 
 
 P = 17
-SCHEMA_VERSION = "m1-hankel-low-rank-update-template-v3"
+SCHEMA_VERSION = "m1-hankel-low-rank-update-template-v4"
 M3_FIELD_ORDER = 17**32
 M3_SECURITY_DENOMINATOR = 2**128
 M3_FINITE_BUDGET = M3_FIELD_ORDER // M3_SECURITY_DENOMINATOR
@@ -519,9 +519,10 @@ def build_m3_budget_envelope() -> dict[str, Any]:
             "direction may leave infinity nonexcluded, so the automatic "
             "projective bound is <=s+1.  Hence ranks s<=5 are projective-budget "
             "safe without more work, while rank 6 needs either an infinity "
-            "exclusion or finite-root slack.  If Delta_A is the zero polynomial, "
-            "the chart is not aperiodic evidence and must be routed to the "
-            "singular residual atlas."
+            "exclusion, finite-root slack, or a separate packet-level "
+            "deduplication/removal certificate before projective acceptance.  "
+            "If Delta_A is the zero polynomial, the chart is not aperiodic "
+            "evidence and must be routed to the singular residual atlas."
         ),
         "proof": [
             "The low-rank determinant template gives degree Delta_A <= s.",
@@ -539,6 +540,97 @@ def build_m3_budget_envelope() -> dict[str, Any]:
     }
 
 
+def build_m3_low_rank_packet_gate(envelope: dict[str, Any]) -> dict[str, Any]:
+    finite_safe_ranks = [
+        row["update_rank"] for row in envelope["rows"] if row["within_finite_budget"]
+    ]
+    projective_safe_ranks = [
+        row["update_rank"]
+        for row in envelope["rows"]
+        if row["within_projective_budget_without_infinity_exclusion"]
+    ]
+    projective_extra_ranks = [
+        row["update_rank"]
+        for row in envelope["rows"]
+        if (
+            row["within_finite_budget"]
+            and not row["within_projective_budget_without_infinity_exclusion"]
+        )
+    ]
+    require(
+        finite_safe_ranks == [1, 2, 3, 4, 5, 6],
+        "low-rank packet gate finite ranks mismatch",
+    )
+    require(
+        projective_safe_ranks == [1, 2, 3, 4, 5],
+        "low-rank packet gate projective ranks mismatch",
+    )
+    require(
+        projective_extra_ranks == [6],
+        "low-rank packet gate rank-6 caveat mismatch",
+    )
+    return {
+        "name": "F_17^32 M3 low-rank packet classification gate",
+        "status": "PROVED / AUDIT",
+        "source": "m3_budget_envelope",
+        "input_fields": [
+            "update_rank",
+            "prefix_determinant_status",
+            "finite_root_count",
+            "projective_infinity_status",
+        ],
+        "finite_safe_update_ranks": finite_safe_ranks,
+        "projective_safe_without_extra_certificate_update_ranks": (
+            projective_safe_ranks
+        ),
+        "projective_requires_extra_certificate_update_ranks": (
+            projective_extra_ranks
+        ),
+        "decision_table": [
+            {
+                "condition": "Delta_A(Z) is nonzero and update rank s <= 5",
+                "finite_affine_outcome": "accept: finite roots <= s <= 6",
+                "projective_outcome": (
+                    "accept: finite roots plus possible infinity are <= s+1 <= 6"
+                ),
+                "residual_label": "low_rank_regular_budget_safe",
+            },
+            {
+                "condition": "Delta_A(Z) is nonzero and update rank s = 6",
+                "finite_affine_outcome": "accept: finite roots <= 6",
+                "projective_outcome": (
+                    "hold unless a separate certificate excludes infinity, "
+                    "proves at most five finite roots, or supplies an equivalent "
+                    "deduplication/removal before projective accounting"
+                ),
+                "residual_label": "rank6_projective_gate_needed",
+            },
+            {
+                "condition": "Delta_A(Z) is the zero polynomial",
+                "finite_affine_outcome": "do not count as aperiodic evidence",
+                "projective_outcome": "route to the singular pivot/residual atlas",
+                "residual_label": "singular_bucket",
+            },
+        ],
+        "rank6_extra_certificates": [
+            "projective infinity chart empty for the chosen regular minor",
+            "finite-root slack: exact finite root count <= 5",
+            "an explicit removed-ledger or deduplication certificate leaving projective total <= 6",
+        ],
+        "packet_use": (
+            "A future M3 v9 packet can consume this gate after it has proved a "
+            "nonzero low-rank regular determinant and stated the update rank. "
+            "The gate decides finite/projective budget safety before any "
+            "universal row claim is made."
+        ),
+        "nonclaims": [
+            "does not prove arbitrary residual pencils have rank <= 6",
+            "does not classify zero-determinant singular buckets",
+            "does not make rank-6 projective packets safe without an extra certificate",
+        ],
+    }
+
+
 def build_certificate() -> dict[str, Any]:
     cases = [
         check_case("rank_one_linear_template", (1, 2, 4, 8), (3,), 4),
@@ -546,6 +638,7 @@ def build_certificate() -> dict[str, Any]:
         check_case("rank_three_base_deficient_template", (1, 2), (3, 4, 5), 4),
         check_case("rank_deficient_singular_residual", (1,), (2,), 3),
     ]
+    m3_budget_envelope = build_m3_budget_envelope()
     return {
         "schema_version": SCHEMA_VERSION,
         "status": "PROVED / AUDIT",
@@ -597,14 +690,17 @@ def build_certificate() -> dict[str, Any]:
                 "Delta_r(Z)=det(H_X) det(I+Z V_Y^T H_X^{-1} V_Y)"
             ),
         },
-        "m3_budget_envelope": build_m3_budget_envelope(),
+        "m3_budget_envelope": m3_budget_envelope,
+        "m3_low_rank_packet_gate": build_m3_low_rank_packet_gate(
+            m3_budget_envelope
+        ),
         "cases": cases,
         "nonclaims": [
             "not an actual F_17^32 M3 row packet",
             "does not classify arbitrary non-proportional pencils",
             "does not perform quotient/tangent subtraction for a prize row",
             "does not prove that arbitrary residuals have update rank <=6",
-            "rank 6 projective-line safety still needs an infinity exclusion or finite-root slack",
+            "rank 6 projective-line safety still needs an infinity exclusion, finite-root slack, or an equivalent packet-level deduction",
             "zero determinant rows are residual buckets, not aperiodic evidence",
         ],
     }
@@ -635,14 +731,20 @@ def print_summary(certificate: dict[str, Any]) -> None:
             f"max_nonzero_roots={max_roots}, singular_rows={singular_rows}"
         )
     envelope = certificate["m3_budget_envelope"]
+    gate = certificate["m3_low_rank_packet_gate"]
     print(
         "m3_budget_envelope: ranks=1..{max_rank}, finite_budget={finite}, "
-        "projective_budget={projective}, projective_auto_safe_ranks=1..5".format(
+        "projective_budget={projective}, projective_auto_safe_ranks={safe}, "
+        "rank6={rank6}".format(
             max_rank=max(row["update_rank"] for row in envelope["rows"]),
             finite=envelope["endpoint_conventions"]["finite_budget_numerator"],
             projective=envelope["endpoint_conventions"][
                 "projective_budget_numerator"
             ],
+            safe=gate[
+                "projective_safe_without_extra_certificate_update_ranks"
+            ],
+            rank6=gate["decision_table"][1]["residual_label"],
         )
     )
 

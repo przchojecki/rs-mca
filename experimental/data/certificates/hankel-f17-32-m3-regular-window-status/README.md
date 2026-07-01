@@ -32,12 +32,16 @@ possible common-code-line slope, so none of these 42 finite roots are
 tangent/common-code-line roots.  Quotient-image overlap is also not audited for
 this synthetic family.
 
-The ledger also imports the v3 low-rank update template budget envelope.  Since
+The ledger also imports the v4 low-rank update template budget envelope.  Since
 both the finite and projective `F_17^32` budget numerators are 6, every nonzero
 regular low-rank update chart of rank at most 6 is within the finite regular
 root budget.  Without a separate infinity exclusion, projective automatic
 safety holds through rank 5; rank 6 needs an infinity exclusion or finite-root
 slack.  Zero determinants remain singular buckets, not aperiodic evidence.
+The v4 packet gate records this as a checked decision rule: projective use of
+rank `1..5` low-rank packets is accepted after the nonzero determinant check,
+while rank `6` projective use needs an additional endpoint, finite-root slack,
+or deduplication/removal certificate.
 
 The ledger also references the M3 syndrome-realizability certificate, which
 proves that every length-256 syndrome pencil in this window is realized by
