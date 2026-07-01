@@ -103,8 +103,16 @@ finite Q-classes on G <= floor(c(512-r_G)/(126-r_G)),
 ```
 
 where `c` is the component degree and `r_G` is the forced split-root core.
-This closes line components with `r_G<=48` in projective accounting and leaves
-large-core lines and irreducible conics as named residuals.
+Using the base-support fact that nonzero `Q` has at most two roots on `X`, it
+sharpens the useful bound to
+
+```text
+finite Q-classes on G <= floor(c(385-e_G)/(124-e_G)),
+```
+
+where `e_G` is the forced external split-root core.  This closes line
+components with `e_G<=71` in projective accounting and leaves large-external-
+core lines and irreducible conics as named residuals.
 
 The other cases remain residual:
 

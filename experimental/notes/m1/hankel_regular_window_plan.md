@@ -309,10 +309,12 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-in
 
 attacks the remaining moving-slope component with the split-locator divisor
 gate.  For an irreducible component `G` of degree `c` and forced split-root
-core `r_G`, the finite source classes are bounded by
-`floor(c(512-r_G)/(126-r_G))`.  Thus line components with `r_G<=48` are
-projective-safe after adding the endpoint.  Large-core lines and conic
-components remain residual.
+core `r_G`, the unrefined finite source classes are bounded by
+`floor(c(512-r_G)/(126-r_G))`.  The packet then uses the base-support cap
+`deg Q<3` to sharpen this to `floor(c(385-e_G)/(124-e_G))` for forced external
+core `e_G`.  Thus line components with `e_G<=71` are projective-safe after
+adding the endpoint.  Large-external-core lines and conic components remain
+residual.
 
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets

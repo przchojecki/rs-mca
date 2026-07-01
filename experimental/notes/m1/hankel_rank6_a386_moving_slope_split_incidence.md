@@ -69,10 +69,35 @@ represented by this component, is at most
 floor( c (512-r_G) / (126-r_G) ).
 ```
 
-This gives a projective-safe line criterion:
+This first incidence budget is useful, but it ignores an extra feature of the
+base support.  On `X`,
 
 ```text
-c = 1 and r_G <= 48
+a_x L_Q(x) = Omega_x Q(x),
+```
+
+with nonzero `a_x` and `Omega_x`.  Hence `L_Q(x)=0` on `X` exactly when
+`Q(x)=0`.  Since `Q` is a nonzero polynomial of degree `<3`, a valid `Q` has
+at most two roots on the base support.
+
+Let `e_G` be the forced split-root core outside `X`, among the `385` external
+subgroup points.  A valid degree-`126` split locator must then obtain at least
+
+```text
+124 - e_G
+```
+
+additional roots outside `X`.  If `e_G<124`, the external root hyperplanes give
+the sharper bound
+
+```text
+finite Q-classes on G <= floor( c (385-e_G) / (124-e_G) ).
+```
+
+This gives the projective-safe line criterion:
+
+```text
+c = 1 and e_G <= 71
   => finite slopes <= 5,
      endpoint contribution = 1,
      total projective contribution <= 6.
@@ -81,14 +106,16 @@ c = 1 and r_G <= 48
 The finite-only line criterion is slightly weaker:
 
 ```text
-c = 1 and r_G <= 61
+c = 1 and e_G <= 80
   => finite slopes <= 6.
 ```
 
-For an irreducible conic component (`c=2`), the same incidence budget is not
-strong enough: even at `r_G=0` it gives `floor(1024/126)=8` finite `Q`-classes.
-Those components remain residual unless a sharper split-locator, paid-ledger,
-or exact-root-table argument cuts them further.
+For an irreducible conic component (`c=2`), the base-sharpened incidence budget
+is close but still not projective-safe.  At `e_G=0` it gives
+`floor(770/124)=6` finite `Q`-classes, and the endpoint then gives total `7`.
+The conic branch is finite-safe for `e_G<=19`, but remains residual for
+projective accounting unless a sharper split-locator, paid-ledger, or
+exact-root-table argument cuts it further.
 
 Replay:
 
@@ -101,7 +128,7 @@ Nonclaims:
 
 ```text
 no proof that every moving-slope component is a line;
-no closure of line components with forced split-root core >=49 in projective accounting;
+no closure of line components with forced external split-root core >=72 in projective accounting;
 no closure of irreducible conic moving-slope components;
 no exclusion of another independent noncontained vector at the same finite slope;
 no A=385 closure;

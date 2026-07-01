@@ -1,14 +1,155 @@
 {
   "agreement": {
     "A": 386,
+    "base_root_cap_per_Q": 2,
+    "base_support_size": 127,
     "boundary_defect_h": 3,
     "combined_support_size": 133,
     "direction_rank": 6,
+    "external_root_count": 385,
     "j": 126,
     "m": 127,
     "projective_Q_search_dimension": 2,
     "t": 130
   },
+  "base_sharpened_budget_formula": {
+    "base_root_cap_per_nonzero_Q": 2,
+    "base_support_size": 127,
+    "component_degree_c": "1 for a line, 2 for an irreducible conic",
+    "external_root_count": 385,
+    "finite_Q_class_upper_bound": "floor(c*(385-e)/(124-e))",
+    "forced_external_core_size_e": "0 <= e < 124",
+    "projective_total_upper_bound": "finite_Q_class_upper_bound + 1 endpoint",
+    "residual_when_e_at_least": 124
+  },
+  "base_sharpened_sample_budget_rows": [
+    {
+      "base_root_cap_per_Q": 2,
+      "component_degree": 1,
+      "external_incidence_capacity": 385,
+      "finite_Q_class_upper_bound": 3,
+      "finite_safe": true,
+      "finite_slope_upper_bound": 3,
+      "forced_external_split_root_core_size": 0,
+      "projective_safe_with_endpoint": true,
+      "projective_total_with_endpoint_upper_bound": 4,
+      "remaining_external_root_hyperplanes": 385,
+      "remaining_required_external_roots_per_valid_locator": 124,
+      "status": "bounded"
+    },
+    {
+      "base_root_cap_per_Q": 2,
+      "component_degree": 1,
+      "external_incidence_capacity": 314,
+      "finite_Q_class_upper_bound": 5,
+      "finite_safe": true,
+      "finite_slope_upper_bound": 5,
+      "forced_external_split_root_core_size": 71,
+      "projective_safe_with_endpoint": true,
+      "projective_total_with_endpoint_upper_bound": 6,
+      "remaining_external_root_hyperplanes": 314,
+      "remaining_required_external_roots_per_valid_locator": 53,
+      "status": "bounded"
+    },
+    {
+      "base_root_cap_per_Q": 2,
+      "component_degree": 1,
+      "external_incidence_capacity": 313,
+      "finite_Q_class_upper_bound": 6,
+      "finite_safe": true,
+      "finite_slope_upper_bound": 6,
+      "forced_external_split_root_core_size": 72,
+      "projective_safe_with_endpoint": false,
+      "projective_total_with_endpoint_upper_bound": 7,
+      "remaining_external_root_hyperplanes": 313,
+      "remaining_required_external_roots_per_valid_locator": 52,
+      "status": "bounded"
+    },
+    {
+      "base_root_cap_per_Q": 2,
+      "component_degree": 1,
+      "external_incidence_capacity": 305,
+      "finite_Q_class_upper_bound": 6,
+      "finite_safe": true,
+      "finite_slope_upper_bound": 6,
+      "forced_external_split_root_core_size": 80,
+      "projective_safe_with_endpoint": false,
+      "projective_total_with_endpoint_upper_bound": 7,
+      "remaining_external_root_hyperplanes": 305,
+      "remaining_required_external_roots_per_valid_locator": 44,
+      "status": "bounded"
+    },
+    {
+      "base_root_cap_per_Q": 2,
+      "component_degree": 1,
+      "external_incidence_capacity": 304,
+      "finite_Q_class_upper_bound": 7,
+      "finite_safe": false,
+      "finite_slope_upper_bound": 7,
+      "forced_external_split_root_core_size": 81,
+      "projective_safe_with_endpoint": false,
+      "projective_total_with_endpoint_upper_bound": 8,
+      "remaining_external_root_hyperplanes": 304,
+      "remaining_required_external_roots_per_valid_locator": 43,
+      "status": "bounded"
+    },
+    {
+      "base_root_cap_per_Q": 2,
+      "component_degree": 2,
+      "external_incidence_capacity": 770,
+      "finite_Q_class_upper_bound": 6,
+      "finite_safe": true,
+      "finite_slope_upper_bound": 6,
+      "forced_external_split_root_core_size": 0,
+      "projective_safe_with_endpoint": false,
+      "projective_total_with_endpoint_upper_bound": 7,
+      "remaining_external_root_hyperplanes": 385,
+      "remaining_required_external_roots_per_valid_locator": 124,
+      "status": "bounded"
+    },
+    {
+      "base_root_cap_per_Q": 2,
+      "component_degree": 2,
+      "external_incidence_capacity": 732,
+      "finite_Q_class_upper_bound": 6,
+      "finite_safe": true,
+      "finite_slope_upper_bound": 6,
+      "forced_external_split_root_core_size": 19,
+      "projective_safe_with_endpoint": false,
+      "projective_total_with_endpoint_upper_bound": 7,
+      "remaining_external_root_hyperplanes": 366,
+      "remaining_required_external_roots_per_valid_locator": 105,
+      "status": "bounded"
+    },
+    {
+      "base_root_cap_per_Q": 2,
+      "component_degree": 2,
+      "external_incidence_capacity": 730,
+      "finite_Q_class_upper_bound": 7,
+      "finite_safe": false,
+      "finite_slope_upper_bound": 7,
+      "forced_external_split_root_core_size": 20,
+      "projective_safe_with_endpoint": false,
+      "projective_total_with_endpoint_upper_bound": 8,
+      "remaining_external_root_hyperplanes": 365,
+      "remaining_required_external_roots_per_valid_locator": 104,
+      "status": "bounded"
+    },
+    {
+      "base_root_cap_per_Q": 2,
+      "component_degree": 2,
+      "external_incidence_capacity": 522,
+      "finite_Q_class_upper_bound": null,
+      "finite_safe": false,
+      "finite_slope_upper_bound": null,
+      "forced_external_split_root_core_size": 124,
+      "projective_safe_with_endpoint": false,
+      "projective_total_with_endpoint_upper_bound": null,
+      "remaining_external_root_hyperplanes": 261,
+      "remaining_required_external_roots_per_valid_locator": 0,
+      "status": "RESIDUAL: external forced core already covers the post-base root requirement"
+    }
+  ],
   "budget_formula": {
     "component_degree_c": "1 for a line, 2 for an irreducible conic",
     "finite_Q_class_upper_bound": "floor(c*(512-r)/(126-r))",
@@ -24,20 +165,24 @@
     "moving-slope residual is exposed by the slope-dichotomy dependency",
     "slope-free displayed vectors have already been filtered by noncontainment",
     "base interpolation Q->L_Q is injective because |X|=127>deg Q",
+    "base roots satisfy L_Q(x)=0 iff Q(x)=0 and therefore at most two occur on X",
     "r_G>=126 is impossible for a positive-dimensional component",
     "incidence formula floor(c*(512-r)/(126-r)) is evaluated for c=1,2",
-    "line projective-safe threshold is r<=48",
-    "line finite-safe threshold is r<=61",
-    "conic components are not closed by this incidence budget"
+    "base-sharpened external incidence formula floor(c*(385-e)/(124-e)) is evaluated for c=1,2",
+    "base-sharpened line projective-safe threshold is e<=71",
+    "base-sharpened line finite-safe threshold is e<=80",
+    "base-sharpened conic finite-safe threshold is e<=19",
+    "conic components are still not projective-closed by this incidence budget"
   ],
   "incidence_setup": {
     "component": "Let G be an irreducible positive-dimensional moving-slope component in the A=386 Q-plane, with degree c in {1,2}.",
+    "external_forced_split_root_core": "e_G is the number of forced root hyperplanes among H\\X.  The base support X is handled separately because L_Q(x)=0 is equivalent to Q(x)=0 there.",
     "forced_split_root_core": "r_G is the number of subgroup points s for which G is contained in E_s; these are roots forced for every L_Q on G.",
     "root_hyperplanes": "For each subgroup point s in H, E_s={Q in P^2: L_Q(s)=0} is a root hyperplane for the split-locator gate."
   },
   "nonclaims": [
     "does not prove every moving-slope component is a line",
-    "does not close line components with forced split-root core >=49 in projective accounting",
+    "does not close line components with forced external split-root core >=72 in projective accounting",
     "does not close irreducible conic moving-slope components",
     "does not rule out another independent noncontained vector at the same finite slope",
     "does not cover A=385",
@@ -56,17 +201,88 @@
   },
   "safe_thresholds": {
     "irreducible_conic_component": {
-      "finite_safe_for_any_core_by_this_budget": false,
-      "projective_safe_for_any_core_by_this_budget": false,
-      "smallest_finite_bound_by_this_budget": 8
+      "base_sharpened_finite_safe_if_external_core_at_most": 19,
+      "base_sharpened_projective_safe_for_any_external_core_by_this_budget": false,
+      "base_sharpened_smallest_finite_bound_by_this_budget": 6,
+      "unrefined_finite_safe_for_any_core_by_this_budget": false,
+      "unrefined_projective_safe_for_any_core_by_this_budget": false,
+      "unrefined_smallest_finite_bound_by_this_budget": 8
     },
     "line_component": {
-      "finite_safe_if_forced_core_at_most": 61,
+      "base_sharpened_finite_safe_if_external_core_at_most": 80,
+      "base_sharpened_projective_safe_if_external_core_at_most": 71,
       "projective_endpoint_added": 1,
-      "projective_safe_if_forced_core_at_most": 48
+      "unrefined_finite_safe_if_forced_core_at_most": 61,
+      "unrefined_projective_safe_if_forced_core_at_most": 48
     }
   },
-  "sample_budget_rows": [
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v2",
+  "source_artifacts": {
+    "a386_global_component_slope_dichotomy": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json",
+      "sha256": "421bcbf3cec0fafc7e4bfaa290a8cdeb768a2476437d5729c69131637ff6ba26"
+    },
+    "a386_slope_free_containment": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/f17_32_n512_k256_m3_rank6_a386_slope_free_containment.json",
+      "sha256": "b8adf74036744b02a21c1e51ffea876081f2938b8da34430046534f6f05ef651"
+    },
+    "nullpolynomial_split_locator_gate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json",
+      "sha256": "fd918c7ddbf47b9037840a7dddf5d9a49c77b7d8d889924bbb6b861f8bb2bc42"
+    },
+    "rank6_boundary_low_degree_transfer": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json",
+      "sha256": "4ff0d90a1e710bca56efd7a68357d2dcc473a8150c9ddcaf1b95a061ec5c2101"
+    },
+    "rank6_projective_endpoint_uniform": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+      "sha256": "f933c4d38476d3056e6284de55e01b7375f8c90239d52aed40548018323454e2"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement": 386,
+    "base_root_cap_per_Q": 2,
+    "boundary_defect_h": 3,
+    "conic_finite_safe_for_external_core_at_most": 19,
+    "conic_projective_closed_by_this_incidence_budget": false,
+    "external_root_count": 385,
+    "line_finite_safe_for_external_core_at_most": 80,
+    "line_projective_safe_for_external_core_at_most": 71,
+    "locator_degree_j": 126,
+    "positive_dimensional_component_forced_core_upper_bound": 125,
+    "remaining_unclosed_residuals": [
+      "moving-slope line component with forced external split-root core >=72 for projective accounting",
+      "irreducible moving-slope conic component; base-sharpened incidence is one endpoint over budget at best",
+      "possible independent noncontained vectors at slopes also admitting a slope-free vector"
+    ]
+  },
+  "theorem": {
+    "base_interpolation_injective": "The linear map Q -> L_Q is injective: if L_Q=0 then Q vanishes on the base support X of size m=127, impossible for deg Q<3 unless Q=0.",
+    "base_root_cap": "On the base support X, a_x L_Q(x)=Omega_x Q(x) with nonzero a_x and Omega_x.  Thus L_Q has at most two roots in X for nonzero Q, because deg Q<3.",
+    "base_sharpened_external_incidence_budget": "Let e_G be the forced split-root core outside X.  Since each nonzero Q has at most two base-support roots, a valid degree-126 split locator needs at least 124-e_G additional roots outside X.  Each non-forced external root hyperplane cuts G in length at most c.  For e_G<124, the number of valid Q-classes, and hence finite slopes, is at most floor(c*(385-e_G)/(124-e_G)).",
+    "conic_status": "For an irreducible conic c=2, the base-sharpened budget gives six finite Q-classes at e_G=0 and finite safety through e_G<=19, but the projective endpoint still makes total seven at best.  Conics therefore remain residual for a sharper split, paid, or exact-root-table argument.",
+    "incidence_budget": "For r_G<j, each valid degree-j split locator on G needs at least j-r_G additional intersections with non-forced root hyperplanes.  Each non-forced E_s cuts G in length at most c.  Hence the number of valid Q-classes, and therefore the number of finite slopes represented by this component, is at most floor(c*(512-r_G)/(126-r_G)).",
+    "line_projective_safe_core_threshold": "For a line component c=1, the unrefined all-root budget gives projective safety at r_G<=48.  The base-sharpened external budget improves this: e_G<=71 gives at most five finite Q-classes.  Adding the endpoint-uniform contribution gives projective total at most 6, exactly the projective budget.",
+    "no_identically_split_positive_dimensional_component": "A positive-dimensional component cannot have r_G>=j=126.  Otherwise every L_Q on G would be divisible by the same degree-j split locator, hence scalar-multiple to it because deg L_Q<=j, contradicting projective injectivity of Q -> L_Q on G."
+  },
+  "unrefined_sample_budget_rows": [
     {
       "component_degree": 1,
       "finite_Q_class_upper_bound": 4,
@@ -163,66 +379,5 @@
       "remaining_required_roots_per_valid_locator": 1,
       "remaining_root_hyperplanes": 387
     }
-  ],
-  "sampler_denominators": {
-    "finite_line": {
-      "budget_floor_denominator_over_2_128": 6,
-      "denominator": 2367911594760467245844106297320951247361,
-      "denominator_formula": "|F|"
-    },
-    "projective_line": {
-      "budget_floor_denominator_over_2_128": 6,
-      "denominator": 2367911594760467245844106297320951247362,
-      "denominator_formula": "|P^1(F)| = |F| + 1"
-    }
-  },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v1",
-  "source_artifacts": {
-    "a386_global_component_slope_dichotomy": {
-      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json",
-      "sha256": "421bcbf3cec0fafc7e4bfaa290a8cdeb768a2476437d5729c69131637ff6ba26"
-    },
-    "a386_slope_free_containment": {
-      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/f17_32_n512_k256_m3_rank6_a386_slope_free_containment.json",
-      "sha256": "b8adf74036744b02a21c1e51ffea876081f2938b8da34430046534f6f05ef651"
-    },
-    "nullpolynomial_split_locator_gate": {
-      "ref": "experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json",
-      "sha256": "fd918c7ddbf47b9037840a7dddf5d9a49c77b7d8d889924bbb6b861f8bb2bc42"
-    },
-    "rank6_boundary_low_degree_transfer": {
-      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json",
-      "sha256": "4ff0d90a1e710bca56efd7a68357d2dcc473a8150c9ddcaf1b95a061ec5c2101"
-    },
-    "rank6_projective_endpoint_uniform": {
-      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
-      "sha256": "f933c4d38476d3056e6284de55e01b7375f8c90239d52aed40548018323454e2"
-    },
-    "row_descriptor": {
-      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
-      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
-    }
-  },
-  "status": "PROVED / AUDIT",
-  "summary": {
-    "agreement": 386,
-    "boundary_defect_h": 3,
-    "conic_closed_by_this_incidence_budget": false,
-    "line_finite_safe_for_core_at_most": 61,
-    "line_projective_safe_for_core_at_most": 48,
-    "locator_degree_j": 126,
-    "positive_dimensional_component_forced_core_upper_bound": 125,
-    "remaining_unclosed_residuals": [
-      "moving-slope line component with forced split-root core >=49 for projective accounting",
-      "irreducible moving-slope conic component",
-      "possible independent noncontained vectors at slopes also admitting a slope-free vector"
-    ]
-  },
-  "theorem": {
-    "base_interpolation_injective": "The linear map Q -> L_Q is injective: if L_Q=0 then Q vanishes on the base support X of size m=127, impossible for deg Q<3 unless Q=0.",
-    "conic_status": "For an irreducible conic c=2, this incidence budget alone gives at least eight finite Q-classes at r_G=0 and only worsens as r_G grows, so conics remain residual for a sharper split, paid, or exact-root-table argument.",
-    "incidence_budget": "For r_G<j, each valid degree-j split locator on G needs at least j-r_G additional intersections with non-forced root hyperplanes.  Each non-forced E_s cuts G in length at most c.  Hence the number of valid Q-classes, and therefore the number of finite slopes represented by this component, is at most floor(c*(512-r_G)/(126-r_G)).",
-    "line_projective_safe_core_threshold": "For a line component c=1, r_G<=48 gives at most five finite Q-classes.  Adding the endpoint-uniform contribution gives projective total at most 6, exactly the projective budget.",
-    "no_identically_split_positive_dimensional_component": "A positive-dimensional component cannot have r_G>=j=126.  Otherwise every L_Q on G would be divisible by the same degree-j split locator, hence scalar-multiple to it because deg L_Q<=j, contradicting projective injectivity of Q -> L_Q on G."
-  }
+  ]
 }

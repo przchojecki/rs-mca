@@ -45,12 +45,12 @@ Keep entries concise and link to the relevant files.
   `experimental/agents-log.md`.
 - **Status:** PROVED / AUDIT.
 - **What is being added:** A split-locator incidence budget for the remaining
-  `A=386` moving-slope rank-6 component: if `G` has degree `c` and forced
-  split-root core `r_G`, finite source classes are bounded by
-  `floor(c(512-r_G)/(126-r_G))`.
+  `A=386` moving-slope rank-6 component.  The base-support cap `deg Q<3`
+  sharpens the finite source-class bound to
+  `floor(c(385-e_G)/(124-e_G))` for forced external split-root core `e_G`.
 - **How it is useful:** It rules out an identically split positive-dimensional
-  component and closes line components with `r_G<=48` in projective accounting;
-  large-core lines and irreducible conics are now the named residuals.
+  component and closes line components with `e_G<=71` in projective accounting;
+  large-external-core lines and irreducible conics are now the named residuals.
 - **What to do next:** Try to classify or pay the large-core line case, then
   attack irreducible moving conics with exact root tables or a sharper divisor
   incidence argument.

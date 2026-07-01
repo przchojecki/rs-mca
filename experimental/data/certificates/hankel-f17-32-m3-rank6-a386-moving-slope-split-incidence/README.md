@@ -14,6 +14,15 @@ interpolated polynomial `L_Q` on `G`.  Since a split locator has degree
 finite Q-classes on G <= floor(c (512-r_G)/(126-r_G)).
 ```
 
+The packet then sharpens this with the base support.  On the base support `X`,
+`L_Q(x)=0` is equivalent to `Q(x)=0`, and nonzero `Q` has degree `<3`, so each
+candidate has at most two base roots.  If `e_G` is the number of forced
+external roots among `H\\X`, then
+
+```text
+finite Q-classes on G <= floor(c (385-e_G)/(124-e_G)).
+```
+
 The base interpolation map `Q -> L_Q` is injective, so a positive-dimensional
 component cannot have `r_G >= 126`; otherwise all `L_Q` would be scalar
 multiples of the same degree-126 divisor.
@@ -21,15 +30,16 @@ multiples of the same degree-126 divisor.
 The useful closed subcase is:
 
 ```text
-line component, r_G <= 48:
+line component, e_G <= 71:
   finite slopes <= 5,
   endpoint = 1,
   projective total <= 6.
 ```
 
-Conic components and line components with large forced core remain named
-residuals for a sharper split-locator, paid-ledger, or exact-root-table
-argument.
+Conic components are finite-safe for `e_G<=19` but remain one endpoint over the
+projective budget under this incidence bound.  Line components with
+`e_G>=72` also remain residual for a sharper split-locator, paid-ledger, or
+exact-root-table argument.
 
 Replay:
 
@@ -42,7 +52,7 @@ Nonclaims:
 
 ```text
 does not prove every moving-slope component is a line;
-does not close line components with forced split-root core >=49 in projective accounting;
+does not close line components with forced external split-root core >=72 in projective accounting;
 does not close irreducible conic moving-slope components;
 does not rule out another independent noncontained vector at the same finite slope;
 does not cover A=385;

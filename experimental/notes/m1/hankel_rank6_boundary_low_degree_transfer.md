@@ -152,8 +152,16 @@ finite split-locator source classes are bounded by
 floor(c(512-r_G)/(126-r_G)).
 ```
 
-In particular, a line component with `r_G<=48` is projective-safe after adding
-the endpoint.  Irreducible conics and large-core lines remain residual.
+Using the additional base-support fact that `Q` has at most two roots on `X`,
+the packet sharpens this to
+
+```text
+floor(c(385-e_G)/(124-e_G))
+```
+
+for forced external split-root core `e_G`.  In particular, a line component
+with `e_G<=71` is projective-safe after adding the endpoint.  Irreducible
+conics and large-external-core lines remain residual.
 
 Replay:
 

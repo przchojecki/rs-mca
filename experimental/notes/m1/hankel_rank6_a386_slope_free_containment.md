@@ -80,8 +80,10 @@ experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md
 ```
 
 handles the next non-slope-free branch by counting split-root hyperplane
-incidences on the moving component.  It closes line components with small
-forced split-root core and leaves conics and large-core lines as residual.
+incidences on the moving component, using the base-support cap that nonzero
+`Q` has at most two roots on `X`.  It closes line components with forced
+external split-root core `e_G<=71` and leaves conics and large-external-core
+lines as residual.
 
 Replay:
 

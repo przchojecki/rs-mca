@@ -18,7 +18,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v1"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v2"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -80,12 +80,49 @@ def finite_q_class_bound(component_degree: int, forced_core_size: int, locator_d
     return incidences_available // incidences_needed_per_split_locator
 
 
+def external_q_class_bound(
+    component_degree: int,
+    forced_external_core_size: int,
+    locator_degree: int,
+    base_root_cap: int,
+    external_root_count: int,
+) -> int | None:
+    require(component_degree > 0, "component degree must be positive")
+    require(0 <= forced_external_core_size <= external_root_count, "external core out of range")
+    required_external_roots = locator_degree - base_root_cap - forced_external_core_size
+    if required_external_roots <= 0:
+        return None
+    incidences_available = component_degree * (external_root_count - forced_external_core_size)
+    return incidences_available // required_external_roots
+
+
 def max_core_for_bound(component_degree: int, locator_degree: int, target_bound: int) -> int | None:
     safe_values = [
         core
         for core in range(locator_degree)
         if finite_q_class_bound(component_degree, core, locator_degree) <= target_bound
     ]
+    return max(safe_values) if safe_values else None
+
+
+def max_external_core_for_bound(
+    component_degree: int,
+    locator_degree: int,
+    base_root_cap: int,
+    external_root_count: int,
+    target_bound: int,
+) -> int | None:
+    safe_values = []
+    for core in range(locator_degree - base_root_cap):
+        bound = external_q_class_bound(
+            component_degree,
+            core,
+            locator_degree,
+            base_root_cap,
+            external_root_count,
+        )
+        if bound is not None and bound <= target_bound:
+            safe_values.append(core)
     return max(safe_values) if safe_values else None
 
 
@@ -103,6 +140,55 @@ def table_row(component_degree: int, forced_core_size: int, locator_degree: int)
         "finite_safe": finite_bound <= FINITE_BUDGET,
         "projective_safe_with_endpoint": finite_bound + 1 <= PROJECTIVE_BUDGET,
     }
+
+
+def external_table_row(
+    component_degree: int,
+    forced_external_core_size: int,
+    locator_degree: int,
+    base_root_cap: int,
+    external_root_count: int,
+) -> dict[str, Any]:
+    finite_bound = external_q_class_bound(
+        component_degree,
+        forced_external_core_size,
+        locator_degree,
+        base_root_cap,
+        external_root_count,
+    )
+    required_external_roots = locator_degree - base_root_cap - forced_external_core_size
+    row: dict[str, Any] = {
+        "component_degree": component_degree,
+        "forced_external_split_root_core_size": forced_external_core_size,
+        "base_root_cap_per_Q": base_root_cap,
+        "remaining_required_external_roots_per_valid_locator": max(required_external_roots, 0),
+        "remaining_external_root_hyperplanes": external_root_count - forced_external_core_size,
+        "external_incidence_capacity": component_degree
+        * (external_root_count - forced_external_core_size),
+    }
+    if finite_bound is None:
+        row.update(
+            {
+                "finite_Q_class_upper_bound": None,
+                "finite_slope_upper_bound": None,
+                "projective_total_with_endpoint_upper_bound": None,
+                "finite_safe": False,
+                "projective_safe_with_endpoint": False,
+                "status": "RESIDUAL: external forced core already covers the post-base root requirement",
+            }
+        )
+    else:
+        row.update(
+            {
+                "finite_Q_class_upper_bound": finite_bound,
+                "finite_slope_upper_bound": finite_bound,
+                "projective_total_with_endpoint_upper_bound": finite_bound + 1,
+                "finite_safe": finite_bound <= FINITE_BUDGET,
+                "projective_safe_with_endpoint": finite_bound + 1 <= PROJECTIVE_BUDGET,
+                "status": "bounded",
+            }
+        )
+    return row
 
 
 def build_certificate() -> dict[str, Any]:
@@ -162,6 +248,12 @@ def build_certificate() -> dict[str, Any]:
     h_value = support_size - t_value
     require(j_value == 126, "A=386 locator degree mismatch")
     require(h_value == 3, "A=386 boundary defect should be three")
+    base_support_size = m_value
+    external_root_count = N - base_support_size
+    base_root_cap = h_value - 1
+    require(base_support_size == 127, "base support size mismatch")
+    require(external_root_count == 385, "external root count mismatch")
+    require(base_root_cap == 2, "base root cap mismatch")
 
     transfer_record = next(
         record for record in low_degree["agreement_records"] if record["A"] == AGREEMENT
@@ -176,13 +268,41 @@ def build_certificate() -> dict[str, Any]:
     line_finite_safe_core_max = max_core_for_bound(1, j_value, FINITE_BUDGET)
     conic_projective_safe_core_max = max_core_for_bound(2, j_value, PROJECTIVE_BUDGET - 1)
     conic_finite_safe_core_max = max_core_for_bound(2, j_value, FINITE_BUDGET)
+    line_projective_safe_external_core_max = max_external_core_for_bound(
+        1, j_value, base_root_cap, external_root_count, PROJECTIVE_BUDGET - 1
+    )
+    line_finite_safe_external_core_max = max_external_core_for_bound(
+        1, j_value, base_root_cap, external_root_count, FINITE_BUDGET
+    )
+    conic_projective_safe_external_core_max = max_external_core_for_bound(
+        2, j_value, base_root_cap, external_root_count, PROJECTIVE_BUDGET - 1
+    )
+    conic_finite_safe_external_core_max = max_external_core_for_bound(
+        2, j_value, base_root_cap, external_root_count, FINITE_BUDGET
+    )
 
     require(line_projective_safe_core_max == 48, "line projective threshold changed")
     require(line_finite_safe_core_max == 61, "line finite threshold changed")
     require(conic_projective_safe_core_max is None, "conic projective safety should not follow")
     require(conic_finite_safe_core_max is None, "conic finite safety should not follow")
+    require(
+        line_projective_safe_external_core_max == 71,
+        "base-sharpened line projective threshold changed",
+    )
+    require(
+        line_finite_safe_external_core_max == 80,
+        "base-sharpened line finite threshold changed",
+    )
+    require(
+        conic_projective_safe_external_core_max is None,
+        "base-sharpened conic projective safety should not follow",
+    )
+    require(
+        conic_finite_safe_external_core_max == 19,
+        "base-sharpened conic finite threshold changed",
+    )
 
-    sample_rows = [
+    unrefined_sample_rows = [
         table_row(1, 0, j_value),
         table_row(1, line_projective_safe_core_max, j_value),
         table_row(1, line_projective_safe_core_max + 1, j_value),
@@ -191,6 +311,53 @@ def build_certificate() -> dict[str, Any]:
         table_row(2, 0, j_value),
         table_row(2, line_projective_safe_core_max, j_value),
         table_row(2, j_value - 1, j_value),
+    ]
+    base_sharpened_sample_rows = [
+        external_table_row(1, 0, j_value, base_root_cap, external_root_count),
+        external_table_row(
+            1,
+            line_projective_safe_external_core_max,
+            j_value,
+            base_root_cap,
+            external_root_count,
+        ),
+        external_table_row(
+            1,
+            line_projective_safe_external_core_max + 1,
+            j_value,
+            base_root_cap,
+            external_root_count,
+        ),
+        external_table_row(
+            1,
+            line_finite_safe_external_core_max,
+            j_value,
+            base_root_cap,
+            external_root_count,
+        ),
+        external_table_row(
+            1,
+            line_finite_safe_external_core_max + 1,
+            j_value,
+            base_root_cap,
+            external_root_count,
+        ),
+        external_table_row(2, 0, j_value, base_root_cap, external_root_count),
+        external_table_row(
+            2,
+            conic_finite_safe_external_core_max,
+            j_value,
+            base_root_cap,
+            external_root_count,
+        ),
+        external_table_row(
+            2,
+            conic_finite_safe_external_core_max + 1,
+            j_value,
+            base_root_cap,
+            external_root_count,
+        ),
+        external_table_row(2, j_value - base_root_cap, j_value, base_root_cap, external_root_count),
     ]
 
     return {
@@ -237,6 +404,9 @@ def build_certificate() -> dict[str, Any]:
             "combined_support_size": support_size,
             "boundary_defect_h": h_value,
             "projective_Q_search_dimension": 2,
+            "base_support_size": base_support_size,
+            "external_root_count": external_root_count,
+            "base_root_cap_per_Q": base_root_cap,
         },
         "incidence_setup": {
             "component": (
@@ -251,12 +421,22 @@ def build_certificate() -> dict[str, Any]:
                 "r_G is the number of subgroup points s for which G is contained "
                 "in E_s; these are roots forced for every L_Q on G."
             ),
+            "external_forced_split_root_core": (
+                "e_G is the number of forced root hyperplanes among H\\X.  "
+                "The base support X is handled separately because L_Q(x)=0 "
+                "is equivalent to Q(x)=0 there."
+            ),
         },
         "theorem": {
             "base_interpolation_injective": (
                 "The linear map Q -> L_Q is injective: if L_Q=0 then Q vanishes "
                 "on the base support X of size m=127, impossible for deg Q<3 "
                 "unless Q=0."
+            ),
+            "base_root_cap": (
+                "On the base support X, a_x L_Q(x)=Omega_x Q(x) with nonzero "
+                "a_x and Omega_x.  Thus L_Q has at most two roots in X for "
+                "nonzero Q, because deg Q<3."
             ),
             "no_identically_split_positive_dimensional_component": (
                 "A positive-dimensional component cannot have r_G>=j=126.  "
@@ -272,16 +452,27 @@ def build_certificate() -> dict[str, Any]:
                 "slopes represented by this component, is at most "
                 "floor(c*(512-r_G)/(126-r_G))."
             ),
+            "base_sharpened_external_incidence_budget": (
+                "Let e_G be the forced split-root core outside X.  Since each "
+                "nonzero Q has at most two base-support roots, a valid degree-126 "
+                "split locator needs at least 124-e_G additional roots outside X.  "
+                "Each non-forced external root hyperplane cuts G in length at most "
+                "c.  For e_G<124, the number of valid Q-classes, and hence finite "
+                "slopes, is at most floor(c*(385-e_G)/(124-e_G))."
+            ),
             "line_projective_safe_core_threshold": (
-                "For a line component c=1, r_G<=48 gives at most five finite "
+                "For a line component c=1, the unrefined all-root budget gives "
+                "projective safety at r_G<=48.  The base-sharpened external "
+                "budget improves this: e_G<=71 gives at most five finite "
                 "Q-classes.  Adding the endpoint-uniform contribution gives "
                 "projective total at most 6, exactly the projective budget."
             ),
             "conic_status": (
-                "For an irreducible conic c=2, this incidence budget alone gives "
-                "at least eight finite Q-classes at r_G=0 and only worsens as "
-                "r_G grows, so conics remain residual for a sharper split, paid, "
-                "or exact-root-table argument."
+                "For an irreducible conic c=2, the base-sharpened budget gives "
+                "six finite Q-classes at e_G=0 and finite safety through e_G<=19, "
+                "but the projective endpoint still makes total seven at best.  "
+                "Conics therefore remain residual for a sharper split, paid, or "
+                "exact-root-table argument."
             ),
         },
         "budget_formula": {
@@ -293,19 +484,43 @@ def build_certificate() -> dict[str, Any]:
             "finite_slope_upper_bound_reason": "the slope image cannot have more values than source Q-classes",
             "projective_total_upper_bound": "finite_Q_class_upper_bound + 1 endpoint",
         },
+        "base_sharpened_budget_formula": {
+            "base_support_size": base_support_size,
+            "external_root_count": external_root_count,
+            "base_root_cap_per_nonzero_Q": base_root_cap,
+            "component_degree_c": "1 for a line, 2 for an irreducible conic",
+            "forced_external_core_size_e": "0 <= e < 124",
+            "finite_Q_class_upper_bound": "floor(c*(385-e)/(124-e))",
+            "projective_total_upper_bound": "finite_Q_class_upper_bound + 1 endpoint",
+            "residual_when_e_at_least": j_value - base_root_cap,
+        },
         "safe_thresholds": {
             "line_component": {
-                "projective_safe_if_forced_core_at_most": line_projective_safe_core_max,
-                "finite_safe_if_forced_core_at_most": line_finite_safe_core_max,
+                "unrefined_projective_safe_if_forced_core_at_most": line_projective_safe_core_max,
+                "unrefined_finite_safe_if_forced_core_at_most": line_finite_safe_core_max,
+                "base_sharpened_projective_safe_if_external_core_at_most": (
+                    line_projective_safe_external_core_max
+                ),
+                "base_sharpened_finite_safe_if_external_core_at_most": (
+                    line_finite_safe_external_core_max
+                ),
                 "projective_endpoint_added": 1,
             },
             "irreducible_conic_component": {
-                "projective_safe_for_any_core_by_this_budget": False,
-                "finite_safe_for_any_core_by_this_budget": False,
-                "smallest_finite_bound_by_this_budget": finite_q_class_bound(2, 0, j_value),
+                "unrefined_projective_safe_for_any_core_by_this_budget": False,
+                "unrefined_finite_safe_for_any_core_by_this_budget": False,
+                "unrefined_smallest_finite_bound_by_this_budget": finite_q_class_bound(2, 0, j_value),
+                "base_sharpened_projective_safe_for_any_external_core_by_this_budget": False,
+                "base_sharpened_finite_safe_if_external_core_at_most": (
+                    conic_finite_safe_external_core_max
+                ),
+                "base_sharpened_smallest_finite_bound_by_this_budget": (
+                    external_q_class_bound(2, 0, j_value, base_root_cap, external_root_count)
+                ),
             },
         },
-        "sample_budget_rows": sample_rows,
+        "unrefined_sample_budget_rows": unrefined_sample_rows,
+        "base_sharpened_sample_budget_rows": base_sharpened_sample_rows,
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -322,13 +537,16 @@ def build_certificate() -> dict[str, Any]:
             "agreement": AGREEMENT,
             "boundary_defect_h": h_value,
             "locator_degree_j": j_value,
+            "base_root_cap_per_Q": base_root_cap,
+            "external_root_count": external_root_count,
             "positive_dimensional_component_forced_core_upper_bound": j_value - 1,
-            "line_projective_safe_for_core_at_most": line_projective_safe_core_max,
-            "line_finite_safe_for_core_at_most": line_finite_safe_core_max,
-            "conic_closed_by_this_incidence_budget": False,
+            "line_projective_safe_for_external_core_at_most": line_projective_safe_external_core_max,
+            "line_finite_safe_for_external_core_at_most": line_finite_safe_external_core_max,
+            "conic_finite_safe_for_external_core_at_most": conic_finite_safe_external_core_max,
+            "conic_projective_closed_by_this_incidence_budget": False,
             "remaining_unclosed_residuals": [
-                "moving-slope line component with forced split-root core >=49 for projective accounting",
-                "irreducible moving-slope conic component",
+                "moving-slope line component with forced external split-root core >=72 for projective accounting",
+                "irreducible moving-slope conic component; base-sharpened incidence is one endpoint over budget at best",
                 "possible independent noncontained vectors at slopes also admitting a slope-free vector",
             ],
         },
@@ -338,15 +556,18 @@ def build_certificate() -> dict[str, Any]:
             "moving-slope residual is exposed by the slope-dichotomy dependency",
             "slope-free displayed vectors have already been filtered by noncontainment",
             "base interpolation Q->L_Q is injective because |X|=127>deg Q",
+            "base roots satisfy L_Q(x)=0 iff Q(x)=0 and therefore at most two occur on X",
             "r_G>=126 is impossible for a positive-dimensional component",
             "incidence formula floor(c*(512-r)/(126-r)) is evaluated for c=1,2",
-            "line projective-safe threshold is r<=48",
-            "line finite-safe threshold is r<=61",
-            "conic components are not closed by this incidence budget",
+            "base-sharpened external incidence formula floor(c*(385-e)/(124-e)) is evaluated for c=1,2",
+            "base-sharpened line projective-safe threshold is e<=71",
+            "base-sharpened line finite-safe threshold is e<=80",
+            "base-sharpened conic finite-safe threshold is e<=19",
+            "conic components are still not projective-closed by this incidence budget",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",
-            "does not close line components with forced split-root core >=49 in projective accounting",
+            "does not close line components with forced external split-root core >=72 in projective accounting",
             "does not close irreducible conic moving-slope components",
             "does not rule out another independent noncontained vector at the same finite slope",
             "does not cover A=385",
@@ -368,8 +589,10 @@ def print_summary(certificate: dict[str, Any]) -> None:
     summary = certificate["summary"]
     print("F_17^32 M3 rank-6 A=386 moving-slope split-incidence budget")
     print(
-        "line projective safe core<= {line_projective_safe_for_core_at_most}; "
-        "conic closed={conic_closed_by_this_incidence_budget}".format(**summary)
+        "line projective safe external core<= {line_projective_safe_for_external_core_at_most}; "
+        "conic projective closed={conic_projective_closed_by_this_incidence_budget}".format(
+            **summary
+        )
     )
 
 
