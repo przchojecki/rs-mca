@@ -75,6 +75,10 @@ NULLPOLY_SPLIT_LOCATOR_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/"
     "f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json"
 )
+PROJECTIVE_SPLIT_LOCATOR_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-projective-split-locator-gate/"
+    "f17_32_n512_k256_m3_projective_split_locator_gate.json"
+)
 M5_PROJECTIVE_INFINITY_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/"
     "f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json"
@@ -108,6 +112,7 @@ EXPECTED_SCHEMAS = {
     DIRECTION_RANK_REF: "f17-32-m3-direction-rank-degree-cap-v1",
     RANK_NODE_DICHOTOMY_REF: "f17-32-m3-rank-node-dichotomy-v1",
     NULLPOLY_SPLIT_LOCATOR_REF: "f17-32-m3-nullpolynomial-split-locator-gate-v1",
+    PROJECTIVE_SPLIT_LOCATOR_REF: "f17-32-m3-projective-split-locator-gate-v1",
     M5_PROJECTIVE_INFINITY_REF: "f17-32-m3-m5-projective-infinity-kernel-chart-v1",
     M4_PROJECTIVE_BUDGET_REF: "f17-32-m3-m4-projective-budget-split-v1",
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
@@ -207,6 +212,7 @@ def regular_bucket_decision_table() -> dict[str, Any]:
                 "B_ap_regular_projective_before_endpoint_payment": f"<= {BUDGET + 1}",
                 "projective_budget_safe_without_endpoint_payment": False,
                 "projective_budget_split_certificate_ref": M4_PROJECTIVE_BUDGET_REF,
+                "projective_split_locator_certificate_ref": PROJECTIVE_SPLIT_LOCATOR_REF,
                 "finite_root_compression_certificate_ref": M4_AFFINE_PIVOT_COMPRESSION_REF,
                 "compressed_gcd_equivalence_certificate_ref": M4_AFFINE_PIVOT_GCD_REF,
                 "projective_sampler_safe_if": (
@@ -372,6 +378,11 @@ def build_certificate() -> dict[str, Any]:
                 "finite canonical roots in a nonsingular regular bucket are ambient Hankel null-polynomials",
                 "actual split-locator bad slopes are filtered by monic degree-j divisibility by X^512-1 and H(v)ell noncontainment",
             ],
+            "m3_projective_split_locator_gate": [
+                "ambient projective endpoints satisfy H(v)ell=0 and H(u)ell!=0",
+                "actual split-locator projective endpoints are filtered by monic degree-j divisibility by X^512-1",
+                "rank-6 direction buckets have large ambient endpoint kernels, but those kernels still need the split-locator divisor gate before endpoint counting",
+            ],
             "m5_projective_infinity_closed_by_kernel_chart": [
                 "proportional rank-deficient direction: infinity empty because ker H(v) subset ker H(u)",
                 "arbitrary rank-deficient direction: infinity empty iff ker H(v) subset ker H(u), otherwise at most the single endpoint [0:1]",
@@ -418,6 +429,7 @@ def build_certificate() -> dict[str, Any]:
             "m4_affine_pivot_gcd_equivalence_count": 1,
             "m3_rank_node_dichotomy_count": 1,
             "m3_nullpolynomial_split_locator_gate_count": 1,
+            "m3_projective_split_locator_gate_count": 1,
             "residual_case_count": 3,
             "dependencies_checked": len(EXPECTED_SCHEMAS),
         },
@@ -432,6 +444,7 @@ def build_certificate() -> dict[str, Any]:
             "rank<=5 buckets are separated from rank=6 endpoint-sensitive buckets",
             "rank-node testing supplies the finite regular/singular gate for future packets",
             "null-polynomial testing separates ambient roots from split-locator noncontainment witnesses",
+            "projective split-locator testing separates ambient infinity endpoints from genuine support-wise endpoint witnesses",
             "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
             "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
             "projective infinity and finite affine accounting are not conflated",

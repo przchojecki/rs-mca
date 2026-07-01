@@ -101,6 +101,19 @@ nonsingular bucket, finite canonical roots are exactly ambient null-polynomials
 normalizes to a monic degree-`j` divisor of `X^512-1` and satisfies
 `H(v)ell != 0`.
 
+The projective split-locator gate
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-projective-split-locator-gate/
+  f17_32_n512_k256_m3_projective_split_locator_gate.json
+```
+
+is the endpoint companion.  The ambient infinity chart is
+`H(v)ell=0, H(u)ell!=0`, but an actual support-wise endpoint witness still
+requires `ell` to normalize to a monic degree-`j` divisor of `X^512-1`.  Thus
+the rank-6 endpoint-sensitive branch must test the split-locator divisor gate
+before counting or paying the projective endpoint.
+
 The affine-pivot compression packet
 
 ```text
@@ -176,6 +189,9 @@ python3 experimental/scripts/verify_m1_hankel_m3_rank_node_dichotomy.py \
 
 python3 experimental/scripts/verify_m1_hankel_m3_nullpolynomial_split_locator_gate.py \
   --check experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json
+
+python3 experimental/scripts/verify_m1_hankel_m3_projective_split_locator_gate.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-projective-split-locator-gate/f17_32_n512_k256_m3_projective_split_locator_gate.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json

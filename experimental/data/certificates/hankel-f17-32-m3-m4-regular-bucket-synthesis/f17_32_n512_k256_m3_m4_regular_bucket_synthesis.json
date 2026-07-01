@@ -348,6 +348,7 @@
     "rank<=5 buckets are separated from rank=6 endpoint-sensitive buckets",
     "rank-node testing supplies the finite regular/singular gate for future packets",
     "null-polynomial testing separates ambient roots from split-locator noncontainment witnesses",
+    "projective split-locator testing separates ambient infinity endpoints from genuine support-wise endpoint witnesses",
     "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
     "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
     "projective infinity and finite affine accounting are not conflated"
@@ -397,7 +398,8 @@
         "projective_budget_safe_without_endpoint_payment": false,
         "projective_budget_split_certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/f17_32_n512_k256_m3_m4_projective_budget_split.json",
         "projective_infinity_extra_parameters": "<= 1",
-        "projective_sampler_safe_if": "the infinity endpoint is empty/paid, or the exact finite root table has at most 5 surviving roots"
+        "projective_sampler_safe_if": "the infinity endpoint is empty/paid, or the exact finite root table has at most 5 surviving roots",
+        "projective_split_locator_certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-projective-split-locator-gate/f17_32_n512_k256_m3_projective_split_locator_gate.json"
       },
       "direction_rank_intermediate": {
         "B_ap_regular_finite_before_other_ledgers": "<= rank H_{t,j}(v)",
@@ -526,6 +528,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/f17_32_n512_k256_m3_projective_infinity_rank_criterion.json",
       "sha256": "a1cf0404245aad0df1cb283a7551a846d914c343246bb9d0307a050a8b364263"
     },
+    "f17_32_n512_k256_m3_projective_split_locator_gate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-projective-split-locator-gate/f17_32_n512_k256_m3_projective_split_locator_gate.json",
+      "sha256": "c596c4408b77037de13978bba8dbbc21dd444e2119d2301d593d8421ce7693ff"
+    },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
       "sha256": "d85c2cac6e9842117f72bb952eb4c11c83a3f8ee416babd67c6cf1ef34cc152c"
@@ -551,10 +557,11 @@
   "summary": {
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 15,
+    "dependencies_checked": 16,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
     "m3_nullpolynomial_split_locator_gate_count": 1,
+    "m3_projective_split_locator_gate_count": 1,
     "m3_rank_node_dichotomy_count": 1,
     "m4_affine_pivot_compression_count": 1,
     "m4_affine_pivot_gcd_equivalence_count": 1,
@@ -578,6 +585,11 @@
     "m3_nullpolynomial_split_locator_gate": [
       "finite canonical roots in a nonsingular regular bucket are ambient Hankel null-polynomials",
       "actual split-locator bad slopes are filtered by monic degree-j divisibility by X^512-1 and H(v)ell noncontainment"
+    ],
+    "m3_projective_split_locator_gate": [
+      "ambient projective endpoints satisfy H(v)ell=0 and H(u)ell!=0",
+      "actual split-locator projective endpoints are filtered by monic degree-j divisibility by X^512-1",
+      "rank-6 direction buckets have large ambient endpoint kernels, but those kernels still need the split-locator divisor gate before endpoint counting"
     ],
     "m3_rank_node_dichotomy": [
       "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",

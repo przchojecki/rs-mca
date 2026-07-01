@@ -1,0 +1,510 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "j": 127,
+      "maximal_row_set_count": 129,
+      "minor_size": 128,
+      "projective_kernel_dimension_if_rank_6": 122,
+      "split_locator_degree_required": 127,
+      "t": 129
+    },
+    {
+      "A": 386,
+      "j": 126,
+      "maximal_row_set_count": 357760,
+      "minor_size": 127,
+      "projective_kernel_dimension_if_rank_6": 121,
+      "split_locator_degree_required": 126,
+      "t": 130
+    },
+    {
+      "A": 387,
+      "j": 125,
+      "maximal_row_set_count": 297602656,
+      "minor_size": 126,
+      "projective_kernel_dimension_if_rank_6": 120,
+      "split_locator_degree_required": 125,
+      "t": 131
+    },
+    {
+      "A": 388,
+      "j": 124,
+      "maximal_row_set_count": 117850651776,
+      "minor_size": 125,
+      "projective_kernel_dimension_if_rank_6": 119,
+      "split_locator_degree_required": 124,
+      "t": 132
+    },
+    {
+      "A": 389,
+      "j": 123,
+      "maximal_row_set_count": 27212042858000,
+      "minor_size": 124,
+      "projective_kernel_dimension_if_rank_6": 118,
+      "split_locator_degree_required": 123,
+      "t": 133
+    },
+    {
+      "A": 390,
+      "j": 122,
+      "maximal_row_set_count": 4110502764804800,
+      "minor_size": 123,
+      "projective_kernel_dimension_if_rank_6": 117,
+      "split_locator_degree_required": 122,
+      "t": 134
+    },
+    {
+      "A": 391,
+      "j": 121,
+      "maximal_row_set_count": 437531400061434000,
+      "minor_size": 122,
+      "projective_kernel_dimension_if_rank_6": 116,
+      "split_locator_degree_required": 121,
+      "t": 135
+    },
+    {
+      "A": 392,
+      "j": 120,
+      "maximal_row_set_count": 34569147570568156800,
+      "minor_size": 121,
+      "projective_kernel_dimension_if_rank_6": 115,
+      "split_locator_degree_required": 120,
+      "t": 136
+    },
+    {
+      "A": 393,
+      "j": 119,
+      "maximal_row_set_count": 2106811614990104173800,
+      "minor_size": 120,
+      "projective_kernel_dimension_if_rank_6": 114,
+      "split_locator_degree_required": 119,
+      "t": 137
+    },
+    {
+      "A": 394,
+      "j": 118,
+      "maximal_row_set_count": 102014036094257675784000,
+      "minor_size": 119,
+      "projective_kernel_dimension_if_rank_6": 113,
+      "split_locator_degree_required": 118,
+      "t": 138
+    },
+    {
+      "A": 395,
+      "j": 117,
+      "maximal_row_set_count": 4017652788178848131293200,
+      "minor_size": 118,
+      "projective_kernel_dimension_if_rank_6": 112,
+      "split_locator_degree_required": 117,
+      "t": 139
+    },
+    {
+      "A": 396,
+      "j": 116,
+      "maximal_row_set_count": 131169217511293618831944000,
+      "minor_size": 117,
+      "projective_kernel_dimension_if_rank_6": 111,
+      "split_locator_degree_required": 116,
+      "t": 140
+    },
+    {
+      "A": 397,
+      "j": 115,
+      "maximal_row_set_count": 3606497635473018049784300280,
+      "minor_size": 116,
+      "projective_kernel_dimension_if_rank_6": 110,
+      "split_locator_degree_required": 115,
+      "t": 141
+    },
+    {
+      "A": 398,
+      "j": 114,
+      "maximal_row_set_count": 84624257908136115834824778080,
+      "minor_size": 115,
+      "projective_kernel_dimension_if_rank_6": 109,
+      "split_locator_degree_required": 114,
+      "t": 142
+    },
+    {
+      "A": 399,
+      "j": 113,
+      "maximal_row_set_count": 1713849656772535006039031373800,
+      "minor_size": 114,
+      "projective_kernel_dimension_if_rank_6": 108,
+      "split_locator_degree_required": 113,
+      "t": 143
+    },
+    {
+      "A": 400,
+      "j": 112,
+      "maximal_row_set_count": 30252210715675198558211547346560,
+      "minor_size": 113,
+      "projective_kernel_dimension_if_rank_6": 107,
+      "split_locator_degree_required": 112,
+      "t": 144
+    },
+    {
+      "A": 401,
+      "j": 111,
+      "maximal_row_set_count": 469396280848805045810886556130100,
+      "minor_size": 112,
+      "projective_kernel_dimension_if_rank_6": 106,
+      "split_locator_degree_required": 111,
+      "t": 145
+    },
+    {
+      "A": 402,
+      "j": 110,
+      "maximal_row_set_count": 6450057129781226982436652912470080,
+      "minor_size": 111,
+      "projective_kernel_dimension_if_rank_6": 105,
+      "split_locator_degree_required": 110,
+      "t": 146
+    },
+    {
+      "A": 403,
+      "j": 109,
+      "maximal_row_set_count": 79013199839820030534848998177758480,
+      "minor_size": 110,
+      "projective_kernel_dimension_if_rank_6": 104,
+      "split_locator_degree_required": 109,
+      "t": 147
+    },
+    {
+      "A": 404,
+      "j": 108,
+      "maximal_row_set_count": 867972262747820578345034878767819200,
+      "minor_size": 109,
+      "projective_kernel_dimension_if_rank_6": 103,
+      "split_locator_degree_required": 108,
+      "t": 148
+    },
+    {
+      "A": 405,
+      "j": 107,
+      "maximal_row_set_count": 8595571658102045129818116747602531480,
+      "minor_size": 108,
+      "projective_kernel_dimension_if_rank_6": 102,
+      "split_locator_degree_required": 107,
+      "t": 149
+    },
+    {
+      "A": 406,
+      "j": 106,
+      "maximal_row_set_count": 77103134474669507808999718333976196000,
+      "minor_size": 107,
+      "projective_kernel_dimension_if_rank_6": 101,
+      "split_locator_degree_required": 106,
+      "t": 150
+    },
+    {
+      "A": 407,
+      "j": 105,
+      "maximal_row_set_count": 629169365508704665489903257132350201400,
+      "minor_size": 106,
+      "projective_kernel_dimension_if_rank_6": 100,
+      "split_locator_degree_required": 105,
+      "t": 151
+    },
+    {
+      "A": 408,
+      "j": 104,
+      "maximal_row_set_count": 4688795937593084907665736021700474766400,
+      "minor_size": 105,
+      "projective_kernel_dimension_if_rank_6": 99,
+      "split_locator_degree_required": 104,
+      "t": 152
+    },
+    {
+      "A": 409,
+      "j": 103,
+      "maximal_row_set_count": 32026150823738481735395429076793421395500,
+      "minor_size": 104,
+      "projective_kernel_dimension_if_rank_6": 98,
+      "split_locator_degree_required": 103,
+      "t": 153
+    },
+    {
+      "A": 410,
+      "j": 102,
+      "maximal_row_set_count": 201149345722743342538860075330950367478560,
+      "minor_size": 103,
+      "projective_kernel_dimension_if_rank_6": 97,
+      "split_locator_degree_required": 102,
+      "t": 154
+    },
+    {
+      "A": 411,
+      "j": 101,
+      "maximal_row_set_count": 1165221082896806046310922025638106900143400,
+      "minor_size": 102,
+      "projective_kernel_dimension_if_rank_6": 96,
+      "split_locator_degree_required": 101,
+      "t": 155
+    },
+    {
+      "A": 412,
+      "j": 100,
+      "maximal_row_set_count": 6242760225944100272356697397964160604404640,
+      "minor_size": 101,
+      "projective_kernel_dimension_if_rank_6": 95,
+      "split_locator_degree_required": 100,
+      "t": 156
+    },
+    {
+      "A": 413,
+      "j": 99,
+      "maximal_row_set_count": 31012358678820676071040147443457924406028940,
+      "minor_size": 100,
+      "projective_kernel_dimension_if_rank_6": 94,
+      "split_locator_degree_required": 99,
+      "t": 157
+    },
+    {
+      "A": 414,
+      "j": 98,
+      "maximal_row_set_count": 143189733233596341882651762012459148338766000,
+      "minor_size": 99,
+      "projective_kernel_dimension_if_rank_6": 93,
+      "split_locator_degree_required": 98,
+      "t": 158
+    },
+    {
+      "A": 415,
+      "j": 97,
+      "maximal_row_set_count": 615833221538262299883830979737191107650414100,
+      "minor_size": 98,
+      "projective_kernel_dimension_if_rank_6": 92,
+      "split_locator_degree_required": 97,
+      "t": 159
+    },
+    {
+      "A": 416,
+      "j": 96,
+      "maximal_row_set_count": 2472162036282630021039034757367935629277648000,
+      "minor_size": 97,
+      "projective_kernel_dimension_if_rank_6": 91,
+      "split_locator_degree_required": 96,
+      "t": 160
+    },
+    {
+      "A": 417,
+      "j": 95,
+      "maximal_row_set_count": 9280710221304286788116972549474771808276208850,
+      "minor_size": 96,
+      "projective_kernel_dimension_if_rank_6": 90,
+      "split_locator_degree_required": 95,
+      "t": 161
+    },
+    {
+      "A": 418,
+      "j": 94,
+      "maximal_row_set_count": 32639892664342891933241781340893634365063681600,
+      "minor_size": 95,
+      "projective_kernel_dimension_if_rank_6": 89,
+      "split_locator_degree_required": 94,
+      "t": 162
+    },
+    {
+      "A": 419,
+      "j": 93,
+      "maximal_row_set_count": 107721384890739488829123824395511067379158378000,
+      "minor_size": 94,
+      "projective_kernel_dimension_if_rank_6": 88,
+      "split_locator_degree_required": 93,
+      "t": 163
+    },
+    {
+      "A": 420,
+      "j": 92,
+      "maximal_row_set_count": 334131362067533191104582067782937347025574558400,
+      "minor_size": 93,
+      "projective_kernel_dimension_if_rank_6": 87,
+      "split_locator_degree_required": 92,
+      "t": 164
+    },
+    {
+      "A": 421,
+      "j": 91,
+      "maximal_row_set_count": 975503377269082347317315797208746877874322983000,
+      "minor_size": 92,
+      "projective_kernel_dimension_if_rank_6": 86,
+      "split_locator_degree_required": 91,
+      "t": 165
+    },
+    {
+      "A": 422,
+      "j": 90,
+      "maximal_row_set_count": 2684304068045662271753161595490447264666064972320,
+      "minor_size": 91,
+      "projective_kernel_dimension_if_rank_6": 85,
+      "split_locator_degree_required": 90,
+      "t": 166
+    },
+    {
+      "A": 423,
+      "j": 89,
+      "maximal_row_set_count": 6970842262831498554995351463887273937308644802520,
+      "minor_size": 90,
+      "projective_kernel_dimension_if_rank_6": 84,
+      "split_locator_degree_required": 89,
+      "t": 167
+    },
+    {
+      "A": 424,
+      "j": 88,
+      "maximal_row_set_count": 17104695717950707262500765033102171686482750635200,
+      "minor_size": 89,
+      "projective_kernel_dimension_if_rank_6": 83,
+      "split_locator_degree_required": 88,
+      "t": 168
+    },
+    {
+      "A": 425,
+      "j": 87,
+      "maximal_row_set_count": 39702427205817374681369445503532371039565903133340,
+      "minor_size": 88,
+      "projective_kernel_dimension_if_rank_6": 82,
+      "split_locator_degree_required": 87,
+      "t": 169
+    },
+    {
+      "A": 426,
+      "j": 86,
+      "maximal_row_set_count": 87268338377759025159166456763568067991758141474400,
+      "minor_size": 87,
+      "projective_kernel_dimension_if_rank_6": 81,
+      "split_locator_degree_required": 86,
+      "t": 170
+    }
+  ],
+  "checks": [
+    "dependency schemas and windows match the F_17^32 M3 regular window",
+    "the recorded domain is the exact order-512 subgroup generated in the row descriptor",
+    "X^512-1 is squarefree in characteristic 17",
+    "monic degree-j divisors of X^512-1 are exactly split squarefree j-subgroup locators",
+    "projective ambient kernel and split-domain endpoint witnesses are separated",
+    "sanity examples distinguish ambient projective endpoints from split-locator endpoints"
+  ],
+  "domain_locator_gate": {
+    "derivative": "512 X^511 = 2 X^511 in characteristic 17",
+    "domain_polynomial": "X^512 - 1",
+    "split_locator_criterion": "A monic degree-j polynomial is the locator of a j-subset of H iff it divides X^512-1.",
+    "squarefree": true
+  },
+  "field_audit": {
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_polynomial_derivative_coefficient_mod_17": 2,
+    "domain_size": 512,
+    "generator_encoding": 1415472521070614055149723472223960876430,
+    "generator_exact_order": 512,
+    "x_512_minus_1_squarefree": true
+  },
+  "nonclaims": [
+    "does not compute whether an arbitrary rank-6 endpoint has a split locator",
+    "does not prove endpoint payment or emptiness for rank-6 buckets",
+    "does not compute finite affine root tables",
+    "does not close singular buckets without pivot eliminants or paid ledgers"
+  ],
+  "object": "M3 projective-infinity split-locator gate",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sanity_checks": [
+    {
+      "base_noncontainment_values": [
+        2,
+        0,
+        0
+      ],
+      "domain": "F_17^* roots of X^16-1",
+      "prime": 17,
+      "projective_direction_values": [
+        0,
+        0,
+        0
+      ],
+      "result": "projective endpoint can be an actual split-locator witness",
+      "split_locator_divides_domain_polynomial": true,
+      "split_locator_low_to_high": [
+        2,
+        14,
+        1
+      ]
+    },
+    {
+      "ambient_kernel_divides_domain_polynomial": false,
+      "ambient_kernel_vector_low_to_high": [
+        0,
+        0,
+        1
+      ],
+      "base_noncontainment_values": [
+        1,
+        0,
+        0
+      ],
+      "prime": 17,
+      "projective_direction_values": [
+        0,
+        0,
+        0
+      ],
+      "result": "ambient projective endpoint can overcount split-domain locators"
+    }
+  ],
+  "schema_version": "f17-32-m3-projective-split-locator-gate-v1",
+  "source_artifacts": {
+    "nullpolynomial_split_locator_gate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json",
+      "sha256": "fd918c7ddbf47b9037840a7dddf5d9a49c77b7d8d889924bbb6b861f8bb2bc42"
+    },
+    "projective_infinity_kernel_chart": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json",
+      "sha256": "35f42c9da014b138fb12f02136a215f41cd52ef5236423c4b9240ddbd21e736c"
+    },
+    "projective_infinity_rank_criterion": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/f17_32_n512_k256_m3_projective_infinity_rank_criterion.json",
+      "sha256": "a1cf0404245aad0df1cb283a7551a846d914c343246bb9d0307a050a8b364263"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement_count": 42,
+    "ambient_projective_endpoint_is_safe_upper_bound": true,
+    "projective_split_locator_gate_available": true,
+    "rank6_projective_kernel_dimension_max": 122,
+    "rank6_projective_kernel_dimension_min": 81
+  },
+  "theorem": {
+    "ambient_projective_chart": "The ambient projective-infinity chart is H_{t,j}(v) ell=0 and H_{t,j}(u) ell != 0, modulo nonzero scaling of ell.",
+    "certificate_payload": [
+      "kernel vector ell for H(v)",
+      "normalization degree and leading coefficient of L(X)",
+      "divisor proof or remainder for L(X) against X^512-1",
+      "projective direction vector H(v)ell",
+      "base noncontainment vector H(u)ell"
+    ],
+    "noncontainment_gate": "The endpoint is support-wise noncontained exactly when H_{t,j}(u) ell != 0.  If H(u)ell=H(v)ell=0, both endpoints are explained on the same support and the witness is contained.",
+    "rank6_boundary_consequence": "In the M3 window, a direction-rank-6 bucket has ambient projective kernel dimension j+1-6, ranging from 81 to 122.  This large ambient kernel must still be intersected with the finite split-locator divisor gate before the endpoint is an actual support-wise projective witness.",
+    "split_locator_gate": "An ambient projective kernel vector gives an actual support-wise endpoint witness only after normalization to a monic degree-j divisor of X^512-1."
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551,
+    "rank6_projective_kernel_dimension_max": 122,
+    "rank6_projective_kernel_dimension_min": 81
+  }
+}

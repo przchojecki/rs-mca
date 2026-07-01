@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 projective split-locator gate
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_m3_projective_split_locator_gate.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-projective-split-locator-gate/`;
+  `experimental/notes/m1/hankel_projective_split_locator_gate.md`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A projective-infinity split-locator gate for M3:
+  ambient endpoint vectors satisfy `H(v)ell=0, H(u)ell!=0`, but actual
+  support-wise endpoint witnesses must normalize to monic degree-`j` divisors
+  of `X^512-1`.
+- **How it is useful:** It sharpens the rank-6 endpoint-sensitive boundary by
+  separating large ambient endpoint kernels from genuine split-locator
+  endpoints that future beta packets may count or pay.
+- **What to do next:** Apply this gate to rank-6 Hankel endpoint searches and
+  compressed root-table packets; this entry does not claim endpoint
+  payment or emptiness.
+
 ### 2026-07-01 - M3 null-polynomial split-locator gate
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

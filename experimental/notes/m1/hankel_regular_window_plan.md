@@ -125,6 +125,20 @@ regular roots in nonsingular buckets are ambient Hankel null-polynomials; actual
 split-locator witnesses must additionally be monic degree-`j` divisors of
 `X^512-1` and satisfy the finite-affine noncontainment test `H(v)ell != 0`.
 
+The projective split-locator gate
+
+```text
+experimental/notes/m1/hankel_projective_split_locator_gate.md
+experimental/data/certificates/hankel-f17-32-m3-projective-split-locator-gate/
+  f17_32_n512_k256_m3_projective_split_locator_gate.json
+```
+
+records the endpoint companion: ambient infinity vectors satisfy
+`H(v)ell=0, H(u)ell!=0`, while actual support-wise endpoint witnesses must also
+normalize to monic degree-`j` divisors of `X^512-1`.  This keeps the rank-6
+endpoint-sensitive branch from counting a large ambient kernel as split-locator
+evidence before the divisor gate is checked.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 

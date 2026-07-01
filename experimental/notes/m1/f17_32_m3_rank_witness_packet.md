@@ -157,6 +157,13 @@ experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gat
   f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json
 ```
 
+The projective split-locator gate companion is
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-projective-split-locator-gate/
+  f17_32_n512_k256_m3_projective_split_locator_gate.json
+```
+
 ## Construction
 
 For exact agreement `A`,
@@ -385,6 +392,13 @@ is recorded as a one-point `dimension_degree` fallback: it can only add the
 single projective endpoint `[0:1]`.  This proves empty/projective-one-point
 accounting for the ambient chart and does not claim that ambient nonemptiness
 implies split-locator nonemptiness.
+
+The projective split-locator gate records the missing support-wise filter for
+that endpoint.  An ambient infinity vector `ell` only becomes an actual
+split-locator witness after `L(X)=sum ell_b X^b` normalizes to a monic
+degree-`j` divisor of `X^512-1` and satisfies `H(u)ell != 0`.  Thus the
+rank-6 endpoint-sensitive branch must intersect the ambient endpoint kernel
+with the split-locator divisor gate before counting or paying `[0:1]`.
 
 The zero-`v` projective endpoint certificate handles the codeword-direction
 boundary.  If `v=0`, the finite affine pencil is constant:
