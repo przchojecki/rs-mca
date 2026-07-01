@@ -3,8 +3,11 @@
     "agreement_count": 42,
     "all_rows_within_finite_budget": true,
     "all_rows_within_projective_budget": true,
+    "common_code_line_tangent_overlap_sum": 0,
     "degree_bound_sum": 84,
     "exact_regular_root_count_sum": 40,
+    "exact_regular_roots_after_common_code_line": 40,
+    "finite_roots_checked_for_common_code_line": 40,
     "generic_degree_bound_sum_for_window": 4515,
     "max_finite_roots_per_agreement": 2,
     "max_projective_regular_roots_per_agreement": 2,
@@ -50,9 +53,10 @@
     "synthetic syndrome-pencil family only",
     "not a worst-case MCA row bound",
     "not a worst-case row root table over F_17^32",
-    "does not perform quotient/tangent subtraction",
+    "does not perform a full quotient/tangent subtraction table",
     "exact roots are for this synthetic rank-2 family only",
-    "budget comparison is per-agreement regular-root accounting before removed-ledger subtraction"
+    "budget comparison is per-agreement regular-root accounting before removed-ledger subtraction",
+    "quotient-image overlap is not audited here"
   ],
   "records": [
     {
@@ -120,6 +124,7 @@
         "sqrt_discriminant": 1676876783900979352869064829053941022205
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -127,6 +132,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -154,6 +161,31 @@
       ],
       "sidecar_hash": "334469f4219dd40251a3602b8ef1e9fbfbdf85a9d6be55b4243092a2a5ea06ab",
       "t": 129,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 1515458271495779227207394801767654970644,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 757970172139350733910999175693536193374,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 9,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 2009892093806021182890275813788321193191,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 1078701463041935402335295727204872255831,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 9,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         4,
         908175381791583557904899778291937649926
@@ -221,6 +253,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -228,6 +261,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -238,6 +273,12 @@
       "roots": [],
       "sidecar_hash": "89891e32a342024ed82e27d75eca10b2dbf5a4b8710708511d4dd2c57a5e5914",
       "t": 130,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         1333031548949790234483639924600856562997,
         4
@@ -308,6 +349,7 @@
         "sqrt_discriminant": 1653187450943311844567333482118760688099
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -315,6 +357,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -342,6 +386,31 @@
       ],
       "sidecar_hash": "2e684be5906702698e4c31f277aeca8e1a1c9de2d87653c14e7a214b4dc03c7d",
       "t": 131,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 496078603012456270441341640265483365960,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 1505750465975604148305979728762945678912,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 7,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 764357351870185228178318968905419347998,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 1566389636032966425028120258844551640234,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 7,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         166827846988267072408940645183775914176,
         1333031548949790234483639924600856562997
@@ -409,6 +478,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -416,6 +486,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -426,6 +498,12 @@
       "roots": [],
       "sidecar_hash": "c344808d340e7cfe4e5b9e551b45e3bfa5111a0216cd5ddae4ac24d0ba667522",
       "t": 132,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         1342769889772733378528420462197660316702,
         166827846988267072408940645183775914176
@@ -493,6 +571,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -500,6 +579,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -510,6 +591,12 @@
       "roots": [],
       "sidecar_hash": "4c7b44e36cf0254e4094ea8cc9445600f925ddc9f25428bc6a299b891389c1cf",
       "t": 133,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         2200374208321043868420434334978582910460,
         1342769889772733378528420462197660316702
@@ -577,6 +664,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -584,6 +672,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -594,6 +684,12 @@
       "roots": [],
       "sidecar_hash": "9e8a4bc3cdb0fa66e871e615dbd9085de8ca4611c55e73cda09471e444b8af48",
       "t": 134,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         2238996876511071889967474529857845163901,
         2200374208321043868420434334978582910460
@@ -661,6 +757,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -668,6 +765,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -678,6 +777,12 @@
       "roots": [],
       "sidecar_hash": "d64c9bd1688c519313f4c51fa5ad105bff8103a77bcca314ebb327ee300c5a58",
       "t": 135,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         577584215837689911959348734796612442524,
         2238996876511071889967474529857845163901
@@ -745,6 +850,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -752,6 +858,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -762,6 +870,12 @@
       "roots": [],
       "sidecar_hash": "4e460a2c55db8a5d135616e6a265d19aac8665896626e4a0fd3df5359b7774d4",
       "t": 136,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         1423058465184625907468805430928316662242,
         577584215837689911959348734796612442524
@@ -832,6 +946,7 @@
         "sqrt_discriminant": 996201184239392808390039919476418439220
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -839,6 +954,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -866,6 +983,31 @@
       ],
       "sidecar_hash": "af806bba52f8c65708448dbf11db3acc37256ee88b05089b7ce7aac122903281",
       "t": 137,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 416463179091491594843788359327193261048,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 208472576887424496150638813185986214945,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 1,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 1723359477645668029765505287882755156919,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 866031634573658530652491251299540465144,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 1,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         2061949620025024682415118345528019524128,
         1423058465184625907468805430928316662242
@@ -933,6 +1075,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -940,6 +1083,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -950,6 +1095,12 @@
       "roots": [],
       "sidecar_hash": "5b69311654c41162d76da9f253028d67d2aabe1076b3fb9f02a11eb9c2b51028",
       "t": 138,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         642585449820627675623054126886198517378,
         2061949620025024682415118345528019524128
@@ -1020,6 +1171,7 @@
         "sqrt_discriminant": 171002174105197287587981248538796778302
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -1027,6 +1179,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -1054,6 +1208,31 @@
       ],
       "sidecar_hash": "597a2906188681376a5ccaa9ad9935f2662795083d7e55114e09ce28aa0bec2e",
       "t": 139,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 1078533412723709006700597227936301400520,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 1723464321894410350019644165157756532725,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 16,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 2162033950872968120048003091263733344072,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 2264973658788320887416978525149136536996,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 16,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         1304851727127684213341388299811711909093,
         642585449820627675623054126886198517378
@@ -1124,6 +1303,7 @@
         "sqrt_discriminant": 1929999610918277751707696556704899143833
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -1131,6 +1311,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -1158,6 +1340,31 @@
       ],
       "sidecar_hash": "f82589c021cec381b04e41b7ab04fb86ddede81765885a1699d0143a25afa148",
       "t": 140,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 4552295501290313474633233746920621734,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 6628926237186690296066667408390653139,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 15,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 925362643678723347084429858642290043996,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 466778937618868764951200944605661991768,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 15,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         1587617964958802262010635883782000064782,
         1304851727127684213341388299811711909093
@@ -1228,6 +1435,7 @@
         "sqrt_discriminant": 327703001219173477064390801959221569157
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -1235,6 +1443,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -1262,6 +1472,31 @@
       ],
       "sidecar_hash": "6db8507cf3035831b5fb1b8aa865afdafd0a8e06a4c522ef6a11e50940ef03ee",
       "t": 141,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 42301333281494817306037523496137249110,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 91036992671979262295514695758428079331,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 14,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 502175372751716302512460654616664222919,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 1435284470937442759821098022482633509700,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 14,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         1347158992066732266415346068812726203362,
         1587617964958802262010635883782000064782
@@ -1332,6 +1567,7 @@
         "sqrt_discriminant": 115418436885403209143600343208378052933
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -1339,6 +1575,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -1366,6 +1604,31 @@
       ],
       "sidecar_hash": "d3cae66df5ee95d290f67c28daa055d95fe5f25fb0582d36f2f970817bd6cd3e",
       "t": 142,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 404328624425001090891155693644577277932,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 276147322056896209970781996325406516016,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 13,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 1676729897876657574223569699951312394869,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 838605936119681804871733622290833432275,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 13,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         1977055114912469630279202580954678041065,
         1347158992066732266415346068812726203362
@@ -1436,6 +1699,7 @@
         "sqrt_discriminant": 2197131866877510912625182936866110327449
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -1443,6 +1707,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -1470,6 +1736,31 @@
       ],
       "sidecar_hash": "1b13279f04bab2a4abc4649bb4e28bd85f5830a59d37b03730c757dc6e400d06",
       "t": 143,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 1986311525321703910259242706570279103670,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 997266723175958252080917449546240799469,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 12,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 1047520722323653818209257000850978555615,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 1707957194763797203734055771930286919887,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 12,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         478503583670220909999029929946431163543,
         1977055114912469630279202580954678041065
@@ -1537,6 +1828,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -1544,6 +1836,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -1554,6 +1848,12 @@
       "roots": [],
       "sidecar_hash": "bde3554c99e3e53fc328f35c8806d807209227e2544b95fe222f3aa1fcb78dad",
       "t": 144,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         1977704477316255062523287777393127253255,
         478503583670220909999029929946431163543
@@ -1621,6 +1921,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -1628,6 +1929,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -1638,6 +1941,12 @@
       "roots": [],
       "sidecar_hash": "b13a9f99e14e755f8f3c18f9b016515caa55d3949c2726c5bbfe708df6ec166b",
       "t": 145,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         1258698567415585807923054910901642040310,
         1977704477316255062523287777393127253255
@@ -1708,6 +2017,7 @@
         "sqrt_discriminant": 2321445693073439060641206388652392415317
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -1715,6 +2025,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -1742,6 +2054,31 @@
       ],
       "sidecar_hash": "0578747f04538bd1265b8e1ecb959c7e8ef90b1d42c374d66e6259eea808287e",
       "t": 146,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 662467524548808236628416763824651759550,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 331248774561654040303395217668275587586,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 9,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 1946323990283954362413748754021445463487,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 2161215411356170680601785265304066309972,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 9,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         1701914356139003143342270589769735291077,
         1258698567415585807923054910901642040310
@@ -1809,6 +2146,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -1816,6 +2154,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -1826,6 +2166,12 @@
       "roots": [],
       "sidecar_hash": "0ff5e63e756d4d1065b33d39a9a86bc8b2ca3fdb813dade6c152182eca6edfae",
       "t": 147,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         2323311756962067766299684932998890901717,
         1701914356139003143342270589769735291077
@@ -1893,6 +2239,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -1900,6 +2247,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -1910,6 +2259,12 @@
       "roots": [],
       "sidecar_hash": "02eb2ff9a6990367efacc65e53b6d3f72bf9c25e55da4fc6ea93801cb397a7f2",
       "t": 148,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         1722696989284674603106643399328274827069,
         2323311756962067766299684932998890901717
@@ -1980,6 +2335,7 @@
         "sqrt_discriminant": 271478057566474598099979009929347630884
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -1987,6 +2343,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -2014,6 +2372,31 @@
       ],
       "sidecar_hash": "3439d48c1bc74ea02dc9c1110e0bc0013fef7ba5cf8bc2b27f85a9e59017fa8f",
       "t": 149,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 242619077168261327747076472936722149051,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 1305279563456267882150317373695240650498,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 6,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 200445373393400145697715972366061651773,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 1358175721232900856070915387636065644156,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 6,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         1505939466099614085537386225396941054554,
         1722696989284674603106643399328274827069
@@ -2081,6 +2464,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -2088,6 +2472,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -2098,6 +2484,12 @@
       "roots": [],
       "sidecar_hash": "8517752a8be049d9864a5ad61514fbb4b1ffdd5216a113f2b1c6d1e577f9ce4e",
       "t": 150,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         1650205511813328174392735183275311436408,
         1505939466099614085537386225396941054554
@@ -2168,6 +2560,7 @@
         "sqrt_discriminant": 1149469534195996550564996466568209836883
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -2175,6 +2568,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -2202,6 +2597,31 @@
       ],
       "sidecar_hash": "7a9cab7264c1ba07e76130a5685f148212acbdbe260f65da2a91419d8e0db23c",
       "t": 151,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 598320553795771342578153651406385272397,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 368805618643619043605811234994043592253,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 4,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 1760230394918147250322643654496632741710,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 880116031484459045164202765059134348353,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 4,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         1422455804207963970167328641537460550577,
         1650205511813328174392735183275311436408
@@ -2269,6 +2689,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -2276,6 +2697,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -2286,6 +2709,12 @@
       "roots": [],
       "sidecar_hash": "09dfbf6844a9b0b8e429cc5cab3ff8c376cb20c2a2981a6b3a0d7f2f120cf8a6",
       "t": 152,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         1370562835132677428231882160532250368312,
         1422455804207963970167328641537460550577
@@ -2356,6 +2785,7 @@
         "sqrt_discriminant": 1740068099702498740765569994855940337410
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -2363,6 +2793,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -2390,6 +2822,31 @@
       ],
       "sidecar_hash": "d6c2cbaee9ffde822c5939efc78ff6a6ce91c61463773cc20b485ce1118e2a71",
       "t": 153,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 1953200443586640587958736228376096503885,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 976855384691255883980227707601245466423,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 2,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 2221769902686343094265218716201211435981,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 2295082569920745080133261693549859071143,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 2,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         2141316650093184889605656576471772061548,
         1370562835132677428231882160532250368312
@@ -2457,6 +2914,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -2464,6 +2922,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -2474,6 +2934,12 @@
       "roots": [],
       "sidecar_hash": "ece581841397356a61d6275370b5b7a8dc2078185d10ae8b58a0f51c1205c8ec",
       "t": 154,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         352167258053539527362505015932942293728,
         2141316650093184889605656576471772061548
@@ -2541,6 +3007,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -2548,6 +3015,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -2558,6 +3027,12 @@
       "roots": [],
       "sidecar_hash": "a0761afc4916d31cc9ec154107d635f27ffce654ab4db5a22577b0586309ebc1",
       "t": 155,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         2239771040742748131378187953945252946972,
         352167258053539527362505015932942293728
@@ -2628,6 +3103,7 @@
         "sqrt_discriminant": 460486179481246865990158122761953323489
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -2635,6 +3111,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -2662,6 +3140,31 @@
       ],
       "sidecar_hash": "ac3cb1139fa8d5de476a13a030be0013e213bc8ef454b7587f6de54dc8d4f677",
       "t": 156,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 1499769756365310470988660395218542546842,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 819544346433690540125877569585897069846,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 16,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 751948811509397457449825382153483040379,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 1564027818904423137284770734224821228388,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 16,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         860554648284508129931531987913264592377,
         2239771040742748131378187953945252946972
@@ -2729,6 +3232,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -2736,6 +3240,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -2746,6 +3252,12 @@
       "roots": [],
       "sidecar_hash": "5185a2b887e5ad1784c627db5bbcb8fee0aaffdd7f48036f2bdf139a0560179c",
       "t": 157,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         645601843769207020882740676401778645916,
         860554648284508129931531987913264592377
@@ -2813,6 +3325,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -2820,6 +3333,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -2830,6 +3345,12 @@
       "roots": [],
       "sidecar_hash": "8c04d7e8b26f2e7257e2f33ad6901885de9e13c1b197c74b2f5ca7c66df5153e",
       "t": 158,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         2234376035844641335346433340765130587373,
         645601843769207020882740676401778645916
@@ -2897,6 +3418,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -2904,6 +3426,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -2914,6 +3438,12 @@
       "roots": [],
       "sidecar_hash": "5058adb61cf811b96ed320a1a0ebaacdc9d440b5b3c70f975ee9283527563c94",
       "t": 159,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         678839582300633335214584764758085461420,
         2234376035844641335346433340765130587373
@@ -2984,6 +3514,7 @@
         "sqrt_discriminant": 2208051639124879106945843423883572573514
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -2991,6 +3522,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -3018,6 +3551,31 @@
       ],
       "sidecar_hash": "4e72be09078df5803ae6c0c7529c201a93f91d99b4923e51aa563861f67b424c",
       "t": 160,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 2009442396976048690762225828748382509062,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 1074380715789427073982561148848516148661,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 12,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 2260100718859779991005870652779500014873,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 1199935854501313142526244598127332013992,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 12,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         1861124879038525266333496668868237423130,
         678839582300633335214584764758085461420
@@ -3085,6 +3643,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -3092,6 +3651,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -3102,6 +3663,12 @@
       "roots": [],
       "sidecar_hash": "3c0f1e140e14102b3921ac41bae15f6b14fb34227ef344794f0a2cad2aabc9a2",
       "t": 161,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         3,
         1861124879038525266333496668868237423130
@@ -3169,6 +3736,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -3176,6 +3744,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -3186,6 +3756,12 @@
       "roots": [],
       "sidecar_hash": "887cd79803360e1fb92bb3f794fc5bc0d0b5ed4c20448fb3ff51d65608127fd3",
       "t": 162,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         1624638387670605858685165804654066083512,
         3
@@ -3253,6 +3829,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -3260,6 +3837,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -3270,6 +3849,12 @@
       "roots": [],
       "sidecar_hash": "dd6165133320764aa8b1a6220581802d9a6414fccee0a295fdc5f676fa19049f",
       "t": 163,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         825917418098222932158499870100209411004,
         1624638387670605858685165804654066083512
@@ -3340,6 +3925,7 @@
         "sqrt_discriminant": 1228069439162420131049497015754324994251
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -3347,6 +3933,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -3374,6 +3962,31 @@
       ],
       "sidecar_hash": "95faac7f3ceae4acbbe6ad4ecfcd4a7ca522326bf46d559b6f79674c7ceb437d",
       "t": 164,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 858507316047734111662414423215379215861,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 433350390896760255201379123417377886996,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 8,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 1508148724154053543912184810963130554245,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 758185270666470029302470202683465698087,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 8,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         1666672697804398126549568319622958331784,
         825917418098222932158499870100209411004
@@ -3444,6 +4057,7 @@
         "sqrt_discriminant": 1003728692717598564785049628744715971754
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -3451,6 +4065,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -3478,6 +4094,31 @@
       ],
       "sidecar_hash": "21c7f2a3715aff10091e7af2619cfb3df157dcb8b1d22d3279712f648d8e9d82",
       "t": 165,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 1181902580267135723134346916330762918209,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 590966351471701491897707194939888030037,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 7,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 538005772677546329788264266047672808379,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 1457069595183812481126876930728896929243,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 7,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         1095428954522840613118879339372247893691,
         1666672697804398126549568319622958331784
@@ -3548,6 +4189,7 @@
         "sqrt_discriminant": 2244746615614757645979217799078228853875
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -3555,6 +4197,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -3582,6 +4226,31 @@
       ],
       "sidecar_hash": "b3f25b8053f6dcf89931fe5c7b70d216d9bd78bf5e50c03795d196230bab06f3",
       "t": 166,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 767482112835991201144218388979380178251,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 1571794472462430345324137550467661823949,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 6,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 725233832173289946490407624087674854489,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 1616231347682577202777346280279051625633,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 6,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         1714063658858840635328671883021454754512,
         1095428954522840613118879339372247893691
@@ -3652,6 +4321,7 @@
         "sqrt_discriminant": 2074502270117705634813525190692231147379
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -3659,6 +4329,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -3686,6 +4358,31 @@
       ],
       "sidecar_hash": "d529b46193d6c9eb43f5f6e7a177d68ed508a895dfc965ff21fb88869b6a8240",
       "t": 167,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 743278304533835860102046297624112367579,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 1625253635978204878321852094553778443645,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 5,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 1632868275936820055850506953050851891410,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 2000645144231855746994358946910745748836,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 5,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         503080251074602891226323264931382616656,
         1714063658858840635328671883021454754512
@@ -3756,6 +4453,7 @@
         "sqrt_discriminant": 1301850228072641417114913844962798431214
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -3763,6 +4461,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -3790,6 +4490,31 @@
       ],
       "sidecar_hash": "17a64e9ffac3d6ea6906b1a8e02ea2544964213824a4a8f1c6cccd9b90e5fe9a",
       "t": 168,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 1401828737766399507894012014657805569416,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 774910772353195627062708888092323118866,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 4,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 1676672116623440001288790681304369147757,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 838577879349353785921179396385204502691,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 4,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         2353923127838429096174387292112256583007,
         503080251074602891226323264931382616656
@@ -3857,6 +4582,7 @@
         "roots": []
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 0,
         "finite_budget_gap": 6,
         "finite_budget_numerator": 6,
@@ -3864,6 +4590,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 0,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 0,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -3874,6 +4602,12 @@
       "roots": [],
       "sidecar_hash": "b2fce5c3311f0aef0da93e8f27cd90f7a37c43f066ba7aed0de794f16fbc0910",
       "t": 169,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 0,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": []
+      },
       "update_node_encodings": [
         395649261511807867412289215314441649611,
         2353923127838429096174387292112256583007
@@ -3944,6 +4678,7 @@
         "sqrt_discriminant": 1199888225991676476216326008773155006048
       },
       "regular_budget_table": {
+        "B_tan_common_code_line": 0,
         "finite_affine_roots": 2,
         "finite_budget_gap": 4,
         "finite_budget_numerator": 6,
@@ -3951,6 +4686,8 @@
         "projective_budget_numerator": 6,
         "projective_infinity_roots": 0,
         "projective_regular_roots": 2,
+        "quotient_image_subtraction_status": "not_audited",
+        "regular_roots_after_common_code_line": 2,
         "within_finite_budget": true,
         "within_projective_budget": true
       },
@@ -3978,6 +4715,31 @@
       ],
       "sidecar_hash": "15286ea8092f965b6a86165c221910f028eb0133eb6bcadb4608dffcf43674d3",
       "t": 170,
+      "tangent_common_code_line_audit": {
+        "finite_roots_checked": 2,
+        "overlap_count": 0,
+        "witness_moment": 0,
+        "witnesses": [
+          {
+            "combined_syndrome_encoding": 689390090813676854652608516496046337311,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 344695097512796882540303623469788543556,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 2,
+            "v_m_encoding": 2
+          },
+          {
+            "combined_syndrome_encoding": 1678754236870190994677895305229554583103,
+            "reason": "the full syndrome of u+zv is nonzero at moment m=0, so this finite root is not paid by the common-code-line tangent ledger",
+            "root": 843473851308575985591116218312875860749,
+            "status": "not_common_code_line",
+            "syndrome_index": 0,
+            "u_m_encoding": 2,
+            "v_m_encoding": 2
+          }
+        ]
+      },
       "update_node_encodings": [
         549535154999028637962874732692053007164,
         395649261511807867412289215314441649611
@@ -3991,6 +4753,6 @@
     "k": 256,
     "n": 512
   },
-  "schema_version": "f17-32-m3-low-rank2-family-v3",
+  "schema_version": "f17-32-m3-low-rank2-family-v4",
   "status": "PROVED / AUDIT"
 }

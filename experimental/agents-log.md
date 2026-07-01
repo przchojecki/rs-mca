@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 low-rank tangent non-overlap audit
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank2_family.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-family/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The rank-2 low-rank family now compares all 40
+  finite roots against the common-code-line tangent ledger.  Each root has
+  nonzero full-syndrome witness at moment `m=0`, namely `|X|+2z`, so the
+  tangent overlap is zero.
+- **How it is useful:** This adds the first removed-ledger comparison for the
+  exact-root low-rank family: the 40 finite roots survive tangent subtraction,
+  while quotient-image overlap remains explicitly unaudited.
+- **What to do next:** Attack quotient-image overlap or find non-synthetic
+  residual packets with the same rank-2 structure.
+
 ### 2026-07-01 - M3 low-rank projective budget audit
 
 - **Agent/model:** AllenGrahamHart / Codex.

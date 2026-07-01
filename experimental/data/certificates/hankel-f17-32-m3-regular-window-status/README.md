@@ -16,6 +16,9 @@ low-rank family with exact split/nonsquare quadratic root table: 20 split
 rows, 22 nonsquare rows, and 40 finite roots total under degree cap 84.  The
 rank-2 family also has empty projective endpoint `[0:1]`, so every agreement
 has at most 2 projective regular roots against budget numerator 6.
+Moreover, all 40 finite roots have a nonzero full-syndrome witness at moment
+`m=0`, so none are common-code-line tangent roots.  Quotient-image overlap is
+still not audited for this synthetic family.
 
 The ledger also references the M3 syndrome-realizability certificate, which
 proves that every length-256 syndrome pencil in this window is realized by

@@ -307,8 +307,11 @@ Applying the rank-2 discriminant gate gives exact roots: 20 rows split, 22 rows
 have nonsquare discriminant, and the exact finite-root total is `40`.  The
 family also audits the projective endpoint `[0:1]`: every leading coefficient
 is nonzero, so projectivizing adds no root and every agreement has at most 2
-projective regular roots against budget numerator 6.  The family cross-checks
-the `A=426` endpoint against the exact-root v9 packet.
+projective regular roots against budget numerator 6.  It also compares the 40
+finite roots against the common-code-line tangent ledger: at every finite root,
+the full syndrome has nonzero witness `Syn_0(u+zv)=|X|+2z`, so no finite
+low-rank-family root is tangent/common-code-line.  The family cross-checks the
+`A=426` endpoint against the exact-root v9 packet.
 
 The current status ledger
 

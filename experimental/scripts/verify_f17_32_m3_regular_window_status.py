@@ -141,7 +141,7 @@ def validate_inputs(
         "family root union mismatch",
     )
     require(
-        low_rank_family["schema_version"] == "f17-32-m3-low-rank2-family-v3",
+        low_rank_family["schema_version"] == "f17-32-m3-low-rank2-family-v4",
         "low-rank family schema mismatch",
     )
     require(
@@ -182,6 +182,20 @@ def validate_inputs(
     require(
         low_rank_family["aggregate"]["projective_infinity_contribution_sum"] == 0,
         "low-rank family projective contribution mismatch",
+    )
+    require(
+        low_rank_family["aggregate"]["common_code_line_tangent_overlap_sum"] == 0,
+        "low-rank family tangent overlap mismatch",
+    )
+    require(
+        low_rank_family["aggregate"]["finite_roots_checked_for_common_code_line"]
+        == low_rank_family["aggregate"]["exact_regular_root_count_sum"],
+        "low-rank family tangent check coverage mismatch",
+    )
+    require(
+        low_rank_family["aggregate"]["exact_regular_roots_after_common_code_line"]
+        == 40,
+        "low-rank family post-tangent root count mismatch",
     )
     require(
         low_rank_family["aggregate"]["max_projective_regular_roots_per_agreement"]
@@ -469,6 +483,22 @@ def per_agreement_records(
             f"A={agreement}: low-rank budget table mismatch",
         )
         require(
+            low_rank_item["tangent_common_code_line_audit"]["overlap_count"] == 0
+            and low_rank_item["tangent_common_code_line_audit"][
+                "finite_roots_checked"
+            ]
+            == low_rank_item["root_count"],
+            f"A={agreement}: low-rank tangent audit mismatch",
+        )
+        for witness in low_rank_item["tangent_common_code_line_audit"][
+            "witnesses"
+        ]:
+            require(
+                witness["status"] == "not_common_code_line"
+                and witness["syndrome_index"] == 0,
+                f"A={agreement}: bad tangent non-overlap witness",
+            )
+        require(
             realizability_item["visible_syndrome_length"] == 256
             and realizability_item["section_applies"] is True,
             f"A={agreement}: syndrome realizability mismatch",
@@ -578,6 +608,11 @@ def per_agreement_records(
                 "synthetic_low_rank2_projective_budget_gap": low_rank_item[
                     "regular_budget_table"
                 ]["projective_budget_gap"],
+                "synthetic_low_rank2_B_tan_common_code_line": 0,
+                "synthetic_low_rank2_roots_after_common_code_line": low_rank_item[
+                    "regular_budget_table"
+                ]["regular_roots_after_common_code_line"],
+                "synthetic_low_rank2_tangent_witness_moment": 0,
                 "synthetic_low_rank2_sidecar_hash": low_rank_item["sidecar_hash"],
                 "syndrome_pencil_realizability": (
                     "all length-256 u,v syndrome pencils are realized by explicit "
@@ -680,7 +715,7 @@ def build_status() -> dict[str, Any]:
         artifact_record(
             "synthetic_low_rank2_family",
             LOW_RANK_FAMILY_REF,
-            "f17-32-m3-low-rank2-family-v3",
+            "f17-32-m3-low-rank2-family-v4",
         ),
         artifact_record("fixed_top_window_v9_packet", TOP_PACKET_REF, "aperiodic-hankel-eliminant-v1"),
         artifact_record(
@@ -752,6 +787,16 @@ def build_status() -> dict[str, Any]:
             "synthetic_low_rank2_projective_budget_status": (
                 "all 42 rows have at most 2 projective regular roots, below "
                 "projective budget numerator 6"
+            ),
+            "synthetic_low_rank2_common_code_line_tangent_overlap": 0,
+            "synthetic_low_rank2_roots_after_common_code_line": (
+                low_rank_family["aggregate"][
+                    "exact_regular_roots_after_common_code_line"
+                ]
+            ),
+            "synthetic_low_rank2_tangent_status": (
+                "all 40 finite roots have nonzero full-syndrome witness at "
+                "moment m=0, so none are common-code-line tangent roots"
             ),
             "fixed_top_window_status": "one v9 packet covers A=421..426 with root union {0}",
             "fixed_top_window_line_value_status": "explicit f,g line values replay the fixed top-window syndrome input",
@@ -828,6 +873,7 @@ def print_summary(status: dict[str, Any]) -> None:
         "low-rank projective: "
         f"{summary['synthetic_low_rank2_projective_budget_status']}"
     )
+    print(f"low-rank tangent: {summary['synthetic_low_rank2_tangent_status']}")
     print(f"actual row: {summary['actual_row_status']}")
 
 

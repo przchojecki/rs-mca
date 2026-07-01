@@ -169,8 +169,9 @@ gate to every row.  The degree cap is `2 * 42 = 84`, but the exact synthetic
 finite-root total is `40`: 20 split quadratics and 22 nonsquare quadratics.
 Its projective endpoint is empty in all 42 rows because the quadratic leading
 coefficient is nonzero, so every agreement has at most 2 projective regular
-roots against budget numerator 6.  The generic degree-bound sum for the same
-window would be `4515`.
+roots against budget numerator 6.  The 40 finite roots also have nonzero
+full-syndrome witness at moment `m=0`, so none are common-code-line tangent
+roots.  The generic degree-bound sum for the same window would be `4515`.
 
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform quotient/tangent

@@ -37,6 +37,16 @@ coefficient is nonzero, so the homogenized determinant is nonzero at `[0:1]`
 and projectivizing adds no root.  Thus each agreement has `0` or `2`
 projective regular roots, below the budget numerator `6`.
 
+The finite roots are also compared with the common-code-line tangent ledger.
+For a finite root `z`, the full syndrome has zeroth moment
+
+```text
+Syn_0(u+zv)=|X|+2z.
+```
+
+All 40 finite roots have this witness nonzero, so none of them are paid by the
+common-code-line tangent branch.
+
 Run:
 
 ```sh
@@ -48,3 +58,4 @@ Non-claims: this is a synthetic syndrome-pencil family certificate, not a
 worst-case MCA row bound, not a worst-case root table over arbitrary
 `F_17^32` row data, and not a quotient/tangent subtraction ledger.  The budget
 comparison is regular-root accounting before removed-ledger subtraction.
+Quotient-image overlap is not audited here.

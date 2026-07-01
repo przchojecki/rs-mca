@@ -38,7 +38,7 @@ from experimental.scripts.extract_regular_hankel_minors import (
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-low-rank2-family-v3"
+SCHEMA_VERSION = "f17-32-m3-low-rank2-family-v4"
 N = 512
 K = 256
 AGREEMENT_MIN = 385
@@ -70,6 +70,38 @@ def file_sha256(path: Path) -> str:
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise AssertionError(message)
+
+
+def common_code_line_witnesses(
+    field: PolynomialBasisField,
+    base_node_count: int,
+    roots: list[tuple[int, ...]],
+) -> list[dict[str, Any]]:
+    witnesses = []
+    u_zero_moment = field.normalize(base_node_count)
+    v_zero_moment = field.normalize(UPDATE_RANK)
+    for root in roots:
+        combined = field.add(u_zero_moment, field.mul(root, v_zero_moment))
+        require(
+            not field.is_zero(combined),
+            "finite root has zero syndrome at m=0",
+        )
+        witnesses.append(
+            {
+                "root": field.encode(root),
+                "status": "not_common_code_line",
+                "syndrome_index": 0,
+                "u_m_encoding": field.encode(u_zero_moment),
+                "v_m_encoding": field.encode(v_zero_moment),
+                "combined_syndrome_encoding": field.encode(combined),
+                "reason": (
+                    "the full syndrome of u+zv is nonzero at moment m=0, "
+                    "so this finite root is not paid by the common-code-line "
+                    "tangent ledger"
+                ),
+            }
+        )
+    return witnesses
 
 
 def low_rank_sidecar_from_prefix(
@@ -209,6 +241,7 @@ def build_records(
                 root_certificate is None and encoded_roots == [],
                 f"A={agreement}: nonsquare row should have no split roots",
             )
+        tangent_witnesses = common_code_line_witnesses(field, size, roots)
         records.append(
             {
                 "A": agreement,
@@ -238,6 +271,8 @@ def build_records(
                 },
                 "regular_budget_table": {
                     "finite_affine_roots": len(encoded_roots),
+                    "B_tan_common_code_line": 0,
+                    "regular_roots_after_common_code_line": len(encoded_roots),
                     "projective_infinity_roots": 0,
                     "projective_regular_roots": len(encoded_roots),
                     "finite_budget_numerator": finite_budget,
@@ -246,6 +281,13 @@ def build_records(
                     "projective_budget_gap": projective_budget - len(encoded_roots),
                     "within_finite_budget": len(encoded_roots) <= finite_budget,
                     "within_projective_budget": len(encoded_roots) <= projective_budget,
+                    "quotient_image_subtraction_status": "not_audited",
+                },
+                "tangent_common_code_line_audit": {
+                    "finite_roots_checked": len(encoded_roots),
+                    "overlap_count": 0,
+                    "witness_moment": 0,
+                    "witnesses": tangent_witnesses,
                 },
                 "hankel_coefficients_ascending": encoded_coefficients,
                 "low_rank_compression": sidecar,
@@ -313,7 +355,24 @@ def build_certificate() -> dict[str, Any]:
     finite_budget = field.size // TWO128
     projective_budget = (field.size + 1) // TWO128
     max_root_count = max(record["root_count"] for record in records)
+    tangent_overlap_sum = sum(
+        record["tangent_common_code_line_audit"]["overlap_count"]
+        for record in records
+    )
+    tangent_checked_sum = sum(
+        record["tangent_common_code_line_audit"]["finite_roots_checked"]
+        for record in records
+    )
+    roots_after_tangent_sum = sum(
+        record["regular_budget_table"]["regular_roots_after_common_code_line"]
+        for record in records
+    )
     require(max_root_count <= finite_budget, "low-rank family exceeds finite budget")
+    require(tangent_overlap_sum == 0, "low-rank family tangent overlap is nonzero")
+    require(
+        tangent_checked_sum == exact_root_count_sum,
+        "low-rank family tangent audit did not check all roots",
+    )
     require(
         max(
             record["regular_budget_table"]["projective_regular_roots"]
@@ -366,6 +425,9 @@ def build_certificate() -> dict[str, Any]:
             "split_quadratic_rows": split_rows,
             "nonsquare_quadratic_rows": nonsquare_rows,
             "projective_infinity_contribution_sum": 0,
+            "common_code_line_tangent_overlap_sum": tangent_overlap_sum,
+            "finite_roots_checked_for_common_code_line": tangent_checked_sum,
+            "exact_regular_roots_after_common_code_line": roots_after_tangent_sum,
             "max_finite_roots_per_agreement": max_root_count,
             "max_projective_regular_roots_per_agreement": max_root_count,
             "all_rows_within_finite_budget": True,
@@ -390,9 +452,10 @@ def build_certificate() -> dict[str, Any]:
             "synthetic syndrome-pencil family only",
             "not a worst-case MCA row bound",
             "not a worst-case row root table over F_17^32",
-            "does not perform quotient/tangent subtraction",
+            "does not perform a full quotient/tangent subtraction table",
             "exact roots are for this synthetic rank-2 family only",
             "budget comparison is per-agreement regular-root accounting before removed-ledger subtraction",
+            "quotient-image overlap is not audited here",
         ],
     }
 
@@ -434,6 +497,12 @@ def print_summary(certificate: dict[str, Any]) -> None:
             budget=certificate["endpoint_conventions"][
                 "projective_budget_numerator"
             ],
+        )
+    )
+    print(
+        "common-code-line tangent overlap: {overlap} of {checked} checked roots".format(
+            overlap=aggregate["common_code_line_tangent_overlap_sum"],
+            checked=aggregate["finite_roots_checked_for_common_code_line"],
         )
     )
     print("endpoint A=426 crosscheck: PASS")
