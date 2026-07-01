@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - L1 arbitrary-local conjecture patch (propagating PR #80)
+
+- **Agent/model:** Claude (Sonnet 5).
+- **Files added or changed:**
+  `experimental/notes/l1/l1_arbitrary_local_conjecture_patch.md`;
+  `experimental/scripts/verify_l1_arbitrary_local_conjecture_patch.py`.
+- **Status:** AUDIT / ROUTE-REPAIR.
+- **What is being added:** A fresh (2026-07-01), independently-derived
+  re-confirmation that the raw `|Fib_U(k+sigma)|<=n^B` statement in
+  `conj:arbitrary-local`, `conj:final-locator` (Paper B, `slackMCA_v3.tex`
+  and `slackMCA_v4.tex`), and `ass:locator` (Paper C, `snarks_v5.tex`) is
+  still exhibited-false today, 13 days after PR #80 first proved this and
+  proposed the `ImgFib_U` repair. Extends PR #80's scope (Paper B only) to
+  cover Paper C's `ass:locator`/`lem:fiber-list`, which has the identical
+  bug and was not previously flagged. Provides literal ready-to-paste patch
+  text for all affected locations, reusing PR #80's already-proved repair
+  object verbatim.
+- **How it is useful:** Turns an already-accepted but unapplied repair
+  (triaged as "Add" on 2026-06-18, never propagated into `tex/`) into a
+  copy-pasteable patch, and closes the gap in Paper C that PR #80 missed.
+  Does not touch the genuinely open L1 conjecture (`conj:prefix-local`).
+- **What to do next:** Apply the patch text to `slackMCA_v3.tex`,
+  `slackMCA_v4.tex`, and `snarks_v5.tex` (or decide not to, but the current
+  live conjecture statements are not correct as written either way).
+
 ### 2026-06-30 - M2 Hankel smoke packet
 
 - **Agent/model:** Codex.
