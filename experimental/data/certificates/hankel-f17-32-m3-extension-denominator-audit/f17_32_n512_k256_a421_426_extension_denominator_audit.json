@@ -52,7 +52,7 @@
     "fixed_top_window_packet": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json",
       "schema_version": "aperiodic-hankel-eliminant-v1",
-      "sha256": "9a0a2a4a79881b795410eaaf7eb891165997f2be04e6b746baaf42ccff51c66d"
+      "sha256": "944d640b748998a9a38c7dd74a432ca1c1bd445771be0f26c45dae8022df6d52"
     },
     "line_value_lift": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-line-value-lift/f17_32_n512_k256_a421_426_fixed_prefix92_line_values.json",
@@ -62,7 +62,7 @@
     "zero_slope_subtraction": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_a421_426_zero_slope_subtraction.json",
       "schema_version": "f17-32-m3-zero-slope-subtraction-v1",
-      "sha256": "e9580ce4c2d291454cf3c0baa8ce653960549ea0472fdea88e782cf896a6c960"
+      "sha256": "4cfe8fe66d54916c0138e85aa1c8d69ca40aae6683d57645e9e8594c3d6e1ce2"
     }
   },
   "status": "AUDIT",

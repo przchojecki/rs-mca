@@ -183,6 +183,23 @@ fixed top-window packet has residual synthetic aperiodic numerator `0` after
 that paid tangent branch is removed.  This is a no-double-counting check for
 one synthetic packet, not the full M4 row table.
 
+The regular-window status ledger now records this as an explicit M4 mini-table
+for every `A=421..426`:
+
+```text
+B_tan=1,
+B_quot_support=B_quot_image=0,
+B_ap_regular_before_removed=1,
+B_ap_after_removed=0,
+B_ext=0,
+B_projective_infinity=0,
+deduped total upper bound = 1 <= budget 6.
+```
+
+This closes only the subtraction/budget table for that synthetic packet; the
+universal row table still requires arbitrary length-256 syndrome pencils to be
+classified by root table or singular-bucket outcome.
+
 The corresponding F1 denominator audit is
 
 ```text

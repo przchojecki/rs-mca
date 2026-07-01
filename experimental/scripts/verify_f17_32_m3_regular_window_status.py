@@ -23,6 +23,7 @@ AGREEMENT_MAX = 426
 TOP_WINDOW_MIN = 421
 TOP_WINDOW_MAX = 426
 ROOT_UNION = [0]
+TWO128 = 2**128
 
 PLAN_REF = (
     "experimental/data/certificates/hankel-regular-window-f17-385-426/"
@@ -290,6 +291,14 @@ def per_agreement_records(
     projective_by_a = {
         int(item["A"]): item for item in projective_endpoint_audit["per_agreement"]
     }
+    finite_budget = int(plan["budget_context"]["budget_numerator"])
+    projective_budget = int(
+        projective_endpoint_audit["endpoint_conventions"][
+            "projective_budget_numerator"
+        ]
+    )
+    require(finite_budget == 17**32 // TWO128, "finite budget mismatch")
+    require(projective_budget == (17**32 + 1) // TWO128, "projective budget mismatch")
     records = []
     for agreement in range(AGREEMENT_MIN, AGREEMENT_MAX + 1):
         plan_item = plan_by_a[agreement]
@@ -308,8 +317,9 @@ def per_agreement_records(
             f"A={agreement}: syndrome realizability mismatch",
         )
         if top_item is not None:
+            b_ap_regular_before = top_item["extractor_audit"]["root_count"]
             require(
-                top_item["extractor_audit"]["root_count"] == 1,
+                b_ap_regular_before == 1,
                 f"A={agreement}: top-window root count mismatch",
             )
             zero_subtraction_item = zero_subtraction_by_a[agreement]
@@ -321,6 +331,16 @@ def per_agreement_records(
                 zero_subtraction_item["overlap_regular_tangent_roots"] == ROOT_UNION,
                 f"A={agreement}: zero-slope overlap mismatch",
             )
+            require(
+                zero_subtraction_item["B_tan_common_code_line"] == 1,
+                f"A={agreement}: tangent subtraction count mismatch",
+            )
+            require(
+                zero_subtraction_item["B_quot_support"] == 0
+                and zero_subtraction_item["B_quot_image"] == 0
+                and zero_subtraction_item["B_ext"] == 0,
+                f"A={agreement}: nonzero quotient/extension subtraction count",
+            )
             projective_item = projective_by_a[agreement]
             require(
                 projective_item["projective_infinity"]["contribution"] == 0,
@@ -330,9 +350,47 @@ def per_agreement_records(
                 projective_item["top_degree"] == top_item["j"] + 1,
                 f"A={agreement}: projective top degree mismatch",
             )
+            deduped_finite = zero_subtraction_item[
+                "deduped_total_upper_for_synthetic_packet"
+            ]
+            deduped_projective = (
+                deduped_finite
+                + projective_item["projective_infinity"]["contribution"]
+            )
+            require(
+                deduped_finite == 1 and deduped_projective == 1,
+                f"A={agreement}: fixed synthetic M4 total mismatch",
+            )
+            require(
+                deduped_finite <= finite_budget
+                and deduped_projective <= projective_budget,
+                f"A={agreement}: fixed synthetic M4 table exceeds budget",
+            )
+            fixed_top_window_m4_table = {
+                "B_tan": zero_subtraction_item["B_tan_common_code_line"],
+                "B_quot_support": zero_subtraction_item["B_quot_support"],
+                "B_quot_image": zero_subtraction_item["B_quot_image"],
+                "B_ap_regular_before_removed": b_ap_regular_before,
+                "B_ap_after_removed": zero_subtraction_item[
+                    "B_ap_after_removed_ledgers"
+                ],
+                "B_ext": zero_subtraction_item["B_ext"],
+                "B_projective_infinity": projective_item["projective_infinity"][
+                    "contribution"
+                ],
+                "deduped_total_upper_finite_affine": deduped_finite,
+                "deduped_total_upper_projective": deduped_projective,
+                "finite_budget_numerator": finite_budget,
+                "projective_budget_numerator": projective_budget,
+                "finite_budget_gap": finite_budget - deduped_finite,
+                "projective_budget_gap": projective_budget - deduped_projective,
+                "safe_against_budget": True,
+                "claim_status": "fixed_synthetic_packet_only",
+            }
         else:
             zero_subtraction_item = None
             projective_item = None
+            fixed_top_window_m4_table = None
         records.append(
             {
                 "A": agreement,
@@ -375,6 +433,7 @@ def per_agreement_records(
                     if zero_subtraction_item is not None
                     else None
                 ),
+                "fixed_top_window_m4_table": fixed_top_window_m4_table,
                 "actual_row_outcome": (
                     "line-value lift and zero-slope tangent subtraction supplied "
                     "for the fixed synthetic packet; "
@@ -486,6 +545,9 @@ def build_status() -> dict[str, Any]:
             "fixed_top_window_subtraction_status": "the synthetic root {0} is removed by the zero-codeword tangent slope, leaving aperiodic numerator 0",
             "fixed_top_window_denominator_status": "the line-value lift is genuinely F_17^32-valued, so the finite-affine slope denominator is 17^32",
             "fixed_top_window_projective_endpoint_status": "the projective endpoint [0:1] is empty for A=421..426, so projectivizing the fixed synthetic packet adds no regular-minor root",
+            "fixed_top_window_m4_status": "for the fixed synthetic top-window packet, B_tan=1, B_quot_support=B_quot_image=B_ext=0, B_ap_after_removed=0, and the deduped total upper bound is 1 <= budget 6",
+            "fixed_top_window_m4_deduped_total_upper": 1,
+            "fixed_top_window_m4_budget_gap": 5,
             "actual_row_status": "row-realizability is discharged; universal tangent/quotient-deduped row outcomes are not supplied",
             "first_actual_row_task": "classify arbitrary length-256 syndrome pencils by root table or singular-bucket outcome for A=385..426",
         },
@@ -503,6 +565,7 @@ def build_status() -> dict[str, Any]:
                 "the fixed synthetic top-window root {0} is the zero-codeword tangent slope and leaves no synthetic residual aperiodic roots after subtraction",
                 "the fixed top-window line-value lift is extension-valued and must use q_line=17^32 for finite-affine slope accounting",
                 "the fixed top-window projective endpoint [0:1] is empty and contributes no extra synthetic regular-minor root",
+                "the fixed synthetic top-window M4 table has deduped total upper bound 1, below the finite and projective budget numerator 6",
             ],
             "not_proved": [
                 "a universal root table for arbitrary length-256 syndrome pencils at any A in 385..426",

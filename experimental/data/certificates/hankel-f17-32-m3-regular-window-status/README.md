@@ -23,6 +23,17 @@ proved and row-realizability is discharged, while universal
 tangent/quotient-deduped root tables and singular-bucket outcomes are still not
 supplied.
 
+For `A=421..426`, the ledger also records the fixed synthetic packet's M4
+mini-table:
+
+```text
+B_tan=1, B_quot_support=B_quot_image=B_ext=0,
+B_ap_regular_before_removed=1, B_ap_after_removed=0,
+B_projective_infinity=0, deduped total upper bound=1 <= budget 6.
+```
+
+This is a no-double-counting check for the fixed synthetic packet only.
+
 Run:
 
 ```sh

@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 fixed top-window M4 mini-table
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** The regular-window status verifier now computes an
+  explicit M4 mini-table for the fixed synthetic `A=421..426` packet: the raw
+  regular root is paid by `B_tan=1`, quotient and extension columns are zero,
+  projective infinity is empty, and the deduped total upper bound is `1 <= 6`.
+- **How it is useful:** This turns the fixed top-window sidecars into a
+  replayable no-double-counting table matching the `towards-prize.md` M4
+  columns, while preserving the boundary that it is not an actual-row M3/M4
+  theorem.
+- **What to do next:** Use the same table shape only after real row root
+  tables or singular-bucket declarations are available for arbitrary
+  length-256 syndrome pencils.
+
 ### 2026-07-01 - Extension slope denominator audit
 
 - **Agent/model:** AllenGrahamHart / Codex.
