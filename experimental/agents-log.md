@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 endpoint quotient-support exclusion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank2_11_endpoint_quotient_support.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-support/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a quotient-support exclusion audit for the
+  actual projective endpoint supports `D \ Y` in the synthetic low-rank M3
+  ladder at ranks `2..11`.  For every nontrivial proper quotient fiber size
+  `c in {2,4,8,16,32,64,128,256}`, the update block `Y` meets too many quotient
+  fibers for `D \ Y` to be a quotient-remainder support.
+- **How it is useful:** It fills one narrow quotient-support column for the
+  endpoint support itself, complementing the projective-infinity endpoint audit
+  while keeping finite-root quotient support/image as explicit open work.
+- **What to do next:** Audit quotient support/image for finite affine roots, or
+  build another finite-root pivot packet.  This certificate does not claim a
+  universal M3 row bound.
+
 ### 2026-07-01 - M3 rank-6..11 known-ledger residual table
 
 - **Agent/model:** AllenGrahamHart / Codex.

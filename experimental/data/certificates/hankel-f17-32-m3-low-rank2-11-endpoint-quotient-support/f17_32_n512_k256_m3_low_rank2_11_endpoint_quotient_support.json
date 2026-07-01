@@ -1,0 +1,639 @@
+{
+  "aggregate": {
+    "agreement_count": 42,
+    "all_nontrivial_quotient_supports_excluded": true,
+    "minimum_excess_hit_fibers": 1,
+    "nontrivial_fiber_sizes": [
+      2,
+      4,
+      8,
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "nontrivial_quotient_check_count": 3360,
+    "rank_count": 10,
+    "rank_summaries": {
+      "10": {
+        "agreement_count": 42,
+        "all_nontrivial_quotient_supports_excluded": true,
+        "endpoint_support_size": 502,
+        "minimum_excess_hit_fibers": 1,
+        "nontrivial_quotient_checks": 336,
+        "rank": 10
+      },
+      "11": {
+        "agreement_count": 42,
+        "all_nontrivial_quotient_supports_excluded": true,
+        "endpoint_support_size": 501,
+        "minimum_excess_hit_fibers": 1,
+        "nontrivial_quotient_checks": 336,
+        "rank": 11
+      },
+      "2": {
+        "agreement_count": 42,
+        "all_nontrivial_quotient_supports_excluded": true,
+        "endpoint_support_size": 510,
+        "minimum_excess_hit_fibers": 1,
+        "nontrivial_quotient_checks": 336,
+        "rank": 2
+      },
+      "3": {
+        "agreement_count": 42,
+        "all_nontrivial_quotient_supports_excluded": true,
+        "endpoint_support_size": 509,
+        "minimum_excess_hit_fibers": 1,
+        "nontrivial_quotient_checks": 336,
+        "rank": 3
+      },
+      "4": {
+        "agreement_count": 42,
+        "all_nontrivial_quotient_supports_excluded": true,
+        "endpoint_support_size": 508,
+        "minimum_excess_hit_fibers": 1,
+        "nontrivial_quotient_checks": 336,
+        "rank": 4
+      },
+      "5": {
+        "agreement_count": 42,
+        "all_nontrivial_quotient_supports_excluded": true,
+        "endpoint_support_size": 507,
+        "minimum_excess_hit_fibers": 1,
+        "nontrivial_quotient_checks": 336,
+        "rank": 5
+      },
+      "6": {
+        "agreement_count": 42,
+        "all_nontrivial_quotient_supports_excluded": true,
+        "endpoint_support_size": 506,
+        "minimum_excess_hit_fibers": 1,
+        "nontrivial_quotient_checks": 336,
+        "rank": 6
+      },
+      "7": {
+        "agreement_count": 42,
+        "all_nontrivial_quotient_supports_excluded": true,
+        "endpoint_support_size": 505,
+        "minimum_excess_hit_fibers": 1,
+        "nontrivial_quotient_checks": 336,
+        "rank": 7
+      },
+      "8": {
+        "agreement_count": 42,
+        "all_nontrivial_quotient_supports_excluded": true,
+        "endpoint_support_size": 504,
+        "minimum_excess_hit_fibers": 1,
+        "nontrivial_quotient_checks": 336,
+        "rank": 8
+      },
+      "9": {
+        "agreement_count": 42,
+        "all_nontrivial_quotient_supports_excluded": true,
+        "endpoint_support_size": 503,
+        "minimum_excess_hit_fibers": 1,
+        "nontrivial_quotient_checks": 336,
+        "rank": 9
+      }
+    },
+    "record_count": 420,
+    "trivial_fiber_sizes_not_claimed": [
+      1,
+      512
+    ],
+    "worst_record_count": 756,
+    "worst_record_samples": [
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 2,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 256,
+        "rank": 2
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 4,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 128,
+        "rank": 2
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 8,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 64,
+        "rank": 2
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 16,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 32,
+        "rank": 2
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 32,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 16,
+        "rank": 2
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 64,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 8,
+        "rank": 2
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 128,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 4,
+        "rank": 2
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 256,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 2,
+        "rank": 2
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 2,
+        "hit_quotient_fiber_count": 3,
+        "minimum_quotient_fibers_for_rank": 2,
+        "quotient_order": 256,
+        "rank": 3
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 256,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 2,
+        "rank": 3
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 256,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 2,
+        "rank": 4
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 256,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 2,
+        "rank": 5
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 256,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 2,
+        "rank": 6
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 256,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 2,
+        "rank": 7
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 256,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 2,
+        "rank": 8
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 256,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 2,
+        "rank": 9
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 256,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 2,
+        "rank": 10
+      },
+      {
+        "A": 385,
+        "excess_hit_fibers": 1,
+        "fiber_size": 256,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 2,
+        "rank": 11
+      },
+      {
+        "A": 386,
+        "excess_hit_fibers": 1,
+        "fiber_size": 2,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 256,
+        "rank": 2
+      },
+      {
+        "A": 386,
+        "excess_hit_fibers": 1,
+        "fiber_size": 4,
+        "hit_quotient_fiber_count": 2,
+        "minimum_quotient_fibers_for_rank": 1,
+        "quotient_order": 128,
+        "rank": 2
+      }
+    ]
+  },
+  "agreement_range": [
+    385,
+    426
+  ],
+  "claim": "For every synthetic rank-2..11 projective endpoint support D\\Y and every nontrivial proper quotient fiber size c in {2,4,8,16,32,64,128,256}, the support is not in the quotient-remainder support family.",
+  "deterministic_records": {
+    "first_record": {
+      "A": 385,
+      "endpoint_co_support": "rank-s consecutive update block Y",
+      "endpoint_support_size": 510,
+      "j": 127,
+      "nontrivial_quotient_checks": [
+        {
+          "excess_hit_fibers": 1,
+          "fiber_size": 2,
+          "hit_quotient_fiber_count": 2,
+          "hit_residue_sample": [
+            128,
+            129
+          ],
+          "minimum_quotient_fibers_for_rank": 1,
+          "quotient_order": 256,
+          "support_is_quotient_remainder": false
+        },
+        {
+          "excess_hit_fibers": 1,
+          "fiber_size": 4,
+          "hit_quotient_fiber_count": 2,
+          "hit_residue_sample": [
+            0,
+            1
+          ],
+          "minimum_quotient_fibers_for_rank": 1,
+          "quotient_order": 128,
+          "support_is_quotient_remainder": false
+        },
+        {
+          "excess_hit_fibers": 1,
+          "fiber_size": 8,
+          "hit_quotient_fiber_count": 2,
+          "hit_residue_sample": [
+            0,
+            1
+          ],
+          "minimum_quotient_fibers_for_rank": 1,
+          "quotient_order": 64,
+          "support_is_quotient_remainder": false
+        },
+        {
+          "excess_hit_fibers": 1,
+          "fiber_size": 16,
+          "hit_quotient_fiber_count": 2,
+          "hit_residue_sample": [
+            0,
+            1
+          ],
+          "minimum_quotient_fibers_for_rank": 1,
+          "quotient_order": 32,
+          "support_is_quotient_remainder": false
+        },
+        {
+          "excess_hit_fibers": 1,
+          "fiber_size": 32,
+          "hit_quotient_fiber_count": 2,
+          "hit_residue_sample": [
+            0,
+            1
+          ],
+          "minimum_quotient_fibers_for_rank": 1,
+          "quotient_order": 16,
+          "support_is_quotient_remainder": false
+        },
+        {
+          "excess_hit_fibers": 1,
+          "fiber_size": 64,
+          "hit_quotient_fiber_count": 2,
+          "hit_residue_sample": [
+            0,
+            1
+          ],
+          "minimum_quotient_fibers_for_rank": 1,
+          "quotient_order": 8,
+          "support_is_quotient_remainder": false
+        },
+        {
+          "excess_hit_fibers": 1,
+          "fiber_size": 128,
+          "hit_quotient_fiber_count": 2,
+          "hit_residue_sample": [
+            0,
+            1
+          ],
+          "minimum_quotient_fibers_for_rank": 1,
+          "quotient_order": 4,
+          "support_is_quotient_remainder": false
+        },
+        {
+          "excess_hit_fibers": 1,
+          "fiber_size": 256,
+          "hit_quotient_fiber_count": 2,
+          "hit_residue_sample": [
+            0,
+            1
+          ],
+          "minimum_quotient_fibers_for_rank": 1,
+          "quotient_order": 2,
+          "support_is_quotient_remainder": false
+        }
+      ],
+      "nontrivial_quotient_support_status": "excluded",
+      "rank": 2,
+      "t": 129,
+      "trivial_fiber_sizes_not_claimed": [
+        1,
+        512
+      ],
+      "update_node_range": [
+        128,
+        129
+      ]
+    },
+    "last_record": {
+      "A": 426,
+      "endpoint_co_support": "rank-s consecutive update block Y",
+      "endpoint_support_size": 501,
+      "j": 86,
+      "nontrivial_quotient_checks": [
+        {
+          "excess_hit_fibers": 5,
+          "fiber_size": 2,
+          "hit_quotient_fiber_count": 11,
+          "hit_residue_sample": [
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97
+          ],
+          "minimum_quotient_fibers_for_rank": 6,
+          "quotient_order": 256,
+          "support_is_quotient_remainder": false
+        },
+        {
+          "excess_hit_fibers": 8,
+          "fiber_size": 4,
+          "hit_quotient_fiber_count": 11,
+          "hit_residue_sample": [
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97
+          ],
+          "minimum_quotient_fibers_for_rank": 3,
+          "quotient_order": 128,
+          "support_is_quotient_remainder": false
+        },
+        {
+          "excess_hit_fibers": 9,
+          "fiber_size": 8,
+          "hit_quotient_fiber_count": 11,
+          "hit_residue_sample": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "minimum_quotient_fibers_for_rank": 2,
+          "quotient_order": 64,
+          "support_is_quotient_remainder": false
+        },
+        {
+          "excess_hit_fibers": 10,
+          "fiber_size": 16,
+          "hit_quotient_fiber_count": 11,
+          "hit_residue_sample": [
+            0,
+            1,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "minimum_quotient_fibers_for_rank": 1,
+          "quotient_order": 32,
+          "support_is_quotient_remainder": false
+        },
+        {
+          "excess_hit_fibers": 10,
+          "fiber_size": 32,
+          "hit_quotient_fiber_count": 11,
+          "hit_residue_sample": [
+            0,
+            1,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "minimum_quotient_fibers_for_rank": 1,
+          "quotient_order": 16,
+          "support_is_quotient_remainder": false
+        },
+        {
+          "excess_hit_fibers": 7,
+          "fiber_size": 64,
+          "hit_quotient_fiber_count": 8,
+          "hit_residue_sample": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "minimum_quotient_fibers_for_rank": 1,
+          "quotient_order": 8,
+          "support_is_quotient_remainder": false
+        },
+        {
+          "excess_hit_fibers": 3,
+          "fiber_size": 128,
+          "hit_quotient_fiber_count": 4,
+          "hit_residue_sample": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "minimum_quotient_fibers_for_rank": 1,
+          "quotient_order": 4,
+          "support_is_quotient_remainder": false
+        },
+        {
+          "excess_hit_fibers": 1,
+          "fiber_size": 256,
+          "hit_quotient_fiber_count": 2,
+          "hit_residue_sample": [
+            0,
+            1
+          ],
+          "minimum_quotient_fibers_for_rank": 1,
+          "quotient_order": 2,
+          "support_is_quotient_remainder": false
+        }
+      ],
+      "nontrivial_quotient_support_status": "excluded",
+      "rank": 11,
+      "t": 170,
+      "trivial_fiber_sizes_not_claimed": [
+        1,
+        512
+      ],
+      "update_node_range": [
+        87,
+        97
+      ]
+    },
+    "record_count": 420,
+    "record_sha256": "864be8a41cd39ed90e598ff5723970edf13a66cb7d1f37295e6b40e50af6e992",
+    "storage": "compressed; verifier rebuilds all rank/agreement quotient checks"
+  },
+  "method": {
+    "co_support_shape": "consecutive descriptor exponent block of length rank",
+    "criterion": "D minus Y is a quotient-remainder support for fiber size c only if Y meets exactly ceil(|Y|/c) quotient fibers",
+    "excluded_fiber_sizes": [
+      2,
+      4,
+      8,
+      16,
+      32,
+      64,
+      128,
+      256
+    ],
+    "quotient_fibers": "exponent classes modulo n/c in the order-512 cyclic domain",
+    "trivial_fiber_sizes_not_claimed": [
+      1,
+      512
+    ]
+  },
+  "nonclaims": [
+    "trivial c=1 and c=512 support families are not excluded",
+    "finite affine regular-minor roots are not audited here",
+    "not a quotient-image audit for arbitrary supports",
+    "not an actual-row M3 threshold bound"
+  ],
+  "ranks": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "row": {
+    "domain_description": "order-512 multiplicative subgroup generated by generator_encoding",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512
+  },
+  "schema_version": "f17-32-m3-low-rank2-11-endpoint-quotient-support-v1",
+  "source_artifacts": {
+    "projective_infinity_endpoint": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json",
+      "schema_version": "f17-32-m3-low-rank2-11-projective-infinity-v1",
+      "sha256": "f7457c3ceea4493286386d547adae12b97589d80434af4f2139f0cbb9470817b"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT"
+}

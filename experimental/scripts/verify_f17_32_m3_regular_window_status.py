@@ -73,6 +73,11 @@ LOW_RANK2_11_PROJECTIVE_INFINITY_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-projective-infinity/"
     "f17_32_n512_k256_m3_low_rank2_11_projective_infinity_certificate.json"
 )
+LOW_RANK2_11_ENDPOINT_QUOTIENT_SUPPORT_REF = (
+    "experimental/data/certificates/"
+    "hankel-f17-32-m3-low-rank2-11-endpoint-quotient-support/"
+    "f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_support.json"
+)
 LOW_RANK_RANK6_A426_PROJECTIVE_PIVOT_REF = (
     "experimental/data/certificates/"
     "hankel-f17-32-m3-low-rank-rank6-a426-projective-pivot/"
@@ -178,6 +183,7 @@ def validate_inputs(
     low_rank8_slack_family: dict[str, Any],
     low_rank9_11_slack_sweep: dict[str, Any],
     low_rank2_11_projective_infinity: dict[str, Any],
+    low_rank2_11_endpoint_quotient_support: dict[str, Any],
     low_rank_rank6_a426_projective_pivot: dict[str, Any],
     low_rank6_11_tangent_exclusion: dict[str, Any],
     low_rank6_11_subfield_exclusion: dict[str, Any],
@@ -893,6 +899,62 @@ def validate_inputs(
             and summary["projective_infinity_contribution_sum"] == 42
             and summary["thresholds_covered"] is True,
             f"rank-{rank} projective infinity summary mismatch",
+        )
+    require(
+        low_rank2_11_endpoint_quotient_support["schema_version"]
+        == "f17-32-m3-low-rank2-11-endpoint-quotient-support-v1",
+        "rank-2..11 endpoint quotient-support schema mismatch",
+    )
+    require(
+        low_rank2_11_endpoint_quotient_support["agreement_range"]
+        == [AGREEMENT_MIN, AGREEMENT_MAX],
+        "rank-2..11 endpoint quotient-support window mismatch",
+    )
+    require(
+        low_rank2_11_endpoint_quotient_support["ranks"]
+        == [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        "rank-2..11 endpoint quotient-support rank list mismatch",
+    )
+    require(
+        low_rank2_11_endpoint_quotient_support["aggregate"]["record_count"]
+        == 420
+        and low_rank2_11_endpoint_quotient_support["deterministic_records"][
+            "record_count"
+        ]
+        == 420
+        and low_rank2_11_endpoint_quotient_support["aggregate"][
+            "nontrivial_quotient_check_count"
+        ]
+        == 3360
+        and low_rank2_11_endpoint_quotient_support["aggregate"][
+            "nontrivial_fiber_sizes"
+        ]
+        == [2, 4, 8, 16, 32, 64, 128, 256]
+        and low_rank2_11_endpoint_quotient_support["aggregate"][
+            "trivial_fiber_sizes_not_claimed"
+        ]
+        == [1, 512]
+        and low_rank2_11_endpoint_quotient_support["aggregate"][
+            "minimum_excess_hit_fibers"
+        ]
+        >= 1
+        and low_rank2_11_endpoint_quotient_support["aggregate"][
+            "all_nontrivial_quotient_supports_excluded"
+        ]
+        is True,
+        "rank-2..11 endpoint quotient-support aggregate mismatch",
+    )
+    for rank in [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]:
+        summary = low_rank2_11_endpoint_quotient_support["aggregate"][
+            "rank_summaries"
+        ][str(rank)]
+        require(
+            summary["agreement_count"] == 42
+            and summary["endpoint_support_size"] == 512 - rank
+            and summary["nontrivial_quotient_checks"] == 42 * 8
+            and summary["minimum_excess_hit_fibers"] >= 1
+            and summary["all_nontrivial_quotient_supports_excluded"] is True,
+            f"rank-{rank} endpoint quotient-support summary mismatch",
         )
     require(
         low_rank_rank6_a426_projective_pivot["schema_version"]
@@ -2001,6 +2063,9 @@ def build_status() -> dict[str, Any]:
     low_rank2_11_projective_infinity = load_json(
         LOW_RANK2_11_PROJECTIVE_INFINITY_REF
     )
+    low_rank2_11_endpoint_quotient_support = load_json(
+        LOW_RANK2_11_ENDPOINT_QUOTIENT_SUPPORT_REF
+    )
     low_rank_rank6_a426_projective_pivot = load_json(
         LOW_RANK_RANK6_A426_PROJECTIVE_PIVOT_REF
     )
@@ -2035,6 +2100,7 @@ def build_status() -> dict[str, Any]:
         low_rank8_slack_family,
         low_rank9_11_slack_sweep,
         low_rank2_11_projective_infinity,
+        low_rank2_11_endpoint_quotient_support,
         low_rank_rank6_a426_projective_pivot,
         low_rank6_11_tangent_exclusion,
         low_rank6_11_subfield_exclusion,
@@ -2121,6 +2187,11 @@ def build_status() -> dict[str, Any]:
             "synthetic_low_rank2_11_projective_infinity",
             LOW_RANK2_11_PROJECTIVE_INFINITY_REF,
             "f17-32-m3-low-rank2-11-projective-infinity-v1",
+        ),
+        artifact_record(
+            "synthetic_low_rank2_11_endpoint_quotient_support",
+            LOW_RANK2_11_ENDPOINT_QUOTIENT_SUPPORT_REF,
+            "f17-32-m3-low-rank2-11-endpoint-quotient-support-v1",
         ),
         artifact_record(
             "synthetic_low_rank_rank6_a426_projective_pivot",
@@ -2417,6 +2488,31 @@ def build_status() -> dict[str, Any]:
                     "projective_infinity_contribution_sum"
                 ]
             ),
+            "synthetic_low_rank2_11_endpoint_quotient_support_status": (
+                "proved that the actual endpoint support D minus Y is not a "
+                "nontrivial proper quotient-remainder support for every "
+                "rank/agreement row in the synthetic low-rank ladder"
+            ),
+            "synthetic_low_rank2_11_endpoint_quotient_support_rank_summaries": (
+                low_rank2_11_endpoint_quotient_support["aggregate"][
+                    "rank_summaries"
+                ]
+            ),
+            "synthetic_low_rank2_11_endpoint_quotient_support_fiber_sizes": (
+                low_rank2_11_endpoint_quotient_support["aggregate"][
+                    "nontrivial_fiber_sizes"
+                ]
+            ),
+            "synthetic_low_rank2_11_endpoint_quotient_support_min_excess": (
+                low_rank2_11_endpoint_quotient_support["aggregate"][
+                    "minimum_excess_hit_fibers"
+                ]
+            ),
+            "synthetic_low_rank2_11_endpoint_quotient_support_nonclaim": (
+                "trivial quotient fiber sizes c=1 and c=512, finite affine "
+                "regular-minor roots, and quotient-image supports are not "
+                "audited by this endpoint support certificate"
+            ),
             "synthetic_low_rank_rank6_a426_projective_pivot_status": (
                 "v9 projective-line pivot_atlas packet checks the rank-6 "
                 "A=426 projective_infinity chart as nonempty with support_count "
@@ -2550,6 +2646,7 @@ def build_status() -> dict[str, Any]:
                 "the synthetic rank-8 low-rank slack family has exact Frobenius-gcd root histogram {0:22, 1:10, 2:7, 3:2, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 9",
                 "the synthetic rank-9..11 low-rank slack sweep has exact Frobenius-gcd root histograms {9:{0:17, 1:17, 2:6, 3:2}, 10:{0:8, 1:23, 2:9, 3:2}, 11:{0:15, 1:16, 2:5, 3:6}}, so finite-root slack gives at most 4 projective regular roots per checked pair despite degree-only projective bounds 10, 11, and 12",
                 "the synthetic rank-2..11 low-rank endpoint audit proves the projective infinity point [0:1] is an actual support-wise noncontained endpoint in every checked rank/agreement row, witnessed on D minus the update nodes",
+                "the synthetic rank-2..11 low-rank endpoint quotient-support audit proves that those actual D minus Y endpoint supports are not nontrivial proper quotient-remainder supports; trivial c=1 and c=512 and quotient-image supports are not claimed",
                 "the synthetic rank-6 A=426 projective-line pivot packet is v9-checkable and closes the projective_infinity chart as nonempty with contribution one",
                 "the synthetic rank-6..11 low-rank tangent audit checks the unique moment-zero common-code-line slope z=-|X|/s and proves zero tangent overlap for all 238 counted finite roots",
                 "the synthetic rank-6..11 low-rank subfield audit proves zero proper-subfield overlap for all 238 counted finite roots over the proper subfields F_17^d, d in {1,2,4,8,16}",
@@ -2620,6 +2717,10 @@ def print_summary(status: dict[str, Any]) -> None:
     print(
         "rank-2..11 low-rank infinity: "
         f"{summary['synthetic_low_rank2_11_projective_infinity_status']}"
+    )
+    print(
+        "rank-2..11 endpoint quotient support: "
+        f"{summary['synthetic_low_rank2_11_endpoint_quotient_support_status']}"
     )
     print(
         "rank-6 A=426 infinity pivot: "

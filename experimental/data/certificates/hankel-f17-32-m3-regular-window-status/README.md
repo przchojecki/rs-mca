@@ -85,6 +85,14 @@ family.  For `u_m=sum_{x in X}x^m` and `v_m=sum_{y in Y}y^m`, the endpoint
 Vandermonde independence on `X union Y`.  The largest checked union has
 `139 <= n-k=256` columns, and `|D \ Y| >= 501 > 426`.
 
+The rank-2..11 endpoint quotient-support audit classifies those same actual
+endpoint supports.  For every nontrivial proper quotient fiber size
+`c in {2,4,8,16,32,64,128,256}`, the consecutive update block `Y` meets more
+than `ceil(|Y|/c)` quotient fibers, so `D \ Y` is not a quotient-remainder
+support.  This is an endpoint-support audit only: the trivial fiber sizes
+`c=1,512`, finite affine roots, and quotient-image supports remain outside its
+scope.
+
 The rank-6, `A=426` projective-infinity pivot packet packages one row of that
 endpoint audit in the v9 `pivot_atlas` format.  Its projective-line
 `projective_infinity` chart has coverage target `status=nonempty` and
@@ -110,8 +118,8 @@ The rank-6..11 known-ledger table combines the exact finite-root counts,
 projective-infinity endpoint, tangent exclusion, and proper-subfield exclusion
 into one compact M4-style residual ledger.  It rebuilds `252` rank/agreement
 rows and records maximum residual projective regular-root upper count `5 <= 6`.
-Quotient-support and quotient-image subtraction remain explicitly unaudited in
-that table.
+Finite-root quotient-support and quotient-image subtraction remain explicitly
+unaudited in that table.
 
 The ledger also imports the v4 low-rank update template budget envelope.  Since
 both the finite and projective `F_17^32` budget numerators are 6, every nonzero

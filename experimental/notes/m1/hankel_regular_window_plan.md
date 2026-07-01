@@ -436,6 +436,20 @@ support-wise noncontained endpoint for the synthetic low-rank ladder at ranks
 The witness support is `D \ Y`, and simultaneous containment is ruled out by
 Vandermonde independence on `X union Y`.
 
+The endpoint quotient-support companion is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-support/
+  f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_support.json
+```
+
+It checks the same actual supports `D \ Y` against all nontrivial proper
+quotient fiber sizes `c in {2,4,8,16,32,64,128,256}`.  Since the consecutive
+update block `Y` always meets more than `ceil(|Y|/c)` quotient fibers, these
+endpoint supports are not quotient-remainder supports.  This is not an audit of
+the trivial fiber sizes `c=1,512`, finite affine roots, or quotient-image
+supports.
+
 The first v9 projective-infinity pivot packet extracted from this audit is:
 
 ```text
@@ -484,7 +498,8 @@ It combines the exact finite-root counts, projective-infinity endpoint,
 tangent exclusion, and proper-subfield exclusion into one M4-style residual
 table.  Across all `252` rank/agreement rows, the maximum residual projective
 regular-root upper count after these known ledgers is `5 <= 6`.  Quotient
-support/image subtraction is deliberately recorded as `not_audited`.
+support/image subtraction for finite affine roots is deliberately recorded as
+`not_audited`.
 
 The current status ledger
 

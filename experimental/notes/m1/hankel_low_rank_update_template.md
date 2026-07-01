@@ -293,6 +293,20 @@ base syndrome `u` is not explained there because the parity columns on
 `X union Y` are Vandermonde independent.  Since `|D \ Y| >= 501`, this covers
 every threshold `385 <= A <= 426`.
 
+The endpoint quotient-support audit
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-support/
+  f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_support.json
+```
+
+checks the same actual supports `D \ Y` against all nontrivial proper quotient
+fiber sizes `c in {2,4,8,16,32,64,128,256}`.  The consecutive update block `Y`
+always meets more than `ceil(|Y|/c)` quotient fibers, so these endpoint
+supports are not quotient-remainder supports.  The trivial fiber sizes
+`c=1,512`, finite affine roots, and quotient-image supports are not audited
+there.
+
 The first v9 chart packet using this endpoint audit is:
 
 ```text
@@ -339,8 +353,8 @@ experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-known-ledger-table/
 combines the finite-root slack, projective-infinity endpoint, tangent
 exclusion, and proper-subfield exclusion into a compact M4-style residual
 ledger.  The maximum residual projective regular-root upper count in the
-synthetic rank-6..11 block is `5 <= 6`; quotient support/image subtraction is
-still explicitly unaudited.
+synthetic rank-6..11 block is `5 <= 6`; finite-root quotient support/image
+subtraction is still explicitly unaudited.
 
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform a full quotient/tangent
