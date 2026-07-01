@@ -19,7 +19,6 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
-import json
 from pathlib import Path
 import sys
 from typing import Any
@@ -37,6 +36,7 @@ from experimental.scripts.extract_regular_hankel_minors import (  # noqa: E402
     fpoly_gcd,
     hash_json,
     interpolate_field,
+    render,
 )
 from experimental.scripts import (  # noqa: E402
     verify_f17_32_m3_low_rank2_12_v10_affine_gcd as packet,
@@ -84,6 +84,8 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="print the full probe record JSON instead of the compact summary",
     )
+    parser.add_argument("--write", type=Path, help="write deterministic probe JSON")
+    parser.add_argument("--check", type=Path, help="check deterministic probe JSON")
     return parser.parse_args()
 
 
@@ -345,8 +347,16 @@ def main() -> None:
         args.rank_max,
         args.stop_on_collision,
     )
+    if args.write:
+        args.write.parent.mkdir(parents=True, exist_ok=True)
+        args.write.write_text(render(result), encoding="utf-8")
+    if args.check:
+        actual = args.check.read_text(encoding="utf-8")
+        expected = render(result)
+        if actual != expected:
+            raise AssertionError(f"spectral target search mismatch: {args.check}")
     if args.json:
-        print(json.dumps(result, indent=2, sort_keys=True))
+        print(render(result), end="")
         return
     print_summary(result)
 

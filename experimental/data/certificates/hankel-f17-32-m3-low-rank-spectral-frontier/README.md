@@ -19,13 +19,20 @@ A = 426,    m = 87,    ranks 13..20.
 It crosses the characteristic-17 boundary: ranks `13..16` use Newton
 identities, while ranks `17..20` use determinant interpolation.
 
-Reproduce:
+Reproduce or check the recorded JSON:
 
 ```bash
 python3 experimental/scripts/search_f17_32_m3_low_rank_spectral_target.py \
   --agreement-min 426 --agreement-max 426 \
   --rank-min 13 --rank-max 20 \
-  --stop-on-collision --json
+  --stop-on-collision --write \
+  experimental/data/certificates/hankel-f17-32-m3-low-rank-spectral-frontier/f17_32_m3_low_rank_spectral_frontier_a426_r13_20.json
+
+python3 experimental/scripts/search_f17_32_m3_low_rank_spectral_target.py \
+  --agreement-min 426 --agreement-max 426 \
+  --rank-min 13 --rank-max 20 \
+  --stop-on-collision --check \
+  experimental/data/certificates/hankel-f17-32-m3-low-rank-spectral-frontier/f17_32_m3_low_rank_spectral_frontier_a426_r13_20.json
 ```
 
 Observed summary:

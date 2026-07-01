@@ -62,7 +62,8 @@ Keep entries concise and link to the relevant files.
   certified low-rank2..12 packet; it switches from Newton identities to
   determinant interpolation at rank `17`, avoiding characteristic-17 division.
   The first top-window frontier probe `A=426`, ranks `13..20`, records eight
-  exact checks with common gcd degree `0`.
+  exact checks with common gcd degree `0`, and can be replayed with the
+  script's deterministic `--check` mode.
 - **How it is useful:** Turns the rank-by-rank affine-gcd computation into a
   concrete spectral-disjointness target.  Proving that target through the
   endpoint-capacity range would close the synthetic low-rank regular
