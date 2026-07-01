@@ -4,9 +4,9 @@
     "all_synthetic_projective_rows_empty_after_paid_endpoint": true,
     "finite_affine_rank_drop_root_count_sum": 0,
     "maximum_vandermonde_union_bound_for_endpoint_witness": 255,
-    "quotient_image_projective_endpoint_paid_count": 420,
-    "rank_count": 10,
-    "record_count": 420,
+    "quotient_image_projective_endpoint_paid_count": 462,
+    "rank_count": 11,
+    "record_count": 462,
     "regular_projective_unpaid_residual_count_sum": 0
   },
   "agreement_range": [
@@ -19,9 +19,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 127,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 129
     },
     {
@@ -29,9 +29,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 126,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 130
     },
     {
@@ -39,9 +39,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 125,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 131
     },
     {
@@ -49,9 +49,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 124,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 132
     },
     {
@@ -59,9 +59,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 123,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 133
     },
     {
@@ -69,9 +69,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 122,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 134
     },
     {
@@ -79,9 +79,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 121,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 135
     },
     {
@@ -89,9 +89,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 120,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 136
     },
     {
@@ -99,9 +99,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 119,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 137
     },
     {
@@ -109,9 +109,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 118,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 138
     },
     {
@@ -119,9 +119,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 117,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 139
     },
     {
@@ -129,9 +129,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 116,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 140
     },
     {
@@ -139,9 +139,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 115,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 141
     },
     {
@@ -149,9 +149,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 114,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 142
     },
     {
@@ -159,9 +159,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 113,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 143
     },
     {
@@ -169,9 +169,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 112,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 144
     },
     {
@@ -179,9 +179,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 111,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 145
     },
     {
@@ -189,9 +189,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 110,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 146
     },
     {
@@ -199,9 +199,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 109,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 147
     },
     {
@@ -209,9 +209,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 108,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 148
     },
     {
@@ -219,9 +219,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 107,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 149
     },
     {
@@ -229,9 +229,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 106,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 150
     },
     {
@@ -239,9 +239,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 105,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 151
     },
     {
@@ -249,9 +249,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 104,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 152
     },
     {
@@ -259,9 +259,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 103,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 153
     },
     {
@@ -269,9 +269,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 102,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 154
     },
     {
@@ -279,9 +279,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 101,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 155
     },
     {
@@ -289,9 +289,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 100,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 156
     },
     {
@@ -299,9 +299,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 99,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 157
     },
     {
@@ -309,9 +309,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 98,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 158
     },
     {
@@ -319,9 +319,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 97,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 159
     },
     {
@@ -329,9 +329,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 96,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 160
     },
     {
@@ -339,9 +339,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 95,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 161
     },
     {
@@ -349,9 +349,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 94,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 162
     },
     {
@@ -359,9 +359,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 93,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 163
     },
     {
@@ -369,9 +369,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 92,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 164
     },
     {
@@ -379,9 +379,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 91,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 165
     },
     {
@@ -389,9 +389,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 90,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 166
     },
     {
@@ -399,9 +399,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 89,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 167
     },
     {
@@ -409,9 +409,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 88,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 168
     },
     {
@@ -419,9 +419,9 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 87,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 169
     },
     {
@@ -429,13 +429,13 @@
       "all_synthetic_rows_clear": true,
       "finite_affine_rank_drop_roots": 0,
       "j": 86,
-      "quotient_image_projective_endpoints_paid": 10,
+      "quotient_image_projective_endpoints_paid": 11,
       "regular_projective_residual_after_paid_ledgers": 0,
-      "synthetic_rank_rows": 10,
+      "synthetic_rank_rows": 11,
       "t": 170
     }
   ],
-  "claim": "For the synthetic low-rank M3 ladder of ranks 2..11 over the accepted F_17^32 row and every A=385..426, the regular projective rank-drop residual is empty after paid quotient-image endpoint removal: the finite affine rank-drop root set is empty and the single projective endpoint [0:1] is quotient-image paid.",
+  "claim": "For the synthetic low-rank M3 ladder of ranks 2..12 over the accepted F_17^32 row and every A=385..426, the regular projective rank-drop residual is empty after paid quotient-image endpoint removal: the finite affine rank-drop root set is empty and the single projective endpoint [0:1] is quotient-image paid.",
   "deterministic_records": {
     "first_record": {
       "A": 385,
@@ -468,8 +468,8 @@
     "last_record": {
       "A": 426,
       "finite_affine_rank_drop": {
-        "prefix_minor_hash": "6ee5e665644ed5606a64cbf1d401f8a20d9e258a0dfcdaab7cf3c13a78f6816d",
-        "shifted_minor_hash": "34435a8e1b93234dcb3481bd1c4978b79bdf23807a351262e13a0057abb238d2",
+        "prefix_minor_hash": "36114c8fdccaa62032b86984c54872de719041d87dc02bbc89d1f2c43cb8820a",
+        "shifted_minor_hash": "eb0a5e2b58282feac5139555664fa55f013766ed6e06539bab5ed70be58deb25",
         "status": "empty",
         "two_minor_common_gcd_degree": 0,
         "v10_canonical_root_count": 0
@@ -484,7 +484,7 @@
         }
       },
       "projective_sampler": "projective_line",
-      "rank": 11,
+      "rank": 12,
       "regular_projective_residual_after_paid_ledgers": {
         "finite_affine_unpaid": 0,
         "projective_endpoint_unpaid": 0,
@@ -493,8 +493,8 @@
       },
       "t": 170
     },
-    "record_count": 420,
-    "record_sha256": "967c10d530f1e0fa79e8ad8ec947d489fc28fbe2da397b5f940096b053514356",
+    "record_count": 462,
+    "record_sha256": "dc0025536af51b3afb5f8ca719c639789324fae9a954612b25aca2f7973cf6eb",
     "storage": "compressed; verifier rebuilds per-rank paid residual rows"
   },
   "ledger_convention": {
@@ -520,14 +520,15 @@
     8,
     9,
     10,
-    11
+    11,
+    12
   ],
   "removed_ledgers": [
     {
-      "certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_image.json",
+      "certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-endpoint-quotient-image/f17_32_n512_k256_m3_low_rank2_12_endpoint_quotient_image.json",
       "name": "quotient_image_projective_endpoint",
       "numerator_per_synthetic_row": 1,
-      "total_numerator": 420
+      "total_numerator": 462
     }
   ],
   "row": {
@@ -538,20 +539,20 @@
     "n": 512
   },
   "sampler": "projective_line",
-  "schema_version": "f17-32-m3-low-rank2-11-paid-residual-ledger-v1",
+  "schema_version": "f17-32-m3-low-rank2-12-paid-residual-ledger-v1",
   "source_artifacts": [
     {
       "name": "affine_gcd_certificate",
-      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-v10-affine-gcd/f17_32_n512_k256_m3_low_rank2_11_v10_affine_gcd.json",
-      "schema_version": "f17-32-m3-low-rank2-11-v10-affine-gcd-v1",
-      "sha256": "fb11fb943531dcb90cddad365ce4179729d7efbaf7d7323b0549c2e5bbd853db",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-v10-affine-gcd/f17_32_n512_k256_m3_low_rank2_12_v10_affine_gcd.json",
+      "schema_version": "f17-32-m3-low-rank2-12-v10-affine-gcd-v1",
+      "sha256": "9bfef6ad9180a8c11f11a5b12dd57abc059383830c92f1123a6ca731ee2a178e",
       "status": "PROVED / AUDIT"
     },
     {
       "name": "endpoint_quotient_image_certificate",
-      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_image.json",
-      "schema_version": "f17-32-m3-low-rank2-11-endpoint-quotient-image-v1",
-      "sha256": "c466b8adb884856c15ba36089d1dcaeb7373d5039260eb06ce9e6486e1494a6b",
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-endpoint-quotient-image/f17_32_n512_k256_m3_low_rank2_12_endpoint_quotient_image.json",
+      "schema_version": "f17-32-m3-low-rank2-12-endpoint-quotient-image-v1",
+      "sha256": "b2eec53129e88ba38873d95cd05aa4f169ff4b2ae3c215988bc09fc4eb599511",
       "status": "PROVED / AUDIT"
     }
   ],

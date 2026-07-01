@@ -5,7 +5,7 @@
       426
     ],
     "all_records_have_empty_affine_rank_drop_gcd": true,
-    "prefix_minor_degree_sum": 2730,
+    "prefix_minor_degree_sum": 3234,
     "projective_endpoint_status": "not_claimed_in_this_packet",
     "rank_summaries": {
       "10": {
@@ -32,6 +32,21 @@
         "record_count": 42,
         "shifted_minor_degree_histogram": {
           "11": 42
+        },
+        "two_minor_common_gcd_degree_histogram": {
+          "0": 42
+        },
+        "v10_canonical_affine_rank_drop_root_count_sum": 0
+      },
+      "12": {
+        "agreement_count": 42,
+        "prefix_minor_degree_histogram": {
+          "12": 42
+        },
+        "rank": 12,
+        "record_count": 42,
+        "shifted_minor_degree_histogram": {
+          "12": 42
         },
         "two_minor_common_gcd_degree_histogram": {
           "0": 42
@@ -169,12 +184,13 @@
       8,
       9,
       10,
-      11
+      11,
+      12
     ],
-    "record_count": 420,
-    "shifted_minor_degree_sum": 2730,
+    "record_count": 462,
+    "shifted_minor_degree_sum": 3234,
     "two_minor_common_gcd_degree_histogram": {
-      "0": 420
+      "0": 462
     },
     "v10_canonical_affine_rank_drop_root_count_sum": 0
   },
@@ -182,7 +198,7 @@
     385,
     426
   ],
-  "claim": "For the synthetic low-rank M3 ladder of ranks 2..11 over the accepted F_17^32 row and every A=385..426, the v10 canonical affine rank-drop gcd is constant because the prefix and row-shift-1 maximal minors are coprime.  Thus the finite affine rank-drop root set is empty for these structured branches.",
+  "claim": "For the synthetic low-rank M3 ladder of ranks 2..12 over the accepted F_17^32 row and every A=385..426, the v10 canonical affine rank-drop gcd is constant because the prefix and row-shift-1 maximal minors are coprime.  Thus the finite affine rank-drop root set is empty for these structured branches.",
   "construction": {
     "accepted_inputs_only": true,
     "argument": "The v10 affine rank-drop gcd divides the gcd of any two nonzero maximal minors.  In every rank/agreement row, the displayed prefix and row-shift-1 minors are coprime, so the canonical affine rank-drop gcd is 1 and has no finite affine roots.",
@@ -193,12 +209,12 @@
     ],
     "rank_range": [
       2,
-      11
+      12
     ],
     "shifted_minor_formula": "det(H_X^(1)+Z H_Y^(1)) = det(V_X)^2 prod(X) det(I+Z K_1), where K_1,ab = y_a sum_i x_i^-1 L_i(y_a)L_i(y_b)",
     "v10_object": "canonical affine rank-drop gcd for regular Hankel buckets"
   },
-  "deterministic_record_hash": "cc11a399f3b6cbc111f8dabdff20665cd4517e7b32b435615e474cb114edc93b",
+  "deterministic_record_hash": "533dd481f503896803c42f347df276566432aef90d31b227b2e967b7ada10f30",
   "nonclaims": [
     "synthetic low-rank ladder only, not arbitrary M3 row data",
     "affine rank-drop roots only; projective endpoint charging is not claimed",
@@ -216,7 +232,8 @@
     8,
     9,
     10,
-    11
+    11,
+    12
   ],
   "records": [
     {
@@ -9878,6 +9895,972 @@
       "two_minor_common_gcd_degree": 0,
       "v10_canonical_affine_rank_drop_gcd_degree": 0,
       "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 385,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          127
+        ],
+        "shifted_row_set": [
+          1,
+          128
+        ]
+      },
+      "j": 127,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "d41819bddeb9a4e585c82ad8c654c7a6021c071d4d830af083e3fe3f2717e7f1",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "25bd803a4e3dcfa589f3a54e05dcc58590e36b13a69cbd3d984cc3d3300e2a23",
+      "t": 129,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 386,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          126
+        ],
+        "shifted_row_set": [
+          1,
+          127
+        ]
+      },
+      "j": 126,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "22f83a0f120f098d77421e358442eec3d49efb0863113b062929da7431791aca",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "c88d403028852221f4c5e10f30fe263912dbff06b7ab53f738af7b23633eb9ea",
+      "t": 130,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 387,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          125
+        ],
+        "shifted_row_set": [
+          1,
+          126
+        ]
+      },
+      "j": 125,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "2890c529af9a7c511102926fb289bd86aa3c378b1f472b26a191ab5802f7d005",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "63fa74d4dbc7a38c089016a7e633981dd9f03779cc15f6c7b3b8f252a049c205",
+      "t": 131,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 388,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          124
+        ],
+        "shifted_row_set": [
+          1,
+          125
+        ]
+      },
+      "j": 124,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "d4ef61af95a981a496eb60624a8d21401628e89bd4a98640fd74887f72dc1b13",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "ff4da42eabcd66d4e7d4d5aa5a0972ef3bf243e95cb6500c313abaa3e53233bf",
+      "t": 132,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 389,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          123
+        ],
+        "shifted_row_set": [
+          1,
+          124
+        ]
+      },
+      "j": 123,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "c8a7c36721788bb3c5520828348f8a647ca176a8eff00c7daa950e6b91ffb5b7",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "fddd66af570ae623b32b7ad4c696c1d5ba04e1b15df33e7e5d7a037c40e02c8d",
+      "t": 133,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 390,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          122
+        ],
+        "shifted_row_set": [
+          1,
+          123
+        ]
+      },
+      "j": 122,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "24987fa9e07af6be161fc02691cf96682429d069ab25023efee6ad044699c273",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "398836204d005cc4371da05dd01d914bb73ba52d847291e1d2107498f18ae0f9",
+      "t": 134,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 391,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          121
+        ],
+        "shifted_row_set": [
+          1,
+          122
+        ]
+      },
+      "j": 121,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "8115f0c5b8ed985fa85676d6ade5cabc23009c65754944f27c4472add20d4015",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "a99c51b7e77dd68589a10b9e25a0370f334800e19aa16e7d81f054113f5bc5c0",
+      "t": 135,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 392,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          120
+        ],
+        "shifted_row_set": [
+          1,
+          121
+        ]
+      },
+      "j": 120,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "982aedbb8e53f8504c4def5cb87aa14d8b947bb5b84334c1d6e50c7be6ba8705",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "30af0f8b84806441ce7d76484a9c10e4ea3d2082158f7b246c6090507031bc74",
+      "t": 136,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 393,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          119
+        ],
+        "shifted_row_set": [
+          1,
+          120
+        ]
+      },
+      "j": 119,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "8f61a119c581dedd99ff51d6fdb86af4dbf75eacc100c201a54dc3b5bd139d35",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "c30a8f0165a010c7d1617b0920e4c65c887f52782b45f0fab177d7c9b7dde7a4",
+      "t": 137,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 394,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          118
+        ],
+        "shifted_row_set": [
+          1,
+          119
+        ]
+      },
+      "j": 118,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "f7d127f7d86e78c294ad615ae136dc4bbea5762aa2d717205e2136d6c04f4676",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "93ea0620382b5fb6f4156e7d5cb9a94934c44210c07d78ebbff408bfbfb13960",
+      "t": 138,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 395,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          117
+        ],
+        "shifted_row_set": [
+          1,
+          118
+        ]
+      },
+      "j": 117,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "ad758cb0937d3575bbc6a5200844d2624071028ceb5e6a853ec7f01cc3aeee0c",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "33b6b78c35ec84131ec9e15847d5f7b428d7cd293be468ee894a9576a97e3113",
+      "t": 139,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 396,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          116
+        ],
+        "shifted_row_set": [
+          1,
+          117
+        ]
+      },
+      "j": 116,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "28c98e0298e148c5a96629fe05c83c7c03ab0b518b21ebacc6b518ea8037ae1d",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "e767e85548ab6977161f8119f9c7d74e8cc89253347c7ace829f9b8766d87d44",
+      "t": 140,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 397,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          115
+        ],
+        "shifted_row_set": [
+          1,
+          116
+        ]
+      },
+      "j": 115,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "f7934a91711eafccc4237f5c4a27164dae8bcc91c15e222789276d36747c2729",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "40806a9379fca16b2d95ba196fa9e52d1cf6804cb99b3bad9726c8402b4ad2a3",
+      "t": 141,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 398,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          114
+        ],
+        "shifted_row_set": [
+          1,
+          115
+        ]
+      },
+      "j": 114,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "0e331d4c3883805f5543be0ba71dd862c1b631af122fb951ac9f119f3f4a4750",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "b2deaf0d20b47267127b6d8cf2222029a4485b8b73781c56bd723577f364bd97",
+      "t": 142,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 399,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          113
+        ],
+        "shifted_row_set": [
+          1,
+          114
+        ]
+      },
+      "j": 113,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "f61edfba7cc879333a3762730fcfce55336c494ae397482f5469fc8d18f84b52",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "c7341e940f6bb6ba3aac93e561a989921662ddf1f6156dafe2767b9863a1838f",
+      "t": 143,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 400,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          112
+        ],
+        "shifted_row_set": [
+          1,
+          113
+        ]
+      },
+      "j": 112,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "365b56be8738419bdec8c153c0f0e2308e6e8ced89f6867ef18528ad7231312d",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "51dbcddb2073df4d8d5e174c4cd2ee88eb1303b26d8ac1eda224183160ccad9c",
+      "t": 144,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 401,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          111
+        ],
+        "shifted_row_set": [
+          1,
+          112
+        ]
+      },
+      "j": 111,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "6d874209256310f53efc18dc857ab63399f8bb9f180027020be830183e004725",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "0f45a5542c0454b3bae2fbdbfde443552ec710e8ed5e65e46a78437820e8e8da",
+      "t": 145,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 402,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          110
+        ],
+        "shifted_row_set": [
+          1,
+          111
+        ]
+      },
+      "j": 110,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "f6dd54b806133bb406479f86ecf220ac8990685d18a9ae281ccef3e8a76abd37",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "9090c9558d2c64edcc0c3cbe6d76985d974ce9664fda640bc82f8699dcde31ad",
+      "t": 146,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 403,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          109
+        ],
+        "shifted_row_set": [
+          1,
+          110
+        ]
+      },
+      "j": 109,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "422cf1f411aadf553d1ea00b0f2f471f8530ca6994e538a7bad420e2f39d36cf",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "a6ebabad04173b9413f4dfcba9d6802b524208781e6451db6354f4e0fb33fa99",
+      "t": 147,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 404,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          108
+        ],
+        "shifted_row_set": [
+          1,
+          109
+        ]
+      },
+      "j": 108,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "ec38b7f602b4beb7904d58c45ef408c2bee055502495a8ebfa78100194000938",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "953a38b4c5a9fb252702bdc4fe03d74286a16d865a7c6f10173dd50935d74531",
+      "t": 148,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 405,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          107
+        ],
+        "shifted_row_set": [
+          1,
+          108
+        ]
+      },
+      "j": 107,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "5a306cac6dd52ca63e286f48622ed566c972738e969e889d73f76ac9b984c1d3",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "f633df4526a0bcf311800a4ee5657a009a0d881c44ef0f7f9524ecd0b08756f5",
+      "t": 149,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 406,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          106
+        ],
+        "shifted_row_set": [
+          1,
+          107
+        ]
+      },
+      "j": 106,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "a14d02e86b75232a996e345ddb28a746b4454e54129724ead27a132a97248e9f",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "aaf43b81c7bbca215e1e2d090e830ea68da7f82b8642bb0af264cffc8e6b5b7c",
+      "t": 150,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 407,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          105
+        ],
+        "shifted_row_set": [
+          1,
+          106
+        ]
+      },
+      "j": 105,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "c722b7252fe5a457c9664c934dcfcd86183b2cba67726a3ac767598a9f894cf1",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "10f7662ba3d75857bf303c020ffd537a676f1b2c634f43c1a22b1bb4683a5ee4",
+      "t": 151,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 408,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          104
+        ],
+        "shifted_row_set": [
+          1,
+          105
+        ]
+      },
+      "j": 104,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "4ac91009c65a86740449e435b1a49d5902e70608977e9b2398393d4e6d358cc8",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "47b2dd419198e7db849ccdde39708b4a7a9f408a047decec59bcc0c32330e543",
+      "t": 152,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 409,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          103
+        ],
+        "shifted_row_set": [
+          1,
+          104
+        ]
+      },
+      "j": 103,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "4d4e6e63935a20d7913ba6fd8d2d7f04d77361f9fa42ac10537f46578da0c273",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "8e269a2fbb067d4d967f6c910635fd4058e0913d09612c3d0b0a1e48483bbacd",
+      "t": 153,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 410,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          102
+        ],
+        "shifted_row_set": [
+          1,
+          103
+        ]
+      },
+      "j": 102,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "95a882396c11f93454a5eb44f309d959db83983dc223a57fab86d472e4772b89",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "9ab733d22954a41cfd4855675fcec3239506ee785cfbf61e1166faabac4a8fac",
+      "t": 154,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 411,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          101
+        ],
+        "shifted_row_set": [
+          1,
+          102
+        ]
+      },
+      "j": 101,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "8df7e1a0b2eb9cccd9da42ce928049b0b4d62c5d0124c3c9807e5b665952857d",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "d15a9e929c8e9f385b13cfb9e0134470fa56829e594fbb89768dabbe018e021b",
+      "t": 155,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 412,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          100
+        ],
+        "shifted_row_set": [
+          1,
+          101
+        ]
+      },
+      "j": 100,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "5e3003171640d1df4a8018d8a7e91d4bcda53c1fb13b961eee1f3549f024307c",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "7e515413d168dbba00ee938b3a25c1783d1ced012fd2a1d0c00d11ba36cbb55b",
+      "t": 156,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 413,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          99
+        ],
+        "shifted_row_set": [
+          1,
+          100
+        ]
+      },
+      "j": 99,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "1197792ba533b889760c7ae0a44c8b6af08b577f4c31a7bf3221b6d9c773a398",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "9a11d1122b2b3faeb1014e0e8ba49d6f79a48d3f434163a6db813d691eef305f",
+      "t": 157,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 414,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          98
+        ],
+        "shifted_row_set": [
+          1,
+          99
+        ]
+      },
+      "j": 98,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "2a808ec47fc6439b029fd819c2894bbca7cc80f3a57fcfcf4934f8cc62f3c2d8",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "e8f0c67e0ac16a290be9d9ec531fea77ad20752595c811350ccb47318a0b4c8a",
+      "t": 158,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 415,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          97
+        ],
+        "shifted_row_set": [
+          1,
+          98
+        ]
+      },
+      "j": 97,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "e9779ad067dea18142d0442ec2ecb0163dd1359301a7308f3975ffd077a53ed5",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "86add388e95f0d3a19c7c37038f77b18b5e1aae5a9ef181ceded0a05e6c001a6",
+      "t": 159,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 416,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          96
+        ],
+        "shifted_row_set": [
+          1,
+          97
+        ]
+      },
+      "j": 96,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "1d3d73fc6b16e50a46578a14e9f1eb15ad1a712c53f0357641e1ef6b0a7e3c5c",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "3d2d082fc71506865674296e62a08a1d642eb04f9d18afa73bbfe3d26d3e4d1c",
+      "t": 160,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 417,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          95
+        ],
+        "shifted_row_set": [
+          1,
+          96
+        ]
+      },
+      "j": 95,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "b74ecc58d2e009d2559ccc5e58d033ca2eb14751a145e4a4193572c6d0406188",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "43f5cf5eba7a1996e3c97c20f17e4d279607b1516468cec14a408cd886768e52",
+      "t": 161,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 418,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          94
+        ],
+        "shifted_row_set": [
+          1,
+          95
+        ]
+      },
+      "j": 94,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "424b30e84b63738f612a7a2c22a4e6b5114640e2b378060c56e09cd31cd5dd02",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "207433b1307d2d7a11e0ba4747183cfb64e6c6cc6866430b13a597a9a360d154",
+      "t": 162,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 419,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          93
+        ],
+        "shifted_row_set": [
+          1,
+          94
+        ]
+      },
+      "j": 93,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "550e9d2f4c7f8add13de6e90184c206c90dc18adbbd8f5114beb96f7e99ea2da",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "dc1cf22519ba1811f8e4fd5b9769f1ffd534a55f96fe2baac686c1f278a505f9",
+      "t": 163,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 420,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          92
+        ],
+        "shifted_row_set": [
+          1,
+          93
+        ]
+      },
+      "j": 92,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "c085f59b6626937ea1490d08891a5f37fee62d22164c8e95c7b5e34b7f202635",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "f12ef4b2d5d4567e537cb1fe181e7d7d25de8cc7cdfc6b44d1f2deeb9f002987",
+      "t": 164,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 421,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          91
+        ],
+        "shifted_row_set": [
+          1,
+          92
+        ]
+      },
+      "j": 91,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "ad45f73ea3109e65928416756291036f28ac9bbac4dcfecfb6c29c507745b45d",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "110b6c59c4f17e5cfb71e019b854efc33fab8623793b92b915efa9624984f3a9",
+      "t": 165,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 422,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          90
+        ],
+        "shifted_row_set": [
+          1,
+          91
+        ]
+      },
+      "j": 90,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "3348f41773e8870c94be8324ab90d95f0a19c5e582645057bba19a95387f1277",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "a1c7859edea09b9ebdf296ea49eab28f97d91ca3284ff21e87f4342fa319dee5",
+      "t": 166,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 423,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          89
+        ],
+        "shifted_row_set": [
+          1,
+          90
+        ]
+      },
+      "j": 89,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "428a9c9da60154c230dd6a46ec0c751821e15e842f70ebf920596070bedb59ca",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "6c6b8c93ac0c9e9a8adff91f6903d3edb7a0815ddf277964673ef2daeffb8a00",
+      "t": 167,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 424,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          88
+        ],
+        "shifted_row_set": [
+          1,
+          89
+        ]
+      },
+      "j": 88,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "2ca3e0184a076b3df1875c6033853eed1a792b7e27db4f970f9c9caff2b60d2d",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "e9434070964607388f2ebaf2716ea0b3d678e9e60f891ba6b61e292422200fc4",
+      "t": 168,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 425,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          87
+        ],
+        "shifted_row_set": [
+          1,
+          88
+        ]
+      },
+      "j": 87,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "2a067ad5b7540bc8e19c8c288dfd2cbf0e68edc7ce80ef31c82aedbeddcd5c60",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "847825e0182c950585ba5eeba59902c920746187543d34679e1ed1224c8ed107",
+      "t": 169,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
+    },
+    {
+      "A": 426,
+      "displayed_maximal_minors": {
+        "prefix_row_set": [
+          0,
+          86
+        ],
+        "shifted_row_set": [
+          1,
+          87
+        ]
+      },
+      "j": 86,
+      "prefix_minor_degree": 12,
+      "prefix_minor_hash": "36114c8fdccaa62032b86984c54872de719041d87dc02bbc89d1f2c43cb8820a",
+      "rank": 12,
+      "shifted_minor_degree": 12,
+      "shifted_minor_hash": "eb0a5e2b58282feac5139555664fa55f013766ed6e06539bab5ed70be58deb25",
+      "t": 170,
+      "two_minor_common_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_gcd_degree": 0,
+      "v10_canonical_affine_rank_drop_root_count": 0
     }
   ],
   "row": {
@@ -9887,7 +10870,7 @@
     "k": 256,
     "n": 512
   },
-  "schema_version": "f17-32-m3-low-rank2-11-v10-affine-gcd-v1",
+  "schema_version": "f17-32-m3-low-rank2-12-v10-affine-gcd-v1",
   "source_artifacts": [
     {
       "name": "paper_d_v10",

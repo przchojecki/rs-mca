@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the paid-residual ledger for the low-rank2..11 M3 packet.
+"""Verify the paid-residual ledger for the low-rank2..12 M3 packet.
 
 This verifier composes two standalone certificates in the same PR:
 
@@ -23,29 +23,29 @@ from typing import Any
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-SCHEMA_VERSION = "f17-32-m3-low-rank2-11-paid-residual-ledger-v1"
+SCHEMA_VERSION = "f17-32-m3-low-rank2-12-paid-residual-ledger-v1"
 N = 512
 K = 256
 SYNDROME_LENGTH = N - K
 AGREEMENT_MIN = 385
 AGREEMENT_MAX = 426
-RANKS = list(range(2, 12))
+RANKS = list(range(2, 13))
 EXPECTED_RECORDS = len(RANKS) * (AGREEMENT_MAX - AGREEMENT_MIN + 1)
 
 AFFINE_CERT_REF = (
     "experimental/data/certificates/"
-    "hankel-f17-32-m3-low-rank2-11-v10-affine-gcd/"
-    "f17_32_n512_k256_m3_low_rank2_11_v10_affine_gcd.json"
+    "hankel-f17-32-m3-low-rank2-12-v10-affine-gcd/"
+    "f17_32_n512_k256_m3_low_rank2_12_v10_affine_gcd.json"
 )
 ENDPOINT_CERT_REF = (
     "experimental/data/certificates/"
-    "hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/"
-    "f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_image.json"
+    "hankel-f17-32-m3-low-rank2-12-endpoint-quotient-image/"
+    "f17_32_n512_k256_m3_low_rank2_12_endpoint_quotient_image.json"
 )
 OUTPUT_PATH = REPO_ROOT / (
     "experimental/data/certificates/"
-    "hankel-f17-32-m3-low-rank2-11-paid-residual-ledger/"
-    "f17_32_n512_k256_m3_low_rank2_11_paid_residual_ledger.json"
+    "hankel-f17-32-m3-low-rank2-12-paid-residual-ledger/"
+    "f17_32_n512_k256_m3_low_rank2_12_paid_residual_ledger.json"
 )
 
 
@@ -106,7 +106,7 @@ def validate_common_shape(certificate: dict[str, Any], schema: str, label: str) 
 def validate_affine_certificate(certificate: dict[str, Any]) -> dict[tuple[int, int], dict[str, Any]]:
     validate_common_shape(
         certificate,
-        "f17-32-m3-low-rank2-11-v10-affine-gcd-v1",
+        "f17-32-m3-low-rank2-12-v10-affine-gcd-v1",
         "affine",
     )
     aggregate = certificate["aggregate"]
@@ -155,7 +155,7 @@ def validate_endpoint_certificate(
 ) -> None:
     validate_common_shape(
         certificate,
-        "f17-32-m3-low-rank2-11-endpoint-quotient-image-v1",
+        "f17-32-m3-low-rank2-12-endpoint-quotient-image-v1",
         "endpoint",
     )
     require(certificate["row"]["domain_hash"] == row_hash, "endpoint row hash")
@@ -358,7 +358,7 @@ def build_certificate() -> dict[str, Any]:
             ]["maximum_vandermonde_union_bound"],
         },
         "claim": (
-            "For the synthetic low-rank M3 ladder of ranks 2..11 over the "
+            "For the synthetic low-rank M3 ladder of ranks 2..12 over the "
             "accepted F_17^32 row and every A=385..426, the regular projective "
             "rank-drop residual is empty after paid quotient-image endpoint "
             "removal: the finite affine rank-drop root set is empty and the "
@@ -383,7 +383,7 @@ def check_certificate(certificate: dict[str, Any], path: Path) -> None:
 
 def print_summary(certificate: dict[str, Any]) -> None:
     aggregate = certificate["aggregate"]
-    print("F_17^32 M3 low-rank2..11 paid-residual ledger")
+    print("F_17^32 M3 low-rank2..12 paid-residual ledger")
     print(f"status: {certificate['status']}")
     print(
         "records={records}, finite_roots={finite}, paid_endpoints={paid}, unpaid_residual={unpaid}".format(

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-r"""Verify quotient-image witnesses for low-rank2..11 projective endpoints.
+r"""Verify quotient-image witnesses for low-rank2..12 projective endpoints.
 
 For the synthetic low-rank ladder, the projective endpoint ``[0:1]`` is the
 syndrome direction ``v_m=sum_{y in Y} y^m``.  This verifier constructs, for
@@ -19,13 +19,13 @@ from typing import Any
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-SCHEMA_VERSION = "f17-32-m3-low-rank2-11-endpoint-quotient-image-v1"
+SCHEMA_VERSION = "f17-32-m3-low-rank2-12-endpoint-quotient-image-v1"
 N = 512
 K = 256
 SYNDROME_LENGTH = N - K
 AGREEMENT_MIN = 385
 AGREEMENT_MAX = 426
-RANKS = list(range(2, 12))
+RANKS = list(range(2, 13))
 FIBER_SIZE = 2
 QUOTIENT_ORDER = N // FIBER_SIZE
 
@@ -36,8 +36,8 @@ ROW_DESCRIPTOR_REF = REPO_ROOT / (
 )
 OUTPUT_PATH = REPO_ROOT / (
     "experimental/data/certificates/"
-    "hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/"
-    "f17_32_n512_k256_m3_low_rank2_11_endpoint_quotient_image.json"
+    "hankel-f17-32-m3-low-rank2-12-endpoint-quotient-image/"
+    "f17_32_n512_k256_m3_low_rank2_12_endpoint_quotient_image.json"
 )
 
 
@@ -272,7 +272,7 @@ def build_certificate() -> dict[str, Any]:
             "last_record": records[-1],
         },
         "claim": (
-            "For every synthetic rank-2..11 projective endpoint row in the "
+            "For every synthetic rank-2..12 projective endpoint row in the "
             "F_17^32 M3 regular window, the endpoint [0:1] lies in the "
             "quotient-image branch: it has an explicit c=2 quotient-remainder "
             "witness support of size A."

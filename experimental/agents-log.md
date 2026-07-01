@@ -50,16 +50,16 @@ Keep entries concise and link to the relevant files.
   `385 <= A <= 426`, including regular roots, tangent/quotient/extension
   subtraction, and residual chart labels.
 
-### 2026-07-01 - M3 low-rank2..11 v10 affine-gcd packet
+### 2026-07-01 - M3 low-rank2..12 v10 affine-gcd packet
 
 - **Agent/model:** AllenGrahamHart / Codex.
 - **Files added or changed:**
-  `experimental/scripts/verify_f17_32_m3_low_rank2_11_v10_affine_gcd.py`;
-  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-v10-affine-gcd/`;
+  `experimental/scripts/verify_f17_32_m3_low_rank2_12_v10_affine_gcd.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-v10-affine-gcd/`;
   `experimental/agents-log.md`.
 - **Status:** PROVED / AUDIT.
 - **What is being added:** Adds a standalone Paper D v10 affine rank-drop
-  packet for the synthetic low-rank M3 ladder at ranks `2..11`.  In all `420`
+  packet for the synthetic low-rank M3 ladder at ranks `2..12`.  In all `462`
   rank/agreement rows, the prefix maximal minor and row-shift-1 maximal minor
   are coprime, so the canonical affine rank-drop gcd has `0` finite roots.
 - **How it is useful:** This follows the PR #161 split guidance by using only
@@ -71,39 +71,39 @@ Keep entries concise and link to the relevant files.
   and then attempt the same two-minor affine-gcd method for less structured M3
   pivot charts.
 
-### 2026-07-01 - M3 low-rank2..11 endpoint quotient-image packet
+### 2026-07-01 - M3 low-rank2..12 endpoint quotient-image packet
 
 - **Agent/model:** AllenGrahamHart / Codex.
 - **Files added or changed:**
-  `experimental/scripts/verify_f17_32_m3_low_rank2_11_endpoint_quotient_image.py`;
-  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-endpoint-quotient-image/`;
+  `experimental/scripts/verify_f17_32_m3_low_rank2_12_endpoint_quotient_image.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-endpoint-quotient-image/`;
   `experimental/agents-log.md`.
 - **Status:** PROVED / AUDIT.
 - **What is being added:** Adds a standalone projective-endpoint packet for
-  the synthetic low-rank M3 ladder at ranks `2..11`.  For every one of the
-  `420` rank/agreement rows, the endpoint `[0:1]` has an explicit `c=2`
+  the synthetic low-rank M3 ladder at ranks `2..12`.  For every one of the
+  `462` rank/agreement rows, the endpoint `[0:1]` has an explicit `c=2`
   quotient-remainder support of size `A` avoiding the update block, so it is
   charged to the quotient-image branch.
 - **How it is useful:** Complements the affine-gcd packet in the same PR:
   finite canonical affine roots are absent, while the remaining projective
   endpoint is accounted for by a paid quotient-image witness.  This makes the
-  synthetic low-rank2..11 packet closer to the v10 root-table and
+  synthetic low-rank2..12 packet closer to the v10 root-table and
   paid-root-subtraction format requested in the current guide.
 - **What to do next:** Combine the affine-gcd and endpoint ledgers into a
   compact residual statement, or move the same audit pattern to less
   structured M3 pivot charts.
 
-### 2026-07-01 - M3 low-rank2..11 paid residual ledger
+### 2026-07-01 - M3 low-rank2..12 paid residual ledger
 
 - **Agent/model:** AllenGrahamHart / Codex.
 - **Files added or changed:**
-  `experimental/scripts/verify_f17_32_m3_low_rank2_11_paid_residual_ledger.py`;
-  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-11-paid-residual-ledger/`;
+  `experimental/scripts/verify_f17_32_m3_low_rank2_12_paid_residual_ledger.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-12-paid-residual-ledger/`;
   `experimental/agents-log.md`.
 - **Status:** PROVED / AUDIT.
 - **What is being added:** Adds a compact M3/M4-style ledger that composes the
-  low-rank2..11 affine-gcd certificate with the endpoint quotient-image
-  certificate.  In all `420` synthetic projective rows, the finite affine
+  low-rank2..12 affine-gcd certificate with the endpoint quotient-image
+  certificate.  In all `462` synthetic projective rows, the finite affine
   rank-drop root count is `0`, the endpoint `[0:1]` is paid by quotient-image,
   and the unpaid regular projective residual is `0`.
 - **How it is useful:** Turns two separate proof packets into the paid-root
@@ -131,7 +131,7 @@ Keep entries concise and link to the relevant files.
   packet inside this rank range can reuse this endpoint charge instead of
   redoing quotient-image bookkeeping.
 - **What to do next:** Try to extend finite affine regular-root exclusions
-  beyond rank `11`; the endpoint side is no longer the bottleneck up to the
+  beyond rank `12`; the endpoint side is no longer the bottleneck up to the
   capacity range recorded here.
 
 ### 2026-07-01 - PR 161--169 frontier integration
