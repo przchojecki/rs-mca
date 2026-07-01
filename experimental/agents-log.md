@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 one-spike window v9 projective packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_one_spike_window_projective_packet.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-one-spike-window-projective-line/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a Paper D v9 projective-line packet for the
+  all-window non-proportional one-spike branch.  It records one finite root in
+  every `385 <= A <= 426` row and the shared `[0:1]` endpoint, giving
+  projective numerator `43` before full-Hankel and quotient-image charging.
+- **How it is useful:** This turns the one-spike branch from a custom
+  full-Hankel ledger into a v9-checkable proof packet, while preserving the
+  companion ledger's stronger residual statement that shifted minors remove
+  the finite roots and endpoint quotient-image charging leaves residual `0`.
+- **What to do next:** Use the same v9-packet plus full-Hankel-ledger pairing
+  for less structured non-proportional branches, especially the first singular
+  pivot charts not already covered by low-rank or one-spike templates.
+
 ### 2026-07-01 - M3 one-spike window full-Hankel ledger
 
 - **Agent/model:** AllenGrahamHart / Codex.

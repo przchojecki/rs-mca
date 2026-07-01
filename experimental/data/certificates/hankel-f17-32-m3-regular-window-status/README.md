@@ -216,6 +216,13 @@ full-Hankel witness.  The remaining `[0:1]` endpoint has a `c=2`
 quotient-image witness, leaving aperiodic full-Hankel residual upper bound
 `0` for this whole one-spike branch.
 
+The companion one-spike v9 projective-line packet records the same branch in
+the Paper D packet schema.  Before full-Hankel and quotient-image charging, its
+projective numerator is `43`: one finite affine root in each of the `42`
+agreement rows, plus the shared projective endpoint `[0:1]`.  The full-Hankel
+ledger above explains why this projective regular-minor packet has zero
+aperiodic full-Hankel residual after the paid ledgers are applied.
+
 The ledger also imports the v4 low-rank update template budget envelope.  Since
 both the finite and projective `F_17^32` budget numerators are 6, every nonzero
 regular low-rank update chart of rank at most 6 is within the finite regular
