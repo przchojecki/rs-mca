@@ -34,6 +34,12 @@ This is a concrete checker replay and endpoint root-table packet.  It is not a
 worst-case row bound, not a tangent/quotient subtraction table, and not a
 complete M3 closure.
 
+The tangent subtraction for the raw root `{0}` is recorded separately in:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/
+```
+
 Regenerate and check:
 
 ```sh

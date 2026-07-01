@@ -127,6 +127,21 @@ These packets are not worst-case safe-side bounds.  They are selected
 synthetic replays that replace degree-only evidence by exact finite root tables
 for a small audited part of the window.
 
+The zero-slope subtraction sidecar
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/
+  f17_32_n512_k256_rank_witness_zero_slope_subtraction.json
+```
+
+checks the endpoint and top-window rank-witness packets above.  In all three
+source inputs, the `u` syndrome is identically zero.  Therefore the raw root
+`Z=0` is a zero-syndrome common-code-line slope, paid by the tangent ledger,
+and the residual synthetic aperiodic numerator after this subtraction is `0`.
+The resulting synthetic total upper bound is `1 <= 6` against the finite-slope
+budget.  This is an M4 no-double-counting sidecar for the synthetic packets
+only, not a universal row table.
+
 A later line-value lift would rely on the subgroup-section theorem
 
 ```text
@@ -160,22 +175,7 @@ construction of actual row data; it is universal classification of arbitrary
 length-256 syndrome pencils after tangent, quotient, and extension-confined
 branches are removed.
 
-A later subtraction sidecar for this packet should record
-
-```text
-experimental/notes/m1/f17_32_m3_zero_slope_subtraction.md
-experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/
-  f17_32_n512_k256_a421_426_zero_slope_subtraction.json
-```
-
-that the synthetic root `{0}` is the zero-codeword
-tangent/common-code-line slope once a line-value lift with `f=0` is supplied.
-Such a sidecar would give residual synthetic aperiodic numerator `0` after
-that paid tangent branch is removed.  It would be a no-double-counting check
-for one synthetic packet, not the full M4 row table.
-
-The regular-window status ledger now records this as an explicit M4 mini-table
-for every `A=421..426`:
+For the synthetic packets above, the sidecar records this M4 mini-table:
 
 ```text
 B_tan=1,

@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 zero-slope subtraction sidecar
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the synthetic rank-witness packets.
+- **What is being added:** A deterministic M4 sidecar for the M3 endpoint and
+  top-window rank-witness packets.  It verifies that every source input has
+  zero `u` syndrome, so the unique raw root `Z=0` is a
+  tangent/common-code-line slope and leaves residual synthetic aperiodic
+  numerator `0`.
+- **How it is useful:** This adds the paid-root subtraction step requested by
+  the M3/M4 roadmap for the selected synthetic root-table packets, while
+  keeping the nonclaim clear that arbitrary M3 pencils remain unclassified.
+- **What to do next:** Move from synthetic zero-slope packets to adversarial or
+  universally quantified M3 syndrome pencils, and combine any resulting roots
+  with quotient, tangent, and extension ledgers.
+
 ### 2026-07-01 - M3 rank-witness endpoint and top-window packets
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

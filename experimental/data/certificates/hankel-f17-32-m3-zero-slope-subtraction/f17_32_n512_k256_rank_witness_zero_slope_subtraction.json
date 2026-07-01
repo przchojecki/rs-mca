@@ -1,0 +1,277 @@
+{
+  "nonclaims": [
+    "synthetic rank-witness packets only",
+    "not a worst-case support-wise MCA bound for the row",
+    "not a quotient-support or quotient-image subtraction table",
+    "not a singular-bucket or pivot-atlas certificate",
+    "not a proof for arbitrary non-proportional M3 syndrome pencils"
+  ],
+  "object": "M4 tangent subtraction sidecar for M3 regular-window packets",
+  "packet_records": [
+    {
+      "agreement_threshold": 385,
+      "budget": 6,
+      "comparison_to_budget": "1 <= 6",
+      "deduped_total_upper_bound": 1,
+      "exact_agreements": [
+        385
+      ],
+      "packet_id": "rank_witness_a385",
+      "raw_declared_aperiodic_numerator": 1,
+      "raw_root_union": [
+        0
+      ],
+      "residual_aperiodic_numerator": 0,
+      "residual_aperiodic_roots": [],
+      "rows": [
+        {
+          "A": 385,
+          "B_ap_pivot": 0,
+          "B_ap_regular_after_tangent": 0,
+          "B_ap_regular_before_removed": 1,
+          "B_ext": 0,
+          "B_quot_image": 0,
+          "B_quot_support": 0,
+          "B_tan": 1,
+          "budget": 6,
+          "comparison_to_budget": "1 <= 6",
+          "deduped_total_upper_bound": 1,
+          "j": 127,
+          "paid_root": 0,
+          "paid_root_label": "tangent_common_code_line_zero_slope",
+          "residual_after_removed_ledgers": 0,
+          "t": 129
+        }
+      ],
+      "tangent_paid_roots": [
+        0
+      ]
+    },
+    {
+      "agreement_threshold": 426,
+      "budget": 6,
+      "comparison_to_budget": "1 <= 6",
+      "deduped_total_upper_bound": 1,
+      "exact_agreements": [
+        426
+      ],
+      "packet_id": "rank_witness_a426",
+      "raw_declared_aperiodic_numerator": 1,
+      "raw_root_union": [
+        0
+      ],
+      "residual_aperiodic_numerator": 0,
+      "residual_aperiodic_roots": [],
+      "rows": [
+        {
+          "A": 426,
+          "B_ap_pivot": 0,
+          "B_ap_regular_after_tangent": 0,
+          "B_ap_regular_before_removed": 1,
+          "B_ext": 0,
+          "B_quot_image": 0,
+          "B_quot_support": 0,
+          "B_tan": 1,
+          "budget": 6,
+          "comparison_to_budget": "1 <= 6",
+          "deduped_total_upper_bound": 1,
+          "j": 86,
+          "paid_root": 0,
+          "paid_root_label": "tangent_common_code_line_zero_slope",
+          "residual_after_removed_ledgers": 0,
+          "t": 170
+        }
+      ],
+      "tangent_paid_roots": [
+        0
+      ]
+    },
+    {
+      "agreement_threshold": 421,
+      "budget": 6,
+      "comparison_to_budget": "1 <= 6",
+      "deduped_total_upper_bound": 1,
+      "exact_agreements": [
+        421,
+        422,
+        423,
+        424,
+        425,
+        426
+      ],
+      "packet_id": "fixed_top_window_a421_426",
+      "raw_declared_aperiodic_numerator": 1,
+      "raw_root_union": [
+        0
+      ],
+      "residual_aperiodic_numerator": 0,
+      "residual_aperiodic_roots": [],
+      "rows": [
+        {
+          "A": 421,
+          "B_ap_pivot": 0,
+          "B_ap_regular_after_tangent": 0,
+          "B_ap_regular_before_removed": 1,
+          "B_ext": 0,
+          "B_quot_image": 0,
+          "B_quot_support": 0,
+          "B_tan": 1,
+          "budget": 6,
+          "comparison_to_budget": "1 <= 6",
+          "deduped_total_upper_bound": 1,
+          "j": 91,
+          "paid_root": 0,
+          "paid_root_label": "tangent_common_code_line_zero_slope",
+          "residual_after_removed_ledgers": 0,
+          "t": 165
+        },
+        {
+          "A": 422,
+          "B_ap_pivot": 0,
+          "B_ap_regular_after_tangent": 0,
+          "B_ap_regular_before_removed": 1,
+          "B_ext": 0,
+          "B_quot_image": 0,
+          "B_quot_support": 0,
+          "B_tan": 1,
+          "budget": 6,
+          "comparison_to_budget": "1 <= 6",
+          "deduped_total_upper_bound": 1,
+          "j": 90,
+          "paid_root": 0,
+          "paid_root_label": "tangent_common_code_line_zero_slope",
+          "residual_after_removed_ledgers": 0,
+          "t": 166
+        },
+        {
+          "A": 423,
+          "B_ap_pivot": 0,
+          "B_ap_regular_after_tangent": 0,
+          "B_ap_regular_before_removed": 1,
+          "B_ext": 0,
+          "B_quot_image": 0,
+          "B_quot_support": 0,
+          "B_tan": 1,
+          "budget": 6,
+          "comparison_to_budget": "1 <= 6",
+          "deduped_total_upper_bound": 1,
+          "j": 89,
+          "paid_root": 0,
+          "paid_root_label": "tangent_common_code_line_zero_slope",
+          "residual_after_removed_ledgers": 0,
+          "t": 167
+        },
+        {
+          "A": 424,
+          "B_ap_pivot": 0,
+          "B_ap_regular_after_tangent": 0,
+          "B_ap_regular_before_removed": 1,
+          "B_ext": 0,
+          "B_quot_image": 0,
+          "B_quot_support": 0,
+          "B_tan": 1,
+          "budget": 6,
+          "comparison_to_budget": "1 <= 6",
+          "deduped_total_upper_bound": 1,
+          "j": 88,
+          "paid_root": 0,
+          "paid_root_label": "tangent_common_code_line_zero_slope",
+          "residual_after_removed_ledgers": 0,
+          "t": 168
+        },
+        {
+          "A": 425,
+          "B_ap_pivot": 0,
+          "B_ap_regular_after_tangent": 0,
+          "B_ap_regular_before_removed": 1,
+          "B_ext": 0,
+          "B_quot_image": 0,
+          "B_quot_support": 0,
+          "B_tan": 1,
+          "budget": 6,
+          "comparison_to_budget": "1 <= 6",
+          "deduped_total_upper_bound": 1,
+          "j": 87,
+          "paid_root": 0,
+          "paid_root_label": "tangent_common_code_line_zero_slope",
+          "residual_after_removed_ledgers": 0,
+          "t": 169
+        },
+        {
+          "A": 426,
+          "B_ap_pivot": 0,
+          "B_ap_regular_after_tangent": 0,
+          "B_ap_regular_before_removed": 1,
+          "B_ext": 0,
+          "B_quot_image": 0,
+          "B_quot_support": 0,
+          "B_tan": 1,
+          "budget": 6,
+          "comparison_to_budget": "1 <= 6",
+          "deduped_total_upper_bound": 1,
+          "j": 86,
+          "paid_root": 0,
+          "paid_root_label": "tangent_common_code_line_zero_slope",
+          "residual_after_removed_ledgers": 0,
+          "t": 170
+        }
+      ],
+      "tangent_paid_roots": [
+        0
+      ]
+    }
+  ],
+  "proof_principle": {
+    "checked_condition": "u_m = 0 for every stored syndrome coordinate",
+    "conclusion": "At Z=0 the line point has zero syndrome, so it is a codeword/common-code-line slope and is paid by the tangent ledger.",
+    "finite_slope_coordinate": "Z",
+    "paid_root": 0,
+    "syndrome_identity": "Syn(f + Z g) = u + Z v"
+  },
+  "row": {
+    "budget": 6,
+    "budget_formula": "floor(17^32 / 2^128)",
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "f17-32-m3-zero-slope-subtraction-v1",
+  "source_artifacts": {
+    "fixed_top_window_a421_426": {
+      "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a421_426_fixed_prefix92_input.json",
+      "input_sha256": "8f1a978726a8cc48048acc7eea83a832c988de1d082cbe7a5f769c69e1d9b370",
+      "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json",
+      "packet_sha256": "944d640b748998a9a38c7dd74a432ca1c1bd445771be0f26c45dae8022df6d52"
+    },
+    "rank_witness_a385": {
+      "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a385_rank_witness_input.json",
+      "input_sha256": "fcc3b81d4841ec2ce8b04ac2a71f783782be19aab9bb987353cc9ee046735094",
+      "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-rank-witness-a385/f17_32_n512_k256_a385_rank_witness_packet.json",
+      "packet_sha256": "3fb0a3578a0593bdd22527340b24223291319a501fe213355e16969112158790"
+    },
+    "rank_witness_a426": {
+      "input_ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_rank_witness_input.json",
+      "input_sha256": "fc39bf1352d9f888f9b8b6b726062839cd83862f5e34b90a2a2d9ec414ee32fd",
+      "packet_ref": "experimental/data/certificates/hankel-f17-32-m3-rank-witness-a426/f17_32_n512_k256_a426_rank_witness_packet.json",
+      "packet_sha256": "5468d0594b4d6918dfdba4c84c897501b8a4b8f2ed37578f8d742ec6c6781256"
+    }
+  },
+  "status": "PROVED / AUDIT for synthetic rank-witness packets",
+  "summary": {
+    "budget": 6,
+    "comparison_to_budget": "1 <= 6",
+    "exact_agreement_instances": 8,
+    "max_deduped_total_upper_bound": 1,
+    "max_residual_aperiodic_numerator": 0,
+    "packets_checked": 3,
+    "paid_roots": [
+      0
+    ],
+    "raw_root_union_per_packet": [
+      0
+    ]
+  }
+}

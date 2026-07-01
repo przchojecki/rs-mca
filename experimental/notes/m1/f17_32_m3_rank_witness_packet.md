@@ -42,6 +42,13 @@ experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/
   f17_32_n512_k256_a421_426_fixed_prefix92_packet.json
 ```
 
+The M4 zero-slope subtraction sidecar is
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/
+  f17_32_n512_k256_rank_witness_zero_slope_subtraction.json
+```
+
 ## Construction
 
 For exact agreement `A`,
@@ -93,6 +100,12 @@ packets each have declared aperiodic numerator `1`, and the top-window packet
 has root union `{0}` across all six exact agreements, again with declared
 aperiodic numerator `1`.
 
+The subtraction sidecar verifies that every source input has `u_m=0` for all
+stored syndrome coordinates.  Since `Syn(f+Zg)=u+Zv`, the unique raw root
+`Z=0` is a zero-syndrome common-code-line slope and is paid by the tangent
+ledger.  For these synthetic packets, the residual aperiodic numerator after
+this paid-root subtraction is therefore `0`.
+
 ## What This Proves
 
 These packets prove, for the pinned `F_17^32` arithmetic model and the listed
@@ -111,14 +124,13 @@ These packets do not claim any of the following:
 ```text
 a worst-case support-wise MCA upper bound for the row;
 a complete root table for every received line;
-a quotient, tangent, or extension paid-root subtraction table;
+a quotient or extension paid-root subtraction table;
 a singular-bucket classification;
 a closed safe-side proof for the prize threshold.
 ```
 
-The root `{0}` is intentionally visible rather than hidden in a global count,
-so a later M4 subtraction packet can decide whether it is paid by a tangent or
-quotient ledger in a genuine row-level proof.
+The tangent subtraction is only for these synthetic rank-witness packets.  It
+does not classify arbitrary non-proportional M3 syndrome pencils.
 
 ## Verification
 
@@ -159,6 +171,9 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/f17_32_n512_k256_a421_426_fixed_prefix92_packet.json
+
+python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_rank_witness_zero_slope_subtraction.json
 ```
 
 ## Next Steps
@@ -168,6 +183,6 @@ The natural next M3 steps are:
 ```text
 extend the selected-agreement replay beyond this synthetic prefix family;
 replace synthetic pencils with adversarial or universally quantified row-level pencils;
-combine the root table with tangent, quotient, and extension subtraction;
+combine non-synthetic root tables with tangent, quotient, and extension subtraction;
 build pivot charts for any singular buckets produced by the regular extractor.
 ```

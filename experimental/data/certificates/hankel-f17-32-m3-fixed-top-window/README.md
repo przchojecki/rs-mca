@@ -31,6 +31,12 @@ The packet has root union `{0}` across the six exact agreements and declared
 aperiodic numerator `1`.  It is a selected-subrange checker replay, not a
 worst-case row bound or a paid-root subtraction table.
 
+The tangent subtraction for the raw root `{0}` is recorded separately in:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/
+```
+
 Regenerate and check:
 
 ```sh
