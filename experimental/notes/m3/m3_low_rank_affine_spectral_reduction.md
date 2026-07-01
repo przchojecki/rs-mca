@@ -526,6 +526,41 @@ only uses `h=0,1`, but this identity is useful for any future pivot packet that
 uses more contiguous row shifts: all such cores live in two low-displacement
 chains rather than as unrelated dense matrices.
 
+## Weighted-Core Characteristic Polynomial
+
+The actual determinant polynomial `Phi_{m,r,h}(Z)=det(I+ZK_h)` can be written
+directly from the core `S_h`.  Let
+
+```text
+D_h = diag(alpha^(h(m+a)) rho_a^2)_{0 <= a < r}.
+```
+
+Then
+
+```text
+Phi_{m,r,h}(Z) = det(I_r + Z D_h S_h).
+```
+
+Indeed, from the Toeplitz-Cauchy form,
+
+```text
+K_h = diag(alpha^(h(m+a)) rho_a) S_h diag(rho_a).
+```
+
+If `A=diag(alpha^(h(m+a)) rho_a) S_h` and `B=diag(rho_a)`, then
+`det(I+ZAB)=det(I+ZBA)`.  Since the two diagonal factors commute,
+`BA=D_h S_h`.
+
+Thus the endpoint-capacity target is equivalently
+
+```text
+gcd(det(I+Z D_0 S_0), det(I+Z D_1 S_1)) = 1
+```
+
+for the stated `(m,r)` range.  The shift-two displacement relation acts on
+`S_h`, while this identity records exactly how `S_h` feeds the characteristic
+polynomials used by the v10 affine gcd ledger.
+
 ## Window Normalization
 
 Two elementary invariances reduce the consecutive-subgroup case to a normalized

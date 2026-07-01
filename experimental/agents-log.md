@@ -63,9 +63,11 @@ Keep entries concise and link to the relevant files.
   with explicit diagonal weights.  The same factor is shown to satisfy the
   rank-one displacement identity `T-U T V=1_r 1_m^T`, with an invertible
   Sylvester operator throughout the endpoint-capacity range, and the weighted
-  cores `S_h=T B_h T^T` satisfy a shift-two diagonal-similarity relation up to
-  a rank-two correction.  A counterexample-first search script probes the exact
-  endpoint-capacity spectral target without changing the certified
+  cores `S_h=T B_h T^T` satisfy a shift-two diagonal-rescaling relation up to
+  a rank-two correction.  The determinant target is then restated as
+  `Phi_{m,r,h}(Z)=det(I+Z D_h S_h)`, directly tying the displacement cores to
+  the v10 affine gcd polynomials.  A counterexample-first search script probes
+  the exact endpoint-capacity spectral target without changing the certified
   low-rank2..12 packet; it switches from Newton identities to determinant
   interpolation at rank `17`, avoiding characteristic-17 division.
   The first top-window frontier probe `A=426`, ranks `13..20`, records eight
