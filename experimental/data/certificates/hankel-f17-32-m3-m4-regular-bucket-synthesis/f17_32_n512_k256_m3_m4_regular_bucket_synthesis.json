@@ -342,6 +342,7 @@
     "all dependency windows match 385..426",
     "all dependency row-set totals agree where supplied",
     "the decision table separates closed, finite-safe, and residual cases",
+    "projective infinity is classified by the M5 kernel-containment chart",
     "projective infinity and finite affine accounting are not conflated"
   ],
   "field_audit": {
@@ -376,17 +377,21 @@
         "B_ap_regular_finite_before_other_ledgers": "<= 6",
         "B_tan_finite": 0,
         "condition": "rank H_{t,j}(v)<= 6 and regular bucket nonsingular",
+        "finite_affine_impact_of_infinity": 0,
         "finite_budget_safe": true,
-        "next_step": "projective infinity chart plus quotient/extension overlap audit",
-        "projective_infinity_status": "singular_direction_rank_deficient"
+        "next_step": "quotient/extension overlap audit and projective budget comparison",
+        "projective_infinity_extra_parameters": "<= 1",
+        "projective_infinity_status": "empty_or_one_point_by_m5_kernel_chart",
+        "projective_sampler_budget_note": "If the kernel chart is nonempty, projective counting needs one more subtraction or one fewer finite root to stay within budget 6."
       },
       "direction_rank_intermediate": {
         "B_ap_regular_finite_before_other_ledgers": "<= rank H_{t,j}(v)",
         "B_tan_finite": 0,
         "condition": "6 < rank H_{t,j}(v) <= j",
         "finite_budget_safe_by_rank_cap_alone": false,
-        "next_step": "actual finite root table and projective infinity chart",
-        "projective_infinity_status": "singular_direction_rank_deficient"
+        "next_step": "actual finite root table plus quotient/extension overlap audit",
+        "projective_infinity_extra_parameters": "<= 1",
+        "projective_infinity_status": "empty_or_one_point_by_m5_kernel_chart"
       },
       "hypothesis": "v!=0 and u is not a scalar multiple of v",
       "tangent_overlap": 0
@@ -404,9 +409,10 @@
         "condition": "rank H_{t,j}(v)<=j",
         "finite_residual_status": "singular",
         "known_paid_finite_slope": "z=-c",
-        "next_step": "M5 affine/projective pivots or separate paid classification",
-        "projective_infinity_status": "singular",
-        "residual_label": "unknown"
+        "next_step": "M5 affine pivots or separate paid classification for finite roots",
+        "projective_infinity_certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json",
+        "projective_infinity_status": "empty_by_kernel_containment",
+        "residual_label": "unknown_for_finite_singular_bucket"
       },
       "hypothesis": "v!=0 and u=c v"
     },
@@ -452,6 +458,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-lower-rank-contained/f17_32_n512_k256_m3_lower_rank_contained.json",
       "sha256": "f838bd62a4e8763de0fb50604f0ad452c99bedc46fbf2fc18434ed2001838798"
     },
+    "f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json",
+      "sha256": "35f42c9da014b138fb12f02136a215f41cd52ef5236423c4b9240ddbd21e736c"
+    },
     "f17_32_n512_k256_m3_projective_infinity_rank_criterion": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/f17_32_n512_k256_m3_projective_infinity_rank_criterion.json",
       "sha256": "a1cf0404245aad0df1cb283a7551a846d914c343246bb9d0307a050a8b364263"
@@ -477,10 +487,12 @@
   "summary": {
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 7,
-    "finite_safe_open_projective_case_count": 1,
+    "dependencies_checked": 8,
+    "finite_safe_projective_kernel_classified_case_count": 1,
     "finite_slope_budget": 6,
-    "residual_case_count": 4
+    "m5_projective_infinity_closed_case_count": 1,
+    "projective_budget_gap_case_count": 1,
+    "residual_case_count": 3
   },
   "synthesis": {
     "closed_by_current_lemmas": [
@@ -488,13 +500,16 @@
       "proportional nonzero-v with full-rank H(v): unique finite root tangent-paid, infinity excluded",
       "zero-u full-rank branch as the c=0 proportional subcase"
     ],
-    "finite_safe_but_not_projective_closed": [
-      "non-proportional nonsingular finite buckets with direction rank <= 6"
+    "finite_safe_with_projective_kernel_accounting": [
+      "non-proportional nonsingular finite buckets with direction rank <= 6; projective infinity is now empty or a one-point dimension-degree fallback by the M5 kernel chart"
+    ],
+    "m5_projective_infinity_closed_by_kernel_chart": [
+      "proportional rank-deficient direction: infinity empty because ker H(v) subset ker H(u)",
+      "arbitrary rank-deficient direction: infinity empty iff ker H(v) subset ker H(u), otherwise at most the single endpoint [0:1]"
     ],
     "not_a_row_bound": "This table composes proved local lemmas; it is not a worst-case support-wise MCA upper bound until every residual bucket is closed or assigned to a paid ledger.",
     "still_requires_m5_or_other_ledgers": [
       "rank-deficient finite regular buckets not covered by a paid family",
-      "direction-rank-deficient projective infinity for v nonzero",
       "non-proportional finite buckets with direction rank > 6 unless exact root tables improve the bound",
       "quotient, quotient-image, extension, and subfield overlap for future non-proportional root tables"
     ]

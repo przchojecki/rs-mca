@@ -1,0 +1,455 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "ambient_locator_space_dimension": 128,
+      "j": 127,
+      "maximal_row_set_count": 129,
+      "minor_size": 128,
+      "t": 129
+    },
+    {
+      "A": 386,
+      "ambient_locator_space_dimension": 127,
+      "j": 126,
+      "maximal_row_set_count": 357760,
+      "minor_size": 127,
+      "t": 130
+    },
+    {
+      "A": 387,
+      "ambient_locator_space_dimension": 126,
+      "j": 125,
+      "maximal_row_set_count": 297602656,
+      "minor_size": 126,
+      "t": 131
+    },
+    {
+      "A": 388,
+      "ambient_locator_space_dimension": 125,
+      "j": 124,
+      "maximal_row_set_count": 117850651776,
+      "minor_size": 125,
+      "t": 132
+    },
+    {
+      "A": 389,
+      "ambient_locator_space_dimension": 124,
+      "j": 123,
+      "maximal_row_set_count": 27212042858000,
+      "minor_size": 124,
+      "t": 133
+    },
+    {
+      "A": 390,
+      "ambient_locator_space_dimension": 123,
+      "j": 122,
+      "maximal_row_set_count": 4110502764804800,
+      "minor_size": 123,
+      "t": 134
+    },
+    {
+      "A": 391,
+      "ambient_locator_space_dimension": 122,
+      "j": 121,
+      "maximal_row_set_count": 437531400061434000,
+      "minor_size": 122,
+      "t": 135
+    },
+    {
+      "A": 392,
+      "ambient_locator_space_dimension": 121,
+      "j": 120,
+      "maximal_row_set_count": 34569147570568156800,
+      "minor_size": 121,
+      "t": 136
+    },
+    {
+      "A": 393,
+      "ambient_locator_space_dimension": 120,
+      "j": 119,
+      "maximal_row_set_count": 2106811614990104173800,
+      "minor_size": 120,
+      "t": 137
+    },
+    {
+      "A": 394,
+      "ambient_locator_space_dimension": 119,
+      "j": 118,
+      "maximal_row_set_count": 102014036094257675784000,
+      "minor_size": 119,
+      "t": 138
+    },
+    {
+      "A": 395,
+      "ambient_locator_space_dimension": 118,
+      "j": 117,
+      "maximal_row_set_count": 4017652788178848131293200,
+      "minor_size": 118,
+      "t": 139
+    },
+    {
+      "A": 396,
+      "ambient_locator_space_dimension": 117,
+      "j": 116,
+      "maximal_row_set_count": 131169217511293618831944000,
+      "minor_size": 117,
+      "t": 140
+    },
+    {
+      "A": 397,
+      "ambient_locator_space_dimension": 116,
+      "j": 115,
+      "maximal_row_set_count": 3606497635473018049784300280,
+      "minor_size": 116,
+      "t": 141
+    },
+    {
+      "A": 398,
+      "ambient_locator_space_dimension": 115,
+      "j": 114,
+      "maximal_row_set_count": 84624257908136115834824778080,
+      "minor_size": 115,
+      "t": 142
+    },
+    {
+      "A": 399,
+      "ambient_locator_space_dimension": 114,
+      "j": 113,
+      "maximal_row_set_count": 1713849656772535006039031373800,
+      "minor_size": 114,
+      "t": 143
+    },
+    {
+      "A": 400,
+      "ambient_locator_space_dimension": 113,
+      "j": 112,
+      "maximal_row_set_count": 30252210715675198558211547346560,
+      "minor_size": 113,
+      "t": 144
+    },
+    {
+      "A": 401,
+      "ambient_locator_space_dimension": 112,
+      "j": 111,
+      "maximal_row_set_count": 469396280848805045810886556130100,
+      "minor_size": 112,
+      "t": 145
+    },
+    {
+      "A": 402,
+      "ambient_locator_space_dimension": 111,
+      "j": 110,
+      "maximal_row_set_count": 6450057129781226982436652912470080,
+      "minor_size": 111,
+      "t": 146
+    },
+    {
+      "A": 403,
+      "ambient_locator_space_dimension": 110,
+      "j": 109,
+      "maximal_row_set_count": 79013199839820030534848998177758480,
+      "minor_size": 110,
+      "t": 147
+    },
+    {
+      "A": 404,
+      "ambient_locator_space_dimension": 109,
+      "j": 108,
+      "maximal_row_set_count": 867972262747820578345034878767819200,
+      "minor_size": 109,
+      "t": 148
+    },
+    {
+      "A": 405,
+      "ambient_locator_space_dimension": 108,
+      "j": 107,
+      "maximal_row_set_count": 8595571658102045129818116747602531480,
+      "minor_size": 108,
+      "t": 149
+    },
+    {
+      "A": 406,
+      "ambient_locator_space_dimension": 107,
+      "j": 106,
+      "maximal_row_set_count": 77103134474669507808999718333976196000,
+      "minor_size": 107,
+      "t": 150
+    },
+    {
+      "A": 407,
+      "ambient_locator_space_dimension": 106,
+      "j": 105,
+      "maximal_row_set_count": 629169365508704665489903257132350201400,
+      "minor_size": 106,
+      "t": 151
+    },
+    {
+      "A": 408,
+      "ambient_locator_space_dimension": 105,
+      "j": 104,
+      "maximal_row_set_count": 4688795937593084907665736021700474766400,
+      "minor_size": 105,
+      "t": 152
+    },
+    {
+      "A": 409,
+      "ambient_locator_space_dimension": 104,
+      "j": 103,
+      "maximal_row_set_count": 32026150823738481735395429076793421395500,
+      "minor_size": 104,
+      "t": 153
+    },
+    {
+      "A": 410,
+      "ambient_locator_space_dimension": 103,
+      "j": 102,
+      "maximal_row_set_count": 201149345722743342538860075330950367478560,
+      "minor_size": 103,
+      "t": 154
+    },
+    {
+      "A": 411,
+      "ambient_locator_space_dimension": 102,
+      "j": 101,
+      "maximal_row_set_count": 1165221082896806046310922025638106900143400,
+      "minor_size": 102,
+      "t": 155
+    },
+    {
+      "A": 412,
+      "ambient_locator_space_dimension": 101,
+      "j": 100,
+      "maximal_row_set_count": 6242760225944100272356697397964160604404640,
+      "minor_size": 101,
+      "t": 156
+    },
+    {
+      "A": 413,
+      "ambient_locator_space_dimension": 100,
+      "j": 99,
+      "maximal_row_set_count": 31012358678820676071040147443457924406028940,
+      "minor_size": 100,
+      "t": 157
+    },
+    {
+      "A": 414,
+      "ambient_locator_space_dimension": 99,
+      "j": 98,
+      "maximal_row_set_count": 143189733233596341882651762012459148338766000,
+      "minor_size": 99,
+      "t": 158
+    },
+    {
+      "A": 415,
+      "ambient_locator_space_dimension": 98,
+      "j": 97,
+      "maximal_row_set_count": 615833221538262299883830979737191107650414100,
+      "minor_size": 98,
+      "t": 159
+    },
+    {
+      "A": 416,
+      "ambient_locator_space_dimension": 97,
+      "j": 96,
+      "maximal_row_set_count": 2472162036282630021039034757367935629277648000,
+      "minor_size": 97,
+      "t": 160
+    },
+    {
+      "A": 417,
+      "ambient_locator_space_dimension": 96,
+      "j": 95,
+      "maximal_row_set_count": 9280710221304286788116972549474771808276208850,
+      "minor_size": 96,
+      "t": 161
+    },
+    {
+      "A": 418,
+      "ambient_locator_space_dimension": 95,
+      "j": 94,
+      "maximal_row_set_count": 32639892664342891933241781340893634365063681600,
+      "minor_size": 95,
+      "t": 162
+    },
+    {
+      "A": 419,
+      "ambient_locator_space_dimension": 94,
+      "j": 93,
+      "maximal_row_set_count": 107721384890739488829123824395511067379158378000,
+      "minor_size": 94,
+      "t": 163
+    },
+    {
+      "A": 420,
+      "ambient_locator_space_dimension": 93,
+      "j": 92,
+      "maximal_row_set_count": 334131362067533191104582067782937347025574558400,
+      "minor_size": 93,
+      "t": 164
+    },
+    {
+      "A": 421,
+      "ambient_locator_space_dimension": 92,
+      "j": 91,
+      "maximal_row_set_count": 975503377269082347317315797208746877874322983000,
+      "minor_size": 92,
+      "t": 165
+    },
+    {
+      "A": 422,
+      "ambient_locator_space_dimension": 91,
+      "j": 90,
+      "maximal_row_set_count": 2684304068045662271753161595490447264666064972320,
+      "minor_size": 91,
+      "t": 166
+    },
+    {
+      "A": 423,
+      "ambient_locator_space_dimension": 90,
+      "j": 89,
+      "maximal_row_set_count": 6970842262831498554995351463887273937308644802520,
+      "minor_size": 90,
+      "t": 167
+    },
+    {
+      "A": 424,
+      "ambient_locator_space_dimension": 89,
+      "j": 88,
+      "maximal_row_set_count": 17104695717950707262500765033102171686482750635200,
+      "minor_size": 89,
+      "t": 168
+    },
+    {
+      "A": 425,
+      "ambient_locator_space_dimension": 88,
+      "j": 87,
+      "maximal_row_set_count": 39702427205817374681369445503532371039565903133340,
+      "minor_size": 88,
+      "t": 169
+    },
+    {
+      "A": 426,
+      "ambient_locator_space_dimension": 87,
+      "j": 86,
+      "maximal_row_set_count": 87268338377759025159166456763568067991758141474400,
+      "minor_size": 87,
+      "t": 170
+    }
+  ],
+  "checks": [
+    "row descriptor and projective-rank dependency schemas match",
+    "window is 385..426",
+    "row-set totals match the projective-infinity rank criterion",
+    "domain encodings round-trip in the printed F_17^32 model",
+    "kernel-containment and stacked-rank tests are equivalent by rank-nullity"
+  ],
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512,
+    "full_domain_distinct": true
+  },
+  "kernel_chart_decision_table": {
+    "chart": {
+      "A_matrix": "H_{t,j}(u)",
+      "B_matrix": "H_{t,j}(v)",
+      "ambient_equations": "B_matrix * ell = 0, A_matrix * ell != 0",
+      "projective_point": "[0:1]",
+      "split_chart_relation": "The split-locator infinity chart is contained in this ambient linear chart."
+    },
+    "outcomes": {
+      "ambient_nonempty": {
+        "condition": "ker H_{t,j}(v) not subset ker H_{t,j}(u)",
+        "dimension_degree_bound": 1,
+        "end_state": "dimension_degree",
+        "equivalent_rank_test": "rank stack(H_{t,j}(v), H_{t,j}(u)) > rank H_{t,j}(v)",
+        "projective_infinity_contribution_upper_bound": 1,
+        "split_nonemptiness_claimed": false
+      },
+      "empty": {
+        "condition": "ker H_{t,j}(v) subset ker H_{t,j}(u)",
+        "end_state": "empty",
+        "equivalent_rank_test": "rank stack(H_{t,j}(v), H_{t,j}(u)) = rank H_{t,j}(v)",
+        "projective_infinity_contribution": 0
+      }
+    },
+    "specializations": {
+      "direction_full_column_rank": {
+        "condition": "rank H_{t,j}(v)=j+1",
+        "end_state": "empty",
+        "kernel": "0",
+        "projective_infinity_contribution": 0
+      },
+      "proportional_pencil": {
+        "condition": "u=c v",
+        "end_state": "empty",
+        "kernel_containment": "ker H(v) subset ker H(u)",
+        "projective_infinity_contribution": 0
+      },
+      "zero_direction_syndrome": {
+        "condition": "v=0",
+        "if_nonempty": "the single endpoint is tangent/common-code-line paid by the zero-v endpoint ledger",
+        "kernel_containment_empty_test": "H_{t,j}(u)=0"
+      }
+    }
+  },
+  "nonclaims": [
+    "does not claim ambient nonempty implies split-locator nonempty",
+    "does not compute finite affine root tables",
+    "does not prove a projective safe-side row bound",
+    "does not classify quotient or extension overlap for finite roots"
+  ],
+  "object": "M5 ambient projective-infinity kernel-containment chart",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "f17-32-m3-m5-projective-infinity-kernel-chart-v1",
+  "source_artifacts": {
+    "projective_infinity_rank_criterion": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/f17_32_n512_k256_m3_projective_infinity_rank_criterion.json",
+      "sha256": "a1cf0404245aad0df1cb283a7551a846d914c343246bb9d0307a050a8b364263"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED",
+  "summary": {
+    "agreement_count": 42,
+    "finite_affine_impact": 0,
+    "full_rank_direction_end_state": "empty",
+    "projective_infinity_max_extra_parameters": 1,
+    "proportional_pencil_end_state": "empty",
+    "rank_deficient_direction_end_states": [
+      "empty",
+      "dimension_degree"
+    ]
+  },
+  "theorem": {
+    "m5_end_states": {
+      "kernel_containment": "empty",
+      "kernel_noncontainment": "dimension_degree with projective parameter degree 1"
+    },
+    "proof": [
+      "The infinity chart equations are B ell = 0 with A ell nonzero.",
+      "If ker B is contained in ker A, no vector satisfying B ell=0 can satisfy A ell !=0.",
+      "If ker B is not contained in ker A, choose ell in ker B outside ker A; this gives an ambient chart point.",
+      "The split-locator chart is a sublocus of the ambient chart, so ambient emptiness proves split emptiness and ambient nonemptiness gives a safe one-point dimension-degree fallback."
+    ],
+    "rank_test": "Equivalently, it is empty iff rank stack(H(v),H(u)) = rank H(v); otherwise the projective parameter contribution is the single endpoint [0:1].",
+    "statement": "For fixed A,u,v, the ambient linear projective-infinity chart B ell = 0, A ell != 0 is empty iff ker H_{t,j}(v) is contained in ker H_{t,j}(u)."
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551
+  }
+}

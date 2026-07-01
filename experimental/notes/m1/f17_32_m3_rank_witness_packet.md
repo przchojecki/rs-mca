@@ -81,6 +81,9 @@ experimental/data/certificates/hankel-f17-32-m3-zero-v-projective-endpoint/
 experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/
   f17_32_n512_k256_m3_direction_rank_degree_cap.json
 
+experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/
+  f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/
   f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json
 ```
@@ -287,6 +290,20 @@ Hankel block `H_{t,j}(v)` has full column rank, the projective-infinity point
 `rank H_{t,j}(v)<=j`, all infinity minors vanish and the endpoint is a named
 singular projective chart for M5 or a separate paid endpoint classification.
 
+The M5 projective-infinity kernel chart refines that singular endpoint.  The
+ambient linear infinity chart is
+
+```text
+H_{t,j}(v) ell = 0,     H_{t,j}(u) ell != 0.
+```
+
+It is empty exactly when `ker H_{t,j}(v) subset ker H_{t,j}(u)`, equivalently
+when `rank stack(H(v),H(u)) = rank H(v)`.  If the containment fails, the chart
+is recorded as a one-point `dimension_degree` fallback: it can only add the
+single projective endpoint `[0:1]`.  This proves empty/projective-one-point
+accounting for the ambient chart and does not claim that ambient nonemptiness
+implies split-locator nonemptiness.
+
 The zero-`v` projective endpoint certificate handles the codeword-direction
 boundary.  If `v=0`, the finite affine pencil is constant:
 
@@ -464,6 +481,9 @@ python3 experimental/scripts/verify_m1_hankel_zero_v_projective_endpoint.py \
 
 python3 experimental/scripts/verify_m1_hankel_direction_rank_degree_cap.py \
   --check experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json
+
+python3 experimental/scripts/verify_m1_hankel_m5_projective_infinity_kernel_chart.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json

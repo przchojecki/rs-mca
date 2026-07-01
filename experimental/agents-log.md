@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M5 projective-infinity kernel chart
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_m5_projective_infinity_kernel_chart.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED for the ambient linear projective-infinity chart; AUDIT
+  update for the M4 synthesis table.
+- **What is being added:** A kernel-containment criterion for the M5
+  projective-infinity chart: `H(v) ell=0, H(u) ell!=0` is empty iff
+  `ker H(v) subset ker H(u)`, equivalently
+  `rank stack(H(v),H(u)) = rank H(v)`.  If containment fails, the projective
+  contribution is bounded by the single endpoint `[0:1]`.
+- **How it is useful:** This removes the rank-deficient infinity endpoint from
+  the undifferentiated residual list.  Proportional rank-deficient pencils now
+  have empty infinity chart, and arbitrary deficient directions have an exact
+  empty-or-one-point M5 end state.
+- **What to do next:** Attack the remaining finite affine residuals: rank-
+  deficient finite buckets, high-direction-rank non-proportional root tables,
+  and quotient/extension/subfield overlap.
+
 ### 2026-07-01 - M3/M4 regular-bucket synthesis
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

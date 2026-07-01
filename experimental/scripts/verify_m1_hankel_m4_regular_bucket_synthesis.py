@@ -59,6 +59,10 @@ DIRECTION_RANK_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/"
     "f17_32_n512_k256_m3_direction_rank_degree_cap.json"
 )
+M5_PROJECTIVE_INFINITY_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/"
+    "f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json"
+)
 LOWER_RANK_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-lower-rank-contained/"
     "f17_32_n512_k256_m3_lower_rank_contained.json"
@@ -72,6 +76,7 @@ EXPECTED_SCHEMAS = {
     PROJECTIVE_INFINITY_REF: "f17-32-m3-projective-infinity-rank-criterion-v1",
     ZERO_V_REF: "f17-32-m3-zero-v-projective-endpoint-v1",
     DIRECTION_RANK_REF: "f17-32-m3-direction-rank-degree-cap-v1",
+    M5_PROJECTIVE_INFINITY_REF: "f17-32-m3-m5-projective-infinity-kernel-chart-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
 }
 
@@ -133,9 +138,10 @@ def regular_bucket_decision_table() -> dict[str, Any]:
                 "condition": "rank H_{t,j}(v)<=j",
                 "known_paid_finite_slope": "z=-c",
                 "finite_residual_status": "singular",
-                "projective_infinity_status": "singular",
-                "residual_label": "unknown",
-                "next_step": "M5 affine/projective pivots or separate paid classification",
+                "projective_infinity_status": "empty_by_kernel_containment",
+                "projective_infinity_certificate_ref": M5_PROJECTIVE_INFINITY_REF,
+                "residual_label": "unknown_for_finite_singular_bucket",
+                "next_step": "M5 affine pivots or separate paid classification for finite roots",
             },
         },
         "non_proportional_direction": {
@@ -146,16 +152,23 @@ def regular_bucket_decision_table() -> dict[str, Any]:
                 "B_ap_regular_finite_before_other_ledgers": f"<= {BUDGET}",
                 "B_tan_finite": 0,
                 "finite_budget_safe": True,
-                "projective_infinity_status": "singular_direction_rank_deficient",
-                "next_step": "projective infinity chart plus quotient/extension overlap audit",
+                "projective_infinity_status": "empty_or_one_point_by_m5_kernel_chart",
+                "projective_infinity_extra_parameters": "<= 1",
+                "finite_affine_impact_of_infinity": 0,
+                "projective_sampler_budget_note": (
+                    "If the kernel chart is nonempty, projective counting needs "
+                    "one more subtraction or one fewer finite root to stay within budget 6."
+                ),
+                "next_step": "quotient/extension overlap audit and projective budget comparison",
             },
             "direction_rank_intermediate": {
                 "condition": f"{BUDGET} < rank H_{{t,j}}(v) <= j",
                 "B_ap_regular_finite_before_other_ledgers": "<= rank H_{t,j}(v)",
                 "B_tan_finite": 0,
                 "finite_budget_safe_by_rank_cap_alone": False,
-                "projective_infinity_status": "singular_direction_rank_deficient",
-                "next_step": "actual finite root table and projective infinity chart",
+                "projective_infinity_status": "empty_or_one_point_by_m5_kernel_chart",
+                "projective_infinity_extra_parameters": "<= 1",
+                "next_step": "actual finite root table plus quotient/extension overlap audit",
             },
             "direction_full_rank": {
                 "condition": "rank H_{t,j}(v)=j+1",
@@ -267,12 +280,15 @@ def build_certificate() -> dict[str, Any]:
                 "proportional nonzero-v with full-rank H(v): unique finite root tangent-paid, infinity excluded",
                 "zero-u full-rank branch as the c=0 proportional subcase",
             ],
-            "finite_safe_but_not_projective_closed": [
-                "non-proportional nonsingular finite buckets with direction rank <= 6",
+            "finite_safe_with_projective_kernel_accounting": [
+                "non-proportional nonsingular finite buckets with direction rank <= 6; projective infinity is now empty or a one-point dimension-degree fallback by the M5 kernel chart",
+            ],
+            "m5_projective_infinity_closed_by_kernel_chart": [
+                "proportional rank-deficient direction: infinity empty because ker H(v) subset ker H(u)",
+                "arbitrary rank-deficient direction: infinity empty iff ker H(v) subset ker H(u), otherwise at most the single endpoint [0:1]",
             ],
             "still_requires_m5_or_other_ledgers": [
                 "rank-deficient finite regular buckets not covered by a paid family",
-                "direction-rank-deficient projective infinity for v nonzero",
                 "non-proportional finite buckets with direction rank > 6 unless exact root tables improve the bound",
                 "quotient, quotient-image, extension, and subfield overlap for future non-proportional root tables",
             ],
@@ -293,8 +309,10 @@ def build_certificate() -> dict[str, Any]:
             "agreement_count": len(records),
             "finite_slope_budget": BUDGET,
             "closed_case_count": 3,
-            "finite_safe_open_projective_case_count": 1,
-            "residual_case_count": 4,
+            "finite_safe_projective_kernel_classified_case_count": 1,
+            "m5_projective_infinity_closed_case_count": 1,
+            "projective_budget_gap_case_count": 1,
+            "residual_case_count": 3,
             "dependencies_checked": len(EXPECTED_SCHEMAS),
         },
         "checks": [
@@ -302,6 +320,7 @@ def build_certificate() -> dict[str, Any]:
             "all dependency windows match 385..426",
             "all dependency row-set totals agree where supplied",
             "the decision table separates closed, finite-safe, and residual cases",
+            "projective infinity is classified by the M5 kernel-containment chart",
             "projective infinity and finite affine accounting are not conflated",
         ],
         "nonclaims": [
@@ -331,7 +350,7 @@ def print_summary(certificate: dict[str, Any]) -> None:
     )
     print("finite budget={finite_slope_budget}".format(**summary))
     print(
-        "closed cases={closed_case_count}, finite-safe/open-projective cases={finite_safe_open_projective_case_count}, residual cases={residual_case_count}".format(
+        "closed cases={closed_case_count}, finite-safe/kernel-classified cases={finite_safe_projective_kernel_classified_case_count}, residual cases={residual_case_count}".format(
             **summary
         )
     )

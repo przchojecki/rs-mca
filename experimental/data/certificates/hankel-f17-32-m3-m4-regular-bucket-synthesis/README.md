@@ -31,25 +31,30 @@ u=0 and rank H(v)=j+1:
   the c=0 proportional subcase.
 ```
 
-Finite-safe but not projective-closed:
+Finite-safe with projective kernel accounting:
 
 ```text
 v!=0, u not proportional to v, rank H(v)<=6, and the finite regular bucket is
 nonsingular:
   finite affine root count <=6 and has zero tangent overlap;
-  projective infinity is still singular because direction rank is deficient.
+  projective infinity is empty or a one-point dimension-degree fallback by the
+  M5 kernel-containment chart.
 ```
 
 Still residual:
 
 ```text
 rank-deficient finite regular buckets not covered by a paid family;
-direction-rank-deficient projective infinity for v!=0;
 non-proportional finite buckets with direction rank >6 unless exact root
 tables improve the bound;
 quotient, extension, and subfield overlap for future non-proportional root
 tables.
 ```
+
+For projective samplers, a nonempty infinity kernel chart contributes the single
+endpoint `[0:1]`.  Thus a finite-affine rank-`<=6` bucket is finite-budget safe,
+but the projective sampler still needs either a smaller finite root table, an
+endpoint payment, or a separate projective budget comparison.
 
 This is not a worst-case row bound.  It is the current M4 decision table for
 regular buckets after composing the proved local certificates.

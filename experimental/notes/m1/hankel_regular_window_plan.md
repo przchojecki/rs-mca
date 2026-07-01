@@ -419,11 +419,29 @@ For the homogenized pencil
 the projective endpoint `[0:1]`, while direction-rank deficiency is a singular
 infinity chart to send to M5 or to a separate paid endpoint classification.
 
+The M5 kernel-containment refinement is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/
+  f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json
+```
+
+It proves that the ambient projective-infinity chart
+`H(v) ell=0, H(u) ell!=0` is empty iff
+`ker H(v) subset ker H(u)`, equivalently iff
+`rank stack(H(v),H(u)) = rank H(v)`.  If the containment fails, the packet uses
+a one-point `dimension_degree` fallback for `[0:1]`; it does not claim the
+split-locator chart is nonempty.  In particular, proportional pencils have
+empty projective-infinity chart even when `H(v)` is rank-deficient.
+
 Replay:
 
 ```sh
 python3 experimental/scripts/verify_m1_hankel_projective_infinity_rank_criterion.py \
   --check experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/f17_32_n512_k256_m3_projective_infinity_rank_criterion.json
+
+python3 experimental/scripts/verify_m1_hankel_m5_projective_infinity_kernel_chart.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json
 ```
 
 The zero-direction-syndrome endpoint companion is:
@@ -474,10 +492,11 @@ experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/
 ```
 
 It composes the zero-`u`, proportional, tangent-overlap, projective-infinity,
-zero-`v`, lower-rank-contained, and direction-rank certificates into one
-decision table.  It marks the currently closed branches, the finite-safe but
-projective-open low-direction-rank branch, and the residual branches still
-requiring M5 pivots, root tables, quotient, extension, or subfield ledgers.
+zero-`v`, M5 infinity-kernel, lower-rank-contained, and direction-rank
+certificates into one decision table.  It marks the currently closed branches,
+the finite-safe low-direction-rank branch with exact infinity-kernel
+accounting, and the residual branches still requiring M5 affine pivots, root
+tables, quotient, extension, or subfield ledgers.
 
 Replay:
 
