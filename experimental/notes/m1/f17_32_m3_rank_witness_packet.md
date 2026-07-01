@@ -68,6 +68,9 @@ experimental/data/certificates/hankel-f17-32-m3-zero-u-rank-dichotomy/
 
 experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/
   hankel_proportional_pencil_tangent_lemma_certificate.json
+
+experimental/data/certificates/hankel-f17-32-m3-finite-tangent-overlap/
+  f17_32_n512_k256_m3_finite_tangent_overlap_criterion.json
 ```
 
 The M4 zero-slope subtraction sidecar is
@@ -252,6 +255,13 @@ root `Z=-c`.  Since `Syn(f+Zg)=u+Zv`, the full stored syndrome is zero at
 residual aperiodic numerator is `0`.  Rank deficiency remains a singular
 boundary for M5 pivots unless separately paid.
 
+The finite tangent-overlap criterion gives the converse needed for M4
+no-double-counting.  In the M3 window, `t+j=256`, so the regular Hankel chart
+uses the full stored syndrome.  A finite slope is tangent/common-code-line iff
+`u+zv=0` in all stored coordinates.  Hence a non-proportional pencil has no
+finite tangent overlap at all, while a nondegenerate proportional pencil has
+the unique paid slope `z=-c`.
+
 In the selected-minor packets, the chosen prefix determinant has the closed form
 
 ```text
@@ -378,6 +388,9 @@ python3 experimental/scripts/verify_f17_32_m3_zero_u_rank_dichotomy.py \
 
 python3 experimental/scripts/verify_m1_hankel_proportional_pencil_tangent_lemma.py \
   --check experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/hankel_proportional_pencil_tangent_lemma_certificate.json
+
+python3 experimental/scripts/verify_m1_hankel_finite_tangent_overlap_criterion.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-finite-tangent-overlap/f17_32_n512_k256_m3_finite_tangent_overlap_criterion.json
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_rank_witness_zero_slope_subtraction.json

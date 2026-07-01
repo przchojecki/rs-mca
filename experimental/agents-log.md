@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 finite tangent-overlap criterion
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_finite_tangent_overlap_criterion.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-finite-tangent-overlap/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for finite tangent overlap in the `F_17^32`
+  M3 regular window.
+- **What is being added:** A no-double-counting criterion: because `t+j=256`
+  for every `385 <= A <= 426`, the regular Hankel chart sees the full stored
+  syndrome.  Thus a finite slope is tangent/common-code-line iff
+  `u+zv=0`; for `v!=0` this is exactly the proportional case `u=c v` with
+  unique slope `z=-c`, while non-proportional pencils have zero finite tangent
+  overlap.
+- **How it is useful:** Future non-proportional M3 root-table packets can cite
+  this certificate to subtract no finite roots as tangent/common-code-line,
+  leaving quotient, extension, and singular-pivot ledgers as the remaining
+  overlap checks.
+- **What to do next:** Build or audit non-proportional regular root tables and
+  apply this criterion as the tangent-overlap exclusion.
+
 ### 2026-07-01 - M3 proportional-pencil tangent lemma
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

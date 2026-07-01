@@ -386,6 +386,26 @@ python3 experimental/scripts/verify_m1_hankel_proportional_pencil_tangent_lemma.
   --check experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/hankel_proportional_pencil_tangent_lemma_certificate.json
 ```
 
+The finite tangent-overlap converse is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-finite-tangent-overlap/
+  f17_32_n512_k256_m3_finite_tangent_overlap_criterion.json
+```
+
+It records that a finite root can be tangent/common-code-line only when
+`u+zv=0` in the full stored syndrome.  Since `t+j=256` in this window, this is
+equivalent to a proportional pencil, apart from the degenerate `u=v=0`
+codeword-line branch.  Thus non-proportional finite root tables have no
+tangent/common-code-line overlap.
+
+Replay:
+
+```sh
+python3 experimental/scripts/verify_m1_hankel_finite_tangent_overlap_criterion.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-finite-tangent-overlap/f17_32_n512_k256_m3_finite_tangent_overlap_criterion.json
+```
+
 The corresponding F1 denominator audit is
 
 ```text
