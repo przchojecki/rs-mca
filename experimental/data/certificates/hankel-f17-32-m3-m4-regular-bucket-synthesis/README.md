@@ -204,8 +204,9 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slop
 ```
 
 splits that residual.  A constant induced slope map gives at most one finite
-slope plus the endpoint, hence total at most `2`.  The remaining residuals are
-a nonconstant moving-slope component and a slope-free component.
+slope off its base locus plus the endpoint, hence total at most `2` for that
+non-base branch.  The remaining residuals are a nonconstant moving-slope
+component and a slope-free base locus or component.
 
 The rank-node dichotomy packet
 

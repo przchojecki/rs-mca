@@ -27,9 +27,9 @@ N_y D_y' - N_y' D_y = 0.
 
 If some pair `(N_y,D_y)` is not identically zero on `G`, then `[N_y:D_y]`
 defines a rational projective slope map on `G`, independent of `y` on common
-domains of definition.  If this map is constant, `G` contributes at most one
-finite slope; the endpoint-uniform theorem adds at most one projective endpoint,
-so the branch has total at most
+domains of definition.  If this map is constant, the non-base part of `G`
+contributes at most one finite slope; the endpoint-uniform theorem adds at
+most one projective endpoint, so that non-base branch has total at most
 
 ```text
 1 + 1 = 2 <= 6.
@@ -39,7 +39,7 @@ The remaining residuals are now explicit:
 
 ```text
 determined nonconstant slope map;
-slope-free global component, where all six pairs (N_y,D_y) vanish identically.
+slope-free base locus or global component, where all six pairs (N_y,D_y) vanish.
 ```
 
 Replay:
@@ -54,7 +54,7 @@ Nonclaims:
 ```text
 does not prove all global components have constant slope;
 does not close moving-slope global components;
-does not close slope-free global components;
+does not close slope-free base points or global components;
 does not cover A=385;
 does not classify overlapping-support rank-6 pencils;
 does not prove endpoint payment.

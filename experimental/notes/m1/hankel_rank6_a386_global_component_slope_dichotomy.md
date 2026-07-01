@@ -11,7 +11,7 @@ A = 386.
 It consumes the component-cut packet.  After that packet, the remaining
 positive-dimensional `Q`-plane residual is an irreducible component contained
 in all pairwise direction-consistency conics.  This note splits that residual
-into a safe constant-slope case and two named residual cases.
+into a safe constant-slope off-base-locus case and two named residual cases.
 
 At `A=386`, the boundary low-degree transfer gives
 
@@ -54,7 +54,8 @@ is a rational projective slope map.  The pairwise conics make this map
 independent of the chosen `y` on common domains of definition: whenever two
 pairs are both defined, their cross product is zero on `G`.
 
-Every finite root represented by a `Q`-class on `G` has finite slope
+Every finite root represented by a `Q`-class on the domain of definition of
+`zeta_G` has finite slope
 
 ```text
 z = N_y(Q) / D_y(Q)
@@ -63,13 +64,18 @@ z = N_y(Q) / D_y(Q)
 for this induced map, before the null-polynomial split-locator gate possibly
 removes it.
 
-Therefore, if `zeta_G` is constant, the component contributes at most one
-finite slope.  The endpoint-uniform theorem contributes one projective endpoint
-`[0:1]`, so the projective contribution of this branch is at most
+Therefore, if `zeta_G` is constant, the non-base part of the component
+contributes at most one finite slope.  The endpoint-uniform theorem contributes
+one projective endpoint `[0:1]`, so the projective contribution of this
+non-base branch is at most
 
 ```text
 1 + 1 = 2 <= 6.
 ```
+
+The base locus of `zeta_G`, where all six pairs `(N_y,D_y)` vanish at the same
+`Q`-class, is not closed by this argument.  It remains a slope-free residual
+unless the split-locator gate removes it or a paid ledger identifies it.
 
 The other cases remain residual:
 
@@ -80,8 +86,9 @@ determined nonconstant slope map:
   divisor gate or identified as quotient/tangent/extension structure.
 
 slope-free component:
-  every pair (N_y,D_y) vanishes identically on G.  Then the finite consistency
-  equations impose no slope on G before further Hankel/split analysis.
+  every pair (N_y,D_y) vanishes at a base point, or identically on G.  Then
+  the finite consistency equations impose no slope there before further
+  Hankel/split analysis.
 ```
 
 Replay:
@@ -96,7 +103,7 @@ Nonclaims:
 ```text
 no proof that all global components have constant slope;
 no closure of moving-slope global components;
-no closure of slope-free global components;
+no closure of slope-free base points or global components;
 no A=385 closure;
 no overlapping-support rank-6 classification;
 no endpoint payment theorem.

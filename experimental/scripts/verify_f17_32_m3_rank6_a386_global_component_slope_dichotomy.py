@@ -124,12 +124,13 @@ def build_certificate() -> dict[str, Any]:
     )
 
     constant_slope_case = {
-        "case": "determined_constant_slope_map",
-        "finite_slope_upper_bound": 1,
+        "case": "determined_constant_slope_map_off_base_locus",
+        "finite_slope_upper_bound_off_base_locus": 1,
         "projective_endpoint_count": 1,
-        "support_wise_projective_total_upper_bound": 2,
+        "support_wise_projective_total_upper_bound_off_base_locus": 2,
         "projective_budget": PROJECTIVE_BUDGET,
-        "projective_safe": True,
+        "projective_safe_off_base_locus": True,
+        "base_locus_status": "RESIDUAL unless split-locator or paid-ledger checks remove it",
     }
     residual_cases = [
         {
@@ -143,18 +144,20 @@ def build_certificate() -> dict[str, Any]:
             ),
         },
         {
-            "case": "slope_free_component",
+            "case": "slope_free_base_locus_or_component",
             "status": "RESIDUAL / UNKNOWN",
             "residual_label": "unknown",
             "meaning": (
-                "all six numerator and denominator linear forms vanish "
-                "identically on the component, so finite consistency does not "
-                "determine a slope before further Hankel/split analysis"
+                "all six numerator and denominator linear forms vanish at a "
+                "base point, or identically on the component, so finite "
+                "consistency does not determine a slope before further "
+                "Hankel/split analysis"
             ),
         },
     ]
     require(
-        constant_slope_case["support_wise_projective_total_upper_bound"] <= PROJECTIVE_BUDGET,
+        constant_slope_case["support_wise_projective_total_upper_bound_off_base_locus"]
+        <= PROJECTIVE_BUDGET,
         "constant slope branch should be projective safe",
     )
 
@@ -226,9 +229,10 @@ def build_certificate() -> dict[str, Any]:
                 "split-locator divisor gate possibly removes it."
             ),
             "constant_map_safe": (
-                "If the induced slope map is constant, the component contributes "
-                "at most one finite slope; adding the endpoint-uniform point "
-                "gives projective total at most 2<=6."
+                "If the induced slope map is constant, then away from its "
+                "base locus the component contributes at most one finite slope; "
+                "adding the endpoint-uniform point gives projective total at "
+                "most 2<=6 for the non-base branch."
             ),
             "nonconstant_residual": (
                 "If the induced slope map is nonconstant, the branch is exactly "
@@ -236,9 +240,9 @@ def build_certificate() -> dict[str, Any]:
                 "Bezout root counting alone."
             ),
             "slope_free_residual": (
-                "If every pair (N_y,D_y) vanishes identically on G, the finite "
-                "consistency equations impose no slope on G; this is a separate "
-                "slope-free residual."
+                "If all pairs (N_y,D_y) vanish at a point, or identically on G, "
+                "the finite consistency equations impose no slope there; this "
+                "slope-free locus is a separate residual."
             ),
         },
         "constant_slope_case": constant_slope_case,
@@ -261,13 +265,13 @@ def build_certificate() -> dict[str, Any]:
             "projective_Q_search_dimension": 2,
             "direction_pair_count": RANK,
             "pairwise_direction_conic_count": RANK * (RANK - 1) // 2,
-            "constant_slope_finite_root_upper_bound": 1,
-            "constant_slope_projective_total_upper_bound": 2,
+            "constant_slope_finite_root_upper_bound_off_base_locus": 1,
+            "constant_slope_projective_total_upper_bound_off_base_locus": 2,
             "projective_budget": PROJECTIVE_BUDGET,
-            "constant_slope_branch_projective_safe": True,
+            "constant_slope_non_base_branch_projective_safe": True,
             "remaining_residuals": [
                 "determined nonconstant slope map",
-                "slope-free global component",
+                "slope-free base locus or global component",
             ],
         },
         "checks": [
@@ -275,7 +279,7 @@ def build_certificate() -> dict[str, Any]:
             "A=386 has boundary defect h=3 and Q-space P^2",
             "component-cut packet narrows to global components",
             "six direction pairs give fifteen pairwise conics",
-            "constant slope gives at most one finite parameter",
+            "constant slope gives at most one finite parameter off the base locus",
             "split-locator gate cannot increase finite parameter count",
             "endpoint-uniform dependency supplies exactly one endpoint",
             "2 <= projective budget 6",
@@ -303,7 +307,7 @@ def print_summary(certificate: dict[str, Any]) -> None:
     summary = certificate["summary"]
     print("F_17^32 M3 rank-6 A=386 global-component slope-map dichotomy")
     print(
-        "constant finite <= {constant_slope_finite_root_upper_bound}, projective total <= {constant_slope_projective_total_upper_bound}; residuals={remaining_residuals}".format(
+        "constant finite off base <= {constant_slope_finite_root_upper_bound_off_base_locus}, projective total off base <= {constant_slope_projective_total_upper_bound_off_base_locus}; residuals={remaining_residuals}".format(
             **summary
         )
     )

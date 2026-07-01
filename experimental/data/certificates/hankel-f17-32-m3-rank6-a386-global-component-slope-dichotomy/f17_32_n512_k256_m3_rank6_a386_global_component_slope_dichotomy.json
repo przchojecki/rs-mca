@@ -14,18 +14,19 @@
     "A=386 has boundary defect h=3 and Q-space P^2",
     "component-cut packet narrows to global components",
     "six direction pairs give fifteen pairwise conics",
-    "constant slope gives at most one finite parameter",
+    "constant slope gives at most one finite parameter off the base locus",
     "split-locator gate cannot increase finite parameter count",
     "endpoint-uniform dependency supplies exactly one endpoint",
     "2 <= projective budget 6"
   ],
   "constant_slope_case": {
-    "case": "determined_constant_slope_map",
-    "finite_slope_upper_bound": 1,
+    "base_locus_status": "RESIDUAL unless split-locator or paid-ledger checks remove it",
+    "case": "determined_constant_slope_map_off_base_locus",
+    "finite_slope_upper_bound_off_base_locus": 1,
     "projective_budget": 6,
     "projective_endpoint_count": 1,
-    "projective_safe": true,
-    "support_wise_projective_total_upper_bound": 2
+    "projective_safe_off_base_locus": true,
+    "support_wise_projective_total_upper_bound_off_base_locus": 2
   },
   "nonclaims": [
     "does not prove all global components have constant slope",
@@ -45,8 +46,8 @@
       "status": "RESIDUAL / UNKNOWN"
     },
     {
-      "case": "slope_free_component",
-      "meaning": "all six numerator and denominator linear forms vanish identically on the component, so finite consistency does not determine a slope before further Hankel/split analysis",
+      "case": "slope_free_base_locus_or_component",
+      "meaning": "all six numerator and denominator linear forms vanish at a base point, or identically on the component, so finite consistency does not determine a slope before further Hankel/split analysis",
       "residual_label": "unknown",
       "status": "RESIDUAL / UNKNOWN"
     }
@@ -103,23 +104,23 @@
   "summary": {
     "agreement": 386,
     "boundary_defect_h": 3,
-    "constant_slope_branch_projective_safe": true,
-    "constant_slope_finite_root_upper_bound": 1,
-    "constant_slope_projective_total_upper_bound": 2,
+    "constant_slope_finite_root_upper_bound_off_base_locus": 1,
+    "constant_slope_non_base_branch_projective_safe": true,
+    "constant_slope_projective_total_upper_bound_off_base_locus": 2,
     "direction_pair_count": 6,
     "pairwise_direction_conic_count": 15,
     "projective_Q_search_dimension": 2,
     "projective_budget": 6,
     "remaining_residuals": [
       "determined nonconstant slope map",
-      "slope-free global component"
+      "slope-free base locus or global component"
     ]
   },
   "theorem": {
-    "constant_map_safe": "If the induced slope map is constant, the component contributes at most one finite slope; adding the endpoint-uniform point gives projective total at most 2<=6.",
+    "constant_map_safe": "If the induced slope map is constant, then away from its base locus the component contributes at most one finite slope; adding the endpoint-uniform point gives projective total at most 2<=6 for the non-base branch.",
     "finite_roots_factor_through_slope_map": "Every finite root represented by a Q-class on G has finite slope z=N_y(Q)/D_y(Q) for the induced map, before the split-locator divisor gate possibly removes it.",
     "nonconstant_residual": "If the induced slope map is nonconstant, the branch is exactly a moving-slope global-component residual and is not closed by Bezout root counting alone.",
-    "slope_free_residual": "If every pair (N_y,D_y) vanishes identically on G, the finite consistency equations impose no slope on G; this is a separate slope-free residual.",
+    "slope_free_residual": "If all pairs (N_y,D_y) vanish at a point, or identically on G, the finite consistency equations impose no slope there; this slope-free locus is a separate residual.",
     "slope_map": "If some pair (N_y,D_y) is not identically zero on G, then [N_y:D_y] defines a rational projective slope map on G; the pairwise conics make this map independent of y on common domains of definition."
   }
 }

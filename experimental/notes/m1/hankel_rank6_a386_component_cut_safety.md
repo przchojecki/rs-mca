@@ -85,8 +85,8 @@ experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md
 ```
 
 then splits that global-component residual into a projective-safe constant
-slope-map case and two named residuals: a nonconstant moving-slope component
-and a slope-free component.
+slope-map off-base-locus case and two named residuals: a nonconstant
+moving-slope component and a slope-free base locus or component.
 
 Replay:
 

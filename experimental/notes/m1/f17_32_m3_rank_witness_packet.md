@@ -548,9 +548,9 @@ in all direction consistency conics.
 
 The `A=386` global-component slope-map companion then splits that residual.
 If the induced projective slope map on the component is constant, the branch
-has at most one finite slope; with the endpoint, total projective contribution
-is at most `2`.  The remaining residuals are a nonconstant moving-slope
-component and a slope-free component.
+away from its base locus has at most one finite slope; with the endpoint, total
+projective contribution is at most `2`.  The remaining residuals are a
+nonconstant moving-slope component and a slope-free base locus or component.
 
 The affine-pivot compression companion gives the finite-root route a concrete
 Hankel-chart target.  If a row-set chart has finite base slope `z0` with

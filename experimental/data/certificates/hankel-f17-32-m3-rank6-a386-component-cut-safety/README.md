@@ -33,8 +33,9 @@ The companion packet
 experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/
 ```
 
-splits that residual into a safe constant-slope case and two named residuals:
-a nonconstant moving-slope component and a slope-free component.
+splits that residual into a safe constant-slope off-base-locus case and two
+named residuals: a nonconstant moving-slope component and a slope-free base
+locus or component.
 
 Replay:
 

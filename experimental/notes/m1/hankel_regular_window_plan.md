@@ -281,9 +281,10 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slop
 ```
 
 splits that residual further.  If the induced projective slope map on the
-global component is constant, the branch contributes at most one finite slope
-plus the endpoint, so total is at most `2`.  The remaining cases are a
-nonconstant moving-slope component and a slope-free component.
+global component is constant, the non-base branch contributes at most one
+finite slope plus the endpoint, so total is at most `2`.  The remaining cases
+are a nonconstant moving-slope component and a slope-free base locus or
+component.
 
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets

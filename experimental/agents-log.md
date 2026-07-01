@@ -46,11 +46,11 @@ Keep entries concise and link to the relevant files.
 - **Status:** PROVED / AUDIT.
 - **What is being added:** A slope-map dichotomy for the `A=386` separated
   rank-6 global-component residual: a constant induced slope map contributes
-  at most one finite slope, so with the endpoint the branch has total
-  `<=2<=6`.
+  at most one finite slope off its base locus, so with the endpoint that
+  non-base branch has total `<=2<=6`.
 - **How it is useful:** It separates a projective-safe subcase from the two
   genuinely unresolved residuals: nonconstant moving-slope components and
-  slope-free components.
+  slope-free base loci/components.
 - **What to do next:** Attack the moving-slope residual with the split-locator
   divisor gate, or prove slope-free components are quotient/tangent/extension
   paid.
