@@ -88,6 +88,20 @@ def finite_affine_decision_table() -> dict[str, Any]:
                 "split_nonemptiness_claimed": False,
             },
         },
+        "rank_stratification": {
+            "automatic_survival_condition": "rank H_{t,j}(v) > rank M_z",
+            "reason": (
+                "Containment ker M_z subset ker H(v) would force "
+                "row H(v) subset row M_z, hence rank H(v) <= rank M_z."
+            ),
+            "possible_containment_condition": "rank H_{t,j}(v) <= rank M_z",
+            "then_apply": "stacked-rank equality test",
+            "full_direction_consequence": (
+                "If rank H(v)=j+1, every finite regular root has "
+                "rank M_z<=j and therefore survives the ambient "
+                "noncontainment test."
+            ),
+        },
         "pivot_cover": (
             "For ambient linear charts, M_z ell=0 and H(v)ell!=0 is equivalent "
             "to membership in at least one affine pivot chart (H(v)ell)_h != 0."
@@ -183,12 +197,20 @@ def build_certificate() -> dict[str, Any]:
                 "rank stack(M_z,H(v)) = rank M_z; otherwise the slope z "
                 "contributes at most one finite parameter."
             ),
+            "rank_stratification": (
+                "If rank H(v) > rank M_z, the chart is automatically nonempty. "
+                "Thus finite roots with post-root rank below the direction rank "
+                "cannot be removed by same-support containment.  Containment can "
+                "only occur in the rank range rank H(v) <= rank M_z, where the "
+                "stacked-rank equality test decides it."
+            ),
             "proof": [
                 "The affine incidence equation is M_z ell=0.",
                 "The pivot/noncontainment condition is H(v)ell != 0, equivalently some affine pivot coordinate is nonzero.",
                 "If ker M_z is contained in ker H(v), no incidence vector survives the pivot open cover.",
                 "If containment fails, choose ell in ker M_z outside ker H(v); it lies in at least one ambient affine pivot chart.",
                 "The split-locator chart is contained in this ambient chart, so ambient emptiness proves split emptiness and ambient nonemptiness gives a safe one-slope upper bound.",
+                "The rank-stratification corollary follows from row-space duality: ker M_z subset ker H(v) is equivalent to row H(v) subset row M_z.",
             ],
             "same_support_containment": (
                 "When M_z ell=0 and H(v)ell=0, one also has H(u)ell=0. "
@@ -213,6 +235,8 @@ def build_certificate() -> dict[str, Any]:
             "finite_affine_root_filter_end_states": ["empty", "dimension_degree"],
             "max_contribution_per_unfiltered_root": 1,
             "projective_infinity_impact": 0,
+            "automatic_survival_when_direction_rank_exceeds_root_rank": True,
+            "full_direction_regular_roots_survive_kernel_filter": True,
         },
         "checks": [
             "row descriptor and finite tangent-overlap dependency schemas match",
@@ -220,6 +244,7 @@ def build_certificate() -> dict[str, Any]:
             "row-set totals match the finite tangent-overlap certificate",
             "domain encodings round-trip in the printed F_17^32 model",
             "kernel-containment and stacked-rank tests are equivalent by rank-nullity",
+            "rank H(v)>rank M_z excludes kernel containment",
             "the affine pivot cover is equivalent to H(v)ell nonzero in the ambient chart",
         ],
         "nonclaims": [

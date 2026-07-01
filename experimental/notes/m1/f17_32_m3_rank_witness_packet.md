@@ -295,6 +295,12 @@ quotient-image, and extension audits.  This packet does not compute finite
 root tables; it explains how future root tables should subtract contained
 roots.
 
+The rank-stratification corollary says that if
+`rank H(v) > rank M_z`, then containment is impossible and `z` automatically
+survives the ambient finite-affine kernel filter.  Thus full-direction-rank
+finite regular roots cannot be removed by same-support containment: they need
+actual root tables and then quotient, extension, or subfield overlap audits.
+
 The projective-infinity rank criterion supplies the corresponding endpoint
 rule.  For the homogenized pencil
 

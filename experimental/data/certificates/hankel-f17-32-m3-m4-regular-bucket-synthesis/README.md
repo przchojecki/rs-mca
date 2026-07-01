@@ -68,6 +68,12 @@ noncontainment numerator.  If containment fails, it contributes at most the
 single finite parameter `z` before split-locator, quotient, and extension
 audits.
 
+The filter also has a rank-stratification corollary: if
+`rank H(v) > rank(H(u)+zH(v))`, then containment is impossible and `z` survives
+the ambient noncontainment test.  Thus full-direction-rank finite regular roots
+cannot be removed by this same-support kernel filter; they need actual root
+tables and then quotient/extension/subfield audits.
+
 This is not a worst-case row bound.  It is the current M4 decision table for
 regular buckets after composing the proved local certificates.
 

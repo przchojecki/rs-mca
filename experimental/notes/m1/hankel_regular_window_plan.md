@@ -420,6 +420,17 @@ noncontainment chart `M_z ell=0, H(v)ell!=0` is empty iff
 at most the single finite parameter `z`.  This is a per-root filter for future
 root tables, not a root table by itself.
 
+The same packet proves the rank-stratification corollary:
+
+```text
+rank H(v) > rank M_z
+  => z survives the ambient finite-affine kernel filter.
+```
+
+Consequently full-direction-rank finite regular roots cannot be removed by
+same-support containment; after root-table computation they must be handled by
+quotient, extension, subfield, or split-locator audits.
+
 Replay:
 
 ```sh

@@ -184,6 +184,10 @@ def regular_bucket_decision_table() -> dict[str, Any]:
                 "B_ap_regular_finite_before_other_ledgers": "<= j+1",
                 "B_tan_finite": 0,
                 "finite_affine_kernel_filter": "apply after actual finite root table",
+                "finite_affine_kernel_rank_note": (
+                    "With full-rank H(v), every finite regular root has "
+                    "rank M_z<=j<j+1 and automatically survives the ambient kernel filter."
+                ),
                 "finite_affine_kernel_certificate_ref": M5_FINITE_AFFINE_REF,
                 "B_ap_projective_infinity": 0,
                 "next_step": "actual finite root table and kernel filter unless degree/root table is within budget",
@@ -301,6 +305,7 @@ def build_certificate() -> dict[str, Any]:
             "m5_finite_affine_filter": [
                 "for every finite root z, the ambient affine noncontainment chart is empty iff ker(H(u)+zH(v)) subset ker H(v)",
                 "if the kernel containment fails, the root contributes at most the single finite parameter z before split-locator and quotient/extension audits",
+                "if rank H(v) exceeds rank(H(u)+zH(v)), the root automatically survives the ambient kernel filter",
             ],
             "still_requires_m5_or_other_ledgers": [
                 "rank-deficient finite regular buckets not covered by a paid family",

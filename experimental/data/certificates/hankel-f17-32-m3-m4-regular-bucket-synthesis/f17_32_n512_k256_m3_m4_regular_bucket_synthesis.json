@@ -374,6 +374,7 @@
         "condition": "rank H_{t,j}(v)=j+1",
         "finite_affine_kernel_certificate_ref": "experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json",
         "finite_affine_kernel_filter": "apply after actual finite root table",
+        "finite_affine_kernel_rank_note": "With full-rank H(v), every finite regular root has rank M_z<=j<j+1 and automatically survives the ambient kernel filter.",
         "next_step": "actual finite root table and kernel filter unless degree/root table is within budget"
       },
       "direction_rank_at_most_budget": {
@@ -467,7 +468,7 @@
     },
     "f17_32_n512_k256_m3_m5_finite_affine_kernel_chart": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json",
-      "sha256": "5ec3adaaf281cbc7c5a2e26ba9f0b75724dc5bf8eba5f0ac4c5daceeefc462d3"
+      "sha256": "d3162ac558dd5ad4accc613abbbe35e01bc8c832b3d0916e260fb91ba6fc32ad"
     },
     "f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json",
@@ -517,7 +518,8 @@
     ],
     "m5_finite_affine_filter": [
       "for every finite root z, the ambient affine noncontainment chart is empty iff ker(H(u)+zH(v)) subset ker H(v)",
-      "if the kernel containment fails, the root contributes at most the single finite parameter z before split-locator and quotient/extension audits"
+      "if the kernel containment fails, the root contributes at most the single finite parameter z before split-locator and quotient/extension audits",
+      "if rank H(v) exceeds rank(H(u)+zH(v)), the root automatically survives the ambient kernel filter"
     ],
     "m5_projective_infinity_closed_by_kernel_chart": [
       "proportional rank-deficient direction: infinity empty because ker H(v) subset ker H(u)",

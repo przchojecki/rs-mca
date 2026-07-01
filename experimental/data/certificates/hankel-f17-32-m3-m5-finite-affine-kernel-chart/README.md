@@ -42,6 +42,20 @@ parameter.  The packet records this as a per-root `dimension_degree` fallback
 of degree `1`.  It does not claim that the split-locator chart is nonempty
 whenever the ambient linear chart is nonempty.
 
+The same linear algebra gives a useful rank stratification:
+
+```text
+rank H_{t,j}(v) > rank M_z
+  => z survives the ambient finite-affine noncontainment test.
+```
+
+Indeed, containment would force the row space of `H(v)` to lie in the row space
+of `M_z`, and hence `rank H(v) <= rank M_z`.  Thus same-support containment can
+only remove roots in the rank range `rank H(v) <= rank M_z`, where the stacked
+rank equality test above decides the case.  In particular, if `H(v)` has full
+column rank `j+1`, every finite regular root has `rank M_z <= j` and therefore
+survives this ambient kernel filter.
+
 This is the finite-affine analogue of the projective-infinity kernel chart.
 Future root tables can apply this test to each regular root before counting it
 as an aperiodic support-wise MCA candidate.

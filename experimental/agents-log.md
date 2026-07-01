@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M5 finite-affine rank stratification
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_m5_finite_affine_kernel_chart.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED corollary of the finite-affine kernel chart.
+- **What is being added:** A rank-stratification consequence:
+  `rank H(v) > rank(H(u)+zH(v))` forces the finite root `z` to survive the
+  ambient noncontainment filter.  Containment can only occur when
+  `rank H(v) <= rank(H(u)+zH(v))`, where the stacked-rank equality test
+  decides the case.
+- **How it is useful:** This rules out same-support kernel subtraction as a way
+  to shrink full-direction-rank regular root tables; those roots need actual
+  root computation and then quotient, extension, subfield, or split-locator
+  audits.
+- **What to do next:** Use this rank stratification when choosing the first
+  non-proportional root-table packet: low-rank directions may benefit from the
+  kernel filter, while full-rank directions will not.
+
 ### 2026-07-01 - M5 finite-affine kernel chart
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
