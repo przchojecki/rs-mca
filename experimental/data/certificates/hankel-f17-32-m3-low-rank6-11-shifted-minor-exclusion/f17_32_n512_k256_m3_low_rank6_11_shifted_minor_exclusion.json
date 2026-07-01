@@ -151,6 +151,7 @@
   ],
   "claim": "For the synthetic rank-6..11 low-rank M3 slack ladder, every finite first-minor root counted by the source slack certificates is excluded as an actual full-Hankel support witness by the row-shift-1 square minor.",
   "method": {
+    "criterion": "Hankel shifted-minor exclusion criterion",
     "mathematical_reason": "a true exact-support witness makes the full t by j+1 Hankel matrix rank-deficient, so all consecutive square minors must vanish",
     "shifted_minor_formula": "det(H_X^(1)+Z H_Y^(1)) = det(H_X^(1)) det(I+Z K_1), with K_1,ab=y_a sum_i x_i^{-1} L_i(y_a)L_i(y_b)",
     "test": "roots supplied by source gcds or listed root locators are checked by gcd(root_gcd, shifted minor); count-only cubic rows are checked by the stronger gcd(first minor, shifted minor)"
@@ -2396,6 +2397,11 @@
       "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
       "schema_version": "f17-32-hankel-row-descriptor-v1",
       "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    },
+    "shifted_minor_exclusion_criterion": {
+      "ref": "experimental/notes/m1/hankel_shifted_minor_exclusion_criterion.md",
+      "sha256": "ee712e336ceb6ec57cae27bb27ce8050202f972a3be306c2230d9a4fb7bb57c2",
+      "status": "PROVED / AUDIT"
     },
     "slack_certificates": [
       {

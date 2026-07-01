@@ -25,6 +25,7 @@
   },
   "claim": "For the six representative rank-6..11 projective-line packets, every listed finite root of the first regular minor is excluded as an actual full-Hankel support witness by the shifted row-1 minor.",
   "method": {
+    "criterion": "Hankel shifted-minor exclusion criterion",
     "mathematical_reason": "a true exact-support witness makes the full t by j+1 Hankel matrix rank-deficient, so all consecutive square minors must vanish",
     "shifted_minor_formula": "det(H_X^(q)+Z H_Y^(q)) = det(H_X^(q)) det(I+Z K_q), with K_q_ab=y_a^q sum_i x_i^{-q} L_i(y_a)L_i(y_b)",
     "test": "compute gcd(root_gcd(first minor), shifted row-1 minor); degree zero means no listed first-minor root kills both minors"
@@ -256,5 +257,12 @@
   },
   "row_shift_tested": 1,
   "schema_version": "f17-32-m3-representative-shifted-minor-exclusion-v1",
+  "source_artifacts": {
+    "shifted_minor_exclusion_criterion": {
+      "ref": "experimental/notes/m1/hankel_shifted_minor_exclusion_criterion.md",
+      "sha256": "ee712e336ceb6ec57cae27bb27ce8050202f972a3be306c2230d9a4fb7bb57c2",
+      "status": "PROVED / AUDIT"
+    }
+  },
   "status": "PROVED / AUDIT"
 }

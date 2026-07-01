@@ -19,6 +19,8 @@ Hankel minor.  A genuine exact-support witness must make the full
 `(j+1) x (j+1)` square minor must vanish.  This audit computes the row-shift-1
 minor for every root-bearing rank/agreement row in the rank-6..11 low-rank
 ladder and checks that none of the certified finite roots also vanishes there.
+The reusable proof criterion is recorded in
+`experimental/notes/m1/hankel_shifted_minor_exclusion_criterion.md`.
 
 Result: all `238` finite first-minor roots counted by the rank-6..11 slack
 certificates are excluded as actual full-Hankel support witnesses.

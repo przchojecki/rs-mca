@@ -88,6 +88,9 @@ PACKET_REFS = [
     ),
 ]
 
+SHIFTED_MINOR_CRITERION_REF = (
+    "experimental/notes/m1/hankel_shifted_minor_exclusion_criterion.md"
+)
 OUTPUT_PATH = REPO_ROOT / (
     "experimental/data/certificates/"
     "hankel-f17-32-m3-representative-shifted-minor-exclusion/"
@@ -319,6 +322,13 @@ def build_certificate() -> dict[str, Any]:
             "k": K,
             "field": "F_17^32",
         },
+        "source_artifacts": {
+            "shifted_minor_exclusion_criterion": {
+                "ref": SHIFTED_MINOR_CRITERION_REF,
+                "status": "PROVED / AUDIT",
+                "sha256": file_sha256(SHIFTED_MINOR_CRITERION_REF),
+            },
+        },
         "packet_count": len(records),
         "row_shift_tested": SHIFT,
         "claim": (
@@ -328,6 +338,7 @@ def build_certificate() -> dict[str, Any]:
             "minor."
         ),
         "method": {
+            "criterion": "Hankel shifted-minor exclusion criterion",
             "test": (
                 "compute gcd(root_gcd(first minor), shifted row-1 minor); "
                 "degree zero means no listed first-minor root kills both minors"

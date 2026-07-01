@@ -18,7 +18,9 @@ A genuine exact-support witness would make the full `t x (j+1)` Hankel matrix
 rank-deficient, so every consecutive `(j+1) x (j+1)` square minor would vanish.
 The verifier recomputes the first minor, computes the row-shift-1 minor using
 the same low-rank determinant lemma, and checks that the gcd of the first-minor
-root gcd with the shifted minor has degree `0`.
+root gcd with the shifted minor has degree `0`.  The reusable proof criterion
+is recorded in
+`experimental/notes/m1/hankel_shifted_minor_exclusion_criterion.md`.
 
 Result: all `18` listed finite roots across the six representative packets are
 excluded as actual full-Hankel support witnesses.

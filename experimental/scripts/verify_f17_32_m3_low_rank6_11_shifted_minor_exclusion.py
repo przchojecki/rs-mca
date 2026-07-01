@@ -72,6 +72,9 @@ LOW_RANK9_11_SLACK_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank9-11-slack-sweep/"
     "f17_32_n512_k256_m3_low_rank9_11_slack_sweep_certificate.json"
 )
+SHIFTED_MINOR_CRITERION_REF = (
+    "experimental/notes/m1/hankel_shifted_minor_exclusion_criterion.md"
+)
 OUTPUT_PATH = REPO_ROOT / (
     "experimental/data/certificates/"
     "hankel-f17-32-m3-low-rank6-11-shifted-minor-exclusion/"
@@ -127,6 +130,11 @@ def load_source_records() -> tuple[dict[tuple[int, int], dict[str, Any]], dict[s
             "ref": ROW_DESCRIPTOR_REF,
             "schema_version": "f17-32-hankel-row-descriptor-v1",
             "sha256": file_sha256(ROW_DESCRIPTOR_REF),
+        },
+        "shifted_minor_exclusion_criterion": {
+            "ref": SHIFTED_MINOR_CRITERION_REF,
+            "status": "PROVED / AUDIT",
+            "sha256": file_sha256(SHIFTED_MINOR_CRITERION_REF),
         },
         "slack_certificates": [],
     }
@@ -488,6 +496,7 @@ def build_certificate() -> dict[str, Any]:
             "row-shift-1 square minor."
         ),
         "method": {
+            "criterion": "Hankel shifted-minor exclusion criterion",
             "test": (
                 "roots supplied by source gcds or listed root locators are "
                 "checked by gcd(root_gcd, shifted minor); count-only cubic "

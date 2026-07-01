@@ -419,7 +419,7 @@
       "name": "shifted_minor",
       "ref": "experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-shifted-minor-exclusion/f17_32_n512_k256_m3_low_rank6_11_shifted_minor_exclusion.json",
       "schema_version": "f17-32-m3-low-rank6-11-shifted-minor-exclusion-v1",
-      "sha256": "ae3db719e58b838a3c9109a529db1fcbb2aae04942a7fc68c922c36fb66d590c",
+      "sha256": "daa52a0820516c14039526a628e91fe06d83ce6ecef4a3663655383becdc22c3",
       "status": "PROVED / AUDIT"
     },
     "subfield": {

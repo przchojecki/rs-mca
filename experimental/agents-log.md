@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 shifted-minor exclusion criterion
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/notes/m1/hankel_shifted_minor_exclusion_criterion.md`;
+  `experimental/scripts/verify_f17_32_m3_representative_shifted_minor_exclusion.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-representative-shifted-minor-exclusion/`;
+  `experimental/scripts/verify_f17_32_m3_low_rank6_11_shifted_minor_exclusion.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-shifted-minor-exclusion/`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank6-11-known-ledger-table/`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Extracts the shifted-minor argument into a reusable
+  criterion: an exact-support witness with co-support size at most `j` forces
+  every `(j+1) x (j+1)` minor of the full Hankel matrix to vanish.  Therefore a
+  root of the first minor that fails the row-shift-1 minor is only a first-minor
+  upper-bound artifact.
+- **How it is useful:** This gives theorem provenance to the rank `6..11`
+  shifted-minor audits, which remove all `238` finite first-minor roots from
+  the full-Hankel witness column in the synthetic hard ladder.
+- **What to do next:** Apply the same criterion to less structured M3 packets
+  before escalating surviving roots to affine/projective pivot charts.
+
 ### 2026-07-01 - M3 endpoint quotient-image criterion
 
 - **Agent/model:** AllenGrahamHart / Codex.
