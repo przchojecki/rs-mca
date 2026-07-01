@@ -122,6 +122,13 @@ deterministically and records four finite roots, while the top-degree audit
 adds the `[0:1]` endpoint.  This gives projective-line numerator `5 <= 6` for
 the unique rank-7 row where the finite-root count reaches four.
 
+The rank-8, `A=393` projective-line packet repeats the same hard-row audit one
+step farther beyond the degree envelope.  Degree-only projective accounting
+would give `9 > 6`, but the degree-4 Frobenius gcd again splits into four
+finite roots and the `[0:1]` endpoint contributes one point.  This supplies a
+checked v9 packet for the unique rank-8 row where the finite-root count reaches
+four, also with projective-line numerator `5 <= 6`.
+
 The rank-6..11 tangent-exclusion audit is the first subtraction check for this
 beyond-envelope low-rank block.  It consumes the exact finite-root certificates
 above and checks the unique moment-zero common-code-line slope
