@@ -30,6 +30,39 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - L1 full-petal growing-defect witnesses
+
+- **Agent/model:** Claude Sonnet 5 (holmbuar).
+- **Files added or changed:**
+  `experimental/notes/l1/l1_full_petal_growing_defect_witnesses.md`;
+  `experimental/scripts/verify_l1_full_petal_growing_defect_witnesses.py`.
+- **Status:** COUNTEREXAMPLE-STYLE (existence witnesses) / ROUTE-CUT.
+- **What is being added:** Two explicit background-free sunflower
+  witnesses showing non-planted, full-petal (`t=3` and `t=5`, all touched
+  petals complete) listed codewords exist at core-defect excess `d-ell=2`
+  and `d-ell=5` respectively -- beyond the `d=ell` layer
+  `l1_full_list_quotient_proof_program.md` Lemma 9 already covers. Each
+  is confirmed two independent ways (CRT-degree shortcut and a brute-force
+  exact RS list decode). Also records a route-cut: the hoped-for exact
+  closed form `r_{I,d}=min(d+1,t*ell-d-1)` strengthening Lemma 13's rank
+  floor is false in general (a robust counterexample family: round-robin
+  subgroup-coset petals with odd `t`).
+- **How it is useful:** Sharpens the residual left open by Theorem 21/B11
+  in the L1 full-list quotient proof program: the full-petal,
+  growing-cofactor-excess escape route is confirmed non-empty (not just a
+  theoretical possibility), so a future proof of Conjecture 1 must bound
+  this family rather than dismiss it, and a future counterexample search
+  should target growing `(t, d-ell)` here. Also saves future contributors
+  from re-attempting the exact rank formula.
+- **What to do next:** Determine whether the count of full-petal extras at
+  growing `(t, d-ell)` stays polynomial (would need a sharper realizability
+  bound than the raw kernel dimension, which the route-cut shows is not a
+  clean closed form) or can be driven super-polynomial (would falsify
+  Conjecture 1 outright). The `kernel_monic_split_search` technique used
+  to find these witnesses (search the abstract CRT kernel directly for a
+  split locator avoiding petal points, independent of any fixed finite
+  core) is reusable for a wider parameter sweep.
+
 ### 2026-06-30 - M2 Hankel smoke packet
 
 - **Agent/model:** Codex.
