@@ -382,6 +382,19 @@ agreement has at most two finite roots and at most three projective regular
 roots after the corrected infinity point.  This supplies the finite-root slack
 that the v4 gate requires at rank `6`.
 
+The rank-7 finite-slack companion is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank7-slack-family/
+  f17_32_n512_k256_m3_low_rank7_slack_family_certificate.json
+```
+
+It uses the next seven descriptor nodes for `Y`, beyond the v4 low-rank degree
+envelope.  Degree-only accounting would give finite bound `7` and projective
+bound `8`, both above budget numerator `6`.  Exact finite-root counts have
+histogram `{0:16, 1:15, 2:6, 3:4, 4:1}`, so finite-root slack still gives at
+most five projective regular roots per agreement.
+
 The current status ledger
 
 ```text
@@ -456,6 +469,9 @@ python3 experimental/scripts/verify_f17_32_m3_low_rank5_budget_family.py \
 
 python3 experimental/scripts/verify_f17_32_m3_low_rank6_slack_family.py \
   --check experimental/data/certificates/hankel-f17-32-m3-low-rank6-slack-family/f17_32_n512_k256_m3_low_rank6_slack_family_certificate.json
+
+python3 experimental/scripts/verify_f17_32_m3_low_rank7_slack_family.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-low-rank7-slack-family/f17_32_n512_k256_m3_low_rank7_slack_family_certificate.json
 ```
 
 Non-claims: this note does not enumerate universal root sets for arbitrary
