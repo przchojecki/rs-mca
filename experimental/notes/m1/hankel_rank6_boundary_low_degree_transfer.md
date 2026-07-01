@@ -126,6 +126,18 @@ then proves the constant-slope non-base subcase projective-safe with total
 `<=2<=6`.  The residuals after that are a determined nonconstant slope map and
 a slope-free base locus or component.
 
+The slope-free containment companion
+
+```text
+experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md
+```
+
+then filters the displayed slope-free transfer vectors: they lie in both
+`ker H(v)` and `ker H(u)`, so they fail finite and projective noncontainment
+gates.  The remaining unclosed branch is the nonconstant moving-slope case, or
+another independent noncontained vector at a slope that also has a slope-free
+contained vector.
+
 Replay:
 
 ```sh

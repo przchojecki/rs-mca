@@ -77,6 +77,18 @@ The base locus of `zeta_G`, where all six pairs `(N_y,D_y)` vanish at the same
 `Q`-class, is not closed by this argument.  It remains a slope-free residual
 unless the split-locator gate removes it or a paid ledger identifies it.
 
+The companion note
+
+```text
+experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md
+```
+
+applies the existing finite-affine and projective noncontainment gates to that
+slope-free locus.  The displayed slope-free transfer vectors satisfy
+`H(v)L_Q=H(u)L_Q=0`, so they contribute no finite noncontained slope and no
+projective endpoint witness.  A different independent noncontained vector at
+the same finite slope remains outside that filter.
+
 The other cases remain residual:
 
 ```text

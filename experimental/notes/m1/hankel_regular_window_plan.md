@@ -286,6 +286,19 @@ finite slope plus the endpoint, so total is at most `2`.  The remaining cases
 are a nonconstant moving-slope component and a slope-free base locus or
 component.
 
+The `A=386` slope-free containment companion
+
+```text
+experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/
+  f17_32_n512_k256_m3_rank6_a386_slope_free_containment.json
+```
+
+removes the displayed slope-free transfer vectors from the support-wise count:
+they satisfy `H(v)L_Q=H(u)L_Q=0`, so they fail both finite-affine and
+projective noncontainment gates.  This does not rule out a different
+independent noncontained vector at the same finite slope.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 
@@ -843,6 +856,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a386_component_cut_safety.py
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a386_global_component_slope_dichotomy.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_slope_free_containment.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/f17_32_n512_k256_m3_rank6_a386_slope_free_containment.json
 ```
 
 The affine-pivot compression theorem is:

@@ -42,6 +42,15 @@ determined nonconstant slope map;
 slope-free base locus or global component, where all six pairs (N_y,D_y) vanish.
 ```
 
+The companion packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/
+```
+
+filters the displayed slope-free transfer vectors: they satisfy
+`H(v)L_Q=H(u)L_Q=0`, hence fail finite and projective noncontainment gates.
+
 Replay:
 
 ```sh

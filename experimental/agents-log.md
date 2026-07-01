@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M3 A386 slope-free containment filter
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_slope_free_containment.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/`;
+  `experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md`;
+  `experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A containment filter for the `A=386` separated
+  rank-6 slope-free residual: displayed slope-free transfer vectors have
+  `H(v)L_Q=H(u)L_Q=0`, so they fail finite and projective noncontainment gates
+  and contribute no support-wise parameter by themselves.
+- **How it is useful:** It removes the slope-free vectors from the support-wise
+  numerator and leaves the moving-slope branch, plus possible independent
+  noncontained vectors at the same finite slopes, as the actual residual.
+- **What to do next:** Attack the nonconstant moving-slope residual with the
+  split-locator divisor gate or compressed Hankel pivot charts.
+
 ### 2026-07-02 - M3 A386 global-component slope dichotomy
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

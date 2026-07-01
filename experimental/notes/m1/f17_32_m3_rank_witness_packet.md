@@ -145,6 +145,9 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-a386-component-cut-safety/
 experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/
   f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json
 
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/
+  f17_32_n512_k256_m3_rank6_a386_slope_free_containment.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
   f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 
@@ -552,6 +555,12 @@ away from its base locus has at most one finite slope; with the endpoint, total
 projective contribution is at most `2`.  The remaining residuals are a
 nonconstant moving-slope component and a slope-free base locus or component.
 
+The `A=386` slope-free containment companion filters the displayed slope-free
+transfer vectors.  Such vectors have both `H(v)L_Q=0` and `H(u)L_Q=0`, so they
+fail finite and projective noncontainment gates and contribute no support-wise
+parameter by themselves.  Another independent noncontained vector at the same
+finite slope remains outside this filter.
+
 The affine-pivot compression companion gives the finite-root route a concrete
 Hankel-chart target.  If a row-set chart has finite base slope `z0` with
 `M_R(z0)` invertible and `H_R(v)=P_R Q_R` has rank at most `r`, then
@@ -847,6 +856,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a386_component_cut_safety.py
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a386_global_component_slope_dichotomy.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_slope_free_containment.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/f17_32_n512_k256_m3_rank6_a386_slope_free_containment.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json

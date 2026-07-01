@@ -1,0 +1,95 @@
+{
+  "agreement": {
+    "A": 386,
+    "boundary_defect_h": 3,
+    "combined_support_size": 133,
+    "direction_rank": 6,
+    "j": 126,
+    "m": 127,
+    "projective_Q_search_dimension": 2,
+    "t": 130
+  },
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "A=386 has boundary defect h=3 and Q-space P^2",
+    "slope dichotomy exposes the slope-free residual",
+    "finite-affine dependency uses H(v)ell!=0 as the noncontainment gate",
+    "projective dependency uses H(u)ell!=0 as the endpoint noncontainment gate",
+    "slope-free D_y=0 implies H(v)L_Q=0",
+    "slope-free N_y=0 plus the transfer nullspace implies H(u)L_Q=0"
+  ],
+  "nonclaims": [
+    "does not close nonconstant moving-slope components",
+    "does not rule out another independent noncontained vector at the same finite slope",
+    "does not cover A=385",
+    "does not classify overlapping-support rank-6 pencils",
+    "does not prove endpoint payment",
+    "does not produce a row-level M3 safe-side bound"
+  ],
+  "object": "A=386 separated rank-6 slope-free containment filter",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-a386-slope-free-containment-v1",
+  "setup": {
+    "direction_forms": "For each direction node y, N_y(Q)=Omega_y Q(y) and D_y(Q)=b_y L_Q(y).",
+    "low_degree_transfer": "For Q with deg Q<3, L_Q is the unique degree-<m polynomial satisfying a_x L_Q(x)=Omega_x Q(x) on X.",
+    "slope_free_condition": "N_y(Q)=0 and D_y(Q)=0 for every direction node y."
+  },
+  "source_artifacts": {
+    "a386_global_component_slope_dichotomy": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json",
+      "sha256": "421bcbf3cec0fafc7e4bfaa290a8cdeb768a2476437d5729c69131637ff6ba26"
+    },
+    "finite_affine_kernel_chart": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json",
+      "sha256": "d3162ac558dd5ad4accc613abbbe35e01bc8c832b3d0916e260fb91ba6fc32ad"
+    },
+    "projective_split_locator_gate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-projective-split-locator-gate/f17_32_n512_k256_m3_projective_split_locator_gate.json",
+      "sha256": "c596c4408b77037de13978bba8dbbc21dd444e2119d2301d593d8421ce7693ff"
+    },
+    "rank6_boundary_low_degree_transfer": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json",
+      "sha256": "4ff0d90a1e710bca56efd7a68357d2dcc473a8150c9ddcaf1b95a061ec5c2101"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement": 386,
+    "boundary_defect_h": 3,
+    "finite_noncontainment_gate": "H(v)ell != 0",
+    "projective_noncontainment_gate": "H(u)ell != 0",
+    "remaining_unclosed_residual": "nonconstant moving-slope components, plus any independent noncontained vectors at slopes also admitting a slope-free vector",
+    "slope_free_vector_finite_noncontained_contribution": 0,
+    "slope_free_vector_projective_endpoint_contribution": 0
+  },
+  "theorem": {
+    "accounting_scope": "Slope-free low-degree-transfer vectors themselves contribute zero finite or projective support-wise noncontained parameters.  If the same finite slope has another independent vector with H(v)ell!=0, that vector is outside this slope-free filter and must be counted by another branch.",
+    "base_containment": "The vector (Omega_s Q(s))_{s in X union Y} is in the first-t Vandermonde nullspace.  Since the direction terms Omega_y Q(y)=N_y(Q) vanish, the X terms give H(u)L_Q=0.",
+    "direction_containment": "The direction Hankel action is H(v)L_Q = (sum_y b_y L_Q(y)y^a)_{0<=a<t}.  Under the slope-free condition all b_y L_Q(y)=D_y(Q) vanish, so H(v)L_Q=0.",
+    "finite_affine_filter": "For every finite slope z, H(u+zv)L_Q=0 and H(v)L_Q=0.  Thus the displayed slope-free vector is in the contained branch and fails the finite-affine noncontainment gate H(v)ell!=0.",
+    "projective_filter": "At projective infinity the same vector has H(v)L_Q=0 and H(u)L_Q=0, so it also fails the projective noncontainment gate H(u)ell!=0."
+  }
+}
