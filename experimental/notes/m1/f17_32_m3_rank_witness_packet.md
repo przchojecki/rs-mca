@@ -55,6 +55,9 @@ experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/
 experimental/data/certificates/hankel-f17-32-m3-one-spike-projective-witness/
   f17_32_n512_k256_m3_one_spike_projective_witness.json
 
+experimental/data/certificates/hankel-f17-32-m3-one-spike-uniform/
+  f17_32_n512_k256_m3_one_spike_uniform.json
+
 experimental/data/certificates/hankel-f17-32-m3-one-spike-m4-budget/
   f17_32_n512_k256_m3_one_spike_m4_budget.json
 
@@ -449,6 +452,13 @@ projective sampler:    |F_17^32| + 1.
 The resulting finite upper bound is `0 <= 6`, and the projective contribution
 is exact with `1 = 1 <= 6`.
 
+The support-uniform one-spike theorem removes the remaining artificial choices
+from this example.  For any base support `X` of size `j+1`, any spike outside
+`X`, and any nonzero weights, the same Vandermonde rank proof gives an empty
+finite canonical table; the same split-locator construction gives exact
+projective contribution `1`.  Thus the prefix one-spike packets are concrete
+checker replays of a larger support-and-weight uniform family.
+
 The subtraction sidecar verifies that every zero-`u` source input, including
 the contiguous-gcd input, has `u_m=0` for all
 stored syndrome coordinates.  Since `Syn(f+Zg)=u+Zv`, the unique raw root
@@ -559,6 +569,9 @@ python3 experimental/scripts/verify_f17_32_m3_one_spike_canonical_empty.py \
 
 python3 experimental/scripts/verify_f17_32_m3_one_spike_projective_witness.py \
   --check experimental/data/certificates/hankel-f17-32-m3-one-spike-projective-witness/f17_32_n512_k256_m3_one_spike_projective_witness.json
+
+python3 experimental/scripts/verify_f17_32_m3_one_spike_uniform.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-one-spike-uniform/f17_32_n512_k256_m3_one_spike_uniform.json
 
 python3 experimental/scripts/verify_f17_32_m3_one_spike_m4_budget.py \
   --check experimental/data/certificates/hankel-f17-32-m3-one-spike-m4-budget/f17_32_n512_k256_m3_one_spike_m4_budget.json

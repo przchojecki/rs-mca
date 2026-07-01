@@ -1,0 +1,1274 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "base_plus_spike_support_size": 129,
+      "base_support_size": 128,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 128,
+        "z_zero_rank": 128
+      },
+      "j": 127,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 1713772288404303425022635280678975163181185065872764748752844309372567072058611778898784954613638190967442881131087743755921920,
+      "t": 129,
+      "weight_choice_count_formula": "(q_line-1)^129"
+    },
+    {
+      "A": 386,
+      "base_plus_spike_support_size": 128,
+      "base_support_size": 127,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 127,
+        "z_zero_rank": 127
+      },
+      "j": 126,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 571257429468101141674211760226325054393728355290921582917614769790855690686203926299594984871212730322480960377029247918640640,
+      "t": 130,
+      "weight_choice_count_formula": "(q_line-1)^128"
+    },
+    {
+      "A": 387,
+      "base_plus_spike_support_size": 127,
+      "base_support_size": 126,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 126,
+        "z_zero_rank": 126
+      },
+      "j": 125,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 188440762447919077902921801425307225735074028888174132546849547437503046018565970493632631373101342210272940176318738923811328,
+      "t": 131,
+      "weight_choice_count_formula": "(q_line-1)^127"
+    },
+    {
+      "A": 388,
+      "base_plus_spike_support_size": 126,
+      "base_support_size": 125,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 125,
+        "z_zero_rank": 125
+      },
+      "j": 124,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 61511751472636797450176546579245363840982714093030934458298038800842963208132933373569200914535671291436244720767256747150848,
+      "t": 132,
+      "weight_choice_count_formula": "(q_line-1)^126"
+    },
+    {
+      "A": 389,
+      "base_plus_spike_support_size": 125,
+      "base_support_size": 124,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 124,
+        "z_zero_rank": 124
+      },
+      "j": 123,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 19868136780567441036878729515260130439593899900849785031750012532572016540094616722729070062834519150980699199214230215488000,
+      "t": 133,
+      "weight_choice_count_formula": "(q_line-1)^125"
+    },
+    {
+      "A": 390,
+      "base_plus_spike_support_size": 124,
+      "base_support_size": 123,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 123,
+        "z_zero_rank": 123
+      },
+      "j": 122,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 6349610723686501774672583659516124161107328834292199340043818438244665079824052767057744040699691687426821393563310687424000,
+      "t": 134,
+      "weight_choice_count_formula": "(q_line-1)^124"
+    },
+    {
+      "A": 391,
+      "base_plus_spike_support_size": 123,
+      "base_support_size": 122,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 122,
+        "z_zero_rank": 122
+      },
+      "j": 121,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 2007717529597531409472307943754455711609772356344320099808199660421834973826114371074813668396046471859894682283514690368000,
+      "t": 135,
+      "weight_choice_count_formula": "(q_line-1)^123"
+    },
+    {
+      "A": 392,
+      "base_plus_spike_support_size": 122,
+      "base_support_size": 121,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 121,
+        "z_zero_rank": 121
+      },
+      "j": 120,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 628055227207432902450311715738573325170236480702582185068206047619138120017399880182377609087994024530531157022022544166400,
+      "t": 136,
+      "weight_choice_count_formula": "(q_line-1)^122"
+    },
+    {
+      "A": 393,
+      "base_plus_spike_support_size": 121,
+      "base_support_size": 120,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 120,
+        "z_zero_rank": 120
+      },
+      "j": 119,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 194359801770075143725032525842371796280303361035837453691183968700551694429937047319866216623138815775432915600165544358400,
+      "t": 137,
+      "weight_choice_count_formula": "(q_line-1)^121"
+    },
+    {
+      "A": 394,
+      "base_plus_spike_support_size": 120,
+      "base_support_size": 119,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 119,
+        "z_zero_rank": 119
+      },
+      "j": 118,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 59497898501043411344397711992562794779684702357909424599342031234862763601001136934652923456062902788397831306173125824000,
+      "t": 138,
+      "weight_choice_count_formula": "(q_line-1)^120"
+    },
+    {
+      "A": 395,
+      "base_plus_spike_support_size": 119,
+      "base_support_size": 118,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 118,
+        "z_zero_rank": 118
+      },
+      "j": 117,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 18015903108458437531764192689859981116494858983692675642039953478240887706155560547642997178807850971550488359884483392000,
+      "t": 139,
+      "weight_choice_count_formula": "(q_line-1)^119"
+    },
+    {
+      "A": 396,
+      "base_plus_spike_support_size": 118,
+      "base_support_size": 117,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 117,
+        "z_zero_rank": 117
+      },
+      "j": 116,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 5395625804056080276010595780211872517122825786994253111067803325970621191183645037111354485023671103154714787985708224000,
+      "t": 140,
+      "weight_choice_count_formula": "(q_line-1)^118"
+    },
+    {
+      "A": 397,
+      "base_plus_spike_support_size": 117,
+      "base_support_size": 116,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 116,
+        "z_zero_rank": 116
+      },
+      "j": 115,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 1598198022973573145046176471607060973426254726780576237961855668705221973084775871751970822146251947010383873909690790400,
+      "t": 141,
+      "weight_choice_count_formula": "(q_line-1)^117"
+    },
+    {
+      "A": 398,
+      "base_plus_spike_support_size": 116,
+      "base_support_size": 115,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 115,
+        "z_zero_rank": 115
+      },
+      "j": 114,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 468159016830642638447869875521260285145064515925623342433270852449004416358166669503102564063043499629304367104858918400,
+      "t": 142,
+      "weight_choice_count_formula": "(q_line-1)^116"
+    },
+    {
+      "A": 399,
+      "base_plus_spike_support_size": 115,
+      "base_support_size": 114,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 114,
+        "z_zero_rank": 114
+      },
+      "j": 113,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 135612813439606809625957268727820989399703827031351849823239667585983647055892108294349609237405547751561718430878528000,
+      "t": 143,
+      "weight_choice_count_formula": "(q_line-1)^115"
+    },
+    {
+      "A": 400,
+      "base_plus_spike_support_size": 114,
+      "base_support_size": 113,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 113,
+        "z_zero_rank": 113
+      },
+      "j": 112,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 38843871186219035923012886017516564802930241913502791155400306795985265739627387802904159429809629255472452012864704000,
+      "t": 144,
+      "weight_choice_count_formula": "(q_line-1)^114"
+    },
+    {
+      "A": 401,
+      "base_plus_spike_support_size": 113,
+      "base_support_size": 112,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 112,
+        "z_zero_rank": 112
+      },
+      "j": 111,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 11000895849731205662407158195437022112108063499312820552782543027434423630521039653454060189394707032251596685347648000,
+      "t": 145,
+      "weight_choice_count_formula": "(q_line-1)^113"
+    },
+    {
+      "A": 402,
+      "base_plus_spike_support_size": 112,
+      "base_support_size": 111,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 111,
+        "z_zero_rank": 111
+      },
+      "j": 110,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 3080250837924737585474004294722366191390257779807589754779112047681638616545891102967136853030517969030447071897341440,
+      "t": 146,
+      "weight_choice_count_formula": "(q_line-1)^112"
+    },
+    {
+      "A": 403,
+      "base_plus_spike_support_size": 111,
+      "base_support_size": 110,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 110,
+        "z_zero_rank": 110
+      },
+      "j": 109,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 852638012492882473784574754898211090384834447777163248829130766315865053457840180621825911936128415367530236859363840,
+      "t": 147,
+      "weight_choice_count_formula": "(q_line-1)^111"
+    },
+    {
+      "A": 404,
+      "base_plus_spike_support_size": 110,
+      "base_support_size": 109,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 109,
+        "z_zero_rank": 109
+      },
+      "j": 108,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 233308908891087244070406027459709502344108928496238699928369115161057601692443830518410075405408272861762005110771200,
+      "t": 148,
+      "weight_choice_count_formula": "(q_line-1)^110"
+    },
+    {
+      "A": 405,
+      "base_plus_spike_support_size": 109,
+      "base_support_size": 108,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 108,
+        "z_zero_rank": 108
+      },
+      "j": 107,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 63103402156646425815568875913420187978927725077146447375166832636613594502422773018627042727517374049459202374873600,
+      "t": 149,
+      "weight_choice_count_formula": "(q_line-1)^109"
+    },
+    {
+      "A": 406,
+      "base_plus_spike_support_size": 108,
+      "base_support_size": 107,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 107,
+        "z_zero_rank": 107
+      },
+      "j": 106,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 16869226319103499970498610392696485895356916604781723555737668130579871797677374965375546075672961379558400634867200,
+      "t": 150,
+      "weight_choice_count_formula": "(q_line-1)^108"
+    },
+    {
+      "A": 407,
+      "base_plus_spike_support_size": 107,
+      "base_support_size": 106,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 106,
+        "z_zero_rank": 106
+      },
+      "j": 105,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 4456807941096480239119385955601293804452321177065788692503532074005052549015997830358477605177794734846293501063680,
+      "t": 151,
+      "weight_choice_count_formula": "(q_line-1)^107"
+    },
+    {
+      "A": 408,
+      "base_plus_spike_support_size": 106,
+      "base_support_size": 105,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 105,
+        "z_zero_rank": 105
+      },
+      "j": 104,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 1163600102847849520558263328309697397221541982189590151244764531636787118708610270980292182632626211560854953479680,
+      "t": 152,
+      "weight_choice_count_formula": "(q_line-1)^106"
+    },
+    {
+      "A": 409,
+      "base_plus_spike_support_size": 105,
+      "base_support_size": 104,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 104,
+        "z_zero_rank": 104
+      },
+      "j": 103,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 300191672724875183436407001160978444000643508918690333859214436908753433573474394233244911981390054579581744755200,
+      "t": 153,
+      "weight_choice_count_formula": "(q_line-1)^105"
+    },
+    {
+      "A": 410,
+      "base_plus_spike_support_size": 104,
+      "base_support_size": 103,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 103,
+        "z_zero_rank": 103
+      },
+      "j": 102,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 76519445988693674209280215982210191608007168940058320395486032937525385028532688726121252073687660971265934937600,
+      "t": 154,
+      "weight_choice_count_formula": "(q_line-1)^104"
+    },
+    {
+      "A": 411,
+      "base_plus_spike_support_size": 103,
+      "base_support_size": 102,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 102,
+        "z_zero_rank": 102
+      },
+      "j": 101,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 19270178329671023089378636298698410111551927630381435209621176998936710655107254129072100155476354718925162099200,
+      "t": 155,
+      "weight_choice_count_formula": "(q_line-1)^103"
+    },
+    {
+      "A": 412,
+      "base_plus_spike_support_size": 102,
+      "base_support_size": 101,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 101,
+        "z_zero_rank": 101
+      },
+      "j": 100,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 4794044364942547207601514396261555686288528337314405832637463546076937772733999807720376136240458978854552522240,
+      "t": 156,
+      "weight_choice_count_formula": "(q_line-1)^102"
+    },
+    {
+      "A": 413,
+      "base_plus_spike_support_size": 101,
+      "base_support_size": 100,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 100,
+        "z_zero_rank": 100
+      },
+      "j": 99,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 1178098493574689216466552199567924876679176063427627710696797611079734099868939125498194622287801354900997091840,
+      "t": 157,
+      "weight_choice_count_formula": "(q_line-1)^101"
+    },
+    {
+      "A": 414,
+      "base_plus_spike_support_size": 100,
+      "base_support_size": 99,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 99,
+        "z_zero_rank": 99
+      },
+      "j": 98,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 285946236304536217588968980477651669096887394035831968615727575504789830065276486771406461720340134684708032000,
+      "t": 158,
+      "weight_choice_count_formula": "(q_line-1)^100"
+    },
+    {
+      "A": 415,
+      "base_plus_spike_support_size": 99,
+      "base_support_size": 98,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 98,
+        "z_zero_rank": 98
+      },
+      "j": 97,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 68544013060893669591544622438952821405791409224085629280767627058048893889739399976680967821582744149603136000,
+      "t": 159,
+      "weight_choice_count_formula": "(q_line-1)^99"
+    },
+    {
+      "A": 416,
+      "base_plus_spike_support_size": 98,
+      "base_support_size": 97,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 97,
+        "z_zero_rank": 97
+      },
+      "j": 96,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 16225394396056955603795586954148252410066565468503361520568182250456018360373094680470374025398813832514752000,
+      "t": 160,
+      "weight_choice_count_formula": "(q_line-1)^98"
+    },
+    {
+      "A": 417,
+      "base_plus_spike_support_size": 97,
+      "base_support_size": 96,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 96,
+        "z_zero_rank": 96
+      },
+      "j": 95,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 3792441581728975165224510685668386707895076748059821849385816092275262122786000443387051278225746847599833600,
+      "t": 161,
+      "weight_choice_count_formula": "(q_line-1)^97"
+    },
+    {
+      "A": 418,
+      "base_plus_spike_support_size": 96,
+      "base_support_size": 95,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 95,
+        "z_zero_rank": 95
+      },
+      "j": 94,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 875178826552840422744117850538858471052710018783035811396726790525060489873692410012396448821326195599961600,
+      "t": 162,
+      "weight_choice_count_formula": "(q_line-1)^96"
+    },
+    {
+      "A": 419,
+      "base_plus_spike_support_size": 95,
+      "base_support_size": 94,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 94,
+        "z_zero_rank": 94
+      },
+      "j": 93,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 199381267440095539953695913192305886690665352000931419862563657313862701529977887173087919995266159669056000,
+      "t": 163,
+      "weight_choice_count_formula": "(q_line-1)^95"
+    },
+    {
+      "A": 420,
+      "base_plus_spike_support_size": 94,
+      "base_support_size": 93,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 93,
+        "z_zero_rank": 93
+      },
+      "j": 92,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 44836935740117178841261760382958740069192686813606587241820535376801660152674453096340345644868466528448000,
+      "t": 164,
+      "weight_choice_count_formula": "(q_line-1)^94"
+    },
+    {
+      "A": 421,
+      "base_plus_spike_support_size": 93,
+      "base_support_size": 92,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 92,
+        "z_zero_rank": 92
+      },
+      "j": 91,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 9951873565228872630638051827243825361419856500394779507134390907022802850116286725440697243371759873856000,
+      "t": 165,
+      "weight_choice_count_formula": "(q_line-1)^93"
+    },
+    {
+      "A": 422,
+      "base_plus_spike_support_size": 92,
+      "base_support_size": 91,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 91,
+        "z_zero_rank": 91
+      },
+      "j": 90,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 2179934209526324480996906590729599841072920947705523130134199912966899671930234235096533681881433115225600,
+      "t": 166,
+      "weight_choice_count_formula": "(q_line-1)^92"
+    },
+    {
+      "A": 423,
+      "base_plus_spike_support_size": 91,
+      "base_support_size": 90,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 90,
+        "z_zero_rank": 90
+      },
+      "j": 89,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 471197180681462061213108075430863623604835644278390985373425634394270475405347542503051223399549675737600,
+      "t": 167,
+      "weight_choice_count_formula": "(q_line-1)^91"
+    },
+    {
+      "A": 424,
+      "base_plus_spike_support_size": 90,
+      "base_support_size": 89,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 89,
+        "z_zero_rank": 89
+      },
+      "j": 88,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 100492289718795226325070442627435369963116606599656845221820632927688016081709191529086753805591163072000,
+      "t": 168,
+      "weight_choice_count_formula": "(q_line-1)^90"
+    },
+    {
+      "A": 425,
+      "base_plus_spike_support_size": 89,
+      "base_support_size": 88,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 88,
+        "z_zero_rank": 88
+      },
+      "j": 87,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 21143767813174409321350518661564415902405148906310778309082828204643577851707134860729837089119653696000,
+      "t": 169,
+      "weight_choice_count_formula": "(q_line-1)^89"
+    },
+    {
+      "A": 426,
+      "base_plus_spike_support_size": 88,
+      "base_support_size": 87,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 87,
+        "z_zero_rank": 87
+      },
+      "j": 86,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "direction_rank": 1,
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_witness": "choose the spike and all but two base nodes as locator roots"
+      },
+      "support_choice_count": 4388329168772047217638786892022803300499181848479595498111530382095836912618461952226947320383324352000,
+      "t": 170,
+      "weight_choice_count_formula": "(q_line-1)^88"
+    }
+  ],
+  "checks": [
+    "row descriptor, rank-drop bridge, and projective-kernel schemas match",
+    "prefix one-spike certificates are special cases of the uniform theorem",
+    "domain has 512 distinct points",
+    "for every A in 385..426, t>=j+2",
+    "finite rank is maximal for z=0 and z!=0",
+    "projective split-locator witness exists for every support choice",
+    "finite and projective numerator bounds are within the 2^-128 budgets"
+  ],
+  "family": {
+    "base_support": "any subset X of the descriptor domain with |X|=j+1",
+    "properly_contains_prefix_case": true,
+    "spike": "any y in D \\ X",
+    "syndrome": "u_m=sum_{x in X} a_x x^m, v_m=b_y y^m",
+    "weights": "any nonzero base weights a_x and nonzero spike weight b_y"
+  },
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512,
+    "full_domain_distinct": true
+  },
+  "nonclaims": [
+    "does not classify two-spike or higher-rank update directions",
+    "does not classify arbitrary non-proportional syndrome pencils",
+    "does not prove a threshold-pinning lower bound",
+    "does not audit quotient-image overlap for unrelated families"
+  ],
+  "object": "support-and-weight uniform one-spike M3 theorem",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_affine_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-one-spike-uniform-v1",
+  "source_artifacts": {
+    "prefix_one_spike_canonical_empty_special_case": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-one-spike-canonical-empty/f17_32_n512_k256_m3_one_spike_canonical_empty.json",
+      "sha256": "975ca21e19bd1656ae9bab79f9d8c903527ad3b4c3ba731fb9d21ae6f288478f"
+    },
+    "prefix_one_spike_projective_witness_special_case": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-one-spike-projective-witness/f17_32_n512_k256_m3_one_spike_projective_witness.json",
+      "sha256": "ac839a4bbf4a455b3a0fc6a6a5692ef634029bb6d69e1f080ffdb787409c9e28"
+    },
+    "projective_infinity_kernel_chart": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json",
+      "sha256": "35f42c9da014b138fb12f02136a215f41cd52ef5236423c4b9240ddbd21e736c"
+    },
+    "regular_root_rank_drop_bridge": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/f17_32_n512_k256_m3_m5_regular_root_rank_drop.json",
+      "sha256": "55ee410863252e4c7633c110c458058135ccccaa5963a478e51cc18805d7fd12"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED",
+  "summary": {
+    "agreement_count": 42,
+    "finite_budget": 6,
+    "finite_canonical_root_count_per_agreement": 0,
+    "finite_safe": true,
+    "projective_budget": 6,
+    "projective_endpoint_exact_contribution_per_agreement": 1,
+    "projective_safe": true
+  },
+  "theorem": {
+    "budget": "The finite numerator is 0 and the projective numerator is exactly 1, so this whole family is safe for the printed 2^-128 budgets.",
+    "canonical_finite_roots": "The rank-drop bridge then excludes finite v10 canonical roots, even after scalar extension; the canonical finite root table is empty.",
+    "finite_z_nonzero": "At z!=0, H(u+zv)=V_t(X union {y}) diag(a_x, z b_y) V_{j+1}(X union {y})^T has rank j+1 because t>=j+2, the left Vandermonde is injective, and the right Vandermonde has rank j+1.",
+    "finite_z_zero": "At z=0, H(u)=V_t(X) diag(a_x) V_{j+1}(X)^T has rank j+1 because X is distinct, all a_x are nonzero, and t>=j+1.",
+    "projective_witness": "At infinity, choose a split locator whose roots are y and all but two base nodes.  Then H(v)ell=0, while H(u)ell is nonzero by a 2x2 Vandermonde argument on the two surviving base nodes."
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42
+  }
+}

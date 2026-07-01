@@ -612,6 +612,19 @@ this locator, while the base syndrome survives on the two remaining base nodes.
 Thus the projective endpoint `[0:1]` is actually present, not merely bounded by
 dimension degree.
 
+The support-and-weight uniform one-spike theorem is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-one-spike-uniform/
+  f17_32_n512_k256_m3_one_spike_uniform.json
+```
+
+It removes the prefix and unit-weight restrictions.  For any descriptor-domain
+support `X` of size `j+1`, any spike `y` outside `X`, and any nonzero weights,
+the finite canonical root table is empty and the projective endpoint is exactly
+present.  This is the reusable one-spike result; the prefix packets above are
+special-case replays of it.
+
 The M4 budget companion is:
 
 ```text
@@ -933,6 +946,9 @@ python3 experimental/scripts/verify_f17_32_m3_one_spike_canonical_empty.py \
 
 python3 experimental/scripts/verify_f17_32_m3_one_spike_projective_witness.py \
   --check experimental/data/certificates/hankel-f17-32-m3-one-spike-projective-witness/f17_32_n512_k256_m3_one_spike_projective_witness.json
+
+python3 experimental/scripts/verify_f17_32_m3_one_spike_uniform.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-one-spike-uniform/f17_32_n512_k256_m3_one_spike_uniform.json
 
 python3 experimental/scripts/verify_f17_32_m3_one_spike_m4_budget.py \
   --check experimental/data/certificates/hankel-f17-32-m3-one-spike-m4-budget/f17_32_n512_k256_m3_one_spike_m4_budget.json

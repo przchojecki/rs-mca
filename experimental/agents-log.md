@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 support-uniform one-spike theorem
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_one_spike_uniform.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-one-spike-uniform/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED.
+- **What is being added:** A support-and-weight uniform one-spike theorem for
+  every `385 <= A <= 426`: arbitrary base support of size `j+1`, arbitrary
+  spike outside it, and arbitrary nonzero weights have empty finite canonical
+  root table and exact projective endpoint contribution `1`.
+- **How it is useful:** It upgrades the one-spike chain from a prefix synthetic
+  example to a reusable family theorem in the M3 regular-window atlas.
+- **What to do next:** Look for the next family where selected-minor root
+  evidence can be promoted to a canonical-gcd theorem, or move to the first
+  genuine singular/pivot chart.
+
 ### 2026-07-01 - M3 one-spike projective witness
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
