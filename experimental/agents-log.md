@@ -52,6 +52,29 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Pair this endpoint theorem with finite-root
   table/refinement results for broader rank-6 Hankel families.
 
+### 2026-07-01 - M3 separated rank-6 tall closure
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_separated_six_spike_closure.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-separated-six-spike-closure/`;
+  `experimental/notes/m1/hankel_rank6_separated_six_spike_closure.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A support- and weight-uniform closure for separated
+  six-spike rank-6 Hankel families on `388 <= A <= 426`: every finite slope has
+  full column rank by weighted Vandermonde factorization, and the only
+  projective contribution is the endpoint `[0:1]`.
+- **How it is useful:** It pairs the endpoint-uniform theorem with a finite-root
+  emptiness theorem in the tall range, closing a robust rank-6 subfamily without
+  relying on prefix supports or unit weights.
+- **What to do next:** Attack the boundary agreements `A=385,386,387` for the
+  same support/weight-uniform family, or move to overlapping-support rank-6
+  cancellation strata.
+
 ### 2026-07-01 - M3 rank-6 boundary dual gcd
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

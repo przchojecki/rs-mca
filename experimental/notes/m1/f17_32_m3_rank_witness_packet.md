@@ -118,6 +118,9 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-projective-witness/
 experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/
   f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json
 
+experimental/data/certificates/hankel-f17-32-m3-rank6-separated-six-spike-closure/
+  f17_32_n512_k256_m3_rank6_separated_six_spike_closure.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
   f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 
@@ -472,6 +475,12 @@ the resulting split locator kills the direction and is noncontained by a
 weighted `7 x 7` Vandermonde argument.  This still says nothing about finite
 affine root tables.
 
+The separated six-spike closure companion adds the finite-root table for this
+same support/weight-uniform family in the tall subwindow `388 <= A <= 426`.
+For `z=0`, the support has size `j+1`; for `z!=0`, the support has size
+`j+7`, and `t>=j+7`.  Weighted Vandermonde factorization gives full column
+rank at every finite slope, so only the projective endpoint `[0:1]` remains.
+
 The affine-pivot compression companion gives the finite-root route a concrete
 Hankel-chart target.  If a row-set chart has finite base slope `z0` with
 `M_R(z0)` invertible and `H_R(v)=P_R Q_R` has rank at most `r`, then
@@ -740,6 +749,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_projective_witness.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_projective_endpoint_uniform.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_separated_six_spike_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-separated-six-spike-closure/f17_32_n512_k256_m3_rank6_separated_six_spike_closure.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json

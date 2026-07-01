@@ -1,0 +1,1189 @@
+{
+  "agreement_records": [
+    {
+      "A": 388,
+      "base_support_size": 125,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 125,
+        "z_zero_rank": 125
+      },
+      "finite_nonzero_support_size": 131,
+      "j": 124,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 713291407141926192080993699796451605310334607801917630352924497726588247877298718806559508689490949792223739744812854196291290073808896,
+      "t": 132,
+      "t_minus_nonzero_support_size": 1,
+      "weight_choice_count_formula": "(q_line-1)^131"
+    },
+    {
+      "A": 389,
+      "base_support_size": 124,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 124,
+        "z_zero_rank": 124
+      },
+      "finite_nonzero_support_size": 130,
+      "j": 123,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 233406874064766424110272807525016886554428863809528020403443880146134897865608219504764237136613530691172689707072269043289034710016000,
+      "t": 133,
+      "t_minus_nonzero_support_size": 3,
+      "weight_choice_count_formula": "(q_line-1)^130"
+    },
+    {
+      "A": 390,
+      "base_support_size": 123,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 123,
+        "z_zero_rank": 123
+      },
+      "finite_nonzero_support_size": 129,
+      "j": 122,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 75567760793814716944318089120371002435376446768620037937407418115197721502181251223474583302715607847794813377746635408271123509248000,
+      "t": 134,
+      "t_minus_nonzero_support_size": 5,
+      "weight_choice_count_formula": "(q_line-1)^129"
+    },
+    {
+      "A": 391,
+      "base_support_size": 122,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 122,
+        "z_zero_rank": 122
+      },
+      "finite_nonzero_support_size": 128,
+      "j": 121,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 24205298379268776521226887921368836717581518105573605901825813615024270168667432032519202464151093138746776160059469154211844249056000,
+      "t": 135,
+      "t_minus_nonzero_support_size": 7,
+      "weight_choice_count_formula": "(q_line-1)^128"
+    },
+    {
+      "A": 392,
+      "base_support_size": 121,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 121,
+        "z_zero_rank": 121
+      },
+      "finite_nonzero_support_size": 127,
+      "j": 120,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 7670250395508547365168000847810384622194662880207740052007140937747950546954355085629461560068658085524952445525338277438558437363200,
+      "t": 136,
+      "t_minus_nonzero_support_size": 9,
+      "weight_choice_count_formula": "(q_line-1)^127"
+    },
+    {
+      "A": 393,
+      "base_support_size": 120,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 120,
+        "z_zero_rank": 120
+      },
+      "finite_nonzero_support_size": 126,
+      "j": 119,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 2404404916726772619651109074054550619910762198199835612157678894993528539330251205598872665202869503493573175928927283860273499795200,
+      "t": 137,
+      "t_minus_nonzero_support_size": 11,
+      "weight_choice_count_formula": "(q_line-1)^126"
+    },
+    {
+      "A": 394,
+      "base_support_size": 119,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 119,
+        "z_zero_rank": 119
+      },
+      "finite_nonzero_support_size": 125,
+      "j": 118,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 745551912163340347178638472575054455786282852154987786715559347284815050955116652898875245024145582478627341373310785693108061952000,
+      "t": 138,
+      "t_minus_nonzero_support_size": 13,
+      "weight_choice_count_formula": "(q_line-1)^125"
+    },
+    {
+      "A": 395,
+      "base_support_size": 118,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 118,
+        "z_zero_rank": 118
+      },
+      "finite_nonzero_support_size": 124,
+      "j": 117,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 228661540070715209572829840815545052161256854140318419121524645172404616143450726017954005561529186378754261916041194581133658176000,
+      "t": 139,
+      "t_minus_nonzero_support_size": 15,
+      "weight_choice_count_formula": "(q_line-1)^124"
+    },
+    {
+      "A": 396,
+      "base_support_size": 117,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 117,
+        "z_zero_rank": 117
+      },
+      "finite_nonzero_support_size": 123,
+      "j": 116,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 69362626551013868199470234489034231760998223106831808371053748407053328290301248509302243332289059107179956056793987045176790912000,
+      "t": 140,
+      "t_minus_nonzero_support_size": 17,
+      "weight_choice_count_formula": "(q_line-1)^123"
+    },
+    {
+      "A": 397,
+      "base_support_size": 116,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 116,
+        "z_zero_rank": 116
+      },
+      "finite_nonzero_support_size": 122,
+      "j": 115,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 20808787965304160459841070346710269528299466932049542511316124522115998487090374552790672999686717732153986817038196113553037273600,
+      "t": 141,
+      "t_minus_nonzero_support_size": 19,
+      "weight_choice_count_formula": "(q_line-1)^122"
+    },
+    {
+      "A": 398,
+      "base_support_size": 115,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 115,
+        "z_zero_rank": 115
+      },
+      "finite_nonzero_support_size": 121,
+      "j": 114,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 6173451161062103870438783018461358734738460777794749184942891162571498272384868153769099918065624698030338799939720586118036633600,
+      "t": 142,
+      "t_minus_nonzero_support_size": 21,
+      "weight_choice_count_formula": "(q_line-1)^121"
+    },
+    {
+      "A": 399,
+      "base_support_size": 114,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 114,
+        "z_zero_rank": 114
+      },
+      "finite_nonzero_support_size": 120,
+      "j": 113,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 1811088988576892717093010324293510853303374973077541214970491029836026278888417953274098190248843980289512658145581294396872992000,
+      "t": 143,
+      "t_minus_nonzero_support_size": 23,
+      "weight_choice_count_formula": "(q_line-1)^120"
+    },
+    {
+      "A": 400,
+      "base_support_size": 113,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 113,
+        "z_zero_rank": 113
+      },
+      "finite_nonzero_support_size": 119,
+      "j": 112,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 525354057755129185110949559718728339126169839518676077625027932318847317540151772705463597171420391229018939004061749519703616000,
+      "t": 144,
+      "t_minus_nonzero_support_size": 25,
+      "weight_choice_count_formula": "(q_line-1)^119"
+    },
+    {
+      "A": 401,
+      "base_support_size": 112,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 112,
+        "z_zero_rank": 112
+      },
+      "finite_nonzero_support_size": 118,
+      "j": 111,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 150672610472917761212023604690904320612327898136066996882304965360481591071160279989130422539011432002231320069692836791184032000,
+      "t": 145,
+      "t_minus_nonzero_support_size": 27,
+      "weight_choice_count_formula": "(q_line-1)^118"
+    },
+    {
+      "A": 402,
+      "base_support_size": 111,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 111,
+        "z_zero_rank": 111
+      },
+      "finite_nonzero_support_size": 117,
+      "j": 110,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 42722360437890605710750996773117174452103100230986085191944699038921362531569497110842043859162735149999766703305310685095219200,
+      "t": 146,
+      "t_minus_nonzero_support_size": 29,
+      "weight_choice_count_formula": "(q_line-1)^117"
+    },
+    {
+      "A": 403,
+      "base_support_size": 110,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 110,
+        "z_zero_rank": 110
+      },
+      "finite_nonzero_support_size": 116,
+      "j": 109,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 11975207092439033418922627883373753444907687185958220849257226245758260709606601462887542596886524246590843697138609813246387200,
+      "t": 147,
+      "t_minus_nonzero_support_size": 31,
+      "weight_choice_count_formula": "(q_line-1)^116"
+    },
+    {
+      "A": 404,
+      "base_support_size": 109,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 109,
+        "z_zero_rank": 109
+      },
+      "finite_nonzero_support_size": 115,
+      "j": 108,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 3318067456343309007761937196904566445692306273187416356217367473635790121049688062764810291328759866813583895932612290823936000,
+      "t": 148,
+      "t_minus_nonzero_support_size": 33,
+      "weight_choice_count_formula": "(q_line-1)^115"
+    },
+    {
+      "A": 405,
+      "base_support_size": 108,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 108,
+        "z_zero_rank": 108
+      },
+      "finite_nonzero_support_size": 114,
+      "j": 107,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 908716966686986637804148629303009403468495939139267293536917222679148550739738690556191763203102576589649860946368692713088000,
+      "t": 149,
+      "t_minus_nonzero_support_size": 35,
+      "weight_choice_count_formula": "(q_line-1)^114"
+    },
+    {
+      "A": 406,
+      "base_support_size": 107,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 107,
+        "z_zero_rank": 107
+      },
+      "finite_nonzero_support_size": 113,
+      "j": 106,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 245968502261139240307889854548182996427562810594087387724278345988340961102485660601675965979787163588175902211047164944896000,
+      "t": 150,
+      "t_minus_nonzero_support_size": 37,
+      "weight_choice_count_formula": "(q_line-1)^113"
+    },
+    {
+      "A": 407,
+      "base_support_size": 106,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 106,
+        "z_zero_rank": 106
+      },
+      "finite_nonzero_support_size": 112,
+      "j": 105,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 65796574354854746782360536091638951544373051833918376216244457551881207094914914210948320899593066259837053841455116622759680,
+      "t": 151,
+      "t_minus_nonzero_support_size": 39,
+      "weight_choice_count_formula": "(q_line-1)^112"
+    },
+    {
+      "A": 408,
+      "base_support_size": 105,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 105,
+        "z_zero_rank": 105
+      },
+      "finite_nonzero_support_size": 111,
+      "j": 104,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 17392610677343150022269867395794835071579908963579421144443672071070842773219403756510029963483453924046702511706340054894080,
+      "t": 152,
+      "t_minus_nonzero_support_size": 41,
+      "weight_choice_count_formula": "(q_line-1)^111"
+    },
+    {
+      "A": 409,
+      "base_support_size": 104,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 104,
+        "z_zero_rank": 104
+      },
+      "finite_nonzero_support_size": 110,
+      "j": 103,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 4542846072440375005816756409349397220188782191979699552653197929011041022855814414013813796432245427922646178430760462099200,
+      "t": 153,
+      "t_minus_nonzero_support_size": 43,
+      "weight_choice_count_formula": "(q_line-1)^110"
+    },
+    {
+      "A": 410,
+      "base_support_size": 103,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 103,
+        "z_zero_rank": 103
+      },
+      "finite_nonzero_support_size": 109,
+      "j": 102,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 1172347373533000001501098428219199282629363146317341820039534949422204134930532752003564850692192368496166755724067216025600,
+      "t": 154,
+      "t_minus_nonzero_support_size": 45,
+      "weight_choice_count_formula": "(q_line-1)^109"
+    },
+    {
+      "A": 411,
+      "base_support_size": 102,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 102,
+        "z_zero_rank": 102
+      },
+      "finite_nonzero_support_size": 108,
+      "j": 101,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 298890543252225247907458262640043381462436643739322295703148761857641153212487310535562325795286668205705880791036938739200,
+      "t": 155,
+      "t_minus_nonzero_support_size": 47,
+      "weight_choice_count_formula": "(q_line-1)^108"
+    },
+    {
+      "A": 412,
+      "base_support_size": 101,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 101,
+        "z_zero_rank": 101
+      },
+      "finite_nonzero_support_size": 107,
+      "j": 100,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 75276136819078951324841340220455370146095154719533022621533762245628142290552359690437919089183309029585184791816710497280,
+      "t": 156,
+      "t_minus_nonzero_support_size": 49,
+      "weight_choice_count_formula": "(q_line-1)^107"
+    },
+    {
+      "A": 413,
+      "base_support_size": 100,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 100,
+        "z_zero_rank": 100
+      },
+      "finite_nonzero_support_size": 106,
+      "j": 99,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 18726329602775798235982697936615744790038449819391219913238694548789266924497015588015344403959394610808137103382974778880,
+      "t": 157,
+      "t_minus_nonzero_support_size": 51,
+      "weight_choice_count_formula": "(q_line-1)^106"
+    },
+    {
+      "A": 414,
+      "base_support_size": 99,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 99,
+        "z_zero_rank": 99
+      },
+      "finite_nonzero_support_size": 105,
+      "j": 98,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 4601063784465798092379041262067750562663009783634206366889114139751662635011551741527111647164470420345979632280829184000,
+      "t": 158,
+      "t_minus_nonzero_support_size": 53,
+      "weight_choice_count_formula": "(q_line-1)^105"
+    },
+    {
+      "A": 415,
+      "base_support_size": 98,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 98,
+        "z_zero_rank": 98
+      },
+      "finite_nonzero_support_size": 104,
+      "j": 97,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 1116434594760083360650796776825263004175583256323005956671623283910329904083685349047019737914908263760421528421083552000,
+      "t": 159,
+      "t_minus_nonzero_support_size": 55,
+      "weight_choice_count_formula": "(q_line-1)^104"
+    },
+    {
+      "A": 416,
+      "base_support_size": 97,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 97,
+        "z_zero_rank": 97
+      },
+      "finite_nonzero_support_size": 103,
+      "j": 96,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 267507555712685010620484313273534900756007724008935412601024649934504475795112870920801795392814205008609559377178944000,
+      "t": 160,
+      "t_minus_nonzero_support_size": 57,
+      "weight_choice_count_formula": "(q_line-1)^103"
+    },
+    {
+      "A": 417,
+      "base_support_size": 96,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 96,
+        "z_zero_rank": 96
+      },
+      "finite_nonzero_support_size": 102,
+      "j": 95,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 63288372936903526902895069237885086276421339582601792737315587911333985736892557266628717446592628989841773803869164800,
+      "t": 161,
+      "t_minus_nonzero_support_size": 59,
+      "weight_choice_count_formula": "(q_line-1)^102"
+    },
+    {
+      "A": 418,
+      "base_support_size": 95,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 95,
+        "z_zero_rank": 95
+      },
+      "finite_nonzero_support_size": 101,
+      "j": 94,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 14782685649495714313084979676002355918580166909804798303606560680019617106427458631621306264897548377189319428640972800,
+      "t": 162,
+      "t_minus_nonzero_support_size": 61,
+      "weight_choice_count_formula": "(q_line-1)^101"
+    },
+    {
+      "A": 419,
+      "base_support_size": 94,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 94,
+        "z_zero_rank": 94
+      },
+      "finite_nonzero_support_size": 100,
+      "j": 93,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 3408628972577895290638526867039378185109504505901591841851027341266659284249049927194233240692395863672294528448768000,
+      "t": 163,
+      "t_minus_nonzero_support_size": 63,
+      "weight_choice_count_formula": "(q_line-1)^100"
+    },
+    {
+      "A": 420,
+      "base_support_size": 93,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 93,
+        "z_zero_rank": 93
+      },
+      "finite_nonzero_support_size": 99,
+      "j": 92,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 775813858165428952348720400730512226150831534030870782406771356123646423049420564542997396186647000448415703811584000,
+      "t": 164,
+      "t_minus_nonzero_support_size": 65,
+      "weight_choice_count_formula": "(q_line-1)^99"
+    },
+    {
+      "A": 421,
+      "base_support_size": 92,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 92,
+        "z_zero_rank": 92
+      },
+      "finite_nonzero_support_size": 98,
+      "j": 91,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 174277026109625344368190814656854195729534619963456480105868927824877095032840851455311009288304760970296281291008000,
+      "t": 165,
+      "t_minus_nonzero_support_size": 67,
+      "weight_choice_count_formula": "(q_line-1)^98"
+    },
+    {
+      "A": 422,
+      "base_support_size": 91,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 91,
+        "z_zero_rank": 91
+      },
+      "finite_nonzero_support_size": 97,
+      "j": 90,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 38634906992977184775598927586579725318354662738886737758409497252743837934991224900936416516925392793415079225958400,
+      "t": 166,
+      "t_minus_nonzero_support_size": 69,
+      "weight_choice_count_formula": "(q_line-1)^97"
+    },
+    {
+      "A": 423,
+      "base_support_size": 90,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 90,
+        "z_zero_rank": 90
+      },
+      "finite_nonzero_support_size": 96,
+      "j": 89,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 8451385904713759169662265409564314913390082474131473884652077524037714548279330447079841113077429673559548580678400,
+      "t": 167,
+      "t_minus_nonzero_support_size": 71,
+      "weight_choice_count_formula": "(q_line-1)^96"
+    },
+    {
+      "A": 424,
+      "base_support_size": 89,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 89,
+        "z_zero_rank": 89
+      },
+      "finite_nonzero_support_size": 95,
+      "j": 88,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 1824040123319516367553006922927549981307212044776577097406923206626844866535107290736656355340452447530837823168000,
+      "t": 168,
+      "t_minus_nonzero_support_size": 73,
+      "weight_choice_count_formula": "(q_line-1)^95"
+    },
+    {
+      "A": 425,
+      "base_support_size": 88,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 88,
+        "z_zero_rank": 88
+      },
+      "finite_nonzero_support_size": 94,
+      "j": 87,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 388372179367074059120137837656822842909908784653386032701474079879878452444077868123355061304546095287666426464000,
+      "t": 169,
+      "t_minus_nonzero_support_size": 75,
+      "weight_choice_count_formula": "(q_line-1)^94"
+    },
+    {
+      "A": 426,
+      "base_support_size": 87,
+      "direction_support_size": 6,
+      "finite_affine": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "z_nonzero_rank": 87,
+        "z_zero_rank": 87
+      },
+      "finite_nonzero_support_size": 93,
+      "j": 86,
+      "projective_infinity": {
+        "comparison_to_budget": "1 <= 6",
+        "endpoint_source": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_total": 1
+      },
+      "support_choice_count": 81567426692846103108764032729833914501365090810257687059020809139449412446488907863616337457756697816980060928000,
+      "t": 170,
+      "t_minus_nonzero_support_size": 77,
+      "weight_choice_count_formula": "(q_line-1)^93"
+    }
+  ],
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "domain has 512 distinct nonzero elements and X^512-1 is separable",
+    "for every A in 388..426, t>=j+7",
+    "weighted Vandermonde factorization gives full column rank at z=0",
+    "weighted Vandermonde factorization gives full column rank at every z!=0",
+    "endpoint-uniform dependency supplies the projective split-locator witness",
+    "projective total 1 is within the projective budget 6"
+  ],
+  "family": {
+    "base_support": "any subset X of H with |X|=j+1",
+    "direction_support": "any subset Y of H\\X with |Y|=6",
+    "finite_pencil": "H(u+zv)=V_t(S_z) diag(w_z) V_{j+1}(S_z)^T",
+    "syndrome": "u_m=sum_{x in X} a_x x^m, v_m=sum_{y in Y} b_y y^m",
+    "weights": "any nonzero base weights a_x and direction weights b_y"
+  },
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512,
+    "full_domain_distinct": true,
+    "x_512_minus_1_squarefree": true
+  },
+  "nonclaims": [
+    "does not cover the boundary agreements A=385,386,387",
+    "does not classify arbitrary rank-6 Hankel pencils",
+    "does not handle overlapping base and direction supports",
+    "does not prove endpoint payment by quotient, tangent, or extension ledgers",
+    "not a worst-case support-wise MCA row bound"
+  ],
+  "object": "M3 rank-6 separated six-spike closure in the tall range",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-separated-six-spike-closure-v1",
+  "source_artifacts": {
+    "m4_projective_budget_split": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/f17_32_n512_k256_m3_m4_projective_budget_split.json",
+      "sha256": "5347a6cee7009d6b5041550ad2ce6f0f273e0bb5cc2cd9e042c2b741fdc1d9b7"
+    },
+    "rank6_projective_endpoint_uniform": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+      "sha256": "f933c4d38476d3056e6284de55e01b7375f8c90239d52aed40548018323454e2"
+    },
+    "regular_root_rank_drop": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/f17_32_n512_k256_m3_m5_regular_root_rank_drop.json",
+      "sha256": "55ee410863252e4c7633c110c458058135ccccaa5963a478e51cc18805d7fd12"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement_count": 39,
+    "direction_rank": 6,
+    "finite_budget": 6,
+    "finite_canonical_root_count_per_agreement": 0,
+    "projective_budget": 6,
+    "projective_endpoint_exact_contribution_per_agreement": 1,
+    "projective_total_per_agreement": 1,
+    "support_weight_uniform_separated_six_spike_closure": true
+  },
+  "theorem": {
+    "finite_root_table": "No finite affine slope can be a canonical regular rank-drop root for this separated support family.",
+    "finite_z_nonzero": "For z!=0, S_z=X union Y has size j+7 and all weights remain nonzero.  In the tall range A>=388, t>=j+7.  Thus V_t(S_z) has full column rank j+7, diag(w_z) is invertible, and V_{j+1}(S_z)^T has full column rank j+1; the product has rank j+1.",
+    "finite_z_zero": "At z=0, S_z=X has size j+1 and t>=j+1, so the Hankel block has full column rank j+1 by the weighted Vandermonde factorization.",
+    "projective_count": "The projective contribution for this family is exactly one slope parameter, [0:1], hence it is within the projective budget 6.",
+    "projective_endpoint": "The endpoint-uniform packet supplies a genuine split-locator witness at [0:1] for the same supports and weights."
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 388,
+    "agreement_count": 39
+  }
+}

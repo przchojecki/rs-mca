@@ -167,6 +167,20 @@ disjoint base support of size `j+1`, any six direction nodes, and any nonzero
 weights, the projective split-locator endpoint `[0:1]` is present.  It does
 not compute finite root tables.
 
+The separated six-spike closure companion
+
+```text
+experimental/notes/m1/hankel_rank6_separated_six_spike_closure.md
+experimental/data/certificates/hankel-f17-32-m3-rank6-separated-six-spike-closure/
+  f17_32_n512_k256_m3_rank6_separated_six_spike_closure.json
+```
+
+adds the finite-root half for the tall subwindow `388 <= A <= 426`: for the
+same disjoint support/weight family, every finite slope has full column rank
+by a weighted Vandermonde factorization on `X union Y`, so the projective total
+is exactly the endpoint `1`.  It does not cover the boundary agreements
+`A=385,386,387`.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 
@@ -665,6 +679,11 @@ The endpoint-uniform companion strengthens only that endpoint half: any
 separated rank-6 support/weight choice admits a split-locator endpoint by
 leaving seven base nodes alive and applying a weighted Vandermonde argument.
 
+The separated six-spike closure companion closes the finite side of that same
+support/weight-uniform family in the tall range `388 <= A <= 426`: since
+`t >= j+7`, every finite pencil block on `X union Y` has full column rank, so
+no finite canonical roots remain and the projective count is exactly `1`.
+
 Replay:
 
 ```sh
@@ -676,6 +695,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_projective_endpoint_uniform.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_separated_six_spike_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-separated-six-spike-closure/f17_32_n512_k256_m3_rank6_separated_six_spike_closure.json
 ```
 
 The affine-pivot compression theorem is:

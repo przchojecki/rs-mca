@@ -102,6 +102,18 @@ base support of size `j+1`, any six direction nodes, and any nonzero weights,
 the split-locator endpoint `[0:1]` is present.  Thus endpoint nonemptiness is
 not a prefix-support artifact.
 
+The separated six-spike closure packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-separated-six-spike-closure/
+  f17_32_n512_k256_m3_rank6_separated_six_spike_closure.json
+```
+
+adds the finite-root half in the tall range `388 <= A <= 426`: for the same
+disjoint support/weight family, `t>=j+7`, so every finite slope has full column
+rank by weighted Vandermonde factorization.  The projective count is exactly
+the single endpoint `[0:1]`.
+
 The rank-node dichotomy packet
 
 ```text
@@ -215,6 +227,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_projective_witness.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_projective_endpoint_uniform.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_separated_six_spike_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-separated-six-spike-closure/f17_32_n512_k256_m3_rank6_separated_six_spike_closure.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json
