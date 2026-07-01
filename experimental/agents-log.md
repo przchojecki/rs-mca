@@ -30,6 +30,36 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Proof-sketch S5+S0: per-rate theorem shapes and object axes
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/proof_sketch/s5_s0_statements_and_object.md`;
+  queue update in `prize_proof_sketch_spine.md`.
+- **Status:** consolidation of verified constants + CONJECTURE-level
+  theorem shapes + audit ledger. No result claimed.
+- **What is being added:** Turn 11. (1) Master per-rate table re-derived
+  and consolidated with the verified ordering list_lo < quot < tau* =
+  list_hi < cap at every rate (the list window's upper end coincides with
+  tau*). (2) The Grand MCA per-rate theorem written as it would be
+  submitted: hypothesis block H1-H6 (exact dyadic rate, generating,
+  conventions, quotient profile, the unproved core) and the conclusion
+  delta* = 1 - rho - c_rho/log2(q_line) with the bracket; what is
+  unconditional today listed (pinned row, qcore unsafe half, cap).
+  (3) Hypothesis pricing: exact rates force 2-power k, making quotient
+  structure MAXIMAL (adversarially richest point); if WP-0.2 finds dither
+  latitude the dyadic quotient-core mechanism dies and roughly half the
+  reserve swings on a rules question (fork F2 — the sketch's single
+  largest sensitivity). Projective-gate +1 edge case demonstrated
+  (q = 3*2^128 - 1). (4) S0 ledger: axes 3/5/7 verified, 6 dictionary
+  done, 1/2/4 open definitional audits, 8/9 new rules lookups; zero-OPEN
+  remains the prize-facing gate.
+- **How it is useful:** Gives the program its submission-shaped target
+  statements with every hypothesis priced, and isolates the one
+  non-mathematical lever (dither) that moves the answer most.
+- **What to do next:** Turn 12: S8/S9 (assembly compiler contract +
+  negative-branch bookkeeping), then the final coherence pass.
+
 ### 2026-07-02 - Proof-sketch S6: the extension lift imports the list threshold
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).

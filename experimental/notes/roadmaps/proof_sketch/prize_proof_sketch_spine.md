@@ -279,9 +279,15 @@ DONE    S6       extension lift
                  tiny (q_gen < 2^128, doubled reserve); classification
                  conjecture (i) B-rational / (ii) pole / (iii) tower;
                  sigma=1 audit as calibration)
-next -> S5+S0    per-rate theorem shapes + hypothesis table (incl.
-                 generating hypothesis, q_gen column, dither) AND the
-                 object-equality axes (S0) — one combined statement node
+DONE    S5+S0    statements + object axes
+                 -> s5_s0_statements_and_object.md (master table verified:
+                 list_lo < quot < tau* = list_hi < cap at every rate;
+                 per-rate theorem shape with hypothesis block H1-H6;
+                 exact-rate rule => 2-power k => quotient structure
+                 MAXIMAL; dither latitude would swing ~half the reserve
+                 (rules question, F2); projective gate +1 edge case
+                 demonstrated; S0 ledger: 3 verified, axes 1/2/4 open
+                 definitional audits, 8/9 rules lookups — zero-OPEN gate)
 next -> S8/S9    assembly + negative-branch bookkeeping
 next -> FINAL    coherence pass over the whole tree, then flag
         S2       Paid(A) as a single computable function (quotient closure)
