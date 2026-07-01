@@ -28,6 +28,7 @@ experimental/data/hankel-regular-minor-inputs/
   f17_32_n512_k256_a426_rank_witness_input.json
   f17_32_n512_k256_a421_426_fixed_prefix92_input.json
   f17_32_n512_k256_a426_contiguous_gcd4_input.json
+  f17_32_n512_k256_a426_one_spike_input.json
 ```
 
 The generated packets are
@@ -44,6 +45,9 @@ experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/
 
 experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-a426/
   f17_32_n512_k256_a426_contiguous_gcd4_packet.json
+
+experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/
+  f17_32_n512_k256_a426_one_spike_packet.json
 
 experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-a426/
   f17_32_n512_k256_a426_contiguous_gcd_formula.json
@@ -388,8 +392,25 @@ this form and the common gcd is `Z^87`.  Hence the exact finite root table is
 numerator `1`, and the top-window packet has root union `{0}` across all six
 exact agreements, again with declared aperiodic numerator `1`.
 
-The subtraction sidecar verifies that every source input, including the
-contiguous-gcd input, has `u_m=0` for all
+The one-spike packet is the first non-proportional selected-root replay in this
+packet family.  At `A=426`, it uses
+
+```text
+u_m = sum_{x in X} x^m,
+v_m = y^m,
+```
+
+where `X` is the first `87` descriptor-domain elements and `y` is the next
+descriptor-domain element.  This pencil is non-proportional: a scalar relation
+`u=c v` would give a nontrivial signed measure on the `88` distinct points
+`X union {y}` whose first `88` moments vanish, contradicting Vandermonde
+invertibility.  The Cauchy-Binet rank-one update formula gives an affine
+prefix determinant `c0+c1 Z` with `c1 != 0`, and the packet records the exact
+split-linear root table with one encoded `F_17^32` root.  Unlike the zero-`u`
+packets, this root is not removed by the zero-slope subtraction sidecar.
+
+The subtraction sidecar verifies that every zero-`u` source input, including
+the contiguous-gcd input, has `u_m=0` for all
 stored syndrome coordinates.  Since `Syn(f+Zg)=u+Zv`, the unique raw root
 `Z=0` is a zero-syndrome common-code-line slope and is paid by the tangent
 ledger.  For these synthetic packets, the residual aperiodic numerator after
@@ -405,7 +426,9 @@ actual received-line values on the pinned row.
 
 These packets prove, for the pinned `F_17^32` arithmetic model and the listed
 synthetic syndrome pencils, that the selected regular prefix minors are not the
-zero polynomial and have the exact finite root set `{0}`.
+zero polynomial and have the stated exact finite root tables.  The zero-`u`
+packets have root set `{0}`; the one-spike packet has one nonzero encoded
+root.
 
 This is stronger than the generic-minor audit in one direction: it is an
 actual finite-field replay through the aperiodic packet checker at both
@@ -478,6 +501,18 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-a426/f17_32_n512_k256_a426_contiguous_gcd4_packet.json
+
+python3 experimental/scripts/emit_f17_32_m3_rank_witness_input.py \
+  --agreement 426 \
+  --one-spike-linear \
+  --check experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_one_spike_input.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_one_spike_input.json \
+  --check experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/f17_32_n512_k256_a426_one_spike_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/f17_32_n512_k256_a426_one_spike_packet.json
 
 python3 experimental/scripts/verify_f17_32_m3_a426_contiguous_gcd_formula.py \
   --check experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-a426/f17_32_n512_k256_a426_contiguous_gcd_formula.json

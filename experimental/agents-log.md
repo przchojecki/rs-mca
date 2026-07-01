@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 one-spike endpoint root table
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_one_spike_input.json`;
+  `experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for this synthetic finite replay.
+- **What is being added:** A non-proportional `F_17^32` one-spike syndrome
+  pencil at `A=426`.  The prefix regular determinant is affine in the slope,
+  and the packet records the exact split-linear root table with one encoded
+  root.
+- **How it is useful:** This is the first concrete non-proportional selected
+  finite root table in the M3 regular-window branch of PR 171.  It exercises
+  the root-table machinery beyond the zero-`u`/proportional packets.
+- **What to do next:** Extend from selected synthetic prefix packets toward
+  broader root-table families, quotient/extension subtraction, or singular
+  pivot packets as directed by `towards-prize.md`.
+
 ### 2026-07-01 - M5 regular-root rank-drop bridge
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

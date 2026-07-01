@@ -563,22 +563,13 @@ It verifies that `g` is non-base-valued at all 512 positions, so finite affine
 slopes for this packet are sampled from `F_17^32` and the denominator is
 `q_line=17^32`.
 
-A reusable non-proportional exact-root template for future packets is recorded
-in
+The extractor has a reusable non-proportional one-spike mode.  For moments
+`u_m=sum_{x in X}x^m` with a one-spike direction `v_m=y^m`, the prefix
+determinant is affine in the slope by Cauchy-Binet.  Thus such directions have
+at most one selected-prefix regular-minor root per exact agreement, with
+explicit coefficients replayed by the packet checker.
 
-```text
-experimental/notes/m1/hankel_one_spike_linear_template.md
-experimental/data/certificates/hankel-one-spike-linear-template/
-  hankel_one_spike_linear_template_certificate.json
-```
-
-It proves that moments `u_m=sum_{x in X}x^m` with a one-spike direction
-`v_m=y^m` give prefix determinants affine in the slope.  Thus such directions
-have at most one regular-minor root per exact agreement, with explicit
-Cauchy-Binet coefficients.  This is a template for non-proportional M3 root
-packets.
-
-The template is now instantiated at the M3 endpoint `A=426` by
+This mode is instantiated at the M3 endpoint `A=426` by
 
 ```text
 experimental/data/hankel-regular-minor-inputs/
@@ -590,9 +581,8 @@ experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/
 
 This packet uses a non-proportional synthetic `F_17^32` syndrome pencil and
 proves a degree-1 prefix regular minor with one explicit root.  The checker
-replays both the declared moments and the Cauchy-Binet coefficients, and the
-directory includes a tampered-coefficient fixture that must fail.  It is still
-not a universal M3 row table or a safe-side MCA bound.
+replays both the declared moments and the Cauchy-Binet coefficients.  It is
+still not a universal M3 row table or a safe-side MCA bound.
 
 A broader low-rank update theorem is recorded in
 
