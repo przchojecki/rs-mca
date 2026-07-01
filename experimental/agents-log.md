@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Paper D v10 milestone integration
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `tex/cs25_cap_v10.tex`;
+  `cs25_cap_v10.pdf`; `scripts/cs25_v10_*.py`;
+  `experimental/data/certificates/cs25-v10-regular-hankel-examples/`;
+  `experimental/notes/audits/paperD_v10_milestone_integration_audit.md`;
+  `towards-prize.md`; `experimental/agents-log.md`.
+- **Status:** AUDIT / VERSION-PROMOTION / PROVED-CERTIFICATE-FRAMEWORK.
+- **What is being added:** Integrated the four v10 milestone folders into Paper
+  D v10: quantitative deep-list floors, heaviest prefix-fiber quotient lower
+  ledgers, exact divisor-block support-union coefficients, gcd/lcm quotient
+  image ledgers, extension-pole simple-pole witnesses, and canonical regular
+  Hankel rank-drop gcd/lcm ledgers.
+- **How it is useful:** This strengthens Paper D's completion program from a
+  v9 chart atlas into scanner-ready lower, quotient, extension, and regular
+  Hankel ledgers.  It also narrows the remaining prize-side work to structural
+  exhaustion, singular buckets, and safe-side extension classification.
+- **What to do next:** Run the regular Hankel checker on the `F_17^32` row in
+  the `385 <= A <= 426` window, combine paid-root subtraction with quotient and
+  tangent ledgers, and build pivot eliminants for any singular buckets.
+
 ### 2026-07-01 - M3 one-spike window v9 projective packet
 
 - **Agent/model:** AllenGrahamHart / Codex.

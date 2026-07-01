@@ -1,0 +1,105 @@
+{
+  "a": 8,
+  "exact_results": [
+    {
+      "A": 8,
+      "gcd_coeffs_low_to_high": [],
+      "gcd_degree": null,
+      "hankel_singular": false,
+      "j": 4,
+      "num_maximal_minors": 0,
+      "num_nonzero_minors": 0,
+      "overdetermined": false,
+      "residual_reason": "underdetermined",
+      "roots": [],
+      "t": 3
+    },
+    {
+      "A": 9,
+      "gcd_coeffs_low_to_high": [
+        100,
+        1
+      ],
+      "gcd_degree": 1,
+      "hankel_singular": false,
+      "j": 3,
+      "num_maximal_minors": 1,
+      "num_nonzero_minors": 1,
+      "overdetermined": true,
+      "residual_reason": null,
+      "roots": [
+        1
+      ],
+      "t": 4
+    },
+    {
+      "A": 10,
+      "gcd_coeffs_low_to_high": [
+        1
+      ],
+      "gcd_degree": 0,
+      "hankel_singular": false,
+      "j": 2,
+      "num_maximal_minors": 10,
+      "num_nonzero_minors": 10,
+      "overdetermined": true,
+      "residual_reason": null,
+      "roots": [],
+      "t": 5
+    },
+    {
+      "A": 11,
+      "gcd_coeffs_low_to_high": [
+        1
+      ],
+      "gcd_degree": 0,
+      "hankel_singular": false,
+      "j": 1,
+      "num_maximal_minors": 15,
+      "num_nonzero_minors": 15,
+      "overdetermined": true,
+      "residual_reason": null,
+      "roots": [],
+      "t": 6
+    },
+    {
+      "A": 12,
+      "gcd_coeffs_low_to_high": [
+        1
+      ],
+      "gcd_degree": 0,
+      "hankel_singular": false,
+      "j": 0,
+      "num_maximal_minors": 7,
+      "num_nonzero_minors": 7,
+      "overdetermined": true,
+      "residual_reason": null,
+      "roots": [],
+      "t": 7
+    }
+  ],
+  "k": 5,
+  "lcm_coeffs_low_to_high": [
+    100,
+    1
+  ],
+  "lcm_degree": 1,
+  "n": 12,
+  "p": 101,
+  "r": 7,
+  "regular_exact_agreements": [
+    9,
+    10,
+    11,
+    12
+  ],
+  "residual_exact_agreements": {
+    "hankel_singular": [],
+    "underdetermined": [
+      8
+    ]
+  },
+  "roots": [
+    1
+  ]
+}

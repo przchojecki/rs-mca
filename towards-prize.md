@@ -1,13 +1,14 @@
-# Towards the Proximity Prize: v9 Execution Plan
+# Towards the Proximity Prize: v10 Execution Plan
 
 Status: working plan / source-of-truth roadmap
 
-Date: 2026-06-30
+Date: 2026-07-01
 
 This document is the current execution plan for turning the RS-MCA repository
 into a serious Proximity Prize submission package.  It replaces the older
-strict264/frontier-search roadmap.  The center of gravity is now Paper D v9:
-the aperiodic Hankel chart atlas and the corresponding proof-packet schema.
+strict264/frontier-search roadmap.  The center of gravity is now Paper D v10:
+the quotient ledgers, extension-pole floor, aperiodic Hankel chart atlas, and
+the corresponding proof-packet schema.
 
 The goal is not to collect more impressive-looking lower bounds.  The goal is
 to determine thresholds.  For a row \(C\), that means proving adjacent
@@ -67,9 +68,20 @@ The no-slack smooth-domain MCA/RCA optimism is dead.  Paper A gives explicit
 obstructions.  Positive statements must include reserve and explicit quotient
 floors.
 
-Paper D v9 is the current Paper D package.  It preserves the v8 universal cap,
-first-grid cap, quotient-support ledger, and quotient-image ledger, and adds
-the aperiodic Hankel chart atlas.
+Paper D v10 is the current Paper D package.  It preserves the v9 universal cap,
+first-grid cap, and aperiodic Hankel chart atlas, then adds four strictly
+stronger proof-ledger upgrades:
+
+```text
+quantitative deep-list floors and heaviest quotient-prefix fibers;
+exact divisor-block support-union coefficients;
+gcd/lcm quotient-image coalescing for finite, projective, and curve parameters;
+canonical maximal-minor gcd/lcm ledgers for regular overdetermined Hankel buckets.
+```
+
+It also adds an extension-pole conversion: large lists over `D subset B` can be
+converted using poles in `F \ B`, giving genuinely extension-valued witness
+lines with a printed numerator.
 
 For the finite row
 \[
@@ -119,7 +131,7 @@ The central unresolved object is:
 with each term explicitly defined, deduplicated, and divided by the correct
 field denominator.
 
-The new v9 atlas is designed to attack \(B_{\rm ap}(a)\), the aperiodic
+The v10 atlas is designed to attack \(B_{\rm ap}(a)\), the aperiodic
 Hankel/residue-line term after tangent and quotient branches have been removed.
 
 ## 3. Strategic Decision
@@ -131,22 +143,22 @@ The best path now is:
 2. stop treating strict264/strict352 as the main frontier;
 3. use strict264/strict352 only as mechanism tests and quotient-floor examples;
 4. make Hankel proof packets the standard format for every new safe-side claim;
-5. prove or refute the aperiodic local limit through the v9 chart atlas.
+5. prove or refute the aperiodic local limit through the v10 chart atlas.
 
 In practice, every useful PR should now answer one of these questions:
 
 ```text
-Does it produce a v9 Hankel proof packet?
-Does it reduce a residual v9 chart to quotient/tangent/extension structure?
+Does it produce a v10 Hankel proof packet?
+Does it reduce a residual v10 chart to quotient/tangent/extension structure?
 Does it prove a reusable theorem needed by such packets?
 Does it audit the exact prize object, denominator, or endpoint convention?
 ```
 
 If the answer is no, it is probably not on the shortest path.
 
-## 4. The v9 Hankel Proof Packet
+## 4. The v10 Hankel Proof Packet
 
-Paper D v9 gives the contributor-facing atlas.  For a row and exact agreement
+Paper D v10 gives the contributor-facing atlas.  For a row and exact agreement
 \[
         A,\qquad j=n-A,\qquad t=A-k,
 \]
@@ -195,7 +207,10 @@ so the contribution is at most
         \deg \Delta_A \le j+1=n-A+1.
 \]
 
-This is the first thing to try.  It is cheap and should become scripted.
+This is still the first thing to try.  Version 10 strengthens it: in the
+regular overdetermined branch, use the canonical gcd of all nonzero maximal
+minors, not one selected minor.  Across a closed ball, take the squarefree lcm
+over exact agreement levels, then remove paid tangent/quotient roots by gcd.
 
 ### 4.3 Affine Pivot Charts
 
@@ -442,6 +457,19 @@ for each A in a selected subrange:
 If the minors vanish or give weak bounds, that is useful.  It identifies the
 first real singular bucket.
 
+Status: upgraded by Paper D v10.
+
+```text
+scripts/cs25_v10_regular_hankel_eliminant.py
+```
+
+The v10 regular branch no longer asks contributors to choose one minor.  It
+takes the gcd of all nonzero maximal minors at each exact agreement, then an
+lcm over exact agreements for the closed-ball packet.  This gives a canonical
+root-count ledger for every nonsingular regular bucket.  The next M3 task is to
+run this checker on selected agreements in `385 <= A <= 426` for the
+`F_17^32` row and classify each result as regular-closed or singular.
+
 ### M4. Quotient and Tangent Subtraction
 
 Integrate the v9 packets with the existing quotient-image and tangent ledgers.
@@ -467,6 +495,22 @@ one table for a Prime192 scanner row
 no double-counting between removed ledgers and aperiodic roots
 ```
 
+Status: partially upgraded by Paper D v10.
+
+```text
+scripts/cs25_v10_quotient_support_ledger.py
+scripts/cs25_v10_quotient_image_ledger_prime.py
+scripts/cs25_v10_dual_cosupport_ledger.py
+scripts/cs25_v10_extension_pole_floor.py
+```
+
+The quotient part now has three separate ledgers: a support-union coefficient
+ledger that removes cross-divisor support overlap, a gcd/lcm image ledger that
+coalesces duplicate parameters inside declared quotient branches, and a dual
+co-support form for near-capacity rows.  The extension part now has a lower-side
+simple-pole source over `F \ B`.  The next M4 task is to combine these ledgers
+with the M3 regular-Hankel root set and explicitly subtract paid roots.
+
 ### M5. Singular Bucket Program
 
 For every singular bucket produced by M3/M4, build pivot charts.
@@ -485,6 +529,19 @@ Exit criterion:
 each singular chart is eliminant / empty / dimension_degree / residual_obstruction
 every residual has label quotient/tangent/extension/candidate_new_obstruction/unknown
 candidate_new_obstruction has a minimal reproducible example
+```
+
+Status after v10: narrowed.
+
+The nonsingular regular overdetermined branch is now handled by the canonical
+rank-drop gcd/lcm ledger.  M5 should focus on:
+
+```text
+underdetermined exact agreements;
+rank-drop singular exact agreements;
+affine pivot eliminants;
+projective infinity charts;
+curve coefficient-pivot charts.
 ```
 
 ### M6. M1 Theorem Candidate
@@ -538,7 +595,7 @@ Do not use \(q_{\rm line}\) to pay a \(q_{\rm gen}\) entropy bill.
 
 ### M1. Aperiodic Residue-Line Packing
 
-This is the main MCA theorem lane.  It should now be written in v9 language:
+This is the main MCA theorem lane.  It should now be written in v10 language:
 
 ```text
 tangent and quotient branches removed
@@ -551,7 +608,7 @@ deduped root count compared to B_*(q_line)
 The first useful theorem is not "MCA is small."  It is:
 
 ```text
-Every non-small v9 residual bucket is quotient, tangent, extension-confined,
+Every non-small v10 residual bucket is quotient, tangent, extension-confined,
 or a named new obstruction.
 ```
 
@@ -566,6 +623,19 @@ Target:
 Either prove base/generated-field MCA bounds lift to F-valued lines,
 or produce a genuinely F-valued obstruction with its own ledger.
 ```
+
+Paper D v10 supplies the lower-side mechanism:
+
+```text
+large list + pole alpha in F \ B
+=> genuinely F-valued simple-pole witness line
+=> numerator ceil(L(|F|-|B|)/(|F|-|B|+kL)).
+```
+
+So F1 is no longer asking whether extension-valued witnesses exist below the
+reserve.  The remaining question is safe-side classification: prove these
+witnesses are covered by the extension/aperiodic ledger in the corrected
+reserve, or print explicit bucket tables when they are counterexamples.
 
 Every F1 result must say:
 

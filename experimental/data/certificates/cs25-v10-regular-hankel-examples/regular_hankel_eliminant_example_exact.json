@@ -1,0 +1,18 @@
+{
+  "A": 9,
+  "gcd_coeffs_low_to_high": [
+    100,
+    1
+  ],
+  "gcd_degree": 1,
+  "hankel_singular": false,
+  "j": 3,
+  "num_maximal_minors": 1,
+  "num_nonzero_minors": 1,
+  "overdetermined": true,
+  "residual_reason": null,
+  "roots": [
+    1
+  ],
+  "t": 4
+}
