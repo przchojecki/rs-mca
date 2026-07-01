@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M5 first singular-bucket packet: A=384 bucket identification
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`.
+- **Status:** AUDIT / EXPERIMENTAL (turn 1 of an active loop).
+- **What is being added:** Start of the first M5 singular-bucket pivot packet
+  (`towards-prize.md` M5 / S8 item 6), at the underdetermined boundary A=384 of
+  the F_17^32 n=512 k=256 row: exact bucket identification (t=j=128, matrix
+  128x129, deficiency 1, regular certificate structurally vacuous — kernel
+  nontrivial for every slope), extractor-convention match, and an exhaustive
+  toy dichotomy over F_13 (verified kernel vector at all 13 slopes for the 4x5
+  split vs full column rank except one slope for the regular 5x4 split of the
+  same windows). Verifier: 2 PASS / 0 FAIL / 4 PENDING.
+- **How it is useful:** Opens the M5 program strictly below the regular window
+  (disjoint from PRs #170/#171); sets up the deficiency-1 Cramer-kernel +
+  divisibility-into-X^n-1 chart plan for the first eliminant-type filter at any
+  underdetermined agreement of this row.
+- **What to do next:** Turn 2: prove and exactly verify the deficiency-1
+  kernel = signed-maximal-minor (Cramer) parametrization on the toy row; then
+  the X^n - 1 divisibility filter as a chart ideal; then eliminant or labelled
+  residual_obstruction on a declared input family; then packet emission +
+  schema validation.
+
 ### 2026-07-01 - v10 guide and site metadata sync
 
 - **Agent/model:** Codex.
