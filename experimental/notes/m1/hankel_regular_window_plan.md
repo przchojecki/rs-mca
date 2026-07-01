@@ -272,6 +272,19 @@ roots are still bounded by `4`; with the endpoint, the projective total is at
 most `5`.  The residual after this criterion is an irreducible component
 contained in all direction-ratio conics.
 
+The `A=386` global-component slope-map companion
+
+```text
+experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/
+  f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json
+```
+
+splits that residual further.  If the induced projective slope map on the
+global component is constant, the branch contributes at most one finite slope
+plus the endpoint, so total is at most `2`.  The remaining cases are a
+nonconstant moving-slope component and a slope-free component.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 
@@ -826,6 +839,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a386_conic_pair_safety.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a386_component_cut_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-component-cut-safety/f17_32_n512_k256_m3_rank6_a386_component_cut_safety.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_global_component_slope_dichotomy.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json
 ```
 
 The affine-pivot compression theorem is:

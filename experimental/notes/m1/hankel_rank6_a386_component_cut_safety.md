@@ -78,6 +78,16 @@ After this refinement, the remaining `A=386` residual is not an arbitrary
 common component.  It is an irreducible component contained in all
 direction-consistency conics.
 
+The companion note
+
+```text
+experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md
+```
+
+then splits that global-component residual into a projective-safe constant
+slope-map case and two named residuals: a nonconstant moving-slope component
+and a slope-free component.
+
 Replay:
 
 ```sh

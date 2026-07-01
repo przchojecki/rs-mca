@@ -142,6 +142,9 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-a386-conic-pair-safety/
 experimental/data/certificates/hankel-f17-32-m3-rank6-a386-component-cut-safety/
   f17_32_n512_k256_m3_rank6_a386_component_cut_safety.json
 
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/
+  f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
   f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 
@@ -543,6 +546,12 @@ cut plus the off-component residual intersection by at most four finite
 is again `<=5`; the remaining residual is an irreducible component contained
 in all direction consistency conics.
 
+The `A=386` global-component slope-map companion then splits that residual.
+If the induced projective slope map on the component is constant, the branch
+has at most one finite slope; with the endpoint, total projective contribution
+is at most `2`.  The remaining residuals are a nonconstant moving-slope
+component and a slope-free component.
+
 The affine-pivot compression companion gives the finite-root route a concrete
 Hankel-chart target.  If a row-set chart has finite base slope `z0` with
 `M_R(z0)` invertible and `H_R(v)=P_R Q_R` has rank at most `r`, then
@@ -835,6 +844,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a386_conic_pair_safety.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a386_component_cut_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-component-cut-safety/f17_32_n512_k256_m3_rank6_a386_component_cut_safety.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_global_component_slope_dichotomy.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json

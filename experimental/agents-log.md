@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M3 A386 global-component slope dichotomy
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_global_component_slope_dichotomy.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/`;
+  `experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md`;
+  `experimental/notes/m1/hankel_rank6_a386_component_cut_safety.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A slope-map dichotomy for the `A=386` separated
+  rank-6 global-component residual: a constant induced slope map contributes
+  at most one finite slope, so with the endpoint the branch has total
+  `<=2<=6`.
+- **How it is useful:** It separates a projective-safe subcase from the two
+  genuinely unresolved residuals: nonconstant moving-slope components and
+  slope-free components.
+- **What to do next:** Attack the moving-slope residual with the split-locator
+  divisor gate, or prove slope-free components are quotient/tangent/extension
+  paid.
+
 ### 2026-07-02 - M3 A386 component-cut safety criterion
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

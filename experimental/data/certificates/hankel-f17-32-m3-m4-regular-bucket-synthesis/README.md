@@ -196,6 +196,17 @@ most four finite roots; with the endpoint, the projective total is at most `5`.
 The remaining residual is an irreducible component contained in all direction
 conics.
 
+The `A=386` global-component slope-map packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/
+  f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json
+```
+
+splits that residual.  A constant induced slope map gives at most one finite
+slope plus the endpoint, hence total at most `2`.  The remaining residuals are
+a nonconstant moving-slope component and a slope-free component.
+
 The rank-node dichotomy packet
 
 ```text
@@ -333,6 +344,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a386_conic_pair_safety.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a386_component_cut_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-component-cut-safety/f17_32_n512_k256_m3_rank6_a386_component_cut_safety.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_global_component_slope_dichotomy.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json

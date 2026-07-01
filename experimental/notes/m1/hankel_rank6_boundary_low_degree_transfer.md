@@ -116,6 +116,16 @@ plus off-component Bezout bound gives at most four finite `Q`-classes and
 again total projective contribution `<=5<=6`.  The remaining residual is an
 irreducible component contained in all direction-consistency conics.
 
+The global-component slope-map companion
+
+```text
+experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md
+```
+
+then proves the constant-slope subcase projective-safe with total `<=2<=6`.
+The residuals after that are a determined nonconstant slope map and a
+slope-free component.
+
 Replay:
 
 ```sh

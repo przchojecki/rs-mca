@@ -1,0 +1,103 @@
+# Hankel Rank-6 A386 Global-Component Slope Dichotomy
+
+Status: PROVED / AUDIT.
+
+This note records the next refinement of the separated rank-6 boundary at
+
+```text
+A = 386.
+```
+
+It consumes the component-cut packet.  After that packet, the remaining
+positive-dimensional `Q`-plane residual is an irreducible component contained
+in all pairwise direction-consistency conics.  This note splits that residual
+into a safe constant-slope case and two named residual cases.
+
+At `A=386`, the boundary low-degree transfer gives
+
+```text
+h = 3,        [Q] in P^2.
+```
+
+For each of the six direction nodes `y`, put
+
+```text
+N_y(Q) = Omega_y Q(y),
+D_y(Q) = b_y L_Q(y).
+```
+
+Both are linear forms in `Q`: evaluation of `Q` is linear, and `L_Q` is the
+linear interpolation output from the base support.  A finite root must satisfy
+
+```text
+z D_y(Q) = N_y(Q)
+```
+
+for every direction node.  Equivalently, before zero-denominator checks, the
+six projective pairs `[N_y(Q):D_y(Q)]` must agree.  The pairwise consistency
+conics are
+
+```text
+C_{y,y'}(Q) = N_y(Q)D_{y'}(Q) - N_{y'}(Q)D_y(Q).
+```
+
+Let `G` be an irreducible component of `P^2` contained in all these pairwise
+conics.
+
+If some pair `(N_y,D_y)` is not identically zero on `G`, then
+
+```text
+zeta_G = [N_y:D_y] : G --> P^1
+```
+
+is a rational projective slope map.  The pairwise conics make this map
+independent of the chosen `y` on common domains of definition: whenever two
+pairs are both defined, their cross product is zero on `G`.
+
+Every finite root represented by a `Q`-class on `G` has finite slope
+
+```text
+z = N_y(Q) / D_y(Q)
+```
+
+for this induced map, before the null-polynomial split-locator gate possibly
+removes it.
+
+Therefore, if `zeta_G` is constant, the component contributes at most one
+finite slope.  The endpoint-uniform theorem contributes one projective endpoint
+`[0:1]`, so the projective contribution of this branch is at most
+
+```text
+1 + 1 = 2 <= 6.
+```
+
+The other cases remain residual:
+
+```text
+determined nonconstant slope map:
+  zeta_G is nonconstant, so Bezout root counting has been replaced by a
+  moving one-dimensional slope image.  This must be cut by the split-locator
+  divisor gate or identified as quotient/tangent/extension structure.
+
+slope-free component:
+  every pair (N_y,D_y) vanishes identically on G.  Then the finite consistency
+  equations impose no slope on G before further Hankel/split analysis.
+```
+
+Replay:
+
+```sh
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_global_component_slope_dichotomy.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json
+```
+
+Nonclaims:
+
+```text
+no proof that all global components have constant slope;
+no closure of moving-slope global components;
+no closure of slope-free global components;
+no A=385 closure;
+no overlapping-support rank-6 classification;
+no endpoint payment theorem.
+```

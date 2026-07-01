@@ -1,0 +1,125 @@
+{
+  "agreement": {
+    "A": 386,
+    "boundary_defect_h": 3,
+    "combined_support_size": 133,
+    "direction_rank": 6,
+    "j": 126,
+    "m": 127,
+    "projective_Q_search_dimension": 2,
+    "t": 130
+  },
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "A=386 has boundary defect h=3 and Q-space P^2",
+    "component-cut packet narrows to global components",
+    "six direction pairs give fifteen pairwise conics",
+    "constant slope gives at most one finite parameter",
+    "split-locator gate cannot increase finite parameter count",
+    "endpoint-uniform dependency supplies exactly one endpoint",
+    "2 <= projective budget 6"
+  ],
+  "constant_slope_case": {
+    "case": "determined_constant_slope_map",
+    "finite_slope_upper_bound": 1,
+    "projective_budget": 6,
+    "projective_endpoint_count": 1,
+    "projective_safe": true,
+    "support_wise_projective_total_upper_bound": 2
+  },
+  "nonclaims": [
+    "does not prove all global components have constant slope",
+    "does not close moving-slope global components",
+    "does not close slope-free global components",
+    "does not cover A=385",
+    "does not classify overlapping-support rank-6 pencils",
+    "does not prove endpoint payment",
+    "does not produce a row-level M3 safe-side bound"
+  ],
+  "object": "A=386 separated rank-6 global-component slope-map dichotomy",
+  "residual_cases": [
+    {
+      "case": "determined_nonconstant_slope_map",
+      "meaning": "a positive-dimensional component carries a nonconstant rational slope map; it must be cut by the split-locator divisor gate or identified as quotient/tangent/extension structure",
+      "residual_label": "unknown",
+      "status": "RESIDUAL / UNKNOWN"
+    },
+    {
+      "case": "slope_free_component",
+      "meaning": "all six numerator and denominator linear forms vanish identically on the component, so finite consistency does not determine a slope before further Hankel/split analysis",
+      "residual_label": "unknown",
+      "status": "RESIDUAL / UNKNOWN"
+    }
+  ],
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-a386-global-component-slope-dichotomy-v1",
+  "setup": {
+    "direction_pairs": "For each direction node y, set N_y(Q)=Omega_y Q(y) and D_y(Q)=b_y L_Q(y); both are linear forms in the Q-plane.",
+    "global_component_residual": "an irreducible component G in P^2 contained in all pairwise direction-consistency conics after the component-cut packet",
+    "pairwise_consistency_conics": "C_{y,y'}(Q)=N_y(Q)D_{y'}(Q)-N_{y'}(Q)D_y(Q), one for each pair of direction nodes."
+  },
+  "source_artifacts": {
+    "a386_component_cut_safety": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-component-cut-safety/f17_32_n512_k256_m3_rank6_a386_component_cut_safety.json",
+      "sha256": "394c8bf539e743b54fdadddca497ddbd35f2d82e03fd85cf4863a66dc93b394a"
+    },
+    "nullpolynomial_split_locator_gate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json",
+      "sha256": "fd918c7ddbf47b9037840a7dddf5d9a49c77b7d8d889924bbb6b861f8bb2bc42"
+    },
+    "rank6_boundary_low_degree_transfer": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json",
+      "sha256": "4ff0d90a1e710bca56efd7a68357d2dcc473a8150c9ddcaf1b95a061ec5c2101"
+    },
+    "rank6_projective_endpoint_uniform": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+      "sha256": "f933c4d38476d3056e6284de55e01b7375f8c90239d52aed40548018323454e2"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement": 386,
+    "boundary_defect_h": 3,
+    "constant_slope_branch_projective_safe": true,
+    "constant_slope_finite_root_upper_bound": 1,
+    "constant_slope_projective_total_upper_bound": 2,
+    "direction_pair_count": 6,
+    "pairwise_direction_conic_count": 15,
+    "projective_Q_search_dimension": 2,
+    "projective_budget": 6,
+    "remaining_residuals": [
+      "determined nonconstant slope map",
+      "slope-free global component"
+    ]
+  },
+  "theorem": {
+    "constant_map_safe": "If the induced slope map is constant, the component contributes at most one finite slope; adding the endpoint-uniform point gives projective total at most 2<=6.",
+    "finite_roots_factor_through_slope_map": "Every finite root represented by a Q-class on G has finite slope z=N_y(Q)/D_y(Q) for the induced map, before the split-locator divisor gate possibly removes it.",
+    "nonconstant_residual": "If the induced slope map is nonconstant, the branch is exactly a moving-slope global-component residual and is not closed by Bezout root counting alone.",
+    "slope_free_residual": "If every pair (N_y,D_y) vanishes identically on G, the finite consistency equations impose no slope on G; this is a separate slope-free residual.",
+    "slope_map": "If some pair (N_y,D_y) is not identically zero on G, then [N_y:D_y] defines a rational projective slope map on G; the pairwise conics make this map independent of y on common domains of definition."
+  }
+}
