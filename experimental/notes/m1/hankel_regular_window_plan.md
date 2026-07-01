@@ -139,6 +139,20 @@ normalize to monic degree-`j` divisors of `X^512-1`.  This keeps the rank-6
 endpoint-sensitive branch from counting a large ambient kernel as split-locator
 evidence before the divisor gate is checked.
 
+The rank-6 projective witness family
+
+```text
+experimental/notes/m1/hankel_rank6_projective_witness.md
+experimental/data/certificates/hankel-f17-32-m3-rank6-projective-witness/
+  f17_32_n512_k256_m3_rank6_projective_witness.json
+```
+
+shows that this endpoint issue is not only ambient.  For `388 <= A <= 426`,
+a Hankel-realizable direction-rank-6 prefix-plus-six-spikes family has empty
+finite canonical root table and a genuine split-locator endpoint at `[0:1]`.
+It does not close rank 6, but it rules out endpoint emptiness as a universal
+Hankel-realizability argument.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 
@@ -617,6 +631,26 @@ Replay:
 ```sh
 python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
+```
+
+The rank-6 projective witness companion is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-projective-witness/
+  f17_32_n512_k256_m3_rank6_projective_witness.json
+```
+
+Unlike the ambient sharpness packet, this is a Hankel moment-pencil family.  On
+`388 <= A <= 426`, it has direction rank `6`, empty finite canonical root
+table, and an actual split-locator projective endpoint.  Thus the endpoint
+half of the rank-6 boundary survives Hankel realizability, although the packet
+does not show simultaneous six finite roots.
+
+Replay:
+
+```sh
+python3 experimental/scripts/verify_f17_32_m3_rank6_projective_witness.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-projective-witness/f17_32_n512_k256_m3_rank6_projective_witness.json
 ```
 
 The affine-pivot compression theorem is:

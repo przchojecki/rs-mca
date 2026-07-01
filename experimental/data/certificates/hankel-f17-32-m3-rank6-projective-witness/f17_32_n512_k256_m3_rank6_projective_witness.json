@@ -1,0 +1,1983 @@
+{
+  "agreement_records": [
+    {
+      "A": 388,
+      "base_plus_direction_support_size": 131,
+      "base_support_size": 125,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 131,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 125,
+        "z_zero_rank": 125
+      },
+      "j": 124,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 119,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            117
+          ],
+          "direction_index_range": [
+            125,
+            130
+          ],
+          "root_count": 124
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          118,
+          124
+        ]
+      },
+      "t": 132
+    },
+    {
+      "A": 389,
+      "base_plus_direction_support_size": 130,
+      "base_support_size": 124,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 130,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 124,
+        "z_zero_rank": 124
+      },
+      "j": 123,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 118,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            116
+          ],
+          "direction_index_range": [
+            124,
+            129
+          ],
+          "root_count": 123
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          117,
+          123
+        ]
+      },
+      "t": 133
+    },
+    {
+      "A": 390,
+      "base_plus_direction_support_size": 129,
+      "base_support_size": 123,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 129,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 123,
+        "z_zero_rank": 123
+      },
+      "j": 122,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 117,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            115
+          ],
+          "direction_index_range": [
+            123,
+            128
+          ],
+          "root_count": 122
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          116,
+          122
+        ]
+      },
+      "t": 134
+    },
+    {
+      "A": 391,
+      "base_plus_direction_support_size": 128,
+      "base_support_size": 122,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 128,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 122,
+        "z_zero_rank": 122
+      },
+      "j": 121,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 116,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            114
+          ],
+          "direction_index_range": [
+            122,
+            127
+          ],
+          "root_count": 121
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          115,
+          121
+        ]
+      },
+      "t": 135
+    },
+    {
+      "A": 392,
+      "base_plus_direction_support_size": 127,
+      "base_support_size": 121,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 127,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 121,
+        "z_zero_rank": 121
+      },
+      "j": 120,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 115,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            113
+          ],
+          "direction_index_range": [
+            121,
+            126
+          ],
+          "root_count": 120
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          114,
+          120
+        ]
+      },
+      "t": 136
+    },
+    {
+      "A": 393,
+      "base_plus_direction_support_size": 126,
+      "base_support_size": 120,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 126,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 120,
+        "z_zero_rank": 120
+      },
+      "j": 119,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 114,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            112
+          ],
+          "direction_index_range": [
+            120,
+            125
+          ],
+          "root_count": 119
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          113,
+          119
+        ]
+      },
+      "t": 137
+    },
+    {
+      "A": 394,
+      "base_plus_direction_support_size": 125,
+      "base_support_size": 119,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 125,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 119,
+        "z_zero_rank": 119
+      },
+      "j": 118,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 113,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            111
+          ],
+          "direction_index_range": [
+            119,
+            124
+          ],
+          "root_count": 118
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          112,
+          118
+        ]
+      },
+      "t": 138
+    },
+    {
+      "A": 395,
+      "base_plus_direction_support_size": 124,
+      "base_support_size": 118,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 124,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 118,
+        "z_zero_rank": 118
+      },
+      "j": 117,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 112,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            110
+          ],
+          "direction_index_range": [
+            118,
+            123
+          ],
+          "root_count": 117
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          111,
+          117
+        ]
+      },
+      "t": 139
+    },
+    {
+      "A": 396,
+      "base_plus_direction_support_size": 123,
+      "base_support_size": 117,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 123,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 117,
+        "z_zero_rank": 117
+      },
+      "j": 116,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 111,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            109
+          ],
+          "direction_index_range": [
+            117,
+            122
+          ],
+          "root_count": 116
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          110,
+          116
+        ]
+      },
+      "t": 140
+    },
+    {
+      "A": 397,
+      "base_plus_direction_support_size": 122,
+      "base_support_size": 116,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 122,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 116,
+        "z_zero_rank": 116
+      },
+      "j": 115,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 110,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            108
+          ],
+          "direction_index_range": [
+            116,
+            121
+          ],
+          "root_count": 115
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          109,
+          115
+        ]
+      },
+      "t": 141
+    },
+    {
+      "A": 398,
+      "base_plus_direction_support_size": 121,
+      "base_support_size": 115,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 121,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 115,
+        "z_zero_rank": 115
+      },
+      "j": 114,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 109,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            107
+          ],
+          "direction_index_range": [
+            115,
+            120
+          ],
+          "root_count": 114
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          108,
+          114
+        ]
+      },
+      "t": 142
+    },
+    {
+      "A": 399,
+      "base_plus_direction_support_size": 120,
+      "base_support_size": 114,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 120,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 114,
+        "z_zero_rank": 114
+      },
+      "j": 113,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 108,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            106
+          ],
+          "direction_index_range": [
+            114,
+            119
+          ],
+          "root_count": 113
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          107,
+          113
+        ]
+      },
+      "t": 143
+    },
+    {
+      "A": 400,
+      "base_plus_direction_support_size": 119,
+      "base_support_size": 113,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 119,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 113,
+        "z_zero_rank": 113
+      },
+      "j": 112,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 107,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            105
+          ],
+          "direction_index_range": [
+            113,
+            118
+          ],
+          "root_count": 112
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          106,
+          112
+        ]
+      },
+      "t": 144
+    },
+    {
+      "A": 401,
+      "base_plus_direction_support_size": 118,
+      "base_support_size": 112,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 118,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 112,
+        "z_zero_rank": 112
+      },
+      "j": 111,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 106,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            104
+          ],
+          "direction_index_range": [
+            112,
+            117
+          ],
+          "root_count": 111
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          105,
+          111
+        ]
+      },
+      "t": 145
+    },
+    {
+      "A": 402,
+      "base_plus_direction_support_size": 117,
+      "base_support_size": 111,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 117,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 111,
+        "z_zero_rank": 111
+      },
+      "j": 110,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 105,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            103
+          ],
+          "direction_index_range": [
+            111,
+            116
+          ],
+          "root_count": 110
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          104,
+          110
+        ]
+      },
+      "t": 146
+    },
+    {
+      "A": 403,
+      "base_plus_direction_support_size": 116,
+      "base_support_size": 110,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 116,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 110,
+        "z_zero_rank": 110
+      },
+      "j": 109,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 104,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            102
+          ],
+          "direction_index_range": [
+            110,
+            115
+          ],
+          "root_count": 109
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          103,
+          109
+        ]
+      },
+      "t": 147
+    },
+    {
+      "A": 404,
+      "base_plus_direction_support_size": 115,
+      "base_support_size": 109,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 115,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 109,
+        "z_zero_rank": 109
+      },
+      "j": 108,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 103,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            101
+          ],
+          "direction_index_range": [
+            109,
+            114
+          ],
+          "root_count": 108
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          102,
+          108
+        ]
+      },
+      "t": 148
+    },
+    {
+      "A": 405,
+      "base_plus_direction_support_size": 114,
+      "base_support_size": 108,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 114,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 108,
+        "z_zero_rank": 108
+      },
+      "j": 107,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 102,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            100
+          ],
+          "direction_index_range": [
+            108,
+            113
+          ],
+          "root_count": 107
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          101,
+          107
+        ]
+      },
+      "t": 149
+    },
+    {
+      "A": 406,
+      "base_plus_direction_support_size": 113,
+      "base_support_size": 107,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 113,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 107,
+        "z_zero_rank": 107
+      },
+      "j": 106,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 101,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            99
+          ],
+          "direction_index_range": [
+            107,
+            112
+          ],
+          "root_count": 106
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          100,
+          106
+        ]
+      },
+      "t": 150
+    },
+    {
+      "A": 407,
+      "base_plus_direction_support_size": 112,
+      "base_support_size": 106,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 112,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 106,
+        "z_zero_rank": 106
+      },
+      "j": 105,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 100,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            98
+          ],
+          "direction_index_range": [
+            106,
+            111
+          ],
+          "root_count": 105
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          99,
+          105
+        ]
+      },
+      "t": 151
+    },
+    {
+      "A": 408,
+      "base_plus_direction_support_size": 111,
+      "base_support_size": 105,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 111,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 105,
+        "z_zero_rank": 105
+      },
+      "j": 104,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 99,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            97
+          ],
+          "direction_index_range": [
+            105,
+            110
+          ],
+          "root_count": 104
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          98,
+          104
+        ]
+      },
+      "t": 152
+    },
+    {
+      "A": 409,
+      "base_plus_direction_support_size": 110,
+      "base_support_size": 104,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 110,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 104,
+        "z_zero_rank": 104
+      },
+      "j": 103,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 98,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            96
+          ],
+          "direction_index_range": [
+            104,
+            109
+          ],
+          "root_count": 103
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          97,
+          103
+        ]
+      },
+      "t": 153
+    },
+    {
+      "A": 410,
+      "base_plus_direction_support_size": 109,
+      "base_support_size": 103,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 109,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 103,
+        "z_zero_rank": 103
+      },
+      "j": 102,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 97,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            95
+          ],
+          "direction_index_range": [
+            103,
+            108
+          ],
+          "root_count": 102
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          96,
+          102
+        ]
+      },
+      "t": 154
+    },
+    {
+      "A": 411,
+      "base_plus_direction_support_size": 108,
+      "base_support_size": 102,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 108,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 102,
+        "z_zero_rank": 102
+      },
+      "j": 101,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 96,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            94
+          ],
+          "direction_index_range": [
+            102,
+            107
+          ],
+          "root_count": 101
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          95,
+          101
+        ]
+      },
+      "t": 155
+    },
+    {
+      "A": 412,
+      "base_plus_direction_support_size": 107,
+      "base_support_size": 101,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 107,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 101,
+        "z_zero_rank": 101
+      },
+      "j": 100,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 95,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            93
+          ],
+          "direction_index_range": [
+            101,
+            106
+          ],
+          "root_count": 100
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          94,
+          100
+        ]
+      },
+      "t": 156
+    },
+    {
+      "A": 413,
+      "base_plus_direction_support_size": 106,
+      "base_support_size": 100,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 106,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 100,
+        "z_zero_rank": 100
+      },
+      "j": 99,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 94,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            92
+          ],
+          "direction_index_range": [
+            100,
+            105
+          ],
+          "root_count": 99
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          93,
+          99
+        ]
+      },
+      "t": 157
+    },
+    {
+      "A": 414,
+      "base_plus_direction_support_size": 105,
+      "base_support_size": 99,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 105,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 99,
+        "z_zero_rank": 99
+      },
+      "j": 98,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 93,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            91
+          ],
+          "direction_index_range": [
+            99,
+            104
+          ],
+          "root_count": 98
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          92,
+          98
+        ]
+      },
+      "t": 158
+    },
+    {
+      "A": 415,
+      "base_plus_direction_support_size": 104,
+      "base_support_size": 98,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 104,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 98,
+        "z_zero_rank": 98
+      },
+      "j": 97,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 92,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            90
+          ],
+          "direction_index_range": [
+            98,
+            103
+          ],
+          "root_count": 97
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          91,
+          97
+        ]
+      },
+      "t": 159
+    },
+    {
+      "A": 416,
+      "base_plus_direction_support_size": 103,
+      "base_support_size": 97,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 103,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 97,
+        "z_zero_rank": 97
+      },
+      "j": 96,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 91,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            89
+          ],
+          "direction_index_range": [
+            97,
+            102
+          ],
+          "root_count": 96
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          90,
+          96
+        ]
+      },
+      "t": 160
+    },
+    {
+      "A": 417,
+      "base_plus_direction_support_size": 102,
+      "base_support_size": 96,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 102,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 96,
+        "z_zero_rank": 96
+      },
+      "j": 95,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 90,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            88
+          ],
+          "direction_index_range": [
+            96,
+            101
+          ],
+          "root_count": 95
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          89,
+          95
+        ]
+      },
+      "t": 161
+    },
+    {
+      "A": 418,
+      "base_plus_direction_support_size": 101,
+      "base_support_size": 95,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 101,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 95,
+        "z_zero_rank": 95
+      },
+      "j": 94,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 89,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            87
+          ],
+          "direction_index_range": [
+            95,
+            100
+          ],
+          "root_count": 94
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          88,
+          94
+        ]
+      },
+      "t": 162
+    },
+    {
+      "A": 419,
+      "base_plus_direction_support_size": 100,
+      "base_support_size": 94,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 100,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 94,
+        "z_zero_rank": 94
+      },
+      "j": 93,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 88,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            86
+          ],
+          "direction_index_range": [
+            94,
+            99
+          ],
+          "root_count": 93
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          87,
+          93
+        ]
+      },
+      "t": 163
+    },
+    {
+      "A": 420,
+      "base_plus_direction_support_size": 99,
+      "base_support_size": 93,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 99,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 93,
+        "z_zero_rank": 93
+      },
+      "j": 92,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 87,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            85
+          ],
+          "direction_index_range": [
+            93,
+            98
+          ],
+          "root_count": 92
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          86,
+          92
+        ]
+      },
+      "t": 164
+    },
+    {
+      "A": 421,
+      "base_plus_direction_support_size": 98,
+      "base_support_size": 92,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 98,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 92,
+        "z_zero_rank": 92
+      },
+      "j": 91,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 86,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            84
+          ],
+          "direction_index_range": [
+            92,
+            97
+          ],
+          "root_count": 91
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          85,
+          91
+        ]
+      },
+      "t": 165
+    },
+    {
+      "A": 422,
+      "base_plus_direction_support_size": 97,
+      "base_support_size": 91,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 97,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 91,
+        "z_zero_rank": 91
+      },
+      "j": 90,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 85,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            83
+          ],
+          "direction_index_range": [
+            91,
+            96
+          ],
+          "root_count": 90
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          84,
+          90
+        ]
+      },
+      "t": 166
+    },
+    {
+      "A": 423,
+      "base_plus_direction_support_size": 96,
+      "base_support_size": 90,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 96,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 90,
+        "z_zero_rank": 90
+      },
+      "j": 89,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 84,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            82
+          ],
+          "direction_index_range": [
+            90,
+            95
+          ],
+          "root_count": 89
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          83,
+          89
+        ]
+      },
+      "t": 167
+    },
+    {
+      "A": 424,
+      "base_plus_direction_support_size": 95,
+      "base_support_size": 89,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 95,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 89,
+        "z_zero_rank": 89
+      },
+      "j": 88,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 83,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            81
+          ],
+          "direction_index_range": [
+            89,
+            94
+          ],
+          "root_count": 88
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          82,
+          88
+        ]
+      },
+      "t": 168
+    },
+    {
+      "A": 425,
+      "base_plus_direction_support_size": 94,
+      "base_support_size": 88,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 94,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 88,
+        "z_zero_rank": 88
+      },
+      "j": 87,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 82,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            80
+          ],
+          "direction_index_range": [
+            88,
+            93
+          ],
+          "root_count": 87
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          81,
+          87
+        ]
+      },
+      "t": 169
+    },
+    {
+      "A": 426,
+      "base_plus_direction_support_size": 93,
+      "base_support_size": 87,
+      "direction_rank": 6,
+      "direction_support_size": 6,
+      "finite_rank_hypothesis": {
+        "canonical_common_gcd": "1",
+        "canonical_finite_root_count": 0,
+        "canonical_finite_roots": [],
+        "comparison_to_budget": "0 <= 6",
+        "finite_budget": 6,
+        "finite_upper_bound": 0,
+        "support_union_size": 93,
+        "t_at_least_support_union_size": true,
+        "z_nonzero_rank": 87,
+        "z_zero_rank": 87
+      },
+      "j": 86,
+      "projective_infinity": {
+        "H_u_locator_nonzero": true,
+        "H_v_locator": 0,
+        "ambient_direction_rank": 6,
+        "ambient_projective_kernel_dimension": 81,
+        "comparison_to_budget": "1 <= 6",
+        "exact_projective_endpoint_contribution": 1,
+        "projective_budget": 6,
+        "projective_upper_bound": 1,
+        "split_locator_chart_nonempty": true,
+        "split_locator_roots": {
+          "base_prefix_range": [
+            0,
+            79
+          ],
+          "direction_index_range": [
+            87,
+            92
+          ],
+          "root_count": 86
+        },
+        "surviving_base_count": 7,
+        "surviving_base_index_range": [
+          80,
+          86
+        ]
+      },
+      "t": 170
+    }
+  ],
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "the needed prefix domain nodes are distinct",
+    "direction rank is exactly 6 by Vandermonde factorization",
+    "finite slopes have full column rank for A=388..426",
+    "the projective locator divides X^512-1 by construction",
+    "H(v)ell=0 because all direction nodes are locator roots",
+    "H(u)ell!=0 because seven surviving base nodes form an invertible Vandermonde system",
+    "finite and projective counts are within the printed 2^-128 budgets for this family"
+  ],
+  "family": {
+    "base_support": "prefix X_A={x_0,...,x_j}",
+    "direction_rank": 6,
+    "direction_support": "next six descriptor-domain nodes Y_A={x_{j+1},...,x_{j+6}}",
+    "syndrome": "u_m=sum_{x in X_A} x^m, v_m=sum_{y in Y_A} y^m",
+    "weights": "unit weights in both u and v"
+  },
+  "field_audit": {
+    "decoded_roundtrip_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_size": 512,
+    "full_domain_distinct": true,
+    "largest_prefix_support_needed": 131
+  },
+  "nonclaims": [
+    "does not classify arbitrary rank-6 Hankel pencils",
+    "does not prove simultaneous rank-6 finite sharpness and projective endpoint sharpness",
+    "does not make a claim for A=385..387",
+    "does not prove endpoint payment or quotient/extension status",
+    "not a worst-case support-wise MCA row bound"
+  ],
+  "object": "M3 rank-6 projective-infinity split-locator witness family",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_affine_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-projective-witness-v1",
+  "source_artifacts": {
+    "m4_projective_budget_split": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/f17_32_n512_k256_m3_m4_projective_budget_split.json",
+      "sha256": "5347a6cee7009d6b5041550ad2ce6f0f273e0bb5cc2cd9e042c2b741fdc1d9b7"
+    },
+    "projective_infinity_kernel_chart": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-chart/f17_32_n512_k256_m3_m5_projective_infinity_kernel_chart.json",
+      "sha256": "35f42c9da014b138fb12f02136a215f41cd52ef5236423c4b9240ddbd21e736c"
+    },
+    "projective_split_locator_gate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-projective-split-locator-gate/f17_32_n512_k256_m3_projective_split_locator_gate.json",
+      "sha256": "c596c4408b77037de13978bba8dbbc21dd444e2119d2301d593d8421ce7693ff"
+    },
+    "regular_root_rank_drop_bridge": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/f17_32_n512_k256_m3_m5_regular_root_rank_drop.json",
+      "sha256": "55ee410863252e4c7633c110c458058135ccccaa5963a478e51cc18805d7fd12"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT for this synthetic family",
+  "summary": {
+    "agreement_count": 39,
+    "ambient_projective_kernel_dimension_max": 119,
+    "ambient_projective_kernel_dimension_min": 81,
+    "direction_rank": 6,
+    "finite_budget": 6,
+    "finite_canonical_root_count_per_agreement": 0,
+    "finite_safe": true,
+    "projective_budget": 6,
+    "projective_endpoint_exact_contribution_per_agreement": 1,
+    "projective_safe": true
+  },
+  "theorem": {
+    "canonical_finite_roots": "By the regular-root rank-drop bridge, finite v10 canonical roots are exactly finite rank-drop slopes in nonsingular regular buckets.  The preceding rank computation makes the finite canonical root table empty, even after scalar extension.",
+    "direction_rank": "H(v)=V_t(Y_A) V_{j+1}(Y_A)^T has rank 6 because Y_A is distinct and both Vandermonde factors have rank 6.",
+    "finite_z_nonzero": "At z!=0, H(u+zv)=V_t(X_A union Y_A) diag(1,z) V_{j+1}(X_A union Y_A)^T has rank j+1.  The proof uses t>=|X_A union Y_A|=j+7, so the left Vandermonde is injective, while the right Vandermonde has full column rank j+1.",
+    "finite_z_zero": "At z=0, H(u)=V_t(X_A) V_{j+1}(X_A)^T has rank j+1 because X_A is distinct and t>=j+1.",
+    "projective_witness": "At infinity, choose the monic locator whose roots are all six direction nodes and the first j-6 base nodes.  It divides X^512-1, has degree j, and satisfies H(v)ell=0.  The seven surviving base nodes give H(u)ell!=0 by a 7x7 Vandermonde argument.",
+    "rank6_boundary_consequence": "This shows that a genuine support-wise projective endpoint can occur in a Hankel-realizable rank-6 direction family.  Thus the rank-6 boundary cannot be closed by asserting endpoint emptiness from Hankel realizability alone; one needs endpoint payment or finite root-table refinement."
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 388,
+    "agreement_count": 39,
+    "omission_reason": "For rank 6, the finite-root emptiness proof uses t >= j+7; this starts at A=388.  No claim is made for A=385..387.",
+    "omitted_regular_agreements": [
+      385,
+      386,
+      387
+    ]
+  }
+}

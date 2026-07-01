@@ -112,6 +112,9 @@ experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/
 experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/
   f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
 
+experimental/data/certificates/hankel-f17-32-m3-rank6-projective-witness/
+  f17_32_n512_k256_m3_rank6_projective_witness.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
   f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 
@@ -449,6 +452,16 @@ with `C` Vandermonde, direction rank `6`, canonical finite gcd
 Hankel realizability, but it proves that rank, regularity, and the one-point
 endpoint bound alone cannot close rank `6`.
 
+The rank-6 projective witness companion proves the endpoint half is genuinely
+Hankel-realizable in a structured family.  For `388 <= A <= 426`, take a
+prefix base support of size `j+1` and let the direction support be the next six
+domain nodes.  The direction block has rank `6`, every finite slope has full
+column rank by a Vandermonde factorization through `j+7` nodes, and a locator
+containing the six direction nodes plus `j-6` base nodes gives a split
+projective endpoint.  This does not prove the ambient sharpness example is
+Hankel-realizable, but it shows rank-6 endpoint emptiness is not a universal
+Hankel consequence.
+
 The affine-pivot compression companion gives the finite-root route a concrete
 Hankel-chart target.  If a row-set chart has finite base slope `z0` with
 `M_R(z0)` invertible and `H_R(v)=P_R Q_R` has rank at most `r`, then
@@ -711,6 +724,9 @@ python3 experimental/scripts/verify_m1_hankel_m4_projective_budget_split.py \
 
 python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_projective_witness.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-projective-witness/f17_32_n512_k256_m3_rank6_projective_witness.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json
