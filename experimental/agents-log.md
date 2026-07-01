@@ -72,7 +72,11 @@ Keep entries concise and link to the relevant files.
   all-shift target
   `gcd(Phi_{m,r,h}:0 <= h < 258-2m)=1`, which is weaker except at the
   `m=128` endpoint and is the rank-drop containment condition obtained from
-  all contiguous shifted minors.  A counterexample-first search script probes
+  all contiguous shifted minors.  It further records the rectangular
+  rank-drop nullpolynomial formulation: a true `t x m` rank-drop slope is
+  equivalent to one nonzero degree-`<m` polynomial whose first `t` weighted
+  moments vanish, a sharper condition than singularity of each sliding block
+  with possibly different nullvectors.  A counterexample-first search script probes
   the endpoint-capacity adjacent spectral target without changing the certified
   low-rank2..12 packet; it also has an opt-in contiguous all-shift mode that
   checks shifted minors until the running gcd is constant or all available
@@ -83,9 +87,11 @@ Keep entries concise and link to the relevant files.
   script's deterministic `--check` mode.  The recorded JSON now carries row
   metadata, the symbolic target, probe parameters, and source artifact hashes.
 - **How it is useful:** Turns the rank-by-rank affine-gcd computation into a
-  concrete spectral-disjointness target.  Proving that target through the
-  endpoint-capacity range would close the synthetic low-rank regular
-  projective packet after quotient-image endpoint subtraction.
+  concrete spectral-disjointness target, and separates selected-minor,
+  contiguous-minor, and full rectangular rank-drop proof targets.  Proving any
+  sufficient exclusion through the endpoint-capacity range would close the
+  synthetic low-rank regular projective packet after quotient-image endpoint
+  subtraction.
 - **What to do next:** Prove or refute either the sufficient adjacent target
   `gcd(Phi_{m,r,0}, Phi_{m,r,1})=1` or the weaker contiguous all-shift target
   `gcd(Phi_{m,r,h}:0 <= h < 258-2m)=1` for `87 <= m <= 128` and

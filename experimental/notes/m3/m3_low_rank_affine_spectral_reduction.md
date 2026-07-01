@@ -737,6 +737,59 @@ for the full all-maximal-minor canonical gcd.  The shift-two transfer formula
 above gives a structured way to study the even and odd chains inside this
 all-shift gcd.
 
+## Rectangular Rank-Drop Nullpolynomial
+
+The contiguous all-shift gcd is still only a root-containment test.  The
+underlying v10 regular bucket is rectangular.  Define the full contiguous
+`t x m` moment pencil
+
+```text
+R_{t,m}(Z)[a,b]
+  =
+  sum_{x in X} x^(a+b) + Z sum_{y in Y} y^(a+b),
+  0 <= a < t, 0 <= b < m.
+```
+
+For a finite slope `z`, the matrix `R_{t,m}(z)` has rank `< m` if and only if
+there is a nonzero polynomial
+
+```text
+P(T) = p_0 + p_1 T + ... + p_{m-1} T^(m-1)
+```
+
+such that
+
+```text
+sum_{x in X} x^a P(x) + z sum_{y in Y} y^a P(y) = 0
+for every 0 <= a < t.
+```
+
+Indeed, multiplying `R_{t,m}(z)` by the coefficient vector of `P` gives exactly
+these `t` moment equations.  Thus a genuine rectangular rank-drop slope gives
+one nullpolynomial satisfying all row moments at once.
+
+By contrast, a root of the contiguous all-shift gcd only says that every
+sliding `m x m` block is singular:
+
+```text
+det(H_X^(h)+zH_Y^(h)) = 0,
+0 <= h <= t-m.
+```
+
+It may a priori use a different nullpolynomial for each shift `h`.  Therefore
+the containments in the synthetic low-rank branch are:
+
+```text
+rectangular rank-drop slopes
+  subset roots of G_{m,r}^{all}
+  subset roots of any selected shifted-minor gcd.
+```
+
+The nullpolynomial formulation is the sharper proof target for the actual v10
+regular bucket: after quotient and endpoint ledgers are removed, one can try to
+prove that no nonzero degree-`<m` polynomial has the displayed `t` vanishing
+weighted moments for an unpaid slope `z`.
+
 ## Current Certified Instance
 
 The verifier
@@ -794,12 +847,14 @@ The current verifier proves this adjacent target only for `2 <= r <= 12`.
 A proof of the displayed adjacent range would imply the contiguous all-shift
 target above.  Alternatively, proving `G_{m,r}^{all}=1` directly would be
 enough for this sufficient contiguous-minor v10 regular rank-drop test and may
-be easier away from `m=128`, where many more shifted minors are available.
-Together with the endpoint `c=2` capacity packet, either proof would close the
-synthetic low-rank regular projective residual through the endpoint capacity
-range.  It would still not be an arbitrary-row M3 theorem; it would be a clean
-model result explaining why this low-rank branch has no unpaid regular
-projective residual.
+be easier away from `m=128`, where many more shifted minors are available.  A
+still sharper route is to use the rectangular nullpolynomial formulation and
+rule out a single nonzero degree-`<m` polynomial satisfying all `t` moment
+equations for an unpaid slope.  Together with the endpoint `c=2` capacity
+packet, any of these affine exclusions would close the synthetic low-rank
+regular projective residual through the endpoint capacity range.  It would
+still not be an arbitrary-row M3 theorem; it would be a clean model result
+explaining why this low-rank branch has no unpaid regular projective residual.
 
 The script
 
