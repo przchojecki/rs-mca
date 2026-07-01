@@ -44,6 +44,9 @@ experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/
 
 experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-a426/
   f17_32_n512_k256_a426_contiguous_gcd4_packet.json
+
+experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-a426/
+  f17_32_n512_k256_a426_contiguous_gcd_formula.json
 ```
 
 The M4 zero-slope subtraction sidecar is
@@ -104,6 +107,19 @@ The A=426 contiguous-gcd packet uses the same zero-`u` synthetic pencil as the
 endpoint packet but checks the first four contiguous maximal row sets and emits
 their monic common gcd.  This is a bounded subatlas step toward the v10
 canonical common-gcd branch.
+
+The contiguous-gcd formula certificate extends this from four checked windows
+to all `84` contiguous maximal row sets at `A=426`.  If
+`R_s={s,...,s+86}`, then
+
+```text
+det(v_{s+a+b})_{0<=a,b<87}
+  = (prod_{x in X} x)^s * Vandermonde(X)^2,
+```
+
+where `X` is the first `87` descriptor-domain elements.  Since the nodes in
+`X` are distinct and nonzero, every contiguous determinant is nonzero and the
+monic common gcd over the all-contiguous subatlas is `Z^87`.
 
 In the selected-minor packets, the chosen prefix determinant has the closed form
 
@@ -207,6 +223,9 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-a426/f17_32_n512_k256_a426_contiguous_gcd4_packet.json
+
+python3 experimental/scripts/verify_f17_32_m3_a426_contiguous_gcd_formula.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-a426/f17_32_n512_k256_a426_contiguous_gcd_formula.json
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_rank_witness_zero_slope_subtraction.json

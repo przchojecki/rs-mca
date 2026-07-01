@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - A=426 all-contiguous gcd formula
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_a426_contiguous_gcd_formula.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-a426/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT for the synthetic A=426 contiguous subatlas.
+- **What is being added:** A formula certificate extending the A=426
+  four-window gcd packet to all `84` contiguous maximal row sets.  For
+  `R_s={s,...,s+86}`, the leading determinant factors as
+  `(prod_X x)^s * Vandermonde(X)^2`, so every contiguous determinant is
+  nonzero and the monic common gcd is `Z^87` with root table `{0}`.
+- **How it is useful:** This is a stronger mathematical step toward the v10
+  common-gcd branch than the bounded replay alone, while remaining compact and
+  explicitly scoped to the contiguous subatlas.
+- **What to do next:** Extend from contiguous subatlases toward canonical
+  all-row-set gcd/lcm ledgers, or identify the first singular buckets that
+  force pivot charts.
+
 ### 2026-07-01 - A=426 contiguous-gcd M3 packet
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

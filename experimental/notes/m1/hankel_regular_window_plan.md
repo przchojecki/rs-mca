@@ -139,6 +139,25 @@ minor is a scalar multiple of `Z^87`, so the monic common gcd is `Z^87` with
 exact root table `{0}`.  This is still a synthetic bounded subatlas, but it
 tests the v10 common-gcd packet path rather than only a selected prefix minor.
 
+The formula companion
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-formula-a426/
+  f17_32_n512_k256_a426_contiguous_gcd_formula.json
+```
+
+proves the same common-gcd conclusion for every contiguous row window at
+`A=426`, not just the four replayed windows.  For `R_s={s,...,s+86}`, the
+leading determinant factors as
+
+```text
+(prod_{x in X} x)^s * Vandermonde(X)^2
+```
+
+where `X` is the first `87` support nodes in the synthetic input.  This covers
+all `84` contiguous row starts `0..83`.  It is still a contiguous-subatlas
+result, not the all-row-set canonical gcd.
+
 The syndrome-realizability sidecar
 
 ```text

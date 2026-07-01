@@ -1,0 +1,196 @@
+{
+  "bounded_packet_audit": {
+    "packet_checked_by_schema_checker": true,
+    "packet_matches_formula_prefix": true,
+    "packet_minor_count": 4,
+    "packet_row_starts": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "checks": [
+    "input u syndrome is identically zero",
+    "input v syndrome matches first-87-node power sums",
+    "all 84 contiguous leading coefficients are nonzero",
+    "common gcd over the all-contiguous subatlas is monic Z^87",
+    "stored bounded gcd packet matches the first four formula rows"
+  ],
+  "common_gcd": {
+    "coefficients_ascending": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "degree": 87,
+    "raw_aperiodic_numerator_before_subtraction": 1,
+    "residual_aperiodic_numerator_after_tangent": 0,
+    "root_certificate": {
+      "factors": [
+        {
+          "multiplicity": 87,
+          "root": 0
+        }
+      ],
+      "field_encoding": "base-p low-to-high integer",
+      "kind": "split_linear_factorization",
+      "leading_coefficient": 1
+    },
+    "roots": [
+      0
+    ],
+    "tangent_paid_roots": [
+      0
+    ]
+  },
+  "field_audit": {
+    "first_four_leading_coefficients": [
+      1679562971418113032387101671407887322647,
+      652329166717053162598334732188565870980,
+      2115891388322028489687615078125853289902,
+      340037883120058390589041829522739131117
+    ],
+    "last_leading_coefficient": 2181062665354119735403284865672042536869,
+    "leading_coefficients_hash": "7924ede22a847e799b1fcb9fa78bb8ca71ab6f4b4f954f09085b8434271d68da",
+    "leading_coefficients_nonzero": true,
+    "support_nodes_distinct": true,
+    "support_nodes_nonzero": true,
+    "support_product_encoding": 1689307666905149450826560418887229652962,
+    "vandermonde_square_encoding": 1679562971418113032387101671407887322647
+  },
+  "formula": {
+    "common_gcd": "gcd_s Delta_s(Z) = Z^87, made monic",
+    "determinant_polynomial": "Delta_s(Z)=c_s Z^87",
+    "factorization": "det(v_{s+a+b})_{0<=a,b<87} = (prod_{x in X} x)^s * Vandermonde(X)^2",
+    "row_set": "R_s={s,s+1,...,s+86}",
+    "support": "X = first 87 descriptor-domain elements",
+    "syndrome": "u_m=0, v_m=sum_{x in X} x^m"
+  },
+  "nonclaims": [
+    "only the contiguous row-set subatlas at A=426",
+    "not the all-maximal-minor canonical gcd over every row set",
+    "not a worst-case support-wise MCA row bound",
+    "not a singular-bucket classification"
+  ],
+  "object": "all-contiguous-row-set common-gcd formula at A=426",
+  "parameters": {
+    "A": 426,
+    "contiguous_row_set_count": 84,
+    "contiguous_row_start_max": 83,
+    "contiguous_row_start_min": 0,
+    "j": 86,
+    "minor_size": 87,
+    "support_node_count": 87,
+    "t": 170
+  },
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "schema_version": "f17-32-m3-a426-contiguous-gcd-formula-v1",
+  "source_artifacts": {
+    "bounded_gcd_packet": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-contiguous-gcd-a426/f17_32_n512_k256_a426_contiguous_gcd4_packet.json",
+      "sha256": "dcb3c8f9bae70224fe9039e201d254e69d378a037dfb5145ef0b6d2b0f676533"
+    },
+    "input": {
+      "ref": "experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_contiguous_gcd4_input.json",
+      "sha256": "63a3518e94630c3e68fcae3125e2a7c86ec442ff65797b253d6dda38a96b5a02"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT for the synthetic A=426 zero-u pencil"
+}
