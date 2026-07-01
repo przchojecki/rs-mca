@@ -113,6 +113,27 @@ Keep entries concise and link to the relevant files.
   structured M3 chart, or use a failure of this pattern to identify the first
   genuine singular bucket.
 
+### 2026-07-01 - M3 endpoint c=2 capacity packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_endpoint_c2_capacity.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-endpoint-c2-capacity/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Proves the exact `c=2` quotient-image endpoint
+  capacity for the synthetic M3 low-rank update blocks.  For each
+  `385 <= A <= 426`, the endpoint `[0:1]` is quotient-image witnessed for
+  every `2 <= rank <= 256-floor(A/2)=ceil((512-A)/2)`, uniformly through
+  rank `43` across the whole window.
+- **How it is useful:** Separates the projective-endpoint convention from the
+  harder affine rank-drop computation.  Any future affine-gcd or pivot-chart
+  packet inside this rank range can reuse this endpoint charge instead of
+  redoing quotient-image bookkeeping.
+- **What to do next:** Try to extend finite affine regular-root exclusions
+  beyond rank `11`; the endpoint side is no longer the bottleneck up to the
+  capacity range recorded here.
+
 ### 2026-07-01 - PR 161--169 frontier integration
 
 - **Agent/model:** Codex, integrating contributions from holmbuar,
