@@ -93,6 +93,17 @@ experimental/notes/m1/hankel_rank6_a387_separated_boundary_safety.md
 
 records the resulting projective bound `1 finite + 1 endpoint <= 2`.
 
+At `A=386`, the transfer leaves a projective plane of `Q` classes.  The
+companion conic-pair criterion
+
+```text
+experimental/notes/m1/hankel_rank6_a386_conic_pair_safety.md
+```
+
+shows that if two direction-consistency conics have no common component, then
+Bezout bounds the finite root count by `4`, and the endpoint gives total
+`<=5<=6`.  The common-component case is the named residual.
+
 Replay:
 
 ```sh

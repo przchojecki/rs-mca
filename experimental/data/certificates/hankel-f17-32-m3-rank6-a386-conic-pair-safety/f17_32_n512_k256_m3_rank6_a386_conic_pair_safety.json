@@ -1,0 +1,96 @@
+{
+  "agreement": {
+    "A": 386,
+    "boundary_defect_h": 3,
+    "combined_support_size": 133,
+    "direction_rank": 6,
+    "j": 126,
+    "m": 127,
+    "t": 130
+  },
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "A=386 is included in the boundary low-degree transfer packet",
+    "A=386 has boundary defect h=3",
+    "the projective Q-search space has dimension two",
+    "direction consistency comparisons are conics in P^2",
+    "two conics without common component have at most four common Q-classes",
+    "split-locator gate cannot increase finite ambient root count",
+    "endpoint-uniform dependency supplies exactly one endpoint",
+    "5 <= projective budget 6"
+  ],
+  "criterion": {
+    "comparison_conics": "F_i(Q)=Omega_{y_i} Q(y_i) b_{y0} L_Q(y0) - Omega_{y0} Q(y0) b_{y_i} L_Q(y_i), for i=1,2",
+    "residual_if_not": "a common line/conic component is present; this is the named A=386 conic-component residual",
+    "safe_if": "the two conics F_1,F_2 have no common component over the algebraic closure",
+    "setup": "use the low-degree transfer with Q in P^2; choose a base direction node y0 and two comparison nodes y1,y2"
+  },
+  "nonclaims": [
+    "does not prove the no-common-component criterion for all A=386 weights",
+    "does not cover A=385",
+    "does not classify overlapping-support rank-6 pencils",
+    "does not decide whether finite roots exist for a given weight set",
+    "does not prove endpoint payment",
+    "does not close arbitrary rank-6 Hankel pencils"
+  ],
+  "object": "A=386 separated rank-6 conic-pair projective-safety criterion",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-a386-conic-pair-safety-v1",
+  "source_artifacts": {
+    "nullpolynomial_split_locator_gate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json",
+      "sha256": "fd918c7ddbf47b9037840a7dddf5d9a49c77b7d8d889924bbb6b861f8bb2bc42"
+    },
+    "rank6_boundary_low_degree_transfer": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json",
+      "sha256": "4ff0d90a1e710bca56efd7a68357d2dcc473a8150c9ddcaf1b95a061ec5c2101"
+    },
+    "rank6_projective_endpoint_uniform": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+      "sha256": "f933c4d38476d3056e6284de55e01b7375f8c90239d52aed40548018323454e2"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement": 386,
+    "boundary_defect_h": 3,
+    "comparison_conic_count_needed": 2,
+    "finite_ambient_root_upper_bound_under_criterion": 4,
+    "finite_split_locator_upper_bound_under_criterion": 4,
+    "projective_Q_search_dimension": 2,
+    "projective_budget": 6,
+    "projective_endpoint_count": 1,
+    "projective_safe_under_no_common_component_criterion": true,
+    "support_wise_projective_total_upper_bound_under_criterion": 5
+  },
+  "theorem": {
+    "bezout_bound": "In P^2, two conics without a common component have intersection length at most 4 by Bezout, so there are at most four Q-classes and therefore at most four finite ambient slopes.",
+    "endpoint": "The endpoint-uniform theorem gives one projective endpoint [0:1].",
+    "finite_root_bound": "Every finite root gives a Q-class satisfying all six direction consistency equations, hence in particular F_1=F_2=0.",
+    "projective_safety": "Under the conic-pair no-common-component criterion, the support-wise projective total is at most 4+1=5<=6.",
+    "split_locator_bound": "The split-locator gate can only remove finite ambient roots, so the finite support-wise split-locator count is also at most four."
+  }
+}

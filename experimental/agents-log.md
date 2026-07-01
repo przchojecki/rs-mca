@@ -191,6 +191,28 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Attack `A=386` next, where the transfer leaves a
   projective `Q`-plane and six consistency equations before the split gate.
 
+### 2026-07-01 - M3 A386 conic-pair safety criterion
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_conic_pair_safety.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-conic-pair-safety/`;
+  `experimental/notes/m1/hankel_rank6_a386_conic_pair_safety.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A projective-safety criterion for separated rank-6
+  weights at `A=386`: if two direction consistency conics in the transferred
+  `Q`-plane have no common component, Bezout gives at most four finite roots;
+  with the endpoint, total contribution is `<=5<=6`.
+- **How it is useful:** It closes the generic `A=386` separated case and names
+  the common-component conic case as the residual to classify.
+- **What to do next:** Analyze the common-component residual or implement a
+  small scanner to test how often it appears in structured weight families.
+
 ### 2026-07-01 - M3 rank-6 boundary dual gcd
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

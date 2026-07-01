@@ -171,6 +171,17 @@ uses the `h=1` specialization to close arbitrary nonzero separated weights at
 `A=387`: at most one finite split-locator root plus the endpoint, so projective
 total is at most `2`.
 
+The `A=386` conic-pair safety packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-conic-pair-safety/
+  f17_32_n512_k256_m3_rank6_a386_conic_pair_safety.json
+```
+
+uses the `h=3` transfer.  If two direction-ratio conics in the `Q`-plane have
+no common component, Bezout gives at most four finite roots; with the endpoint,
+the projective total is at most `5`.
+
 The rank-node dichotomy packet
 
 ```text
@@ -302,6 +313,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_conic_pair_safety.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-conic-pair-safety/f17_32_n512_k256_m3_rank6_a386_conic_pair_safety.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json

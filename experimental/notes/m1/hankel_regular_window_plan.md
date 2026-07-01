@@ -245,6 +245,19 @@ uses the `h=1` case of this transfer to close arbitrary nonzero separated
 weights at `A=387`: at most one finite split-locator root plus the endpoint,
 so total projective contribution is at most `2 <= 6`.
 
+The `A=386` conic-pair safety companion
+
+```text
+experimental/notes/m1/hankel_rank6_a386_conic_pair_safety.md
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-conic-pair-safety/
+  f17_32_n512_k256_m3_rank6_a386_conic_pair_safety.json
+```
+
+uses the `h=3` case of the transfer.  If two direction-ratio conics in the
+projective `Q`-plane have no common component, Bezout gives at most four
+finite roots; with the endpoint, the branch is projective-safe with total at
+most `5`.  The common-component case is the named residual for `A=386`.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 
@@ -761,6 +774,8 @@ arbitrary separated-support boundary weights: projective `Q`-spaces of
 dimensions `4,2,0` plus six consistency equations and the split-locator gate.
 For `A=387`, the projective `Q`-space is a point, so the arbitrary-weight
 separated branch is already projective-safe with total at most `2`.
+For `A=386`, a no-common-component pair of direction conics gives projective
+safety by Bezout; common conic components are the residual to classify.
 
 Replay:
 
@@ -791,6 +806,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_conic_pair_safety.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-conic-pair-safety/f17_32_n512_k256_m3_rank6_a386_conic_pair_safety.json
 ```
 
 The affine-pivot compression theorem is:

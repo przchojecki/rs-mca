@@ -136,6 +136,9 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transf
 experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/
   f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json
 
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-conic-pair-safety/
+  f17_32_n512_k256_m3_rank6_a386_conic_pair_safety.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
   f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 
@@ -524,6 +527,11 @@ to close that agreement for arbitrary nonzero separated weights: the finite
 root table has at most one ambient root, the split-locator gate cannot increase
 it, and the endpoint adds one projective parameter, giving total `<=2`.
 
+The `A=386` conic-pair safety companion gives the corresponding generic
+criterion in the projective `Q`-plane.  If two direction consistency conics
+have no common component, Bezout gives at most four finite ambient roots; after
+the split gate and endpoint, total projective contribution is `<=5`.
+
 The affine-pivot compression companion gives the finite-root route a concrete
 Hankel-chart target.  If a row-set chart has finite base slope `z0` with
 `M_R(z0)` invertible and `H_R(v)=P_R Q_R` has rank at most `r`, then
@@ -810,6 +818,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_conic_pair_safety.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-conic-pair-safety/f17_32_n512_k256_m3_rank6_a386_conic_pair_safety.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json
