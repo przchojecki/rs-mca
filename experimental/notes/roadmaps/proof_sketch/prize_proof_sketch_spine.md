@@ -237,9 +237,18 @@ DONE    S2       Paid(A) + refined threshold bracket
                  every rate; R1' bracket; zone (b) collisions =
                  prob:perfiber at sigma=1 — both sides of the threshold
                  reduce to the collision family; P2 mislabel corrected)
-next -> S3b.ii   strip-periodic: exact statement of the aperiodic stratum
-                 via the proved confinement/equivariance results (x1 notes)
-                 + rem:aper's M | gcd(n,k) pullback definition
+DONE    S3b.ii   strip-periodic
+                 -> s3b_ii_strip_periodic.md (periodic strata = C(n/M,j/M)
+                 verified; the stratum is an INDEPENDENT SET in the
+                 exchange graph, every one-exchange exits, coset-moves =
+                 quotient Johnson — dynamics factor through the quotient
+                 exactly as the counting does; GAP-1 non-equivariant
+                 periodic mass; GAP-2 gcd(n,j)-vs-gcd(n,k) seam;
+                 operative R2 stated)
+next -> S4       reserve dictionary: per-pair aligned counts <-> Lambda^aper
+                 packing <-> L1 reserve (sigma log q vs log C); read
+                 thm:normalform/def:residue for the GAP-2 seam; where the
+                 128 bits sit
         S2       Paid(A) as a single computable function (quotient closure)
         S3b.ii   the strip-periodic step: exact statement of the aperiodic
                  stratum via the proved confinement/equivariance results

@@ -30,6 +30,37 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Proof-sketch S3b.ii: the strip-periodic step
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/proof_sketch/s3b_ii_strip_periodic.md`;
+  queue update in `prize_proof_sketch_spine.md`.
+- **Status:** PROVED-cited backbone + verified combinatorics + named GAPs.
+- **What is being added:** Turn 6. Exact statement of the aperiodic stratum.
+  Support-side vs line-side (rem:aper) periodicity distinguished, bridged by
+  the proved x1 confinement/equivariance theorems, exact only on the
+  equivariant stratum (isotypic refinement). Verified: periodic strata have
+  size C(n/M, j/M); for unstructured pairs they carry no alignment boost
+  (FM1), so paid mass comes from structured pairs via the proved
+  Q_M = Q_1(quotient) recursion. Three verified exchange-dynamics facts:
+  the periodic stratum is an INDEPENDENT SET in the Johnson exchange graph,
+  every one-exchange exits it, and coset-moves restore exactly the quotient
+  Johnson graph — the dynamics factor through the quotient precisely as the
+  counting does (the same multi-scale recursion twice). Two named holes:
+  GAP-1 (non-equivariant periodic mass not priced by quotient value sets;
+  needs poly bound or a new ledger) and GAP-2 (gcd(n,j) vs gcd(n,k)
+  definitional seam; thm:normalform check queued). Operative post-strip R2
+  stated; the Lambda^aper quantifier dictionary explicitly deferred to S4,
+  not asserted.
+- **How it is useful:** Turns "after quotient removal" from a phrase into a
+  checkable stratification with verified combinatorial structure; hands the
+  M4 dedup its convention decision; isolates the two places the strip can
+  leak.
+- **What to do next:** Turn 7: S4 reserve dictionary (per-pair counts <->
+  Lambda^aper <-> L1 reserve; read thm:normalform/def:residue; where the
+  128 bits sit).
+
 ### 2026-07-01 - Proof-sketch S2: Paid(A) + refined threshold bracket
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
