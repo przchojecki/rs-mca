@@ -64,6 +64,18 @@ endpoint `[0:1]`.  Thus a finite-affine rank-`<=5` bucket is projective-budget
 safe without an endpoint payment, while rank `6` is exactly the endpoint-sensitive
 boundary.
 
+The ambient sharpness packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/
+  f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
+```
+
+shows that this boundary is real for arbitrary regular pencils: rank `6`, six
+finite roots, and one projective endpoint can occur simultaneously.  The M3
+rank-6 boundary must be attacked with Hankel-specific structure, exact root
+tables, or a paid/empty endpoint ledger.
+
 For finite affine roots, the M5 kernel chart gives a per-root filter:
 
 ```text
@@ -107,6 +119,9 @@ python3 experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py \
 
 python3 experimental/scripts/verify_m1_hankel_m4_projective_budget_split.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/f17_32_n512_k256_m3_m4_projective_budget_split.json
+
+python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json

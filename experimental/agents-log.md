@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M4 rank-6 ambient sharpness
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/README.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE / AUDIT.
+- **What is being added:** An ambient regular-pencil sharpness construction
+  for the rank-6 boundary: rank `6`, six finite canonical roots, and one
+  projective endpoint can occur simultaneously in the M3 dimensions.
+- **How it is useful:** It shows that the rank-6 endpoint-sensitive boundary
+  cannot be closed using only direction rank, regularity, and one-point
+  projective accounting; the next step must use Hankel structure, exact root
+  tables, or paid endpoint ledgers.
+- **What to do next:** Attack rank `6` with genuinely Hankel-specific root
+  tables or endpoint-payment/emptiness certificates.
+
 ### 2026-07-01 - M4 projective direction-rank budget split
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

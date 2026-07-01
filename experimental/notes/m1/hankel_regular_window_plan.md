@@ -550,6 +550,34 @@ python3 experimental/scripts/verify_m1_hankel_m4_projective_budget_split.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/f17_32_n512_k256_m3_m4_projective_budget_split.json
 ```
 
+The rank-6 ambient sharpness companion is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/
+  f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
+```
+
+For every agreement in the M3 window it constructs an ambient regular pencil
+with direction rank `6`, six finite canonical roots, and a nonempty projective
+endpoint.  The construction is
+
+```text
+C_{r,i}=alpha_r^i,
+M(Z)=C diag(Z-1,...,Z-6,1,...,1),
+```
+
+so every maximal minor is a nonzero Vandermonde scalar times
+`prod_{a=1}^6 (Z-a)`.  This is not a Hankel moment-pencil example; its role is
+to prove that the rank-6 boundary cannot be closed by ambient rank and endpoint
+accounting alone.
+
+Replay:
+
+```sh
+python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
+```
+
 The current M4 regular-bucket synthesis table is:
 
 ```text

@@ -109,6 +109,9 @@ experimental/data/certificates/hankel-f17-32-m3-m5-projective-infinity-kernel-ch
 experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/
   f17_32_n512_k256_m3_m4_projective_budget_split.json
 
+experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/
+  f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/
   f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json
 ```
@@ -392,6 +395,19 @@ safe before endpoint payment because finite roots contribute at most `5` and
 projective endpoint-sensitive: it needs endpoint empty/paid, or an exact finite
 root table with at most five surviving roots.
 
+The ambient rank-6 sharpness companion explains why this is not just a loose
+artifact of the proof.  In the same M3 dimensions there are ambient regular
+pencils
+
+```text
+M(Z)=C diag(Z-1,...,Z-6,1,...,1)
+```
+
+with `C` Vandermonde, direction rank `6`, canonical finite gcd
+`prod_{a=1}^6 (Z-a)`, and a nonempty projective endpoint.  This does not claim
+Hankel realizability, but it proves that rank, regularity, and the one-point
+endpoint bound alone cannot close rank `6`.
+
 The M4 regular-bucket synthesis certificate composes these local lemmas into a
 decision table.  The closed branches are zero-`v` with full-rank `H(u)` and
 proportional nonzero-`v` with full-rank `H(v)`; the zero-`u` full-rank branch is
@@ -632,6 +648,9 @@ python3 experimental/scripts/verify_m1_hankel_m5_projective_infinity_kernel_char
 
 python3 experimental/scripts/verify_m1_hankel_m4_projective_budget_split.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/f17_32_n512_k256_m3_m4_projective_budget_split.json
+
+python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json

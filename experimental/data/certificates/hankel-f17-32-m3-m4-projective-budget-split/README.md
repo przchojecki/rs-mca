@@ -55,6 +55,19 @@ This is an abstract M4 decision-table refinement for arbitrary nonsingular
 regular buckets.  It does not duplicate the separate synthetic low-rank
 quotient-image packets.
 
+The companion sharpness packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/
+  f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
+```
+
+shows that the rank-6 boundary cannot be closed from these ambient invariants
+alone: there are ambient regular pencils in the same M3 dimensions with rank
+`6`, six finite canonical roots, and a nonempty projective endpoint.  Any
+positive rank-6 closure must therefore use Hankel structure, exact root tables,
+endpoint payment, or split-locator constraints.
+
 Regenerate and check:
 
 ```sh
@@ -63,4 +76,7 @@ python3 experimental/scripts/verify_m1_hankel_m4_projective_budget_split.py \
 
 python3 experimental/scripts/verify_m1_hankel_m4_projective_budget_split.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/f17_32_n512_k256_m3_m4_projective_budget_split.json
+
+python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/f17_32_n512_k256_m3_m4_rank6_ambient_sharpness.json
 ```
