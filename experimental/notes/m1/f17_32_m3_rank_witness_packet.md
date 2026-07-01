@@ -115,6 +115,9 @@ experimental/data/certificates/hankel-f17-32-m3-m4-rank6-ambient-sharpness/
 experimental/data/certificates/hankel-f17-32-m3-rank6-projective-witness/
   f17_32_n512_k256_m3_rank6_projective_witness.json
 
+experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/
+  f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json
+
 experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/
   f17_32_n512_k256_m3_m4_affine_pivot_compression.json
 
@@ -462,6 +465,13 @@ direction nodes plus `j-6` base nodes gives a split projective endpoint.  This
 does not prove the ambient sharpness example is Hankel-realizable, but it shows
 rank-6 endpoint emptiness is not a universal Hankel consequence.
 
+The endpoint-uniform companion removes the prefix/unit-weight assumption from
+that endpoint statement.  For any disjoint base support of size `j+1`, any six
+direction nodes, and any nonzero weights, leave seven base nodes unvanished;
+the resulting split locator kills the direction and is noncontained by a
+weighted `7 x 7` Vandermonde argument.  This still says nothing about finite
+affine root tables.
+
 The affine-pivot compression companion gives the finite-root route a concrete
 Hankel-chart target.  If a row-set chart has finite base slope `z0` with
 `M_R(z0)` invertible and `H_R(v)=P_R Q_R` has rank at most `r`, then
@@ -727,6 +737,9 @@ python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_projective_witness.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-projective-witness/f17_32_n512_k256_m3_rank6_projective_witness.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_projective_endpoint_uniform.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json

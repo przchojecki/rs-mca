@@ -154,6 +154,19 @@ The first three agreements are closed by a boundary dual-gcd computation.  This
 does not close rank 6, but it rules out endpoint emptiness as a universal
 Hankel-realizability argument.
 
+The support- and weight-uniform endpoint companion
+
+```text
+experimental/notes/m1/hankel_rank6_projective_endpoint_uniform.md
+experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/
+  f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json
+```
+
+removes the prefix/unit-weight specialization from the endpoint half: for any
+disjoint base support of size `j+1`, any six direction nodes, and any nonzero
+weights, the projective split-locator endpoint `[0:1]` is present.  It does
+not compute finite root tables.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 
@@ -648,6 +661,10 @@ table, and an actual split-locator projective endpoint.  The finite roots at
 endpoint half of the rank-6 boundary survives Hankel realizability, although
 the packet does not show simultaneous six finite roots.
 
+The endpoint-uniform companion strengthens only that endpoint half: any
+separated rank-6 support/weight choice admits a split-locator endpoint by
+leaving seven base nodes alive and applying a weighted Vandermonde argument.
+
 Replay:
 
 ```sh
@@ -656,6 +673,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_projective_witness.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_projective_endpoint_uniform.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json
 ```
 
 The affine-pivot compression theorem is:

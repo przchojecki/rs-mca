@@ -90,6 +90,18 @@ at `[0:1]`; the first three finite-root closures come from the boundary
 dual-gcd packet.  Thus endpoint emptiness cannot be used as a universal rank-6
 closure argument.
 
+The endpoint-uniform packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/
+  f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json
+```
+
+strengthens the endpoint half without touching finite roots: for any disjoint
+base support of size `j+1`, any six direction nodes, and any nonzero weights,
+the split-locator endpoint `[0:1]` is present.  Thus endpoint nonemptiness is
+not a prefix-support artifact.
+
 The rank-node dichotomy packet
 
 ```text
@@ -200,6 +212,9 @@ python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_projective_witness.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-projective-witness/f17_32_n512_k256_m3_rank6_projective_witness.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_projective_endpoint_uniform.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json

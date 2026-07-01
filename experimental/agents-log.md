@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-6 endpoint uniformity
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_projective_endpoint_uniform.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/`;
+  `experimental/notes/m1/hankel_rank6_projective_endpoint_uniform.md`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/README.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A support- and weight-uniform rank-6 projective
+  endpoint theorem: for any disjoint base support of size `j+1`, any six
+  direction nodes, and nonzero weights in the M3 window, `[0:1]` has a genuine
+  split-locator witness.
+- **How it is useful:** It shows rank-6 endpoint nonemptiness is robust and not
+  a prefix/unit-weight artifact; finite-root refinement or payment is still
+  needed for general rank-6 closure.
+- **What to do next:** Pair this endpoint theorem with finite-root
+  table/refinement results for broader rank-6 Hankel families.
+
 ### 2026-07-01 - M3 rank-6 boundary dual gcd
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
