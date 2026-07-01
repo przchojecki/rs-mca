@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 null-polynomial split-locator gate
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_m3_nullpolynomial_split_locator_gate.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/`;
+  `experimental/notes/m1/hankel_nullpolynomial_split_locator_gate.md`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A null-polynomial gate for M3 finite roots: ambient
+  regular roots are Hankel kernel polynomials, and actual split-locator bad
+  slopes must pass the divisor gate `L | X^512-1` and the noncontainment gate
+  `H(v)ell != 0`.
+- **How it is useful:** It tells future root-table packets how to filter
+  ambient regular roots into genuine split-locator witnesses instead of
+  conflating rank drop with support-wise noncontainment.
+- **What to do next:** Apply the gate to concrete M3 root tables or singular
+  pivot packets.
+
 ### 2026-07-01 - M3 rank-node dichotomy
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

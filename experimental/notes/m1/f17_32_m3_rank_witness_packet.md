@@ -150,6 +150,13 @@ experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/
   f17_32_n512_k256_m3_rank_node_dichotomy.json
 ```
 
+The null-polynomial split-locator gate companion is
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/
+  f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json
+```
+
 ## Construction
 
 For exact agreement `A`,

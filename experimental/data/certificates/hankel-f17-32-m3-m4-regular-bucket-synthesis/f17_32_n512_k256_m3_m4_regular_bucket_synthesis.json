@@ -347,6 +347,7 @@
     "projective infinity is classified by the M5 kernel-containment chart",
     "rank<=5 buckets are separated from rank=6 endpoint-sensitive buckets",
     "rank-node testing supplies the finite regular/singular gate for future packets",
+    "null-polynomial testing separates ambient roots from split-locator noncontainment witnesses",
     "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
     "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
     "projective infinity and finite affine accounting are not conflated"
@@ -517,6 +518,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/f17_32_n512_k256_m3_m5_regular_root_rank_drop.json",
       "sha256": "55ee410863252e4c7633c110c458058135ccccaa5963a478e51cc18805d7fd12"
     },
+    "f17_32_n512_k256_m3_nullpolynomial_split_locator_gate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json",
+      "sha256": "fd918c7ddbf47b9037840a7dddf5d9a49c77b7d8d889924bbb6b861f8bb2bc42"
+    },
     "f17_32_n512_k256_m3_projective_infinity_rank_criterion": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/f17_32_n512_k256_m3_projective_infinity_rank_criterion.json",
       "sha256": "a1cf0404245aad0df1cb283a7551a846d914c343246bb9d0307a050a8b364263"
@@ -546,9 +551,10 @@
   "summary": {
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 14,
+    "dependencies_checked": 15,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
+    "m3_nullpolynomial_split_locator_gate_count": 1,
     "m3_rank_node_dichotomy_count": 1,
     "m4_affine_pivot_compression_count": 1,
     "m4_affine_pivot_gcd_equivalence_count": 1,
@@ -568,6 +574,10 @@
     "finite_safe_with_projective_kernel_accounting": [
       "non-proportional nonsingular buckets with direction rank <= 5 are projective-budget safe before endpoint payment",
       "non-proportional nonsingular buckets with direction rank = 6 are finite-budget safe but projective endpoint-sensitive"
+    ],
+    "m3_nullpolynomial_split_locator_gate": [
+      "finite canonical roots in a nonsingular regular bucket are ambient Hankel null-polynomials",
+      "actual split-locator bad slopes are filtered by monic degree-j divisibility by X^512-1 and H(v)ell noncontainment"
     ],
     "m3_rank_node_dichotomy": [
       "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",

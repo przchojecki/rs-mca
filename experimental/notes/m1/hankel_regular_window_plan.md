@@ -112,6 +112,19 @@ Hankel pencil, one full-rank finite specialization gives a nonzero maximal
 minor, while rank deficiency at `j+2` distinct finite nodes forces all maximal
 minors to vanish identically.
 
+The null-polynomial split-locator gate
+
+```text
+experimental/notes/m1/hankel_nullpolynomial_split_locator_gate.md
+experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/
+  f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json
+```
+
+records the next filter after an ambient root table is computed.  Finite
+regular roots in nonsingular buckets are ambient Hankel null-polynomials; actual
+split-locator witnesses must additionally be monic degree-`j` divisors of
+`X^512-1` and satisfy the finite-affine noncontainment test `H(v)ell != 0`.
+
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
 
@@ -1038,6 +1051,9 @@ python3 experimental/scripts/verify_m1_subgroup_syndrome_section.py \
 
 python3 experimental/scripts/verify_m1_hankel_m3_rank_node_dichotomy.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json
+
+python3 experimental/scripts/verify_m1_hankel_m3_nullpolynomial_split_locator_gate.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_a421_426_zero_slope_subtraction.json

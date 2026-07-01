@@ -1,0 +1,550 @@
+{
+  "agreement_records": [
+    {
+      "A": 385,
+      "hankel_recurrence_equations": 129,
+      "j": 127,
+      "maximal_row_set_count": 129,
+      "null_polynomial_coefficients": 128,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 127,
+      "t": 129
+    },
+    {
+      "A": 386,
+      "hankel_recurrence_equations": 130,
+      "j": 126,
+      "maximal_row_set_count": 357760,
+      "null_polynomial_coefficients": 127,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 126,
+      "t": 130
+    },
+    {
+      "A": 387,
+      "hankel_recurrence_equations": 131,
+      "j": 125,
+      "maximal_row_set_count": 297602656,
+      "null_polynomial_coefficients": 126,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 125,
+      "t": 131
+    },
+    {
+      "A": 388,
+      "hankel_recurrence_equations": 132,
+      "j": 124,
+      "maximal_row_set_count": 117850651776,
+      "null_polynomial_coefficients": 125,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 124,
+      "t": 132
+    },
+    {
+      "A": 389,
+      "hankel_recurrence_equations": 133,
+      "j": 123,
+      "maximal_row_set_count": 27212042858000,
+      "null_polynomial_coefficients": 124,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 123,
+      "t": 133
+    },
+    {
+      "A": 390,
+      "hankel_recurrence_equations": 134,
+      "j": 122,
+      "maximal_row_set_count": 4110502764804800,
+      "null_polynomial_coefficients": 123,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 122,
+      "t": 134
+    },
+    {
+      "A": 391,
+      "hankel_recurrence_equations": 135,
+      "j": 121,
+      "maximal_row_set_count": 437531400061434000,
+      "null_polynomial_coefficients": 122,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 121,
+      "t": 135
+    },
+    {
+      "A": 392,
+      "hankel_recurrence_equations": 136,
+      "j": 120,
+      "maximal_row_set_count": 34569147570568156800,
+      "null_polynomial_coefficients": 121,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 120,
+      "t": 136
+    },
+    {
+      "A": 393,
+      "hankel_recurrence_equations": 137,
+      "j": 119,
+      "maximal_row_set_count": 2106811614990104173800,
+      "null_polynomial_coefficients": 120,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 119,
+      "t": 137
+    },
+    {
+      "A": 394,
+      "hankel_recurrence_equations": 138,
+      "j": 118,
+      "maximal_row_set_count": 102014036094257675784000,
+      "null_polynomial_coefficients": 119,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 118,
+      "t": 138
+    },
+    {
+      "A": 395,
+      "hankel_recurrence_equations": 139,
+      "j": 117,
+      "maximal_row_set_count": 4017652788178848131293200,
+      "null_polynomial_coefficients": 118,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 117,
+      "t": 139
+    },
+    {
+      "A": 396,
+      "hankel_recurrence_equations": 140,
+      "j": 116,
+      "maximal_row_set_count": 131169217511293618831944000,
+      "null_polynomial_coefficients": 117,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 116,
+      "t": 140
+    },
+    {
+      "A": 397,
+      "hankel_recurrence_equations": 141,
+      "j": 115,
+      "maximal_row_set_count": 3606497635473018049784300280,
+      "null_polynomial_coefficients": 116,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 115,
+      "t": 141
+    },
+    {
+      "A": 398,
+      "hankel_recurrence_equations": 142,
+      "j": 114,
+      "maximal_row_set_count": 84624257908136115834824778080,
+      "null_polynomial_coefficients": 115,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 114,
+      "t": 142
+    },
+    {
+      "A": 399,
+      "hankel_recurrence_equations": 143,
+      "j": 113,
+      "maximal_row_set_count": 1713849656772535006039031373800,
+      "null_polynomial_coefficients": 114,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 113,
+      "t": 143
+    },
+    {
+      "A": 400,
+      "hankel_recurrence_equations": 144,
+      "j": 112,
+      "maximal_row_set_count": 30252210715675198558211547346560,
+      "null_polynomial_coefficients": 113,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 112,
+      "t": 144
+    },
+    {
+      "A": 401,
+      "hankel_recurrence_equations": 145,
+      "j": 111,
+      "maximal_row_set_count": 469396280848805045810886556130100,
+      "null_polynomial_coefficients": 112,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 111,
+      "t": 145
+    },
+    {
+      "A": 402,
+      "hankel_recurrence_equations": 146,
+      "j": 110,
+      "maximal_row_set_count": 6450057129781226982436652912470080,
+      "null_polynomial_coefficients": 111,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 110,
+      "t": 146
+    },
+    {
+      "A": 403,
+      "hankel_recurrence_equations": 147,
+      "j": 109,
+      "maximal_row_set_count": 79013199839820030534848998177758480,
+      "null_polynomial_coefficients": 110,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 109,
+      "t": 147
+    },
+    {
+      "A": 404,
+      "hankel_recurrence_equations": 148,
+      "j": 108,
+      "maximal_row_set_count": 867972262747820578345034878767819200,
+      "null_polynomial_coefficients": 109,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 108,
+      "t": 148
+    },
+    {
+      "A": 405,
+      "hankel_recurrence_equations": 149,
+      "j": 107,
+      "maximal_row_set_count": 8595571658102045129818116747602531480,
+      "null_polynomial_coefficients": 108,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 107,
+      "t": 149
+    },
+    {
+      "A": 406,
+      "hankel_recurrence_equations": 150,
+      "j": 106,
+      "maximal_row_set_count": 77103134474669507808999718333976196000,
+      "null_polynomial_coefficients": 107,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 106,
+      "t": 150
+    },
+    {
+      "A": 407,
+      "hankel_recurrence_equations": 151,
+      "j": 105,
+      "maximal_row_set_count": 629169365508704665489903257132350201400,
+      "null_polynomial_coefficients": 106,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 105,
+      "t": 151
+    },
+    {
+      "A": 408,
+      "hankel_recurrence_equations": 152,
+      "j": 104,
+      "maximal_row_set_count": 4688795937593084907665736021700474766400,
+      "null_polynomial_coefficients": 105,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 104,
+      "t": 152
+    },
+    {
+      "A": 409,
+      "hankel_recurrence_equations": 153,
+      "j": 103,
+      "maximal_row_set_count": 32026150823738481735395429076793421395500,
+      "null_polynomial_coefficients": 104,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 103,
+      "t": 153
+    },
+    {
+      "A": 410,
+      "hankel_recurrence_equations": 154,
+      "j": 102,
+      "maximal_row_set_count": 201149345722743342538860075330950367478560,
+      "null_polynomial_coefficients": 103,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 102,
+      "t": 154
+    },
+    {
+      "A": 411,
+      "hankel_recurrence_equations": 155,
+      "j": 101,
+      "maximal_row_set_count": 1165221082896806046310922025638106900143400,
+      "null_polynomial_coefficients": 102,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 101,
+      "t": 155
+    },
+    {
+      "A": 412,
+      "hankel_recurrence_equations": 156,
+      "j": 100,
+      "maximal_row_set_count": 6242760225944100272356697397964160604404640,
+      "null_polynomial_coefficients": 101,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 100,
+      "t": 156
+    },
+    {
+      "A": 413,
+      "hankel_recurrence_equations": 157,
+      "j": 99,
+      "maximal_row_set_count": 31012358678820676071040147443457924406028940,
+      "null_polynomial_coefficients": 100,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 99,
+      "t": 157
+    },
+    {
+      "A": 414,
+      "hankel_recurrence_equations": 158,
+      "j": 98,
+      "maximal_row_set_count": 143189733233596341882651762012459148338766000,
+      "null_polynomial_coefficients": 99,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 98,
+      "t": 158
+    },
+    {
+      "A": 415,
+      "hankel_recurrence_equations": 159,
+      "j": 97,
+      "maximal_row_set_count": 615833221538262299883830979737191107650414100,
+      "null_polynomial_coefficients": 98,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 97,
+      "t": 159
+    },
+    {
+      "A": 416,
+      "hankel_recurrence_equations": 160,
+      "j": 96,
+      "maximal_row_set_count": 2472162036282630021039034757367935629277648000,
+      "null_polynomial_coefficients": 97,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 96,
+      "t": 160
+    },
+    {
+      "A": 417,
+      "hankel_recurrence_equations": 161,
+      "j": 95,
+      "maximal_row_set_count": 9280710221304286788116972549474771808276208850,
+      "null_polynomial_coefficients": 96,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 95,
+      "t": 161
+    },
+    {
+      "A": 418,
+      "hankel_recurrence_equations": 162,
+      "j": 94,
+      "maximal_row_set_count": 32639892664342891933241781340893634365063681600,
+      "null_polynomial_coefficients": 95,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 94,
+      "t": 162
+    },
+    {
+      "A": 419,
+      "hankel_recurrence_equations": 163,
+      "j": 93,
+      "maximal_row_set_count": 107721384890739488829123824395511067379158378000,
+      "null_polynomial_coefficients": 94,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 93,
+      "t": 163
+    },
+    {
+      "A": 420,
+      "hankel_recurrence_equations": 164,
+      "j": 92,
+      "maximal_row_set_count": 334131362067533191104582067782937347025574558400,
+      "null_polynomial_coefficients": 93,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 92,
+      "t": 164
+    },
+    {
+      "A": 421,
+      "hankel_recurrence_equations": 165,
+      "j": 91,
+      "maximal_row_set_count": 975503377269082347317315797208746877874322983000,
+      "null_polynomial_coefficients": 92,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 91,
+      "t": 165
+    },
+    {
+      "A": 422,
+      "hankel_recurrence_equations": 166,
+      "j": 90,
+      "maximal_row_set_count": 2684304068045662271753161595490447264666064972320,
+      "null_polynomial_coefficients": 91,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 90,
+      "t": 166
+    },
+    {
+      "A": 423,
+      "hankel_recurrence_equations": 167,
+      "j": 89,
+      "maximal_row_set_count": 6970842262831498554995351463887273937308644802520,
+      "null_polynomial_coefficients": 90,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 89,
+      "t": 167
+    },
+    {
+      "A": 424,
+      "hankel_recurrence_equations": 168,
+      "j": 88,
+      "maximal_row_set_count": 17104695717950707262500765033102171686482750635200,
+      "null_polynomial_coefficients": 89,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 88,
+      "t": 168
+    },
+    {
+      "A": 425,
+      "hankel_recurrence_equations": 169,
+      "j": 87,
+      "maximal_row_set_count": 39702427205817374681369445503532371039565903133340,
+      "null_polynomial_coefficients": 88,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 87,
+      "t": 169
+    },
+    {
+      "A": 426,
+      "hankel_recurrence_equations": 170,
+      "j": 86,
+      "maximal_row_set_count": 87268338377759025159166456763568067991758141474400,
+      "null_polynomial_coefficients": 87,
+      "regular_overdetermined": true,
+      "split_locator_degree_required": 86,
+      "t": 170
+    }
+  ],
+  "checks": [
+    "dependency schemas and windows match the F_17^32 M3 regular window",
+    "the recorded domain is the exact order-512 subgroup generated in the row descriptor",
+    "X^512-1 is squarefree in characteristic 17",
+    "monic degree-j divisors of X^512-1 are exactly split squarefree j-subgroup locators",
+    "rank-drop and finite-affine kernel dependencies expose the required root and noncontainment gates",
+    "sanity examples distinguish ambient null-polynomials from split-domain locators"
+  ],
+  "domain_locator_gate": {
+    "derivative": "512 X^511 = 2 X^511 in characteristic 17",
+    "domain_polynomial": "X^512 - 1",
+    "root_set": "the recorded order-512 subgroup H",
+    "split_locator_criterion": "A monic degree-j polynomial is the locator of a j-subset of H iff it divides X^512-1.",
+    "squarefree": true
+  },
+  "field_audit": {
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "domain_polynomial_derivative_coefficient_mod_17": 2,
+    "domain_size": 512,
+    "generator_encoding": 1415472521070614055149723472223960876430,
+    "generator_exact_order": 512,
+    "x_512_minus_1_squarefree": true
+  },
+  "nonclaims": [
+    "does not compute an arbitrary-row finite root table",
+    "does not prove that every ambient root has a split locator",
+    "does not perform quotient, tangent, extension, or subfield subtraction",
+    "does not close singular buckets without root tables or pivot eliminants"
+  ],
+  "object": "M3 finite-root null-polynomial and split-locator gate",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sanity_checks": [
+    {
+      "direction_recurrence_values": [
+        2,
+        0,
+        0
+      ],
+      "domain": "F_17^* roots of X^16-1",
+      "hankel_recurrence_values": [
+        0,
+        0,
+        0
+      ],
+      "prime": 17,
+      "result": "split locator can pass the domain and noncontainment gates",
+      "split_locator_divides_domain_polynomial": true,
+      "split_locator_low_to_high": [
+        2,
+        14,
+        1
+      ]
+    },
+    {
+      "ambient_kernel_divides_domain_polynomial": false,
+      "ambient_kernel_vector_low_to_high": [
+        0,
+        0,
+        1
+      ],
+      "hankel_recurrence_values": [
+        0,
+        0,
+        0
+      ],
+      "prime": 17,
+      "result": "ambient Hankel rank drop can overcount split-domain locators"
+    }
+  ],
+  "schema_version": "f17-32-m3-nullpolynomial-split-locator-gate-v1",
+  "source_artifacts": {
+    "finite_affine_kernel_chart": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-finite-affine-kernel-chart/f17_32_n512_k256_m3_m5_finite_affine_kernel_chart.json",
+      "sha256": "d3162ac558dd5ad4accc613abbbe35e01bc8c832b3d0916e260fb91ba6fc32ad"
+    },
+    "rank_node_dichotomy": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
+      "sha256": "d85c2cac6e9842117f72bb952eb4c11c83a3f8ee416babd67c6cf1ef34cc152c"
+    },
+    "regular_root_rank_drop": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m5-regular-root-rank-drop/f17_32_n512_k256_m3_m5_regular_root_rank_drop.json",
+      "sha256": "55ee410863252e4c7633c110c458058135ccccaa5963a478e51cc18805d7fd12"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement_count": 42,
+    "ambient_root_table_is_safe_upper_bound": true,
+    "null_polynomial_gate_available": true,
+    "root_filter_max_contribution_per_unfiltered_root": 1,
+    "split_locator_gate_available": true
+  },
+  "theorem": {
+    "certificate_payload": [
+      "finite slope encoding z",
+      "nonzero kernel vector ell for H(u+zv)",
+      "normalization degree of L(X)",
+      "remainder of L(X) against X^512-1, or divisor proof",
+      "the recurrence vector H(u+zv)ell",
+      "the noncontainment vector H(v)ell"
+    ],
+    "noncontainment_gate": "The support-wise finite-affine noncontainment condition is H_{t,j}(v) ell != 0.  If H(v)ell=0 as well as H(u+zv)ell=0, then also H(u)ell=0 and the witness is in the same-support contained branch.",
+    "null_polynomial_equivalence": "For a finite slope z and s_m(z)=u_m+zv_m, rank H_{t,j}(s(z))<=j iff there is a nonzero polynomial L(X)=ell_0+...+ell_j X^j such that sum_{b=0}^j s_{a+b}(z) ell_b=0 for every 0<=a<t.",
+    "regular_root_interpretation": "In a nonsingular regular bucket, the v10 finite canonical roots are exactly the finite slopes admitting such a nonzero ambient null-polynomial.",
+    "safe_upper_bound": "Therefore an ambient regular root table is a safe upper bound for split-locator bad slopes, and future packets may filter listed roots by the divisor and noncontainment gates.",
+    "split_locator_gate": "An ambient null-polynomial gives an exact-A split locator only after normalization to a monic degree-j divisor of X^512-1."
+  },
+  "window": {
+    "A_max": 426,
+    "A_min": 385,
+    "agreement_count": 42,
+    "all_row_set_total": 155193154203428426778689566118132250614039201839551,
+    "j_max": 127,
+    "j_min": 86
+  }
+}

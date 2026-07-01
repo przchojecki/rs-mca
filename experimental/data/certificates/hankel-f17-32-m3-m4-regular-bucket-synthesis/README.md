@@ -88,6 +88,19 @@ column rank, row elimination supplies a nonzero maximal minor.  If all `j+2`
 deterministic finite test nodes have rank at most `j`, then every maximal minor
 vanishes identically and the bucket is genuinely singular.
 
+The null-polynomial split-locator gate
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/
+  f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json
+```
+
+separates ambient regular roots from actual support-wise split locators.  In a
+nonsingular bucket, finite canonical roots are exactly ambient null-polynomials
+`H(u+zv)ell=0`; a root becomes a split-locator witness only after `ell`
+normalizes to a monic degree-`j` divisor of `X^512-1` and satisfies
+`H(v)ell != 0`.
+
 The affine-pivot compression packet
 
 ```text
@@ -160,6 +173,9 @@ python3 experimental/scripts/verify_m1_hankel_m4_rank6_ambient_sharpness.py \
 
 python3 experimental/scripts/verify_m1_hankel_m3_rank_node_dichotomy.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json
+
+python3 experimental/scripts/verify_m1_hankel_m3_nullpolynomial_split_locator_gate.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json
