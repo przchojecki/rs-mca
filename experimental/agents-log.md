@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 rank-8 low-rank finite slack
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank8_slack_family.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank8-slack-family/`;
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** Adds a replayable rank-8 synthetic low-rank
+  finite-slack certificate for the M3 regular window.  The certificate computes
+  `gcd(Delta,Z^q-Z)` in all `42` rows and obtains exact finite-root histogram
+  `{0:22, 1:10, 2:7, 3:2, 4:1}`, so the maximum projective regular-root count
+  is `4+1=5`.
+- **How it is useful:** Shows that the finite-root slack phenomenon persists a
+  second step beyond the v4 low-rank degree envelope: degree-only
+  finite/projective accounting would give `8` and `9`.
+- **What to do next:** Decide whether to hunt for the first nested rank where
+  this slack fails, or turn the repeated small Frobenius-gcd degrees into a
+  structural lemma for bounded-rank M3 residuals.
+
 ### 2026-07-01 - M3 rank-7 low-rank finite slack
 
 - **Agent/model:** AllenGrahamHart / Codex.

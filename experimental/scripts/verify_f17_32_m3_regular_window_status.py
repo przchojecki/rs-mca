@@ -61,6 +61,10 @@ LOW_RANK7_SLACK_FAMILY_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-low-rank7-slack-family/"
     "f17_32_n512_k256_m3_low_rank7_slack_family_certificate.json"
 )
+LOW_RANK8_SLACK_FAMILY_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-low-rank8-slack-family/"
+    "f17_32_n512_k256_m3_low_rank8_slack_family_certificate.json"
+)
 TOP_PACKET_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/"
     "f17_32_n512_k256_a421_426_fixed_prefix92_packet.json"
@@ -146,6 +150,7 @@ def validate_inputs(
     low_rank5_budget_family: dict[str, Any],
     low_rank6_slack_family: dict[str, Any],
     low_rank7_slack_family: dict[str, Any],
+    low_rank8_slack_family: dict[str, Any],
     top_packet: dict[str, Any],
     line_value_lift: dict[str, Any],
     subgroup_section: dict[str, Any],
@@ -636,6 +641,92 @@ def validate_inputs(
         "rank-7 low-rank slack family record count mismatch",
     )
     require(
+        low_rank8_slack_family["schema_version"]
+        == "f17-32-m3-low-rank8-slack-family-v1",
+        "rank-8 low-rank slack family schema mismatch",
+    )
+    require(
+        low_rank8_slack_family["agreement_range"] == [AGREEMENT_MIN, AGREEMENT_MAX],
+        "rank-8 low-rank slack family window mismatch",
+    )
+    require(
+        low_rank8_slack_family["source_artifacts"]["low_rank_template"][
+            "schema_version"
+        ]
+        == "m1-hankel-low-rank-update-template-v4",
+        "rank-8 low-rank slack family template schema mismatch",
+    )
+    require(
+        low_rank8_slack_family["aggregate"]["agreement_count"] == 42,
+        "rank-8 low-rank slack family agreement count mismatch",
+    )
+    require(
+        low_rank8_slack_family["aggregate"]["per_agreement_degree_bound"] == 8,
+        "rank-8 low-rank slack family per-agreement bound mismatch",
+    )
+    require(
+        low_rank8_slack_family["aggregate"]["degree_bound_sum"] == 336,
+        "rank-8 low-rank slack family degree-bound aggregate mismatch",
+    )
+    require(
+        low_rank8_slack_family["aggregate"]["polynomial_degree_histogram"]
+        == {"8": 42},
+        "rank-8 low-rank slack family degree histogram mismatch",
+    )
+    require(
+        low_rank8_slack_family["aggregate"]["exact_regular_root_count_sum"] == 34,
+        "rank-8 low-rank slack family exact-root sum mismatch",
+    )
+    require(
+        low_rank8_slack_family["aggregate"]["linear_root_count_histogram"]
+        == {"0": 22, "1": 10, "2": 7, "3": 2, "4": 1},
+        "rank-8 low-rank slack family root histogram mismatch",
+    )
+    require(
+        low_rank8_slack_family["aggregate"]["projective_infinity_contribution_sum"]
+        == 42,
+        "rank-8 low-rank slack family projective contribution mismatch",
+    )
+    require(
+        low_rank8_slack_family["aggregate"]["max_finite_roots_per_agreement"]
+        == 4,
+        "rank-8 low-rank slack family finite maximum mismatch",
+    )
+    require(
+        low_rank8_slack_family["aggregate"][
+            "max_projective_regular_roots_per_agreement"
+        ]
+        == 5,
+        "rank-8 low-rank slack family projective maximum mismatch",
+    )
+    require(
+        low_rank8_slack_family["aggregate"]["degree_only_projective_bound_without_slack"]
+        == 9
+        and low_rank8_slack_family["aggregate"][
+            "degree_only_projective_bound_within_budget"
+        ]
+        is False
+        and low_rank8_slack_family["aggregate"]["finite_slack_projective_gate_status"]
+        == "closed_by_exact_root_count",
+        "rank-8 low-rank slack family finite-slack status mismatch",
+    )
+    require(
+        low_rank8_slack_family["aggregate"]["all_rows_within_finite_budget"]
+        is True
+        and low_rank8_slack_family["aggregate"]["all_rows_within_projective_budget"]
+        is True,
+        "rank-8 low-rank slack family budget status mismatch",
+    )
+    require(
+        low_rank8_slack_family["aggregate"]["generic_degree_bound_sum_for_window"]
+        == plan["budget_context"]["degree_bound_sum"],
+        "rank-8 low-rank slack family generic degree sum mismatch",
+    )
+    require(
+        len(low_rank8_slack_family["records"]) == 42,
+        "rank-8 low-rank slack family record count mismatch",
+    )
+    require(
         top_packet["exact_agreements"][0]["A"] == TOP_WINDOW_MIN
         and top_packet["exact_agreements"][-1]["A"] == TOP_WINDOW_MAX,
         "top-window packet range mismatch",
@@ -879,6 +970,7 @@ def per_agreement_records(
     low_rank5_budget_family: dict[str, Any],
     low_rank6_slack_family: dict[str, Any],
     low_rank7_slack_family: dict[str, Any],
+    low_rank8_slack_family: dict[str, Any],
     top_packet: dict[str, Any],
     syndrome_realizability: dict[str, Any],
     zero_slope_subtraction: dict[str, Any],
@@ -904,6 +996,9 @@ def per_agreement_records(
     }
     low_rank7_slack_family_by_a = {
         int(item["A"]): item for item in low_rank7_slack_family["records"]
+    }
+    low_rank8_slack_family_by_a = {
+        int(item["A"]): item for item in low_rank8_slack_family["records"]
     }
     realizability_by_a = {
         int(item["A"]): item for item in syndrome_realizability["per_agreement"]
@@ -934,6 +1029,7 @@ def per_agreement_records(
         low_rank5_item = low_rank5_budget_family_by_a[agreement]
         low_rank6_item = low_rank6_slack_family_by_a[agreement]
         low_rank7_item = low_rank7_slack_family_by_a[agreement]
+        low_rank8_item = low_rank8_slack_family_by_a[agreement]
         realizability_item = realizability_by_a[agreement]
         top_item = top_by_a.get(agreement)
         require(plan_item["degree_bound"] == generic_item["generic_degree"], f"A={agreement}: degree mismatch")
@@ -1186,6 +1282,51 @@ def per_agreement_records(
             f"A={agreement}: rank-7 low-rank slack budget table mismatch",
         )
         require(
+            low_rank8_item["degree_bound"] == 8
+            and low_rank8_item["polynomial_degree"] == 8
+            and low_rank8_item["root_count"] in {0, 1, 2, 3, 4}
+            and low_rank8_item["linear_root_count_certificate"][
+                "linear_root_count"
+            ]
+            == low_rank8_item["root_count"],
+            f"A={agreement}: rank-8 low-rank slack family status mismatch",
+        )
+        if low_rank8_item["root_count"] <= 2:
+            require(
+                low_rank8_item["listed_roots"] is not None
+                and len(low_rank8_item["listed_roots"])
+                == low_rank8_item["root_count"],
+                f"A={agreement}: rank-8 listed root mismatch",
+            )
+        else:
+            require(
+                low_rank8_item["listed_roots"] is None,
+                f"A={agreement}: rank-8 high-degree root list should be count-only",
+            )
+        require(
+            low_rank8_item["projective_infinity"]["status"]
+            == "nonempty_not_excluded_by_regular_minor"
+            and low_rank8_item["projective_infinity"]["contribution"] == 1,
+            f"A={agreement}: rank-8 low-rank projective endpoint mismatch",
+        )
+        require(
+            low_rank8_item["regular_budget_table"]["degree_only_projective_bound"]
+            == 9
+            and low_rank8_item["regular_budget_table"][
+                "degree_only_projective_budget_gap"
+            ]
+            == -3
+            and low_rank8_item["regular_budget_table"][
+                "projective_regular_roots"
+            ]
+            == low_rank8_item["root_count"] + 1
+            and low_rank8_item["regular_budget_table"]["within_finite_budget"]
+            is True
+            and low_rank8_item["regular_budget_table"]["within_projective_budget"]
+            is True,
+            f"A={agreement}: rank-8 low-rank slack budget table mismatch",
+        )
+        require(
             realizability_item["visible_syndrome_length"] == 256
             and realizability_item["section_applies"] is True,
             f"A={agreement}: syndrome realizability mismatch",
@@ -1395,6 +1536,24 @@ def per_agreement_records(
                     "regular_budget_table"
                 ]["degree_only_projective_budget_gap"],
                 "synthetic_low_rank7_sidecar_hash": low_rank7_item["sidecar_hash"],
+                "synthetic_low_rank8_slack_family_status": (
+                    "rank-8 prefix update witness has exact finite-root slack "
+                    "beyond the low-rank degree envelope"
+                ),
+                "synthetic_low_rank8_root_bound": low_rank8_item["degree_bound"],
+                "synthetic_low_rank8_root_count": low_rank8_item["root_count"],
+                "synthetic_low_rank8_root_status": low_rank8_item["root_status"],
+                "synthetic_low_rank8_projective_infinity_contribution": 1,
+                "synthetic_low_rank8_projective_regular_roots": low_rank8_item[
+                    "regular_budget_table"
+                ]["projective_regular_roots"],
+                "synthetic_low_rank8_projective_budget_gap": low_rank8_item[
+                    "regular_budget_table"
+                ]["projective_budget_gap"],
+                "synthetic_low_rank8_degree_only_projective_gap": low_rank8_item[
+                    "regular_budget_table"
+                ]["degree_only_projective_budget_gap"],
+                "synthetic_low_rank8_sidecar_hash": low_rank8_item["sidecar_hash"],
                 "syndrome_pencil_realizability": (
                     "all length-256 u,v syndrome pencils are realized by explicit "
                     "line values on H"
@@ -1454,6 +1613,7 @@ def build_status() -> dict[str, Any]:
     low_rank5_budget_family = load_json(LOW_RANK5_BUDGET_FAMILY_REF)
     low_rank6_slack_family = load_json(LOW_RANK6_SLACK_FAMILY_REF)
     low_rank7_slack_family = load_json(LOW_RANK7_SLACK_FAMILY_REF)
+    low_rank8_slack_family = load_json(LOW_RANK8_SLACK_FAMILY_REF)
     top_packet = load_json(TOP_PACKET_REF)
     line_value_lift = load_json(LINE_VALUE_LIFT_REF)
     subgroup_section = load_json(SUBGROUP_SECTION_REF)
@@ -1473,6 +1633,7 @@ def build_status() -> dict[str, Any]:
         low_rank5_budget_family,
         low_rank6_slack_family,
         low_rank7_slack_family,
+        low_rank8_slack_family,
         top_packet,
         line_value_lift,
         subgroup_section,
@@ -1493,6 +1654,7 @@ def build_status() -> dict[str, Any]:
         low_rank5_budget_family,
         low_rank6_slack_family,
         low_rank7_slack_family,
+        low_rank8_slack_family,
         top_packet,
         syndrome_realizability,
         zero_slope_subtraction,
@@ -1539,6 +1701,11 @@ def build_status() -> dict[str, Any]:
             "synthetic_low_rank7_slack_family",
             LOW_RANK7_SLACK_FAMILY_REF,
             "f17-32-m3-low-rank7-slack-family-v1",
+        ),
+        artifact_record(
+            "synthetic_low_rank8_slack_family",
+            LOW_RANK8_SLACK_FAMILY_REF,
+            "f17-32-m3-low-rank8-slack-family-v1",
         ),
         artifact_record("fixed_top_window_v9_packet", TOP_PACKET_REF, "aperiodic-hankel-eliminant-v1"),
         artifact_record(
@@ -1753,6 +1920,33 @@ def build_status() -> dict[str, Any]:
                 "finite-root slack lowers every row to at most 5 projective "
                 "regular roots"
             ),
+            "synthetic_low_rank8_slack_family_status": (
+                "proved exact Frobenius-gcd finite-root slack beyond the "
+                "degree envelope for all 42 rank-8 synthetic pencils"
+            ),
+            "synthetic_low_rank8_degree_bound_sum": (
+                low_rank8_slack_family["aggregate"]["degree_bound_sum"]
+            ),
+            "synthetic_low_rank8_exact_root_count_sum": (
+                low_rank8_slack_family["aggregate"][
+                    "exact_regular_root_count_sum"
+                ]
+            ),
+            "synthetic_low_rank8_root_count_histogram": (
+                low_rank8_slack_family["aggregate"][
+                    "linear_root_count_histogram"
+                ]
+            ),
+            "synthetic_low_rank8_max_projective_regular_roots_per_agreement": (
+                low_rank8_slack_family["aggregate"][
+                    "max_projective_regular_roots_per_agreement"
+                ]
+            ),
+            "synthetic_low_rank8_projective_budget_status": (
+                "degree-only projective accounting gives 9 > 6, but exact "
+                "finite-root slack lowers every row to at most 5 projective "
+                "regular roots"
+            ),
             "low_rank_budget_envelope_status": (
                 "proved that every nonzero regular low-rank update chart of "
                 "rank <= 6 is within the F_17^32 M3 finite regular-root "
@@ -1821,6 +2015,7 @@ def build_status() -> dict[str, Any]:
                 "the synthetic rank-5 low-rank budget family has degree 5 in all 42 rows and at most 6 projective regular roots per agreement by the v4 low-rank packet gate",
                 "the synthetic rank-6 low-rank slack family has exact Frobenius-gcd root histogram {0:16, 1:17, 2:9}, so finite-root slack gives at most 3 projective regular roots per agreement",
                 "the synthetic rank-7 low-rank slack family has exact Frobenius-gcd root histogram {0:16, 1:15, 2:6, 3:4, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 8",
+                "the synthetic rank-8 low-rank slack family has exact Frobenius-gcd root histogram {0:22, 1:10, 2:7, 3:2, 4:1}, so finite-root slack gives at most 5 projective regular roots per agreement despite degree-only projective bound 9",
                 "every nonzero low-rank regular chart of update rank at most 6 is automatically within the F_17^32 M3 finite regular-root budget; the v4 packet gate accepts projective use through rank 5 and sends rank 6 to an extra endpoint/slack/deduplication certificate",
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
                 "the fixed top-window syndrome input has an explicit line-value lift",
@@ -1879,6 +2074,7 @@ def print_summary(status: dict[str, Any]) -> None:
     print(f"rank-5 low-rank budget: {summary['synthetic_low_rank5_budget_family_status']}")
     print(f"rank-6 low-rank slack: {summary['synthetic_low_rank6_slack_family_status']}")
     print(f"rank-7 low-rank slack: {summary['synthetic_low_rank7_slack_family_status']}")
+    print(f"rank-8 low-rank slack: {summary['synthetic_low_rank8_slack_family_status']}")
     print(f"low-rank budget envelope: {summary['low_rank_budget_envelope_status']}")
     print(f"low-rank packet gate: {summary['low_rank_packet_gate_status']}")
     print(f"actual row: {summary['actual_row_status']}")

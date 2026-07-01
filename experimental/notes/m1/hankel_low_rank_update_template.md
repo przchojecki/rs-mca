@@ -254,6 +254,18 @@ projective bounds fail, but exact Frobenius-gcd root counts have histogram
 `{0:16, 1:15, 2:6, 3:4, 4:1}`, so finite-root slack gives projective bound
 `4+1=5 <= 6`.
 
+The rank-8 finite-slack companion
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank8-slack-family/
+  f17_32_n512_k256_m3_low_rank8_slack_family_certificate.json
+```
+
+continues the same nested ladder.  Degree-only finite and projective bounds
+again fail, now at `8` and `9`, but exact Frobenius-gcd root counts have
+histogram `{0:22, 1:10, 2:7, 3:2, 4:1}`, so finite-root slack still gives
+projective bound `4+1=5 <= 6`.
+
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform quotient/tangent
 subtraction.

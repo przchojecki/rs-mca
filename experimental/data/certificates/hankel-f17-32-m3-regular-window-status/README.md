@@ -63,6 +63,13 @@ and at most five projective regular roots after the corrected infinity point.
 This is a synthetic example where exact root slack, not low-rank degree alone,
 keeps the packet under budget.
 
+The rank-8 low-rank slack family takes the same nested synthetic ladder another
+step beyond the degree envelope: degree-only finite accounting gives `8 > 6`
+and projective accounting gives `9 > 6`.  Exact Frobenius-gcd root counts give
+histogram `{0:22, 1:10, 2:7, 3:2, 4:1}`, so every agreement again has at most
+four finite roots and at most five projective regular roots after the corrected
+infinity point.
+
 The ledger also imports the v4 low-rank update template budget envelope.  Since
 both the finite and projective `F_17^32` budget numerators are 6, every nonzero
 regular low-rank update chart of rank at most 6 is within the finite regular

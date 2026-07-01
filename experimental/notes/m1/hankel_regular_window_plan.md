@@ -395,6 +395,19 @@ bound `8`, both above budget numerator `6`.  Exact finite-root counts have
 histogram `{0:16, 1:15, 2:6, 3:4, 4:1}`, so finite-root slack still gives at
 most five projective regular roots per agreement.
 
+The rank-8 finite-slack companion is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank8-slack-family/
+  f17_32_n512_k256_m3_low_rank8_slack_family_certificate.json
+```
+
+It uses the next eight descriptor nodes for `Y`, another step beyond the v4
+low-rank degree envelope.  Degree-only accounting would give finite bound `8`
+and projective bound `9`, both above budget numerator `6`.  Exact finite-root
+counts have histogram `{0:22, 1:10, 2:7, 3:2, 4:1}`, so finite-root slack again
+gives at most five projective regular roots per agreement.
+
 The current status ledger
 
 ```text
@@ -472,6 +485,9 @@ python3 experimental/scripts/verify_f17_32_m3_low_rank6_slack_family.py \
 
 python3 experimental/scripts/verify_f17_32_m3_low_rank7_slack_family.py \
   --check experimental/data/certificates/hankel-f17-32-m3-low-rank7-slack-family/f17_32_n512_k256_m3_low_rank7_slack_family_certificate.json
+
+python3 experimental/scripts/verify_f17_32_m3_low_rank8_slack_family.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-low-rank8-slack-family/f17_32_n512_k256_m3_low_rank8_slack_family_certificate.json
 ```
 
 Non-claims: this note does not enumerate universal root sets for arbitrary
