@@ -466,6 +466,26 @@ python3 experimental/scripts/verify_m1_hankel_direction_rank_degree_cap.py \
   --check experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json
 ```
 
+The current M4 regular-bucket synthesis table is:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/
+  f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json
+```
+
+It composes the zero-`u`, proportional, tangent-overlap, projective-infinity,
+zero-`v`, lower-rank-contained, and direction-rank certificates into one
+decision table.  It marks the currently closed branches, the finite-safe but
+projective-open low-direction-rank branch, and the residual branches still
+requiring M5 pivots, root tables, quotient, extension, or subfield ledgers.
+
+Replay:
+
+```sh
+python3 experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json
+```
+
 The corresponding F1 denominator audit is
 
 ```text

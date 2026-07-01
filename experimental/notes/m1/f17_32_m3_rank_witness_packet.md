@@ -80,6 +80,9 @@ experimental/data/certificates/hankel-f17-32-m3-zero-v-projective-endpoint/
 
 experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/
   f17_32_n512_k256_m3_direction_rank_degree_cap.json
+
+experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/
+  f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json
 ```
 
 The M4 zero-slope subtraction sidecar is
@@ -313,6 +316,16 @@ the finite-slope budget is `6`, every nonsingular exact bucket with direction
 rank at most `6` is finite-root budget safe.  Projective infinity remains
 governed by the separate infinity criterion above.
 
+The M4 regular-bucket synthesis certificate composes these local lemmas into a
+decision table.  The closed branches are zero-`v` with full-rank `H(u)` and
+proportional nonzero-`v` with full-rank `H(v)`; the zero-`u` full-rank branch is
+the `c=0` proportional subcase.  A genuinely non-proportional nonsingular
+finite bucket with direction rank at most `6` is finite-root budget safe and
+has zero finite tangent overlap, but projective infinity is still a singular
+endpoint unless separately closed.  Rank-deficient finite buckets,
+direction-rank-deficient infinity endpoints, high-rank non-proportional finite
+root tables, and quotient/extension overlaps remain named residual work.
+
 In the selected-minor packets, the chosen prefix determinant has the closed form
 
 ```text
@@ -451,6 +464,9 @@ python3 experimental/scripts/verify_m1_hankel_zero_v_projective_endpoint.py \
 
 python3 experimental/scripts/verify_m1_hankel_direction_rank_degree_cap.py \
   --check experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json
+
+python3 experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/f17_32_n512_k256_m3_m4_regular_bucket_synthesis.json
 
 python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
   --check experimental/data/certificates/hankel-f17-32-m3-zero-slope-subtraction/f17_32_n512_k256_rank_witness_zero_slope_subtraction.json

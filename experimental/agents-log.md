@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3/M4 regular-bucket synthesis
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT synthesis for the current M3/M4 regular-bucket packet,
+  composing proved local certificates.
+- **What is being added:** A composed decision table for regular buckets:
+  zero-`v` full-rank and proportional full-rank branches are closed; low
+  direction-rank non-proportional nonsingular buckets are finite-root safe but
+  still need projective-infinity/other ledgers; rank-deficient and high-rank
+  non-proportional buckets remain named residuals.
+- **How it is useful:** This turns the individual local lemmas in PR #171 into
+  the M4-style audit surface requested by `agents.md`: it separates closed,
+  finite-safe, and still-open branches without hiding singular buckets.
+- **What to do next:** Use the table to choose concrete non-proportional root
+  packets or M5 projective/affine pivot charts, rather than adding more
+  isolated accounting lemmas.
+
 ### 2026-07-01 - M3 direction-rank degree cap
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

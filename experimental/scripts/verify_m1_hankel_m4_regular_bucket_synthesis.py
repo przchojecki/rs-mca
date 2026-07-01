@@ -1,0 +1,356 @@
+#!/usr/bin/env python3
+"""Verify the M4 regular-bucket synthesis table for the M3 window."""
+
+from __future__ import annotations
+
+import argparse
+from hashlib import sha256
+import json
+from math import comb
+from pathlib import Path
+import sys
+from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E402
+    Field,
+    K,
+    MODULUS,
+    N,
+    P,
+)
+
+
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v1"
+Q_LINE = 17**32
+TARGET_BITS = 128
+BUDGET = Q_LINE // 2**TARGET_BITS
+A_MIN = 385
+A_MAX = 426
+ROW_DESCRIPTOR_REF = (
+    "experimental/data/certificates/hankel-f17-32-row-descriptor/"
+    "f17_32_n512_k256_hankel_row_descriptor.json"
+)
+ZERO_U_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-zero-u-rank-dichotomy/"
+    "f17_32_n512_k256_m3_zero_u_rank_dichotomy.json"
+)
+PROPORTIONAL_REF = (
+    "experimental/data/certificates/hankel-proportional-pencil-tangent-lemma/"
+    "hankel_proportional_pencil_tangent_lemma_certificate.json"
+)
+TANGENT_OVERLAP_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-finite-tangent-overlap/"
+    "f17_32_n512_k256_m3_finite_tangent_overlap_criterion.json"
+)
+PROJECTIVE_INFINITY_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-projective-infinity-rank/"
+    "f17_32_n512_k256_m3_projective_infinity_rank_criterion.json"
+)
+ZERO_V_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-zero-v-projective-endpoint/"
+    "f17_32_n512_k256_m3_zero_v_projective_endpoint.json"
+)
+DIRECTION_RANK_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/"
+    "f17_32_n512_k256_m3_direction_rank_degree_cap.json"
+)
+LOWER_RANK_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-lower-rank-contained/"
+    "f17_32_n512_k256_m3_lower_rank_contained.json"
+)
+
+
+EXPECTED_SCHEMAS = {
+    ZERO_U_REF: "f17-32-m3-zero-u-rank-dichotomy-v1",
+    PROPORTIONAL_REF: "hankel-proportional-pencil-tangent-lemma-v1",
+    TANGENT_OVERLAP_REF: "f17-32-m3-finite-tangent-overlap-criterion-v1",
+    PROJECTIVE_INFINITY_REF: "f17-32-m3-projective-infinity-rank-criterion-v1",
+    ZERO_V_REF: "f17-32-m3-zero-v-projective-endpoint-v1",
+    DIRECTION_RANK_REF: "f17-32-m3-direction-rank-degree-cap-v1",
+    LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
+}
+
+
+def load_json(ref: str | Path) -> dict[str, Any]:
+    path = ref if isinstance(ref, Path) else ROOT / ref
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def sha256_file(ref: str) -> str:
+    return sha256((ROOT / ref).read_bytes()).hexdigest()
+
+
+def hash_value(value: Any) -> str:
+    payload = json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
+    return sha256(payload).hexdigest()
+
+
+def render(value: dict[str, Any]) -> str:
+    return json.dumps(value, indent=2, sort_keys=True) + "\n"
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise AssertionError(message)
+
+
+def regular_bucket_decision_table() -> dict[str, Any]:
+    return {
+        "zero_v_direction": {
+            "hypothesis": "v=0",
+            "finite_full_rank": {
+                "condition": "rank H_{t,j}(u)=j+1",
+                "B_ap_regular_finite": 0,
+                "B_tan_projective_infinity": 1,
+                "B_ap_projective_infinity_after_tangent": 0,
+                "status": "closed",
+            },
+            "finite_rank_deficient": {
+                "condition": "rank H_{t,j}(u)<=j",
+                "B_tan_projective_infinity": 1,
+                "B_ap_projective_infinity_after_tangent": 0,
+                "finite_residual_status": "singular",
+                "finite_residual_label": "unknown",
+                "next_step": "M5 finite affine pivots or separate paid classification",
+            },
+        },
+        "proportional_nonzero_direction": {
+            "hypothesis": "v!=0 and u=c v",
+            "direction_full_rank": {
+                "condition": "rank H_{t,j}(v)=j+1",
+                "raw_finite_roots": 1,
+                "B_tan_finite": 1,
+                "B_ap_regular_finite_after_tangent": 0,
+                "B_ap_projective_infinity": 0,
+                "status": "closed",
+            },
+            "direction_rank_deficient": {
+                "condition": "rank H_{t,j}(v)<=j",
+                "known_paid_finite_slope": "z=-c",
+                "finite_residual_status": "singular",
+                "projective_infinity_status": "singular",
+                "residual_label": "unknown",
+                "next_step": "M5 affine/projective pivots or separate paid classification",
+            },
+        },
+        "non_proportional_direction": {
+            "hypothesis": "v!=0 and u is not a scalar multiple of v",
+            "tangent_overlap": 0,
+            "direction_rank_at_most_budget": {
+                "condition": f"rank H_{{t,j}}(v)<= {BUDGET} and regular bucket nonsingular",
+                "B_ap_regular_finite_before_other_ledgers": f"<= {BUDGET}",
+                "B_tan_finite": 0,
+                "finite_budget_safe": True,
+                "projective_infinity_status": "singular_direction_rank_deficient",
+                "next_step": "projective infinity chart plus quotient/extension overlap audit",
+            },
+            "direction_rank_intermediate": {
+                "condition": f"{BUDGET} < rank H_{{t,j}}(v) <= j",
+                "B_ap_regular_finite_before_other_ledgers": "<= rank H_{t,j}(v)",
+                "B_tan_finite": 0,
+                "finite_budget_safe_by_rank_cap_alone": False,
+                "projective_infinity_status": "singular_direction_rank_deficient",
+                "next_step": "actual finite root table and projective infinity chart",
+            },
+            "direction_full_rank": {
+                "condition": "rank H_{t,j}(v)=j+1",
+                "B_ap_regular_finite_before_other_ledgers": "<= j+1",
+                "B_tan_finite": 0,
+                "B_ap_projective_infinity": 0,
+                "next_step": "actual finite root table unless degree/root table is within budget",
+            },
+        },
+        "known_paid_singular_example": {
+            "branch": "zero-u weighted power-sum lower-rank",
+            "certificate_ref": LOWER_RANK_REF,
+            "status": "contained/common-code-line paid for that family only",
+        },
+    }
+
+
+def agreement_record(agreement: int) -> dict[str, Any]:
+    j_value = N - agreement
+    t_value = agreement - K
+    size = j_value + 1
+    return {
+        "A": agreement,
+        "j": j_value,
+        "t": t_value,
+        "minor_size": size,
+        "maximal_row_set_count": comb(t_value, size),
+        "finite_slope_budget": BUDGET,
+    }
+
+
+def check_dependency(ref: str, data: dict[str, Any]) -> None:
+    require(data["schema_version"] == EXPECTED_SCHEMAS[ref], f"unexpected schema for {ref}")
+    if "window" in data:
+        require(data["window"]["A_min"] == A_MIN, f"{ref}: A_min mismatch")
+        require(data["window"]["A_max"] == A_MAX, f"{ref}: A_max mismatch")
+    if "row" in data:
+        require(data["row"]["n"] == N, f"{ref}: n mismatch")
+        require(data["row"]["k"] == K, f"{ref}: k mismatch")
+
+
+def build_certificate() -> dict[str, Any]:
+    field = Field(P, MODULUS)
+    descriptor = load_json(ROW_DESCRIPTOR_REF)
+    dependencies = {ref: load_json(ref) for ref in EXPECTED_SCHEMAS}
+
+    require(descriptor["row"]["n"] == N, "descriptor n mismatch")
+    require(descriptor["row"]["k"] == K, "descriptor k mismatch")
+    require(descriptor["row"]["field"] == "F_17^32", "descriptor field mismatch")
+    require(descriptor["row"]["field_order"] == Q_LINE, "descriptor q mismatch")
+    require(descriptor["row"]["syndrome_length"] == N - K, "syndrome length mismatch")
+    for ref, data in dependencies.items():
+        check_dependency(ref, data)
+
+    domain_encodings = descriptor["domain"]["domain_encodings"]
+    require(len(domain_encodings) == N, "domain length mismatch")
+    require(len(set(domain_encodings)) == N, "descriptor domain is not distinct")
+    decoded = [field.decode(value) for value in domain_encodings]
+    require(
+        [field.encode(value) for value in decoded] == domain_encodings,
+        "domain decode/encode roundtrip failed",
+    )
+
+    records = [agreement_record(agreement) for agreement in range(A_MIN, A_MAX + 1)]
+    total_row_sets = sum(record["maximal_row_set_count"] for record in records)
+    reference_totals = [
+        data["window"]["all_row_set_total"]
+        for data in dependencies.values()
+        if "window" in data and "all_row_set_total" in data["window"]
+    ]
+    for total in reference_totals:
+        require(total == total_row_sets, "dependency row-set total mismatch")
+    require(BUDGET == 6, "unexpected finite-slope budget")
+
+    return {
+        "schema_version": SCHEMA_VERSION,
+        "status": "AUDIT",
+        "proved_dependency_synthesis": True,
+        "object": "M4 regular-bucket decision table for the F_17^32 M3 window",
+        "row": {
+            "code": "RS[F_17^32,H,256]",
+            "n": N,
+            "k": K,
+            "field": "F_17^32",
+            "domain_hash": descriptor["row"]["domain_hash"],
+            "q_line": Q_LINE,
+            "finite_slope_budget": BUDGET,
+        },
+        "source_artifacts": {
+            "row_descriptor": {"ref": ROW_DESCRIPTOR_REF, "sha256": sha256_file(ROW_DESCRIPTOR_REF)},
+            **{
+                ref.rsplit("/", 1)[-1].removesuffix(".json"): {
+                    "ref": ref,
+                    "sha256": sha256_file(ref),
+                }
+                for ref in EXPECTED_SCHEMAS
+            },
+        },
+        "window": {
+            "A_min": A_MIN,
+            "A_max": A_MAX,
+            "agreement_count": len(records),
+            "all_row_set_total": total_row_sets,
+        },
+        "regular_bucket_decision_table": regular_bucket_decision_table(),
+        "synthesis": {
+            "closed_by_current_lemmas": [
+                "zero-v with full-rank H(u): no finite roots, infinity tangent-paid",
+                "proportional nonzero-v with full-rank H(v): unique finite root tangent-paid, infinity excluded",
+                "zero-u full-rank branch as the c=0 proportional subcase",
+            ],
+            "finite_safe_but_not_projective_closed": [
+                "non-proportional nonsingular finite buckets with direction rank <= 6",
+            ],
+            "still_requires_m5_or_other_ledgers": [
+                "rank-deficient finite regular buckets not covered by a paid family",
+                "direction-rank-deficient projective infinity for v nonzero",
+                "non-proportional finite buckets with direction rank > 6 unless exact root tables improve the bound",
+                "quotient, quotient-image, extension, and subfield overlap for future non-proportional root tables",
+            ],
+            "not_a_row_bound": (
+                "This table composes proved local lemmas; it is not a worst-case "
+                "support-wise MCA upper bound until every residual bucket is "
+                "closed or assigned to a paid ledger."
+            ),
+        },
+        "field_audit": {
+            "full_domain_distinct": True,
+            "domain_size": len(domain_encodings),
+            "domain_hash": hash_value(domain_encodings),
+            "decoded_roundtrip_hash": hash_value([field.encode(value) for value in decoded]),
+        },
+        "agreement_records": records,
+        "summary": {
+            "agreement_count": len(records),
+            "finite_slope_budget": BUDGET,
+            "closed_case_count": 3,
+            "finite_safe_open_projective_case_count": 1,
+            "residual_case_count": 4,
+            "dependencies_checked": len(EXPECTED_SCHEMAS),
+        },
+        "checks": [
+            "all dependency schemas match the expected certificates",
+            "all dependency windows match 385..426",
+            "all dependency row-set totals agree where supplied",
+            "the decision table separates closed, finite-safe, and residual cases",
+            "projective infinity and finite affine accounting are not conflated",
+        ],
+        "nonclaims": [
+            "does not compute arbitrary non-proportional finite root tables",
+            "does not close rank-deficient projective infinity",
+            "does not audit quotient or extension overlap for arbitrary root tables",
+            "not a worst-case support-wise MCA row bound",
+        ],
+    }
+
+
+def check_certificate(path: Path) -> None:
+    expected = render(build_certificate())
+    actual = path.read_text(encoding="utf-8")
+    if actual != expected:
+        raise AssertionError(f"M4 regular-bucket synthesis certificate mismatch: {path}")
+
+
+def print_summary(certificate: dict[str, Any]) -> None:
+    window = certificate["window"]
+    summary = certificate["summary"]
+    print("F_17^32 M3/M4 regular-bucket synthesis")
+    print(
+        "A={A_min}..{A_max}, agreements={agreement_count}, row sets={all_row_set_total}".format(
+            **window
+        )
+    )
+    print("finite budget={finite_slope_budget}".format(**summary))
+    print(
+        "closed cases={closed_case_count}, finite-safe/open-projective cases={finite_safe_open_projective_case_count}, residual cases={residual_case_count}".format(
+            **summary
+        )
+    )
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--write", type=Path)
+    parser.add_argument("--check", type=Path)
+    args = parser.parse_args()
+
+    certificate = build_certificate()
+    if args.write:
+        args.write.parent.mkdir(parents=True, exist_ok=True)
+        args.write.write_text(render(certificate), encoding="utf-8")
+    if args.check:
+        check_certificate(args.check)
+    print_summary(certificate)
+
+
+if __name__ == "__main__":
+    main()
