@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 one-spike large-field packet
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/emit_f17_32_m3_rank_witness_input.py`;
+  `experimental/scripts/extract_regular_hankel_minors.py`;
+  `scripts/check_aperiodic_eliminant_packet.py`;
+  `experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_one_spike_input.json`;
+  `experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/`;
+  `experimental/notes/m1/hankel_one_spike_linear_template.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The one-spike linear template is now a replayable
+  v9 packet mode over the pinned `F_17^32` field.  At `A=426` it emits a
+  non-proportional synthetic syndrome pencil whose prefix regular minor has
+  degree 1 and one explicit root.
+- **How it is useful:** This is the first large-field non-proportional
+  closed-form regular-minor packet in the M3 window.  The packet checker
+  replays the moments and the Cauchy-Binet/Vandermonde-square coefficients,
+  with a tampered-coefficient fixture proving that replay is enforced.
+- **What to do next:** Look for larger non-proportional classes whose regular
+  determinants factor into low-degree replayable pieces, then connect such
+  classes to quotient/tangent/extension subtraction rather than isolated
+  synthetic examples.
+
 ### 2026-07-01 - Hankel one-spike linear template
 
 - **Agent/model:** AllenGrahamHart / Codex.

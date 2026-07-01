@@ -82,6 +82,7 @@ def build_input(
     witness_prefix_count: int | None = None,
     syndrome_scalar: int = 0,
     minor_gcd_contiguous_limit: int | None = None,
+    one_spike_linear: bool = False,
 ) -> dict[str, Any]:
     descriptor = load_json(ROW_DESCRIPTOR)
     field = Field(P, MODULUS)
@@ -92,6 +93,14 @@ def build_input(
     t_value = agreement - K
     size = j_value + 1
     prefix_count = witness_prefix_count or size
+    if one_spike_linear:
+        if agreement_max is not None:
+            raise ValueError("one-spike linear input currently supports one agreement")
+        if syndrome_scalar:
+            raise ValueError("one-spike linear input is not a scalar-multiple mode")
+        if minor_gcd_contiguous_limit is not None:
+            raise ValueError("one-spike linear input is not a minor-gcd mode")
+        prefix_count = size + 1
     if prefix_count < size:
         raise ValueError("witness prefix count must cover the largest minor")
     if t_value < size:
@@ -104,17 +113,31 @@ def build_input(
     if prefix_count > len(domain_encodings):
         raise ValueError("witness prefix count exceeds the pinned domain size")
     nodes = [field.decode(value) for value in domain_encodings[:prefix_count]]
-    v_syndrome = power_sum_syndrome(field, nodes, length)
-    scalar = field.normalize(syndrome_scalar)
-    u_syndrome = [
-        field.encode(field.mul(scalar, field.decode(value))) for value in v_syndrome
-    ]
-    proportional = any(value != 0 for value in scalar)
+    if one_spike_linear:
+        base_nodes = nodes[:size]
+        spike_node = nodes[size]
+        u_syndrome = power_sum_syndrome(field, base_nodes, length)
+        v_syndrome = power_sum_syndrome(field, [spike_node], length)
+        scalar = field.zero
+        proportional = False
+    else:
+        v_syndrome = power_sum_syndrome(field, nodes, length)
+        scalar = field.normalize(syndrome_scalar)
+        u_syndrome = [
+            field.encode(field.mul(scalar, field.decode(value))) for value in v_syndrome
+        ]
+        proportional = any(value != 0 for value in scalar)
     if minor_gcd_contiguous_limit is not None and proportional:
         raise ValueError("minor-gcd closed form currently requires syndrome-scalar 0")
     if minor_gcd_contiguous_limit is not None and minor_gcd_contiguous_limit <= 0:
         raise ValueError("minor-gcd contiguous limit must be positive")
-    if agreement_max is None:
+    if one_spike_linear:
+        domain_description = (
+            "order-512 subgroup from the pinned F_17^32 row descriptor; "
+            "synthetic M3 one-spike syndrome uses the first j+1 elements "
+            "and the next descriptor-domain element as spike"
+        )
+    elif agreement_max is None:
         domain_description = (
             "order-512 subgroup from the pinned F_17^32 row descriptor; "
             "synthetic M3 rank-witness syndrome uses the first j+1 elements"
@@ -124,7 +147,13 @@ def build_input(
             "order-512 subgroup from the pinned F_17^32 row descriptor; "
             f"fixed synthetic M3 window syndrome uses the first {prefix_count} elements"
         )
-    if proportional:
+    if one_spike_linear:
+        line_description = (
+            "synthetic M3 one-spike linear witness: "
+            f"u_m=sum_i x_i^m for the first {size} descriptor-domain elements "
+            f"and v_m=y^m for descriptor-domain element {size}"
+        )
+    elif proportional:
         line_description = (
             f"synthetic M3 proportional witness: u={syndrome_scalar}*v and "
             f"v_m=sum_i x_i^m for the first {prefix_count} descriptor-domain elements"
@@ -148,10 +177,15 @@ def build_input(
         "witness_slope": 1,
         "witness_node_prefix_count": prefix_count,
         "rank_witness_reason": (
-            "u=c*v makes the prefix determinant a nonzero scalar multiple "
-            "of (Z+c)^(j+1)"
-            if proportional
-            else "u=0 makes the prefix determinant a nonzero monomial in the slope"
+            "one-spike Cauchy-Binet rank-one update makes the prefix "
+            "determinant affine in the slope"
+            if one_spike_linear
+            else (
+                "u=c*v makes the prefix determinant a nonzero scalar multiple "
+                "of (Z+c)^(j+1)"
+                if proportional
+                else "u=0 makes the prefix determinant a nonzero monomial in the slope"
+            )
         ),
     }
     if proportional:
@@ -180,7 +214,11 @@ def build_input(
         "sampler": "finite_affine_line",
         "certificate_mode": "minor_gcd_roots"
         if minor_gcd_contiguous_limit is not None
-        else ("scalar_multiple_roots" if proportional else "zero_u_monomial_roots"),
+        else (
+            "one_spike_linear_roots"
+            if one_spike_linear
+            else ("scalar_multiple_roots" if proportional else "zero_u_monomial_roots")
+        ),
         "line_syndrome": line_syndrome,
         "row_set_strategy": (
             {"type": "contiguous", "limit": minor_gcd_contiguous_limit}
@@ -220,6 +258,22 @@ def build_input(
                 "a tangent/common-code-line slope, not an aperiodic row bound."
             ),
         }
+    if one_spike_linear:
+        packet["one_spike_linear"] = {
+            "base_node_encodings": domain_encodings[:size],
+            "spike_encoding": domain_encodings[size],
+            "coefficient_formula": "Cauchy-Binet Vandermonde-square rank-one update",
+        }
+        packet["claim_scope"] = {
+            "row_data": "synthetic_syndrome_pencil",
+            "threshold_role": "synthetic_stress",
+            "root_status": "closed_form",
+            "may_be_used_for_threshold_pinning": False,
+            "note": (
+                "Non-proportional one-spike closed-form replay; this is a "
+                "synthetic packet and not an actual-row MCA bound."
+            ),
+        }
     return packet
 
 
@@ -230,6 +284,7 @@ def check_input(
     witness_prefix_count: int | None,
     syndrome_scalar: int,
     minor_gcd_contiguous_limit: int | None,
+    one_spike_linear: bool,
 ) -> None:
     expected = render(
         build_input(
@@ -238,6 +293,7 @@ def check_input(
             witness_prefix_count,
             syndrome_scalar,
             minor_gcd_contiguous_limit,
+            one_spike_linear,
         )
     )
     actual = path.read_text(encoding="utf-8")
@@ -290,6 +346,14 @@ def main() -> None:
             "first LIMIT contiguous row sets"
         ),
     )
+    parser.add_argument(
+        "--one-spike-linear",
+        action="store_true",
+        help=(
+            "emit a non-proportional one-spike linear pencil with "
+            "u_m=sum x_i^m and v_m=y^m"
+        ),
+    )
     parser.add_argument("--write", type=Path, help="write deterministic input JSON")
     parser.add_argument("--check", type=Path, help="check deterministic input JSON")
     parser.add_argument("--json", action="store_true", help="print input JSON")
@@ -301,6 +365,7 @@ def main() -> None:
         args.witness_prefix_count,
         args.syndrome_scalar,
         args.minor_gcd_contiguous_limit,
+        args.one_spike_linear,
     )
     if args.write:
         args.write.parent.mkdir(parents=True, exist_ok=True)
@@ -313,6 +378,7 @@ def main() -> None:
             args.witness_prefix_count,
             args.syndrome_scalar,
             args.minor_gcd_contiguous_limit,
+            args.one_spike_linear,
         )
     if args.json:
         print(render(packet), end="")

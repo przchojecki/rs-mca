@@ -28,6 +28,7 @@ DEFAULT_MAX_ROOT_ENUM_FIELD_SIZE = 10000
 DEFAULT_MAX_BAD_SLOPE_SUBSETS = 200000
 ZERO_U_MONOMIAL_MODE = "zero_u_monomial_roots"
 SCALAR_MULTIPLE_MODE = "scalar_multiple_roots"
+ONE_SPIKE_LINEAR_MODE = "one_spike_linear_roots"
 MINOR_GCD_MODE = "minor_gcd_roots"
 ZERO_U_GCD_METHOD = "zero_u_monomial"
 RANK_AT_NODES_FAMILY_STRATEGY = "rank_at_nodes_family"
@@ -962,6 +963,92 @@ def zero_u_monomial_minor_records_field(
     return polynomials, family_records
 
 
+def vandermonde_square_field(
+    nodes: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> tuple[int, ...]:
+    out = field.one
+    for left_index, left in enumerate(nodes):
+        for right in nodes[left_index + 1 :]:
+            diff = field.sub(right, left)
+            out = field.mul(out, field.mul(diff, diff))
+    return out
+
+
+def one_spike_linear_coefficients_field(
+    base_nodes: list[tuple[int, ...]],
+    spike: tuple[int, ...],
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    """Return [C0, C1] for det(V_X V_X^T + Z w_y w_y^T)."""
+
+    c0 = vandermonde_square_field(base_nodes, field)
+    c1 = field.zero
+    for index, node in enumerate(base_nodes):
+        numerator = field.one
+        denominator = field.one
+        for other_index, other in enumerate(base_nodes):
+            if other_index == index:
+                continue
+            num_diff = field.sub(spike, other)
+            den_diff = field.sub(node, other)
+            numerator = field.mul(numerator, field.mul(num_diff, num_diff))
+            denominator = field.mul(denominator, field.mul(den_diff, den_diff))
+        c1 = field.add(c1, field.mul(c0, field.div(numerator, denominator)))
+    return [c0, c1]
+
+
+def one_spike_syndrome_field(
+    nodes: list[tuple[int, ...]],
+    length: int,
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    powers = [field.one for _ in nodes]
+    out = []
+    for exponent in range(length):
+        if exponent == 0:
+            total = field.normalize(len(nodes))
+        else:
+            total = field.zero
+            for power in powers:
+                total = field.add(total, power)
+        out.append(total)
+        powers = [field.mul(power, node) for power, node in zip(powers, nodes)]
+    return out
+
+
+def one_spike_linear_data_field(
+    spec: dict[str, Any],
+    size: int,
+    visible_length: int,
+    u: list[tuple[int, ...]],
+    v: list[tuple[int, ...]],
+    field: PolynomialBasisField,
+) -> tuple[list[tuple[int, ...]], tuple[int, ...], list[tuple[int, ...]]]:
+    data = spec.get("one_spike_linear")
+    if not isinstance(data, dict):
+        raise ValueError("one_spike_linear_roots needs one_spike_linear metadata")
+    base_encodings = data.get("base_node_encodings")
+    if not isinstance(base_encodings, list):
+        raise ValueError("one_spike_linear.base_node_encodings must be a list")
+    if len(base_encodings) != size:
+        raise ValueError("one_spike_linear base-node count must equal minor size")
+    spike_encoding = data.get("spike_encoding")
+    if not isinstance(spike_encoding, int):
+        raise ValueError("one_spike_linear.spike_encoding must be an integer")
+    base_nodes = [field.decode(int(value)) for value in base_encodings]
+    spike = field.decode(spike_encoding)
+    expected_u = one_spike_syndrome_field(base_nodes, visible_length, field)
+    expected_v = one_spike_syndrome_field([spike], visible_length, field)
+    if u[:visible_length] != expected_u:
+        raise ValueError("one_spike_linear u moments do not match base nodes")
+    if v[:visible_length] != expected_v:
+        raise ValueError("one_spike_linear v moments do not match spike")
+    return base_nodes, spike, one_spike_linear_coefficients_field(
+        base_nodes, spike, field
+    )
+
+
 @dataclass(frozen=True)
 class ExtractionResult:
     exact_agreement: int
@@ -1477,6 +1564,10 @@ def extract_for_agreement(
             "node": None,
             "nodes_tested": None,
         }
+    if spec.get("certificate_mode") == ONE_SPIKE_LINEAR_MODE:
+        raise ValueError(
+            "one_spike_linear_roots currently requires a polynomial-basis field_model"
+        )
     if spec.get("certificate_mode") in {ZERO_U_MONOMIAL_MODE, SCALAR_MULTIPLE_MODE}:
         scalar = 0
         if spec.get("certificate_mode") == SCALAR_MULTIPLE_MODE:
@@ -1816,6 +1907,45 @@ def extract_for_agreement_field(
             "node": None,
             "nodes_tested": None,
         }
+    if spec.get("certificate_mode") == ONE_SPIKE_LINEAR_MODE:
+        row_set = list(range(size))
+        _base_nodes, _spike, polynomial = one_spike_linear_data_field(
+            spec, size, t + j, u, v, field
+        )
+        if field.is_zero(polynomial[1]):
+            roots = [] if not field.is_zero(polynomial[0]) else None
+        else:
+            roots = [field.neg(field.div(polynomial[0], polynomial[1]))]
+        if roots is None:
+            return ExtractionResult(
+                exact_agreement,
+                j,
+                t,
+                "residual_obstruction",
+                None,
+                None,
+                None,
+                None,
+                1,
+                row_set_source="one_spike_linear_prefix",
+                residual_label="unknown",
+                residual_reason=(
+                    "one-spike linear determinant has zero constant and linear "
+                    "coefficients for the prefix row set"
+                ),
+            )
+        return ExtractionResult(
+            exact_agreement,
+            j,
+            t,
+            "regular_minor",
+            row_set,
+            polynomial,
+            roots,
+            None,
+            1,
+            row_set_source="one_spike_linear_prefix",
+        )
     if spec.get("certificate_mode") in {ZERO_U_MONOMIAL_MODE, SCALAR_MULTIPLE_MODE}:
         scalar = field.zero
         if spec.get("certificate_mode") == SCALAR_MULTIPLE_MODE:
@@ -2866,6 +2996,8 @@ def build_packet_field(
                 if spec.get("certificate_mode") == ZERO_U_MONOMIAL_MODE
                 else "scalar-multiple closed-form root certificate over a polynomial-basis finite field"
                 if spec.get("certificate_mode") == SCALAR_MULTIPLE_MODE
+                else "one-spike linear closed-form root certificate over a polynomial-basis finite field"
+                if spec.get("certificate_mode") == ONE_SPIKE_LINEAR_MODE
                 else "common-gcd audit of numeric determinant minors over a polynomial-basis finite field"
                 if spec.get("certificate_mode") == MINOR_GCD_MODE
                 and spec.get("minor_gcd_method") != ZERO_U_GCD_METHOD

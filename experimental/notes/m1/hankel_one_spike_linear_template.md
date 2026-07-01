@@ -66,3 +66,20 @@ non-proportional regular Hankel pencils.  It suggests a route to compact
 `F_17^32` top-window packets whose determinants are linear in the slope, but it
 does not itself provide an actual prize-row root table or quotient/tangent
 subtraction ledger.
+
+The first large-field instantiation of the template is
+
+```text
+experimental/data/hankel-regular-minor-inputs/
+  f17_32_n512_k256_a426_one_spike_input.json
+
+experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/
+  f17_32_n512_k256_a426_one_spike_packet.json
+```
+
+At `A=426`, where `j=86` and the prefix minor has size 87, the packet proves a
+degree-1 regular minor with exactly one listed root in `F_17^32`.  The packet
+checker independently replays the one-spike moments and recomputes the affine
+coefficients from the Cauchy-Binet/Vandermonde-square formula.  The companion
+invalid fixture mutates one linear coefficient and is required to fail this
+replay.

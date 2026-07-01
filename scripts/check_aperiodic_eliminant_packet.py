@@ -1618,6 +1618,7 @@ ENCODED_FIELD_INPUT_ENCODINGS = {
 CLOSED_FORM_REGULAR_MINOR_MODES = {
     "zero_u_monomial_roots",
     "scalar_multiple_roots",
+    "one_spike_linear_roots",
 }
 
 
@@ -2139,6 +2140,190 @@ def replay_closed_form_prefix_leading_field(
     )
 
 
+def one_spike_syndrome_mod(
+    nodes: list[int],
+    length: int,
+    modulus: int,
+) -> list[int]:
+    powers = [1] * len(nodes)
+    out = []
+    for _exponent in range(length):
+        out.append(sum(powers) % modulus)
+        powers = [(power * node) % modulus for power, node in zip(powers, nodes)]
+    return out
+
+
+def one_spike_syndrome_field(
+    nodes: list[tuple[int, ...]],
+    length: int,
+    field: PolynomialBasisField,
+) -> list[tuple[int, ...]]:
+    powers = [field.one for _ in nodes]
+    out = []
+    for _exponent in range(length):
+        total = field.zero
+        for power in powers:
+            total = field.add(total, power)
+        out.append(total)
+        powers = [field.mul(power, node) for power, node in zip(powers, nodes)]
+    return out
+
+
+def vandermonde_square_mod(nodes: list[int], modulus: int, location: str) -> int:
+    out = 1
+    for left_index, left in enumerate(nodes):
+        for right in nodes[left_index + 1 :]:
+            diff = (right - left) % modulus
+            if diff == 0:
+                raise PacketError(f"{location}: repeated one-spike base node")
+            out = (out * diff * diff) % modulus
+    return out
+
+
+def one_spike_linear_coefficients_mod(
+    base_nodes: list[int],
+    spike: int,
+    modulus: int,
+    location: str,
+) -> list[int]:
+    c0 = vandermonde_square_mod(base_nodes, modulus, location)
+    c1 = 0
+    for index, node in enumerate(base_nodes):
+        numerator = 1
+        denominator = 1
+        for other_index, other in enumerate(base_nodes):
+            if other_index == index:
+                continue
+            numerator = (numerator * (spike - other) ** 2) % modulus
+            denominator = (denominator * (node - other) ** 2) % modulus
+        if denominator == 0:
+            raise PacketError(f"{location}: repeated one-spike base node")
+        c1 = (c1 + c0 * numerator * pow(denominator, -1, modulus)) % modulus
+    return trim_mod_coefficients([c0, c1], modulus)
+
+
+def one_spike_linear_coefficients_field(
+    base_nodes: list[tuple[int, ...]],
+    spike: tuple[int, ...],
+    field: PolynomialBasisField,
+    location: str,
+) -> list[tuple[int, ...]]:
+    c0 = vandermonde_square_field(base_nodes, field, location)
+    c1 = field.zero
+    for index, node in enumerate(base_nodes):
+        numerator = field.one
+        denominator = field.one
+        for other_index, other in enumerate(base_nodes):
+            if other_index == index:
+                continue
+            num_diff = field.sub(spike, other)
+            den_diff = field.sub(node, other)
+            numerator = field.mul(numerator, field.mul(num_diff, num_diff))
+            denominator = field.mul(denominator, field.mul(den_diff, den_diff))
+        if field.is_zero(denominator):
+            raise PacketError(f"{location}: repeated one-spike base node")
+        c1 = field.add(c1, field.mul(c0, field.div(numerator, denominator)))
+    return extension_poly_trim([c0, c1], field)
+
+
+def require_one_spike_metadata(
+    rank_replay_input: dict[str, Any],
+    size: int,
+    location: str,
+) -> tuple[list[int], int]:
+    data = rank_replay_input.get("one_spike_linear")
+    if not isinstance(data, dict):
+        raise PacketError(f"{location}: one_spike_linear_roots needs metadata")
+    base_encodings = require_int_list(
+        data.get("base_node_encodings"),
+        f"{location}: one_spike_linear.base_node_encodings",
+    )
+    if len(base_encodings) != size:
+        raise PacketError(
+            f"{location}: one-spike base-node count {len(base_encodings)} "
+            f"does not equal minor size {size}"
+        )
+    spike_encoding = data.get("spike_encoding")
+    if not isinstance(spike_encoding, int):
+        raise PacketError(
+            f"{location}: one_spike_linear.spike_encoding must be an integer"
+        )
+    return base_encodings, spike_encoding
+
+
+def validate_one_spike_linear_replay_mod(
+    row_set: list[int],
+    coefficients: list[int],
+    rank_replay_input: dict[str, Any],
+    u: list[int],
+    v: list[int],
+    visible_length: int,
+    size: int,
+    modulus: int,
+    location: str,
+) -> bool:
+    if row_set != list(range(size)):
+        raise PacketError(f"{location}: one-spike replay needs the prefix row set")
+    base_encodings, spike_encoding = require_one_spike_metadata(
+        rank_replay_input, size, location
+    )
+    if any(value < 0 or value >= modulus for value in base_encodings):
+        raise PacketError(f"{location}: one-spike base node outside F_{modulus}")
+    if spike_encoding < 0 or spike_encoding >= modulus:
+        raise PacketError(f"{location}: one-spike spike node outside F_{modulus}")
+    expected_u = one_spike_syndrome_mod(base_encodings, visible_length, modulus)
+    expected_v = one_spike_syndrome_mod([spike_encoding], visible_length, modulus)
+    if [value % modulus for value in u[:visible_length]] != expected_u:
+        raise PacketError(f"{location}: one-spike u moments do not replay")
+    if [value % modulus for value in v[:visible_length]] != expected_v:
+        raise PacketError(f"{location}: one-spike v moments do not replay")
+    expected = one_spike_linear_coefficients_mod(
+        base_encodings, spike_encoding, modulus, location
+    )
+    if trim_mod_coefficients(coefficients, modulus) != expected:
+        raise PacketError(
+            f"{location}: one-spike linear coefficients do not match replay"
+        )
+    return True
+
+
+def validate_one_spike_linear_replay_field(
+    row_set: list[int],
+    coefficients: list[int],
+    rank_replay_input: dict[str, Any],
+    u_field: list[tuple[int, ...]],
+    v_field: list[tuple[int, ...]],
+    visible_length: int,
+    size: int,
+    field: PolynomialBasisField,
+    location: str,
+) -> bool:
+    if row_set != list(range(size)):
+        raise PacketError(f"{location}: one-spike replay needs the prefix row set")
+    base_encodings, spike_encoding = require_one_spike_metadata(
+        rank_replay_input, size, location
+    )
+    base_nodes = [field.decode(value) for value in base_encodings]
+    spike = field.decode(spike_encoding)
+    expected_u = one_spike_syndrome_field(base_nodes, visible_length, field)
+    expected_v = one_spike_syndrome_field([spike], visible_length, field)
+    if u_field[:visible_length] != expected_u:
+        raise PacketError(f"{location}: one-spike extension u moments do not replay")
+    if v_field[:visible_length] != expected_v:
+        raise PacketError(f"{location}: one-spike extension v moments do not replay")
+    decoded = extension_poly_trim(
+        [field.decode(coefficient) for coefficient in coefficients], field
+    )
+    expected = one_spike_linear_coefficients_field(
+        base_nodes, spike, field, location
+    )
+    if decoded != expected:
+        raise PacketError(
+            f"{location}: one-spike extension coefficients do not match replay"
+        )
+    return True
+
+
 def validate_rank_specializations(
     item: dict[str, Any],
     row_set: list[int],
@@ -2349,6 +2534,18 @@ def validate_closed_form_regular_minor_replay(
             raise PacketError(
                 f"{location}: syndrome length must be at least {visible_length}"
             )
+        if mode == "one_spike_linear_roots":
+            return validate_one_spike_linear_replay_mod(
+                row_set,
+                coefficients,
+                rank_replay_input,
+                u,
+                v,
+                visible_length,
+                size,
+                modulus,
+                location,
+            )
         scalar = 0
         if mode == "scalar_multiple_roots":
             scalar_raw = syndrome.get("scalar_multiple_u_over_v")
@@ -2398,6 +2595,18 @@ def validate_closed_form_regular_minor_replay(
     if len(u_field) < visible_length or len(v_field) < visible_length:
         raise PacketError(
             f"{location}: syndrome length must be at least {visible_length}"
+        )
+    if mode == "one_spike_linear_roots":
+        return validate_one_spike_linear_replay_field(
+            row_set,
+            coefficients,
+            rank_replay_input,
+            u_field,
+            v_field,
+            visible_length,
+            size,
+            extension_field,
+            location,
         )
     scalar = extension_field.zero
     if mode == "scalar_multiple_roots":

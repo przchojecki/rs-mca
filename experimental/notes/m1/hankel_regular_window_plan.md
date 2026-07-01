@@ -239,7 +239,23 @@ It proves that moments `u_m=sum_{x in X}x^m` with a one-spike direction
 `v_m=y^m` give prefix determinants affine in the slope.  Thus such directions
 have at most one regular-minor root per exact agreement, with explicit
 Cauchy-Binet coefficients.  This is a template for non-proportional M3 root
-packets, not yet a large `F_17^32` row certificate.
+packets.
+
+The template is now instantiated at the M3 endpoint `A=426` by
+
+```text
+experimental/data/hankel-regular-minor-inputs/
+  f17_32_n512_k256_a426_one_spike_input.json
+
+experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/
+  f17_32_n512_k256_a426_one_spike_packet.json
+```
+
+This packet uses a non-proportional synthetic `F_17^32` syndrome pencil and
+proves a degree-1 prefix regular minor with one explicit root.  The checker
+replays both the declared moments and the Cauchy-Binet coefficients, and the
+directory includes a tampered-coefficient fixture that must fail.  It is still
+not a universal M3 row table or a safe-side MCA bound.
 
 The current status ledger
 
@@ -273,6 +289,18 @@ python3 experimental/scripts/verify_f17_32_m3_zero_slope_subtraction.py \
 
 python3 experimental/scripts/verify_f17_32_m3_extension_denominator_audit.py \
   --check experimental/data/certificates/hankel-f17-32-m3-extension-denominator-audit/f17_32_n512_k256_a421_426_extension_denominator_audit.json
+
+python3 experimental/scripts/emit_f17_32_m3_rank_witness_input.py \
+  --agreement 426 \
+  --one-spike-linear \
+  --check experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_one_spike_input.json
+
+python3 experimental/scripts/extract_regular_hankel_minors.py \
+  experimental/data/hankel-regular-minor-inputs/f17_32_n512_k256_a426_one_spike_input.json \
+  --check experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/f17_32_n512_k256_a426_one_spike_packet.json
+
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/hankel-f17-32-m3-one-spike-a426/f17_32_n512_k256_a426_one_spike_packet.json
 ```
 
 Non-claims: this note does not enumerate universal root sets for arbitrary
