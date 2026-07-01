@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 low-rank-2 family certificate
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_low_rank2_family.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-low-rank2-family/`;
+  `experimental/notes/m1/hankel_low_rank_update_template.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A deterministic family verifier applies the
+  compressed low-rank identity `Delta_r(Z)=det(H_X)det(I+ZK)` to every
+  agreement in the M3 regular window `385 <= A <= 426`, with rank-2 update
+  sets and nested descriptor-domain prefixes.
+- **How it is useful:** This turns the single `A=426` low-rank packet into an
+  all-window synthetic stress certificate: the regular degree-bound aggregate
+  is `84` instead of the generic window sum `4515`, and the endpoint is
+  cross-checked against the existing v9 packet.
+- **What to do next:** Look for non-synthetic quotient/tangent/extension
+  residuals whose regular determinants admit the same bounded-rank compressed
+  replay, then decide which rows need exact-root enumeration rather than
+  degree-bound-only accounting.
+
 ### 2026-07-01 - Low-rank batch-inversion kernel replay
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -153,6 +153,21 @@ with batch inversion for the denominators and update differences, so a
 large-field endpoint packet needs only a few exponentiation-based inversions
 instead of one inversion per basis value.
 
+The all-window synthetic family certificate is
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank2-family/
+  f17_32_n512_k256_m3_low_rank2_family_certificate.json
+```
+
+It applies the same rank-2 compressed kernel to every agreement in the M3
+regular window `385 <= A <= 426`, using nested descriptor-domain prefixes for
+`X` and the next two descriptor nodes for `Y`.  The verifier reuses prefix
+Vandermonde denominators and base determinants, cross-checks the `A=426`
+endpoint against the exact-root v9 packet, and proves a degree-bound-only
+aggregate of `2 * 42 = 84` regular slopes for this synthetic family.  The
+generic degree-bound sum for the same window would be `4515`.
+
 Non-claims: this is not an actual `F_17^32` prize-row table, does not classify
 arbitrary non-proportional pencils, and does not perform quotient/tangent
 subtraction.
