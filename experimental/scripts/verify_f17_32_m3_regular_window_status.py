@@ -3,7 +3,7 @@
 
 This is an audit ledger for the Paper D v9 M3 work.  It combines the existing
 regular-window plan, generic all-row-set nonsingularity certificate, synthetic
-rank-witness family, and fixed top-window v9 packet into one compact status
+rank-witness families, and fixed top-window v9 packet into one compact status
 object.  It deliberately does not claim an actual-row MCA bound.
 """
 
@@ -36,6 +36,10 @@ GENERIC_REF = (
 FAMILY_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-rank-witness-family/"
     "f17_32_n512_k256_m3_rank_witness_family_certificate.json"
+)
+LOW_RANK_FAMILY_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-low-rank2-family/"
+    "f17_32_n512_k256_m3_low_rank2_family_certificate.json"
 )
 TOP_PACKET_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-fixed-top-window/"
@@ -112,6 +116,7 @@ def validate_inputs(
     plan: dict[str, Any],
     generic: dict[str, Any],
     family: dict[str, Any],
+    low_rank_family: dict[str, Any],
     top_packet: dict[str, Any],
     line_value_lift: dict[str, Any],
     subgroup_section: dict[str, Any],
@@ -134,6 +139,41 @@ def validate_inputs(
     require(
         family["claim"]["closed_form_root_union"] == ROOT_UNION,
         "family root union mismatch",
+    )
+    require(
+        low_rank_family["schema_version"] == "f17-32-m3-low-rank2-family-v1",
+        "low-rank family schema mismatch",
+    )
+    require(
+        low_rank_family["agreement_range"] == [AGREEMENT_MIN, AGREEMENT_MAX],
+        "low-rank family window mismatch",
+    )
+    require(
+        low_rank_family["aggregate"]["agreement_count"] == 42,
+        "low-rank family agreement count mismatch",
+    )
+    require(
+        low_rank_family["aggregate"]["per_agreement_degree_bound"] == 2,
+        "low-rank family per-agreement bound mismatch",
+    )
+    require(
+        low_rank_family["aggregate"]["regular_root_bound_sum"] == 84,
+        "low-rank family aggregate bound mismatch",
+    )
+    require(
+        low_rank_family["aggregate"]["generic_degree_bound_sum_for_window"]
+        == plan["budget_context"]["degree_bound_sum"],
+        "low-rank family generic degree sum mismatch",
+    )
+    require(
+        len(low_rank_family["records"]) == 42,
+        "low-rank family record count mismatch",
+    )
+    require(
+        low_rank_family["endpoint_crosscheck"]["agreement"] == AGREEMENT_MAX
+        and low_rank_family["endpoint_crosscheck"]["coefficients_match"] is True
+        and low_rank_family["endpoint_crosscheck"]["sidecar_match"] is True,
+        "low-rank family endpoint cross-check mismatch",
     )
     require(
         top_packet["exact_agreements"][0]["A"] == TOP_WINDOW_MIN
@@ -310,6 +350,7 @@ def per_agreement_records(
     plan: dict[str, Any],
     generic: dict[str, Any],
     family: dict[str, Any],
+    low_rank_family: dict[str, Any],
     top_packet: dict[str, Any],
     syndrome_realizability: dict[str, Any],
     zero_slope_subtraction: dict[str, Any],
@@ -318,6 +359,9 @@ def per_agreement_records(
     plan_by_a = {int(item["A"]): item for item in plan["per_agreement"]}
     generic_by_a = {int(item["A"]): item for item in generic["agreements"]}
     family_by_a = {int(item["A"]): item for item in family["agreements"]}
+    low_rank_family_by_a = {
+        int(item["A"]): item for item in low_rank_family["records"]
+    }
     realizability_by_a = {
         int(item["A"]): item for item in syndrome_realizability["per_agreement"]
     }
@@ -341,12 +385,18 @@ def per_agreement_records(
         plan_item = plan_by_a[agreement]
         generic_item = generic_by_a[agreement]
         family_item = family_by_a[agreement]
+        low_rank_item = low_rank_family_by_a[agreement]
         realizability_item = realizability_by_a[agreement]
         top_item = top_by_a.get(agreement)
         require(plan_item["degree_bound"] == generic_item["generic_degree"], f"A={agreement}: degree mismatch")
         require(
             family_item["synthetic_roots"] == ROOT_UNION,
             f"A={agreement}: synthetic roots mismatch",
+        )
+        require(
+            low_rank_item["degree_bound"] == 2
+            and low_rank_item["root_status"] == "degree_bound_only",
+            f"A={agreement}: low-rank family status mismatch",
         )
         require(
             realizability_item["visible_syndrome_length"] == 256
@@ -444,6 +494,13 @@ def per_agreement_records(
                 "generic_all_row_set_count": generic_item["all_row_set_atlas"]["count"],
                 "synthetic_family_status": "closed-form u=0 prefix witness has exact root union {0}",
                 "synthetic_root_union": ROOT_UNION,
+                "synthetic_low_rank2_family_status": (
+                    "rank-2 prefix update witness has degree-bound-only "
+                    "regular root bound 2"
+                ),
+                "synthetic_low_rank2_root_bound": low_rank_item["degree_bound"],
+                "synthetic_low_rank2_root_status": low_rank_item["root_status"],
+                "synthetic_low_rank2_sidecar_hash": low_rank_item["sidecar_hash"],
                 "syndrome_pencil_realizability": (
                     "all length-256 u,v syndrome pencils are realized by explicit "
                     "line values on H"
@@ -497,6 +554,7 @@ def build_status() -> dict[str, Any]:
     plan = load_json(PLAN_REF)
     generic = load_json(GENERIC_REF)
     family = load_json(FAMILY_REF)
+    low_rank_family = load_json(LOW_RANK_FAMILY_REF)
     top_packet = load_json(TOP_PACKET_REF)
     line_value_lift = load_json(LINE_VALUE_LIFT_REF)
     subgroup_section = load_json(SUBGROUP_SECTION_REF)
@@ -509,6 +567,7 @@ def build_status() -> dict[str, Any]:
         plan,
         generic,
         family,
+        low_rank_family,
         top_packet,
         line_value_lift,
         subgroup_section,
@@ -522,6 +581,7 @@ def build_status() -> dict[str, Any]:
         plan,
         generic,
         family,
+        low_rank_family,
         top_packet,
         syndrome_realizability,
         zero_slope_subtraction,
@@ -538,6 +598,11 @@ def build_status() -> dict[str, Any]:
             "synthetic_rank_witness_family",
             FAMILY_REF,
             "f17-32-m3-rank-witness-family-v1",
+        ),
+        artifact_record(
+            "synthetic_low_rank2_family",
+            LOW_RANK_FAMILY_REF,
+            "f17-32-m3-low-rank2-family-v1",
         ),
         artifact_record("fixed_top_window_v9_packet", TOP_PACKET_REF, "aperiodic-hankel-eliminant-v1"),
         artifact_record(
@@ -587,6 +652,10 @@ def build_status() -> dict[str, Any]:
             "finite_slope_budget_numerator": plan["budget_context"]["budget_numerator"],
             "generic_regular_minors_status": "proved generically nonzero for every row-set chart",
             "synthetic_family_status": "proved closed-form root union {0} for all 42 synthetic pencils",
+            "synthetic_low_rank2_family_status": "proved degree-bound-only rank-2 regular root bound 2 for all 42 synthetic pencils",
+            "synthetic_low_rank2_regular_root_bound_sum": low_rank_family[
+                "aggregate"
+            ]["regular_root_bound_sum"],
             "fixed_top_window_status": "one v9 packet covers A=421..426 with root union {0}",
             "fixed_top_window_line_value_status": "explicit f,g line values replay the fixed top-window syndrome input",
             "subgroup_syndrome_section_status": "proved explicit inverse-Fourier section for subgroup syndrome vectors",
@@ -611,6 +680,7 @@ def build_status() -> dict[str, Any]:
                 "the v9 regular window is exactly 385 <= A <= 426",
                 "every maximal row-set regular minor is generically nonzero",
                 "the synthetic u=0 family has exact root union {0}",
+                "the synthetic rank-2 low-rank family has regular root bound 2 for every agreement, aggregate 84",
                 "the fixed synthetic top-window packet is v9-checkable for A=421..426",
                 "the fixed top-window syndrome input has an explicit line-value lift",
                 "subgroup syndrome vectors have an explicit inverse-Fourier line-value section",
@@ -656,6 +726,7 @@ def print_summary(status: dict[str, Any]) -> None:
     )
     print(f"generic: {summary['generic_regular_minors_status']}")
     print(f"synthetic: {summary['synthetic_family_status']}")
+    print(f"low-rank synthetic: {summary['synthetic_low_rank2_family_status']}")
     print(f"actual row: {summary['actual_row_status']}")
 
 

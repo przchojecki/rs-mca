@@ -287,10 +287,24 @@ experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/
   f17_32_n512_k256_a426_low_rank2_packet.json
 ```
 
-It proves a degree-2 prefix regular-minor bound at `A=426`.  Since roots are
-not enumerated over `F_17^32`, the packet records `root_union_table_ref =
-not_enumerated` and `regular_root_bound_sum = 2`; the checker still replays
-the determinant coefficients from the low-rank input.
+It proves a degree-2 prefix regular-minor bound at `A=426`.  The compressed
+quadratic now splits over `F_17^32`, so the packet records the exact two roots,
+their split-linear factorization certificate, and a quadratic discriminant
+certificate; the checker replays the determinant coefficients, the compressed
+kernel sidecar, and the root certificate from the low-rank input.
+
+The same rank-2 construction has an all-window synthetic family certificate:
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-low-rank2-family/
+  f17_32_n512_k256_m3_low_rank2_family_certificate.json
+```
+
+For every `385 <= A <= 426`, it uses the first `j+1` descriptor-domain nodes as
+the square base and the next two descriptor-domain nodes as the low-rank
+update.  It proves a degree-bound-only aggregate `84`, versus the generic
+window sum `4515`, and cross-checks the `A=426` endpoint against the exact-root
+v9 packet.
 
 The current status ledger
 
@@ -299,7 +313,7 @@ experimental/data/certificates/hankel-f17-32-m3-regular-window-status/
   f17_32_n512_k256_m3_regular_window_status.json
 ```
 
-hashes the plan, generic certificate, synthetic family certificate, and fixed
+hashes the plan, generic certificate, synthetic family certificates, and fixed
 top-window packet.  It records, per agreement, that the generic/synthetic facts
 are proved but actual `F_17^32` row-data root tables and singular-bucket
 outcomes remain unsupplied.
@@ -351,6 +365,9 @@ python3 experimental/scripts/extract_regular_hankel_minors.py \
 
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/hankel-f17-32-m3-low-rank2-a426/f17_32_n512_k256_a426_low_rank2_packet.json
+
+python3 experimental/scripts/verify_f17_32_m3_low_rank2_family.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-low-rank2-family/f17_32_n512_k256_m3_low_rank2_family_certificate.json
 ```
 
 Non-claims: this note does not enumerate universal root sets for arbitrary

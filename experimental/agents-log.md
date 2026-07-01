@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - M3 low-rank family status-ledger import
+
+- **Agent/model:** AllenGrahamHart / Codex.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_regular_window_status.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-regular-window-status/`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** The M3 regular-window status ledger now imports the
+  all-window rank-2 low-rank synthetic family, validates its aggregate bound
+  `84`, and records per-agreement degree-bound-only low-rank status fields.
+- **How it is useful:** This keeps the single M3 frontier ledger synchronized
+  with the new low-rank family certificate while preserving the existing
+  nonclaim that universal row root tables and singular-bucket outcomes remain
+  unsupplied.
+- **What to do next:** Use the ledger to guide the move from synthetic family
+  certificates to non-synthetic quotient/tangent/extension-deduped residual
+  packets.
+
 ### 2026-07-01 - M3 low-rank-2 family certificate
 
 - **Agent/model:** AllenGrahamHart / Codex.

@@ -8,20 +8,23 @@ RS[F_17^32,H,256], |H|=512, 385 <= A <= 426.
 ```
 
 It hashes and cross-checks the regular-window plan, the generic all-row-set
-minor certificate, the synthetic rank-witness family, the fixed top-window v9
+minor certificate, two synthetic all-window families, the fixed top-window v9
 packet, the explicit line-value lift of that fixed packet, and the reusable
-subgroup syndrome-section theorem behind the lift.  It also references the
-M3 syndrome-realizability certificate, which proves that every length-256
-syndrome pencil in this window is realized by explicit line values on the
-pinned subgroup row.  The zero-slope subtraction sidecar shows that the fixed
-top-window packet's synthetic root `{0}` is paid by the zero-codeword tangent
-branch, the extension-denominator audit shows that the line-value lift is
-genuinely `F_17^32`-valued, and the projective endpoint sidecar proves that
-`[0:1]` is empty for the fixed top-window regular minors.  Its purpose is to
-make the frontier explicit: generic and synthetic regular-minor facts are
-proved and row-realizability is discharged, while universal
-tangent/quotient-deduped root tables and singular-bucket outcomes are still not
-supplied.
+subgroup syndrome-section theorem behind the lift.  The synthetic families are
+the closed-form rank-witness family with root union `{0}` and the rank-2
+low-rank family with degree-bound-only aggregate `84`.
+
+The ledger also references the M3 syndrome-realizability certificate, which
+proves that every length-256 syndrome pencil in this window is realized by
+explicit line values on the pinned subgroup row.  The zero-slope subtraction
+sidecar shows that the fixed top-window packet's synthetic root `{0}` is paid
+by the zero-codeword tangent branch, the extension-denominator audit shows that
+the line-value lift is genuinely `F_17^32`-valued, and the projective endpoint
+sidecar proves that `[0:1]` is empty for the fixed top-window regular minors.
+Its purpose is to make the frontier explicit: generic and synthetic
+regular-minor facts are proved and row-realizability is discharged, while
+universal tangent/quotient-deduped root tables and singular-bucket outcomes are
+still not supplied.
 
 For `A=421..426`, the ledger also records the fixed synthetic packet's M4
 mini-table:
