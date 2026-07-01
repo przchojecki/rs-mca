@@ -113,8 +113,11 @@ A=506: log2 C(512,6) = 44.5  vs  249*130.8 = 32571  -> FM ~ 0; matches the
 A=427..385 (M3 window): FM astronomically below B*  -> predicts the window
        closes with tiny aperiodic root counts (fronts alpha/beta should
        succeed, or fail only via PAID structure).
-A=265: 506.7 vs 8*130.8+2.6 = 1049 -> FM ~ 2^-542; predicts the OPEN
-       conjecture LD_sw(C,265) <= 6 is TRUE (aperiodic part ~ empty).
+A=265: 506.7 vs 8*130.8+2.6 = 1049 -> FM ~ 2^-542 for the APERIODIC part.
+       [CORRECTED turn 5: the raw row has LD_sw(C,265) >= 248 via the
+       tangent floor; the open A=265 target is the quotient/tangent-
+       STRIPPED slack instance (F1 t=9 / Lambda^aper), and FM predicts
+       THAT stripped count is ~ empty — supporting it, no raw-row claim.]
 A=261 -> 260: FM crosses B* between t=5 and t=4; the PROVED cap construction
        (quotient mass) gives unsafe at A <= 258. FM-unsafe strictly contains
        proved-unsafe, gap = 2 grid steps. The corridor is real but thin.
@@ -125,7 +128,9 @@ A=261 -> 260: FM crosses B* between t=5 and t=4; the PROVED cap construction
 ```text
 P1: no unpaid aperiodic eliminant root survives in the M3 window
     (front alpha/beta outcomes are paid-or-empty);
-P2: LD_sw(C,265) <= 6 for the pinned row (aperiodic ~ empty at t=9);
+P2: the quotient/tangent-stripped A=265 slack instance (F1 t=9 object,
+    Lambda^aper) has ~ empty aperiodic count [corrected turn 5: the raw
+    row is tangent-unsafe at 265; P2 is a stripped-object prediction];
 P3: WP-2.6 rung 1 (A=384, deficiency 1) ends in eliminant-or-paid,
     NOT in an unpaid identically-valid pencil;
 P4: any counterexample to alpha/beta factors through quotient or tangent
@@ -225,9 +230,16 @@ DONE    S3b.iii.3  fiber rigidity + noanchor ground-truth
                  planes), L1 Q_1; noanchor attribution corrected —
                  mechanisms are fixed-prime tech, crystallization must
                  exceed even moments)
-next -> S2       Paid(A) as one computable function (tangent staircase +
-                 quotient-profile term with the beta(rho) constants +
-                 extension floor; conj:B two-term shape as the template)
+DONE    S2       Paid(A) + refined threshold bracket
+                 -> s2_paid_ledger.md (Lemma FM1: the first moment is a
+                 THEOREM, toy-verified exactly; quotient zones a/b/c with
+                 the norm threshold; crossings ordered quot < FM < cap at
+                 every rate; R1' bracket; zone (b) collisions =
+                 prob:perfiber at sigma=1 — both sides of the threshold
+                 reduce to the collision family; P2 mislabel corrected)
+next -> S3b.ii   strip-periodic: exact statement of the aperiodic stratum
+                 via the proved confinement/equivariance results (x1 notes)
+                 + rem:aper's M | gcd(n,k) pullback definition
         S2       Paid(A) as a single computable function (quotient closure)
         S3b.ii   the strip-periodic step: exact statement of the aperiodic
                  stratum via the proved confinement/equivariance results

@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-01 - Proof-sketch S2: Paid(A) + refined threshold bracket
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/proof_sketch/s2_paid_ledger.md`;
+  corrections + queue update in `prize_proof_sketch_spine.md`.
+- **Status:** one PROVABLE-elementary lemma (toy-verified exactly),
+  PROVED-cited ledgers, CONJECTURE zone; one recorded CORRECTION.
+- **What is being added:** Turn 5. (1) **Lemma FM1**: the aperiodic first
+  moment is exact — E[#aligned] = C(n,j)(1-q^-t)q^(1-t) for uniform pairs,
+  via per-locator syndrome-map surjectivity (all 495 toy maps full-rank;
+  empirical mean 0.017333 vs exact 0.017333 over 1500 pairs). All remaining
+  heuristic content is relocated to worst-case-vs-mean and fiber-to-slope
+  conversion. (2) Quotient term in three zones: norm-threshold-proved
+  (N' <= ~80 at 2^256, mass <= 2^63.4 << B*), collision-uncertain
+  (bracketed DdH vs 2^{beta N'}), and the cap. Zone-(b) collisions are
+  prob:perfiber at sigma=1 — both sides of the threshold reduce to the same
+  collision family. (3) Verified crossing table: quotient(collision-free) <
+  FM < cap at every rate; refined bracket R1'. (4) CORRECTION: the turn-1
+  P2 prediction mislabeled the A=265 target — the raw row is tangent-unsafe
+  at 265 (LD_sw >= 248); the open conjecture concerns the quotient/tangent-
+  stripped slack instance, and FM supports THAT; spine restated.
+- **How it is useful:** Gives the assembly compiler its Paid(A) spec (M4
+  tables must print zone-(b) as intervals); locates exactly which unproved
+  statement decides the corridor; keeps the sketch honest about small-q vs
+  prize-scale regimes.
+- **What to do next:** Turn 6: S3b.ii strip-periodic (exact aperiodic
+  stratum via the proved confinement/equivariance results + rem:aper).
+
 ### 2026-07-01 - Proof-sketch S3b.iii.3: fiber rigidity + noanchor ground-truth
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
