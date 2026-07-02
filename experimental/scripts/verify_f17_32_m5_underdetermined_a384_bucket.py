@@ -38,6 +38,12 @@ valid split locator with roots in H iff it divides X^n-1.  The script checks the
 required subgroup/separability arithmetic for both the F_97 toy and the real
 F_17^32 row.
 
+Turn 8 records the resulting chart-reduction theorem: for a nondegenerate
+deficiency-one family, every possible A=384 bad finite slope is routed to one
+of three explicit algebraic charts -- rank-drop minors, the low-degree
+top-coefficient minor, or the top-chart pseudo-remainder coefficients -- with
+the real-row polynomial counts and degree caps printed.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -688,6 +694,38 @@ def check_deficiency_one_degree_budget():
     return ok, d
 
 
+def check_deficiency_one_chart_reduction():
+    """Record the finite algebraic target left by U1/U6/U7 at A=384."""
+    real = deficiency_one_degree_bounds(N, K, A_STAR)
+    toy = toy_u1_u5_payload()
+    t, j = real["t"], real["j"]
+    minor_count = j + 1
+    top_remainder_count = j
+    ok = True
+    ok &= real["deficiency"] == 1 and t == j == 128
+    ok &= minor_count == 129
+    ok &= top_remainder_count == 128
+    ok &= toy["chart_counts"]["top"] + toy["chart_counts"]["low_degree"] + toy["chart_counts"]["rank_drop"] == 97
+    ok &= toy["gcd_coefficients_mod_97_ascending"] == [1]
+
+    d = [
+        "chart reduction: if rank M(z)<t, z lies in the rank-drop side chart "
+        "cut by all signed maximal minors c_i(z)",
+        "chart reduction: if rank M(z)=t and c_j(z)=0, the unique Cramer kernel "
+        "has locator degree < j and routes to the low-degree side chart",
+        "chart reduction: if rank M(z)=t and c_j(z)!=0, U7 reduces validity to "
+        "the top-chart pseudo-remainder equations for L_z | X^n-1",
+        f"real A={A_STAR} target: {minor_count} Cramer minors of degree <= "
+        f"{real['cramer_minor_degree_bound']}; low-degree gate c_128 has degree <= "
+        f"{real['low_degree_side_chart_degree_cap']}",
+        f"real A={A_STAR} target: {top_remainder_count} top-chart pseudo-remainder "
+        f"coefficients, each degree <= {real['top_chart_pseudo_remainder_degree_bound']}",
+        f"toy packet sanity: chart counts {toy['chart_counts']} cover all 97 slopes, "
+        "and the declared top chart has eliminant 1",
+    ]
+    return ok, d
+
+
 def expected_toy_packet():
     payload = toy_u1_u5_payload()
     domain_hash = "sha256:" + hash_json_value(payload["domain"])
@@ -776,6 +814,7 @@ CHECKS = [
     ("subgroup divisibility gate for real row",           check_subgroup_divisibility_gate),
     ("eliminant or certified residual obstruction",       check_toy_eliminant_dichotomy),
     ("deficiency-1 degree budget for real row",           check_deficiency_one_degree_budget),
+    ("deficiency-1 chart reduction for real row",         check_deficiency_one_chart_reduction),
     ("packet emission + local replay validation",         lambda: check_toy_packet(DEFAULT_TOY_PACKET)),
 ]
 

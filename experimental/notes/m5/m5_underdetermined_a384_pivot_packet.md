@@ -1,10 +1,11 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 7: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 8: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
-  abstract subgroup-divisibility and degree-budget gates for the real `A=384`
-  row are done). No threshold, safety, or worst-case row claim is made.
+  abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
+  the real `A=384` row are done). No threshold, safety, or worst-case row
+  claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
   regular window `385 <= A <= 426`, synthetic rank ladders and kernel charts):
@@ -119,7 +120,8 @@ belongs.
 | 5a | compact toy packet emission and local replay validation | **done** |
 | 5b | abstract degree-budget theorem specialized to real `A=384` | **done** |
 | 5c | abstract subgroup-divisibility gate specialized to real `A=384` | **done** |
-| 5d | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/` for a declared `F_17^32` family | pending |
+| 5d | chart-reduction theorem: rank-drop / low-degree / top pseudo-remainder | **done** |
+| 5e | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/` for a declared `F_17^32` family | pending |
 
 ### Verified so far (turn 1)
 
@@ -313,6 +315,29 @@ So in the real `A=384` row the top-chart validity test is genuinely the
 pseudo-remainder divisibility test against `X^512-1`.  This does not compute
 the real-row pseudo-remainder gcd; it proves that this is the correct algebraic
 gate to compute.
+
+### Verified in turn 8
+
+**U8, deficiency-one chart reduction.** Combining U1, U6, and U7 gives the
+finite-slope chart cover for any nondegenerate declared `A=384` family:
+
+```text
+rank-drop chart:    all signed maximal minors c_i(Z) vanish;
+low-degree chart:   rank M(Z)=128 but c_128(Z)=0;
+top chart:          rank M(Z)=128 and c_128(Z)!=0, then prem(X^512-1,L_Z)=0.
+```
+
+Thus the real-row finite algebraic target is:
+
+```text
+129 Cramer minors c_i(Z), each degree <= 128;
+1 low-degree gate c_128(Z), degree <= 128 unless identically zero;
+128 top-chart pseudo-remainder coefficients, each degree <= 49280.
+```
+
+This is the first explicit M5 chart reduction below the regular window.  It
+does not count any roots over `F_17^32`; it says exactly which root tables or
+residual labels a real-row packet must provide.
 
 ## Honest scope
 

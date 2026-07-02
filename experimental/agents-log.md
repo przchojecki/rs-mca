@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 chart-reduction theorem
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  No threshold or worst-case row
+  claim.
+- **What is being added:** Turn 8 of the `A=384` underdetermined M5 packet:
+  the deficiency-one finite-slope chart reduction.  Every candidate finite
+  bad slope in a nondegenerate declared family routes to rank-drop minors,
+  the low-degree top-coefficient gate, or the top-chart pseudo-remainder
+  equations.
+- **How it is useful:** Converts the first underdetermined M5 bucket into
+  explicit real-row algebraic targets: 129 Cramer minors of degree `<=128`,
+  one low-degree gate of degree `<=128`, and 128 top-chart pseudo-remainder
+  coefficients of degree `<=49280`.
+- **What to do next:** Build the corresponding `F_17^32` root-table packet, or
+  split the three charts into separate packets if the top chart is too large.
+
 ### 2026-07-02 - M5 A384 subgroup divisibility gate
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
