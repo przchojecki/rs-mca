@@ -1,0 +1,119 @@
+{
+  "base_rational_confinement": {
+    "all_extension_solution_sets": 3,
+    "checked_base_pencils": 16275,
+    "empty_solution_sets": 15512,
+    "field": "F_25 = F_5[u]/(u^2-2)",
+    "non_base_singleton_or_other_counterexamples": [],
+    "singleton_base_solution_sets": 760,
+    "vector_lengths": [
+      1,
+      2,
+      3
+    ]
+  },
+  "classification": "F1_EXTENSION_IMPORT_ARITHMETIC_AND_BASE_CONFINEMENT_VERIFIED",
+  "dag_target": "ext_import",
+  "extension_pole_thresholds": {
+    "formula": {
+      "N_ext(L)": "ceil(L(q-b)/(q-b+kL))",
+      "budget": "B*=floor(q/2^lambda)",
+      "minimal_crossing_L": "floor(B*(q-b)/(q-b-B*k))+1 when q-b-B*k>0; otherwise no crossing"
+    },
+    "samples": [
+      {
+        "base_size": 5,
+        "budget_floor_q_over_2bits": 1,
+        "extension_gap_q_minus_b": 20,
+        "k": 3,
+        "name": "toy_quadratic",
+        "q_line": 25,
+        "sample_N_ext": 3,
+        "sample_crosses_budget": true,
+        "sample_list_size": 4,
+        "sample_log2_L": 2.0,
+        "sample_log2_N_ext": 1.584962500721156,
+        "saturation_limit_floor": 6,
+        "target_bits": 4,
+        "threshold": {
+          "N_ext_at_threshold": 2,
+          "N_ext_at_threshold_minus_1": 1,
+          "crossing_possible": true,
+          "log2_threshold": 1.0,
+          "minimal_L_with_N_ext_above_budget": 2
+        }
+      },
+      {
+        "base_size": 5,
+        "budget_floor_q_over_2bits": 1,
+        "extension_gap_q_minus_b": 20,
+        "k": 30,
+        "name": "toy_no_crossing",
+        "q_line": 25,
+        "sample_N_ext": 1,
+        "sample_crosses_budget": false,
+        "sample_list_size": 100,
+        "sample_log2_L": 6.643856189774724,
+        "sample_log2_N_ext": 0.0,
+        "saturation_limit_floor": 0,
+        "target_bits": 4,
+        "threshold": {
+          "crossing_possible": false,
+          "reason": "floor(q/2^bits) is at least the saturation limit (q-b)/k"
+        }
+      },
+      {
+        "base_size": 2130706433,
+        "budget_floor_q_over_2bits": 274980728111395087,
+        "extension_gap_q_minus_b": 93571093019388561295270373781649880353786165189972852736,
+        "k": 1048576,
+        "name": "koalabear_sextic_slack_two_demo",
+        "q_line": 93571093019388561295270373781649880353786165192103559169,
+        "sample_N_ext": 89236348170651014436365185283577293957513290539195,
+        "sample_crosses_budget": true,
+        "sample_list_size": 2624411094789187109312477391695896938622496540100378484625722447457,
+        "sample_log2_L": 220.63924798784208,
+        "sample_log2_N_ext": 165.9321081246956,
+        "saturation_limit_floor": 89236348170651017470617650777482872346674122991536,
+        "target_bits": 128,
+        "threshold": {
+          "N_ext_at_threshold": 274980728111395088,
+          "N_ext_at_threshold_minus_1": 274980728111395087,
+          "crossing_possible": true,
+          "log2_threshold": 57.932108124695574,
+          "minimal_L_with_N_ext_above_budget": 274980728111395088
+        }
+      },
+      {
+        "base_size": 18446744073709551557,
+        "budget_floor_q_over_2bits": 340282366920938459109943006036314050965,
+        "extension_gap_q_minus_b": 115792089237316193942174975457431254695161196299352022581029898732662146262444,
+        "k": 1099511627776,
+        "name": "near_256_bit_fourth_power_size_arithmetic",
+        "q_line": 115792089237316193942174975457431254695161196299352022581048345476735855814001,
+        "sample_N_ext": 340282366920938459109943006036314050966,
+        "sample_crosses_budget": true,
+        "sample_list_size": 340282366920938459109943007135825678741,
+        "sample_log2_L": 128.0,
+        "sample_log2_N_ext": 128.0,
+        "saturation_limit_floor": 105312291668557185350596205769244311063777055368838794112007143424,
+        "target_bits": 128,
+        "threshold": {
+          "N_ext_at_threshold": 340282366920938459109943006036314050966,
+          "N_ext_at_threshold_minus_1": 340282366920938459109943006036314050965,
+          "crossing_possible": true,
+          "log2_threshold": 128.0,
+          "minimal_L_with_N_ext_above_budget": 340282366920938459109943007135825678741
+        }
+      }
+    ]
+  },
+  "nonclaims": [
+    "does not prove the full F1 safe-side classification",
+    "does not prove every F-valued bad slope is extension-pole or subfield-confined",
+    "does not transfer base-field MCA bounds to arbitrary F-valued lines",
+    "does not change Papers A-D"
+  ],
+  "schema_version": "f1-extension-import-v1",
+  "status": "PROVED / ARITHMETIC"
+}

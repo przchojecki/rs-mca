@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - F1 extension-import lemma
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/f1/f1_extension_import_lemma.md`;
+  `experimental/scripts/verify_f1_extension_import_lemma.py`;
+  `experimental/data/certificates/f1-extension-import/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / ARITHMETIC.
+- **What is being added:** A verifier-backed proof note for the `ext_import`
+  item: base-rational affine pencils have only base-field isolated slopes, and
+  the extension-pole numerator `ceil(L(|F|-|B|)/(|F|-|B|+kL))` crosses a
+  denominator budget at an exact printed list-size threshold.
+- **How it is useful:** It prevents denominator double-crediting in F1/MCA
+  assembly: base-field witnesses cannot be charged to an extension denominator
+  without an extension-valued mechanism, while extension-pole packets have a
+  precise numerator and crossing rule.
+- **What to do next:** Use this as the arithmetic input for F1 denominator
+  audits and keep the full safe-side classification of arbitrary `F`-valued
+  lines as a separate open theorem.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.
