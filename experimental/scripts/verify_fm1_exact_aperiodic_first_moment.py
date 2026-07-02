@@ -145,9 +145,10 @@ def second_moment_formula(q: int, n: int, k: int, agreement: int) -> Fraction:
 def overlap_decomposition(q: int, n: int, k: int, agreement: int) -> dict:
     t = agreement - k
     j = n - agreement
-    one_locator = joint_alignment_probability(q, t, 0)
+    independent_pair_probability = joint_alignment_probability(q, t, 0)
     locator_count = comb(n, j)
-    baseline = locator_count * locator_count * one_locator
+    mean = expected_value(q, n, k, agreement)
+    baseline = locator_count * locator_count * independent_pair_probability
     records = []
     correction = Fraction(0, 1)
     for c in range(j + 1):
@@ -156,7 +157,7 @@ def overlap_decomposition(q: int, n: int, k: int, agreement: int) -> dict:
         ordered_pairs = comb(n, j) * comb(j, c) * comb(n - j, j - c)
         h = max(0, t - j + c)
         probability = joint_alignment_probability(q, t, h)
-        excess = probability - one_locator
+        excess = probability - independent_pair_probability
         contribution = ordered_pairs * excess
         correction += contribution
         records.append({
@@ -177,6 +178,10 @@ def overlap_decomposition(q: int, n: int, k: int, agreement: int) -> dict:
             },
         })
     second = second_moment_formula(q, n, k, agreement)
+    variance = second - mean * mean
+    relative_variance = variance / (mean * mean) if mean else Fraction(0, 1)
+    chebyshev_zero_upper_bound = relative_variance
+    chebyshev_half_mean_upper_bound = 4 * relative_variance
     return {
         "q": q,
         "n": n,
@@ -186,6 +191,10 @@ def overlap_decomposition(q: int, n: int, k: int, agreement: int) -> dict:
         "j": j,
         "locator_count": locator_count,
         "defect_positive_overlap_threshold": j - t + 1,
+        "mean": {
+            "numerator": mean.numerator,
+            "denominator": mean.denominator,
+        },
         "baseline_independent_second_moment": {
             "numerator": baseline.numerator,
             "denominator": baseline.denominator,
@@ -197,6 +206,25 @@ def overlap_decomposition(q: int, n: int, k: int, agreement: int) -> dict:
         "second_moment": {
             "numerator": second.numerator,
             "denominator": second.denominator,
+        },
+        "variance": {
+            "numerator": variance.numerator,
+            "denominator": variance.denominator,
+        },
+        "relative_variance": {
+            "numerator": relative_variance.numerator,
+            "denominator": relative_variance.denominator,
+            "decimal": float(relative_variance),
+        },
+        "chebyshev_zero_probability_upper_bound": {
+            "numerator": chebyshev_zero_upper_bound.numerator,
+            "denominator": chebyshev_zero_upper_bound.denominator,
+            "decimal": float(chebyshev_zero_upper_bound),
+        },
+        "chebyshev_half_mean_deviation_upper_bound": {
+            "numerator": chebyshev_half_mean_upper_bound.numerator,
+            "denominator": chebyshev_half_mean_upper_bound.denominator,
+            "decimal": float(chebyshev_half_mean_upper_bound),
         },
         "records": records,
     }
@@ -377,6 +405,10 @@ def check_overlap_excess_decomposition() -> tuple[bool, dict]:
             decomp["second_moment"]["numerator"],
             decomp["second_moment"]["denominator"],
         )
+        variance = Fraction(
+            decomp["variance"]["numerator"],
+            decomp["variance"]["denominator"],
+        )
         t, j = decomp["t"], decomp["j"]
         threshold = decomp["defect_positive_overlap_threshold"]
         low_excess_zero = all(
@@ -394,6 +426,7 @@ def check_overlap_excess_decomposition() -> tuple[bool, dict]:
         example = {
             **decomp,
             "baseline_plus_correction_matches_second_moment": baseline + correction == second,
+            "correction_matches_variance": correction == variance,
             "low_overlap_excess_zero": low_excess_zero,
             "high_overlap_excess_positive": high_excess_positive,
         }
@@ -416,6 +449,7 @@ def check_overlap_excess_decomposition() -> tuple[bool, dict]:
             }
             ok &= variance == expected_variance
         ok &= baseline + correction == second
+        ok &= correction == variance
         ok &= low_excess_zero
         ok &= high_excess_positive
         examples.append(example)
@@ -576,8 +610,12 @@ def build_report() -> dict:
         ),
         "paley_zygmund_consumer": "Pr[N_A>0] >= E[N_A]^2 / E[N_A^2]",
         "overlap_excess_statement": (
-            "The second-moment excess over independent locator indicators is "
-            "supported exactly on overlaps c >= j-t+1."
+            "The variance is the second-moment excess over independent locator "
+            "indicators, supported exactly on overlaps c >= j-t+1."
+        ),
+        "chebyshev_consumer": (
+            "Pr[N_A=0] <= Var(N_A)/E[N_A]^2 and "
+            "Pr[|N_A-E[N_A]| >= eps E[N_A]] <= Var(N_A)/(eps^2 E[N_A]^2)."
         ),
         "definition": (
             "For a split degree-j locator ell, set a=S_ell(u), b=S_ell(v) in F_q^t. "
@@ -632,7 +670,11 @@ def main() -> None:
                 print(
                     "        q={q}, n={n}, k={k}, A={agreement}, t={t}, j={j}: "
                     "threshold c>={defect_positive_overlap_threshold}, "
-                    "matches={baseline_plus_correction_matches_second_moment}".format(**example)
+                    "matches={baseline_plus_correction_matches_second_moment}, "
+                    "relvar={relvar:.6g}".format(
+                        relvar=example["relative_variance"]["decimal"],
+                        **example,
+                    )
                 )
         elif name == "f5_bruteforce":
             print(

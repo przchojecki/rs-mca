@@ -1,4 +1,5 @@
 {
+  "chebyshev_consumer": "Pr[N_A=0] <= Var(N_A)/E[N_A]^2 and Pr[|N_A-E[N_A]| >= eps E[N_A]] <= Var(N_A)/(eps^2 E[N_A]^2).",
   "checks": {
     "f13_joint_rank_formula": {
       "agreement": 8,
@@ -210,16 +211,31 @@
             "numerator": 14400
           },
           "baseline_plus_correction_matches_second_moment": true,
+          "chebyshev_half_mean_deviation_upper_bound": {
+            "decimal": 0.03333333333333333,
+            "denominator": 30,
+            "numerator": 1
+          },
+          "chebyshev_zero_probability_upper_bound": {
+            "decimal": 0.008333333333333333,
+            "denominator": 120,
+            "numerator": 1
+          },
           "correction": {
             "denominator": 49,
             "numerator": 120
           },
+          "correction_matches_variance": true,
           "defect_positive_overlap_threshold": 3,
           "high_overlap_excess_positive": true,
           "j": 3,
           "k": 2,
           "locator_count": 20,
           "low_overlap_excess_zero": true,
+          "mean": {
+            "denominator": 7,
+            "numerator": 120
+          },
           "n": 6,
           "q": 7,
           "records": [
@@ -292,6 +308,11 @@
               }
             }
           ],
+          "relative_variance": {
+            "decimal": 0.008333333333333333,
+            "denominator": 120,
+            "numerator": 1
+          },
           "second_moment": {
             "denominator": 49,
             "numerator": 14520
@@ -307,7 +328,11 @@
               "numerator": 120
             }
           },
-          "t": 1
+          "t": 1,
+          "variance": {
+            "denominator": 49,
+            "numerator": 120
+          }
         },
         {
           "agreement": 5,
@@ -316,16 +341,31 @@
             "numerator": 914457600
           },
           "baseline_plus_correction_matches_second_moment": true,
+          "chebyshev_half_mean_deviation_upper_bound": {
+            "decimal": 0.46359126984126986,
+            "denominator": 10080,
+            "numerator": 4673
+          },
+          "chebyshev_zero_probability_upper_bound": {
+            "decimal": 0.11589781746031746,
+            "denominator": 40320,
+            "numerator": 4673
+          },
           "correction": {
             "denominator": 1771561,
             "numerator": 105983640
           },
+          "correction_matches_variance": true,
           "defect_positive_overlap_threshold": 4,
           "high_overlap_excess_positive": true,
           "j": 5,
           "k": 3,
           "locator_count": 252,
           "low_overlap_excess_zero": true,
+          "mean": {
+            "denominator": 1331,
+            "numerator": 30240
+          },
           "n": 10,
           "q": 11,
           "records": [
@@ -432,11 +472,20 @@
               }
             }
           ],
+          "relative_variance": {
+            "decimal": 0.11589781746031746,
+            "denominator": 40320,
+            "numerator": 4673
+          },
           "second_moment": {
             "denominator": 1771561,
             "numerator": 1020441240
           },
-          "t": 2
+          "t": 2,
+          "variance": {
+            "denominator": 1771561,
+            "numerator": 105983640
+          }
         }
       ],
       "formula": "E[N^2] = E_indep[N^2] + sum_{c>=j-t+1} ordered_pairs(c)(P_h-P_0)"
@@ -444,11 +493,11 @@
   },
   "dag_node": "fm1",
   "definition": "For a split degree-j locator ell, set a=S_ell(u), b=S_ell(v) in F_q^t. The locator is aligned when b != 0 and a lies in the one-dimensional span of b.",
-  "overlap_excess_statement": "The second-moment excess over independent locator indicators is supported exactly on overlaps c >= j-t+1.",
+  "overlap_excess_statement": "The variance is the second-moment excess over independent locator indicators, supported exactly on overlaps c >= j-t+1.",
   "paley_zygmund_consumer": "Pr[N_A>0] >= E[N_A]^2 / E[N_A^2]",
   "passed": true,
   "schema": "fm1_exact_first_moment_v1",
-  "script_sha256": "32f22523731ebef059fdc6c0b79517b87bd8edb73542f78e0f1dbbeba5d3c686",
+  "script_sha256": "0cac2c4c1624736fba8ff0d3b8d9fe63f5ca37502a56292ac03f29587537f1e7",
   "second_moment_statement": "E[N_A^2] is the ordered-overlap sum of the exact defect-h joint alignment probabilities.",
   "statement": "E[# aligned split locators] = binom(n,j)(1-q^-t)q^(1-t)",
   "status": "PROVED_LOCAL_VERIFICATION"

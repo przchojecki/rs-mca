@@ -306,6 +306,34 @@ This is the useful form for later exchange or averaged-slope arguments:
 away from a thin high-overlap neighborhood in the Johnson graph, the locator
 alignment indicators are independent.
 
+Subtracting `E[N_A]^2` gives the exact variance formula
+
+```text
+Var(N_A)
+  = sum_{c >= j-t+1}
+        binom(n,j) binom(j,c) binom(n-j,j-c)
+        ( P_{t-j+c} - p_1^2 ).
+```
+
+Therefore the relative variance is completely explicit.  For every
+`epsilon > 0`, Chebyshev gives
+
+```text
+Pr[ |N_A - E[N_A]| >= epsilon E[N_A] ]
+  <= Var(N_A) / (epsilon^2 E[N_A]^2),
+```
+
+and, in particular,
+
+```text
+Pr[N_A = 0] <= Var(N_A) / E[N_A]^2.
+```
+
+Thus whenever the high-overlap ledger is small relative to the independent
+baseline, the averaged model is genuinely concentrated, not merely correct in
+expectation.  This is the exact second-moment form needed by any later
+averaged-slope conversion.
+
 In the slack-one case `t=1`, only the diagonal `R=T` has positive defect.
 Thus distinct locator indicators are pairwise independent and
 
@@ -376,7 +404,7 @@ sanity check for the M3/M5 chart program, not a replacement for root tables.
 
 ## Verification
 
-The verifier records five checks.
+The verifier records six checks.
 
 1. **Surjectivity check, `F_13`.**  For `D=F_13^*`, `n=12`, `k=3`,
    `A=8`, `t=5`, `j=4`, every one of the `binom(12,4)=495`
@@ -394,6 +422,8 @@ rank S_{R,T} = 2t - max(0,t-j+|R cap T|).
 4. **Overlap-excess decomposition check.**  The verifier checks the baseline
    plus high-overlap correction identity in two finite parameter sets.  In the
    slack-one case it also verifies the pairwise-independence variance formula.
+   The JSON artifact records exact relative variance and Chebyshev bounds for
+   both examples.
 5. **Exact brute-force check, `F_5`.**  For `D=F_5^*`, `n=4`, `k=1`,
    `A=3`, `t=2`, `j=1`, enumeration over all `5^8` word pairs gives
 
