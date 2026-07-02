@@ -86,7 +86,9 @@ rate    quot crossing   FM crossing    cap        (all: quot < FM < cap ✓)
 `[1 - rho - beta(rho)/(log2 q - 128), cap]`, and WHICH mechanism decides it
 is a zone-(b) question: collision-free quotient mass => the left end;
 heavy collisions => the aperiodic FM point; the cap caps it either way.
-The corridor is ~1.5 grid steps of `2^-9` wide. Note the pleasing shape:
+The corridor widths are 2.17 / 2.00 / 1.12 / 1.67 grid steps of the cap
+reserve (`2^-9`, `2^-10` at rho=1/16) per rate [corrected in the turn-13
+coherence pass; verified in s8_s9]. Note the pleasing shape:
 `delta* = 1 - rho - Theta(1/log q)` in every branch — R1 survives, sharpened.
 
 **Coherence check (pinned row) — with a correction to turn 1.** At `B* = 6`

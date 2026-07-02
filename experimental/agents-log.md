@@ -30,6 +30,37 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Proof-sketch COMPLETE: final coherence pass (turn 13)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/proof_sketch/prize_proof_sketch_spine.md`
+  (prediction ledger §7, one-paragraph summary §8, queue closed);
+  `s2_paid_ledger.md` (corridor width corrected to per-rate values).
+- **Status:** COHERENCE PASS — no new mathematics; the tree remains
+  CONJECTURAL / SKETCH throughout, labels audited.
+- **What is being added:** Terminal turn of the proof-sketch loop.
+  Machine-checked: all cross-file references resolve; every node carries
+  its status labels. Applied the s8_s9 fix-list: the s2 corridor width
+  ("~1.5 grid steps") corrected to the verified per-rate values
+  (2.17/2.00/1.12/1.67). Added to the spine: the prediction ledger
+  (P1a/b/c, P-beta, P2-corrected, P3, P4, window-0 — each with its
+  testing experiment and failure meaning) and the one-paragraph summary
+  of the whole sketch. Tree totals: spine + 11 content files, 13 turns,
+  every arithmetic claim machine-verified before commit, two
+  self-corrections recorded en route (window m=1..t; P2 restated) plus
+  one label-attribution correction (noanchor vs perfiber).
+- **How it is useful:** The sketch is now a complete, internally
+  cross-checked heuristic path-chart from the repo's proved results to a
+  prize resolution, with the minimal win set isolated ({R2, zone-(b),
+  S0 zero-OPEN} — one collision family plus care), falsifiable
+  predictions wired to already-scheduled experiments, and every negative
+  branch landing in a named posture.
+- **What to do next:** Maintainer/author review of the tree; the
+  experiments that test it are the WP-2.1/2.2 scans and the resumable
+  PR #172 deficiency ladder; the two definitional audits (S0 axes 1/2/4)
+  and two rules lookups (generating, dither) are care-not-mathematics.
+
 ### 2026-07-02 - Proof-sketch S8+S9: assembly contract and negative branches
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).

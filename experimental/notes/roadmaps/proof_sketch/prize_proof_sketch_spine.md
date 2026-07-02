@@ -297,9 +297,40 @@ DONE    S8/S9    assembly + negative branches
                  negative-branch table; corridor widths verified
                  2.17/2.00/1.12/1.67 grid steps; low-confidence bet
                  recorded)
-next -> FINAL    coherence pass over the whole tree (fix list in s8_s9 §5:
-                 s2 corridor width, cross-refs, label audit, prediction
-                 ledger), then terminus
+DONE    FINAL    coherence pass (turn 13): s2 corridor widths corrected
+                 (2.17/2.00/1.12/1.67 grid steps); all cross-file
+                 references machine-checked as resolving; labels present
+                 in every node; prediction ledger added below.
+                 SKETCH COMPLETE — 12 content nodes + spine, turns 1-13.
+
+## 7. Prediction ledger (added turn 13 — what tests the sketch, and where)
+
+| # | prediction | tested by | if it fails |
+|---|---|---|---|
+| P1a/b | alpha scan: gcd = 1 everywhere, or every collision is paid | WP-2.1 full-grid scan (post-replay) | P1c: unpaid collision = candidate_new_obstruction in the easiest regime; crystallization demoted (S9) |
+| P-beta | rank-6 ambient sharpness not Hankel-realizable, or realizable only paid | WP-2.2 realizability search | direction-rank methods insufficient in-window; M5 charts mandatory |
+| P2 | the quotient/tangent-STRIPPED A=265 slack instance has ~empty aperiodic count (raw row is tangent-unsafe; corrected turn 5) | F1-lane instance work; agreement-265 status audit | FM wrong at small t; small-t partial XR (the #152 generalization) is the diagnostic |
+| P3 | WP-2.6 rung 1 (A=384, d=1) ends eliminant-or-paid, not unpaid-valid-pencil | PR #172 turns (paused loop, resumable) | an unpaid identically-valid pencil at d=1 kills the de-correlation premise early |
+| P4 | no unpaid alignment mechanism exists in-band | the whole program; earliest signals: P1c, P3, GAP-1 | delta* strictly below d_fm; determine the new ledger and re-run S5 (S9 posture) |
+| window-0 | the M3 window theorem ends with aperiodic numerator 0 throughout 385-426 | the M3/M4/M5 campaign end-state | paid-subtraction bookkeeping or crystallization fails on checkable ground |
+
+## 8. The sketch in one paragraph (added turn 13)
+
+Count aligned locators: finitely many divisor-locators, a pencil linear in
+the slope, one slope per locator (v8), containment = pencil degeneracy.
+The exact first moment (FM1) makes the aperiodic count's mean a theorem;
+tau* (= the FM crossover, verified identical) is the one entropy scale on
+both the list and MCA sides. Strip quotient-periodic structure (the
+strata are exchange-graph independent sets; dynamics and counting factor
+through the same quotient recursion); pay tangent by fibers = common-
+divisor planes (Conjecture F, whose coordinate-plane case is the paper's
+prob:perfiber). What remains is ONE rigidity statement (R2, reachable via
+incidence SPI or exchange XR, poly budget B <= 3) plus the zone-(b)
+e_1-collision behavior — together with the S0 conventions audit, these
+are the minimal win set. Everything below q ~ 2^128 (n-k)/3 is already
+pinned; the prize's open content is a ~90-bit band of field sizes, with
+delta* = 1 - rho - c_rho/log2(q_line) and c_rho bracketed in a corridor
+~2 grid steps wide. Negative resolutions stay first-class throughout.
         S2       Paid(A) as a single computable function (quotient closure)
         S3b.ii   the strip-periodic step: exact statement of the aperiodic
                  stratum via the proved confinement/equivariance results
