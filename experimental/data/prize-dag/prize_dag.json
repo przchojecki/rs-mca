@@ -1,0 +1,1523 @@
+{
+ "schema": "prize-dag-v1",
+ "description": "Dependency DAG of the Proximity Prize program. Nodes = statements/artifacts/experiments; edges point FROM a dependency TO the statement it supports. gate=all: every 'req' child needed; gate=any: one 'alt' child suffices (plus all 'req'). Statuses: PROVED (on main w/ proof or exact verification), PROVABLE (route pinned, write-up pending), CONDITIONAL (proved under stated hypothesis), CONJECTURE (precise statement, unproved), TARGET (fuzzy, expected to sharpen), WALL (frozen hard core w/ consumer theorem), REFUTED (dead route), TEST (experiment/prediction). Source of truth for statuses: experimental/notes/roadmaps/ (r2 + proof_sketch + wp_detail).",
+ "root": "prize",
+ "nodes": [
+  {
+   "id": "prize",
+   "title": "Proximity Prize resolved",
+   "status": "TARGET",
+   "gate": "all",
+   "key": true,
+   "refs": [
+    "proof_sketch/prize_proof_sketch_spine.md#1"
+   ]
+  },
+  {
+   "id": "mca_grand",
+   "title": "Grand MCA: determine delta* (emca <= 2^-128)",
+   "status": "TARGET",
+   "gate": "all",
+   "key": true,
+   "refs": [
+    "proof_sketch/prize_proof_sketch_spine.md#1"
+   ]
+  },
+  {
+   "id": "list_grand",
+   "title": "Grand List: determine delta* (|Lambda| <= 2^-128 |F|)",
+   "status": "TARGET",
+   "gate": "all",
+   "key": true,
+   "refs": [
+    "proof_sketch/s7_list_side.md"
+   ]
+  },
+  {
+   "id": "packaging",
+   "title": "Assembly: compiler + dossier + gates",
+   "status": "TARGET",
+   "gate": "all",
+   "refs": [
+    "proof_sketch/s8_s9_assembly_and_negative.md#1"
+   ]
+  },
+  {
+   "id": "s0_zero_open",
+   "title": "S0 object audit: zero OPEN axes",
+   "status": "TARGET",
+   "gate": "all",
+   "key": true,
+   "refs": [
+    "proof_sketch/s5_s0_statements_and_object.md#4"
+   ]
+  },
+  {
+   "id": "axes_verified",
+   "title": "Axes 3/5/7 verified + q-dictionary (axis 6)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s4_reserve_dictionary.md"
+   ]
+  },
+  {
+   "id": "axis1_batching",
+   "title": "Axis 1: ABF batching shape",
+   "status": "TARGET",
+   "refs": [
+    "wp_detail/wp_consolidation_sketch_extracts.md"
+   ]
+  },
+  {
+   "id": "axis2_ell",
+   "title": "Axis 2: ell>2 batching / tuple-to-pair",
+   "status": "TARGET",
+   "refs": [
+    "proof_sketch/s5_s0_statements_and_object.md#4"
+   ]
+  },
+  {
+   "id": "axis4_predicate",
+   "title": "Axis 4: ABF Delta_S = degenerate-pencil predicate?",
+   "status": "TARGET",
+   "key": true,
+   "refs": [
+    "proof_sketch/s4_reserve_dictionary.md#2"
+   ]
+  },
+  {
+   "id": "axis9_dither",
+   "title": "Axis 9: exact rates (dither adverse, provisional)",
+   "status": "CONDITIONAL",
+   "refs": [
+    "wp_detail/wp0_2_wp4_4_rules_freeze_and_dither.md#1"
+   ]
+  },
+  {
+   "id": "field_cap_check",
+   "title": "Confirm k<=2^40, |F|<2^256 in ePrint",
+   "status": "TEST",
+   "key": true,
+   "refs": [
+    "wp_detail/wp0_2_wp4_4_rules_freeze_and_dither.md#1"
+   ]
+  },
+  {
+   "id": "rules_freeze",
+   "title": "Rules freeze + SHA drift detector",
+   "status": "TARGET",
+   "refs": [
+    "wp_detail/wp0_2_wp4_4_rules_freeze_and_dither.md#2"
+   ]
+  },
+  {
+   "id": "mca_unsafe",
+   "title": "MCA unsafe side at adjacent grid point",
+   "status": "TARGET",
+   "gate": "all",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#4"
+   ]
+  },
+  {
+   "id": "cap_theorem",
+   "title": "Paper D universal cap (unsafe above 1-rho-2^-9)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ]
+  },
+  {
+   "id": "qfloor_exact",
+   "title": "prop:qfloor: quotient floor exact above norm threshold",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ]
+  },
+  {
+   "id": "acl_count",
+   "title": "thm:exactcount: Acl = 2^{beta N'(1-o(1))} (char 0)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#2"
+   ]
+  },
+  {
+   "id": "zone_b",
+   "title": "Zone-(b): e1 value-set collisions, 80<N'<512 (= perfiber at sigma=1)",
+   "status": "CONJECTURE",
+   "gate": "any",
+   "key": true,
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ]
+  },
+  {
+   "id": "acl_second_order",
+   "title": "Acl second-order term (hand-off lemma)",
+   "status": "TARGET",
+   "refs": [
+    "wp_detail/wp3_2_symbolic_scaling.md#3"
+   ]
+  },
+  {
+   "id": "norm_threshold_ext",
+   "title": "Extend qfloor exactness past N'~80 (hand-off)",
+   "status": "TARGET",
+   "refs": [
+    "wp_detail/wp3_2_symbolic_scaling.md#3"
+   ]
+  },
+  {
+   "id": "row_c_experiment",
+   "title": "Row-C birthday sampling of e1 value sets",
+   "status": "TEST",
+   "key": true,
+   "refs": [
+    "wp_detail/wp3_1_wp3_3_rows_and_second_pin.md#1"
+   ]
+  },
+  {
+   "id": "mca_safe",
+   "title": "MCA safe side: B_C(a_safe) <= B* in-band",
+   "status": "TARGET",
+   "gate": "all",
+   "key": true,
+   "refs": [
+    "proof_sketch/prize_proof_sketch_spine.md#4"
+   ]
+  },
+  {
+   "id": "counting_frame",
+   "title": "Exact frame: finite divisor set, pencil linear, <=1 slope/locator",
+   "status": "PROVED",
+   "key": true,
+   "refs": [
+    "proof_sketch/prize_proof_sketch_spine.md#2"
+   ]
+  },
+  {
+   "id": "v8_ledger",
+   "title": "v8 one-support-one-slope ledger",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/prize_proof_sketch_spine.md#2"
+   ]
+  },
+  {
+   "id": "noncontain_degeneracy",
+   "title": "Containment = degenerate pencil (a=b=0) = def:residue",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s4_reserve_dictionary.md#2"
+   ]
+  },
+  {
+   "id": "fm1",
+   "title": "FM1: E[#aligned] = C(n,j)(1-q^-t)q^{1-t} exactly",
+   "status": "PROVABLE",
+   "key": true,
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#2"
+   ]
+  },
+  {
+   "id": "vtdv",
+   "title": "Subgroup Hankel = V^T D_u V (prime + extension verified)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#1"
+   ]
+  },
+  {
+   "id": "tau_star_identity",
+   "title": "FM crossover = tau*(rho,q) identically",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s4_reserve_dictionary.md#1"
+   ]
+  },
+  {
+   "id": "normalform",
+   "title": "thm:normalform: emca = (1/q) max Lambda^NC",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s4_reserve_dictionary.md#2"
+   ]
+  },
+  {
+   "id": "paid_closure",
+   "title": "Paid(A) closure: tangent+quotient+extension computable",
+   "status": "TARGET",
+   "gate": "all",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#5"
+   ]
+  },
+  {
+   "id": "staircase",
+   "title": "Tangent staircase compiler (#147)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#1"
+   ]
+  },
+  {
+   "id": "envelope",
+   "title": "Envelope map: all small-q rows pinned (#153)",
+   "status": "PROVED",
+   "refs": [
+    "wp_detail/wp1_1_wp1_2_submission_and_lean.md#1"
+   ]
+  },
+  {
+   "id": "pinned_row",
+   "title": "F_17^32 row pinned at 506/507",
+   "status": "PROVED",
+   "key": true,
+   "refs": [
+    "wp_detail/wp1_1_wp1_2_submission_and_lean.md#1"
+   ]
+  },
+  {
+   "id": "strip",
+   "title": "Strip-periodic: aperiodic stratum exact",
+   "status": "CONDITIONAL",
+   "gate": "all",
+   "refs": [
+    "proof_sketch/s3b_ii_strip_periodic.md"
+   ],
+   "notes": "combinatorics PROVED; completeness rests on GAP-1 pricing"
+  },
+  {
+   "id": "periodic_strata",
+   "title": "Periodic strata C(n/M, j/M); exchange-independent; coset recursion",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s3b_ii_strip_periodic.md#4"
+   ]
+  },
+  {
+   "id": "q_recursion",
+   "title": "Q_M(H_n) = Q_1(H_{n/M}) rate-preserving (x1)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s3b_ii_strip_periodic.md#2"
+   ]
+  },
+  {
+   "id": "confinement",
+   "title": "Confinement-from-stabilizer theorem (x1)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s3b_ii_strip_periodic.md#1"
+   ]
+  },
+  {
+   "id": "isotypic",
+   "title": "Isotypic refinement: escape iff multi-isotypic (x1)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s3b_ii_strip_periodic.md#1"
+   ]
+  },
+  {
+   "id": "gap1_noneq_mass",
+   "title": "GAP-1: non-equivariant periodic mass <= poly",
+   "status": "CONJECTURE",
+   "refs": [
+    "proof_sketch/s3b_ii_strip_periodic.md#3"
+   ]
+  },
+  {
+   "id": "gap2_seam",
+   "title": "GAP-2 seam closed: pullback => M | t_denom",
+   "status": "PROVABLE",
+   "refs": [
+    "proof_sketch/s4_reserve_dictionary.md#3"
+   ]
+  },
+  {
+   "id": "r2_rigidity",
+   "title": "R2: unpaid aligned count <= n^B * FM (B<=3)",
+   "status": "CONJECTURE",
+   "gate": "any",
+   "key": true,
+   "refs": [
+    "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#3"
+   ]
+  },
+  {
+   "id": "budget_b3",
+   "title": "Poly budget B <= 3 at n = 2^41 (123 < 128 bits)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#3"
+   ]
+  },
+  {
+   "id": "spi_wall",
+   "title": "SPI: structured-pencil incidence hypothesis",
+   "status": "WALL",
+   "key": true,
+   "refs": [
+    "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#3"
+   ]
+  },
+  {
+   "id": "xr_wall",
+   "title": "XR: exchange-rigidity hypothesis",
+   "status": "WALL",
+   "key": true,
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#3"
+   ]
+  },
+  {
+   "id": "monodromy_route",
+   "title": "Monodromy route: BETA_2 => SL_8 for rank-8 sheaf",
+   "status": "WALL",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#3"
+   ]
+  },
+  {
+   "id": "beta2_reduction",
+   "title": "BETA_2 reduced to one global monodromy fact (citable chain)",
+   "status": "CONDITIONAL",
+   "refs": [
+    "experimental/notes/m1/m1_beta2_conditional_close.md"
+   ]
+  },
+  {
+   "id": "hooley_katz",
+   "title": "Odd-moment (Hooley-Katz) averaged input",
+   "status": "TARGET",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#3"
+   ]
+  },
+  {
+   "id": "exchange_calculus",
+   "title": "One-exchange = Cauchy rank-one update (#152 instances)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#2"
+   ]
+  },
+  {
+   "id": "johnson_gap",
+   "title": "Johnson graph exact gap lam0 - lam1 = n",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#3"
+   ]
+  },
+  {
+   "id": "exchange_ledger_gen_t",
+   "title": "Generalize #152 exchange ledger past t=2 (hand-off)",
+   "status": "TARGET",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#7"
+   ]
+  },
+  {
+   "id": "averaged_xr",
+   "title": "Averaged XR via Johnson-scheme second moments",
+   "status": "PROVABLE",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#5"
+   ]
+  },
+  {
+   "id": "displacement_uniform",
+   "title": "Displacement identities over abstract 2^s fields",
+   "status": "PROVABLE",
+   "refs": [
+    "wp_detail/wp2_5_wp4_1_window_charts_and_displacement.md#2"
+   ]
+  },
+  {
+   "id": "conj_f",
+   "title": "Conjecture F: plane sections of D_j have poly unpaid points",
+   "status": "CONJECTURE",
+   "gate": "all",
+   "key": true,
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ]
+  },
+  {
+   "id": "perfiber",
+   "title": "prob:perfiber (coordinate-plane case of F)",
+   "status": "WALL",
+   "key": true,
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#2"
+   ]
+  },
+  {
+   "id": "fiber_planted_law",
+   "title": "Planted fiber law C(A0, A0-A); tangent = rank-drop planes",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ]
+  },
+  {
+   "id": "noanchor",
+   "title": "prop:noanchor: char-0-anchor methods foreclosed",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#3"
+   ]
+  },
+  {
+   "id": "route_prime_avg",
+   "title": "Route: prime averaging / density theorems",
+   "status": "REFUTED",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#3"
+   ]
+  },
+  {
+   "id": "route_expsums",
+   "title": "Route: subgroup exp sums (ends N >= p^{3/7+eps})",
+   "status": "REFUTED",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#3"
+   ]
+  },
+  {
+   "id": "route_anticonc",
+   "title": "Route: anticoncentration (reduces to even moments)",
+   "status": "REFUTED",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#3"
+   ]
+  },
+  {
+   "id": "graver_wall",
+   "title": "Projection-to-Graver dichotomy (frozen)",
+   "status": "WALL",
+   "refs": [
+    "experimental/notes/m1/m1_full_overlap_low_tail_completion_projection_wall.md"
+   ]
+  },
+  {
+   "id": "window_program",
+   "title": "M3/M4/M5 window theorem (385<=A<=426)",
+   "status": "TARGET",
+   "gate": "all",
+   "refs": [
+    "proof_sketch/s3a_regular_window.md"
+   ]
+  },
+  {
+   "id": "window_pred_aper0",
+   "title": "Prediction: window aperiodic numerator 0 throughout",
+   "status": "TEST",
+   "key": true,
+   "refs": [
+    "proof_sketch/s3a_regular_window.md#2"
+   ]
+  },
+  {
+   "id": "window_fm",
+   "title": "Window FM ~ 2^-16000: all alignments structured",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s3a_regular_window.md#2"
+   ]
+  },
+  {
+   "id": "alpha_front",
+   "title": "Front alpha scan (P1a/P1b/P1c)",
+   "status": "TEST",
+   "refs": [
+    "wp_detail/wp_consolidation_sketch_extracts.md"
+   ]
+  },
+  {
+   "id": "beta_front",
+   "title": "Front beta realizability (P-beta; codim ~29068)",
+   "status": "TEST",
+   "refs": [
+    "proof_sketch/s3a_regular_window.md#4"
+   ]
+  },
+  {
+   "id": "window_m5_charts",
+   "title": "Window residual charts (per-point, finite)",
+   "status": "TARGET",
+   "refs": [
+    "wp_detail/wp2_5_wp4_1_window_charts_and_displacement.md#1"
+   ]
+  },
+  {
+   "id": "replay_170_171",
+   "title": "Replay audit of #170/#171 (unblocks fronts)",
+   "status": "TEST",
+   "refs": [
+    "wp_detail/wp0_3_wp0_4_replay_and_harness.md#1"
+   ]
+  },
+  {
+   "id": "m4_table",
+   "title": "M4 deduped table (zone-b as intervals)",
+   "status": "TARGET",
+   "refs": [
+    "wp_detail/wp_consolidation_sketch_extracts.md"
+   ]
+  },
+  {
+   "id": "strat_tree",
+   "title": "Stratification case-tree T0-T7 (= dedup convention)",
+   "status": "TARGET",
+   "refs": [
+    "wp_detail/wp2_3_stratification_case_tree.md"
+   ]
+  },
+  {
+   "id": "deficiency_ladder",
+   "title": "Underdetermined program (WP-2.6 ladder)",
+   "status": "TARGET",
+   "gate": "all",
+   "key": true,
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ]
+  },
+  {
+   "id": "a384_bucket",
+   "title": "A=384 bucket identified (d=1; PR #172 turn 1)",
+   "status": "PROVED",
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ]
+  },
+  {
+   "id": "u1_u5_chain",
+   "title": "U1-U5: Cramer kernel -> divisibility -> dichotomy",
+   "status": "PROVABLE",
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ]
+  },
+  {
+   "id": "spi_dim1",
+   "title": "SPI at dim 1: eliminant bound (deg <= 49408)",
+   "status": "PROVABLE",
+   "key": true,
+   "refs": [
+    "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#4"
+   ]
+  },
+  {
+   "id": "acid_test",
+   "title": "F_97/mu_16 exhaustive acid test (brute force == charts)",
+   "status": "TEST",
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ]
+  },
+  {
+   "id": "deficiency_growth",
+   "title": "Deficiency-d growth law (name the elimination wall)",
+   "status": "TARGET",
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ]
+  },
+  {
+   "id": "list_unsafe",
+   "title": "List unsafe at gate: qcore counting (conventions pending)",
+   "status": "CONDITIONAL",
+   "refs": [
+    "proof_sketch/s7_list_side.md#2"
+   ]
+  },
+  {
+   "id": "qcore",
+   "title": "thm:qcore: C(n/M-1, k/M) codewords, q-independent",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s7_list_side.md#2"
+   ]
+  },
+  {
+   "id": "pigeonhole",
+   "title": "thm:pigeonhole: exponential lists below tau*",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s4_reserve_dictionary.md#1"
+   ]
+  },
+  {
+   "id": "list_safe",
+   "title": "List safe side above the window",
+   "status": "TARGET",
+   "gate": "all",
+   "key": true,
+   "refs": [
+    "proof_sketch/s7_list_side.md#5"
+   ]
+  },
+  {
+   "id": "imgfib",
+   "title": "L1: #ImgFib_U <= n^B above reserve (image fibers)",
+   "status": "CONJECTURE",
+   "key": true,
+   "refs": [
+    "wp_detail/wp_consolidation_sketch_extracts.md"
+   ]
+  },
+  {
+   "id": "petal_growth",
+   "title": "Full-petal growth bound / mixed-petal amplification",
+   "status": "TARGET",
+   "key": true,
+   "refs": [
+    "proof_sketch/s7_list_side.md#4"
+   ]
+  },
+  {
+   "id": "petal_witnesses",
+   "title": "Full-petal witnesses exist (d-ell = 2, 5)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s7_list_side.md#4"
+   ]
+  },
+  {
+   "id": "route_exact_rank",
+   "title": "Route: exact rank formula r_{I,d}",
+   "status": "REFUTED",
+   "refs": [
+    "proof_sketch/s7_list_side.md#4"
+   ]
+  },
+  {
+   "id": "codegree",
+   "title": "L2 codegree reduction (Theorems A/B/C, L1-free)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s7_list_side.md#3"
+   ]
+  },
+  {
+   "id": "deep_point",
+   "title": "Deep-point identity BadVec = Deep_alpha^mu (x1)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s7_list_side.md#3"
+   ]
+  },
+  {
+   "id": "a_regular_collapse",
+   "title": "a-regular collapse: interleaved = base (exponent 1)",
+   "status": "CONDITIONAL",
+   "refs": [
+    "proof_sketch/s7_list_side.md#3"
+   ]
+  },
+  {
+   "id": "a_regularity_forcing",
+   "title": "Force a-regularity (REQUIRED for m>=4 for-all)",
+   "status": "TARGET",
+   "key": true,
+   "refs": [
+    "wp_detail/wp5_2_wp6_2_wp6_3_bridges.md#1"
+   ]
+  },
+  {
+   "id": "clique_cap",
+   "title": "K_{m,m} clique cap n >= k + m^2(a-k) (x1)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s7_list_side.md#3"
+   ]
+  },
+  {
+   "id": "m_sweep",
+   "title": "For-all-m affordable: m <= sqrt((n-k)/t) ~ 16-31",
+   "status": "PROVED",
+   "refs": [
+    "wp_detail/wp0_2_wp4_4_rules_freeze_and_dither.md#1"
+   ]
+  },
+  {
+   "id": "ext_lift",
+   "title": "S6: extension lift classified",
+   "status": "TARGET",
+   "gate": "all",
+   "refs": [
+    "proof_sketch/s6_extension_lift.md"
+   ]
+  },
+  {
+   "id": "b_rational_lift",
+   "title": "B-rational pencils give B-slopes (linearity)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s6_extension_lift.md#1"
+   ]
+  },
+  {
+   "id": "ext_pole_floor",
+   "title": "Extension-pole floor (v10): N(L) witnesses",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s6_extension_lift.md#2"
+   ]
+  },
+  {
+   "id": "ext_import",
+   "title": "B_ext crosses gate exactly at the S7 list window",
+   "status": "PROVABLE",
+   "refs": [
+    "proof_sketch/s6_extension_lift.md#2"
+   ]
+  },
+  {
+   "id": "generating_escape",
+   "title": "Non-generating rows forced tiny (q_gen < 2^128)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s6_extension_lift.md#3"
+   ]
+  },
+  {
+   "id": "f1_classification",
+   "title": "F-valued slopes: B-rational / pole / tower",
+   "status": "CONJECTURE",
+   "refs": [
+    "proof_sketch/s6_extension_lift.md#4"
+   ]
+  },
+  {
+   "id": "sigma1_cx",
+   "title": "sigma=1 extension counterexample (audited)",
+   "status": "PROVED",
+   "refs": [
+    "proof_sketch/s6_extension_lift.md#4"
+   ]
+  },
+  {
+   "id": "compiler",
+   "title": "Assembly compiler (verdicts + refusal rule)",
+   "status": "TARGET",
+   "refs": [
+    "proof_sketch/s8_s9_assembly_and_negative.md#1"
+   ]
+  },
+  {
+   "id": "harness",
+   "title": "run_all_verifiers + checker hardening + negative controls",
+   "status": "TARGET",
+   "refs": [
+    "wp_detail/wp0_3_wp0_4_replay_and_harness.md#2"
+   ]
+  },
+  {
+   "id": "descriptor",
+   "title": "Symbolic row descriptor (single constants source)",
+   "status": "TARGET",
+   "refs": [
+    "wp_detail/wp3_2_symbolic_scaling.md#2"
+   ]
+  },
+  {
+   "id": "lean_tier1",
+   "title": "Lean tier 1: gate addition certificates (witnesses computed)",
+   "status": "PROVABLE",
+   "refs": [
+    "wp_detail/wp1_1_wp1_2_submission_and_lean.md#2"
+   ]
+  },
+  {
+   "id": "dossier_partial",
+   "title": "Dossier v-PARTIAL (buildable now, S0-conditioned)",
+   "status": "TARGET",
+   "refs": [
+    "wp_detail/wp7_2_wp7_3_wp7_4_promotion_gates_dossier.md#3"
+   ]
+  },
+  {
+   "id": "bridge_ledger",
+   "title": "Bridge ledger (no silent crossings)",
+   "status": "TARGET",
+   "refs": [
+    "wp_detail/wp5_2_wp6_2_wp6_3_bridges.md#3"
+   ]
+  },
+  {
+   "id": "row_slate",
+   "title": "Row slate A/B/C/D (transfer + measurement)",
+   "status": "TARGET",
+   "refs": [
+    "wp_detail/wp3_1_wp3_3_rows_and_second_pin.md#1"
+   ]
+  },
+  {
+   "id": "second_pin_or_wall",
+   "title": "Second pin (Row A) or named wall",
+   "status": "TARGET",
+   "gate": "any",
+   "refs": [
+    "wp_detail/wp3_1_wp3_3_rows_and_second_pin.md#2"
+   ]
+  },
+  {
+   "id": "pr172_ladder",
+   "title": "PR #172 deficiency-1 experiment (tests P3)",
+   "status": "TEST",
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ]
+  }
+ ],
+ "edges": [
+  {
+   "from": "mca_grand",
+   "to": "prize",
+   "kind": "req"
+  },
+  {
+   "from": "list_grand",
+   "to": "prize",
+   "kind": "req"
+  },
+  {
+   "from": "packaging",
+   "to": "prize",
+   "kind": "req"
+  },
+  {
+   "from": "s0_zero_open",
+   "to": "mca_grand",
+   "kind": "req"
+  },
+  {
+   "from": "s0_zero_open",
+   "to": "list_grand",
+   "kind": "req"
+  },
+  {
+   "from": "mca_safe",
+   "to": "mca_grand",
+   "kind": "req"
+  },
+  {
+   "from": "mca_unsafe",
+   "to": "mca_grand",
+   "kind": "req"
+  },
+  {
+   "from": "list_safe",
+   "to": "list_grand",
+   "kind": "req"
+  },
+  {
+   "from": "list_unsafe",
+   "to": "list_grand",
+   "kind": "req"
+  },
+  {
+   "from": "axes_verified",
+   "to": "s0_zero_open",
+   "kind": "req"
+  },
+  {
+   "from": "axis1_batching",
+   "to": "s0_zero_open",
+   "kind": "req"
+  },
+  {
+   "from": "axis2_ell",
+   "to": "s0_zero_open",
+   "kind": "req"
+  },
+  {
+   "from": "axis4_predicate",
+   "to": "s0_zero_open",
+   "kind": "req"
+  },
+  {
+   "from": "axis9_dither",
+   "to": "s0_zero_open",
+   "kind": "req"
+  },
+  {
+   "from": "field_cap_check",
+   "to": "rules_freeze",
+   "kind": "req"
+  },
+  {
+   "from": "rules_freeze",
+   "to": "s0_zero_open",
+   "kind": "req"
+  },
+  {
+   "from": "normalform",
+   "to": "axis4_predicate",
+   "kind": "ev"
+  },
+  {
+   "from": "cap_theorem",
+   "to": "mca_unsafe",
+   "kind": "req"
+  },
+  {
+   "from": "zone_b",
+   "to": "mca_unsafe",
+   "kind": "req"
+  },
+  {
+   "from": "qfloor_exact",
+   "to": "zone_b",
+   "kind": "ev"
+  },
+  {
+   "from": "acl_count",
+   "to": "qfloor_exact",
+   "kind": "req"
+  },
+  {
+   "from": "acl_second_order",
+   "to": "zone_b",
+   "kind": "alt"
+  },
+  {
+   "from": "norm_threshold_ext",
+   "to": "zone_b",
+   "kind": "alt"
+  },
+  {
+   "from": "row_c_experiment",
+   "to": "zone_b",
+   "kind": "ev"
+  },
+  {
+   "from": "perfiber",
+   "to": "zone_b",
+   "kind": "alt"
+  },
+  {
+   "from": "counting_frame",
+   "to": "mca_safe",
+   "kind": "req"
+  },
+  {
+   "from": "fm1",
+   "to": "mca_safe",
+   "kind": "req"
+  },
+  {
+   "from": "strip",
+   "to": "mca_safe",
+   "kind": "req"
+  },
+  {
+   "from": "paid_closure",
+   "to": "mca_safe",
+   "kind": "req"
+  },
+  {
+   "from": "r2_rigidity",
+   "to": "mca_safe",
+   "kind": "req"
+  },
+  {
+   "from": "ext_lift",
+   "to": "mca_safe",
+   "kind": "req"
+  },
+  {
+   "from": "v8_ledger",
+   "to": "counting_frame",
+   "kind": "req"
+  },
+  {
+   "from": "noncontain_degeneracy",
+   "to": "counting_frame",
+   "kind": "req"
+  },
+  {
+   "from": "vtdv",
+   "to": "counting_frame",
+   "kind": "req"
+  },
+  {
+   "from": "vtdv",
+   "to": "fm1",
+   "kind": "req"
+  },
+  {
+   "from": "tau_star_identity",
+   "to": "fm1",
+   "kind": "ev"
+  },
+  {
+   "from": "normalform",
+   "to": "counting_frame",
+   "kind": "ev"
+  },
+  {
+   "from": "staircase",
+   "to": "paid_closure",
+   "kind": "req"
+  },
+  {
+   "from": "qfloor_exact",
+   "to": "paid_closure",
+   "kind": "req"
+  },
+  {
+   "from": "ext_pole_floor",
+   "to": "paid_closure",
+   "kind": "req"
+  },
+  {
+   "from": "staircase",
+   "to": "envelope",
+   "kind": "req"
+  },
+  {
+   "from": "envelope",
+   "to": "pinned_row",
+   "kind": "req"
+  },
+  {
+   "from": "pinned_row",
+   "to": "dossier_partial",
+   "kind": "req"
+  },
+  {
+   "from": "periodic_strata",
+   "to": "strip",
+   "kind": "req"
+  },
+  {
+   "from": "q_recursion",
+   "to": "strip",
+   "kind": "req"
+  },
+  {
+   "from": "confinement",
+   "to": "strip",
+   "kind": "req"
+  },
+  {
+   "from": "isotypic",
+   "to": "strip",
+   "kind": "req"
+  },
+  {
+   "from": "gap1_noneq_mass",
+   "to": "strip",
+   "kind": "req"
+  },
+  {
+   "from": "gap2_seam",
+   "to": "strip",
+   "kind": "req"
+  },
+  {
+   "from": "spi_wall",
+   "to": "r2_rigidity",
+   "kind": "alt"
+  },
+  {
+   "from": "xr_wall",
+   "to": "r2_rigidity",
+   "kind": "alt"
+  },
+  {
+   "from": "monodromy_route",
+   "to": "r2_rigidity",
+   "kind": "alt"
+  },
+  {
+   "from": "budget_b3",
+   "to": "r2_rigidity",
+   "kind": "req"
+  },
+  {
+   "from": "conj_f",
+   "to": "r2_rigidity",
+   "kind": "req"
+  },
+  {
+   "from": "beta2_reduction",
+   "to": "monodromy_route",
+   "kind": "req"
+  },
+  {
+   "from": "hooley_katz",
+   "to": "xr_wall",
+   "kind": "ev"
+  },
+  {
+   "from": "hooley_katz",
+   "to": "spi_wall",
+   "kind": "ev"
+  },
+  {
+   "from": "exchange_calculus",
+   "to": "xr_wall",
+   "kind": "req"
+  },
+  {
+   "from": "johnson_gap",
+   "to": "xr_wall",
+   "kind": "req"
+  },
+  {
+   "from": "exchange_ledger_gen_t",
+   "to": "xr_wall",
+   "kind": "req"
+  },
+  {
+   "from": "averaged_xr",
+   "to": "xr_wall",
+   "kind": "ev"
+  },
+  {
+   "from": "displacement_uniform",
+   "to": "xr_wall",
+   "kind": "req"
+  },
+  {
+   "from": "vtdv",
+   "to": "displacement_uniform",
+   "kind": "req"
+  },
+  {
+   "from": "spi_dim1",
+   "to": "spi_wall",
+   "kind": "ev"
+  },
+  {
+   "from": "fiber_planted_law",
+   "to": "conj_f",
+   "kind": "ev"
+  },
+  {
+   "from": "perfiber",
+   "to": "conj_f",
+   "kind": "ev"
+  },
+  {
+   "from": "petal_witnesses",
+   "to": "conj_f",
+   "kind": "ev"
+  },
+  {
+   "from": "noanchor",
+   "to": "route_prime_avg",
+   "kind": "ref"
+  },
+  {
+   "from": "perfiber",
+   "to": "route_expsums",
+   "kind": "ref"
+  },
+  {
+   "from": "perfiber",
+   "to": "route_anticonc",
+   "kind": "ref"
+  },
+  {
+   "from": "route_prime_avg",
+   "to": "r2_rigidity",
+   "kind": "alt"
+  },
+  {
+   "from": "route_expsums",
+   "to": "r2_rigidity",
+   "kind": "alt"
+  },
+  {
+   "from": "route_anticonc",
+   "to": "r2_rigidity",
+   "kind": "alt"
+  },
+  {
+   "from": "graver_wall",
+   "to": "r2_rigidity",
+   "kind": "ev"
+  },
+  {
+   "from": "window_fm",
+   "to": "window_pred_aper0",
+   "kind": "req"
+  },
+  {
+   "from": "window_pred_aper0",
+   "to": "window_program",
+   "kind": "req"
+  },
+  {
+   "from": "alpha_front",
+   "to": "window_program",
+   "kind": "req"
+  },
+  {
+   "from": "beta_front",
+   "to": "window_program",
+   "kind": "req"
+  },
+  {
+   "from": "window_m5_charts",
+   "to": "window_program",
+   "kind": "req"
+  },
+  {
+   "from": "m4_table",
+   "to": "window_program",
+   "kind": "req"
+  },
+  {
+   "from": "strat_tree",
+   "to": "m4_table",
+   "kind": "req"
+  },
+  {
+   "from": "replay_170_171",
+   "to": "alpha_front",
+   "kind": "req"
+  },
+  {
+   "from": "replay_170_171",
+   "to": "beta_front",
+   "kind": "req"
+  },
+  {
+   "from": "window_program",
+   "to": "spi_wall",
+   "kind": "ev"
+  },
+  {
+   "from": "window_program",
+   "to": "xr_wall",
+   "kind": "ev"
+  },
+  {
+   "from": "window_program",
+   "to": "dossier_partial",
+   "kind": "ev"
+  },
+  {
+   "from": "a384_bucket",
+   "to": "deficiency_ladder",
+   "kind": "req"
+  },
+  {
+   "from": "u1_u5_chain",
+   "to": "deficiency_ladder",
+   "kind": "req"
+  },
+  {
+   "from": "spi_dim1",
+   "to": "deficiency_ladder",
+   "kind": "req"
+  },
+  {
+   "from": "acid_test",
+   "to": "u1_u5_chain",
+   "kind": "ev"
+  },
+  {
+   "from": "deficiency_growth",
+   "to": "deficiency_ladder",
+   "kind": "req"
+  },
+  {
+   "from": "u1_u5_chain",
+   "to": "spi_dim1",
+   "kind": "req"
+  },
+  {
+   "from": "pr172_ladder",
+   "to": "spi_dim1",
+   "kind": "ev"
+  },
+  {
+   "from": "deficiency_ladder",
+   "to": "spi_wall",
+   "kind": "ev"
+  },
+  {
+   "from": "deficiency_ladder",
+   "to": "second_pin_or_wall",
+   "kind": "req"
+  },
+  {
+   "from": "qcore",
+   "to": "list_unsafe",
+   "kind": "req"
+  },
+  {
+   "from": "pigeonhole",
+   "to": "list_unsafe",
+   "kind": "ev"
+  },
+  {
+   "from": "s0_zero_open",
+   "to": "list_unsafe",
+   "kind": "req"
+  },
+  {
+   "from": "imgfib",
+   "to": "list_safe",
+   "kind": "req"
+  },
+  {
+   "from": "codegree",
+   "to": "list_safe",
+   "kind": "req"
+  },
+  {
+   "from": "a_regular_collapse",
+   "to": "list_safe",
+   "kind": "req"
+  },
+  {
+   "from": "a_regularity_forcing",
+   "to": "a_regular_collapse",
+   "kind": "req"
+  },
+  {
+   "from": "m_sweep",
+   "to": "list_safe",
+   "kind": "req"
+  },
+  {
+   "from": "clique_cap",
+   "to": "m_sweep",
+   "kind": "req"
+  },
+  {
+   "from": "deep_point",
+   "to": "codegree",
+   "kind": "req"
+  },
+  {
+   "from": "petal_growth",
+   "to": "imgfib",
+   "kind": "req"
+  },
+  {
+   "from": "conj_f",
+   "to": "imgfib",
+   "kind": "req"
+  },
+  {
+   "from": "petal_witnesses",
+   "to": "petal_growth",
+   "kind": "ev"
+  },
+  {
+   "from": "route_exact_rank",
+   "to": "petal_growth",
+   "kind": "alt"
+  },
+  {
+   "from": "averaged_xr",
+   "to": "petal_growth",
+   "kind": "ev"
+  },
+  {
+   "from": "b_rational_lift",
+   "to": "ext_lift",
+   "kind": "req"
+  },
+  {
+   "from": "ext_import",
+   "to": "ext_lift",
+   "kind": "req"
+  },
+  {
+   "from": "generating_escape",
+   "to": "ext_lift",
+   "kind": "req"
+  },
+  {
+   "from": "f1_classification",
+   "to": "ext_lift",
+   "kind": "req"
+  },
+  {
+   "from": "ext_pole_floor",
+   "to": "ext_import",
+   "kind": "req"
+  },
+  {
+   "from": "sigma1_cx",
+   "to": "f1_classification",
+   "kind": "ev"
+  },
+  {
+   "from": "list_unsafe",
+   "to": "ext_import",
+   "kind": "ev"
+  },
+  {
+   "from": "compiler",
+   "to": "packaging",
+   "kind": "req"
+  },
+  {
+   "from": "harness",
+   "to": "packaging",
+   "kind": "req"
+  },
+  {
+   "from": "dossier_partial",
+   "to": "packaging",
+   "kind": "req"
+  },
+  {
+   "from": "bridge_ledger",
+   "to": "packaging",
+   "kind": "req"
+  },
+  {
+   "from": "descriptor",
+   "to": "compiler",
+   "kind": "req"
+  },
+  {
+   "from": "m4_table",
+   "to": "compiler",
+   "kind": "req"
+  },
+  {
+   "from": "lean_tier1",
+   "to": "dossier_partial",
+   "kind": "req"
+  },
+  {
+   "from": "row_slate",
+   "to": "second_pin_or_wall",
+   "kind": "req"
+  },
+  {
+   "from": "descriptor",
+   "to": "row_slate",
+   "kind": "req"
+  },
+  {
+   "from": "row_c_experiment",
+   "to": "row_slate",
+   "kind": "req"
+  },
+  {
+   "from": "second_pin_or_wall",
+   "to": "mca_grand",
+   "kind": "ev"
+  }
+ ]
+}

@@ -1,0 +1,487 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2728" height="648" font-family="Helvetica,Arial,sans-serif">
+<rect width="2728" height="648" fill="#fbfcfd"/>
+<path d="M2036,112 C2036,81 1700,81 1364,50" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M692,112 C692,81 1028,81 1364,50" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1364,112 C1364,81 1364,81 1364,50" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M640,422 C640,267 1338,267 2036,112" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M640,422 C640,267 666,267 692,112" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1513,174 C1513,143 1775,143 2036,112" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M916,174 C916,143 1476,143 2036,112" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2409,174 C2409,143 1551,143 692,112" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M154,360 C154,236 423,236 692,112" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M692,484 C692,453 666,453 640,422" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M916,484 C916,453 778,453 640,422" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1140,484 C1140,453 890,453 640,422" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M468,484 C468,453 554,453 640,422" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1364,484 C1364,453 1002,453 640,422" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M692,546 C692,515 468,515 244,484" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M244,484 C244,453 442,453 640,422" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1364,546 C1364,515 916,515 468,484" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M860,236 C860,205 888,205 916,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2204,236 C2204,205 1560,205 916,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1323,298 C1323,267 1764,267 2204,236" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M826,360 C826,329 1075,329 1323,298" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2219,298 C2219,267 2212,267 2204,236" fill="none" stroke="#9aa4ac" stroke-width="0.8" stroke-dasharray="4,3"/>
+<path d="M2301,298 C2301,267 2252,267 2204,236" fill="none" stroke="#9aa4ac" stroke-width="0.8" stroke-dasharray="4,3"/>
+<path d="M1568,298 C1568,267 1886,267 2204,236" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M1498,360 C1498,298 1851,298 2204,236" fill="none" stroke="#9aa4ac" stroke-width="0.8" stroke-dasharray="4,3"/>
+<path d="M524,236 C524,205 1019,205 1513,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1364,236 C1364,205 1439,205 1513,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2540,236 C2540,205 2027,205 1513,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1700,236 C1700,205 1607,205 1513,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2372,236 C2372,205 1943,205 1513,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1028,236 C1028,205 1271,205 1513,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M997,298 C997,267 761,267 524,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M835,298 C835,267 679,267 524,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2501,422 C2501,329 1513,329 524,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2501,422 C2501,329 1933,329 1364,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1242,298 C1242,267 1303,267 1364,236" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M1364,546 C1364,391 944,391 524,236" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M1230,360 C1230,298 1465,298 1700,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1323,298 C1323,267 1512,267 1700,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M558,360 C558,298 1129,298 1700,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1230,360 C1230,329 828,329 427,298" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M427,298 C427,267 1148,267 1868,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1868,236 C1868,205 1541,205 1215,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1975,298 C1975,267 2257,267 2540,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2056,298 C2056,267 2298,267 2540,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1649,298 C1649,267 2095,267 2540,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1893,298 C1893,267 2217,267 2540,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1731,298 C1731,267 2135,267 2540,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1812,298 C1812,267 2176,267 2540,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M916,298 C916,267 1644,267 2372,236" fill="none" stroke="#9aa4ac" stroke-width="0.8" stroke-dasharray="4,3"/>
+<path d="M2138,298 C2138,267 2255,267 2372,236" fill="none" stroke="#9aa4ac" stroke-width="0.8" stroke-dasharray="4,3"/>
+<path d="M2545,298 C2545,267 2459,267 2372,236" fill="none" stroke="#9aa4ac" stroke-width="0.8" stroke-dasharray="4,3"/>
+<path d="M2382,298 C2382,267 2377,267 2372,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1079,298 C1079,267 1725,267 2372,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M289,360 C289,329 1417,329 2545,298" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1364,360 C1364,329 1751,329 2138,298" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M1364,360 C1364,329 1140,329 916,298" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M1633,360 C1633,329 1885,329 2138,298" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1902,360 C1902,329 2020,329 2138,298" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1767,360 C1767,329 1953,329 2138,298" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2036,360 C2036,329 2087,329 2138,298" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M961,360 C961,329 1549,329 2138,298" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2501,422 C2501,391 1731,391 961,360" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2294,422 C2294,360 1605,360 916,298" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M2170,360 C2170,329 1625,329 1079,298" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M1498,360 C1498,329 1289,329 1079,298" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M2439,360 C2439,329 1759,329 1079,298" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M1095,360 C1095,329 1861,329 2627,298" fill="none" stroke="#d98880" stroke-width="0.6" stroke-dasharray="6,2"/>
+<path d="M1498,360 C1498,329 1492,329 1486,298" fill="none" stroke="#d98880" stroke-width="0.6" stroke-dasharray="6,2"/>
+<path d="M1498,360 C1498,329 1452,329 1405,298" fill="none" stroke="#d98880" stroke-width="0.6" stroke-dasharray="6,2"/>
+<path d="M2627,298 C2627,267 2499,267 2372,236" fill="none" stroke="#9aa4ac" stroke-width="0.8" stroke-dasharray="4,3"/>
+<path d="M1486,298 C1486,267 1929,267 2372,236" fill="none" stroke="#9aa4ac" stroke-width="0.8" stroke-dasharray="4,3"/>
+<path d="M1405,298 C1405,267 1888,267 2372,236" fill="none" stroke="#9aa4ac" stroke-width="0.8" stroke-dasharray="4,3"/>
+<path d="M2464,298 C2464,267 2418,267 2372,236" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M2484,484 C2484,453 2286,453 2088,422" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2088,422 C2088,391 1390,391 692,360" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1054,422 C1054,391 873,391 692,360" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1261,422 C1261,391 976,391 692,360" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M847,422 C847,391 770,391 692,360" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1467,422 C1467,391 1080,391 692,360" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2260,484 C2260,453 1864,453 1467,422" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1812,484 C1812,453 1433,453 1054,422" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1812,484 C1812,453 1536,453 1261,422" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M692,360 C692,329 804,329 916,298" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M692,360 C692,329 1415,329 2138,298" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M692,360 C692,267 953,267 1215,174" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M1674,422 C1674,391 1049,391 423,360" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1588,484 C1588,422 1006,422 423,360" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2294,422 C2294,391 1359,391 423,360" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2036,546 C2036,515 1812,515 1588,484" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M1881,422 C1881,391 1152,391 423,360" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1588,484 C1588,453 1941,453 2294,422" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2036,484 C2036,453 2165,453 2294,422" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M423,360 C423,329 670,329 916,298" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M423,360 C423,267 1118,267 1812,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M434,422 C434,391 294,391 154,360" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M227,422 C227,391 191,391 154,360" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M640,422 C640,391 397,391 154,360" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1532,236 C1532,205 1971,205 2409,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M356,236 C356,205 1383,205 2409,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M188,236 C188,205 1299,205 2409,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M101,298 C101,267 145,267 188,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1196,236 C1196,205 1803,205 2409,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M183,298 C183,267 689,267 1196,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M264,298 C264,267 310,267 356,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1160,298 C1160,267 1346,267 1532,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1079,298 C1079,267 1305,267 1532,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2439,360 C2439,329 1800,329 1160,298" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M2574,360 C2574,329 1867,329 1160,298" fill="none" stroke="#9aa4ac" stroke-width="0.8" stroke-dasharray="4,3"/>
+<path d="M2036,360 C2036,329 1598,329 1160,298" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M590,298 C590,267 809,267 1028,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M346,298 C346,267 687,267 1028,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M672,298 C672,267 850,267 1028,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M509,298 C509,267 768,267 1028,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M558,360 C558,329 452,329 346,298" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2305,360 C2305,329 1407,329 509,298" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M154,360 C154,329 250,329 346,298" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<path d="M2111,174 C2111,143 1737,143 1364,112" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M617,174 C617,143 991,143 1364,112" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1215,174 C1215,143 1289,143 1364,112" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M319,174 C319,143 841,143 1364,112" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M753,298 C753,236 1432,236 2111,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1467,422 C1467,298 1789,298 2111,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M692,236 C692,205 953,205 1215,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M2036,236 C2036,205 1924,205 1812,174" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M753,298 C753,267 1395,267 2036,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1568,298 C1568,267 1802,267 2036,236" fill="none" stroke="#9aa4ac" stroke-width="0.8"/>
+<path d="M1812,174 C1812,143 1924,143 2036,112" fill="none" stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"/>
+<g><title>prize: Proximity Prize resolved [TARGET]</title>
+<circle cx="1364" cy="50" r="7" fill="#a8b8c8"/>
+<text x="1372" y="53" font-size="9" fill="#333">Proximity Prize resolved</text>
+</g>
+<g><title>mca_grand: Grand MCA: determine delta* (emca &lt;= 2^-128) [TARGET]</title>
+<circle cx="2036" cy="112" r="5" fill="#a8b8c8"/>
+<text x="2044" y="115" font-size="9" fill="#333">Grand MCA</text>
+</g>
+<g><title>list_grand: Grand List: determine delta* (|Lambda| &lt;= 2^-128 |F|) [TARGET]</title>
+<circle cx="692" cy="112" r="5" fill="#a8b8c8"/>
+<text x="700" y="115" font-size="9" fill="#333">Grand List</text>
+</g>
+<g><title>packaging: Assembly: compiler + dossier + gates [TARGET]</title>
+<circle cx="1364" cy="112" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>s0_zero_open: S0 object audit: zero OPEN axes [TARGET]</title>
+<circle cx="640" cy="422" r="5" fill="#a8b8c8"/>
+<text x="648" y="425" font-size="9" fill="#333">S0 object audit</text>
+</g>
+<g><title>axes_verified: Axes 3/5/7 verified + q-dictionary (axis 6) [PROVED]</title>
+<circle cx="692" cy="484" r="5" fill="#1b7837"/>
+</g>
+<g><title>axis1_batching: Axis 1: ABF batching shape [TARGET]</title>
+<circle cx="916" cy="484" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>axis2_ell: Axis 2: ell&gt;2 batching / tuple-to-pair [TARGET]</title>
+<circle cx="1140" cy="484" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>axis4_predicate: Axis 4: ABF Delta_S = degenerate-pencil predicate? [TARGET]</title>
+<circle cx="468" cy="484" r="5" fill="#a8b8c8"/>
+<text x="476" y="487" font-size="9" fill="#333">Axis 4</text>
+</g>
+<g><title>axis9_dither: Axis 9: exact rates (dither adverse, provisional) [CONDITIONAL]</title>
+<circle cx="1364" cy="484" r="5" fill="#35978f"/>
+</g>
+<g><title>field_cap_check: Confirm k&lt;=2^40, |F|&lt;2^256 in ePrint [TEST]</title>
+<circle cx="692" cy="546" r="4.5" fill="none" stroke="#5c6bc0" stroke-width="1.6"/>
+<text x="700" y="549" font-size="9" fill="#333">Confirm k&lt;=2^40, |F|&lt;2^256 in ePri</text>
+</g>
+<g><title>rules_freeze: Rules freeze + SHA drift detector [TARGET]</title>
+<circle cx="244" cy="484" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>mca_unsafe: MCA unsafe side at adjacent grid point [TARGET]</title>
+<circle cx="916" cy="174" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>cap_theorem: Paper D universal cap (unsafe above 1-rho-2^-9) [PROVED]</title>
+<circle cx="860" cy="236" r="5" fill="#1b7837"/>
+</g>
+<g><title>qfloor_exact: prop:qfloor: quotient floor exact above norm threshold [PROVED]</title>
+<circle cx="1323" cy="298" r="5" fill="#1b7837"/>
+</g>
+<g><title>acl_count: thm:exactcount: Acl = 2^{beta N'(1-o(1))} (char 0) [PROVED]</title>
+<circle cx="826" cy="360" r="5" fill="#1b7837"/>
+</g>
+<g><title>zone_b: Zone-(b): e1 value-set collisions, 80&lt;N'&lt;512 (= perfiber at sigma=1) [CONJECTURE]</title>
+<circle cx="2204" cy="236" r="5" fill="#e6a817"/>
+<path d="M2200,244 L2204,248 L2208,244" fill="none" stroke="#666" stroke-width="0.9"/>
+<text x="2212" y="239" font-size="9" fill="#333">Zone-(b)</text>
+</g>
+<g><title>acl_second_order: Acl second-order term (hand-off lemma) [TARGET]</title>
+<circle cx="2219" cy="298" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>norm_threshold_ext: Extend qfloor exactness past N'~80 (hand-off) [TARGET]</title>
+<circle cx="2301" cy="298" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>row_c_experiment: Row-C birthday sampling of e1 value sets [TEST]</title>
+<circle cx="1568" cy="298" r="4.5" fill="none" stroke="#5c6bc0" stroke-width="1.6"/>
+<text x="1576" y="301" font-size="9" fill="#333">Row-C birthday sampling of e1 valu</text>
+</g>
+<g><title>mca_safe: MCA safe side: B_C(a_safe) &lt;= B* in-band [TARGET]</title>
+<circle cx="1513" cy="174" r="5" fill="#a8b8c8"/>
+<text x="1521" y="177" font-size="9" fill="#333">MCA safe side</text>
+</g>
+<g><title>counting_frame: Exact frame: finite divisor set, pencil linear, &lt;=1 slope/locator [PROVED]</title>
+<circle cx="524" cy="236" r="5" fill="#1b7837"/>
+<text x="532" y="239" font-size="9" fill="#333">Exact frame</text>
+</g>
+<g><title>v8_ledger: v8 one-support-one-slope ledger [PROVED]</title>
+<circle cx="997" cy="298" r="5" fill="#1b7837"/>
+</g>
+<g><title>noncontain_degeneracy: Containment = degenerate pencil (a=b=0) = def:residue [PROVED]</title>
+<circle cx="835" cy="298" r="5" fill="#1b7837"/>
+</g>
+<g><title>fm1: FM1: E[#aligned] = C(n,j)(1-q^-t)q^{1-t} exactly [PROVABLE]</title>
+<circle cx="1364" cy="236" r="5" fill="#7fbf7b"/>
+<text x="1372" y="239" font-size="9" fill="#333">FM1</text>
+</g>
+<g><title>vtdv: Subgroup Hankel = V^T D_u V (prime + extension verified) [PROVED]</title>
+<circle cx="2501" cy="422" r="5" fill="#1b7837"/>
+</g>
+<g><title>tau_star_identity: FM crossover = tau*(rho,q) identically [PROVED]</title>
+<circle cx="1242" cy="298" r="5" fill="#1b7837"/>
+</g>
+<g><title>normalform: thm:normalform: emca = (1/q) max Lambda^NC [PROVED]</title>
+<circle cx="1364" cy="546" r="5" fill="#1b7837"/>
+</g>
+<g><title>paid_closure: Paid(A) closure: tangent+quotient+extension computable [TARGET]</title>
+<circle cx="1700" cy="236" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>staircase: Tangent staircase compiler (#147) [PROVED]</title>
+<circle cx="1230" cy="360" r="5" fill="#1b7837"/>
+</g>
+<g><title>envelope: Envelope map: all small-q rows pinned (#153) [PROVED]</title>
+<circle cx="427" cy="298" r="5" fill="#1b7837"/>
+</g>
+<g><title>pinned_row: F_17^32 row pinned at 506/507 [PROVED]</title>
+<circle cx="1868" cy="236" r="5" fill="#1b7837"/>
+<text x="1876" y="239" font-size="9" fill="#333">F_17^32 row pinned at 506/507</text>
+</g>
+<g><title>strip: Strip-periodic: aperiodic stratum exact [CONDITIONAL]</title>
+<circle cx="2540" cy="236" r="5" fill="#35978f"/>
+</g>
+<g><title>periodic_strata: Periodic strata C(n/M, j/M); exchange-independent; coset recursion [PROVED]</title>
+<circle cx="1975" cy="298" r="5" fill="#1b7837"/>
+</g>
+<g><title>q_recursion: Q_M(H_n) = Q_1(H_{n/M}) rate-preserving (x1) [PROVED]</title>
+<circle cx="2056" cy="298" r="5" fill="#1b7837"/>
+</g>
+<g><title>confinement: Confinement-from-stabilizer theorem (x1) [PROVED]</title>
+<circle cx="1649" cy="298" r="5" fill="#1b7837"/>
+</g>
+<g><title>isotypic: Isotypic refinement: escape iff multi-isotypic (x1) [PROVED]</title>
+<circle cx="1893" cy="298" r="5" fill="#1b7837"/>
+</g>
+<g><title>gap1_noneq_mass: GAP-1: non-equivariant periodic mass &lt;= poly [CONJECTURE]</title>
+<circle cx="1731" cy="298" r="5" fill="#e6a817"/>
+</g>
+<g><title>gap2_seam: GAP-2 seam closed: pullback =&gt; M | t_denom [PROVABLE]</title>
+<circle cx="1812" cy="298" r="5" fill="#7fbf7b"/>
+</g>
+<g><title>r2_rigidity: R2: unpaid aligned count &lt;= n^B * FM (B&lt;=3) [CONJECTURE]</title>
+<circle cx="2372" cy="236" r="5" fill="#e6a817"/>
+<path d="M2368,244 L2372,248 L2376,244" fill="none" stroke="#666" stroke-width="0.9"/>
+<text x="2380" y="239" font-size="9" fill="#333">R2</text>
+</g>
+<g><title>budget_b3: Poly budget B &lt;= 3 at n = 2^41 (123 &lt; 128 bits) [PROVED]</title>
+<circle cx="2382" cy="298" r="5" fill="#1b7837"/>
+</g>
+<g><title>spi_wall: SPI: structured-pencil incidence hypothesis [WALL]</title>
+<circle cx="916" cy="298" r="5" fill="#c0392b"/>
+<text x="924" y="301" font-size="9" fill="#333">SPI</text>
+</g>
+<g><title>xr_wall: XR: exchange-rigidity hypothesis [WALL]</title>
+<circle cx="2138" cy="298" r="5" fill="#c0392b"/>
+<text x="2146" y="301" font-size="9" fill="#333">XR</text>
+</g>
+<g><title>monodromy_route: Monodromy route: BETA_2 =&gt; SL_8 for rank-8 sheaf [WALL]</title>
+<circle cx="2545" cy="298" r="5" fill="#c0392b"/>
+</g>
+<g><title>beta2_reduction: BETA_2 reduced to one global monodromy fact (citable chain) [CONDITIONAL]</title>
+<circle cx="289" cy="360" r="5" fill="#35978f"/>
+</g>
+<g><title>hooley_katz: Odd-moment (Hooley-Katz) averaged input [TARGET]</title>
+<circle cx="1364" cy="360" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>exchange_calculus: One-exchange = Cauchy rank-one update (#152 instances) [PROVED]</title>
+<circle cx="1633" cy="360" r="5" fill="#1b7837"/>
+</g>
+<g><title>johnson_gap: Johnson graph exact gap lam0 - lam1 = n [PROVED]</title>
+<circle cx="1902" cy="360" r="5" fill="#1b7837"/>
+</g>
+<g><title>exchange_ledger_gen_t: Generalize #152 exchange ledger past t=2 (hand-off) [TARGET]</title>
+<circle cx="1767" cy="360" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>averaged_xr: Averaged XR via Johnson-scheme second moments [PROVABLE]</title>
+<circle cx="2036" cy="360" r="5" fill="#7fbf7b"/>
+</g>
+<g><title>displacement_uniform: Displacement identities over abstract 2^s fields [PROVABLE]</title>
+<circle cx="961" cy="360" r="5" fill="#7fbf7b"/>
+</g>
+<g><title>conj_f: Conjecture F: plane sections of D_j have poly unpaid points [CONJECTURE]</title>
+<circle cx="1079" cy="298" r="5" fill="#e6a817"/>
+<text x="1087" y="301" font-size="9" fill="#333">Conjecture F</text>
+</g>
+<g><title>perfiber: prob:perfiber (coordinate-plane case of F) [WALL]</title>
+<circle cx="1498" cy="360" r="5" fill="#c0392b"/>
+<text x="1506" y="363" font-size="9" fill="#333">prob</text>
+</g>
+<g><title>fiber_planted_law: Planted fiber law C(A0, A0-A); tangent = rank-drop planes [PROVED]</title>
+<circle cx="2170" cy="360" r="5" fill="#1b7837"/>
+</g>
+<g><title>noanchor: prop:noanchor: char-0-anchor methods foreclosed [PROVED]</title>
+<circle cx="1095" cy="360" r="5" fill="#1b7837"/>
+</g>
+<g><title>route_prime_avg: Route: prime averaging / density theorems [REFUTED]</title>
+<g stroke="#9e9e9e" stroke-width="1.4"><line x1="2623" y1="294" x2="2631" y2="302"/><line x1="2623" y1="302" x2="2631" y2="294"/></g>
+</g>
+<g><title>route_expsums: Route: subgroup exp sums (ends N &gt;= p^{3/7+eps}) [REFUTED]</title>
+<g stroke="#9e9e9e" stroke-width="1.4"><line x1="1482" y1="294" x2="1490" y2="302"/><line x1="1482" y1="302" x2="1490" y2="294"/></g>
+</g>
+<g><title>route_anticonc: Route: anticoncentration (reduces to even moments) [REFUTED]</title>
+<g stroke="#9e9e9e" stroke-width="1.4"><line x1="1401" y1="294" x2="1409" y2="302"/><line x1="1401" y1="302" x2="1409" y2="294"/></g>
+</g>
+<g><title>graver_wall: Projection-to-Graver dichotomy (frozen) [WALL]</title>
+<circle cx="2464" cy="298" r="5" fill="#c0392b"/>
+</g>
+<g><title>window_program: M3/M4/M5 window theorem (385&lt;=A&lt;=426) [TARGET]</title>
+<circle cx="692" cy="360" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>window_pred_aper0: Prediction: window aperiodic numerator 0 throughout [TEST]</title>
+<circle cx="2088" cy="422" r="4.5" fill="none" stroke="#5c6bc0" stroke-width="1.6"/>
+<text x="2096" y="425" font-size="9" fill="#333">Prediction</text>
+</g>
+<g><title>window_fm: Window FM ~ 2^-16000: all alignments structured [PROVED]</title>
+<circle cx="2484" cy="484" r="5" fill="#1b7837"/>
+</g>
+<g><title>alpha_front: Front alpha scan (P1a/P1b/P1c) [TEST]</title>
+<circle cx="1054" cy="422" r="4.5" fill="none" stroke="#5c6bc0" stroke-width="1.6"/>
+</g>
+<g><title>beta_front: Front beta realizability (P-beta; codim ~29068) [TEST]</title>
+<circle cx="1261" cy="422" r="4.5" fill="none" stroke="#5c6bc0" stroke-width="1.6"/>
+</g>
+<g><title>window_m5_charts: Window residual charts (per-point, finite) [TARGET]</title>
+<circle cx="847" cy="422" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>replay_170_171: Replay audit of #170/#171 (unblocks fronts) [TEST]</title>
+<circle cx="1812" cy="484" r="4.5" fill="none" stroke="#5c6bc0" stroke-width="1.6"/>
+</g>
+<g><title>m4_table: M4 deduped table (zone-b as intervals) [TARGET]</title>
+<circle cx="1467" cy="422" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>strat_tree: Stratification case-tree T0-T7 (= dedup convention) [TARGET]</title>
+<circle cx="2260" cy="484" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>deficiency_ladder: Underdetermined program (WP-2.6 ladder) [TARGET]</title>
+<circle cx="423" cy="360" r="5" fill="#a8b8c8"/>
+<text x="431" y="363" font-size="9" fill="#333">Underdetermined program (WP-2.6 la</text>
+</g>
+<g><title>a384_bucket: A=384 bucket identified (d=1; PR #172 turn 1) [PROVED]</title>
+<circle cx="1674" cy="422" r="5" fill="#1b7837"/>
+</g>
+<g><title>u1_u5_chain: U1-U5: Cramer kernel -&gt; divisibility -&gt; dichotomy [PROVABLE]</title>
+<circle cx="1588" cy="484" r="5" fill="#7fbf7b"/>
+</g>
+<g><title>spi_dim1: SPI at dim 1: eliminant bound (deg &lt;= 49408) [PROVABLE]</title>
+<circle cx="2294" cy="422" r="5" fill="#7fbf7b"/>
+<text x="2302" y="425" font-size="9" fill="#333">SPI at dim 1</text>
+</g>
+<g><title>acid_test: F_97/mu_16 exhaustive acid test (brute force == charts) [TEST]</title>
+<circle cx="2036" cy="546" r="4.5" fill="none" stroke="#5c6bc0" stroke-width="1.6"/>
+</g>
+<g><title>deficiency_growth: Deficiency-d growth law (name the elimination wall) [TARGET]</title>
+<circle cx="1881" cy="422" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>list_unsafe: List unsafe at gate: qcore counting (conventions pending) [CONDITIONAL]</title>
+<circle cx="154" cy="360" r="5" fill="#35978f"/>
+</g>
+<g><title>qcore: thm:qcore: C(n/M-1, k/M) codewords, q-independent [PROVED]</title>
+<circle cx="434" cy="422" r="5" fill="#1b7837"/>
+</g>
+<g><title>pigeonhole: thm:pigeonhole: exponential lists below tau* [PROVED]</title>
+<circle cx="227" cy="422" r="5" fill="#1b7837"/>
+</g>
+<g><title>list_safe: List safe side above the window [TARGET]</title>
+<circle cx="2409" cy="174" r="5" fill="#a8b8c8"/>
+<text x="2417" y="177" font-size="9" fill="#333">List safe side above the window</text>
+</g>
+<g><title>imgfib: L1: #ImgFib_U &lt;= n^B above reserve (image fibers) [CONJECTURE]</title>
+<circle cx="1532" cy="236" r="5" fill="#e6a817"/>
+<text x="1540" y="239" font-size="9" fill="#333">L1</text>
+</g>
+<g><title>petal_growth: Full-petal growth bound / mixed-petal amplification [TARGET]</title>
+<circle cx="1160" cy="298" r="5" fill="#a8b8c8"/>
+<text x="1168" y="301" font-size="9" fill="#333">Full-petal growth bound / mixed-pe</text>
+</g>
+<g><title>petal_witnesses: Full-petal witnesses exist (d-ell = 2, 5) [PROVED]</title>
+<circle cx="2439" cy="360" r="5" fill="#1b7837"/>
+</g>
+<g><title>route_exact_rank: Route: exact rank formula r_{I,d} [REFUTED]</title>
+<g stroke="#9e9e9e" stroke-width="1.4"><line x1="2570" y1="356" x2="2578" y2="364"/><line x1="2570" y1="364" x2="2578" y2="356"/></g>
+</g>
+<g><title>codegree: L2 codegree reduction (Theorems A/B/C, L1-free) [PROVED]</title>
+<circle cx="356" cy="236" r="5" fill="#1b7837"/>
+</g>
+<g><title>deep_point: Deep-point identity BadVec = Deep_alpha^mu (x1) [PROVED]</title>
+<circle cx="264" cy="298" r="5" fill="#1b7837"/>
+</g>
+<g><title>a_regular_collapse: a-regular collapse: interleaved = base (exponent 1) [CONDITIONAL]</title>
+<circle cx="188" cy="236" r="5" fill="#35978f"/>
+</g>
+<g><title>a_regularity_forcing: Force a-regularity (REQUIRED for m&gt;=4 for-all) [TARGET]</title>
+<circle cx="101" cy="298" r="5" fill="#a8b8c8"/>
+<text x="109" y="301" font-size="9" fill="#333">Force a-regularity (REQUIRED for m</text>
+</g>
+<g><title>clique_cap: K_{m,m} clique cap n &gt;= k + m^2(a-k) (x1) [PROVED]</title>
+<circle cx="183" cy="298" r="5" fill="#1b7837"/>
+</g>
+<g><title>m_sweep: For-all-m affordable: m &lt;= sqrt((n-k)/t) ~ 16-31 [PROVED]</title>
+<circle cx="1196" cy="236" r="5" fill="#1b7837"/>
+</g>
+<g><title>ext_lift: S6: extension lift classified [TARGET]</title>
+<circle cx="1028" cy="236" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>b_rational_lift: B-rational pencils give B-slopes (linearity) [PROVED]</title>
+<circle cx="590" cy="298" r="5" fill="#1b7837"/>
+</g>
+<g><title>ext_pole_floor: Extension-pole floor (v10): N(L) witnesses [PROVED]</title>
+<circle cx="558" cy="360" r="5" fill="#1b7837"/>
+</g>
+<g><title>ext_import: B_ext crosses gate exactly at the S7 list window [PROVABLE]</title>
+<circle cx="346" cy="298" r="5" fill="#7fbf7b"/>
+</g>
+<g><title>generating_escape: Non-generating rows forced tiny (q_gen &lt; 2^128) [PROVED]</title>
+<circle cx="672" cy="298" r="5" fill="#1b7837"/>
+</g>
+<g><title>f1_classification: F-valued slopes: B-rational / pole / tower [CONJECTURE]</title>
+<circle cx="509" cy="298" r="5" fill="#e6a817"/>
+</g>
+<g><title>sigma1_cx: sigma=1 extension counterexample (audited) [PROVED]</title>
+<circle cx="2305" cy="360" r="5" fill="#1b7837"/>
+</g>
+<g><title>compiler: Assembly compiler (verdicts + refusal rule) [TARGET]</title>
+<circle cx="2111" cy="174" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>harness: run_all_verifiers + checker hardening + negative controls [TARGET]</title>
+<circle cx="617" cy="174" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>descriptor: Symbolic row descriptor (single constants source) [TARGET]</title>
+<circle cx="753" cy="298" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>lean_tier1: Lean tier 1: gate addition certificates (witnesses computed) [PROVABLE]</title>
+<circle cx="692" cy="236" r="5" fill="#7fbf7b"/>
+</g>
+<g><title>dossier_partial: Dossier v-PARTIAL (buildable now, S0-conditioned) [TARGET]</title>
+<circle cx="1215" cy="174" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>bridge_ledger: Bridge ledger (no silent crossings) [TARGET]</title>
+<circle cx="319" cy="174" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>row_slate: Row slate A/B/C/D (transfer + measurement) [TARGET]</title>
+<circle cx="2036" cy="236" r="5" fill="#a8b8c8"/>
+</g>
+<g><title>second_pin_or_wall: Second pin (Row A) or named wall [TARGET]</title>
+<circle cx="1812" cy="174" r="5" fill="#a8b8c8"/>
+<path d="M1808,182 L1812,186 L1816,182" fill="none" stroke="#666" stroke-width="0.9"/>
+</g>
+<g><title>pr172_ladder: PR #172 deficiency-1 experiment (tests P3) [TEST]</title>
+<circle cx="2036" cy="484" r="4.5" fill="none" stroke="#5c6bc0" stroke-width="1.6"/>
+</g>
+<circle cx="21" cy="622" r="4" fill="#1b7837"/>
+<text x="29" y="625" font-size="9" fill="#444">PROVED</text>
+<circle cx="129" cy="622" r="4" fill="#7fbf7b"/>
+<text x="137" y="625" font-size="9" fill="#444">PROVABLE</text>
+<circle cx="237" cy="622" r="4" fill="#35978f"/>
+<text x="245" y="625" font-size="9" fill="#444">CONDITIONAL</text>
+<circle cx="345" cy="622" r="4" fill="#e6a817"/>
+<text x="353" y="625" font-size="9" fill="#444">CONJECTURE</text>
+<circle cx="453" cy="622" r="4" fill="#a8b8c8"/>
+<text x="461" y="625" font-size="9" fill="#444">TARGET</text>
+<circle cx="561" cy="622" r="4" fill="#c0392b"/>
+<text x="569" y="625" font-size="9" fill="#444">WALL</text>
+<circle cx="669" cy="622" r="4" fill="#5c6bc0"/>
+<text x="677" y="625" font-size="9" fill="#444">TEST</text>
+<circle cx="777" cy="622" r="4" fill="#9e9e9e"/>
+<text x="785" y="625" font-size="9" fill="#444">REFUTED</text>
+<text x="16" y="608" font-size="9" fill="#666">104 nodes, 128 edges | solid=req dashed=alt dotted=evidence | fork tick = gate ANY | CONDITIONAL:5 CONJECTURE:6 PROVABLE:8 PROVED:35 REFUTED:4 TARGET:33 TEST:8 WALL:5</text>
+</svg>

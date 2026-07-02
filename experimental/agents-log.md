@@ -30,6 +30,38 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Prize dependency DAG: data + validator + SVG renderer
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/data/prize-dag/prize_dag.json` (104 nodes, 128 edges);
+  `experimental/scripts/verify_prize_dag.py`;
+  `experimental/scripts/plot_prize_dag.py`;
+  `experimental/data/prize-dag/prize_dag.svg`.
+- **Status:** AUDIT (a machine-readable status map; proves nothing;
+  statuses sourced from the roadmap/sketch notes with per-node refs).
+- **What is being added:** The program's dependency graph as one JSON
+  source of truth: prize at the root, edges from each dependency to the
+  statement it supports, AND/OR gates (gate=all/any), eight statuses
+  (PROVED/PROVABLE/CONDITIONAL/CONJECTURE/TARGET/WALL/REFUTED/TEST), and
+  per-node refs into the notes. The validator checks structure, refs,
+  acyclicity, reachability, and a STATUS-PROPAGATION rule (a PROVED node
+  may not require an unproved child) — it caught two mislabels on first
+  run (strip is CONDITIONAL on GAP-1; the ext-import edge was evidence,
+  not requirement) and emits a RIPE list (currently: dossier_partial,
+  paid_closure — both genuinely achievable now). The renderer emits a
+  deterministic minimal SVG (stdlib only): all 104 nodes, prize at top,
+  longest-path layering, barycenter ordering, color by status, solid/
+  dashed/dotted edges for req/alt/evidence, fork ticks for OR-gates,
+  labels only on ~20 key nodes, hover tooltips on every node.
+  Current census: 35 PROVED, 8 PROVABLE, 5 CONDITIONAL, 6 CONJECTURE,
+  33 TARGET, 5 WALL, 8 TEST, 4 REFUTED.
+- **How it is useful:** One queryable map of what is proved, what is
+  ripe, and what stands between the canopy and the prize; the
+  propagation rule turns label drift into a CI failure.
+- **What to do next:** Wire into the WP-0.4 harness; update statuses as
+  PRs land (the JSON is the single place to edit); optional dot export.
+
 ### 2026-07-02 - Verifier for the roadmap/sketch quantitative claims
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
