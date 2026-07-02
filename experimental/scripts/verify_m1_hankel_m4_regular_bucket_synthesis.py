@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v13",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v14",
 }
 
 
@@ -424,6 +424,44 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         summary["conic_e69_allowed_secant_triangle_counts"] == [16, 20],
         "conic e=69 secant triangle counts",
     )
+    require(
+        summary["line_e72_exact_root_budget_alternatives"]
+        == [
+            {
+                "base_root_histogram": [0, 0, 6],
+                "exact_nonforced_external_root_incidences": 312,
+                "total_base_root_incidences": 12,
+                "unused_nonforced_external_root_lines": 1,
+            },
+            {
+                "base_root_histogram": [0, 1, 5],
+                "exact_nonforced_external_root_incidences": 313,
+                "total_base_root_incidences": 11,
+                "unused_nonforced_external_root_lines": 0,
+            },
+        ],
+        "line e=72 exact root-budget alternatives",
+    )
+    require(
+        summary["conic_e69_exact_root_budget_alternatives"]
+        == [
+            {
+                "base_root_histogram": [0, 0, 6],
+                "exact_nonforced_external_root_incidences_before_overlap": 330,
+                "maximum_missing_secants_before_external_excess": 1,
+                "required_pair_overlaps_before_external_excess": 14,
+                "total_base_root_incidences": 12,
+            },
+            {
+                "base_root_histogram": [0, 1, 5],
+                "exact_nonforced_external_root_incidences_before_overlap": 331,
+                "maximum_missing_secants_before_external_excess": 0,
+                "required_pair_overlaps_before_external_excess": 15,
+                "total_base_root_incidences": 11,
+            },
+        ],
+        "conic e=69 exact root-budget alternatives",
+    )
     nonclaims = set(data["nonclaims"])
     require(
         "does not claim the punctured tangent numerator at the residual threshold is within the original row budget"
@@ -536,6 +574,7 @@ def build_certificate() -> dict[str, Any]:
                 "a genuine over-budget one-over witness must also have six distinct finite slopes and an unpaid endpoint; the strongest remaining pressure is line e_G=72 base splitting and conic e_G=69 almost-complete secants",
                 "line e_G=72 closes unless all six finite classes have a base root and at least five have two; conic e_G=69 closes unless at least 14 of 15 pair secants occur, forcing at least 16 secant triangles",
                 "line e_G=72 survival has only base-root histograms (0,0,6) or (0,1,5); conic e_G=69 survival has secant graph K6 or K6 minus one edge",
+                "exact degree-126 accounting leaves line e_G=72 with either one unused external line or none, and conic e_G=69 with either 14 pair overlaps or all 15 pair overlaps",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",

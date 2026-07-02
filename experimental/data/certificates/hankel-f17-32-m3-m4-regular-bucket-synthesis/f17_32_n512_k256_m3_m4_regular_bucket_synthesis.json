@@ -536,7 +536,7 @@
     },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
-      "sha256": "eef6aca370623bb3a99d534902c4e190e8a19a700320c21316409953a343acec"
+      "sha256": "6f0ebcea5ce7c62e2561264360721adfede106cc90dff1cefe0ab8686794ccd0"
     },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
@@ -591,7 +591,8 @@
       "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the e_G=120 cases must instead saturate the punctured projective tangent bound",
       "a genuine over-budget one-over witness must also have six distinct finite slopes and an unpaid endpoint; the strongest remaining pressure is line e_G=72 base splitting and conic e_G=69 almost-complete secants",
       "line e_G=72 closes unless all six finite classes have a base root and at least five have two; conic e_G=69 closes unless at least 14 of 15 pair secants occur, forcing at least 16 secant triangles",
-      "line e_G=72 survival has only base-root histograms (0,0,6) or (0,1,5); conic e_G=69 survival has secant graph K6 or K6 minus one edge"
+      "line e_G=72 survival has only base-root histograms (0,0,6) or (0,1,5); conic e_G=69 survival has secant graph K6 or K6 minus one edge",
+      "exact degree-126 accounting leaves line e_G=72 with either one unused external line or none, and conic e_G=69 with either 14 pair overlaps or all 15 pair overlaps"
     ],
     "closed_by_current_lemmas": [
       "zero-v with full-rank H(u): no finite roots, infinity tangent-paid",

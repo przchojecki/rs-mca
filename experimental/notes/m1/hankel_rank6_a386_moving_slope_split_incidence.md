@@ -322,6 +322,11 @@ The extremal shapes are therefore completely finite.  For line `|E|=72`, the
 six finite classes have base-root histogram either `(0,0,6)` or `(0,1,5)`,
 where the coordinates count zero-, one-, and two-base-root classes.  For conic
 `|E|=69`, the secant graph is either `K6` or `K6` with one edge deleted.
+Exact degree-`126` root accounting sharpens this further: line histogram
+`(0,0,6)` leaves exactly one nonforced external root line unused, line
+histogram `(0,1,5)` uses every nonforced external root line, conic histogram
+`(0,0,6)` requires `14` pair-overlaps, and conic histogram `(0,1,5)` requires
+all `15` pair-overlaps.
 
 Replay:
 
