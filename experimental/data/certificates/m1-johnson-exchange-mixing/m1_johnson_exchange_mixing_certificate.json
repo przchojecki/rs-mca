@@ -1,0 +1,261 @@
+{
+  "classification": "JOHNSON_EXCHANGE_MIXING_BOUND_VERIFIED",
+  "dag_target": "averaged_xr",
+  "exhaustive_small_graph": {
+    "equality_families": 14,
+    "families_checked": 32768,
+    "j": 2,
+    "max_slack": {
+      "denominator": 25,
+      "float": 0.12,
+      "numerator": 3
+    },
+    "n": 6,
+    "name": "exhaustive_J_6_2",
+    "status": "PASS",
+    "vertex_count": 15
+  },
+  "nonclaims": [
+    "does not prove the XR inverse theorem",
+    "does not classify high-energy families beyond the point-dictator equality model",
+    "does not enumerate Reed-Solomon word pairs",
+    "does not prove an M1 safe-side threshold"
+  ],
+  "sampled_cases_sha256_like_summary": {
+    "all_checked": true,
+    "max_slack_float": 0.0935374149659864,
+    "min_slack_float": 0.06723356009070294
+  },
+  "sampled_family_count": 48,
+  "schema_version": "m1-johnson-exchange-mixing-v1",
+  "spectral_gap_rows": [
+    {
+      "degree": 8,
+      "j": 2,
+      "lambda_second": {
+        "denominator": 4,
+        "float": 0.25,
+        "numerator": 1
+      },
+      "n": 6,
+      "theta_0": 8,
+      "theta_0_minus_theta_1": 6,
+      "theta_1": 2
+    },
+    {
+      "degree": 32,
+      "j": 4,
+      "lambda_second": {
+        "denominator": 8,
+        "float": 0.625,
+        "numerator": 5
+      },
+      "n": 12,
+      "theta_0": 32,
+      "theta_0_minus_theta_1": 12,
+      "theta_1": 20
+    },
+    {
+      "degree": 64,
+      "j": 8,
+      "lambda_second": {
+        "denominator": 4,
+        "float": 0.75,
+        "numerator": 3
+      },
+      "n": 16,
+      "theta_0": 64,
+      "theta_0_minus_theta_1": 16,
+      "theta_1": 48
+    },
+    {
+      "degree": 49152,
+      "j": 128,
+      "lambda_second": {
+        "denominator": 96,
+        "float": 0.9895833333333334,
+        "numerator": 95
+      },
+      "n": 512,
+      "theta_0": 49152,
+      "theta_0_minus_theta_1": 512,
+      "theta_1": 48640
+    },
+    {
+      "degree": 65455,
+      "j": 247,
+      "lambda_second": {
+        "denominator": 65455,
+        "float": 0.9921778320983882,
+        "numerator": 64943
+      },
+      "n": 512,
+      "theta_0": 65455,
+      "theta_0_minus_theta_1": 512,
+      "theta_1": 64943
+    }
+  ],
+  "status": "PROVED / COMBINATORIAL + FINITE REPLAY",
+  "structured_cases": [
+    {
+      "attains_bound": true,
+      "density": {
+        "denominator": 3,
+        "float": 0.3333333333333333,
+        "numerator": 1
+      },
+      "family_size": 165,
+      "j": 4,
+      "mixing_bound": {
+        "denominator": 4,
+        "float": 0.25,
+        "numerator": 1
+      },
+      "n": 12,
+      "name": "point_dictator_fixed_root",
+      "one_exchange_energy": {
+        "denominator": 4,
+        "float": 0.25,
+        "numerator": 1
+      },
+      "one_exchange_survival_given_inside": {
+        "denominator": 4,
+        "float": 0.75,
+        "numerator": 3
+      },
+      "slack_bound_minus_energy": {
+        "denominator": 1,
+        "float": 0.0,
+        "numerator": 0
+      },
+      "survival_bound": {
+        "denominator": 4,
+        "float": 0.75,
+        "numerator": 3
+      },
+      "vertex_count": 495
+    },
+    {
+      "attains_bound": false,
+      "density": {
+        "denominator": 11,
+        "float": 0.09090909090909091,
+        "numerator": 1
+      },
+      "family_size": 45,
+      "j": 4,
+      "mixing_bound": {
+        "denominator": 484,
+        "float": 0.05991735537190083,
+        "numerator": 29
+      },
+      "n": 12,
+      "name": "fixed_two_root_core",
+      "one_exchange_energy": {
+        "denominator": 22,
+        "float": 0.045454545454545456,
+        "numerator": 1
+      },
+      "one_exchange_survival_given_inside": {
+        "denominator": 2,
+        "float": 0.5,
+        "numerator": 1
+      },
+      "slack_bound_minus_energy": {
+        "denominator": 484,
+        "float": 0.014462809917355372,
+        "numerator": 7
+      },
+      "survival_bound": {
+        "denominator": 44,
+        "float": 0.6590909090909091,
+        "numerator": 29
+      },
+      "vertex_count": 495
+    },
+    {
+      "attains_bound": false,
+      "density": {
+        "denominator": 715,
+        "float": 0.1006993006993007,
+        "numerator": 72
+      },
+      "family_size": 1296,
+      "j": 8,
+      "mixing_bound": {
+        "denominator": 511225,
+        "float": 0.07805956281480757,
+        "numerator": 39906
+      },
+      "n": 16,
+      "name": "balanced_four_blocks",
+      "one_exchange_energy": {
+        "denominator": 715,
+        "float": 0.025174825174825177,
+        "numerator": 18
+      },
+      "one_exchange_survival_given_inside": {
+        "denominator": 4,
+        "float": 0.25,
+        "numerator": 1
+      },
+      "slack_bound_minus_energy": {
+        "denominator": 511225,
+        "float": 0.052884737639982395,
+        "numerator": 27036
+      },
+      "survival_bound": {
+        "denominator": 2860,
+        "float": 0.7751748251748252,
+        "numerator": 2217
+      },
+      "vertex_count": 12870
+    },
+    {
+      "attains_bound": false,
+      "density": {
+        "denominator": 12870,
+        "float": 7.77000777000777e-05,
+        "numerator": 1
+      },
+      "family_size": 1,
+      "j": 8,
+      "mixing_bound": {
+        "denominator": 662547600,
+        "float": 5.827656760057693e-05,
+        "numerator": 38611
+      },
+      "n": 16,
+      "name": "frozen_full_blocks",
+      "one_exchange_energy": {
+        "denominator": 1,
+        "float": 0.0,
+        "numerator": 0
+      },
+      "one_exchange_survival_given_inside": {
+        "denominator": 1,
+        "float": 0.0,
+        "numerator": 0
+      },
+      "slack_bound_minus_energy": {
+        "denominator": 662547600,
+        "float": 5.827656760057693e-05,
+        "numerator": 38611
+      },
+      "survival_bound": {
+        "denominator": 51480,
+        "float": 0.750019425019425,
+        "numerator": 38611
+      },
+      "vertex_count": 12870
+    }
+  ],
+  "theorem": {
+    "bound": "E1(A) <= delta^2 + (1-n/d) delta(1-delta)",
+    "degree": "d=j(n-j)",
+    "density": "delta=|A|/binom(n,j)",
+    "equality_model": "point dictator / one fixed root family",
+    "graph": "Johnson graph J(n,j)",
+    "one_exchange_energy": "E1(A)=Pr[T0,T1 in A]"
+  }
+}

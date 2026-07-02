@@ -49,6 +49,26 @@ Keep entries concise and link to the relevant files.
   spectral scans or averaged-XR calculations; it does not by itself prove
   spectral disjointness or an M1 safe-side bound.
 
+### 2026-07-02 - M1 Johnson exchange-mixing lemma
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_johnson_exchange_mixing.md`;
+  `experimental/scripts/verify_m1_johnson_exchange_mixing.py`;
+  `experimental/data/certificates/m1-johnson-exchange-mixing/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / COMBINATORIAL + FINITE REPLAY.
+- **What is being added:** A support-side XR lemma: for any family in
+  `J(n,j)`, one-exchange energy satisfies
+  `E_1 <= delta^2 + (1-n/(j(n-j)))delta(1-delta)`, with point-dictator
+  fixed-root families attaining equality.
+- **How it is useful:** It supplies a theorem-level averaged-XR spectral
+  inequality complementary to the subgroup Hankel displacement packet; high
+  exchange energy must either be dense or live in structured low modes, with
+  the first equality model already paid by common-root accounting.
+- **What to do next:** Combine this support-side inequality with actual
+  aligned-locator scanners or the FM1 second-moment packet; the inverse
+  classification of near-extremal families remains open.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.
