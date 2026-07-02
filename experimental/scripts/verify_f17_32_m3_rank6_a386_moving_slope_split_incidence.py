@@ -20,7 +20,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v38"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v39"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -444,6 +444,26 @@ def three_private_rank_two_capacity() -> dict[str, Any]:
     }
 
 
+@lru_cache(maxsize=1)
+def four_private_line_pencil_capacity() -> dict[str, Any]:
+    """Capacity check for six four-private cofactors in a two-dimensional pencil."""
+    return {
+        "quotient_dimension": 2,
+        "selected_cofactor_count": 6,
+        "private_coordinate_count": 4,
+        "minimum_active_residual_coordinates": 6,
+        "disjoint_zero_bound": "6*(m-4) <= m",
+        "disjoint_zero_bound_forces_active_coordinates_at_most": 4,
+        "contradiction": (
+            "six distinct four-private supports need at least six active "
+            "residual coordinates"
+        ),
+        "consequence": (
+            "six distinct four-private cofactors have span dimension at least three"
+        ),
+    }
+
+
 def exact_tail_private_rank_obstruction(
     quotient_dimension: int,
     finite_component_cofactor_count_at_least: int,
@@ -469,14 +489,25 @@ def exact_tail_private_rank_obstruction(
             ),
             "rank_capacity_check": rank_capacity,
         }
+    if max_private_coordinate_count == 3:
+        rank_capacity = three_private_rank_two_capacity()
+        span_dimension_at_least = 3
+        return {
+            "branch": "three_private_coordinate_pair_quadratic",
+            "span_dimension_at_least": span_dimension_at_least,
+            "strictly_exceeds_quotient_dimension": (
+                span_dimension_at_least > quotient_dimension
+            ),
+            "rank_capacity_check": rank_capacity,
+        }
     require(
-        max_private_coordinate_count == 3,
-        "exact-tail closure only handles up to three private coordinates",
+        max_private_coordinate_count == 4,
+        "exact-tail closure only handles up to four private coordinates",
     )
-    rank_capacity = three_private_rank_two_capacity()
+    rank_capacity = four_private_line_pencil_capacity()
     span_dimension_at_least = 3
     return {
-        "branch": "three_private_coordinate_pair_quadratic",
+        "branch": "four_private_coordinate_line_pencil",
         "span_dimension_at_least": span_dimension_at_least,
         "strictly_exceeds_quotient_dimension": span_dimension_at_least > quotient_dimension,
         "rank_capacity_check": rank_capacity,
@@ -490,7 +521,7 @@ def tangent_tail_exact_agreement_closure_row(
     """Close the cofactor-current tangent tail for the covered exact-A branches."""
     row = punctured_tangent_top_saturation_exclusion_row(component_type, core)
     punctured_radius = row["punctured_cosupport_radius"]
-    require(7 <= punctured_radius <= 23, "exact-tail closure covers r'=7..23")
+    require(7 <= punctured_radius <= 29, "exact-tail closure covers r'=7..29")
     require(
         row["cofactor_improved_projective_tangent_bound"] >= PROJECTIVE_BUDGET + 1,
         "exact-tail closure should only target still-unsafe cofactor rows",
@@ -505,8 +536,8 @@ def tangent_tail_exact_agreement_closure_row(
         for entry in near_extremizer_rows
     ]
     require(
-        max(private_coordinate_counts) <= 3,
-        "exact-tail closure only handles up to three-private-coordinate branches",
+        max(private_coordinate_counts) <= 4,
+        "exact-tail closure only handles up to four-private-coordinate branches",
     )
     quotient_dimension = quotient_family_vector_dimension(component_type)
     finite_component_cofactor_count_at_least = dangerous_projective_count - 1
@@ -576,6 +607,16 @@ def tangent_tail_exact_agreement_closure_row(
             "distinct three-private cofactors have span dimension at least "
             "three; this exceeds a line quotient family but matches the "
             "irreducible-conic quotient dimension."
+        ),
+        "d_equals_r_plus_4_line_pencil_obstruction": (
+            "If d=r'+4, every exact-A noncontained slope is obtained by adding "
+            "four residual coordinates to a size-382 common support.  On a line "
+            "component, the six quotient locators would lie in a two-dimensional "
+            "pencil.  After factoring the common residual zero set, any two "
+            "independent members of such a pencil have disjoint residual zero "
+            "sets; six degree-(m-4) zero sets inside m active residual "
+            "coordinates would force 6*(m-4)<=m, contradicting the m>=6 needed "
+            "for six distinct four-private supports."
         ),
         "original_projective_endpoint_count_at_most": 1,
         "finite_component_slope_count_at_least": finite_component_cofactor_count_at_least,
@@ -3078,7 +3119,7 @@ def build_certificate() -> dict[str, Any]:
                     PROJECTIVE_BUDGET + 1,
                 )
             )
-            if private_coordinate_count > 3:
+            if private_coordinate_count > 4:
                 continue
             obstruction = exact_tail_private_rank_obstruction(
                 quotient_dimension,
@@ -3098,9 +3139,10 @@ def build_certificate() -> dict[str, Any]:
         j_value - conic_signed_rank_exact_tail_safe_radius_max
     )
     conic_k4_tail_safe_core_min = j_value - 17
-    conic_exact_tail_safe_core_min = line_exact_tail_safe_core_min
-    require(line_exact_tail_safe_radius_max == 23, "line exact-tail safe radius changed")
-    require(line_exact_tail_safe_core_min == 103, "line exact-tail safe core changed")
+    conic_three_private_tail_safe_core_min = j_value - 23
+    conic_exact_tail_safe_core_min = conic_three_private_tail_safe_core_min
+    require(line_exact_tail_safe_radius_max == 29, "line exact-tail safe radius changed")
+    require(line_exact_tail_safe_core_min == 97, "line exact-tail safe core changed")
     require(
         conic_signed_rank_exact_tail_safe_radius_max == 11,
         "conic signed-rank exact-tail safe radius changed",
@@ -3110,6 +3152,10 @@ def build_certificate() -> dict[str, Any]:
         "conic signed-rank exact-tail safe core changed",
     )
     require(conic_k4_tail_safe_core_min == 109, "conic K4 exact-tail safe core changed")
+    require(
+        conic_three_private_tail_safe_core_min == 103,
+        "conic three-private exact-tail safe core changed",
+    )
     require(conic_exact_tail_safe_core_min == 103, "conic exact-tail safe core changed")
     exact_tail_closure_cores_by_component = {
         "line": list(range(line_exact_tail_safe_core_min, line_cofactor_tangent_safe_core_min)),
@@ -3120,7 +3166,7 @@ def build_certificate() -> dict[str, Any]:
     require(
         exact_tail_closure_cores_by_component
         == {
-            "line": list(range(103, 120)),
+            "line": list(range(97, 120)),
             "irreducible_conic": list(range(115, 120)),
         },
         "exact-tail cores",
@@ -3140,7 +3186,7 @@ def build_certificate() -> dict[str, Any]:
     ]
     conic_three_private_tail_closure_rows = [
         conic_three_private_tail_closure_row(core)
-        for core in range(line_exact_tail_safe_core_min, conic_k4_tail_safe_core_min)
+        for core in range(conic_three_private_tail_safe_core_min, conic_k4_tail_safe_core_min)
     ]
     line_base_defect_rows = [
         line_base_defect_threshold_row(row) for row in line_survival_rows
@@ -3471,7 +3517,8 @@ def build_certificate() -> dict[str, Any]:
             for row in tangent_tail_exact_closure_rows
         ]
         == [
-            *[("line", core, 6, 3 if core <= 114 else 6, 2) for core in range(103, 120)],
+            *[("line", core, 6, 3, 2) for core in range(97, 115)],
+            *[("line", core, 6, 6, 2) for core in range(115, 120)],
             *[
                 ("irreducible_conic", core, 6, 6, 3)
                 for core in range(115, 120)
@@ -3483,7 +3530,7 @@ def build_certificate() -> dict[str, Any]:
         all(
             row["projective_safe_after_exact_agreement_obstruction"]
             and row["contradiction"]
-            and max(row["private_coordinate_count_options"]) <= 3
+            and max(row["private_coordinate_count_options"]) <= 4
             and (
                 row["finite_component_cofactor_span_dimension_at_least"] == 3
                 if row["component_type"] == "line" and row["forced_external_core_size"] <= 114
@@ -3600,9 +3647,9 @@ def build_certificate() -> dict[str, Any]:
         "conic exact-current one-over profile changed",
     )
     require(
-        line_exact_current_profile_groups[-1]["external_core_range"] == [103, 120]
+        line_exact_current_profile_groups[-1]["external_core_range"] == [97, 120]
         and line_exact_current_profile_groups[-1]["projective_safe"],
-        "line exact-current tail should be safe from e=103",
+        "line exact-current tail should be safe from e=97",
     )
     require(
         conic_exact_current_profile_groups[-1]["external_core_range"] == [103, 120]
@@ -4672,9 +4719,10 @@ def build_certificate() -> dict[str, Any]:
                 "finite-incidence subranges are line e_G=72..80 and conic e_G=69..76.  "
                 "The tangent-tail row e_G=120 is closed by the cofactor-span obstruction, "
                 "and exact-agreement residual-budget splitting closes the "
-                "cofactor-current tangent tail e_G=103..119 for both lines and "
-                "irreducible conics, using the K4 determinant and root-star "
-                "Bezout arguments on the conic side; "
+                "cofactor-current tangent tail e_G=97..119 for lines and "
+                "e_G=103..119 for irreducible conics, using the four-private "
+                "line-pencil obstruction on the line side and the K4 determinant "
+                "and root-star Bezout arguments on the conic side; "
                 "all other intermediate cores need more than a "
                 "single endpoint/root saving under the present methods."
             ),
@@ -4805,13 +4853,15 @@ def build_certificate() -> dict[str, Any]:
             ),
             "exact_agreement_tangent_tail_closure": (
                 "The cofactor-current tangent tail is closed by exact agreement "
-                "for line and conic cores e_G=103..119.  If seven projective "
+                "for line cores e_G=97..119 and conic cores e_G=103..119.  If seven projective "
                 "slopes survived, they could be sent to seven finite slopes in "
-                "the punctured row.  For residual radius r'<=23 the "
-                "tangent-staircase residual-budget proof leaves at most three "
-                "private residual coordinates beyond the common support "
-                "complement.  The d=r'+3 branch closes line cores by cofactor "
-                "span and conic cores by the root-star Bezout obstruction.  The "
+                "the punctured row.  For line residual radius r'<=29 and conic "
+                "residual radius r'<=23, the tangent-staircase residual-budget "
+                "proof leaves at most four private residual coordinates beyond "
+                "the common support complement.  The d=r'+4 branch closes line "
+                "cores by the two-dimensional pencil disjoint-zero obstruction; "
+                "the d=r'+3 branch closes line cores by cofactor span and conic "
+                "cores by the root-star Bezout obstruction.  The "
                 "d=r'+2 branch gives signed-edge cofactors and closes lines "
                 "while reducing conics e_G=109..114 to the K4 boundary, which "
                 "is then closed by the determinant obstruction."
@@ -5353,7 +5403,7 @@ def build_certificate() -> dict[str, Any]:
             "line_high_core_forced_core_is_dual_evaluation_fiber": True,
             "conic_high_core_forced_core_is_global_common_core": True,
             "remaining_unclosed_residuals": [
-                "moving-slope line component with forced external split-root core in 72..102 for projective accounting",
+                "moving-slope line component with forced external split-root core in 72..96 for projective accounting",
                 "irreducible moving-slope conic component with forced external split-root core in 69..102 for projective accounting",
                 "possible independent noncontained vectors at slopes also admitting a slope-free vector",
             ],
@@ -5382,7 +5432,7 @@ def build_certificate() -> dict[str, Any]:
             "the e=120 punctured tangent tail is projective-safe by the cofactor-span obstruction",
             "cofactor-span top-saturation exclusion improves the high-core tangent bound from r'+1 to r' until the cofactor degree reaches the fixed quotient-family dimension",
             "cofactor-current residual profile makes e=120 safe and exposes e=119 before exact-tail closure",
-            "exact-agreement plus K4 and three-private root-star closures make line/conic e=103..119 projective-safe",
+            "exact-agreement plus K4, three-private root-star, and four-private line-pencil closures make line e=97..119 and conic e=103..119 projective-safe",
             "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds",
             "one-over finite-incidence saturation conditions are computed for the endpoint-only subranges",
             "over-budget survival conditions require bound saturation, distinct finite slopes, and an unpaid endpoint",
@@ -5404,7 +5454,7 @@ def build_certificate() -> dict[str, Any]:
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",
-            "does not close line components with forced external split-root core in 72..102 in projective accounting",
+            "does not close line components with forced external split-root core in 72..96 in projective accounting",
             "does not close irreducible conic moving-slope components with forced external split-root core in 69..102 in projective accounting",
             "does not prove the high-core quotient split problem is empty or paid",
             "does not claim the punctured tangent numerator at the residual threshold is within the original row budget",

@@ -335,11 +335,19 @@ dimension.  Conversely, this is the only sharp shape: any surviving conic tail
 witness in this range must use all six edges of a `K4` on four residual
 coordinates.
 
+For line cores `97<=|E|<=102`, the first possible exact-agreement survivor is
+`d=r'+4`.  A surviving line component would put six quotient locators in a
+two-dimensional pencil.  After the common residual zero set is factored, any
+two independent members of such a pencil have disjoint residual zero sets on
+the remaining active residual coordinates.  Thus six four-private cofactors on
+`m` active coordinates would force `6(m-4)<=m`, while six distinct
+four-private supports require `m>=6`.  This contradiction closes the line tail
+through `|E|=97`.
+
 For line cores `103<=|E|<=108`, the first possible exact-agreement survivor is
 `d=r'+3`.  The packet checks the three-private cofactor capacity: six distinct
 three-private cofactors span dimension at least `3`.  This again exceeds the
-line quotient-family dimension `2`, so the line tail closes through
-`|E|=103`.
+line quotient-family dimension `2`.
 
 The `K4` boundary is then closed by a conic-determinant obstruction.  After
 factoring the common residual zero set, the six finite classes become the six
@@ -373,7 +381,7 @@ component.  Hence the conic tangent-tail rows `103<=|E|<=108` close as well.
 Thus the unclosed high-core quotient range is finite:
 
 ```text
-line residuals:  72 <= |E| <= 102;
+line residuals:  72 <= |E| <= 96;
 conic residuals: 69 <= |E| <= 102.
 ```
 
@@ -513,10 +521,10 @@ raw punctured-tangent row `e_G=120` for both component types.  In each listed
 finite-incidence row, any one listed saving lowers the projective count from
 `7` to the budget `6`; for `e_G=120` that saving is supplied by the
 cofactor-span obstruction.  The subsequent exact-agreement filter closes the
-cofactor-current tangent-tail rows `e_G=103..119` for both lines and conics,
-using the K4 determinant and three-private root-star arguments on the conic
-side.  Thus the exact-current one-over rows are only the finite-incidence
-ranges.
+cofactor-current tangent-tail rows `e_G=97..119` for lines and `e_G=103..119`
+for conics, using the four-private line-pencil obstruction on the line side
+and the K4 determinant and three-private root-star arguments on the conic side.
+Thus the exact-current one-over rows are only the finite-incidence ranges.
 
 The packet now records these exact-current rows as a minimal obstruction
 profile.  Any surviving projective over-budget witness must be one of the
@@ -531,9 +539,10 @@ line base-splitting pressure remains only for `e_G=72..74`; line cores
 `75..80` need external-slack, duplicate-slope, endpoint, or paid-class input.
 For conics, base plus secant pressure remains for `e_G=69..71`, secant-only
 pressure remains for `e_G=72..74`, and cores `75,76` need an endpoint,
-duplicate-slope, or paid-class input.  The `e_G=120` tail and the line/conic
-`e_G=103..119` tangent-tail rows are now isolated as closed punctured-tangent
-tails rather than remaining proof targets.
+duplicate-slope, or paid-class input.  The `e_G=120` tail, the line
+`e_G=97..119` tangent-tail rows, and the conic `e_G=103..119` tangent-tail
+rows are now isolated as closed punctured-tangent tails rather than remaining
+proof targets.
 
 Replay:
 
@@ -546,7 +555,7 @@ Nonclaims:
 
 ```text
 no proof that every moving-slope component is a line;
-no closure of line components with forced external split-root core in 72..102 in projective accounting;
+no closure of line components with forced external split-root core in 72..96 in projective accounting;
 no closure of irreducible conic moving-slope components with forced external split-root core in 69..102 in projective accounting;
 no proof that the high-core quotient split problem is empty or paid;
 no claim that the punctured tangent numerator at the residual threshold is within the original row budget;

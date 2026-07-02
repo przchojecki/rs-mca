@@ -44,8 +44,9 @@ Keep entries concise and link to the relevant files.
 - **Status:** PROVED / AUDIT.
 - **What is being added:** The `A=386` moving-slope packet now has a
   cofactor-span top-saturation exclusion for the high-core punctured-tangent
-  quotient tail, exact-agreement closure of the line/conic `e_G=103..119`
-  tangent-tail rows, a conic `e_G=103..108` three-private root-star Bezout
+  quotient tail, exact-agreement closure of the line `e_G=97..119` and conic
+  `e_G=103..119` tangent-tail rows, a line `e_G=97..102` four-private
+  line-pencil closure, and a conic `e_G=103..108` three-private root-star Bezout
   closure,
   abstract incidence-only sharpness witnesses for every finite-incidence
   one-over core, exact-current residual profiles, and a minimal obstruction
@@ -59,11 +60,14 @@ Keep entries concise and link to the relevant files.
   quotient family has vector dimension at most `2` on a line and at most `3`
   on a conic.  Hence the raw tangent bound `r'+1` improves to `r'` while
   `r'` exceeds this dimension; `e_G=120` is safe and `e_G=119` is the next
-  cofactor-current tangent-tail core.  Exact agreement then closes line/conic
-  `e_G=103..119`: the `d=r'+3` three-private branch closes lines because six
-  such cofactors span dimension at least `3`, while conics close because six
-  selected pairs on five residual coordinates force three pair-quadratic points
-  on one root-star line, impossible for an irreducible conic by Bezout.
+  cofactor-current tangent-tail core.  Exact agreement then closes line
+  `e_G=97..119` and conic `e_G=103..119`: the `d=r'+4` four-private branch
+  closes line cores `e_G=97..102` by a two-dimensional pencil disjoint-zero
+  obstruction; the `d=r'+3` three-private branch closes line cores
+  `e_G=103..108` because six such cofactors span dimension at least `3`, while
+  conics close because six selected pairs on five residual coordinates force
+  three pair-quadratic points on one root-star line, impossible for an
+  irreducible conic by Bezout.
   In the `d=r'+2` branch, six finite cofactors become six two-supported
   signed-edge vectors; their span has rank at least `3`, which closes lines.
   The conic K4 boundary is then closed because the six pair quadratics from
@@ -73,9 +77,9 @@ Keep entries concise and link to the relevant files.
   remaining finite-incidence one-over rows cannot be closed by sharpening only
   the current incidence and pair-overlap counts.  The cofactor-current profile
   removes the stale raw `e_G=120` one-over row; the exact-current profile
-  removes line/conic `e_G=103..119`, and lowers the conic
+  removes line `e_G=97..119` and conic `e_G=103..119`, and lowers the conic
   max bound from `26` to `25`.  The remaining high-core quotient ranges shrink
-  to line `72..102`
+  to line `72..96`
   and conic `69..102`.  The
   remaining over-budget normal form now has exactly `17` rows: line `72..80`
   and conic `69..76`, each requiring six distinct finite slopes plus an unpaid

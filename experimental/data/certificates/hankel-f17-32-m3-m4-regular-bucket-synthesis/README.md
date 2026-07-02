@@ -251,15 +251,17 @@ tangent bound `r'+1` is impossible whenever `r'` exceeds this quotient-family
 dimension, so the cofactor-improved tangent bound is `r'`; `e_G=119` is the
 next cofactor-current one-over tangent-tail core and `e_G>=120` is
 projective-safe.  Exact-agreement residual-budget splitting closes the
-cofactor-current tangent tail `e_G=103..119` for both lines and irreducible
-conics.  The `d=r'+3` three-private branch closes line cores `103..108` by
-cofactor span, and closes conic cores `103..108` by a root-star Bezout
-obstruction: six selected pairs on five residual coordinates force three
-pair-quadratic points on one root-star line, impossible for an irreducible
-conic.  The `d=r'+2` two-private branch closes lines and reduces conics
-`109..114` to a K4 boundary; the latter is closed by the pair-quadratic
-determinant `prod_{i<j}(x_j-x_i)^2`.  Thus the remaining unclosed intermediate
-ranges are `72<=e_G<=102` for lines and `69<=e_G<=102` for irreducible conics.
+cofactor-current tangent tail `e_G=97..119` for lines and `e_G=103..119` for
+irreducible conics.  The `d=r'+4` four-private branch closes line cores
+`97..102` by a two-dimensional pencil disjoint-zero obstruction.  The
+`d=r'+3` three-private branch closes line cores `103..108` by cofactor span,
+and closes conic cores `103..108` by a root-star Bezout obstruction: six
+selected pairs on five residual coordinates force three pair-quadratic points
+on one root-star line, impossible for an irreducible conic.  The `d=r'+2`
+two-private branch closes lines and reduces conics `109..114` to a K4
+boundary; the latter is closed by the pair-quadratic determinant
+`prod_{i<j}(x_j-x_i)^2`.  Thus the remaining unclosed intermediate ranges are
+`72<=e_G<=96` for lines and `69<=e_G<=102` for irreducible conics.
 The exact-current residual profile has live one-over ranges line
 `e_G=72..80` and irreducible conic `e_G=69..76`; the largest conic projective
 bound drops from `26` to `25`.
@@ -315,8 +317,9 @@ The packet also records a single-saving closure ledger for all cofactor-current
 one-over moving-slope residual rows: line `e_G=72..80`, conic `e_G=69..76`,
 and the line/conic punctured-tangent tail at `e_G=120`.  The subsequent
 exact-agreement filter closes the cofactor-current tangent-tail rows
-`e_G=103..119` for both lines and conics, using the K4 determinant and
-three-private root-star arguments on the conic side.
+`e_G=97..119` for lines and `e_G=103..119` for conics, using the four-private
+line-pencil obstruction, the K4 determinant, and three-private root-star
+arguments.
 The exact-current rows are also recorded as a minimal obstruction profile:
 any remaining over-budget witness must be one of the line cores `72..80` or
 conic cores `69..76`, with exactly six finite source classes, six distinct
