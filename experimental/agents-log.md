@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M4 synthesis consumes A386 moving-slope packet
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** The M4 regular-bucket synthesis now checks the
+  `A=386` moving-slope split-incidence packet as a dependency and records its
+  consequence: small-core line/conic moving-slope branches are projective-safe,
+  while high-core branches remain quotient/punctured-tangent residuals.
+- **How it is useful:** This keeps the rank-6 decision table synchronized with
+  the latest separated `A=386` reductions without claiming an original-row
+  projective budget closure.
+- **What to do next:** Either pay the high-core quotient residual via a
+  punctured tangent ledger or refine the original-row endpoint/finite root
+  table enough to close the residual directly.
+
 ### 2026-07-02 - M3 A386 moving-slope split incidence
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

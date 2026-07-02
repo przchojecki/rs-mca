@@ -351,6 +351,7 @@
     "projective split-locator testing separates ambient infinity endpoints from genuine support-wise endpoint witnesses",
     "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
     "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
+    "A=386 moving-slope small-core branches are recorded as projective-safe while high-core branches remain quotient/punctured-tangent residuals",
     "projective infinity and finite affine accounting are not conflated"
   ],
   "field_audit": {
@@ -362,6 +363,7 @@
   "nonclaims": [
     "does not compute arbitrary non-proportional finite root tables",
     "does not prove the projective endpoint is empty or paid in the rank=6 case",
+    "does not close the A=386 high-core quotient moving-slope residual in original-row projective accounting",
     "does not audit quotient or extension overlap for arbitrary root tables",
     "not a worst-case support-wise MCA row bound"
   ],
@@ -482,7 +484,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v1",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v2",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -532,6 +534,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-projective-split-locator-gate/f17_32_n512_k256_m3_projective_split_locator_gate.json",
       "sha256": "c596c4408b77037de13978bba8dbbc21dd444e2119d2301d593d8421ce7693ff"
     },
+    "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
+      "sha256": "17949dc2cf8ac441f3d015450bc690512a69e70fd41c06b427cea4a015bbc3f7"
+    },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
       "sha256": "d85c2cac6e9842117f72bb952eb4c11c83a3f8ee416babd67c6cf1ef34cc152c"
@@ -555,9 +561,10 @@
   },
   "status": "AUDIT",
   "summary": {
+    "a386_moving_slope_refinement_count": 1,
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 16,
+    "dependencies_checked": 17,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
     "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -573,6 +580,12 @@
     "residual_case_count": 3
   },
   "synthesis": {
+    "a386_moving_slope_refinement": [
+      "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
+      "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
+      "the remaining high-core line and conic branches factor through quotient split-locator problems of degrees <=54 and <=57",
+      "after puncturing the forced core, those high-core quotient branches are tangent-range eligible on the punctured row, but this is not an original-row projective budget closure"
+    ],
     "closed_by_current_lemmas": [
       "zero-v with full-rank H(u): no finite roots, infinity tangent-paid",
       "proportional nonzero-v with full-rank H(v): unique finite root tangent-paid, infinity excluded",
@@ -625,6 +638,7 @@
     "still_requires_m5_or_other_ledgers": [
       "rank-deficient finite regular buckets not covered by a paid family",
       "non-proportional direction-rank-6 buckets when the projective endpoint is not empty or paid and the 6x6 compressed exact finite root table has six surviving roots",
+      "the A=386 separated moving-slope high-core quotient branches unless a punctured tangent-ledger payment or an original-row endpoint/root-table refinement is supplied",
       "non-proportional finite buckets with direction rank > 6 unless exact root tables plus kernel filters improve the bound",
       "quotient, quotient-image, extension, and subfield overlap for future non-proportional root tables"
     ]

@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v1"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v2"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -99,6 +99,10 @@ LOWER_RANK_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-lower-rank-contained/"
     "f17_32_n512_k256_m3_lower_rank_contained.json"
 )
+A386_MOVING_SLOPE_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/"
+    "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json"
+)
 
 
 EXPECTED_SCHEMAS = {
@@ -118,6 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v5",
 }
 
 
@@ -283,6 +288,33 @@ def check_dependency(ref: str, data: dict[str, Any]) -> None:
         require(data["row"]["k"] == K, f"{ref}: k mismatch")
 
 
+def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
+    require(data["agreement"]["A"] == 386, "A386 moving-slope agreement mismatch")
+    require(data["status"] == "PROVED / AUDIT", "A386 moving-slope status mismatch")
+    summary = data["summary"]
+    require(summary["line_projective_safe_for_external_core_at_most"] == 71, "line threshold mismatch")
+    require(summary["conic_projective_safe_for_external_core_at_most"] == 68, "conic threshold mismatch")
+    require(summary["line_residual_quotient_degree_at_most"] == 54, "line quotient degree mismatch")
+    require(summary["conic_residual_quotient_degree_at_most"] == 57, "conic quotient degree mismatch")
+    require(
+        summary["line_residual_punctured_tangent_numerator_at_threshold"] == 55,
+        "line punctured tangent numerator mismatch",
+    )
+    require(
+        summary["conic_residual_punctured_tangent_numerator_at_threshold"] == 58,
+        "conic punctured tangent numerator mismatch",
+    )
+    nonclaims = set(data["nonclaims"])
+    require(
+        "does not claim the punctured tangent numerator is within the original row budget" in nonclaims,
+        "A386 moving-slope packet must keep the original-budget nonclaim",
+    )
+    require(
+        "does not produce a row-level M3 safe-side bound" in nonclaims,
+        "A386 moving-slope packet must keep the row-bound nonclaim",
+    )
+
+
 def build_certificate() -> dict[str, Any]:
     field = Field(P, MODULUS)
     descriptor = load_json(ROW_DESCRIPTOR_REF)
@@ -295,6 +327,7 @@ def build_certificate() -> dict[str, Any]:
     require(descriptor["row"]["syndrome_length"] == N - K, "syndrome length mismatch")
     for ref, data in dependencies.items():
         check_dependency(ref, data)
+    check_a386_moving_slope_packet(dependencies[A386_MOVING_SLOPE_REF])
 
     domain_encodings = descriptor["domain"]["domain_encodings"]
     require(len(domain_encodings) == N, "domain length mismatch")
@@ -370,6 +403,12 @@ def build_certificate() -> dict[str, Any]:
                 "every nonzero rank-6 minor has at most six bad finite pivots and therefore many good pivots over F_17^32",
                 "after choosing good pivots per nonzero chart and translating local compressed determinants back to the global slope variable, monic gcd of original minors equals monic gcd of compressed polynomials",
             ],
+            "a386_moving_slope_refinement": [
+                "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
+                "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
+                "the remaining high-core line and conic branches factor through quotient split-locator problems of degrees <=54 and <=57",
+                "after puncturing the forced core, those high-core quotient branches are tangent-range eligible on the punctured row, but this is not an original-row projective budget closure",
+            ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",
                 "rank deficiency at j+2 distinct finite nodes forces every maximal minor to vanish identically and declares a singular bucket",
@@ -399,6 +438,7 @@ def build_certificate() -> dict[str, Any]:
             "still_requires_m5_or_other_ledgers": [
                 "rank-deficient finite regular buckets not covered by a paid family",
                 "non-proportional direction-rank-6 buckets when the projective endpoint is not empty or paid and the 6x6 compressed exact finite root table has six surviving roots",
+                "the A=386 separated moving-slope high-core quotient branches unless a punctured tangent-ledger payment or an original-row endpoint/root-table refinement is supplied",
                 "non-proportional finite buckets with direction rank > 6 unless exact root tables plus kernel filters improve the bound",
                 "quotient, quotient-image, extension, and subfield overlap for future non-proportional root tables",
             ],
@@ -427,6 +467,7 @@ def build_certificate() -> dict[str, Any]:
             "m4_projective_budget_split_count": 1,
             "m4_affine_pivot_compression_count": 1,
             "m4_affine_pivot_gcd_equivalence_count": 1,
+            "a386_moving_slope_refinement_count": 1,
             "m3_rank_node_dichotomy_count": 1,
             "m3_nullpolynomial_split_locator_gate_count": 1,
             "m3_projective_split_locator_gate_count": 1,
@@ -447,11 +488,13 @@ def build_certificate() -> dict[str, Any]:
             "projective split-locator testing separates ambient infinity endpoints from genuine support-wise endpoint witnesses",
             "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
             "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
+            "A=386 moving-slope small-core branches are recorded as projective-safe while high-core branches remain quotient/punctured-tangent residuals",
             "projective infinity and finite affine accounting are not conflated",
         ],
         "nonclaims": [
             "does not compute arbitrary non-proportional finite root tables",
             "does not prove the projective endpoint is empty or paid in the rank=6 case",
+            "does not close the A=386 high-core quotient moving-slope residual in original-row projective accounting",
             "does not audit quotient or extension overlap for arbitrary root tables",
             "not a worst-case support-wise MCA row bound",
         ],
