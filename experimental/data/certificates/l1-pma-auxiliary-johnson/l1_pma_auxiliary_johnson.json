@@ -1,0 +1,410 @@
+{
+  "auxiliary_reduction": {
+    "fixed_data": "defect set D with |D|=d and background set R0 with |R0|=r",
+    "injection": "each fixed-D,R0 mixed-petal extra maps injectively to a degree<=d auxiliary polynomial W agreeing with U_D on at least a petal points and vanishing on R0",
+    "petal_target": "U_D(x)=c_i L_D(x) on petal T_i",
+    "required_petal_agreement": "a = sigma + d + 1 - r",
+    "upper_bound_relaxation": "dropping the R0 vanishing and exact-missed-core constraints only enlarges the auxiliary list"
+  },
+  "few_petal_threshold_table": [
+    {
+      "background_r": 0,
+      "defect_d": 1,
+      "ell": 2,
+      "first_failing_M": 5,
+      "max_M_with_a2_gt_M_ell_d": 4,
+      "sigma": 1
+    },
+    {
+      "background_r": 1,
+      "defect_d": 1,
+      "ell": 2,
+      "first_failing_M": 2,
+      "max_M_with_a2_gt_M_ell_d": 1,
+      "sigma": 1
+    },
+    {
+      "background_r": 0,
+      "defect_d": 2,
+      "ell": 2,
+      "first_failing_M": 4,
+      "max_M_with_a2_gt_M_ell_d": 3,
+      "sigma": 1
+    },
+    {
+      "background_r": 1,
+      "defect_d": 2,
+      "ell": 2,
+      "first_failing_M": 3,
+      "max_M_with_a2_gt_M_ell_d": 2,
+      "sigma": 1
+    },
+    {
+      "background_r": 0,
+      "defect_d": 4,
+      "ell": 2,
+      "first_failing_M": 5,
+      "max_M_with_a2_gt_M_ell_d": 4,
+      "sigma": 1
+    },
+    {
+      "background_r": 1,
+      "defect_d": 4,
+      "ell": 2,
+      "first_failing_M": 4,
+      "max_M_with_a2_gt_M_ell_d": 3,
+      "sigma": 1
+    },
+    {
+      "background_r": 0,
+      "defect_d": 2,
+      "ell": 3,
+      "first_failing_M": 5,
+      "max_M_with_a2_gt_M_ell_d": 4,
+      "sigma": 2
+    },
+    {
+      "background_r": 1,
+      "defect_d": 2,
+      "ell": 3,
+      "first_failing_M": 3,
+      "max_M_with_a2_gt_M_ell_d": 2,
+      "sigma": 2
+    },
+    {
+      "background_r": 2,
+      "defect_d": 2,
+      "ell": 3,
+      "first_failing_M": 2,
+      "max_M_with_a2_gt_M_ell_d": 1,
+      "sigma": 2
+    },
+    {
+      "background_r": 0,
+      "defect_d": 3,
+      "ell": 3,
+      "first_failing_M": 4,
+      "max_M_with_a2_gt_M_ell_d": 3,
+      "sigma": 2
+    },
+    {
+      "background_r": 1,
+      "defect_d": 3,
+      "ell": 3,
+      "first_failing_M": 3,
+      "max_M_with_a2_gt_M_ell_d": 2,
+      "sigma": 2
+    },
+    {
+      "background_r": 2,
+      "defect_d": 3,
+      "ell": 3,
+      "first_failing_M": 2,
+      "max_M_with_a2_gt_M_ell_d": 1,
+      "sigma": 2
+    },
+    {
+      "background_r": 0,
+      "defect_d": 6,
+      "ell": 3,
+      "first_failing_M": 5,
+      "max_M_with_a2_gt_M_ell_d": 4,
+      "sigma": 2
+    },
+    {
+      "background_r": 1,
+      "defect_d": 6,
+      "ell": 3,
+      "first_failing_M": 4,
+      "max_M_with_a2_gt_M_ell_d": 3,
+      "sigma": 2
+    },
+    {
+      "background_r": 2,
+      "defect_d": 6,
+      "ell": 3,
+      "first_failing_M": 3,
+      "max_M_with_a2_gt_M_ell_d": 2,
+      "sigma": 2
+    },
+    {
+      "background_r": 0,
+      "defect_d": 4,
+      "ell": 5,
+      "first_failing_M": 5,
+      "max_M_with_a2_gt_M_ell_d": 4,
+      "sigma": 4
+    },
+    {
+      "background_r": 1,
+      "defect_d": 4,
+      "ell": 5,
+      "first_failing_M": 4,
+      "max_M_with_a2_gt_M_ell_d": 3,
+      "sigma": 4
+    },
+    {
+      "background_r": 4,
+      "defect_d": 4,
+      "ell": 5,
+      "first_failing_M": 2,
+      "max_M_with_a2_gt_M_ell_d": 1,
+      "sigma": 4
+    },
+    {
+      "background_r": 0,
+      "defect_d": 5,
+      "ell": 5,
+      "first_failing_M": 4,
+      "max_M_with_a2_gt_M_ell_d": 3,
+      "sigma": 4
+    },
+    {
+      "background_r": 1,
+      "defect_d": 5,
+      "ell": 5,
+      "first_failing_M": 4,
+      "max_M_with_a2_gt_M_ell_d": 3,
+      "sigma": 4
+    },
+    {
+      "background_r": 4,
+      "defect_d": 5,
+      "ell": 5,
+      "first_failing_M": 2,
+      "max_M_with_a2_gt_M_ell_d": 1,
+      "sigma": 4
+    },
+    {
+      "background_r": 0,
+      "defect_d": 10,
+      "ell": 5,
+      "first_failing_M": 5,
+      "max_M_with_a2_gt_M_ell_d": 4,
+      "sigma": 4
+    },
+    {
+      "background_r": 1,
+      "defect_d": 10,
+      "ell": 5,
+      "first_failing_M": 4,
+      "max_M_with_a2_gt_M_ell_d": 3,
+      "sigma": 4
+    },
+    {
+      "background_r": 4,
+      "defect_d": 10,
+      "ell": 5,
+      "first_failing_M": 3,
+      "max_M_with_a2_gt_M_ell_d": 2,
+      "sigma": 4
+    },
+    {
+      "background_r": 0,
+      "defect_d": 8,
+      "ell": 9,
+      "first_failing_M": 5,
+      "max_M_with_a2_gt_M_ell_d": 4,
+      "sigma": 8
+    },
+    {
+      "background_r": 1,
+      "defect_d": 8,
+      "ell": 9,
+      "first_failing_M": 4,
+      "max_M_with_a2_gt_M_ell_d": 3,
+      "sigma": 8
+    },
+    {
+      "background_r": 8,
+      "defect_d": 8,
+      "ell": 9,
+      "first_failing_M": 2,
+      "max_M_with_a2_gt_M_ell_d": 1,
+      "sigma": 8
+    },
+    {
+      "background_r": 0,
+      "defect_d": 9,
+      "ell": 9,
+      "first_failing_M": 4,
+      "max_M_with_a2_gt_M_ell_d": 3,
+      "sigma": 8
+    },
+    {
+      "background_r": 1,
+      "defect_d": 9,
+      "ell": 9,
+      "first_failing_M": 4,
+      "max_M_with_a2_gt_M_ell_d": 3,
+      "sigma": 8
+    },
+    {
+      "background_r": 8,
+      "defect_d": 9,
+      "ell": 9,
+      "first_failing_M": 2,
+      "max_M_with_a2_gt_M_ell_d": 1,
+      "sigma": 8
+    },
+    {
+      "background_r": 0,
+      "defect_d": 18,
+      "ell": 9,
+      "first_failing_M": 5,
+      "max_M_with_a2_gt_M_ell_d": 4,
+      "sigma": 8
+    },
+    {
+      "background_r": 1,
+      "defect_d": 18,
+      "ell": 9,
+      "first_failing_M": 5,
+      "max_M_with_a2_gt_M_ell_d": 4,
+      "sigma": 8
+    },
+    {
+      "background_r": 8,
+      "defect_d": 18,
+      "ell": 9,
+      "first_failing_M": 3,
+      "max_M_with_a2_gt_M_ell_d": 2,
+      "sigma": 8
+    }
+  ],
+  "johnson_regime": {
+    "bound": "|T|(|T|-d)/(a^2-|T|d)",
+    "condition": "a^2 > |T| d",
+    "effective_auxiliary_dimension": "d+1",
+    "max_M_formula_for_d_positive": "M <= floor((a^2-1)/(d(sigma+1)))",
+    "petal_domain_size": "|T| = M(sigma+1)"
+  },
+  "non_claim": "This does not prove mixed-petal amplification.  It isolates the few-petal Johnson-covered part and leaves the sub-Johnson auxiliary-list regime as the residual target.",
+  "roadmap_tasks": [
+    "pma_aux_list_reduction",
+    "pma_johnson_regime"
+  ],
+  "sample_parameter_rows": [
+    {
+      "background_r": 0,
+      "defect_d": 3,
+      "effective_auxiliary_dimension": 4,
+      "ell": 3,
+      "johnson_bound": {
+        "ceil_integer_bound": 6,
+        "denominator": 9,
+        "numerator": 54
+      },
+      "johnson_condition": "a^2 > |T| d",
+      "johnson_denominator": 9,
+      "johnson_region": true,
+      "petal_count_M": 3,
+      "petal_domain_size": 9,
+      "required_petal_agreement_a": 6,
+      "sigma": 2
+    },
+    {
+      "background_r": 1,
+      "defect_d": 3,
+      "effective_auxiliary_dimension": 4,
+      "ell": 3,
+      "johnson_bound": null,
+      "johnson_condition": "a^2 > |T| d",
+      "johnson_denominator": -2,
+      "johnson_region": false,
+      "petal_count_M": 3,
+      "petal_domain_size": 9,
+      "required_petal_agreement_a": 5,
+      "sigma": 2
+    },
+    {
+      "background_r": 0,
+      "defect_d": 5,
+      "effective_auxiliary_dimension": 6,
+      "ell": 5,
+      "johnson_bound": null,
+      "johnson_condition": "a^2 > |T| d",
+      "johnson_denominator": 0,
+      "johnson_region": false,
+      "petal_count_M": 4,
+      "petal_domain_size": 20,
+      "required_petal_agreement_a": 10,
+      "sigma": 4
+    },
+    {
+      "background_r": 0,
+      "defect_d": 9,
+      "effective_auxiliary_dimension": 10,
+      "ell": 9,
+      "johnson_bound": null,
+      "johnson_condition": "a^2 > |T| d",
+      "johnson_denominator": -324,
+      "johnson_region": false,
+      "petal_count_M": 8,
+      "petal_domain_size": 72,
+      "required_petal_agreement_a": 18,
+      "sigma": 8
+    }
+  ],
+  "schema": "l1-pma-auxiliary-johnson-v1",
+  "status": "PROVED_COMPILER__CITES_LEMMA_2_AND_THEOREM_J",
+  "toy_replay": {
+    "auxiliary_hit_count": 1,
+    "auxiliary_hits": [
+      {
+        "coefficients_low_to_high": [
+          4,
+          4,
+          6
+        ],
+        "original_agreement_lower_bound": 7,
+        "petal_hits": 4
+      }
+    ],
+    "core_size_k_minus_1": 5,
+    "defect_set_D": [
+      0,
+      1
+    ],
+    "field": "F_11",
+    "original_replay_ok": true,
+    "params": {
+      "background_r": 0,
+      "defect_d": 2,
+      "effective_auxiliary_dimension": 3,
+      "ell": 2,
+      "johnson_bound": {
+        "ceil_integer_bound": 6,
+        "denominator": 4,
+        "numerator": 24
+      },
+      "johnson_condition": "a^2 > |T| d",
+      "johnson_denominator": 4,
+      "johnson_region": true,
+      "petal_count_M": 3,
+      "petal_domain_size": 6,
+      "required_petal_agreement_a": 4,
+      "sigma": 1
+    },
+    "petals": [
+      [
+        5,
+        6
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        9,
+        10
+      ]
+    ],
+    "scalars": [
+      1,
+      2,
+      3
+    ],
+    "status": "PASS"
+  }
+}

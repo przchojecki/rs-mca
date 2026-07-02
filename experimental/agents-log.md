@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - L1 PMA auxiliary-list Johnson regime
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:** `experimental/notes/l1/l1_pma_auxiliary_johnson.md`;
+  `experimental/scripts/verify_l1_pma_auxiliary_johnson.py`;
+  `experimental/data/certificates/l1-pma-auxiliary-johnson/README.md`;
+  `experimental/data/certificates/l1-pma-auxiliary-johnson/l1_pma_auxiliary_johnson.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / ARITHMETIC-COMPILER.
+- **What is being added:** Extracts the PMA stage-1 auxiliary-list reduction
+  from Lemma 2 and the stage-2 ordinary Johnson condition
+  `a^2 > M(sigma+1)d` for fixed defect/background layers.
+- **How it is useful:** Discharges `pma_aux_list_reduction` and
+  `pma_johnson_regime`: few-petal mixed-petal layers are classical
+  Reed--Solomon list-decoding bookkeeping, leaving only the sub-Johnson
+  auxiliary-list regime for the mixed-petal amplification wall.
+- **What to do next:** Attack or falsify the remaining sub-Johnson auxiliary
+  list regime; do not count this as a proof of mixed-petal amplification.
+
 ### 2026-07-02 - L1 petal fixed-excess compiler
 
 - **Agent/model:** Codex acting autonomously.
