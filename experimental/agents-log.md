@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - L1 dyadic quotient-profile evaluation
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/l1/l1_dyadic_profile_evaluation.md`;
+  `experimental/scripts/verify_l1_dyadic_profile_evaluation.py`;
+  `experimental/data/certificates/l1-dyadic-profile-evaluation/README.md`;
+  `experimental/data/certificates/l1-dyadic-profile-evaluation/l1_dyadic_profile_evaluation.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT-ARITHMETIC.
+- **What is being added:** The exact-divisibility quotient profile is
+  specialized to dyadic domains at rates `1/2, 1/4, 1/8, 1/16`: active
+  quotient orders are exactly dyadic `N` with `R <= N` and `eta N < 1`, with
+  profile value `max log2 binom(N-1,N/R)`.  The certificate also records the
+  one-step dither empty-profile corollary and exact `2^128` crossing orders.
+- **How it is useful:** This closes the DAG node `dyadic_profile_evaluation`
+  needed by the list-side quotient ledger; it makes `Q_H(eta)` an exact
+  finite arithmetic table rather than an entropy estimate.
+- **What to do next:** Consume the table in list-side reserve certificates and
+  keep remainder/aperiodic list mechanisms separate from this exact quotient
+  profile.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.

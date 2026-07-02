@@ -1,0 +1,1438 @@
+{
+  "budget_bits": 128,
+  "budget_crossings": [
+    {
+      "count_at_crossing_decimal": "2884329411724603169044874178931143443870105850987581016304218283632259375395",
+      "count_at_crossing_log2_approx": 250.672843056971,
+      "count_at_crossing_log2_floor": 250,
+      "minimal_dyadic_quotient_order_N_with_count_gt_2_128": 256,
+      "previous_count_decimal": "11975573020964041433067793888190275875",
+      "previous_count_log2_approx": 123.171434200174,
+      "previous_count_log2_floor": 123,
+      "previous_order": 128,
+      "rate": "1/2",
+      "rate_denominator": 2,
+      "safe_from_exact_quotient_core_at_or_above": "eta >= 1/256",
+      "strict_unsafe_reserve_condition": "eta < 1/256"
+    },
+    {
+      "count_at_crossing_decimal": "14282853361848836315351365633679499331844685450041107658551125",
+      "count_at_crossing_log2_approx": 203.151898011178,
+      "count_at_crossing_log2_floor": 203,
+      "minimal_dyadic_quotient_order_N_with_count_gt_2_128": 256,
+      "previous_count_decimal": "1108355191126710500011856080725",
+      "previous_count_log2_approx": 99.80626313808,
+      "previous_count_log2_floor": 99,
+      "previous_order": 128,
+      "rate": "1/4",
+      "rate_denominator": 4,
+      "safe_from_exact_quotient_core_at_or_above": "eta >= 1/256",
+      "strict_unsafe_reserve_condition": "eta < 1/256"
+    },
+    {
+      "count_at_crossing_decimal": "50964019775576912153703782274307996667625",
+      "count_at_crossing_log2_approx": 135.226602869823,
+      "count_at_crossing_log2_floor": 135,
+      "minimal_dyadic_quotient_order_N_with_count_gt_2_128": 256,
+      "previous_count_decimal": "81675143551104405225",
+      "previous_count_log2_approx": 66.146530888186,
+      "previous_count_log2_floor": 66,
+      "previous_order": 128,
+      "rate": "1/8",
+      "rate_denominator": 8,
+      "safe_from_exact_quotient_core_at_or_above": "eta >= 1/256",
+      "strict_unsafe_reserve_condition": "eta < 1/256"
+    },
+    {
+      "count_at_crossing_decimal": "658888362802442085954412326226040171365878624534225",
+      "count_at_crossing_log2_approx": 168.816438790672,
+      "count_at_crossing_log2_floor": 168,
+      "minimal_dyadic_quotient_order_N_with_count_gt_2_128": 512,
+      "previous_count_decimal": "9448829626895919257468625",
+      "previous_count_log2_approx": 82.966409919219,
+      "previous_count_log2_floor": 82,
+      "previous_order": 256,
+      "rate": "1/16",
+      "rate_denominator": 16,
+      "safe_from_exact_quotient_core_at_or_above": "eta >= 1/512",
+      "strict_unsafe_reserve_condition": "eta < 1/512"
+    }
+  ],
+  "direct_validation": [
+    {
+      "eta_exponents_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "exact_rate_formula_matches_direct_divisor_scan": true,
+      "n": 4096,
+      "nu": 12,
+      "one_step_dither_profile_empty": true,
+      "rate": "1/2"
+    },
+    {
+      "eta_exponents_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "exact_rate_formula_matches_direct_divisor_scan": true,
+      "n": 4096,
+      "nu": 12,
+      "one_step_dither_profile_empty": true,
+      "rate": "1/4"
+    },
+    {
+      "eta_exponents_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "exact_rate_formula_matches_direct_divisor_scan": true,
+      "n": 4096,
+      "nu": 12,
+      "one_step_dither_profile_empty": true,
+      "rate": "1/8"
+    },
+    {
+      "eta_exponents_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "exact_rate_formula_matches_direct_divisor_scan": true,
+      "n": 4096,
+      "nu": 12,
+      "one_step_dither_profile_empty": true,
+      "rate": "1/16"
+    },
+    {
+      "eta_exponents_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "exact_rate_formula_matches_direct_divisor_scan": true,
+      "n": 1048576,
+      "nu": 20,
+      "one_step_dither_profile_empty": true,
+      "rate": "1/2"
+    },
+    {
+      "eta_exponents_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "exact_rate_formula_matches_direct_divisor_scan": true,
+      "n": 1048576,
+      "nu": 20,
+      "one_step_dither_profile_empty": true,
+      "rate": "1/4"
+    },
+    {
+      "eta_exponents_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "exact_rate_formula_matches_direct_divisor_scan": true,
+      "n": 1048576,
+      "nu": 20,
+      "one_step_dither_profile_empty": true,
+      "rate": "1/8"
+    },
+    {
+      "eta_exponents_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "exact_rate_formula_matches_direct_divisor_scan": true,
+      "n": 1048576,
+      "nu": 20,
+      "one_step_dither_profile_empty": true,
+      "rate": "1/16"
+    },
+    {
+      "eta_exponents_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "exact_rate_formula_matches_direct_divisor_scan": true,
+      "n": 1099511627776,
+      "nu": 40,
+      "one_step_dither_profile_empty": true,
+      "rate": "1/2"
+    },
+    {
+      "eta_exponents_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "exact_rate_formula_matches_direct_divisor_scan": true,
+      "n": 1099511627776,
+      "nu": 40,
+      "one_step_dither_profile_empty": true,
+      "rate": "1/4"
+    },
+    {
+      "eta_exponents_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "exact_rate_formula_matches_direct_divisor_scan": true,
+      "n": 1099511627776,
+      "nu": 40,
+      "one_step_dither_profile_empty": true,
+      "rate": "1/8"
+    },
+    {
+      "eta_exponents_checked": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "exact_rate_formula_matches_direct_divisor_scan": true,
+      "n": 1099511627776,
+      "nu": 40,
+      "one_step_dither_profile_empty": true,
+      "rate": "1/16"
+    }
+  ],
+  "domain_family": "dyadic H, n=2^nu",
+  "eta_grid": [
+    {
+      "exponent": 1,
+      "fraction": "1/2"
+    },
+    {
+      "exponent": 2,
+      "fraction": "1/4"
+    },
+    {
+      "exponent": 3,
+      "fraction": "1/8"
+    },
+    {
+      "exponent": 4,
+      "fraction": "1/16"
+    },
+    {
+      "exponent": 5,
+      "fraction": "1/32"
+    },
+    {
+      "exponent": 6,
+      "fraction": "1/64"
+    },
+    {
+      "exponent": 7,
+      "fraction": "1/128"
+    },
+    {
+      "exponent": 8,
+      "fraction": "1/256"
+    },
+    {
+      "exponent": 9,
+      "fraction": "1/512"
+    },
+    {
+      "exponent": 10,
+      "fraction": "1/1024"
+    },
+    {
+      "exponent": 11,
+      "fraction": "1/2048"
+    },
+    {
+      "exponent": 12,
+      "fraction": "1/4096"
+    }
+  ],
+  "object": "exact-divisibility quotient profile Q_H(a,k)",
+  "profile_table": [
+    {
+      "active_count": 0,
+      "active_quotient_orders": [],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 1,
+        "fraction": "1/2"
+      },
+      "max_attaining_quotient_order": null,
+      "max_count_bit_length": 0,
+      "max_count_decimal": "0",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": null,
+      "max_log2_floor": null,
+      "rate": "1/2",
+      "rate_denominator": 2
+    },
+    {
+      "active_count": 1,
+      "active_quotient_orders": [
+        2
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 2,
+        "fraction": "1/4"
+      },
+      "max_attaining_quotient_order": 2,
+      "max_count_bit_length": 1,
+      "max_count_decimal": "1",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 0.0,
+      "max_log2_floor": 0,
+      "rate": "1/2",
+      "rate_denominator": 2
+    },
+    {
+      "active_count": 2,
+      "active_quotient_orders": [
+        2,
+        4
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 3,
+        "fraction": "1/8"
+      },
+      "max_attaining_quotient_order": 4,
+      "max_count_bit_length": 2,
+      "max_count_decimal": "3",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 1.584962500721,
+      "max_log2_floor": 1,
+      "rate": "1/2",
+      "rate_denominator": 2
+    },
+    {
+      "active_count": 3,
+      "active_quotient_orders": [
+        2,
+        4,
+        8
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 4,
+        "fraction": "1/16"
+      },
+      "max_attaining_quotient_order": 8,
+      "max_count_bit_length": 6,
+      "max_count_decimal": "35",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 5.129283016945,
+      "max_log2_floor": 5,
+      "rate": "1/2",
+      "rate_denominator": 2
+    },
+    {
+      "active_count": 4,
+      "active_quotient_orders": [
+        2,
+        4,
+        8,
+        16
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 5,
+        "fraction": "1/32"
+      },
+      "max_attaining_quotient_order": 16,
+      "max_count_bit_length": 13,
+      "max_count_decimal": "6435",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 12.651724433108,
+      "max_log2_floor": 12,
+      "rate": "1/2",
+      "rate_denominator": 2
+    },
+    {
+      "active_count": 5,
+      "active_quotient_orders": [
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 6,
+        "fraction": "1/64"
+      },
+      "max_attaining_quotient_order": 32,
+      "max_count_bit_length": 29,
+      "max_count_decimal": "300540195",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 28.162982712595,
+      "max_log2_floor": 28,
+      "rate": "1/2",
+      "rate_denominator": 2
+    },
+    {
+      "active_count": 6,
+      "active_quotient_orders": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 7,
+        "fraction": "1/128"
+      },
+      "max_attaining_quotient_order": 64,
+      "max_count_bit_length": 60,
+      "max_count_decimal": "916312070471295267",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 59.668616637003,
+      "max_log2_floor": 59,
+      "rate": "1/2",
+      "rate_denominator": 2
+    },
+    {
+      "active_count": 7,
+      "active_quotient_orders": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 8,
+        "fraction": "1/256"
+      },
+      "max_attaining_quotient_order": 128,
+      "max_count_bit_length": 124,
+      "max_count_decimal": "11975573020964041433067793888190275875",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 123.171434200174,
+      "max_log2_floor": 123,
+      "rate": "1/2",
+      "rate_denominator": 2
+    },
+    {
+      "active_count": 8,
+      "active_quotient_orders": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 9,
+        "fraction": "1/512"
+      },
+      "max_attaining_quotient_order": 256,
+      "max_count_bit_length": 251,
+      "max_count_decimal": "2884329411724603169044874178931143443870105850987581016304218283632259375395",
+      "max_exceeds_2_128": true,
+      "max_log2_approx": 250.672843056971,
+      "max_log2_floor": 250,
+      "rate": "1/2",
+      "rate_denominator": 2
+    },
+    {
+      "active_count": 9,
+      "active_quotient_orders": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 10,
+        "fraction": "1/1024"
+      },
+      "max_attaining_quotient_order": 512,
+      "max_count_bit_length": 507,
+      "max_count_decimal": "236276651577482462494502185025593194739105357821240941288664429576783035168283050422325149817027119984928715664216987480163087353331754833674133286035747",
+      "max_exceeds_2_128": true,
+      "max_log2_approx": 506.173547494774,
+      "max_log2_floor": 506,
+      "rate": "1/2",
+      "rate_denominator": 2
+    },
+    {
+      "active_count": 10,
+      "active_quotient_orders": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 11,
+        "fraction": "1/2048"
+      },
+      "max_attaining_quotient_order": 1024,
+      "max_count_bit_length": 1018,
+      "max_count_decimal": "2240627276049485405012082425240666590007653929533868497208043949702386853305719822395542070036457030173084717009309301401503750836188248429349936991813308031235837925752786051012579667700545279513914261052614880057450188523875050969255802466276823731258719222256824382666347250141664201106934381978286956835",
+      "max_exceeds_2_128": true,
+      "max_log2_approx": 1017.673899714851,
+      "max_log2_floor": 1017,
+      "rate": "1/2",
+      "rate_denominator": 2
+    },
+    {
+      "active_count": 11,
+      "active_quotient_orders": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 12,
+        "fraction": "1/4096"
+      },
+      "max_attaining_quotient_order": 2048,
+      "max_count_bit_length": 2042,
+      "max_count_decimal": "284854572418592466398992135487522446800436840507846234208916696595193148735418535874146164345577221041112144757928387239477210852957269578650243968729409119463682956335434610655254777320486957486955022644696673780584901399617813695364555523935391862109521507322391461571201183659126739816765674398093133042703647245528202389677065184713569380160883605761300414276114691967611625211051173609188116023304192153012333976204366600644006681350519991255979661699232174440776306645562459039992171611814988631117667868941762544404000678335475737106239650088582077190015789125649938398001146121728739745745200886215089987875",
+      "max_exceeds_2_128": true,
+      "max_log2_approx": 2041.174075825036,
+      "max_log2_floor": 2041,
+      "rate": "1/2",
+      "rate_denominator": 2
+    },
+    {
+      "active_count": 0,
+      "active_quotient_orders": [],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 1,
+        "fraction": "1/2"
+      },
+      "max_attaining_quotient_order": null,
+      "max_count_bit_length": 0,
+      "max_count_decimal": "0",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": null,
+      "max_log2_floor": null,
+      "rate": "1/4",
+      "rate_denominator": 4
+    },
+    {
+      "active_count": 0,
+      "active_quotient_orders": [],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 2,
+        "fraction": "1/4"
+      },
+      "max_attaining_quotient_order": null,
+      "max_count_bit_length": 0,
+      "max_count_decimal": "0",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": null,
+      "max_log2_floor": null,
+      "rate": "1/4",
+      "rate_denominator": 4
+    },
+    {
+      "active_count": 1,
+      "active_quotient_orders": [
+        4
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 3,
+        "fraction": "1/8"
+      },
+      "max_attaining_quotient_order": 4,
+      "max_count_bit_length": 2,
+      "max_count_decimal": "3",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 1.584962500721,
+      "max_log2_floor": 1,
+      "rate": "1/4",
+      "rate_denominator": 4
+    },
+    {
+      "active_count": 2,
+      "active_quotient_orders": [
+        4,
+        8
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 4,
+        "fraction": "1/16"
+      },
+      "max_attaining_quotient_order": 8,
+      "max_count_bit_length": 5,
+      "max_count_decimal": "21",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 4.392317422779,
+      "max_log2_floor": 4,
+      "rate": "1/4",
+      "rate_denominator": 4
+    },
+    {
+      "active_count": 3,
+      "active_quotient_orders": [
+        4,
+        8,
+        16
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 5,
+        "fraction": "1/32"
+      },
+      "max_attaining_quotient_order": 16,
+      "max_count_bit_length": 11,
+      "max_count_decimal": "1365",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 10.414685235807,
+      "max_log2_floor": 10,
+      "rate": "1/4",
+      "rate_denominator": 4
+    },
+    {
+      "active_count": 4,
+      "active_quotient_orders": [
+        4,
+        8,
+        16,
+        32
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 6,
+        "fraction": "1/64"
+      },
+      "max_attaining_quotient_order": 32,
+      "max_count_bit_length": 23,
+      "max_count_decimal": "7888725",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 22.911360715594,
+      "max_log2_floor": 22,
+      "rate": "1/4",
+      "rate_denominator": 4
+    },
+    {
+      "active_count": 5,
+      "active_quotient_orders": [
+        4,
+        8,
+        16,
+        32,
+        64
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 7,
+        "fraction": "1/128"
+      },
+      "max_attaining_quotient_order": 64,
+      "max_count_bit_length": 49,
+      "max_count_decimal": "366395202809685",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 48.380393942862,
+      "max_log2_floor": 48,
+      "rate": "1/4",
+      "rate_denominator": 4
+    },
+    {
+      "active_count": 6,
+      "active_quotient_orders": [
+        4,
+        8,
+        16,
+        32,
+        64,
+        128
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 8,
+        "fraction": "1/256"
+      },
+      "max_attaining_quotient_order": 128,
+      "max_count_bit_length": 100,
+      "max_count_decimal": "1108355191126710500011856080725",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 99.80626313808,
+      "max_log2_floor": 99,
+      "rate": "1/4",
+      "rate_denominator": 4
+    },
+    {
+      "active_count": 7,
+      "active_quotient_orders": [
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 9,
+        "fraction": "1/512"
+      },
+      "max_attaining_quotient_order": 256,
+      "max_count_bit_length": 204,
+      "max_count_decimal": "14282853361848836315351365633679499331844685450041107658551125",
+      "max_exceeds_2_128": true,
+      "max_log2_approx": 203.151898011178,
+      "max_log2_floor": 203,
+      "rate": "1/4",
+      "rate_denominator": 4
+    },
+    {
+      "active_count": 8,
+      "active_quotient_orders": [
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 10,
+        "fraction": "1/1024"
+      },
+      "max_attaining_quotient_order": 512,
+      "max_count_bit_length": 411,
+      "max_count_decimal": "3347211500789655126997334532576123365588252081782743649907899041743295062614476130661689364479762091733286877209155749523285",
+      "max_exceeds_2_128": true,
+      "max_log2_approx": 410.340115384853,
+      "max_log2_floor": 410,
+      "rate": "1/4",
+      "rate_denominator": 4
+    },
+    {
+      "active_count": 9,
+      "active_quotient_orders": [
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 11,
+        "fraction": "1/2048"
+      },
+      "max_attaining_quotient_order": 1024,
+      "max_count_bit_length": 826,
+      "max_count_decimal": "259701858260167489796943623890526914399172022727786474222414866313708022254570957576517090892782010059840267675933017340927833809841437224575960235190188077504000281359093871968575141029172791628094122583497215076137236244703749943784849695150681941",
+      "max_exceeds_2_128": true,
+      "max_log2_approx": 825.215023869121,
+      "max_log2_floor": 825,
+      "rate": "1/4",
+      "rate_denominator": 4
+    },
+    {
+      "active_count": 10,
+      "active_quotient_orders": [
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 12,
+        "fraction": "1/4096"
+      },
+      "max_attaining_quotient_order": 2048,
+      "max_count_bit_length": 1656,
+      "max_count_decimal": "2209755028539184529661644824884724125917757229823447887010910094419527013723922237699470636864320859903025764514729758108068085950635560308187046353009976710640485359222883301786440958865311403545080498063795732006400257048746024136499201280171979839835624061272115861928733172063772104457245729751729680800233788842534475318177440464035997069688666010917836807641714628505761530043926331821019282325334346476777339148398695688337677550723386791806674739320172770930183029605942765885548354550869845",
+      "max_exceeds_2_128": true,
+      "max_log2_approx": 1655.464077696509,
+      "max_log2_floor": 1655,
+      "rate": "1/4",
+      "rate_denominator": 4
+    },
+    {
+      "active_count": 0,
+      "active_quotient_orders": [],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 1,
+        "fraction": "1/2"
+      },
+      "max_attaining_quotient_order": null,
+      "max_count_bit_length": 0,
+      "max_count_decimal": "0",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": null,
+      "max_log2_floor": null,
+      "rate": "1/8",
+      "rate_denominator": 8
+    },
+    {
+      "active_count": 0,
+      "active_quotient_orders": [],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 2,
+        "fraction": "1/4"
+      },
+      "max_attaining_quotient_order": null,
+      "max_count_bit_length": 0,
+      "max_count_decimal": "0",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": null,
+      "max_log2_floor": null,
+      "rate": "1/8",
+      "rate_denominator": 8
+    },
+    {
+      "active_count": 0,
+      "active_quotient_orders": [],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 3,
+        "fraction": "1/8"
+      },
+      "max_attaining_quotient_order": null,
+      "max_count_bit_length": 0,
+      "max_count_decimal": "0",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": null,
+      "max_log2_floor": null,
+      "rate": "1/8",
+      "rate_denominator": 8
+    },
+    {
+      "active_count": 1,
+      "active_quotient_orders": [
+        8
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 4,
+        "fraction": "1/16"
+      },
+      "max_attaining_quotient_order": 8,
+      "max_count_bit_length": 3,
+      "max_count_decimal": "7",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 2.807354922058,
+      "max_log2_floor": 2,
+      "rate": "1/8",
+      "rate_denominator": 8
+    },
+    {
+      "active_count": 2,
+      "active_quotient_orders": [
+        8,
+        16
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 5,
+        "fraction": "1/32"
+      },
+      "max_attaining_quotient_order": 16,
+      "max_count_bit_length": 7,
+      "max_count_decimal": "105",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 6.714245517666,
+      "max_log2_floor": 6,
+      "rate": "1/8",
+      "rate_denominator": 8
+    },
+    {
+      "active_count": 3,
+      "active_quotient_orders": [
+        8,
+        16,
+        32
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 6,
+        "fraction": "1/64"
+      },
+      "max_attaining_quotient_order": 32,
+      "max_count_bit_length": 15,
+      "max_count_decimal": "31465",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 14.941460322459,
+      "max_log2_floor": 14,
+      "rate": "1/8",
+      "rate_denominator": 8
+    },
+    {
+      "active_count": 4,
+      "active_quotient_orders": [
+        8,
+        16,
+        32,
+        64
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 7,
+        "fraction": "1/128"
+      },
+      "max_attaining_quotient_order": 64,
+      "max_count_bit_length": 32,
+      "max_count_decimal": "3872894697",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 31.850765129383,
+      "max_log2_floor": 31,
+      "rate": "1/8",
+      "rate_denominator": 8
+    },
+    {
+      "active_count": 5,
+      "active_quotient_orders": [
+        8,
+        16,
+        32,
+        64,
+        128
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 8,
+        "fraction": "1/256"
+      },
+      "max_attaining_quotient_order": 128,
+      "max_count_bit_length": 67,
+      "max_count_decimal": "81675143551104405225",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 66.146530888186,
+      "max_log2_floor": 66,
+      "rate": "1/8",
+      "rate_denominator": 8
+    },
+    {
+      "active_count": 6,
+      "active_quotient_orders": [
+        8,
+        16,
+        32,
+        64,
+        128,
+        256
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 9,
+        "fraction": "1/512"
+      },
+      "max_attaining_quotient_order": 256,
+      "max_count_bit_length": 136,
+      "max_count_decimal": "50964019775576912153703782274307996667625",
+      "max_exceeds_2_128": true,
+      "max_log2_approx": 135.226602869823,
+      "max_log2_floor": 135,
+      "rate": "1/8",
+      "rate_denominator": 8
+    },
+    {
+      "active_count": 7,
+      "active_quotient_orders": [
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 10,
+        "fraction": "1/1024"
+      },
+      "max_attaining_quotient_order": 512,
+      "max_count_bit_length": 274,
+      "max_count_decimal": "27951166538959878109068739920306861578126985965146529186796669010776147389922299625",
+      "max_exceeds_2_128": true,
+      "max_log2_approx": 273.881012275813,
+      "max_log2_floor": 273,
+      "rate": "1/8",
+      "rate_denominator": 8
+    },
+    {
+      "active_count": 8,
+      "active_quotient_orders": [
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 11,
+        "fraction": "1/2048"
+      },
+      "max_attaining_quotient_order": 1024,
+      "max_count_bit_length": 552,
+      "max_count_decimal": "11866540949756023697223374857376739965507287553696541402720324198378055134421987361070357279210162653114838212338594569095036008617271781977960084239250180306522754793",
+      "max_exceeds_2_128": true,
+      "max_log2_approx": 551.686963207605,
+      "max_log2_floor": 551,
+      "rate": "1/8",
+      "rate_denominator": 8
+    },
+    {
+      "active_count": 9,
+      "active_quotient_orders": [
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 12,
+        "fraction": "1/4096"
+      },
+      "max_attaining_quotient_order": 2048,
+      "max_count_bit_length": 1108,
+      "max_count_decimal": "3021731468001156268562080793436508351772803190163001685286131822158177433988299348944921656118251341539290542393984353914431056229712474206095754961990996958617344022096038523124257959218434618933723504781788170040975014106175268666031612140021390086029346493136904806100318644604648054758945324369727860094836978409578904953749130985",
+      "max_exceeds_2_128": true,
+      "max_log2_approx": 1107.797431055812,
+      "max_log2_floor": 1107,
+      "rate": "1/8",
+      "rate_denominator": 8
+    },
+    {
+      "active_count": 0,
+      "active_quotient_orders": [],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 1,
+        "fraction": "1/2"
+      },
+      "max_attaining_quotient_order": null,
+      "max_count_bit_length": 0,
+      "max_count_decimal": "0",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": null,
+      "max_log2_floor": null,
+      "rate": "1/16",
+      "rate_denominator": 16
+    },
+    {
+      "active_count": 0,
+      "active_quotient_orders": [],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 2,
+        "fraction": "1/4"
+      },
+      "max_attaining_quotient_order": null,
+      "max_count_bit_length": 0,
+      "max_count_decimal": "0",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": null,
+      "max_log2_floor": null,
+      "rate": "1/16",
+      "rate_denominator": 16
+    },
+    {
+      "active_count": 0,
+      "active_quotient_orders": [],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 3,
+        "fraction": "1/8"
+      },
+      "max_attaining_quotient_order": null,
+      "max_count_bit_length": 0,
+      "max_count_decimal": "0",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": null,
+      "max_log2_floor": null,
+      "rate": "1/16",
+      "rate_denominator": 16
+    },
+    {
+      "active_count": 0,
+      "active_quotient_orders": [],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 4,
+        "fraction": "1/16"
+      },
+      "max_attaining_quotient_order": null,
+      "max_count_bit_length": 0,
+      "max_count_decimal": "0",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": null,
+      "max_log2_floor": null,
+      "rate": "1/16",
+      "rate_denominator": 16
+    },
+    {
+      "active_count": 1,
+      "active_quotient_orders": [
+        16
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 5,
+        "fraction": "1/32"
+      },
+      "max_attaining_quotient_order": 16,
+      "max_count_bit_length": 4,
+      "max_count_decimal": "15",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 3.906890595609,
+      "max_log2_floor": 3,
+      "rate": "1/16",
+      "rate_denominator": 16
+    },
+    {
+      "active_count": 2,
+      "active_quotient_orders": [
+        16,
+        32
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 6,
+        "fraction": "1/64"
+      },
+      "max_attaining_quotient_order": 32,
+      "max_count_bit_length": 9,
+      "max_count_decimal": "465",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 8.861086905995,
+      "max_log2_floor": 8,
+      "rate": "1/16",
+      "rate_denominator": 16
+    },
+    {
+      "active_count": 3,
+      "active_quotient_orders": [
+        16,
+        32,
+        64
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 7,
+        "fraction": "1/128"
+      },
+      "max_attaining_quotient_order": 64,
+      "max_count_bit_length": 20,
+      "max_count_decimal": "595665",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 19.184141666337,
+      "max_log2_floor": 19,
+      "rate": "1/16",
+      "rate_denominator": 16
+    },
+    {
+      "active_count": 4,
+      "active_quotient_orders": [
+        16,
+        32,
+        64,
+        128
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 8,
+        "fraction": "1/256"
+      },
+      "max_attaining_quotient_order": 128,
+      "max_count_bit_length": 41,
+      "max_count_decimal": "1340346236625",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 40.285742862719,
+      "max_log2_floor": 40,
+      "rate": "1/16",
+      "rate_denominator": 16
+    },
+    {
+      "active_count": 5,
+      "active_quotient_orders": [
+        16,
+        32,
+        64,
+        128,
+        256
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 9,
+        "fraction": "1/512"
+      },
+      "max_attaining_quotient_order": 256,
+      "max_count_bit_length": 83,
+      "max_count_decimal": "9448829626895919257468625",
+      "max_exceeds_2_128": false,
+      "max_log2_approx": 82.966409919219,
+      "max_log2_floor": 82,
+      "rate": "1/16",
+      "rate_denominator": 16
+    },
+    {
+      "active_count": 6,
+      "active_quotient_orders": [
+        16,
+        32,
+        64,
+        128,
+        256,
+        512
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 10,
+        "fraction": "1/1024"
+      },
+      "max_attaining_quotient_order": 512,
+      "max_count_bit_length": 169,
+      "max_count_decimal": "658888362802442085954412326226040171365878624534225",
+      "max_exceeds_2_128": true,
+      "max_log2_approx": 168.816438790672,
+      "max_log2_floor": 168,
+      "rate": "1/16",
+      "rate_denominator": 16
+    },
+    {
+      "active_count": 7,
+      "active_quotient_orders": [
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 11,
+        "fraction": "1/2048"
+      },
+      "max_attaining_quotient_order": 1024,
+      "max_count_bit_length": 342,
+      "max_count_decimal": "4513271129503520054781225022452600824371758015564609327358019997687835263446358740230037325110446767825",
+      "max_exceeds_2_128": true,
+      "max_log2_approx": 341.010839127888,
+      "max_log2_floor": 341,
+      "rate": "1/16",
+      "rate_denominator": 16
+    },
+    {
+      "active_count": 8,
+      "active_quotient_orders": [
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "all_binomial_counts_recomputed_by_verifier": true,
+      "eta": {
+        "exponent": 12,
+        "fraction": "1/4096"
+      },
+      "max_attaining_quotient_order": 2048,
+      "max_count_bit_length": 686,
+      "max_count_decimal": "298891724172711712654352563594758890787867716800813914212014701551075317910678874497505537608147791997271566339484154743316956946384946077099930469623587841244051004647034725755196797283697672882659333357265",
+      "max_exceeds_2_128": true,
+      "max_log2_approx": 685.896810498479,
+      "max_log2_floor": 685,
+      "rate": "1/16",
+      "rate_denominator": 16
+    }
+  ],
+  "rates": [
+    "1/2",
+    "1/4",
+    "1/8",
+    "1/16"
+  ],
+  "schema_version": "l1-dyadic-profile-evaluation-v1",
+  "status": "PROVED / EXACT-ARITHMETIC",
+  "theorem": {
+    "exact_rate_active_orders": "For n=2^nu, k=n/R, sigma=eta*n, active exact quotient orders are N=2^v with R <= N and eta*N < 1.",
+    "one_step_dither": "For k=n/R-1, gcd(n,k)=1; hence the exact-divisibility profile is empty for every nontrivial dyadic scale.",
+    "profile_value": "Q_H(a,k)=max_N log2 binom(N-1,N/R), with the empty max when no active N exists."
+  }
+}
