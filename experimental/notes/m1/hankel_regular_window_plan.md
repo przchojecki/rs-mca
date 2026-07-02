@@ -942,6 +942,11 @@ pairwise direction-consistency equation is nonzero on the residual projective
 `Q`-line, then at most two finite noncontained slopes survive and the endpoint
 gives total at most `3`.  The only residual in that fixed-three-core subcase is
 the ratio-identically-consistent `Q`-line.
+With a common two-point base core, the residual `Q`-space is a projective
+plane.  A no-common-component pair of direction-consistency conics gives at
+most four finite noncontained slopes by Bezout, hence total at most `5` after
+the endpoint.  The fixed two-core residual is now the common-component branch
+on that plane.
 For `A=387`, the projective `Q`-space is a point, so the arbitrary-weight
 separated branch is already projective-safe with total at most `2`.
 For `A=386`, a no-common-component pair of direction conics gives projective
@@ -982,6 +987,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cut.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_pair_safety.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-pair-safety/f17_32_n512_k256_m3_rank6_a385_two_core_conic_pair_safety.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

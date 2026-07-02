@@ -551,6 +551,14 @@ the endpoint gives total projective contribution `<=3`.  The only fixed
 three-core residual left by this criterion is the ratio-identically-consistent
 `Q`-line.
 
+The `A=385` two-core conic-pair companion handles the next fixed-core generic
+case: after a common forced two-point base core is factored, the residual
+`Q`-space is a projective plane.  If two residual direction-consistency conics
+have no common component, Bezout gives at most four compatible `Q`-classes,
+hence at most four finite noncontained slopes; adding the endpoint gives total
+projective contribution `<=5`.  The remaining fixed two-core residual is the
+common-component branch on that `Q`-plane.
+
 The `A=387` separated-boundary safety companion uses the `h=1` specialization
 to close that agreement for arbitrary nonzero separated weights: the finite
 root table has at most one ambient root, the split-locator gate cannot increase
@@ -881,6 +889,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cut.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_pair_safety.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-pair-safety/f17_32_n512_k256_m3_rank6_a385_two_core_conic_pair_safety.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

@@ -1,0 +1,146 @@
+{
+  "agreement": {
+    "A": 385,
+    "boundary_defect_h": 5,
+    "combined_support_size": 134,
+    "direction_rank": 6,
+    "j": 127,
+    "m": 128,
+    "projective_Q_search_dimension": 4,
+    "t": 129
+  },
+  "branch_partition": [
+    {
+      "branch": "two_residual_consistency_conics_without_common_component",
+      "finite_noncontained_parameter_upper_bound": 4,
+      "finite_q_class_upper_bound": 4,
+      "projective_total_upper_bound": 5,
+      "reason": "on the fixed two-core Q-plane, two comparison conics without a common component have intersection length at most four; the split-locator gate and zero-denominator compatibility can only remove classes",
+      "status": "projective_budget_safe"
+    },
+    {
+      "branch": "residual_conics_have_a_common_component_on_the_Q_plane",
+      "finite_noncontained_parameter_upper_bound": null,
+      "finite_q_class_upper_bound": null,
+      "projective_total_upper_bound": null,
+      "reason": "the degree-only Bezout cut is no longer zero-dimensional; the common component must be classified by component, slope-map, quotient, or split-locator structure",
+      "status": "named_residual"
+    },
+    {
+      "branch": "slope_free_points_on_the_Q_plane",
+      "finite_noncontained_parameter_upper_bound": 0,
+      "finite_q_class_upper_bound": null,
+      "projective_total_upper_bound": 0,
+      "reason": "if all direction numerator and denominator forms vanish at a Q-class, the displayed vector satisfies H(v)L_Q=0 and fails the finite noncontainment gate",
+      "status": "zero_finite_noncontained_parameters"
+    }
+  ],
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "A=385 has boundary defect h=5 and Q-space P^4",
+    "base-support split roots transfer to Q-roots because base weights and residues are nonzero",
+    "two distinct base evaluations leave a projective Q-plane",
+    "direction ratio consistency restricts to conics on that Q-plane",
+    "two conics without a common component have intersection length at most four",
+    "each compatible non-slope-free Q-class determines at most one finite slope",
+    "slope-free Q-classes add zero finite noncontained parameters",
+    "endpoint-uniform dependency supplies at most one endpoint",
+    "5 <= projective budget 6"
+  ],
+  "criterion": {
+    "comparison_conics": "choose a direction node y0 and comparison nodes y1,y2; F_i(R)=N_{y_i}(R)D_{y0}(R)-N_{y0}(R)D_{y_i}(R), i=1,2",
+    "residual_Q_space": "factor Q=E R after the fixed two-point base core; then deg R<3 and [R] lies in P^2",
+    "residual_if_not": "a common line/conic component remains on the fixed two-core Q-plane and needs a component/slope-map or split-locator analysis",
+    "safe_if": "F_1 and F_2 have no common component over the algebraic closure"
+  },
+  "family": {
+    "base_support": "any subset X of H with |X|=j+1",
+    "branch_condition": "the counted branch has a fixed forced base-root core E subset X with |E|=2, and there are two pairwise direction-consistency conics on the resulting projective Q-plane with no common component over the algebraic closure",
+    "direction_support": "any subset Y of H\\X with |Y|=6",
+    "support_condition": "X and Y are disjoint",
+    "weights": "any nonzero base weights a_x and direction weights b_y"
+  },
+  "nonclaims": [
+    "does not close the fixed two-core common-component residual",
+    "does not prove that every A=385 over-budget branch has a fixed two-point base core",
+    "does not close moving-core or no-common-core A=385 branches",
+    "does not classify overlapping-support rank-6 pencils",
+    "does not prove endpoint payment; it uses endpoint-budget accounting",
+    "does not compute arbitrary A=385 rank-6 root tables",
+    "does not produce a row-level M3 safe-side bound"
+  ],
+  "object": "A=385 separated rank-6 fixed two-core conic-pair criterion",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-a385-two-core-conic-pair-safety-v1",
+  "source_artifacts": {
+    "a385_four_base_core_closure": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-base-core-closure/f17_32_n512_k256_m3_rank6_a385_base_core_closure.json",
+      "sha256": "3a922cb3941fd69b6038a97ab90ebc4151ea8f31c6f919c8670f05384314cbcc"
+    },
+    "a385_three_core_quadratic_cut": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json",
+      "sha256": "28d6cd8a357679b188d94e2cd6955d7e9efd46305fe4468993c88e4579e3affe"
+    },
+    "nullpolynomial_split_locator_gate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json",
+      "sha256": "fd918c7ddbf47b9037840a7dddf5d9a49c77b7d8d889924bbb6b861f8bb2bc42"
+    },
+    "rank6_boundary_low_degree_transfer": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json",
+      "sha256": "4ff0d90a1e710bca56efd7a68357d2dcc473a8150c9ddcaf1b95a061ec5c2101"
+    },
+    "rank6_projective_endpoint_uniform": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+      "sha256": "f933c4d38476d3056e6284de55e01b7375f8c90239d52aed40548018323454e2"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement": 385,
+    "boundary_defect_h": 5,
+    "comparison_conic_count_needed": 2,
+    "finite_noncontained_parameter_upper_bound_under_conic_pair": 4,
+    "fixed_two_core_no_common_component_branch_projective_safe": true,
+    "forced_base_core_size": 2,
+    "no_common_component_finite_q_class_upper_bound": 4,
+    "projective_Q_search_dimension_after_core": 2,
+    "projective_Q_search_dimension_before_core": 4,
+    "projective_budget": 6,
+    "projective_endpoint_count": 1,
+    "remaining_residual": "fixed two-core common-component branch on the residual Q-plane",
+    "residual_vector_dimension_after_core": 3,
+    "support_wise_projective_total_upper_bound_under_conic_pair": 5
+  },
+  "theorem": {
+    "bezout_bound": "Two plane conics without a common component have intersection length at most four over the algebraic closure, hence at most four compatible projective Q-classes.",
+    "conic_pair_cut": "For direction nodes y,y', the equality of the two displayed ratios is N_y(R)D_y'(R)-N_y'(R)D_y(R)=0.  On the residual Q-plane this is a conic.  If two such conics have no common component, every compatible finite root lies in their zero-dimensional intersection.",
+    "finite_slope_bound": "For each compatible Q-class, the direction equations are inconsistent, slope-free/contained, or determine one scalar z.  Thus the no-common-component branch has at most four finite noncontained parameters.",
+    "low_degree_transfer": "At A=385 every finite root in a separated rank-6 boundary bucket is represented by a projective Q-class with deg Q<5.",
+    "projective_safety": "The endpoint-uniform theorem contributes at most the single projective endpoint, so the branch total is at most 5<=6.",
+    "residual": "If every useful conic pair has a common component on the fixed two-core Q-plane, that common-component branch remains as the named fixed-two-core residual.",
+    "two_point_reduction": "A fixed two-point base core imposes two independent conditions on polynomials deg Q<5, leaving a three-dimensional vector space Q=E R with deg R<3, i.e. a projective plane."
+  }
+}

@@ -110,6 +110,19 @@ and the endpoint added, the branch has projective total `<=3<=6`.  The
 remaining fixed-three-core residual is exactly the ratio-identically-consistent
 `Q`-line where all pairwise consistency quadratics vanish identically.
 
+The fixed two-core companion is
+
+```text
+experimental/notes/m1/hankel_rank6_a385_two_core_conic_pair_safety.md
+```
+
+After a fixed two-point base core is factored, the residual `Q`-space is a
+projective plane.  If two direction-consistency conics on that plane have no
+common component, Bezout gives at most four compatible `Q`-classes.  With one
+slope per compatible non-slope-free class and the endpoint added, the branch
+has projective total `<=5<=6`.  The remaining fixed-two-core residual is the
+common-component branch on the residual `Q`-plane.
+
 At `A=387`, this transfer already closes the separated branch for arbitrary
 nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at
 most one finite slope.  The companion note
@@ -235,6 +248,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cut.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_pair_safety.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-pair-safety/f17_32_n512_k256_m3_rank6_a385_two_core_conic_pair_safety.json
 ```
 
 Nonclaims:

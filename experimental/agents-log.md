@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A385 two-core conic-pair safety
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_pair_safety.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-pair-safety/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a385_two_core_conic_pair_safety.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A separated `A=385` rank-6 fixed two-core
+  criterion: after a forced two-point base core is factored, any
+  no-common-component pair of direction-consistency conics on the residual
+  `Q`-plane gives at most four finite noncontained slopes, hence projective
+  total at most `5<=6`.
+- **How it is useful:** This extends the fixed-core `A=385` attack below the
+  three-core branch and reduces the remaining fixed two-core obstruction to a
+  concrete common-component residual on the `Q`-plane.
+- **What to do next:** Classify the fixed two-core common-component residual by
+  component and slope map, then return to moving-core/no-common-core and
+  overlapping-support rank-6 branches.
+
 ### 2026-07-02 - A385 three-core quadratic cut
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
