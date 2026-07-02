@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v24"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v25"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v42",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v43",
 }
 
 
@@ -370,6 +370,12 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         == [0, 255, 417, 261, 6, 356]
         and summary["conic_four_private_hexagon_sharpness_factor_value"] == 0,
         "conic four-private hexagon sharpness summary mismatch",
+    )
+    require(
+        summary["conic_four_private_two_triangle_sharpness_exponents"] == [0, 1, 2, 3, 4, 5]
+        and summary["conic_four_private_two_triangle_sharpness_rank"] == 5
+        and summary["conic_four_private_two_triangle_sharpness_determinant_nonzero"],
+        "conic four-private two-triangle sharpness summary mismatch",
     )
     require(
         summary["line_one_over_budget_external_core_ranges"] == [[72, 80], [120, 120]],
@@ -1439,6 +1445,17 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         and hexagon_sharpness["not_an_mca_witness"],
         "conic four-private hexagon sharpness witness mismatch",
     )
+    two_triangle_sharpness = data["conic_four_private_two_triangle_sharpness_witness"]
+    require(
+        two_triangle_sharpness["status"]
+        == "COUNTEREXAMPLE_TO_TWO_TRIANGLE_REDUCIBILITY_DISMISSAL"
+        and two_triangle_sharpness["subgroup_exponents"] == [0, 1, 2, 3, 4, 5]
+        and two_triangle_sharpness["conic_matrix_rank"] == 5
+        and two_triangle_sharpness["conic_nullity"] == 1
+        and two_triangle_sharpness["scaled_symmetric_determinant_encoding"] != 0
+        and two_triangle_sharpness["not_an_mca_witness"],
+        "conic four-private two-triangle sharpness witness mismatch",
+    )
     require(
         summary["exact_current_minimal_obstruction_count"] == 17
         and summary["exact_current_minimal_obstruction_core_ranges"]
@@ -1690,6 +1707,7 @@ def build_certificate() -> dict[str, Any]:
                 "the conic d=r'+3 branch e_G=103..108 is closed by a root-star Bezout obstruction: six selected pairs on five residual coordinates force three pair-quadratic points on one root-star line, impossible for an irreducible conic",
                 "the conic d=r'+4 branch e_G=97..102 is reduced to two-disjoint-triangle or six-cycle hexagon-factor quotient residuals; all max-degree-at-least-3 graphs close by root-star Bezout",
                 "the six-cycle hexagon residual is real at subgroup-coordinate level: exponents 0,255,417,261,6,356 make the normalized hexagon factor vanish, so closure must use quotient/Hankel/split-locator constraints rather than subgroup nonvanishing",
+                "the two-disjoint-triangle residual is also real at subgroup-coordinate level: exponents 0,1,2,3,4,5 give a unique nondegenerate conic, so closure cannot rely on reducibility dismissal",
                 "the still-unclosed high-core quotient ranges are e_G=72..96 for lines and e_G=69..102 for irreducible conics",
                 "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; after exact-tail sharpening the worst projective bounds are 18 and 25",
                 "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the formerly one-over e_G=120 cases are closed by the cofactor-span contradiction",
@@ -1792,6 +1810,7 @@ def build_certificate() -> dict[str, Any]:
             "A=386 moving-slope small-core and very-high-core tail branches are recorded as projective-safe; the intermediate high-core quotient ranges remain residual",
             "A=386 conic four-private residuals are reduced to two-triangle or hexagon-factor boundary shapes",
             "A=386 conic hexagon-factor subgroup nonvanishing is ruled out as a closure route by a deterministic witness",
+            "A=386 conic two-triangle reducibility dismissal is ruled out as a closure route by a nondegenerate witness",
             "projective infinity and finite affine accounting are not conflated",
         ],
         "nonclaims": [
@@ -1800,6 +1819,7 @@ def build_certificate() -> dict[str, Any]:
             "does not close the A=386 intermediate high-core quotient moving-slope residual in original-row projective accounting",
             "does not close the A=386 conic four-private two-triangle or hexagon-factor residuals",
             "does not treat the A=386 hexagon sharpness witness as an MCA bad-slope witness",
+            "does not treat the A=386 two-triangle sharpness witness as an MCA bad-slope witness",
             "does not audit quotient or extension overlap for arbitrary root tables",
             "not a worst-case support-wise MCA row bound",
         ],

@@ -26,7 +26,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v42"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v43"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -1058,6 +1058,148 @@ def subgroup_hexagon_factor_sharpness_witness() -> dict[str, Any]:
         "next_step": (
             "Use quotient-family, Hankel, endpoint, or split-locator constraints; "
             "do not spend effort on a subgroup-coordinate nonvanishing proof."
+        ),
+    }
+
+
+@lru_cache(maxsize=1)
+def subgroup_two_triangle_conic_sharpness_witness() -> dict[str, Any]:
+    """A concrete two-triangle survivor with a nondegenerate conic."""
+    field = Field(P, MODULUS)
+    descriptor = load_json(ROW_DESCRIPTOR_REF)
+    domain = descriptor["domain"]["domain_encodings"]
+    exponents = [0, 1, 2, 3, 4, 5]
+    encodings = [domain[exponent] for exponent in exponents]
+    require(len(set(encodings)) == 6, "two-triangle witness encodings should be distinct")
+
+    def add(left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
+        return tuple((a_i + b_i) % P for a_i, b_i in zip(left, right))
+
+    def neg(value: tuple[int, ...]) -> tuple[int, ...]:
+        return tuple((-a_i) % P for a_i in value)
+
+    def sub(left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
+        return tuple((a_i - b_i) % P for a_i, b_i in zip(left, right))
+
+    def mul(left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
+        return field.mul(left, right)
+
+    def inv(value: tuple[int, ...]) -> tuple[int, ...]:
+        require(value != field.zero, "cannot invert zero in two-triangle witness")
+        return field.pow(value, field.size - 2)
+
+    def pair_row(left: int, right: int, points: list[tuple[int, ...]]) -> list[tuple[int, ...]]:
+        s = neg(add(points[left], points[right]))
+        p = mul(points[left], points[right])
+        return [field.one, mul(s, s), mul(p, p), s, p, mul(s, p)]
+
+    def rref_nullvector(
+        matrix: list[list[tuple[int, ...]]],
+    ) -> tuple[list[tuple[int, ...]], int]:
+        rows = [row[:] for row in matrix]
+        row_count = len(rows)
+        col_count = len(rows[0])
+        pivots: list[int] = []
+        active_row = 0
+        for col in range(col_count):
+            pivot = None
+            for row_index in range(active_row, row_count):
+                if rows[row_index][col] != field.zero:
+                    pivot = row_index
+                    break
+            if pivot is None:
+                continue
+            rows[active_row], rows[pivot] = rows[pivot], rows[active_row]
+            pivot_inverse = inv(rows[active_row][col])
+            rows[active_row] = [mul(entry, pivot_inverse) for entry in rows[active_row]]
+            for row_index in range(row_count):
+                if row_index == active_row or rows[row_index][col] == field.zero:
+                    continue
+                factor = rows[row_index][col]
+                rows[row_index] = [
+                    sub(rows[row_index][entry_index], mul(factor, rows[active_row][entry_index]))
+                    for entry_index in range(col_count)
+                ]
+            pivots.append(col)
+            active_row += 1
+            if active_row == row_count:
+                break
+        free_columns = [col for col in range(col_count) if col not in pivots]
+        require(len(free_columns) == 1, "two-triangle conic should have one null direction")
+        free_col = free_columns[0]
+        vector = [field.zero] * col_count
+        vector[free_col] = field.one
+        for row_index, pivot_col in reversed(list(enumerate(pivots))):
+            total = field.zero
+            for col in free_columns:
+                total = add(total, mul(rows[row_index][col], vector[col]))
+            vector[pivot_col] = neg(total)
+        return vector, len(pivots)
+
+    def det3(matrix: list[list[tuple[int, ...]]]) -> tuple[int, ...]:
+        return add(
+            sub(
+                mul(
+                    matrix[0][0],
+                    sub(mul(matrix[1][1], matrix[2][2]), mul(matrix[1][2], matrix[2][1])),
+                ),
+                mul(
+                    matrix[0][1],
+                    sub(mul(matrix[1][0], matrix[2][2]), mul(matrix[1][2], matrix[2][0])),
+                ),
+            ),
+            mul(
+                matrix[0][2],
+                sub(mul(matrix[1][0], matrix[2][1]), mul(matrix[1][1], matrix[2][0])),
+            ),
+        )
+
+    points = [field.decode(encoding) for encoding in encodings]
+    edges = [[0, 1], [0, 2], [1, 2], [3, 4], [3, 5], [4, 5]]
+    matrix = [pair_row(left, right, points) for left, right in edges]
+    coefficients, rank = rref_nullvector(matrix)
+    require(rank == 5, "two-triangle conic matrix should have rank 5")
+    require(coefficients[-1] == field.one, "two-triangle conic coefficients should be normalized")
+    four = field.normalize(4)
+    two = field.normalize(2)
+    a, b, c, d, e, f = coefficients
+    scaled_symmetric_matrix = [
+        [mul(four, a), mul(two, d), mul(two, e)],
+        [mul(two, d), mul(four, b), mul(two, f)],
+        [mul(two, e), mul(two, f), mul(four, c)],
+    ]
+    scaled_det = det3(scaled_symmetric_matrix)
+    require(scaled_det != field.zero, "two-triangle conic should be nondegenerate")
+    return {
+        "status": "COUNTEREXAMPLE_TO_TWO_TRIANGLE_REDUCIBILITY_DISMISSAL",
+        "meaning": (
+            "The two-disjoint-triangle residual cannot be dismissed as only "
+            "a reducible-conic artifact: this subgroup example has a unique "
+            "nondegenerate conic through the six pair-quadratic points."
+        ),
+        "not_an_mca_witness": (
+            "This is only a coordinate-level sharpness witness for the "
+            "four-private boundary model; split-locator noncontainment, quotient "
+            "membership, and endpoint accounting are not asserted."
+        ),
+        "subgroup_exponents": exponents,
+        "subgroup_encodings": encodings,
+        "two_triangle_edges": edges,
+        "conic_evaluation_basis": ["X^2", "Y^2", "Z^2", "XY", "XZ", "YZ"],
+        "conic_matrix_rank": rank,
+        "conic_nullity": 1,
+        "normalized_conic_coefficients_encoding": [
+            field.encode(entry) for entry in coefficients
+        ],
+        "scaled_symmetric_matrix_convention": (
+            "matrix for 4*A X^2 + 4*B Y^2 + 4*C Z^2 + 4*D XY + "
+            "4*E XZ + 4*F YZ, represented with off-diagonal entries 2D,2E,2F"
+        ),
+        "scaled_symmetric_determinant_encoding": field.encode(scaled_det),
+        "next_step": (
+            "Use quotient-family, Hankel, endpoint, or split-locator constraints; "
+            "do not spend effort trying to dismiss the two-triangle branch as "
+            "purely reducible."
         ),
     }
 
@@ -3574,6 +3716,9 @@ def build_certificate() -> dict[str, Any]:
     conic_four_private_hexagon_sharpness_witness = (
         subgroup_hexagon_factor_sharpness_witness()
     )
+    conic_four_private_two_triangle_sharpness_witness = (
+        subgroup_two_triangle_conic_sharpness_witness()
+    )
     line_base_defect_rows = [
         line_base_defect_threshold_row(row) for row in line_survival_rows
     ]
@@ -4054,6 +4199,19 @@ def build_certificate() -> dict[str, Any]:
         and conic_four_private_hexagon_sharpness_witness["status"]
         == "COUNTEREXAMPLE_TO_SUBGROUP_HEXAGON_NONVANISHING",
         "conic four-private hexagon sharpness witness changed",
+    )
+    require(
+        conic_four_private_two_triangle_sharpness_witness["subgroup_exponents"]
+        == [0, 1, 2, 3, 4, 5]
+        and conic_four_private_two_triangle_sharpness_witness["conic_matrix_rank"] == 5
+        and conic_four_private_two_triangle_sharpness_witness["conic_nullity"] == 1
+        and conic_four_private_two_triangle_sharpness_witness[
+            "scaled_symmetric_determinant_encoding"
+        ]
+        != 0
+        and conic_four_private_two_triangle_sharpness_witness["status"]
+        == "COUNTEREXAMPLE_TO_TWO_TRIANGLE_REDUCIBILITY_DISMISSAL",
+        "conic four-private two-triangle sharpness witness changed",
     )
     require(
         [group for group in line_exact_current_profile_groups if group["one_over_budget"]]
@@ -5420,6 +5578,13 @@ def build_certificate() -> dict[str, Any]:
                 "coordinate-level sharpness witness, not a split-locator MCA "
                 "witness."
             ),
+            "conic_four_private_two_triangle_sharpness_witness": (
+                "The two-disjoint-triangle residual is also a genuine "
+                "coordinate-level conic branch, not just a reducible artifact. "
+                "The order-512 subgroup exponents 0,1,2,3,4,5 split into two "
+                "triangles give a rank-5 six-row conic system whose unique "
+                "conic has nonzero scaled symmetric determinant."
+            ),
             "single_saving_closure_ledger": (
                 "Every cofactor-current one-over row in the moving-slope packet is "
                 "listed in a single-saving closure ledger.  The ledger covers "
@@ -5616,6 +5781,9 @@ def build_certificate() -> dict[str, Any]:
         "conic_four_private_tail_boundary_profile": conic_four_private_tail_boundary_rows,
         "conic_four_private_hexagon_sharpness_witness": (
             conic_four_private_hexagon_sharpness_witness
+        ),
+        "conic_four_private_two_triangle_sharpness_witness": (
+            conic_four_private_two_triangle_sharpness_witness
         ),
         "sampler_denominators": {
             "finite_line": {
@@ -5842,6 +6010,18 @@ def build_certificate() -> dict[str, Any]:
                 conic_four_private_hexagon_sharpness_witness[
                     "hexagon_factor_value_encoding"
                 ]
+            ),
+            "conic_four_private_two_triangle_sharpness_exponents": (
+                conic_four_private_two_triangle_sharpness_witness["subgroup_exponents"]
+            ),
+            "conic_four_private_two_triangle_sharpness_rank": (
+                conic_four_private_two_triangle_sharpness_witness["conic_matrix_rank"]
+            ),
+            "conic_four_private_two_triangle_sharpness_determinant_nonzero": (
+                conic_four_private_two_triangle_sharpness_witness[
+                    "scaled_symmetric_determinant_encoding"
+                ]
+                != 0
             ),
             "conic_cofactor_improved_tangent_one_over_external_core": (
                 conic_cofactor_tangent_one_over_cores
@@ -6072,6 +6252,7 @@ def build_certificate() -> dict[str, Any]:
             "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction",
             "conic four-private tail boundary is reduced to two-triangle or hexagon-factor residuals",
             "subgroup-coordinate hexagon nonvanishing is refuted by a six-cycle witness",
+            "two-triangle reducibility dismissal is refuted by a nondegenerate conic witness",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",
@@ -6079,6 +6260,7 @@ def build_certificate() -> dict[str, Any]:
             "does not close irreducible conic moving-slope components with forced external split-root core in 69..102 in projective accounting",
             "does not rule out the conic four-private two-triangle or hexagon-factor residuals",
             "the conic four-private hexagon sharpness witness is not an MCA bad-slope witness",
+            "the conic four-private two-triangle sharpness witness is not an MCA bad-slope witness",
             "does not prove the high-core quotient split problem is empty or paid",
             "does not claim the punctured tangent numerator at the residual threshold is within the original row budget",
             "does not rule out another independent noncontained vector at the same finite slope",

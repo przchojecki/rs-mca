@@ -402,6 +402,14 @@ subgroup.  Any closure must use more structure: quotient-family equations,
 Hankel constraints, endpoint payment, or split-locator noncontainment.  This
 witness is not an MCA bad-slope witness.
 
+The two-disjoint-triangle survivor is also not dismissed by reducibility.  The
+subgroup exponents `0,1,2,3,4,5`, split as triangles
+`{0,1,2}` and `{3,4,5}`, give a rank-`5` six-row conic system with a unique
+conic through the six pair-quadratic points.  Its scaled symmetric determinant
+is nonzero, so this is a nondegenerate conic at the coordinate-model level.
+Again, this is not an MCA bad-slope witness; it only shows that the local
+two-triangle branch is a genuine residual.
+
 Thus the unclosed high-core quotient range is finite:
 
 ```text
