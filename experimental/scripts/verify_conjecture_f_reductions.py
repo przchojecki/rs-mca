@@ -16,6 +16,8 @@ the identities over F_97 with H = mu_16:
 * fixed projective dimension d gives #D_j <= binom(n,d).
 * after common-root removal, fixed dimension gives #D_j <= binom(n-c,d).
 * the same fixed-dimensional bound descends to quotient-pullback strata.
+* the union of all proper quotient-pullback strata is fixed-dimension
+  polynomial by summing the descended bounds.
 """
 from __future__ import annotations
 
@@ -25,7 +27,7 @@ import itertools
 import json
 import random
 from collections import Counter
-from math import comb
+from math import comb, gcd
 from pathlib import Path
 
 
@@ -35,6 +37,7 @@ J_GCD = 5
 COMMON_DEGREE = 2
 J_SCALE = 6
 SCALE_M = 2
+J_QUOTIENT_UNION = 8
 J_VOTING = 4
 PENCIL_TRIALS = 500
 PLANE_TRIALS = 25
@@ -856,6 +859,119 @@ def check_quotient_fixed_dimension_bound(H: list[int]) -> dict:
     }
 
 
+def quotient_divisors(j: int) -> list[int]:
+    return [m for m in range(2, gcd(N, j) + 1) if gcd(N, j) % m == 0]
+
+
+def check_quotient_union_fixed_dimension_bound(H: list[int]) -> dict:
+    quotient_orders = quotient_divisors(J_QUOTIENT_UNION)
+    quotient_strata = {}
+    for m in quotient_orders:
+        small_order = N // m
+        small_j = J_QUOTIENT_UNION // m
+        H_small = subgroup(small_order)
+        quotient_strata[m] = {
+            compose_x_power(poly, m)
+            for poly in divisor_set(H_small, small_j)
+        }
+    quotient_union = set().union(*quotient_strata.values())
+    rng = random.Random(SEED + 8)
+    checked_random_spaces = 0
+    max_union_hits = 0
+    max_union_bound = 0
+    per_scale_max_hits = {m: 0 for m in quotient_orders}
+
+    for d in range(0, min(4, J_QUOTIENT_UNION) + 1):
+        crude_bound = sum(
+            sum(comb(N // m, r) for r in range(0, min(d, N // m) + 1))
+            for m in quotient_orders
+        )
+        for _ in range(35):
+            basis = random_independent_basis(rng, d + 1, J_QUOTIENT_UNION)
+            union_hits = {
+                poly for poly in quotient_union
+                if in_span(poly, basis, J_QUOTIENT_UNION + 1)
+            }
+            if len(union_hits) > crude_bound:
+                return {
+                    "name": "quotient_union_fixed_dimension_bound",
+                    "status": "FAIL",
+                    "reason": "proper quotient-union hits exceeded crude fixed-d bound",
+                    "d": d,
+                    "hits": len(union_hits),
+                    "bound": crude_bound,
+                }
+            for m, stratum in quotient_strata.items():
+                scale_hits = [
+                    poly for poly in stratum
+                    if in_span(poly, basis, J_QUOTIENT_UNION + 1)
+                ]
+                scale_bound = sum(
+                    comb(N // m, r) for r in range(0, min(d, N // m) + 1)
+                )
+                if len(scale_hits) > scale_bound:
+                    return {
+                        "name": "quotient_union_fixed_dimension_bound",
+                        "status": "FAIL",
+                        "reason": "single quotient scale exceeded crude fixed-d bound",
+                        "M": m,
+                        "d": d,
+                        "hits": len(scale_hits),
+                        "bound": scale_bound,
+                    }
+                per_scale_max_hits[m] = max(per_scale_max_hits[m], len(scale_hits))
+            checked_random_spaces += 1
+            max_union_hits = max(max_union_hits, len(union_hits))
+            max_union_bound = max(max_union_bound, crude_bound)
+
+    sharp_checks = {}
+    for m in quotient_orders:
+        small_order = N // m
+        small_j = J_QUOTIENT_UNION // m
+        lifted_full_basis = [
+            compose_x_power(
+                tuple(1 if i == degree else 0 for i in range(small_j + 1)),
+                m,
+            )
+            for degree in range(small_j + 1)
+        ]
+        hits = [
+            poly for poly in quotient_strata[m]
+            if in_span(poly, lifted_full_basis, J_QUOTIENT_UNION + 1)
+        ]
+        expected = comb(small_order, small_j)
+        if len(hits) != expected:
+            return {
+                "name": "quotient_union_fixed_dimension_bound",
+                "status": "FAIL",
+                "reason": "full lifted quotient space did not recover its stratum",
+                "M": m,
+                "hits": len(hits),
+                "expected": expected,
+            }
+        sharp_checks[str(m)] = {
+            "projective_dimension": small_j,
+            "hits": len(hits),
+            "expected": expected,
+        }
+
+    return {
+        "name": "quotient_union_fixed_dimension_bound",
+        "status": "PASS",
+        "n": N,
+        "j": J_QUOTIENT_UNION,
+        "proper_quotient_scales": quotient_orders,
+        "quotient_union_size": len(quotient_union),
+        "checked_random_spaces": checked_random_spaces,
+        "max_random_union_hits": max_union_hits,
+        "max_crude_union_bound": max_union_bound,
+        "per_scale_max_random_hits": {
+            str(m): per_scale_max_hits[m] for m in quotient_orders
+        },
+        "full_lifted_scale_checks": sharp_checks,
+    }
+
+
 def evaluation_lines(basis: list[tuple[int, ...]], H: list[int]) -> list[tuple[int, ...]]:
     lines = []
     for x in H:
@@ -1050,6 +1166,7 @@ def build_report() -> dict:
         check_fixed_dimension_incidence_bound(H),
         check_common_root_fixed_dimension_bound(H),
         check_quotient_fixed_dimension_bound(H),
+        check_quotient_union_fixed_dimension_bound(H),
     ]
     return {
         "schema": "conjecture_f_reduction_toy_v1",

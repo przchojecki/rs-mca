@@ -110,6 +110,43 @@
       "small_j": 3,
       "small_order": 8,
       "status": "PASS"
+    },
+    {
+      "checked_random_spaces": 175,
+      "full_lifted_scale_checks": {
+        "2": {
+          "expected": 70,
+          "hits": 70,
+          "projective_dimension": 4
+        },
+        "4": {
+          "expected": 6,
+          "hits": 6,
+          "projective_dimension": 2
+        },
+        "8": {
+          "expected": 2,
+          "hits": 2,
+          "projective_dimension": 1
+        }
+      },
+      "j": 8,
+      "max_crude_union_bound": 183,
+      "max_random_union_hits": 0,
+      "n": 16,
+      "name": "quotient_union_fixed_dimension_bound",
+      "per_scale_max_random_hits": {
+        "2": 0,
+        "4": 0,
+        "8": 0
+      },
+      "proper_quotient_scales": [
+        2,
+        4,
+        8
+      ],
+      "quotient_union_size": 70,
+      "status": "PASS"
     }
   ],
   "domain": {
@@ -138,6 +175,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "57f0ad4008c2b81b11151d3ccb8d2fbc3572beac676cee397809bfd886e52e3c",
+  "script_sha256": "bb6766a8ae545569cbb9b2da568b741dfdae6ef82fc0503d288cdfc491e25790",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

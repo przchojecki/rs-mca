@@ -7,7 +7,7 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_reductions.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`.
 
-This note records nine elementary reductions around the fiber-rigidity
+This note records ten elementary reductions around the fiber-rigidity
 statement called Conjecture F in the proof sketch.  They do not prove the
 primitive core.  Their role is to remove two paid structures from the statement
 to settle the dimension-one base case, and to restate the remaining primitive
@@ -408,6 +408,55 @@ polynomial control after descent.  Conjecture F's genuinely new content is not
 in fixed-dimensional tangent or quotient strata; it is in primitive
 dimension-growing intersections.
 
+## Corollary 10: Proper Quotient-Union Bound
+
+Keep the hypotheses of Corollary 9, and define the proper quotient-periodic
+part of `D_j(mu_n)` by
+
+```text
+D_j^{quot}(mu_n) =
+  union_{M | gcd(n,j), M>1} iota_M(D_{j/M}(mu_{n/M})).
+```
+
+For each such `M`, set
+
+```text
+W_M = iota_M^{-1}(W),       d_M = dim P(W_M),
+```
+
+and let `c_M` be the number of common roots of `W_M` on `mu_{n/M}`.  Empty
+`W_M` contributes zero.  Then
+
+```text
+#(P(W) cap D_j^{quot}(mu_n))
+  <= sum_{M | gcd(n,j), M>1} binom(n/M-c_M,d_M).
+```
+
+In particular, if `dim P(W) <= d`, then the coarser uniform estimate
+
+```text
+#(P(W) cap D_j^{quot}(mu_n))
+  <= sum_{M | gcd(n,j), M>1} sum_{r=0}^d binom(n/M,r)
+```
+
+holds.  For fixed `d`, this is polynomial in `n` with an explicit divisor-sum
+constant depending only on the active quotient scales.
+
+**Proof.**  Decompose the proper quotient-periodic locus as the displayed
+finite union over `M`.  Corollary 9 bounds the `M`-summand by
+`binom(n/M-c_M,d_M)`.  Summing over `M` gives the first estimate; overlaps can
+only make the union smaller.  Since `d_M <= d`, the second estimate follows by
+bounding each `binom(n/M-c_M,d_M)` by
+
+```text
+sum_{r=0}^d binom(n/M,r).
+```
+
+This turns the entire fixed-dimensional quotient-paid part into bookkeeping.
+After common-root and quotient-union removal, a fixed-dimensional section has
+only the primitive incidence problem left; any super-polynomial obstruction to
+Conjecture F must therefore come from dimensions growing with the row.
+
 ## Verification
 
 The verifier checks these lemmas over `F_97` with `H = mu_16`:
@@ -425,5 +474,6 @@ dimension bound, verifies the projective-plane pair-counting bound including
 forced repeated-line planes, and verifies the fixed-dimension incidence bound
 on random subspaces plus the sharp full-space case.  It also verifies the
 common-root corollary on forced common-root subspaces and the
-fixed-dimensional quotient-pullback consumer.  The verifier is supporting
-evidence only; the proofs above are the mathematical content.
+fixed-dimensional quotient-pullback consumer, plus the proper quotient-union
+bound at `n=16,j=8` across the scales `M in {2,4,8}`.  The verifier is
+supporting evidence only; the proofs above are the mathematical content.

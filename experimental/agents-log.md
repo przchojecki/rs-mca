@@ -67,6 +67,25 @@ Keep entries concise and link to the relevant files.
   explicitly requested; audit Paper D itself through theorem statements and
   certificate checks.
 
+### 2026-07-02 - Conjecture F proper quotient-union bound
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_reduction_lemmas.md`;
+  `experimental/scripts/verify_conjecture_f_reductions.py`;
+  `experimental/data/certificates/conjecture-f-reductions/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A tenth reduction lemma: the union of all proper
+  quotient-pullback strata in a fixed-dimensional section is bounded by the
+  sum of the descended quotient bounds, hence polynomial for fixed projective
+  dimension.
+- **How it is useful:** This turns all fixed-dimensional quotient-paid
+  structure into explicit bookkeeping and leaves the Conjecture F hard core
+  in primitive, non-pullback, dimension-growing intersections.
+- **What to do next:** Use the quotient-union bound when building paid
+  Conjecture F ledgers; any further attack should target the primitive
+  growing-dimension case rather than another fixed-dimensional quotient case.
+
 ### 2026-07-02 - Conjecture F quotient fixed-dimension consumer
 
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.
