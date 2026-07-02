@@ -360,7 +360,11 @@ line/conic punctured-tangent tail at `e_G=120`.
 Those rows split by first available saving mechanism into line base-active
 `72..74`, line external-slack `75..80`, conic base+secant `69..71`, conic
 secant-only `72..74`, conic endpoint/duplicate-only `75..76`, and the
-punctured-tangent tail `120`.
+punctured-tangent tail `120`.  The tail is sharpened further: if it remains
+over budget, then after puncturing to `(n',a')=(392,386)` and choosing a nonbad
+projective point as infinity, it is a finite tangent-star extremizer with
+common support `385` and a bijection from the seven punctured residual
+coordinates to the seven bad projective slopes.
 
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets

@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v2"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v3"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v20",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v21",
 }
 
 
@@ -768,6 +768,23 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         ],
         "one-over mechanism-priority classes",
     )
+    require(
+        [
+            (
+                row["component_type"],
+                row["forced_external_core_size"],
+                row["projective_saturation_count"],
+                row["finite_tangent_star_common_support_size"],
+                row["finite_tangent_star_residual_coordinate_count"],
+            )
+            for row in summary["punctured_tangent_tail_extremizer_profile"]
+        ]
+        == [
+            ("line", 120, 7, 385, 7),
+            ("irreducible_conic", 120, 7, 385, 7),
+        ],
+        "punctured tangent-tail extremizer profile",
+    )
     nonclaims = set(data["nonclaims"])
     require(
         "does not claim the punctured tangent numerator at the residual threshold is within the original row budget"
@@ -777,6 +794,11 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
     require(
         "does not produce a row-level M3 safe-side bound" in nonclaims,
         "A386 moving-slope packet must keep the row-bound nonclaim",
+    )
+    require(
+        "does not exclude the punctured tangent-star extremizer profile at e_G=120"
+        in nonclaims,
+        "A386 moving-slope packet must keep the tail-extremizer nonclaim",
     )
 
 
@@ -887,6 +909,7 @@ def build_certificate() -> dict[str, Any]:
                 "the endpoint-only one-over finite-incidence range has a compact exact catalog: line histogram counts 2,16,27,28^6 across e_G=72..80 and conic counts 2,16,27,28^5 across e_G=69..76",
                 "all nineteen moving-slope one-over residual rows have a single-saving closure ledger entry: line e_G=72..80, conic e_G=69..76, and the punctured-tangent tail e_G=120",
                 "the one-over rows split by first available saving mechanism into line base-active 72..74, line external-slack 75..80, conic base+secant 69..71, conic secant-only 72..74, conic endpoint/duplicate-only 75..76, and punctured-tangent tail 120",
+                "if the e_G=120 tail remains over budget, then after puncturing to (n',a')=(392,386) and choosing a nonbad projective point as infinity, it is a finite tangent-star extremizer with common support 385 and seven residual-coordinate slopes",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",

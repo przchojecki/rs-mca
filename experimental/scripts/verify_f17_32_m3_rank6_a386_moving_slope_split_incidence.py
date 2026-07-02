@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v20"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v21"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -590,6 +590,66 @@ def tangent_tail_single_saving_closure_row(survival_row: dict[str, Any]) -> dict
             "one duplicate slope after returning to the original branch",
             "one slope paid by tangent, quotient, extension, or containment",
         ],
+    }
+
+
+def tangent_tail_projective_extremizer_row(
+    component_type: str,
+    saturation_row: dict[str, Any],
+) -> dict[str, Any]:
+    """Necessary tangent-star structure if the e=120 projective tail saturates."""
+    punctured_length = saturation_row["punctured_length"]
+    punctured_agreement = AGREEMENT
+    punctured_radius = saturation_row["punctured_cosupport_radius"]
+    projective_count = saturation_row["projective_tangent_bound"]
+    common_support_size = punctured_agreement - 1
+    residual_coordinate_count = punctured_length - common_support_size
+    tangent_gate_margin = 3 * punctured_agreement - 2 * punctured_length - K
+    require(component_type in {"line", "irreducible_conic"}, "unknown component type")
+    require(
+        projective_count == PROJECTIVE_BUDGET + 1,
+        "tail extremizer profile should only cover one-over rows",
+    )
+    require(projective_count == punctured_radius + 1, "projective count should be r'+1")
+    require(
+        residual_coordinate_count == projective_count,
+        "tangent-star residual coordinates should biject to saturated projective slopes",
+    )
+    require(tangent_gate_margin >= 0, "punctured row must be in tangent-star range")
+    require(
+        PROJECTIVE_DENOMINATOR > projective_count,
+        "a nonbad projective point must exist for the coordinate-change proof",
+    )
+    return {
+        "component_type": component_type,
+        "forced_external_core_size": saturation_row["forced_external_core_size"],
+        "punctured_length": punctured_length,
+        "punctured_agreement": punctured_agreement,
+        "punctured_cosupport_radius": punctured_radius,
+        "projective_saturation_count": projective_count,
+        "projective_line_size": PROJECTIVE_DENOMINATOR,
+        "nonbad_projective_point_available": True,
+        "tangent_gate_margin_3a_minus_2n_minus_k": tangent_gate_margin,
+        "after_projective_recoordinate": (
+            "choose a nonbad projective point as infinity; the saturated bad "
+            "projective set becomes a finite bad-slope set of size r'+1"
+        ),
+        "finite_tangent_star_common_support_size": common_support_size,
+        "finite_tangent_star_residual_coordinate_count": residual_coordinate_count,
+        "residual_coordinate_to_bad_slope_bijection_required": True,
+        "cited_extremizer_result": (
+            "Corollary cor:tangent-star-extremizers, applied after the "
+            "coordinate-change step in Theorem thm:ca-projective-tangent-staircase"
+        ),
+        "next_saving_target": (
+            "exclude compatibility between this tangent-star residual-coordinate "
+            "bijection and the component's quotient split-locator family, or pay "
+            "one of the seven projective tangent-star slopes"
+        ),
+        "nonclosure_reason": (
+            "this is a necessary saturation profile only; it does not classify "
+            "the endpoint or prove a paid slope"
+        ),
     }
 
 
@@ -1596,6 +1656,10 @@ def build_certificate() -> dict[str, Any]:
         tangent_tail_over_budget_survival_row(component_type, tangent_tail_saturation_rows[0])
         for component_type in ["line", "irreducible_conic"]
     ]
+    tangent_tail_extremizer_rows = [
+        tangent_tail_projective_extremizer_row(component_type, tangent_tail_saturation_rows[0])
+        for component_type in ["line", "irreducible_conic"]
+    ]
     line_base_defect_rows = [
         line_base_defect_threshold_row(row) for row in line_survival_rows
     ]
@@ -2344,6 +2408,32 @@ def build_certificate() -> dict[str, Any]:
         ],
         "one-over mechanism-priority ledger changed",
     )
+    require(
+        [
+            (
+                row["component_type"],
+                row["forced_external_core_size"],
+                row["projective_saturation_count"],
+                row["finite_tangent_star_common_support_size"],
+                row["finite_tangent_star_residual_coordinate_count"],
+            )
+            for row in tangent_tail_extremizer_rows
+        ]
+        == [
+            ("line", 120, 7, 385, 7),
+            ("irreducible_conic", 120, 7, 385, 7),
+        ],
+        "punctured tangent tail extremizer profile changed",
+    )
+    require(
+        all(
+            row["nonbad_projective_point_available"]
+            and row["residual_coordinate_to_bad_slope_bijection_required"]
+            and row["tangent_gate_margin_3a_minus_2n_minus_k"] == 118
+            for row in tangent_tail_extremizer_rows
+        ),
+        "punctured tangent tail should force the same tangent-star profile",
+    )
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -2613,6 +2703,16 @@ def build_certificate() -> dict[str, Any]:
                 "secant-only pressure (72..74), conic endpoint-or-duplicate only "
                 "(75..76), and the punctured tangent tail (120)."
             ),
+            "punctured_tangent_tail_extremizer_profile": (
+                "If the e_G=120 tail actually exceeds budget, it must saturate "
+                "the projective tangent staircase on the punctured row "
+                "(n',a')=(392,386).  Since the projective bad set has size 7 "
+                "and P^1(F) has q+1 points, a nonbad projective point can be "
+                "sent to infinity.  The finite tangent-star extremizer "
+                "corollary then forces a common support of size 385 and a "
+                "bijection from the seven punctured residual coordinates to "
+                "the seven bad projective slopes."
+            ),
         },
         "budget_formula": {
             "locator_degree_j": j_value,
@@ -2718,6 +2818,7 @@ def build_certificate() -> dict[str, Any]:
         },
         "single_saving_closure_ledger": single_saving_closure_rows,
         "one_over_mechanism_priority_ledger": mechanism_priority_rows,
+        "punctured_tangent_tail_extremizer_profile": tangent_tail_extremizer_rows,
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -2856,6 +2957,7 @@ def build_certificate() -> dict[str, Any]:
                 }
                 for row in mechanism_priority_rows
             ],
+            "punctured_tangent_tail_extremizer_profile": tangent_tail_extremizer_rows,
             "conic_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows
             ),
@@ -2901,6 +3003,7 @@ def build_certificate() -> dict[str, Any]:
             "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
             "every one-over moving-slope residual row has a single-saving closure ledger entry",
             "one-over moving-slope residual rows are grouped by the first available saving mechanism",
+            "the e=120 one-over tail is sharpened to a punctured projective tangent-star extremizer profile",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",
@@ -2912,6 +3015,7 @@ def build_certificate() -> dict[str, Any]:
             "does not cover A=385",
             "does not classify overlapping-support rank-6 pencils",
             "does not prove endpoint payment",
+            "does not exclude the punctured tangent-star extremizer profile at e_G=120",
             "does not produce a row-level M3 safe-side bound",
         ],
     }

@@ -312,6 +312,22 @@ near-complete base splitting among the six finite classes, while conic core
 `|E|=69` needs an almost complete external-secant graph among the six conic
 points.
 
+The `|E|=120` tail has a different exact saturation profile.  Puncturing the
+forced core gives a row with
+
+```text
+n' = 392,      a' = 386,      r' = 6.
+```
+
+If this row contributes seven projective slopes, then the projective tangent
+staircase is saturated.  Since `P^1(F_17^32)` has more than seven points, choose
+a nonbad projective point as infinity.  In that affine coordinate the finite
+tangent-star extremizer corollary applies: the punctured branch has a common
+support of size `385`, and the seven residual punctured coordinates biject with
+the seven bad projective slopes.  Thus the tail can only remain over budget if
+this tangent-star residual-coordinate bijection is compatible with the quotient
+split-locator family, or if none of the seven projective slopes is paid.
+
 The exact defect thresholds are now part of the packet.  The line `|E|=72`
 case closes unless all six finite classes have a base root and at least five
 have two.  The conic `|E|=69` case closes unless at least `14` of the `15`
@@ -370,7 +386,8 @@ line base-splitting pressure remains only for `e_G=72..74`; line cores
 For conics, base plus secant pressure remains for `e_G=69..71`, secant-only
 pressure remains for `e_G=72..74`, and cores `75,76` need an endpoint,
 duplicate-slope, or paid-class input.  The `e_G=120` rows are isolated as the
-punctured-tangent tail.
+punctured-tangent tail, and now carry the tangent-star extremizer profile above
+as their next structural target.
 
 Replay:
 
@@ -391,4 +408,5 @@ no exclusion of another independent noncontained vector at the same finite slope
 no A=385 closure;
 no overlapping-support rank-6 classification;
 no endpoint payment theorem.
+no exclusion of the punctured tangent-star extremizer profile at e_G=120.
 ```

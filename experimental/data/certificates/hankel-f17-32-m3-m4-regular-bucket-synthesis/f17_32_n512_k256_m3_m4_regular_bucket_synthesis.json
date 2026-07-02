@@ -484,7 +484,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v2",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v3",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -536,7 +536,7 @@
     },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
-      "sha256": "a6c4a10ada97efc3406b46afff92099edf397fcd1ae3218d0f588a409f1c8375"
+      "sha256": "c485f0b82b033f6aefe46a25e9e0222e498bb1479f5f932e487d4ca8bc7c4445"
     },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
@@ -598,7 +598,8 @@
       "local incidence accounting leaves line singleton sequences 52^6 or (53,52^5), and conic secant/singleton profiles (5^6;50^6), ((4,4,5,5,5,5);(51,51,50,50,50,50)), or (5^6;(51,50,50,50,50,50))",
       "the endpoint-only one-over finite-incidence range has a compact exact catalog: line histogram counts 2,16,27,28^6 across e_G=72..80 and conic counts 2,16,27,28^5 across e_G=69..76",
       "all nineteen moving-slope one-over residual rows have a single-saving closure ledger entry: line e_G=72..80, conic e_G=69..76, and the punctured-tangent tail e_G=120",
-      "the one-over rows split by first available saving mechanism into line base-active 72..74, line external-slack 75..80, conic base+secant 69..71, conic secant-only 72..74, conic endpoint/duplicate-only 75..76, and punctured-tangent tail 120"
+      "the one-over rows split by first available saving mechanism into line base-active 72..74, line external-slack 75..80, conic base+secant 69..71, conic secant-only 72..74, conic endpoint/duplicate-only 75..76, and punctured-tangent tail 120",
+      "if the e_G=120 tail remains over budget, then after puncturing to (n',a')=(392,386) and choosing a nonbad projective point as infinity, it is a finite tangent-star extremizer with common support 385 and seven residual-coordinate slopes"
     ],
     "closed_by_current_lemmas": [
       "zero-v with full-rank H(u): no finite roots, infinity tangent-paid",

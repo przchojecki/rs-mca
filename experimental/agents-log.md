@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 punctured tangent-tail extremizer profile
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `e_G=120` one-over tail is sharpened from
+  "saturates the punctured projective tangent bound" to a checked
+  tangent-star extremizer profile on the punctured row `(n',a')=(392,386)`.
+- **How it is useful:** Any over-budget tail witness must, after choosing a
+  nonbad projective point as infinity, have common support `385` and a
+  bijection from the seven punctured residual coordinates to the seven bad
+  projective slopes.
+- **What to do next:** Try to exclude compatibility between this tangent-star
+  residual-coordinate bijection and the quotient split-locator family, or pay
+  one of the seven projective slopes.
+
 ### 2026-07-02 - A386 one-over mechanism-priority split
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
