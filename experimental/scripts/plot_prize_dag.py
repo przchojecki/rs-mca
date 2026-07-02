@@ -173,13 +173,16 @@ def main() -> None:
     for k in range(1, nring):   # faint ring guides
         svg.append(f'<circle cx="{C:.0f}" cy="{C:.0f}" r="{R[k]:.0f}" fill="none" '
                    f'stroke="#eef1f3" stroke-width="1"/>')
-    for e in edges:             # gentle curves pulled toward the center
+    for e in edges:             # polar-interpolated links (leave/arrive along radii)
+        a1, r1 = ang[e["from"]], R[ring[e["from"]]]
+        a2, r2 = ang[e["to"]], R[ring[e["to"]]]
         x1, y1 = xy[e["from"]]
         x2, y2 = xy[e["to"]]
-        cxm = C + 0.72 * ((x1 + x2) / 2 - C)
-        cym = C + 0.72 * ((y1 + y2) / 2 - C)
-        svg.append(f'<path d="M{x1:.0f},{y1:.0f} Q{cxm:.0f},{cym:.0f} {x2:.0f},{y2:.0f}" '
-                   f'fill="none" {EDGE[e["kind"]]}/>')
+        rm = (r1 + r2) / 2
+        c1x, c1y = C + rm * math.cos(a1), C + rm * math.sin(a1)
+        c2x, c2y = C + rm * math.cos(a2), C + rm * math.sin(a2)
+        svg.append(f'<path d="M{x1:.0f},{y1:.0f} C{c1x:.0f},{c1y:.0f} '
+                   f'{c2x:.0f},{c2y:.0f} {x2:.0f},{y2:.0f}" fill="none" {EDGE[e["kind"]]}/>')
     for v, n in nodes.items():
         x, y = xy[v]
         c = COLORS[n["status"]]
