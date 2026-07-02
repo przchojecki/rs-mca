@@ -59,8 +59,11 @@ Keep entries concise and link to the relevant files.
 - **Status:** PROVED / COMBINATORIAL + FINITE REPLAY.
 - **What is being added:** A support-side XR lemma: for any family in
   `J(n,j)`, one-exchange energy satisfies
-  `E_1 <= delta^2 + (1-n/(j(n-j)))delta(1-delta)`, with point-dictator
-  fixed-root families attaining equality.
+  `E_1 <= delta^2 + (1-n/(j(n-j)))delta(1-delta)`, and endpoint
+  multi-exchange correlation satisfies
+  `Pr[T_0,T_s in A] <= delta^2+lambda_*^s delta(1-delta)`.  Point-dictator
+  fixed-root families attain the one-step bound and obey the signed endpoint
+  formula exactly.
 - **How it is useful:** It supplies a theorem-level averaged-XR spectral
   inequality complementary to the subgroup Hankel displacement packet; high
   exchange energy must either be dense or live in structured low modes, with
