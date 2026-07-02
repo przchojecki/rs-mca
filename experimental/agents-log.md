@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - E4 petal auxiliary wide-regime evidence
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/l1_petal_auxiliary_wide_regime_evidence.md`;
+  `experimental/scripts/verify_l1_petal_auxiliary_wide_regime.py`;
+  `experimental/data/certificates/l1-petal-auxiliary-wide-regime/petal_auxiliary_wide_regime.json`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** An exact auxiliary-list evidence packet for
+  Fable's E4 `pma_wide_residual` fork.  The verifier enumerates degree-`<=d`
+  polynomials near the sunflower pieced word `c_i L_D` over subgroup petals
+  in `F_109`, crossing the Johnson petal cutoff.
+- **How it is useful:** It directly tests whether the mixed-petal residual
+  appears as a wide-regime auxiliary list explosion.  The tested window is
+  nonempty above the cutoff but shows no super-polynomial signal.
+- **What to do next:** Extend the E4 falsifier to larger `ell,d` or turn the
+  observed small-growth pattern into a correlated-target/descent lemma target.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.

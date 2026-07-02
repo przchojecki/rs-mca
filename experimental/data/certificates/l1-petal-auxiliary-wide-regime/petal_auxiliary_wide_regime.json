@@ -1,0 +1,1044 @@
+{
+  "cases": [
+    {
+      "agreement_threshold": 8,
+      "auxiliary_list_size": 0,
+      "d": 5,
+      "defect_roots": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "ell": 3,
+      "johnson_covered": true,
+      "johnson_m_cutoff": "64/15",
+      "johnson_margin": 19,
+      "label": "F109_subgroup_ell3_d5_linear",
+      "m_petals": 3,
+      "max_agreement": 0,
+      "n_petal_points": 9,
+      "p": 109,
+      "profile_histogram": {},
+      "scalar_schedule": "linear",
+      "sigma": 2,
+      "support_subsets_checked": 84,
+      "top_witnesses": [],
+      "unique_degree_le_d_candidates_seen": 84
+    },
+    {
+      "agreement_threshold": 8,
+      "auxiliary_list_size": 0,
+      "d": 5,
+      "defect_roots": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "ell": 3,
+      "johnson_covered": true,
+      "johnson_m_cutoff": "64/15",
+      "johnson_margin": 4,
+      "label": "F109_subgroup_ell3_d5_linear",
+      "m_petals": 4,
+      "max_agreement": 0,
+      "n_petal_points": 12,
+      "p": 109,
+      "profile_histogram": {},
+      "scalar_schedule": "linear",
+      "sigma": 2,
+      "support_subsets_checked": 924,
+      "top_witnesses": [],
+      "unique_degree_le_d_candidates_seen": 888
+    },
+    {
+      "agreement_threshold": 8,
+      "auxiliary_list_size": 0,
+      "d": 5,
+      "defect_roots": [
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "ell": 3,
+      "johnson_covered": false,
+      "johnson_m_cutoff": "64/15",
+      "johnson_margin": -26,
+      "label": "F109_subgroup_ell3_d5_linear",
+      "m_petals": 6,
+      "max_agreement": 0,
+      "n_petal_points": 18,
+      "p": 109,
+      "profile_histogram": {},
+      "scalar_schedule": "linear",
+      "sigma": 2,
+      "support_subsets_checked": 18564,
+      "top_witnesses": [],
+      "unique_degree_le_d_candidates_seen": 16974
+    },
+    {
+      "agreement_threshold": 8,
+      "auxiliary_list_size": 177,
+      "d": 5,
+      "defect_roots": [
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "ell": 3,
+      "johnson_covered": false,
+      "johnson_m_cutoff": "64/15",
+      "johnson_margin": -71,
+      "label": "F109_subgroup_ell3_d5_linear",
+      "m_petals": 9,
+      "max_agreement": 9,
+      "n_petal_points": 27,
+      "p": 109,
+      "profile_histogram": {
+        "1,1,1,1,1,1,1,1": 3,
+        "2,1,1,1,1,1,1": 48,
+        "2,2,1,1,1,1": 61,
+        "2,2,1,1,1,1,1": 1,
+        "2,2,2,1,1": 32,
+        "2,2,2,1,1,1": 1,
+        "2,2,2,2": 2,
+        "2,2,2,2,1": 1,
+        "3,1,1,1,1,1": 9,
+        "3,2,1,1,1": 15,
+        "3,2,2,1": 3,
+        "3,2,2,1,1": 1
+      },
+      "scalar_schedule": "linear",
+      "sigma": 2,
+      "support_subsets_checked": 296010,
+      "top_witnesses": [
+        {
+          "agreement": 9,
+          "coefficients": [
+            36,
+            95,
+            102,
+            33,
+            1,
+            96
+          ],
+          "profile": {
+            "agreement": 9,
+            "full_petals": 0,
+            "max_petal_hits": 2,
+            "positive_petal_hits_desc": [
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 7
+          }
+        },
+        {
+          "agreement": 9,
+          "coefficients": [
+            99,
+            71,
+            3,
+            93,
+            106,
+            100
+          ],
+          "profile": {
+            "agreement": 9,
+            "full_petals": 0,
+            "max_petal_hits": 2,
+            "positive_petal_hits_desc": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 6
+          }
+        },
+        {
+          "agreement": 9,
+          "coefficients": [
+            91,
+            40,
+            53,
+            17,
+            78,
+            26
+          ],
+          "profile": {
+            "agreement": 9,
+            "full_petals": 0,
+            "max_petal_hits": 2,
+            "positive_petal_hits_desc": [
+              2,
+              2,
+              2,
+              2,
+              1
+            ],
+            "touched_petals": 5
+          }
+        },
+        {
+          "agreement": 9,
+          "coefficients": [
+            30,
+            57,
+            56,
+            50,
+            61,
+            42
+          ],
+          "profile": {
+            "agreement": 9,
+            "full_petals": 1,
+            "max_petal_hits": 3,
+            "positive_petal_hits_desc": [
+              3,
+              2,
+              2,
+              1,
+              1
+            ],
+            "touched_petals": 5
+          }
+        },
+        {
+          "agreement": 8,
+          "coefficients": [
+            22,
+            89,
+            100,
+            71,
+            102,
+            88
+          ],
+          "profile": {
+            "agreement": 8,
+            "full_petals": 0,
+            "max_petal_hits": 1,
+            "positive_petal_hits_desc": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 8
+          }
+        },
+        {
+          "agreement": 8,
+          "coefficients": [
+            60,
+            105,
+            25,
+            61,
+            35,
+            27
+          ],
+          "profile": {
+            "agreement": 8,
+            "full_petals": 0,
+            "max_petal_hits": 1,
+            "positive_petal_hits_desc": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 8
+          }
+        },
+        {
+          "agreement": 8,
+          "coefficients": [
+            64,
+            64,
+            105,
+            15,
+            94,
+            52
+          ],
+          "profile": {
+            "agreement": 8,
+            "full_petals": 0,
+            "max_petal_hits": 1,
+            "positive_petal_hits_desc": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 8
+          }
+        },
+        {
+          "agreement": 8,
+          "coefficients": [
+            0,
+            25,
+            14,
+            88,
+            24,
+            12
+          ],
+          "profile": {
+            "agreement": 8,
+            "full_petals": 0,
+            "max_petal_hits": 2,
+            "positive_petal_hits_desc": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 7
+          }
+        }
+      ],
+      "unique_degree_le_d_candidates_seen": 251239
+    },
+    {
+      "agreement_threshold": 8,
+      "auxiliary_list_size": 2023,
+      "d": 5,
+      "defect_roots": [
+        3,
+        5,
+        6,
+        7,
+        9
+      ],
+      "ell": 3,
+      "johnson_covered": false,
+      "johnson_m_cutoff": "64/15",
+      "johnson_margin": -116,
+      "label": "F109_subgroup_ell3_d5_linear",
+      "m_petals": 12,
+      "max_agreement": 11,
+      "n_petal_points": 36,
+      "p": 109,
+      "profile_histogram": {
+        "1,1,1,1,1,1,1,1": 202,
+        "1,1,1,1,1,1,1,1,1": 4,
+        "2,1,1,1,1,1,1": 786,
+        "2,1,1,1,1,1,1,1": 17,
+        "2,2,1,1,1,1": 677,
+        "2,2,1,1,1,1,1": 22,
+        "2,2,2,1,1": 103,
+        "2,2,2,1,1,1": 9,
+        "2,2,2,1,1,1,1": 1,
+        "2,2,2,2": 4,
+        "3,1,1,1,1,1": 99,
+        "3,1,1,1,1,1,1": 2,
+        "3,2,1,1,1": 77,
+        "3,2,1,1,1,1": 3,
+        "3,2,1,1,1,1,1": 1,
+        "3,2,2,1": 14,
+        "3,2,2,1,1": 1,
+        "3,2,2,1,1,1,1": 1
+      },
+      "scalar_schedule": "linear",
+      "sigma": 2,
+      "support_subsets_checked": 1947792,
+      "top_witnesses": [
+        {
+          "agreement": 11,
+          "coefficients": [
+            61,
+            20,
+            5,
+            21,
+            40,
+            78
+          ],
+          "profile": {
+            "agreement": 11,
+            "full_petals": 1,
+            "max_petal_hits": 3,
+            "positive_petal_hits_desc": [
+              3,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 7
+          }
+        },
+        {
+          "agreement": 10,
+          "coefficients": [
+            3,
+            26,
+            40,
+            29,
+            13,
+            14
+          ],
+          "profile": {
+            "agreement": 10,
+            "full_petals": 0,
+            "max_petal_hits": 2,
+            "positive_petal_hits_desc": [
+              2,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 7
+          }
+        },
+        {
+          "agreement": 10,
+          "coefficients": [
+            107,
+            89,
+            18,
+            42,
+            104,
+            9
+          ],
+          "profile": {
+            "agreement": 10,
+            "full_petals": 1,
+            "max_petal_hits": 3,
+            "positive_petal_hits_desc": [
+              3,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 7
+          }
+        },
+        {
+          "agreement": 9,
+          "coefficients": [
+            41,
+            12,
+            10,
+            15,
+            18,
+            55
+          ],
+          "profile": {
+            "agreement": 9,
+            "full_petals": 0,
+            "max_petal_hits": 1,
+            "positive_petal_hits_desc": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 9
+          }
+        },
+        {
+          "agreement": 9,
+          "coefficients": [
+            48,
+            45,
+            62,
+            56,
+            22,
+            59
+          ],
+          "profile": {
+            "agreement": 9,
+            "full_petals": 0,
+            "max_petal_hits": 1,
+            "positive_petal_hits_desc": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 9
+          }
+        },
+        {
+          "agreement": 9,
+          "coefficients": [
+            62,
+            90,
+            27,
+            26,
+            12,
+            83
+          ],
+          "profile": {
+            "agreement": 9,
+            "full_petals": 0,
+            "max_petal_hits": 1,
+            "positive_petal_hits_desc": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 9
+          }
+        },
+        {
+          "agreement": 9,
+          "coefficients": [
+            91,
+            87,
+            56,
+            95,
+            10,
+            31
+          ],
+          "profile": {
+            "agreement": 9,
+            "full_petals": 0,
+            "max_petal_hits": 1,
+            "positive_petal_hits_desc": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 9
+          }
+        },
+        {
+          "agreement": 9,
+          "coefficients": [
+            3,
+            36,
+            91,
+            108,
+            78,
+            43
+          ],
+          "profile": {
+            "agreement": 9,
+            "full_petals": 0,
+            "max_petal_hits": 2,
+            "positive_petal_hits_desc": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 8
+          }
+        }
+      ],
+      "unique_degree_le_d_candidates_seen": 1538275
+    },
+    {
+      "agreement_threshold": 8,
+      "auxiliary_list_size": 0,
+      "d": 5,
+      "defect_roots": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "ell": 3,
+      "johnson_covered": true,
+      "johnson_m_cutoff": "64/15",
+      "johnson_margin": 19,
+      "label": "F109_subgroup_ell3_d5_geometric",
+      "m_petals": 3,
+      "max_agreement": 0,
+      "n_petal_points": 9,
+      "p": 109,
+      "profile_histogram": {},
+      "scalar_schedule": "geometric",
+      "sigma": 2,
+      "support_subsets_checked": 84,
+      "top_witnesses": [],
+      "unique_degree_le_d_candidates_seen": 84
+    },
+    {
+      "agreement_threshold": 8,
+      "auxiliary_list_size": 0,
+      "d": 5,
+      "defect_roots": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "ell": 3,
+      "johnson_covered": true,
+      "johnson_m_cutoff": "64/15",
+      "johnson_margin": 4,
+      "label": "F109_subgroup_ell3_d5_geometric",
+      "m_petals": 4,
+      "max_agreement": 0,
+      "n_petal_points": 12,
+      "p": 109,
+      "profile_histogram": {},
+      "scalar_schedule": "geometric",
+      "sigma": 2,
+      "support_subsets_checked": 924,
+      "top_witnesses": [],
+      "unique_degree_le_d_candidates_seen": 888
+    },
+    {
+      "agreement_threshold": 8,
+      "auxiliary_list_size": 4,
+      "d": 5,
+      "defect_roots": [
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "ell": 3,
+      "johnson_covered": false,
+      "johnson_m_cutoff": "64/15",
+      "johnson_margin": -26,
+      "label": "F109_subgroup_ell3_d5_geometric",
+      "m_petals": 6,
+      "max_agreement": 8,
+      "n_petal_points": 18,
+      "p": 109,
+      "profile_histogram": {
+        "2,2,2,1,1": 2,
+        "3,2,1,1,1": 2
+      },
+      "scalar_schedule": "geometric",
+      "sigma": 2,
+      "support_subsets_checked": 18564,
+      "top_witnesses": [
+        {
+          "agreement": 8,
+          "coefficients": [
+            57,
+            26,
+            27,
+            85,
+            42,
+            7
+          ],
+          "profile": {
+            "agreement": 8,
+            "full_petals": 0,
+            "max_petal_hits": 2,
+            "positive_petal_hits_desc": [
+              2,
+              2,
+              2,
+              1,
+              1
+            ],
+            "touched_petals": 5
+          }
+        },
+        {
+          "agreement": 8,
+          "coefficients": [
+            96,
+            91,
+            81,
+            52,
+            45,
+            49
+          ],
+          "profile": {
+            "agreement": 8,
+            "full_petals": 0,
+            "max_petal_hits": 2,
+            "positive_petal_hits_desc": [
+              2,
+              2,
+              2,
+              1,
+              1
+            ],
+            "touched_petals": 5
+          }
+        },
+        {
+          "agreement": 8,
+          "coefficients": [
+            49,
+            21,
+            39,
+            61,
+            90,
+            45
+          ],
+          "profile": {
+            "agreement": 8,
+            "full_petals": 1,
+            "max_petal_hits": 3,
+            "positive_petal_hits_desc": [
+              3,
+              2,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 5
+          }
+        },
+        {
+          "agreement": 8,
+          "coefficients": [
+            68,
+            60,
+            44,
+            52,
+            43,
+            94
+          ],
+          "profile": {
+            "agreement": 8,
+            "full_petals": 1,
+            "max_petal_hits": 3,
+            "positive_petal_hits_desc": [
+              3,
+              2,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 5
+          }
+        }
+      ],
+      "unique_degree_le_d_candidates_seen": 16764
+    },
+    {
+      "agreement_threshold": 8,
+      "auxiliary_list_size": 123,
+      "d": 5,
+      "defect_roots": [
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "ell": 3,
+      "johnson_covered": false,
+      "johnson_m_cutoff": "64/15",
+      "johnson_margin": -71,
+      "label": "F109_subgroup_ell3_d5_geometric",
+      "m_petals": 9,
+      "max_agreement": 9,
+      "n_petal_points": 27,
+      "p": 109,
+      "profile_histogram": {
+        "1,1,1,1,1,1,1,1": 5,
+        "2,1,1,1,1,1,1": 29,
+        "2,2,1,1,1,1": 49,
+        "2,2,2,1,1": 18,
+        "2,2,2,2": 2,
+        "3,1,1,1,1,1": 4,
+        "3,2,1,1,1": 15,
+        "3,2,1,1,1,1": 1
+      },
+      "scalar_schedule": "geometric",
+      "sigma": 2,
+      "support_subsets_checked": 296010,
+      "top_witnesses": [
+        {
+          "agreement": 9,
+          "coefficients": [
+            26,
+            41,
+            80,
+            85,
+            66,
+            32
+          ],
+          "profile": {
+            "agreement": 9,
+            "full_petals": 1,
+            "max_petal_hits": 3,
+            "positive_petal_hits_desc": [
+              3,
+              2,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 6
+          }
+        },
+        {
+          "agreement": 8,
+          "coefficients": [
+            10,
+            62,
+            59,
+            37,
+            53,
+            31
+          ],
+          "profile": {
+            "agreement": 8,
+            "full_petals": 0,
+            "max_petal_hits": 1,
+            "positive_petal_hits_desc": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 8
+          }
+        },
+        {
+          "agreement": 8,
+          "coefficients": [
+            10,
+            68,
+            64,
+            29,
+            40,
+            66
+          ],
+          "profile": {
+            "agreement": 8,
+            "full_petals": 0,
+            "max_petal_hits": 1,
+            "positive_petal_hits_desc": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 8
+          }
+        },
+        {
+          "agreement": 8,
+          "coefficients": [
+            27,
+            20,
+            32,
+            63,
+            21,
+            60
+          ],
+          "profile": {
+            "agreement": 8,
+            "full_petals": 0,
+            "max_petal_hits": 1,
+            "positive_petal_hits_desc": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 8
+          }
+        },
+        {
+          "agreement": 8,
+          "coefficients": [
+            73,
+            87,
+            18,
+            46,
+            89,
+            74
+          ],
+          "profile": {
+            "agreement": 8,
+            "full_petals": 0,
+            "max_petal_hits": 1,
+            "positive_petal_hits_desc": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 8
+          }
+        },
+        {
+          "agreement": 8,
+          "coefficients": [
+            104,
+            108,
+            22,
+            5,
+            91,
+            33
+          ],
+          "profile": {
+            "agreement": 8,
+            "full_petals": 0,
+            "max_petal_hits": 1,
+            "positive_petal_hits_desc": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 8
+          }
+        },
+        {
+          "agreement": 8,
+          "coefficients": [
+            13,
+            9,
+            34,
+            104,
+            2,
+            89
+          ],
+          "profile": {
+            "agreement": 8,
+            "full_petals": 0,
+            "max_petal_hits": 2,
+            "positive_petal_hits_desc": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 7
+          }
+        },
+        {
+          "agreement": 8,
+          "coefficients": [
+            13,
+            79,
+            73,
+            50,
+            30,
+            89
+          ],
+          "profile": {
+            "agreement": 8,
+            "full_petals": 0,
+            "max_petal_hits": 2,
+            "positive_petal_hits_desc": [
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "touched_petals": 7
+          }
+        }
+      ],
+      "unique_degree_le_d_candidates_seen": 251179
+    }
+  ],
+  "interpretation_table": {
+    "bounded_or_poly": "pma_wide_residual prior up; data supports attacking a correlated-target/descend proof rather than revising ImgFib",
+    "superpoly_growth": "COUNTEREXAMPLE track; isolate the sunflower mechanism and revise the L1/image-fiber residual"
+  },
+  "max_auxiliary_list_size": 2023,
+  "model": "auxiliary pieced-word list for sunflower petals",
+  "pre_registered_search_space": {
+    "agreement_threshold": "a=d+ell=8 (R_P=0 proof-program convention)",
+    "d": 5,
+    "ell": 3,
+    "field": "F_109",
+    "johnson_cutoff_M": "64/15",
+    "petal_counts": "linear: 3,4,6,9,12 unless --quick; geometric: 3,4,6,9",
+    "petal_domain": "multiplicative subgroup, chunked into consecutive exponent petals"
+  },
+  "status": "NO_SUPERPOLY_SIGNAL_IN_EXACT_TOY_WINDOW",
+  "target": "E4 pma_wide_residual",
+  "wide_cases_with_nonzero_auxiliary_list": 4
+}
