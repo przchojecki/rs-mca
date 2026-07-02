@@ -30,6 +30,36 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - WP-detail loop turn 1: rules freeze + dither coverage (WP-0.2/4.4)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/wp_detail/wp0_2_wp4_4_rules_freeze_and_dither.md`.
+- **Status:** AUDIT plan grounded by a live proximityprize.org fetch
+  (2026-07-02). No result claimed.
+- **What is being added:** Turn 1 of the wp-detail loop (successor to the
+  completed proof-sketch loop). Live-fetch findings with three
+  discrepancies against repo working constants: (a) rates are EXACT (no
+  dither latitude — the s5_s0 half-reserve swing provisionally closes
+  ADVERSE, monitored); (b) the k <= 2^40 and |F| < 2^256 caps are NOT on
+  the live page ("sufficiently large" only) — must be confirmed in ePrint
+  2026/680; corridor formulas are parametric in log2 q and survive, but
+  B* magnitude and the ~90-bit-band statement depend on the cap;
+  (c) "smooth" undefined on the page (2-power = most quotient-rich, so
+  the sketch is conservative for broader classes); (d) the list
+  challenge's "constant m" quantifier is ambiguous — verified this turn
+  that a for-all reading is affordable (clique cap bounds m <=
+  sqrt((n-k)/t) ~ 16..31 near-cap). Also: partial results explicitly
+  encouraged; formal verification "encouraged" (Lean gates gain official
+  value). Deliverable specs: prize_rules_freeze.md pinned-quote table +
+  SHA-256 rules-drift detector script; hypothesis_coverage.md generated
+  table with per-row binding-mechanism and m-sweep columns; acceptance
+  tests and failure branches per the DONE-definition.
+- **How it is useful:** Converts the plan's two biggest non-mathematical
+  sensitivities into monitored, hash-pinned facts with regeneration paths.
+- **What to do next:** Turn 2: wp2_3 (syndrome-space stratification
+  case-tree).
+
 ### 2026-07-02 - Proof-sketch COMPLETE: final coherence pass (turn 13)
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
