@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 rank-drop kernel pivot
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  Rank-drop reduction theorem; no
+  threshold or worst-case row claim.
+- **What is being added:** Turn 16 of the `A=384` underdetermined M5 packet:
+  at a rank-drop slope, exact-`A` validity is reduced to the intersection of
+  `P(ker M(z0))` with `L | X^n-1`; in the generic kernel-dimension-two case,
+  this is a one-parameter pseudo-remainder problem with degree bound `n-j+1`.
+- **How it is useful:** Converts the generic rank-drop branch from an
+  unstructured side chart into a finite local kernel-pivot problem; for the
+  real `A=384` row the local bound is `385`.
+- **What to do next:** Implement a rank-drop root-table packet, or label
+  higher-kernel/identically-valid branches as residuals with minimal
+  witnesses.
+
 ### 2026-07-02 - M5 A384 low-degree dedup theorem
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

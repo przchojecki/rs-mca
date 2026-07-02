@@ -80,6 +80,12 @@ deficiency-one bucket, c_j=0 means the unique Cramer-kernel locator has degree
 < j, so any valid split locator belongs to a higher-agreement bucket and is
 not a new exact-A contribution.
 
+Turn 16 records the rank-drop kernel-pivot reduction: at a rank-drop slope,
+valid exact-A locators are found by intersecting the projective kernel with
+the divisor condition L | X^n-1; in the generic kernel-dimension-two case this
+is a univariate pseudo-remainder problem of degree <= n-j+1 in the kernel
+parameter.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -857,6 +863,45 @@ def check_low_degree_dedup_theorem():
         f"exact-A={A_STAR} roots; valid slopes are deduped into agreement >= {A_STAR + 1}",
         f"F_97 acid side-chart sanity: low_degree={low_degree_slope}, rank_drop={rank_drop_slope}, "
         f"direct exact-A bad slopes={side_chart_toy['direct_bad']}",
+    ]
+    return ok, d
+
+
+def check_rank_drop_kernel_pivot_reduction():
+    """Record the rank-drop side-chart local decision theorem."""
+    real = deficiency_one_degree_bounds(N, K, A_STAR)
+    side_u = [34, 37, 69, 71, 6, 22, 30, 62]
+    side_v = [21, 18, 19, 90, 22, 88, 59, 86]
+    z = 55
+    p = 97
+    s = [(a + z * b) % p for a, b in zip(side_u, side_v)]
+    m = hankel(s, 4, 4)
+    rank, _ = rank_and_kernel_mod_p(m, p)
+    toy_summary = toy_chart_summary(side_u, side_v)
+    toy_kernel_dim = 5 - rank
+    real_delta = N - real["j"] + 1
+    toy_delta = 16 - 4 + 1
+
+    ok = True
+    ok &= real["deficiency"] == 1 and real["t"] == real["j"] == 128
+    ok &= real_delta == 385
+    ok &= toy_delta == 13
+    ok &= toy_summary["rank_drop"] == [55]
+    ok &= toy_summary["rank_drop_valid"] == []
+    ok &= rank == 3 and toy_kernel_dim == 2
+
+    d = [
+        "rank-drop side chart: at a specialized slope z0 with rank M(z0)<t, "
+        "the exact-A decision is whether P(ker M(z0)) contains a degree-j locator dividing X^n-1",
+        "generic rank-drop case: if rank M(z0)=t-1, then dim ker M(z0)=2 and "
+        "a top-pivot chart turns this into a one-parameter locator pencil L_lambda(X)",
+        "kernel-pivot divisibility: on a monic top chart, L_lambda | X^n-1 is "
+        "equivalent to vanishing of j pseudo-remainder coefficients, each of degree <= n-j+1 in lambda",
+        f"F_17^32 A={A_STAR}: a rank-one drop has kernel dimension 2 and "
+        f"kernel-pivot pseudo-remainder degree bound {real_delta}",
+        f"F_97 acid rank-drop sanity: z={z}, rank={rank}, kernel_dim={toy_kernel_dim}, "
+        f"degree bound {toy_delta}, direct exact-A valid rank-drop slopes={toy_summary['rank_drop_valid']}",
+        "higher kernel dimension or identically-valid kernel pencils are labelled residual branches, not hidden in this theorem",
     ]
     return ok, d
 
@@ -1767,6 +1812,7 @@ CHECKS = [
     ("deficiency-1 degree budget for real row",           check_deficiency_one_degree_budget),
     ("deficiency-1 chart reduction for real row",         check_deficiency_one_chart_reduction),
     ("low-degree side-chart dedup theorem",               check_low_degree_dedup_theorem),
+    ("rank-drop kernel-pivot reduction",                  check_rank_drop_kernel_pivot_reduction),
     ("moment-support rank-extension theorem",             check_moment_support_rank_extension_theorem),
     ("F_97 acid test: brute force equals charts",         check_toy_acid_test_bruteforce),
     ("F_17^32 planted top-chart packet",                  lambda: check_f17_packet(DEFAULT_F17_PACKET)),

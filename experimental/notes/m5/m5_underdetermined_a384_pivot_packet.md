@@ -1,6 +1,6 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 15: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 16: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
@@ -11,7 +11,8 @@
   `F_17^32` planted low-degree and rank-drop side-chart packets are emitted).
   The moment-support rank-extension lemma behind the planted top and rank-drop
   packets is now stated explicitly, and the full-rank low-degree side chart is
-  deduped into higher-agreement buckets.
+  deduped into higher-agreement buckets.  The generic rank-drop side chart is
+  reduced to a kernel-pivot divisibility problem.
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -135,7 +136,8 @@ belongs.
 | 5i | first declared `F_17^32` planted rank-drop side-chart packet | **done** |
 | 5j | moment-support rank-extension theorem for top/rank-drop packets | **done** |
 | 5k | low-degree side-chart exact-bucket dedup theorem | **done** |
-| 5l | full `F_17^32` root-table packet for rank-drop / top charts | pending |
+| 5l | rank-drop kernel-pivot reduction theorem | **done** |
+| 5m | full `F_17^32` root-table packet for rank-drop / top charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -602,6 +604,49 @@ any valid split locator there is deduped into agreement >= 385.
 The `F_97/mu_16` acid test already exercises this rule: the side-chart family
 has a low-degree routed slope `[32]`, but the direct exact-`A` bad-slope set is
 empty after dedup.
+
+### Verified in turn 16
+
+**U16, rank-drop kernel-pivot reduction.** At a rank-drop slope `z0`, the
+specialized matrix has `rank M(z0)<t`, so the Cramer vector no longer spans the
+kernel.  The exact-`A` decision is instead:
+
+```text
+does P(ker M(z0)) contain a degree-j locator L with L | X^n-1?
+```
+
+In the generic rank-drop case `rank M(z0)=t-1`, the kernel dimension is `2`.
+After choosing a top-coordinate pivot, the projective kernel is a one-parameter
+locator pencil
+
+```text
+L_lambda(X)=X^j + affine_lambda lower terms.
+```
+
+Then `L_lambda | X^n-1` is equivalent to vanishing of the `j`
+pseudo-remainder coefficients of `X^n-1` modulo `L_lambda`.  Because the
+locator coefficients are affine in `lambda`, the monic division recurrence
+raises `lambda`-degree by at most one at each step, so each coefficient has
+
+```text
+degree_lambda <= n-j+1.
+```
+
+For the real row at `A=384`, this gives the local rank-drop bound
+
+```text
+n-j+1 = 512-128+1 = 385
+```
+
+on each generic rank-drop root, rather than the top-chart slope-eliminant
+degree bound `49280`.  If a rank-drop root has kernel dimension `>2`, or if a
+kernel pencil is identically valid, it remains a labelled residual branch
+rather than being hidden by this theorem.
+
+The `F_97/mu_16` side-chart family provides the sanity check: the rank-drop
+slope is `z=55`, the specialized `4 x 5` matrix has rank `3` and kernel
+dimension `2`, and direct degree-four subgroup-locator enumeration finds no
+valid exact-`A` rank-drop slope.
 
 ## Honest scope
 
