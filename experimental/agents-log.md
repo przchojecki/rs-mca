@@ -30,7 +30,7 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
-### 2026-07-02 - A386 very-high-core tangent tail closure
+### 2026-07-02 - A386 projective tangent tail closure
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
 - **Files added or changed:**
@@ -43,11 +43,11 @@ Keep entries concise and link to the relevant files.
   `experimental/agents-log.md`.
 - **Status:** PROVED / AUDIT.
 - **What is being added:** The `A=386` moving-slope packet now uses the
-  punctured high-agreement tangent staircase to close the very-high-core tail:
-  forced external core `e_G>=122` has finite bound `127-e_G`, hence projective
-  total at most `6` after adding the one endpoint.
+  punctured high-agreement projective tangent staircase to close the
+  very-high-core tail: forced external core `e_G>=121` has projective numerator
+  at most `127-e_G<=6`.
 - **How it is useful:** It shrinks the remaining rank-6 moving-slope residual
-  to the intermediate ranges `72<=e_G<=121` for lines and `69<=e_G<=121` for
+  to the intermediate ranges `72<=e_G<=120` for lines and `69<=e_G<=120` for
   irreducible conics.
 - **What to do next:** Attack the intermediate quotient/common-core ranges by
   exact root tables or a quotient/tangent payment theorem.

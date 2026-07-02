@@ -168,10 +168,9 @@ dual-evaluation-fiber quotient pencil of degree at most `54`, while a high-core
 irreducible conic has a global common forced core across the whole `Q`-plane
 and becomes a quotient family of degree at most `57`.  It also records that,
 after puncturing the forced core, those quotient branches are inside the
-very-high-agreement tangent range of the punctured row.  The tail `e_G>=122`
-is projective-safe by the punctured finite tangent bound plus one endpoint, so
-the remaining unclosed ranges are `72<=e_G<=121` for lines and
-`69<=e_G<=121` for irreducible conics.
+very-high-agreement tangent range of the punctured row.  The projective
+tangent staircase closes the tail `e_G>=121`, so the remaining unclosed ranges
+are `72<=e_G<=120` for lines and `69<=e_G<=120` for irreducible conics.
 
 Replay:
 

@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v7",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v8",
 }
 
 
@@ -314,20 +314,20 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
     )
     require(
         summary["line_residual_projective_safe_by_punctured_tangent_for_external_core_at_least"]
-        == 122,
+        == 121,
         "line punctured tangent tail threshold mismatch",
     )
     require(
         summary["conic_residual_projective_safe_by_punctured_tangent_for_external_core_at_least"]
-        == 122,
+        == 121,
         "conic punctured tangent tail threshold mismatch",
     )
     require(
-        summary["line_remaining_unclosed_external_core_range"] == [72, 121],
+        summary["line_remaining_unclosed_external_core_range"] == [72, 120],
         "line unclosed core range mismatch",
     )
     require(
-        summary["conic_remaining_unclosed_external_core_range"] == [69, 121],
+        summary["conic_remaining_unclosed_external_core_range"] == [69, 120],
         "conic unclosed core range mismatch",
     )
     nonclaims = set(data["nonclaims"])
@@ -435,8 +435,8 @@ def build_certificate() -> dict[str, Any]:
                 "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
                 "the remaining high-core line branch is a dual-evaluation-fiber quotient pencil of degree <=54",
                 "the remaining high-core irreducible-conic branch has a global common forced core and becomes a quotient family of degree <=57",
-                "after puncturing the forced core, those high-core quotient branches are tangent-range eligible; the tail e_G>=122 is projective-safe by finite punctured tangent plus one endpoint",
-                "the still-unclosed high-core quotient ranges are e_G=72..121 for lines and e_G=69..121 for irreducible conics",
+                "after puncturing the forced core, the projective tangent staircase closes the tail e_G>=121",
+                "the still-unclosed high-core quotient ranges are e_G=72..120 for lines and e_G=69..120 for irreducible conics",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",
@@ -467,7 +467,7 @@ def build_certificate() -> dict[str, Any]:
             "still_requires_m5_or_other_ledgers": [
                 "rank-deficient finite regular buckets not covered by a paid family",
                 "non-proportional direction-rank-6 buckets when the projective endpoint is not empty or paid and the 6x6 compressed exact finite root table has six surviving roots",
-                "the A=386 separated moving-slope intermediate high-core quotient branches e_G=72..121 for lines and e_G=69..121 for irreducible conics",
+                "the A=386 separated moving-slope intermediate high-core quotient branches e_G=72..120 for lines and e_G=69..120 for irreducible conics",
                 "non-proportional finite buckets with direction rank > 6 unless exact root tables plus kernel filters improve the bound",
                 "quotient, quotient-image, extension, and subfield overlap for future non-proportional root tables",
             ],

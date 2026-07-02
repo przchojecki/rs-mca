@@ -244,37 +244,34 @@ conic residuals: |E|>=69, r'<=57, tangent numerator <=58.
 At the residual thresholds this is only a tangent-ledger eligibility statement
 on the punctured row: the numerators `55` and `58` are far above the original
 budget `6`.  However the same formula closes the very-high-core tail.  The
-finite slopes represented by a fixed high-core branch inject into the
-support-wise bad slopes of the punctured row, so the punctured tangent
-staircase gives
+projective high-agreement tangent staircase applies to the punctured row, so
+finite slopes and the point at infinity are bounded together by
 
 ```text
-finite slopes on the branch <= r'+1 = 127-|E|.
+projective slopes on the branch <= r'+1 = 127-|E|.
 ```
 
-Adding the original projective endpoint as a separate one-point contribution,
-the branch is projective-safe whenever
+The branch is projective-safe whenever
 
 ```text
-(127-|E|) + 1 <= 6,
+127-|E| <= 6,
 ```
 
 that is,
 
 ```text
-|E| >= 122.
+|E| >= 121.
 ```
 
 Thus the unclosed high-core quotient range is finite:
 
 ```text
-line residuals:  72 <= |E| <= 121;
-conic residuals: 69 <= |E| <= 121.
+line residuals:  72 <= |E| <= 120;
+conic residuals: 69 <= |E| <= 120.
 ```
 
-This uses only the finite-slope punctured tangent bound plus the already
-recorded endpoint-uniform contribution; it does not claim a sharper projective
-tangent theorem for the punctured row.
+This uses the projective high-agreement tangent theorem on the punctured row,
+not a separate finite-plus-endpoint overcount.
 
 Replay:
 
@@ -287,8 +284,8 @@ Nonclaims:
 
 ```text
 no proof that every moving-slope component is a line;
-no closure of line components with forced external split-root core in 72..121 in projective accounting;
-no closure of irreducible conic moving-slope components with forced external split-root core in 69..121 in projective accounting;
+no closure of line components with forced external split-root core in 72..120 in projective accounting;
+no closure of irreducible conic moving-slope components with forced external split-root core in 69..120 in projective accounting;
 no proof that the high-core quotient split problem is empty or paid;
 no claim that the punctured tangent numerator at the residual threshold is within the original row budget;
 no exclusion of another independent noncontained vector at the same finite slope;
