@@ -249,12 +249,16 @@ fixed-core quotient family has vector dimension at most `2` on a line and at
 most `3` on an irreducible conic.  More generally, top saturation of the raw
 tangent bound `r'+1` is impossible whenever `r'` exceeds this quotient-family
 dimension, so the cofactor-improved tangent bound is `r'`; `e_G=119` is the
-next one-over tangent-tail core and `e_G>=120` is projective-safe.  The
-remaining unclosed intermediate ranges are `72<=e_G<=119` for lines and
-`69<=e_G<=119` for irreducible conics.
-The cofactor-current residual profile has live one-over ranges line
-`e_G=72..80` plus `e_G=119` and irreducible conic `e_G=69..76` plus
-`e_G=119`; the largest conic projective bound drops from `26` to `25`.
+next cofactor-current one-over tangent-tail core and `e_G>=120` is
+projective-safe.  Exact-agreement residual-budget splitting closes this
+`e_G=119` tail: the common-support complement is forced to size `7` or `8`,
+where size `7` is higher-agreement/same-support-contained and size `8` again
+forces at least six independent finite cofactors inside a `2`- or
+`3`-dimensional quotient family.  The remaining unclosed intermediate ranges
+are `72<=e_G<=118` for lines and `69<=e_G<=118` for irreducible conics.
+The exact-current residual profile has live one-over ranges line
+`e_G=72..80` and irreducible conic `e_G=69..76`; the largest conic projective
+bound drops from `26` to `25`.
 Inside these ranges the cofactor-current proof envelope has finite-incidence
 one-over-budget subranges `72<=e_G<=80` for lines and `69<=e_G<=76` for
 irreducible conics; the worst current projective upper bounds in the middle are
@@ -291,9 +295,10 @@ conic secant/singleton profiles are `(5^6;50^6)`,
 Across the full endpoint-only one-over range, the line histogram counts are
 `2,16,27,28^6` for `e_G=72..80`, and the conic counts are `2,16,27,28^5`
 for `e_G=69..76`.
-The packet also records a single-saving closure ledger for all `19` one-over
-moving-slope residual rows: line `e_G=72..80`, conic `e_G=69..76`, and the
-line/conic punctured-tangent tail at `e_G=120`.
+The packet also records a single-saving closure ledger for all cofactor-current
+one-over moving-slope residual rows: line `e_G=72..80`, conic `e_G=69..76`,
+and the line/conic punctured-tangent tail at `e_G=120`.  The subsequent
+exact-agreement filter closes the cofactor-current tangent-tail row `e_G=119`.
 Those rows split by first available saving mechanism into line base-active
 `72..74`, line external-slack `75..80`, conic base+secant `69..71`, conic
 secant-only `72..74`, conic endpoint/duplicate-only `75..76`, and the

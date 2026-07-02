@@ -44,19 +44,24 @@ Keep entries concise and link to the relevant files.
 - **Status:** PROVED / AUDIT.
 - **What is being added:** The `A=386` moving-slope packet now has a
   cofactor-span top-saturation exclusion for the high-core punctured-tangent
-  quotient tail, plus abstract incidence-only sharpness witnesses for every
-  finite-incidence one-over core and a cofactor-current residual profile.
+  quotient tail, exact-agreement closure of the `e_G=119` tangent-tail row,
+  abstract incidence-only sharpness witnesses for every finite-incidence
+  one-over core, and exact-current residual profiles.
 - **How it is useful:** A seven-slope saturated tangent-star tail has at most
   one original endpoint, so at least six bad points must be finite component
   classes.  Their degree-`6` cofactors are independent, but the fixed-core
   quotient family has vector dimension at most `2` on a line and at most `3`
   on a conic.  Hence the raw tangent bound `r'+1` improves to `r'` while
   `r'` exceeds this dimension; `e_G=120` is safe and `e_G=119` is the next
-  one-over tangent-tail core.  The incidence-only witnesses show that the
+  cofactor-current tangent-tail core.  Exact agreement then forces the
+  residual complement to have size `7` or `8`; those cases are respectively
+  higher-agreement/same-support-contained or incompatible with the low
+  quotient-family dimension, so `e_G=119` is also projective-safe.  The
+  incidence-only witnesses show that the
   remaining finite-incidence one-over rows cannot be closed by sharpening only
   the current incidence and pair-overlap counts.  The cofactor-current profile
-  removes the stale raw `e_G=120` one-over row, exposes `e_G=119` as the live
-  tangent-tail one-over core, and lowers the conic max bound from `26` to `25`.
+  removes the stale raw `e_G=120` one-over row; the exact-current profile
+  removes `e_G=119` and lowers the conic max bound from `26` to `25`.
 - **What to do next:** Focus remaining A386 work on algebraic endpoint
   payment, finite-slope collisions, quotient-fiber structure, or the larger
   middle quotient ranges.

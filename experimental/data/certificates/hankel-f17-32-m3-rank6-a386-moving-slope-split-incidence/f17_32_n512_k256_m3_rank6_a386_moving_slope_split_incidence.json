@@ -182,7 +182,8 @@
     "very-high-core tail e>=121 is projective-safe by the punctured projective tangent staircase",
     "the e=120 punctured tangent tail is projective-safe by the cofactor-span obstruction",
     "cofactor-span top-saturation exclusion improves the high-core tangent bound from r'+1 to r' until the cofactor degree reaches the fixed quotient-family dimension",
-    "cofactor-current residual profile makes e=120 safe and exposes e=119 as the next one-over tangent-tail core",
+    "cofactor-current residual profile makes e=120 safe and exposes e=119 before exact-tail closure",
+    "exact-agreement tangent-tail closure makes e=119 projective-safe",
     "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds",
     "one-over finite-incidence saturation conditions are computed for the endpoint-only subranges",
     "over-budget survival conditions require bound saturation, distinct finite slopes, and an unpaid endpoint",
@@ -3826,6 +3827,2018 @@
       }
     ]
   },
+  "exact_current_intermediate_residual_profile": {
+    "irreducible_conic_projective_bound_groups": [
+      {
+        "current_projective_upper_bound": 7,
+        "external_core_range": [
+          69,
+          76
+        ],
+        "one_over_budget": true,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 8,
+        "external_core_range": [
+          77,
+          82
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 9,
+        "external_core_range": [
+          83,
+          86
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 10,
+        "external_core_range": [
+          87,
+          89
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 11,
+        "external_core_range": [
+          90,
+          92
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 12,
+        "external_core_range": [
+          93,
+          94
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 13,
+        "external_core_range": [
+          95,
+          95
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 14,
+        "external_core_range": [
+          96,
+          96
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 15,
+        "external_core_range": [
+          97,
+          97
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 16,
+        "external_core_range": [
+          98,
+          98
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 17,
+        "external_core_range": [
+          99,
+          99
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 20,
+        "external_core_range": [
+          100,
+          100
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 25,
+        "external_core_range": [
+          101,
+          101
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 24,
+        "external_core_range": [
+          102,
+          102
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 23,
+        "external_core_range": [
+          103,
+          103
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 22,
+        "external_core_range": [
+          104,
+          104
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 21,
+        "external_core_range": [
+          105,
+          105
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 20,
+        "external_core_range": [
+          106,
+          106
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 19,
+        "external_core_range": [
+          107,
+          107
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 18,
+        "external_core_range": [
+          108,
+          108
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 17,
+        "external_core_range": [
+          109,
+          109
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 16,
+        "external_core_range": [
+          110,
+          110
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 15,
+        "external_core_range": [
+          111,
+          111
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 14,
+        "external_core_range": [
+          112,
+          112
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 13,
+        "external_core_range": [
+          113,
+          113
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 12,
+        "external_core_range": [
+          114,
+          114
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 11,
+        "external_core_range": [
+          115,
+          115
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 10,
+        "external_core_range": [
+          116,
+          116
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 9,
+        "external_core_range": [
+          117,
+          117
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 8,
+        "external_core_range": [
+          118,
+          118
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 6,
+        "external_core_range": [
+          119,
+          120
+        ],
+        "one_over_budget": false,
+        "projective_safe": true
+      }
+    ],
+    "irreducible_conic_rows": [
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 57,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 69,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 58
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 56,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 70,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 57
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 55,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 71,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 56
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 54,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 72,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 55
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 53,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 73,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 54
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 52,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 74,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 53
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 51,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 75,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 52
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 50,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 76,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 51
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 49,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 8,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 77,
+        "incidence_or_pair_projective_bound": 8,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 50
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 48,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 8,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 78,
+        "incidence_or_pair_projective_bound": 8,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 49
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 47,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 8,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 79,
+        "incidence_or_pair_projective_bound": 8,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 48
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 46,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 8,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 80,
+        "incidence_or_pair_projective_bound": 8,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 47
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 45,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 8,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 81,
+        "incidence_or_pair_projective_bound": 8,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 46
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 44,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 8,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 82,
+        "incidence_or_pair_projective_bound": 8,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 45
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 43,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 9,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 83,
+        "incidence_or_pair_projective_bound": 9,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 44
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 42,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 9,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 84,
+        "incidence_or_pair_projective_bound": 9,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 43
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 41,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 9,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 85,
+        "incidence_or_pair_projective_bound": 9,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 42
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 40,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 9,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 86,
+        "incidence_or_pair_projective_bound": 9,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 41
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 39,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 10,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 87,
+        "incidence_or_pair_projective_bound": 10,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 40
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 38,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 10,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 88,
+        "incidence_or_pair_projective_bound": 10,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 39
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 37,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 10,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 89,
+        "incidence_or_pair_projective_bound": 10,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 38
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 36,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 11,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 90,
+        "incidence_or_pair_projective_bound": 11,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 37
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 35,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 11,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 91,
+        "incidence_or_pair_projective_bound": 11,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 36
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 34,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 11,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 92,
+        "incidence_or_pair_projective_bound": 11,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 35
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 33,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 12,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 93,
+        "incidence_or_pair_projective_bound": 12,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 34
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 32,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 12,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 94,
+        "incidence_or_pair_projective_bound": 12,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 33
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 31,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 13,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 95,
+        "incidence_or_pair_projective_bound": 13,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 32
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 30,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 14,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 96,
+        "incidence_or_pair_projective_bound": 14,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 31
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 29,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 15,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 97,
+        "incidence_or_pair_projective_bound": 15,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 30
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 28,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 16,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 98,
+        "incidence_or_pair_projective_bound": 16,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 29
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 27,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 17,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 99,
+        "incidence_or_pair_projective_bound": 17,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 28
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 26,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 20,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 100,
+        "incidence_or_pair_projective_bound": 20,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 27
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 25,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 25,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 101,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 26
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 24,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 24,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 102,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 25
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 23,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 23,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 103,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 24
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 22,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 22,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 104,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 23
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 21,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 21,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 105,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 22
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 20,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 20,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 106,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 21
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 19,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 19,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 107,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 20
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 18,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 18,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 108,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 19
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 17,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 17,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 109,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 18
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 16,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 16,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 110,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 17
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 15,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 15,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 111,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 16
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 14,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 14,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 112,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 15
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 13,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 13,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 113,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 14
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 12,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 12,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 114,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 13
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 11,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 11,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 115,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 12
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 10,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 10,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 116,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 11
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 9,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 9,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 117,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 10
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 8,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 8,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 118,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 9
+      },
+      {
+        "active_best_methods": [
+          "exact-agreement tangent-tail cofactor closure"
+        ],
+        "cofactor_improved_projective_tangent_bound": 7,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 6,
+        "exact_agreement_e119_closure_applied": true,
+        "forced_external_core_size": 119,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": true,
+        "raw_punctured_projective_tangent_bound": 8
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 6,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 6,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 120,
+        "incidence_or_pair_projective_bound": null,
+        "one_over_budget": false,
+        "projective_safe": true,
+        "raw_punctured_projective_tangent_bound": 7
+      }
+    ],
+    "line_projective_bound_groups": [
+      {
+        "current_projective_upper_bound": 7,
+        "external_core_range": [
+          72,
+          80
+        ],
+        "one_over_budget": true,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 8,
+        "external_core_range": [
+          81,
+          86
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 9,
+        "external_core_range": [
+          87,
+          91
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 10,
+        "external_core_range": [
+          92,
+          94
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 11,
+        "external_core_range": [
+          95,
+          97
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 12,
+        "external_core_range": [
+          98,
+          100
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 13,
+        "external_core_range": [
+          101,
+          102
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 14,
+        "external_core_range": [
+          103,
+          103
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 15,
+        "external_core_range": [
+          104,
+          105
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 16,
+        "external_core_range": [
+          106,
+          106
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 17,
+        "external_core_range": [
+          107,
+          107
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 18,
+        "external_core_range": [
+          108,
+          108
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 17,
+        "external_core_range": [
+          109,
+          109
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 16,
+        "external_core_range": [
+          110,
+          110
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 15,
+        "external_core_range": [
+          111,
+          111
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 14,
+        "external_core_range": [
+          112,
+          112
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 13,
+        "external_core_range": [
+          113,
+          113
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 12,
+        "external_core_range": [
+          114,
+          114
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 11,
+        "external_core_range": [
+          115,
+          115
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 10,
+        "external_core_range": [
+          116,
+          116
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 9,
+        "external_core_range": [
+          117,
+          117
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 8,
+        "external_core_range": [
+          118,
+          118
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 6,
+        "external_core_range": [
+          119,
+          120
+        ],
+        "one_over_budget": false,
+        "projective_safe": true
+      }
+    ],
+    "line_rows": [
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 54,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 72,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 55
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 53,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 73,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 54
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 52,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 74,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 53
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 51,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 75,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 52
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 50,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 76,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 51
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 49,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 77,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 50
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 48,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 78,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 49
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 47,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 79,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 48
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 46,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 80,
+        "incidence_or_pair_projective_bound": 7,
+        "one_over_budget": true,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 47
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 45,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 8,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 81,
+        "incidence_or_pair_projective_bound": 8,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 46
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 44,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 8,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 82,
+        "incidence_or_pair_projective_bound": 8,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 45
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 43,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 8,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 83,
+        "incidence_or_pair_projective_bound": 8,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 44
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 42,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 8,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 84,
+        "incidence_or_pair_projective_bound": 8,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 43
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 41,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 8,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 85,
+        "incidence_or_pair_projective_bound": 8,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 42
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 40,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 8,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 86,
+        "incidence_or_pair_projective_bound": 8,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 41
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 39,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 9,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 87,
+        "incidence_or_pair_projective_bound": 9,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 40
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 38,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 9,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 88,
+        "incidence_or_pair_projective_bound": 9,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 39
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 37,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 9,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 89,
+        "incidence_or_pair_projective_bound": 9,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 38
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 36,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 9,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 90,
+        "incidence_or_pair_projective_bound": 9,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 37
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 35,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 9,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 91,
+        "incidence_or_pair_projective_bound": 9,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 36
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 34,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 10,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 92,
+        "incidence_or_pair_projective_bound": 10,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 35
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 33,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 10,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 93,
+        "incidence_or_pair_projective_bound": 10,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 34
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 32,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 10,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 94,
+        "incidence_or_pair_projective_bound": 10,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 33
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 31,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 11,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 95,
+        "incidence_or_pair_projective_bound": 11,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 32
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 30,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 11,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 96,
+        "incidence_or_pair_projective_bound": 11,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 31
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 29,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 11,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 97,
+        "incidence_or_pair_projective_bound": 11,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 30
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 28,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 12,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 98,
+        "incidence_or_pair_projective_bound": 12,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 29
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 27,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 12,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 99,
+        "incidence_or_pair_projective_bound": 12,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 28
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 26,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 12,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 100,
+        "incidence_or_pair_projective_bound": 12,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 27
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 25,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 13,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 101,
+        "incidence_or_pair_projective_bound": 13,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 26
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 24,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 13,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 102,
+        "incidence_or_pair_projective_bound": 13,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 25
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 23,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 14,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 103,
+        "incidence_or_pair_projective_bound": 14,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 24
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 22,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 15,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 104,
+        "incidence_or_pair_projective_bound": 15,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 23
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 21,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 15,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 105,
+        "incidence_or_pair_projective_bound": 15,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 22
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 20,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 16,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 106,
+        "incidence_or_pair_projective_bound": 16,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 21
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "cofactor_improved_projective_tangent_bound": 19,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 17,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 107,
+        "incidence_or_pair_projective_bound": 17,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 20
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint",
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 18,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 18,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 108,
+        "incidence_or_pair_projective_bound": 18,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 19
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 17,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 17,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 109,
+        "incidence_or_pair_projective_bound": 19,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 18
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 16,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 16,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 110,
+        "incidence_or_pair_projective_bound": 20,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 17
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 15,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 15,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 111,
+        "incidence_or_pair_projective_bound": 22,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 16
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 14,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 14,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 112,
+        "incidence_or_pair_projective_bound": 23,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 15
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 13,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 13,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 113,
+        "incidence_or_pair_projective_bound": 25,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 14
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 12,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 12,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 114,
+        "incidence_or_pair_projective_bound": 28,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 13
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 11,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 11,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 115,
+        "incidence_or_pair_projective_bound": 31,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 12
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 10,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 10,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 116,
+        "incidence_or_pair_projective_bound": 34,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 11
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 9,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 9,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 117,
+        "incidence_or_pair_projective_bound": 39,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 10
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 8,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 8,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 118,
+        "incidence_or_pair_projective_bound": 45,
+        "one_over_budget": false,
+        "projective_safe": false,
+        "raw_punctured_projective_tangent_bound": 9
+      },
+      {
+        "active_best_methods": [
+          "exact-agreement tangent-tail cofactor closure"
+        ],
+        "cofactor_improved_projective_tangent_bound": 7,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 6,
+        "exact_agreement_e119_closure_applied": true,
+        "forced_external_core_size": 119,
+        "incidence_or_pair_projective_bound": 54,
+        "one_over_budget": false,
+        "projective_safe": true,
+        "raw_punctured_projective_tangent_bound": 8
+      },
+      {
+        "active_best_methods": [
+          "cofactor-improved punctured projective tangent"
+        ],
+        "cofactor_improved_projective_tangent_bound": 6,
+        "cofactor_top_saturation_excluded": true,
+        "component_type": "line",
+        "current_projective_upper_bound": 6,
+        "exact_agreement_e119_closure_applied": false,
+        "forced_external_core_size": 120,
+        "incidence_or_pair_projective_bound": 67,
+        "one_over_budget": false,
+        "projective_safe": true,
+        "raw_punctured_projective_tangent_bound": 7
+      }
+    ]
+  },
   "exact_root_budget_alternatives": {
     "irreducible_conic_e69": [
       {
@@ -7453,8 +9466,8 @@
   },
   "nonclaims": [
     "does not prove every moving-slope component is a line",
-    "does not close line components with forced external split-root core in 72..120 in projective accounting",
-    "does not close irreducible conic moving-slope components with forced external split-root core in 69..120 in projective accounting",
+    "does not close line components with forced external split-root core in 72..118 in projective accounting",
+    "does not close irreducible conic moving-slope components with forced external split-root core in 69..118 in projective accounting",
     "does not prove the high-core quotient split problem is empty or paid",
     "does not claim the punctured tangent numerator at the residual threshold is within the original row budget",
     "does not rule out another independent noncontained vector at the same finite slope",
@@ -8480,6 +10493,78 @@
       "quotient_family_vector_dimension_at_most": 3
     }
   ],
+  "punctured_tangent_tail_e119_exact_agreement_closure": [
+    {
+      "after_projective_recoordinate": "choose a nonbad projective point as infinity; seven projective bad points become seven finite bad slopes in the punctured row",
+      "cofactor_improved_projective_tangent_bound": 7,
+      "cofactor_independence_witness": "For residual set Omega={omega_1,...,omega_8}, the cofactors R_i(X)=prod_{m != i}(X-omega_m) satisfy R_i(omega_i)!=0 and R_m(omega_i)=0 for m != i, so every subset is linearly independent.",
+      "component_type": "line",
+      "contradiction": true,
+      "d_equals_7_exact_bucket_exclusion": "If the common-support complement has size 7, the common support already has size A=386 in the punctured row.  An exact-A split locator has no residual coordinate left to add, while the support-wise noncontainment argument requires a private residual zero outside the common support; this branch is higher-agreement or same-support contained, not an exact-A noncontained locator.",
+      "d_equals_8_cofactor_obstruction": "If the complement has size 8, every exact-A noncontained slope is obtained by adding one residual coordinate to the size-385 common support.  The residual quotient locators are degree-7 cofactors of an eight-point residual set.",
+      "dangerous_projective_count": 7,
+      "finite_component_cofactor_span_dimension_at_least": 6,
+      "finite_component_slope_count_at_least": 6,
+      "forced_external_core_size": 119,
+      "near_extremizer_common_support_complement_options": [
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 7,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 7
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 8,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 8
+        }
+      ],
+      "original_projective_endpoint_count_at_most": 1,
+      "projective_safe_after_exact_agreement_obstruction": true,
+      "projective_upper_bound_after_obstruction": 6,
+      "punctured_cosupport_radius": 7,
+      "punctured_exact_agreement": 386,
+      "punctured_length": 393,
+      "quotient_family_vector_dimension_at_most": 2,
+      "raw_projective_tangent_bound": 8
+    },
+    {
+      "after_projective_recoordinate": "choose a nonbad projective point as infinity; seven projective bad points become seven finite bad slopes in the punctured row",
+      "cofactor_improved_projective_tangent_bound": 7,
+      "cofactor_independence_witness": "For residual set Omega={omega_1,...,omega_8}, the cofactors R_i(X)=prod_{m != i}(X-omega_m) satisfy R_i(omega_i)!=0 and R_m(omega_i)=0 for m != i, so every subset is linearly independent.",
+      "component_type": "irreducible_conic",
+      "contradiction": true,
+      "d_equals_7_exact_bucket_exclusion": "If the common-support complement has size 7, the common support already has size A=386 in the punctured row.  An exact-A split locator has no residual coordinate left to add, while the support-wise noncontainment argument requires a private residual zero outside the common support; this branch is higher-agreement or same-support contained, not an exact-A noncontained locator.",
+      "d_equals_8_cofactor_obstruction": "If the complement has size 8, every exact-A noncontained slope is obtained by adding one residual coordinate to the size-385 common support.  The residual quotient locators are degree-7 cofactors of an eight-point residual set.",
+      "dangerous_projective_count": 7,
+      "finite_component_cofactor_span_dimension_at_least": 6,
+      "finite_component_slope_count_at_least": 6,
+      "forced_external_core_size": 119,
+      "near_extremizer_common_support_complement_options": [
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 7,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 7
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 8,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 8
+        }
+      ],
+      "original_projective_endpoint_count_at_most": 1,
+      "projective_safe_after_exact_agreement_obstruction": true,
+      "projective_upper_bound_after_obstruction": 6,
+      "punctured_cosupport_radius": 7,
+      "punctured_exact_agreement": 386,
+      "punctured_length": 393,
+      "quotient_family_vector_dimension_at_most": 3,
+      "raw_projective_tangent_bound": 8
+    }
+  ],
   "punctured_tangent_tail_extremizer_profile": [
     {
       "after_projective_recoordinate": "choose a nonbad projective point as infinity; the saturated bad projective set becomes a finite bad-slope set of size r'+1",
@@ -8598,7 +10683,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v26",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v27",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -9229,6 +11314,18 @@
         "unused_nonforced_external_root_lines": 0
       }
     ],
+    "conic_exact_current_one_over_external_core_ranges": [
+      [
+        69,
+        76
+      ]
+    ],
+    "conic_exact_current_safe_external_core_ranges": [
+      [
+        119,
+        120
+      ]
+    ],
     "conic_finite_safe_for_external_core_at_most": 76,
     "conic_high_core_forced_core_is_global_common_core": true,
     "conic_incidence_only_sharpness_external_core_range": [
@@ -9418,9 +11515,10 @@
     "conic_projective_safe_for_external_core_at_most": 68,
     "conic_remaining_unclosed_external_core_range": [
       69,
-      119
+      118
     ],
     "conic_residual_projective_safe_after_cofactor_span_for_external_core_at_least": 120,
+    "conic_residual_projective_safe_after_exact_tail_for_external_core_at_least": 119,
     "conic_residual_projective_safe_by_punctured_tangent_for_external_core_at_least": 121,
     "conic_residual_punctured_tangent_numerator_at_threshold": 58,
     "conic_residual_quotient_degree_at_most": 57,
@@ -9642,6 +11740,18 @@
         "unused_nonforced_external_root_lines": 0
       }
     ],
+    "line_exact_current_one_over_external_core_ranges": [
+      [
+        72,
+        80
+      ]
+    ],
+    "line_exact_current_safe_external_core_ranges": [
+      [
+        119,
+        120
+      ]
+    ],
     "line_finite_safe_for_external_core_at_most": 80,
     "line_high_core_forced_core_is_dual_evaluation_fiber": true,
     "line_incidence_one_over_external_core_range": [
@@ -9806,9 +11916,10 @@
     "line_projective_safe_for_external_core_at_most": 71,
     "line_remaining_unclosed_external_core_range": [
       72,
-      119
+      118
     ],
     "line_residual_projective_safe_after_cofactor_span_for_external_core_at_least": 120,
+    "line_residual_projective_safe_after_exact_tail_for_external_core_at_least": 119,
     "line_residual_projective_safe_by_punctured_tangent_for_external_core_at_least": 121,
     "line_residual_punctured_tangent_numerator_at_threshold": 55,
     "line_residual_quotient_degree_at_most": 54,
@@ -9911,6 +12022,78 @@
         "quotient_family_vector_dimension_at_most": 3
       }
     ],
+    "punctured_tangent_tail_e119_exact_agreement_closure": [
+      {
+        "after_projective_recoordinate": "choose a nonbad projective point as infinity; seven projective bad points become seven finite bad slopes in the punctured row",
+        "cofactor_improved_projective_tangent_bound": 7,
+        "cofactor_independence_witness": "For residual set Omega={omega_1,...,omega_8}, the cofactors R_i(X)=prod_{m != i}(X-omega_m) satisfy R_i(omega_i)!=0 and R_m(omega_i)=0 for m != i, so every subset is linearly independent.",
+        "component_type": "line",
+        "contradiction": true,
+        "d_equals_7_exact_bucket_exclusion": "If the common-support complement has size 7, the common support already has size A=386 in the punctured row.  An exact-A split locator has no residual coordinate left to add, while the support-wise noncontainment argument requires a private residual zero outside the common support; this branch is higher-agreement or same-support contained, not an exact-A noncontained locator.",
+        "d_equals_8_cofactor_obstruction": "If the complement has size 8, every exact-A noncontained slope is obtained by adding one residual coordinate to the size-385 common support.  The residual quotient locators are degree-7 cofactors of an eight-point residual set.",
+        "dangerous_projective_count": 7,
+        "finite_component_cofactor_span_dimension_at_least": 6,
+        "finite_component_slope_count_at_least": 6,
+        "forced_external_core_size": 119,
+        "near_extremizer_common_support_complement_options": [
+          {
+            "branch": "common_support_at_least_agreement",
+            "common_support_complement_size": 7,
+            "private_zero_quota_per_slope": 1,
+            "residual_budget_bound": 7
+          },
+          {
+            "branch": "common_support_below_agreement",
+            "common_support_complement_size": 8,
+            "private_zero_quota_per_slope": 1,
+            "residual_budget_bound": 8
+          }
+        ],
+        "original_projective_endpoint_count_at_most": 1,
+        "projective_safe_after_exact_agreement_obstruction": true,
+        "projective_upper_bound_after_obstruction": 6,
+        "punctured_cosupport_radius": 7,
+        "punctured_exact_agreement": 386,
+        "punctured_length": 393,
+        "quotient_family_vector_dimension_at_most": 2,
+        "raw_projective_tangent_bound": 8
+      },
+      {
+        "after_projective_recoordinate": "choose a nonbad projective point as infinity; seven projective bad points become seven finite bad slopes in the punctured row",
+        "cofactor_improved_projective_tangent_bound": 7,
+        "cofactor_independence_witness": "For residual set Omega={omega_1,...,omega_8}, the cofactors R_i(X)=prod_{m != i}(X-omega_m) satisfy R_i(omega_i)!=0 and R_m(omega_i)=0 for m != i, so every subset is linearly independent.",
+        "component_type": "irreducible_conic",
+        "contradiction": true,
+        "d_equals_7_exact_bucket_exclusion": "If the common-support complement has size 7, the common support already has size A=386 in the punctured row.  An exact-A split locator has no residual coordinate left to add, while the support-wise noncontainment argument requires a private residual zero outside the common support; this branch is higher-agreement or same-support contained, not an exact-A noncontained locator.",
+        "d_equals_8_cofactor_obstruction": "If the complement has size 8, every exact-A noncontained slope is obtained by adding one residual coordinate to the size-385 common support.  The residual quotient locators are degree-7 cofactors of an eight-point residual set.",
+        "dangerous_projective_count": 7,
+        "finite_component_cofactor_span_dimension_at_least": 6,
+        "finite_component_slope_count_at_least": 6,
+        "forced_external_core_size": 119,
+        "near_extremizer_common_support_complement_options": [
+          {
+            "branch": "common_support_at_least_agreement",
+            "common_support_complement_size": 7,
+            "private_zero_quota_per_slope": 1,
+            "residual_budget_bound": 7
+          },
+          {
+            "branch": "common_support_below_agreement",
+            "common_support_complement_size": 8,
+            "private_zero_quota_per_slope": 1,
+            "residual_budget_bound": 8
+          }
+        ],
+        "original_projective_endpoint_count_at_most": 1,
+        "projective_safe_after_exact_agreement_obstruction": true,
+        "projective_upper_bound_after_obstruction": 6,
+        "punctured_cosupport_radius": 7,
+        "punctured_exact_agreement": 386,
+        "punctured_length": 393,
+        "quotient_family_vector_dimension_at_most": 3,
+        "raw_projective_tangent_bound": 8
+      }
+    ],
     "punctured_tangent_tail_extremizer_profile": [
       {
         "after_projective_recoordinate": "choose a nonbad projective point as infinity; the saturated bad projective set becomes a finite bad-slope set of size r'+1",
@@ -9950,8 +12133,8 @@
       }
     ],
     "remaining_unclosed_residuals": [
-      "moving-slope line component with forced external split-root core in 72..120 for projective accounting",
-      "irreducible moving-slope conic component with forced external split-root core in 69..120 for projective accounting",
+      "moving-slope line component with forced external split-root core in 72..118 for projective accounting",
+      "irreducible moving-slope conic component with forced external split-root core in 69..118 for projective accounting",
       "possible independent noncontained vectors at slopes also admitting a slope-free vector"
     ],
     "single_saving_closure_ledger_core_ranges": {
@@ -9974,13 +12157,14 @@
     "base_interpolation_injective": "The linear map Q -> L_Q is injective: if L_Q=0 then Q vanishes on the base support X of size m=127, impossible for deg Q<3 unless Q=0.",
     "base_root_cap": "On the base support X, a_x L_Q(x)=Omega_x Q(x) with nonzero a_x and Omega_x.  Thus L_Q has at most two roots in X for nonzero Q, because deg Q<3.",
     "base_sharpened_external_incidence_budget": "Let e_G be the forced split-root core outside X.  Since each nonzero Q has at most two base-support roots, a valid degree-126 split locator needs at least 124-e_G additional roots outside X.  Each non-forced external root hyperplane cuts G in length at most c.  For e_G<124, the number of valid Q-classes, and hence finite slopes, is at most floor(c*(385-e_G)/(124-e_G)).",
-    "cofactor_current_residual_profile": "Applying the cofactor-span top-saturation exclusion to the whole intermediate profile gives the current best projective envelope.  The previously raw one-over tail e_G=120 becomes safe, while e_G=119 becomes the next cofactor-improved tangent-tail one-over core.  The maximum line bound remains 18, and the maximum conic bound drops from 26 to 25.",
-    "cofactor_improved_tangent_tail_profile": "The same cofactor-span obstruction excludes top saturation of the punctured projective tangent bound whenever the residual cofactor degree exceeds the fixed-core quotient-family dimension.  Thus the raw tangent bound r'+1 improves to r' in the high-core line/conic quotient tails until the cofactor degree drops to the ambient family dimension.  In particular e_G=120 is projective-safe for both lines and conics, while e_G=119 is the next one-over tangent-tail core.",
+    "cofactor_current_residual_profile": "Applying the cofactor-span top-saturation exclusion to the whole intermediate profile gives the current best projective envelope.  The previously raw one-over tail e_G=120 becomes safe, while e_G=119 becomes the next cofactor-improved tangent-tail one-over core before exact-agreement filtering.  The maximum line bound remains 18, and the maximum conic bound drops from 26 to 25.",
+    "cofactor_improved_tangent_tail_profile": "The same cofactor-span obstruction excludes top saturation of the punctured projective tangent bound whenever the residual cofactor degree exceeds the fixed-core quotient-family dimension.  Thus the raw tangent bound r'+1 improves to r' in the high-core line/conic quotient tails until the cofactor degree drops to the ambient family dimension.  In particular e_G=120 is projective-safe for both lines and conics, while e_G=119 is the next cofactor-current one-over tangent-tail core.",
     "conic_pair_overlap_packing": "On an irreducible conic, two distinct Q-classes can share at most one non-forced external root hyperplane: two shared external roots would give two distinct lines through the same two points.  Thus M valid Q-classes, each requiring R=124-e_G non-forced external roots, force a union of at least M*R-binomial(M,2) external root lines.  Since only 385-e_G are available, six Q-classes are impossible for e_G<=68 and seven are impossible for e_G<=76.",
     "conic_projective_safe_threshold": "For irreducible conics, e_G<=68 gives at most five finite Q-classes by pair-overlap packing.  Adding the endpoint-uniform contribution gives projective total at most 6.",
     "conic_remaining_residual": "Irreducible conics with forced external split-root core e_G>=69 remain residual for a sharper split, paid, or exact-root-table argument.",
     "conic_status": "For an irreducible conic c=2, the base-sharpened budget gives six finite Q-classes at e_G=0 and finite safety through e_G<=19, but the projective endpoint still makes total seven at best.  The conic pair-overlap packing lemma below supplies the needed extra saving through e_G<=68.",
     "defect_threshold_profile": "The survival pressures are converted into exact closure-by-defect thresholds.  At line e_G=72, six finite classes require at least eleven base-root incidences, so all six classes have a base root and at least five have two.  At conic e_G=69, six finite classes require at least fourteen of the fifteen pair secants before external excess, hence at least sixteen secant triangles.",
+    "exact_agreement_e119_tangent_tail_closure": "The live e_G=119 tangent-tail one-over row is closed by using exact agreement.  Seven projective slopes can be sent to seven finite slopes in the punctured row.  The tangent-staircase residual-budget proof then allows only common-support complement sizes 7 and 8.  Complement size 7 would force a higher-agreement or same-support-contained branch, not an exact-A noncontained split locator.  Complement size 8 gives degree-7 cofactors of an eight-point residual set; at least six finite component cofactors would be independent, exceeding the line/conic quotient-family dimensions 2 and 3.",
     "exact_root_budget_alternatives": "Using exact degree-126 split-locator accounting, line e_G=72 has only two alternatives: histogram (0,0,6) leaves exactly one unused nonforced external root line, while histogram (0,1,5) uses all nonforced external root lines.  For conic e_G=69, histogram (0,0,6) requires fourteen pair overlaps and histogram (0,1,5) requires all fifteen pair overlaps.",
     "extremal_design_local_profiles": "Locally, the line designs have singleton-root sequences (52,52,52,52,52,52) or (53,52,52,52,52,52).  The conic designs have secant-degree/singleton pairs (5^6;50^6), ((4,4,5,5,5,5);(51,51,50,50,50,50)), or (5^6;(51,50,50,50,50,50)).",
     "extremal_design_multiplicity_profiles": "The line designs have no pairwise external overlap: their nonforced external roots have multiplicities (zero, one, >=two) equal to (1,312,0) or (0,313,0).  The conic designs have no triple external overlap, and their multiplicities (zero, one, two) are (1,300,15), (0,302,14), or (0,301,15).",
@@ -9990,7 +12174,7 @@
     "high_core_forced_core_structure": "The forced-core condition is a linear condition in the Q-plane.  For a line component P(U), a forced external root is exactly an external evaluation functional that vanishes on U, so C_E is a two-polynomial gcd on the line's underlying vector subspace.  For an irreducible conic, containment in a root hyperplane can only occur when the evaluation functional is zero on the whole Q-plane; hence C_E is a global common divisor of all three basis kernel polynomials.",
     "high_core_quotient_normal_form": "For any remaining high-core line or conic component, let E be the forced external split-root core and C_E(X)=prod_{s in E}(X-s).  Every Q-class on the component has L_Q divisible by C_E.  After factoring, L_Q=C_E R_Q with deg R_Q<=126-|E|, and the split-locator gate is exactly R_Q | (X^512-1)/C_E plus the remaining noncontainment filters.  Thus residual line components reduce to quotient degree <=54, while residual conic components reduce to quotient degree <=57.",
     "incidence_budget": "For r_G<j, each valid degree-j split locator on G needs at least j-r_G additional intersections with non-forced root hyperplanes.  Each non-forced E_s cuts G in length at most c.  Hence the number of valid Q-classes, and therefore the number of finite slopes represented by this component, is at most floor(c*(512-r_G)/(126-r_G)).",
-    "intermediate_residual_profile": "Combining the external-incidence, pair-overlap, and punctured projective tangent bounds gives a sharp current proof envelope for the unresolved intermediate cores.  The one-over-budget finite-incidence subranges are line e_G=72..80 and conic e_G=69..76.  The tangent-tail row e_G=120 is closed by the cofactor-span obstruction; all other intermediate cores need more than a single endpoint/root saving under the present methods.",
+    "intermediate_residual_profile": "Combining the external-incidence, pair-overlap, and punctured projective tangent bounds gives a sharp current proof envelope for the unresolved intermediate cores.  The one-over-budget finite-incidence subranges are line e_G=72..80 and conic e_G=69..76.  The tangent-tail row e_G=120 is closed by the cofactor-span obstruction, and the next tangent-tail row e_G=119 is closed by exact-agreement residual-budget splitting; all other intermediate cores need more than a single endpoint/root saving under the present methods.",
     "line_projective_safe_core_threshold": "For a line component c=1, the unrefined all-root budget gives projective safety at r_G<=48.  The base-sharpened external budget improves this: e_G<=71 gives at most five finite Q-classes.  Adding the endpoint-uniform contribution gives projective total at most 6, exactly the projective budget.",
     "no_identically_split_positive_dimensional_component": "A positive-dimensional component cannot have r_G>=j=126.  Otherwise every L_Q on G would be divisible by the same degree-j split locator, hence scalar-multiple to it because deg L_Q<=j, contradicting projective injectivity of Q -> L_Q on G.",
     "one_over_design_catalog": "The whole endpoint-only finite-incidence one-over range now has an exact compact catalog.  Line cores 72,73,74 allow 2,16,27 base-root histograms respectively, and line cores 75..80 allow all 28 histograms with increasing unused external slack.  Conic cores 69,70,71 allow 2,16,27 histograms respectively, while cores 72..76 allow all 28; pair-overlap pressure disappears from cores 75 and 76.",
@@ -10000,7 +12184,7 @@
     "punctured_high_agreement_tangent_reduction": "Deleting the forced external core E leaves a punctured RS row of length n'=512-|E|, while the same witness has exact agreement 386 and co-support radius r'=126-|E|.  Since r' <= floor((n'-256)/3) for |E|>=61, every remaining high-core branch lies in the very-high-agreement tangent-staircase range of the punctured row.",
     "punctured_tangent_tail_cofactor_span_closure": "The remaining one-over tangent tail at e_G=120 is also closed.  If it had seven projective slopes, the tangent-star extremizer profile on the punctured row would give seven degree-6 cofactors of a seven-point residual set.  At most one of the seven projective bad points is the original endpoint, so at least six cofactors come from finite Q-classes on the component.  Any six cofactors are linearly independent by evaluation on the residual points, but the fixed-core quotient family has vector dimension at most 2 on a line component and at most 3 on an irreducible conic component.  This contradiction bounds the tail by six projective slopes.",
     "punctured_tangent_tail_extremizer_profile": "If the e_G=120 tail actually exceeds budget, it must saturate the projective tangent staircase on the punctured row (n',a')=(392,386).  Since the projective bad set has size 7 and P^1(F) has q+1 points, a nonbad projective point can be sent to infinity.  The finite tangent-star extremizer corollary then forces a common support of size 385 and a bijection from the seven punctured residual coordinates to the seven bad projective slopes.",
-    "single_saving_closure_ledger": "Every currently one-over row in the moving-slope packet is listed in a single-saving closure ledger.  The ledger covers line cores 72..80, conic cores 69..76, and the line/conic punctured-tangent tail at core 120.  In each row, any one listed saving lowers the projective count from 7 to the budget 6.",
+    "single_saving_closure_ledger": "Every cofactor-current one-over row in the moving-slope packet is listed in a single-saving closure ledger.  The ledger covers line cores 72..80, conic cores 69..76, and the line/conic punctured-tangent tail at core 120.  In each row, any one listed saving lowers the projective count from 7 to the budget 6.",
     "very_high_core_projective_tail_closure": "The high-agreement projective tangent staircase applies to the punctured row and bounds finite plus infinity slopes together by r'+1=127-|E|.  Hence every high-core branch with |E|>=121 has projective contribution at most 6.  This closes the very-high-core tail but leaves the intermediate high-core quotient range unresolved."
   },
   "unrefined_sample_budget_rows": [

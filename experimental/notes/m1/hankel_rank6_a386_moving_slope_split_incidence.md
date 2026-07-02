@@ -299,7 +299,7 @@ endpoint.  Their tangent-star cofactors are independent, so top saturation is
 impossible whenever `r'` exceeds the fixed quotient-family dimension (`2` for a
 line, `3` for an irreducible conic).  Thus the tangent-tail bound improves from
 `r'+1` to `r'` in the high-core range.  In particular, `|E|=120` is safe and
-`|E|=119` is the next one-over tangent-tail core.
+`|E|=119` is the next cofactor-current one-over tangent-tail core.
 
 The packet records both the raw intermediate profile and the cofactor-current
 profile.  In the cofactor-current profile the live one-over ranges are the
@@ -308,11 +308,25 @@ together with the tangent-tail core `|E|=119` for both component types.  The
 core `|E|=120` is projective-safe, and the largest conic projective bound drops
 from `26` to `25`.
 
+The cofactor-current `|E|=119` tangent-tail row is also closed after imposing
+exact agreement.  Here the punctured row has residual radius `r'=7`.  If seven
+projective slopes survived, choose a nonbad projective point as infinity, so
+the seven bad points become finite on the punctured row.  The tangent-staircase
+residual-budget proof leaves only two possible common-support complement sizes:
+`7` and `8`.  Complement size `7` has common support already equal to the
+exact support size `A=386`, so it has no residual coordinate left to create a
+private split-locator zero and is higher-agreement or same-support-contained.
+Complement size `8` gives degree-`7` cofactors of an eight-point residual set.
+At most one projective point is the original endpoint, so at least six finite
+component cofactors would be independent, again exceeding the fixed quotient
+family dimensions `2` and `3`.  Hence `|E|=119` is projective-safe in the
+exact-current profile.
+
 Thus the unclosed high-core quotient range is finite:
 
 ```text
-line residuals:  72 <= |E| <= 119;
-conic residuals: 69 <= |E| <= 119.
+line residuals:  72 <= |E| <= 118;
+conic residuals: 69 <= |E| <= 118.
 ```
 
 This uses the projective high-agreement tangent theorem on the punctured row,
@@ -343,15 +357,17 @@ Thus the endpoint-only subranges are now separated from the genuinely larger
 quotient/core residuals.  A single endpoint payment or one-root saving would
 close the finite-incidence one-over-budget subranges, while the middle ranges
 need a stronger quotient, tangent, or exact-root-table argument.  The
-punctured-tangent one-over row `|E|=120` is closed by the cofactor-span
-obstruction above.
+punctured-tangent one-over rows `|E|=120` and `|E|=119` are closed by the
+cofactor-span and exact-agreement arguments above.
 
-The saturation profile records the next obstruction explicitly.  Six finite
+The saturation profile records the remaining finite-incidence obstruction
+explicitly.  Six finite
 line classes in the incidence one-over range require pairwise disjoint external
 root sets with external slack between `1` and `41`.  Six finite conic classes
 require between `0` and `14` forced pair-overlap events before any external
 excess.  The former `|E|=120` tangent-tail obstruction is closed by the
-cofactor-span argument above; the next tangent-tail one-over core is `|E|=119`.
+cofactor-span argument above, and the next `|E|=119` tangent-tail obstruction is
+closed by exact agreement.
 
 Equivalently, a genuine over-budget witness in one of these rows must have six
 distinct finite slopes and an unpaid projective endpoint.  The sharpest finite
@@ -421,16 +437,17 @@ finite-incidence row that is exactly one over budget, together with the formerly
 raw punctured-tangent row `e_G=120` for both component types.  In each listed
 finite-incidence row, any one listed saving lowers the projective count from
 `7` to the budget `6`; for `e_G=120` that saving is supplied by the
-cofactor-span obstruction.  The live tangent-tail one-over core after this
-cofactor-current update is `e_G=119`.
+cofactor-span obstruction.  The subsequent exact-agreement filter closes the
+cofactor-current tangent-tail row `e_G=119`, so the exact-current one-over rows
+are only the finite-incidence ranges.
 
 The same ledger splits the next proof targets by first available mechanism:
 line base-splitting pressure remains only for `e_G=72..74`; line cores
 `75..80` need external-slack, duplicate-slope, endpoint, or paid-class input.
 For conics, base plus secant pressure remains for `e_G=69..71`, secant-only
 pressure remains for `e_G=72..74`, and cores `75,76` need an endpoint,
-duplicate-slope, or paid-class input.  The `e_G=120` rows are now isolated as
-closed punctured-tangent tails rather than remaining proof targets.
+duplicate-slope, or paid-class input.  The `e_G=120` and `e_G=119` rows are now
+isolated as closed punctured-tangent tails rather than remaining proof targets.
 
 Replay:
 
@@ -443,8 +460,8 @@ Nonclaims:
 
 ```text
 no proof that every moving-slope component is a line;
-no closure of line components with forced external split-root core in 72..119 in projective accounting;
-no closure of irreducible conic moving-slope components with forced external split-root core in 69..119 in projective accounting;
+no closure of line components with forced external split-root core in 72..118 in projective accounting;
+no closure of irreducible conic moving-slope components with forced external split-root core in 69..118 in projective accounting;
 no proof that the high-core quotient split problem is empty or paid;
 no claim that the punctured tangent numerator at the residual threshold is within the original row budget;
 no exclusion of another independent noncontained vector at the same finite slope;
