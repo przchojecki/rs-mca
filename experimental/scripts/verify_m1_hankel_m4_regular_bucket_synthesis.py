@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v12",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v13",
 }
 
 
@@ -412,6 +412,18 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         conic_e69["closes_if_secant_edges_at_most"] == 13,
         "conic e=69 edge-defect closure threshold",
     )
+    require(
+        summary["line_e72_allowed_base_root_histograms"] == [[0, 0, 6], [0, 1, 5]],
+        "line e=72 extremal base-root histograms",
+    )
+    require(
+        summary["conic_e69_allowed_missing_secant_counts"] == [0, 1],
+        "conic e=69 missing secant counts",
+    )
+    require(
+        summary["conic_e69_allowed_secant_triangle_counts"] == [16, 20],
+        "conic e=69 secant triangle counts",
+    )
     nonclaims = set(data["nonclaims"])
     require(
         "does not claim the punctured tangent numerator at the residual threshold is within the original row budget"
@@ -523,6 +535,7 @@ def build_certificate() -> dict[str, Any]:
                 "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the e_G=120 cases must instead saturate the punctured projective tangent bound",
                 "a genuine over-budget one-over witness must also have six distinct finite slopes and an unpaid endpoint; the strongest remaining pressure is line e_G=72 base splitting and conic e_G=69 almost-complete secants",
                 "line e_G=72 closes unless all six finite classes have a base root and at least five have two; conic e_G=69 closes unless at least 14 of 15 pair secants occur, forcing at least 16 secant triangles",
+                "line e_G=72 survival has only base-root histograms (0,0,6) or (0,1,5); conic e_G=69 survival has secant graph K6 or K6 minus one edge",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",

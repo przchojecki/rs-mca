@@ -183,7 +183,9 @@ unpaid endpoint; the strongest remaining pressure cases are line `e_G=72`
 near-complete base splitting and conic `e_G=69` almost-complete secants.  The
 line `e_G=72` case closes unless all six classes have a base root and at least
 five have two; the conic `e_G=69` case closes unless at least `14` of `15`
-pair secants occur, forcing at least `16` secant triangles.
+pair secants occur, forcing at least `16` secant triangles.  Equivalently, line
+`e_G=72` survival has base-root histogram `(0,0,6)` or `(0,1,5)`, and conic
+`e_G=69` survival has secant graph `K6` or `K6` minus one edge.
 
 Replay:
 

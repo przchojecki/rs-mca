@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v12"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v13"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -637,6 +637,72 @@ def conic_secant_defect_threshold_row(survival_row: dict[str, Any]) -> dict[str,
     }
 
 
+def line_base_extremal_shape_row(defect_row: dict[str, Any]) -> dict[str, Any]:
+    """Classify base-root histograms compatible with a line defect threshold."""
+    required_total = defect_row["required_total_base_root_incidences"]
+    histograms = sorted(
+        {
+            (
+                sum(1 for value in counts if value == 0),
+                sum(1 for value in counts if value == 1),
+                sum(1 for value in counts if value == 2),
+            )
+            for counts in itertools.product(range(3), repeat=FINITE_BUDGET)
+            if sum(counts) >= required_total
+        }
+    )
+    return {
+        "component_type": "line",
+        "forced_external_core_size": defect_row["forced_external_core_size"],
+        "histogram_format": "[zero_base_root_classes, one_base_root_classes, two_base_root_classes]",
+        "allowed_base_root_histograms": [list(histogram) for histogram in histograms],
+        "closes_if_histogram_outside_list": True,
+    }
+
+
+def conic_secant_extremal_shape_row(defect_row: dict[str, Any]) -> dict[str, Any]:
+    """Classify six-point secant graph shapes compatible with a conic threshold."""
+    vertex_count = defect_row["six_finite_classes"]
+    required_edges = defect_row["required_secant_edges_before_external_excess"]
+    vertices = range(vertex_count)
+    all_edges = list(itertools.combinations(vertices, 2))
+    degree_sequences: set[tuple[int, ...]] = set()
+    triangle_counts: set[int] = set()
+    missing_edge_counts: set[int] = set()
+    for mask in range(1 << len(all_edges)):
+        edge_count = mask.bit_count()
+        if edge_count < required_edges:
+            continue
+        degrees = [0] * vertex_count
+        edge_set = set()
+        for index, edge in enumerate(all_edges):
+            if mask & (1 << index):
+                a, b = edge
+                degrees[a] += 1
+                degrees[b] += 1
+                edge_set.add(edge)
+        triangle_count = 0
+        for a, b, c in itertools.combinations(vertices, 3):
+            if (
+                tuple(sorted((a, b))) in edge_set
+                and tuple(sorted((a, c))) in edge_set
+                and tuple(sorted((b, c))) in edge_set
+            ):
+                triangle_count += 1
+        degree_sequences.add(tuple(sorted(degrees)))
+        triangle_counts.add(triangle_count)
+        missing_edge_counts.add(len(all_edges) - edge_count)
+    return {
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": defect_row["forced_external_core_size"],
+        "allowed_missing_secant_counts": sorted(missing_edge_counts),
+        "allowed_sorted_degree_sequences": [list(seq) for seq in sorted(degree_sequences)],
+        "allowed_secant_triangle_counts": sorted(triangle_counts),
+        "closes_if_missing_secants_at_least": max(missing_edge_counts) + 1,
+        "shape_description": "complete graph K6 or K6 with one missing edge",
+    }
+
+
 def quotient_residual_row(
     component_type: str,
     forced_external_core_threshold: int,
@@ -1028,6 +1094,8 @@ def build_certificate() -> dict[str, Any]:
     conic_secant_defect_rows = [
         conic_secant_defect_threshold_row(row) for row in conic_survival_rows
     ]
+    line_e72_extremal_shape = line_base_extremal_shape_row(line_base_defect_rows[0])
+    conic_e69_extremal_shape = conic_secant_extremal_shape_row(conic_secant_defect_rows[0])
     require(line_residual_core_threshold == 72, "line residual threshold mismatch")
     require(conic_residual_core_threshold == 69, "conic residual threshold mismatch")
     require(
@@ -1230,6 +1298,24 @@ def build_certificate() -> dict[str, Any]:
     require(
         conic_secant_defect_rows[2]["required_secant_edges_before_external_excess"] == 4,
         "conic e=71 required secants changed",
+    )
+    require(
+        line_e72_extremal_shape["allowed_base_root_histograms"]
+        == [[0, 0, 6], [0, 1, 5]],
+        "line e=72 extremal histograms changed",
+    )
+    require(
+        conic_e69_extremal_shape["allowed_missing_secant_counts"] == [0, 1],
+        "conic e=69 missing secant shape changed",
+    )
+    require(
+        conic_e69_extremal_shape["allowed_sorted_degree_sequences"]
+        == [[4, 4, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5]],
+        "conic e=69 degree sequences changed",
+    )
+    require(
+        conic_e69_extremal_shape["allowed_secant_triangle_counts"] == [16, 20],
+        "conic e=69 triangle counts changed",
     )
 
     return {
@@ -1439,6 +1525,12 @@ def build_certificate() -> dict[str, Any]:
                 "require at least fourteen of the fifteen pair secants before "
                 "external excess, hence at least sixteen secant triangles."
             ),
+            "extremal_survival_shape_profile": (
+                "The extremal e_G=72 line case has only two possible base-root "
+                "histograms among the six finite classes: six two-root classes, "
+                "or five two-root classes plus one one-root class.  The extremal "
+                "e_G=69 conic case has secant graph K6 or K6 with one missing edge."
+            ),
         },
         "budget_formula": {
             "locator_degree_j": j_value,
@@ -1516,6 +1608,10 @@ def build_certificate() -> dict[str, Any]:
             "line_base_defect_threshold_rows": line_base_defect_rows,
             "irreducible_conic_secant_defect_threshold_rows": conic_secant_defect_rows,
         },
+        "extremal_survival_shape_profile": {
+            "line_e72_base_root_shape": line_e72_extremal_shape,
+            "irreducible_conic_e69_secant_graph_shape": conic_e69_extremal_shape,
+        },
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -1570,6 +1666,9 @@ def build_certificate() -> dict[str, Any]:
                 for row in line_survival_rows
             },
             "line_e72_defect_thresholds": line_base_defect_rows[0],
+            "line_e72_allowed_base_root_histograms": (
+                line_e72_extremal_shape["allowed_base_root_histograms"]
+            ),
             "line_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in line_intermediate_profile_rows
             ),
@@ -1614,6 +1713,12 @@ def build_certificate() -> dict[str, Any]:
                 for row in conic_survival_rows
             },
             "conic_e69_defect_thresholds": conic_secant_defect_rows[0],
+            "conic_e69_allowed_missing_secant_counts": (
+                conic_e69_extremal_shape["allowed_missing_secant_counts"]
+            ),
+            "conic_e69_allowed_secant_triangle_counts": (
+                conic_e69_extremal_shape["allowed_secant_triangle_counts"]
+            ),
             "conic_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows
             ),
@@ -1651,6 +1756,7 @@ def build_certificate() -> dict[str, Any]:
             "one-over finite-incidence saturation conditions are computed for the endpoint-only subranges",
             "over-budget survival conditions require bound saturation, distinct finite slopes, and an unpaid endpoint",
             "line base-root and conic secant-graph defect thresholds are computed by six-class exact enumeration",
+            "line e=72 and conic e=69 extremal survival shapes are classified by exact enumeration",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",

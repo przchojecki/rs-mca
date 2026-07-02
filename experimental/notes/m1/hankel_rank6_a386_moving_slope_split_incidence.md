@@ -318,6 +318,11 @@ have two.  The conic `|E|=69` case closes unless at least `14` of the `15`
 pair secants occur before external excess, which forces at least `16` secant
 triangles.
 
+The extremal shapes are therefore completely finite.  For line `|E|=72`, the
+six finite classes have base-root histogram either `(0,0,6)` or `(0,1,5)`,
+where the coordinates count zero-, one-, and two-base-root classes.  For conic
+`|E|=69`, the secant graph is either `K6` or `K6` with one edge deleted.
+
 Replay:
 
 ```sh

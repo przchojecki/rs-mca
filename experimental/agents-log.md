@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 extremal survival shape classification
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md`;
+  `experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `A=386` moving-slope packet now classifies the
+  exact extremal shapes compatible with the hardest one-over survival cases.
+- **How it is useful:** Line `e_G=72` survival has only base-root histograms
+  `(0,0,6)` or `(0,1,5)`.  Conic `e_G=69` survival has secant graph `K6` or
+  `K6` minus one edge.
+- **What to do next:** Attack these two finite shapes directly: prove they are
+  paid, force duplicate slopes, or cannot arise from the Hankel/Q-plane
+  evaluation map.
+
 ### 2026-07-02 - A386 defect-threshold profile
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
