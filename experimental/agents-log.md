@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 F17 prefix-minor certificate
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  No threshold or worst-case row
+  claim.
+- **What is being added:** Turn 11 of the `A=384` underdetermined M5 packet:
+  the planted `F_17^32` packet now computes the Vandermonde determinant on the
+  128 planted roots and the prefix moment minor `det(V)^2`.
+- **How it is useful:** Certifies the actual top Cramer coordinate
+  `c_128 != 0`, so the planted slope is verified to be in the full-rank top
+  chart rather than merely carrying a monic valid locator.
+- **What to do next:** Use the same prefix-minor/root-table discipline for
+  future `F_17^32` rank-drop, low-degree, and top pseudo-remainder packets.
+
 ### 2026-07-02 - M5 A384 F17 planted top chart
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

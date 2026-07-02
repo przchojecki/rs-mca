@@ -55,6 +55,11 @@ slope at A=384.  It constructs a degree-128 locator from the first 128
 descriptor-domain roots, generates the annihilated moment window, and verifies
 that a nonconstant syndrome pencil hits that window at a planted finite slope.
 
+Turn 11 strengthens the F_17^32 packet's top-chart certificate: the top
+Cramer coordinate is the prefix 128 x 128 moment minor, computed as det(V)^2
+for the Vandermonde matrix on the planted support.  This is the actual
+c_128 != 0 chart condition.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -962,6 +967,14 @@ def f17_planted_top_chart_payload():
         field,
         [f17_poly_eval(field, locator, root) for root in support],
     )
+    vandermonde_det = field.one
+    for right in range(len(support)):
+        for left in range(right):
+            vandermonde_det = field.mul(
+                vandermonde_det,
+                f17_sub(field, support[right], support[left]),
+            )
+    prefix_minor = field.mul(vandermonde_det, vandermonde_det)
 
     return {
         "row_descriptor_hash": tagged_hash(descriptor),
@@ -975,8 +988,13 @@ def f17_planted_top_chart_payload():
         "locator_values_on_support_all_zero": all(value == field.zero for value in [
             f17_poly_eval(field, locator, root) for root in support
         ]),
+        "locator_leading_coefficient_nonzero": locator[-1] != field.zero,
         "support_roots_in_domain": all(field.pow(root, 512) == field.one for root in support),
         "support_distinct": len(set(support_encodings)) == 128,
+        "vandermonde_determinant_encoding": field.encode(vandermonde_det),
+        "vandermonde_determinant_nonzero": vandermonde_det != field.zero,
+        "moment_prefix_minor_encoding": field.encode(prefix_minor),
+        "moment_prefix_minor_nonzero": prefix_minor != field.zero,
         "moment_window_hash": tagged_hash(moment_encodings),
         "recurrence_residual_hash": tagged_hash(residual_encodings),
         "recurrence_residual_all_zero": all(value == field.zero for value in recurrence_residuals),
@@ -992,8 +1010,8 @@ def f17_planted_top_chart_payload():
         "top_chart": {
             "t": 128,
             "j": 128,
-            "rank_certificate": "moment Hankel block V diag(1) V^T with 128 distinct support roots",
-            "top_coefficient_nonzero": locator[-1] == field.one,
+            "rank_certificate": "prefix moment minor = det(V)^2 for 128 distinct support roots",
+            "top_coefficient_nonzero": prefix_minor != field.zero,
             "validity_certificate": "locator is product of 128 distinct roots from H, hence divides X^512-1",
         },
     }
@@ -1050,6 +1068,11 @@ def expected_f17_packet():
             "support_distinct": payload["support_distinct"],
             "support_roots_in_domain": payload["support_roots_in_domain"],
             "locator_values_on_support_all_zero": payload["locator_values_on_support_all_zero"],
+            "locator_leading_coefficient_nonzero": payload["locator_leading_coefficient_nonzero"],
+            "vandermonde_determinant_encoding": payload["vandermonde_determinant_encoding"],
+            "vandermonde_determinant_nonzero": payload["vandermonde_determinant_nonzero"],
+            "moment_prefix_minor_encoding": payload["moment_prefix_minor_encoding"],
+            "moment_prefix_minor_nonzero": payload["moment_prefix_minor_nonzero"],
             "recurrence_residual_hash": payload["recurrence_residual_hash"],
             "recurrence_residual_all_zero": payload["recurrence_residual_all_zero"],
             "v_window_nonzero": payload["v_window_nonzero"],
@@ -1078,6 +1101,9 @@ def check_f17_packet(path: Path):
         checks["support_distinct"]
         and checks["support_roots_in_domain"]
         and checks["locator_values_on_support_all_zero"]
+        and checks["locator_leading_coefficient_nonzero"]
+        and checks["vandermonde_determinant_nonzero"]
+        and checks["moment_prefix_minor_nonzero"]
         and checks["recurrence_residual_all_zero"]
         and checks["v_window_nonzero"]
         and checks["recombination_matches_moments"]
@@ -1087,6 +1113,7 @@ def check_f17_packet(path: Path):
         f"packet {path} matches the recomputed F_17^32 planted top-chart payload",
         f"schema_version = {F17_PACKET_SCHEMA}",
         f"planted slope encoding = {expected['declared_family']['planted_slope_encoding']}",
+        f"prefix moment minor encoding = {checks['moment_prefix_minor_encoding']} != 0",
         "degree-128 locator is a product of 128 descriptor-domain roots and annihilates the planted moment window",
     ]
 

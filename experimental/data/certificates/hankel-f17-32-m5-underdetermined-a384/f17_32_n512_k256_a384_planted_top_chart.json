@@ -1,6 +1,9 @@
 {
   "checks": {
+    "locator_leading_coefficient_nonzero": true,
     "locator_values_on_support_all_zero": true,
+    "moment_prefix_minor_encoding": 1960127525760963954976810457703429629095,
+    "moment_prefix_minor_nonzero": true,
     "recombination_hash": "sha256:fbab3969091d5f60b8e8c65039a15874d5f39d729cab3e0a4517825080f31dd4",
     "recombination_matches_moments": true,
     "recurrence_residual_all_zero": true,
@@ -9,12 +12,14 @@
     "support_roots_in_domain": true,
     "top_chart": {
       "j": 128,
-      "rank_certificate": "moment Hankel block V diag(1) V^T with 128 distinct support roots",
+      "rank_certificate": "prefix moment minor = det(V)^2 for 128 distinct support roots",
       "t": 128,
       "top_coefficient_nonzero": true,
       "validity_certificate": "locator is product of 128 distinct roots from H, hence divides X^512-1"
     },
-    "v_window_nonzero": true
+    "v_window_nonzero": true,
+    "vandermonde_determinant_encoding": 1442303266353718182582541126167929149753,
+    "vandermonde_determinant_nonzero": true
   },
   "declared_family": {
     "moment_rule": "S_m = sum_{r=0}^{127} h_r^m for descriptor-domain roots h_r",

@@ -1,13 +1,14 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 10: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 11: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
   the real `A=384` row are done; the `F_97` acid test now independently
   enumerates all degree-four subgroup locators on three pinned toy families;
-  the first declared `F_17^32` planted top-chart packet is emitted). No
-  threshold, safety, or worst-case row claim is made.
+  the first declared `F_17^32` planted top-chart packet is emitted and now
+  carries an explicit nonzero prefix-minor certificate). No threshold, safety,
+  or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
   regular window `385 <= A <= 426`, synthetic rank ladders and kernel charts):
@@ -125,7 +126,8 @@ belongs.
 | 5d | chart-reduction theorem: rank-drop / low-degree / top pseudo-remainder | **done** |
 | 5e | independent `F_97` acid test: direct locator enumeration equals chart prediction | **done** |
 | 5f | first declared `F_17^32` planted top-chart packet | **done** |
-| 5g | full `F_17^32` root-table packet for rank-drop / low-degree / top charts | pending |
+| 5g | explicit nonzero prefix-minor certificate for the planted packet | **done** |
+| 5h | full `F_17^32` root-table packet for rank-drop / low-degree / top charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -403,10 +405,32 @@ the Hankel recurrence check gives
 sum_i L_i S_{r+i}=0, 0<=r<128.
 ```
 
-The rank/top-chart certificate is structural: the leading coefficient of `L`
-is `1`, and the `128 x 128` moment block factors as `V diag(1) V^T` for the
-Vandermonde matrix on 128 distinct descriptor-domain roots.  Thus the planted
-slope is a genuine top-chart slope with a valid degree-128 split locator.
+The rank/top-chart certificate is structural and replayed: the `128 x 128`
+prefix moment block factors as `V V^T` for the Vandermonde matrix on 128
+distinct descriptor-domain roots, so its determinant is `det(V)^2`.  Turn 11
+computes this field element in the packet:
+
+```text
+det(V) encoding                  = 1442303266353718182582541126167929149753
+prefix moment minor det(V)^2     = 1960127525760963954976810457703429629095
+```
+
+The second value is nonzero, so the planted slope is genuinely on the top
+Cramer chart (`c_128 != 0`) and has a valid degree-128 split locator.
+
+### Verified in turn 11
+
+**U11, explicit planted top-chart rank certificate.** The F17 packet now
+records the actual top-chart certificate, not only the monicity of the planted
+locator:
+
+```text
+c_128(z0) = det(S_{r+c})_{0<=r,c<128} = det(V)^2 != 0.
+```
+
+This is the top Cramer coordinate of the deficiency-one chart.  Its nonzero
+value proves that the planted slope is in the full-row-rank top chart rather
+than a rank-drop or low-degree side chart.
 
 This packet still does not count roots over `F_17^32`.  It is the first
 replayable real-row instantiation of the M5 deficiency-one chart, meant to

@@ -19,6 +19,16 @@ a degree-128 locator from the first 128 descriptor-domain roots, generates the
 annihilated moment window, and verifies that a nonconstant syndrome pencil
 hits that window at a planted finite slope.
 
+The top-chart certificate is the nonzero prefix moment minor:
+
+```text
+det(S_{r+c})_{0<=r,c<128} = det(V)^2
+```
+
+where `V` is the Vandermonde matrix on the 128 planted support roots.  The
+packet records both the Vandermonde determinant encoding and the prefix-minor
+encoding.
+
 Replay:
 
 ```bash
