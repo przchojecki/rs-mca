@@ -144,7 +144,7 @@ For each family the verifier tries two distinct-slope assignments
 The verifier reports:
 
 ```text
-overall: NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE
+overall: BOUNDED_EXCEPTION_WITNESS_FOUND
 ```
 
 The important nuance is that ambient rank losses do occur, but most are now
@@ -152,8 +152,25 @@ explained by the universal degree-moment quotient above.  The greedy families
 reach the degree cap with no extra distinct-slope loss, and cap saturation
 forces `S_T(v)=0` on the whole tested family.  The `AG(2,4)` line ordering has
 one prefix loss below the cap, but it is not certified as nondegenerate
-finite-slope mass.  Across all tested distinct-slope cases, no below-cap
-rank-loss prefix is certified as genuine finite-slope mass.
+finite-slope mass.
+
+However, a targeted red-team check found explicit bounded AG(2,4) subfamilies
+where below-cap rank loss is nondegenerate:
+
+```text
+six_line_linear_exception:    6 lines, rank 11 of 12, nondegenerate
+seven_line_linear_exception:  7 lines, rank 11 of 12, nondegenerate
+```
+
+These witnesses are in the spread regime: every pair of co-support lines
+intersects in at most one point, while `j-t=2`.  The nondegeneracy certificate
+shows that the nullspace is not covered by the hyperplanes `S_T(v)=0`, so a
+finite-slope realization exists for the prescribed distinct slopes.
+
+This is not evidence of growing many-slope mass.  It is evidence that the
+right spread-regime theorem cannot be a literal no-exception statement; it
+needs either a bounded-exception clause or a structural classification of these
+small AG(2,4)-type configurations.
 
 The largest certified nondegenerate distinct-slope prefixes are small:
 
@@ -172,18 +189,20 @@ nondegeneracy separate from same-slope or zero-`v` collapse.
 
 ## Interpretation
 
-This shifts the E3 prior mildly toward the clean spread-regime route.  The
-tested designs do not expose a new nondegenerate many-slope mechanism.  The
-evidence also suggests a useful proof target:
+This shifts the E3 prior toward a bounded-exception spread-regime route.  The
+tested designs do not expose growing nondegenerate many-slope mass, but they
+do expose small nondegenerate exceptions.  The evidence suggests the following
+more accurate proof target:
 
 ```text
 After quotienting by the degree <= j+t moment span, any higher-order rank loss
-for prescribed distinct slopes either stays in a bounded exceptional prefix or
-forces the v-syndrome degeneracy S_T(v)=0 on the affected locator family.
+for prescribed distinct slopes either belongs to a bounded exceptional family
+or forces the v-syndrome degeneracy S_T(v)=0 on the affected locator family.
 ```
 
 That statement would be a real lemma toward `spread_regime_bound`; this packet
-is only its first finite-model pressure test.
+is only its first finite-model pressure test.  The AG(2,4) witnesses tell us
+that the bounded-exception term is not optional.
 
 ## Reproduce
 

@@ -1,4 +1,177 @@
 {
+  "ag24_below_cap_exception_witnesses": [
+    {
+      "degree_cap": 12,
+      "degree_deficiency": 1,
+      "equation_rows": 12,
+      "family": [
+        [
+          0,
+          1,
+          2,
+          3
+        ],
+        [
+          0,
+          4,
+          8,
+          12
+        ],
+        [
+          0,
+          5,
+          10,
+          15
+        ],
+        [
+          0,
+          6,
+          11,
+          13
+        ],
+        [
+          2,
+          5,
+          11,
+          12
+        ],
+        [
+          12,
+          13,
+          14,
+          15
+        ]
+      ],
+      "interpretation": "bounded_nonzero_finite_slope_below_cap_exception",
+      "j": 4,
+      "name": "six_line_linear_exception",
+      "nondegeneracy_certificate": {
+        "all_v_syndrome_restrictions_nonzero": true,
+        "logic": "Inside the nullspace, each condition S_T(v)=0 is a proper linear subspace. Since p is larger than the number of tested locators, the union of these proper subspaces cannot cover the nullspace.",
+        "nullity": 21,
+        "p_greater_than_locator_count": true,
+        "union_bound_certifies_nondegenerate_solution": true,
+        "zero_restriction_first_indices": [],
+        "zero_restriction_locator_count": 0
+      },
+      "pairwise_spread_stats": {
+        "all_pairs_below_fm1_dependency_threshold": true,
+        "all_support_intersections_lt_k": true,
+        "cosupport_intersection_histogram": {
+          "0": 1,
+          "1": 14
+        },
+        "fm1_dependency_threshold_c_ge": 2,
+        "k": 10,
+        "max_cosupport_intersection": 1,
+        "max_support_intersection": 9,
+        "support_intersection_histogram": {
+          "8": 1,
+          "9": 14
+        }
+      },
+      "rank": 11,
+      "slope_mode": "distinct_linear",
+      "slopes": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "t": 2
+    },
+    {
+      "degree_cap": 12,
+      "degree_deficiency": 1,
+      "equation_rows": 14,
+      "family": [
+        [
+          0,
+          4,
+          8,
+          12
+        ],
+        [
+          0,
+          5,
+          10,
+          15
+        ],
+        [
+          1,
+          4,
+          11,
+          14
+        ],
+        [
+          1,
+          5,
+          9,
+          13
+        ],
+        [
+          2,
+          6,
+          10,
+          14
+        ],
+        [
+          3,
+          6,
+          9,
+          12
+        ],
+        [
+          3,
+          7,
+          11,
+          15
+        ]
+      ],
+      "interpretation": "bounded_nonzero_finite_slope_below_cap_exception",
+      "j": 4,
+      "name": "seven_line_linear_exception",
+      "nondegeneracy_certificate": {
+        "all_v_syndrome_restrictions_nonzero": true,
+        "logic": "Inside the nullspace, each condition S_T(v)=0 is a proper linear subspace. Since p is larger than the number of tested locators, the union of these proper subspaces cannot cover the nullspace.",
+        "nullity": 21,
+        "p_greater_than_locator_count": true,
+        "union_bound_certifies_nondegenerate_solution": true,
+        "zero_restriction_first_indices": [],
+        "zero_restriction_locator_count": 0
+      },
+      "pairwise_spread_stats": {
+        "all_pairs_below_fm1_dependency_threshold": true,
+        "all_support_intersections_lt_k": true,
+        "cosupport_intersection_histogram": {
+          "0": 9,
+          "1": 12
+        },
+        "fm1_dependency_threshold_c_ge": 2,
+        "k": 10,
+        "max_cosupport_intersection": 1,
+        "max_support_intersection": 9,
+        "support_intersection_histogram": {
+          "8": 9,
+          "9": 12
+        }
+      },
+      "rank": 11,
+      "slope_mode": "distinct_linear",
+      "slopes": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "t": 2
+    }
+  ],
   "cases": [
     {
       "A": 12,
@@ -2342,14 +2515,15 @@
   "fable_evidence_item": "E3",
   "hidden_cases": [],
   "interpretation_table": {
+    "BOUNDED_EXCEPTION_WITNESS_FOUND": "A bounded-size AG(2,4) subfamily has nondegenerate below-cap rank loss. This does not show growth, but it rules out a literal no-exception lemma.",
     "CANDIDATE_SPREAD_COUNTEREXAMPLE": "A nondegenerate distinct-slope rank loss below the degree-moment cap was found; package the minimal case as a counterexample candidate.",
     "NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE": "No tested spread design produced a nondegenerate distinct-slope rank-loss prefix beyond the degree-moment cap. Ambient rank losses are explained by the universal moment quotient."
   },
   "method": "For each design family, stack the linear systems S_T(u)+z_T S_T(v)=0 over F_193 for distinct slopes z_T. Pairwise intersections are below the FM1 dependency threshold, The verifier compares rank both to the ambient 2n variable space and to the proved degree-moment cap 2(j+t).",
-  "overall_interpretation": "NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE",
+  "overall_interpretation": "BOUNDED_EXCEPTION_WITNESS_FOUND",
   "pre_registered_question": "Can co-support designs with pairwise support intersections < k create hidden distinct-slope alignment dependencies before the ambient 2n-variable rank limit?",
   "prime": 193,
-  "script_sha256": "920a90084e229ff26ad6f70370d92460e8e5c1cda0e6f3342b077f2262dc1ac8",
+  "script_sha256": "fcdfcfac5d689cf1d5c8e0a7c2cd7ce5aa0cc28dd83a45ebd24187345517824f",
   "seed": 2026070203,
   "status": "EXPERIMENTAL / AUDIT",
   "title": "E3 spread-regime design evidence"

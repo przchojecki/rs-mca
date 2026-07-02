@@ -477,6 +477,73 @@ def cap_saturation_degeneracy_certificate(
     }
 
 
+def explicit_ag24_exception_witnesses(domain: list[int], p: int = P) -> list[dict[str, Any]]:
+    witnesses = [
+        {
+            "name": "six_line_linear_exception",
+            "slope_mode": "distinct_linear",
+            "family": [
+                (0, 1, 2, 3),
+                (0, 4, 8, 12),
+                (0, 5, 10, 15),
+                (0, 6, 11, 13),
+                (2, 5, 11, 12),
+                (12, 13, 14, 15),
+            ],
+        },
+        {
+            "name": "seven_line_linear_exception",
+            "slope_mode": "distinct_linear",
+            "family": [
+                (0, 4, 8, 12),
+                (0, 5, 10, 15),
+                (1, 4, 11, 14),
+                (1, 5, 9, 13),
+                (2, 6, 10, 14),
+                (3, 6, 9, 12),
+                (3, 7, 11, 15),
+            ],
+        },
+    ]
+    rows = []
+    for witness in witnesses:
+        family = [tuple(item) for item in witness["family"]]
+        t = 2
+        j = 4
+        slopes = slope_sequence(witness["slope_mode"], len(family), p)
+        matrix = stacked_alignment_matrix(domain, family, t, slopes, p)
+        rank = rank_mod_p(matrix, p)
+        equation_rows = len(family) * t
+        degree_cap = 2 * (j + t)
+        degree_deficiency = min(equation_rows, degree_cap) - rank
+        cert = nondegeneracy_certificate(domain, family, t, slopes, p)
+        stats = pairwise_stats(family, len(domain), j, t)
+        if not stats["all_pairs_below_fm1_dependency_threshold"]:
+            raise AssertionError(f"{witness['name']} is not a spread witness")
+        if degree_deficiency <= 0:
+            raise AssertionError(f"{witness['name']} has no below-cap rank loss")
+        if not cert["union_bound_certifies_nondegenerate_solution"]:
+            raise AssertionError(f"{witness['name']} is degenerate")
+        rows.append({
+            "name": witness["name"],
+            "slope_mode": witness["slope_mode"],
+            "family": [list(item) for item in family],
+            "slopes": slopes,
+            "t": t,
+            "j": j,
+            "equation_rows": equation_rows,
+            "rank": rank,
+            "degree_cap": degree_cap,
+            "degree_deficiency": degree_deficiency,
+            "pairwise_spread_stats": stats,
+            "nondegeneracy_certificate": cert,
+            "interpretation": (
+                "bounded_nonzero_finite_slope_below_cap_exception"
+            ),
+        })
+    return rows
+
+
 def summarize_prefix_records(records: list[dict[str, Any]]) -> dict[str, Any]:
     if not records:
         return {
@@ -734,6 +801,8 @@ def analyze_case(case: dict[str, Any]) -> dict[str, Any]:
 
 def build_report() -> dict[str, Any]:
     cases = [analyze_case(case) for case in build_cases()]
+    ag24_domain = subgroup_domain(16, P)
+    ag24_exceptions = explicit_ag24_exception_witnesses(ag24_domain, P)
     hidden_cases = [case for case in cases if case["interpretation"] == "CANDIDATE_SPREAD_COUNTEREXAMPLE"]
     source = Path(__file__).read_text()
     return {
@@ -759,6 +828,11 @@ def build_report() -> dict[str, Any]:
                 "rank-loss prefix beyond the degree-moment cap. Ambient rank "
                 "losses are explained by the universal moment quotient."
             ),
+            "BOUNDED_EXCEPTION_WITNESS_FOUND": (
+                "A bounded-size AG(2,4) subfamily has nondegenerate below-cap "
+                "rank loss. This does not show growth, but it rules out a "
+                "literal no-exception lemma."
+            ),
             "CANDIDATE_SPREAD_COUNTEREXAMPLE": (
                 "A nondegenerate distinct-slope rank loss below the "
                 "degree-moment cap was found; package the minimal case as a "
@@ -768,10 +842,13 @@ def build_report() -> dict[str, Any]:
         "prime": P,
         "seed": SEED,
         "cases": cases,
+        "ag24_below_cap_exception_witnesses": ag24_exceptions,
         "overall_interpretation": (
-            "NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE"
-            if not hidden_cases
-            else "CANDIDATE_SPREAD_COUNTEREXAMPLE"
+            "CANDIDATE_SPREAD_COUNTEREXAMPLE"
+            if hidden_cases
+            else "BOUNDED_EXCEPTION_WITNESS_FOUND"
+            if ag24_exceptions
+            else "NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE"
         ),
         "hidden_cases": [case["name"] for case in hidden_cases],
         "script_sha256": sha256_text(source),
@@ -821,6 +898,19 @@ def main() -> None:
                     )
                 )
     print(f"overall: {report['overall_interpretation']}")
+    for witness in report["ag24_below_cap_exception_witnesses"]:
+        print(
+            "    AG(2,4) exception {name}: size={size}, rank={rank}/{cap}, "
+            "nondegenerate={nondeg}".format(
+                name=witness["name"],
+                size=len(witness["family"]),
+                rank=witness["rank"],
+                cap=min(witness["equation_rows"], witness["degree_cap"]),
+                nondeg=witness["nondegeneracy_certificate"][
+                    "union_bound_certifies_nondegenerate_solution"
+                ],
+            )
+        )
 
     if args.emit:
         OUTPUT.parent.mkdir(parents=True, exist_ok=True)

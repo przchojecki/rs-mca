@@ -91,11 +91,14 @@ Keep entries concise and link to the relevant files.
   basis and confirming the rank does not increase.  A further cap-saturation
   certificate records that once a distinct-slope stack reaches the full
   `2(j+t)` moment cap, all tested locator syndromes have `S_T(v)=0`, so the
-  saturated branch is finite-slope-degenerate.
+  saturated branch is finite-slope-degenerate.  A targeted AG(2,4) red-team
+  check also records explicit six- and seven-line nondegenerate below-cap
+  exceptions, showing that the eventual spread theorem needs a bounded
+  exceptional-family clause.
 - **What to do next:** Turn the observed pattern into a lemma target:
-  higher-order rank loss in spread families should either be bounded-prefix or
-  force `v`-syndrome degeneracy.  Broaden the falsifier to larger designs only
-  after that statement is made precise.
+  higher-order rank loss in spread families should either be a bounded
+  AG(2,4)-type exception or force `v`-syndrome degeneracy.  Broaden the
+  falsifier to larger designs only after that statement is made precise.
 
 ### 2026-07-02 - Towards-prize sparse note documentation pass
 
