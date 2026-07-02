@@ -1,0 +1,159 @@
+{
+  "agreement": {
+    "A": 386,
+    "boundary_defect_h": 3,
+    "combined_support_size": 133,
+    "direction_rank": 6,
+    "j": 126,
+    "m": 127,
+    "projective_Q_search_dimension": 2,
+    "t": 130
+  },
+  "branch_partition": [
+    {
+      "branch": "no_common_component_pair",
+      "projective_total_upper_bound": 5,
+      "reason": "two direction-consistency conics meet in at most four finite Q-classes",
+      "source": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-conic-pair-safety/f17_32_n512_k256_m3_rank6_a386_conic_pair_safety.json",
+      "status": "projective_safe"
+    },
+    {
+      "branch": "common_component_cut_by_some_direction_conic",
+      "projective_total_upper_bound": 5,
+      "reason": "component cuts plus off-component Bezout leave at most four finite Q-classes",
+      "source": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-component-cut-safety/f17_32_n512_k256_m3_rank6_a386_component_cut_safety.json",
+      "status": "projective_safe"
+    },
+    {
+      "branch": "global_component_constant_slope_off_base_locus",
+      "projective_total_upper_bound": 2,
+      "reason": "constant slope contributes at most one finite parameter plus the endpoint",
+      "source": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json",
+      "status": "projective_safe"
+    },
+    {
+      "branch": "global_component_slope_free_locus",
+      "projective_total_upper_bound": 0,
+      "reason": "slope-free vectors fail both finite and projective noncontainment gates",
+      "source": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/f17_32_n512_k256_m3_rank6_a386_slope_free_containment.json",
+      "status": "zero_additional_support_wise_parameters"
+    },
+    {
+      "branch": "global_component_nonconstant_moving_slope_line_or_conic",
+      "projective_total_upper_bound": 6,
+      "reason": "line and irreducible-conic moving-slope components are safe for every external core size",
+      "source": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
+      "status": "projective_safe"
+    }
+  ],
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "A=386 has boundary defect h=3 and Q-space P^2",
+    "no-common-component conic pairs are projective-safe",
+    "component-cut branches are projective-safe",
+    "the only post-cut common-component residual is a global irreducible conic component",
+    "global components split into constant-slope, moving-slope, and slope-free branches",
+    "constant-slope non-base branch is projective-safe",
+    "slope-free vectors add zero support-wise parameters",
+    "same-slope slope-free shadows are charged through the non-slope-free branch if needed",
+    "every irreducible component left by the conic tree is a line or irreducible conic",
+    "moving-slope line and irreducible-conic branches have no live residual external-core range",
+    "endpoint-uniform dependency supplies exactly one endpoint where endpoint accounting is used"
+  ],
+  "family": {
+    "base_support": "any subset X of H with |X|=j+1",
+    "direction_support": "any subset Y of H\\X with |Y|=6",
+    "support_condition": "X and Y are disjoint",
+    "weights": "any nonzero base weights a_x and direction weights b_y"
+  },
+  "nonclaims": [
+    "does not cover A=385",
+    "does not classify overlapping-support rank-6 pencils",
+    "does not prove endpoint payment; it uses endpoint-budget accounting",
+    "does not compute arbitrary non-separated rank-6 root tables",
+    "does not close arbitrary rank-6 Hankel pencils",
+    "does not produce a row-level M3 safe-side bound"
+  ],
+  "object": "A=386 separated rank-6 boundary projective closure",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-a386-separated-boundary-closure-v1",
+  "source_artifacts": {
+    "a386_component_cut_safety": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-component-cut-safety/f17_32_n512_k256_m3_rank6_a386_component_cut_safety.json",
+      "sha256": "394c8bf539e743b54fdadddca497ddbd35f2d82e03fd85cf4863a66dc93b394a"
+    },
+    "a386_conic_pair_safety": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-conic-pair-safety/f17_32_n512_k256_m3_rank6_a386_conic_pair_safety.json",
+      "sha256": "3a30b2bedeeeeeb3b9ec96db727050b04bad133fcbee14c845fd759138f0e6a5"
+    },
+    "a386_global_component_slope_dichotomy": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json",
+      "sha256": "421bcbf3cec0fafc7e4bfaa290a8cdeb768a2476437d5729c69131637ff6ba26"
+    },
+    "a386_moving_slope_split_incidence": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
+      "sha256": "fbb5310c782a7740e97eddd07b7c1aa8b7c01d0d3cacf4f6b25a2f338faff48b"
+    },
+    "a386_slope_free_containment": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/f17_32_n512_k256_m3_rank6_a386_slope_free_containment.json",
+      "sha256": "94b2b5d84ff6ab6ea738875cd414b85c156dcaafc10194b2ad18f82b808bb77a"
+    },
+    "rank6_boundary_low_degree_transfer": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json",
+      "sha256": "4ff0d90a1e710bca56efd7a68357d2dcc473a8150c9ddcaf1b95a061ec5c2101"
+    },
+    "rank6_projective_endpoint_uniform": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+      "sha256": "f933c4d38476d3056e6284de55e01b7375f8c90239d52aed40548018323454e2"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement": 386,
+    "boundary_defect_h": 3,
+    "branch_count": 5,
+    "constant_slope_projective_total_upper_bound": 2,
+    "explicit_bezout_projective_total_upper_bound": 5,
+    "live_separated_a386_rank6_residuals": [],
+    "moving_slope_component_degrees_covered": [
+      1,
+      2
+    ],
+    "moving_slope_line_or_conic_projective_safe": true,
+    "projective_Q_search_dimension": 2,
+    "projective_budget": 6,
+    "separated_support_rank6_boundary_projective_safe": true,
+    "slope_free_additional_support_wise_parameters": 0
+  },
+  "theorem": {
+    "bezout_or_component_split": "Either two direction-consistency conics have no common component, or a common component appears.  The no-common-component branch is projective-safe by Bezout.  In the common-component branch, component cuts are projective-safe unless an irreducible component is contained in every direction-consistency conic.",
+    "global_component_split": "A global component has a well-defined induced slope map away from the slope-free locus.  Constant maps are projective-safe; the remaining nonconstant map is a moving-slope line or irreducible-conic component because the component is an irreducible component of a plane conic.",
+    "low_degree_transfer": "Every finite root in a separated rank-6 A=386 boundary bucket is represented by a projective Q-class with deg Q<3 in P^2, satisfying six direction-consistency equations before the split-locator divisor gate is applied.",
+    "moving_slope_closure": "The moving-slope split-incidence packet closes all separated positive-dimensional line and irreducible-conic components for every external forced-core size, after the product-collapse and punctured/exact-tail refinements.",
+    "projective_safety": "The branch partition has no live separated A=386 rank-6 residual. Every branch contributes at most the projective budget 6.",
+    "slope_free_accounting": "Slope-free transfer vectors satisfy both H(v)L_Q=0 and H(u)L_Q=0, so they fail the finite and projective noncontainment gates.  If an independent noncontained vector occurs at the same finite parameter, the parameter is charged once through the non-slope-free branch; the slope-free shadow adds no support-wise count."
+  }
+}

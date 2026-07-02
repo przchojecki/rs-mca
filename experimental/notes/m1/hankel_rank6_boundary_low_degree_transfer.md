@@ -102,7 +102,8 @@ experimental/notes/m1/hankel_rank6_a386_conic_pair_safety.md
 
 shows that if two direction-consistency conics have no common component, then
 Bezout bounds the finite root count by `4`, and the endpoint gives total
-`<=5<=6`.  The common-component case is the named residual.
+`<=5<=6`.  The common-component case is the next intermediate residual in the
+branch tree.
 
 The next companion
 
@@ -182,6 +183,19 @@ for every external core size in the separated positive-dimensional branch.
 The line quotient-pencil rows and the conic incidence, Pascal, and
 quotient-conic ledgers remain in the packet as pre-collapse diagnostics showing
 why incidence counting alone was insufficient.
+
+The separated-boundary closure companion
+
+```text
+experimental/notes/m1/hankel_rank6_a386_separated_boundary_closure.md
+```
+
+packages the full `A=386` separated branch: no-common-component conic pairs,
+component-cut common components, constant-slope global components, slope-free
+contained shadows, and nonconstant moving-slope line/conic components.  The
+result is projective-budget safety for arbitrary nonzero separated weights at
+`A=386`.  The remaining nonclaims are `A=385`, overlapping support, endpoint
+payment, and row-level M3 closure.
 
 Replay:
 

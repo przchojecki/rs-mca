@@ -549,8 +549,8 @@ residual.  If each irreducible component of a common component of degree `1`
 or `2` is cut by some direction consistency conic, Bezout bounds the component
 cut plus the off-component residual intersection by at most four finite
 `Q`-classes.  With the split gate and endpoint, total projective contribution
-is again `<=5`; the remaining residual is an irreducible component contained
-in all direction consistency conics.
+is again `<=5`; the remaining intermediate residual is an irreducible
+component contained in all direction consistency conics.
 
 The `A=386` global-component slope-map companion then splits that residual.
 If the induced projective slope map on the component is constant, the branch
@@ -565,6 +565,15 @@ parameter by themselves.  If another independent noncontained vector occurs at
 the same finite parameter, that parameter is charged once through the
 non-slope-free branch; the slope-free vector is a contained shadow and adds no
 second count.
+
+The `A=386` separated-boundary closure companion packages the resulting branch
+tree into one theorem.  The no-common-component and component-cut cases are
+projective-safe by Bezout; constant-slope global components contribute at most
+two projective parameters; slope-free shadows add zero support-wise parameters;
+and the moving-slope split-incidence companion closes every remaining line or
+irreducible-conic component.  Thus arbitrary nonzero separated-support
+rank-6 boundary weights at `A=386` are projective-budget safe.  This does not
+cover `A=385`, overlapping-support rank-6 pencils, or row-level M3 closure.
 
 The affine-pivot compression companion gives the finite-root route a concrete
 Hankel-chart target.  If a row-set chart has finite base slope `z0` with
@@ -864,6 +873,12 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a386_global_component_slope_
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a386_slope_free_containment.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/f17_32_n512_k256_m3_rank6_a386_slope_free_containment.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_separated_boundary_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-separated-boundary-closure/f17_32_n512_k256_m3_rank6_a386_separated_boundary_closure.json
 
 python3 experimental/scripts/verify_m1_hankel_m4_affine_pivot_compression.py \
   --check experimental/data/certificates/hankel-f17-32-m3-m4-affine-pivot-compression/f17_32_n512_k256_m3_m4_affine_pivot_compression.json

@@ -351,6 +351,7 @@
     "projective split-locator testing separates ambient infinity endpoints from genuine support-wise endpoint witnesses",
     "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
     "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
+    "A=386 separated rank-6 boundary buckets are projective-safe after composing the conic, component-cut, slope-free, and moving-slope packets",
     "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
     "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
     "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
@@ -493,7 +494,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v33",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v34",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -547,6 +548,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
       "sha256": "fbb5310c782a7740e97eddd07b7c1aa8b7c01d0d3cacf4f6b25a2f338faff48b"
     },
+    "f17_32_n512_k256_m3_rank6_a386_separated_boundary_closure": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-separated-boundary-closure/f17_32_n512_k256_m3_rank6_a386_separated_boundary_closure.json",
+      "sha256": "7760c06c4e9206155f6d16d0be004f631e51ac0b7e9dc997df59980e926303ad"
+    },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
       "sha256": "d85c2cac6e9842117f72bb952eb4c11c83a3f8ee416babd67c6cf1ef34cc152c"
@@ -571,9 +576,10 @@
   "status": "AUDIT",
   "summary": {
     "a386_moving_slope_refinement_count": 1,
+    "a386_separated_boundary_closure_count": 1,
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 17,
+    "dependencies_checked": 18,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
     "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -630,6 +636,12 @@
       "after the conic product collapse alone, the remaining over-budget diagnostic normal form has exactly 9 finite-incidence line rows requiring six distinct finite slopes plus an unpaid endpoint",
       "after both line and conic product collapses, the post-collapse exact-current live profile is empty",
       "the pre-collapse finite-incidence one-over rows split by first available saving mechanism into line base-active 72..74 and line external-slack 75..80; the conic mechanism classes are retained only as pre-collapse diagnostics"
+    ],
+    "a386_separated_boundary_closure": [
+      "the separated A=386 rank-6 boundary branch is now closed as a first-class packet for arbitrary nonzero separated weights",
+      "the conic-pair and component-cut branches give Bezout projective totals at most 5, while the global-component dichotomy reduces the remaining component to constant-slope, slope-free, or moving-slope cases",
+      "slope-free transfer vectors add zero support-wise parameters, and every nonconstant moving-slope line or irreducible-conic component is projective-safe for every external forced-core size",
+      "the closure is local to separated-support A=386 rank-6 boundary buckets and does not classify A=385, overlapping supports, or arbitrary row-level M3 safe-side bounds"
     ],
     "closed_by_current_lemmas": [
       "zero-v with full-rank H(u): no finite roots, infinity tangent-paid",

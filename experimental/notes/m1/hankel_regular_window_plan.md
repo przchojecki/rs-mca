@@ -256,7 +256,8 @@ experimental/data/certificates/hankel-f17-32-m3-rank6-a386-conic-pair-safety/
 uses the `h=3` case of the transfer.  If two direction-ratio conics in the
 projective `Q`-plane have no common component, Bezout gives at most four
 finite roots; with the endpoint, the branch is projective-safe with total at
-most `5`.  The common-component case is the named residual for `A=386`.
+most `5`.  The common-component case is the next intermediate residual in the
+`A=386` branch tree.
 
 The `A=386` component-cut safety companion
 
@@ -382,6 +383,13 @@ classes had a base root and at least five had two.  Equivalently, line
 `e_G=72` survival had base-root histogram `(0,0,6)` or `(0,1,5)`.  Exact
 degree-`126` accounting left that line branch with either one unused nonforced
 external root line or none.
+
+The `A=386` separated-boundary closure companion now composes these local
+packets into a closed separated-support branch theorem: arbitrary nonzero
+separated rank-6 boundary weights at `A=386` are projective-budget safe.  This
+uses the conic-pair, component-cut, global-component, slope-free, and
+moving-slope packets as a case partition; it does not cover `A=385`,
+overlapping supports, endpoint payment, or row-level M3 closure.
 
 The diagnostic extremal line `e_G=72` branch is a degree-`54` quotient-pencil
 obstruction: any survivor would need six fully split fibers of sizes `52^6` or
@@ -928,7 +936,10 @@ dimensions `4,2,0` plus six consistency equations and the split-locator gate.
 For `A=387`, the projective `Q`-space is a point, so the arbitrary-weight
 separated branch is already projective-safe with total at most `2`.
 For `A=386`, a no-common-component pair of direction conics gives projective
-safety by Bezout; common conic components are the residual to classify.
+safety by Bezout, and the separated-boundary closure companion now closes the
+common-component tree for line/conic global components.  The remaining boundary
+work here is `A=385`, overlapping support, and non-separated row-level
+stratification.
 
 Replay:
 
@@ -971,6 +982,12 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a386_global_component_slope_
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a386_slope_free_containment.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-slope-free-containment/f17_32_n512_k256_m3_rank6_a386_slope_free_containment.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_separated_boundary_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-separated-boundary-closure/f17_32_n512_k256_m3_rank6_a386_separated_boundary_closure.json
 ```
 
 The affine-pivot compression theorem is:

@@ -193,8 +193,9 @@ handles part of the common-component residual.  If each irreducible component
 of a common conic component of degree `1` or `2` is cut by some direction
 conic, the component cut plus the off-component residual intersection gives at
 most four finite roots; with the endpoint, the projective total is at most `5`.
-The remaining residual is an irreducible component contained in all direction
-conics.
+The remaining intermediate residual is an irreducible component contained in
+all direction conics; the later separated-boundary closure packet composes the
+subsequent slope-free and moving-slope refinements.
 
 The `A=386` global-component slope-map packet
 
@@ -303,6 +304,20 @@ finite slopes, and an unpaid projective endpoint, plus the printed saturated
 base-root and external-slack conditions.  The exact-current rows also carry a
 pre-collapse multi-saving closure ledger; after both line and conic product
 collapses, the post-collapse live profile is empty.
+
+The `A=386` separated-boundary closure packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a386-separated-boundary-closure/
+  f17_32_n512_k256_m3_rank6_a386_separated_boundary_closure.json
+```
+
+packages the preceding conic-pair, component-cut, global-component,
+slope-free, and moving-slope packets into one branch closure.  For arbitrary
+nonzero separated-support rank-6 boundary weights at `A=386`, every branch is
+projective-budget safe and the live separated residual list is empty.  This is
+still local to separated supports and does not classify `A=385`, overlapping
+support, or row-level M3 safe-side bounds.
 
 The rank-node dichotomy packet
 
@@ -450,6 +465,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a386_slope_free_containment.
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a386_separated_boundary_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a386-separated-boundary-closure/f17_32_n512_k256_m3_rank6_a386_separated_boundary_closure.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_dual_gcd.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-dual-gcd/f17_32_n512_k256_m3_rank6_boundary_dual_gcd.json

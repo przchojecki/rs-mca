@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 separated boundary closure packet
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_separated_boundary_closure.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-separated-boundary-closure/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_separated_boundary_closure.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A wrapper verifier and note compose the `A=386`
+  separated rank-6 boundary tree into one branch closure: no-common-component
+  conic pairs, component-cut common components, constant-slope global
+  components, slope-free shadows, and moving-slope line/conic components now
+  have no live separated residual after the existing packets are applied.
+- **How it is useful:** This turns the accumulated local `A=386` branch lemmas
+  into a single checkable dependency for the M4 synthesis table, while keeping
+  endpoint payment, `A=385`, overlapping supports, and row-level M3 closure as
+  explicit nonclaims.
+- **What to do next:** Attack the remaining rank-6 walls: `A=385`,
+  overlapping-support classification, and exact root/endpoint accounting for
+  non-separated nonsingular rank-6 buckets.
+
 ### 2026-07-02 - A386 slope-free shadow accounting
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

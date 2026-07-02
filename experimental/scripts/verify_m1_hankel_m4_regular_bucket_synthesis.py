@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v33"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v34"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -103,6 +103,10 @@ A386_MOVING_SLOPE_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/"
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json"
 )
+A386_SEPARATED_BOUNDARY_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-separated-boundary-closure/"
+    "f17_32_n512_k256_m3_rank6_a386_separated_boundary_closure.json"
+)
 
 
 EXPECTED_SCHEMAS = {
@@ -123,6 +127,9 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
     A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v51",
+    A386_SEPARATED_BOUNDARY_REF: (
+        "f17-32-m3-rank6-a386-separated-boundary-closure-v1"
+    ),
 }
 
 
@@ -1749,6 +1756,75 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
     )
 
 
+def check_a386_separated_boundary_packet(data: dict[str, Any]) -> None:
+    require(data["agreement"]["A"] == 386, "A386 separated-boundary agreement mismatch")
+    require(data["status"] == "PROVED / AUDIT", "A386 separated-boundary status mismatch")
+    summary = data["summary"]
+    require(
+        summary["separated_support_rank6_boundary_projective_safe"],
+        "A386 separated boundary should be projective safe",
+    )
+    require(
+        summary["live_separated_a386_rank6_residuals"] == [],
+        "A386 separated boundary should have no live residuals",
+    )
+    require(
+        summary["projective_budget"] == BUDGET
+        and summary["explicit_bezout_projective_total_upper_bound"] == 5
+        and summary["constant_slope_projective_total_upper_bound"] == 2,
+        "A386 separated-boundary budget summaries mismatch",
+    )
+    require(
+        summary["slope_free_additional_support_wise_parameters"] == 0,
+        "A386 separated-boundary slope-free summary mismatch",
+    )
+    require(
+        summary["moving_slope_line_or_conic_projective_safe"]
+        and summary["moving_slope_component_degrees_covered"] == [1, 2],
+        "A386 separated-boundary moving-slope coverage mismatch",
+    )
+    branches = {row["branch"]: row for row in data["branch_partition"]}
+    require(
+        set(branches)
+        == {
+            "no_common_component_pair",
+            "common_component_cut_by_some_direction_conic",
+            "global_component_constant_slope_off_base_locus",
+            "global_component_slope_free_locus",
+            "global_component_nonconstant_moving_slope_line_or_conic",
+        },
+        "A386 separated-boundary branch partition mismatch",
+    )
+    require(
+        branches["no_common_component_pair"]["projective_total_upper_bound"] == 5
+        and branches["common_component_cut_by_some_direction_conic"][
+            "projective_total_upper_bound"
+        ]
+        == 5
+        and branches["global_component_constant_slope_off_base_locus"][
+            "projective_total_upper_bound"
+        ]
+        == 2
+        and branches["global_component_slope_free_locus"]["projective_total_upper_bound"]
+        == 0
+        and branches["global_component_nonconstant_moving_slope_line_or_conic"][
+            "projective_total_upper_bound"
+        ]
+        == BUDGET,
+        "A386 separated-boundary branch bounds mismatch",
+    )
+    nonclaims = set(data["nonclaims"])
+    require("does not cover A=385" in nonclaims, "A386 separated-boundary A385 nonclaim missing")
+    require(
+        "does not classify overlapping-support rank-6 pencils" in nonclaims,
+        "A386 separated-boundary overlap nonclaim missing",
+    )
+    require(
+        "does not produce a row-level M3 safe-side bound" in nonclaims,
+        "A386 separated-boundary row-bound nonclaim missing",
+    )
+
+
 def build_certificate() -> dict[str, Any]:
     field = Field(P, MODULUS)
     descriptor = load_json(ROW_DESCRIPTOR_REF)
@@ -1762,6 +1838,7 @@ def build_certificate() -> dict[str, Any]:
     for ref, data in dependencies.items():
         check_dependency(ref, data)
     check_a386_moving_slope_packet(dependencies[A386_MOVING_SLOPE_REF])
+    check_a386_separated_boundary_packet(dependencies[A386_SEPARATED_BOUNDARY_REF])
 
     domain_encodings = descriptor["domain"]["domain_encodings"]
     require(len(domain_encodings) == N, "domain length mismatch")
@@ -1836,6 +1913,12 @@ def build_certificate() -> dict[str, Any]:
             "m4_affine_pivot_gcd_equivalence": [
                 "every nonzero rank-6 minor has at most six bad finite pivots and therefore many good pivots over F_17^32",
                 "after choosing good pivots per nonzero chart and translating local compressed determinants back to the global slope variable, monic gcd of original minors equals monic gcd of compressed polynomials",
+            ],
+            "a386_separated_boundary_closure": [
+                "the separated A=386 rank-6 boundary branch is now closed as a first-class packet for arbitrary nonzero separated weights",
+                "the conic-pair and component-cut branches give Bezout projective totals at most 5, while the global-component dichotomy reduces the remaining component to constant-slope, slope-free, or moving-slope cases",
+                "slope-free transfer vectors add zero support-wise parameters, and every nonconstant moving-slope line or irreducible-conic component is projective-safe for every external forced-core size",
+                "the closure is local to separated-support A=386 rank-6 boundary buckets and does not classify A=385, overlapping supports, or arbitrary row-level M3 safe-side bounds",
             ],
             "a386_moving_slope_refinement": [
                 "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
@@ -1936,6 +2019,7 @@ def build_certificate() -> dict[str, Any]:
             "m4_projective_budget_split_count": 1,
             "m4_affine_pivot_compression_count": 1,
             "m4_affine_pivot_gcd_equivalence_count": 1,
+            "a386_separated_boundary_closure_count": 1,
             "a386_moving_slope_refinement_count": 1,
             "m3_rank_node_dichotomy_count": 1,
             "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -1957,6 +2041,7 @@ def build_certificate() -> dict[str, Any]:
             "projective split-locator testing separates ambient infinity endpoints from genuine support-wise endpoint witnesses",
             "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
             "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
+            "A=386 separated rank-6 boundary buckets are projective-safe after composing the conic, component-cut, slope-free, and moving-slope packets",
             "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
             "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
             "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
