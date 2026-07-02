@@ -942,6 +942,10 @@ pairwise direction-consistency equation is nonzero on the residual projective
 `Q`-line, then at most two finite noncontained slopes survive and the endpoint
 gives total at most `3`.  The only residual in that fixed-three-core subcase is
 the ratio-identically-consistent `Q`-line.
+The fixed three-core residual closure companion closes that line: small-core
+incidence covers `e_G<=70`, one forced external root on the whole residual line
+forces product collapse and excludes `71<=e_G<=122`, and the punctured tangent
+tail covers `e_G>=122`.
 With a common two-point base core, the residual `Q`-space is a projective
 plane.  A no-common-component pair of direction-consistency conics gives at
 most four finite noncontained slopes by Bezout, hence total at most `5` after
@@ -1023,6 +1027,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cut.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_residual_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-residual-closure/f17_32_n512_k256_m3_rank6_a385_three_core_residual_closure.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_pair_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-pair-safety/f17_32_n512_k256_m3_rank6_a385_two_core_conic_pair_safety.json

@@ -75,8 +75,11 @@ support-wise projective contribution <= 3 <= 6.
 
 The remaining fixed-three-core residual is therefore precise: all pairwise
 direction-consistency quadratics vanish identically on the residual `Q`-line.
-That residual should be attacked through slope-map, quotient, or split-locator
-structure rather than by another degree-only count.
+That residual is closed separately in
+
+```text
+experimental/notes/m1/hankel_rank6_a385_three_core_residual_closure.md
+```
 
 Replay:
 
@@ -88,7 +91,8 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cu
 Nonclaims:
 
 ```text
-no closure of the ratio-identically-consistent fixed three-core Q-line residual;
+this quadratic-cut packet alone does not close the ratio-identically-consistent fixed three-core Q-line residual;
+the fixed three-core residual line is closed separately by incidence, product collapse, and punctured tangent tail;
 no proof that every A=385 over-budget branch has a fixed three-point base core;
 no closure of moving-core or no-common-core A=385 branches;
 no overlapping-support rank-6 classification;

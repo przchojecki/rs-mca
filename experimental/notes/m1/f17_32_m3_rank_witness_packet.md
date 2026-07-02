@@ -551,6 +551,12 @@ the endpoint gives total projective contribution `<=3`.  The only fixed
 three-core residual left by this criterion is the ratio-identically-consistent
 `Q`-line.
 
+The `A=385` three-core residual closure companion closes that line.  Incidence
+is projective-budget safe for `e_G<=70`; if a forced external root is global on
+the residual line then `ev_s(1)=ev_s(T)=0` forces the top coefficient of the
+common factor to vanish, so `L_{E R}=H R` and `71<=e_G<=122` is impossible.
+The punctured tangent tail is projective-budget safe for `e_G>=122`.
+
 The `A=385` two-core conic-pair companion handles the next fixed-core generic
 case: after a common forced two-point base core is factored, the residual
 `Q`-space is a projective plane.  If two residual direction-consistency conics
@@ -937,6 +943,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cut.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_residual_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-residual-closure/f17_32_n512_k256_m3_rank6_a385_three_core_residual_closure.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_pair_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-pair-safety/f17_32_n512_k256_m3_rank6_a385_two_core_conic_pair_safety.json

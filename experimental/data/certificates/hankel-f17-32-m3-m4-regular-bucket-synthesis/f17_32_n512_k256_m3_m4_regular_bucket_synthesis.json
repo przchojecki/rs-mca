@@ -354,6 +354,7 @@
     "A=386 separated rank-6 boundary buckets are projective-safe after composing the conic, component-cut, slope-free, and moving-slope packets",
     "A=385 separated rank-6 boundary branches with a common forced four-point base core are projective-safe",
     "A=385 separated rank-6 fixed three-core branches are projective-safe whenever a nonzero pairwise consistency quadratic cuts the residual Q-line",
+    "A=385 separated rank-6 fixed three-core ratio-identically-consistent residual Q-lines are projective-safe by incidence, product collapse, and punctured tangent tail",
     "A=385 separated rank-6 fixed two-core branches are projective-safe whenever a no-common-component conic pair cuts the residual Q-plane",
     "A=385 separated rank-6 fixed two-core common-component branches are projective-safe whenever each common component is cut by another direction-consistency conic",
     "A=385 separated rank-6 fixed two-core global-component constant-slope branches are projective-safe off the slope-map base locus",
@@ -504,7 +505,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v44",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v45",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -561,6 +562,10 @@
     "f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json",
       "sha256": "28d6cd8a357679b188d94e2cd6955d7e9efd46305fe4468993c88e4579e3affe"
+    },
+    "f17_32_n512_k256_m3_rank6_a385_three_core_residual_closure": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-residual-closure/f17_32_n512_k256_m3_rank6_a385_three_core_residual_closure.json",
+      "sha256": "c120d5b727282735577826c29ecf38337de75fbb294f7298d6d7474a4b88f361"
     },
     "f17_32_n512_k256_m3_rank6_a385_two_core_component_cut_safety": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-component-cut-safety/f17_32_n512_k256_m3_rank6_a385_two_core_component_cut_safety.json",
@@ -627,6 +632,7 @@
   "summary": {
     "a385_base_core_closure_count": 1,
     "a385_three_core_quadratic_cut_count": 1,
+    "a385_three_core_residual_closure_count": 1,
     "a385_two_core_component_cut_count": 1,
     "a385_two_core_conic_pair_safety_count": 1,
     "a385_two_core_conic_product_collapse_count": 1,
@@ -639,7 +645,7 @@
     "a386_separated_boundary_closure_count": 1,
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 28,
+    "dependencies_checked": 29,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
     "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -666,6 +672,13 @@
       "if at least one pairwise direction-consistency equation restricts to a nonzero binary quadratic on that Q-line, there are at most two compatible Q-classes",
       "each compatible non-slope-free Q-class determines at most one finite noncontained slope, and the endpoint gives projective total at most 3<=6",
       "the remaining fixed-three-core residual is exactly the ratio-identically-consistent Q-line where every pairwise direction-consistency quadratic vanishes identically"
+    ],
+    "a385_three_core_residual_closure": [
+      "inside the ratio-identically-consistent fixed three-core residual, Q=E R with deg R<2 and the residual search space is a projective line",
+      "line incidence is projective-budget safe for external forced core e_G<=70",
+      "a global forced external root makes ev_s(1)=H(s) and ev_s(T)=sH(s)-A P_X(s) vanish, forcing A=0 and product collapse L_{E R}=H R",
+      "the product root count excludes 71<=e_G<=122, while the punctured projective tangent tail is budget-safe for e_G>=122",
+      "therefore the fixed three-core residual line has no remaining live external-core range"
     ],
     "a385_two_core_component_cut": [
       "inside the fixed two-core common-component residual, if each irreducible component is cut by some direction-consistency conic, Bezout gives at most four compatible Q-classes",

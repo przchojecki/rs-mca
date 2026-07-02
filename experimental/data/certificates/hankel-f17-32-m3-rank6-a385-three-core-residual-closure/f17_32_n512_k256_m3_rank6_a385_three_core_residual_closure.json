@@ -1,0 +1,154 @@
+{
+  "agreement": {
+    "A": 385,
+    "boundary_defect_h": 5,
+    "combined_support_size": 134,
+    "direction_rank": 6,
+    "forced_base_core_size": 3,
+    "j": 127,
+    "m": 128,
+    "projective_Q_search_dimension_after_core": 1,
+    "residual_vector_dimension_after_core": 2,
+    "split_locator_degree": 127,
+    "t": 129
+  },
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "A=385 fixed three-core residual has Q-line P^1 and locator degree 127",
+    "incidence gives projective safety through e_G=70 and not at e_G=71",
+    "one global forced external root forces the top coefficient of H to vanish",
+    "product collapse gives L_{E R}=H R with deg H<=126 and deg R<2",
+    "product root count closes e_G=71..122",
+    "punctured projective tangent tail is budget-safe for e_G>=122",
+    "all fixed three-core residual-line external-core sizes are covered"
+  ],
+  "component_closure": {
+    "all_fixed_three_core_residual_line_components_projective_safe": true,
+    "product_collapse_closed_range": [
+      71,
+      122
+    ],
+    "punctured_tangent_tail_safe_range": [
+      122,
+      126
+    ],
+    "small_core_incidence_safe_range": [
+      0,
+      70
+    ]
+  },
+  "incidence_boundary_rows": [
+    {
+      "available_nonforced_external_roots": 384,
+      "external_core": 0,
+      "line_finite_class_bound": 3,
+      "projective_bound_after_endpoint": 4,
+      "projective_budget_safe": true,
+      "required_nonforced_external_roots_per_class": 123
+    },
+    {
+      "available_nonforced_external_roots": 314,
+      "external_core": 70,
+      "line_finite_class_bound": 5,
+      "projective_bound_after_endpoint": 6,
+      "projective_budget_safe": true,
+      "required_nonforced_external_roots_per_class": 53
+    },
+    {
+      "available_nonforced_external_roots": 313,
+      "external_core": 71,
+      "line_finite_class_bound": 6,
+      "projective_bound_after_endpoint": 7,
+      "projective_budget_safe": false,
+      "required_nonforced_external_roots_per_class": 52
+    },
+    {
+      "available_nonforced_external_roots": 262,
+      "external_core": 122,
+      "line_finite_class_bound": 262,
+      "projective_bound_after_endpoint": 263,
+      "projective_budget_safe": false,
+      "required_nonforced_external_roots_per_class": 1
+    }
+  ],
+  "nonclaims": [
+    "does not prove that every A=385 over-budget branch has a fixed three-point base core",
+    "does not close moving-core or no-common-core A=385 branches",
+    "does not classify overlapping-support rank-6 pencils",
+    "does not prove endpoint payment outside the projective tangent/tail accounting used here",
+    "does not compute arbitrary A=385 rank-6 root tables",
+    "does not produce a row-level M3 safe-side bound"
+  ],
+  "object": "A=385 separated rank-6 fixed three-core residual-line closure",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-a385-three-core-residual-closure-v1",
+  "source_artifacts": {
+    "a385_three_core_quadratic_cut": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json",
+      "sha256": "28d6cd8a357679b188d94e2cd6955d7e9efd46305fe4468993c88e4579e3affe"
+    },
+    "nullpolynomial_split_locator_gate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json",
+      "sha256": "fd918c7ddbf47b9037840a7dddf5d9a49c77b7d8d889924bbb6b861f8bb2bc42"
+    },
+    "rank6_projective_endpoint_uniform": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+      "sha256": "f933c4d38476d3056e6284de55e01b7375f8c90239d52aed40548018323454e2"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement": 385,
+    "fixed_base_roots": 3,
+    "fixed_three_core_residual_line_closed_external_core_range": [
+      0,
+      126
+    ],
+    "fixed_three_core_residual_line_projective_safe": true,
+    "forced_base_core_size": 3,
+    "product_collapse_closed_external_core_range": [
+      71,
+      122
+    ],
+    "product_collapse_min_core_for_any_split_locator": 123,
+    "projective_Q_search_dimension_after_core": 1,
+    "punctured_tangent_tail_projective_bound_at_min": 6,
+    "punctured_tangent_tail_projective_safe_external_core_min": 122,
+    "remaining_fixed_three_core_residual_after_this_packet": [],
+    "residual_extra_root_cap": 1,
+    "residual_vector_dimension_after_core": 2,
+    "small_core_incidence_projective_safe_external_core_max": 70,
+    "split_locator_degree": 127
+  },
+  "theorem": {
+    "closure": "The fixed three-core residual line is covered by incidence for e_G<=70, product collapse for 71<=e_G<=122, and the punctured tangent tail for e_G>=122.",
+    "global_core_product_collapse": "Let G=S E and write G=q_0 P_X+H with deg H<128 and H=A*T^127+lower terms.  A forced external root on the whole residual line makes ev_s(1)=H(s) and ev_s(T)=sH(s)-A P_X(s) vanish.  Since P_X(s)!=0, A=0, so deg H<=126 and no modular reduction occurs: L_{E R}=H R for all deg R<2.",
+    "product_root_count": "The factor H has the three fixed base roots and the forced external core; R contributes at most one further subgroup root. Thus a degree-127 split locator requires e_G>=123, so 71<=e_G<=122 is impossible in the residual line branch.",
+    "punctured_tangent_tail": "After puncturing a forced external core E, the residual tangent radius is r'=127-|E| and the projective tangent bound is r'+1=128-|E|.  Hence e_G>=122 is projective-budget safe.",
+    "residual_line": "In the residual branch of the three-core quadratic-cut packet, Q=E R with deg R<2 and all pairwise direction-consistency quadratics vanish identically on the residual projective line.",
+    "small_core_incidence": "Every degree-127 split locator has the three fixed base roots and at most one further residual base root.  A line component with external forced core e_G therefore needs at least 123-e_G non-forced external roots per finite class; incidence gives projective-budget safety for e_G<=70."
+  }
+}

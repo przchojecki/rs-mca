@@ -187,6 +187,18 @@ noncontained slopes, and with the endpoint its projective total is at most `3`.
 The remaining fixed-three-core residual is the ratio-identically-consistent
 `Q`-line.
 
+The `A=385` three-core residual closure packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-residual-closure/
+  f17_32_n512_k256_m3_rank6_a385_three_core_residual_closure.json
+```
+
+closes that residual line.  Incidence covers `e_G<=70`; one forced external
+root on the whole residual line forces product collapse `L_{E R}=H R`, which
+excludes `71<=e_G<=122`; and the punctured projective tangent tail covers
+`e_G>=122`.
+
 The `A=385` two-core conic-pair packet
 
 ```text
@@ -591,6 +603,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cut.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_residual_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-residual-closure/f17_32_n512_k256_m3_rank6_a385_three_core_residual_closure.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_pair_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-pair-safety/f17_32_n512_k256_m3_rank6_a385_two_core_conic_pair_safety.json

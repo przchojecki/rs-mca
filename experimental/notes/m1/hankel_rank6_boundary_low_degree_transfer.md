@@ -109,6 +109,10 @@ projective `Q`-classes.  With one slope per compatible non-slope-free class
 and the endpoint added, the branch has projective total `<=3<=6`.  The
 remaining fixed-three-core residual is exactly the ratio-identically-consistent
 `Q`-line where all pairwise consistency quadratics vanish identically.
+The fixed three-core residual closure companion closes that line: incidence is
+projective-safe for `e_G<=70`, one global forced external root gives product
+collapse `L_{E R}=H R` and excludes `71<=e_G<=122`, and the punctured tangent
+tail is projective-safe for `e_G>=122`.
 
 The fixed two-core companion is
 
@@ -340,6 +344,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py \
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cut.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_residual_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-residual-closure/f17_32_n512_k256_m3_rank6_a385_three_core_residual_closure.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_pair_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-pair-safety/f17_32_n512_k256_m3_rank6_a385_two_core_conic_pair_safety.json

@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v44"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v45"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -115,6 +115,10 @@ A385_THREE_CORE_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/"
     "f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json"
 )
+A385_THREE_CORE_RESIDUAL_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-residual-closure/"
+    "f17_32_n512_k256_m3_rank6_a385_three_core_residual_closure.json"
+)
 A385_TWO_CORE_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-pair-safety/"
     "f17_32_n512_k256_m3_rank6_a385_two_core_conic_pair_safety.json"
@@ -172,6 +176,9 @@ EXPECTED_SCHEMAS = {
     ),
     A385_BASE_CORE_REF: "f17-32-m3-rank6-a385-base-core-closure-v1",
     A385_THREE_CORE_REF: "f17-32-m3-rank6-a385-three-core-quadratic-cut-v1",
+    A385_THREE_CORE_RESIDUAL_REF: (
+        "f17-32-m3-rank6-a385-three-core-residual-closure-v1"
+    ),
     A385_TWO_CORE_REF: "f17-32-m3-rank6-a385-two-core-conic-pair-safety-v1",
     A385_TWO_CORE_COMPONENT_CUT_REF: (
         "f17-32-m3-rank6-a385-two-core-component-cut-safety-v1"
@@ -2019,6 +2026,57 @@ def check_a385_three_core_packet(data: dict[str, Any]) -> None:
     )
 
 
+def check_a385_three_core_residual_packet(data: dict[str, Any]) -> None:
+    require(data["agreement"]["A"] == 385, "A385 three-core residual agreement mismatch")
+    require(data["status"] == "PROVED / AUDIT", "A385 three-core residual status mismatch")
+    summary = data["summary"]
+    require(
+        summary["split_locator_degree"] == 127
+        and summary["forced_base_core_size"] == 3
+        and summary["residual_vector_dimension_after_core"] == 2
+        and summary["projective_Q_search_dimension_after_core"] == 1,
+        "A385 three-core residual dimension summary mismatch",
+    )
+    require(
+        summary["small_core_incidence_projective_safe_external_core_max"] == 70
+        and summary["product_collapse_closed_external_core_range"] == [71, 122]
+        and summary["product_collapse_min_core_for_any_split_locator"] == 123,
+        "A385 three-core residual product summary mismatch",
+    )
+    require(
+        summary["punctured_tangent_tail_projective_safe_external_core_min"] == 122
+        and summary["punctured_tangent_tail_projective_bound_at_min"] == BUDGET,
+        "A385 three-core residual tangent tail mismatch",
+    )
+    require(
+        summary["fixed_three_core_residual_line_closed_external_core_range"] == [0, 126]
+        and summary["fixed_three_core_residual_line_projective_safe"]
+        and summary["remaining_fixed_three_core_residual_after_this_packet"] == [],
+        "A385 three-core residual closure mismatch",
+    )
+    closure = data["component_closure"]
+    require(
+        closure["small_core_incidence_safe_range"] == [0, 70]
+        and closure["product_collapse_closed_range"] == [71, 122]
+        and closure["punctured_tangent_tail_safe_range"] == [122, 126]
+        and closure["all_fixed_three_core_residual_line_components_projective_safe"],
+        "A385 three-core residual component closure mismatch",
+    )
+    nonclaims = set(data["nonclaims"])
+    require(
+        "does not close moving-core or no-common-core A=385 branches" in nonclaims,
+        "A385 three-core residual missing moving-core nonclaim",
+    )
+    require(
+        "does not classify overlapping-support rank-6 pencils" in nonclaims,
+        "A385 three-core residual missing overlap nonclaim",
+    )
+    require(
+        "does not produce a row-level M3 safe-side bound" in nonclaims,
+        "A385 three-core residual missing row-bound nonclaim",
+    )
+
+
 def check_a385_two_core_packet(data: dict[str, Any]) -> None:
     require(data["agreement"]["A"] == 385, "A385 two-core agreement mismatch")
     require(data["status"] == "PROVED / AUDIT", "A385 two-core status mismatch")
@@ -2562,6 +2620,7 @@ def build_certificate() -> dict[str, Any]:
     check_a386_separated_boundary_packet(dependencies[A386_SEPARATED_BOUNDARY_REF])
     check_a385_base_core_packet(dependencies[A385_BASE_CORE_REF])
     check_a385_three_core_packet(dependencies[A385_THREE_CORE_REF])
+    check_a385_three_core_residual_packet(dependencies[A385_THREE_CORE_RESIDUAL_REF])
     check_a385_two_core_packet(dependencies[A385_TWO_CORE_REF])
     check_a385_two_core_component_cut_packet(
         dependencies[A385_TWO_CORE_COMPONENT_CUT_REF]
@@ -2674,6 +2733,13 @@ def build_certificate() -> dict[str, Any]:
                 "if at least one pairwise direction-consistency equation restricts to a nonzero binary quadratic on that Q-line, there are at most two compatible Q-classes",
                 "each compatible non-slope-free Q-class determines at most one finite noncontained slope, and the endpoint gives projective total at most 3<=6",
                 "the remaining fixed-three-core residual is exactly the ratio-identically-consistent Q-line where every pairwise direction-consistency quadratic vanishes identically",
+            ],
+            "a385_three_core_residual_closure": [
+                "inside the ratio-identically-consistent fixed three-core residual, Q=E R with deg R<2 and the residual search space is a projective line",
+                "line incidence is projective-budget safe for external forced core e_G<=70",
+                "a global forced external root makes ev_s(1)=H(s) and ev_s(T)=sH(s)-A P_X(s) vanish, forcing A=0 and product collapse L_{E R}=H R",
+                "the product root count excludes 71<=e_G<=122, while the punctured projective tangent tail is budget-safe for e_G>=122",
+                "therefore the fixed three-core residual line has no remaining live external-core range",
             ],
             "a385_two_core_conic_pair_safety": [
                 "inside the separated A=385 rank-6 boundary, a fixed two-point base split-root core leaves a projective Q-plane",
@@ -2827,6 +2893,7 @@ def build_certificate() -> dict[str, Any]:
             "a386_separated_boundary_closure_count": 1,
             "a385_base_core_closure_count": 1,
             "a385_three_core_quadratic_cut_count": 1,
+            "a385_three_core_residual_closure_count": 1,
             "a385_two_core_conic_pair_safety_count": 1,
             "a385_two_core_component_cut_count": 1,
             "a385_two_core_global_component_slope_dichotomy_count": 1,
@@ -2859,6 +2926,7 @@ def build_certificate() -> dict[str, Any]:
             "A=386 separated rank-6 boundary buckets are projective-safe after composing the conic, component-cut, slope-free, and moving-slope packets",
             "A=385 separated rank-6 boundary branches with a common forced four-point base core are projective-safe",
             "A=385 separated rank-6 fixed three-core branches are projective-safe whenever a nonzero pairwise consistency quadratic cuts the residual Q-line",
+            "A=385 separated rank-6 fixed three-core ratio-identically-consistent residual Q-lines are projective-safe by incidence, product collapse, and punctured tangent tail",
             "A=385 separated rank-6 fixed two-core branches are projective-safe whenever a no-common-component conic pair cuts the residual Q-plane",
             "A=385 separated rank-6 fixed two-core common-component branches are projective-safe whenever each common component is cut by another direction-consistency conic",
             "A=385 separated rank-6 fixed two-core global-component constant-slope branches are projective-safe off the slope-map base locus",
