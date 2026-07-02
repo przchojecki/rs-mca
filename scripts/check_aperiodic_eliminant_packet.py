@@ -20,6 +20,30 @@ from typing import Any
 
 DEFAULT_SCHEMA = Path("scripts/aperiodic_eliminant_schema.json")
 
+STRATIFICATION_ORDER = ("T0", "T1", "T2", "T3", "T4", "T5", "T6")
+STRATIFICATION_LABELS = {
+    "T0": "excluded",
+    "T1": "paid:degenerate",
+    "T2": "paid:tangent",
+    "T3": "paid:quotient",
+    "T4": "paid:extension",
+    "T5": "dedup:higher_agreement",
+}
+STRATIFICATION_CLOSED_LABELS = {"eliminant", "empty", "dimension_degree"}
+STRATIFICATION_RESIDUAL_LABELS = {
+    "quotient",
+    "tangent",
+    "extension",
+    "candidate_new_obstruction",
+    "unknown",
+}
+STRATIFICATION_COUNTABLE_LABELS = {
+    "eliminant",
+    "dimension_degree",
+    "residual:candidate_new_obstruction",
+    "residual:unknown",
+}
+
 
 class PacketError(Exception):
     """Raised when a packet fails a schema or arithmetic check."""
@@ -473,9 +497,111 @@ def validate_regular_minor_gcd(
     return roots, bad_slopes
 
 
+def expected_stratification_leaf(entry: dict[str, Any]) -> tuple[str, str]:
+    raw_claims = entry.get("claim_ids")
+    if not isinstance(raw_claims, list):
+        raise PacketError("stratification_leaf_table entry: claim_ids must be a list")
+    claims = []
+    for claim in raw_claims:
+        if claim not in STRATIFICATION_ORDER:
+            raise PacketError(f"stratification_leaf_table: bad claim_id {claim!r}")
+        claims.append(claim)
+
+    for leaf_id in STRATIFICATION_ORDER:
+        if leaf_id in claims:
+            if leaf_id == "T6":
+                terminal_label = entry.get("terminal_label")
+                if terminal_label not in STRATIFICATION_CLOSED_LABELS:
+                    raise PacketError(
+                        "stratification_leaf_table: T6 needs closed terminal label"
+                    )
+                return leaf_id, terminal_label
+            return leaf_id, STRATIFICATION_LABELS[leaf_id]
+
+    residual_label = entry.get("residual_label", "unknown")
+    if residual_label not in STRATIFICATION_RESIDUAL_LABELS:
+        raise PacketError(
+            f"stratification_leaf_table: bad residual_label {residual_label!r}"
+        )
+    return "T7", f"residual:{residual_label}"
+
+
+def validate_stratification_leaf_table(packet: dict[str, Any]) -> None:
+    table = packet.get("stratification_leaf_table")
+    if table is None:
+        return
+    if not isinstance(table, list):
+        raise PacketError("stratification_leaf_table must be a list")
+
+    seen_candidates: set[int] = set()
+    counted: set[int] = set()
+    counted_labels = packet.get(
+        "stratification_counted_terminal_labels",
+        sorted(STRATIFICATION_COUNTABLE_LABELS),
+    )
+    if not isinstance(counted_labels, list):
+        raise PacketError("stratification_counted_terminal_labels must be a list")
+    counted_label_set = set()
+    for label in counted_labels:
+        if label not in STRATIFICATION_COUNTABLE_LABELS:
+            raise PacketError(f"bad counted terminal label {label!r}")
+        counted_label_set.add(label)
+
+    for index, entry in enumerate(table):
+        if not isinstance(entry, dict):
+            raise PacketError(f"stratification_leaf_table[{index}] must be an object")
+        candidate = entry.get("candidate")
+        if not isinstance(candidate, int):
+            raise PacketError(f"stratification_leaf_table[{index}].candidate must be int")
+        if candidate in seen_candidates:
+            raise PacketError(f"stratification candidate {candidate} appears twice")
+        seen_candidates.add(candidate)
+
+        expected_leaf, expected_label = expected_stratification_leaf(entry)
+        if entry.get("leaf_id") != expected_leaf:
+            raise PacketError(
+                "stratification candidate {candidate}: leaf_id {actual!r} "
+                "should be {expected!r}".format(
+                    candidate=candidate,
+                    actual=entry.get("leaf_id"),
+                    expected=expected_leaf,
+                )
+            )
+        if entry.get("terminal_label") != expected_label:
+            raise PacketError(
+                "stratification candidate {candidate}: terminal_label {actual!r} "
+                "should be {expected!r}".format(
+                    candidate=candidate,
+                    actual=entry.get("terminal_label"),
+                    expected=expected_label,
+                )
+            )
+        if expected_label in counted_label_set:
+            counted.add(candidate)
+
+    if "stratification_counted_union" in packet:
+        declared = normalize_int_list(
+            packet["stratification_counted_union"],
+            "stratification_counted_union",
+        )
+        if declared != sorted(counted):
+            raise PacketError(
+                "stratification_counted_union does not match first-match counted leaves"
+            )
+        if "declared_aperiodic_numerator" in packet:
+            numerator = packet["declared_aperiodic_numerator"]
+            if numerator != len(declared):
+                raise PacketError(
+                    "declared_aperiodic_numerator="
+                    f"{numerator} but stratification_counted_union has size "
+                    f"{len(declared)}"
+                )
+
+
 def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     validate_schema(packet, schema_path)
     validate_residual_labels(packet)
+    validate_stratification_leaf_table(packet)
 
     row = packet["row"]
     n = row["n"]

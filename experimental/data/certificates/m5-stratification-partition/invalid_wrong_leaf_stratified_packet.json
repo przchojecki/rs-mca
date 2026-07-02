@@ -1,0 +1,42 @@
+{
+  "agreement_threshold": 13,
+  "exact_agreements": [
+    {
+      "A": 13,
+      "j": 3,
+      "status": "empty",
+      "t": 5
+    }
+  ],
+  "removed_ledgers": [],
+  "root_union_table_ref": "none:checker-stratification-toy",
+  "row": {
+    "domain_hash": "toy-mu16",
+    "field": "F_97",
+    "k": 8,
+    "n": 16
+  },
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "stratification_counted_union": [
+    21
+  ],
+  "stratification_leaf_table": [
+    {
+      "candidate": 3,
+      "claim_ids": [
+        "T2",
+        "T3"
+      ],
+      "leaf_id": "T3",
+      "terminal_label": "paid:quotient"
+    },
+    {
+      "candidate": 21,
+      "claim_ids": [
+        "T6"
+      ],
+      "leaf_id": "T6",
+      "terminal_label": "eliminant"
+    }
+  ]
+}

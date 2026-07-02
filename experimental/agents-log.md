@@ -35,7 +35,9 @@ Keep entries concise and link to the relevant files.
 - **Agent/model:** Codex.
 - **Files added or changed:** `experimental/notes/m5/m5_stratification_partition_theorem.md`;
   `experimental/scripts/verify_m5_stratification_partition.py`;
-  `experimental/data/certificates/m5-stratification-partition/`.
+  `experimental/data/certificates/m5-stratification-partition/`;
+  `scripts/aperiodic_eliminant_schema.json`;
+  `scripts/check_aperiodic_eliminant_packet.py`.
 - **Status:** PROVED / COMBINATORIAL / FINITE REPLAY.
 - **What is being added:** A first-match partition theorem for the v12 M5
   leaf-accounting layer.  Given ordered paid, dedup, closed-chart, and residual
@@ -46,8 +48,8 @@ Keep entries concise and link to the relevant files.
   overlapping tangent, quotient, extension, eliminant, and residual claims are
   deduped by one ordered rule.
 - **What to do next:** Attach actual row-level predicate emitters and root
-  tables to this leaf convention; promote the same first-match order into the
-  v12 packet checker once the M4 table generator is wired.
+  tables to this leaf convention; extend the M4 table generator to emit
+  `stratification_leaf_table` rows for real Hankel packets.
 
 ### 2026-07-02 - Restore Paper D title and content
 

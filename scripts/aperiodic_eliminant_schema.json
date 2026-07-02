@@ -96,6 +96,66 @@
       }
     },
     "declared_aperiodic_numerator": {"type": "integer", "minimum": 0},
-    "root_union_table_ref": {"type": "string"}
+    "root_union_table_ref": {"type": "string"},
+    "stratification_leaf_table": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["candidate", "claim_ids", "leaf_id", "terminal_label"],
+        "properties": {
+          "candidate": {"type": "integer"},
+          "claim_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["T0", "T1", "T2", "T3", "T4", "T5", "T6"]
+            }
+          },
+          "leaf_id": {
+            "type": "string",
+            "enum": ["T0", "T1", "T2", "T3", "T4", "T5", "T6", "T7"]
+          },
+          "terminal_label": {
+            "type": "string",
+            "enum": [
+              "excluded",
+              "paid:degenerate",
+              "paid:tangent",
+              "paid:quotient",
+              "paid:extension",
+              "dedup:higher_agreement",
+              "eliminant",
+              "empty",
+              "dimension_degree",
+              "residual:quotient",
+              "residual:tangent",
+              "residual:extension",
+              "residual:candidate_new_obstruction",
+              "residual:unknown"
+            ]
+          },
+          "residual_label": {
+            "type": "string",
+            "enum": ["quotient", "tangent", "extension", "candidate_new_obstruction", "unknown"]
+          }
+        }
+      }
+    },
+    "stratification_counted_terminal_labels": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "eliminant",
+          "dimension_degree",
+          "residual:candidate_new_obstruction",
+          "residual:unknown"
+        ]
+      }
+    },
+    "stratification_counted_union": {
+      "type": "array",
+      "items": {"type": "integer"}
+    }
   }
 }

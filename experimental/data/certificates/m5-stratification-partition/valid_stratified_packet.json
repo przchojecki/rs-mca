@@ -1,0 +1,101 @@
+{
+  "agreement_threshold": 13,
+  "declared_aperiodic_numerator": 3,
+  "exact_agreements": [
+    {
+      "A": 13,
+      "j": 3,
+      "status": "empty",
+      "t": 5
+    }
+  ],
+  "removed_ledgers": [],
+  "root_union_table_ref": "none:checker-stratification-toy",
+  "row": {
+    "domain_hash": "toy-mu16",
+    "field": "F_97",
+    "k": 8,
+    "n": 16
+  },
+  "schema_version": "aperiodic-hankel-eliminant-v1",
+  "stratification_counted_terminal_labels": [
+    "eliminant",
+    "dimension_degree",
+    "residual:candidate_new_obstruction",
+    "residual:unknown"
+  ],
+  "stratification_counted_union": [
+    21,
+    55,
+    89
+  ],
+  "stratification_leaf_table": [
+    {
+      "candidate": 3,
+      "claim_ids": [
+        "T2",
+        "T3"
+      ],
+      "leaf_id": "T2",
+      "terminal_label": "paid:tangent"
+    },
+    {
+      "candidate": 5,
+      "claim_ids": [
+        "T3",
+        "T4"
+      ],
+      "leaf_id": "T3",
+      "terminal_label": "paid:quotient"
+    },
+    {
+      "candidate": 8,
+      "claim_ids": [
+        "T4",
+        "T6"
+      ],
+      "leaf_id": "T4",
+      "terminal_label": "paid:extension"
+    },
+    {
+      "candidate": 13,
+      "claim_ids": [
+        "T5",
+        "T6"
+      ],
+      "leaf_id": "T5",
+      "terminal_label": "dedup:higher_agreement"
+    },
+    {
+      "candidate": 21,
+      "claim_ids": [
+        "T6"
+      ],
+      "leaf_id": "T6",
+      "terminal_label": "eliminant"
+    },
+    {
+      "candidate": 34,
+      "claim_ids": [
+        "T6"
+      ],
+      "leaf_id": "T6",
+      "terminal_label": "empty"
+    },
+    {
+      "candidate": 55,
+      "claim_ids": [
+        "T6"
+      ],
+      "leaf_id": "T6",
+      "terminal_label": "dimension_degree"
+    },
+    {
+      "candidate": 89,
+      "claim_ids": [],
+      "leaf_id": "T7",
+      "residual_label": "candidate_new_obstruction",
+      "terminal_label": "residual:candidate_new_obstruction"
+    }
+  ]
+}
