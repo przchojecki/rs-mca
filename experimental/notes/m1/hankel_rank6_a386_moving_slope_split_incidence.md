@@ -139,6 +139,44 @@ c = 2 and e_G <= 68
 Irreducible conics with `e_G>=69` remain residual unless a sharper
 split-locator, paid-ledger, or exact-root-table argument cuts them further.
 
+The high-core residual has an exact quotient normal form.  Let `E` be the
+forced external split-root core and
+
+```text
+C_E(X) = prod_{s in E} (X-s).
+```
+
+For every `Q` on the residual component,
+
+```text
+L_Q(X) = C_E(X) R_Q(X),        deg R_Q <= 126-|E|.
+```
+
+Since `C_E` is a squarefree divisor of `X^512-1`, the split-locator gate for
+`L_Q` is equivalent, after normalization and the exact-degree check, to the
+quotient split-locator condition
+
+```text
+R_Q | (X^512-1)/C_E.
+```
+
+Thus the remaining line residuals (`e_G>=72`) are quotient-locator pencils of
+degree at most
+
+```text
+126-72 = 54,
+```
+
+and the remaining irreducible conic residuals (`e_G>=69`) are quotient-locator
+families of degree at most
+
+```text
+126-69 = 57.
+```
+
+This is not a closure, but it makes the remaining branch a low-degree quotient
+split problem rather than a full degree-126 locator problem.
+
 Replay:
 
 ```sh
@@ -152,6 +190,7 @@ Nonclaims:
 no proof that every moving-slope component is a line;
 no closure of line components with forced external split-root core >=72 in projective accounting;
 no closure of irreducible conic moving-slope components with forced external split-root core >=69 in projective accounting;
+no proof that the high-core quotient split problem is empty or paid;
 no exclusion of another independent noncontained vector at the same finite slope;
 no A=385 closure;
 no overlapping-support rank-6 classification;

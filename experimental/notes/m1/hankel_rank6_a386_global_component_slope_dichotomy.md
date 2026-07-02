@@ -119,6 +119,11 @@ two distinct `Q`-classes can share at most one non-forced external root line.
 This closes conic components with `e_G<=68` in projective accounting, leaving
 only large-external-core conics as residual.
 
+The high-external-core residual is then put in quotient normal form: after
+factoring the forced external core `C_E`, the remaining split-locator gate is a
+quotient divisor condition of degree at most `54` for residual lines and at
+most `57` for residual conics.
+
 The other cases remain residual:
 
 ```text

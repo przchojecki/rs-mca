@@ -51,7 +51,8 @@ Keep entries concise and link to the relevant files.
 - **How it is useful:** It rules out an identically split positive-dimensional
   component and closes line components with `e_G<=71` in projective accounting;
   a pair-overlap packing step also closes irreducible conics with `e_G<=68`.
-  Large-external-core lines and conics are now the named residuals.
+  Large-external-core lines and conics are now reduced to quotient
+  split-locator problems of degree at most `54` and `57`.
 - **What to do next:** Try to classify or pay the large-core line case, then
   attack irreducible moving conics with exact root tables or a sharper divisor
   incidence argument.

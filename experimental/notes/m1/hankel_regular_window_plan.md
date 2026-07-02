@@ -315,7 +315,9 @@ core `r_G`, the unrefined finite source classes are bounded by
 core `e_G`.  Thus line components with `e_G<=71` are projective-safe after
 adding the endpoint.  For irreducible conics, pair-overlap packing closes the
 projective accounting for `e_G<=68`.  Large-external-core lines and conics
-remain residual.
+remain residual, but in quotient normal form: after factoring the forced
+external core, the remaining split-locator degree is at most `54` for lines and
+`57` for conics.
 
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets

@@ -84,7 +84,8 @@ incidences on the moving component, using the base-support cap that nonzero
 `Q` has at most two roots on `X`.  It closes line components with forced
 external split-root core `e_G<=71`.  A conic pair-overlap packing step closes
 irreducible conics with `e_G<=68`; large-external-core lines and conics remain
-residual.
+residual but factor through quotient split-locator problems of degree at most
+`54` and `57`, respectively.
 
 Replay:
 

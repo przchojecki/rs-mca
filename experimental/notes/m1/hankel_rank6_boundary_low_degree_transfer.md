@@ -162,7 +162,9 @@ floor(c(385-e_G)/(124-e_G))
 for forced external split-root core `e_G`.  In particular, a line component
 with `e_G<=71` is projective-safe after adding the endpoint.  For irreducible
 conics, pair-overlap packing closes the projective accounting for `e_G<=68`.
-Large-external-core lines and conics remain residual.
+Large-external-core lines and conics remain residual, but the packet factors
+their forced external core and reduces them to quotient split-locator problems
+of degree at most `54` and `57`, respectively.
 
 Replay:
 

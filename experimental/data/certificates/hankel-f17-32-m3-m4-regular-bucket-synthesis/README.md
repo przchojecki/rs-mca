@@ -234,7 +234,9 @@ Using the base-support cap that `deg Q<3`, this sharpens to
 `floor(c(385-e_G)/(124-e_G))` for forced external split-root core `e_G`.  Line
 components with `e_G<=71` are projective-safe after the endpoint.  For
 irreducible conics, pair-overlap packing closes projective accounting for
-`e_G<=68`; large-external-core lines and conics remain residual.
+`e_G<=68`; large-external-core lines and conics remain residual but factor
+through quotient split-locator problems of degree at most `54` and `57`,
+respectively.
 
 The rank-node dichotomy packet
 

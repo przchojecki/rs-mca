@@ -18,7 +18,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v3"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v4"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -239,6 +239,26 @@ def conic_packing_row(
     }
 
 
+def quotient_residual_row(
+    component_type: str,
+    forced_external_core_threshold: int,
+    locator_degree: int,
+    base_root_cap: int,
+) -> dict[str, Any]:
+    quotient_degree_bound = locator_degree - forced_external_core_threshold
+    required_noncore_roots = locator_degree - base_root_cap - forced_external_core_threshold
+    return {
+        "component_type": component_type,
+        "residual_forced_external_core_at_least": forced_external_core_threshold,
+        "quotient_degree_at_most": quotient_degree_bound,
+        "required_noncore_external_roots_after_base_cap_at_most": max(required_noncore_roots, 0),
+        "normal_form": (
+            "L_Q(X)=C_E(X) R_Q(X), where C_E is the forced external split-core "
+            "divisor and deg R_Q <= j-|E|"
+        ),
+    }
+
+
 def build_certificate() -> dict[str, Any]:
     descriptor = load_json(ROW_DESCRIPTOR_REF)
     low_degree = load_json(LOW_DEGREE_TRANSFER_REF)
@@ -452,6 +472,32 @@ def build_certificate() -> dict[str, Any]:
             external_root_count,
         ),
     ]
+    line_residual_core_threshold = line_projective_safe_external_core_max + 1
+    conic_residual_core_threshold = conic_projective_safe_packing_external_core_max + 1
+    quotient_residual_rows = [
+        quotient_residual_row(
+            "line",
+            line_residual_core_threshold,
+            j_value,
+            base_root_cap,
+        ),
+        quotient_residual_row(
+            "irreducible_conic",
+            conic_residual_core_threshold,
+            j_value,
+            base_root_cap,
+        ),
+    ]
+    require(line_residual_core_threshold == 72, "line residual threshold mismatch")
+    require(conic_residual_core_threshold == 69, "conic residual threshold mismatch")
+    require(
+        j_value - line_residual_core_threshold == 54,
+        "line residual quotient degree mismatch",
+    )
+    require(
+        j_value - conic_residual_core_threshold == 57,
+        "conic residual quotient degree mismatch",
+    )
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -587,6 +633,16 @@ def build_certificate() -> dict[str, Any]:
                 "remain residual for a sharper split, paid, or exact-root-table "
                 "argument."
             ),
+            "high_core_quotient_normal_form": (
+                "For any remaining high-core line or conic component, let E be "
+                "the forced external split-root core and C_E(X)=prod_{s in E}(X-s).  "
+                "Every Q-class on the component has L_Q divisible by C_E.  After "
+                "factoring, L_Q=C_E R_Q with deg R_Q<=126-|E|, and the split-locator "
+                "gate is exactly R_Q | (X^512-1)/C_E plus the remaining "
+                "noncontainment filters.  Thus residual line components reduce "
+                "to quotient degree <=54, while residual conic components reduce "
+                "to quotient degree <=57."
+            ),
         },
         "budget_formula": {
             "locator_degree_j": j_value,
@@ -641,6 +697,7 @@ def build_certificate() -> dict[str, Any]:
         "unrefined_sample_budget_rows": unrefined_sample_rows,
         "base_sharpened_sample_budget_rows": base_sharpened_sample_rows,
         "conic_pair_overlap_sample_rows": conic_packing_sample_rows,
+        "high_core_quotient_residual_rows": quotient_residual_rows,
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -662,12 +719,14 @@ def build_certificate() -> dict[str, Any]:
             "positive_dimensional_component_forced_core_upper_bound": j_value - 1,
             "line_projective_safe_for_external_core_at_most": line_projective_safe_external_core_max,
             "line_finite_safe_for_external_core_at_most": line_finite_safe_external_core_max,
+            "line_residual_quotient_degree_at_most": j_value - line_residual_core_threshold,
             "conic_projective_safe_for_external_core_at_most": (
                 conic_projective_safe_packing_external_core_max
             ),
             "conic_finite_safe_for_external_core_at_most": (
                 conic_finite_safe_packing_external_core_max
             ),
+            "conic_residual_quotient_degree_at_most": j_value - conic_residual_core_threshold,
             "remaining_unclosed_residuals": [
                 "moving-slope line component with forced external split-root core >=72 for projective accounting",
                 "irreducible moving-slope conic component with forced external split-root core >=69 for projective accounting",
@@ -688,7 +747,9 @@ def build_certificate() -> dict[str, Any]:
             "base-sharpened line finite-safe threshold is e<=80",
             "base-sharpened conic finite-safe threshold is e<=19",
             "conic pair-overlap packing excludes six Q-classes for e<=68",
-            "conic pair-overlap packing excludes seven Q-classes for e<=77",
+            "conic pair-overlap packing excludes seven Q-classes for e<=76",
+            "high-core line residuals factor through quotient locators of degree <=54",
+            "high-core conic residuals factor through quotient locators of degree <=57",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",

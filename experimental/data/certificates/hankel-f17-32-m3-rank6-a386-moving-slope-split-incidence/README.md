@@ -43,6 +43,24 @@ components are projective-safe in that range.  Line components with `e_G>=72`
 and conic components with `e_G>=69` remain residual for a sharper
 split-locator, paid-ledger, or exact-root-table argument.
 
+The residual is still reduced exactly.  If `E` is the forced external
+split-root core and `C_E=prod_{s in E}(X-s)`, then every locator in the
+component factors as
+
+```text
+L_Q = C_E R_Q.
+```
+
+The remaining split-locator gate is the quotient condition
+
+```text
+R_Q | (X^512-1)/C_E
+```
+
+plus normalization, exact degree, and noncontainment filters.  Thus residual
+lines reduce to quotient degree at most `54`, and residual conics reduce to
+quotient degree at most `57`.
+
 Replay:
 
 ```sh
@@ -56,6 +74,7 @@ Nonclaims:
 does not prove every moving-slope component is a line;
 does not close line components with forced external split-root core >=72 in projective accounting;
 does not close irreducible conic moving-slope components with forced external split-root core >=69 in projective accounting;
+does not prove the high-core quotient split problem is empty or paid;
 does not rule out another independent noncontained vector at the same finite slope;
 does not cover A=385;
 does not classify overlapping-support rank-6 pencils;

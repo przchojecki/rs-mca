@@ -62,7 +62,8 @@ uses the base-support fact that nonzero `Q` has at most two roots on `X` and
 closes line components whose forced external split-root core has size at most
 `71` in projective accounting.  For irreducible conics, pair-overlap packing
 closes forced external core up to `68`; large-external-core lines and conics
-remain residual.
+remain residual but factor through quotient split-locator problems of degree at
+most `54` and `57`, respectively.
 
 Replay:
 

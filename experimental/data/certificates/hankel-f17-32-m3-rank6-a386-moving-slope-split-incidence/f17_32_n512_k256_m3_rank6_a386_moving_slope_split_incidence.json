@@ -173,7 +173,9 @@
     "base-sharpened line finite-safe threshold is e<=80",
     "base-sharpened conic finite-safe threshold is e<=19",
     "conic pair-overlap packing excludes six Q-classes for e<=68",
-    "conic pair-overlap packing excludes seven Q-classes for e<=77"
+    "conic pair-overlap packing excludes seven Q-classes for e<=76",
+    "high-core line residuals factor through quotient locators of degree <=54",
+    "high-core conic residuals factor through quotient locators of degree <=57"
   ],
   "conic_pair_overlap_sample_rows": [
     {
@@ -232,6 +234,22 @@
       "six_Q_classes_excluded": false
     }
   ],
+  "high_core_quotient_residual_rows": [
+    {
+      "component_type": "line",
+      "normal_form": "L_Q(X)=C_E(X) R_Q(X), where C_E is the forced external split-core divisor and deg R_Q <= j-|E|",
+      "quotient_degree_at_most": 54,
+      "required_noncore_external_roots_after_base_cap_at_most": 52,
+      "residual_forced_external_core_at_least": 72
+    },
+    {
+      "component_type": "irreducible_conic",
+      "normal_form": "L_Q(X)=C_E(X) R_Q(X), where C_E is the forced external split-core divisor and deg R_Q <= j-|E|",
+      "quotient_degree_at_most": 57,
+      "required_noncore_external_roots_after_base_cap_at_most": 55,
+      "residual_forced_external_core_at_least": 69
+    }
+  ],
   "incidence_setup": {
     "component": "Let G be an irreducible positive-dimensional moving-slope component in the A=386 Q-plane, with degree c in {1,2}.",
     "external_forced_split_root_core": "e_G is the number of forced root hyperplanes among H\\X.  The base support X is handled separately because L_Q(x)=0 is equivalent to Q(x)=0 there.",
@@ -288,7 +306,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v3",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v4",
   "source_artifacts": {
     "a386_global_component_slope_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json",
@@ -322,9 +340,11 @@
     "boundary_defect_h": 3,
     "conic_finite_safe_for_external_core_at_most": 76,
     "conic_projective_safe_for_external_core_at_most": 68,
+    "conic_residual_quotient_degree_at_most": 57,
     "external_root_count": 385,
     "line_finite_safe_for_external_core_at_most": 80,
     "line_projective_safe_for_external_core_at_most": 71,
+    "line_residual_quotient_degree_at_most": 54,
     "locator_degree_j": 126,
     "positive_dimensional_component_forced_core_upper_bound": 125,
     "remaining_unclosed_residuals": [
@@ -341,6 +361,7 @@
     "conic_projective_safe_threshold": "For irreducible conics, e_G<=68 gives at most five finite Q-classes by pair-overlap packing.  Adding the endpoint-uniform contribution gives projective total at most 6.",
     "conic_remaining_residual": "Irreducible conics with forced external split-root core e_G>=69 remain residual for a sharper split, paid, or exact-root-table argument.",
     "conic_status": "For an irreducible conic c=2, the base-sharpened budget gives six finite Q-classes at e_G=0 and finite safety through e_G<=19, but the projective endpoint still makes total seven at best.  The conic pair-overlap packing lemma below supplies the needed extra saving through e_G<=68.",
+    "high_core_quotient_normal_form": "For any remaining high-core line or conic component, let E be the forced external split-root core and C_E(X)=prod_{s in E}(X-s).  Every Q-class on the component has L_Q divisible by C_E.  After factoring, L_Q=C_E R_Q with deg R_Q<=126-|E|, and the split-locator gate is exactly R_Q | (X^512-1)/C_E plus the remaining noncontainment filters.  Thus residual line components reduce to quotient degree <=54, while residual conic components reduce to quotient degree <=57.",
     "incidence_budget": "For r_G<j, each valid degree-j split locator on G needs at least j-r_G additional intersections with non-forced root hyperplanes.  Each non-forced E_s cuts G in length at most c.  Hence the number of valid Q-classes, and therefore the number of finite slopes represented by this component, is at most floor(c*(512-r_G)/(126-r_G)).",
     "line_projective_safe_core_threshold": "For a line component c=1, the unrefined all-root budget gives projective safety at r_G<=48.  The base-sharpened external budget improves this: e_G<=71 gives at most five finite Q-classes.  Adding the endpoint-uniform contribution gives projective total at most 6, exactly the projective budget.",
     "no_identically_split_positive_dimensional_component": "A positive-dimensional component cannot have r_G>=j=126.  Otherwise every L_Q on G would be divisible by the same degree-j split locator, hence scalar-multiple to it because deg L_Q<=j, contradicting projective injectivity of Q -> L_Q on G."
