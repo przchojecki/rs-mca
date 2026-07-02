@@ -7,7 +7,7 @@
   },
   "lower_cutoff_profiles": [
     {
-      "cumulative_bound_bit_length": 101,
+      "cumulative_bound_bit_length": 161,
       "field_size_q": 1048576,
       "layers": [
         {
@@ -45,17 +45,44 @@
           "excess_e": 3,
           "n_power_upper_as_fraction": "101/20",
           "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1329227995784915872903807060280344576,
+          "bound_bit_length": 121,
+          "ceil_log2_bound": 121,
+          "defect": "d = ell + e",
+          "excess_e": 4,
+          "n_power_upper_as_fraction": "121/20",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1393796574908163946345982392040522594123776,
+          "bound_bit_length": 141,
+          "ceil_log2_bound": 141,
+          "defect": "d = ell + e",
+          "excess_e": 5,
+          "n_power_upper_as_fraction": "141/20",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1461501637330902918203684832716283019655932542976,
+          "bound_bit_length": 161,
+          "ceil_log2_bound": 161,
+          "defect": "d = ell + e",
+          "excess_e": 6,
+          "n_power_upper_as_fraction": "161/20",
+          "source": "2^M q^(e+1)"
         }
       ],
       "log2_n": 20,
-      "max_excess_E": 3,
+      "max_excess_E": 6,
       "n": 1048576,
       "petal_count_M": 20,
       "polynomial_exponent_rule": "for fixed E, 2^M q^(E+1) <= n^(1 + q_power*(E+1)) when M=log2(n)",
       "q_power": 1
     },
     {
-      "cumulative_bound_bit_length": 181,
+      "cumulative_bound_bit_length": 301,
       "field_size_q": 1099511627776,
       "layers": [
         {
@@ -93,17 +120,44 @@
           "excess_e": 3,
           "n_power_upper_as_fraction": "181/20",
           "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1684996666696914987166688442938726917102321526408785780068975640576,
+          "bound_bit_length": 221,
+          "ceil_log2_bound": 221,
+          "defect": "d = ell + e",
+          "excess_e": 4,
+          "n_power_upper_as_fraction": "221/20",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1852673427797059126777135760139006525652319754650249024631321344126610074238976,
+          "bound_bit_length": 261,
+          "ceil_log2_bound": 261,
+          "defect": "d = ell + e",
+          "excess_e": 5,
+          "n_power_upper_as_fraction": "261/20",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 2037035976334486086268445688409378161051468393665936250636140449354381299763336706183397376,
+          "bound_bit_length": 301,
+          "ceil_log2_bound": 301,
+          "defect": "d = ell + e",
+          "excess_e": 6,
+          "n_power_upper_as_fraction": "301/20",
+          "source": "2^M q^(e+1)"
         }
       ],
       "log2_n": 20,
-      "max_excess_E": 3,
+      "max_excess_E": 6,
       "n": 1048576,
       "petal_count_M": 20,
       "polynomial_exponent_rule": "for fixed E, 2^M q^(E+1) <= n^(1 + q_power*(E+1)) when M=log2(n)",
       "q_power": 2
     },
     {
-      "cumulative_bound_bit_length": 201,
+      "cumulative_bound_bit_length": 321,
       "field_size_q": 1099511627776,
       "layers": [
         {
@@ -141,17 +195,44 @@
           "excess_e": 3,
           "n_power_upper_as_fraction": "201/40",
           "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1766847064778384329583297500742918515827483896875618958121606201292619776,
+          "bound_bit_length": 241,
+          "ceil_log2_bound": 241,
+          "defect": "d = ell + e",
+          "excess_e": 4,
+          "n_power_upper_as_fraction": "241/40",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 1942668892225729070919461906823518906642406839052139521251812409738904285205208498176,
+          "bound_bit_length": 281,
+          "ceil_log2_bound": 281,
+          "defect": "d = ell + e",
+          "excess_e": 5,
+          "n_power_upper_as_fraction": "281/40",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 2135987035920910082395021706169552114602704522356652769947041607822219725780640550022962086936576,
+          "bound_bit_length": 321,
+          "ceil_log2_bound": 321,
+          "defect": "d = ell + e",
+          "excess_e": 6,
+          "n_power_upper_as_fraction": "321/40",
+          "source": "2^M q^(e+1)"
         }
       ],
       "log2_n": 40,
-      "max_excess_E": 3,
+      "max_excess_E": 6,
       "n": 1099511627776,
       "petal_count_M": 40,
       "polynomial_exponent_rule": "for fixed E, 2^M q^(E+1) <= n^(1 + q_power*(E+1)) when M=log2(n)",
       "q_power": 1
     },
     {
-      "cumulative_bound_bit_length": 361,
+      "cumulative_bound_bit_length": 601,
       "field_size_q": 1208925819614629174706176,
       "layers": [
         {
@@ -189,10 +270,37 @@
           "excess_e": 3,
           "n_power_upper_as_fraction": "361/40",
           "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 2839213766779714416208296124562517712318911565184836172974571090549372219192960637992933791850638927971728600024477257552869537611776,
+          "bound_bit_length": 441,
+          "ceil_log2_bound": 441,
+          "defect": "d = ell + e",
+          "excess_e": 4,
+          "n_power_upper_as_fraction": "441/40",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 3432398830065304857490950399540696608634717650071652704697231729592771591698828026061279820330727277488648155695740429018560993999858321906287014145557528576,
+          "bound_bit_length": 521,
+          "ceil_log2_bound": 521,
+          "defect": "d = ell + e",
+          "excess_e": 5,
+          "n_power_upper_as_fraction": "521/40",
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 4149515568880992958512407863691161151012446232242436899995657329690652811412908146399707048947103794288197886611300789182395151075411775307886874834113963687061181803401509523685376,
+          "bound_bit_length": 601,
+          "ceil_log2_bound": 601,
+          "defect": "d = ell + e",
+          "excess_e": 6,
+          "n_power_upper_as_fraction": "601/40",
+          "source": "2^M q^(e+1)"
         }
       ],
       "log2_n": 40,
-      "max_excess_E": 3,
+      "max_excess_E": 6,
       "n": 1099511627776,
       "petal_count_M": 40,
       "polynomial_exponent_rule": "for fixed E, 2^M q^(E+1) <= n^(1 + q_power*(E+1)) when M=log2(n)",
@@ -202,7 +310,7 @@
   "non_claim": "This packet does not close mixed-petal sunflower amplification and does not enumerate actual list codewords beyond the Lemma-16 upper-bound compiler.",
   "object": {
     "core_defect": "d = ell + e",
-    "fixed_excess_range_checked": "0 <= e <= 3",
+    "fixed_excess_range_checked": "0 <= e <= 6",
     "petal_count": "M",
     "petal_size": "ell",
     "setting": "background-free full-petal sunflower listed codewords"
@@ -216,8 +324,8 @@
   "status": "PROVED_COMPILER__CITES_L1_LEMMA_16",
   "toy_growth_tables": [
     {
-      "cumulative_bound": 1419670,
-      "cumulative_bound_bit_length": 21,
+      "cumulative_bound": 6975757254,
+      "cumulative_bound_bit_length": 33,
       "field_size_q": 17,
       "layers": [
         {
@@ -247,14 +355,35 @@
           "defect": "d = ell + e",
           "excess_e": 3,
           "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 22717712,
+          "bound_bit_length": 25,
+          "defect": "d = ell + e",
+          "excess_e": 4,
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 386201104,
+          "bound_bit_length": 29,
+          "defect": "d = ell + e",
+          "excess_e": 5,
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 6565418768,
+          "bound_bit_length": 33,
+          "defect": "d = ell + e",
+          "excess_e": 6,
+          "source": "2^M q^(e+1)"
         }
       ],
-      "max_excess_E": 3,
+      "max_excess_E": 6,
       "petal_count_M": 4
     },
     {
-      "cumulative_bound": 26905833996,
-      "cumulative_bound_bit_length": 35,
+      "cumulative_bound": 27721131664055564,
+      "cumulative_bound_bit_length": 55,
       "field_size_q": 101,
       "layers": [
         {
@@ -284,14 +413,35 @@
           "defect": "d = ell + e",
           "excess_e": 3,
           "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 2690585728256,
+          "bound_bit_length": 42,
+          "defect": "d = ell + e",
+          "excess_e": 4,
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 271749158553856,
+          "bound_bit_length": 48,
+          "defect": "d = ell + e",
+          "excess_e": 5,
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 27446665013939456,
+          "bound_bit_length": 55,
+          "defect": "d = ell + e",
+          "excess_e": 6,
+          "source": "2^M q^(e+1)"
         }
       ],
-      "max_excess_E": 3,
+      "max_excess_E": 6,
       "petal_count_M": 8
     },
     {
-      "cumulative_bound": 287015635744888,
-      "cumulative_bound_bit_length": 49,
+      "cumulative_bound": 4871973887897864927352,
+      "cumulative_bound_bit_length": 73,
       "field_size_q": 257,
       "layers": [
         {
@@ -321,9 +471,30 @@
           "defect": "d = ell + e",
           "excess_e": 3,
           "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 73476007071383552,
+          "bound_bit_length": 57,
+          "defect": "d = ell + e",
+          "excess_e": 4,
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 18883333817345572864,
+          "bound_bit_length": 65,
+          "defect": "d = ell + e",
+          "excess_e": 5,
+          "source": "2^M q^(e+1)"
+        },
+        {
+          "bound": 4853016791057812226048,
+          "bound_bit_length": 73,
+          "defect": "d = ell + e",
+          "excess_e": 6,
+          "source": "2^M q^(e+1)"
         }
       ],
-      "max_excess_E": 3,
+      "max_excess_E": 6,
       "petal_count_M": 16
     }
   ]

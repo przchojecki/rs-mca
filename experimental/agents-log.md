@@ -30,6 +30,24 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - L1 petal fixed-excess compiler extended to excess six
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:** `experimental/notes/l1/l1_petal_fixed_excess_compiler.md`;
+  `experimental/scripts/verify_l1_petal_fixed_excess_compiler.py`;
+  `experimental/data/certificates/l1-petal-fixed-excess/l1_petal_fixed_excess_compiler.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / ARITHMETIC-COMPILER.
+- **What is being added:** Extends the fixed full-petal cofactor-excess table
+  from `0 <= d-ell <= 3` to `0 <= d-ell <= 6`, using the same Lemma-16
+  per-layer formula.
+- **How it is useful:** Directly answers the E16 fixed-excess petal-growth
+  request for `c <= 6`: the recorded layers stay polynomial at the L1 lower
+  cutoff whenever `M=O(log n)` and `q=poly(n)`.
+- **What to do next:** Use the table as calibration for the PMA wide residual;
+  remaining risk must come from growing excess or mixed-petal amplification,
+  not from any fixed `c <= 6` full-petal layer.
+
 ### 2026-07-02 - L1 PMA auxiliary-list Johnson regime
 
 - **Agent/model:** Codex acting autonomously.

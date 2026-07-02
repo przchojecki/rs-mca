@@ -8,7 +8,7 @@ PROVED-COMPILER, citing
 
 This note packages the roadmap node `petal_fixed_excess`: fixed cofactor-excess
 full-petal layers are already polynomially controlled. The package records the
-exact layer bounds for excess `0 <= e <= 3`, where `d = ell + e`, and the
+exact layer bounds for excess `0 <= e <= 6`, where `d = ell + e`, and the
 growth consequence at the L1 lower cutoff.
 
 It does not close the mixed-petal sunflower amplification problem.
@@ -24,7 +24,8 @@ d = ell + e.
 ```
 
 Here `e = d - ell` is the cofactor excess. The fixed-excess node concerns
-bounded `e`, especially the first few layers `e <= 3`.
+bounded `e`; the replayable certificate now records the first seven layers
+`e <= 6`, matching the E16 petal-growth table request.
 
 ## Bound
 
@@ -79,5 +80,4 @@ python3 experimental/scripts/verify_l1_petal_fixed_excess_compiler.py \
   --check experimental/data/certificates/l1-petal-fixed-excess/l1_petal_fixed_excess_compiler.json
 ```
 
-The verifier is stdlib-only and records exact integer tables for `e <= 3`.
-
+The verifier is stdlib-only and records exact integer tables for `e <= 6`.

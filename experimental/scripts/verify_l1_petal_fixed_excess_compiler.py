@@ -19,7 +19,7 @@ DEFAULT_CERT = Path(
     "experimental/data/certificates/l1-petal-fixed-excess/"
     "l1_petal_fixed_excess_compiler.json"
 )
-MAX_EXCESS = 3
+MAX_EXCESS = 6
 
 
 def layer_bound(petal_count: int, field_size: int, excess: int) -> int:
@@ -102,10 +102,10 @@ def self_tests() -> None:
                 current = layer_bound(M, q, e)
                 assert current > prev
                 prev = current
-    profile = lower_cutoff_profile(log2_n=20, q_power=2, max_excess=3)
+    profile = lower_cutoff_profile(log2_n=20, q_power=2, max_excess=MAX_EXCESS)
     top = profile["layers"][-1]
-    assert top["bound"] == (1 << 20) * ((1 << 40) ** 4)
-    assert top["n_power_upper_as_fraction"] == "181/20"
+    assert top["bound"] == (1 << 20) * ((1 << 40) ** 7)
+    assert top["n_power_upper_as_fraction"] == "301/20"
 
 
 def build_certificate() -> dict[str, Any]:
