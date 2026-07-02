@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v12"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v13"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v30",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v31",
 }
 
 
@@ -673,6 +673,47 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         "line e=72 quotient-pencil rows should be closure criteria",
     )
     require(
+        summary["line_quotient_pencil_obstruction_degrees"]
+        == [54, 53, 52, 51, 50, 49, 48, 47, 46]
+        and summary["line_quotient_pencil_obstruction_histogram_counts"]
+        == [2, 16, 27, 28, 28, 28, 28, 28, 28],
+        "line quotient-pencil obstruction catalog summary",
+    )
+    quotient_catalog = data["finite_incidence_quotient_obstruction_catalog"]
+    line_quotient_catalog = quotient_catalog["line_endpoint_only_incidence_range"]
+    require(
+        [
+            (
+                row["forced_external_core_size"],
+                row["quotient_degree"],
+                row["nonforced_external_roots_per_fiber_range"],
+                row["unused_nonforced_external_root_line_range"],
+            )
+            for row in line_quotient_catalog
+        ]
+        == [
+            (72, 54, [52, 53], [0, 1]),
+            (73, 53, [51, 53], [0, 6]),
+            (74, 52, [50, 52], [0, 11]),
+            (75, 51, [49, 51], [4, 16]),
+            (76, 50, [48, 50], [9, 21]),
+            (77, 49, [47, 49], [14, 26]),
+            (78, 48, [46, 48], [19, 31]),
+            (79, 47, [45, 47], [24, 36]),
+            (80, 46, [44, 46], [29, 41]),
+        ],
+        "line quotient-pencil obstruction catalog rows",
+    )
+    require(
+        all(
+            row["every_surviving_member_is_full_degree_split"]
+            and row["pairwise_external_root_sets_disjoint"]
+            and row["closure_if_condition_fails"]
+            for row in line_quotient_catalog
+        ),
+        "line quotient-pencil obstruction catalog rows should be closure criteria",
+    )
+    require(
         summary["conic_e69_design_local_profiles"]
         == [
             {
@@ -744,6 +785,49 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
     require(
         all(row["closure_if_condition_fails"] for row in pascal_rows),
         "conic e=69 Pascal rows should be closure criteria",
+    )
+    require(
+        summary["conic_quotient_family_obstruction_degrees"]
+        == [57, 56, 55, 54, 53, 52, 51, 50]
+        and summary["conic_quotient_family_obstruction_histogram_counts"]
+        == [2, 16, 27, 28, 28, 28, 28, 28]
+        and summary["conic_quotient_family_obstruction_pair_overlap_ranges"]
+        == [[14, 15], [9, 15], [4, 15], [0, 11], [0, 6], [0, 1], [0, 0], [0, 0]],
+        "conic quotient-family obstruction catalog summary",
+    )
+    conic_quotient_catalog = quotient_catalog["irreducible_conic_endpoint_only_incidence_range"]
+    require(
+        [
+            (
+                row["forced_external_core_size"],
+                row["quotient_degree"],
+                row["required_pair_overlap_range"],
+                row["maximum_missing_secant_range"],
+                row["nonforced_external_roots_per_member_range"],
+            )
+            for row in conic_quotient_catalog
+        ]
+        == [
+            (69, 57, [14, 15], [0, 1], [55, 56]),
+            (70, 56, [9, 15], [0, 6], [54, 56]),
+            (71, 55, [4, 15], [0, 11], [53, 55]),
+            (72, 54, [0, 11], [4, 15], [52, 54]),
+            (73, 53, [0, 6], [9, 15], [51, 53]),
+            (74, 52, [0, 1], [14, 15], [50, 52]),
+            (75, 51, [0, 0], [15, 15], [49, 51]),
+            (76, 50, [0, 0], [15, 15], [48, 50]),
+        ],
+        "conic quotient-family obstruction catalog rows",
+    )
+    require(
+        all(
+            row["every_surviving_member_is_full_degree_split"]
+            and row["pairwise_external_overlap_at_most_one"]
+            and row["triple_external_root_line_use_forbidden"]
+            and row["closure_if_condition_fails"]
+            for row in conic_quotient_catalog
+        ),
+        "conic quotient-family obstruction catalog rows should be closure criteria",
     )
     line_catalog = summary["line_one_over_design_catalog"]
     require(
@@ -1201,6 +1285,7 @@ def build_certificate() -> dict[str, Any]:
                 "extremal multiplicity accounting leaves line profiles (1,312,0)/(0,313,0) and conic profiles (1,300,15)/(0,302,14)/(0,301,15)",
                 "local incidence accounting leaves line singleton sequences 52^6 or (53,52^5), and conic secant/singleton profiles (5^6;50^6), ((4,4,5,5,5,5);(51,51,50,50,50,50)), or (5^6;(51,50,50,50,50,50))",
                 "the line e_G=72 extremal branch is a degree-54 quotient-pencil obstruction: six full-split fibers of sizes 52^6 or 53,52^5 cover all or all-but-one nonforced external roots",
+                "the exact-current finite-incidence residuals are quotient obstruction catalogs: line e_G=72..80 need six full-split pencil fibers of degrees 54..46, and conic e_G=69..76 need six full-split quotient-conic members of degrees 57..50 with the printed overlap ranges",
                 "Pascal's theorem gives a concrete obstruction test for the conic e_G=69 extremal branch: K6 secant covers force 60 Pascal collinearities and K6-minus-one covers force 36",
                 "the endpoint-only one-over finite-incidence range has a compact exact catalog: line histogram counts 2,16,27,28^6 across e_G=72..80 and conic counts 2,16,27,28^5 across e_G=69..76",
                 "abstract incidence-only sharpness witnesses exist for every finite-incidence one-over core, so those rows cannot be closed by sharpening only the current incidence and pair-overlap axioms",

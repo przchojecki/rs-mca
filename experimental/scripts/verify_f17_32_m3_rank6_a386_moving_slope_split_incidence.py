@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v30"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v31"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -1614,6 +1614,190 @@ def line_e72_quotient_pencil_obstruction_profile(
     return rows
 
 
+def line_quotient_pencil_obstruction_catalog(
+    catalog_rows: list[dict[str, Any]],
+    locator_degree: int,
+    external_root_count: int,
+) -> list[dict[str, Any]]:
+    """Quotient-pencil normal form for every exact-current line one-over row."""
+    rows: list[dict[str, Any]] = []
+    for catalog in catalog_rows:
+        core = catalog["forced_external_core_size"]
+        quotient_degree = locator_degree - core
+        alternatives = exact_line_root_budget_alternatives(
+            core, locator_degree, external_root_count
+        )
+        class_size_sequences = [
+            class_sizes_from_histogram(
+                alternative["base_root_histogram"],
+                core,
+                locator_degree,
+            )
+            for alternative in alternatives
+        ]
+        total_base_roots = [
+            alternative["total_base_root_incidences"] for alternative in alternatives
+        ]
+        unused_external = [
+            alternative["unused_nonforced_external_root_lines"]
+            for alternative in alternatives
+        ]
+        require(
+            len(alternatives) == catalog["allowed_base_root_histogram_count"],
+            "line quotient catalog histogram count mismatch",
+        )
+        require(
+            [min(total_base_roots), max(total_base_roots)]
+            == catalog["total_base_root_incidence_range"],
+            "line quotient catalog base-root range mismatch",
+        )
+        require(
+            [min(unused_external), max(unused_external)]
+            == catalog["unused_nonforced_external_root_line_range"],
+            "line quotient catalog unused external range mismatch",
+        )
+        require(
+            all(
+                sum(sequence) + alternative["total_base_root_incidences"]
+                == FINITE_BUDGET * quotient_degree
+                for sequence, alternative in zip(class_size_sequences, alternatives)
+            ),
+            "line quotient fibers should be full degree after forced core removal",
+        )
+        rows.append(
+            {
+                "component_type": "line",
+                "forced_external_core_size": core,
+                "quotient_degree": quotient_degree,
+                "quotient_family": "two-dimensional quotient pencil",
+                "finite_split_fiber_count": FINITE_BUDGET,
+                "allowed_base_root_histogram_count": len(alternatives),
+                "total_base_root_incidence_range": [
+                    min(total_base_roots),
+                    max(total_base_roots),
+                ],
+                "unused_nonforced_external_root_line_range": [
+                    min(unused_external),
+                    max(unused_external),
+                ],
+                "nonforced_external_roots_per_fiber_range": [
+                    min(min(sequence) for sequence in class_size_sequences),
+                    max(max(sequence) for sequence in class_size_sequences),
+                ],
+                "hidden_non_subgroup_roots_per_member": 0,
+                "every_surviving_member_is_full_degree_split": True,
+                "pairwise_external_root_sets_disjoint": True,
+                "closure_if_condition_fails": True,
+                "necessary_condition": (
+                    "After the forced external core is factored, a surviving "
+                    "line row must provide six distinct full-split members of "
+                    "the printed quotient pencil with one of the listed base-root "
+                    "histograms."
+                ),
+            }
+        )
+    return rows
+
+
+def conic_quotient_family_obstruction_catalog(
+    catalog_rows: list[dict[str, Any]],
+    locator_degree: int,
+    external_root_count: int,
+) -> list[dict[str, Any]]:
+    """Quotient-family normal form for every exact-current conic one-over row."""
+    rows: list[dict[str, Any]] = []
+    for catalog in catalog_rows:
+        core = catalog["forced_external_core_size"]
+        quotient_degree = locator_degree - core
+        alternatives = exact_conic_root_budget_alternatives(
+            core, locator_degree, external_root_count
+        )
+        class_size_sequences = [
+            class_sizes_from_histogram(
+                alternative["base_root_histogram"],
+                core,
+                locator_degree,
+            )
+            for alternative in alternatives
+        ]
+        total_base_roots = [
+            alternative["total_base_root_incidences"] for alternative in alternatives
+        ]
+        pair_overlaps = [
+            alternative["required_pair_overlaps_before_external_excess"]
+            for alternative in alternatives
+        ]
+        missing_secants = [
+            alternative["maximum_missing_secants_before_external_excess"]
+            for alternative in alternatives
+        ]
+        require(
+            len(alternatives) == catalog["allowed_base_root_histogram_count"],
+            "conic quotient catalog histogram count mismatch",
+        )
+        require(
+            [min(total_base_roots), max(total_base_roots)]
+            == catalog["total_base_root_incidence_range"],
+            "conic quotient catalog base-root range mismatch",
+        )
+        require(
+            [min(pair_overlaps), max(pair_overlaps)]
+            == catalog["required_pair_overlap_range"],
+            "conic quotient catalog overlap range mismatch",
+        )
+        require(
+            [min(missing_secants), max(missing_secants)]
+            == catalog["maximum_missing_secant_range"],
+            "conic quotient catalog missing-secant range mismatch",
+        )
+        require(
+            all(
+                sum(sequence) + alternative["total_base_root_incidences"]
+                == FINITE_BUDGET * quotient_degree
+                for sequence, alternative in zip(class_size_sequences, alternatives)
+            ),
+            "conic quotient members should be full degree after forced core removal",
+        )
+        rows.append(
+            {
+                "component_type": "irreducible_conic",
+                "forced_external_core_size": core,
+                "quotient_degree": quotient_degree,
+                "quotient_family": "irreducible conic in the quotient Q-plane",
+                "finite_split_member_count": FINITE_BUDGET,
+                "allowed_base_root_histogram_count": len(alternatives),
+                "total_base_root_incidence_range": [
+                    min(total_base_roots),
+                    max(total_base_roots),
+                ],
+                "required_pair_overlap_range": [
+                    min(pair_overlaps),
+                    max(pair_overlaps),
+                ],
+                "maximum_missing_secant_range": [
+                    min(missing_secants),
+                    max(missing_secants),
+                ],
+                "nonforced_external_roots_per_member_range": [
+                    min(min(sequence) for sequence in class_size_sequences),
+                    max(max(sequence) for sequence in class_size_sequences),
+                ],
+                "hidden_non_subgroup_roots_per_member": 0,
+                "every_surviving_member_is_full_degree_split": True,
+                "pairwise_external_overlap_at_most_one": True,
+                "triple_external_root_line_use_forbidden": True,
+                "closure_if_condition_fails": True,
+                "necessary_condition": (
+                    "After the forced external core is factored, a surviving "
+                    "irreducible-conic row must provide six full-split quotient "
+                    "members on the conic, with pair-overlap and missing-secant "
+                    "ranges matching the printed catalog."
+                ),
+            }
+        )
+    return rows
+
+
 def conic_design_local_profiles(shapes: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Per-Q-class local secant/singleton counts for conic extremal designs."""
     profiles: list[dict[str, Any]] = []
@@ -2492,6 +2676,20 @@ def build_certificate() -> dict[str, Any]:
         conic_pair_one_over_cores,
         locator_degree=j_value,
         external_root_count=external_root_count,
+    )
+    line_quotient_pencil_obstruction_catalog_rows = (
+        line_quotient_pencil_obstruction_catalog(
+            line_one_over_design_catalog_rows,
+            locator_degree=j_value,
+            external_root_count=external_root_count,
+        )
+    )
+    conic_quotient_family_obstruction_catalog_rows = (
+        conic_quotient_family_obstruction_catalog(
+            conic_one_over_design_catalog_rows,
+            locator_degree=j_value,
+            external_root_count=external_root_count,
+        )
     )
     line_exact_current_profile_rows = [
         exact_agreement_current_profile_row(row) for row in line_cofactor_current_profile_rows
@@ -3383,6 +3581,77 @@ def build_certificate() -> dict[str, Any]:
     require(
         [
             (
+                row["forced_external_core_size"],
+                row["quotient_degree"],
+                row["allowed_base_root_histogram_count"],
+                row["total_base_root_incidence_range"],
+                row["unused_nonforced_external_root_line_range"],
+                row["nonforced_external_roots_per_fiber_range"],
+            )
+            for row in line_quotient_pencil_obstruction_catalog_rows
+        ]
+        == [
+            (72, 54, 2, [11, 12], [0, 1], [52, 53]),
+            (73, 53, 16, [6, 12], [0, 6], [51, 53]),
+            (74, 52, 27, [1, 12], [0, 11], [50, 52]),
+            (75, 51, 28, [0, 12], [4, 16], [49, 51]),
+            (76, 50, 28, [0, 12], [9, 21], [48, 50]),
+            (77, 49, 28, [0, 12], [14, 26], [47, 49]),
+            (78, 48, 28, [0, 12], [19, 31], [46, 48]),
+            (79, 47, 28, [0, 12], [24, 36], [45, 47]),
+            (80, 46, 28, [0, 12], [29, 41], [44, 46]),
+        ],
+        "line quotient-pencil obstruction catalog changed",
+    )
+    require(
+        all(
+            row["every_surviving_member_is_full_degree_split"]
+            and row["pairwise_external_root_sets_disjoint"]
+            and row["closure_if_condition_fails"]
+            and row["hidden_non_subgroup_roots_per_member"] == 0
+            for row in line_quotient_pencil_obstruction_catalog_rows
+        ),
+        "line quotient-pencil rows should be full-split closure criteria",
+    )
+    require(
+        [
+            (
+                row["forced_external_core_size"],
+                row["quotient_degree"],
+                row["allowed_base_root_histogram_count"],
+                row["total_base_root_incidence_range"],
+                row["required_pair_overlap_range"],
+                row["maximum_missing_secant_range"],
+                row["nonforced_external_roots_per_member_range"],
+            )
+            for row in conic_quotient_family_obstruction_catalog_rows
+        ]
+        == [
+            (69, 57, 2, [11, 12], [14, 15], [0, 1], [55, 56]),
+            (70, 56, 16, [6, 12], [9, 15], [0, 6], [54, 56]),
+            (71, 55, 27, [1, 12], [4, 15], [0, 11], [53, 55]),
+            (72, 54, 28, [0, 12], [0, 11], [4, 15], [52, 54]),
+            (73, 53, 28, [0, 12], [0, 6], [9, 15], [51, 53]),
+            (74, 52, 28, [0, 12], [0, 1], [14, 15], [50, 52]),
+            (75, 51, 28, [0, 12], [0, 0], [15, 15], [49, 51]),
+            (76, 50, 28, [0, 12], [0, 0], [15, 15], [48, 50]),
+        ],
+        "conic quotient-family obstruction catalog changed",
+    )
+    require(
+        all(
+            row["every_surviving_member_is_full_degree_split"]
+            and row["pairwise_external_overlap_at_most_one"]
+            and row["triple_external_root_line_use_forbidden"]
+            and row["closure_if_condition_fails"]
+            and row["hidden_non_subgroup_roots_per_member"] == 0
+            for row in conic_quotient_family_obstruction_catalog_rows
+        ),
+        "conic quotient-family rows should be full-split closure criteria",
+    )
+    require(
+        [
+            (
                 row["component_type"],
                 row["forced_external_core_size"],
                 row["class_count"],
@@ -3865,6 +4134,18 @@ def build_certificate() -> dict[str, Any]:
                 "plus five fibers with 52 external roots and two base roots, "
                 "covering all nonforced external points."
             ),
+            "finite_incidence_quotient_obstruction_catalog": (
+                "The same quotient-normal-form obstruction is recorded for the "
+                "whole exact-current one-over finite-incidence range.  Line cores "
+                "e_G=72..80 require six distinct full-split members of a quotient "
+                "pencil of degrees 54 down to 46, with pairwise disjoint external "
+                "fibers and one of the printed base-root histograms.  Conic cores "
+                "e_G=69..76 require six full-split members on an irreducible "
+                "quotient conic of degrees 57 down to 50, with the printed "
+                "pair-overlap and missing-secant ranges.  If the relevant "
+                "full-split quotient family does not exist, that row closes by "
+                "the single-saving ledger."
+            ),
             "conic_e69_pascal_obstruction_profile": (
                 "In the extremal conic e_G=69 branch, the K6 and K6-minus-one "
                 "secant graphs are not arbitrary incidence graphs if they come "
@@ -4066,6 +4347,14 @@ def build_certificate() -> dict[str, Any]:
             line_e72_quotient_pencil_obstruction_rows
         ),
         "conic_e69_pascal_obstruction_profile": conic_e69_pascal_obstruction_rows,
+        "finite_incidence_quotient_obstruction_catalog": {
+            "line_endpoint_only_incidence_range": (
+                line_quotient_pencil_obstruction_catalog_rows
+            ),
+            "irreducible_conic_endpoint_only_incidence_range": (
+                conic_quotient_family_obstruction_catalog_rows
+            ),
+        },
         "one_over_design_catalog": {
             "line_endpoint_only_incidence_range": line_one_over_design_catalog_rows,
             "irreducible_conic_endpoint_only_incidence_range": (
@@ -4188,6 +4477,14 @@ def build_certificate() -> dict[str, Any]:
                 row["unused_nonforced_external_root_lines"]
                 for row in line_e72_quotient_pencil_obstruction_rows
             ],
+            "line_quotient_pencil_obstruction_degrees": [
+                row["quotient_degree"]
+                for row in line_quotient_pencil_obstruction_catalog_rows
+            ],
+            "line_quotient_pencil_obstruction_histogram_counts": [
+                row["allowed_base_root_histogram_count"]
+                for row in line_quotient_pencil_obstruction_catalog_rows
+            ],
             "line_one_over_design_catalog": line_one_over_design_catalog_rows,
             "line_incidence_only_sharpness_witness_count": len(
                 line_incidence_only_sharpness_witnesses
@@ -4299,6 +4596,18 @@ def build_certificate() -> dict[str, Any]:
                 row["hamiltonian_cycle_count"]
                 for row in conic_e69_pascal_obstruction_rows
             ],
+            "conic_quotient_family_obstruction_degrees": [
+                row["quotient_degree"]
+                for row in conic_quotient_family_obstruction_catalog_rows
+            ],
+            "conic_quotient_family_obstruction_histogram_counts": [
+                row["allowed_base_root_histogram_count"]
+                for row in conic_quotient_family_obstruction_catalog_rows
+            ],
+            "conic_quotient_family_obstruction_pair_overlap_ranges": [
+                row["required_pair_overlap_range"]
+                for row in conic_quotient_family_obstruction_catalog_rows
+            ],
             "conic_one_over_design_catalog": conic_one_over_design_catalog_rows,
             "conic_cofactor_current_max_projective_upper_bound": max(
                 row["current_projective_upper_bound"]
@@ -4395,6 +4704,7 @@ def build_certificate() -> dict[str, Any]:
             "line e=72 and conic e=69 extremal multiplicity profiles are enumerated",
             "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
             "line e=72 extremal quotient-pencil fibers are fully split degree-54 members",
+            "all finite-incidence one-over line/conic rows have full-split quotient obstruction catalogs",
             "conic e=69 extremal secant graphs carry Pascal collinearity obstruction counts",
             "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
             "abstract incidence-only sharpness witnesses are constructed for every finite-incidence one-over core",

@@ -421,6 +421,15 @@ nonforced external point unused, or one `53`-external-root fiber with one base
 root plus five `52`-external-root fibers with two base roots, covering all
 nonforced external points.
 
+The same quotient-obstruction catalog is now recorded for the whole
+exact-current finite-incidence one-over range.  Line cores `e_G=72..80` must
+realize six distinct full-split members of quotient pencils of degrees
+`54,53,...,46`, with pairwise disjoint external fibers and one of the printed
+base-root histograms.  Irreducible conic cores `e_G=69..76` must realize six
+full-split members on quotient conics of degrees `57,56,...,50`, with the
+printed pair-overlap and missing-secant ranges.  Failure of the corresponding
+full-split quotient family is a single-saving closure for that row.
+
 For the extremal conic `e_G=69` branch, the packet also records a classical
 Pascal obstruction profile.  If the six finite classes really lie on an
 irreducible conic and the secant graph is `K6`, every Hamiltonian cycle gives a

@@ -194,6 +194,7 @@
     "line e=72 and conic e=69 extremal multiplicity profiles are enumerated",
     "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
     "line e=72 extremal quotient-pencil fibers are fully split degree-54 members",
+    "all finite-incidence one-over line/conic rows have full-split quotient obstruction catalogs",
     "conic e=69 extremal secant graphs carry Pascal collinearity obstruction counts",
     "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
     "abstract incidence-only sharpness witnesses are constructed for every finite-incidence one-over core",
@@ -7139,6 +7140,477 @@
       "histogram_format": "[zero_base_root_classes, one_base_root_classes, two_base_root_classes]"
     }
   },
+  "finite_incidence_quotient_obstruction_catalog": {
+    "irreducible_conic_endpoint_only_incidence_range": [
+      {
+        "allowed_base_root_histogram_count": 2,
+        "closure_if_condition_fails": true,
+        "component_type": "irreducible_conic",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_member_count": 6,
+        "forced_external_core_size": 69,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "maximum_missing_secant_range": [
+          0,
+          1
+        ],
+        "necessary_condition": "After the forced external core is factored, a surviving irreducible-conic row must provide six full-split quotient members on the conic, with pair-overlap and missing-secant ranges matching the printed catalog.",
+        "nonforced_external_roots_per_member_range": [
+          55,
+          56
+        ],
+        "pairwise_external_overlap_at_most_one": true,
+        "quotient_degree": 57,
+        "quotient_family": "irreducible conic in the quotient Q-plane",
+        "required_pair_overlap_range": [
+          14,
+          15
+        ],
+        "total_base_root_incidence_range": [
+          11,
+          12
+        ],
+        "triple_external_root_line_use_forbidden": true
+      },
+      {
+        "allowed_base_root_histogram_count": 16,
+        "closure_if_condition_fails": true,
+        "component_type": "irreducible_conic",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_member_count": 6,
+        "forced_external_core_size": 70,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "maximum_missing_secant_range": [
+          0,
+          6
+        ],
+        "necessary_condition": "After the forced external core is factored, a surviving irreducible-conic row must provide six full-split quotient members on the conic, with pair-overlap and missing-secant ranges matching the printed catalog.",
+        "nonforced_external_roots_per_member_range": [
+          54,
+          56
+        ],
+        "pairwise_external_overlap_at_most_one": true,
+        "quotient_degree": 56,
+        "quotient_family": "irreducible conic in the quotient Q-plane",
+        "required_pair_overlap_range": [
+          9,
+          15
+        ],
+        "total_base_root_incidence_range": [
+          6,
+          12
+        ],
+        "triple_external_root_line_use_forbidden": true
+      },
+      {
+        "allowed_base_root_histogram_count": 27,
+        "closure_if_condition_fails": true,
+        "component_type": "irreducible_conic",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_member_count": 6,
+        "forced_external_core_size": 71,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "maximum_missing_secant_range": [
+          0,
+          11
+        ],
+        "necessary_condition": "After the forced external core is factored, a surviving irreducible-conic row must provide six full-split quotient members on the conic, with pair-overlap and missing-secant ranges matching the printed catalog.",
+        "nonforced_external_roots_per_member_range": [
+          53,
+          55
+        ],
+        "pairwise_external_overlap_at_most_one": true,
+        "quotient_degree": 55,
+        "quotient_family": "irreducible conic in the quotient Q-plane",
+        "required_pair_overlap_range": [
+          4,
+          15
+        ],
+        "total_base_root_incidence_range": [
+          1,
+          12
+        ],
+        "triple_external_root_line_use_forbidden": true
+      },
+      {
+        "allowed_base_root_histogram_count": 28,
+        "closure_if_condition_fails": true,
+        "component_type": "irreducible_conic",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_member_count": 6,
+        "forced_external_core_size": 72,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "maximum_missing_secant_range": [
+          4,
+          15
+        ],
+        "necessary_condition": "After the forced external core is factored, a surviving irreducible-conic row must provide six full-split quotient members on the conic, with pair-overlap and missing-secant ranges matching the printed catalog.",
+        "nonforced_external_roots_per_member_range": [
+          52,
+          54
+        ],
+        "pairwise_external_overlap_at_most_one": true,
+        "quotient_degree": 54,
+        "quotient_family": "irreducible conic in the quotient Q-plane",
+        "required_pair_overlap_range": [
+          0,
+          11
+        ],
+        "total_base_root_incidence_range": [
+          0,
+          12
+        ],
+        "triple_external_root_line_use_forbidden": true
+      },
+      {
+        "allowed_base_root_histogram_count": 28,
+        "closure_if_condition_fails": true,
+        "component_type": "irreducible_conic",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_member_count": 6,
+        "forced_external_core_size": 73,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "maximum_missing_secant_range": [
+          9,
+          15
+        ],
+        "necessary_condition": "After the forced external core is factored, a surviving irreducible-conic row must provide six full-split quotient members on the conic, with pair-overlap and missing-secant ranges matching the printed catalog.",
+        "nonforced_external_roots_per_member_range": [
+          51,
+          53
+        ],
+        "pairwise_external_overlap_at_most_one": true,
+        "quotient_degree": 53,
+        "quotient_family": "irreducible conic in the quotient Q-plane",
+        "required_pair_overlap_range": [
+          0,
+          6
+        ],
+        "total_base_root_incidence_range": [
+          0,
+          12
+        ],
+        "triple_external_root_line_use_forbidden": true
+      },
+      {
+        "allowed_base_root_histogram_count": 28,
+        "closure_if_condition_fails": true,
+        "component_type": "irreducible_conic",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_member_count": 6,
+        "forced_external_core_size": 74,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "maximum_missing_secant_range": [
+          14,
+          15
+        ],
+        "necessary_condition": "After the forced external core is factored, a surviving irreducible-conic row must provide six full-split quotient members on the conic, with pair-overlap and missing-secant ranges matching the printed catalog.",
+        "nonforced_external_roots_per_member_range": [
+          50,
+          52
+        ],
+        "pairwise_external_overlap_at_most_one": true,
+        "quotient_degree": 52,
+        "quotient_family": "irreducible conic in the quotient Q-plane",
+        "required_pair_overlap_range": [
+          0,
+          1
+        ],
+        "total_base_root_incidence_range": [
+          0,
+          12
+        ],
+        "triple_external_root_line_use_forbidden": true
+      },
+      {
+        "allowed_base_root_histogram_count": 28,
+        "closure_if_condition_fails": true,
+        "component_type": "irreducible_conic",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_member_count": 6,
+        "forced_external_core_size": 75,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "maximum_missing_secant_range": [
+          15,
+          15
+        ],
+        "necessary_condition": "After the forced external core is factored, a surviving irreducible-conic row must provide six full-split quotient members on the conic, with pair-overlap and missing-secant ranges matching the printed catalog.",
+        "nonforced_external_roots_per_member_range": [
+          49,
+          51
+        ],
+        "pairwise_external_overlap_at_most_one": true,
+        "quotient_degree": 51,
+        "quotient_family": "irreducible conic in the quotient Q-plane",
+        "required_pair_overlap_range": [
+          0,
+          0
+        ],
+        "total_base_root_incidence_range": [
+          0,
+          12
+        ],
+        "triple_external_root_line_use_forbidden": true
+      },
+      {
+        "allowed_base_root_histogram_count": 28,
+        "closure_if_condition_fails": true,
+        "component_type": "irreducible_conic",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_member_count": 6,
+        "forced_external_core_size": 76,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "maximum_missing_secant_range": [
+          15,
+          15
+        ],
+        "necessary_condition": "After the forced external core is factored, a surviving irreducible-conic row must provide six full-split quotient members on the conic, with pair-overlap and missing-secant ranges matching the printed catalog.",
+        "nonforced_external_roots_per_member_range": [
+          48,
+          50
+        ],
+        "pairwise_external_overlap_at_most_one": true,
+        "quotient_degree": 50,
+        "quotient_family": "irreducible conic in the quotient Q-plane",
+        "required_pair_overlap_range": [
+          0,
+          0
+        ],
+        "total_base_root_incidence_range": [
+          0,
+          12
+        ],
+        "triple_external_root_line_use_forbidden": true
+      }
+    ],
+    "line_endpoint_only_incidence_range": [
+      {
+        "allowed_base_root_histogram_count": 2,
+        "closure_if_condition_fails": true,
+        "component_type": "line",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_fiber_count": 6,
+        "forced_external_core_size": 72,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "necessary_condition": "After the forced external core is factored, a surviving line row must provide six distinct full-split members of the printed quotient pencil with one of the listed base-root histograms.",
+        "nonforced_external_roots_per_fiber_range": [
+          52,
+          53
+        ],
+        "pairwise_external_root_sets_disjoint": true,
+        "quotient_degree": 54,
+        "quotient_family": "two-dimensional quotient pencil",
+        "total_base_root_incidence_range": [
+          11,
+          12
+        ],
+        "unused_nonforced_external_root_line_range": [
+          0,
+          1
+        ]
+      },
+      {
+        "allowed_base_root_histogram_count": 16,
+        "closure_if_condition_fails": true,
+        "component_type": "line",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_fiber_count": 6,
+        "forced_external_core_size": 73,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "necessary_condition": "After the forced external core is factored, a surviving line row must provide six distinct full-split members of the printed quotient pencil with one of the listed base-root histograms.",
+        "nonforced_external_roots_per_fiber_range": [
+          51,
+          53
+        ],
+        "pairwise_external_root_sets_disjoint": true,
+        "quotient_degree": 53,
+        "quotient_family": "two-dimensional quotient pencil",
+        "total_base_root_incidence_range": [
+          6,
+          12
+        ],
+        "unused_nonforced_external_root_line_range": [
+          0,
+          6
+        ]
+      },
+      {
+        "allowed_base_root_histogram_count": 27,
+        "closure_if_condition_fails": true,
+        "component_type": "line",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_fiber_count": 6,
+        "forced_external_core_size": 74,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "necessary_condition": "After the forced external core is factored, a surviving line row must provide six distinct full-split members of the printed quotient pencil with one of the listed base-root histograms.",
+        "nonforced_external_roots_per_fiber_range": [
+          50,
+          52
+        ],
+        "pairwise_external_root_sets_disjoint": true,
+        "quotient_degree": 52,
+        "quotient_family": "two-dimensional quotient pencil",
+        "total_base_root_incidence_range": [
+          1,
+          12
+        ],
+        "unused_nonforced_external_root_line_range": [
+          0,
+          11
+        ]
+      },
+      {
+        "allowed_base_root_histogram_count": 28,
+        "closure_if_condition_fails": true,
+        "component_type": "line",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_fiber_count": 6,
+        "forced_external_core_size": 75,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "necessary_condition": "After the forced external core is factored, a surviving line row must provide six distinct full-split members of the printed quotient pencil with one of the listed base-root histograms.",
+        "nonforced_external_roots_per_fiber_range": [
+          49,
+          51
+        ],
+        "pairwise_external_root_sets_disjoint": true,
+        "quotient_degree": 51,
+        "quotient_family": "two-dimensional quotient pencil",
+        "total_base_root_incidence_range": [
+          0,
+          12
+        ],
+        "unused_nonforced_external_root_line_range": [
+          4,
+          16
+        ]
+      },
+      {
+        "allowed_base_root_histogram_count": 28,
+        "closure_if_condition_fails": true,
+        "component_type": "line",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_fiber_count": 6,
+        "forced_external_core_size": 76,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "necessary_condition": "After the forced external core is factored, a surviving line row must provide six distinct full-split members of the printed quotient pencil with one of the listed base-root histograms.",
+        "nonforced_external_roots_per_fiber_range": [
+          48,
+          50
+        ],
+        "pairwise_external_root_sets_disjoint": true,
+        "quotient_degree": 50,
+        "quotient_family": "two-dimensional quotient pencil",
+        "total_base_root_incidence_range": [
+          0,
+          12
+        ],
+        "unused_nonforced_external_root_line_range": [
+          9,
+          21
+        ]
+      },
+      {
+        "allowed_base_root_histogram_count": 28,
+        "closure_if_condition_fails": true,
+        "component_type": "line",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_fiber_count": 6,
+        "forced_external_core_size": 77,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "necessary_condition": "After the forced external core is factored, a surviving line row must provide six distinct full-split members of the printed quotient pencil with one of the listed base-root histograms.",
+        "nonforced_external_roots_per_fiber_range": [
+          47,
+          49
+        ],
+        "pairwise_external_root_sets_disjoint": true,
+        "quotient_degree": 49,
+        "quotient_family": "two-dimensional quotient pencil",
+        "total_base_root_incidence_range": [
+          0,
+          12
+        ],
+        "unused_nonforced_external_root_line_range": [
+          14,
+          26
+        ]
+      },
+      {
+        "allowed_base_root_histogram_count": 28,
+        "closure_if_condition_fails": true,
+        "component_type": "line",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_fiber_count": 6,
+        "forced_external_core_size": 78,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "necessary_condition": "After the forced external core is factored, a surviving line row must provide six distinct full-split members of the printed quotient pencil with one of the listed base-root histograms.",
+        "nonforced_external_roots_per_fiber_range": [
+          46,
+          48
+        ],
+        "pairwise_external_root_sets_disjoint": true,
+        "quotient_degree": 48,
+        "quotient_family": "two-dimensional quotient pencil",
+        "total_base_root_incidence_range": [
+          0,
+          12
+        ],
+        "unused_nonforced_external_root_line_range": [
+          19,
+          31
+        ]
+      },
+      {
+        "allowed_base_root_histogram_count": 28,
+        "closure_if_condition_fails": true,
+        "component_type": "line",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_fiber_count": 6,
+        "forced_external_core_size": 79,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "necessary_condition": "After the forced external core is factored, a surviving line row must provide six distinct full-split members of the printed quotient pencil with one of the listed base-root histograms.",
+        "nonforced_external_roots_per_fiber_range": [
+          45,
+          47
+        ],
+        "pairwise_external_root_sets_disjoint": true,
+        "quotient_degree": 47,
+        "quotient_family": "two-dimensional quotient pencil",
+        "total_base_root_incidence_range": [
+          0,
+          12
+        ],
+        "unused_nonforced_external_root_line_range": [
+          24,
+          36
+        ]
+      },
+      {
+        "allowed_base_root_histogram_count": 28,
+        "closure_if_condition_fails": true,
+        "component_type": "line",
+        "every_surviving_member_is_full_degree_split": true,
+        "finite_split_fiber_count": 6,
+        "forced_external_core_size": 80,
+        "hidden_non_subgroup_roots_per_member": 0,
+        "necessary_condition": "After the forced external core is factored, a surviving line row must provide six distinct full-split members of the printed quotient pencil with one of the listed base-root histograms.",
+        "nonforced_external_roots_per_fiber_range": [
+          44,
+          46
+        ],
+        "pairwise_external_root_sets_disjoint": true,
+        "quotient_degree": 46,
+        "quotient_family": "two-dimensional quotient pencil",
+        "total_base_root_incidence_range": [
+          0,
+          12
+        ],
+        "unused_nonforced_external_root_line_range": [
+          29,
+          41
+        ]
+      }
+    ]
+  },
   "high_core_quotient_residual_rows": [
     {
       "component_type": "line",
@@ -11537,7 +12009,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v30",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v31",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -12377,6 +12849,60 @@
       76
     ],
     "conic_projective_safe_for_external_core_at_most": 68,
+    "conic_quotient_family_obstruction_degrees": [
+      57,
+      56,
+      55,
+      54,
+      53,
+      52,
+      51,
+      50
+    ],
+    "conic_quotient_family_obstruction_histogram_counts": [
+      2,
+      16,
+      27,
+      28,
+      28,
+      28,
+      28,
+      28
+    ],
+    "conic_quotient_family_obstruction_pair_overlap_ranges": [
+      [
+        14,
+        15
+      ],
+      [
+        9,
+        15
+      ],
+      [
+        4,
+        15
+      ],
+      [
+        0,
+        11
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
     "conic_remaining_unclosed_external_core_range": [
       69,
       118
@@ -12831,6 +13357,28 @@
       "80": "external slack alone can absorb base deficit"
     },
     "line_projective_safe_for_external_core_at_most": 71,
+    "line_quotient_pencil_obstruction_degrees": [
+      54,
+      53,
+      52,
+      51,
+      50,
+      49,
+      48,
+      47,
+      46
+    ],
+    "line_quotient_pencil_obstruction_histogram_counts": [
+      2,
+      16,
+      27,
+      28,
+      28,
+      28,
+      28,
+      28,
+      28
+    ],
     "line_remaining_unclosed_external_core_range": [
       72,
       118
@@ -13090,6 +13638,7 @@
     "extremal_design_shapes": "Combining the root budgets with the extremal line/conic shapes, line e_G=72 is a disjoint partition by six size-52 classes plus one unused nonforced external root line, or by one size-53 class and five size-52 classes covering all nonforced external roots.  Conic e_G=69 has only three designs: six size-55 classes with K6 and one unused root line, six size-55 classes with K6 minus one edge covering all roots, or one size-56 plus five size-55 classes with K6 covering all roots.",
     "extremal_survival_shape_profile": "The extremal e_G=72 line case has only two possible base-root histograms among the six finite classes: six two-root classes, or five two-root classes plus one one-root class.  The extremal e_G=69 conic case has secant graph K6 or K6 with one missing edge.",
     "finite_incidence_one_over_sharpness": "For every remaining one-over finite-incidence core, the current incidence axioms are sharp in an abstract set-system sense.  Line cores e_G=72..80 admit six pairwise-disjoint abstract external root classes satisfying the base-root cap and external root budget.  Conic cores e_G=69..76 admit six abstract classes whose pairwise intersections have multiplicity at most one and no triple-used external root line.  These are not Hankel realisability witnesses; they show that incidence counting alone cannot close the rows.",
+    "finite_incidence_quotient_obstruction_catalog": "The same quotient-normal-form obstruction is recorded for the whole exact-current one-over finite-incidence range.  Line cores e_G=72..80 require six distinct full-split members of a quotient pencil of degrees 54 down to 46, with pairwise disjoint external fibers and one of the printed base-root histograms.  Conic cores e_G=69..76 require six full-split members on an irreducible quotient conic of degrees 57 down to 50, with the printed pair-overlap and missing-secant ranges.  If the relevant full-split quotient family does not exist, that row closes by the single-saving ledger.",
     "high_core_forced_core_structure": "The forced-core condition is a linear condition in the Q-plane.  For a line component P(U), a forced external root is exactly an external evaluation functional that vanishes on U, so C_E is a two-polynomial gcd on the line's underlying vector subspace.  For an irreducible conic, containment in a root hyperplane can only occur when the evaluation functional is zero on the whole Q-plane; hence C_E is a global common divisor of all three basis kernel polynomials.",
     "high_core_quotient_normal_form": "For any remaining high-core line or conic component, let E be the forced external split-root core and C_E(X)=prod_{s in E}(X-s).  Every Q-class on the component has L_Q divisible by C_E.  After factoring, L_Q=C_E R_Q with deg R_Q<=126-|E|, and the split-locator gate is exactly R_Q | (X^512-1)/C_E plus the remaining noncontainment filters.  Thus residual line components reduce to quotient degree <=54, while residual conic components reduce to quotient degree <=57.",
     "incidence_budget": "For r_G<j, each valid degree-j split locator on G needs at least j-r_G additional intersections with non-forced root hyperplanes.  Each non-forced E_s cuts G in length at most c.  Hence the number of valid Q-classes, and therefore the number of finite slopes represented by this component, is at most floor(c*(512-r_G)/(126-r_G)).",

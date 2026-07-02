@@ -371,6 +371,10 @@ conic secant/singleton profiles are `(5^6;50^6)`,
 The extremal line `e_G=72` branch is now a degree-`54` quotient-pencil
 obstruction: any survivor needs six fully split fibers of sizes `52^6` or
 `53,52^5`, covering all or all but one nonforced external root.
+The exact-current finite-incidence residuals now have a quotient obstruction
+catalog: line cores `e_G=72..80` require six full-split pencil fibers of
+degrees `54..46`, while conic cores `e_G=69..76` require six full-split
+quotient-conic members of degrees `57..50` with the printed overlap ranges.
 The extremal conic `e_G=69` branch now has a Pascal obstruction profile:
 `K6` secant covers force `60` Pascal collinearities among opposite external
 secant intersections, while `K6` minus one edge forces `36`; failure of these
