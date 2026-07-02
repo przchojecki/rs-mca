@@ -947,6 +947,11 @@ plane.  A no-common-component pair of direction-consistency conics gives at
 most four finite noncontained slopes by Bezout, hence total at most `5` after
 the endpoint.  The fixed two-core residual is now the common-component branch
 on that plane.
+The fixed two-core component-cut companion narrows that residual further: a
+common component cut by some other direction-consistency conic remains
+projective-safe with total at most `5`; the only fixed two-core residual left
+by this branch is a global component contained in all direction-consistency
+conics.
 For `A=387`, the projective `Q`-space is a point, so the arbitrary-weight
 separated branch is already projective-safe with total at most `2`.
 For `A=386`, a no-common-component pair of direction conics gives projective
@@ -990,6 +995,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cu
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_pair_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-pair-safety/f17_32_n512_k256_m3_rank6_a385_two_core_conic_pair_safety.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_component_cut_safety.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-component-cut-safety/f17_32_n512_k256_m3_rank6_a385_two_core_component_cut_safety.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

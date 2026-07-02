@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A385 two-core component-cut safety
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_component_cut_safety.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-component-cut-safety/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a385_two_core_component_cut_safety.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A separated `A=385` rank-6 fixed two-core
+  component-cut criterion: if every irreducible common component on the
+  residual `Q`-plane is cut by some direction-consistency conic, then Bezout
+  gives at most four finite noncontained slopes and projective total at most
+  `5<=6`.
+- **How it is useful:** This refines the fixed two-core common-component
+  residual to the sharper global-component case where an irreducible component
+  is contained in all direction-consistency conics.
+- **What to do next:** Split the fixed two-core global-component residual by
+  slope map and base locus, following the `A=386` global-component pattern but
+  keeping the A385 fixed-core hypotheses explicit.
+
 ### 2026-07-02 - A385 two-core conic-pair safety
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

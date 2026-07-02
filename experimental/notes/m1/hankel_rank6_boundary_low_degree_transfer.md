@@ -123,6 +123,19 @@ slope per compatible non-slope-free class and the endpoint added, the branch
 has projective total `<=5<=6`.  The remaining fixed-two-core residual is the
 common-component branch on the residual `Q`-plane.
 
+The fixed two-core component-cut companion is
+
+```text
+experimental/notes/m1/hankel_rank6_a385_two_core_component_cut_safety.md
+```
+
+It refines that common-component branch: if every irreducible component of the
+common component is cut by some direction-consistency conic, the component and
+off-component Bezout bound gives at most four finite `Q`-classes, hence
+projective total `<=5<=6` after adding the endpoint.  The remaining fixed
+two-core residual is an irreducible global component contained in all
+direction-consistency conics.
+
 At `A=387`, this transfer already closes the separated branch for arbitrary
 nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at
 most one finite slope.  The companion note
@@ -251,6 +264,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cu
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_pair_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-pair-safety/f17_32_n512_k256_m3_rank6_a385_two_core_conic_pair_safety.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_component_cut_safety.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-component-cut-safety/f17_32_n512_k256_m3_rank6_a385_two_core_component_cut_safety.json
 ```
 
 Nonclaims:

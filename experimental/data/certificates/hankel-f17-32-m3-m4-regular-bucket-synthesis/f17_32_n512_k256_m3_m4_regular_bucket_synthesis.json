@@ -355,6 +355,7 @@
     "A=385 separated rank-6 boundary branches with a common forced four-point base core are projective-safe",
     "A=385 separated rank-6 fixed three-core branches are projective-safe whenever a nonzero pairwise consistency quadratic cuts the residual Q-line",
     "A=385 separated rank-6 fixed two-core branches are projective-safe whenever a no-common-component conic pair cuts the residual Q-plane",
+    "A=385 separated rank-6 fixed two-core common-component branches are projective-safe whenever each common component is cut by another direction-consistency conic",
     "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
     "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
     "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
@@ -497,7 +498,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v37",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v38",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -555,6 +556,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json",
       "sha256": "28d6cd8a357679b188d94e2cd6955d7e9efd46305fe4468993c88e4579e3affe"
     },
+    "f17_32_n512_k256_m3_rank6_a385_two_core_component_cut_safety": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-component-cut-safety/f17_32_n512_k256_m3_rank6_a385_two_core_component_cut_safety.json",
+      "sha256": "3ad5e9e8d448a47a2d140782ac756c796dbd06fa6e58ed092b20c1c06a23d3f0"
+    },
     "f17_32_n512_k256_m3_rank6_a385_two_core_conic_pair_safety": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-pair-safety/f17_32_n512_k256_m3_rank6_a385_two_core_conic_pair_safety.json",
       "sha256": "a07907e41c5cabe83c2dbcbd0f27a9607b7bd921b8fd07417f9c2dbceaa63141"
@@ -592,12 +597,13 @@
   "summary": {
     "a385_base_core_closure_count": 1,
     "a385_three_core_quadratic_cut_count": 1,
+    "a385_two_core_component_cut_count": 1,
     "a385_two_core_conic_pair_safety_count": 1,
     "a386_moving_slope_refinement_count": 1,
     "a386_separated_boundary_closure_count": 1,
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 21,
+    "dependencies_checked": 22,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
     "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -624,6 +630,12 @@
       "if at least one pairwise direction-consistency equation restricts to a nonzero binary quadratic on that Q-line, there are at most two compatible Q-classes",
       "each compatible non-slope-free Q-class determines at most one finite noncontained slope, and the endpoint gives projective total at most 3<=6",
       "the remaining fixed-three-core residual is exactly the ratio-identically-consistent Q-line where every pairwise direction-consistency quadratic vanishes identically"
+    ],
+    "a385_two_core_component_cut": [
+      "inside the fixed two-core common-component residual, if each irreducible component is cut by some direction-consistency conic, Bezout gives at most four compatible Q-classes",
+      "the component cases have bounds 2c+(2-c)^2, namely 3 for a line component and 4 for a degree-two common component",
+      "after adding the endpoint, the component-cut branch has projective total at most 5<=6",
+      "the remaining fixed-two-core residual is a global component contained in all direction-consistency conics"
     ],
     "a385_two_core_conic_pair_safety": [
       "inside the separated A=385 rank-6 boundary, a fixed two-point base split-root core leaves a projective Q-plane",

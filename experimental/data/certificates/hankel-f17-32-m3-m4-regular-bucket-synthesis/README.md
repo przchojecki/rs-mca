@@ -200,6 +200,19 @@ have no common component on that plane, the branch has at most four finite
 noncontained slopes, and with the endpoint its projective total is at most `5`.
 The remaining fixed two-core residual is the common-component branch.
 
+The `A=385` two-core component-cut packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-component-cut-safety/
+  f17_32_n512_k256_m3_rank6_a385_two_core_component_cut_safety.json
+```
+
+refines that residual.  If every irreducible component of the common component
+is cut by some direction-consistency conic, the finite branch has at most four
+compatible `Q`-classes, and with the endpoint its projective total is at most
+`5`.  The remaining fixed two-core residual is a global component contained in
+all direction-consistency conics.
+
 The `A=387` separated-boundary safety packet
 
 ```text
@@ -496,6 +509,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cu
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_pair_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-pair-safety/f17_32_n512_k256_m3_rank6_a385_two_core_conic_pair_safety.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_component_cut_safety.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-component-cut-safety/f17_32_n512_k256_m3_rank6_a385_two_core_component_cut_safety.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

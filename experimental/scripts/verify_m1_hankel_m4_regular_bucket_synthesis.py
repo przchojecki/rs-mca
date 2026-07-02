@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v37"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v38"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -119,6 +119,10 @@ A385_TWO_CORE_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-pair-safety/"
     "f17_32_n512_k256_m3_rank6_a385_two_core_conic_pair_safety.json"
 )
+A385_TWO_CORE_COMPONENT_CUT_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-component-cut-safety/"
+    "f17_32_n512_k256_m3_rank6_a385_two_core_component_cut_safety.json"
+)
 
 
 EXPECTED_SCHEMAS = {
@@ -145,6 +149,9 @@ EXPECTED_SCHEMAS = {
     A385_BASE_CORE_REF: "f17-32-m3-rank6-a385-base-core-closure-v1",
     A385_THREE_CORE_REF: "f17-32-m3-rank6-a385-three-core-quadratic-cut-v1",
     A385_TWO_CORE_REF: "f17-32-m3-rank6-a385-two-core-conic-pair-safety-v1",
+    A385_TWO_CORE_COMPONENT_CUT_REF: (
+        "f17-32-m3-rank6-a385-two-core-component-cut-safety-v1"
+    ),
 }
 
 
@@ -2044,6 +2051,96 @@ def check_a385_two_core_packet(data: dict[str, Any]) -> None:
     )
 
 
+def check_a385_two_core_component_cut_packet(data: dict[str, Any]) -> None:
+    require(data["agreement"]["A"] == 385, "A385 two-core component-cut agreement mismatch")
+    require(
+        data["status"] == "PROVED / AUDIT",
+        "A385 two-core component-cut status mismatch",
+    )
+    summary = data["summary"]
+    require(
+        summary["boundary_defect_h"] == 5
+        and summary["projective_Q_search_dimension_before_core"] == 4
+        and summary["forced_base_core_size"] == 2
+        and summary["residual_vector_dimension_after_core"] == 3
+        and summary["projective_Q_search_dimension_after_core"] == 2,
+        "A385 two-core component-cut dimension summary mismatch",
+    )
+    require(
+        summary["component_degrees"] == [1, 2]
+        and summary["finite_q_class_upper_bound_under_component_cut"] == 4
+        and summary["finite_noncontained_parameter_upper_bound_under_component_cut"] == 4
+        and summary["projective_endpoint_count"] == 1
+        and summary["support_wise_projective_total_upper_bound_under_component_cut"] == 5
+        and summary["projective_budget"] == BUDGET,
+        "A385 two-core component-cut budget summary mismatch",
+    )
+    require(
+        summary["fixed_two_core_component_cut_branch_projective_safe"]
+        and "global-component" in summary["remaining_residual"],
+        "A385 two-core component-cut closure summary mismatch",
+    )
+    cases = {
+        row["common_component_degree"]: row for row in data["component_cases"]
+    }
+    require(set(cases) == {1, 2}, "A385 two-core component-cut cases mismatch")
+    require(
+        cases[1]["finite_q_class_bound"] == 3
+        and cases[1]["points_on_common_component_cut_bound"] == 2
+        and cases[1]["residual_off_component_intersection_bound"] == 1
+        and cases[2]["finite_q_class_bound"] == 4
+        and cases[2]["points_on_common_component_cut_bound"] == 4
+        and cases[2]["residual_off_component_intersection_bound"] == 0,
+        "A385 two-core component-cut case bounds mismatch",
+    )
+    branches = {row["branch"]: row for row in data["branch_partition"]}
+    require(
+        set(branches)
+        == {
+            "common_component_cut_by_some_direction_conic",
+            "global_component_contained_in_all_direction_conics",
+        },
+        "A385 two-core component-cut branch partition mismatch",
+    )
+    require(
+        branches["common_component_cut_by_some_direction_conic"][
+            "finite_noncontained_parameter_upper_bound"
+        ]
+        == 4
+        and branches["common_component_cut_by_some_direction_conic"][
+            "projective_total_upper_bound"
+        ]
+        == 5
+        and branches["global_component_contained_in_all_direction_conics"][
+            "status"
+        ]
+        == "named_residual",
+        "A385 two-core component-cut branch bounds mismatch",
+    )
+    nonclaims = set(data["nonclaims"])
+    require(
+        "does not prove every fixed two-core common-component branch satisfies the cut criterion"
+        in nonclaims,
+        "A385 two-core component-cut missing criterion nonclaim",
+    )
+    require(
+        "does not close the fixed two-core global-component residual" in nonclaims,
+        "A385 two-core component-cut missing residual nonclaim",
+    )
+    require(
+        "does not close moving-core or no-common-core A=385 branches" in nonclaims,
+        "A385 two-core component-cut missing moving-core nonclaim",
+    )
+    require(
+        "does not classify overlapping-support rank-6 pencils" in nonclaims,
+        "A385 two-core component-cut missing overlap nonclaim",
+    )
+    require(
+        "does not produce a row-level M3 safe-side bound" in nonclaims,
+        "A385 two-core component-cut missing row-bound nonclaim",
+    )
+
+
 def build_certificate() -> dict[str, Any]:
     field = Field(P, MODULUS)
     descriptor = load_json(ROW_DESCRIPTOR_REF)
@@ -2061,6 +2158,9 @@ def build_certificate() -> dict[str, Any]:
     check_a385_base_core_packet(dependencies[A385_BASE_CORE_REF])
     check_a385_three_core_packet(dependencies[A385_THREE_CORE_REF])
     check_a385_two_core_packet(dependencies[A385_TWO_CORE_REF])
+    check_a385_two_core_component_cut_packet(
+        dependencies[A385_TWO_CORE_COMPONENT_CUT_REF]
+    )
 
     domain_encodings = descriptor["domain"]["domain_encodings"]
     require(len(domain_encodings) == N, "domain length mismatch")
@@ -2159,6 +2259,12 @@ def build_certificate() -> dict[str, Any]:
                 "if two residual direction-consistency conics have no common component on that Q-plane, Bezout gives at most four compatible Q-classes",
                 "each compatible non-slope-free Q-class determines at most one finite noncontained slope, and the endpoint gives projective total at most 5<=6",
                 "the remaining fixed-two-core residual is the common-component branch on the residual Q-plane",
+            ],
+            "a385_two_core_component_cut": [
+                "inside the fixed two-core common-component residual, if each irreducible component is cut by some direction-consistency conic, Bezout gives at most four compatible Q-classes",
+                "the component cases have bounds 2c+(2-c)^2, namely 3 for a line component and 4 for a degree-two common component",
+                "after adding the endpoint, the component-cut branch has projective total at most 5<=6",
+                "the remaining fixed-two-core residual is a global component contained in all direction-consistency conics",
             ],
             "a386_moving_slope_refinement": [
                 "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
@@ -2263,6 +2369,7 @@ def build_certificate() -> dict[str, Any]:
             "a385_base_core_closure_count": 1,
             "a385_three_core_quadratic_cut_count": 1,
             "a385_two_core_conic_pair_safety_count": 1,
+            "a385_two_core_component_cut_count": 1,
             "a386_moving_slope_refinement_count": 1,
             "m3_rank_node_dichotomy_count": 1,
             "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -2288,6 +2395,7 @@ def build_certificate() -> dict[str, Any]:
             "A=385 separated rank-6 boundary branches with a common forced four-point base core are projective-safe",
             "A=385 separated rank-6 fixed three-core branches are projective-safe whenever a nonzero pairwise consistency quadratic cuts the residual Q-line",
             "A=385 separated rank-6 fixed two-core branches are projective-safe whenever a no-common-component conic pair cuts the residual Q-plane",
+            "A=385 separated rank-6 fixed two-core common-component branches are projective-safe whenever each common component is cut by another direction-consistency conic",
             "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
             "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
             "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
