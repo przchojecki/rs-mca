@@ -123,6 +123,56 @@ def classify_budget(budget: int, lower: int, upper: int) -> str:
     return "UNDECIDED_WINDOW"
 
 
+def divisors(n: int) -> list[int]:
+    out = []
+    for d in range(1, int(n**0.5) + 1):
+        if n % d == 0:
+            out.append(d)
+            if d * d != n:
+                out.append(n // d)
+    return sorted(out)
+
+
+def dyadic_profile_count(n: int, k: int, sigma: int) -> dict[str, object]:
+    """Exact Paper B quotient-core profile for 2-power rows.
+
+    Returns the maximizing integer binomial count instead of log2(count).
+    """
+
+    require(n > 0 and k > 0 and k <= n, "need 0 < k <= n")
+    require(n & (n - 1) == 0, "n must be a power of two")
+    require(0 <= sigma <= n, "sigma must lie in [0,n]")
+    g = k
+    require(n % g == 0 or g <= n, "k should divide n in the official dyadic rows")
+    active = []
+    M = 1
+    while M <= k:
+        if k % M == 0 and n % M == 0 and sigma < M and k // M <= n // M - 1:
+            N = n // M
+            ell = k // M
+            count = comb(N - 1, ell)
+            active.append({"M": M, "N": N, "ell": ell, "count": count})
+        M *= 2
+    if not active:
+        return {"status": "EMPTY", "active": []}
+    best = max(active, key=lambda row: row["count"])
+    return {"status": "NONEMPTY", "best": best, "active": active}
+
+
+def generic_profile_count(n: int, k: int, sigma: int) -> dict[str, object]:
+    """Definition-level finite max over all divisors of gcd(n,k), for toy checks."""
+
+    from math import gcd
+
+    active = []
+    for M in divisors(gcd(n, k)):
+        if sigma < M and k // M <= n // M - 1:
+            active.append({"M": M, "N": n // M, "ell": k // M, "count": comb(n // M - 1, k // M)})
+    if not active:
+        return {"status": "EMPTY", "active": []}
+    return {"status": "NONEMPTY", "best": max(active, key=lambda row: row["count"]), "active": active}
+
+
 def check_exact_count_formula() -> CheckResult:
     details = []
     named = {
@@ -242,10 +292,68 @@ def check_budget_window_arithmetic() -> CheckResult:
     return CheckResult("exact budget-window arithmetic", "PASS", details)
 
 
+def check_dyadic_profile_evaluation() -> CheckResult:
+    # Definition-level equality on a small row, all integer slacks.
+    n, k = 16, 8
+    for sigma in range(0, n + 1):
+        dy = dyadic_profile_count(n, k, sigma)
+        gen = generic_profile_count(n, k, sigma)
+        require(dy["status"] == gen["status"], f"profile status mismatch at sigma={sigma}")
+        if dy["status"] == "NONEMPTY":
+            require(dy["best"] == gen["best"], f"profile best mismatch at sigma={sigma}")
+
+    # Empty boundary: no divisor M of gcd(n,k) can exceed sigma once sigma >= k.
+    for rho in OFFICIAL_RATES:
+        n = 4096
+        k_frac = rho * n
+        require(k_frac.denominator == 1, "official test k integral")
+        k = k_frac.numerator
+        require(dyadic_profile_count(n, k, k)["status"] == "EMPTY", f"empty boundary failed rho={rho}")
+
+    # Bounded-order replay in the near-capacity regime.
+    profile_rows = []
+    max_order_128 = 0
+    max_order_256 = 0
+    for rho in OFFICIAL_RATES:
+        n = 2**20
+        k = int(rho * n)
+        for denom in (128, 256):
+            sigma = n // denom
+            prof = dyadic_profile_count(n, k, sigma)
+            require(prof["status"] == "NONEMPTY", f"profile unexpectedly empty rho={rho}, denom={denom}")
+            best = prof["best"]
+            active = prof["active"]
+            max_order = max(row["N"] for row in active)
+            if denom == 128:
+                max_order_128 = max(max_order_128, max_order)
+                require(max_order <= 64, "sigma>=n/128 should force N<=64")
+            if denom == 256:
+                max_order_256 = max(max_order_256, max_order)
+                require(max_order <= 128, "sigma>=n/256 should force N<=128")
+            # In all replayed official-rate bounded-order cases, the largest
+            # binomial occurs at the smallest active M, equivalently largest N.
+            smallest_M = min(row["M"] for row in active)
+            require(best["M"] == smallest_M, "best profile scale was not the first active dyadic scale")
+            profile_rows.append(
+                f"rho={rho}, sigma=n/{denom}: best M={best['M']}, N={best['N']}, "
+                f"ell={best['ell']}, count_bits={best['count'].bit_length()}"
+            )
+
+    details = [
+        "definition-level dyadic evaluator matches the finite divisor max on n=16,k=8 for all sigma",
+        "empty boundary checked at sigma >= k for all official rates on n=4096",
+        f"sigma>=n/128 forces active quotient order N<=64 in replay; observed max {max_order_128}",
+        f"sigma>=n/256 forces active quotient order N<=128 in replay; observed max {max_order_256}",
+        *profile_rows,
+    ]
+    return CheckResult("exact dyadic quotient-profile evaluation", "PASS", details)
+
+
 CHECKS = [
     check_exact_count_formula,
     check_bounded_scale_tables,
     check_budget_window_arithmetic,
+    check_dyadic_profile_evaluation,
 ]
 
 
@@ -266,6 +374,7 @@ def emit_certificate(results: list[CheckResult]) -> Path:
             "census_bounded_scales",
             "census_exact_counts",
             "census_window_arithmetic",
+            "dyadic_profile_evaluation",
         ],
         "target_exponent": TARGET_EXP,
         "field_range": "q < 2^256",
@@ -314,4 +423,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

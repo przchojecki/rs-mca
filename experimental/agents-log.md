@@ -42,8 +42,8 @@ Keep entries concise and link to the relevant files.
 - **Status:** PROVED-COMPILER-ARITHMETIC / 2-POWER QUOTIENT COUNT.
 - **What is being added:** A compiler note and verifier for exact 2-power
   quotient census counts, bounded relaxed and dyadic scale-crossing tables,
-  and exact `floor(q/2^128)` window arithmetic for certified lower/upper
-  census gaps.
+  exact `floor(q/2^128)` window arithmetic for certified lower/upper census
+  gaps, and exact dyadic quotient-profile evaluation.
 - **How it is useful:** Turns the quotient-census endgame into exact bignum
   and interval arithmetic at bounded scales, while explicitly separating the
   unresolved quotient-collision and prime-counting layers.

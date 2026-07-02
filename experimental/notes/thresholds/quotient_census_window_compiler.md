@@ -8,6 +8,7 @@ This note packages the exact arithmetic behind three required-path DAG nodes:
 census_bounded_scales
 census_exact_counts
 census_window_arithmetic
+dyadic_profile_evaluation
 ```
 
 The scope is deliberately narrow.  We use the 2-power quotient count from
@@ -147,6 +148,50 @@ This discharges the exact arithmetic of `census_window_arithmetic`: as the
 certified lower count `L` rises to the exact count `K`, the unresolved interval
 shrinks monotonically and vanishes at `L=K`.
 
+## Dyadic Quotient-Profile Evaluation
+
+Paper B defines the quotient-core profile by
+
+```text
+Q_H(eta) =
+  max_{M | gcd(n,k), ceil(eta n) < M, k/M <= n/M - 1}
+      log2 binom(n/M - 1, k/M),
+```
+
+with value `-infinity` when the active set is empty.
+
+For a 2-power row `n=2^m`, `k=rho n`, and integer slack
+
+```text
+sigma = ceil(eta n),
+```
+
+the exact evaluator is the finite maximum
+
+```text
+Q_2(n,k,sigma) =
+  max_{M = 2^e | gcd(n,k), sigma < M, k/M <= n/M - 1}
+      log2 binom(n/M - 1, k/M).
+```
+
+The verifier records the maximizing integer count
+
+```text
+K_Q(n,k,sigma) =
+  max binom(n/M - 1, k/M)
+```
+
+instead of a floating logarithm.  This is equivalent and avoids rounding in
+profile comparisons.  At the official rates, `k` is a power of two whenever
+`n` is a sufficiently divisible power of two, so this is a direct exact
+enumeration of all active dyadic quotient cores.
+
+For near-capacity certificate work, the relevant slacks are large enough that
+`n/M` is bounded.  For example, if `sigma >= n/256`, every active scale has
+quotient order `N=n/M <= 128`; if `sigma >= n/128`, every active scale has
+`N <= 64`.  Thus the profile values needed by the bounded census are exact
+small bignums, independent of the ambient deployed blocklength.
+
 ## Consumer Schema
 
 A row-specific census packet should print:
@@ -159,6 +204,7 @@ exact K = A_2(N',ell') or another certified count
 certified lower L
 budget interval [L,K)
 q interval [L 2^128, K 2^128 - 1]
+dyadic profile K_Q(n,k,sigma), if consuming a quotient-profile hypothesis
 congruence modulus n, if applicable
 admissible-integer count, and optional prime subcount
 ```
@@ -174,6 +220,7 @@ This note discharges the 2-power compiler part of:
 census_bounded_scales       bounded relaxed crossing table, dyadic coarsening table;
 census_exact_counts         exact A_2 bignum formula and bounded-scale replay;
 census_window_arithmetic    exact budget-to-q interval conversion.
+dyadic_profile_evaluation   exact finite max for Q_H on 2-power rows.
 ```
 
 It does not discharge:

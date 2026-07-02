@@ -32,12 +32,31 @@
       ],
       "name": "exact budget-window arithmetic",
       "status": "PASS"
+    },
+    {
+      "details": [
+        "definition-level dyadic evaluator matches the finite divisor max on n=16,k=8 for all sigma",
+        "empty boundary checked at sigma >= k for all official rates on n=4096",
+        "sigma>=n/128 forces active quotient order N<=64 in replay; observed max 64",
+        "sigma>=n/256 forces active quotient order N<=128 in replay; observed max 128",
+        "rho=1/2, sigma=n/128: best M=16384, N=64, ell=32, count_bits=60",
+        "rho=1/2, sigma=n/256: best M=8192, N=128, ell=64, count_bits=124",
+        "rho=1/4, sigma=n/128: best M=16384, N=64, ell=16, count_bits=49",
+        "rho=1/4, sigma=n/256: best M=8192, N=128, ell=32, count_bits=100",
+        "rho=1/8, sigma=n/128: best M=16384, N=64, ell=8, count_bits=32",
+        "rho=1/8, sigma=n/256: best M=8192, N=128, ell=16, count_bits=67",
+        "rho=1/16, sigma=n/128: best M=16384, N=64, ell=4, count_bits=20",
+        "rho=1/16, sigma=n/256: best M=8192, N=128, ell=8, count_bits=41"
+      ],
+      "name": "exact dyadic quotient-profile evaluation",
+      "status": "PASS"
     }
   ],
   "dag_nodes": [
     "census_bounded_scales",
     "census_exact_counts",
-    "census_window_arithmetic"
+    "census_window_arithmetic",
+    "dyadic_profile_evaluation"
   ],
   "field_range": "q < 2^256",
   "non_claims": [

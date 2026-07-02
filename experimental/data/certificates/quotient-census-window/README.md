@@ -14,7 +14,6 @@ python3 experimental/scripts/verify_quotient_census_window_compiler.py
 ```
 
 The certificate verifies exact 2-power quotient-count bignums, bounded
-scale-crossing tables, and exact budget-window arithmetic.  It does not count
-primes inside the windows or resolve quotient collisions below the norm
-threshold.
-
+scale-crossing tables, exact budget-window arithmetic, and exact dyadic
+quotient-profile evaluation.  It does not count primes inside the windows or
+resolve quotient collisions below the norm threshold.
