@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - WP-detail loop turn 10: consolidation extracts (six WPs)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/wp_detail/wp_consolidation_sketch_extracts.md`.
+- **Status:** consolidation by citation; no new mathematics or numbers.
+- **What is being added:** Turn 10. Per-package L3 forms for the six
+  work packages whose content already lived in the proof-sketch tree:
+  WP-0.1 (the s5_s0 axis ledger as normative, with the sharpened axis-4
+  question), WP-2.1/2.2 (fronts with replay gates, outcome
+  classifications P1a/b/c and the beta trichotomy, and the
+  no-silent-caps scan rule), WP-2.4 (the M4 generator against the s2
+  Paid spec with the wp2_3 tree order as the one dedup convention),
+  WP-5.1 (the petal battle with its Conjecture-F dictionary and
+  averaged-moment route, hand-off shaped), WP-7.1 (the compiler with
+  three named regressions including the refusal negative-control).
+  Coverage note: every WP 0.1-7.4 now has an L3 note (13 files);
+  remaining turn = the integration pass into the r2 root.
+- **How it is useful:** Completes per-package coverage so the terminus
+  audit can check the DONE-definition uniformly.
+- **What to do next:** Turn 11 (terminal): integration pass — WP->file
+  map cross-linked into the r2 root, DONE-definition audit, terminus.
+
 ### 2026-07-02 - WP-detail loop turn 9: promotion, gates, dossier (WP-7.2/7.3/7.4)
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
