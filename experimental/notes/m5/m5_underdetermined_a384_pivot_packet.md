@@ -1,6 +1,6 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 12: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 13: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
@@ -8,8 +8,8 @@
   enumerates all degree-four subgroup locators on three pinned toy families;
   the first declared `F_17^32` planted top-chart packet is emitted and now
   carries an explicit nonzero prefix-minor certificate; the first declared
-  `F_17^32` planted low-degree side-chart packet is emitted). No threshold,
-  safety, or worst-case row claim is made.
+  `F_17^32` planted low-degree and rank-drop side-chart packets are emitted).
+  No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
   regular window `385 <= A <= 426`, synthetic rank ladders and kernel charts):
@@ -129,7 +129,8 @@ belongs.
 | 5f | first declared `F_17^32` planted top-chart packet | **done** |
 | 5g | explicit nonzero prefix-minor certificate for the planted packet | **done** |
 | 5h | first declared `F_17^32` planted low-degree side-chart packet | **done** |
-| 5i | full `F_17^32` root-table packet for rank-drop / low-degree / top charts | pending |
+| 5i | first declared `F_17^32` planted rank-drop side-chart packet | **done** |
+| 5j | full `F_17^32` root-table packet for rank-drop / low-degree / top charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -483,6 +484,46 @@ which is nonzero.  Hence the planted slope is full row rank but lies in the
 low-degree side chart, not in rank-drop and not in the top pseudo-remainder
 chart.  This is a replayable real-row example of the dedup branch
 `c_128=0`.
+
+### Verified in turn 13
+
+**U13, first declared `F_17^32` rank-drop side-chart packet.** The verifier
+now emits and replays
+
+```text
+experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/
+  f17_32_n512_k256_a384_planted_rank_drop.json
+```
+
+Construction:
+
+```text
+T = first 126 descriptor-domain roots h_0,...,h_125;
+S_m = sum_{r=0}^{125} h_r^m, 0<=m<256;
+L_126(X)=prod_{r=0}^{125}(X-h_r);
+L_128(X)=prod_{r=0}^{127}(X-h_r).
+```
+
+The `128 x 129` Hankel block factors through 126 support roots, so its rank is
+at most 126.  The leading `126 x 126` moment minor is again a Vandermonde
+square:
+
+```text
+det(S_{r+c})_{0<=r,c<126} = det(V)^2.
+```
+
+The packet records
+
+```text
+prefix 126-minor encoding = 1812083095683987272151378733457441781395
+```
+
+which is nonzero.  Hence the rank is exactly 126, so the slope is genuinely in
+the rank-drop side chart.  Since `L_126` divides `L_128`, the degree-128 split
+locator `L_128` also satisfies the same 128 recurrence equations and lies in
+the kernel.  This completes the first replayable real-row triad of declared
+top, low-degree, and rank-drop chart examples for the `A=384` deficiency-one
+bucket.
 
 ## Honest scope
 

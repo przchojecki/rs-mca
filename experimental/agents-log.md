@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 F17 rank-drop side chart
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  No threshold or worst-case row
+  claim.
+- **What is being added:** Turn 13 of the `A=384` underdetermined M5 packet:
+  a declared `F_17^32` rank-drop side-chart family.  It uses a 126-root
+  moment support, verifies a nonzero prefix `126 x 126` moment minor, and
+  checks that a degree-128 split locator lies in the resulting rank-126
+  Hankel kernel.
+- **How it is useful:** Completes the first replayable real-row triad of
+  declared top, low-degree, and rank-drop chart examples for the
+  deficiency-one boundary below the regular window.
+- **What to do next:** Move from planted chart examples to root-table
+  accounting or a uniform closure lemma for the `F_17^32` `A=384` side
+  charts.
+
 ### 2026-07-02 - M5 A384 F17 low-degree side chart
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
