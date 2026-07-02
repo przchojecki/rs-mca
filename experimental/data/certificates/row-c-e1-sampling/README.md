@@ -1,11 +1,15 @@
 # Row-C E1 value-set sampling pilot
 
-This directory contains the deterministic pilot artifact for the E1 / Q3.1
+This directory contains deterministic evidence artifacts for the E1 / Q3.1
 Row-C slack-one quotient value-set sampler.
 
 - `row_c_e1_sampling_pilot.json` records the Row-C prime, compatible quotient
   orders, skipped non-divisor orders from the original E1 sketch, sample counts,
   duplicate-pair counts, and the zero-collision effective-support lower bound.
+- `row_c_e1_sampling_n64_2pow24_exact.json` records the larger exact
+  `N'=64`, `2^24`-sample follow-up.  It observes one duplicate pair, consistent
+  with the full-value-set birthday expectation rather than a heavy-collision
+  signal.
 - The generating script is
   `experimental/scripts/verify_row_c_e1_value_set_sampler.py`.
 - The companion note is
@@ -15,4 +19,7 @@ Replay:
 
 ```bash
 python3 experimental/scripts/verify_row_c_e1_value_set_sampler.py --emit
+python3 experimental/scripts/verify_row_c_e1_value_set_sampler.py \
+  --orders 64 --samples 16777216 --mode exact-set --emit \
+  --output experimental/data/certificates/row-c-e1-sampling/row_c_e1_sampling_n64_2pow24_exact.json
 ```

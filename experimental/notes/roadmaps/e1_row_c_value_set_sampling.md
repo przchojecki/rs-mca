@@ -1,12 +1,15 @@
 # E1 Row-C value-set sampling pilot
 
-- **Status:** EXPERIMENTAL EVIDENCE / pre-registered pilot.  This is not a
-  proof, threshold claim, or replacement for the full `sqrt(V)` run.
+- **Status:** EXPERIMENTAL EVIDENCE / pre-registered pilot plus one
+  birthday-pressure follow-up.  This is not a proof, threshold claim, or
+  replacement for the full `sqrt(V)` run.
 - **DAG node:** `e1_fullness`.
 - **Queue item:** Fable evidence plan `E1`; execution queue `Q3.1
   [row_c_experiment]`.
 - **Script:** `experimental/scripts/verify_row_c_e1_value_set_sampler.py`.
-- **Artifact:** `experimental/data/certificates/row-c-e1-sampling/row_c_e1_sampling_pilot.json`.
+- **Artifacts:**
+  `experimental/data/certificates/row-c-e1-sampling/row_c_e1_sampling_pilot.json`;
+  `experimental/data/certificates/row-c-e1-sampling/row_c_e1_sampling_n64_2pow24_exact.json`.
 
 ## Object
 
@@ -94,9 +97,28 @@ rules out only
 extreme collapse at the printed effective-support scale; it does not certify
 fullness of the value set.
 
+## Birthday-pressure follow-up
+
+The second committed artifact uses exact canonical field values, not hashes, for
+
+```text
+N' = 64,   ell' = 33,   samples = 2^24.
+```
+
+It observes one duplicate pair.  Under the injective/full-value-set birthday
+model the expected duplicate-pair count is about `0.156`, so the Poisson tail
+for observing at least one duplicate is about `0.145`.  This is therefore
+consistent with the fullness branch of the E1 interpretation table; it is not
+evidence of a heavy-collision structure.  The run is still smaller than the
+roadmap's suggested `2^25`--`2^26` decisive run, so the conservative conclusion
+is only that no early heavy-collapse signal appeared.
+
 ## Reproduce
 
 ```bash
 python3 experimental/scripts/verify_row_c_e1_value_set_sampler.py
 python3 experimental/scripts/verify_row_c_e1_value_set_sampler.py --emit
+python3 experimental/scripts/verify_row_c_e1_value_set_sampler.py \
+  --orders 64 --samples 16777216 --mode exact-set --emit \
+  --output experimental/data/certificates/row-c-e1-sampling/row_c_e1_sampling_n64_2pow24_exact.json
 ```

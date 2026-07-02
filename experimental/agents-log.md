@@ -110,6 +110,26 @@ Keep entries concise and link to the relevant files.
   v12 notation, especially the `sigma_C` normalization, endpoint conventions,
   and the rider-bound pair-list constant.
 
+### 2026-07-02 - E1 Row-C N64 birthday-pressure follow-up
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/roadmaps/e1_row_c_value_set_sampling.md`;
+  `experimental/scripts/verify_row_c_e1_value_set_sampler.py`;
+  `experimental/data/certificates/row-c-e1-sampling/`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / EVIDENCE.
+- **What is being added:** The Row-C E1 sampler now has an exact-set mode for
+  larger runs, plus a committed `N'=64`, `2^24`-sample artifact.  The run
+  observes one duplicate pair; the report compares this with the
+  full-value-set birthday expectation rather than treating every duplicate as
+  a structural collision.
+- **How it is useful:** This is the first birthday-pressure follow-up to the
+  E1 pilot.  The observed duplicate count is consistent with the fullness
+  branch of the zone-(b) corridor and shows no early heavy-collapse signal.
+- **What to do next:** If E1 remains the highest-leverage evidence item, run
+  the decisive `N'=64`, `2^25`--`2^26` scale or switch to a structured
+  collision/norm criterion for the larger `N'` cells.
+
 ### 2026-07-02 - E1 Row-C e1 value-set sampling pilot
 
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.
