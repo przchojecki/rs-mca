@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - WP-detail loop turn 3: replay audits + harness (WP-0.3/0.4)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/wp_detail/wp0_3_wp0_4_replay_and_harness.md`.
+- **Status:** execution plan; grounded counts (144 verifiers, 6 checkers,
+  15 certificate dirs on main). No result claimed.
+- **What is being added:** Turn 3. WP-0.3: the six-step replay protocol
+  for #170/#171 (pin SHA; replay in clean checkout; INDEPENDENT
+  re-derivation of Phi_{m,r,h} — diffable against my s3b_iii_2
+  factorization — and of the rank-6 sharpness example; three named
+  theorem spot-audits; divergence table; timestamped log-merge plan for
+  MAINT), with the unblocking condition for the alpha/beta scans and
+  audit-only guardrails. WP-0.4: run_all_verifiers spec (discovery,
+  manifest with expected outcomes and runtime tiers, certificate SHA-256
+  manifest, single deterministic entry point) + the six checker-hardening
+  items (H1-H6, incl. recomputed numerators, wp2_3 tree order as the one
+  dedup convention, and the S8 refusal rule) + a NEGATIVE-CONTROL suite
+  (six intentionally corrupted packets that must all fail with correct
+  diagnostics) as the acceptance test.
+- **How it is useful:** Replaces trust-in-checkmarks with replay +
+  re-derivation, and turns 150 ad-hoc scripts into one deterministic gate
+  — the enforcement layer under every downstream table and dossier claim.
+- **What to do next:** Turn 4: wp3_2 (symbolic scaling).
+
 ### 2026-07-02 - WP-detail loop turn 2: stratification case-tree (WP-2.3)
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
