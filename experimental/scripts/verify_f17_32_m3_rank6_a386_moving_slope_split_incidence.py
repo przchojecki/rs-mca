@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v16"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v17"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -930,6 +930,61 @@ def conic_design_multiplicity_profiles(
     return profiles
 
 
+def line_design_local_profiles(shapes: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Per-Q-class local incidence data for the extremal line designs."""
+    profiles: list[dict[str, Any]] = []
+    for shape in shapes:
+        class_sizes = shape["nonforced_external_class_sizes"]
+        profiles.append(
+            {
+                "base_root_histogram": shape["base_root_histogram"],
+                "class_count": len(class_sizes),
+                "class_size_sequence": class_sizes,
+                "pair_overlap_degree_sequence": [0] * len(class_sizes),
+                "singleton_root_line_sequence": class_sizes,
+                "local_description": (
+                    "each valid Q-class owns exactly its class-size many "
+                    "nonforced external root lines, with pairwise disjoint "
+                    "ownership"
+                ),
+            }
+        )
+    return profiles
+
+
+def conic_design_local_profiles(shapes: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Per-Q-class local secant/singleton counts for conic extremal designs."""
+    profiles: list[dict[str, Any]] = []
+    for shape in shapes:
+        class_sizes = shape["nonforced_external_class_sizes"]
+        overlap_degrees = (
+            [5, 5, 5, 5, 5, 5]
+            if shape["secant_graph"] == "K6"
+            else [4, 4, 5, 5, 5, 5]
+        )
+        singleton_counts = [
+            class_size - overlap_degree
+            for class_size, overlap_degree in zip(class_sizes, overlap_degrees)
+        ]
+        require(min(singleton_counts) >= 0, "negative conic singleton count")
+        profiles.append(
+            {
+                "base_root_histogram": shape["base_root_histogram"],
+                "secant_graph": shape["secant_graph"],
+                "class_count": len(class_sizes),
+                "class_size_sequence": class_sizes,
+                "secant_degree_sequence": overlap_degrees,
+                "singleton_root_line_sequence": singleton_counts,
+                "local_description": (
+                    "each valid Q-class is incident to its secant-degree many "
+                    "double-use external lines and the remaining listed singleton "
+                    "external lines"
+                ),
+            }
+        )
+    return profiles
+
+
 def quotient_residual_row(
     component_type: str,
     forced_external_core_threshold: int,
@@ -1354,6 +1409,12 @@ def build_certificate() -> dict[str, Any]:
         external_root_count=external_root_count,
         forced_external_core_size=69,
     )
+    line_e72_design_local_profiles = line_design_local_profiles(
+        line_e72_extremal_design_shapes
+    )
+    conic_e69_design_local_profiles = conic_design_local_profiles(
+        conic_e69_extremal_design_shapes
+    )
     require(line_residual_core_threshold == 72, "line residual threshold mismatch")
     require(conic_residual_core_threshold == 69, "conic residual threshold mismatch")
     require(
@@ -1747,6 +1808,81 @@ def build_certificate() -> dict[str, Any]:
         ],
         "conic e=69 design multiplicity profiles changed",
     )
+    require(
+        line_e72_design_local_profiles
+        == [
+            {
+                "base_root_histogram": [0, 0, 6],
+                "class_count": 6,
+                "class_size_sequence": [52, 52, 52, 52, 52, 52],
+                "pair_overlap_degree_sequence": [0, 0, 0, 0, 0, 0],
+                "singleton_root_line_sequence": [52, 52, 52, 52, 52, 52],
+                "local_description": (
+                    "each valid Q-class owns exactly its class-size many "
+                    "nonforced external root lines, with pairwise disjoint "
+                    "ownership"
+                ),
+            },
+            {
+                "base_root_histogram": [0, 1, 5],
+                "class_count": 6,
+                "class_size_sequence": [53, 52, 52, 52, 52, 52],
+                "pair_overlap_degree_sequence": [0, 0, 0, 0, 0, 0],
+                "singleton_root_line_sequence": [53, 52, 52, 52, 52, 52],
+                "local_description": (
+                    "each valid Q-class owns exactly its class-size many "
+                    "nonforced external root lines, with pairwise disjoint "
+                    "ownership"
+                ),
+            },
+        ],
+        "line e=72 design local profiles changed",
+    )
+    require(
+        conic_e69_design_local_profiles
+        == [
+            {
+                "base_root_histogram": [0, 0, 6],
+                "secant_graph": "K6",
+                "class_count": 6,
+                "class_size_sequence": [55, 55, 55, 55, 55, 55],
+                "secant_degree_sequence": [5, 5, 5, 5, 5, 5],
+                "singleton_root_line_sequence": [50, 50, 50, 50, 50, 50],
+                "local_description": (
+                    "each valid Q-class is incident to its secant-degree many "
+                    "double-use external lines and the remaining listed singleton "
+                    "external lines"
+                ),
+            },
+            {
+                "base_root_histogram": [0, 0, 6],
+                "secant_graph": "K6_minus_one_edge",
+                "class_count": 6,
+                "class_size_sequence": [55, 55, 55, 55, 55, 55],
+                "secant_degree_sequence": [4, 4, 5, 5, 5, 5],
+                "singleton_root_line_sequence": [51, 51, 50, 50, 50, 50],
+                "local_description": (
+                    "each valid Q-class is incident to its secant-degree many "
+                    "double-use external lines and the remaining listed singleton "
+                    "external lines"
+                ),
+            },
+            {
+                "base_root_histogram": [0, 1, 5],
+                "secant_graph": "K6",
+                "class_count": 6,
+                "class_size_sequence": [56, 55, 55, 55, 55, 55],
+                "secant_degree_sequence": [5, 5, 5, 5, 5, 5],
+                "singleton_root_line_sequence": [51, 50, 50, 50, 50, 50],
+                "local_description": (
+                    "each valid Q-class is incident to its secant-degree many "
+                    "double-use external lines and the remaining listed singleton "
+                    "external lines"
+                ),
+            },
+        ],
+        "conic e=69 design local profiles changed",
+    )
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -1986,6 +2122,13 @@ def build_certificate() -> dict[str, Any]:
                 "triple external overlap, and their multiplicities (zero, one, two) "
                 "are (1,300,15), (0,302,14), or (0,301,15)."
             ),
+            "extremal_design_local_profiles": (
+                "Locally, the line designs have singleton-root sequences "
+                "(52,52,52,52,52,52) or (53,52,52,52,52,52).  The conic designs "
+                "have secant-degree/singleton pairs (5^6;50^6), "
+                "((4,4,5,5,5,5);(51,51,50,50,50,50)), or "
+                "(5^6;(51,50,50,50,50,50))."
+            ),
         },
         "budget_formula": {
             "locator_degree_j": j_value,
@@ -2079,6 +2222,10 @@ def build_certificate() -> dict[str, Any]:
             "line_e72": line_e72_design_multiplicity_profiles,
             "irreducible_conic_e69": conic_e69_design_multiplicity_profiles,
         },
+        "extremal_design_local_profiles": {
+            "line_e72": line_e72_design_local_profiles,
+            "irreducible_conic_e69": conic_e69_design_local_profiles,
+        },
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -2141,6 +2288,7 @@ def build_certificate() -> dict[str, Any]:
             "line_e72_design_multiplicity_profiles": (
                 line_e72_design_multiplicity_profiles
             ),
+            "line_e72_design_local_profiles": line_e72_design_local_profiles,
             "line_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in line_intermediate_profile_rows
             ),
@@ -2198,6 +2346,7 @@ def build_certificate() -> dict[str, Any]:
             "conic_e69_design_multiplicity_profiles": (
                 conic_e69_design_multiplicity_profiles
             ),
+            "conic_e69_design_local_profiles": conic_e69_design_local_profiles,
             "conic_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows
             ),
@@ -2239,6 +2388,7 @@ def build_certificate() -> dict[str, Any]:
             "line e=72 and conic e=69 exact degree-126 root-budget alternatives are enumerated",
             "line e=72 and conic e=69 extremal finite design shapes are enumerated",
             "line e=72 and conic e=69 extremal multiplicity profiles are enumerated",
+            "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",

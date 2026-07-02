@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 extremal local incidence profiles
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md`;
+  `experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `A=386` moving-slope packet now records exact
+  per-Q-class local incidence profiles for the extremal line and conic design
+  targets.
+- **How it is useful:** Line targets have singleton sequences `52^6` or
+  `(53,52^5)`.  Conic targets have secant/singleton profiles `(5^6;50^6)`,
+  `((4,4,5,5,5,5);(51,51,50,50,50,50))`, or
+  `(5^6;(51,50,50,50,50,50))`.  This isolates the next geometric obstruction
+  at the level of each surviving Q-class.
+- **What to do next:** Use these local profiles to test whether the external
+  evaluation-line arrangement can support the required singleton loads without
+  forcing quotient periodicity or another paid structure.
+
 ### 2026-07-02 - A386 extremal multiplicity profiles
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

@@ -342,6 +342,12 @@ conic profiles are exactly `(1,300,15)`, `(0,302,14)`, or `(0,301,15)` for
 multiplicities `(0,1,2)`, with no multiplicity-`>=3` lines because a nonforced
 external line meets the irreducible conic in length at most `2`.
 
+The corresponding local profiles are exact.  The line singleton sequences are
+`(52,52,52,52,52,52)` or `(53,52,52,52,52,52)`.  The conic
+secant-degree/singleton sequences are `(5^6;50^6)`,
+`((4,4,5,5,5,5);(51,51,50,50,50,50))`, or
+`(5^6;(51,50,50,50,50,50))`.
+
 Replay:
 
 ```sh

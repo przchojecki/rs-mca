@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v16",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v17",
 }
 
 
@@ -596,6 +596,81 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         ],
         "conic e=69 design multiplicity profiles",
     )
+    require(
+        summary["line_e72_design_local_profiles"]
+        == [
+            {
+                "base_root_histogram": [0, 0, 6],
+                "class_count": 6,
+                "class_size_sequence": [52, 52, 52, 52, 52, 52],
+                "local_description": (
+                    "each valid Q-class owns exactly its class-size many "
+                    "nonforced external root lines, with pairwise disjoint "
+                    "ownership"
+                ),
+                "pair_overlap_degree_sequence": [0, 0, 0, 0, 0, 0],
+                "singleton_root_line_sequence": [52, 52, 52, 52, 52, 52],
+            },
+            {
+                "base_root_histogram": [0, 1, 5],
+                "class_count": 6,
+                "class_size_sequence": [53, 52, 52, 52, 52, 52],
+                "local_description": (
+                    "each valid Q-class owns exactly its class-size many "
+                    "nonforced external root lines, with pairwise disjoint "
+                    "ownership"
+                ),
+                "pair_overlap_degree_sequence": [0, 0, 0, 0, 0, 0],
+                "singleton_root_line_sequence": [53, 52, 52, 52, 52, 52],
+            },
+        ],
+        "line e=72 design local profiles",
+    )
+    require(
+        summary["conic_e69_design_local_profiles"]
+        == [
+            {
+                "base_root_histogram": [0, 0, 6],
+                "class_count": 6,
+                "class_size_sequence": [55, 55, 55, 55, 55, 55],
+                "local_description": (
+                    "each valid Q-class is incident to its secant-degree many "
+                    "double-use external lines and the remaining listed singleton "
+                    "external lines"
+                ),
+                "secant_degree_sequence": [5, 5, 5, 5, 5, 5],
+                "secant_graph": "K6",
+                "singleton_root_line_sequence": [50, 50, 50, 50, 50, 50],
+            },
+            {
+                "base_root_histogram": [0, 0, 6],
+                "class_count": 6,
+                "class_size_sequence": [55, 55, 55, 55, 55, 55],
+                "local_description": (
+                    "each valid Q-class is incident to its secant-degree many "
+                    "double-use external lines and the remaining listed singleton "
+                    "external lines"
+                ),
+                "secant_degree_sequence": [4, 4, 5, 5, 5, 5],
+                "secant_graph": "K6_minus_one_edge",
+                "singleton_root_line_sequence": [51, 51, 50, 50, 50, 50],
+            },
+            {
+                "base_root_histogram": [0, 1, 5],
+                "class_count": 6,
+                "class_size_sequence": [56, 55, 55, 55, 55, 55],
+                "local_description": (
+                    "each valid Q-class is incident to its secant-degree many "
+                    "double-use external lines and the remaining listed singleton "
+                    "external lines"
+                ),
+                "secant_degree_sequence": [5, 5, 5, 5, 5, 5],
+                "secant_graph": "K6",
+                "singleton_root_line_sequence": [51, 50, 50, 50, 50, 50],
+            },
+        ],
+        "conic e=69 design local profiles",
+    )
     nonclaims = set(data["nonclaims"])
     require(
         "does not claim the punctured tangent numerator at the residual threshold is within the original row budget"
@@ -711,6 +786,7 @@ def build_certificate() -> dict[str, Any]:
                 "exact degree-126 accounting leaves line e_G=72 with either one unused nonforced external root line or none, and conic e_G=69 with either 14 pair overlaps or all 15 pair overlaps",
                 "extremal design accounting leaves two line partition shapes and three conic secant-cover shapes",
                 "extremal multiplicity accounting leaves line profiles (1,312,0)/(0,313,0) and conic profiles (1,300,15)/(0,302,14)/(0,301,15)",
+                "local incidence accounting leaves line singleton sequences 52^6 or (53,52^5), and conic secant/singleton profiles (5^6;50^6), ((4,4,5,5,5,5);(51,51,50,50,50,50)), or (5^6;(51,50,50,50,50,50))",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",

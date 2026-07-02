@@ -194,6 +194,10 @@ shapes and three conic secant-cover shapes.
 Equivalently, the line multiplicity profiles are `(1,312,0)` and `(0,313,0)`,
 while the conic multiplicity profiles are `(1,300,15)`, `(0,302,14)`, and
 `(0,301,15)`.
+The local line singleton sequences are `52^6` or `(53,52^5)`, and the local
+conic secant/singleton profiles are `(5^6;50^6)`,
+`((4,4,5,5,5,5);(51,51,50,50,50,50))`, or
+`(5^6;(51,50,50,50,50,50))`.
 
 Replay:
 
