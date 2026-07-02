@@ -87,6 +87,26 @@ Keep entries concise and link to the relevant files.
   and the rider-bound constants against Paper D v12 before using the sparse
   note as a proof authority.
 
+### 2026-07-02 - E7 Conjecture F dimension-two evidence
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_dim2_evidence.md`;
+  `experimental/scripts/verify_conjecture_f_dim2_evidence.py`;
+  `experimental/data/certificates/conjecture-f-dim2-evidence/conjecture_f_dim2_n16_f17.json`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / EVIDENCE.
+- **What is being added:** A scoped Fable-plan E7 packet for Conjecture F:
+  an exact `F_17^*, n=16, j=3` projective-plane census and a deterministic
+  `j=5,t=3` Hankel-kernel plane sample.  The exact census finds the paid
+  common-root spike at `105=binom(15,2)` and primitive max `38`; the kernel
+  sample finds primitive max `13`.
+- **How it is useful:** This tests the first primitive dimension of the
+  divisor-plane problem without claiming a theorem.  It supports the current
+  Conjecture F direction and identifies the next useful evidence target:
+  exhaustive `j=4` planes or structured Hankel row-space enumeration.
+- **What to do next:** Emit and verify the JSON artifact, then decide whether
+  to deepen E7 with a Grassmannian `j=4` census or return to proof lemmas.
+
 ### 2026-07-02 - Towards-prize best promotion with sparse residual layer
 
 - **Agent/model:** Codex, reviewing maintainer-added

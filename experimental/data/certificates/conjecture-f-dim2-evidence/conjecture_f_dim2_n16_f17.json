@@ -1,0 +1,488 @@
+{
+  "checks": [
+    {
+      "all_plane_hit_distribution": {
+        "0": 2,
+        "105": 16,
+        "26": 64,
+        "27": 208,
+        "28": 288,
+        "29": 224,
+        "30": 496,
+        "31": 1232,
+        "32": 674,
+        "33": 80,
+        "35": 16,
+        "36": 720,
+        "37": 960,
+        "38": 240
+      },
+      "common_root_hit_count": 105,
+      "common_root_hit_distribution": {
+        "105": 16
+      },
+      "common_root_planes": 16,
+      "divisor_points": 560,
+      "domain": "F_17^*",
+      "expected_projective_planes": 5220,
+      "field": "F_17",
+      "j": 3,
+      "n": 16,
+      "name": "exact_projective_plane_census_j3",
+      "primitive_hit_distribution": {
+        "0": 2,
+        "26": 64,
+        "27": 208,
+        "28": 288,
+        "29": 224,
+        "30": 496,
+        "31": 1232,
+        "32": 674,
+        "33": 80,
+        "35": 16,
+        "36": 720,
+        "37": 960,
+        "38": 240
+      },
+      "primitive_max_hits": 38,
+      "primitive_planes": 5204,
+      "primitive_top_plane_count": 240,
+      "projective_planes_enumerated": 5220,
+      "proper_quotient_orders": [],
+      "simple_line_bound_floor": 40,
+      "simple_line_bound_rational": "120/3",
+      "status": "PASS",
+      "top_primitive_examples": [
+        {
+          "distinct_evaluation_lines": 15,
+          "functional": [
+            1,
+            1,
+            2,
+            2
+          ],
+          "hit_count": 38,
+          "max_line_multiplicity": 2,
+          "multiplicity_histogram": {
+            "1": 14,
+            "2": 1
+          }
+        },
+        {
+          "distinct_evaluation_lines": 15,
+          "functional": [
+            1,
+            1,
+            2,
+            6
+          ],
+          "hit_count": 38,
+          "max_line_multiplicity": 2,
+          "multiplicity_histogram": {
+            "1": 14,
+            "2": 1
+          }
+        },
+        {
+          "distinct_evaluation_lines": 15,
+          "functional": [
+            1,
+            1,
+            3,
+            5
+          ],
+          "hit_count": 38,
+          "max_line_multiplicity": 2,
+          "multiplicity_histogram": {
+            "1": 14,
+            "2": 1
+          }
+        },
+        {
+          "distinct_evaluation_lines": 15,
+          "functional": [
+            1,
+            1,
+            3,
+            7
+          ],
+          "hit_count": 38,
+          "max_line_multiplicity": 2,
+          "multiplicity_histogram": {
+            "1": 14,
+            "2": 1
+          }
+        },
+        {
+          "distinct_evaluation_lines": 15,
+          "functional": [
+            1,
+            1,
+            3,
+            8
+          ],
+          "hit_count": 38,
+          "max_line_multiplicity": 2,
+          "multiplicity_histogram": {
+            "1": 14,
+            "2": 1
+          }
+        },
+        {
+          "distinct_evaluation_lines": 15,
+          "functional": [
+            1,
+            1,
+            5,
+            6
+          ],
+          "hit_count": 38,
+          "max_line_multiplicity": 2,
+          "multiplicity_histogram": {
+            "1": 14,
+            "2": 1
+          }
+        },
+        {
+          "distinct_evaluation_lines": 15,
+          "functional": [
+            1,
+            1,
+            5,
+            12
+          ],
+          "hit_count": 38,
+          "max_line_multiplicity": 2,
+          "multiplicity_histogram": {
+            "1": 14,
+            "2": 1
+          }
+        },
+        {
+          "distinct_evaluation_lines": 15,
+          "functional": [
+            1,
+            1,
+            9,
+            9
+          ],
+          "hit_count": 38,
+          "max_line_multiplicity": 2,
+          "multiplicity_histogram": {
+            "1": 14,
+            "2": 1
+          }
+        },
+        {
+          "distinct_evaluation_lines": 15,
+          "functional": [
+            1,
+            1,
+            10,
+            7
+          ],
+          "hit_count": 38,
+          "max_line_multiplicity": 2,
+          "multiplicity_histogram": {
+            "1": 14,
+            "2": 1
+          }
+        },
+        {
+          "distinct_evaluation_lines": 15,
+          "functional": [
+            1,
+            1,
+            10,
+            11
+          ],
+          "hit_count": 38,
+          "max_line_multiplicity": 2,
+          "multiplicity_histogram": {
+            "1": 14,
+            "2": 1
+          }
+        },
+        {
+          "distinct_evaluation_lines": 15,
+          "functional": [
+            1,
+            1,
+            10,
+            13
+          ],
+          "hit_count": 38,
+          "max_line_multiplicity": 2,
+          "multiplicity_histogram": {
+            "1": 14,
+            "2": 1
+          }
+        },
+        {
+          "distinct_evaluation_lines": 15,
+          "functional": [
+            1,
+            1,
+            10,
+            14
+          ],
+          "hit_count": 38,
+          "max_line_multiplicity": 2,
+          "multiplicity_histogram": {
+            "1": 14,
+            "2": 1
+          }
+        }
+      ],
+      "weighted_pair_bound_floor": 60,
+      "weighted_pair_bound_rational": "120/2"
+    },
+    {
+      "accepted_full_rank_kernel_planes": 2048,
+      "all_sample_hit_distribution": {
+        "0": 994,
+        "1": 781,
+        "12": 26,
+        "13": 5,
+        "2": 230,
+        "3": 12
+      },
+      "attempts": 2048,
+      "common_root_planes_seen": 2,
+      "divisor_points": 4368,
+      "domain": "F_17^*",
+      "field": "F_17",
+      "j": 5,
+      "n": 16,
+      "name": "sampled_hankel_kernel_planes_j5_t3",
+      "primitive_max_hits": 13,
+      "primitive_sample_hit_distribution": {
+        "0": 992,
+        "1": 781,
+        "12": 26,
+        "13": 5,
+        "2": 230,
+        "3": 12
+      },
+      "primitive_top_plane_count_in_sample": 5,
+      "proper_quotient_orders": [],
+      "seed": 2026070207,
+      "status": "PASS",
+      "t": 3,
+      "top_primitive_examples": [
+        {
+          "distinct_evaluation_lines": 13,
+          "hankel_rows": [
+            [
+              8,
+              7,
+              1,
+              14,
+              7,
+              1
+            ],
+            [
+              7,
+              1,
+              14,
+              7,
+              1,
+              1
+            ],
+            [
+              1,
+              14,
+              7,
+              1,
+              1,
+              12
+            ]
+          ],
+          "hit_count": 13,
+          "max_line_multiplicity": 4,
+          "multiplicity_histogram": {
+            "1": 12,
+            "4": 1
+          }
+        },
+        {
+          "distinct_evaluation_lines": 13,
+          "hankel_rows": [
+            [
+              12,
+              7,
+              4,
+              6,
+              8,
+              4
+            ],
+            [
+              7,
+              4,
+              6,
+              8,
+              4,
+              1
+            ],
+            [
+              4,
+              6,
+              8,
+              4,
+              1,
+              9
+            ]
+          ],
+          "hit_count": 13,
+          "max_line_multiplicity": 4,
+          "multiplicity_histogram": {
+            "1": 12,
+            "4": 1
+          }
+        },
+        {
+          "distinct_evaluation_lines": 13,
+          "hankel_rows": [
+            [
+              6,
+              8,
+              8,
+              10,
+              0,
+              4
+            ],
+            [
+              8,
+              8,
+              10,
+              0,
+              4,
+              15
+            ],
+            [
+              8,
+              10,
+              0,
+              4,
+              15,
+              10
+            ]
+          ],
+          "hit_count": 13,
+          "max_line_multiplicity": 4,
+          "multiplicity_histogram": {
+            "1": 12,
+            "4": 1
+          }
+        },
+        {
+          "distinct_evaluation_lines": 13,
+          "hankel_rows": [
+            [
+              16,
+              14,
+              1,
+              8,
+              10,
+              3
+            ],
+            [
+              14,
+              1,
+              8,
+              10,
+              3,
+              7
+            ],
+            [
+              1,
+              8,
+              10,
+              3,
+              7,
+              3
+            ]
+          ],
+          "hit_count": 13,
+          "max_line_multiplicity": 4,
+          "multiplicity_histogram": {
+            "1": 12,
+            "4": 1
+          }
+        },
+        {
+          "distinct_evaluation_lines": 13,
+          "hankel_rows": [
+            [
+              7,
+              6,
+              12,
+              13,
+              6,
+              12
+            ],
+            [
+              6,
+              12,
+              13,
+              6,
+              12,
+              3
+            ],
+            [
+              12,
+              13,
+              6,
+              12,
+              3,
+              12
+            ]
+          ],
+          "hit_count": 13,
+          "max_line_multiplicity": 4,
+          "multiplicity_histogram": {
+            "1": 12,
+            "4": 1
+          }
+        }
+      ],
+      "weighted_pair_bound_floor": 30,
+      "weighted_pair_bound_rational": "120/4"
+    }
+  ],
+  "domain": {
+    "elements": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "n": 16,
+    "type": "multiplicative_group"
+  },
+  "field": {
+    "p": 17
+  },
+  "notes": [
+    "The j=3 projective-plane census is exhaustive.",
+    "The j=5 Hankel-kernel-plane run is deterministic sampling only.",
+    "Both tested j values have gcd(n,j)=1, so no proper quotient-pullback stratum is present."
+  ],
+  "object": "D_j(H) intersections with projective planes in locator coefficient space",
+  "roadmap_task": "E7 / Conjecture F dimension-2 evidence",
+  "schema": "conjecture_f_dim2_evidence_v1",
+  "script_sha256": "83c5d41cefdc9457159ad1120f7202baf17b00529763603e2ac5d325ed3b5dae",
+  "status": "EXPERIMENTAL_EVIDENCE"
+}

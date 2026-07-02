@@ -1,0 +1,104 @@
+# Conjecture F Dimension-Two Evidence
+
+- **Status:** EXPERIMENTAL / evidence packet.
+- **Agent:** Codex acting autonomously for Allen Graham Hart.
+- **Roadmap link:** Fable evidence task `E7` (`conj_f` / `f_primitive_case`).
+- **Verifier:** `experimental/scripts/verify_conjecture_f_dim2_evidence.py`.
+- **Artifact:** `experimental/data/certificates/conjecture-f-dim2-evidence/conjecture_f_dim2_n16_f17.json`.
+
+This packet is a small, pre-registered evidence run for the first primitive
+dimension in Conjecture F.  It does not prove Conjecture F.  It records one
+exact toy census and one deterministic kernel-plane sample that can guide the
+next proof or falsification attempt.
+
+## Object
+
+Let `K = F_17`, let `H = F_17^*`, so `|H| = n = 16`, and let
+
+```text
+D_j(H) = { prod_{h in S} (X-h) : S subset H, |S| = j }
+```
+
+inside projective locator-coefficient space.  A projective plane `P(W)` is
+called common-root paid if all polynomials in `W` vanish at some `h in H`.
+Both tested degrees have `gcd(n,j)=1`, so there is no proper quotient-pullback
+stratum in these runs.
+
+## Pre-Registered Runs
+
+1. Exact projective-plane census at `j=3`.  Here
+   `P(K[X]_{<=3}) = P^3`, so projective planes are hyperplanes.  The verifier
+   enumerates all `(17^4-1)/(17-1)=5220` hyperplanes, counts their intersections
+   with `D_3(H)`, and separates the common-root paid hyperplanes from primitive
+   hyperplanes.
+
+2. Deterministic Hankel-kernel sample at `j=5,t=3`.  The verifier samples
+   2048 full-rank Hankel row spaces
+
+   ```text
+   (s_r, s_{r+1}, ..., s_{r+5}),       r=0,1,2,
+   ```
+
+   and counts `D_5(H)` points in the projective kernel plane.  This second run
+   is not exhaustive; it is included because it probes the kernel/fiber-plane
+   geometry that the proof program actually consumes.
+
+## Results
+
+The exact `j=3` census gives:
+
+```text
+all projective planes        5220
+common-root paid planes        16
+common-root hit count         105 = binom(15,2)
+primitive planes             5204
+max primitive hit count        38
+top primitive plane count     240
+weighted pair bound floor      60 = floor(binom(16,2)/(3-1))
+simple-line bound floor        40 = floor(binom(16,2)/binom(3,2))
+```
+
+The paid common-root planes are exactly the expected tangent/common-divisor
+shape: fixing one root leaves `binom(15,2)=105` degree-three locators.  After
+removing these paid planes, the primitive maximum is only `38`, below even the
+simple-line numerical bound `40`.  The top primitive planes have one repeated
+evaluation line (`15` distinct evaluation lines, maximum multiplicity `2`), so
+the pair-counting explanation should use the weighted form rather than silently
+assuming a simple arrangement.
+
+The sampled `j=5,t=3` Hankel-kernel run gives:
+
+```text
+accepted full-rank kernel planes     2048
+common-root planes seen                 2
+max primitive hit count                13
+top primitive count in sample           5
+weighted pair bound floor              30 = floor(binom(16,2)/(5-1))
+```
+
+Most sampled kernel planes have no `D_5(H)` point at all.  No quotient stratum
+is present for `j=5`, and no unclassified rich primitive plane appears in this
+sample.
+
+## Interpretation
+
+This moves the E7 prior in the positive direction: the first exact dimension-two
+toy has only the expected common-root spike, and the kernel-plane sample shows
+small primitive intersections.  The evidence also says what to do next.  The
+next E7 packet should either exhaust `n=16,j=4` projective planes with a more
+efficient Grassmannian enumerator, or replace random Hankel samples by a
+structured enumeration of low-complexity syndrome row spaces.
+
+Non-claims:
+
+- no theorem for arbitrary `n` or arbitrary `j`;
+- no exhaustive statement for `j=5` kernel planes;
+- no M1/MCA threshold or safe-side claim.
+
+## Replay
+
+```bash
+python3 experimental/scripts/verify_conjecture_f_dim2_evidence.py
+python3 experimental/scripts/verify_conjecture_f_dim2_evidence.py --emit
+python3 -m py_compile experimental/scripts/verify_conjecture_f_dim2_evidence.py
+```
