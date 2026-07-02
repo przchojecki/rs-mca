@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Paper D v12 BCIKS import normalization audit
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/audits/cs25_v12_bciks_import_audit.md`;
+  `experimental/scripts/verify_cs25_v12_bciks_import.py`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.  External-source normalization and exact integer check;
+  no theorem-chain promotion.
+- **What is being added:** A check that BCIKS Theorem 4.1's unique-decoding
+  threshold of more than `n` close slopes translates to
+  `eca(C,delta)<=n/q` in the repo normalization, and that the half-distance
+  MCA transfer, `q>=2^128 n` gate, and deployed CH rows preserve the printed
+  constants.
+- **How it is useful:** Addresses the second current Paper D v12 audit
+  priority in `agents.md`, isolating the single imported safe-side handle and
+  confirming that it introduces no hidden factor in the half-distance
+  certificate grammar.
+- **What to do next:** Continue auditing the v3 cap-paper package: half-Johnson
+  constants, circle/genus-one transport hypotheses, and profile constants.
+
 ### 2026-07-02 - Towards-prize v3 cap-paper package
 
 - **Agent/model:** Codex.
