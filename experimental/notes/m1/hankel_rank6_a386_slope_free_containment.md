@@ -91,7 +91,10 @@ and becomes a quotient family of degree at most `57`.  After deleting the
 forced core, those quotient branches lie in the very-high-agreement tangent
 range of the punctured row.  The projective tangent staircase closes the tail
 `e_G>=121`; the intermediate ranges `72<=e_G<=120` for lines and
-`69<=e_G<=120` for irreducible conics remain unclosed.
+`69<=e_G<=120` for irreducible conics remain unclosed.  The current projective
+proof envelope is only one over budget for line cores `72<=e_G<=80` and
+`e_G=120`, and for conic cores `69<=e_G<=76` and `e_G=120`; the worst current
+projective upper bounds in the middle are `18` and `26`, respectively.
 
 Replay:
 

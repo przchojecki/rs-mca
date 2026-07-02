@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 intermediate high-core residual profile
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md`;
+  `experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `A=386` moving-slope packet now computes the
+  best current projective upper-bound envelope on the remaining intermediate
+  high-core ranges after combining external incidence, conic pair-overlap
+  packing, and the punctured projective tangent staircase.
+- **How it is useful:** It separates endpoint-only one-over-budget subranges
+  from the larger quotient/core residuals: lines are one over budget for
+  `72<=e_G<=80` and `e_G=120`, conics for `69<=e_G<=76` and `e_G=120`, while
+  the worst current projective bounds in the middle are `18` and `26`.
+- **What to do next:** Attack the middle quotient/common-core ranges with exact
+  root tables or a stronger quotient/tangent payment theorem; the endpoint-only
+  subranges may close with a single endpoint payment or one-root saving.
+
 ### 2026-07-02 - A386 projective tangent tail closure
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

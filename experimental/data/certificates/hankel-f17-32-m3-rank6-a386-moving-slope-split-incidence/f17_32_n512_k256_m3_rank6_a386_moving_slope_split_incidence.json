@@ -179,7 +179,8 @@
     "line high-core forced roots are dual-evaluation fibers on a projective line",
     "irreducible conic high-core forced roots are global common roots of the whole Q-plane",
     "high-core residuals satisfy the punctured high-agreement tangent inequality",
-    "very-high-core tail e>=121 is projective-safe by the punctured projective tangent staircase"
+    "very-high-core tail e>=121 is projective-safe by the punctured projective tangent staircase",
+    "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds"
   ],
   "conic_pair_overlap_sample_rows": [
     {
@@ -265,6 +266,1925 @@
     "external_forced_split_root_core": "e_G is the number of forced root hyperplanes among H\\X.  The base support X is handled separately because L_Q(x)=0 is equivalent to Q(x)=0 there.",
     "forced_split_root_core": "r_G is the number of subgroup points s for which G is contained in E_s; these are roots forced for every L_Q on G.",
     "root_hyperplanes": "For each subgroup point s in H, E_s={Q in P^2: L_Q(s)=0} is a root hyperplane for the split-locator gate."
+  },
+  "intermediate_residual_profile": {
+    "irreducible_conic_projective_bound_groups": [
+      {
+        "current_projective_upper_bound": 7,
+        "external_core_range": [
+          69,
+          76
+        ],
+        "one_over_budget": true,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 8,
+        "external_core_range": [
+          77,
+          82
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 9,
+        "external_core_range": [
+          83,
+          86
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 10,
+        "external_core_range": [
+          87,
+          89
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 11,
+        "external_core_range": [
+          90,
+          92
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 12,
+        "external_core_range": [
+          93,
+          94
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 13,
+        "external_core_range": [
+          95,
+          95
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 14,
+        "external_core_range": [
+          96,
+          96
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 15,
+        "external_core_range": [
+          97,
+          97
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 16,
+        "external_core_range": [
+          98,
+          98
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 17,
+        "external_core_range": [
+          99,
+          99
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 20,
+        "external_core_range": [
+          100,
+          100
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 26,
+        "external_core_range": [
+          101,
+          101
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 25,
+        "external_core_range": [
+          102,
+          102
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 24,
+        "external_core_range": [
+          103,
+          103
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 23,
+        "external_core_range": [
+          104,
+          104
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 22,
+        "external_core_range": [
+          105,
+          105
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 21,
+        "external_core_range": [
+          106,
+          106
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 20,
+        "external_core_range": [
+          107,
+          107
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 19,
+        "external_core_range": [
+          108,
+          108
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 18,
+        "external_core_range": [
+          109,
+          109
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 17,
+        "external_core_range": [
+          110,
+          110
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 16,
+        "external_core_range": [
+          111,
+          111
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 15,
+        "external_core_range": [
+          112,
+          112
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 14,
+        "external_core_range": [
+          113,
+          113
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 13,
+        "external_core_range": [
+          114,
+          114
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 12,
+        "external_core_range": [
+          115,
+          115
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 11,
+        "external_core_range": [
+          116,
+          116
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 10,
+        "external_core_range": [
+          117,
+          117
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 9,
+        "external_core_range": [
+          118,
+          118
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 8,
+        "external_core_range": [
+          119,
+          119
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 7,
+        "external_core_range": [
+          120,
+          120
+        ],
+        "one_over_budget": true,
+        "projective_safe": false
+      }
+    ],
+    "irreducible_conic_rows": [
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 11,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 69,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": 6,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 58
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 11,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 70,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": 6,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 57
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 11,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 71,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": 6,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 56
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 12,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 72,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": 6,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 55
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 12,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 73,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": 6,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 54
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 12,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 74,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": 6,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 53
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 12,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 75,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": 6,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 52
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 12,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 76,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": 6,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 51
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 8,
+        "external_incidence_finite_bound": 13,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 77,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 7,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 50
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 8,
+        "external_incidence_finite_bound": 13,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 78,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 7,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 49
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 8,
+        "external_incidence_finite_bound": 13,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 79,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 7,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 48
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 8,
+        "external_incidence_finite_bound": 13,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 80,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 7,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 47
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 8,
+        "external_incidence_finite_bound": 14,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 81,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 7,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 46
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 8,
+        "external_incidence_finite_bound": 14,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 82,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 7,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 45
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 9,
+        "external_incidence_finite_bound": 14,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 83,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 8,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 44
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 9,
+        "external_incidence_finite_bound": 15,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 84,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 8,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 43
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 9,
+        "external_incidence_finite_bound": 15,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 85,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 8,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 42
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 9,
+        "external_incidence_finite_bound": 15,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 86,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 8,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 41
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 10,
+        "external_incidence_finite_bound": 16,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 87,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 9,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 40
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 10,
+        "external_incidence_finite_bound": 16,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 88,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 9,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 39
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 10,
+        "external_incidence_finite_bound": 16,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 89,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 9,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 38
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 11,
+        "external_incidence_finite_bound": 17,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 90,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 10,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 37
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 11,
+        "external_incidence_finite_bound": 17,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 91,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 10,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 36
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 11,
+        "external_incidence_finite_bound": 18,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 92,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 10,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 35
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 12,
+        "external_incidence_finite_bound": 18,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 93,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 11,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 34
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 12,
+        "external_incidence_finite_bound": 19,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 94,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 11,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 33
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 13,
+        "external_incidence_finite_bound": 20,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 95,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 12,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 32
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 14,
+        "external_incidence_finite_bound": 20,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 96,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 13,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 31
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 15,
+        "external_incidence_finite_bound": 21,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 97,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 14,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 30
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 16,
+        "external_incidence_finite_bound": 22,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 98,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 15,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 29
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 17,
+        "external_incidence_finite_bound": 22,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 99,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 16,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 28
+      },
+      {
+        "active_best_methods": [
+          "pair-overlap packing plus endpoint"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 20,
+        "external_incidence_finite_bound": 23,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 100,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": 19,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 27
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 26,
+        "external_incidence_finite_bound": 24,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 101,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 26
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 25,
+        "external_incidence_finite_bound": 25,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 102,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 25
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 24,
+        "external_incidence_finite_bound": 26,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 103,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 24
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 23,
+        "external_incidence_finite_bound": 28,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 104,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 23
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 22,
+        "external_incidence_finite_bound": 29,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 105,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 22
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 21,
+        "external_incidence_finite_bound": 31,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 106,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 21
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 20,
+        "external_incidence_finite_bound": 32,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 107,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 20
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 19,
+        "external_incidence_finite_bound": 34,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 108,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 19
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 18,
+        "external_incidence_finite_bound": 36,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 109,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 18
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 17,
+        "external_incidence_finite_bound": 39,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 110,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 17
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 16,
+        "external_incidence_finite_bound": 42,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 111,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 16
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 15,
+        "external_incidence_finite_bound": 45,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 112,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 15
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 14,
+        "external_incidence_finite_bound": 49,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 113,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 14
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 13,
+        "external_incidence_finite_bound": 54,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 114,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 13
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 12,
+        "external_incidence_finite_bound": 60,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 115,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 12
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 11,
+        "external_incidence_finite_bound": 67,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 116,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 11
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 10,
+        "external_incidence_finite_bound": 76,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 117,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 10
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 9,
+        "external_incidence_finite_bound": 89,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 118,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 9
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 8,
+        "external_incidence_finite_bound": 106,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 119,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 8
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "irreducible_conic",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 132,
+        "external_incidence_projective_bound": null,
+        "forced_external_core_size": 120,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 7
+      }
+    ],
+    "line_projective_bound_groups": [
+      {
+        "current_projective_upper_bound": 7,
+        "external_core_range": [
+          72,
+          80
+        ],
+        "one_over_budget": true,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 8,
+        "external_core_range": [
+          81,
+          86
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 9,
+        "external_core_range": [
+          87,
+          91
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 10,
+        "external_core_range": [
+          92,
+          94
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 11,
+        "external_core_range": [
+          95,
+          97
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 12,
+        "external_core_range": [
+          98,
+          100
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 13,
+        "external_core_range": [
+          101,
+          102
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 14,
+        "external_core_range": [
+          103,
+          103
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 15,
+        "external_core_range": [
+          104,
+          105
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 16,
+        "external_core_range": [
+          106,
+          106
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 17,
+        "external_core_range": [
+          107,
+          107
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 18,
+        "external_core_range": [
+          108,
+          109
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 17,
+        "external_core_range": [
+          110,
+          110
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 16,
+        "external_core_range": [
+          111,
+          111
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 15,
+        "external_core_range": [
+          112,
+          112
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 14,
+        "external_core_range": [
+          113,
+          113
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 13,
+        "external_core_range": [
+          114,
+          114
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 12,
+        "external_core_range": [
+          115,
+          115
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 11,
+        "external_core_range": [
+          116,
+          116
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 10,
+        "external_core_range": [
+          117,
+          117
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 9,
+        "external_core_range": [
+          118,
+          118
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 8,
+        "external_core_range": [
+          119,
+          119
+        ],
+        "one_over_budget": false,
+        "projective_safe": false
+      },
+      {
+        "current_projective_upper_bound": 7,
+        "external_core_range": [
+          120,
+          120
+        ],
+        "one_over_budget": true,
+        "projective_safe": false
+      }
+    ],
+    "line_rows": [
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 6,
+        "external_incidence_projective_bound": 7,
+        "forced_external_core_size": 72,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 55
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 6,
+        "external_incidence_projective_bound": 7,
+        "forced_external_core_size": 73,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 54
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 6,
+        "external_incidence_projective_bound": 7,
+        "forced_external_core_size": 74,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 53
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 6,
+        "external_incidence_projective_bound": 7,
+        "forced_external_core_size": 75,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 52
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 6,
+        "external_incidence_projective_bound": 7,
+        "forced_external_core_size": 76,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 51
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 6,
+        "external_incidence_projective_bound": 7,
+        "forced_external_core_size": 77,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 50
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 6,
+        "external_incidence_projective_bound": 7,
+        "forced_external_core_size": 78,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 49
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 6,
+        "external_incidence_projective_bound": 7,
+        "forced_external_core_size": 79,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 48
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 6,
+        "external_incidence_projective_bound": 7,
+        "forced_external_core_size": 80,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 47
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 8,
+        "external_incidence_finite_bound": 7,
+        "external_incidence_projective_bound": 8,
+        "forced_external_core_size": 81,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 46
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 8,
+        "external_incidence_finite_bound": 7,
+        "external_incidence_projective_bound": 8,
+        "forced_external_core_size": 82,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 45
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 8,
+        "external_incidence_finite_bound": 7,
+        "external_incidence_projective_bound": 8,
+        "forced_external_core_size": 83,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 44
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 8,
+        "external_incidence_finite_bound": 7,
+        "external_incidence_projective_bound": 8,
+        "forced_external_core_size": 84,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 43
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 8,
+        "external_incidence_finite_bound": 7,
+        "external_incidence_projective_bound": 8,
+        "forced_external_core_size": 85,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 42
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 8,
+        "external_incidence_finite_bound": 7,
+        "external_incidence_projective_bound": 8,
+        "forced_external_core_size": 86,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 41
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 9,
+        "external_incidence_finite_bound": 8,
+        "external_incidence_projective_bound": 9,
+        "forced_external_core_size": 87,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 40
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 9,
+        "external_incidence_finite_bound": 8,
+        "external_incidence_projective_bound": 9,
+        "forced_external_core_size": 88,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 39
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 9,
+        "external_incidence_finite_bound": 8,
+        "external_incidence_projective_bound": 9,
+        "forced_external_core_size": 89,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 38
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 9,
+        "external_incidence_finite_bound": 8,
+        "external_incidence_projective_bound": 9,
+        "forced_external_core_size": 90,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 37
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 9,
+        "external_incidence_finite_bound": 8,
+        "external_incidence_projective_bound": 9,
+        "forced_external_core_size": 91,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 36
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 10,
+        "external_incidence_finite_bound": 9,
+        "external_incidence_projective_bound": 10,
+        "forced_external_core_size": 92,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 35
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 10,
+        "external_incidence_finite_bound": 9,
+        "external_incidence_projective_bound": 10,
+        "forced_external_core_size": 93,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 34
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 10,
+        "external_incidence_finite_bound": 9,
+        "external_incidence_projective_bound": 10,
+        "forced_external_core_size": 94,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 33
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 11,
+        "external_incidence_finite_bound": 10,
+        "external_incidence_projective_bound": 11,
+        "forced_external_core_size": 95,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 32
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 11,
+        "external_incidence_finite_bound": 10,
+        "external_incidence_projective_bound": 11,
+        "forced_external_core_size": 96,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 31
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 11,
+        "external_incidence_finite_bound": 10,
+        "external_incidence_projective_bound": 11,
+        "forced_external_core_size": 97,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 30
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 12,
+        "external_incidence_finite_bound": 11,
+        "external_incidence_projective_bound": 12,
+        "forced_external_core_size": 98,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 29
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 12,
+        "external_incidence_finite_bound": 11,
+        "external_incidence_projective_bound": 12,
+        "forced_external_core_size": 99,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 28
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 12,
+        "external_incidence_finite_bound": 11,
+        "external_incidence_projective_bound": 12,
+        "forced_external_core_size": 100,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 27
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 13,
+        "external_incidence_finite_bound": 12,
+        "external_incidence_projective_bound": 13,
+        "forced_external_core_size": 101,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 26
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 13,
+        "external_incidence_finite_bound": 12,
+        "external_incidence_projective_bound": 13,
+        "forced_external_core_size": 102,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 25
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 14,
+        "external_incidence_finite_bound": 13,
+        "external_incidence_projective_bound": 14,
+        "forced_external_core_size": 103,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 24
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 15,
+        "external_incidence_finite_bound": 14,
+        "external_incidence_projective_bound": 15,
+        "forced_external_core_size": 104,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 23
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 15,
+        "external_incidence_finite_bound": 14,
+        "external_incidence_projective_bound": 15,
+        "forced_external_core_size": 105,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 22
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 16,
+        "external_incidence_finite_bound": 15,
+        "external_incidence_projective_bound": 16,
+        "forced_external_core_size": 106,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 21
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 17,
+        "external_incidence_finite_bound": 16,
+        "external_incidence_projective_bound": 17,
+        "forced_external_core_size": 107,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 20
+      },
+      {
+        "active_best_methods": [
+          "external incidence plus endpoint"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 18,
+        "external_incidence_finite_bound": 17,
+        "external_incidence_projective_bound": 18,
+        "forced_external_core_size": 108,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 19
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 18,
+        "external_incidence_finite_bound": 18,
+        "external_incidence_projective_bound": 19,
+        "forced_external_core_size": 109,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 18
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 17,
+        "external_incidence_finite_bound": 19,
+        "external_incidence_projective_bound": 20,
+        "forced_external_core_size": 110,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 17
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 16,
+        "external_incidence_finite_bound": 21,
+        "external_incidence_projective_bound": 22,
+        "forced_external_core_size": 111,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 16
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 15,
+        "external_incidence_finite_bound": 22,
+        "external_incidence_projective_bound": 23,
+        "forced_external_core_size": 112,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 15
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 14,
+        "external_incidence_finite_bound": 24,
+        "external_incidence_projective_bound": 25,
+        "forced_external_core_size": 113,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 14
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 13,
+        "external_incidence_finite_bound": 27,
+        "external_incidence_projective_bound": 28,
+        "forced_external_core_size": 114,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 13
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 12,
+        "external_incidence_finite_bound": 30,
+        "external_incidence_projective_bound": 31,
+        "forced_external_core_size": 115,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 12
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 11,
+        "external_incidence_finite_bound": 33,
+        "external_incidence_projective_bound": 34,
+        "forced_external_core_size": 116,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 11
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 10,
+        "external_incidence_finite_bound": 38,
+        "external_incidence_projective_bound": 39,
+        "forced_external_core_size": 117,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 10
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 9,
+        "external_incidence_finite_bound": 44,
+        "external_incidence_projective_bound": 45,
+        "forced_external_core_size": 118,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 9
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 8,
+        "external_incidence_finite_bound": 53,
+        "external_incidence_projective_bound": 54,
+        "forced_external_core_size": 119,
+        "one_over_budget": false,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 8
+      },
+      {
+        "active_best_methods": [
+          "punctured projective tangent"
+        ],
+        "component_type": "line",
+        "current_projective_upper_bound": 7,
+        "external_incidence_finite_bound": 66,
+        "external_incidence_projective_bound": 67,
+        "forced_external_core_size": 120,
+        "one_over_budget": true,
+        "pair_overlap_finite_bound": null,
+        "projective_safe": false,
+        "punctured_projective_tangent_bound": 7
+      }
+    ]
   },
   "nonclaims": [
     "does not prove every moving-slope component is a line",
@@ -383,7 +2303,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v8",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v9",
   "source_artifacts": {
     "a386_global_component_slope_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json",
@@ -421,6 +2341,17 @@
     "boundary_defect_h": 3,
     "conic_finite_safe_for_external_core_at_most": 76,
     "conic_high_core_forced_core_is_global_common_core": true,
+    "conic_intermediate_max_current_projective_upper_bound": 26,
+    "conic_one_over_budget_external_core_ranges": [
+      [
+        69,
+        76
+      ],
+      [
+        120,
+        120
+      ]
+    ],
     "conic_projective_safe_for_external_core_at_most": 68,
     "conic_remaining_unclosed_external_core_range": [
       69,
@@ -432,6 +2363,17 @@
     "external_root_count": 385,
     "line_finite_safe_for_external_core_at_most": 80,
     "line_high_core_forced_core_is_dual_evaluation_fiber": true,
+    "line_intermediate_max_current_projective_upper_bound": 18,
+    "line_one_over_budget_external_core_ranges": [
+      [
+        72,
+        80
+      ],
+      [
+        120,
+        120
+      ]
+    ],
     "line_projective_safe_for_external_core_at_most": 71,
     "line_remaining_unclosed_external_core_range": [
       72,
@@ -459,6 +2401,7 @@
     "high_core_forced_core_structure": "The forced-core condition is a linear condition in the Q-plane.  For a line component P(U), a forced external root is exactly an external evaluation functional that vanishes on U, so C_E is a two-polynomial gcd on the line's underlying vector subspace.  For an irreducible conic, containment in a root hyperplane can only occur when the evaluation functional is zero on the whole Q-plane; hence C_E is a global common divisor of all three basis kernel polynomials.",
     "high_core_quotient_normal_form": "For any remaining high-core line or conic component, let E be the forced external split-root core and C_E(X)=prod_{s in E}(X-s).  Every Q-class on the component has L_Q divisible by C_E.  After factoring, L_Q=C_E R_Q with deg R_Q<=126-|E|, and the split-locator gate is exactly R_Q | (X^512-1)/C_E plus the remaining noncontainment filters.  Thus residual line components reduce to quotient degree <=54, while residual conic components reduce to quotient degree <=57.",
     "incidence_budget": "For r_G<j, each valid degree-j split locator on G needs at least j-r_G additional intersections with non-forced root hyperplanes.  Each non-forced E_s cuts G in length at most c.  Hence the number of valid Q-classes, and therefore the number of finite slopes represented by this component, is at most floor(c*(512-r_G)/(126-r_G)).",
+    "intermediate_residual_profile": "Combining the external-incidence, pair-overlap, and punctured projective tangent bounds gives a sharp current proof envelope for the unresolved intermediate cores.  The one-over-budget subranges are line e_G=72..80 and e_G=120, and conic e_G=69..76 and e_G=120; all other intermediate cores need more than a single endpoint/root saving under the present methods.",
     "line_projective_safe_core_threshold": "For a line component c=1, the unrefined all-root budget gives projective safety at r_G<=48.  The base-sharpened external budget improves this: e_G<=71 gives at most five finite Q-classes.  Adding the endpoint-uniform contribution gives projective total at most 6, exactly the projective budget.",
     "no_identically_split_positive_dimensional_component": "A positive-dimensional component cannot have r_G>=j=126.  Otherwise every L_Q on G would be divisible by the same degree-j split locator, hence scalar-multiple to it because deg L_Q<=j, contradicting projective injectivity of Q -> L_Q on G.",
     "punctured_high_agreement_tangent_reduction": "Deleting the forced external core E leaves a punctured RS row of length n'=512-|E|, while the same witness has exact agreement 386 and co-support radius r'=126-|E|.  Since r' <= floor((n'-256)/3) for |E|>=61, every remaining high-core branch lies in the very-high-agreement tangent-staircase range of the punctured row.",

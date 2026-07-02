@@ -273,6 +273,31 @@ conic residuals: 69 <= |E| <= 120.
 This uses the projective high-agreement tangent theorem on the punctured row,
 not a separate finite-plus-endpoint overcount.
 
+Within the remaining intermediate range, the current proved bounds split the
+residual further.  Combining the external incidence bound (for lines), the
+pair-overlap packing bound (for irreducible conics), and the punctured
+projective tangent bound gives the following current projective upper-bound
+profile.
+
+For line components:
+
+```text
+one-over-budget: 72 <= |E| <= 80, and |E| = 120;
+worst current projective upper bound: 18, attained in the middle range.
+```
+
+For irreducible conic components:
+
+```text
+one-over-budget: 69 <= |E| <= 76, and |E| = 120;
+worst current projective upper bound: 26, attained in the middle range.
+```
+
+Thus the endpoint-only subranges are now separated from the genuinely larger
+quotient/core residuals.  A single endpoint payment or one-root saving would
+close the one-over-budget subranges, while the middle ranges need a stronger
+quotient, tangent, or exact-root-table argument.
+
 Replay:
 
 ```sh

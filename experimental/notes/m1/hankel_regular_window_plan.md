@@ -323,7 +323,11 @@ core across the whole `Q`-plane.  Puncturing the forced core puts those residual
 quotient branches in the very-high-agreement tangent range of the punctured
 row.  The projective tangent staircase closes the tail `e_G>=121`, so the
 remaining unclosed intermediate ranges are `72<=e_G<=120` for lines and
-`69<=e_G<=120` for irreducible conics.
+`69<=e_G<=120` for irreducible conics.  Within those ranges the current
+projective proof envelope is only one over budget for line cores
+`72<=e_G<=80` and `e_G=120`, and for conic cores `69<=e_G<=76` and
+`e_G=120`; the worst current projective upper bounds in the middle are `18`
+for lines and `26` for conics.
 
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets

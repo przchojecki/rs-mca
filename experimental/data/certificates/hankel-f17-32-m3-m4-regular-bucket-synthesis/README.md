@@ -242,7 +242,10 @@ of degree at most `57`.  After puncturing the forced core, the projective
 tangent staircase bounds finite slopes and infinity together by `127-e_G`;
 hence the very-high-core tail `e_G>=121` is projective-safe.  The remaining
 unclosed intermediate ranges are `72<=e_G<=120` for lines and `69<=e_G<=120`
-for irreducible conics.
+for irreducible conics.  Inside these ranges the current proof envelope has
+one-over-budget subranges `72<=e_G<=80` and `e_G=120` for lines, and
+`69<=e_G<=76` and `e_G=120` for irreducible conics; the worst current
+projective upper bounds in the middle are `18` and `26`, respectively.
 
 The rank-node dichotomy packet
 

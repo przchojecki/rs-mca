@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v8",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v9",
 }
 
 
@@ -330,6 +330,22 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         summary["conic_remaining_unclosed_external_core_range"] == [69, 120],
         "conic unclosed core range mismatch",
     )
+    require(
+        summary["line_one_over_budget_external_core_ranges"] == [[72, 80], [120, 120]],
+        "line one-over-budget ranges mismatch",
+    )
+    require(
+        summary["conic_one_over_budget_external_core_ranges"] == [[69, 76], [120, 120]],
+        "conic one-over-budget ranges mismatch",
+    )
+    require(
+        summary["line_intermediate_max_current_projective_upper_bound"] == 18,
+        "line max intermediate bound mismatch",
+    )
+    require(
+        summary["conic_intermediate_max_current_projective_upper_bound"] == 26,
+        "conic max intermediate bound mismatch",
+    )
     nonclaims = set(data["nonclaims"])
     require(
         "does not claim the punctured tangent numerator at the residual threshold is within the original row budget"
@@ -437,6 +453,7 @@ def build_certificate() -> dict[str, Any]:
                 "the remaining high-core irreducible-conic branch has a global common forced core and becomes a quotient family of degree <=57",
                 "after puncturing the forced core, the projective tangent staircase closes the tail e_G>=121",
                 "the still-unclosed high-core quotient ranges are e_G=72..120 for lines and e_G=69..120 for irreducible conics",
+                "within those ranges, the one-over-budget subranges are line e_G=72..80 and 120, conic e_G=69..76 and 120; the current worst projective bounds are 18 and 26",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",

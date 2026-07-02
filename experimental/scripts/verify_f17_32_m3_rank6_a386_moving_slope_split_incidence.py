@@ -18,7 +18,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v8"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v9"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -237,6 +237,126 @@ def conic_packing_row(
         "lower_union_bound_for_7_Q_classes": lower_union(7),
         "seven_Q_classes_excluded": seven_excluded,
         "finite_safe_consequence": seven_excluded,
+    }
+
+
+def conic_pair_packing_finite_bound(
+    forced_external_core_size: int,
+    locator_degree: int,
+    base_root_cap: int,
+    external_root_count: int,
+) -> int | None:
+    """Return the first pair-overlap exclusion upper bound, if one occurs."""
+    required_external_roots = locator_degree - base_root_cap - forced_external_core_size
+    available_external_roots = external_root_count - forced_external_core_size
+    if required_external_roots <= 0:
+        return None
+    for candidate_count in range(1, locator_degree + 2):
+        lower_union_bound = (
+            candidate_count * required_external_roots
+            - candidate_count * (candidate_count - 1) // 2
+        )
+        if lower_union_bound > available_external_roots:
+            return candidate_count - 1
+    return None
+
+
+def projective_bound_profile_groups(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    groups: list[dict[str, Any]] = []
+    for row in rows:
+        value = row["current_projective_upper_bound"]
+        if groups and groups[-1]["current_projective_upper_bound"] == value:
+            groups[-1]["external_core_range"][1] = row["forced_external_core_size"]
+        else:
+            groups.append(
+                {
+                    "external_core_range": [
+                        row["forced_external_core_size"],
+                        row["forced_external_core_size"],
+                    ],
+                    "current_projective_upper_bound": value,
+                    "projective_safe": value <= PROJECTIVE_BUDGET,
+                    "one_over_budget": value == PROJECTIVE_BUDGET + 1,
+                }
+            )
+    return groups
+
+
+def intermediate_residual_profile_row(
+    component_type: str,
+    forced_external_core_size: int,
+    locator_degree: int,
+    base_root_cap: int,
+    external_root_count: int,
+) -> dict[str, Any]:
+    projective_tangent_bound = punctured_tangent_tail_row(forced_external_core_size)[
+        "projective_bound_from_punctured_projective_tangent"
+    ]
+    if component_type == "line":
+        finite_bound = external_q_class_bound(
+            1,
+            forced_external_core_size,
+            locator_degree,
+            base_root_cap,
+            external_root_count,
+        )
+        incidence_projective_bound = None if finite_bound is None else finite_bound + 1
+        current_bound = min(
+            bound
+            for bound in [incidence_projective_bound, projective_tangent_bound]
+            if bound is not None
+        )
+        active_methods = []
+        if incidence_projective_bound == current_bound:
+            active_methods.append("external incidence plus endpoint")
+        if projective_tangent_bound == current_bound:
+            active_methods.append("punctured projective tangent")
+        return {
+            "component_type": component_type,
+            "forced_external_core_size": forced_external_core_size,
+            "external_incidence_finite_bound": finite_bound,
+            "external_incidence_projective_bound": incidence_projective_bound,
+            "pair_overlap_finite_bound": None,
+            "punctured_projective_tangent_bound": projective_tangent_bound,
+            "current_projective_upper_bound": current_bound,
+            "active_best_methods": active_methods,
+            "projective_safe": current_bound <= PROJECTIVE_BUDGET,
+            "one_over_budget": current_bound == PROJECTIVE_BUDGET + 1,
+        }
+
+    require(component_type == "irreducible_conic", "unknown component type")
+    pair_bound = conic_pair_packing_finite_bound(
+        forced_external_core_size,
+        locator_degree,
+        base_root_cap,
+        external_root_count,
+    )
+    pair_projective_bound = None if pair_bound is None else pair_bound + 1
+    current_bound = min(
+        bound for bound in [pair_projective_bound, projective_tangent_bound] if bound is not None
+    )
+    active_methods = []
+    if pair_projective_bound == current_bound:
+        active_methods.append("pair-overlap packing plus endpoint")
+    if projective_tangent_bound == current_bound:
+        active_methods.append("punctured projective tangent")
+    return {
+        "component_type": component_type,
+        "forced_external_core_size": forced_external_core_size,
+        "external_incidence_finite_bound": external_q_class_bound(
+            2,
+            forced_external_core_size,
+            locator_degree,
+            base_root_cap,
+            external_root_count,
+        ),
+        "external_incidence_projective_bound": None,
+        "pair_overlap_finite_bound": pair_bound,
+        "punctured_projective_tangent_bound": projective_tangent_bound,
+        "current_projective_upper_bound": current_bound,
+        "active_best_methods": active_methods,
+        "projective_safe": current_bound <= PROJECTIVE_BUDGET,
+        "one_over_budget": current_bound == PROJECTIVE_BUDGET + 1,
     }
 
 
@@ -565,6 +685,28 @@ def build_certificate() -> dict[str, Any]:
         punctured_tangent_tail_row(tail_projective_safe_core_min),
         punctured_tangent_tail_row(j_value - 1),
     ]
+    line_intermediate_profile_rows = [
+        intermediate_residual_profile_row(
+            "line",
+            core,
+            j_value,
+            base_root_cap,
+            external_root_count,
+        )
+        for core in range(line_residual_core_threshold, tail_projective_safe_core_min)
+    ]
+    conic_intermediate_profile_rows = [
+        intermediate_residual_profile_row(
+            "irreducible_conic",
+            core,
+            j_value,
+            base_root_cap,
+            external_root_count,
+        )
+        for core in range(conic_residual_core_threshold, tail_projective_safe_core_min)
+    ]
+    line_profile_groups = projective_bound_profile_groups(line_intermediate_profile_rows)
+    conic_profile_groups = projective_bound_profile_groups(conic_intermediate_profile_rows)
     require(line_residual_core_threshold == 72, "line residual threshold mismatch")
     require(conic_residual_core_threshold == 69, "conic residual threshold mismatch")
     require(
@@ -617,6 +759,51 @@ def build_certificate() -> dict[str, Any]:
     require(
         punctured_tangent_tail_rows[2]["projective_safe_by_punctured_projective_tangent"],
         "maximal high core should be projective-safe",
+    )
+    require(
+        [group for group in line_profile_groups if group["one_over_budget"]]
+        == [
+            {
+                "external_core_range": [72, 80],
+                "current_projective_upper_bound": 7,
+                "projective_safe": False,
+                "one_over_budget": True,
+            },
+            {
+                "external_core_range": [120, 120],
+                "current_projective_upper_bound": 7,
+                "projective_safe": False,
+                "one_over_budget": True,
+            },
+        ],
+        "line one-over-budget profile changed",
+    )
+    require(
+        [group for group in conic_profile_groups if group["one_over_budget"]]
+        == [
+            {
+                "external_core_range": [69, 76],
+                "current_projective_upper_bound": 7,
+                "projective_safe": False,
+                "one_over_budget": True,
+            },
+            {
+                "external_core_range": [120, 120],
+                "current_projective_upper_bound": 7,
+                "projective_safe": False,
+                "one_over_budget": True,
+            },
+        ],
+        "conic one-over-budget profile changed",
+    )
+    require(
+        max(row["current_projective_upper_bound"] for row in line_intermediate_profile_rows) == 18,
+        "line profile max bound changed",
+    )
+    require(
+        max(row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows)
+        == 26,
+        "conic profile max bound changed",
     )
 
     return {
@@ -791,6 +978,14 @@ def build_certificate() -> dict[str, Any]:
                 "projective contribution at most 6.  This closes the very-high-core "
                 "tail but leaves the intermediate high-core quotient range unresolved."
             ),
+            "intermediate_residual_profile": (
+                "Combining the external-incidence, pair-overlap, and punctured "
+                "projective tangent bounds gives a sharp current proof envelope "
+                "for the unresolved intermediate cores.  The one-over-budget "
+                "subranges are line e_G=72..80 and e_G=120, and conic e_G=69..76 "
+                "and e_G=120; all other intermediate cores need more than a "
+                "single endpoint/root saving under the present methods."
+            ),
         },
         "budget_formula": {
             "locator_degree_j": j_value,
@@ -848,6 +1043,12 @@ def build_certificate() -> dict[str, Any]:
         "high_core_quotient_residual_rows": quotient_residual_rows,
         "punctured_tangent_reduction_rows": punctured_tangent_rows,
         "punctured_tangent_tail_rows": punctured_tangent_tail_rows,
+        "intermediate_residual_profile": {
+            "line_rows": line_intermediate_profile_rows,
+            "line_projective_bound_groups": line_profile_groups,
+            "irreducible_conic_rows": conic_intermediate_profile_rows,
+            "irreducible_conic_projective_bound_groups": conic_profile_groups,
+        },
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -880,6 +1081,12 @@ def build_certificate() -> dict[str, Any]:
                 line_residual_core_threshold,
                 tail_projective_safe_core_min - 1,
             ],
+            "line_one_over_budget_external_core_ranges": [
+                group["external_core_range"] for group in line_profile_groups if group["one_over_budget"]
+            ],
+            "line_intermediate_max_current_projective_upper_bound": max(
+                row["current_projective_upper_bound"] for row in line_intermediate_profile_rows
+            ),
             "conic_projective_safe_for_external_core_at_most": (
                 conic_projective_safe_packing_external_core_max
             ),
@@ -897,6 +1104,14 @@ def build_certificate() -> dict[str, Any]:
                 conic_residual_core_threshold,
                 tail_projective_safe_core_min - 1,
             ],
+            "conic_one_over_budget_external_core_ranges": [
+                group["external_core_range"]
+                for group in conic_profile_groups
+                if group["one_over_budget"]
+            ],
+            "conic_intermediate_max_current_projective_upper_bound": max(
+                row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows
+            ),
             "line_high_core_forced_core_is_dual_evaluation_fiber": True,
             "conic_high_core_forced_core_is_global_common_core": True,
             "remaining_unclosed_residuals": [
@@ -926,6 +1141,7 @@ def build_certificate() -> dict[str, Any]:
             "irreducible conic high-core forced roots are global common roots of the whole Q-plane",
             "high-core residuals satisfy the punctured high-agreement tangent inequality",
             "very-high-core tail e>=121 is projective-safe by the punctured projective tangent staircase",
+            "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",

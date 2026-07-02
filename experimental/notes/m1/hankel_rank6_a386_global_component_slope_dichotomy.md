@@ -130,7 +130,10 @@ After deleting the forced core, those residual quotient branches also satisfy
 the very-high-agreement tangent inequality on the punctured row.  The
 projective tangent staircase closes the very-high-core tail `e_G>=121`.  The
 remaining unclosed intermediate ranges are `72<=e_G<=120` for residual lines
-and `69<=e_G<=120` for residual irreducible conics.
+and `69<=e_G<=120` for residual irreducible conics.  The current projective
+proof envelope is only one over budget for line cores `72<=e_G<=80` and
+`e_G=120`, and for conic cores `69<=e_G<=76` and `e_G=120`; the worst current
+projective upper bounds in the middle are `18` and `26`, respectively.
 
 The other cases remain residual:
 

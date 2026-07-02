@@ -536,7 +536,7 @@
     },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
-      "sha256": "09a459400f68e9e7ba386590cedff88a0d9060df670a039f7acbc7a1e8d9345f"
+      "sha256": "c32ec1398558918008387432464295a1e19ba04c32f4a4c6fe4fdc2ad6d2ad0c"
     },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
@@ -586,7 +586,8 @@
       "the remaining high-core line branch is a dual-evaluation-fiber quotient pencil of degree <=54",
       "the remaining high-core irreducible-conic branch has a global common forced core and becomes a quotient family of degree <=57",
       "after puncturing the forced core, the projective tangent staircase closes the tail e_G>=121",
-      "the still-unclosed high-core quotient ranges are e_G=72..120 for lines and e_G=69..120 for irreducible conics"
+      "the still-unclosed high-core quotient ranges are e_G=72..120 for lines and e_G=69..120 for irreducible conics",
+      "within those ranges, the one-over-budget subranges are line e_G=72..80 and 120, conic e_G=69..76 and 120; the current worst projective bounds are 18 and 26"
     ],
     "closed_by_current_lemmas": [
       "zero-v with full-rank H(u): no finite roots, infinity tangent-paid",
