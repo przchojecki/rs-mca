@@ -537,7 +537,8 @@
    "status": "TEST",
    "refs": [
     "wp_detail/wp_consolidation_sketch_extracts.md"
-   ]
+   ],
+   "notes": "ACTIVE: PR #170 all-shift spectral probe + rectangular null-polynomial (moment-run rigidity) target"
   },
   {
    "id": "beta_front",
@@ -545,7 +546,8 @@
    "status": "TEST",
    "refs": [
     "proof_sketch/s3a_regular_window.md#4"
-   ]
+   ],
+   "notes": "ACTIVE: PR #171 A385/386 rank-6 program \u2014 hexagon sharpness witness, conic/Pascal branch closures (P-beta test underway)"
   },
   {
    "id": "window_m5_charts",
@@ -876,6 +878,21 @@
    "refs": [
     "wp_detail/wp2_6_underdetermined_program.md"
    ]
+  },
+  {
+   "id": "plv_reduction",
+   "title": "Simple-pole residue lines reduce to projected RS list values (PLV)",
+   "status": "CONDITIONAL",
+   "notes": "source: PR #173 (unmerged; self-labelled PROVED reduction; held CONDITIONAL pending independent replay per standing order 12)"
+  },
+  {
+   "id": "projected_locator_wall",
+   "title": "Projected locator local-limit wall (fourth face of the crystallization core)",
+   "status": "WALL",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ],
+   "notes": "named by PR #173; same collision family as SPI/XR/perfiber in projected-list coordinates"
   }
  ],
  "edges": [
@@ -1517,6 +1534,21 @@
   {
    "from": "second_pin_or_wall",
    "to": "mca_grand",
+   "kind": "ev"
+  },
+  {
+   "from": "plv_reduction",
+   "to": "projected_locator_wall",
+   "kind": "req"
+  },
+  {
+   "from": "projected_locator_wall",
+   "to": "r2_rigidity",
+   "kind": "alt"
+  },
+  {
+   "from": "deep_point",
+   "to": "plv_reduction",
    "kind": "ev"
   }
  ]
