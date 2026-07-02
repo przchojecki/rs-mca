@@ -291,6 +291,16 @@ space of quotient locators, and an irreducible conic lies in the ambient
 either family.  Therefore the `|E|=120` tail contributes at most six projective
 slopes and is projective-safe.
 
+The same argument is a top-saturation exclusion throughout the high-core
+quotient tail.  If the punctured radius is `r'=126-|E|`, the raw projective
+tangent staircase gives `r'+1` slopes.  Saturating that bound would force at
+least `r'` finite component classes after discarding the possible original
+endpoint.  Their tangent-star cofactors are independent, so top saturation is
+impossible whenever `r'` exceeds the fixed quotient-family dimension (`2` for a
+line, `3` for an irreducible conic).  Thus the tangent-tail bound improves from
+`r'+1` to `r'` in the high-core range.  In particular, `|E|=120` is safe and
+`|E|=119` is the next one-over tangent-tail core.
+
 Thus the unclosed high-core quotient range is finite:
 
 ```text
@@ -333,8 +343,8 @@ The saturation profile records the next obstruction explicitly.  Six finite
 line classes in the incidence one-over range require pairwise disjoint external
 root sets with external slack between `1` and `41`.  Six finite conic classes
 require between `0` and `14` forced pair-overlap events before any external
-excess.  At `|E|=120`, the branch would instead have to saturate the punctured
-projective tangent bound itself.
+excess.  The former `|E|=120` tangent-tail obstruction is closed by the
+cofactor-span argument above; the next tangent-tail one-over core is `|E|=119`.
 
 Equivalently, a genuine over-budget witness in one of these rows must have six
 distinct finite slopes and an unpaid projective endpoint.  The sharpest finite

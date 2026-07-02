@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v23"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v24"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -1396,6 +1396,41 @@ def punctured_tangent_tail_row(forced_external_core_size: int) -> dict[str, Any]
     }
 
 
+def quotient_family_vector_dimension(component_type: str) -> int:
+    if component_type == "line":
+        return 2
+    require(component_type == "irreducible_conic", "unknown component type")
+    return 3
+
+
+def punctured_tangent_top_saturation_exclusion_row(
+    component_type: str,
+    forced_external_core_size: int,
+) -> dict[str, Any]:
+    """Exclude top tangent saturation when the cofactor span is too large."""
+    row = punctured_tangent_tail_row(forced_external_core_size)
+    raw_projective_bound = row["projective_bound_from_punctured_projective_tangent"]
+    quotient_dimension = quotient_family_vector_dimension(component_type)
+    finite_component_count_at_top_at_least = raw_projective_bound - 1
+    top_saturation_excluded = finite_component_count_at_top_at_least > quotient_dimension
+    improved_bound = raw_projective_bound - 1 if top_saturation_excluded else raw_projective_bound
+    return {
+        "component_type": component_type,
+        "forced_external_core_size": forced_external_core_size,
+        "punctured_length": row["punctured_length"],
+        "punctured_cosupport_radius": row["punctured_radius"],
+        "raw_projective_tangent_bound": raw_projective_bound,
+        "quotient_family_vector_dimension_at_most": quotient_dimension,
+        "finite_component_cofactors_under_top_saturation_at_least": (
+            finite_component_count_at_top_at_least
+        ),
+        "top_saturation_excluded_by_cofactor_span": top_saturation_excluded,
+        "cofactor_improved_projective_tangent_bound": improved_bound,
+        "cofactor_improved_projective_safe": improved_bound <= PROJECTIVE_BUDGET,
+        "cofactor_improved_one_over_budget": improved_bound == PROJECTIVE_BUDGET + 1,
+    }
+
+
 def build_certificate() -> dict[str, Any]:
     descriptor = load_json(ROW_DESCRIPTOR_REF)
     low_degree = load_json(LOW_DEGREE_TRANSFER_REF)
@@ -1651,6 +1686,34 @@ def build_certificate() -> dict[str, Any]:
         punctured_tangent_tail_row(tail_projective_safe_core_min),
         punctured_tangent_tail_row(j_value - 1),
     ]
+    line_cofactor_tangent_rows = [
+        punctured_tangent_top_saturation_exclusion_row("line", core)
+        for core in range(line_residual_core_threshold, j_value)
+    ]
+    conic_cofactor_tangent_rows = [
+        punctured_tangent_top_saturation_exclusion_row("irreducible_conic", core)
+        for core in range(conic_residual_core_threshold, j_value)
+    ]
+    line_cofactor_tangent_safe_core_min = min(
+        row["forced_external_core_size"]
+        for row in line_cofactor_tangent_rows
+        if row["cofactor_improved_projective_safe"]
+    )
+    conic_cofactor_tangent_safe_core_min = min(
+        row["forced_external_core_size"]
+        for row in conic_cofactor_tangent_rows
+        if row["cofactor_improved_projective_safe"]
+    )
+    line_cofactor_tangent_one_over_cores = [
+        row["forced_external_core_size"]
+        for row in line_cofactor_tangent_rows
+        if row["cofactor_improved_one_over_budget"]
+    ]
+    conic_cofactor_tangent_one_over_cores = [
+        row["forced_external_core_size"]
+        for row in conic_cofactor_tangent_rows
+        if row["cofactor_improved_one_over_budget"]
+    ]
     line_intermediate_profile_rows = [
         intermediate_residual_profile_row(
             "line",
@@ -1825,6 +1888,30 @@ def build_certificate() -> dict[str, Any]:
         "conic tangent numerator mismatch",
     )
     require(tail_projective_safe_core_min == 121, "punctured projective tangent tail threshold mismatch")
+    require(
+        line_cofactor_tangent_safe_core_min == 120,
+        "line cofactor-improved tangent tail threshold mismatch",
+    )
+    require(
+        conic_cofactor_tangent_safe_core_min == 120,
+        "conic cofactor-improved tangent tail threshold mismatch",
+    )
+    require(
+        line_cofactor_tangent_one_over_cores == [119],
+        "line cofactor-improved tangent one-over core mismatch",
+    )
+    require(
+        conic_cofactor_tangent_one_over_cores == [119],
+        "conic cofactor-improved tangent one-over core mismatch",
+    )
+    require(
+        line_cofactor_tangent_rows[-1]["top_saturation_excluded_by_cofactor_span"] is False,
+        "line terminal tail should not need cofactor exclusion",
+    )
+    require(
+        conic_cofactor_tangent_rows[-1]["top_saturation_excluded_by_cofactor_span"] is False,
+        "conic terminal tail should not need cofactor exclusion",
+    )
     require(
         not punctured_tangent_tail_rows[0]["projective_safe_by_punctured_projective_tangent"],
         "core 120 should not be projective-safe by punctured projective tangent",
@@ -2708,6 +2795,16 @@ def build_certificate() -> dict[str, Any]:
                 "component and at most 3 on an irreducible conic component.  This "
                 "contradiction bounds the tail by six projective slopes."
             ),
+            "cofactor_improved_tangent_tail_profile": (
+                "The same cofactor-span obstruction excludes top saturation of "
+                "the punctured projective tangent bound whenever the residual "
+                "cofactor degree exceeds the fixed-core quotient-family dimension.  "
+                "Thus the raw tangent bound r'+1 improves to r' in the high-core "
+                "line/conic quotient tails until the cofactor degree drops to the "
+                "ambient family dimension.  In particular e_G=120 is projective-safe "
+                "for both lines and conics, while e_G=119 is the next one-over "
+                "tangent-tail core."
+            ),
             "intermediate_residual_profile": (
                 "Combining the external-incidence, pair-overlap, and punctured "
                 "projective tangent bounds gives a sharp current proof envelope "
@@ -2873,6 +2970,10 @@ def build_certificate() -> dict[str, Any]:
         "high_core_quotient_residual_rows": quotient_residual_rows,
         "punctured_tangent_reduction_rows": punctured_tangent_rows,
         "punctured_tangent_tail_rows": punctured_tangent_tail_rows,
+        "cofactor_improved_tangent_tail_profile": {
+            "line_rows": line_cofactor_tangent_rows,
+            "irreducible_conic_rows": conic_cofactor_tangent_rows,
+        },
         "intermediate_residual_profile": {
             "line_rows": line_intermediate_profile_rows,
             "line_projective_bound_groups": line_profile_groups,
@@ -2952,11 +3053,14 @@ def build_certificate() -> dict[str, Any]:
                 tail_projective_safe_core_min
             ),
             "line_residual_projective_safe_after_cofactor_span_for_external_core_at_least": (
-                tail_projective_safe_core_min - 1
+                line_cofactor_tangent_safe_core_min
+            ),
+            "line_cofactor_improved_tangent_one_over_external_core": (
+                line_cofactor_tangent_one_over_cores
             ),
             "line_remaining_unclosed_external_core_range": [
                 line_residual_core_threshold,
-                tail_projective_safe_core_min - 2,
+                line_cofactor_tangent_safe_core_min - 1,
             ],
             "line_one_over_budget_external_core_ranges": [
                 group["external_core_range"] for group in line_profile_groups if group["one_over_budget"]
@@ -3007,11 +3111,14 @@ def build_certificate() -> dict[str, Any]:
                 tail_projective_safe_core_min
             ),
             "conic_residual_projective_safe_after_cofactor_span_for_external_core_at_least": (
-                tail_projective_safe_core_min - 1
+                conic_cofactor_tangent_safe_core_min
+            ),
+            "conic_cofactor_improved_tangent_one_over_external_core": (
+                conic_cofactor_tangent_one_over_cores
             ),
             "conic_remaining_unclosed_external_core_range": [
                 conic_residual_core_threshold,
-                tail_projective_safe_core_min - 2,
+                conic_cofactor_tangent_safe_core_min - 1,
             ],
             "conic_one_over_budget_external_core_ranges": [
                 group["external_core_range"]
@@ -3105,6 +3212,7 @@ def build_certificate() -> dict[str, Any]:
             "high-core residuals satisfy the punctured high-agreement tangent inequality",
             "very-high-core tail e>=121 is projective-safe by the punctured projective tangent staircase",
             "the e=120 punctured tangent tail is projective-safe by the cofactor-span obstruction",
+            "cofactor-span top-saturation exclusion improves the high-core tangent bound from r'+1 to r' until the cofactor degree reaches the fixed quotient-family dimension",
             "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds",
             "one-over finite-incidence saturation conditions are computed for the endpoint-only subranges",
             "over-budget survival conditions require bound saturation, distinct finite slopes, and an unpaid endpoint",

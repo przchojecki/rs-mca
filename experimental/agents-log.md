@@ -42,14 +42,16 @@ Keep entries concise and link to the relevant files.
   `experimental/notes/m1/hankel_regular_window_plan.md`;
   `experimental/agents-log.md`.
 - **Status:** PROVED / AUDIT.
-- **What is being added:** The `e_G=120` punctured-tangent tail in the
-  `A=386` moving-slope packet is closed by a cofactor-span obstruction.
+- **What is being added:** The `A=386` moving-slope packet now has a
+  cofactor-span top-saturation exclusion for the high-core punctured-tangent
+  quotient tail.
 - **How it is useful:** A seven-slope saturated tangent-star tail has at most
   one original endpoint, so at least six bad points must be finite component
   classes.  Their degree-`6` cofactors are independent, but the fixed-core
   quotient family has vector dimension at most `2` on a line and at most `3`
-  on a conic.  Hence the tail contributes at most six projective slopes and is
-  within budget.
+  on a conic.  Hence the raw tangent bound `r'+1` improves to `r'` while
+  `r'` exceeds this dimension; `e_G=120` is safe and `e_G=119` is the next
+  one-over tangent-tail core.
 - **What to do next:** Focus remaining A386 work on the finite-incidence
   one-over ranges `e_G=72..80` for lines and `e_G=69..76` for conics, or on
   the larger middle quotient ranges.

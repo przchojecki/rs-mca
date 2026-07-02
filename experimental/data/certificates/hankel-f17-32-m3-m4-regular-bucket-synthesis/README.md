@@ -246,8 +246,12 @@ tangent-star cofactors on the punctured row would arise, and at most one of the
 seven projective bad points is the original endpoint.  Hence at least six
 independent cofactors must be finite `Q`-classes on the component, but the
 fixed-core quotient family has vector dimension at most `2` on a line and at
-most `3` on an irreducible conic.  The remaining unclosed intermediate ranges
-are `72<=e_G<=119` for lines and `69<=e_G<=119` for irreducible conics.
+most `3` on an irreducible conic.  More generally, top saturation of the raw
+tangent bound `r'+1` is impossible whenever `r'` exceeds this quotient-family
+dimension, so the cofactor-improved tangent bound is `r'`; `e_G=119` is the
+next one-over tangent-tail core and `e_G>=120` is projective-safe.  The
+remaining unclosed intermediate ranges are `72<=e_G<=119` for lines and
+`69<=e_G<=119` for irreducible conics.
 Inside these ranges the current proof envelope has finite-incidence
 one-over-budget subranges `72<=e_G<=80` for lines and `69<=e_G<=76` for
 irreducible conics; the worst current projective upper bounds in the middle are

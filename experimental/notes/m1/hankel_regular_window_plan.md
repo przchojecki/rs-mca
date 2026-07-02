@@ -332,8 +332,12 @@ tangent-star cofactors on the punctured row `(n',a')=(392,386)` would arise,
 and at most one of the seven projective bad points is the original endpoint.
 Thus at least six independent cofactors must be finite `Q`-classes on the
 component, while the fixed-core quotient family has vector dimension at most
-`2` on a line and at most `3` on a conic.  The unclosed high-core ranges are
-now `72<=e_G<=119` for lines and `69<=e_G<=119` for conics.  The
+`2` on a line and at most `3` on a conic.  More generally, top saturation of
+the raw tangent bound `r'+1` is impossible whenever `r'` exceeds this quotient
+dimension, so the cofactor-improved tangent bound is `r'`; `e_G=119` is the
+next one-over tangent-tail core and `e_G>=120` is projective-safe.  The
+unclosed high-core ranges are now `72<=e_G<=119` for lines and `69<=e_G<=119`
+for conics.  The
 worst current projective upper bounds in the middle are `18` for lines and
 `26` for conics.  The endpoint-only finite-incidence subranges now have
 explicit saturation targets: line six-class saturation has external slack

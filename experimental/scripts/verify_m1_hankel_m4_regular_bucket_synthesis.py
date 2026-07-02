@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v5"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v6"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v23",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v24",
 }
 
 
@@ -814,6 +814,39 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         "punctured tangent-tail cofactor-span closure",
     )
     require(
+        summary["line_cofactor_improved_tangent_one_over_external_core"] == [119],
+        "line cofactor tangent one-over mismatch",
+    )
+    require(
+        summary["conic_cofactor_improved_tangent_one_over_external_core"] == [119],
+        "conic cofactor tangent one-over mismatch",
+    )
+    cofactor_profile = data["cofactor_improved_tangent_tail_profile"]
+    require(
+        cofactor_profile["line_rows"][0]["cofactor_improved_projective_tangent_bound"] == 54,
+        "line cofactor profile first row changed",
+    )
+    require(
+        cofactor_profile["line_rows"][-7]["forced_external_core_size"] == 119
+        and cofactor_profile["line_rows"][-7]["cofactor_improved_one_over_budget"],
+        "line cofactor profile should make e=119 one-over",
+    )
+    require(
+        cofactor_profile["line_rows"][-6]["forced_external_core_size"] == 120
+        and cofactor_profile["line_rows"][-6]["cofactor_improved_projective_safe"],
+        "line cofactor profile should make e=120 safe",
+    )
+    require(
+        cofactor_profile["irreducible_conic_rows"][-7]["forced_external_core_size"] == 119
+        and cofactor_profile["irreducible_conic_rows"][-7]["cofactor_improved_one_over_budget"],
+        "conic cofactor profile should make e=119 one-over",
+    )
+    require(
+        cofactor_profile["irreducible_conic_rows"][-6]["forced_external_core_size"] == 120
+        and cofactor_profile["irreducible_conic_rows"][-6]["cofactor_improved_projective_safe"],
+        "conic cofactor profile should make e=120 safe",
+    )
+    require(
         summary["line_remaining_unclosed_external_core_range"] == [72, 119],
         "line remaining range after tail closure",
     )
@@ -928,6 +961,7 @@ def build_certificate() -> dict[str, Any]:
                 "the remaining high-core irreducible-conic branch has a global common forced core and becomes a quotient family of degree <=57",
                 "after puncturing the forced core, the projective tangent staircase closes the tail e_G>=121",
                 "the e_G=120 punctured-tangent tail is closed by a cofactor-span obstruction: at least six tangent-star cofactors must be finite component classes and are independent, but the fixed-core quotient family has vector dimension at most 2 or 3",
+                "the generalized cofactor-span top-saturation exclusion improves the high-core tangent tail bound from r'+1 to r', making e_G=119 the next one-over tangent-tail core and e_G>=120 projective-safe",
                 "the still-unclosed high-core quotient ranges are e_G=72..119 for lines and e_G=69..119 for irreducible conics",
                 "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; the current worst projective bounds are 18 and 26",
                 "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the formerly one-over e_G=120 cases are closed by the cofactor-span contradiction",
