@@ -536,7 +536,7 @@
     },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
-      "sha256": "c32ec1398558918008387432464295a1e19ba04c32f4a4c6fe4fdc2ad6d2ad0c"
+      "sha256": "b8fde7a502c2d26362f7676138d920961a5e139afe8f39e22403b48bfeb0b130"
     },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
@@ -587,7 +587,8 @@
       "the remaining high-core irreducible-conic branch has a global common forced core and becomes a quotient family of degree <=57",
       "after puncturing the forced core, the projective tangent staircase closes the tail e_G>=121",
       "the still-unclosed high-core quotient ranges are e_G=72..120 for lines and e_G=69..120 for irreducible conics",
-      "within those ranges, the one-over-budget subranges are line e_G=72..80 and 120, conic e_G=69..76 and 120; the current worst projective bounds are 18 and 26"
+      "within those ranges, the one-over-budget subranges are line e_G=72..80 and 120, conic e_G=69..76 and 120; the current worst projective bounds are 18 and 26",
+      "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the e_G=120 cases must instead saturate the punctured projective tangent bound"
     ],
     "closed_by_current_lemmas": [
       "zero-v with full-rank H(u): no finite roots, infinity tangent-paid",

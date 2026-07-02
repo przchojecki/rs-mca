@@ -18,7 +18,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v9"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v10"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -357,6 +357,95 @@ def intermediate_residual_profile_row(
         "active_best_methods": active_methods,
         "projective_safe": current_bound <= PROJECTIVE_BUDGET,
         "one_over_budget": current_bound == PROJECTIVE_BUDGET + 1,
+    }
+
+
+def line_six_finite_saturation_row(
+    forced_external_core_size: int,
+    locator_degree: int,
+    base_root_cap: int,
+    external_root_count: int,
+) -> dict[str, Any]:
+    """Necessary conditions if a residual line reaches six finite classes."""
+    required_external_roots = locator_degree - base_root_cap - forced_external_core_size
+    available_external_roots = external_root_count - forced_external_core_size
+    finite_target = FINITE_BUDGET
+    minimal_external_incidence = finite_target * required_external_roots
+    slack = available_external_roots - minimal_external_incidence
+    require(slack >= 0, "six finite line classes should be incidence-feasible here")
+    return {
+        "component_type": "line",
+        "forced_external_core_size": forced_external_core_size,
+        "finite_classes_in_saturation_scenario": finite_target,
+        "required_external_roots_per_class_min": required_external_roots,
+        "available_nonforced_external_root_lines": available_external_roots,
+        "minimal_external_root_lines_used_by_six_classes": minimal_external_incidence,
+        "external_line_slack_after_minimal_six_classes": slack,
+        "pairwise_external_root_sets_disjoint": True,
+        "total_external_excess_over_minimal_six_classes_at_most": slack,
+        "total_base_roots_across_six_classes_at_least": max(
+            0,
+            finite_target * base_root_cap - slack,
+        ),
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+    }
+
+
+def conic_six_finite_saturation_row(
+    forced_external_core_size: int,
+    locator_degree: int,
+    base_root_cap: int,
+    external_root_count: int,
+) -> dict[str, Any]:
+    """Necessary conditions if a residual irreducible conic reaches six classes."""
+    required_external_roots = locator_degree - base_root_cap - forced_external_core_size
+    available_external_roots = external_root_count - forced_external_core_size
+    finite_target = FINITE_BUDGET
+    max_pair_overlap_events = finite_target * (finite_target - 1) // 2
+    minimal_external_incidence = finite_target * required_external_roots
+    forced_pair_overlaps_before_external_excess = max(
+        0,
+        minimal_external_incidence - available_external_roots,
+    )
+    require(
+        forced_pair_overlaps_before_external_excess <= max_pair_overlap_events,
+        "six finite conic classes should be pair-overlap feasible here",
+    )
+    return {
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": forced_external_core_size,
+        "finite_classes_in_saturation_scenario": finite_target,
+        "required_external_roots_per_class_min": required_external_roots,
+        "available_nonforced_external_root_lines": available_external_roots,
+        "minimal_external_incidence_before_pair_overlap": minimal_external_incidence,
+        "max_pair_overlap_events_for_six_classes": max_pair_overlap_events,
+        "forced_pair_overlap_events_before_external_excess_at_least": (
+            forced_pair_overlaps_before_external_excess
+        ),
+        "pair_overlap_slack_before_external_excess": (
+            max_pair_overlap_events - forced_pair_overlaps_before_external_excess
+        ),
+        "extra_external_roots_raise_required_pair_overlaps_one_for_one": True,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+    }
+
+
+def tangent_one_over_tail_saturation_row(forced_external_core_size: int) -> dict[str, Any]:
+    row = punctured_tangent_tail_row(forced_external_core_size)
+    require(
+        row["projective_bound_from_punctured_projective_tangent"] == PROJECTIVE_BUDGET + 1,
+        "tail saturation row should be exactly one over budget",
+    )
+    return {
+        "forced_external_core_size": forced_external_core_size,
+        "punctured_length": row["punctured_length"],
+        "punctured_cosupport_radius": row["punctured_radius"],
+        "projective_tangent_bound": row["projective_bound_from_punctured_projective_tangent"],
+        "saturation_meaning": (
+            "any surviving branch at this core must saturate the punctured "
+            "projective high-agreement tangent bound"
+        ),
+        "next_saving_needed": "one punctured tangent slope must be paid, duplicated, or absent",
     }
 
 
@@ -707,6 +796,34 @@ def build_certificate() -> dict[str, Any]:
     ]
     line_profile_groups = projective_bound_profile_groups(line_intermediate_profile_rows)
     conic_profile_groups = projective_bound_profile_groups(conic_intermediate_profile_rows)
+    line_incidence_one_over_cores = [
+        row["forced_external_core_size"]
+        for row in line_intermediate_profile_rows
+        if row["one_over_budget"] and "external incidence plus endpoint" in row["active_best_methods"]
+    ]
+    conic_pair_one_over_cores = [
+        row["forced_external_core_size"]
+        for row in conic_intermediate_profile_rows
+        if row["one_over_budget"] and "pair-overlap packing plus endpoint" in row["active_best_methods"]
+    ]
+    tangent_one_over_tail_cores = sorted(
+        {
+            row["forced_external_core_size"]
+            for row in line_intermediate_profile_rows + conic_intermediate_profile_rows
+            if row["one_over_budget"] and row["active_best_methods"] == ["punctured projective tangent"]
+        }
+    )
+    line_six_saturation_rows = [
+        line_six_finite_saturation_row(core, j_value, base_root_cap, external_root_count)
+        for core in line_incidence_one_over_cores
+    ]
+    conic_six_saturation_rows = [
+        conic_six_finite_saturation_row(core, j_value, base_root_cap, external_root_count)
+        for core in conic_pair_one_over_cores
+    ]
+    tangent_tail_saturation_rows = [
+        tangent_one_over_tail_saturation_row(core) for core in tangent_one_over_tail_cores
+    ]
     require(line_residual_core_threshold == 72, "line residual threshold mismatch")
     require(conic_residual_core_threshold == 69, "conic residual threshold mismatch")
     require(
@@ -804,6 +921,37 @@ def build_certificate() -> dict[str, Any]:
         max(row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows)
         == 26,
         "conic profile max bound changed",
+    )
+    require(
+        line_incidence_one_over_cores == list(range(72, 81)),
+        "line incidence one-over cores changed",
+    )
+    require(
+        conic_pair_one_over_cores == list(range(69, 77)),
+        "conic pair-overlap one-over cores changed",
+    )
+    require(tangent_one_over_tail_cores == [120], "tangent one-over tail core changed")
+    require(
+        line_six_saturation_rows[0]["external_line_slack_after_minimal_six_classes"] == 1,
+        "line e=72 saturation slack changed",
+    )
+    require(
+        line_six_saturation_rows[-1]["external_line_slack_after_minimal_six_classes"] == 41,
+        "line e=80 saturation slack changed",
+    )
+    require(
+        conic_six_saturation_rows[0][
+            "forced_pair_overlap_events_before_external_excess_at_least"
+        ]
+        == 14,
+        "conic e=69 forced overlap changed",
+    )
+    require(
+        conic_six_saturation_rows[-1][
+            "forced_pair_overlap_events_before_external_excess_at_least"
+        ]
+        == 0,
+        "conic e=76 forced overlap changed",
     )
 
     return {
@@ -986,6 +1134,17 @@ def build_certificate() -> dict[str, Any]:
                 "and e_G=120; all other intermediate cores need more than a "
                 "single endpoint/root saving under the present methods."
             ),
+            "one_over_saturation_profile": (
+                "If a one-over finite-incidence branch actually reaches six "
+                "finite Q-classes, the root sets must nearly saturate the "
+                "incidence inequality.  For line cores e_G=72..80 the six "
+                "external root sets are pairwise disjoint and have total "
+                "external excess at most 5e_G-359.  For conic cores e_G=69..76, "
+                "six classes require at least max(0,359-5e_G) pair-overlap "
+                "events before any external excess.  The e_G=120 cases are "
+                "different: they would have to saturate the punctured projective "
+                "tangent bound itself."
+            ),
         },
         "budget_formula": {
             "locator_degree_j": j_value,
@@ -1049,6 +1208,11 @@ def build_certificate() -> dict[str, Any]:
             "irreducible_conic_rows": conic_intermediate_profile_rows,
             "irreducible_conic_projective_bound_groups": conic_profile_groups,
         },
+        "one_over_saturation_profile": {
+            "line_six_finite_saturation_rows": line_six_saturation_rows,
+            "irreducible_conic_six_finite_saturation_rows": conic_six_saturation_rows,
+            "punctured_tangent_tail_saturation_rows": tangent_tail_saturation_rows,
+        },
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -1084,6 +1248,20 @@ def build_certificate() -> dict[str, Any]:
             "line_one_over_budget_external_core_ranges": [
                 group["external_core_range"] for group in line_profile_groups if group["one_over_budget"]
             ],
+            "line_incidence_one_over_external_core_range": [
+                min(line_incidence_one_over_cores),
+                max(line_incidence_one_over_cores),
+            ],
+            "line_six_finite_saturation_external_slack_range": [
+                min(
+                    row["external_line_slack_after_minimal_six_classes"]
+                    for row in line_six_saturation_rows
+                ),
+                max(
+                    row["external_line_slack_after_minimal_six_classes"]
+                    for row in line_six_saturation_rows
+                ),
+            ],
             "line_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in line_intermediate_profile_rows
             ),
@@ -1109,9 +1287,24 @@ def build_certificate() -> dict[str, Any]:
                 for group in conic_profile_groups
                 if group["one_over_budget"]
             ],
+            "conic_pair_one_over_external_core_range": [
+                min(conic_pair_one_over_cores),
+                max(conic_pair_one_over_cores),
+            ],
+            "conic_six_finite_forced_pair_overlap_range": [
+                min(
+                    row["forced_pair_overlap_events_before_external_excess_at_least"]
+                    for row in conic_six_saturation_rows
+                ),
+                max(
+                    row["forced_pair_overlap_events_before_external_excess_at_least"]
+                    for row in conic_six_saturation_rows
+                ),
+            ],
             "conic_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows
             ),
+            "punctured_tangent_one_over_tail_external_core": tangent_one_over_tail_cores[0],
             "line_high_core_forced_core_is_dual_evaluation_fiber": True,
             "conic_high_core_forced_core_is_global_common_core": True,
             "remaining_unclosed_residuals": [
@@ -1142,6 +1335,7 @@ def build_certificate() -> dict[str, Any]:
             "high-core residuals satisfy the punctured high-agreement tangent inequality",
             "very-high-core tail e>=121 is projective-safe by the punctured projective tangent staircase",
             "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds",
+            "one-over finite-incidence saturation conditions are computed for the endpoint-only subranges",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",

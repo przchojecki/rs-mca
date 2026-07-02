@@ -180,7 +180,8 @@
     "irreducible conic high-core forced roots are global common roots of the whole Q-plane",
     "high-core residuals satisfy the punctured high-agreement tangent inequality",
     "very-high-core tail e>=121 is projective-safe by the punctured projective tangent staircase",
-    "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds"
+    "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds",
+    "one-over finite-incidence saturation conditions are computed for the endpoint-only subranges"
   ],
   "conic_pair_overlap_sample_rows": [
     {
@@ -2199,6 +2200,243 @@
     "does not produce a row-level M3 safe-side bound"
   ],
   "object": "A=386 separated rank-6 moving-slope split-incidence budget",
+  "one_over_saturation_profile": {
+    "irreducible_conic_six_finite_saturation_rows": [
+      {
+        "available_nonforced_external_root_lines": 316,
+        "component_type": "irreducible_conic",
+        "extra_external_roots_raise_required_pair_overlaps_one_for_one": true,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 69,
+        "forced_pair_overlap_events_before_external_excess_at_least": 14,
+        "max_pair_overlap_events_for_six_classes": 15,
+        "minimal_external_incidence_before_pair_overlap": 330,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pair_overlap_slack_before_external_excess": 1,
+        "required_external_roots_per_class_min": 55
+      },
+      {
+        "available_nonforced_external_root_lines": 315,
+        "component_type": "irreducible_conic",
+        "extra_external_roots_raise_required_pair_overlaps_one_for_one": true,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 70,
+        "forced_pair_overlap_events_before_external_excess_at_least": 9,
+        "max_pair_overlap_events_for_six_classes": 15,
+        "minimal_external_incidence_before_pair_overlap": 324,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pair_overlap_slack_before_external_excess": 6,
+        "required_external_roots_per_class_min": 54
+      },
+      {
+        "available_nonforced_external_root_lines": 314,
+        "component_type": "irreducible_conic",
+        "extra_external_roots_raise_required_pair_overlaps_one_for_one": true,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 71,
+        "forced_pair_overlap_events_before_external_excess_at_least": 4,
+        "max_pair_overlap_events_for_six_classes": 15,
+        "minimal_external_incidence_before_pair_overlap": 318,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pair_overlap_slack_before_external_excess": 11,
+        "required_external_roots_per_class_min": 53
+      },
+      {
+        "available_nonforced_external_root_lines": 313,
+        "component_type": "irreducible_conic",
+        "extra_external_roots_raise_required_pair_overlaps_one_for_one": true,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 72,
+        "forced_pair_overlap_events_before_external_excess_at_least": 0,
+        "max_pair_overlap_events_for_six_classes": 15,
+        "minimal_external_incidence_before_pair_overlap": 312,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pair_overlap_slack_before_external_excess": 15,
+        "required_external_roots_per_class_min": 52
+      },
+      {
+        "available_nonforced_external_root_lines": 312,
+        "component_type": "irreducible_conic",
+        "extra_external_roots_raise_required_pair_overlaps_one_for_one": true,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 73,
+        "forced_pair_overlap_events_before_external_excess_at_least": 0,
+        "max_pair_overlap_events_for_six_classes": 15,
+        "minimal_external_incidence_before_pair_overlap": 306,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pair_overlap_slack_before_external_excess": 15,
+        "required_external_roots_per_class_min": 51
+      },
+      {
+        "available_nonforced_external_root_lines": 311,
+        "component_type": "irreducible_conic",
+        "extra_external_roots_raise_required_pair_overlaps_one_for_one": true,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 74,
+        "forced_pair_overlap_events_before_external_excess_at_least": 0,
+        "max_pair_overlap_events_for_six_classes": 15,
+        "minimal_external_incidence_before_pair_overlap": 300,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pair_overlap_slack_before_external_excess": 15,
+        "required_external_roots_per_class_min": 50
+      },
+      {
+        "available_nonforced_external_root_lines": 310,
+        "component_type": "irreducible_conic",
+        "extra_external_roots_raise_required_pair_overlaps_one_for_one": true,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 75,
+        "forced_pair_overlap_events_before_external_excess_at_least": 0,
+        "max_pair_overlap_events_for_six_classes": 15,
+        "minimal_external_incidence_before_pair_overlap": 294,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pair_overlap_slack_before_external_excess": 15,
+        "required_external_roots_per_class_min": 49
+      },
+      {
+        "available_nonforced_external_root_lines": 309,
+        "component_type": "irreducible_conic",
+        "extra_external_roots_raise_required_pair_overlaps_one_for_one": true,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 76,
+        "forced_pair_overlap_events_before_external_excess_at_least": 0,
+        "max_pair_overlap_events_for_six_classes": 15,
+        "minimal_external_incidence_before_pair_overlap": 288,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pair_overlap_slack_before_external_excess": 15,
+        "required_external_roots_per_class_min": 48
+      }
+    ],
+    "line_six_finite_saturation_rows": [
+      {
+        "available_nonforced_external_root_lines": 313,
+        "component_type": "line",
+        "external_line_slack_after_minimal_six_classes": 1,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 72,
+        "minimal_external_root_lines_used_by_six_classes": 312,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pairwise_external_root_sets_disjoint": true,
+        "required_external_roots_per_class_min": 52,
+        "total_base_roots_across_six_classes_at_least": 11,
+        "total_external_excess_over_minimal_six_classes_at_most": 1
+      },
+      {
+        "available_nonforced_external_root_lines": 312,
+        "component_type": "line",
+        "external_line_slack_after_minimal_six_classes": 6,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 73,
+        "minimal_external_root_lines_used_by_six_classes": 306,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pairwise_external_root_sets_disjoint": true,
+        "required_external_roots_per_class_min": 51,
+        "total_base_roots_across_six_classes_at_least": 6,
+        "total_external_excess_over_minimal_six_classes_at_most": 6
+      },
+      {
+        "available_nonforced_external_root_lines": 311,
+        "component_type": "line",
+        "external_line_slack_after_minimal_six_classes": 11,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 74,
+        "minimal_external_root_lines_used_by_six_classes": 300,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pairwise_external_root_sets_disjoint": true,
+        "required_external_roots_per_class_min": 50,
+        "total_base_roots_across_six_classes_at_least": 1,
+        "total_external_excess_over_minimal_six_classes_at_most": 11
+      },
+      {
+        "available_nonforced_external_root_lines": 310,
+        "component_type": "line",
+        "external_line_slack_after_minimal_six_classes": 16,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 75,
+        "minimal_external_root_lines_used_by_six_classes": 294,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pairwise_external_root_sets_disjoint": true,
+        "required_external_roots_per_class_min": 49,
+        "total_base_roots_across_six_classes_at_least": 0,
+        "total_external_excess_over_minimal_six_classes_at_most": 16
+      },
+      {
+        "available_nonforced_external_root_lines": 309,
+        "component_type": "line",
+        "external_line_slack_after_minimal_six_classes": 21,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 76,
+        "minimal_external_root_lines_used_by_six_classes": 288,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pairwise_external_root_sets_disjoint": true,
+        "required_external_roots_per_class_min": 48,
+        "total_base_roots_across_six_classes_at_least": 0,
+        "total_external_excess_over_minimal_six_classes_at_most": 21
+      },
+      {
+        "available_nonforced_external_root_lines": 308,
+        "component_type": "line",
+        "external_line_slack_after_minimal_six_classes": 26,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 77,
+        "minimal_external_root_lines_used_by_six_classes": 282,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pairwise_external_root_sets_disjoint": true,
+        "required_external_roots_per_class_min": 47,
+        "total_base_roots_across_six_classes_at_least": 0,
+        "total_external_excess_over_minimal_six_classes_at_most": 26
+      },
+      {
+        "available_nonforced_external_root_lines": 307,
+        "component_type": "line",
+        "external_line_slack_after_minimal_six_classes": 31,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 78,
+        "minimal_external_root_lines_used_by_six_classes": 276,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pairwise_external_root_sets_disjoint": true,
+        "required_external_roots_per_class_min": 46,
+        "total_base_roots_across_six_classes_at_least": 0,
+        "total_external_excess_over_minimal_six_classes_at_most": 31
+      },
+      {
+        "available_nonforced_external_root_lines": 306,
+        "component_type": "line",
+        "external_line_slack_after_minimal_six_classes": 36,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 79,
+        "minimal_external_root_lines_used_by_six_classes": 270,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pairwise_external_root_sets_disjoint": true,
+        "required_external_roots_per_class_min": 45,
+        "total_base_roots_across_six_classes_at_least": 0,
+        "total_external_excess_over_minimal_six_classes_at_most": 36
+      },
+      {
+        "available_nonforced_external_root_lines": 305,
+        "component_type": "line",
+        "external_line_slack_after_minimal_six_classes": 41,
+        "finite_classes_in_saturation_scenario": 6,
+        "forced_external_core_size": 80,
+        "minimal_external_root_lines_used_by_six_classes": 264,
+        "next_saving_needed": "exclude the six-class saturation pattern or pay the endpoint",
+        "pairwise_external_root_sets_disjoint": true,
+        "required_external_roots_per_class_min": 44,
+        "total_base_roots_across_six_classes_at_least": 0,
+        "total_external_excess_over_minimal_six_classes_at_most": 41
+      }
+    ],
+    "punctured_tangent_tail_saturation_rows": [
+      {
+        "forced_external_core_size": 120,
+        "next_saving_needed": "one punctured tangent slope must be paid, duplicated, or absent",
+        "projective_tangent_bound": 7,
+        "punctured_cosupport_radius": 6,
+        "punctured_length": 392,
+        "saturation_meaning": "any surviving branch at this core must saturate the punctured projective high-agreement tangent bound"
+      }
+    ]
+  },
   "punctured_tangent_reduction_rows": [
     {
       "component_type": "line",
@@ -2303,7 +2541,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v9",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v10",
   "source_artifacts": {
     "a386_global_component_slope_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json",
@@ -2352,6 +2590,10 @@
         120
       ]
     ],
+    "conic_pair_one_over_external_core_range": [
+      69,
+      76
+    ],
     "conic_projective_safe_for_external_core_at_most": 68,
     "conic_remaining_unclosed_external_core_range": [
       69,
@@ -2360,9 +2602,17 @@
     "conic_residual_projective_safe_by_punctured_tangent_for_external_core_at_least": 121,
     "conic_residual_punctured_tangent_numerator_at_threshold": 58,
     "conic_residual_quotient_degree_at_most": 57,
+    "conic_six_finite_forced_pair_overlap_range": [
+      0,
+      14
+    ],
     "external_root_count": 385,
     "line_finite_safe_for_external_core_at_most": 80,
     "line_high_core_forced_core_is_dual_evaluation_fiber": true,
+    "line_incidence_one_over_external_core_range": [
+      72,
+      80
+    ],
     "line_intermediate_max_current_projective_upper_bound": 18,
     "line_one_over_budget_external_core_ranges": [
       [
@@ -2382,8 +2632,13 @@
     "line_residual_projective_safe_by_punctured_tangent_for_external_core_at_least": 121,
     "line_residual_punctured_tangent_numerator_at_threshold": 55,
     "line_residual_quotient_degree_at_most": 54,
+    "line_six_finite_saturation_external_slack_range": [
+      1,
+      41
+    ],
     "locator_degree_j": 126,
     "positive_dimensional_component_forced_core_upper_bound": 125,
+    "punctured_tangent_one_over_tail_external_core": 120,
     "remaining_unclosed_residuals": [
       "moving-slope line component with forced external split-root core in 72..120 for projective accounting",
       "irreducible moving-slope conic component with forced external split-root core in 69..120 for projective accounting",
@@ -2404,6 +2659,7 @@
     "intermediate_residual_profile": "Combining the external-incidence, pair-overlap, and punctured projective tangent bounds gives a sharp current proof envelope for the unresolved intermediate cores.  The one-over-budget subranges are line e_G=72..80 and e_G=120, and conic e_G=69..76 and e_G=120; all other intermediate cores need more than a single endpoint/root saving under the present methods.",
     "line_projective_safe_core_threshold": "For a line component c=1, the unrefined all-root budget gives projective safety at r_G<=48.  The base-sharpened external budget improves this: e_G<=71 gives at most five finite Q-classes.  Adding the endpoint-uniform contribution gives projective total at most 6, exactly the projective budget.",
     "no_identically_split_positive_dimensional_component": "A positive-dimensional component cannot have r_G>=j=126.  Otherwise every L_Q on G would be divisible by the same degree-j split locator, hence scalar-multiple to it because deg L_Q<=j, contradicting projective injectivity of Q -> L_Q on G.",
+    "one_over_saturation_profile": "If a one-over finite-incidence branch actually reaches six finite Q-classes, the root sets must nearly saturate the incidence inequality.  For line cores e_G=72..80 the six external root sets are pairwise disjoint and have total external excess at most 5e_G-359.  For conic cores e_G=69..76, six classes require at least max(0,359-5e_G) pair-overlap events before any external excess.  The e_G=120 cases are different: they would have to saturate the punctured projective tangent bound itself.",
     "punctured_high_agreement_tangent_reduction": "Deleting the forced external core E leaves a punctured RS row of length n'=512-|E|, while the same witness has exact agreement 386 and co-support radius r'=126-|E|.  Since r' <= floor((n'-256)/3) for |E|>=61, every remaining high-core branch lies in the very-high-agreement tangent-staircase range of the punctured row.",
     "very_high_core_projective_tail_closure": "The high-agreement projective tangent staircase applies to the punctured row and bounds finite plus infinity slopes together by r'+1=127-|E|.  Hence every high-core branch with |E|>=121 has projective contribution at most 6.  This closes the very-high-core tail but leaves the intermediate high-core quotient range unresolved."
   },

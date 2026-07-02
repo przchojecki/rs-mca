@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 one-over saturation profile
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md`;
+  `experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `A=386` moving-slope packet now records
+  necessary saturation conditions for the endpoint-only one-over-budget
+  subranges.
+- **How it is useful:** Six finite line classes in the incidence one-over range
+  must have pairwise disjoint external root sets with slack `1..41`; six finite
+  conic classes need `0..14` forced pair-overlap events before external excess;
+  the `e_G=120` cases must saturate the punctured projective tangent bound.
+- **What to do next:** Use these saturation targets to either exclude the
+  six-class patterns, identify them as paid quotient/tangent structure, or find
+  a minimal witness showing they genuinely survive.
+
 ### 2026-07-02 - A386 intermediate high-core residual profile
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

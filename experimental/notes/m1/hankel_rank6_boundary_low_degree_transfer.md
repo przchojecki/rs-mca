@@ -174,7 +174,10 @@ are `72<=e_G<=120` for lines and `69<=e_G<=120` for irreducible conics.
 Within those ranges the current projective proof envelope is only one over
 budget for line cores `72<=e_G<=80` and `e_G=120`, and for conic cores
 `69<=e_G<=76` and `e_G=120`; the worst current projective upper bounds in the
-middle are `18` for lines and `26` for conics.
+middle are `18` for lines and `26` for conics.  The endpoint-only
+finite-incidence subranges now have explicit saturation targets: line
+six-class saturation has external slack `1..41`, and conic six-class
+saturation needs `0..14` forced pair-overlap events before external excess.
 
 Replay:
 

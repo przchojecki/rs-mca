@@ -298,6 +298,13 @@ quotient/core residuals.  A single endpoint payment or one-root saving would
 close the one-over-budget subranges, while the middle ranges need a stronger
 quotient, tangent, or exact-root-table argument.
 
+The saturation profile records the next obstruction explicitly.  Six finite
+line classes in the incidence one-over range require pairwise disjoint external
+root sets with external slack between `1` and `41`.  Six finite conic classes
+require between `0` and `14` forced pair-overlap events before any external
+excess.  At `|E|=120`, the branch would instead have to saturate the punctured
+projective tangent bound itself.
+
 Replay:
 
 ```sh

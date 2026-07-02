@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v9",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v10",
 }
 
 
@@ -346,6 +346,26 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         summary["conic_intermediate_max_current_projective_upper_bound"] == 26,
         "conic max intermediate bound mismatch",
     )
+    require(
+        summary["line_incidence_one_over_external_core_range"] == [72, 80],
+        "line incidence one-over core range mismatch",
+    )
+    require(
+        summary["line_six_finite_saturation_external_slack_range"] == [1, 41],
+        "line saturation slack range mismatch",
+    )
+    require(
+        summary["conic_pair_one_over_external_core_range"] == [69, 76],
+        "conic pair-overlap one-over core range mismatch",
+    )
+    require(
+        summary["conic_six_finite_forced_pair_overlap_range"] == [0, 14],
+        "conic forced pair-overlap range mismatch",
+    )
+    require(
+        summary["punctured_tangent_one_over_tail_external_core"] == 120,
+        "tangent one-over tail core mismatch",
+    )
     nonclaims = set(data["nonclaims"])
     require(
         "does not claim the punctured tangent numerator at the residual threshold is within the original row budget"
@@ -454,6 +474,7 @@ def build_certificate() -> dict[str, Any]:
                 "after puncturing the forced core, the projective tangent staircase closes the tail e_G>=121",
                 "the still-unclosed high-core quotient ranges are e_G=72..120 for lines and e_G=69..120 for irreducible conics",
                 "within those ranges, the one-over-budget subranges are line e_G=72..80 and 120, conic e_G=69..76 and 120; the current worst projective bounds are 18 and 26",
+                "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the e_G=120 cases must instead saturate the punctured projective tangent bound",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",

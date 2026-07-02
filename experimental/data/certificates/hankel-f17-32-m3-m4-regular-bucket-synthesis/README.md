@@ -245,7 +245,10 @@ unclosed intermediate ranges are `72<=e_G<=120` for lines and `69<=e_G<=120`
 for irreducible conics.  Inside these ranges the current proof envelope has
 one-over-budget subranges `72<=e_G<=80` and `e_G=120` for lines, and
 `69<=e_G<=76` and `e_G=120` for irreducible conics; the worst current
-projective upper bounds in the middle are `18` and `26`, respectively.
+projective upper bounds in the middle are `18` and `26`, respectively.  The
+endpoint-only finite-incidence subranges now carry saturation constraints:
+line six-class saturation has external slack `1..41`, while conic six-class
+saturation needs `0..14` forced pair-overlap events before external excess.
 
 The rank-node dichotomy packet
 
