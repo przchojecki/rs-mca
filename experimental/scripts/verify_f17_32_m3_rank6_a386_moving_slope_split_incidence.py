@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v22"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v23"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -667,18 +667,22 @@ def tangent_tail_cofactor_span_closure_row(extremizer_row: dict[str, Any]) -> di
         quotient_family_vector_dimension_at_most = 3
         quotient_family_reason = "a conic component lies in the ambient 3-dimensional Q-plane"
 
-    cofactor_count = extremizer_row["finite_tangent_star_residual_coordinate_count"]
-    require(cofactor_count == PROJECTIVE_BUDGET + 1, "tail should have seven cofactors")
-    cofactor_span_dimension = cofactor_count
+    projective_cofactor_count = extremizer_row["finite_tangent_star_residual_coordinate_count"]
+    require(projective_cofactor_count == PROJECTIVE_BUDGET + 1, "tail should have seven cofactors")
+    finite_component_cofactor_count_at_least = projective_cofactor_count - 1
+    finite_component_cofactor_span_dimension_at_least = finite_component_cofactor_count_at_least
     require(
-        cofactor_span_dimension > quotient_family_vector_dimension_at_most,
-        "cofactor span should exceed the quotient-family vector dimension",
+        finite_component_cofactor_span_dimension_at_least
+        > quotient_family_vector_dimension_at_most,
+        "finite cofactor span should exceed the quotient-family vector dimension",
     )
     return {
         "component_type": component_type,
         "forced_external_core_size": extremizer_row["forced_external_core_size"],
-        "hypothetical_projective_saturation_count": cofactor_count,
-        "punctured_residual_coordinate_count": cofactor_count,
+        "hypothetical_projective_saturation_count": projective_cofactor_count,
+        "original_projective_endpoint_count_at_most": 1,
+        "finite_component_slope_count_at_least": finite_component_cofactor_count_at_least,
+        "punctured_residual_coordinate_count": projective_cofactor_count,
         "cofactor_polynomials": (
             "for residual set Omega={omega_1,...,omega_7}, the saturated "
             "split locators after forced-core puncturing are "
@@ -686,17 +690,22 @@ def tangent_tail_cofactor_span_closure_row(extremizer_row: dict[str, Any]) -> di
         ),
         "cofactor_independence_witness": (
             "evaluation at omega_i kills all R_m with m != i and gives "
-            "R_i(omega_i)!=0, so the seven cofactors are linearly independent"
+            "R_i(omega_i)!=0, so every subset of the seven cofactors is "
+            "linearly independent"
         ),
-        "cofactor_span_dimension": cofactor_span_dimension,
+        "finite_component_cofactor_span_dimension_at_least": (
+            finite_component_cofactor_span_dimension_at_least
+        ),
         "quotient_family_vector_dimension_at_most": quotient_family_vector_dimension_at_most,
         "quotient_family_reason": quotient_family_reason,
         "contradiction": True,
         "projective_safe_after_cofactor_span_obstruction": True,
         "projective_upper_bound_after_obstruction": PROJECTIVE_BUDGET,
         "closure_statement": (
-            "the e_G=120 tail cannot realize seven projective slopes; hence it "
-            "contributes at most six projective slopes and is within budget"
+            "the e_G=120 tail cannot realize seven projective slopes: at least "
+            "six of them must be finite classes on the component, but their "
+            "cofactors already span dimension six, exceeding the fixed-core "
+            "quotient-family dimension"
         ),
     }
 
@@ -797,7 +806,7 @@ def one_over_mechanism_priority_ledger(
             "external_core_range": [120, 120],
             "core_count": 2,
             "primary_remaining_savings": [
-                "closed: seven tangent-star cofactors cannot fit in the fixed-core quotient family",
+                "closed: six finite tangent-star cofactors cannot fit in the fixed-core quotient family",
             ],
         },
     ]
@@ -2493,15 +2502,16 @@ def build_certificate() -> dict[str, Any]:
             (
                 row["component_type"],
                 row["forced_external_core_size"],
-                row["cofactor_span_dimension"],
+                row["finite_component_slope_count_at_least"],
+                row["finite_component_cofactor_span_dimension_at_least"],
                 row["quotient_family_vector_dimension_at_most"],
                 row["projective_upper_bound_after_obstruction"],
             )
             for row in tangent_tail_cofactor_span_closure_rows
         ]
         == [
-            ("line", 120, 7, 2, 6),
-            ("irreducible_conic", 120, 7, 3, 6),
+            ("line", 120, 6, 6, 2, 6),
+            ("irreducible_conic", 120, 6, 6, 3, 6),
         ],
         "punctured tangent tail cofactor-span closure changed",
     )
@@ -2690,11 +2700,13 @@ def build_certificate() -> dict[str, Any]:
                 "The remaining one-over tangent tail at e_G=120 is also closed.  "
                 "If it had seven projective slopes, the tangent-star extremizer "
                 "profile on the punctured row would give seven degree-6 cofactors "
-                "of a seven-point residual set.  These cofactors are linearly "
-                "independent by evaluation on the residual points, but the fixed-core "
-                "quotient family has vector dimension at most 2 on a line component "
-                "and at most 3 on an irreducible conic component.  This contradiction "
-                "bounds the tail by six projective slopes."
+                "of a seven-point residual set.  At most one of the seven projective "
+                "bad points is the original endpoint, so at least six cofactors come "
+                "from finite Q-classes on the component.  Any six cofactors are "
+                "linearly independent by evaluation on the residual points, but the "
+                "fixed-core quotient family has vector dimension at most 2 on a line "
+                "component and at most 3 on an irreducible conic component.  This "
+                "contradiction bounds the tail by six projective slopes."
             ),
             "intermediate_residual_profile": (
                 "Combining the external-incidence, pair-overlap, and punctured "

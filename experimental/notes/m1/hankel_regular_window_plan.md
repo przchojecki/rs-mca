@@ -328,10 +328,12 @@ projective proof envelope is only one over budget for line cores
 `72<=e_G<=80` and, before the cofactor-span refinement, `e_G=120`; for conic
 cores `69<=e_G<=76` and, before the same refinement, `e_G=120`.  The
 cofactor-span obstruction closes the punctured-tangent tail `e_G=120`: seven
-tangent-star cofactors on the punctured row `(n',a')=(392,386)` would be
-linearly independent, but the fixed-core quotient family has vector dimension
-at most `2` on a line and at most `3` on a conic.  Thus the unclosed high-core
-ranges are now `72<=e_G<=119` for lines and `69<=e_G<=119` for conics.  The
+tangent-star cofactors on the punctured row `(n',a')=(392,386)` would arise,
+and at most one of the seven projective bad points is the original endpoint.
+Thus at least six independent cofactors must be finite `Q`-classes on the
+component, while the fixed-core quotient family has vector dimension at most
+`2` on a line and at most `3` on a conic.  The unclosed high-core ranges are
+now `72<=e_G<=119` for lines and `69<=e_G<=119` for conics.  The
 worst current projective upper bounds in the middle are `18` for lines and
 `26` for conics.  The endpoint-only finite-incidence subranges now have
 explicit saturation targets: line six-class saturation has external slack

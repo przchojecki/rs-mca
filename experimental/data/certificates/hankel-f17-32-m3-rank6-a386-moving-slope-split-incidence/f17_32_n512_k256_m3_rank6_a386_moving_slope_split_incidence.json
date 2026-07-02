@@ -3288,7 +3288,7 @@
       ],
       "mechanism_class": "punctured_tangent_tail_closed_by_cofactor_span",
       "primary_remaining_savings": [
-        "closed: seven tangent-star cofactors cannot fit in the fixed-core quotient family"
+        "closed: six finite tangent-star cofactors cannot fit in the fixed-core quotient family"
       ]
     }
   ],
@@ -3903,14 +3903,16 @@
   ],
   "punctured_tangent_tail_cofactor_span_closure": [
     {
-      "closure_statement": "the e_G=120 tail cannot realize seven projective slopes; hence it contributes at most six projective slopes and is within budget",
-      "cofactor_independence_witness": "evaluation at omega_i kills all R_m with m != i and gives R_i(omega_i)!=0, so the seven cofactors are linearly independent",
+      "closure_statement": "the e_G=120 tail cannot realize seven projective slopes: at least six of them must be finite classes on the component, but their cofactors already span dimension six, exceeding the fixed-core quotient-family dimension",
+      "cofactor_independence_witness": "evaluation at omega_i kills all R_m with m != i and gives R_i(omega_i)!=0, so every subset of the seven cofactors is linearly independent",
       "cofactor_polynomials": "for residual set Omega={omega_1,...,omega_7}, the saturated split locators after forced-core puncturing are R_i(X)=prod_{m != i}(X-omega_m)",
-      "cofactor_span_dimension": 7,
       "component_type": "line",
       "contradiction": true,
+      "finite_component_cofactor_span_dimension_at_least": 6,
+      "finite_component_slope_count_at_least": 6,
       "forced_external_core_size": 120,
       "hypothetical_projective_saturation_count": 7,
+      "original_projective_endpoint_count_at_most": 1,
       "projective_safe_after_cofactor_span_obstruction": true,
       "projective_upper_bound_after_obstruction": 6,
       "punctured_residual_coordinate_count": 7,
@@ -3918,14 +3920,16 @@
       "quotient_family_vector_dimension_at_most": 2
     },
     {
-      "closure_statement": "the e_G=120 tail cannot realize seven projective slopes; hence it contributes at most six projective slopes and is within budget",
-      "cofactor_independence_witness": "evaluation at omega_i kills all R_m with m != i and gives R_i(omega_i)!=0, so the seven cofactors are linearly independent",
+      "closure_statement": "the e_G=120 tail cannot realize seven projective slopes: at least six of them must be finite classes on the component, but their cofactors already span dimension six, exceeding the fixed-core quotient-family dimension",
+      "cofactor_independence_witness": "evaluation at omega_i kills all R_m with m != i and gives R_i(omega_i)!=0, so every subset of the seven cofactors is linearly independent",
       "cofactor_polynomials": "for residual set Omega={omega_1,...,omega_7}, the saturated split locators after forced-core puncturing are R_i(X)=prod_{m != i}(X-omega_m)",
-      "cofactor_span_dimension": 7,
       "component_type": "irreducible_conic",
       "contradiction": true,
+      "finite_component_cofactor_span_dimension_at_least": 6,
+      "finite_component_slope_count_at_least": 6,
       "forced_external_core_size": 120,
       "hypothetical_projective_saturation_count": 7,
+      "original_projective_endpoint_count_at_most": 1,
       "projective_safe_after_cofactor_span_obstruction": true,
       "projective_upper_bound_after_obstruction": 6,
       "punctured_residual_coordinate_count": 7,
@@ -4051,7 +4055,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v22",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v23",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -5280,14 +5284,16 @@
     "punctured_tangent_one_over_tail_external_core": 120,
     "punctured_tangent_tail_cofactor_span_closure": [
       {
-        "closure_statement": "the e_G=120 tail cannot realize seven projective slopes; hence it contributes at most six projective slopes and is within budget",
-        "cofactor_independence_witness": "evaluation at omega_i kills all R_m with m != i and gives R_i(omega_i)!=0, so the seven cofactors are linearly independent",
+        "closure_statement": "the e_G=120 tail cannot realize seven projective slopes: at least six of them must be finite classes on the component, but their cofactors already span dimension six, exceeding the fixed-core quotient-family dimension",
+        "cofactor_independence_witness": "evaluation at omega_i kills all R_m with m != i and gives R_i(omega_i)!=0, so every subset of the seven cofactors is linearly independent",
         "cofactor_polynomials": "for residual set Omega={omega_1,...,omega_7}, the saturated split locators after forced-core puncturing are R_i(X)=prod_{m != i}(X-omega_m)",
-        "cofactor_span_dimension": 7,
         "component_type": "line",
         "contradiction": true,
+        "finite_component_cofactor_span_dimension_at_least": 6,
+        "finite_component_slope_count_at_least": 6,
         "forced_external_core_size": 120,
         "hypothetical_projective_saturation_count": 7,
+        "original_projective_endpoint_count_at_most": 1,
         "projective_safe_after_cofactor_span_obstruction": true,
         "projective_upper_bound_after_obstruction": 6,
         "punctured_residual_coordinate_count": 7,
@@ -5295,14 +5301,16 @@
         "quotient_family_vector_dimension_at_most": 2
       },
       {
-        "closure_statement": "the e_G=120 tail cannot realize seven projective slopes; hence it contributes at most six projective slopes and is within budget",
-        "cofactor_independence_witness": "evaluation at omega_i kills all R_m with m != i and gives R_i(omega_i)!=0, so the seven cofactors are linearly independent",
+        "closure_statement": "the e_G=120 tail cannot realize seven projective slopes: at least six of them must be finite classes on the component, but their cofactors already span dimension six, exceeding the fixed-core quotient-family dimension",
+        "cofactor_independence_witness": "evaluation at omega_i kills all R_m with m != i and gives R_i(omega_i)!=0, so every subset of the seven cofactors is linearly independent",
         "cofactor_polynomials": "for residual set Omega={omega_1,...,omega_7}, the saturated split locators after forced-core puncturing are R_i(X)=prod_{m != i}(X-omega_m)",
-        "cofactor_span_dimension": 7,
         "component_type": "irreducible_conic",
         "contradiction": true,
+        "finite_component_cofactor_span_dimension_at_least": 6,
+        "finite_component_slope_count_at_least": 6,
         "forced_external_core_size": 120,
         "hypothetical_projective_saturation_count": 7,
+        "original_projective_endpoint_count_at_most": 1,
         "projective_safe_after_cofactor_span_obstruction": true,
         "projective_upper_bound_after_obstruction": 6,
         "punctured_residual_coordinate_count": 7,
@@ -5394,7 +5402,7 @@
     "one_over_saturation_profile": "If a one-over finite-incidence branch actually reaches six finite Q-classes, the root sets must nearly saturate the incidence inequality.  For line cores e_G=72..80 the six external root sets are pairwise disjoint and have total external excess at most 5e_G-359.  For conic cores e_G=69..76, six classes require at least max(0,359-5e_G) pair-overlap events before any external excess.  The e_G=120 cases are different: they would have to saturate the punctured projective tangent bound itself.",
     "over_budget_survival_profile": "A genuine over-budget witness in a one-over row must saturate the source-class bound, have six distinct finite slopes, and keep the projective endpoint unpaid.  Line cores e_G=72,73,74 also force near-complete, positive, and weak base-splitting pressure respectively.  Conic cores e_G=69,70,71 force almost complete, dense, and nontrivial external-secants respectively.",
     "punctured_high_agreement_tangent_reduction": "Deleting the forced external core E leaves a punctured RS row of length n'=512-|E|, while the same witness has exact agreement 386 and co-support radius r'=126-|E|.  Since r' <= floor((n'-256)/3) for |E|>=61, every remaining high-core branch lies in the very-high-agreement tangent-staircase range of the punctured row.",
-    "punctured_tangent_tail_cofactor_span_closure": "The remaining one-over tangent tail at e_G=120 is also closed.  If it had seven projective slopes, the tangent-star extremizer profile on the punctured row would give seven degree-6 cofactors of a seven-point residual set.  These cofactors are linearly independent by evaluation on the residual points, but the fixed-core quotient family has vector dimension at most 2 on a line component and at most 3 on an irreducible conic component.  This contradiction bounds the tail by six projective slopes.",
+    "punctured_tangent_tail_cofactor_span_closure": "The remaining one-over tangent tail at e_G=120 is also closed.  If it had seven projective slopes, the tangent-star extremizer profile on the punctured row would give seven degree-6 cofactors of a seven-point residual set.  At most one of the seven projective bad points is the original endpoint, so at least six cofactors come from finite Q-classes on the component.  Any six cofactors are linearly independent by evaluation on the residual points, but the fixed-core quotient family has vector dimension at most 2 on a line component and at most 3 on an irreducible conic component.  This contradiction bounds the tail by six projective slopes.",
     "punctured_tangent_tail_extremizer_profile": "If the e_G=120 tail actually exceeds budget, it must saturate the projective tangent staircase on the punctured row (n',a')=(392,386).  Since the projective bad set has size 7 and P^1(F) has q+1 points, a nonbad projective point can be sent to infinity.  The finite tangent-star extremizer corollary then forces a common support of size 385 and a bijection from the seven punctured residual coordinates to the seven bad projective slopes.",
     "single_saving_closure_ledger": "Every currently one-over row in the moving-slope packet is listed in a single-saving closure ledger.  The ledger covers line cores 72..80, conic cores 69..76, and the line/conic punctured-tangent tail at core 120.  In each row, any one listed saving lowers the projective count from 7 to the budget 6.",
     "very_high_core_projective_tail_closure": "The high-agreement projective tangent staircase applies to the punctured row and bounds finite plus infinity slopes together by r'+1=127-|E|.  Hence every high-core branch with |E|>=121 has projective contribution at most 6.  This closes the very-high-core tail but leaves the intermediate high-core quotient range unresolved."

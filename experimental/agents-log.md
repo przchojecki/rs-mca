@@ -44,11 +44,12 @@ Keep entries concise and link to the relevant files.
 - **Status:** PROVED / AUDIT.
 - **What is being added:** The `e_G=120` punctured-tangent tail in the
   `A=386` moving-slope packet is closed by a cofactor-span obstruction.
-- **How it is useful:** Seven saturated tangent-star quotient locators would
-  be seven independent degree-`6` cofactors of a seven-point residual set, but
-  the fixed-core quotient family has vector dimension at most `2` on a line
-  and at most `3` on a conic.  Hence the tail contributes at most six
-  projective slopes and is within budget.
+- **How it is useful:** A seven-slope saturated tangent-star tail has at most
+  one original endpoint, so at least six bad points must be finite component
+  classes.  Their degree-`6` cofactors are independent, but the fixed-core
+  quotient family has vector dimension at most `2` on a line and at most `3`
+  on a conic.  Hence the tail contributes at most six projective slopes and is
+  within budget.
 - **What to do next:** Focus remaining A386 work on the finite-incidence
   one-over ranges `e_G=72..80` for lines and `e_G=69..76` for conics, or on
   the larger middle quotient ranges.

@@ -282,11 +282,14 @@ R_i(X)=prod_{m != i}(X-omega_m)
 
 of a seven-point residual set.  These cofactors are linearly independent:
 evaluation at `omega_i` kills all `R_m` for `m != i` and leaves
-`R_i(omega_i) != 0`.  But after the fixed forced core is factored, a line
-component supplies at most a `2`-dimensional vector space of quotient locators,
-and an irreducible conic lies in the ambient `3`-dimensional `Q`-plane.  Seven
-independent cofactors cannot lie in either family.  Therefore the `|E|=120`
-tail contributes at most six projective slopes and is projective-safe.
+`R_i(omega_i) != 0`, so every subset of them is independent.  At most one of
+the seven projective bad points is the original endpoint, hence at least six
+bad points are finite `Q`-classes on the component.  But after the fixed forced
+core is factored, a line component supplies at most a `2`-dimensional vector
+space of quotient locators, and an irreducible conic lies in the ambient
+`3`-dimensional `Q`-plane.  Six independent finite cofactors cannot lie in
+either family.  Therefore the `|E|=120` tail contributes at most six projective
+slopes and is projective-safe.
 
 Thus the unclosed high-core quotient range is finite:
 

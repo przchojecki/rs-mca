@@ -242,10 +242,12 @@ of degree at most `57`.  After puncturing the forced core, the projective
 tangent staircase bounds finite slopes and infinity together by `127-e_G`;
 hence the very-high-core tail `e_G>=121` is projective-safe.  The boundary row
 `e_G=120` is also projective-safe by a cofactor-span obstruction: seven
-tangent-star cofactors on the punctured row would be linearly independent, but
-the fixed-core quotient family has vector dimension at most `2` on a line and
-at most `3` on an irreducible conic.  The remaining unclosed intermediate
-ranges are `72<=e_G<=119` for lines and `69<=e_G<=119` for irreducible conics.
+tangent-star cofactors on the punctured row would arise, and at most one of the
+seven projective bad points is the original endpoint.  Hence at least six
+independent cofactors must be finite `Q`-classes on the component, but the
+fixed-core quotient family has vector dimension at most `2` on a line and at
+most `3` on an irreducible conic.  The remaining unclosed intermediate ranges
+are `72<=e_G<=119` for lines and `69<=e_G<=119` for irreducible conics.
 Inside these ranges the current proof envelope has finite-incidence
 one-over-budget subranges `72<=e_G<=80` for lines and `69<=e_G<=76` for
 irreducible conics; the worst current projective upper bounds in the middle are

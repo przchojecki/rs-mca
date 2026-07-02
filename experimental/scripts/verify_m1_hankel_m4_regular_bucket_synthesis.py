@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v4"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v5"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v22",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v23",
 }
 
 
@@ -800,15 +800,16 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
             (
                 row["component_type"],
                 row["forced_external_core_size"],
-                row["cofactor_span_dimension"],
+                row["finite_component_slope_count_at_least"],
+                row["finite_component_cofactor_span_dimension_at_least"],
                 row["quotient_family_vector_dimension_at_most"],
                 row["projective_upper_bound_after_obstruction"],
             )
             for row in summary["punctured_tangent_tail_cofactor_span_closure"]
         ]
         == [
-            ("line", 120, 7, 2, 6),
-            ("irreducible_conic", 120, 7, 3, 6),
+            ("line", 120, 6, 6, 2, 6),
+            ("irreducible_conic", 120, 6, 6, 3, 6),
         ],
         "punctured tangent-tail cofactor-span closure",
     )
@@ -926,7 +927,7 @@ def build_certificate() -> dict[str, Any]:
                 "the remaining high-core line branch is a dual-evaluation-fiber quotient pencil of degree <=54",
                 "the remaining high-core irreducible-conic branch has a global common forced core and becomes a quotient family of degree <=57",
                 "after puncturing the forced core, the projective tangent staircase closes the tail e_G>=121",
-                "the e_G=120 punctured-tangent tail is closed by a cofactor-span obstruction: seven tangent-star cofactors are independent but the fixed-core quotient family has vector dimension at most 2 or 3",
+                "the e_G=120 punctured-tangent tail is closed by a cofactor-span obstruction: at least six tangent-star cofactors must be finite component classes and are independent, but the fixed-core quotient family has vector dimension at most 2 or 3",
                 "the still-unclosed high-core quotient ranges are e_G=72..119 for lines and e_G=69..119 for irreducible conics",
                 "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; the current worst projective bounds are 18 and 26",
                 "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the formerly one-over e_G=120 cases are closed by the cofactor-span contradiction",
