@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M1 displacement-uniform identities
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_displacement_uniform_identities.md`;
+  `experimental/scripts/verify_m1_displacement_uniform.py`;
+  `experimental/data/certificates/m1-displacement-uniform/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / ALGEBRA + FINITE REPLAY.
+- **What is being added:** A verifier-backed uniform subgroup Hankel packet:
+  `H=V^T D V`, the square determinant formula, the low-rank determinant-lemma
+  reduction, and the Toeplitz-Cauchy displacement/Lagrange factorization are
+  replayed over `F_13`, `F_17`, and `F_49`.
+- **How it is useful:** This closes the concrete `displacement_uniform` algebra
+  item from the execution queue and gives the spectral/XR route a small,
+  auditable identity packet independent of the old mega-PRs.
+- **What to do next:** Use this as the algebraic input for Front-alpha
+  spectral scans or averaged-XR calculations; it does not by itself prove
+  spectral disjointness or an M1 safe-side bound.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.

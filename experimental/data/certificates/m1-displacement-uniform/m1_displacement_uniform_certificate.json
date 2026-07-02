@@ -1,0 +1,183 @@
+{
+  "cases": [
+    {
+      "alpha": 5,
+      "case": "F13_mu4",
+      "checks": {
+        "base_hankel_determinant_formula": true,
+        "lagrange_matrix_cauchy_factorization": true,
+        "matrix_determinant_lemma_kernel_reduction": true,
+        "rectangular_hankel_vtdv_factorization": true,
+        "toeplitz_cauchy_rank_one_displacement": true
+      },
+      "field": "F_13",
+      "field_order": 13,
+      "m": 3,
+      "nonvanishing_hypotheses": {
+        "alpha_exact_order": true,
+        "cauchy_denominators_nonzero": true,
+        "det_VX_nonzero": true,
+        "distinct_x_points": true,
+        "m_plus_r_at_most_subgroup_order": true
+      },
+      "r": 1,
+      "shift_checks": [
+        {
+          "det_A": 3,
+          "det_VX": 9,
+          "evaluations_checked": 13,
+          "h": 0,
+          "kernel_size": 1
+        },
+        {
+          "det_A": 11,
+          "det_VX": 9,
+          "evaluations_checked": 13,
+          "h": 1,
+          "kernel_size": 1
+        },
+        {
+          "det_A": 10,
+          "det_VX": 9,
+          "evaluations_checked": 13,
+          "h": 2,
+          "kernel_size": 1
+        }
+      ],
+      "status": "PASS",
+      "subgroup_order": 4
+    },
+    {
+      "alpha": 3,
+      "case": "F17_mu16",
+      "checks": {
+        "base_hankel_determinant_formula": true,
+        "lagrange_matrix_cauchy_factorization": true,
+        "matrix_determinant_lemma_kernel_reduction": true,
+        "rectangular_hankel_vtdv_factorization": true,
+        "toeplitz_cauchy_rank_one_displacement": true
+      },
+      "field": "F_17",
+      "field_order": 17,
+      "m": 7,
+      "nonvanishing_hypotheses": {
+        "alpha_exact_order": true,
+        "cauchy_denominators_nonzero": true,
+        "det_VX_nonzero": true,
+        "distinct_x_points": true,
+        "m_plus_r_at_most_subgroup_order": true
+      },
+      "r": 4,
+      "shift_checks": [
+        {
+          "det_A": 9,
+          "det_VX": 14,
+          "evaluations_checked": 17,
+          "h": 0,
+          "kernel_size": 4
+        },
+        {
+          "det_A": 11,
+          "det_VX": 14,
+          "evaluations_checked": 17,
+          "h": 1,
+          "kernel_size": 4
+        },
+        {
+          "det_A": 3,
+          "det_VX": 14,
+          "evaluations_checked": 17,
+          "h": 3,
+          "kernel_size": 4
+        }
+      ],
+      "status": "PASS",
+      "subgroup_order": 16
+    },
+    {
+      "alpha": [
+        2,
+        2
+      ],
+      "case": "F49_mu16",
+      "checks": {
+        "base_hankel_determinant_formula": true,
+        "lagrange_matrix_cauchy_factorization": true,
+        "matrix_determinant_lemma_kernel_reduction": true,
+        "rectangular_hankel_vtdv_factorization": true,
+        "toeplitz_cauchy_rank_one_displacement": true
+      },
+      "field": "F_7^2[u^2=3]",
+      "field_order": 49,
+      "m": 6,
+      "nonvanishing_hypotheses": {
+        "alpha_exact_order": true,
+        "cauchy_denominators_nonzero": true,
+        "det_VX_nonzero": true,
+        "distinct_x_points": true,
+        "m_plus_r_at_most_subgroup_order": true
+      },
+      "r": 3,
+      "shift_checks": [
+        {
+          "det_A": [
+            4,
+            5
+          ],
+          "det_VX": [
+            1,
+            6
+          ],
+          "evaluations_checked": 49,
+          "h": 0,
+          "kernel_size": 3
+        },
+        {
+          "det_A": [
+            0,
+            6
+          ],
+          "det_VX": [
+            1,
+            6
+          ],
+          "evaluations_checked": 49,
+          "h": 2,
+          "kernel_size": 3
+        },
+        {
+          "det_A": [
+            3,
+            3
+          ],
+          "det_VX": [
+            1,
+            6
+          ],
+          "evaluations_checked": 49,
+          "h": 5,
+          "kernel_size": 3
+        }
+      ],
+      "status": "PASS",
+      "subgroup_order": 16
+    }
+  ],
+  "classification": "SUBGROUP_HANKEL_DISPLACEMENT_IDENTITIES_VERIFIED",
+  "dag_target": "displacement_uniform",
+  "nonclaims": [
+    "does not prove spectral disjointness",
+    "does not prove the XR inverse theorem",
+    "does not close Front alpha or Front beta",
+    "does not assert any M1 safe-side threshold"
+  ],
+  "schema_version": "m1-displacement-uniform-v1",
+  "status": "PROVED / ALGEBRA + FINITE REPLAY",
+  "theorem_scope": [
+    "Hankel moment matrices factor as V^T D V over any field",
+    "square subgroup-Hankel blocks have determinant det(V_X)^2 prod_X x^h",
+    "low-rank support additions reduce by the matrix determinant lemma",
+    "contiguous subgroup Lagrange matrices factor through Toeplitz-Cauchy kernels",
+    "the Toeplitz-Cauchy kernel has rank-one displacement C-U C V = 1"
+  ]
+}
