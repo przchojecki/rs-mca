@@ -4,8 +4,10 @@ This directory contains the local verification artifact for FM1, the exact
 aperiodic first-moment lemma for split locators.
 
 - `fm1_exact_first_moment.json` records the F_13 rank/surjectivity check, the
-  F_13 all-pairs two-locator joint-rank formula, the F_5 brute-force
-  enumeration check, and the F_17^32 regular-window Markov consumer scale.
+  F_13 all-pairs two-locator joint-rank formula, the F_5 standard
+  fiber-product joint-probability check, the F_5 brute-force first- and
+  second-moment enumeration check, and the F_17^32 regular-window Markov
+  consumer scale.
 - The generating script is
   `experimental/scripts/verify_fm1_exact_aperiodic_first_moment.py`.
 - The companion proof note is

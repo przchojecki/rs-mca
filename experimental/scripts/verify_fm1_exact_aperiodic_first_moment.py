@@ -118,6 +118,42 @@ def expected_value(q: int, n: int, k: int, agreement: int) -> Fraction:
     return Fraction(comb(n, j) * (q ** t - 1) * q, q ** (2 * t))
 
 
+def joint_alignment_probability(q: int, t: int, h: int) -> Fraction:
+    """Probability that both locators align in the standard defect-h fiber product."""
+    assert 0 <= h <= t
+    favorable = (
+        q * (q ** h - 1) * q ** (2 * (t - h))
+        + q ** 2 * (q ** (t - h) - 1) ** 2
+    )
+    total = q ** (2 * (2 * t - h))
+    return Fraction(favorable, total)
+
+
+def second_moment_formula(q: int, n: int, k: int, agreement: int) -> Fraction:
+    t = agreement - k
+    j = n - agreement
+    total = Fraction(0, 1)
+    for c in range(j + 1):
+        if j - c > n - j:
+            continue
+        ordered_pairs = comb(n, j) * comb(j, c) * comb(n - j, j - c)
+        h = max(0, t - j + c)
+        total += ordered_pairs * joint_alignment_probability(q, t, h)
+    return total
+
+
+def standard_fiber_product(q: int, t: int, h: int) -> list[tuple[tuple[int, ...], tuple[int, ...]]]:
+    assert 0 <= h <= t
+    commons = list(itertools.product(range(q), repeat=h))
+    tails = list(itertools.product(range(q), repeat=t - h))
+    return [
+        (common + left, common + right)
+        for common in commons
+        for left in tails
+        for right in tails
+    ]
+
+
 def log2_comb(n: int, r: int) -> float:
     return (math.lgamma(n + 1) - math.lgamma(r + 1) - math.lgamma(n - r + 1)) / math.log(2)
 
@@ -217,6 +253,45 @@ def check_f13_joint_rank_formula() -> tuple[bool, dict]:
     return not bad and rank_by_overlap == expected_hist, data
 
 
+def check_fiber_product_joint_probability() -> tuple[bool, dict]:
+    q, t = 5, 2
+    checks = []
+    ok = True
+    for h in range(t + 1):
+        elements = standard_fiber_product(q, t, h)
+        favorable = 0
+        for a_r, a_t in elements:
+            for b_r, b_t in elements:
+                if in_span(a_r, b_r, q) and in_span(a_t, b_t, q):
+                    favorable += 1
+        brute = Fraction(favorable, len(elements) ** 2)
+        formula = joint_alignment_probability(q, t, h)
+        checks.append({
+            "h": h,
+            "fiber_product_size": len(elements),
+            "favorable_pairs": favorable,
+            "bruteforce_probability": {
+                "numerator": brute.numerator,
+                "denominator": brute.denominator,
+                "decimal": float(brute),
+            },
+            "formula_probability": {
+                "numerator": formula.numerator,
+                "denominator": formula.denominator,
+                "decimal": float(formula),
+            },
+        })
+        ok &= brute == formula
+    return ok, {
+        "field": f"F_{q}",
+        "t": t,
+        "checked_defects": checks,
+        "formula": (
+            "P_h = [q(q^h-1)q^(2(t-h)) + q^2(q^(t-h)-1)^2] / q^(4t-2h)"
+        ),
+    }
+
+
 def check_f5_bruteforce() -> tuple[bool, dict]:
     p, n, k, agreement = 5, 4, 1, 3
     t, j = agreement - k, n - agreement
@@ -225,6 +300,7 @@ def check_f5_bruteforce() -> tuple[bool, dict]:
     matrices = [syndrome_matrix(domain, roots, t, p) for roots in locators]
     words = list(itertools.product(range(p), repeat=n))
     total_aligned = 0
+    total_aligned_square = 0
     aligned_hist = {}
     for u in words:
         au = [syndrome_vector(u, matrix, p) for matrix in matrices]
@@ -235,10 +311,13 @@ def check_f5_bruteforce() -> tuple[bool, dict]:
                 if in_span(a, b, p):
                     count += 1
             total_aligned += count
+            total_aligned_square += count * count
             aligned_hist[count] = aligned_hist.get(count, 0) + 1
     total_pairs = p ** (2 * n)
     mean = Fraction(total_aligned, total_pairs)
     expected = expected_value(p, n, k, agreement)
+    second_moment = Fraction(total_aligned_square, total_pairs)
+    expected_second_moment = second_moment_formula(p, n, k, agreement)
     rank_hist = {}
     for matrix in matrices:
         rank = rank_mod_p(matrix, p)
@@ -254,6 +333,7 @@ def check_f5_bruteforce() -> tuple[bool, dict]:
         "word_count": len(words),
         "pair_count": total_pairs,
         "total_aligned_locators": total_aligned,
+        "total_aligned_locator_square_sum": total_aligned_square,
         "rank_histogram": rank_hist,
         "aligned_locator_count_histogram": aligned_hist,
         "bruteforce_mean": {
@@ -266,8 +346,22 @@ def check_f5_bruteforce() -> tuple[bool, dict]:
             "denominator": expected.denominator,
             "decimal": float(expected),
         },
+        "bruteforce_second_moment": {
+            "numerator": second_moment.numerator,
+            "denominator": second_moment.denominator,
+            "decimal": float(second_moment),
+        },
+        "formula_second_moment": {
+            "numerator": expected_second_moment.numerator,
+            "denominator": expected_second_moment.denominator,
+            "decimal": float(expected_second_moment),
+        },
     }
-    return mean == expected and rank_hist == {t: len(locators)}, data
+    return (
+        mean == expected
+        and second_moment == expected_second_moment
+        and rank_hist == {t: len(locators)}
+    ), data
 
 
 def check_f17_regular_window_tail() -> tuple[bool, dict]:
@@ -320,6 +414,7 @@ def check_f17_regular_window_tail() -> tuple[bool, dict]:
 def build_report() -> dict:
     ok_f13, f13 = check_f13_surjectivity()
     ok_joint, joint = check_f13_joint_rank_formula()
+    ok_fiber, fiber = check_fiber_product_joint_probability()
     ok_f5, f5 = check_f5_bruteforce()
     ok_window, window = check_f17_regular_window_tail()
     source = Path(__file__).read_text()
@@ -328,6 +423,10 @@ def build_report() -> dict:
         "status": "PROVED_LOCAL_VERIFICATION",
         "dag_node": "fm1",
         "statement": "E[# aligned split locators] = binom(n,j)(1-q^-t)q^(1-t)",
+        "second_moment_statement": (
+            "E[N_A^2] is the ordered-overlap sum of the exact defect-h joint "
+            "alignment probabilities."
+        ),
         "definition": (
             "For a split degree-j locator ell, set a=S_ell(u), b=S_ell(v) in F_q^t. "
             "The locator is aligned when b != 0 and a lies in the one-dimensional span of b."
@@ -335,10 +434,11 @@ def build_report() -> dict:
         "checks": {
             "f13_surjectivity": f13,
             "f13_joint_rank_formula": joint,
+            "f5_fiber_product_joint_probability": fiber,
             "f5_bruteforce": f5,
             "f17_regular_window_markov_tail": window,
         },
-        "passed": ok_f13 and ok_joint and ok_f5 and ok_window,
+        "passed": ok_f13 and ok_joint and ok_fiber and ok_f5 and ok_window,
         "script_sha256": sha256_text(source),
     }
 
@@ -365,6 +465,15 @@ def main() -> None:
                 "        {field}: ordered pairs={ordered_pair_count}, "
                 "rank_by_overlap={rank_by_overlap}".format(**data)
             )
+        elif name == "f5_fiber_product_joint_probability":
+            summary = {
+                row["h"]: (
+                    row["formula_probability"]["numerator"],
+                    row["formula_probability"]["denominator"],
+                )
+                for row in data["checked_defects"]
+            }
+            print(f"        {data['field']}: t={data['t']}, probabilities by h={summary}")
         elif name == "f5_bruteforce":
             print(
                 "        {field}: n={n}, k={k}, A={agreement}, t={t}, j={j}, "
@@ -374,6 +483,16 @@ def main() -> None:
             fm = data["formula_mean"]
             print(f"        brute mean = {bf['numerator']}/{bf['denominator']} = {bf['decimal']:.12f}")
             print(f"        formula    = {fm['numerator']}/{fm['denominator']} = {fm['decimal']:.12f}")
+            bs = data["bruteforce_second_moment"]
+            fs = data["formula_second_moment"]
+            print(
+                f"        brute second moment = {bs['numerator']}/{bs['denominator']} = "
+                f"{bs['decimal']:.12f}"
+            )
+            print(
+                f"        formula second moment = {fs['numerator']}/{fs['denominator']} = "
+                f"{fs['decimal']:.12f}"
+            )
             print(f"        total aligned locators over all word pairs = {data['total_aligned_locators']}")
         elif name == "f17_regular_window_markov_tail":
             e385 = data["endpoint_rows"][385]["log2_fm1_expectation_upper"]

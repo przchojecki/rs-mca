@@ -191,6 +191,84 @@ explained by the explicit common-multiple family above.  This is the exact
 overlap ledger that a later second-moment or exchange-rigidity calculation
 has to price.
 
+## Exact second moment
+
+The joint-rank formula also gives an exact second moment for
+
+```text
+N_A(u,v) = #{R subset D : |R|=j and R is aligned}.
+```
+
+For two locators `R,T`, put
+
+```text
+c = |R cap T|,        h = max(0,t-j+c).
+```
+
+The joint image of
+
+```text
+w |-> (S_R(w), S_T(w))
+```
+
+has codimension `h` in `F_q^t x F_q^t`.  More precisely, after invertible
+coordinate changes on the two `F_q^t` factors, it is the standard fiber
+product
+
+```text
+U_h = { (x,y) in F_q^t x F_q^t : pi_h(x)=pi_h(y) },
+```
+
+where `pi_h` is projection to the first `h` coordinates.  This coordinate
+normal form follows from the relation calculation above: the `h` relations
+project injectively to each of the two locator-syndrome factors, so separate
+basis changes put them in equality form.
+
+For independent uniform pairs
+
+```text
+(A_R,A_T), (B_R,B_T) in U_h,
+```
+
+the probability that both locators align is
+
+```text
+P_h =
+  [ q(q^h-1)q^{2(t-h)} + q^2(q^{t-h}-1)^2 ] / q^{4t-2h}.
+```
+
+Indeed, write a vector of `U_h` as `(z,p; z,q)` with
+`z in F_q^h` and `p,q in F_q^{t-h}`.  If the common part `z` of
+`(B_R,B_T)` is nonzero, then both `B_R` and `B_T` are nonzero and the two
+alignment scalars must be equal, giving
+
+```text
+q(q^h-1)q^{2(t-h)}
+```
+
+favorable choices for `(A,B)`.  If `z=0`, then the two tails of `B` must both
+be nonzero, and the two alignment scalars are independent, giving
+
+```text
+q^2(q^{t-h}-1)^2
+```
+
+favorable choices.  Since `|U_h|=q^{2t-h}`, the displayed formula follows.
+It specializes correctly: `P_0` is the square of the one-locator probability,
+while `P_t` is the one-locator probability for the diagonal case `R=T`.
+
+Therefore the exact second moment is
+
+```text
+E[N_A^2]
+  = sum_c binom(n,j) binom(j,c) binom(n-j,j-c)
+      P_{max(0,t-j+c)},
+```
+
+where the sum ranges over valid overlaps `c`.  This is an ordered-pair sum:
+choose `R`, then choose the `c` common roots and the `j-c` roots of `T`
+outside `R`.
+
 For the finite row
 
 ```text
@@ -223,7 +301,7 @@ sanity check for the M3/M5 chart program, not a replacement for root tables.
 
 ## Verification
 
-The verifier records four checks.
+The verifier records five checks.
 
 1. **Surjectivity check, `F_13`.**  For `D=F_13^*`, `n=12`, `k=3`,
    `A=8`, `t=5`, `j=4`, every one of the `binom(12,4)=495`
@@ -235,12 +313,16 @@ The verifier records four checks.
 rank S_{R,T} = 2t - max(0,t-j+|R cap T|).
 ```
 
-3. **Exact brute-force check, `F_5`.**  For `D=F_5^*`, `n=4`, `k=1`,
+3. **Joint-probability fiber-product check, `F_5`.**  For `t=2`, the verifier
+   enumerates the standard fiber products `U_h`, `h=0,1,2`, and checks the
+   displayed `P_h` formula exactly.
+4. **Exact brute-force check, `F_5`.**  For `D=F_5^*`, `n=4`, `k=1`,
    `A=3`, `t=2`, `j=1`, enumeration over all `5^8` word pairs gives
 
 ```text
 total aligned locators = 300000
 mean = 96/125
+second moment = 912/625
 ```
 
 matching the formula
@@ -249,7 +331,9 @@ matching the formula
 binom(4,1) * (1 - 5^(-2)) * 5^(-1) = 96/125.
 ```
 
-4. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
+and the exact second-moment formula above.
+
+5. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
    the script computes the FM1/Markov one-locator upper bound across
    `385 <= A <= 426` and verifies the endpoint ranges above.
 

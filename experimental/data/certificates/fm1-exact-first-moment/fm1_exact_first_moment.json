@@ -110,11 +110,21 @@
         "denominator": 125,
         "numerator": 96
       },
+      "bruteforce_second_moment": {
+        "decimal": 1.4592,
+        "denominator": 625,
+        "numerator": 912
+      },
       "field": "F_5",
       "formula_mean": {
         "decimal": 0.768,
         "denominator": 125,
         "numerator": 96
+      },
+      "formula_second_moment": {
+        "decimal": 1.4592,
+        "denominator": 625,
+        "numerator": 912
       },
       "j": 1,
       "k": 1,
@@ -125,15 +135,69 @@
         "2": 4
       },
       "t": 2,
+      "total_aligned_locator_square_sum": 570000,
       "total_aligned_locators": 300000,
       "word_count": 625
+    },
+    "f5_fiber_product_joint_probability": {
+      "checked_defects": [
+        {
+          "bruteforce_probability": {
+            "decimal": 0.036864,
+            "denominator": 15625,
+            "numerator": 576
+          },
+          "favorable_pairs": 14400,
+          "fiber_product_size": 625,
+          "formula_probability": {
+            "decimal": 0.036864,
+            "denominator": 15625,
+            "numerator": 576
+          },
+          "h": 0
+        },
+        {
+          "bruteforce_probability": {
+            "decimal": 0.0576,
+            "denominator": 625,
+            "numerator": 36
+          },
+          "favorable_pairs": 900,
+          "fiber_product_size": 125,
+          "formula_probability": {
+            "decimal": 0.0576,
+            "denominator": 625,
+            "numerator": 36
+          },
+          "h": 1
+        },
+        {
+          "bruteforce_probability": {
+            "decimal": 0.192,
+            "denominator": 125,
+            "numerator": 24
+          },
+          "favorable_pairs": 120,
+          "fiber_product_size": 25,
+          "formula_probability": {
+            "decimal": 0.192,
+            "denominator": 125,
+            "numerator": 24
+          },
+          "h": 2
+        }
+      ],
+      "field": "F_5",
+      "formula": "P_h = [q(q^h-1)q^(2(t-h)) + q^2(q^(t-h)-1)^2] / q^(4t-2h)",
+      "t": 2
     }
   },
   "dag_node": "fm1",
   "definition": "For a split degree-j locator ell, set a=S_ell(u), b=S_ell(v) in F_q^t. The locator is aligned when b != 0 and a lies in the one-dimensional span of b.",
   "passed": true,
   "schema": "fm1_exact_first_moment_v1",
-  "script_sha256": "cbc2a27d733b8115fcbfe2801c63fa125f758bd9155c4b529919b8e965a4db02",
+  "script_sha256": "56a03db1ca067685b34dee052e4ebbfa39e9da8481056a915c346cc4a8607b4e",
+  "second_moment_statement": "E[N_A^2] is the ordered-overlap sum of the exact defect-h joint alignment probabilities.",
   "statement": "E[# aligned split locators] = binom(n,j)(1-q^-t)q^(1-t)",
   "status": "PROVED_LOCAL_VERIFICATION"
 }
