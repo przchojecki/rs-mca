@@ -52,6 +52,26 @@ Keep entries concise and link to the relevant files.
   `tex/cs25_cap_v12.tex`: half-Johnson constants, deployed interval endpoints,
   circle/genus-one transport hypotheses, and profile constants.
 
+### 2026-07-02 - Paper D v12 conversion-radius audit
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/audits/cs25_v12_conversion_radius_audit.md`;
+  `experimental/scripts/verify_cs25_v12_conversion_radius.py`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.  Integer-radius and algebra audit; no theorem-chain
+  promotion.
+- **What is being added:** A local audit of Paper D v12 Theorem A, checking
+  the `floor(delta*n)<=n-k-1` admissibility condition, the simple-pole
+  far-condition off-by-one, the conversion ceiling algebra, and the adjacent
+  deep-list trigger equivalence.
+- **How it is useful:** Addresses the first current Paper D v12 audit priority
+  in `agents.md`: the direct deep-point conversion and its integer-radius
+  convention.
+- **What to do next:** Repeat the external-source comparison against the ABF
+  and Crites--Stewart PDFs in an environment where the ePrint PDF endpoints are
+  accessible; locally, continue with the BCIKS import normalization audit.
+
 ### 2026-07-02 - Towards-prize v2 residual reduction audit
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
