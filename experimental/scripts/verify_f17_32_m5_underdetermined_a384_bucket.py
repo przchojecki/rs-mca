@@ -21,6 +21,11 @@ row rank implies the kernel is spanned by the signed maximal-minor/Cramer
 vector.  The script verifies this exactly on two toy families by comparing the
 Cramer vector with an independently computed RREF kernel vector at every slope.
 
+Turn 3 adds the first divisor gate on the F_97/mu_16 acid-scale toy row: on
+the top-coefficient chart, the Cramer locator is valid iff it divides X^16-1.
+The check compares direct specialized division, pseudo-remainder vanishing, and
+root containment in mu_16 at every finite slope.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -114,6 +119,65 @@ def proportional_nonzero(a, b, p):
     idx = next(i for i, x in enumerate(b) if x % p)
     scale = a[idx] * pow(b[idx], -1, p) % p
     return all((a[i] - scale * b[i]) % p == 0 for i in range(len(a)))
+
+
+def trim(poly):
+    poly = list(poly)
+    while len(poly) > 1 and poly[-1] == 0:
+        poly.pop()
+    return poly
+
+
+def poly_eval(poly, x, p):
+    acc = 0
+    for coeff in reversed(poly):
+        acc = (acc * x + coeff) % p
+    return acc
+
+
+def monic_remainder(f, g, p):
+    """Remainder of f modulo g over F_p, with g leading coefficient nonzero."""
+    r = trim([x % p for x in f])
+    g = trim([x % p for x in g])
+    n = len(g) - 1
+    inv_lc = pow(g[-1], -1, p)
+    g_monic = [(c * inv_lc) % p for c in g]
+    while len(r) - 1 >= n and any(r):
+        d = (len(r) - 1) - n
+        lead = r[-1]
+        for i, c in enumerate(g_monic):
+            r[d + i] = (r[d + i] - lead * c) % p
+        r = trim(r)
+    return r + [0] * max(0, n - len(r))
+
+
+def pseudo_remainder(f, g, p):
+    """Pseudo-remainder: lc(g)^(deg f - deg g + 1) f = q g + prem."""
+    r = trim([x % p for x in f])
+    g = trim([x % p for x in g])
+    n = len(g) - 1
+    delta = (len(r) - 1) - n + 1
+    if delta <= 0:
+        return r
+    lc = g[-1] % p
+    steps = 0
+    while len(r) - 1 >= n and any(r):
+        d = (len(r) - 1) - n
+        lead = r[-1] % p
+        new_len = max(len(r), d + len(g))
+        new_r = [0] * new_len
+        for i, c in enumerate(r):
+            new_r[i] = (new_r[i] + lc * c) % p
+        for i, c in enumerate(g):
+            new_r[d + i] = (new_r[d + i] - lead * c) % p
+        r = trim(new_r)
+        steps += 1
+    scale = pow(lc, delta - steps, p)
+    return trim([(scale * c) % p for c in r])
+
+
+def is_zero_poly(poly):
+    return all(c == 0 for c in poly)
 
 
 def hankel(window, t, j):
@@ -266,6 +330,64 @@ def check_pencil_nondegeneracy_summary():
     ]
 
 
+def check_divisibility_filter_top_chart():
+    """Verify U3/U4 on the F_97/mu_16 acid-scale toy row.
+
+    At n=16,k=8,A=12, t=j=4, so the Cramer locator has degree <= 4.  On the
+    top chart c_4 != 0 and full row rank, it has degree exactly 4.  Since
+    X^16-1 is separable over F_97 and has root set mu_16, the locator is valid
+    iff it divides X^16-1, equivalently iff its specialized remainder vanishes.
+    The pseudo-remainder has the same zero set as direct division because the
+    top coefficient is nonzero on this chart.
+    """
+    p = 97
+    u = [3, 17, 58, 91, 26, 44, 10, 73]
+    v = [12, 5, 81, 33, 70, 9, 61, 48]
+    subgroup = [x for x in range(1, p) if pow(x, 16, p) == 1]
+    f = [p - 1] + [0] * 15 + [1]  # X^16 - 1
+    ok = len(subgroup) == 16
+    top = low_degree = rank_drop = 0
+    valid_slopes = []
+    mismatches = []
+    for z in range(p):
+        s = [(a + z * b) % p for a, b in zip(u, v)]
+        m = hankel(s, 4, 4)
+        rank, _ = rank_and_kernel_mod_p(m, p)
+        cramer = cramer_kernel_vector(m, p)
+        if rank < 4:
+            rank_drop += 1
+            if any(cramer):
+                mismatches.append((z, "rank_drop_nonzero_cramer"))
+            continue
+        if cramer[4] == 0:
+            low_degree += 1
+            continue
+        top += 1
+        direct_rem = trim(monic_remainder(f, cramer, p))
+        pseudo_rem = trim(pseudo_remainder(f, cramer, p))
+        scaled_direct = trim([(pow(cramer[-1], 13, p) * c) % p for c in direct_rem])
+        if pseudo_rem != scaled_direct:
+            mismatches.append((z, "pseudo_identity", pseudo_rem, scaled_direct))
+        direct_zero = is_zero_poly(direct_rem)
+        pseudo_zero = is_zero_poly(pseudo_rem)
+        roots = [h for h in subgroup if poly_eval(cramer, h, p) == 0]
+        root_valid = len(roots) == 4
+        if not (direct_zero == pseudo_zero == root_valid):
+            mismatches.append((z, direct_zero, pseudo_zero, root_valid, roots))
+        if direct_zero:
+            valid_slopes.append((z, roots))
+    ok &= not mismatches
+    d = [
+        f"F_97 subgroup check: |mu_16| = {len(subgroup)} and char 97 does not divide 16",
+        f"chart coverage over all {p} slopes: top={top}, low_degree={low_degree}, rank_drop={rank_drop}",
+        "top chart: pseudo-remainder equals lc(L)^13 times the ordinary specialized remainder",
+        "top chart: direct division by Cramer locator, pseudo-remainder vanishing, "
+        "and four roots in mu_16 agree at every slope",
+        f"valid top-chart slopes in this declared family: {valid_slopes}",
+    ]
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop turn"]
 
@@ -275,7 +397,7 @@ CHECKS = [
     ("toy dichotomy: underdetermined vs regular",         check_toy_dichotomy),
     ("deficiency-1 kernel = Cramer minor vector",         check_cramer_kernel_vector),
     ("pencil nondegeneracy of declared toy families",     check_pencil_nondegeneracy_summary),
-    ("pivot chart + splitting filter (X^n - 1)",          _pending),
+    ("pivot chart + splitting filter (X^n - 1)",          check_divisibility_filter_top_chart),
     ("eliminant or certified residual obstruction",       _pending),
     ("packet emission + v1 schema validation",            _pending),
 ]

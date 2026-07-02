@@ -1,9 +1,9 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 2: bucket identification plus the
-  deficiency-one Cramer-kernel chart lemma are done; divisibility/eliminant
-  machinery remains in progress). No threshold, safety, or worst-case row
-  claim is made.
+- **Status:** ACTIVE / EXPERIMENTAL (turn 3: bucket identification,
+  deficiency-one Cramer-kernel chart, and the toy top-chart divisibility /
+  pseudo-remainder gate are done; eliminant machinery remains in progress).
+  No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
   regular window `385 <= A <= 426`, synthetic rank ladders and kernel charts):
@@ -86,7 +86,7 @@ subtraction deferred to M4 where it belongs.
 |---|------|--------|
 | 1 | bucket identification + extractor-convention match + toy dichotomy | **done** |
 | 2 | deficiency-1 kernel = Cramer minor vector (lemma + exact toy verification) | **done** |
-| 3 | pivot chart: divisibility filter into `X^n - 1`, chart ideal + saturation | pending |
+| 3 | pivot chart: divisibility filter into `X^n - 1`, chart ideal + saturation | **done on the F_97 top-chart toy** |
 | 4 | eliminant `Q(Z)` on a declared input family, or certified `residual_obstruction` | pending |
 | 5 | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`, validated by `scripts/check_aperiodic_eliminant_packet.py` | pending |
 
@@ -135,8 +135,49 @@ Cramer vector is not identically zero and the family belongs to the generic
 Cramer chart.  A family whose maximal minors all vanish is not forced through
 this chart; it is routed to the lower-rank/proportional strata in WP-2.3.
 
-This turn does **not** yet test whether the Cramer locator divides `X^n-1`.
-That is the next gate, U3/U4.
+Turn 2 did **not** test whether the Cramer locator divides `X^n-1`; that is
+the U3/U4 gate verified on the toy top chart in turn 3 below.
+
+### Verified in turn 3
+
+**U3/U4, top-chart divisibility gate.** On the `F_97/mu_16` acid-scale toy
+row (`n=16,k=8,A=12,t=j=4`), the verifier now classifies every finite slope
+into the three deficiency-one charts:
+
+```text
+top coefficient nonzero;
+low-degree kernel, c_4=0 but full row rank;
+rank-drop kernel, rank M(z)<4.
+```
+
+For the declared acid-scale family all `97` slopes lie in the top chart.  For
+each of them the verifier forms the Cramer locator
+
+```text
+L_z(X)=c_0(z)+c_1(z)X+...+c_4(z)X^4
+```
+
+and checks the following three conditions agree:
+
+```text
+ordinary specialized remainder of X^16-1 modulo L_z is zero;
+pseudo-remainder is zero;
+L_z has four roots in mu_16.
+```
+
+It also checks the stronger pseudo-division identity
+
+```text
+prem_z = lc(L_z)^13 * rem_z,
+```
+
+where `13 = deg(X^16-1)-deg(L_z)+1`.  This confirms that the pseudo-remainder
+gate has the same vanishing set as direct division on the top chart.
+
+For this declared toy family the valid top-chart slope list is empty.  This is
+not used as evidence for the real row; it is an exact acceptance test that the
+divisibility chart is wired correctly before moving to eliminants or larger
+fields.
 
 ## Honest scope
 
@@ -149,8 +190,9 @@ That is the next gate, U3/U4.
   the regular window, not a threshold claim.
 - The Cramer-vector lemma is only the generic deficiency-one kernel chart.  It
   does not prove that any kernel vector is a valid split locator.  Validity
-  still requires the U3/U4 divisibility filter `L_Z(X) | X^512 - 1`, plus the
-  low-degree and rank-drop side charts.
+  still requires the U3/U4 divisibility filter `L_Z(X) | X^512 - 1` on the
+  real row, plus the low-degree and rank-drop side charts.  Turn 3 verifies
+  only the exact `F_97` top-chart toy version of this gate.
 - If the chart cannot be closed, the end state will be a labelled
   `residual_obstruction` per §4.6 of the roadmap — named, not hidden.
 

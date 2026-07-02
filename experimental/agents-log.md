@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 toy divisibility gate
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  No threshold or worst-case row
+  claim.
+- **What is being added:** Turn 3 of the `A=384` underdetermined M5 packet:
+  the `F_97/mu_16` top-chart divisibility gate.  For every slope, the verifier
+  compares direct division of `X^16-1` by the Cramer locator, pseudo-remainder
+  vanishing, and root containment in `mu_16`; it also checks the exact
+  pseudo-division scaling identity.
+- **How it is useful:** This verifies the first non-vacuous split-locator
+  validity gate on the deficiency-one toy chart before any large-field
+  eliminant is attempted.
+- **What to do next:** Extend the same gate to side charts and then emit the
+  U5 eliminant-or-residual dichotomy for the toy row, followed by the declared
+  `F_17^32` packet.
+
 ### 2026-07-02 - M5 A384 deficiency-one Cramer chart
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
