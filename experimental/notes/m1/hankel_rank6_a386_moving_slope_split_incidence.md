@@ -305,6 +305,13 @@ require between `0` and `14` forced pair-overlap events before any external
 excess.  At `|E|=120`, the branch would instead have to saturate the punctured
 projective tangent bound itself.
 
+Equivalently, a genuine over-budget witness in one of these rows must have six
+distinct finite slopes and an unpaid projective endpoint.  The sharpest finite
+survival targets are now small and explicit: line core `|E|=72` needs
+near-complete base splitting among the six finite classes, while conic core
+`|E|=69` needs an almost complete external-secant graph among the six conic
+points.
+
 Replay:
 
 ```sh

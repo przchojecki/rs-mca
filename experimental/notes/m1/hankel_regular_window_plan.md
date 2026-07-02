@@ -330,7 +330,10 @@ projective proof envelope is only one over budget for line cores
 for lines and `26` for conics.  The endpoint-only finite-incidence subranges
 now have explicit saturation targets: line six-class saturation has external
 slack `1..41`, and conic six-class saturation needs `0..14` forced
-pair-overlap events before external excess.
+pair-overlap events before external excess.  A genuine over-budget witness must
+also have six distinct finite slopes and an unpaid endpoint; the strongest
+remaining pressure cases are line `e_G=72` near-complete base splitting and
+conic `e_G=69` almost-complete secants.
 
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets

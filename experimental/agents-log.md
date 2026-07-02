@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 over-budget survival profile
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md`;
+  `experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `A=386` moving-slope packet now records the
+  additional conditions needed for a one-over upper-bound row to become a
+  genuine over-budget witness.
+- **How it is useful:** It shows that such a witness must saturate the finite
+  source-class bound, have six distinct finite slopes, and keep the projective
+  endpoint unpaid.  The sharpest remaining finite targets are line `e_G=72`
+  near-complete base splitting and conic `e_G=69` almost-complete secants.
+- **What to do next:** Try to break those two extremal survival patterns first;
+  any duplicate slope, paid endpoint, missing split class, base-splitting
+  deficit, or secant-graph deficit closes the corresponding one-over row.
+
 ### 2026-07-02 - A386 one-over saturation profile
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

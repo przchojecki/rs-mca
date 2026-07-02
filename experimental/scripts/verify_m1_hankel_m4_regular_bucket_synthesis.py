@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v10",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v11",
 }
 
 
@@ -366,6 +366,36 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         summary["punctured_tangent_one_over_tail_external_core"] == 120,
         "tangent one-over tail core mismatch",
     )
+    require(
+        summary["line_over_budget_base_pressure_core_labels"]["72"]
+        == "near-complete base splitting",
+        "line e=72 base-pressure label mismatch",
+    )
+    require(
+        summary["line_over_budget_base_pressure_core_labels"]["73"]
+        == "positive base splitting",
+        "line e=73 base-pressure label mismatch",
+    )
+    require(
+        summary["line_over_budget_base_pressure_core_labels"]["74"]
+        == "weak base splitting",
+        "line e=74 base-pressure label mismatch",
+    )
+    require(
+        summary["conic_over_budget_secant_pressure_core_labels"]["69"]
+        == "almost complete secant graph",
+        "conic e=69 secant-pressure label mismatch",
+    )
+    require(
+        summary["conic_over_budget_secant_pressure_core_labels"]["70"]
+        == "dense secant graph",
+        "conic e=70 secant-pressure label mismatch",
+    )
+    require(
+        summary["conic_over_budget_secant_pressure_core_labels"]["71"]
+        == "nontrivial secant graph",
+        "conic e=71 secant-pressure label mismatch",
+    )
     nonclaims = set(data["nonclaims"])
     require(
         "does not claim the punctured tangent numerator at the residual threshold is within the original row budget"
@@ -475,6 +505,7 @@ def build_certificate() -> dict[str, Any]:
                 "the still-unclosed high-core quotient ranges are e_G=72..120 for lines and e_G=69..120 for irreducible conics",
                 "within those ranges, the one-over-budget subranges are line e_G=72..80 and 120, conic e_G=69..76 and 120; the current worst projective bounds are 18 and 26",
                 "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the e_G=120 cases must instead saturate the punctured projective tangent bound",
+                "a genuine over-budget one-over witness must also have six distinct finite slopes and an unpaid endpoint; the strongest remaining pressure is line e_G=72 base splitting and conic e_G=69 almost-complete secants",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",

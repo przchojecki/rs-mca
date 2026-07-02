@@ -18,7 +18,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v10"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v11"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -449,6 +449,95 @@ def tangent_one_over_tail_saturation_row(forced_external_core_size: int) -> dict
     }
 
 
+def line_over_budget_survival_row(saturation_row: dict[str, Any]) -> dict[str, Any]:
+    """Necessary conditions for a line one-over row to genuinely exceed budget."""
+    core = saturation_row["forced_external_core_size"]
+    base_pressure = saturation_row["total_base_roots_across_six_classes_at_least"]
+    if base_pressure >= 11:
+        pressure_label = "near-complete base splitting"
+    elif base_pressure >= 6:
+        pressure_label = "positive base splitting"
+    elif base_pressure >= 1:
+        pressure_label = "weak base splitting"
+    else:
+        pressure_label = "external slack alone can absorb base deficit"
+    return {
+        "component_type": "line",
+        "forced_external_core_size": core,
+        "dangerous_projective_count": PROJECTIVE_BUDGET + 1,
+        "finite_source_classes_must_equal": FINITE_BUDGET,
+        "finite_slopes_must_be_distinct": True,
+        "endpoint_must_survive_unpaid": True,
+        "all_incidence_inequalities_must_saturate": True,
+        "external_line_slack_after_minimal_six_classes": saturation_row[
+            "external_line_slack_after_minimal_six_classes"
+        ],
+        "total_base_roots_across_six_classes_at_least": base_pressure,
+        "base_pressure_label": pressure_label,
+        "breakers": [
+            "one missing split Q-class",
+            "one duplicate finite slope",
+            "endpoint paid or absent",
+            "external/base incidence deficit exceeding the printed slack",
+        ],
+    }
+
+
+def conic_over_budget_survival_row(saturation_row: dict[str, Any]) -> dict[str, Any]:
+    """Necessary conditions for a conic one-over row to genuinely exceed budget."""
+    required_edges = saturation_row["forced_pair_overlap_events_before_external_excess_at_least"]
+    min_vertex_degree_lower_bound = max(0, required_edges - 10)
+    if required_edges >= 14:
+        pressure_label = "almost complete secant graph"
+    elif required_edges >= 9:
+        pressure_label = "dense secant graph"
+    elif required_edges >= 4:
+        pressure_label = "nontrivial secant graph"
+    else:
+        pressure_label = "pair-overlap pressure not forced before external excess"
+    return {
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": saturation_row["forced_external_core_size"],
+        "dangerous_projective_count": PROJECTIVE_BUDGET + 1,
+        "finite_source_classes_must_equal": FINITE_BUDGET,
+        "finite_slopes_must_be_distinct": True,
+        "endpoint_must_survive_unpaid": True,
+        "all_pair_overlap_inequalities_must_saturate": True,
+        "secant_graph_edges_required_before_external_excess_at_least": required_edges,
+        "secant_graph_min_vertex_degree_lower_bound": min_vertex_degree_lower_bound,
+        "pair_overlap_slack_before_external_excess": saturation_row[
+            "pair_overlap_slack_before_external_excess"
+        ],
+        "secant_pressure_label": pressure_label,
+        "breakers": [
+            "one missing split Q-class",
+            "one duplicate finite slope",
+            "endpoint paid or absent",
+            "too few external-root secants among the six Q-classes",
+        ],
+    }
+
+
+def tangent_tail_over_budget_survival_row(
+    component_type: str,
+    saturation_row: dict[str, Any],
+) -> dict[str, Any]:
+    """Necessary conditions for the e=120 tangent one-over row to exceed budget."""
+    return {
+        "component_type": component_type,
+        "forced_external_core_size": saturation_row["forced_external_core_size"],
+        "dangerous_projective_count": PROJECTIVE_BUDGET + 1,
+        "projective_tangent_bound_must_be_saturated": True,
+        "punctured_cosupport_radius": saturation_row["punctured_cosupport_radius"],
+        "punctured_length": saturation_row["punctured_length"],
+        "breakers": [
+            "one punctured tangent slope absent",
+            "one duplicate slope after returning to the original branch",
+            "one slope paid by tangent, quotient, extension, or containment",
+        ],
+    }
+
+
 def quotient_residual_row(
     component_type: str,
     forced_external_core_threshold: int,
@@ -824,6 +913,16 @@ def build_certificate() -> dict[str, Any]:
     tangent_tail_saturation_rows = [
         tangent_one_over_tail_saturation_row(core) for core in tangent_one_over_tail_cores
     ]
+    line_survival_rows = [
+        line_over_budget_survival_row(row) for row in line_six_saturation_rows
+    ]
+    conic_survival_rows = [
+        conic_over_budget_survival_row(row) for row in conic_six_saturation_rows
+    ]
+    tangent_tail_survival_rows = [
+        tangent_tail_over_budget_survival_row(component_type, tangent_tail_saturation_rows[0])
+        for component_type in ["line", "irreducible_conic"]
+    ]
     require(line_residual_core_threshold == 72, "line residual threshold mismatch")
     require(conic_residual_core_threshold == 69, "conic residual threshold mismatch")
     require(
@@ -952,6 +1051,40 @@ def build_certificate() -> dict[str, Any]:
         ]
         == 0,
         "conic e=76 forced overlap changed",
+    )
+    require(
+        line_survival_rows[0]["base_pressure_label"] == "near-complete base splitting",
+        "line e=72 base pressure changed",
+    )
+    require(
+        line_survival_rows[1]["base_pressure_label"] == "positive base splitting",
+        "line e=73 base pressure changed",
+    )
+    require(
+        line_survival_rows[2]["base_pressure_label"] == "weak base splitting",
+        "line e=74 base pressure changed",
+    )
+    require(
+        line_survival_rows[-1]["base_pressure_label"]
+        == "external slack alone can absorb base deficit",
+        "line e=80 base pressure changed",
+    )
+    require(
+        conic_survival_rows[0]["secant_pressure_label"] == "almost complete secant graph",
+        "conic e=69 secant pressure changed",
+    )
+    require(
+        conic_survival_rows[1]["secant_pressure_label"] == "dense secant graph",
+        "conic e=70 secant pressure changed",
+    )
+    require(
+        conic_survival_rows[2]["secant_pressure_label"] == "nontrivial secant graph",
+        "conic e=71 secant pressure changed",
+    )
+    require(
+        conic_survival_rows[-1]["secant_pressure_label"]
+        == "pair-overlap pressure not forced before external excess",
+        "conic e=76 secant pressure changed",
     )
 
     return {
@@ -1145,6 +1278,14 @@ def build_certificate() -> dict[str, Any]:
                 "different: they would have to saturate the punctured projective "
                 "tangent bound itself."
             ),
+            "over_budget_survival_profile": (
+                "A genuine over-budget witness in a one-over row must saturate "
+                "the source-class bound, have six distinct finite slopes, and "
+                "keep the projective endpoint unpaid.  Line cores e_G=72,73,74 "
+                "also force near-complete, positive, and weak base-splitting "
+                "pressure respectively.  Conic cores e_G=69,70,71 force almost "
+                "complete, dense, and nontrivial external-secants respectively."
+            ),
         },
         "budget_formula": {
             "locator_degree_j": j_value,
@@ -1213,6 +1354,11 @@ def build_certificate() -> dict[str, Any]:
             "irreducible_conic_six_finite_saturation_rows": conic_six_saturation_rows,
             "punctured_tangent_tail_saturation_rows": tangent_tail_saturation_rows,
         },
+        "over_budget_survival_profile": {
+            "line_incidence_survival_rows": line_survival_rows,
+            "irreducible_conic_pair_overlap_survival_rows": conic_survival_rows,
+            "punctured_tangent_tail_survival_rows": tangent_tail_survival_rows,
+        },
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -1262,6 +1408,10 @@ def build_certificate() -> dict[str, Any]:
                     for row in line_six_saturation_rows
                 ),
             ],
+            "line_over_budget_base_pressure_core_labels": {
+                str(row["forced_external_core_size"]): row["base_pressure_label"]
+                for row in line_survival_rows
+            },
             "line_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in line_intermediate_profile_rows
             ),
@@ -1301,6 +1451,10 @@ def build_certificate() -> dict[str, Any]:
                     for row in conic_six_saturation_rows
                 ),
             ],
+            "conic_over_budget_secant_pressure_core_labels": {
+                str(row["forced_external_core_size"]): row["secant_pressure_label"]
+                for row in conic_survival_rows
+            },
             "conic_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows
             ),
@@ -1336,6 +1490,7 @@ def build_certificate() -> dict[str, Any]:
             "very-high-core tail e>=121 is projective-safe by the punctured projective tangent staircase",
             "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds",
             "one-over finite-incidence saturation conditions are computed for the endpoint-only subranges",
+            "over-budget survival conditions require bound saturation, distinct finite slopes, and an unpaid endpoint",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",

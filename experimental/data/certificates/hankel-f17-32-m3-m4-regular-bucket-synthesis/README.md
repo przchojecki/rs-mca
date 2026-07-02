@@ -248,7 +248,10 @@ one-over-budget subranges `72<=e_G<=80` and `e_G=120` for lines, and
 projective upper bounds in the middle are `18` and `26`, respectively.  The
 endpoint-only finite-incidence subranges now carry saturation constraints:
 line six-class saturation has external slack `1..41`, while conic six-class
-saturation needs `0..14` forced pair-overlap events before external excess.
+saturation needs `0..14` forced pair-overlap events before external excess.  A
+genuine over-budget witness must also have six distinct finite slopes and an
+unpaid endpoint; the strongest remaining pressure cases are line `e_G=72`
+near-complete base splitting and conic `e_G=69` almost-complete secants.
 
 The rank-node dichotomy packet
 
