@@ -1,9 +1,10 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 6: bucket identification, Cramer
+- **Status:** ACTIVE / EXPERIMENTAL (turn 7: bucket identification, Cramer
   chart, rank-drop split-locator deduplication, top-chart divisibility filter,
   pseudo-remainder degree budget, toy pseudo-remainder root table, and toy
-  root-containment certificate done; F17 root-table packet pending). No
+  root-containment certificate done; A=384 residual packet emitted and accepted
+  by the v12 packet checker; F17 top-chart root table remains open). No
   threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -240,10 +241,10 @@ where it belongs.
 | 5 | top-chart pseudo-remainder degree budget | **done** |
 | 6 | toy pseudo-remainder root table on a declared affine family | **done** |
 | 7 | toy root-containment certificate from one pseudo-remainder coefficient | **done** |
-| 8 | F17 root table packet or certified residual obstruction | pending |
-| 9 | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`, validated by `scripts/check_aperiodic_eliminant_packet.py` | pending |
+| 8 | F17 root table packet or certified residual obstruction | **done: residual labelled `unknown`** |
+| 9 | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`, validated by `scripts/check_aperiodic_eliminant_packet.py` | **done** |
 
-### Verified so far (turn 6)
+### Verified so far (turn 7)
 
 - **Bucket identification.** `regular(A) <=> 2A >= 769` swept over all
   `A in [257, 512]`; `A=385` regular (`t=129 >= j+1=128`), `A=384` not
@@ -288,6 +289,14 @@ where it belongs.
   slopes.  This verifies the certificate pattern: one nonzero
   pseudo-remainder coefficient bounds the top-chart root table, while the
   all-zero case must be labelled as a residual/identity chart.
+- **A=384 residual packet (`F_17^32`).** The verifier emits
+  `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/f17_32_n512_k256_a384_m5_residual_packet.json`
+  and replays it through `scripts/check_aperiodic_eliminant_packet.py`.  The
+  packet records a `pivot_atlas` at `A=384`, `j=t=128`: the rank-drop branch and
+  low-degree branch are marked `empty` as new exact-`A` mass after
+  higher-agreement deduplication, while the full-rank top Cramer locator chart
+  is explicitly labelled `residual_obstruction / unknown` with degree cap
+  `49280`.  This is a certified residual packet, not a root table.
 
 ## Honest scope
 
@@ -298,8 +307,9 @@ where it belongs.
 - An eliminant degree `~2^16` does not approach the budget `B_Q = 6`; this
   packet's purpose is the first structural filter and format compliance below
   the regular window, not a threshold claim.
-- If the top pseudo-remainder root table cannot be closed, the end state will be a labelled
-  `residual_obstruction` per §4.6 of the roadmap — named, not hidden.
+- The top pseudo-remainder root table is not closed here.  It is now explicitly
+  represented as a labelled `residual_obstruction / unknown` per §4.6 of the
+  roadmap — named, not hidden.
 - The committed root table is a toy declared-family table.  It is evidence
   that the mechanism is correctly wired, not evidence that the F17 A384
   root table is small.
@@ -307,5 +317,8 @@ where it belongs.
 ## Reproduce
 
 ```bash
+python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py --emit
 python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
+python3 scripts/check_aperiodic_eliminant_packet.py \
+  experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/f17_32_n512_k256_a384_m5_residual_packet.json
 ```

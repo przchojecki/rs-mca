@@ -115,8 +115,10 @@ Keep entries concise and link to the relevant files.
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.
 - **Files added or changed:** `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
   `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/README.md`;
+  `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/f17_32_n512_k256_a384_m5_residual_packet.json`;
   `experimental/agents-log.md`.
-- **Status:** PROVED-LOCAL / EXPERIMENTAL.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL / RESIDUAL-PACKET.
 - **What is being added:** A compact follow-up to the distilled PR #176 M5
   packet: in the deficiency-one `A=384` Hankel chart, a rank-drop slope with a
   valid degree-`j` split locator has a lower-degree active-root locator in the
@@ -128,15 +130,18 @@ Keep entries concise and link to the relevant files.
   adds a declared `F_97` pseudo-remainder root-table replay whose planted split
   slopes are exactly recovered.  On the same toy family it computes a symbolic
   `F_97[z][X]` pseudo-remainder coefficient of degree `19 <= 20` whose zero set
-  contains the root table.
+  contains the root table.  The follow-up emits a v12 A384 residual packet:
+  rank-drop and low-degree Cramer branches are marked empty as new exact-`A`
+  mass after higher-agreement deduplication, while the full-rank top chart is
+  explicitly labelled `residual_obstruction / unknown` with degree cap `49280`.
 - **How it is useful:** This removes the valid-split rank-drop side branch from
   the first underdetermined M5 bucket and makes the full-rank top chart a
   precise pseudo-remainder problem with checked degree/root-containment logic;
-  the F17 A384 pseudo-remainder root table is the remaining finite branch to
-  attack.
-- **What to do next:** Close or label the F17 top-chart pseudo-remainder
-  root-table branch in a later increment, or pivot to the roadmap evidence
-  program if that is the current coordination priority.
+  the F17 A384 pseudo-remainder root table is now named as the only unclosed
+  top-chart residual rather than hidden outside the packet format.
+- **What to do next:** Attack the F17 top-chart pseudo-remainder root table in
+  a later packet, or try to prove a structural lemma forcing its roots into
+  paid quotient/tangent/extension branches.
 
 ### 2026-07-02 - PR sweep: G3 toy evidence, v12 audits, and M5 A384 atlas
 
