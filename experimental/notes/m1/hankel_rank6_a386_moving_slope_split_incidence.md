@@ -334,7 +334,9 @@ simple edges, so six distinct edges span dimension at least `3`.  This closes
 the line tail because the line quotient-family dimension is `2`.  It does not
 close conic cores `109<=|E|<=114` by dimension alone, because a `K4` edge
 configuration has six edges and signed-incidence rank `3`, matching the conic
-quotient-family dimension.
+quotient-family dimension.  Conversely, this is the only sharp shape: any
+surviving conic tail witness in this range must use all six edges of a `K4`
+on four residual coordinates.
 
 Thus the unclosed high-core quotient range is finite:
 

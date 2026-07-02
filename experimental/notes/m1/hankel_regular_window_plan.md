@@ -345,8 +345,10 @@ same-support-contained at exact `A`, or incompatible with the `2`- or
 `3`-dimensional quotient family by cofactor independence.  In the new
 `d=r'+2` branch, six finite cofactors become six two-supported signed-edge
 vectors.  Their span has rank at least `3`, which closes the line case but is
-a conic boundary rather than a conic closure.  The unclosed high-core ranges
-are now `72<=e_G<=108` for lines and `69<=e_G<=114` for conics.  The packet now
+a conic boundary rather than a conic closure: any conic survivor in
+`e_G=109..114` must use all six edges of a `K4` on four residual coordinates.
+The unclosed high-core ranges are now `72<=e_G<=108` for lines and
+`69<=e_G<=114` for conics.  The packet now
 records an exact-current residual profile: the live one-over ranges are line
 `72..80` and conic `69..76`; the largest line projective bound remains `18`,
 while the largest conic bound drops from `26` to `25`.  The endpoint-only finite-incidence subranges now have

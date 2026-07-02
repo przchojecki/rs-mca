@@ -3805,6 +3805,974 @@
       "six_Q_classes_excluded": false
     }
   ],
+  "conic_signed_edge_tail_boundary_profile": [
+    {
+      "closed_lower_private_branches": [
+        "d<r' gives higher agreement",
+        "d=r' is same-support contained at exact A",
+        "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3"
+      ],
+      "closes_branch": false,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "finite_component_slope_count_at_least": 6,
+      "forced_external_core_size": 109,
+      "near_extremizer_common_support_complement_options": [
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 7,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 7
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 8,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 8
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 9,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 9
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 10,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 10
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 11,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 11
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 12,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 12
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 13,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 13
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 14,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 14
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 15,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 15
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 16,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 16
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 17,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 17
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 18,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 18
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 19,
+          "private_zero_quota_per_slope": 2,
+          "residual_budget_bound": 9
+        }
+      ],
+      "private_coordinate_count_options": [
+        0,
+        1,
+        2
+      ],
+      "projective_endpoint_status": "still needs endpoint payment or a stronger conic-specific exclusion",
+      "punctured_cosupport_radius": 17,
+      "sharp_extremizer_reason": "Six signed edge vectors can lie in a three-dimensional quotient family only by attaining the rank-3 edge-capacity bound.  The unique capacity extremizer is one connected rank-3 component, namely all six edges of K4 on four residual coordinates.",
+      "sharp_extremizer_shape": "K4_on_four_residual_coordinates",
+      "signed_edge_rank_capacity_at_conic_dimension": {
+        "component_capacity_by_rank": [
+          {
+            "component_rank": 1,
+            "component_type": "connected_graph",
+            "max_edges": 1,
+            "model": "complete_graph",
+            "vertex_count": 2
+          },
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          },
+          {
+            "component_rank": 3,
+            "component_type": "connected_graph",
+            "max_edges": 6,
+            "model": "complete_graph",
+            "vertex_count": 4
+          }
+        ],
+        "extremal_decomposition": [
+          {
+            "component_rank": 3,
+            "component_type": "connected_graph",
+            "max_edges": 6,
+            "model": "complete_graph",
+            "vertex_count": 4
+          }
+        ],
+        "field_characteristic": 17,
+        "max_edges": 6,
+        "rank_bound": 3,
+        "rank_formula": "After scaling by barycentric weights, two-private cofactors are oriented edge vectors.  Over characteristic not two, a connected component of the signed incidence matrix contributes |V|-1 to rank.",
+        "rank_used_by_extremizer": 3,
+        "uses_char_not_two": true
+      },
+      "signed_edge_rank_capacity_below_conic_dimension": {
+        "component_capacity_by_rank": [
+          {
+            "component_rank": 1,
+            "component_type": "connected_graph",
+            "max_edges": 1,
+            "model": "complete_graph",
+            "vertex_count": 2
+          },
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          }
+        ],
+        "extremal_decomposition": [
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          }
+        ],
+        "field_characteristic": 17,
+        "max_edges": 3,
+        "rank_bound": 2,
+        "rank_formula": "After scaling by barycentric weights, two-private cofactors are oriented edge vectors.  Over characteristic not two, a connected component of the signed incidence matrix contributes |V|-1 to rank.",
+        "rank_used_by_extremizer": 2,
+        "uses_char_not_two": true
+      },
+      "signed_edge_rank_lower_bound": 3,
+      "surviving_branch": "d_equals_r_plus_2_two_private_coordinates"
+    },
+    {
+      "closed_lower_private_branches": [
+        "d<r' gives higher agreement",
+        "d=r' is same-support contained at exact A",
+        "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3"
+      ],
+      "closes_branch": false,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "finite_component_slope_count_at_least": 6,
+      "forced_external_core_size": 110,
+      "near_extremizer_common_support_complement_options": [
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 7,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 7
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 8,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 8
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 9,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 9
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 10,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 10
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 11,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 11
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 12,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 12
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 13,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 13
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 14,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 14
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 15,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 15
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 16,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 16
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 17,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 17
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 18,
+          "private_zero_quota_per_slope": 2,
+          "residual_budget_bound": 9
+        }
+      ],
+      "private_coordinate_count_options": [
+        0,
+        1,
+        2
+      ],
+      "projective_endpoint_status": "still needs endpoint payment or a stronger conic-specific exclusion",
+      "punctured_cosupport_radius": 16,
+      "sharp_extremizer_reason": "Six signed edge vectors can lie in a three-dimensional quotient family only by attaining the rank-3 edge-capacity bound.  The unique capacity extremizer is one connected rank-3 component, namely all six edges of K4 on four residual coordinates.",
+      "sharp_extremizer_shape": "K4_on_four_residual_coordinates",
+      "signed_edge_rank_capacity_at_conic_dimension": {
+        "component_capacity_by_rank": [
+          {
+            "component_rank": 1,
+            "component_type": "connected_graph",
+            "max_edges": 1,
+            "model": "complete_graph",
+            "vertex_count": 2
+          },
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          },
+          {
+            "component_rank": 3,
+            "component_type": "connected_graph",
+            "max_edges": 6,
+            "model": "complete_graph",
+            "vertex_count": 4
+          }
+        ],
+        "extremal_decomposition": [
+          {
+            "component_rank": 3,
+            "component_type": "connected_graph",
+            "max_edges": 6,
+            "model": "complete_graph",
+            "vertex_count": 4
+          }
+        ],
+        "field_characteristic": 17,
+        "max_edges": 6,
+        "rank_bound": 3,
+        "rank_formula": "After scaling by barycentric weights, two-private cofactors are oriented edge vectors.  Over characteristic not two, a connected component of the signed incidence matrix contributes |V|-1 to rank.",
+        "rank_used_by_extremizer": 3,
+        "uses_char_not_two": true
+      },
+      "signed_edge_rank_capacity_below_conic_dimension": {
+        "component_capacity_by_rank": [
+          {
+            "component_rank": 1,
+            "component_type": "connected_graph",
+            "max_edges": 1,
+            "model": "complete_graph",
+            "vertex_count": 2
+          },
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          }
+        ],
+        "extremal_decomposition": [
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          }
+        ],
+        "field_characteristic": 17,
+        "max_edges": 3,
+        "rank_bound": 2,
+        "rank_formula": "After scaling by barycentric weights, two-private cofactors are oriented edge vectors.  Over characteristic not two, a connected component of the signed incidence matrix contributes |V|-1 to rank.",
+        "rank_used_by_extremizer": 2,
+        "uses_char_not_two": true
+      },
+      "signed_edge_rank_lower_bound": 3,
+      "surviving_branch": "d_equals_r_plus_2_two_private_coordinates"
+    },
+    {
+      "closed_lower_private_branches": [
+        "d<r' gives higher agreement",
+        "d=r' is same-support contained at exact A",
+        "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3"
+      ],
+      "closes_branch": false,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "finite_component_slope_count_at_least": 6,
+      "forced_external_core_size": 111,
+      "near_extremizer_common_support_complement_options": [
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 7,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 7
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 8,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 8
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 9,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 9
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 10,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 10
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 11,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 11
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 12,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 12
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 13,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 13
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 14,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 14
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 15,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 15
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 16,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 16
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 17,
+          "private_zero_quota_per_slope": 2,
+          "residual_budget_bound": 8
+        }
+      ],
+      "private_coordinate_count_options": [
+        0,
+        1,
+        2
+      ],
+      "projective_endpoint_status": "still needs endpoint payment or a stronger conic-specific exclusion",
+      "punctured_cosupport_radius": 15,
+      "sharp_extremizer_reason": "Six signed edge vectors can lie in a three-dimensional quotient family only by attaining the rank-3 edge-capacity bound.  The unique capacity extremizer is one connected rank-3 component, namely all six edges of K4 on four residual coordinates.",
+      "sharp_extremizer_shape": "K4_on_four_residual_coordinates",
+      "signed_edge_rank_capacity_at_conic_dimension": {
+        "component_capacity_by_rank": [
+          {
+            "component_rank": 1,
+            "component_type": "connected_graph",
+            "max_edges": 1,
+            "model": "complete_graph",
+            "vertex_count": 2
+          },
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          },
+          {
+            "component_rank": 3,
+            "component_type": "connected_graph",
+            "max_edges": 6,
+            "model": "complete_graph",
+            "vertex_count": 4
+          }
+        ],
+        "extremal_decomposition": [
+          {
+            "component_rank": 3,
+            "component_type": "connected_graph",
+            "max_edges": 6,
+            "model": "complete_graph",
+            "vertex_count": 4
+          }
+        ],
+        "field_characteristic": 17,
+        "max_edges": 6,
+        "rank_bound": 3,
+        "rank_formula": "After scaling by barycentric weights, two-private cofactors are oriented edge vectors.  Over characteristic not two, a connected component of the signed incidence matrix contributes |V|-1 to rank.",
+        "rank_used_by_extremizer": 3,
+        "uses_char_not_two": true
+      },
+      "signed_edge_rank_capacity_below_conic_dimension": {
+        "component_capacity_by_rank": [
+          {
+            "component_rank": 1,
+            "component_type": "connected_graph",
+            "max_edges": 1,
+            "model": "complete_graph",
+            "vertex_count": 2
+          },
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          }
+        ],
+        "extremal_decomposition": [
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          }
+        ],
+        "field_characteristic": 17,
+        "max_edges": 3,
+        "rank_bound": 2,
+        "rank_formula": "After scaling by barycentric weights, two-private cofactors are oriented edge vectors.  Over characteristic not two, a connected component of the signed incidence matrix contributes |V|-1 to rank.",
+        "rank_used_by_extremizer": 2,
+        "uses_char_not_two": true
+      },
+      "signed_edge_rank_lower_bound": 3,
+      "surviving_branch": "d_equals_r_plus_2_two_private_coordinates"
+    },
+    {
+      "closed_lower_private_branches": [
+        "d<r' gives higher agreement",
+        "d=r' is same-support contained at exact A",
+        "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3"
+      ],
+      "closes_branch": false,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "finite_component_slope_count_at_least": 6,
+      "forced_external_core_size": 112,
+      "near_extremizer_common_support_complement_options": [
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 7,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 7
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 8,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 8
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 9,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 9
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 10,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 10
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 11,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 11
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 12,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 12
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 13,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 13
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 14,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 14
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 15,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 15
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 16,
+          "private_zero_quota_per_slope": 2,
+          "residual_budget_bound": 8
+        }
+      ],
+      "private_coordinate_count_options": [
+        0,
+        1,
+        2
+      ],
+      "projective_endpoint_status": "still needs endpoint payment or a stronger conic-specific exclusion",
+      "punctured_cosupport_radius": 14,
+      "sharp_extremizer_reason": "Six signed edge vectors can lie in a three-dimensional quotient family only by attaining the rank-3 edge-capacity bound.  The unique capacity extremizer is one connected rank-3 component, namely all six edges of K4 on four residual coordinates.",
+      "sharp_extremizer_shape": "K4_on_four_residual_coordinates",
+      "signed_edge_rank_capacity_at_conic_dimension": {
+        "component_capacity_by_rank": [
+          {
+            "component_rank": 1,
+            "component_type": "connected_graph",
+            "max_edges": 1,
+            "model": "complete_graph",
+            "vertex_count": 2
+          },
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          },
+          {
+            "component_rank": 3,
+            "component_type": "connected_graph",
+            "max_edges": 6,
+            "model": "complete_graph",
+            "vertex_count": 4
+          }
+        ],
+        "extremal_decomposition": [
+          {
+            "component_rank": 3,
+            "component_type": "connected_graph",
+            "max_edges": 6,
+            "model": "complete_graph",
+            "vertex_count": 4
+          }
+        ],
+        "field_characteristic": 17,
+        "max_edges": 6,
+        "rank_bound": 3,
+        "rank_formula": "After scaling by barycentric weights, two-private cofactors are oriented edge vectors.  Over characteristic not two, a connected component of the signed incidence matrix contributes |V|-1 to rank.",
+        "rank_used_by_extremizer": 3,
+        "uses_char_not_two": true
+      },
+      "signed_edge_rank_capacity_below_conic_dimension": {
+        "component_capacity_by_rank": [
+          {
+            "component_rank": 1,
+            "component_type": "connected_graph",
+            "max_edges": 1,
+            "model": "complete_graph",
+            "vertex_count": 2
+          },
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          }
+        ],
+        "extremal_decomposition": [
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          }
+        ],
+        "field_characteristic": 17,
+        "max_edges": 3,
+        "rank_bound": 2,
+        "rank_formula": "After scaling by barycentric weights, two-private cofactors are oriented edge vectors.  Over characteristic not two, a connected component of the signed incidence matrix contributes |V|-1 to rank.",
+        "rank_used_by_extremizer": 2,
+        "uses_char_not_two": true
+      },
+      "signed_edge_rank_lower_bound": 3,
+      "surviving_branch": "d_equals_r_plus_2_two_private_coordinates"
+    },
+    {
+      "closed_lower_private_branches": [
+        "d<r' gives higher agreement",
+        "d=r' is same-support contained at exact A",
+        "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3"
+      ],
+      "closes_branch": false,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "finite_component_slope_count_at_least": 6,
+      "forced_external_core_size": 113,
+      "near_extremizer_common_support_complement_options": [
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 7,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 7
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 8,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 8
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 9,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 9
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 10,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 10
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 11,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 11
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 12,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 12
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 13,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 13
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 14,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 14
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 15,
+          "private_zero_quota_per_slope": 2,
+          "residual_budget_bound": 7
+        }
+      ],
+      "private_coordinate_count_options": [
+        0,
+        1,
+        2
+      ],
+      "projective_endpoint_status": "still needs endpoint payment or a stronger conic-specific exclusion",
+      "punctured_cosupport_radius": 13,
+      "sharp_extremizer_reason": "Six signed edge vectors can lie in a three-dimensional quotient family only by attaining the rank-3 edge-capacity bound.  The unique capacity extremizer is one connected rank-3 component, namely all six edges of K4 on four residual coordinates.",
+      "sharp_extremizer_shape": "K4_on_four_residual_coordinates",
+      "signed_edge_rank_capacity_at_conic_dimension": {
+        "component_capacity_by_rank": [
+          {
+            "component_rank": 1,
+            "component_type": "connected_graph",
+            "max_edges": 1,
+            "model": "complete_graph",
+            "vertex_count": 2
+          },
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          },
+          {
+            "component_rank": 3,
+            "component_type": "connected_graph",
+            "max_edges": 6,
+            "model": "complete_graph",
+            "vertex_count": 4
+          }
+        ],
+        "extremal_decomposition": [
+          {
+            "component_rank": 3,
+            "component_type": "connected_graph",
+            "max_edges": 6,
+            "model": "complete_graph",
+            "vertex_count": 4
+          }
+        ],
+        "field_characteristic": 17,
+        "max_edges": 6,
+        "rank_bound": 3,
+        "rank_formula": "After scaling by barycentric weights, two-private cofactors are oriented edge vectors.  Over characteristic not two, a connected component of the signed incidence matrix contributes |V|-1 to rank.",
+        "rank_used_by_extremizer": 3,
+        "uses_char_not_two": true
+      },
+      "signed_edge_rank_capacity_below_conic_dimension": {
+        "component_capacity_by_rank": [
+          {
+            "component_rank": 1,
+            "component_type": "connected_graph",
+            "max_edges": 1,
+            "model": "complete_graph",
+            "vertex_count": 2
+          },
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          }
+        ],
+        "extremal_decomposition": [
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          }
+        ],
+        "field_characteristic": 17,
+        "max_edges": 3,
+        "rank_bound": 2,
+        "rank_formula": "After scaling by barycentric weights, two-private cofactors are oriented edge vectors.  Over characteristic not two, a connected component of the signed incidence matrix contributes |V|-1 to rank.",
+        "rank_used_by_extremizer": 2,
+        "uses_char_not_two": true
+      },
+      "signed_edge_rank_lower_bound": 3,
+      "surviving_branch": "d_equals_r_plus_2_two_private_coordinates"
+    },
+    {
+      "closed_lower_private_branches": [
+        "d<r' gives higher agreement",
+        "d=r' is same-support contained at exact A",
+        "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3"
+      ],
+      "closes_branch": false,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "finite_component_slope_count_at_least": 6,
+      "forced_external_core_size": 114,
+      "near_extremizer_common_support_complement_options": [
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 7,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 7
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 8,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 8
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 9,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 9
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 10,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 10
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 11,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 11
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 12,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 12
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 13,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 13
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 14,
+          "private_zero_quota_per_slope": 2,
+          "residual_budget_bound": 7
+        }
+      ],
+      "private_coordinate_count_options": [
+        0,
+        1,
+        2
+      ],
+      "projective_endpoint_status": "still needs endpoint payment or a stronger conic-specific exclusion",
+      "punctured_cosupport_radius": 12,
+      "sharp_extremizer_reason": "Six signed edge vectors can lie in a three-dimensional quotient family only by attaining the rank-3 edge-capacity bound.  The unique capacity extremizer is one connected rank-3 component, namely all six edges of K4 on four residual coordinates.",
+      "sharp_extremizer_shape": "K4_on_four_residual_coordinates",
+      "signed_edge_rank_capacity_at_conic_dimension": {
+        "component_capacity_by_rank": [
+          {
+            "component_rank": 1,
+            "component_type": "connected_graph",
+            "max_edges": 1,
+            "model": "complete_graph",
+            "vertex_count": 2
+          },
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          },
+          {
+            "component_rank": 3,
+            "component_type": "connected_graph",
+            "max_edges": 6,
+            "model": "complete_graph",
+            "vertex_count": 4
+          }
+        ],
+        "extremal_decomposition": [
+          {
+            "component_rank": 3,
+            "component_type": "connected_graph",
+            "max_edges": 6,
+            "model": "complete_graph",
+            "vertex_count": 4
+          }
+        ],
+        "field_characteristic": 17,
+        "max_edges": 6,
+        "rank_bound": 3,
+        "rank_formula": "After scaling by barycentric weights, two-private cofactors are oriented edge vectors.  Over characteristic not two, a connected component of the signed incidence matrix contributes |V|-1 to rank.",
+        "rank_used_by_extremizer": 3,
+        "uses_char_not_two": true
+      },
+      "signed_edge_rank_capacity_below_conic_dimension": {
+        "component_capacity_by_rank": [
+          {
+            "component_rank": 1,
+            "component_type": "connected_graph",
+            "max_edges": 1,
+            "model": "complete_graph",
+            "vertex_count": 2
+          },
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          }
+        ],
+        "extremal_decomposition": [
+          {
+            "component_rank": 2,
+            "component_type": "connected_graph",
+            "max_edges": 3,
+            "model": "complete_graph",
+            "vertex_count": 3
+          }
+        ],
+        "field_characteristic": 17,
+        "max_edges": 3,
+        "rank_bound": 2,
+        "rank_formula": "After scaling by barycentric weights, two-private cofactors are oriented edge vectors.  Over characteristic not two, a connected component of the signed incidence matrix contributes |V|-1 to rank.",
+        "rank_used_by_extremizer": 2,
+        "uses_char_not_two": true
+      },
+      "signed_edge_rank_lower_bound": 3,
+      "surviving_branch": "d_equals_r_plus_2_two_private_coordinates"
+    }
+  ],
   "defect_threshold_profile": {
     "irreducible_conic_secant_defect_threshold_rows": [
       {
@@ -13206,7 +14174,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v34",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v35",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -14109,6 +15077,12 @@
     "conic_residual_projective_safe_by_punctured_tangent_for_external_core_at_least": 121,
     "conic_residual_punctured_tangent_numerator_at_threshold": 58,
     "conic_residual_quotient_degree_at_most": 57,
+    "conic_signed_edge_tail_boundary_closes_branch": false,
+    "conic_signed_edge_tail_boundary_core_range": [
+      109,
+      114
+    ],
+    "conic_signed_edge_tail_boundary_shape": "K4_on_four_residual_coordinates",
     "conic_six_finite_forced_pair_overlap_range": [
       0,
       14
@@ -16147,6 +17121,7 @@
     "conic_pair_overlap_packing": "On an irreducible conic, two distinct Q-classes can share at most one non-forced external root hyperplane: two shared external roots would give two distinct lines through the same two points.  Thus M valid Q-classes, each requiring R=124-e_G non-forced external roots, force a union of at least M*R-binomial(M,2) external root lines.  Since only 385-e_G are available, six Q-classes are impossible for e_G<=68 and seven are impossible for e_G<=76.",
     "conic_projective_safe_threshold": "For irreducible conics, e_G<=68 gives at most five finite Q-classes by pair-overlap packing.  Adding the endpoint-uniform contribution gives projective total at most 6.",
     "conic_remaining_residual": "Irreducible conics with forced external split-root core e_G>=69 remain residual for a sharper split, paid, or exact-root-table argument.",
+    "conic_signed_edge_tail_boundary_profile": "For the remaining conic tangent-tail cores e_G=109..114, any seven-projective-slope survivor must lie in the d=r'+2 branch.  The six finite two-private cofactors are signed edge vectors.  Rank at most two supports at most three edges, while rank three supports six edges only in the K4 extremizer.  Hence a survivor must use all six edges on four residual coordinates; this is a sharp obstruction profile, not a closure.",
     "conic_status": "For an irreducible conic c=2, the base-sharpened budget gives six finite Q-classes at e_G=0 and finite safety through e_G<=19, but the projective endpoint still makes total seven at best.  The conic pair-overlap packing lemma below supplies the needed extra saving through e_G<=68.",
     "defect_threshold_profile": "The survival pressures are converted into exact closure-by-defect thresholds.  At line e_G=72, six finite classes require at least eleven base-root incidences, so all six classes have a base root and at least five have two.  At conic e_G=69, six finite classes require at least fourteen of the fifteen pair secants before external excess, hence at least sixteen secant triangles.",
     "exact_agreement_tangent_tail_closure": "The cofactor-current tangent tail is closed by exact agreement for line cores e_G=109..119 and conic cores e_G=115..119.  If seven projective slopes survived, they could be sent to seven finite slopes in the punctured row.  For residual radius r'<=17 the tangent-staircase residual-budget proof allows at most two private residual coordinates beyond the common support complement.  The cases d<r' are higher-agreement, d=r' is same-support contained at exact A, and d=r'+1 gives degree-r' cofactors of an (r'+1)-point residual set.  At least six finite component cofactors would be independent, exceeding the line/conic quotient-family dimensions 2 and 3.  In the d=r'+2 branch the six finite cofactors are six two-supported signed edge vectors.  The checked signed-incidence edge cap gives span dimension at least 3, closing line components but not conic components by dimension alone.",

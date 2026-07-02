@@ -484,7 +484,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v16",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v17",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -536,7 +536,7 @@
     },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
-      "sha256": "deeacf0c678702355a31ebdd668bc4a4b5740be3b6396722000f187de116870a"
+      "sha256": "7706a014b1bedb27b452253d30462fe7b56fdac3054b139ebd871e582a959447"
     },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
@@ -589,6 +589,7 @@
       "the e_G=120 punctured-tangent tail is closed by a cofactor-span obstruction: at least six tangent-star cofactors must be finite component classes and are independent, but the fixed-core quotient family has vector dimension at most 2 or 3",
       "the generalized cofactor-span top-saturation exclusion improves the high-core tangent tail bound from r'+1 to r', making e_G=119 the next cofactor-current one-over tangent-tail core and e_G>=120 projective-safe",
       "the exact-agreement residual-budget split closes the cofactor-current tangent tail e_G=109..119 for lines and e_G=115..119 for irreducible conics; the d=r'+2 two-private-coordinate signed-edge branch closes lines but is a recorded conic boundary, so the exact-current one-over ranges are line e_G=72..80 and conic e_G=69..76; the conic maximum projective bound drops from 26 to 25",
+      "the unclosed conic tangent-tail boundary e_G=109..114 is sharpened to a K4 signed-edge obstruction: any seven-projective-slope survivor must put its six finite two-private cofactors on all six edges of four residual coordinates",
       "the still-unclosed high-core quotient ranges are e_G=72..108 for lines and e_G=69..114 for irreducible conics",
       "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; after exact-tail sharpening the worst projective bounds are 18 and 25",
       "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the formerly one-over e_G=120 cases are closed by the cofactor-span contradiction",

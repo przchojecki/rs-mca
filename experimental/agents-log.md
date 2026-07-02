@@ -66,7 +66,9 @@ Keep entries concise and link to the relevant files.
   quotient-family dimension by cofactor independence.  In the `d=r'+2` branch,
   six finite cofactors become six two-supported signed-edge vectors; their
   span has rank at least `3`, which closes lines but is not enough to close
-  conics by dimension alone.  The
+  conics by dimension alone.  The verifier records the sharp conic boundary:
+  any conic survivor in `e_G=109..114` must use all six edges of a `K4` on
+  four residual coordinates.  The
   incidence-only witnesses show that the
   remaining finite-incidence one-over rows cannot be closed by sharpening only
   the current incidence and pair-overlap counts.  The cofactor-current profile

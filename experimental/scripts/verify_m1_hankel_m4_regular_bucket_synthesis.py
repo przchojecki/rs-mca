@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v16"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v17"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v34",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v35",
 }
 
 
@@ -339,6 +339,12 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
     require(
         summary["conic_remaining_unclosed_external_core_range"] == [69, 114],
         "conic unclosed core range mismatch",
+    )
+    require(
+        summary["conic_signed_edge_tail_boundary_core_range"] == [109, 114]
+        and summary["conic_signed_edge_tail_boundary_shape"] == "K4_on_four_residual_coordinates"
+        and not summary["conic_signed_edge_tail_boundary_closes_branch"],
+        "conic signed-edge boundary summary mismatch",
     )
     require(
         summary["line_one_over_budget_external_core_ranges"] == [[72, 80], [120, 120]],
@@ -1116,6 +1122,36 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         ],
         "exact-tail closure range mismatch",
     )
+    conic_signed_boundary = data["conic_signed_edge_tail_boundary_profile"]
+    require(
+        [
+            (
+                row["forced_external_core_size"],
+                row["punctured_cosupport_radius"],
+                row["surviving_branch"],
+                row["signed_edge_rank_lower_bound"],
+                row["signed_edge_rank_capacity_at_conic_dimension"]["max_edges"],
+                row["signed_edge_rank_capacity_below_conic_dimension"]["max_edges"],
+                row["sharp_extremizer_shape"],
+                row["closes_branch"],
+            )
+            for row in conic_signed_boundary
+        ]
+        == [
+            (
+                core,
+                126 - core,
+                "d_equals_r_plus_2_two_private_coordinates",
+                3,
+                6,
+                3,
+                "K4_on_four_residual_coordinates",
+                False,
+            )
+            for core in range(109, 115)
+        ],
+        "conic signed-edge boundary rows mismatch",
+    )
     require(
         summary["exact_current_minimal_obstruction_count"] == 17
         and summary["exact_current_minimal_obstruction_core_ranges"]
@@ -1310,6 +1346,7 @@ def build_certificate() -> dict[str, Any]:
                 "the e_G=120 punctured-tangent tail is closed by a cofactor-span obstruction: at least six tangent-star cofactors must be finite component classes and are independent, but the fixed-core quotient family has vector dimension at most 2 or 3",
                 "the generalized cofactor-span top-saturation exclusion improves the high-core tangent tail bound from r'+1 to r', making e_G=119 the next cofactor-current one-over tangent-tail core and e_G>=120 projective-safe",
                 "the exact-agreement residual-budget split closes the cofactor-current tangent tail e_G=109..119 for lines and e_G=115..119 for irreducible conics; the d=r'+2 two-private-coordinate signed-edge branch closes lines but is a recorded conic boundary, so the exact-current one-over ranges are line e_G=72..80 and conic e_G=69..76; the conic maximum projective bound drops from 26 to 25",
+                "the unclosed conic tangent-tail boundary e_G=109..114 is sharpened to a K4 signed-edge obstruction: any seven-projective-slope survivor must put its six finite two-private cofactors on all six edges of four residual coordinates",
                 "the still-unclosed high-core quotient ranges are e_G=72..108 for lines and e_G=69..114 for irreducible conics",
                 "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; after exact-tail sharpening the worst projective bounds are 18 and 25",
                 "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the formerly one-over e_G=120 cases are closed by the cofactor-span contradiction",

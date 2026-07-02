@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v34"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v35"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -541,6 +541,65 @@ def tangent_tail_exact_agreement_closure_row(
         "contradiction": True,
         "projective_safe_after_exact_agreement_obstruction": True,
         "projective_upper_bound_after_obstruction": PROJECTIVE_BUDGET,
+    }
+
+
+def conic_signed_edge_tail_boundary_row(core: int) -> dict[str, Any]:
+    """Record the sharp signed-edge obstruction for the unclosed conic tail."""
+    row = punctured_tangent_top_saturation_exclusion_row("irreducible_conic", core)
+    punctured_radius = row["punctured_cosupport_radius"]
+    require(12 <= punctured_radius <= 17, "conic signed-edge boundary covers r'=12..17")
+    dangerous_projective_count = PROJECTIVE_BUDGET + 1
+    finite_component_cofactor_count_at_least = dangerous_projective_count - 1
+    quotient_dimension = quotient_family_vector_dimension("irreducible_conic")
+    require(quotient_dimension == 3, "conic quotient dimension changed")
+    near_extremizer_rows = tangent_near_extremizer_common_support_complements(
+        punctured_radius,
+        dangerous_projective_count,
+    )
+    private_coordinate_counts = [
+        max(0, entry["common_support_complement_size"] - punctured_radius)
+        for entry in near_extremizer_rows
+    ]
+    require(max(private_coordinate_counts) == 2, "conic boundary should have d=r'+2 branch")
+    signed_capacity = max_simple_edges_for_signed_rank_at_most(quotient_dimension)
+    require(signed_capacity["max_edges"] == 6, "signed rank-3 edge capacity changed")
+    require(
+        finite_component_cofactor_count_at_least == signed_capacity["max_edges"],
+        "conic boundary should be exactly sharp for six finite slopes",
+    )
+    lower_rank_capacity = max_simple_edges_for_signed_rank_at_most(quotient_dimension - 1)
+    require(lower_rank_capacity["max_edges"] == 3, "signed rank-2 edge capacity changed")
+    require(
+        lower_rank_capacity["max_edges"] < finite_component_cofactor_count_at_least,
+        "six edges should force signed rank at least three",
+    )
+    return {
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": core,
+        "punctured_cosupport_radius": punctured_radius,
+        "dangerous_projective_count": dangerous_projective_count,
+        "finite_component_slope_count_at_least": finite_component_cofactor_count_at_least,
+        "near_extremizer_common_support_complement_options": near_extremizer_rows,
+        "private_coordinate_count_options": sorted(set(private_coordinate_counts)),
+        "surviving_branch": "d_equals_r_plus_2_two_private_coordinates",
+        "closed_lower_private_branches": [
+            "d<r' gives higher agreement",
+            "d=r' is same-support contained at exact A",
+            "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3",
+        ],
+        "signed_edge_rank_lower_bound": quotient_dimension,
+        "signed_edge_rank_capacity_at_conic_dimension": signed_capacity,
+        "signed_edge_rank_capacity_below_conic_dimension": lower_rank_capacity,
+        "sharp_extremizer_shape": "K4_on_four_residual_coordinates",
+        "sharp_extremizer_reason": (
+            "Six signed edge vectors can lie in a three-dimensional quotient "
+            "family only by attaining the rank-3 edge-capacity bound.  The "
+            "unique capacity extremizer is one connected rank-3 component, "
+            "namely all six edges of K4 on four residual coordinates."
+        ),
+        "projective_endpoint_status": "still needs endpoint payment or a stronger conic-specific exclusion",
+        "closes_branch": False,
     }
 
 
@@ -2783,6 +2842,10 @@ def build_certificate() -> dict[str, Any]:
         for component_type in ["line", "irreducible_conic"]
         for core in exact_tail_closure_cores_by_component[component_type]
     ]
+    conic_signed_edge_tail_boundary_rows = [
+        conic_signed_edge_tail_boundary_row(core)
+        for core in range(line_exact_tail_safe_core_min, conic_exact_tail_safe_core_min)
+    ]
     line_base_defect_rows = [
         line_base_defect_threshold_row(row) for row in line_survival_rows
     ]
@@ -3133,6 +3196,26 @@ def build_certificate() -> dict[str, Any]:
             for row in tangent_tail_exact_closure_rows
         ),
         "exact-agreement tangent-tail closure should be active",
+    )
+    require(
+        [
+            (
+                row["forced_external_core_size"],
+                row["punctured_cosupport_radius"],
+                max(row["private_coordinate_count_options"]),
+                row["signed_edge_rank_lower_bound"],
+                row["signed_edge_rank_capacity_at_conic_dimension"]["max_edges"],
+                row["signed_edge_rank_capacity_below_conic_dimension"]["max_edges"],
+                row["sharp_extremizer_shape"],
+                row["closes_branch"],
+            )
+            for row in conic_signed_edge_tail_boundary_rows
+        ]
+        == [
+            (core, 126 - core, 2, 3, 6, 3, "K4_on_four_residual_coordinates", False)
+            for core in range(109, 115)
+        ],
+        "conic signed-edge boundary profile changed",
     )
     require(
         [group for group in line_exact_current_profile_groups if group["one_over_budget"]]
@@ -4378,6 +4461,15 @@ def build_certificate() -> dict[str, Any]:
                 "least 3, closing line components but not conic components by "
                 "dimension alone."
             ),
+            "conic_signed_edge_tail_boundary_profile": (
+                "For the remaining conic tangent-tail cores e_G=109..114, any "
+                "seven-projective-slope survivor must lie in the d=r'+2 branch.  "
+                "The six finite two-private cofactors are signed edge vectors.  "
+                "Rank at most two supports at most three edges, while rank three "
+                "supports six edges only in the K4 extremizer.  Hence a survivor "
+                "must use all six edges on four residual coordinates; this is a "
+                "sharp obstruction profile, not a closure."
+            ),
             "single_saving_closure_ledger": (
                 "Every cofactor-current one-over row in the moving-slope packet is "
                 "listed in a single-saving closure ledger.  The ledger covers "
@@ -4555,6 +4647,7 @@ def build_certificate() -> dict[str, Any]:
         "punctured_tangent_tail_extremizer_profile": tangent_tail_extremizer_rows,
         "punctured_tangent_tail_cofactor_span_closure": tangent_tail_cofactor_span_closure_rows,
         "punctured_tangent_tail_exact_agreement_closure": tangent_tail_exact_closure_rows,
+        "conic_signed_edge_tail_boundary_profile": conic_signed_edge_tail_boundary_rows,
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -4706,6 +4799,16 @@ def build_certificate() -> dict[str, Any]:
             ),
             "conic_residual_projective_safe_after_exact_tail_for_external_core_at_least": (
                 conic_exact_tail_safe_core_min
+            ),
+            "conic_signed_edge_tail_boundary_core_range": [
+                min(row["forced_external_core_size"] for row in conic_signed_edge_tail_boundary_rows),
+                max(row["forced_external_core_size"] for row in conic_signed_edge_tail_boundary_rows),
+            ],
+            "conic_signed_edge_tail_boundary_shape": (
+                conic_signed_edge_tail_boundary_rows[0]["sharp_extremizer_shape"]
+            ),
+            "conic_signed_edge_tail_boundary_closes_branch": all(
+                row["closes_branch"] for row in conic_signed_edge_tail_boundary_rows
             ),
             "conic_cofactor_improved_tangent_one_over_external_core": (
                 conic_cofactor_tangent_one_over_cores

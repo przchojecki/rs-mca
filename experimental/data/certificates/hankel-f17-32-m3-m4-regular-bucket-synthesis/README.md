@@ -259,9 +259,10 @@ same-support-contained at exact `A`, or incompatible with the `2`- or
 `3`-dimensional quotient family by cofactor independence.  In the new
 `d=r'+2` branch, six finite cofactors become six two-supported signed-edge
 vectors.  Their span has rank at least `3`, which closes the line case but is
-a conic boundary rather than a conic closure.  The remaining unclosed
-intermediate ranges are `72<=e_G<=108` for lines and `69<=e_G<=114` for
-irreducible conics.
+a conic boundary rather than a conic closure: any conic survivor in
+`e_G=109..114` must use all six edges of a `K4` on four residual coordinates.
+The remaining unclosed intermediate ranges are `72<=e_G<=108` for lines and
+`69<=e_G<=114` for irreducible conics.
 The exact-current residual profile has live one-over ranges line
 `e_G=72..80` and irreducible conic `e_G=69..76`; the largest conic projective
 bound drops from `26` to `25`.
