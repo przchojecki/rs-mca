@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A385 two-core moving-slope incidence
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_moving_slope_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-moving-slope-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a385_two_core_moving_slope_incidence.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A split-locator incidence budget for the separated
+  `A=385` rank-6 fixed two-core moving-slope residual: after the two fixed
+  base roots and at most two residual base roots, every degree-`127` split
+  locator needs `123-e_G` non-forced external roots.
+- **How it is useful:** This proves projective-budget safety for line
+  components with `e_G<=70` and irreducible conic components with `e_G<=67`
+  by pair-overlap packing, sharpening the remaining high-core target.
+- **What to do next:** Attack the high-core fixed two-core moving-slope ranges
+  by adapting the A386 product-collapse or quotient diagnostics, without
+  conflating them with moving-core/no-common-core or overlapping-support cases.
+
 ### 2026-07-02 - A385 two-core slope-free emptiness
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

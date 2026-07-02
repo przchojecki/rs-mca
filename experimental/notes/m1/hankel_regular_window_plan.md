@@ -961,6 +961,11 @@ The fixed two-core slope-free companion closes the slope-free branch: after
 nodes, impossible for a nonzero residual polynomial.  The only fixed two-core
 global-component residual left is therefore the determined nonconstant
 moving-slope branch.
+The fixed two-core moving-slope incidence companion gives the first thresholds
+for that branch: line components are projective-safe for external forced core
+`e_G<=70`, and irreducible conics are projective-safe for `e_G<=67` after
+pair-overlap packing.  The high-core line/conic ranges remain open for
+product-collapse, quotient, tangent-tail, or split-locator analysis.
 For `A=387`, the projective `Q`-space is a point, so the arbitrary-weight
 separated branch is already projective-safe with total at most `2`.
 For `A=386`, a no-common-component pair of direction conics gives projective
@@ -1013,6 +1018,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_global_compone
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_slope_free_empty.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-slope-free-empty/f17_32_n512_k256_m3_rank6_a385_two_core_slope_free_empty.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_moving_slope_incidence.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-moving-slope-incidence/f17_32_n512_k256_m3_rank6_a385_two_core_moving_slope_incidence.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

@@ -161,6 +161,19 @@ and disjoint from the fixed base core, a nonzero `R` would have six roots,
 impossible for degree `<3`.  Thus the fixed two-core slope-free base locus or
 global component is empty.
 
+The fixed two-core moving-slope incidence companion is
+
+```text
+experimental/notes/m1/hankel_rank6_a385_two_core_moving_slope_incidence.md
+```
+
+It gives the first split-locator incidence budget for the remaining
+nonconstant moving-slope branch.  A degree-`127` split locator has at most four
+base roots in this fixed two-core branch, so it needs at least `123-e_G`
+non-forced external roots.  Line components are projective-safe for
+`e_G<=70`; irreducible conics are projective-safe for `e_G<=67` after the
+pair-overlap saving.  High-core line/conic branches remain residual.
+
 At `A=387`, this transfer already closes the separated branch for arbitrary
 nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at
 most one finite slope.  The companion note
@@ -298,6 +311,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_global_compone
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_slope_free_empty.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-slope-free-empty/f17_32_n512_k256_m3_rank6_a385_two_core_slope_free_empty.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_moving_slope_incidence.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-moving-slope-incidence/f17_32_n512_k256_m3_rank6_a385_two_core_moving_slope_incidence.json
 ```
 
 Nonclaims:

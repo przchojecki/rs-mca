@@ -577,6 +577,13 @@ the fixed two-core branch, `Q=E R` with `deg R<3`; if all six direction
 numerators vanish, then `R` vanishes at six distinct direction nodes, which is
 impossible for a nonzero degree-`<3` residual polynomial.
 
+The `A=385` two-core moving-slope incidence companion starts the remaining
+nonconstant branch.  Because a degree-`127` split locator has at most four base
+roots after the fixed two-core factorization, line components are
+projective-safe for `e_G<=70`, while irreducible conics are projective-safe for
+`e_G<=67` by pair-overlap packing.  The high-core line/conic ranges remain
+residual.
+
 The `A=387` separated-boundary safety companion uses the `h=1` specialization
 to close that agreement for arbitrary nonzero separated weights: the finite
 root table has at most one ambient root, the split-locator gate cannot increase
@@ -919,6 +926,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_global_compone
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_slope_free_empty.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-slope-free-empty/f17_32_n512_k256_m3_rank6_a385_two_core_slope_free_empty.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_moving_slope_incidence.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-moving-slope-incidence/f17_32_n512_k256_m3_rank6_a385_two_core_moving_slope_incidence.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

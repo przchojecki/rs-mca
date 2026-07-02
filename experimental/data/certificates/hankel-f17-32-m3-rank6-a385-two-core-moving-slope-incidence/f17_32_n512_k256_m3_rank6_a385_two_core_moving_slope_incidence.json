@@ -1,0 +1,257 @@
+{
+  "agreement": {
+    "A": 385,
+    "base_root_cap_per_Q": 4,
+    "base_support_size": 128,
+    "boundary_defect_h": 5,
+    "combined_support_size": 134,
+    "direction_rank": 6,
+    "external_root_count": 384,
+    "forced_base_core_size": 2,
+    "j": 127,
+    "m": 128,
+    "projective_Q_search_dimension_after_core": 2,
+    "projective_Q_search_dimension_before_core": 4,
+    "required_external_roots_without_forced_external_core": 123,
+    "residual_vector_dimension_after_core": 3,
+    "split_locator_degree": 127,
+    "t": 129
+  },
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "A=385 fixed two-core residual has Q-plane P^2 and locator degree 127",
+    "slope-free dependency leaves only the determined nonconstant moving-slope residual",
+    "base interpolation R->L_{E R} is injective",
+    "base roots are capped by two fixed core roots plus at most two residual R-roots",
+    "external incidence formula floor(c*(384-e)/(123-e)) is evaluated for c=1,2",
+    "line projective-safe threshold is e<=70",
+    "line finite-safe threshold is e<=79",
+    "conic pair-overlap packing excludes six Q-classes for e<=67",
+    "conic pair-overlap packing excludes seven Q-classes for e<=75"
+  ],
+  "conic_external_incidence_sample_rows": [
+    {
+      "base_root_cap": 4,
+      "component_degree": 2,
+      "external_incidence_capacity": 768,
+      "finite_q_class_bound": 6,
+      "forced_external_core_size": 0,
+      "projective_total_with_endpoint_bound": 7,
+      "remaining_external_root_hyperplanes": 384,
+      "remaining_required_external_roots_per_valid_locator": 123
+    },
+    {
+      "base_root_cap": 4,
+      "component_degree": 2,
+      "external_incidence_capacity": 732,
+      "finite_q_class_bound": 6,
+      "forced_external_core_size": 18,
+      "projective_total_with_endpoint_bound": 7,
+      "remaining_external_root_hyperplanes": 366,
+      "remaining_required_external_roots_per_valid_locator": 105
+    },
+    {
+      "base_root_cap": 4,
+      "component_degree": 2,
+      "external_incidence_capacity": 730,
+      "finite_q_class_bound": 7,
+      "forced_external_core_size": 19,
+      "projective_total_with_endpoint_bound": 8,
+      "remaining_external_root_hyperplanes": 365,
+      "remaining_required_external_roots_per_valid_locator": 104
+    }
+  ],
+  "conic_pair_overlap_sample_rows": [
+    {
+      "available_nonforced_external_root_lines": 317,
+      "component": "irreducible_conic",
+      "finite_target_q_classes": 6,
+      "forced_external_core_size": 67,
+      "minimum_union_size_after_pair_overlap": 321,
+      "required_nonforced_external_roots_per_class": 56,
+      "target_q_classes_impossible": true
+    },
+    {
+      "available_nonforced_external_root_lines": 316,
+      "component": "irreducible_conic",
+      "finite_target_q_classes": 6,
+      "forced_external_core_size": 68,
+      "minimum_union_size_after_pair_overlap": 315,
+      "required_nonforced_external_roots_per_class": 55,
+      "target_q_classes_impossible": false
+    },
+    {
+      "available_nonforced_external_root_lines": 309,
+      "component": "irreducible_conic",
+      "finite_target_q_classes": 7,
+      "forced_external_core_size": 75,
+      "minimum_union_size_after_pair_overlap": 315,
+      "required_nonforced_external_roots_per_class": 48,
+      "target_q_classes_impossible": true
+    },
+    {
+      "available_nonforced_external_root_lines": 308,
+      "component": "irreducible_conic",
+      "finite_target_q_classes": 7,
+      "forced_external_core_size": 76,
+      "minimum_union_size_after_pair_overlap": 308,
+      "required_nonforced_external_roots_per_class": 47,
+      "target_q_classes_impossible": false
+    }
+  ],
+  "incidence_setup": {
+    "component": "Let G be an irreducible positive-dimensional fixed two-core moving-slope component in the residual Q-plane, with degree c in {1,2}.",
+    "external_forced_split_root_core": "e_G is the number of forced root hyperplanes among H\\X.  The fixed two-point base core and the residual R-roots on X are counted separately.",
+    "root_hyperplanes": "For each subgroup point s in H, E_s={R in P^2: L_{E R}(s)=0} is a root hyperplane for the split-locator gate."
+  },
+  "line_external_incidence_sample_rows": [
+    {
+      "base_root_cap": 4,
+      "component_degree": 1,
+      "external_incidence_capacity": 314,
+      "finite_q_class_bound": 5,
+      "forced_external_core_size": 70,
+      "projective_total_with_endpoint_bound": 6,
+      "remaining_external_root_hyperplanes": 314,
+      "remaining_required_external_roots_per_valid_locator": 53
+    },
+    {
+      "base_root_cap": 4,
+      "component_degree": 1,
+      "external_incidence_capacity": 313,
+      "finite_q_class_bound": 6,
+      "forced_external_core_size": 71,
+      "projective_total_with_endpoint_bound": 7,
+      "remaining_external_root_hyperplanes": 313,
+      "remaining_required_external_roots_per_valid_locator": 52
+    },
+    {
+      "base_root_cap": 4,
+      "component_degree": 1,
+      "external_incidence_capacity": 305,
+      "finite_q_class_bound": 6,
+      "forced_external_core_size": 79,
+      "projective_total_with_endpoint_bound": 7,
+      "remaining_external_root_hyperplanes": 305,
+      "remaining_required_external_roots_per_valid_locator": 44
+    },
+    {
+      "base_root_cap": 4,
+      "component_degree": 1,
+      "external_incidence_capacity": 304,
+      "finite_q_class_bound": 7,
+      "forced_external_core_size": 80,
+      "projective_total_with_endpoint_bound": 8,
+      "remaining_external_root_hyperplanes": 304,
+      "remaining_required_external_roots_per_valid_locator": 43
+    }
+  ],
+  "nonclaims": [
+    "does not close the full fixed two-core nonconstant moving-slope branch",
+    "does not prove product collapse for A=385 high-core line or conic components",
+    "does not claim the high-core quotient diagnostic problems are empty or paid",
+    "does not prove that every A=385 over-budget branch has a fixed two-point base core",
+    "does not close moving-core or no-common-core A=385 branches",
+    "does not classify overlapping-support rank-6 pencils",
+    "does not prove endpoint payment; it uses endpoint-budget accounting",
+    "does not produce a row-level M3 safe-side bound"
+  ],
+  "object": "A=385 separated rank-6 fixed two-core moving-slope incidence budget",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-a385-two-core-moving-slope-incidence-v1",
+  "source_artifacts": {
+    "a385_two_core_global_component_slope_dichotomy": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a385_two_core_global_component_slope_dichotomy.json",
+      "sha256": "fcff20da15e17efc860def7d707ee17c1aff41a28a0d2ebbbd90bb670045419e"
+    },
+    "a385_two_core_slope_free_empty": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-slope-free-empty/f17_32_n512_k256_m3_rank6_a385_two_core_slope_free_empty.json",
+      "sha256": "dbb223b2966837ac70bcbfa136e73bbfbe5395acfef5dc225c1a85e6a53a6864"
+    },
+    "nullpolynomial_split_locator_gate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json",
+      "sha256": "fd918c7ddbf47b9037840a7dddf5d9a49c77b7d8d889924bbb6b861f8bb2bc42"
+    },
+    "rank6_boundary_low_degree_transfer": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json",
+      "sha256": "4ff0d90a1e710bca56efd7a68357d2dcc473a8150c9ddcaf1b95a061ec5c2101"
+    },
+    "rank6_projective_endpoint_uniform": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+      "sha256": "f933c4d38476d3056e6284de55e01b7375f8c90239d52aed40548018323454e2"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement": 385,
+    "base_root_cap_per_Q": 4,
+    "boundary_defect_h": 5,
+    "conic_pair_overlap_finite_safe_external_core_max": 75,
+    "conic_pair_overlap_projective_safe_external_core_max": 67,
+    "conic_projective_one_over_diagnostic_external_core_range": [
+      68,
+      75
+    ],
+    "external_root_count": 384,
+    "forced_base_core_size": 2,
+    "line_finite_safe_external_core_max": 79,
+    "line_projective_one_over_diagnostic_external_core_range": [
+      71,
+      79
+    ],
+    "line_projective_safe_external_core_max": 70,
+    "remaining_residual_after_incidence": "fixed two-core moving-slope high-core line/conic branches",
+    "required_external_roots_without_forced_external_core": 123
+  },
+  "theorem": {
+    "base_interpolation_injective": "The linear map R -> L_{E R} is injective: if L_{E R}=0, then E(x)R(x)=0 for every x in the base support X.  Outside the two fixed core nodes, E(x) is nonzero, so R has 126 roots; deg R<3 forces R=0.",
+    "base_root_cap": "On X, a_x L_{E R}(x)=Omega_x E(x)R(x).  Every candidate has the two fixed base-core roots, and nonzero R has at most two further roots on X.  Thus a valid degree-127 split locator has at most four base-support roots and must get at least 123-e_G non-forced external roots.",
+    "conic_pair_overlap_packing": "On an irreducible conic, two distinct Q-classes can share at most one non-forced external root hyperplane.  Thus M valid classes, each requiring R=123-e_G non-forced external roots, use at least M*R-binomial(M,2) external root lines.  Since only 384-e_G are available, six classes are impossible for e_G<=67 and seven are impossible for e_G<=75.",
+    "conic_projective_safe_threshold": "For an irreducible conic, the pair-overlap saving gives at most five finite classes for e_G<=67.  Adding the endpoint gives projective total at most 6.",
+    "incidence_budget": "For e_G<123, each valid split locator on G needs at least 123-e_G additional non-forced external root hyperplanes.  Each such hyperplane cuts G in length at most c.  Hence the number of valid Q-classes, and therefore finite slopes, is at most floor(c*(384-e_G)/(123-e_G)).",
+    "line_finite_only_threshold": "The same line incidence budget gives finite safety through e_G<=79.  The projective one-over diagnostic range left by incidence alone is 71<=e_G<=79.",
+    "line_projective_safe_threshold": "For a line component c=1, e_G<=70 gives at most five finite Q-classes.  Adding the endpoint-uniform contribution gives projective total at most 6, the projective budget.",
+    "remaining_high_core_residual": "This packet is an incidence budget only.  It leaves the line range e_G>=71 and conic range e_G>=68 for product-collapse, quotient, tangent-tail, or split-locator analysis."
+  },
+  "thresholds": {
+    "conic_base_incidence_finite_safe_if_external_core_at_most": 18,
+    "conic_pair_overlap_finite_safe_if_external_core_at_most": 75,
+    "conic_pair_overlap_projective_safe_if_external_core_at_most": 67,
+    "conic_projective_one_over_diagnostic_external_core_range": [
+      68,
+      75
+    ],
+    "external_incidence_formula_valid_for_e_G_at_most": 122,
+    "line_finite_safe_if_external_core_at_most": 79,
+    "line_projective_one_over_diagnostic_external_core_range": [
+      71,
+      79
+    ],
+    "line_projective_safe_if_external_core_at_most": 70,
+    "unrefined_all_root_line_finite_safe_if_forced_core_at_most": 62,
+    "unrefined_all_root_line_projective_safe_if_forced_core_at_most": 49
+  }
+}

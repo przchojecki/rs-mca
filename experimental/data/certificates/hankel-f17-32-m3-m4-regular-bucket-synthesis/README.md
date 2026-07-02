@@ -239,6 +239,21 @@ nonzero scalar multiples of `R(y)=0` at six distinct direction nodes, impossible
 for a nonzero residual polynomial.  The fixed two-core slope-free base locus
 and slope-free global component are therefore empty.
 
+The `A=385` two-core moving-slope incidence packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-moving-slope-incidence/
+  f17_32_n512_k256_m3_rank6_a385_two_core_moving_slope_incidence.json
+```
+
+starts the remaining fixed two-core nonconstant moving-slope branch.  A
+degree-`127` split locator has at most four base-support roots after the fixed
+two-core factorization, so a component with external forced core `e_G` needs at
+least `123-e_G` non-forced external roots.  Line components are
+projective-budget safe for `e_G<=70`; irreducible conics are projective-budget
+safe for `e_G<=67` after pair-overlap packing.  The high-core line/conic ranges
+remain residual.
+
 The `A=387` separated-boundary safety packet
 
 ```text
@@ -544,6 +559,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_global_compone
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_slope_free_empty.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-slope-free-empty/f17_32_n512_k256_m3_rank6_a385_two_core_slope_free_empty.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_moving_slope_incidence.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-moving-slope-incidence/f17_32_n512_k256_m3_rank6_a385_two_core_moving_slope_incidence.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json
