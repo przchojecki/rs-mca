@@ -1,0 +1,62 @@
+{
+  "checks": {
+    "f13_surjectivity": {
+      "agreement": 8,
+      "all_syndrome_maps_surjective": true,
+      "bad_rank_roots": [],
+      "expected_aligned_locators": {
+        "decimal": 0.017331279255666188,
+        "denominator": 10604499373,
+        "numerator": 183789540
+      },
+      "field": "F_13",
+      "j": 4,
+      "k": 3,
+      "locator_count": 495,
+      "n": 12,
+      "rank_histogram": {
+        "5": 495
+      },
+      "t": 5
+    },
+    "f5_bruteforce": {
+      "agreement": 3,
+      "aligned_locator_count_histogram": {
+        "0": 183125,
+        "1": 144000,
+        "2": 48000,
+        "3": 2000,
+        "4": 13500
+      },
+      "bruteforce_mean": {
+        "decimal": 0.768,
+        "denominator": 125,
+        "numerator": 96
+      },
+      "field": "F_5",
+      "formula_mean": {
+        "decimal": 0.768,
+        "denominator": 125,
+        "numerator": 96
+      },
+      "j": 1,
+      "k": 1,
+      "locator_count": 4,
+      "n": 4,
+      "pair_count": 390625,
+      "rank_histogram": {
+        "2": 4
+      },
+      "t": 2,
+      "total_aligned_locators": 300000,
+      "word_count": 625
+    }
+  },
+  "dag_node": "fm1",
+  "definition": "For a split degree-j locator ell, set a=S_ell(u), b=S_ell(v) in F_q^t. The locator is aligned when b != 0 and a lies in the one-dimensional span of b.",
+  "passed": true,
+  "schema": "fm1_exact_first_moment_v1",
+  "script_sha256": "f43491537f105cca59ec110af1a18dc2dc9c639113c8c1f91d38a8590e05afc3",
+  "statement": "E[# aligned split locators] = binom(n,j)(1-q^-t)q^(1-t)",
+  "status": "PROVED_LOCAL_VERIFICATION"
+}
