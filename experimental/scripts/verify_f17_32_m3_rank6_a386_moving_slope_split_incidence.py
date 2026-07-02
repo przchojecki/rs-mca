@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v31"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v32"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -350,30 +350,33 @@ def tangent_near_extremizer_common_support_complements(
     return rows
 
 
-def tangent_tail_e119_exact_agreement_closure_row(component_type: str) -> dict[str, Any]:
-    """Close the live e_G=119 tangent-tail row using exact-agreement structure."""
-    core = 119
+def tangent_tail_exact_agreement_closure_row(
+    component_type: str,
+    core: int,
+) -> dict[str, Any]:
+    """Close the cofactor-current tangent tail for r'=126-e_G <= 11."""
     row = punctured_tangent_top_saturation_exclusion_row(component_type, core)
-    require(row["raw_projective_tangent_bound"] == PROJECTIVE_BUDGET + 2, "raw e=119 bound")
-    require(
-        row["cofactor_improved_projective_tangent_bound"] == PROJECTIVE_BUDGET + 1,
-        "e=119 should be one-over after top-saturation exclusion",
-    )
     punctured_radius = row["punctured_cosupport_radius"]
+    require(7 <= punctured_radius <= 11, "exact-tail closure covers r'=7..11")
+    require(
+        row["cofactor_improved_projective_tangent_bound"] >= PROJECTIVE_BUDGET + 1,
+        "exact-tail closure should only target still-unsafe cofactor rows",
+    )
     dangerous_projective_count = PROJECTIVE_BUDGET + 1
     near_extremizer_rows = tangent_near_extremizer_common_support_complements(
         punctured_radius,
         dangerous_projective_count,
     )
     require(
-        [entry["common_support_complement_size"] for entry in near_extremizer_rows] == [7, 8],
-        "e=119 near-extremizer alternatives changed",
+        [entry["common_support_complement_size"] for entry in near_extremizer_rows]
+        == list(range(PROJECTIVE_BUDGET + 1, punctured_radius + 2)),
+        "exact-tail near-extremizer alternatives changed",
     )
     quotient_dimension = quotient_family_vector_dimension(component_type)
     finite_component_cofactor_count_at_least = dangerous_projective_count - 1
     require(
         finite_component_cofactor_count_at_least > quotient_dimension,
-        "e=119 finite cofactor span should exceed quotient dimension",
+        "exact-tail finite cofactor span should exceed quotient dimension",
     )
     return {
         "component_type": component_type,
@@ -391,24 +394,28 @@ def tangent_tail_e119_exact_agreement_closure_row(component_type: str) -> dict[s
             "bad points become seven finite bad slopes in the punctured row"
         ),
         "near_extremizer_common_support_complement_options": near_extremizer_rows,
-        "d_equals_7_exact_bucket_exclusion": (
-            "If the common-support complement has size 7, the common support "
-            "already has size A=386 in the punctured row.  An exact-A split "
-            "locator has no residual coordinate left to add, while the "
-            "support-wise noncontainment argument requires a private residual "
-            "zero outside the common support; this branch is higher-agreement "
-            "or same-support contained, not an exact-A noncontained locator."
+        "d_less_than_r_exclusion": (
+            "If the common-support complement d is smaller than r'=n'-A, the "
+            "common support has size greater than A.  This is a higher-agreement "
+            "branch, not an exact-A contribution."
         ),
-        "d_equals_8_cofactor_obstruction": (
-            "If the complement has size 8, every exact-A noncontained slope is "
-            "obtained by adding one residual coordinate to the size-385 common "
-            "support.  The residual quotient locators are degree-7 cofactors "
-            "of an eight-point residual set."
+        "d_equals_r_exclusion": (
+            "If d=r', the common support already has size A=386.  An exact-A "
+            "split locator has no residual coordinate left to add, while the "
+            "support-wise noncontainment argument requires a private residual "
+            "coordinate outside the common support; this branch is higher-"
+            "agreement or same-support contained."
+        ),
+        "d_equals_r_plus_1_cofactor_obstruction": (
+            "If d=r'+1, every exact-A noncontained slope is obtained by adding "
+            "one residual coordinate to a size-385 common support.  The residual "
+            "quotient locators are degree-r' cofactors of an (r'+1)-point "
+            "residual set."
         ),
         "original_projective_endpoint_count_at_most": 1,
         "finite_component_slope_count_at_least": finite_component_cofactor_count_at_least,
         "cofactor_independence_witness": (
-            "For residual set Omega={omega_1,...,omega_8}, the cofactors "
+            "For residual set Omega={omega_1,...,omega_{r'+1}}, the cofactors "
             "R_i(X)=prod_{m != i}(X-omega_m) satisfy R_i(omega_i)!=0 and "
             "R_m(omega_i)=0 for m != i, so every subset is linearly independent."
         ),
@@ -424,21 +431,22 @@ def tangent_tail_e119_exact_agreement_closure_row(component_type: str) -> dict[s
 
 def exact_agreement_current_profile_row(
     cofactor_current_row: dict[str, Any],
+    exact_tail_safe_core_min: int,
 ) -> dict[str, Any]:
-    """Apply the exact-agreement e_G=119 tangent-tail closure to the envelope."""
+    """Apply the exact-agreement tangent-tail closure to the envelope."""
     row = dict(cofactor_current_row)
     if (
-        row["forced_external_core_size"] == 119
+        row["forced_external_core_size"] >= exact_tail_safe_core_min
         and row["active_best_methods"] == ["cofactor-improved punctured projective tangent"]
-        and row["one_over_budget"]
+        and row["current_projective_upper_bound"] > PROJECTIVE_BUDGET
     ):
         row["current_projective_upper_bound"] = PROJECTIVE_BUDGET
         row["projective_safe"] = True
         row["one_over_budget"] = False
         row["active_best_methods"] = ["exact-agreement tangent-tail cofactor closure"]
-        row["exact_agreement_e119_closure_applied"] = True
+        row["exact_agreement_tail_closure_applied"] = True
     else:
-        row["exact_agreement_e119_closure_applied"] = False
+        row["exact_agreement_tail_closure_applied"] = False
     return row
 
 
@@ -2609,9 +2617,29 @@ def build_certificate() -> dict[str, Any]:
     tangent_tail_cofactor_span_closure_rows = [
         tangent_tail_cofactor_span_closure_row(row) for row in tangent_tail_extremizer_rows
     ]
-    tangent_tail_e119_exact_closure_rows = [
-        tangent_tail_e119_exact_agreement_closure_row(component_type)
+    exact_tail_safe_radius_max = max(
+        radius
+        for radius in range(PROJECTIVE_BUDGET + 1, j_value + 1)
+        if [
+            entry["common_support_complement_size"]
+            for entry in tangent_near_extremizer_common_support_complements(
+                radius,
+                PROJECTIVE_BUDGET + 1,
+            )
+        ]
+        == list(range(PROJECTIVE_BUDGET + 1, radius + 2))
+    )
+    exact_tail_safe_core_min = j_value - exact_tail_safe_radius_max
+    require(exact_tail_safe_radius_max == 11, "exact-tail safe radius changed")
+    require(exact_tail_safe_core_min == 115, "exact-tail safe core changed")
+    exact_tail_closure_cores = list(
+        range(exact_tail_safe_core_min, line_cofactor_tangent_safe_core_min)
+    )
+    require(exact_tail_closure_cores == [115, 116, 117, 118, 119], "exact-tail cores")
+    tangent_tail_exact_closure_rows = [
+        tangent_tail_exact_agreement_closure_row(component_type, core)
         for component_type in ["line", "irreducible_conic"]
+        for core in exact_tail_closure_cores
     ]
     line_base_defect_rows = [
         line_base_defect_threshold_row(row) for row in line_survival_rows
@@ -2692,10 +2720,12 @@ def build_certificate() -> dict[str, Any]:
         )
     )
     line_exact_current_profile_rows = [
-        exact_agreement_current_profile_row(row) for row in line_cofactor_current_profile_rows
+        exact_agreement_current_profile_row(row, exact_tail_safe_core_min)
+        for row in line_cofactor_current_profile_rows
     ]
     conic_exact_current_profile_rows = [
-        exact_agreement_current_profile_row(row) for row in conic_cofactor_current_profile_rows
+        exact_agreement_current_profile_row(row, exact_tail_safe_core_min)
+        for row in conic_cofactor_current_profile_rows
     ]
     line_exact_current_profile_groups = projective_bound_profile_groups(
         line_exact_current_profile_rows
@@ -2937,13 +2967,13 @@ def build_certificate() -> dict[str, Any]:
                 row["finite_component_cofactor_span_dimension_at_least"],
                 row["quotient_family_vector_dimension_at_most"],
             )
-            for row in tangent_tail_e119_exact_closure_rows
+            for row in tangent_tail_exact_closure_rows
         ]
         == [
-            ("line", 119, 6, 6, 2),
-            ("irreducible_conic", 119, 6, 6, 3),
+            *[("line", core, 6, 6, 2) for core in range(115, 120)],
+            *[("irreducible_conic", core, 6, 6, 3) for core in range(115, 120)],
         ],
-        "e=119 exact-agreement tangent-tail closure changed",
+        "exact-agreement tangent-tail closure range changed",
     )
     require(
         all(
@@ -2953,10 +2983,10 @@ def build_certificate() -> dict[str, Any]:
                 entry["common_support_complement_size"]
                 for entry in row["near_extremizer_common_support_complement_options"]
             ]
-            == [7, 8]
-            for row in tangent_tail_e119_exact_closure_rows
+            == list(range(PROJECTIVE_BUDGET + 1, row["punctured_cosupport_radius"] + 2))
+            for row in tangent_tail_exact_closure_rows
         ),
-        "e=119 exact-agreement closure should be active",
+        "exact-agreement tangent-tail closure should be active",
     )
     require(
         [group for group in line_exact_current_profile_groups if group["one_over_budget"]]
@@ -2983,14 +3013,14 @@ def build_certificate() -> dict[str, Any]:
         "conic exact-current one-over profile changed",
     )
     require(
-        line_exact_current_profile_groups[-1]["external_core_range"] == [119, 120]
+        line_exact_current_profile_groups[-1]["external_core_range"] == [115, 120]
         and line_exact_current_profile_groups[-1]["projective_safe"],
-        "line exact-current tail should be safe from e=119",
+        "line exact-current tail should be safe from e=115",
     )
     require(
-        conic_exact_current_profile_groups[-1]["external_core_range"] == [119, 120]
+        conic_exact_current_profile_groups[-1]["external_core_range"] == [115, 120]
         and conic_exact_current_profile_groups[-1]["projective_safe"],
-        "conic exact-current tail should be safe from e=119",
+        "conic exact-current tail should be safe from e=115",
     )
     require(
         line_incidence_one_over_cores == list(range(72, 81)),
@@ -4054,8 +4084,8 @@ def build_certificate() -> dict[str, Any]:
                 "for the unresolved intermediate cores.  The one-over-budget "
                 "finite-incidence subranges are line e_G=72..80 and conic e_G=69..76.  "
                 "The tangent-tail row e_G=120 is closed by the cofactor-span obstruction, "
-                "and the next tangent-tail row e_G=119 is closed by exact-agreement "
-                "residual-budget splitting; "
+                "and the cofactor-current tangent tail e_G=115..119 is closed "
+                "by exact-agreement residual-budget splitting; "
                 "all other intermediate cores need more than a "
                 "single endpoint/root saving under the present methods."
             ),
@@ -4184,17 +4214,17 @@ def build_certificate() -> dict[str, Any]:
                 "The maximum line bound remains "
                 "18, and the maximum conic bound drops from 26 to 25."
             ),
-            "exact_agreement_e119_tangent_tail_closure": (
-                "The live e_G=119 tangent-tail one-over row is closed by using "
-                "exact agreement.  Seven projective slopes can be sent to seven "
-                "finite slopes in the punctured row.  The tangent-staircase "
-                "residual-budget proof then allows only common-support "
-                "complement sizes 7 and 8.  Complement size 7 would force a "
-                "higher-agreement or same-support-contained branch, not an "
-                "exact-A noncontained split locator.  Complement size 8 gives "
-                "degree-7 cofactors of an eight-point residual set; at least "
-                "six finite component cofactors would be independent, exceeding "
-                "the line/conic quotient-family dimensions 2 and 3."
+            "exact_agreement_tangent_tail_closure": (
+                "The cofactor-current tangent tail e_G=115..119 is closed by "
+                "using exact agreement.  If seven projective slopes survived, "
+                "they could be sent to seven finite slopes in the punctured row.  "
+                "For residual radius r'<=11 the tangent-staircase residual-budget "
+                "proof allows only common-support complement sizes d<=r'+1.  "
+                "The cases d<r' are higher-agreement, d=r' is same-support "
+                "contained at exact A, and d=r'+1 gives degree-r' cofactors of "
+                "an (r'+1)-point residual set.  At least six finite component "
+                "cofactors would be independent, exceeding the line/conic "
+                "quotient-family dimensions 2 and 3."
             ),
             "single_saving_closure_ledger": (
                 "Every cofactor-current one-over row in the moving-slope packet is "
@@ -4204,7 +4234,7 @@ def build_certificate() -> dict[str, Any]:
                 "saving lowers the projective count from 7 to the budget 6."
             ),
             "exact_current_minimal_obstruction_profile": (
-                "After the e_G=119 exact-agreement closure, any remaining "
+                "After the e_G=115..119 exact-agreement tail closure, any remaining "
                 "projective over-budget witness must be an exact-current "
                 "finite-incidence obstruction: one of the line cores 72..80 or "
                 "conic cores 69..76, with exactly six finite source classes, six "
@@ -4372,9 +4402,7 @@ def build_certificate() -> dict[str, Any]:
         "one_over_mechanism_priority_ledger": mechanism_priority_rows,
         "punctured_tangent_tail_extremizer_profile": tangent_tail_extremizer_rows,
         "punctured_tangent_tail_cofactor_span_closure": tangent_tail_cofactor_span_closure_rows,
-        "punctured_tangent_tail_e119_exact_agreement_closure": (
-            tangent_tail_e119_exact_closure_rows
-        ),
+        "punctured_tangent_tail_exact_agreement_closure": tangent_tail_exact_closure_rows,
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -4406,13 +4434,15 @@ def build_certificate() -> dict[str, Any]:
             "line_residual_projective_safe_after_cofactor_span_for_external_core_at_least": (
                 line_cofactor_tangent_safe_core_min
             ),
-            "line_residual_projective_safe_after_exact_tail_for_external_core_at_least": 119,
+            "line_residual_projective_safe_after_exact_tail_for_external_core_at_least": (
+                exact_tail_safe_core_min
+            ),
             "line_cofactor_improved_tangent_one_over_external_core": (
                 line_cofactor_tangent_one_over_cores
             ),
             "line_remaining_unclosed_external_core_range": [
                 line_residual_core_threshold,
-                118,
+                exact_tail_safe_core_min - 1,
             ],
             "line_one_over_budget_external_core_ranges": [
                 group["external_core_range"] for group in line_profile_groups if group["one_over_budget"]
@@ -4522,13 +4552,15 @@ def build_certificate() -> dict[str, Any]:
             "conic_residual_projective_safe_after_cofactor_span_for_external_core_at_least": (
                 conic_cofactor_tangent_safe_core_min
             ),
-            "conic_residual_projective_safe_after_exact_tail_for_external_core_at_least": 119,
+            "conic_residual_projective_safe_after_exact_tail_for_external_core_at_least": (
+                exact_tail_safe_core_min
+            ),
             "conic_cofactor_improved_tangent_one_over_external_core": (
                 conic_cofactor_tangent_one_over_cores
             ),
             "conic_remaining_unclosed_external_core_range": [
                 conic_residual_core_threshold,
-                118,
+                exact_tail_safe_core_min - 1,
             ],
             "conic_one_over_budget_external_core_ranges": [
                 group["external_core_range"]
@@ -4654,9 +4686,7 @@ def build_certificate() -> dict[str, Any]:
             "punctured_tangent_tail_cofactor_span_closure": (
                 tangent_tail_cofactor_span_closure_rows
             ),
-            "punctured_tangent_tail_e119_exact_agreement_closure": (
-                tangent_tail_e119_exact_closure_rows
-            ),
+            "punctured_tangent_tail_exact_agreement_closure": tangent_tail_exact_closure_rows,
             "conic_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows
             ),
@@ -4664,8 +4694,8 @@ def build_certificate() -> dict[str, Any]:
             "line_high_core_forced_core_is_dual_evaluation_fiber": True,
             "conic_high_core_forced_core_is_global_common_core": True,
             "remaining_unclosed_residuals": [
-                "moving-slope line component with forced external split-root core in 72..118 for projective accounting",
-                "irreducible moving-slope conic component with forced external split-root core in 69..118 for projective accounting",
+                "moving-slope line component with forced external split-root core in 72..114 for projective accounting",
+                "irreducible moving-slope conic component with forced external split-root core in 69..114 for projective accounting",
                 "possible independent noncontained vectors at slopes also admitting a slope-free vector",
             ],
         },
@@ -4693,7 +4723,7 @@ def build_certificate() -> dict[str, Any]:
             "the e=120 punctured tangent tail is projective-safe by the cofactor-span obstruction",
             "cofactor-span top-saturation exclusion improves the high-core tangent bound from r'+1 to r' until the cofactor degree reaches the fixed quotient-family dimension",
             "cofactor-current residual profile makes e=120 safe and exposes e=119 before exact-tail closure",
-            "exact-agreement tangent-tail closure makes e=119 projective-safe",
+            "exact-agreement tangent-tail closure makes e=115..119 projective-safe",
             "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds",
             "one-over finite-incidence saturation conditions are computed for the endpoint-only subranges",
             "over-budget survival conditions require bound saturation, distinct finite slopes, and an unpaid endpoint",

@@ -308,25 +308,26 @@ together with the tangent-tail core `|E|=119` for both component types.  The
 core `|E|=120` is projective-safe, and the largest conic projective bound drops
 from `26` to `25`.
 
-The cofactor-current `|E|=119` tangent-tail row is also closed after imposing
-exact agreement.  Here the punctured row has residual radius `r'=7`.  If seven
-projective slopes survived, choose a nonbad projective point as infinity, so
-the seven bad points become finite on the punctured row.  The tangent-staircase
-residual-budget proof leaves only two possible common-support complement sizes:
-`7` and `8`.  Complement size `7` has common support already equal to the
-exact support size `A=386`, so it has no residual coordinate left to create a
-private split-locator zero and is higher-agreement or same-support-contained.
-Complement size `8` gives degree-`7` cofactors of an eight-point residual set.
+The cofactor-current tangent tail `115<=|E|<=119` is also closed after
+imposing exact agreement.  Put `r'=126-|E|`, so `7<=r'<=11` on this range.  If
+seven projective slopes survived, choose a nonbad projective point as infinity,
+so the seven bad points become finite on the punctured row.  The
+tangent-staircase residual-budget proof then leaves only common-support
+complement sizes `d<=r'+1`.  When `d<r'`, the common support has size greater
+than `A=386`, so the branch is higher-agreement.  When `d=r'`, the common
+support already has size `A`, so there is no residual coordinate left to
+create a private exact-`A` noncontainment witness.  When `d=r'+1`, the residual
+quotient locators are degree-`r'` cofactors of an `(r'+1)`-point residual set.
 At most one projective point is the original endpoint, so at least six finite
 component cofactors would be independent, again exceeding the fixed quotient
-family dimensions `2` and `3`.  Hence `|E|=119` is projective-safe in the
-exact-current profile.
+family dimensions `2` and `3`.  Hence every `|E|>=115` tangent-tail row is
+projective-safe in the exact-current profile.
 
 Thus the unclosed high-core quotient range is finite:
 
 ```text
-line residuals:  72 <= |E| <= 118;
-conic residuals: 69 <= |E| <= 118.
+line residuals:  72 <= |E| <= 114;
+conic residuals: 69 <= |E| <= 114.
 ```
 
 This uses the projective high-agreement tangent theorem on the punctured row,
@@ -465,8 +466,8 @@ raw punctured-tangent row `e_G=120` for both component types.  In each listed
 finite-incidence row, any one listed saving lowers the projective count from
 `7` to the budget `6`; for `e_G=120` that saving is supplied by the
 cofactor-span obstruction.  The subsequent exact-agreement filter closes the
-cofactor-current tangent-tail row `e_G=119`, so the exact-current one-over rows
-are only the finite-incidence ranges.
+cofactor-current tangent-tail rows `e_G=115..119`, so the exact-current
+one-over rows are only the finite-incidence ranges.
 
 The packet now records these exact-current rows as a minimal obstruction
 profile.  Any surviving projective over-budget witness must be one of the
@@ -481,8 +482,9 @@ line base-splitting pressure remains only for `e_G=72..74`; line cores
 `75..80` need external-slack, duplicate-slope, endpoint, or paid-class input.
 For conics, base plus secant pressure remains for `e_G=69..71`, secant-only
 pressure remains for `e_G=72..74`, and cores `75,76` need an endpoint,
-duplicate-slope, or paid-class input.  The `e_G=120` and `e_G=119` rows are now
-isolated as closed punctured-tangent tails rather than remaining proof targets.
+duplicate-slope, or paid-class input.  The `e_G=120` and `e_G=115..119` rows
+are now isolated as closed punctured-tangent tails rather than remaining proof
+targets.
 
 Replay:
 
@@ -495,8 +497,8 @@ Nonclaims:
 
 ```text
 no proof that every moving-slope component is a line;
-no closure of line components with forced external split-root core in 72..118 in projective accounting;
-no closure of irreducible conic moving-slope components with forced external split-root core in 69..118 in projective accounting;
+no closure of line components with forced external split-root core in 72..114 in projective accounting;
+no closure of irreducible conic moving-slope components with forced external split-root core in 69..114 in projective accounting;
 no proof that the high-core quotient split problem is empty or paid;
 no claim that the punctured tangent numerator at the residual threshold is within the original row budget;
 no exclusion of another independent noncontained vector at the same finite slope;

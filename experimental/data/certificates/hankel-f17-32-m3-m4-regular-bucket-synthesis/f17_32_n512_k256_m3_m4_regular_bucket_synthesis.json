@@ -484,7 +484,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v13",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v14",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -536,7 +536,7 @@
     },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
-      "sha256": "2ee8d1471e826f94127e49f38fab848ed10b391ca66f90f0682a1677f358d811"
+      "sha256": "6020782d6d8b73333138048f7d0025119b1d7c553213b0a09cc7739c6dae7ac1"
     },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
@@ -588,8 +588,8 @@
       "after puncturing the forced core, the projective tangent staircase closes the tail e_G>=121",
       "the e_G=120 punctured-tangent tail is closed by a cofactor-span obstruction: at least six tangent-star cofactors must be finite component classes and are independent, but the fixed-core quotient family has vector dimension at most 2 or 3",
       "the generalized cofactor-span top-saturation exclusion improves the high-core tangent tail bound from r'+1 to r', making e_G=119 the next cofactor-current one-over tangent-tail core and e_G>=120 projective-safe",
-      "the exact-agreement residual-budget split closes the e_G=119 tangent-tail core, so the exact-current one-over ranges are line e_G=72..80 and conic e_G=69..76; the conic maximum projective bound drops from 26 to 25",
-      "the still-unclosed high-core quotient ranges are e_G=72..118 for lines and e_G=69..118 for irreducible conics",
+      "the exact-agreement residual-budget split closes the cofactor-current tangent tail e_G=115..119, so the exact-current one-over ranges are line e_G=72..80 and conic e_G=69..76; the conic maximum projective bound drops from 26 to 25",
+      "the still-unclosed high-core quotient ranges are e_G=72..114 for lines and e_G=69..114 for irreducible conics",
       "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; after exact-tail sharpening the worst projective bounds are 18 and 25",
       "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the formerly one-over e_G=120 cases are closed by the cofactor-span contradiction",
       "a genuine over-budget one-over witness must also have six distinct finite slopes and an unpaid endpoint; the strongest remaining pressure is line e_G=72 base splitting and conic e_G=69 almost-complete secants",
@@ -606,7 +606,7 @@
       "abstract incidence-only sharpness witnesses exist for every finite-incidence one-over core, so those rows cannot be closed by sharpening only the current incidence and pair-overlap axioms",
       "the cofactor-current moving-slope one-over residual rows have a single-saving closure ledger entry: line e_G=72..80, conic e_G=69..76, and the punctured-tangent tail e_G=120",
       "after exact-tail closure, the remaining over-budget normal form has exactly 17 finite-incidence rows, each requiring six distinct finite slopes plus an unpaid endpoint",
-      "the finite-incidence one-over rows split by first available saving mechanism into line base-active 72..74, line external-slack 75..80, conic base+secant 69..71, conic secant-only 72..74, and conic endpoint/duplicate-only 75..76; the punctured-tangent tails e_G=120 and e_G=119 are now closed by cofactor-span and exact-agreement arguments"
+      "the finite-incidence one-over rows split by first available saving mechanism into line base-active 72..74, line external-slack 75..80, conic base+secant 69..71, conic secant-only 72..74, and conic endpoint/duplicate-only 75..76; the punctured-tangent tails e_G=120 and e_G=115..119 are now closed by cofactor-span and exact-agreement arguments"
     ],
     "closed_by_current_lemmas": [
       "zero-v with full-rank H(u): no finite roots, infinity tangent-paid",

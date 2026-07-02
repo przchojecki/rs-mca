@@ -336,12 +336,14 @@ component, while the fixed-core quotient family has vector dimension at most
 the raw tangent bound `r'+1` is impossible whenever `r'` exceeds this quotient
 dimension, so the cofactor-improved tangent bound is `r'`; `e_G=119` is the
 next cofactor-current one-over tangent-tail core and `e_G>=120` is
-projective-safe.  Exact-agreement residual-budget splitting closes this
-`e_G=119` tail: the common-support complement is forced to size `7` or `8`,
-where size `7` is higher-agreement/same-support-contained and size `8` again
-forces at least six independent finite cofactors inside a `2`- or
-`3`-dimensional quotient family.  The unclosed high-core ranges are now
-`72<=e_G<=118` for lines and `69<=e_G<=118` for conics.  The packet now
+projective-safe.  Exact-agreement residual-budget splitting closes the
+cofactor-current tangent tail `e_G=115..119`: for `r'=126-e_G<=11`, seven
+projective slopes force common-support complement size `d<=r'+1`; the cases
+`d<r'`, `d=r'`, and `d=r'+1` are respectively higher-agreement,
+same-support-contained at exact `A`, or incompatible with the `2`- or
+`3`-dimensional quotient family by cofactor independence.  The unclosed
+high-core ranges are now `72<=e_G<=114` for lines and `69<=e_G<=114` for
+conics.  The packet now
 records an exact-current residual profile: the live one-over ranges are line
 `72..80` and conic `69..76`; the largest line projective bound remains `18`,
 while the largest conic bound drops from `26` to `25`.  The endpoint-only finite-incidence subranges now have
@@ -393,7 +395,7 @@ quotient-fiber structure.
 The packet also records a single-saving closure ledger for the finite-incidence
 one-over rows, line `e_G=72..80` and conic `e_G=69..76`, plus the formerly raw
 line/conic punctured-tangent tail at `e_G=120`.  The subsequent exact-agreement
-filter closes the cofactor-current tangent-tail row `e_G=119`.
+filter closes the cofactor-current tangent-tail rows `e_G=115..119`.
 The exact-current rows are also recorded as a minimal obstruction profile:
 any remaining over-budget witness must be one of the line cores `72..80` or
 conic cores `69..76`, with exactly six finite source classes, six distinct
