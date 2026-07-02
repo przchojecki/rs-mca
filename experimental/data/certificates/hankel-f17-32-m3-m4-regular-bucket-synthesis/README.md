@@ -213,6 +213,19 @@ compatible `Q`-classes, and with the endpoint its projective total is at most
 `5`.  The remaining fixed two-core residual is a global component contained in
 all direction-consistency conics.
 
+The `A=385` two-core global-component slope packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy/
+  f17_32_n512_k256_m3_rank6_a385_two_core_global_component_slope_dichotomy.json
+```
+
+splits that global-component residual by its induced slope map.  If the slope
+map is constant off its base locus, the branch contributes at most one finite
+slope, and with the endpoint its projective total is at most `2`.  The
+remaining fixed two-core global-component residuals are a determined
+nonconstant slope map and a slope-free base locus or component.
+
 The `A=387` separated-boundary safety packet
 
 ```text
@@ -512,6 +525,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_pair_saf
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_component_cut_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-component-cut-safety/f17_32_n512_k256_m3_rank6_a385_two_core_component_cut_safety.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_global_component_slope_dichotomy.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a385_two_core_global_component_slope_dichotomy.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

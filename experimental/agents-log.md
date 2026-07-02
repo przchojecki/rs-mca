@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A385 two-core global-component slope dichotomy
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_global_component_slope_dichotomy.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a385_two_core_global_component_slope_dichotomy.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A separated `A=385` rank-6 fixed two-core
+  global-component slope-map dichotomy: if the induced slope map is constant
+  off its base locus, the branch contributes at most one finite slope and
+  projective total at most `2<=6`.
+- **How it is useful:** This narrows the fixed two-core global-component
+  residual to determined nonconstant moving-slope components and slope-free
+  base loci/components, matching the next structural split used in the `A=386`
+  closure tree.
+- **What to do next:** Attack the fixed two-core slope-free residual with the
+  noncontainment/kernel filter, then adapt moving-slope split-incidence only if
+  the fixed-core hypotheses survive that reduction.
+
 ### 2026-07-02 - A385 two-core component-cut safety
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

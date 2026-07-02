@@ -1,0 +1,131 @@
+{
+  "agreement": {
+    "A": 385,
+    "boundary_defect_h": 5,
+    "combined_support_size": 134,
+    "direction_rank": 6,
+    "forced_base_core_size": 2,
+    "j": 127,
+    "m": 128,
+    "projective_Q_search_dimension_after_core": 2,
+    "projective_Q_search_dimension_before_core": 4,
+    "t": 129
+  },
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "A=385 has boundary defect h=5 and residual fixed-core Q-space P^2",
+    "component-cut packet narrows to fixed two-core global components",
+    "direction numerator and denominator forms are linear on the residual Q-plane",
+    "pairwise conics identify a slope map independent of direction node",
+    "constant slope map contributes at most one finite parameter off its base locus",
+    "endpoint-uniform dependency supplies at most one endpoint",
+    "2 <= projective budget 6"
+  ],
+  "constant_slope_case": {
+    "base_locus_status": "RESIDUAL unless split-locator or paid-ledger checks remove it",
+    "case": "determined_constant_slope_map_off_base_locus",
+    "finite_slope_upper_bound_off_base_locus": 1,
+    "projective_budget": 6,
+    "projective_endpoint_count": 1,
+    "projective_safe_off_base_locus": true,
+    "support_wise_projective_total_upper_bound_off_base_locus": 2
+  },
+  "nonclaims": [
+    "does not close fixed two-core nonconstant moving-slope components",
+    "does not close fixed two-core slope-free base loci or components",
+    "does not prove that every A=385 over-budget branch has a fixed two-point base core",
+    "does not close moving-core or no-common-core A=385 branches",
+    "does not classify overlapping-support rank-6 pencils",
+    "does not prove endpoint payment; it uses endpoint-budget accounting",
+    "does not compute arbitrary A=385 rank-6 root tables",
+    "does not produce a row-level M3 safe-side bound"
+  ],
+  "object": "A=385 separated rank-6 fixed two-core global-component slope dichotomy",
+  "residual_cases": [
+    {
+      "case": "determined_nonconstant_slope_map",
+      "meaning": "a fixed two-core global component carries a nonconstant rational slope map; it needs split-locator, quotient, or moving-slope incidence analysis",
+      "residual_label": "unknown",
+      "status": "RESIDUAL / UNKNOWN"
+    },
+    {
+      "case": "slope_free_base_locus_or_component",
+      "meaning": "all six numerator and denominator linear forms vanish at a base point, or identically on the component, so finite consistency does not determine a slope before further Hankel/split analysis",
+      "residual_label": "unknown",
+      "status": "RESIDUAL / UNKNOWN"
+    }
+  ],
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy-v1",
+  "setup": {
+    "direction_pairs": "For each direction node y, set N_y(R)=Omega_y E(y)R(y) and D_y(R)=b_y L_{E R}(y); both are linear forms on the residual Q-plane.",
+    "global_component_residual": "an irreducible component G in the residual P^2 contained in all pairwise direction-consistency conics after the fixed two-core component-cut packet",
+    "pairwise_consistency_conics": "C_{y,y'}(R)=N_y(R)D_{y'}(R)-N_{y'}(R)D_y(R), one for each pair of direction nodes.",
+    "residual_Q_space": "after the fixed two-point base core, write Q=E R with deg R<3 and [R] in P^2"
+  },
+  "source_artifacts": {
+    "a385_two_core_component_cut_safety": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-component-cut-safety/f17_32_n512_k256_m3_rank6_a385_two_core_component_cut_safety.json",
+      "sha256": "3ad5e9e8d448a47a2d140782ac756c796dbd06fa6e58ed092b20c1c06a23d3f0"
+    },
+    "nullpolynomial_split_locator_gate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json",
+      "sha256": "fd918c7ddbf47b9037840a7dddf5d9a49c77b7d8d889924bbb6b861f8bb2bc42"
+    },
+    "rank6_boundary_low_degree_transfer": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json",
+      "sha256": "4ff0d90a1e710bca56efd7a68357d2dcc473a8150c9ddcaf1b95a061ec5c2101"
+    },
+    "rank6_projective_endpoint_uniform": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-projective-endpoint-uniform/f17_32_n512_k256_m3_rank6_projective_endpoint_uniform.json",
+      "sha256": "f933c4d38476d3056e6284de55e01b7375f8c90239d52aed40548018323454e2"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement": 385,
+    "boundary_defect_h": 5,
+    "constant_slope_finite_root_upper_bound_off_base_locus": 1,
+    "constant_slope_non_base_branch_projective_safe": true,
+    "constant_slope_projective_total_upper_bound_off_base_locus": 2,
+    "direction_node_count": 6,
+    "forced_base_core_size": 2,
+    "pairwise_direction_conic_count": 15,
+    "projective_Q_search_dimension_after_core": 2,
+    "projective_budget": 6,
+    "remaining_residuals": [
+      "fixed two-core determined nonconstant slope map",
+      "fixed two-core slope-free base locus or global component"
+    ]
+  },
+  "theorem": {
+    "constant_map_safe": "If the induced slope map is constant, then away from its base locus the component contributes at most one finite slope; adding the endpoint-uniform point gives projective total at most 2<=6 for the non-base branch.",
+    "finite_roots_factor_through_slope_map": "Every finite root represented by a Q-class on G has finite slope z=N_y(R)/D_y(R) for the induced map, before the split-locator divisor gate possibly removes it.",
+    "nonconstant_residual": "If the induced slope map is nonconstant, the branch is exactly a fixed two-core moving-slope global-component residual and is not closed by Bezout root counting alone.",
+    "slope_free_residual": "If all pairs (N_y,D_y) vanish at a point, or identically on G, the finite consistency equations impose no slope there; this slope-free locus is a separate residual.",
+    "slope_map": "If some pair (N_y,D_y) is not identically zero on G, then [N_y:D_y] defines a rational projective slope map on G; the pairwise conics make this map independent of y on common domains of definition."
+  }
+}

@@ -136,6 +136,18 @@ projective total `<=5<=6` after adding the endpoint.  The remaining fixed
 two-core residual is an irreducible global component contained in all
 direction-consistency conics.
 
+The fixed two-core global-component companion is
+
+```text
+experimental/notes/m1/hankel_rank6_a385_two_core_global_component_slope_dichotomy.md
+```
+
+It splits that global component by its induced slope map.  The constant-slope
+off-base-locus branch contributes at most one finite slope, hence total
+projective contribution `<=2<=6` after adding the endpoint.  The remaining
+fixed two-core global-component residuals are a determined nonconstant slope
+map and a slope-free base locus or component.
+
 At `A=387`, this transfer already closes the separated branch for arbitrary
 nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at
 most one finite slope.  The companion note
@@ -267,6 +279,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_pair_saf
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_component_cut_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-component-cut-safety/f17_32_n512_k256_m3_rank6_a385_two_core_component_cut_safety.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_global_component_slope_dichotomy.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a385_two_core_global_component_slope_dichotomy.json
 ```
 
 Nonclaims:

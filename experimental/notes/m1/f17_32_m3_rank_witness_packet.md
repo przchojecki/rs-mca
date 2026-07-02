@@ -566,6 +566,12 @@ gives at most four finite `Q`-classes and total projective contribution `<=5`.
 The remaining fixed two-core residual is a global component contained in all
 direction-consistency conics.
 
+The `A=385` two-core global-component slope companion splits that branch by
+the induced slope map.  The constant-slope off-base-locus case contributes at
+most one finite slope and total projective contribution `<=2`; the residuals
+left are a determined nonconstant slope map and a slope-free base locus or
+component.
+
 The `A=387` separated-boundary safety companion uses the `h=1` specialization
 to close that agreement for arbitrary nonzero separated weights: the finite
 root table has at most one ambient root, the split-locator gate cannot increase
@@ -902,6 +908,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_pair_saf
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_component_cut_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-component-cut-safety/f17_32_n512_k256_m3_rank6_a385_two_core_component_cut_safety.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_global_component_slope_dichotomy.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a385_two_core_global_component_slope_dichotomy.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json
