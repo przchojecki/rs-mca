@@ -88,8 +88,8 @@ Keep entries concise and link to the relevant files.
   `F_5` toy row.  It also proves and verifies the two-locator joint-rank
   formula `rank(S_R,S_T)=2t-max(0,t-j+|R cap T|)`, derives the exact
   ordered-pair second moment from the defect-`h` fiber-product probability,
-  and records the Markov one-locator consumer bound across the `F_17^32`
-  regular M3 window.
+  records the Paley-Zygmund averaged-existence consumer, and records the
+  Markov one-locator consumer bound across the `F_17^32` regular M3 window.
 - **How it is useful:** FM1 is a key first-moment input for the aperiodic
   safe-side model and the `mca_safe` DAG path.  The note makes clear that this
   is a first/second-moment statement, not a worst-case or bad-slope bound.

@@ -142,6 +142,14 @@ def second_moment_formula(q: int, n: int, k: int, agreement: int) -> Fraction:
     return total
 
 
+def paley_zygmund_nonzero_bound(q: int, n: int, k: int, agreement: int) -> Fraction:
+    mean = expected_value(q, n, k, agreement)
+    second = second_moment_formula(q, n, k, agreement)
+    if second == 0:
+        return Fraction(0, 1)
+    return mean * mean / second
+
+
 def standard_fiber_product(q: int, t: int, h: int) -> list[tuple[tuple[int, ...], tuple[int, ...]]]:
     assert 0 <= h <= t
     commons = list(itertools.product(range(q), repeat=h))
@@ -318,6 +326,8 @@ def check_f5_bruteforce() -> tuple[bool, dict]:
     expected = expected_value(p, n, k, agreement)
     second_moment = Fraction(total_aligned_square, total_pairs)
     expected_second_moment = second_moment_formula(p, n, k, agreement)
+    actual_nonzero_probability = Fraction(total_pairs - aligned_hist.get(0, 0), total_pairs)
+    pz_nonzero_bound = paley_zygmund_nonzero_bound(p, n, k, agreement)
     rank_hist = {}
     for matrix in matrices:
         rank = rank_mod_p(matrix, p)
@@ -356,10 +366,21 @@ def check_f5_bruteforce() -> tuple[bool, dict]:
             "denominator": expected_second_moment.denominator,
             "decimal": float(expected_second_moment),
         },
+        "actual_nonzero_probability": {
+            "numerator": actual_nonzero_probability.numerator,
+            "denominator": actual_nonzero_probability.denominator,
+            "decimal": float(actual_nonzero_probability),
+        },
+        "paley_zygmund_nonzero_lower_bound": {
+            "numerator": pz_nonzero_bound.numerator,
+            "denominator": pz_nonzero_bound.denominator,
+            "decimal": float(pz_nonzero_bound),
+        },
     }
     return (
         mean == expected
         and second_moment == expected_second_moment
+        and actual_nonzero_probability >= pz_nonzero_bound
         and rank_hist == {t: len(locators)}
     ), data
 
@@ -427,6 +448,7 @@ def build_report() -> dict:
             "E[N_A^2] is the ordered-overlap sum of the exact defect-h joint "
             "alignment probabilities."
         ),
+        "paley_zygmund_consumer": "Pr[N_A>0] >= E[N_A]^2 / E[N_A^2]",
         "definition": (
             "For a split degree-j locator ell, set a=S_ell(u), b=S_ell(v) in F_q^t. "
             "The locator is aligned when b != 0 and a lies in the one-dimensional span of b."
@@ -492,6 +514,16 @@ def main() -> None:
             print(
                 f"        formula second moment = {fs['numerator']}/{fs['denominator']} = "
                 f"{fs['decimal']:.12f}"
+            )
+            nz = data["actual_nonzero_probability"]
+            pz = data["paley_zygmund_nonzero_lower_bound"]
+            print(
+                f"        actual Pr[N>0] = {nz['numerator']}/{nz['denominator']} = "
+                f"{nz['decimal']:.12f}"
+            )
+            print(
+                f"        Paley-Zygmund lower bound = {pz['numerator']}/{pz['denominator']} = "
+                f"{pz['decimal']:.12f}"
             )
             print(f"        total aligned locators over all word pairs = {data['total_aligned_locators']}")
         elif name == "f17_regular_window_markov_tail":

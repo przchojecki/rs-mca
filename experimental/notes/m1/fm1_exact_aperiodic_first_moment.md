@@ -269,6 +269,34 @@ where the sum ranges over valid overlaps `c`.  This is an ordered-pair sum:
 choose `R`, then choose the `c` common roots and the `j-c` roots of `T`
 outside `R`.
 
+## Averaged-existence consumer
+
+The exact second moment gives the following immediate averaged-existence
+corollary.  For every `0 <= theta < 1`,
+
+```text
+Pr[ N_A(u,v) >= theta E[N_A] ]
+  >= (1-theta)^2 E[N_A]^2 / E[N_A^2].
+```
+
+In particular,
+
+```text
+Pr[ N_A(u,v) > 0 ] >= E[N_A]^2 / E[N_A^2].
+```
+
+This is just Paley-Zygmund applied to the nonnegative random variable `N_A`.
+Its value is not the inequality itself, but that the preceding formula makes
+the denominator explicit as a finite ordered-overlap sum.  Thus the FM1 packet
+now supplies both sides of an averaged slope-existence test: Markov gives a
+generic-emptiness upper tail when the mean is tiny, while this corollary gives
+an averaged nonemptiness lower bound when the second moment is comparable to
+the square of the mean.
+
+This remains an average-over-word-pairs statement.  It does not classify
+worst-case pairs and it does not replace the Conjecture F / exchange-rigidity
+work needed for the safe side.
+
 For the finite row
 
 ```text
@@ -323,6 +351,8 @@ rank S_{R,T} = 2t - max(0,t-j+|R cap T|).
 total aligned locators = 300000
 mean = 96/125
 second moment = 912/625
+Pr[N_A > 0] = 332/625
+Paley-Zygmund lower bound = 192/475
 ```
 
 matching the formula
@@ -331,7 +361,7 @@ matching the formula
 binom(4,1) * (1 - 5^(-2)) * 5^(-1) = 96/125.
 ```
 
-and the exact second-moment formula above.
+and the exact second-moment / Paley-Zygmund formulas above.
 
 5. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
    the script computes the FM1/Markov one-locator upper bound across
