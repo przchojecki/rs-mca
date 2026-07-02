@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - E7 top-plane twin prediction check
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_dim2_evidence.md`;
+  `experimental/scripts/verify_conjecture_f_dim2_evidence.py`;
+  `experimental/data/certificates/conjecture-f-dim2-evidence/conjecture_f_dim2_n16_f17.json`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / EVIDENCE.
+- **What is being added:** The E7 verifier now tests the QF.4 pre-registered
+  prediction on its own sampled `j=5` kernel-plane artifact: every primitive
+  top plane above the simple-line bound must contain a twin evaluation-line
+  class.
+- **How it is useful:** This connects the evidence packet to the Conjecture F
+  twin-line decomposition in PR #182 and checks that the observed `13 > 12`
+  excess is paid by repeated-line structure, not a new primitive mechanism.
+- **What to do next:** Use this outcome to guide the next Conjecture F proof
+  attempt: combine simple-line pair counting with twin/common-GCD reduction,
+  then stress-test higher-dimensional sparse-dual-word flats.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.

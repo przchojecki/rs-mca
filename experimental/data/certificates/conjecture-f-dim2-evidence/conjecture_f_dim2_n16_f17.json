@@ -66,7 +66,12 @@
           "multiplicity_histogram": {
             "1": 14,
             "2": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            2
+          ],
+          "twin_point_count": 2
         },
         {
           "distinct_evaluation_lines": 15,
@@ -81,7 +86,12 @@
           "multiplicity_histogram": {
             "1": 14,
             "2": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            2
+          ],
+          "twin_point_count": 2
         },
         {
           "distinct_evaluation_lines": 15,
@@ -96,7 +106,12 @@
           "multiplicity_histogram": {
             "1": 14,
             "2": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            2
+          ],
+          "twin_point_count": 2
         },
         {
           "distinct_evaluation_lines": 15,
@@ -111,7 +126,12 @@
           "multiplicity_histogram": {
             "1": 14,
             "2": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            2
+          ],
+          "twin_point_count": 2
         },
         {
           "distinct_evaluation_lines": 15,
@@ -126,7 +146,12 @@
           "multiplicity_histogram": {
             "1": 14,
             "2": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            2
+          ],
+          "twin_point_count": 2
         },
         {
           "distinct_evaluation_lines": 15,
@@ -141,7 +166,12 @@
           "multiplicity_histogram": {
             "1": 14,
             "2": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            2
+          ],
+          "twin_point_count": 2
         },
         {
           "distinct_evaluation_lines": 15,
@@ -156,7 +186,12 @@
           "multiplicity_histogram": {
             "1": 14,
             "2": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            2
+          ],
+          "twin_point_count": 2
         },
         {
           "distinct_evaluation_lines": 15,
@@ -171,7 +206,12 @@
           "multiplicity_histogram": {
             "1": 14,
             "2": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            2
+          ],
+          "twin_point_count": 2
         },
         {
           "distinct_evaluation_lines": 15,
@@ -186,7 +226,12 @@
           "multiplicity_histogram": {
             "1": 14,
             "2": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            2
+          ],
+          "twin_point_count": 2
         },
         {
           "distinct_evaluation_lines": 15,
@@ -201,7 +246,12 @@
           "multiplicity_histogram": {
             "1": 14,
             "2": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            2
+          ],
+          "twin_point_count": 2
         },
         {
           "distinct_evaluation_lines": 15,
@@ -216,7 +266,12 @@
           "multiplicity_histogram": {
             "1": 14,
             "2": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            2
+          ],
+          "twin_point_count": 2
         },
         {
           "distinct_evaluation_lines": 15,
@@ -231,7 +286,12 @@
           "multiplicity_histogram": {
             "1": 14,
             "2": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            2
+          ],
+          "twin_point_count": 2
         }
       ],
       "weighted_pair_bound_floor": 60,
@@ -265,8 +325,15 @@
         "3": 12
       },
       "primitive_top_plane_count_in_sample": 5,
+      "primitive_top_planes_above_simple_bound": 5,
+      "primitive_top_planes_above_simple_bound_without_twins": 0,
+      "primitive_top_planes_with_twins": 5,
+      "primitive_top_planes_without_twins": 0,
       "proper_quotient_orders": [],
+      "qf4_prediction": "Every sampled primitive top j=5 kernel plane whose hit count exceeds the simple-line bound has at least one twin evaluation-line class.",
       "seed": 2026070207,
+      "simple_line_bound_floor": 12,
+      "simple_line_bound_rational": "120/10",
       "status": "PASS",
       "t": 3,
       "top_primitive_examples": [
@@ -303,7 +370,12 @@
           "multiplicity_histogram": {
             "1": 12,
             "4": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            4
+          ],
+          "twin_point_count": 4
         },
         {
           "distinct_evaluation_lines": 13,
@@ -338,7 +410,12 @@
           "multiplicity_histogram": {
             "1": 12,
             "4": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            4
+          ],
+          "twin_point_count": 4
         },
         {
           "distinct_evaluation_lines": 13,
@@ -373,7 +450,12 @@
           "multiplicity_histogram": {
             "1": 12,
             "4": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            4
+          ],
+          "twin_point_count": 4
         },
         {
           "distinct_evaluation_lines": 13,
@@ -408,7 +490,12 @@
           "multiplicity_histogram": {
             "1": 12,
             "4": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            4
+          ],
+          "twin_point_count": 4
         },
         {
           "distinct_evaluation_lines": 13,
@@ -443,7 +530,12 @@
           "multiplicity_histogram": {
             "1": 12,
             "4": 1
-          }
+          },
+          "twin_class_count": 1,
+          "twin_class_sizes": [
+            4
+          ],
+          "twin_point_count": 4
         }
       ],
       "weighted_pair_bound_floor": 30,
@@ -498,6 +590,6 @@
   "object": "D_j(H) intersections with projective planes in locator coefficient space",
   "roadmap_task": "E7 / Conjecture F dimension-2 evidence",
   "schema": "conjecture_f_dim2_evidence_v1",
-  "script_sha256": "54956626d2e87f0bb1e1956b9f78b2ac084964f20be37c99143085a0df10cac2",
+  "script_sha256": "2c034ee210d3256579f4aff4548b50617cfe02ade48802aa37ced0be05c59b13",
   "status": "EXPERIMENTAL_EVIDENCE"
 }

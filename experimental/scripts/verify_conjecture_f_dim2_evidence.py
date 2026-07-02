@@ -8,7 +8,10 @@ plan from the roadmap/DAG lane:
   K = F_17 and H = F_17^*;
 * classify common-root planes as the paid tangent/common-divisor shape;
 * record the maximum primitive intersection with D_3(H);
-* sample genuine Hankel-kernel projective planes at n=16, j=5, t=3.
+* sample genuine Hankel-kernel projective planes at n=16, j=5, t=3;
+* test the pre-registered QF.4 prediction that the sampled top j=5
+  kernel planes beating the simple-line pair bound contain twin
+  evaluation-line classes.
 * check both runs against the fixed-dimensional Conjecture F consumer bound
   proved in the companion reduction-lemma package.
 
@@ -171,9 +174,13 @@ def line_profile_for_plane(rowspace: list[tuple[int, ...]], degree: int, domain:
             raise AssertionError("rowspace has a common root; line profile is not primitive")
         lines.append(line)
     counts = Counter(lines)
+    twin_sizes = sorted((count for count in counts.values() if count >= 2), reverse=True)
     return {
         "distinct_evaluation_lines": len(counts),
         "max_line_multiplicity": max(counts.values()),
+        "twin_class_count": len(twin_sizes),
+        "twin_point_count": sum(twin_sizes),
+        "twin_class_sizes": twin_sizes,
         "multiplicity_histogram": {
             str(key): value for key, value in sorted(Counter(counts.values()).items())
         },
@@ -292,6 +299,7 @@ def kernel_plane_sample_j5(domain: list[int]) -> dict[str, Any]:
     degree = J_KERNEL
     rows = T_KERNEL
     divisors = divisor_locators(domain, degree)
+    simple_line_bound = comb(N, 2) // comb(degree, 2)
     rng = random.Random(SEED)
     accepted = 0
     attempts = 0
@@ -299,6 +307,10 @@ def kernel_plane_sample_j5(domain: list[int]) -> dict[str, Any]:
     hit_distribution: Counter[int] = Counter()
     primitive_distribution: Counter[int] = Counter()
     primitive_max = -1
+    top_planes_with_twins = 0
+    top_planes_without_twins = 0
+    top_planes_above_simple_bound = 0
+    top_planes_above_simple_bound_without_twins = 0
     top_primitive: list[dict[str, Any]] = []
 
     while accepted < KERNEL_SAMPLE_COUNT:
@@ -323,19 +335,33 @@ def kernel_plane_sample_j5(domain: list[int]) -> dict[str, Any]:
         primitive_distribution[hits] += 1
         if hits > primitive_max:
             primitive_max = hits
+            top_planes_with_twins = 0
+            top_planes_without_twins = 0
+            top_planes_above_simple_bound = 0
+            top_planes_above_simple_bound_without_twins = 0
             top_primitive = []
         if hits == primitive_max and len(top_primitive) < 8:
+            profile = line_profile_for_plane(rowspace, degree, domain)
             top_primitive.append({
                 "hit_count": hits,
                 "hankel_rows": [list(row) for row in rowspace],
-                **line_profile_for_plane(rowspace, degree, domain),
+                **profile,
             })
+        if hits == primitive_max:
+            profile = line_profile_for_plane(rowspace, degree, domain)
+            has_twins = profile["twin_class_count"] > 0
+            top_planes_with_twins += int(has_twins)
+            top_planes_without_twins += int(not has_twins)
+            if hits > simple_line_bound:
+                top_planes_above_simple_bound += 1
+                top_planes_above_simple_bound_without_twins += int(not has_twins)
 
     weighted_pair_bound = comb(N, 2) // (degree - 1)
     status = (
         accepted == KERNEL_SAMPLE_COUNT
         and proper_quotient_orders(N, degree) == []
         and primitive_max <= weighted_pair_bound
+        and top_planes_above_simple_bound_without_twins == 0
     )
     return {
         "name": "sampled_hankel_kernel_planes_j5_t3",
@@ -355,6 +381,19 @@ def kernel_plane_sample_j5(domain: list[int]) -> dict[str, Any]:
         "primitive_top_plane_count_in_sample": primitive_distribution[primitive_max],
         "weighted_pair_bound_floor": weighted_pair_bound,
         "weighted_pair_bound_rational": f"{comb(N, 2)}/{degree - 1}",
+        "simple_line_bound_floor": simple_line_bound,
+        "simple_line_bound_rational": f"{comb(N, 2)}/{comb(degree, 2)}",
+        "qf4_prediction": (
+            "Every sampled primitive top j=5 kernel plane whose hit count "
+            "exceeds the simple-line bound has at least one twin "
+            "evaluation-line class."
+        ),
+        "primitive_top_planes_with_twins": top_planes_with_twins,
+        "primitive_top_planes_without_twins": top_planes_without_twins,
+        "primitive_top_planes_above_simple_bound": top_planes_above_simple_bound,
+        "primitive_top_planes_above_simple_bound_without_twins": (
+            top_planes_above_simple_bound_without_twins
+        ),
         "all_sample_hit_distribution": {
             str(key): value for key, value in sorted(hit_distribution.items())
         },

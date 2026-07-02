@@ -76,11 +76,19 @@ common-root planes seen                 2
 max primitive hit count                13
 top primitive count in sample           5
 weighted pair bound floor              30 = floor(binom(16,2)/(5-1))
+simple-line bound floor                12 = floor(binom(16,2)/binom(5,2))
+top planes with a twin class          5/5
+top planes above simple bound         5/5
 ```
 
 Most sampled kernel planes have no `D_5(H)` point at all.  No quotient stratum
 is present for `j=5`, and no unclassified rich primitive plane appears in this
-sample.
+sample.  The pre-registered QF.4 check is also positive: every sampled top
+primitive kernel plane has hit count `13`, just above the simple-line bound
+`12`, and every one of these five top planes contains a twin evaluation-line
+class.  In fact the recorded profiles all have multiplicity histogram
+`1^12 4^1`, so the excess over the simple-line count is explained by repeated
+evaluation lines rather than by a new primitive simple-arrangement mechanism.
 
 The verifier also replays both runs against the fixed-dimensional/common-root
 consumer bound from the Conjecture F reduction lemmas.  For projective
