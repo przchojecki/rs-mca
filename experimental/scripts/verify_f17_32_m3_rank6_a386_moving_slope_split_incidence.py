@@ -26,7 +26,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v47"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v48"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -3071,6 +3071,56 @@ def hamiltonian_cycles(edge_set: set[tuple[int, int]]) -> list[tuple[int, ...]]:
     return sorted(cycles)
 
 
+@lru_cache(maxsize=1)
+def six_vertex_hamiltonian_cycle_pressure_table() -> list[dict[str, Any]]:
+    """Exact Hamiltonian-cycle pressure for six-vertex secant graphs."""
+    edges = list(itertools.combinations(range(FINITE_BUDGET), 2))
+    edge_indices = {edge: index for index, edge in enumerate(edges)}
+    full_cycle_masks: set[int] = set()
+    for cycle in hamiltonian_cycles(set(edges)):
+        mask = 0
+        for index in range(FINITE_BUDGET):
+            edge = tuple(sorted((cycle[index], cycle[(index + 1) % FINITE_BUDGET])))
+            mask |= 1 << edge_indices[edge]
+        full_cycle_masks.add(mask)
+    require(len(full_cycle_masks) == 60, "K6 should have 60 Hamiltonian cycles")
+
+    exact_counts: dict[int, list[int]] = {count: [] for count in range(len(edges) + 1)}
+    for graph_mask in range(1 << len(edges)):
+        edge_count = graph_mask.bit_count()
+        cycle_count = sum(
+            1 for cycle_mask in full_cycle_masks if graph_mask & cycle_mask == cycle_mask
+        )
+        exact_counts[edge_count].append(cycle_count)
+
+    rows: list[dict[str, Any]] = []
+    for required_edges in range(len(edges) + 1):
+        counts = [
+            count
+            for edge_count in range(required_edges, len(edges) + 1)
+            for count in exact_counts[edge_count]
+        ]
+        require(counts, "Hamiltonian-cycle pressure row should have graphs")
+        minimum = min(counts)
+        maximum = max(counts)
+        rows.append(
+            {
+                "secant_edge_lower_bound": required_edges,
+                "graph_count": len(counts),
+                "minimum_hamiltonian_cycle_count": minimum,
+                "maximum_hamiltonian_cycle_count": maximum,
+                "pascal_relations_forced": minimum > 0,
+                "closure_if_pascal_relations_fewer_than": minimum if minimum > 0 else None,
+            }
+        )
+    require(
+        [row["minimum_hamiltonian_cycle_count"] for row in rows]
+        == [0] * 12 + [6, 18, 36, 60],
+        "six-vertex Hamiltonian-cycle pressure changed",
+    )
+    return rows
+
+
 def pascal_relation_for_cycle(cycle: tuple[int, ...]) -> tuple[tuple[tuple[int, int], ...], ...]:
     """Return the three opposite-side intersection pairs for a Pascal relation."""
     a, b, c, d, e, f = cycle
@@ -3080,6 +3130,83 @@ def pascal_relation_for_cycle(cycle: tuple[int, ...]) -> tuple[tuple[tuple[int, 
         (tuple(sorted((c, d))), tuple(sorted((f, a)))),
     ]
     return tuple(sorted(tuple(sorted(pair)) for pair in pairs))
+
+
+def conic_dense_secant_pascal_pressure_rows(
+    catalog_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Pascal pressure for dense secant subcases across the conic one-over range."""
+    pressure_by_edges = {
+        row["secant_edge_lower_bound"]: row
+        for row in six_vertex_hamiltonian_cycle_pressure_table()
+    }
+    rows: list[dict[str, Any]] = []
+    for catalog in catalog_rows:
+        core = catalog["forced_external_core_size"]
+        alternatives = exact_conic_root_budget_alternatives(
+            core,
+            locator_degree=126,
+            external_root_count=385,
+        )
+        pair_histogram: dict[int, int] = {}
+        for alternative in alternatives:
+            pair_count = alternative["required_pair_overlaps_before_external_excess"]
+            pair_histogram[pair_count] = pair_histogram.get(pair_count, 0) + 1
+        dense_values = [
+            pair_count
+            for pair_count in sorted(pair_histogram)
+            if pressure_by_edges[pair_count]["pascal_relations_forced"]
+        ]
+        dense_count = sum(pair_histogram[value] for value in dense_values)
+        rows.append(
+            {
+                "component_type": "irreducible_conic",
+                "forced_external_core_size": core,
+                "allowed_base_root_histogram_count": len(alternatives),
+                "pair_overlap_histogram": {
+                    str(pair_count): pair_histogram[pair_count]
+                    for pair_count in sorted(pair_histogram)
+                },
+                "pascal_pressure_pair_overlap_threshold": 12,
+                "pair_overlap_values_forcing_pascal_relations": dense_values,
+                "dense_pascal_subcase_count": dense_count,
+                "non_pascal_pressure_subcase_count": len(alternatives) - dense_count,
+                "minimum_pascal_relations_by_pair_overlap": {
+                    str(value): pressure_by_edges[value]["minimum_hamiltonian_cycle_count"]
+                    for value in dense_values
+                },
+                "closure_criterion": (
+                    "If a conic one-over subcase has a lower bound q>=12 on "
+                    "pair secants, every six-class secant graph contains at "
+                    "least the printed number of Hamiltonian cycles.  Pascal's "
+                    "theorem therefore forces that many opposite-side "
+                    "collinearity relations in the Q-plane; failure of those "
+                    "relations closes the subcase."
+                ),
+            }
+        )
+    require(
+        [
+            (
+                row["forced_external_core_size"],
+                row["pair_overlap_values_forcing_pascal_relations"],
+                row["dense_pascal_subcase_count"],
+            )
+            for row in rows
+        ]
+        == [
+            (69, [14, 15], 2),
+            (70, [12, 13, 14, 15], 12),
+            (71, [12, 13, 14, 15], 8),
+            (72, [], 0),
+            (73, [], 0),
+            (74, [], 0),
+            (75, [], 0),
+            (76, [], 0),
+        ],
+        "dense Pascal pressure coverage changed",
+    )
+    return rows
 
 
 def conic_e69_pascal_obstruction_profile(
@@ -3970,6 +4097,9 @@ def build_certificate() -> dict[str, Any]:
         conic_pair_one_over_cores,
         locator_degree=j_value,
         external_root_count=external_root_count,
+    )
+    conic_dense_secant_pascal_pressure = conic_dense_secant_pascal_pressure_rows(
+        conic_one_over_design_catalog_rows
     )
     line_quotient_pencil_obstruction_catalog_rows = (
         line_quotient_pencil_obstruction_catalog(
@@ -5699,6 +5829,15 @@ def build_certificate() -> dict[str, Any]:
                 "full-split quotient family does not exist, that row closes by "
                 "the single-saving ledger."
             ),
+            "conic_dense_secant_pascal_pressure": (
+                "Across the conic one-over range e_G=69..76, any subcase whose "
+                "six-class secant graph has at least 12 of the 15 pair secants "
+                "contains Hamiltonian cycles.  Exact six-vertex enumeration gives "
+                "minimum Hamiltonian-cycle counts 6,18,36,60 for lower secant "
+                "bounds 12,13,14,15.  Pascal's theorem turns each cycle into an "
+                "opposite-side collinearity relation in the Q-plane, so failure "
+                "of the printed number of relations closes that dense subcase."
+            ),
             "conic_e69_pascal_obstruction_profile": (
                 "In the extremal conic e_G=69 branch, the K6 and K6-minus-one "
                 "secant graphs are not arbitrary incidence graphs if they come "
@@ -5983,6 +6122,7 @@ def build_certificate() -> dict[str, Any]:
         "line_e72_quotient_pencil_obstruction_profile": (
             line_e72_quotient_pencil_obstruction_rows
         ),
+        "conic_dense_secant_pascal_pressure": conic_dense_secant_pascal_pressure,
         "conic_e69_pascal_obstruction_profile": conic_e69_pascal_obstruction_rows,
         "finite_incidence_quotient_obstruction_catalog": {
             "line_endpoint_only_incidence_range": (
@@ -6375,6 +6515,21 @@ def build_certificate() -> dict[str, Any]:
                 row["hamiltonian_cycle_count"]
                 for row in conic_e69_pascal_obstruction_rows
             ],
+            "conic_dense_pascal_pressure_core_count": len(
+                conic_dense_secant_pascal_pressure
+            ),
+            "conic_dense_pascal_pressure_active_core_values": [
+                row["forced_external_core_size"]
+                for row in conic_dense_secant_pascal_pressure
+                if row["dense_pascal_subcase_count"] > 0
+            ],
+            "conic_dense_pascal_pressure_min_cycles_by_pair_overlap": {
+                str(row["secant_edge_lower_bound"]): row[
+                    "minimum_hamiltonian_cycle_count"
+                ]
+                for row in six_vertex_hamiltonian_cycle_pressure_table()
+                if row["pascal_relations_forced"]
+            },
             "conic_quotient_family_obstruction_degrees": [
                 row["quotient_degree"]
                 for row in conic_quotient_family_obstruction_catalog_rows
@@ -6521,6 +6676,7 @@ def build_certificate() -> dict[str, Any]:
             "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
             "line e=72 extremal quotient-pencil fibers are fully split degree-54 members",
             "all finite-incidence one-over line/conic rows have full-split quotient obstruction catalogs",
+            "dense conic secant subcases carry exact Pascal pressure thresholds",
             "conic e=69 extremal secant graphs carry Pascal collinearity obstruction counts",
             "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
             "abstract incidence-only sharpness witnesses are constructed for every finite-incidence one-over core",

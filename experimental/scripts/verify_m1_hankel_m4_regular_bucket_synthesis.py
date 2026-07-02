@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v29"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v30"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v47",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v48",
 }
 
 
@@ -837,6 +837,36 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
     require(
         all(row["closure_if_condition_fails"] for row in pascal_rows),
         "conic e=69 Pascal rows should be closure criteria",
+    )
+    require(
+        summary["conic_dense_pascal_pressure_core_count"] == 8
+        and summary["conic_dense_pascal_pressure_active_core_values"] == [69, 70, 71]
+        and summary["conic_dense_pascal_pressure_min_cycles_by_pair_overlap"]
+        == {"12": 6, "13": 18, "14": 36, "15": 60},
+        "conic dense Pascal pressure summary",
+    )
+    dense_pascal_rows = data["conic_dense_secant_pascal_pressure"]
+    require(
+        [
+            (
+                row["forced_external_core_size"],
+                row["pair_overlap_values_forcing_pascal_relations"],
+                row["dense_pascal_subcase_count"],
+                row["non_pascal_pressure_subcase_count"],
+            )
+            for row in dense_pascal_rows
+        ]
+        == [
+            (69, [14, 15], 2, 0),
+            (70, [12, 13, 14, 15], 12, 4),
+            (71, [12, 13, 14, 15], 8, 19),
+            (72, [], 0, 28),
+            (73, [], 0, 28),
+            (74, [], 0, 28),
+            (75, [], 0, 28),
+            (76, [], 0, 28),
+        ],
+        "conic dense Pascal pressure rows",
     )
     require(
         summary["conic_quotient_family_obstruction_degrees"]
@@ -1763,6 +1793,7 @@ def build_certificate() -> dict[str, Any]:
                 "the line e_G=72 extremal branch is a degree-54 quotient-pencil obstruction: six full-split fibers of sizes 52^6 or 53,52^5 cover all or all-but-one nonforced external roots",
                 "the exact-current finite-incidence residuals are quotient obstruction catalogs: line e_G=72..80 need six full-split pencil fibers of degrees 54..46, and conic e_G=69..76 need six full-split quotient-conic members of degrees 57..50 with the printed overlap ranges",
                 "Pascal's theorem gives a concrete obstruction test for the conic e_G=69 extremal branch: K6 secant covers force 60 Pascal collinearities and K6-minus-one covers force 36",
+                "dense conic one-over subcases with at least 12 pair secants force Pascal pressure across cores e_G=69,70,71: minimum Hamiltonian-cycle counts are 6,18,36,60 for secant lower bounds 12,13,14,15",
                 "the endpoint-only one-over finite-incidence range has a compact exact catalog: line histogram counts 2,16,27,28^6 across e_G=72..80 and conic counts 2,16,27,28^5 across e_G=69..76",
                 "abstract incidence-only sharpness witnesses exist for every finite-incidence one-over core, so those rows cannot be closed by sharpening only the current incidence and pair-overlap axioms",
                 "the cofactor-current moving-slope one-over residual rows have a single-saving closure ledger entry: line e_G=72..80, conic e_G=69..76, and the punctured-tangent tail e_G=120",
@@ -1850,6 +1881,7 @@ def build_certificate() -> dict[str, Any]:
             "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
             "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
             "A=386 moving-slope small-core and very-high-core tail branches are recorded as projective-safe; the intermediate high-core quotient ranges remain residual",
+            "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
             "A=386 conic four-private residuals are reduced to two-triangle or hexagon-factor boundary shapes",
             "A=386 generic conic hexagon-factor subgroup nonvanishing is ruled out as a closure route by a deterministic witness off the alternating-line factor",
             "A=386 conic six-cycle alternating-line subbranch is closed for irreducible conic components",

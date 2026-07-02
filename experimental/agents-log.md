@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 dense conic Pascal pressure
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The conic one-over quotient residual now has an
+  exact dense-secant Pascal pressure ledger.  A six-class secant graph with
+  at least `12,13,14,15` pair secants has at least `6,18,36,60` Hamiltonian
+  cycles respectively, so Pascal's theorem forces that many opposite-side
+  collinearity relations in the `Q`-plane.
+- **How it is useful:** This extends the previous Pascal obstruction beyond
+  only the extremal `e_G=69` row: dense subcases of conic cores `69,70,71`
+  now have explicit closure tests.  Sparse subcases and endpoint/duplicate
+  issues remain separate residuals.
+- **What to do next:** Test the printed Pascal collinearity obligations
+  against the actual external root-line arrangements, or use them as
+  constraints in a quotient/Hankel closure of the conic one-over residual.
+
 ### 2026-07-02 - A386 generic hexagon sharpness witness
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

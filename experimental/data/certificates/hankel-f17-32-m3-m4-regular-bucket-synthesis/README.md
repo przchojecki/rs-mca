@@ -326,6 +326,10 @@ The extremal conic `e_G=69` branch now has a Pascal obstruction profile:
 secant intersections, while `K6` minus one edge forces `36`; failure of these
 relations in the actual external root-line arrangement would close the
 corresponding extremal branch.
+Dense conic one-over subcases with at least `12` pair secants now carry the
+same kind of Pascal pressure across cores `e_G=69,70,71`: the exact minimum
+Hamiltonian-cycle counts are `6,18,36,60` for secant lower bounds
+`12,13,14,15`.
 Across the full endpoint-only one-over range, the line histogram counts are
 `2,16,27,28^6` for `e_G=72..80`, and the conic counts are `2,16,27,28^5`
 for `e_G=69..76`.

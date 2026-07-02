@@ -550,6 +550,13 @@ same test gives `36` required collinearities.  Failure of these relations in
 the actual external root-line arrangement would close the corresponding
 extremal conic branch; the packet does not yet run that arrangement test.
 
+The Pascal pressure is now recorded across the dense conic one-over subcases,
+not only the extremal `e_G=69` row.  Exact enumeration of six-vertex secant
+graphs shows that lower bounds of `12,13,14,15` secants force at least
+`6,18,36,60` Hamiltonian cycles respectively.  Thus the dense subcases of
+`e_G=70,71` also carry explicit Pascal collinearity obligations; subcases
+below `12` secants remain outside this obstruction.
+
 The packet also records a compact exact catalog for the whole endpoint-only
 finite-incidence one-over range.  For line cores `e_G=72..80`, the counts of
 allowed base-root histograms are `2,16,27,28,28,28,28,28,28`; from `e_G=75`
