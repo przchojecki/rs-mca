@@ -1,0 +1,73 @@
+{
+  "answer": "NO_NOT_GLOBALLY",
+  "conservative_next_step": "Open scoped proof attempts for coordinate-prefix and Hankel-kernel families only; keep general Conjecture F live until the PMA-wide sunflower residual is reduced, proved, or refuted.",
+  "consumers": [
+    {
+      "audit_result": "SCOPED",
+      "classification": "coordinate_slice_prefix_fiber",
+      "id": "prefix_perfiber",
+      "source": "s3b_iii_3_fibers_and_noanchor.md"
+    },
+    {
+      "audit_result": "SCOPED",
+      "classification": "hankel_pencil_kernel_flat",
+      "id": "mca_slope_fiber",
+      "source": "s3b_iii_3_fibers_and_noanchor.md"
+    },
+    {
+      "audit_result": "ESCAPING_CONSUMER",
+      "classification": "petal_structured_auxiliary_list_plane_family",
+      "id": "list_imgfib_sunflower_residual",
+      "source": "s7_list_side.md + l1_full_list_quotient_proof_program.md"
+    }
+  ],
+  "escaping_consumer": "list_imgfib_sunflower_residual",
+  "question": "Does every current Conjecture F consumer lie in coordinate-slice/prefix-fiber flats or Hankel-pencil kernel flats?",
+  "roadmap_task": "A0/QF.9 f_consumer_scoped audit",
+  "schema": "f-consumer-scoped-audit-v1",
+  "source_markers": [
+    {
+      "markers": {
+        "COORDINATE-plane sections": {
+          "line": 46
+        },
+        "fiber(Z)": {
+          "line": 11
+        },
+        "ker M(Z)": {
+          "line": 11
+        },
+        "prob:perfiber": {
+          "line": 41
+        }
+      },
+      "path": "experimental/notes/roadmaps/proof_sketch/s3b_iii_3_fibers_and_noanchor.md"
+    },
+    {
+      "markers": {
+        "L1 battle is Conjecture F": {
+          "line": 78
+        },
+        "petal-structured": {
+          "line": 77
+        }
+      },
+      "path": "experimental/notes/roadmaps/proof_sketch/s7_list_side.md"
+    },
+    {
+      "markers": {
+        "CONJECTURAL": {
+          "line": 3
+        },
+        "Maximal sunflower residual frontier": {
+          "line": 3240
+        },
+        "Mixed-petal sunflower amplification": {
+          "line": 3242
+        }
+      },
+      "path": "experimental/notes/l1/l1_full_list_quotient_proof_program.md"
+    }
+  ],
+  "status": "AUDIT_PARTIAL_NO_GLOBAL_DEMOTION"
+}

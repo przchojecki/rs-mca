@@ -30,6 +30,23 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Conjecture F consumer-scope audit
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/audits/f_consumer_scoped_audit.md`;
+  `experimental/scripts/verify_f_consumer_scoped_audit.py`;
+  `experimental/data/certificates/f-consumer-scoped-audit/README.md`;
+  `experimental/data/certificates/f-consumer-scoped-audit/f_consumer_scoped_audit.json`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.
+- **What is being added:** Audits whether all current Conjecture F consumers
+  are coordinate-slice/prefix-fiber or Hankel-pencil kernel flats.
+- **How it is useful:** Records the conservative A0 outcome: prefix and MCA
+  slope-fiber consumers are scoped, but the L1 mixed-petal sunflower residual
+  is an escaping consumer, so Conjecture F should not be globally demoted.
+- **What to do next:** Open scoped proof attempts for the prefix and
+  Hankel-kernel families only; keep the PMA-wide sunflower residual live.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.
