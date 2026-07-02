@@ -1,13 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="6837" height="6837" viewBox="0 0 6837 6837" font-family="Helvetica,Arial,sans-serif">
 <rect width="6837" height="6837" fill="#fbfcfd"/>
-<circle cx="3419" cy="3419" r="380" fill="none" stroke="#eef1f3" stroke-width="1"/>
-<circle cx="3419" cy="3419" r="760" fill="none" stroke="#eef1f3" stroke-width="1"/>
-<circle cx="3419" cy="3419" r="1140" fill="none" stroke="#eef1f3" stroke-width="1"/>
-<circle cx="3419" cy="3419" r="1579" fill="none" stroke="#eef1f3" stroke-width="1"/>
-<circle cx="3419" cy="3419" r="1959" fill="none" stroke="#eef1f3" stroke-width="1"/>
-<circle cx="3419" cy="3419" r="2339" fill="none" stroke="#eef1f3" stroke-width="1"/>
-<circle cx="3419" cy="3419" r="2719" fill="none" stroke="#eef1f3" stroke-width="1"/>
-<circle cx="3419" cy="3419" r="3099" fill="none" stroke="#eef1f3" stroke-width="1"/>
 <path d="M3051,3325 C3235,3372 3609,3419 3419,3419" fill="none" stroke="#9aa4ac" stroke-width="1.0"/>
 <path d="M3697,3677 C3558,3548 3609,3419 3419,3419" fill="none" stroke="#9aa4ac" stroke-width="1.0"/>
 <path d="M3753,3237 C3586,3328 3609,3419 3419,3419" fill="none" stroke="#9aa4ac" stroke-width="1.0"/>
@@ -791,7 +783,7 @@
 <text x="4792" y="1045" text-anchor="start" font-size="15" fill="#333">experiment (tests P3)</text>
 <text x="4792" y="1063" text-anchor="start" font-size="12" fill="#8a949c">[TEST]</text>
 </g>
-<text x="60" y="80" font-size="30" fill="#555">104 nodes, 128 edges | rings = dependency depth from the prize (center)</text>
+<text x="60" y="80" font-size="30" fill="#555">104 nodes, 128 edges | distance from center = dependency depth (prize at the center)</text>
 <text x="60" y="120" font-size="30" fill="#555">solid=req dashed=alt dotted=evidence sparse-red=refutes | fork tick = gate ANY | bold = key</text>
 <text x="60" y="160" font-size="30" fill="#555">CONDITIONAL:5  CONJECTURE:6  PROVABLE:8  PROVED:35  REFUTED:4  TARGET:33  TEST:8  WALL:5</text>
 <circle cx="76" cy="210" r="15" fill="#1b7837"/>

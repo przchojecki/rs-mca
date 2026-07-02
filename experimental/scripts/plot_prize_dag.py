@@ -170,9 +170,6 @@ def main() -> None:
     svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" '
            f'viewBox="0 0 {size} {size}" font-family="Helvetica,Arial,sans-serif">',
            f'<rect width="{size}" height="{size}" fill="#fbfcfd"/>']
-    for k in range(1, nring):   # faint ring guides
-        svg.append(f'<circle cx="{C:.0f}" cy="{C:.0f}" r="{R[k]:.0f}" fill="none" '
-                   f'stroke="#eef1f3" stroke-width="1"/>')
     for e in edges:             # polar-interpolated links (leave/arrive along radii)
         a1, r1 = ang[e["from"]], R[ring[e["from"]]]
         a2, r2 = ang[e["to"]], R[ring[e["to"]]]
@@ -224,8 +221,8 @@ def main() -> None:
     for n in nodes.values():
         counts2[n["status"]] = counts2.get(n["status"], 0) + 1
     svg.append(f'<text x="{lx0}" y="{ly0}" font-size="30" fill="#555">'
-               f'{len(nodes)} nodes, {len(edges)} edges | rings = dependency depth from the '
-               f'prize (center)</text>')
+               f'{len(nodes)} nodes, {len(edges)} edges | distance from center = dependency '
+               f'depth (prize at the center)</text>')
     svg.append(f'<text x="{lx0}" y="{ly0 + 40}" font-size="30" fill="#555">'
                f'solid=req dashed=alt dotted=evidence sparse-red=refutes | '
                f'fork tick = gate ANY | bold = key</text>')
