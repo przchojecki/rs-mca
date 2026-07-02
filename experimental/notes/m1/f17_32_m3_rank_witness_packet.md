@@ -626,6 +626,13 @@ can have at most `24` total base-root incidences because `deg Q<5`; therefore
 they need at least `738` external-root incidences in `384` external points.
 Some pair of finite classes must share at least `24` external roots.
 
+The `A=385` pair-core quotient-reduction companion converts that forced pair
+into a quotient-pencil target.  The two finite classes span a projective
+`Q`-line, and the common external core factors every locator on the line as
+`L_Q=C_E R_Q`.  At the guaranteed core size, the ambient quotient family has
+vector dimension at most `104`, while the two split quotient members have
+degree at most `103`.
+
 The `A=387` separated-boundary safety companion uses the `h=1` specialization
 to close that agreement for arbitrary nonzero separated weights: the finite
 root table has at most one ambient root, the split-locator gate cannot increase

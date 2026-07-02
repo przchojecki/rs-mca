@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A385 pair-core quotient reduction
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a385_pair_core_quotient_reduction.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-quotient-reduction/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a385_pair_core_quotient_reduction.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A reduction of the forced `A=385` large pair-core
+  branch to a quotient-pencil target: the two finite classes sharing at least
+  `24` external roots span a projective `Q`-line whose locators factor as
+  `L_Q=C_E R_Q`.
+- **How it is useful:** At the guaranteed core size, the ambient quotient
+  family has vector dimension at most `104`, and the two split quotient members
+  have degree at most `103`; this makes the remaining no-fixed-core frontier a
+  concrete quotient-pencil problem.
+- **What to do next:** Try to exclude or pay projective quotient pencils that
+  contain two distinct full-split degree-`<=103` quotient members.
+
 ### 2026-07-02 - A385 no-fixed-core pressure
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

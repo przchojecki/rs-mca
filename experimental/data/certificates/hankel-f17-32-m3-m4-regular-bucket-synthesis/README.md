@@ -339,6 +339,19 @@ incidences.  Occupancy in `384` external points forces total pairwise external
 overlap at least `354`, hence some pair of finite classes has external common
 core size at least `24`.
 
+The `A=385` pair-core quotient-reduction packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-quotient-reduction/
+  f17_32_n512_k256_m3_rank6_a385_pair_core_quotient_reduction.json
+```
+
+records the next reduction for that large pair-core target.  The forced pair of
+finite classes spans a projective `Q`-line on which every transferred locator
+factors through the common external core, `L_Q=C_E R_Q`.  At core size `24`, the
+ambient quotient family has vector dimension at most `104`, and the two split
+quotient members have degree at most `103`.
+
 The `A=387` separated-boundary safety packet
 
 ```text

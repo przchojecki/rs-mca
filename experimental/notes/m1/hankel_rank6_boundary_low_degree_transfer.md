@@ -247,6 +247,18 @@ incidences in the `384` external subgroup points.  Hence total pairwise
 external overlap is at least `354`, and some pair of finite classes shares at
 least `24` external roots.
 
+The pair-core quotient-reduction companion is
+
+```text
+experimental/notes/m1/hankel_rank6_a385_pair_core_quotient_reduction.md
+```
+
+It uses linearity of the low-degree transfer to show that the forced pair spans
+a projective `Q`-line on which every locator factors through the common
+external core: `L_Q=C_E R_Q`.  At the guaranteed core size, the ambient quotient
+family has vector dimension at most `104`, and the two split quotient members
+have degree at most `103`.
+
 At `A=387`, this transfer already closes the separated branch for arbitrary
 nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at
 most one finite slope.  The companion note

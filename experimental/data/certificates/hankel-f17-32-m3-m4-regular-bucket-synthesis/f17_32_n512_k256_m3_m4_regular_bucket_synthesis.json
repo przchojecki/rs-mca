@@ -365,6 +365,7 @@
     "A=385 separated rank-6 fixed two-core high-core line/conic branches are projective-budget safe after line product collapse and the punctured tangent tail",
     "A=385 separated rank-6 branches with a fixed forced base core of size at least two are projective-budget safe",
     "A=385 separated rank-6 no-fixed-core over-budget branches force a pair of finite classes with at least 24 common external roots",
+    "A=385 separated rank-6 no-fixed-core large pair-core branches reduce to quotient pencils with two full-split degree<=103 quotient members",
     "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
     "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
     "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
@@ -507,7 +508,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v47",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v48",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -568,6 +569,10 @@
     "f17_32_n512_k256_m3_rank6_a385_no_fixed_core_pressure": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-no-fixed-core-pressure/f17_32_n512_k256_m3_rank6_a385_no_fixed_core_pressure.json",
       "sha256": "fcaf493aa8b829d2ece876dbad450976ab85d9fdf66680678ecc1c935c769ded"
+    },
+    "f17_32_n512_k256_m3_rank6_a385_pair_core_quotient_reduction": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-quotient-reduction/f17_32_n512_k256_m3_rank6_a385_pair_core_quotient_reduction.json",
+      "sha256": "08e631a2a1dd49f47ca2fa6eb5189d9989cba529c402c1d097a63ea6ec42a3b4"
     },
     "f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json",
@@ -643,6 +648,7 @@
     "a385_base_core_closure_count": 1,
     "a385_fixed_core_synthesis_count": 1,
     "a385_no_fixed_core_pressure_count": 1,
+    "a385_pair_core_quotient_reduction_count": 1,
     "a385_three_core_quadratic_cut_count": 1,
     "a385_three_core_residual_closure_count": 1,
     "a385_two_core_component_cut_count": 1,
@@ -657,7 +663,7 @@
     "a386_separated_boundary_closure_count": 1,
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 31,
+    "dependencies_checked": 32,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
     "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -690,6 +696,12 @@
       "the A=385 low-degree transfer has deg Q<5, so each finite class has at most four base roots and the six degree-127 split locators have at least 738 external-root incidences",
       "occupancy in the 384 external subgroup points forces total pairwise external overlap at least 354, hence some pair of finite classes shares at least 24 external roots",
       "therefore the no-fixed-core frontier has a concrete large pair-core target: if every pair shares at most 23 external roots, the branch is projective-budget safe"
+    ],
+    "a385_pair_core_quotient_reduction": [
+      "the large pair-core pair spans a projective Q-line because the low-degree transfer Q -> L_Q is linear",
+      "the common external root core factors every locator in that Q-line, so L_Q=C_E R_Q for every Q in the pair line",
+      "at the guaranteed core size |E|>=24, the ambient quotient family has vector dimension at most 104 and the two split quotient members have degree at most 103",
+      "the remaining no-fixed-core frontier is now a quotient-pencil target rather than an unconstrained occupancy problem"
     ],
     "a385_three_core_quadratic_cut": [
       "inside the separated A=385 rank-6 boundary, a fixed three-point base split-root core leaves a projective Q-line",

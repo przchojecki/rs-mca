@@ -998,6 +998,11 @@ arbitrary: any separated projective over-budget survivor must have six finite
 classes plus an unpaid endpoint, and some pair of those finite classes must
 share at least `24` external split roots.  Thus the next separated `A=385`
 target is a large pair-core quotient/product-collapse problem.
+The pair-core quotient-reduction companion makes the quotient part explicit:
+the forced pair spans a projective `Q`-line whose locators share the common
+external factor `C_E`, so at the guaranteed core size the residual quotient
+family has vector dimension at most `104` and the two split quotient members
+have degree at most `103`.
 For `A=387`, the projective `Q`-space is a point, so the arbitrary-weight
 separated branch is already projective-safe with total at most `2`.
 For `A=386`, a no-common-component pair of direction conics gives projective
