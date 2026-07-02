@@ -74,6 +74,7 @@ Keep entries concise and link to the relevant files.
   `experimental/notes/roadmaps/e3_spread_regime_design_evidence.md`;
   `experimental/scripts/verify_spread_regime_design_evidence.py`;
   `experimental/data/certificates/spread-regime-design-evidence/spread_regime_design_evidence.json`;
+  `experimental/data/certificates/spread-regime-design-evidence/ag24_exception_census.json`;
   `experimental/agents-log.md`.
 - **Status:** EXPERIMENTAL / AUDIT.
 - **What is being added:** A deterministic E3 evidence packet tests spread
@@ -94,7 +95,10 @@ Keep entries concise and link to the relevant files.
   saturated branch is finite-slope-degenerate.  A targeted AG(2,4) red-team
   check also records explicit six- and seven-line nondegenerate below-cap
   exceptions, showing that the eventual spread theorem needs a bounded
-  exceptional-family clause.
+  exceptional-family clause.  The optional exact census shows these exceptions
+  are tiny in the toy model: 195/38760 nondegenerate six-line losses and
+  2/77520 seven-line losses for linear slopes, 176/38760 and 0/77520 for
+  geometric slopes.
 - **What to do next:** Turn the observed pattern into a lemma target:
   higher-order rank loss in spread families should either be a bounded
   AG(2,4)-type exception or force `v`-syndrome degeneracy.  Broaden the

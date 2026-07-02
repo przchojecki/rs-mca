@@ -2519,11 +2519,11 @@
     "CANDIDATE_SPREAD_COUNTEREXAMPLE": "A nondegenerate distinct-slope rank loss below the degree-moment cap was found; package the minimal case as a counterexample candidate.",
     "NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE": "No tested spread design produced a nondegenerate distinct-slope rank-loss prefix beyond the degree-moment cap. Ambient rank losses are explained by the universal moment quotient."
   },
-  "method": "For each design family, stack the linear systems S_T(u)+z_T S_T(v)=0 over F_193 for distinct slopes z_T. Pairwise intersections are below the FM1 dependency threshold, The verifier compares rank both to the ambient 2n variable space and to the proved degree-moment cap 2(j+t).",
+  "method": "For each design family, stack the linear systems S_T(u)+z_T S_T(v)=0 over F_193 for distinct slopes z_T. Pairwise intersections are below the FM1 dependency threshold, and the verifier compares rank both to the ambient 2n variable space and to the proved degree-moment cap 2(j+t).",
   "overall_interpretation": "BOUNDED_EXCEPTION_WITNESS_FOUND",
   "pre_registered_question": "Can co-support designs with pairwise support intersections < k create hidden distinct-slope alignment dependencies before the ambient 2n-variable rank limit?",
   "prime": 193,
-  "script_sha256": "fcdfcfac5d689cf1d5c8e0a7c2cd7ce5aa0cc28dd83a45ebd24187345517824f",
+  "script_sha256": "52aa1229030cfdc09a13cec11b05fcd342a76395333257d499191286dd83968f",
   "seed": 2026070203,
   "status": "EXPERIMENTAL / AUDIT",
   "title": "E3 spread-regime design evidence"

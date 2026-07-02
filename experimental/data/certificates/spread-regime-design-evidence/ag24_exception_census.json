@@ -1,0 +1,437 @@
+{
+  "degree_cap": 12,
+  "family": "all 20 lines of AG(2,4)",
+  "j": 4,
+  "modes": [
+    "distinct_linear",
+    "distinct_geometric"
+  ],
+  "n": 16,
+  "prime": 193,
+  "rows": [
+    {
+      "degenerate_loss_subsets": 240,
+      "first_degenerate_example": {
+        "degree_deficiency": 1,
+        "family": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            4,
+            8,
+            12
+          ],
+          [
+            0,
+            5,
+            10,
+            15
+          ],
+          [
+            0,
+            6,
+            11,
+            13
+          ],
+          [
+            0,
+            7,
+            9,
+            14
+          ],
+          [
+            1,
+            4,
+            11,
+            14
+          ]
+        ],
+        "max_point_multiplicity": 5,
+        "point_multiplicity_histogram": {
+          "1": 11,
+          "2": 4,
+          "5": 1
+        },
+        "rank": 11,
+        "subset_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "zero_restriction_locator_count": 5
+      },
+      "first_nondegenerate_example": {
+        "degree_deficiency": 1,
+        "family": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            4,
+            8,
+            12
+          ],
+          [
+            0,
+            5,
+            10,
+            15
+          ],
+          [
+            0,
+            6,
+            11,
+            13
+          ],
+          [
+            2,
+            5,
+            11,
+            12
+          ],
+          [
+            12,
+            13,
+            14,
+            15
+          ]
+        ],
+        "max_point_multiplicity": 4,
+        "point_multiplicity_histogram": {
+          "0": 2,
+          "1": 7,
+          "2": 5,
+          "3": 1,
+          "4": 1
+        },
+        "rank": 11,
+        "subset_indices": [
+          0,
+          1,
+          2,
+          3,
+          10,
+          19
+        ],
+        "zero_restriction_locator_count": 0
+      },
+      "loss_subsets": 435,
+      "max_point_multiplicity_distribution_on_losses": {
+        "2": 5,
+        "3": 148,
+        "4": 42,
+        "5": 240
+      },
+      "mode": "distinct_linear",
+      "nondegenerate_loss_subsets": 195,
+      "point_histogram_distribution_on_losses": {
+        "{\"0\": 1, \"1\": 6, \"2\": 9}": 4,
+        "{\"0\": 1, \"1\": 8, \"2\": 5, \"3\": 2}": 14,
+        "{\"0\": 1, \"1\": 8, \"2\": 6, \"4\": 1}": 3,
+        "{\"0\": 1, \"1\": 9, \"2\": 3, \"3\": 3}": 4,
+        "{\"0\": 1, \"1\": 9, \"2\": 4, \"3\": 1, \"4\": 1}": 13,
+        "{\"0\": 2, \"1\": 5, \"2\": 8, \"3\": 1}": 10,
+        "{\"0\": 2, \"1\": 6, \"2\": 6, \"3\": 2}": 26,
+        "{\"0\": 2, \"1\": 6, \"2\": 7, \"4\": 1}": 8,
+        "{\"0\": 2, \"1\": 7, \"2\": 4, \"3\": 3}": 30,
+        "{\"0\": 2, \"1\": 7, \"2\": 5, \"3\": 1, \"4\": 1}": 16,
+        "{\"0\": 2, \"1\": 8, \"2\": 2, \"3\": 4}": 1,
+        "{\"0\": 3, \"1\": 4, \"2\": 7, \"3\": 2}": 43,
+        "{\"0\": 3, \"1\": 4, \"2\": 8, \"4\": 1}": 2,
+        "{\"0\": 3, \"1\": 5, \"2\": 5, \"3\": 3}": 13,
+        "{\"0\": 4, \"1\": 2, \"2\": 8, \"3\": 2}": 6,
+        "{\"1\": 11, \"2\": 4, \"5\": 1}": 240,
+        "{\"1\": 8, \"2\": 8}": 1,
+        "{\"1\": 9, \"2\": 6, \"3\": 1}": 1
+      },
+      "rank_distribution": {
+        "11": 435,
+        "12": 38325
+      },
+      "size": 6,
+      "total_subsets": 38760,
+      "zero_restriction_distribution_on_losses": {
+        "0": 195,
+        "5": 240
+      }
+    },
+    {
+      "degenerate_loss_subsets": 0,
+      "first_degenerate_example": null,
+      "first_nondegenerate_example": {
+        "degree_deficiency": 1,
+        "family": [
+          [
+            0,
+            4,
+            8,
+            12
+          ],
+          [
+            0,
+            5,
+            10,
+            15
+          ],
+          [
+            1,
+            4,
+            11,
+            14
+          ],
+          [
+            1,
+            5,
+            9,
+            13
+          ],
+          [
+            2,
+            6,
+            10,
+            14
+          ],
+          [
+            3,
+            6,
+            9,
+            12
+          ],
+          [
+            3,
+            7,
+            11,
+            15
+          ]
+        ],
+        "max_point_multiplicity": 2,
+        "point_multiplicity_histogram": {
+          "1": 4,
+          "2": 12
+        },
+        "rank": 11,
+        "subset_indices": [
+          1,
+          2,
+          5,
+          6,
+          11,
+          15,
+          16
+        ],
+        "zero_restriction_locator_count": 0
+      },
+      "loss_subsets": 2,
+      "max_point_multiplicity_distribution_on_losses": {
+        "2": 2
+      },
+      "mode": "distinct_linear",
+      "nondegenerate_loss_subsets": 2,
+      "point_histogram_distribution_on_losses": {
+        "{\"1\": 4, \"2\": 12}": 2
+      },
+      "rank_distribution": {
+        "11": 2,
+        "12": 77518
+      },
+      "size": 7,
+      "total_subsets": 77520,
+      "zero_restriction_distribution_on_losses": {
+        "0": 2
+      }
+    },
+    {
+      "degenerate_loss_subsets": 240,
+      "first_degenerate_example": {
+        "degree_deficiency": 1,
+        "family": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            4,
+            8,
+            12
+          ],
+          [
+            0,
+            5,
+            10,
+            15
+          ],
+          [
+            0,
+            6,
+            11,
+            13
+          ],
+          [
+            0,
+            7,
+            9,
+            14
+          ],
+          [
+            1,
+            4,
+            11,
+            14
+          ]
+        ],
+        "max_point_multiplicity": 5,
+        "point_multiplicity_histogram": {
+          "1": 11,
+          "2": 4,
+          "5": 1
+        },
+        "rank": 11,
+        "subset_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "zero_restriction_locator_count": 5
+      },
+      "first_nondegenerate_example": {
+        "degree_deficiency": 1,
+        "family": [
+          [
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            4,
+            8,
+            12
+          ],
+          [
+            0,
+            5,
+            10,
+            15
+          ],
+          [
+            0,
+            6,
+            11,
+            13
+          ],
+          [
+            2,
+            4,
+            9,
+            15
+          ],
+          [
+            2,
+            7,
+            8,
+            13
+          ]
+        ],
+        "max_point_multiplicity": 4,
+        "point_multiplicity_histogram": {
+          "0": 1,
+          "1": 9,
+          "2": 4,
+          "3": 1,
+          "4": 1
+        },
+        "rank": 11,
+        "subset_indices": [
+          0,
+          1,
+          2,
+          3,
+          9,
+          12
+        ],
+        "zero_restriction_locator_count": 0
+      },
+      "loss_subsets": 416,
+      "max_point_multiplicity_distribution_on_losses": {
+        "2": 1,
+        "3": 133,
+        "4": 42,
+        "5": 240
+      },
+      "mode": "distinct_geometric",
+      "nondegenerate_loss_subsets": 176,
+      "point_histogram_distribution_on_losses": {
+        "{\"0\": 1, \"1\": 8, \"2\": 5, \"3\": 2}": 10,
+        "{\"0\": 1, \"1\": 8, \"2\": 6, \"4\": 1}": 6,
+        "{\"0\": 1, \"1\": 9, \"2\": 3, \"3\": 3}": 9,
+        "{\"0\": 1, \"1\": 9, \"2\": 4, \"3\": 1, \"4\": 1}": 11,
+        "{\"0\": 2, \"1\": 5, \"2\": 8, \"3\": 1}": 15,
+        "{\"0\": 2, \"1\": 6, \"2\": 6, \"3\": 2}": 20,
+        "{\"0\": 2, \"1\": 6, \"2\": 7, \"4\": 1}": 6,
+        "{\"0\": 2, \"1\": 7, \"2\": 4, \"3\": 3}": 23,
+        "{\"0\": 2, \"1\": 7, \"2\": 5, \"3\": 1, \"4\": 1}": 15,
+        "{\"0\": 2, \"1\": 8, \"2\": 2, \"3\": 4}": 3,
+        "{\"0\": 3, \"1\": 3, \"2\": 9, \"3\": 1}": 3,
+        "{\"0\": 3, \"1\": 4, \"2\": 7, \"3\": 2}": 34,
+        "{\"0\": 3, \"1\": 4, \"2\": 8, \"4\": 1}": 4,
+        "{\"0\": 3, \"1\": 5, \"2\": 5, \"3\": 3}": 12,
+        "{\"0\": 4, \"1\": 2, \"2\": 8, \"3\": 2}": 2,
+        "{\"1\": 11, \"2\": 4, \"5\": 1}": 240,
+        "{\"1\": 8, \"2\": 8}": 1,
+        "{\"1\": 9, \"2\": 6, \"3\": 1}": 2
+      },
+      "rank_distribution": {
+        "11": 416,
+        "12": 38344
+      },
+      "size": 6,
+      "total_subsets": 38760,
+      "zero_restriction_distribution_on_losses": {
+        "0": 176,
+        "5": 240
+      }
+    },
+    {
+      "degenerate_loss_subsets": 0,
+      "first_degenerate_example": null,
+      "first_nondegenerate_example": null,
+      "loss_subsets": 0,
+      "max_point_multiplicity_distribution_on_losses": {},
+      "mode": "distinct_geometric",
+      "nondegenerate_loss_subsets": 0,
+      "point_histogram_distribution_on_losses": {},
+      "rank_distribution": {
+        "12": 77520
+      },
+      "size": 7,
+      "total_subsets": 77520,
+      "zero_restriction_distribution_on_losses": {}
+    }
+  ],
+  "sizes": [
+    6,
+    7
+  ],
+  "status": "EXPERIMENTAL / AUDIT",
+  "t": 2,
+  "title": "AG(2,4) bounded exception census for E3"
+}

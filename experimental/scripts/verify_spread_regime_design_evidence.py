@@ -9,6 +9,7 @@ split-locator, distinct-slope linear systems.
 Run:
   python3 experimental/scripts/verify_spread_regime_design_evidence.py
   python3 experimental/scripts/verify_spread_regime_design_evidence.py --emit
+  python3 experimental/scripts/verify_spread_regime_design_evidence.py --ag24-census --emit
 """
 from __future__ import annotations
 
@@ -25,6 +26,10 @@ from typing import Any
 OUTPUT = Path(
     "experimental/data/certificates/spread-regime-design-evidence/"
     "spread_regime_design_evidence.json"
+)
+CENSUS_OUTPUT = Path(
+    "experimental/data/certificates/spread-regime-design-evidence/"
+    "ag24_exception_census.json"
 )
 
 P = 193
@@ -544,6 +549,136 @@ def explicit_ag24_exception_witnesses(domain: list[int], p: int = P) -> list[dic
     return rows
 
 
+def precomputed_stacked_matrix(
+    block_rows: dict[tuple[int, int], list[list[int]]],
+    subset_indices: tuple[int, ...],
+) -> list[list[int]]:
+    matrix = []
+    for position, line_idx in enumerate(subset_indices):
+        matrix.extend(block_rows[(position, line_idx)])
+    return matrix
+
+
+def ag24_exception_census(p: int = P) -> dict[str, Any]:
+    family = affine_plane_order4_lines()
+    domain = subgroup_domain(16, p)
+    t = 2
+    j = 4
+    n = 16
+    modes = ["distinct_linear", "distinct_geometric"]
+    sizes = [6, 7]
+
+    syndrome_rows_by_line = {
+        idx: syndrome_matrix_for_indices(domain, line, t, p)
+        for idx, line in enumerate(family)
+    }
+    rows = []
+    for mode in modes:
+        max_size = max(sizes)
+        slopes = slope_sequence(mode, max_size, p)
+        block_rows = {}
+        for position in range(max_size):
+            slope = slopes[position]
+            for line_idx, syndrome_rows in syndrome_rows_by_line.items():
+                block_rows[(position, line_idx)] = [
+                    row + [(slope * entry) % p for entry in row]
+                    for row in syndrome_rows
+                ]
+
+        for size in sizes:
+            rank_distribution: Counter[int] = Counter()
+            zero_restriction_distribution: Counter[int] = Counter()
+            point_multiplicity_distribution: Counter[int] = Counter()
+            point_histogram_distribution: Counter[str] = Counter()
+            loss_subsets = 0
+            nondegenerate_loss_subsets = 0
+            degenerate_loss_subsets = 0
+            first_nondegenerate_example = None
+            first_degenerate_example = None
+            for subset_indices in itertools.combinations(range(len(family)), size):
+                matrix = precomputed_stacked_matrix(block_rows, subset_indices)
+                rank = rank_mod_p(matrix, p)
+                rank_distribution[rank] += 1
+                degree_cap = 2 * (j + t)
+                degree_deficiency = min(size * t, degree_cap) - rank
+                if degree_deficiency <= 0:
+                    continue
+                loss_subsets += 1
+                subset = [family[idx] for idx in subset_indices]
+                cert = nondegeneracy_certificate(domain, subset, t, slopes[:size], p)
+                zero_count = cert.get("zero_restriction_locator_count", -1)
+                zero_restriction_distribution[zero_count] += 1
+                point_counts = [0] * n
+                for line in subset:
+                    for point in line:
+                        point_counts[point] += 1
+                max_point_multiplicity = max(point_counts)
+                point_multiplicity_distribution[max_point_multiplicity] += 1
+                point_hist = {
+                    str(key): value
+                    for key, value in sorted(Counter(point_counts).items())
+                }
+                point_histogram_distribution[json.dumps(point_hist, sort_keys=True)] += 1
+                example = {
+                    "subset_indices": list(subset_indices),
+                    "family": [list(item) for item in subset],
+                    "rank": rank,
+                    "degree_deficiency": degree_deficiency,
+                    "zero_restriction_locator_count": zero_count,
+                    "point_multiplicity_histogram": point_hist,
+                    "max_point_multiplicity": max_point_multiplicity,
+                }
+                if cert["union_bound_certifies_nondegenerate_solution"]:
+                    nondegenerate_loss_subsets += 1
+                    if first_nondegenerate_example is None:
+                        first_nondegenerate_example = example
+                else:
+                    degenerate_loss_subsets += 1
+                    if first_degenerate_example is None:
+                        first_degenerate_example = example
+
+            total_subsets = sum(rank_distribution.values())
+            rows.append({
+                "mode": mode,
+                "size": size,
+                "total_subsets": total_subsets,
+                "rank_distribution": {
+                    str(key): value for key, value in sorted(rank_distribution.items())
+                },
+                "loss_subsets": loss_subsets,
+                "nondegenerate_loss_subsets": nondegenerate_loss_subsets,
+                "degenerate_loss_subsets": degenerate_loss_subsets,
+                "zero_restriction_distribution_on_losses": {
+                    str(key): value
+                    for key, value in sorted(zero_restriction_distribution.items())
+                },
+                "max_point_multiplicity_distribution_on_losses": {
+                    str(key): value
+                    for key, value in sorted(point_multiplicity_distribution.items())
+                },
+                "point_histogram_distribution_on_losses": {
+                    key: value
+                    for key, value in sorted(point_histogram_distribution.items())
+                },
+                "first_nondegenerate_example": first_nondegenerate_example,
+                "first_degenerate_example": first_degenerate_example,
+            })
+
+    return {
+        "title": "AG(2,4) bounded exception census for E3",
+        "status": "EXPERIMENTAL / AUDIT",
+        "prime": p,
+        "n": n,
+        "j": j,
+        "t": t,
+        "degree_cap": 2 * (j + t),
+        "family": "all 20 lines of AG(2,4)",
+        "sizes": sizes,
+        "modes": modes,
+        "rows": rows,
+    }
+
+
 def summarize_prefix_records(records: list[dict[str, Any]]) -> dict[str, Any]:
     if not records:
         return {
@@ -819,7 +954,7 @@ def build_report() -> dict[str, Any]:
             "For each design family, stack the linear systems "
             "S_T(u)+z_T S_T(v)=0 over F_193 for distinct slopes z_T. "
             "Pairwise intersections are below the FM1 dependency threshold, "
-            "The verifier compares rank both to the ambient 2n variable space "
+            "and the verifier compares rank both to the ambient 2n variable space "
             "and to the proved degree-moment cap 2(j+t)."
         ),
         "interpretation_table": {
@@ -858,6 +993,11 @@ def build_report() -> dict[str, Any]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--emit", action="store_true", help="write the JSON artifact")
+    parser.add_argument(
+        "--ag24-census",
+        action="store_true",
+        help="run the heavier exact AG(2,4) 6/7-line exception census",
+    )
     args = parser.parse_args()
 
     report = build_report()
@@ -916,6 +1056,23 @@ def main() -> None:
         OUTPUT.parent.mkdir(parents=True, exist_ok=True)
         OUTPUT.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
         print(f"wrote {OUTPUT}")
+
+    if args.ag24_census:
+        census = ag24_exception_census(P)
+        for row in census["rows"]:
+            print(
+                "    census {mode} size={size}: losses={loss}, nondeg={nondeg}, ranks={ranks}".format(
+                    mode=row["mode"],
+                    size=row["size"],
+                    loss=row["loss_subsets"],
+                    nondeg=row["nondegenerate_loss_subsets"],
+                    ranks=row["rank_distribution"],
+                )
+            )
+        if args.emit:
+            CENSUS_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+            CENSUS_OUTPUT.write_text(json.dumps(census, indent=2, sort_keys=True) + "\n")
+            print(f"wrote {CENSUS_OUTPUT}")
 
 
 if __name__ == "__main__":

@@ -6,6 +6,8 @@
 - **Verifier:** `experimental/scripts/verify_spread_regime_design_evidence.py`.
 - **Artifact:**
   `experimental/data/certificates/spread-regime-design-evidence/spread_regime_design_evidence.json`.
+- **Optional exact census artifact:**
+  `experimental/data/certificates/spread-regime-design-evidence/ag24_exception_census.json`.
 
 This packet tests one concrete version of the spread-regime worry: a family of
 co-supports may have pairwise intersections below the FM1 dependency threshold,
@@ -167,6 +169,23 @@ intersects in at most one point, while `j-t=2`.  The nondegeneracy certificate
 shows that the nullspace is not covered by the hyperplanes `S_T(v)=0`, so a
 finite-slope realization exists for the prescribed distinct slopes.
 
+The optional exact census enumerates all AG(2,4) subfamilies of size `6` and
+`7` for the two tested distinct-slope schedules:
+
+```text
+mode                size  total   rank-loss  nondegenerate  degenerate
+distinct_linear       6   38760        435            195         240
+distinct_linear       7   77520          2              2           0
+distinct_geometric    6   38760        416            176         240
+distinct_geometric    7   77520          0              0           0
+```
+
+Thus the exceptions are real but tiny in this model.  They are concentrated at
+six lines, with only two seven-line exceptions under the linear slope schedule
+and none under the geometric schedule.  This is the evidence for treating the
+phenomenon as a bounded exceptional family rather than a growing spread
+mechanism.
+
 This is not evidence of growing many-slope mass.  It is evidence that the
 right spread-regime theorem cannot be a literal no-exception statement; it
 needs either a bounded-exception clause or a structural classification of these
@@ -209,4 +228,5 @@ that the bounded-exception term is not optional.
 ```bash
 python3 experimental/scripts/verify_spread_regime_design_evidence.py
 python3 experimental/scripts/verify_spread_regime_design_evidence.py --emit
+python3 experimental/scripts/verify_spread_regime_design_evidence.py --ag24-census --emit
 ```
