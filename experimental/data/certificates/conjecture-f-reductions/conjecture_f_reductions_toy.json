@@ -147,6 +147,17 @@
       ],
       "quotient_union_size": 70,
       "status": "PASS"
+    },
+    {
+      "checked_affine_spaces": 135,
+      "checked_quotient_affine_spaces": 90,
+      "j": 4,
+      "max_affine_Dj_hits": 1,
+      "max_affine_quotient_hits": 0,
+      "n": 16,
+      "name": "affine_slope_table_consumer",
+      "quotient_union_j": 8,
+      "status": "PASS"
     }
   ],
   "domain": {
@@ -175,6 +186,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "bb6766a8ae545569cbb9b2da568b741dfdae6ef82fc0503d288cdfc491e25790",
+  "script_sha256": "3ec72833099b56d58d8471c88c6ee582b34e10551b759aa85bfa01b5501383eb",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

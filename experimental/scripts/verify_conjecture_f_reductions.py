@@ -18,6 +18,7 @@ the identities over F_97 with H = mu_16:
 * the same fixed-dimensional bound descends to quotient-pullback strata.
 * the union of all proper quotient-pullback strata is fixed-dimension
   polynomial by summing the descended bounds.
+* affine slope-table families inherit the same bounds after homogenization.
 """
 from __future__ import annotations
 
@@ -88,6 +89,10 @@ def trim(poly: tuple[int, ...]) -> tuple[int, ...]:
 def poly_add(a: tuple[int, ...], b: tuple[int, ...]) -> tuple[int, ...]:
     n = max(len(a), len(b))
     return trim(tuple(((a[i] if i < len(a) else 0) + (b[i] if i < len(b) else 0)) % P for i in range(n)))
+
+
+def poly_sub(a: tuple[int, ...], b: tuple[int, ...]) -> tuple[int, ...]:
+    return poly_add(a, poly_scale(-1, b))
 
 
 def poly_scale(c: int, a: tuple[int, ...]) -> tuple[int, ...]:
@@ -972,6 +977,100 @@ def check_quotient_union_fixed_dimension_bound(H: list[int]) -> dict:
     }
 
 
+def in_affine_span(poly: tuple[int, ...], anchor: tuple[int, ...],
+                   directions: list[tuple[int, ...]], width: int) -> bool:
+    return in_span(poly_sub(poly, anchor), directions, width)
+
+
+def quotient_union_for_j(H: list[int], j: int) -> set[tuple[int, ...]]:
+    out: set[tuple[int, ...]] = set()
+    for m in quotient_divisors(j):
+        small_order = N // m
+        small_j = j // m
+        H_small = subgroup(small_order)
+        out.update(compose_x_power(poly, m) for poly in divisor_set(H_small, small_j))
+    return out
+
+
+def check_affine_slope_table_consumer(H: list[int]) -> dict:
+    D = divisor_set(H, J_VOTING)
+    quotient_union = quotient_union_for_j(H, J_QUOTIENT_UNION)
+    rng = random.Random(SEED + 9)
+    checked_affine_spaces = 0
+    checked_quotient_affine_spaces = 0
+    max_hits = 0
+    max_quotient_hits = 0
+
+    for affine_dim in range(1, 4):
+        for _ in range(45):
+            directions = random_independent_basis(rng, affine_dim, J_VOTING)
+            anchor = random_poly(rng, J_VOTING)
+            while in_span(anchor, directions, J_VOTING + 1):
+                anchor = random_poly(rng, J_VOTING)
+            projective_basis = [anchor] + directions
+            projective_dim = rank_polys(projective_basis, J_VOTING + 1) - 1
+            common_roots = common_roots_of_space(projective_basis, H)
+            hits = [
+                poly for poly in D
+                if in_affine_span(poly, anchor, directions, J_VOTING + 1)
+            ]
+            bound = comb(N - len(common_roots), projective_dim)
+            if len(hits) > bound:
+                return {
+                    "name": "affine_slope_table_consumer",
+                    "status": "FAIL",
+                    "reason": "affine D_j hits exceeded projective common-root bound",
+                    "affine_dimension": affine_dim,
+                    "projective_dimension": projective_dim,
+                    "common_roots": list(common_roots),
+                    "hits": len(hits),
+                    "bound": bound,
+                }
+            checked_affine_spaces += 1
+            max_hits = max(max_hits, len(hits))
+
+    for affine_dim in range(1, 4):
+        for _ in range(30):
+            directions = random_independent_basis(rng, affine_dim, J_QUOTIENT_UNION)
+            anchor = random_poly(rng, J_QUOTIENT_UNION)
+            while in_span(anchor, directions, J_QUOTIENT_UNION + 1):
+                anchor = random_poly(rng, J_QUOTIENT_UNION)
+            projective_basis = [anchor] + directions
+            projective_dim = rank_polys(projective_basis, J_QUOTIENT_UNION + 1) - 1
+            hits = [
+                poly for poly in quotient_union
+                if in_affine_span(poly, anchor, directions, J_QUOTIENT_UNION + 1)
+            ]
+            bound = sum(
+                sum(comb(N // m, r) for r in range(0, min(projective_dim, N // m) + 1))
+                for m in quotient_divisors(J_QUOTIENT_UNION)
+            )
+            if len(hits) > bound:
+                return {
+                    "name": "affine_slope_table_consumer",
+                    "status": "FAIL",
+                    "reason": "affine quotient-paid hits exceeded quotient-union bound",
+                    "affine_dimension": affine_dim,
+                    "projective_dimension": projective_dim,
+                    "hits": len(hits),
+                    "bound": bound,
+                }
+            checked_quotient_affine_spaces += 1
+            max_quotient_hits = max(max_quotient_hits, len(hits))
+
+    return {
+        "name": "affine_slope_table_consumer",
+        "status": "PASS",
+        "n": N,
+        "j": J_VOTING,
+        "quotient_union_j": J_QUOTIENT_UNION,
+        "checked_affine_spaces": checked_affine_spaces,
+        "checked_quotient_affine_spaces": checked_quotient_affine_spaces,
+        "max_affine_Dj_hits": max_hits,
+        "max_affine_quotient_hits": max_quotient_hits,
+    }
+
+
 def evaluation_lines(basis: list[tuple[int, ...]], H: list[int]) -> list[tuple[int, ...]]:
     lines = []
     for x in H:
@@ -1167,6 +1266,7 @@ def build_report() -> dict:
         check_common_root_fixed_dimension_bound(H),
         check_quotient_fixed_dimension_bound(H),
         check_quotient_union_fixed_dimension_bound(H),
+        check_affine_slope_table_consumer(H),
     ]
     return {
         "schema": "conjecture_f_reduction_toy_v1",

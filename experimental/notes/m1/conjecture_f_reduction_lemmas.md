@@ -7,7 +7,7 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_reductions.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`.
 
-This note records ten elementary reductions around the fiber-rigidity
+This note records eleven elementary reductions around the fiber-rigidity
 statement called Conjecture F in the proof sketch.  They do not prove the
 primitive core.  Their role is to remove two paid structures from the statement
 to settle the dimension-one base case, and to restate the remaining primitive
@@ -457,6 +457,50 @@ After common-root and quotient-union removal, a fixed-dimensional section has
 only the primitive incidence problem left; any super-polynomial obstruction to
 Conjecture F must therefore come from dimensions growing with the row.
 
+## Corollary 11: Affine Slope-Table Consumer
+
+Let
+
+```text
+A = L_0 + V  subset K[X]_{<=j}
+```
+
+be an affine family of locator candidates, with `dim V=r`, and put
+
+```text
+W = span(L_0,V),       d = dim P(W).
+```
+
+Then the number of monic valid locators in the affine table satisfies
+
+```text
+#{L in A cap D_j(H)} <= binom(|H|-c,d),
+```
+
+where `c` is the number of common roots of `W` on `H`.  In the subgroup case
+`H=mu_n`, the proper quotient-periodic part of the affine table additionally
+satisfies
+
+```text
+#{L in A cap D_j^{quot}(mu_n)}
+  <= sum_{M | gcd(n,j), M>1} sum_{s=0}^d binom(n/M,s).
+```
+
+**Proof.**  The affine family `A` is contained in the vector space `W`.
+Because `D_j(H)` consists of monic locators, each affine hit is a single
+projective point of `P(W)`; two different affine parameters cannot represent
+the same monic polynomial.  Corollary 8 therefore bounds `A cap D_j(H)` by
+the common-root reduced projective bound for `P(W)`.
+
+For the quotient-periodic part, apply Corollary 10 to the same projective
+space `P(W)` and then restrict back to the affine subset.  Restriction can
+only decrease the count.
+
+This is the form consumed by slope/root-table scripts: an affine chart does
+not need a separate Conjecture F argument once the projectivized chart has
+fixed dimension.  The only remaining primitive obstruction must involve
+projective dimensions growing with the row.
+
 ## Verification
 
 The verifier checks these lemmas over `F_97` with `H = mu_16`:
@@ -475,5 +519,7 @@ forced repeated-line planes, and verifies the fixed-dimension incidence bound
 on random subspaces plus the sharp full-space case.  It also verifies the
 common-root corollary on forced common-root subspaces and the
 fixed-dimensional quotient-pullback consumer, plus the proper quotient-union
-bound at `n=16,j=8` across the scales `M in {2,4,8}`.  The verifier is
-supporting evidence only; the proofs above are the mathematical content.
+bound at `n=16,j=8` across the scales `M in {2,4,8}`.  It also checks the
+affine slope-table consumer directly on deterministic random affine charts.
+The verifier is supporting evidence only; the proofs above are the
+mathematical content.

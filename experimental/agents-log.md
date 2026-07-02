@@ -67,6 +67,23 @@ Keep entries concise and link to the relevant files.
   explicitly requested; audit Paper D itself through theorem statements and
   certificate checks.
 
+### 2026-07-02 - Conjecture F affine slope-table consumer
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_reduction_lemmas.md`;
+  `experimental/scripts/verify_conjecture_f_reductions.py`;
+  `experimental/data/certificates/conjecture-f-reductions/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** An eleventh reduction lemma: affine locator charts
+  inherit the fixed-dimensional Conjecture F bounds after homogenizing to the
+  projective span of the anchor and directions.
+- **How it is useful:** This is the slope-table form needed by root-table and
+  chart scanners.  It lets affine chart ledgers cite the projective
+  fixed-dimensional, common-root, and quotient-union bounds directly.
+- **What to do next:** Apply this consumer when translating affine chart
+  packets into Conjecture F paid/residual ledgers.
+
 ### 2026-07-02 - Conjecture F proper quotient-union bound
 
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.
