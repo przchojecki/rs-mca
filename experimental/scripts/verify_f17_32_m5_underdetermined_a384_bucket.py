@@ -32,6 +32,12 @@ charts are cut by degree-<=t minors, and the top-chart pseudo-remainder
 coefficients have slope-degree <= (n-j+1)t.  This specializes to 49,280 for the
 F_17^32 A=384 row and to the exact observed degree 52 in the F_97 toy.
 
+Turn 7 records the abstract subgroup divisibility gate: when H is the full root
+set of X^n-1 and char(F) does not divide n, a degree-j top-chart locator is a
+valid split locator with roots in H iff it divides X^n-1.  The script checks the
+required subgroup/separability arithmetic for both the F_97 toy and the real
+F_17^32 row.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -199,6 +205,14 @@ def is_zero_poly(poly):
 def hash_json_value(value):
     payload = json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
     return sha256(payload).hexdigest()
+
+
+def v_adic(value: int, prime: int) -> int:
+    exponent = 0
+    while value % prime == 0 and value:
+        value //= prime
+        exponent += 1
+    return exponent
 
 
 def poly_add_mod(a, b, p):
@@ -471,6 +485,43 @@ def check_divisibility_filter_top_chart():
     return ok, d
 
 
+def check_subgroup_divisibility_gate():
+    """Verify the arithmetic hypotheses behind the abstract divisor gate.
+
+    Mathematical gate recorded in the note: if H is the full set of roots of
+    X^n-1 in F and char(F) does not divide n, then X^n-1 is squarefree with
+    root set H.  Therefore a top-chart degree-j Cramer locator has j distinct
+    roots in H iff it divides X^n-1.
+    """
+    toy_p, toy_n = 97, 16
+    real_p, real_n = 17, N
+    ok = True
+
+    toy_subgroup_order_ok = (toy_p - 1) % toy_n == 0
+    toy_separable_ok = toy_n % toy_p != 0
+    toy_roots = [x for x in range(1, toy_p) if pow(x, toy_n, toy_p) == 1]
+    toy_root_count_ok = len(toy_roots) == toy_n
+    ok &= toy_subgroup_order_ok and toy_separable_ok and toy_root_count_ok
+
+    real_subgroup_order_ok = (Q - 1) % real_n == 0
+    real_separable_ok = real_n % real_p != 0
+    real_two_adic = v_adic(Q - 1, 2)
+    real_full_2_sylow_ok = real_two_adic == 9 and real_n == 2 ** real_two_adic
+    ok &= real_subgroup_order_ok and real_separable_ok and real_full_2_sylow_ok
+
+    d = [
+        "abstract gate: for squarefree X^n-1 with root set H, a degree-j locator "
+        "splits into j distinct roots in H iff it divides X^n-1",
+        f"F_97 toy: 16 | 96 is {toy_subgroup_order_ok}, char 97 does not divide 16 is "
+        f"{toy_separable_ok}, and |{{x in F_97*: x^16=1}}| = {len(toy_roots)}",
+        f"F_17^32 row: 512 | 17^32-1 is {real_subgroup_order_ok}; char 17 does not "
+        f"divide 512 is {real_separable_ok}",
+        f"F_17^32 row: v_2(17^32-1) = {real_two_adic}, so H of size 512 is the full "
+        "2-Sylow subgroup of F_17^32*",
+    ]
+    return ok, d
+
+
 def check_toy_eliminant_dichotomy():
     """Verify U5 on the declared F_97 top-chart toy by interpolation.
 
@@ -722,6 +773,7 @@ CHECKS = [
     ("deficiency-1 kernel = Cramer minor vector",         check_cramer_kernel_vector),
     ("pencil nondegeneracy of declared toy families",     check_pencil_nondegeneracy_summary),
     ("pivot chart + splitting filter (X^n - 1)",          check_divisibility_filter_top_chart),
+    ("subgroup divisibility gate for real row",           check_subgroup_divisibility_gate),
     ("eliminant or certified residual obstruction",       check_toy_eliminant_dichotomy),
     ("deficiency-1 degree budget for real row",           check_deficiency_one_degree_budget),
     ("packet emission + local replay validation",         lambda: check_toy_packet(DEFAULT_TOY_PACKET)),

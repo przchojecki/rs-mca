@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 subgroup divisibility gate
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  No threshold or worst-case row
+  claim.
+- **What is being added:** Turn 7 of the `A=384` underdetermined M5 packet:
+  an abstract subgroup-divisibility gate and its arithmetic specialization.
+  When `H` is the full root set of `X^n-1` and the characteristic does not
+  divide `n`, a degree-`j` top-chart locator is valid exactly when it divides
+  `X^n-1`.
+- **How it is useful:** Checks the real row hypotheses
+  `512 | 17^32-1`, `v_2(17^32-1)=9`, and `17` not dividing `512`, so the
+  `A=384` top-chart validity problem is correctly reduced to the
+  pseudo-remainder equations against `X^512-1`.
+- **What to do next:** Compute or label the real-row pseudo-remainder gcd/root
+  table, with rank-drop and low-degree side charts tracked separately.
+
 ### 2026-07-02 - M5 A384 degree-budget theorem
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
