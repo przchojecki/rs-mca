@@ -135,6 +135,11 @@ Turn 27 records the rank-drop pivot fiber criterion: in a two-dimensional
 kernel span(P,Q), valid split locators are read from the projective evaluation
 fibers h -> [P(h):Q(h)] on H, after removing common base roots.
 
+Turn 28 records the rank-drop split-locator converse: in a deficiency-one
+Hankel block, a rank-drop slope carrying any valid split degree-j locator is
+supported on a proper subset of that locator's roots, hence is deduped to
+higher agreement rather than counted at exact A.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -1196,6 +1201,41 @@ def check_rank_one_common_factor_filter_theorem():
         f"lower annihilator degree={rank_locator['degree']}",
         f"dedup target agreement={chart['dedup_target_agreement']}; "
         f"new exact-A contribution={chart['new_exact_a384_contribution']}",
+    ]
+
+
+def check_rank_drop_split_locator_converse_dedup_theorem():
+    """Record the converse: valid rank-drop split locators are contained."""
+    real = deficiency_one_degree_bounds(N, K, A_STAR)
+    planted = f17_planted_rank_drop_payload()["rank_drop_chart"]
+    rank_one = f17_rank_one_contained_rank_drop_payload()["rank_drop_chart"]
+
+    ok = True
+    ok &= real["t"] == real["j"] == 128
+    ok &= planted["rank"] == 126
+    ok &= planted["valid_degree_128_locator_in_kernel"]
+    ok &= planted["contained_branch_deduped"]
+    ok &= planted["dedup_target_agreement"] == 386
+    ok &= not planted["new_exact_a384_contribution"]
+    ok &= rank_one["rank"] == 127
+    ok &= rank_one["valid_degree_128_locator_in_kernel"]
+    ok &= rank_one["contained_branch_deduped"]
+    ok &= rank_one["dedup_target_agreement"] == 385
+    ok &= not rank_one["new_exact_a384_contribution"]
+
+    return ok, [
+        "rank-drop split-locator converse: if L=prod_{h in R}(X-h), |R|=j, "
+        "annihilates a t=j Hankel window, then the window equals "
+        "sum_{h in R} w_h h^m by Vandermonde interpolation",
+        "if the Hankel block has rank < j, at least one weight w_h is zero; "
+        "the nonzero-weight support has size r<j and its split annihilator "
+        "already lies in the kernel",
+        f"therefore any valid rank-drop exact-A={A_STAR} locator is charged to "
+        "agreement at least n-rank(M)>A, not counted as a new exact-A slope",
+        f"F_17^32 planted rank-drop packet: rank={planted['rank']}, "
+        f"dedup target={planted['dedup_target_agreement']}",
+        f"F_17^32 rank-one packet: rank={rank_one['rank']}, "
+        f"dedup target={rank_one['dedup_target_agreement']}",
     ]
 
 
@@ -3224,6 +3264,7 @@ CHECKS = [
     ("moment-support rank-extension theorem",             check_moment_support_rank_extension_theorem),
     ("rank-drop contained-branch dedup theorem",          check_rank_drop_contained_branch_dedup_theorem),
     ("rank-one common-factor filter theorem",             check_rank_one_common_factor_filter_theorem),
+    ("rank-drop split-locator converse dedup theorem",    check_rank_drop_split_locator_converse_dedup_theorem),
     ("abstract deficiency-one chart theorem",             check_deficiency_one_abstract_chart_theorem),
     ("planted top-chart overlap pruning",                 check_planted_top_overlap_pruning),
     ("planted top-chart support-only residual",           check_planted_top_support_only_residual),

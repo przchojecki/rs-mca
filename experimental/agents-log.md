@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 rank-drop split-locator converse
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_deficiency_one_chart_theorem.md`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  Rank-drop side-chart dedup theorem;
+  no threshold or worst-case row bound.
+- **What is being added:** Turn 28 of the `A=384` M5 packet: if a
+  deficiency-one rank-drop Hankel block contains any valid split degree-`j`
+  locator, Vandermonde interpolation forces a lower-degree split annihilator
+  on the nonzero-weight support.
+- **How it is useful:** Closes rank-drop side charts as new exact-`A`
+  contributors: valid ones dedupe to higher agreement, invalid ones are empty.
+  The remaining hard packet obligation is the top pseudo-remainder root table.
+- **What to do next:** Attack the real-row top pseudo-remainder chart or
+  package its residual honestly.
+
 ### 2026-07-02 - M5 A384 rank-drop pivot fiber criterion
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

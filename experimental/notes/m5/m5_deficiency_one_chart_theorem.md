@@ -100,6 +100,28 @@ a degree-`j` split locator exactly when some fiber has size `j-|B0|` and the
 corresponding line has nonzero top coefficient.  This is the finite root-table
 form of the rank-drop pivot chart.
 
+In fact, for exact-bucket accounting the rank-drop chart has a stronger
+converse.  Suppose `t=j` and a rank-drop Hankel block contains a valid split
+locator
+
+```text
+L(X)=prod_{h in R}(X-h),        |R|=j,        R subset H.
+```
+
+The first `j` moments interpolate uniquely as
+
+```text
+S_m = sum_{h in R} w_h h^m,        0 <= m < j,
+```
+
+and the recurrence `L in ker M` extends this identity through the whole
+`2j`-term Hankel window.  Therefore the Hankel block factors through the
+weighted support `R`.  If the block is rank-drop, at least one weight is zero;
+the nonzero-weight support has size `r<j`, and its split annihilator already
+lies in the kernel.  Thus any valid split locator on the rank-drop chart is a
+contained branch charged to agreement at least `n-r>A`, not a new exact
+`A=n-j` contribution.
+
 There is one rank-drop branch that is not a residual.  If the Hankel moment
 window is supported on `s<j` distinct domain roots, then the degree-`s`
 support annihilator already lies in the kernel.  Any degree-`j` split locator

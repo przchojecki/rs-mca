@@ -1,6 +1,6 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 27: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 28: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
@@ -26,6 +26,9 @@
   The rank-one common-factor filter now separates these contained kernels from
   the genuinely non-contained kernel-pivot residuals.  The rank-drop pivot
   test now has an equivalent projective evaluation-fiber criterion on `H`.
+  The rank-drop split-locator converse now shows that every valid rank-drop
+  split locator is a contained higher-agreement branch, so the rank-drop side
+  chart contributes no new exact-`A=384` slopes.
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -161,7 +164,8 @@ belongs.
 | 5u | rank-one contained rank-drop packet | **done** |
 | 5v | rank-one common-factor filter theorem | **done** |
 | 5w | rank-drop pivot projective-fiber criterion | **done** |
-| 5x | full `F_17^32` root-table packet for non-contained generic rank-drop charts | pending |
+| 5x | rank-drop split-locator converse dedup theorem | **done** |
+| 5y | full `F_17^32` top pseudo-remainder root-table packet | pending |
 
 ### Verified so far (turn 1)
 
@@ -1018,6 +1022,33 @@ exact-`A` line, and agreement with the direct projective-kernel scan.  The
 `max_noncommon_fiber_size=1`, and `385` contained degree-128 candidate lines,
 all deduped to agreement `385`.
 
+### Verified in turn 28
+
+**U28, rank-drop split-locator converse.** The rank-drop side chart is not a
+new exact-bucket source in deficiency one.  If `t=j` and a rank-drop Hankel
+block contains a valid split locator
+
+```text
+L(X)=prod_{h in R}(X-h),        |R|=j,
+```
+
+then the first `j` moments determine weights `w_h` on `R`, and the recurrence
+`L in ker M` extends the moment representation through the whole `2j`-term
+window:
+
+```text
+S_m = sum_{h in R} w_h h^m.
+```
+
+Rank drop means not all `w_h` are nonzero.  The nonzero-weight support has
+size `r<j`, and its split annihilator is a lower-degree valid locator in the
+kernel.  Hence the slope is charged to agreement at least `n-r>A`, not counted
+as a new exact-`A` contribution.
+
+The verifier checks this theorem against both declared `F_17^32` rank-drop
+packets: the support-126 packet dedupes to agreement `386`, and the rank-one
+support-127 packet dedupes to agreement `385`.
+
 ## Honest scope
 
 - Worst-case bad-slope bounds at `A=384` quantify over all received pairs
@@ -1030,9 +1061,10 @@ all deduped to agreement `385`.
 - The Cramer-vector lemma is only the generic deficiency-one kernel chart.  It
   does not prove that any kernel vector is a valid split locator.  Validity
   still requires solving the U3/U4 pseudo-remainder equations
-  `L_Z(X) | X^512 - 1` on the real row, plus the low-degree and rank-drop side
-  charts.  Turn 7 verifies that this is the correct real-row algebraic gate,
-  while turn 3 verifies the exact `F_97` top-chart toy instance.
+  `L_Z(X) | X^512 - 1` on the real row.  The low-degree and rank-drop side
+  charts are now deduped by turns 15 and 28.  Turn 7 verifies that this is the
+  correct real-row algebraic gate, while turn 3 verifies the exact `F_97`
+  top-chart toy instance.
 - If the chart cannot be closed, the end state will be a labelled
   `residual_obstruction` per §4.6 of the roadmap — named, not hidden.
 
