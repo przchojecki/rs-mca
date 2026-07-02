@@ -11,6 +11,8 @@ the identities over F_97 with H = mu_16:
   the evaluation-hyperplane arrangement.
 * gcd-trivial projective-plane evaluation arrangements satisfy the weighted
   pair-counting bound #D_j <= binom(n,2)/(j-1).
+* repeated evaluation lines in a projective plane decompose into common-GCD
+  twin charts plus a residual simple-line bound.
 * vanishing on m domain points cuts any degree <= j subspace down to dimension
   at most j+1-m.
 * fixed projective dimension d gives #D_j <= binom(n,d).
@@ -1598,6 +1600,241 @@ def plane_pair_bound_record(basis: list[tuple[int, ...]], H: list[int]) -> dict:
     }
 
 
+def line_groups_for_basis(
+    basis: list[tuple[int, ...]], H: list[int]
+) -> dict[tuple[int, ...], tuple[int, ...]]:
+    groups: dict[tuple[int, ...], list[int]] = {}
+    for root, line in zip(H, evaluation_lines(basis, H)):
+        groups.setdefault(line, []).append(root)
+    return {line: tuple(roots) for line, roots in groups.items()}
+
+
+def poly_linear_combination(
+    coeffs: tuple[int, ...], basis: list[tuple[int, ...]]
+) -> tuple[int, ...]:
+    out = (0,)
+    for coeff, poly in zip(coeffs, basis):
+        out = poly_add(out, poly_scale(coeff, poly))
+    return out
+
+
+def nullspace_vectors_mod_p(rows: list[list[int]], width: int) -> list[tuple[int, ...]]:
+    if not rows:
+        return [
+            tuple(1 if i == col else 0 for i in range(width))
+            for col in range(width)
+        ]
+    work = [[entry % P for entry in row[:width]] for row in rows]
+    rank = 0
+    pivots: list[int] = []
+    for col in range(width):
+        pivot = None
+        for row in range(rank, len(work)):
+            if work[row][col] % P:
+                pivot = row
+                break
+        if pivot is None:
+            continue
+        work[rank], work[pivot] = work[pivot], work[rank]
+        inv = pow(work[rank][col], -1, P)
+        work[rank] = [(inv * x) % P for x in work[rank]]
+        for row in range(len(work)):
+            if row != rank and work[row][col] % P:
+                factor = work[row][col]
+                work[row] = [
+                    (work[row][i] - factor * work[rank][i]) % P
+                    for i in range(width)
+                ]
+        pivots.append(col)
+        rank += 1
+        if rank == len(work):
+            break
+
+    pivot_set = set(pivots)
+    basis = []
+    for free in range(width):
+        if free in pivot_set:
+            continue
+        vec = [0] * width
+        vec[free] = 1
+        for row, pivot_col in enumerate(pivots):
+            vec[pivot_col] = (-work[row][free]) % P
+        basis.append(tuple(vec))
+    return basis
+
+
+def subspace_vanishing_basis(
+    basis: list[tuple[int, ...]], roots: tuple[int, ...]
+) -> list[tuple[int, ...]]:
+    rows = [[poly_eval(poly, root) for poly in basis] for root in roots]
+    coeff_basis = nullspace_vectors_mod_p(rows, len(basis))
+    return [
+        poly_linear_combination(coeffs, basis)
+        for coeffs in coeff_basis
+    ]
+
+
+def check_twin_line_decomposition(H: list[int]) -> dict:
+    """Verify the QF.4 plane dichotomy: twins reduce, residual is simple."""
+    rng = random.Random(SEED + 11)
+    D = divisor_set(H, J_VOTING)
+    reduced_divisor_cache: dict[
+        tuple[tuple[int, ...], int], set[tuple[int, ...]]
+    ] = {}
+    checked_planes = forced_twin_planes = random_twin_planes = simple_planes = 0
+    max_twin_classes = max_group_hits = max_residual_hits = 0
+    max_reduced_projective_dimension = -1
+    twin_chart_records = []
+
+    bases = []
+    forced = forced_duplicate_plane(H, rng)
+    if forced is not None:
+        bases.append(("forced_twin", forced))
+    attempts = 0
+    while len(bases) < 18 and attempts < 400:
+        attempts += 1
+        basis = [random_poly(rng, J_VOTING) for _ in range(3)]
+        if rank_polys(basis, J_VOTING + 1) != 3:
+            continue
+        if not gcd_trivial_space(basis, H):
+            continue
+        bases.append(("random", basis))
+
+    for source, basis in bases:
+        groups = line_groups_for_basis(basis, H)
+        twin_groups = [roots for roots in groups.values() if len(roots) >= 2]
+        singleton_count = sum(1 for roots in groups.values() if len(roots) == 1)
+        hits = [poly for poly in D if in_span(poly, basis, J_VOTING + 1)]
+        residual_hits = []
+        checked_planes += 1
+        if twin_groups:
+            random_twin_planes += int(source == "random")
+            forced_twin_planes += int(source == "forced_twin")
+        else:
+            simple_planes += 1
+        max_twin_classes = max(max_twin_classes, len(twin_groups))
+
+        for poly in hits:
+            roots = set(locator_roots(poly, H))
+            touches_twin = False
+            for group in twin_groups:
+                group_set = set(group)
+                if roots & group_set:
+                    touches_twin = True
+                    if not group_set <= roots:
+                        return {
+                            "name": "twin_line_decomposition",
+                            "status": "FAIL",
+                            "reason": "locator met a twin class without containing all twins",
+                            "group": list(group),
+                            "roots": list(roots),
+                        }
+            if not touches_twin:
+                residual_hits.append(poly)
+
+        if len(residual_hits) * comb(J_VOTING, 2) > comb(singleton_count, 2):
+            return {
+                "name": "twin_line_decomposition",
+                "status": "FAIL",
+                "reason": "residual simple-line bound failed",
+                "residual_hits": len(residual_hits),
+                "singleton_count": singleton_count,
+                "j": J_VOTING,
+            }
+        max_residual_hits = max(max_residual_hits, len(residual_hits))
+
+        for group in twin_groups:
+            group_set = set(group)
+            group_hits = [
+                poly for poly in hits
+                if group_set <= set(locator_roots(poly, H))
+            ]
+            if not group_hits:
+                continue
+            G = locator(group)
+            reduced_H = tuple(x for x in H if x not in group_set)
+            reduced_j = J_VOTING - len(group)
+            reduced_key = (reduced_H, reduced_j)
+            if reduced_key not in reduced_divisor_cache:
+                reduced_divisor_cache[reduced_key] = divisor_set(list(reduced_H), reduced_j)
+            reduced_D = reduced_divisor_cache[reduced_key]
+            vanishing_basis = subspace_vanishing_basis(basis, group)
+            reduced_basis = [poly_div_exact(poly, G) for poly in vanishing_basis]
+            reduced_rank = rank_polys(reduced_basis, reduced_j + 1)
+            reduced_projective_dimension = max(-1, reduced_rank - 1)
+            if reduced_projective_dimension > 1:
+                return {
+                    "name": "twin_line_decomposition",
+                    "status": "FAIL",
+                    "reason": "twin chart did not reduce to projective dimension <= 1",
+                    "group": list(group),
+                    "reduced_projective_dimension": reduced_projective_dimension,
+                }
+            max_reduced_projective_dimension = max(
+                max_reduced_projective_dimension, reduced_projective_dimension
+            )
+            reduced_hits = set()
+            for poly in group_hits:
+                reduced = poly_div_exact(poly, G)
+                if reduced not in reduced_D:
+                    return {
+                        "name": "twin_line_decomposition",
+                        "status": "FAIL",
+                        "reason": "twin hit did not reduce to smaller divisor set",
+                        "group": list(group),
+                    }
+                if not in_span(reduced, reduced_basis, reduced_j + 1):
+                    return {
+                        "name": "twin_line_decomposition",
+                        "status": "FAIL",
+                        "reason": "reduced twin hit left reduced line span",
+                        "group": list(group),
+                    }
+                reduced_hits.add(reduced)
+            if len(reduced_hits) > len(reduced_H):
+                return {
+                    "name": "twin_line_decomposition",
+                    "status": "FAIL",
+                    "reason": "dimension-one reduced twin chart exceeded coarse line bound",
+                    "group": list(group),
+                    "reduced_hits": len(reduced_hits),
+                    "bound": len(reduced_H),
+                }
+            max_group_hits = max(max_group_hits, len(group_hits))
+            if len(twin_chart_records) < 8:
+                twin_chart_records.append({
+                    "source": source,
+                    "group_size": len(group),
+                    "group_roots": list(group),
+                    "group_hits": len(group_hits),
+                    "reduced_j": reduced_j,
+                    "reduced_projective_dimension": reduced_projective_dimension,
+                    "coarse_line_bound": len(reduced_H),
+                })
+
+    ok = checked_planes == len(bases) and forced_twin_planes >= 1
+    return {
+        "name": "twin_line_decomposition",
+        "status": "PASS" if ok else "FAIL",
+        "statement": (
+            "In a gcd-trivial projective plane, repeated evaluation-line "
+            "classes are twin classes: hits meeting one contain the whole "
+            "class and reduce by its common divisor to a projective line; "
+            "hits avoiding all twin classes satisfy the sharp simple-line "
+            "pair bound."
+        ),
+        "checked_planes": checked_planes,
+        "forced_twin_planes": forced_twin_planes,
+        "random_twin_planes": random_twin_planes,
+        "simple_planes": simple_planes,
+        "max_twin_classes_per_plane": max_twin_classes,
+        "max_twin_group_hits": max_group_hits,
+        "max_residual_hits": max_residual_hits,
+        "max_reduced_projective_dimension": max_reduced_projective_dimension,
+        "twin_chart_records": twin_chart_records,
+    }
+
+
 def check_plane_pair_counting_bound(H: list[int]) -> dict:
     rng = random.Random(SEED + 3)
     accepted = 0
@@ -1704,6 +1941,7 @@ def build_report() -> dict:
         check_hyperplane_concurrency(H),
         check_vanishing_flat_bound(H),
         check_plane_pair_counting_bound(H),
+        check_twin_line_decomposition(H),
         check_fixed_dimension_incidence_bound(H),
         check_common_root_fixed_dimension_bound(H),
         check_quotient_fixed_dimension_bound(H),

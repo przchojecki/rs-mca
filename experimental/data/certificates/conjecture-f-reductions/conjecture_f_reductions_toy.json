@@ -71,6 +71,33 @@
       "weighted_bound_rational": "120/3"
     },
     {
+      "checked_planes": 18,
+      "forced_twin_planes": 1,
+      "max_reduced_projective_dimension": 1,
+      "max_residual_hits": 1,
+      "max_twin_classes_per_plane": 1,
+      "max_twin_group_hits": 1,
+      "name": "twin_line_decomposition",
+      "random_twin_planes": 0,
+      "simple_planes": 17,
+      "statement": "In a gcd-trivial projective plane, repeated evaluation-line classes are twin classes: hits meeting one contain the whole class and reduce by its common divisor to a projective line; hits avoiding all twin classes satisfy the sharp simple-line pair bound.",
+      "status": "PASS",
+      "twin_chart_records": [
+        {
+          "coarse_line_bound": 14,
+          "group_hits": 1,
+          "group_roots": [
+            1,
+            8
+          ],
+          "group_size": 2,
+          "reduced_j": 2,
+          "reduced_projective_dimension": 1,
+          "source": "forced_twin"
+        }
+      ]
+    },
+    {
       "checked_random_subspaces": 191,
       "j": 4,
       "max_hits_by_projective_dimension": {
@@ -697,6 +724,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "16e68eae1f064c3bbf60755a13df0f9b8d558febfc98e685a539195d5763f03e",
+  "script_sha256": "bf0a6ddceb78892fa4d00227aae4fa5bfc1b80fd0d771e248fe0b5685e58aa4d",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

@@ -7,7 +7,7 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_reductions.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`.
 
-This note records fifteen elementary reductions around the fiber-rigidity
+This note records sixteen elementary reductions around the fiber-rigidity
 statement called Conjecture F in the proof sketch.  They do not prove the
 primitive core.  Their role is to remove two paid structures from the statement
 to settle the dimension-one base case, and to restate the remaining primitive
@@ -299,6 +299,63 @@ sum_p binom(m(p),2) = binom(|H|,2).
 Thus the primitive dimension-two Conjecture F case is polynomial for arbitrary
 gcd-trivial projective planes.  Higher-dimensional primitive intersections are
 the first remaining incidence-theoretic core.
+
+## Corollary 6A: Twin-Line Decomposition in Projective Planes
+
+Keep the hypotheses of Lemma 6.  Group the domain points by equality of their
+evaluation lines:
+
+```text
+h ~ h'    <=>    E_h = E_{h'} in P(W)^*.
+```
+
+Call a class of size at least two a **twin class**.  If
+`C subset H` is a twin class, then every locator point
+`[L] in P(W) cap D_j(H)` either contains all roots of `C` or none of them.
+Consequently the `C`-containing subfamily has a common divisor
+
+```text
+G_C(X)=prod_{h in C}(X-h)
+```
+
+and, after division by `G_C`, injects into a projective line section of
+`D_{j-|C|}(H\C)`.  It is therefore paid by the common-GCD reduction followed
+by the dimension-one voting bound.
+
+The residual subfamily avoiding all twin classes has the sharp simple-line
+pair bound
+
+```text
+# residual <= binom(s,2) / binom(j,2),
+```
+
+where `s` is the number of singleton evaluation-line classes.
+
+**Proof.**  If `E_h=E_{h'}`, then the two evaluation functionals on `W` are
+proportional.  Hence for every `L in W`,
+
+```text
+L(h)=0    <=>    L(h')=0.
+```
+
+The same argument applies to every member of a twin class `C`: a projective
+point of `P(W)` lies on the shared evaluation line if and only if it vanishes
+at every root of `C`.  Thus any divisor point meeting `C` is divisible by
+`G_C`, and division by `G_C` is exactly Lemma 1.  Since imposing the shared
+evaluation line is one linear condition on a projective plane, the subspace of
+`W` divisible by `G_C` has projective dimension at most one; Lemma 3 controls
+the reduced line section, after removing any further common roots.
+
+If a divisor point avoids every twin class, all of its `j` roots lie on
+pairwise distinct singleton evaluation lines.  The point is therefore charged
+by at least `binom(j,2)` unordered pairs of singleton lines.  Two distinct
+projective lines in a plane meet in exactly one point, so these charges are
+disjoint across residual divisor points.  There are only `binom(s,2)` singleton
+line-pairs, giving the displayed bound.
+
+This is the QF.4 skeleton used by the roadmap: simple arrangements are handled
+by the sharp pair count, while repeated-line violations are not new primitive
+mass; they are common-divisor charts one degree lower.
 
 ## Lemma 7: Fixed-Dimension Incidence Bound
 
@@ -708,8 +765,10 @@ toy parameters used by the script, tests the voting bound on deterministic
 random gcd-trivial pencils, checks the hyperplane-concurrency equivalence on
 deterministic random gcd-trivial projective planes, verifies the vanishing-flat
 dimension bound, verifies the projective-plane pair-counting bound including
-forced repeated-line planes, and verifies the fixed-dimension incidence bound
-on random subspaces plus the sharp full-space case.  It also verifies the
+forced repeated-line planes, verifies the twin-line decomposition into
+common-GCD line charts plus the sharp simple-line residual, and verifies the
+fixed-dimension incidence bound on random subspaces plus the sharp full-space
+case.  It also verifies the
 common-root corollary on forced common-root subspaces and the
 fixed-dimensional quotient-pullback consumer, plus the proper quotient-union
 bound at `n=16,j=8` across the scales `M in {2,4,8}`.  It also checks the

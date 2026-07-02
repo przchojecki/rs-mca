@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Conjecture F twin-line plane decomposition
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_reduction_lemmas.md`;
+  `experimental/scripts/verify_conjecture_f_reductions.py`;
+  `experimental/data/certificates/conjecture-f-reductions/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / PROVED-LOCAL.
+- **What is being added:** A QF.4-style projective-plane decomposition:
+  repeated evaluation lines are twin classes.  Any locator hit meeting a twin
+  class contains the whole class and reduces by its common gcd to a
+  dimension-one section of the smaller divisor set; hits avoiding all twin
+  classes satisfy the sharp simple-line pair bound
+  `binom(s,2)/binom(j,2)`.
+- **How it is useful:** This sharpens the dimension-two Conjecture F skeleton:
+  pair-count violations caused by repeated evaluation lines are routed into
+  existing common-GCD bookkeeping rather than treated as primitive residual
+  mass.  It is the proof-side counterpart of the E7 twin/repeated-line
+  evidence.
+- **What to do next:** Use the twin decomposition when interpreting E7
+  top-plane artifacts and when formulating the higher-dimensional
+  dual-distance/sparse-descent Conjecture F induction.
+
 ### 2026-07-02 - Conjecture F polynomial chart-atlas consumer
 
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.

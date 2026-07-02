@@ -8,12 +8,14 @@ This directory contains the toy verifier output for
   dimension-one voting, and the hyperplane-concurrency reformulation on
   random projective planes.  It also checks the vanishing-flat dimension bound,
   the weighted projective-plane pair-counting bound, including forced
-  repeated-line planes, and the fixed-dimensional incidence bound with the
-  sharp full-space case.  The later checks force common roots, divide them
-  out, verify the reduced fixed-dimensional bound, descend quotient-pullback
-  strata, sum proper quotient-union bounds, test affine chart consumers,
-  print exponent budgets, test the polynomial chart-atlas consumer, and check
-  Johnson-ball/FM1 high-overlap common-core covers.
+  repeated-line planes, the twin-line decomposition into common-GCD line
+  charts plus a sharp simple-line residual, and the fixed-dimensional
+  incidence bound with the sharp full-space case.  The later checks force
+  common roots, divide them out, verify the reduced fixed-dimensional bound,
+  descend quotient-pullback strata, sum proper quotient-union bounds, test
+  affine chart consumers, print exponent budgets, test the polynomial
+  chart-atlas consumer, and check Johnson-ball/FM1 high-overlap common-core
+  covers.
 - The verifier is
   `experimental/scripts/verify_conjecture_f_reductions.py`.
 
