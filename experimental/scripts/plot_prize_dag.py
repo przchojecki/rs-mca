@@ -31,7 +31,7 @@ COLORS = {"PROVED": "#1b7837", "PROVABLE": "#7fbf7b", "CONDITIONAL": "#35978f",
           "TEST": "#5c6bc0", "REFUTED": "#9e9e9e"}
 EDGE = {"req": ('stroke="#9aa4ac" stroke-width="0.8"', None),
         "alt": ('stroke="#9aa4ac" stroke-width="0.8" stroke-dasharray="4,3"', None),
-        "ev": ('stroke="#c9d2d8" stroke-width="0.6" stroke-dasharray="1,3"', None),
+        "ev": ('stroke="#a9b8c2" stroke-width="0.75" stroke-dasharray="1.5,2.5"', None),
         "ref": ('stroke="#d98880" stroke-width="0.6" stroke-dasharray="6,2"', None)}
 
 
@@ -75,13 +75,26 @@ def main() -> None:
                 pos[v] = i
             row.sort(key=lambda v: (sum(pos.get(w, 0.0) for w in nbrs[v]) / len(nbrs[v])
                                     if nbrs[v] else pos[v], v))
-    W = 40 + 84 * max(len(r) for r in rows)
-    Hgt = 90 + 62 * nlay
+    MAXROW = 8
+    drawn: list[tuple[list[str], bool]] = []   # (sub-row, is_first_of_layer)
+    for row in rows:
+        chunks = [row[i:i + MAXROW] for i in range(0, len(row), MAXROW)] or [[]]
+        for ci, ch in enumerate(chunks):
+            drawn.append((ch, ci == 0))
+    W = 40 + 92 * MAXROW
+    dy_layer, dy_wrap = 72, 46                 # bigger gap at layer boundaries
+    ys: list[float] = []
+    y = 56.0
+    for ch, first in drawn:
+        if ys:
+            y += dy_layer if first else dy_wrap
+        ys.append(y)
+    Hgt = int(y + 96)
     xy: dict[str, tuple[float, float]] = {}
-    for li, row in enumerate(rows):
-        step = (W - 40) / (len(row) + 1)
-        for i, v in enumerate(row):
-            xy[v] = (20 + step * (i + 1), 50 + 62 * li)
+    for (ch, _), yy in zip(drawn, ys):
+        step = (W - 40) / (len(ch) + 1)
+        for i, v in enumerate(ch):
+            xy[v] = (20 + step * (i + 1), yy)
 
     svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{Hgt}" '
            f'font-family="Helvetica,Arial,sans-serif">',
@@ -110,8 +123,12 @@ def main() -> None:
             svg.append(f'<path d="M{x-4:.0f},{y+8:.0f} L{x:.0f},{y+12:.0f} L{x+4:.0f},{y+8:.0f}" '
                        f'fill="none" stroke="#666" stroke-width="0.9"/>')
         if n.get("key"):
-            svg.append(f'<text x="{x+8:.0f}" y="{y+3:.0f}" font-size="9" fill="#333">'
-                       f'{escape(n["title"].split(":")[0][:34])}</text>')
+            lbl = escape(n["title"].split(":")[0][:34])
+            if x > W - 190:
+                svg.append(f'<text x="{x-8:.0f}" y="{y+3:.0f}" font-size="9" fill="#333" '
+                           f'text-anchor="end">{lbl}</text>')
+            else:
+                svg.append(f'<text x="{x+8:.0f}" y="{y+3:.0f}" font-size="9" fill="#333">{lbl}</text>')
         svg.append('</g>')
     # legend + stats
     lx, ly = 16, Hgt - 26
