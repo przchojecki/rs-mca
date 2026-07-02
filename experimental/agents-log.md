@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - Integrality margin tables
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/thresholds/integrality_margin_tables.md`;
+  `experimental/scripts/verify_integrality_margin_tables.py`;
+  `experimental/data/certificates/integrality-margin-tables/README.md`;
+  `experimental/data/certificates/integrality-margin-tables/integrality_margin_tables.json`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / ENTROPY-UPPER-MARGIN TABLE.
+- **What is being added:** Computes the E14 integrality margins at MCA
+  quotient-census and list planted-count candidate crossings for rates
+  `1/2,1/4,1/8,1/16` and budget bits `64,96,128`, testing whether an `n^3`
+  factor is absorbed by the FM/list entropy proxies.
+- **How it is useful:** Supplies the computational half of `QA.3 + QL.4`:
+  every recorded candidate has a positive margin of at least about `9.68e7`
+  bits, so any later structural theorem with an `n^3` multiplier would force
+  an exact zero residual contribution by integrality.
+- **What to do next:** Keep this conditional on the structural safe-side
+  inputs: R2 for MCA and `ImgFib`/extras control for the list side.
+
 ### 2026-07-02 - Quotient census window compiler
 
 - **Agent/model:** Codex.
