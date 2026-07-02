@@ -1,6 +1,6 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 20: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 21: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
@@ -15,7 +15,8 @@
   reduced to a kernel-pivot divisibility problem; the `F_97/mu_16` side-chart
   toy now has a replay packet.  The abstract deficiency-one chart theorem is
   now extracted as a reusable note, and the planted top-chart family has a
-  near-support overlap pruning theorem plus a support-only residual reduction.
+  near-support overlap pruning theorem, a support-only residual reduction, and
+  an overlap-one exclusion.
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -144,7 +145,8 @@ belongs.
 | 5n | abstract deficiency-one chart theorem | **done** |
 | 5o | planted top-chart overlap pruning theorem | **done** |
 | 5p | planted top-chart support-only residual reduction | **done** |
-| 5q | full `F_17^32` root-table packet for rank-drop / top charts | pending |
+| 5q | planted top-chart overlap-one exclusion | **done** |
+| 5r | full `F_17^32` root-table packet for rank-drop / top charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -779,6 +781,36 @@ The verifier checks this reduction on the `F_97/mu_16` analogue by comparing
 the support-only test with a full brute-force slope/support search over all
 97 slopes and all `binom(16,4)=1820` subgroup locators.  The tests agree
 exactly, and only the planted support at the planted slope survives.
+
+### Verified in turn 21
+
+**U21, planted top-chart overlap-one exclusion.** Since `1` lies in the planted
+support, the support-only residual has no non-planted solution with
+`|R cap T|=1`.
+
+The proof uses the Lagrange dual basis on `T`.  The recurrence identity is
+
+```text
+sum_{x in T\\R} L_R(x) Q(x)
+  + lambda( L_R(1)Q'(1) + (2L_R(1)+L_R'(1))Q(1) ) = 0
+```
+
+for all `deg Q < j`.  If the unique shared root is `y != 1`, the coefficient
+of evaluation at `y` is `lambda L_R(1) ell_y'(1)`, nonzero.  If the unique
+shared root is `1`, the coefficient of evaluation at `1` is
+`lambda L_R'(1)`, nonzero because `L_R` is squarefree.  Both cases contradict
+the identity.
+
+Therefore the planted top residual is now:
+
+```text
+R subset H, |R|=128, R cap T = empty,
+support-only consistency equations hold,
+z = z0 - A_m0(R)/B_m0(R).
+```
+
+The verifier checks the `F_97/mu_16` analogue by enumerating all overlap-one
+supports and confirming that none pass the support-only equations.
 
 ## Honest scope
 

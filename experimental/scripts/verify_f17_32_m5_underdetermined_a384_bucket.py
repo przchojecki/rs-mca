@@ -107,6 +107,10 @@ for each candidate support R, the slope is unique, and the remaining equations
 are explicit support-consistency equations.  The F_97 analogue checks that
 this support-only test exactly matches the brute-force slope/support search.
 
+Turn 21 excludes the remaining overlap-one case in the planted top chart.  The
+only non-planted top residual left by the declared family is now support sets
+R disjoint from the planted support T.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -2218,6 +2222,89 @@ def check_planted_top_support_only_residual():
     ]
 
 
+def check_planted_top_overlap_one_exclusion():
+    """Verify the overlap-one exclusion in the planted top residual."""
+
+    p = 97
+    n = 16
+    j = 4
+    subgroup = [x for x in range(1, p) if pow(x, n, p) == 1]
+    support = tuple(subgroup[:j])
+    planted_slope = 7
+    v_window = [(m + 2) % p for m in range(2 * j)]
+    moments = [sum(pow(x, m, p) for x in support) % p for m in range(2 * j)]
+    u_window = [(moments[m] - planted_slope * v_window[m]) % p for m in range(2 * j)]
+
+    overlap_one = 0
+    overlap_one_support_only_valid = []
+    disjoint_support_only_valid = []
+    for roots in combinations(subgroup, j):
+        locator = poly_from_roots_mod(roots, p)
+        root_set = set(roots)
+        overlap = len(set(support) & root_set)
+        if overlap == 1:
+            overlap_one += 1
+
+        a_vals = []
+        b_vals = []
+        l_at_one = poly_eval(locator, 1, p)
+        l_deriv_one = sum(i * locator[i] for i in range(1, len(locator))) % p
+        for row in range(j):
+            a_vals.append(
+                sum(
+                    pow(x, row, p) * poly_eval(locator, x, p)
+                    for x in support
+                    if x not in root_set
+                ) % p
+            )
+            b_vals.append((l_at_one * (row + 2) + l_deriv_one) % p)
+
+        pivot = next((idx for idx, value in enumerate(b_vals) if value), None)
+        if pivot is None:
+            continue
+        lam = (-a_vals[pivot] * pow(b_vals[pivot], -1, p)) % p
+        consistent = all((a_vals[row] + lam * b_vals[row]) % p == 0 for row in range(j))
+        if consistent and overlap == 1:
+            overlap_one_support_only_valid.append(((planted_slope + lam) % p, roots))
+        if consistent and overlap == 0:
+            disjoint_support_only_valid.append(((planted_slope + lam) % p, roots))
+
+        # Guard the support-only reduction against the direct recurrence.
+        if consistent:
+            z = (planted_slope + lam) % p
+            window = [(u_window[m] + z * v_window[m]) % p for m in range(2 * j)]
+            for row in range(j):
+                acc = sum(locator[i] * window[row + i] for i in range(j + 1)) % p
+                if acc:
+                    raise AssertionError(("support-only/direct mismatch", roots, z, row, acc))
+
+    descriptor = json.loads(ROW_DESCRIPTOR_REF.read_text(encoding="utf-8"))
+    field = F17Field(
+        descriptor["field_model"]["p"],
+        descriptor["field_model"]["modulus"],
+    )
+    domain = [field.decode(value) for value in descriptor["domain"]["domain_encodings"]]
+    real_support = domain[:128]
+    real_support_has_one = any(root == field.one for root in real_support)
+    real_support_has_one_once = sum(1 for root in real_support if root == field.one) == 1
+
+    ok = (
+        support[0] == 1
+        and overlap_one == 880
+        and overlap_one_support_only_valid == []
+        and disjoint_support_only_valid == []
+        and real_support_has_one
+        and real_support_has_one_once
+    )
+    return ok, [
+        "overlap-one exclusion: non-planted valid top supports cannot share exactly one planted root",
+        f"F_97 toy overlap-one supports={overlap_one}; support-only valid overlap-one supports={overlap_one_support_only_valid}",
+        f"F_97 toy disjoint support-only valid supports={disjoint_support_only_valid}",
+        "F_17^32 planted support contains the root 1 exactly once, so the Lagrange-dual exclusion applies",
+        "remaining F_17^32 planted top residual: disjoint supports R with R cap T empty",
+    ]
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop turn"]
 
@@ -2238,6 +2325,7 @@ CHECKS = [
     ("abstract deficiency-one chart theorem",             check_deficiency_one_abstract_chart_theorem),
     ("planted top-chart overlap pruning",                 check_planted_top_overlap_pruning),
     ("planted top-chart support-only residual",           check_planted_top_support_only_residual),
+    ("planted top-chart overlap-one exclusion",           check_planted_top_overlap_one_exclusion),
     ("F_97 acid test: brute force equals charts",         check_toy_acid_test_bruteforce),
     ("F_17^32 planted top-chart packet",                  lambda: check_f17_packet(DEFAULT_F17_PACKET)),
     ("F_17^32 planted low-degree packet",                 lambda: check_f17_low_degree_packet(DEFAULT_F17_LOW_DEGREE_PACKET)),

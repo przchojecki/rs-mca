@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 planted top overlap-one exclusion
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_deficiency_one_chart_theorem.md`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  Residual pruning theorem for the
+  declared planted top-chart family; no threshold or worst-case row claim.
+- **What is being added:** Turn 21 of the `A=384` M5 packet: a Lagrange-dual
+  argument excluding all non-planted top supports sharing exactly one root
+  with the planted support.  The toy verifier enumerates all overlap-one
+  `F_97/mu_16` supports.
+- **How it is useful:** Sharpens the planted top residual from
+  `|R cap T| in {0,1}` to the fully disjoint case `R cap T = empty`.
+- **What to do next:** Attack the disjoint support-only equations or the
+  rank-drop kernel-pivot residual.
+
 ### 2026-07-02 - M5 A384 planted top support-only residual
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

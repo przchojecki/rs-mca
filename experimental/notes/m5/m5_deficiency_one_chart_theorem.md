@@ -208,3 +208,43 @@ such that the support-only consistency equations hold.
 The verifier checks the `F_97/mu_16` analogue by comparing this support-only
 test with a full brute-force search over all slopes and all subgroup locators.
 They agree exactly; only the planted support at the planted slope survives.
+
+## Overlap-One Exclusion
+
+The support-only residual can be sharpened once we use that `1 in T`.
+Suppose `z != z0` and `R` shares exactly one root with `T`.
+
+The recurrence identity is an identity of linear functionals on polynomials
+`Q` of degree `< j`:
+
+```text
+sum_{x in T\\R} L_R(x) Q(x)
+  + lambda ( L_R(1) Q'(1) + (2L_R(1)+L_R'(1)) Q(1) ) = 0.
+```
+
+Use the Lagrange dual basis for evaluations on the distinct set `T`.
+
+If the shared root is `y != 1`, then `1 notin R`, so `L_R(1) != 0`.  The
+coefficient of the evaluation functional at `y` is
+
+```text
+lambda L_R(1) ell_y'(1),
+```
+
+where `ell_y` is the Lagrange basis polynomial for `T`.  Since `1 in T` and
+`y != 1`, `ell_y'(1) != 0`; this is impossible.
+
+If the shared root is `1`, then `L_R(1)=0` but `L_R'(1) != 0` because
+`L_R` is squarefree.  The coefficient of evaluation at `1` is then
+`lambda L_R'(1)`, again impossible.
+
+Thus any non-planted valid top support must be fully disjoint from the planted
+support:
+
+```text
+z != z0 and valid  ==>  R cap T = empty.
+```
+
+The verifier checks the `F_97/mu_16` analogue: all overlap-one supports are
+rejected by the support-only equations, and the support-only equations still
+match direct recurrence evaluation.
