@@ -267,6 +267,12 @@ all six classes have a base root and at least five have two; the conic
 at least `16` secant triangles.  Equivalently, line `e_G=72` survival has
 base-root histogram `(0,0,6)` or `(0,1,5)`, and conic `e_G=69` survival has
 secant graph `K6` or `K6` minus one edge.
+The packet also constructs abstract incidence-only sharpness witnesses for
+every finite-incidence one-over core: line witnesses have six disjoint
+external-root classes, while conic witnesses have pairwise intersections of
+multiplicity at most one and no triple-used external line.  These witnesses are
+not Hankel-realizability claims; they show that incidence and pair-overlap
+counting alone cannot close the remaining finite-incidence one-over rows.
 Exact degree-`126` accounting leaves line `e_G=72` with either one unused
 nonforced external root line or none, and conic `e_G=69` with either `14`
 pair-overlaps or all `15`.

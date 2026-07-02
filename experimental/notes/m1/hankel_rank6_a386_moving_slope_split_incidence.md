@@ -397,6 +397,18 @@ external slack, not base splitting.  For conic cores `e_G=69..76`, the counts
 are `2,16,27,28,28,28,28,28`; from `e_G=72` onward all base histograms are
 possible, and pair-overlap pressure disappears completely at `e_G=75,76`.
 
+The same packet now includes abstract incidence-only sharpness witnesses for
+every finite-incidence one-over core.  For each line core `72..80`, six
+pairwise-disjoint abstract external-root classes satisfy the current base-root
+cap and external-root budget.  For each irreducible conic core `69..76`, six
+abstract classes satisfy the current conic incidence axioms: pairwise
+intersections have multiplicity at most one, and no external root line is used
+three times.  These witnesses are deliberately not Hankel-realizability
+claims.  They show that the remaining one-over finite-incidence rows cannot be
+closed by sharpening only the present incidence and pair-overlap counts; a
+closure now needs endpoint payment, a finite-slope collision, or algebraic
+quotient-fiber input.
+
 Finally, the packet includes a single-saving closure ledger for every row that
 was exactly one over budget before the new tail obstruction: line cores
 `72..80`, conic cores `69..76`, and the punctured-tangent tail at `e_G=120` for

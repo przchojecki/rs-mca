@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v24"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v25"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -1326,6 +1326,223 @@ def conic_design_local_profiles(shapes: list[dict[str, Any]]) -> list[dict[str, 
     return profiles
 
 
+def interval_size(interval: list[int]) -> int:
+    return interval[1] - interval[0]
+
+
+def intervals_to_sets(intervals: list[list[int]]) -> list[set[int]]:
+    return [set(range(start, stop)) for start, stop in intervals]
+
+
+def first_line_incidence_only_sharpness_witness(
+    forced_external_core_size: int,
+    locator_degree: int,
+    external_root_count: int,
+) -> dict[str, Any]:
+    """Construct an abstract line incidence design saturating the one-over bound."""
+    alternatives = exact_line_root_budget_alternatives(
+        forced_external_core_size,
+        locator_degree,
+        external_root_count,
+    )
+    require(alternatives, "line sharpness witness needs at least one alternative")
+    alternative = alternatives[0]
+    class_sizes = class_sizes_from_histogram(
+        alternative["base_root_histogram"],
+        forced_external_core_size,
+        locator_degree,
+    )
+    available = external_root_count - forced_external_core_size
+    intervals: list[list[int]] = []
+    cursor = 0
+    for size in class_sizes:
+        intervals.append([cursor, cursor + size])
+        cursor += size
+    require(cursor <= available, "line sharpness design exceeds available lines")
+    class_sets = intervals_to_sets(intervals)
+    require(
+        all(left.isdisjoint(right) for left, right in itertools.combinations(class_sets, 2)),
+        "line sharpness classes should be pairwise disjoint",
+    )
+    return {
+        "component_type": "line",
+        "forced_external_core_size": forced_external_core_size,
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "base_root_histogram": alternative["base_root_histogram"],
+        "total_base_root_incidences": alternative["total_base_root_incidences"],
+        "class_count": FINITE_BUDGET,
+        "nonforced_external_class_size_sequence": class_sizes,
+        "available_nonforced_external_root_lines": available,
+        "class_intervals_on_abstract_external_lines": intervals,
+        "covered_nonforced_external_root_lines": cursor,
+        "unused_nonforced_external_root_lines": available - cursor,
+        "pairwise_class_intersections": "all_zero",
+        "saturates_current_finite_incidence_bound": True,
+    }
+
+
+def validate_line_incidence_only_sharpness_witness(
+    row: dict[str, Any],
+    locator_degree: int,
+    external_root_count: int,
+) -> None:
+    core = row["forced_external_core_size"]
+    histogram = row["base_root_histogram"]
+    class_sizes = row["nonforced_external_class_size_sequence"]
+    intervals = row["class_intervals_on_abstract_external_lines"]
+    available = external_root_count - core
+    require(row["component_type"] == "line", "line witness component mismatch")
+    require(row["class_count"] == FINITE_BUDGET, "line witness should have six classes")
+    require(sum(histogram) == FINITE_BUDGET, "line base histogram should have six classes")
+    require(len(class_sizes) == FINITE_BUDGET, "line class-size count mismatch")
+    require(len(intervals) == FINITE_BUDGET, "line interval count mismatch")
+    require(all(0 <= start <= stop <= available for start, stop in intervals), "line interval range")
+    require(
+        [interval_size(interval) for interval in intervals] == class_sizes,
+        "line interval sizes mismatch",
+    )
+    require(
+        sorted(class_sizes, reverse=True)
+        == class_sizes_from_histogram(histogram, core, locator_degree),
+        "line class sizes do not match base histogram",
+    )
+    class_sets = intervals_to_sets(intervals)
+    require(
+        all(left.isdisjoint(right) for left, right in itertools.combinations(class_sets, 2)),
+        "line class sets should be disjoint",
+    )
+    covered = len(set().union(*class_sets))
+    require(
+        covered == row["covered_nonforced_external_root_lines"],
+        "line covered-line count mismatch",
+    )
+    require(
+        row["unused_nonforced_external_root_lines"] == available - covered,
+        "line unused-line count mismatch",
+    )
+    require(row["saturates_current_finite_incidence_bound"], "line witness should be sharp")
+
+
+def first_conic_incidence_only_sharpness_witness(
+    forced_external_core_size: int,
+    locator_degree: int,
+    external_root_count: int,
+) -> dict[str, Any]:
+    """Construct an abstract conic incidence design saturating the one-over bound."""
+    alternatives = exact_conic_root_budget_alternatives(
+        forced_external_core_size,
+        locator_degree,
+        external_root_count,
+    )
+    require(alternatives, "conic sharpness witness needs at least one alternative")
+    alternative = alternatives[0]
+    class_sizes = class_sizes_from_histogram(
+        alternative["base_root_histogram"],
+        forced_external_core_size,
+        locator_degree,
+    )
+    required_pair_overlaps = alternative["required_pair_overlaps_before_external_excess"]
+    all_edges = list(itertools.combinations(range(FINITE_BUDGET), 2))
+    chosen_edges = all_edges[:required_pair_overlaps]
+    degrees = [0] * FINITE_BUDGET
+    for left, right in chosen_edges:
+        degrees[left] += 1
+        degrees[right] += 1
+    singleton_counts = [
+        class_size - degree for class_size, degree in zip(class_sizes, degrees)
+    ]
+    require(min(singleton_counts) >= 0, "conic singleton count negative")
+    available = external_root_count - forced_external_core_size
+    singleton_intervals: list[list[int]] = []
+    cursor = required_pair_overlaps
+    for count in singleton_counts:
+        singleton_intervals.append([cursor, cursor + count])
+        cursor += count
+    require(cursor <= available, "conic sharpness design exceeds available lines")
+    return {
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": forced_external_core_size,
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "base_root_histogram": alternative["base_root_histogram"],
+        "total_base_root_incidences": alternative["total_base_root_incidences"],
+        "class_count": FINITE_BUDGET,
+        "nonforced_external_class_size_sequence": class_sizes,
+        "available_nonforced_external_root_lines": available,
+        "shared_secant_edges_on_classes": [list(edge) for edge in chosen_edges],
+        "shared_secant_label_interval": [0, required_pair_overlaps],
+        "singleton_intervals_on_abstract_external_lines": singleton_intervals,
+        "covered_nonforced_external_root_lines": cursor,
+        "unused_nonforced_external_root_lines": available - cursor,
+        "pair_overlap_count": required_pair_overlaps,
+        "class_overlap_degree_sequence": degrees,
+        "singleton_root_line_sequence": singleton_counts,
+        "multiplicity_three_or_more_lines": 0,
+        "saturates_current_pair_overlap_bound": True,
+    }
+
+
+def validate_conic_incidence_only_sharpness_witness(
+    row: dict[str, Any],
+    locator_degree: int,
+    external_root_count: int,
+) -> None:
+    core = row["forced_external_core_size"]
+    histogram = row["base_root_histogram"]
+    class_sizes = row["nonforced_external_class_size_sequence"]
+    edges = [tuple(edge) for edge in row["shared_secant_edges_on_classes"]]
+    singleton_intervals = row["singleton_intervals_on_abstract_external_lines"]
+    available = external_root_count - core
+    require(row["component_type"] == "irreducible_conic", "conic witness component mismatch")
+    require(row["class_count"] == FINITE_BUDGET, "conic witness should have six classes")
+    require(sum(histogram) == FINITE_BUDGET, "conic base histogram should have six classes")
+    require(len(class_sizes) == FINITE_BUDGET, "conic class-size count mismatch")
+    require(len(singleton_intervals) == FINITE_BUDGET, "conic singleton interval count")
+    require(all(left < right for left, right in edges), "conic edge orientation mismatch")
+    require(len(set(edges)) == len(edges), "conic edges should be distinct")
+    require(
+        row["shared_secant_label_interval"] == [0, len(edges)],
+        "conic shared label interval mismatch",
+    )
+    require(
+        sorted(class_sizes, reverse=True)
+        == class_sizes_from_histogram(histogram, core, locator_degree),
+        "conic class sizes do not match base histogram",
+    )
+    class_sets = [set() for _ in range(FINITE_BUDGET)]
+    for label, (left, right) in enumerate(edges):
+        class_sets[left].add(label)
+        class_sets[right].add(label)
+    for class_index, interval in enumerate(singleton_intervals):
+        start, stop = interval
+        require(0 <= start <= stop <= available, "conic singleton interval range")
+        class_sets[class_index].update(range(start, stop))
+    require(
+        [len(class_set) for class_set in class_sets] == class_sizes,
+        "conic class set sizes mismatch",
+    )
+    pairwise_intersections = [
+        len(left & right) for left, right in itertools.combinations(class_sets, 2)
+    ]
+    require(max(pairwise_intersections, default=0) <= 1, "conic pairs should share at most one line")
+    all_labels = [label for class_set in class_sets for label in class_set]
+    multiplicity_counts = {label: all_labels.count(label) for label in set(all_labels)}
+    require(
+        max(multiplicity_counts.values(), default=0) <= 2,
+        "conic design should have no triple-used line",
+    )
+    covered = len(set().union(*class_sets))
+    require(
+        covered == row["covered_nonforced_external_root_lines"],
+        "conic covered-line count mismatch",
+    )
+    require(
+        row["unused_nonforced_external_root_lines"] == available - covered,
+        "conic unused-line count mismatch",
+    )
+    require(row["pair_overlap_count"] == len(edges), "conic pair-overlap count mismatch")
+    require(row["saturates_current_pair_overlap_bound"], "conic witness should be sharp")
+
+
 def quotient_residual_row(
     component_type: str,
     forced_external_core_threshold: int,
@@ -1836,6 +2053,34 @@ def build_certificate() -> dict[str, Any]:
         locator_degree=j_value,
         external_root_count=external_root_count,
     )
+    line_incidence_only_sharpness_witnesses = [
+        first_line_incidence_only_sharpness_witness(
+            core,
+            locator_degree=j_value,
+            external_root_count=external_root_count,
+        )
+        for core in line_incidence_one_over_cores
+    ]
+    conic_incidence_only_sharpness_witnesses = [
+        first_conic_incidence_only_sharpness_witness(
+            core,
+            locator_degree=j_value,
+            external_root_count=external_root_count,
+        )
+        for core in conic_pair_one_over_cores
+    ]
+    for row in line_incidence_only_sharpness_witnesses:
+        validate_line_incidence_only_sharpness_witness(
+            row,
+            locator_degree=j_value,
+            external_root_count=external_root_count,
+        )
+    for row in conic_incidence_only_sharpness_witnesses:
+        validate_conic_incidence_only_sharpness_witness(
+            row,
+            locator_degree=j_value,
+            external_root_count=external_root_count,
+        )
     single_saving_closure_rows = (
         [single_saving_closure_row(row) for row in line_survival_rows]
         + [single_saving_closure_row(row) for row in conic_survival_rows]
@@ -2506,6 +2751,54 @@ def build_certificate() -> dict[str, Any]:
     )
     require(
         [
+            (
+                row["component_type"],
+                row["forced_external_core_size"],
+                row["class_count"],
+                row["covered_nonforced_external_root_lines"],
+                row["unused_nonforced_external_root_lines"],
+            )
+            for row in line_incidence_only_sharpness_witnesses
+        ]
+        == [
+            ("line", 72, 6, 312, 1),
+            ("line", 73, 6, 306, 6),
+            ("line", 74, 6, 300, 11),
+            ("line", 75, 6, 294, 16),
+            ("line", 76, 6, 288, 21),
+            ("line", 77, 6, 282, 26),
+            ("line", 78, 6, 276, 31),
+            ("line", 79, 6, 270, 36),
+            ("line", 80, 6, 264, 41),
+        ],
+        "line incidence-only sharpness witnesses changed",
+    )
+    require(
+        [
+            (
+                row["component_type"],
+                row["forced_external_core_size"],
+                row["class_count"],
+                row["pair_overlap_count"],
+                row["covered_nonforced_external_root_lines"],
+                row["unused_nonforced_external_root_lines"],
+            )
+            for row in conic_incidence_only_sharpness_witnesses
+        ]
+        == [
+            ("irreducible_conic", 69, 6, 14, 316, 0),
+            ("irreducible_conic", 70, 6, 9, 315, 0),
+            ("irreducible_conic", 71, 6, 4, 314, 0),
+            ("irreducible_conic", 72, 6, 0, 312, 1),
+            ("irreducible_conic", 73, 6, 0, 306, 6),
+            ("irreducible_conic", 74, 6, 0, 300, 11),
+            ("irreducible_conic", 75, 6, 0, 294, 16),
+            ("irreducible_conic", 76, 6, 0, 288, 21),
+        ],
+        "conic incidence-only sharpness witnesses changed",
+    )
+    require(
+        [
             (row["component_type"], row["forced_external_core_size"], row["one_over_source"])
             for row in single_saving_closure_rows
         ]
@@ -2888,6 +3181,17 @@ def build_certificate() -> dict[str, Any]:
                 "cores 72..76 allow all 28; pair-overlap pressure disappears "
                 "from cores 75 and 76."
             ),
+            "finite_incidence_one_over_sharpness": (
+                "For every remaining one-over finite-incidence core, the current "
+                "incidence axioms are sharp in an abstract set-system sense.  "
+                "Line cores e_G=72..80 admit six pairwise-disjoint abstract "
+                "external root classes satisfying the base-root cap and external "
+                "root budget.  Conic cores e_G=69..76 admit six abstract classes "
+                "whose pairwise intersections have multiplicity at most one and "
+                "no triple-used external root line.  These are not Hankel "
+                "realisability witnesses; they show that incidence counting "
+                "alone cannot close the rows."
+            ),
             "single_saving_closure_ledger": (
                 "Every currently one-over row in the moving-slope packet is "
                 "listed in a single-saving closure ledger.  The ledger covers "
@@ -3020,6 +3324,12 @@ def build_certificate() -> dict[str, Any]:
                 conic_one_over_design_catalog_rows
             ),
         },
+        "incidence_only_sharpness_witnesses": {
+            "line_endpoint_only_incidence_range": line_incidence_only_sharpness_witnesses,
+            "irreducible_conic_endpoint_only_incidence_range": (
+                conic_incidence_only_sharpness_witnesses
+            ),
+        },
         "single_saving_closure_ledger": single_saving_closure_rows,
         "one_over_mechanism_priority_ledger": mechanism_priority_rows,
         "punctured_tangent_tail_extremizer_profile": tangent_tail_extremizer_rows,
@@ -3094,6 +3404,19 @@ def build_certificate() -> dict[str, Any]:
             ),
             "line_e72_design_local_profiles": line_e72_design_local_profiles,
             "line_one_over_design_catalog": line_one_over_design_catalog_rows,
+            "line_incidence_only_sharpness_witness_count": len(
+                line_incidence_only_sharpness_witnesses
+            ),
+            "line_incidence_only_sharpness_external_core_range": [
+                min(
+                    row["forced_external_core_size"]
+                    for row in line_incidence_only_sharpness_witnesses
+                ),
+                max(
+                    row["forced_external_core_size"]
+                    for row in line_incidence_only_sharpness_witnesses
+                ),
+            ],
             "line_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in line_intermediate_profile_rows
             ),
@@ -3159,6 +3482,19 @@ def build_certificate() -> dict[str, Any]:
             ),
             "conic_e69_design_local_profiles": conic_e69_design_local_profiles,
             "conic_one_over_design_catalog": conic_one_over_design_catalog_rows,
+            "conic_incidence_only_sharpness_witness_count": len(
+                conic_incidence_only_sharpness_witnesses
+            ),
+            "conic_incidence_only_sharpness_external_core_range": [
+                min(
+                    row["forced_external_core_size"]
+                    for row in conic_incidence_only_sharpness_witnesses
+                ),
+                max(
+                    row["forced_external_core_size"]
+                    for row in conic_incidence_only_sharpness_witnesses
+                ),
+            ],
             "single_saving_closure_ledger_count": len(single_saving_closure_rows),
             "single_saving_closure_ledger_core_ranges": {
                 "line_external_incidence": [72, 80],
@@ -3223,6 +3559,7 @@ def build_certificate() -> dict[str, Any]:
             "line e=72 and conic e=69 extremal multiplicity profiles are enumerated",
             "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
             "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
+            "abstract incidence-only sharpness witnesses are constructed for every finite-incidence one-over core",
             "every one-over moving-slope residual row has a single-saving closure ledger entry",
             "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
             "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction",
@@ -3238,6 +3575,8 @@ def build_certificate() -> dict[str, Any]:
             "does not classify overlapping-support rank-6 pencils",
             "does not prove endpoint payment",
             "does not produce a row-level M3 safe-side bound",
+            "incidence-only sharpness witnesses are abstract set-system witnesses, not Hankel-realizable components",
+            "incidence-only sharpness does not prove an over-budget MCA witness; it rules out closing the finite-incidence one-over rows by incidence counting alone",
         ],
     }
 

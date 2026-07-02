@@ -30,7 +30,7 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
-### 2026-07-02 - A386 punctured tangent-tail cofactor obstruction
+### 2026-07-02 - A386 tangent-tail and incidence-only sharpness
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
 - **Files added or changed:**
@@ -44,17 +44,20 @@ Keep entries concise and link to the relevant files.
 - **Status:** PROVED / AUDIT.
 - **What is being added:** The `A=386` moving-slope packet now has a
   cofactor-span top-saturation exclusion for the high-core punctured-tangent
-  quotient tail.
+  quotient tail, plus abstract incidence-only sharpness witnesses for every
+  finite-incidence one-over core.
 - **How it is useful:** A seven-slope saturated tangent-star tail has at most
   one original endpoint, so at least six bad points must be finite component
   classes.  Their degree-`6` cofactors are independent, but the fixed-core
   quotient family has vector dimension at most `2` on a line and at most `3`
   on a conic.  Hence the raw tangent bound `r'+1` improves to `r'` while
   `r'` exceeds this dimension; `e_G=120` is safe and `e_G=119` is the next
-  one-over tangent-tail core.
-- **What to do next:** Focus remaining A386 work on the finite-incidence
-  one-over ranges `e_G=72..80` for lines and `e_G=69..76` for conics, or on
-  the larger middle quotient ranges.
+  one-over tangent-tail core.  The incidence-only witnesses show that the
+  remaining finite-incidence one-over rows cannot be closed by sharpening only
+  the current incidence and pair-overlap counts.
+- **What to do next:** Focus remaining A386 work on algebraic endpoint
+  payment, finite-slope collisions, quotient-fiber structure, or the larger
+  middle quotient ranges.
 
 ### 2026-07-02 - A386 punctured tangent-tail extremizer profile
 

@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v6"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v7"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v24",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v25",
 }
 
 
@@ -854,6 +854,50 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         summary["conic_remaining_unclosed_external_core_range"] == [69, 119],
         "conic remaining range after tail closure",
     )
+    require(
+        summary["line_incidence_only_sharpness_witness_count"] == 9
+        and summary["line_incidence_only_sharpness_external_core_range"] == [72, 80],
+        "line incidence-only sharpness summary mismatch",
+    )
+    require(
+        summary["conic_incidence_only_sharpness_witness_count"] == 8
+        and summary["conic_incidence_only_sharpness_external_core_range"] == [69, 76],
+        "conic incidence-only sharpness summary mismatch",
+    )
+    sharpness = data["incidence_only_sharpness_witnesses"]
+    require(
+        [
+            row["forced_external_core_size"]
+            for row in sharpness["line_endpoint_only_incidence_range"]
+        ]
+        == list(range(72, 81)),
+        "line incidence-only sharpness core coverage mismatch",
+    )
+    require(
+        [
+            row["forced_external_core_size"]
+            for row in sharpness["irreducible_conic_endpoint_only_incidence_range"]
+        ]
+        == list(range(69, 77)),
+        "conic incidence-only sharpness core coverage mismatch",
+    )
+    require(
+        all(
+            row["status"] == "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY"
+            and row["saturates_current_finite_incidence_bound"]
+            for row in sharpness["line_endpoint_only_incidence_range"]
+        ),
+        "line incidence-only sharpness status mismatch",
+    )
+    require(
+        all(
+            row["status"] == "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY"
+            and row["saturates_current_pair_overlap_bound"]
+            and row["multiplicity_three_or_more_lines"] == 0
+            for row in sharpness["irreducible_conic_endpoint_only_incidence_range"]
+        ),
+        "conic incidence-only sharpness status mismatch",
+    )
     nonclaims = set(data["nonclaims"])
     require(
         "does not claim the punctured tangent numerator at the residual threshold is within the original row budget"
@@ -863,6 +907,11 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
     require(
         "does not produce a row-level M3 safe-side bound" in nonclaims,
         "A386 moving-slope packet must keep the row-bound nonclaim",
+    )
+    require(
+        "incidence-only sharpness witnesses are abstract set-system witnesses, not Hankel-realizable components"
+        in nonclaims,
+        "A386 moving-slope packet must keep the incidence-only sharpness nonclaim",
     )
 
 
@@ -973,6 +1022,7 @@ def build_certificate() -> dict[str, Any]:
                 "extremal multiplicity accounting leaves line profiles (1,312,0)/(0,313,0) and conic profiles (1,300,15)/(0,302,14)/(0,301,15)",
                 "local incidence accounting leaves line singleton sequences 52^6 or (53,52^5), and conic secant/singleton profiles (5^6;50^6), ((4,4,5,5,5,5);(51,51,50,50,50,50)), or (5^6;(51,50,50,50,50,50))",
                 "the endpoint-only one-over finite-incidence range has a compact exact catalog: line histogram counts 2,16,27,28^6 across e_G=72..80 and conic counts 2,16,27,28^5 across e_G=69..76",
+                "abstract incidence-only sharpness witnesses exist for every finite-incidence one-over core, so those rows cannot be closed by sharpening only the current incidence and pair-overlap axioms",
                 "all nineteen moving-slope one-over residual rows have a single-saving closure ledger entry: line e_G=72..80, conic e_G=69..76, and the punctured-tangent tail e_G=120",
                 "the one-over rows split by first available saving mechanism into line base-active 72..74, line external-slack 75..80, conic base+secant 69..71, conic secant-only 72..74, conic endpoint/duplicate-only 75..76, and the now-closed punctured-tangent tail 120",
             ],

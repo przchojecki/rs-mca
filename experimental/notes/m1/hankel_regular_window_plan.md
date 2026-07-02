@@ -366,6 +366,13 @@ conic secant/singleton profiles are `(5^6;50^6)`,
 Across the full endpoint-only one-over range, the line histogram counts are
 `2,16,27,28^6` for `e_G=72..80`, and the conic counts are `2,16,27,28^5`
 for `e_G=69..76`.
+The packet also constructs abstract incidence-only sharpness witnesses for
+every one of those finite-incidence cores: line witnesses have six disjoint
+external-root classes, and conic witnesses have pairwise intersections of
+multiplicity at most one with no triple-used external line.  Thus these rows
+cannot be closed by incidence and pair-overlap counting alone; the next input
+must pay the endpoint, force a finite-slope collision, or use algebraic
+quotient-fiber structure.
 The packet also records a single-saving closure ledger for all `19` one-over
 moving-slope residual rows: line `e_G=72..80`, conic `e_G=69..76`, and the
 line/conic punctured-tangent tail at `e_G=120`.

@@ -192,6 +192,7 @@
     "line e=72 and conic e=69 extremal multiplicity profiles are enumerated",
     "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
     "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
+    "abstract incidence-only sharpness witnesses are constructed for every finite-incidence one-over core",
     "every one-over moving-slope residual row has a single-saving closure ledger entry",
     "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
     "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction"
@@ -2435,6 +2436,1166 @@
       "residual_forced_external_core_at_least": 69
     }
   ],
+  "incidence_only_sharpness_witnesses": {
+    "irreducible_conic_endpoint_only_incidence_range": [
+      {
+        "available_nonforced_external_root_lines": 316,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_overlap_degree_sequence": [
+          5,
+          5,
+          5,
+          5,
+          4,
+          4
+        ],
+        "component_type": "irreducible_conic",
+        "covered_nonforced_external_root_lines": 316,
+        "forced_external_core_size": 69,
+        "multiplicity_three_or_more_lines": 0,
+        "nonforced_external_class_size_sequence": [
+          55,
+          55,
+          55,
+          55,
+          55,
+          55
+        ],
+        "pair_overlap_count": 14,
+        "saturates_current_pair_overlap_bound": true,
+        "shared_secant_edges_on_classes": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        "shared_secant_label_interval": [
+          0,
+          14
+        ],
+        "singleton_intervals_on_abstract_external_lines": [
+          [
+            14,
+            64
+          ],
+          [
+            64,
+            114
+          ],
+          [
+            114,
+            164
+          ],
+          [
+            164,
+            214
+          ],
+          [
+            214,
+            265
+          ],
+          [
+            265,
+            316
+          ]
+        ],
+        "singleton_root_line_sequence": [
+          50,
+          50,
+          50,
+          50,
+          51,
+          51
+        ],
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 0
+      },
+      {
+        "available_nonforced_external_root_lines": 315,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_overlap_degree_sequence": [
+          5,
+          5,
+          2,
+          2,
+          2,
+          2
+        ],
+        "component_type": "irreducible_conic",
+        "covered_nonforced_external_root_lines": 315,
+        "forced_external_core_size": 70,
+        "multiplicity_three_or_more_lines": 0,
+        "nonforced_external_class_size_sequence": [
+          54,
+          54,
+          54,
+          54,
+          54,
+          54
+        ],
+        "pair_overlap_count": 9,
+        "saturates_current_pair_overlap_bound": true,
+        "shared_secant_edges_on_classes": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ]
+        ],
+        "shared_secant_label_interval": [
+          0,
+          9
+        ],
+        "singleton_intervals_on_abstract_external_lines": [
+          [
+            9,
+            58
+          ],
+          [
+            58,
+            107
+          ],
+          [
+            107,
+            159
+          ],
+          [
+            159,
+            211
+          ],
+          [
+            211,
+            263
+          ],
+          [
+            263,
+            315
+          ]
+        ],
+        "singleton_root_line_sequence": [
+          49,
+          49,
+          52,
+          52,
+          52,
+          52
+        ],
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 0
+      },
+      {
+        "available_nonforced_external_root_lines": 314,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_overlap_degree_sequence": [
+          4,
+          1,
+          1,
+          1,
+          1,
+          0
+        ],
+        "component_type": "irreducible_conic",
+        "covered_nonforced_external_root_lines": 314,
+        "forced_external_core_size": 71,
+        "multiplicity_three_or_more_lines": 0,
+        "nonforced_external_class_size_sequence": [
+          53,
+          53,
+          53,
+          53,
+          53,
+          53
+        ],
+        "pair_overlap_count": 4,
+        "saturates_current_pair_overlap_bound": true,
+        "shared_secant_edges_on_classes": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "shared_secant_label_interval": [
+          0,
+          4
+        ],
+        "singleton_intervals_on_abstract_external_lines": [
+          [
+            4,
+            53
+          ],
+          [
+            53,
+            105
+          ],
+          [
+            105,
+            157
+          ],
+          [
+            157,
+            209
+          ],
+          [
+            209,
+            261
+          ],
+          [
+            261,
+            314
+          ]
+        ],
+        "singleton_root_line_sequence": [
+          49,
+          52,
+          52,
+          52,
+          52,
+          53
+        ],
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 0
+      },
+      {
+        "available_nonforced_external_root_lines": 313,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_overlap_degree_sequence": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "component_type": "irreducible_conic",
+        "covered_nonforced_external_root_lines": 312,
+        "forced_external_core_size": 72,
+        "multiplicity_three_or_more_lines": 0,
+        "nonforced_external_class_size_sequence": [
+          52,
+          52,
+          52,
+          52,
+          52,
+          52
+        ],
+        "pair_overlap_count": 0,
+        "saturates_current_pair_overlap_bound": true,
+        "shared_secant_edges_on_classes": [],
+        "shared_secant_label_interval": [
+          0,
+          0
+        ],
+        "singleton_intervals_on_abstract_external_lines": [
+          [
+            0,
+            52
+          ],
+          [
+            52,
+            104
+          ],
+          [
+            104,
+            156
+          ],
+          [
+            156,
+            208
+          ],
+          [
+            208,
+            260
+          ],
+          [
+            260,
+            312
+          ]
+        ],
+        "singleton_root_line_sequence": [
+          52,
+          52,
+          52,
+          52,
+          52,
+          52
+        ],
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 1
+      },
+      {
+        "available_nonforced_external_root_lines": 312,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_overlap_degree_sequence": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "component_type": "irreducible_conic",
+        "covered_nonforced_external_root_lines": 306,
+        "forced_external_core_size": 73,
+        "multiplicity_three_or_more_lines": 0,
+        "nonforced_external_class_size_sequence": [
+          51,
+          51,
+          51,
+          51,
+          51,
+          51
+        ],
+        "pair_overlap_count": 0,
+        "saturates_current_pair_overlap_bound": true,
+        "shared_secant_edges_on_classes": [],
+        "shared_secant_label_interval": [
+          0,
+          0
+        ],
+        "singleton_intervals_on_abstract_external_lines": [
+          [
+            0,
+            51
+          ],
+          [
+            51,
+            102
+          ],
+          [
+            102,
+            153
+          ],
+          [
+            153,
+            204
+          ],
+          [
+            204,
+            255
+          ],
+          [
+            255,
+            306
+          ]
+        ],
+        "singleton_root_line_sequence": [
+          51,
+          51,
+          51,
+          51,
+          51,
+          51
+        ],
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 6
+      },
+      {
+        "available_nonforced_external_root_lines": 311,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_overlap_degree_sequence": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "component_type": "irreducible_conic",
+        "covered_nonforced_external_root_lines": 300,
+        "forced_external_core_size": 74,
+        "multiplicity_three_or_more_lines": 0,
+        "nonforced_external_class_size_sequence": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ],
+        "pair_overlap_count": 0,
+        "saturates_current_pair_overlap_bound": true,
+        "shared_secant_edges_on_classes": [],
+        "shared_secant_label_interval": [
+          0,
+          0
+        ],
+        "singleton_intervals_on_abstract_external_lines": [
+          [
+            0,
+            50
+          ],
+          [
+            50,
+            100
+          ],
+          [
+            100,
+            150
+          ],
+          [
+            150,
+            200
+          ],
+          [
+            200,
+            250
+          ],
+          [
+            250,
+            300
+          ]
+        ],
+        "singleton_root_line_sequence": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ],
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 11
+      },
+      {
+        "available_nonforced_external_root_lines": 310,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_overlap_degree_sequence": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "component_type": "irreducible_conic",
+        "covered_nonforced_external_root_lines": 294,
+        "forced_external_core_size": 75,
+        "multiplicity_three_or_more_lines": 0,
+        "nonforced_external_class_size_sequence": [
+          49,
+          49,
+          49,
+          49,
+          49,
+          49
+        ],
+        "pair_overlap_count": 0,
+        "saturates_current_pair_overlap_bound": true,
+        "shared_secant_edges_on_classes": [],
+        "shared_secant_label_interval": [
+          0,
+          0
+        ],
+        "singleton_intervals_on_abstract_external_lines": [
+          [
+            0,
+            49
+          ],
+          [
+            49,
+            98
+          ],
+          [
+            98,
+            147
+          ],
+          [
+            147,
+            196
+          ],
+          [
+            196,
+            245
+          ],
+          [
+            245,
+            294
+          ]
+        ],
+        "singleton_root_line_sequence": [
+          49,
+          49,
+          49,
+          49,
+          49,
+          49
+        ],
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 16
+      },
+      {
+        "available_nonforced_external_root_lines": 309,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_overlap_degree_sequence": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "component_type": "irreducible_conic",
+        "covered_nonforced_external_root_lines": 288,
+        "forced_external_core_size": 76,
+        "multiplicity_three_or_more_lines": 0,
+        "nonforced_external_class_size_sequence": [
+          48,
+          48,
+          48,
+          48,
+          48,
+          48
+        ],
+        "pair_overlap_count": 0,
+        "saturates_current_pair_overlap_bound": true,
+        "shared_secant_edges_on_classes": [],
+        "shared_secant_label_interval": [
+          0,
+          0
+        ],
+        "singleton_intervals_on_abstract_external_lines": [
+          [
+            0,
+            48
+          ],
+          [
+            48,
+            96
+          ],
+          [
+            96,
+            144
+          ],
+          [
+            144,
+            192
+          ],
+          [
+            192,
+            240
+          ],
+          [
+            240,
+            288
+          ]
+        ],
+        "singleton_root_line_sequence": [
+          48,
+          48,
+          48,
+          48,
+          48,
+          48
+        ],
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 21
+      }
+    ],
+    "line_endpoint_only_incidence_range": [
+      {
+        "available_nonforced_external_root_lines": 313,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_intervals_on_abstract_external_lines": [
+          [
+            0,
+            52
+          ],
+          [
+            52,
+            104
+          ],
+          [
+            104,
+            156
+          ],
+          [
+            156,
+            208
+          ],
+          [
+            208,
+            260
+          ],
+          [
+            260,
+            312
+          ]
+        ],
+        "component_type": "line",
+        "covered_nonforced_external_root_lines": 312,
+        "forced_external_core_size": 72,
+        "nonforced_external_class_size_sequence": [
+          52,
+          52,
+          52,
+          52,
+          52,
+          52
+        ],
+        "pairwise_class_intersections": "all_zero",
+        "saturates_current_finite_incidence_bound": true,
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 1
+      },
+      {
+        "available_nonforced_external_root_lines": 312,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_intervals_on_abstract_external_lines": [
+          [
+            0,
+            51
+          ],
+          [
+            51,
+            102
+          ],
+          [
+            102,
+            153
+          ],
+          [
+            153,
+            204
+          ],
+          [
+            204,
+            255
+          ],
+          [
+            255,
+            306
+          ]
+        ],
+        "component_type": "line",
+        "covered_nonforced_external_root_lines": 306,
+        "forced_external_core_size": 73,
+        "nonforced_external_class_size_sequence": [
+          51,
+          51,
+          51,
+          51,
+          51,
+          51
+        ],
+        "pairwise_class_intersections": "all_zero",
+        "saturates_current_finite_incidence_bound": true,
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 6
+      },
+      {
+        "available_nonforced_external_root_lines": 311,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_intervals_on_abstract_external_lines": [
+          [
+            0,
+            50
+          ],
+          [
+            50,
+            100
+          ],
+          [
+            100,
+            150
+          ],
+          [
+            150,
+            200
+          ],
+          [
+            200,
+            250
+          ],
+          [
+            250,
+            300
+          ]
+        ],
+        "component_type": "line",
+        "covered_nonforced_external_root_lines": 300,
+        "forced_external_core_size": 74,
+        "nonforced_external_class_size_sequence": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ],
+        "pairwise_class_intersections": "all_zero",
+        "saturates_current_finite_incidence_bound": true,
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 11
+      },
+      {
+        "available_nonforced_external_root_lines": 310,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_intervals_on_abstract_external_lines": [
+          [
+            0,
+            49
+          ],
+          [
+            49,
+            98
+          ],
+          [
+            98,
+            147
+          ],
+          [
+            147,
+            196
+          ],
+          [
+            196,
+            245
+          ],
+          [
+            245,
+            294
+          ]
+        ],
+        "component_type": "line",
+        "covered_nonforced_external_root_lines": 294,
+        "forced_external_core_size": 75,
+        "nonforced_external_class_size_sequence": [
+          49,
+          49,
+          49,
+          49,
+          49,
+          49
+        ],
+        "pairwise_class_intersections": "all_zero",
+        "saturates_current_finite_incidence_bound": true,
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 16
+      },
+      {
+        "available_nonforced_external_root_lines": 309,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_intervals_on_abstract_external_lines": [
+          [
+            0,
+            48
+          ],
+          [
+            48,
+            96
+          ],
+          [
+            96,
+            144
+          ],
+          [
+            144,
+            192
+          ],
+          [
+            192,
+            240
+          ],
+          [
+            240,
+            288
+          ]
+        ],
+        "component_type": "line",
+        "covered_nonforced_external_root_lines": 288,
+        "forced_external_core_size": 76,
+        "nonforced_external_class_size_sequence": [
+          48,
+          48,
+          48,
+          48,
+          48,
+          48
+        ],
+        "pairwise_class_intersections": "all_zero",
+        "saturates_current_finite_incidence_bound": true,
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 21
+      },
+      {
+        "available_nonforced_external_root_lines": 308,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_intervals_on_abstract_external_lines": [
+          [
+            0,
+            47
+          ],
+          [
+            47,
+            94
+          ],
+          [
+            94,
+            141
+          ],
+          [
+            141,
+            188
+          ],
+          [
+            188,
+            235
+          ],
+          [
+            235,
+            282
+          ]
+        ],
+        "component_type": "line",
+        "covered_nonforced_external_root_lines": 282,
+        "forced_external_core_size": 77,
+        "nonforced_external_class_size_sequence": [
+          47,
+          47,
+          47,
+          47,
+          47,
+          47
+        ],
+        "pairwise_class_intersections": "all_zero",
+        "saturates_current_finite_incidence_bound": true,
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 26
+      },
+      {
+        "available_nonforced_external_root_lines": 307,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_intervals_on_abstract_external_lines": [
+          [
+            0,
+            46
+          ],
+          [
+            46,
+            92
+          ],
+          [
+            92,
+            138
+          ],
+          [
+            138,
+            184
+          ],
+          [
+            184,
+            230
+          ],
+          [
+            230,
+            276
+          ]
+        ],
+        "component_type": "line",
+        "covered_nonforced_external_root_lines": 276,
+        "forced_external_core_size": 78,
+        "nonforced_external_class_size_sequence": [
+          46,
+          46,
+          46,
+          46,
+          46,
+          46
+        ],
+        "pairwise_class_intersections": "all_zero",
+        "saturates_current_finite_incidence_bound": true,
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 31
+      },
+      {
+        "available_nonforced_external_root_lines": 306,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_intervals_on_abstract_external_lines": [
+          [
+            0,
+            45
+          ],
+          [
+            45,
+            90
+          ],
+          [
+            90,
+            135
+          ],
+          [
+            135,
+            180
+          ],
+          [
+            180,
+            225
+          ],
+          [
+            225,
+            270
+          ]
+        ],
+        "component_type": "line",
+        "covered_nonforced_external_root_lines": 270,
+        "forced_external_core_size": 79,
+        "nonforced_external_class_size_sequence": [
+          45,
+          45,
+          45,
+          45,
+          45,
+          45
+        ],
+        "pairwise_class_intersections": "all_zero",
+        "saturates_current_finite_incidence_bound": true,
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 36
+      },
+      {
+        "available_nonforced_external_root_lines": 305,
+        "base_root_histogram": [
+          0,
+          0,
+          6
+        ],
+        "class_count": 6,
+        "class_intervals_on_abstract_external_lines": [
+          [
+            0,
+            44
+          ],
+          [
+            44,
+            88
+          ],
+          [
+            88,
+            132
+          ],
+          [
+            132,
+            176
+          ],
+          [
+            176,
+            220
+          ],
+          [
+            220,
+            264
+          ]
+        ],
+        "component_type": "line",
+        "covered_nonforced_external_root_lines": 264,
+        "forced_external_core_size": 80,
+        "nonforced_external_class_size_sequence": [
+          44,
+          44,
+          44,
+          44,
+          44,
+          44
+        ],
+        "pairwise_class_intersections": "all_zero",
+        "saturates_current_finite_incidence_bound": true,
+        "status": "ABSTRACT_SHARPNESS_WITNESS_NOT_HANKEL_REALIZABILITY",
+        "total_base_root_incidences": 12,
+        "unused_nonforced_external_root_lines": 41
+      }
+    ]
+  },
   "incidence_setup": {
     "component": "Let G be an irreducible positive-dimensional moving-slope component in the A=386 Q-plane, with degree c in {1,2}.",
     "external_forced_split_root_core": "e_G is the number of forced root hyperplanes among H\\X.  The base support X is handled separately because L_Q(x)=0 is equivalent to Q(x)=0 there.",
@@ -4370,7 +5531,9 @@
     "does not cover A=385",
     "does not classify overlapping-support rank-6 pencils",
     "does not prove endpoint payment",
-    "does not produce a row-level M3 safe-side bound"
+    "does not produce a row-level M3 safe-side bound",
+    "incidence-only sharpness witnesses are abstract set-system witnesses, not Hankel-realizable components",
+    "incidence-only sharpness does not prove an over-budget MCA witness; it rules out closing the finite-incidence one-over rows by incidence counting alone"
   ],
   "object": "A=386 separated rank-6 moving-slope split-incidence budget",
   "one_over_design_catalog": {
@@ -5505,7 +6668,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v24",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v25",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -6121,6 +7284,11 @@
     ],
     "conic_finite_safe_for_external_core_at_most": 76,
     "conic_high_core_forced_core_is_global_common_core": true,
+    "conic_incidence_only_sharpness_external_core_range": [
+      69,
+      76
+    ],
+    "conic_incidence_only_sharpness_witness_count": 8,
     "conic_intermediate_max_current_projective_upper_bound": 26,
     "conic_one_over_budget_external_core_ranges": [
       [
@@ -6516,6 +7684,11 @@
       72,
       80
     ],
+    "line_incidence_only_sharpness_external_core_range": [
+      72,
+      80
+    ],
+    "line_incidence_only_sharpness_witness_count": 9,
     "line_intermediate_max_current_projective_upper_bound": 18,
     "line_one_over_budget_external_core_ranges": [
       [
@@ -6848,6 +8021,7 @@
     "extremal_design_multiplicity_profiles": "The line designs have no pairwise external overlap: their nonforced external roots have multiplicities (zero, one, >=two) equal to (1,312,0) or (0,313,0).  The conic designs have no triple external overlap, and their multiplicities (zero, one, two) are (1,300,15), (0,302,14), or (0,301,15).",
     "extremal_design_shapes": "Combining the root budgets with the extremal line/conic shapes, line e_G=72 is a disjoint partition by six size-52 classes plus one unused nonforced external root line, or by one size-53 class and five size-52 classes covering all nonforced external roots.  Conic e_G=69 has only three designs: six size-55 classes with K6 and one unused root line, six size-55 classes with K6 minus one edge covering all roots, or one size-56 plus five size-55 classes with K6 covering all roots.",
     "extremal_survival_shape_profile": "The extremal e_G=72 line case has only two possible base-root histograms among the six finite classes: six two-root classes, or five two-root classes plus one one-root class.  The extremal e_G=69 conic case has secant graph K6 or K6 with one missing edge.",
+    "finite_incidence_one_over_sharpness": "For every remaining one-over finite-incidence core, the current incidence axioms are sharp in an abstract set-system sense.  Line cores e_G=72..80 admit six pairwise-disjoint abstract external root classes satisfying the base-root cap and external root budget.  Conic cores e_G=69..76 admit six abstract classes whose pairwise intersections have multiplicity at most one and no triple-used external root line.  These are not Hankel realisability witnesses; they show that incidence counting alone cannot close the rows.",
     "high_core_forced_core_structure": "The forced-core condition is a linear condition in the Q-plane.  For a line component P(U), a forced external root is exactly an external evaluation functional that vanishes on U, so C_E is a two-polynomial gcd on the line's underlying vector subspace.  For an irreducible conic, containment in a root hyperplane can only occur when the evaluation functional is zero on the whole Q-plane; hence C_E is a global common divisor of all three basis kernel polynomials.",
     "high_core_quotient_normal_form": "For any remaining high-core line or conic component, let E be the forced external split-root core and C_E(X)=prod_{s in E}(X-s).  Every Q-class on the component has L_Q divisible by C_E.  After factoring, L_Q=C_E R_Q with deg R_Q<=126-|E|, and the split-locator gate is exactly R_Q | (X^512-1)/C_E plus the remaining noncontainment filters.  Thus residual line components reduce to quotient degree <=54, while residual conic components reduce to quotient degree <=57.",
     "incidence_budget": "For r_G<j, each valid degree-j split locator on G needs at least j-r_G additional intersections with non-forced root hyperplanes.  Each non-forced E_s cuts G in length at most c.  Hence the number of valid Q-classes, and therefore the number of finite slopes represented by this component, is at most floor(c*(512-r_G)/(126-r_G)).",
