@@ -582,6 +582,25 @@ Keep entries concise and link to the relevant files.
   valid locators are exactly those for which the Cramer locator divides
   `X^n-1`, using pseudo-remainder equations and side charts for rank drop and
   low-degree kernels.
+### 2026-07-02 - Towards-prize v3 staircase tightening
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `tex/towards-prize.tex`;
+  `towards-prize.pdf`; `experimental/agents-log.md`.
+- **Status:** AUDIT / VERSION-TIGHTENING / COMPILED.
+- **What is being added:** The v3 cap-paper package now explicitly defines the
+  integer staircase numerator `B_mca(a)`, states the one-step threshold
+  certificate, records the KoalaBear unsafe handle
+  `(c,m,w,Delta)=(16,69748,4211,67392)`, and moves the circle row into a
+  secondary remark.  It also adds the deployed subfield warning that
+  base-valued KoalaBear lines have density at most `|B|/|F|<2^-154`, so
+  target-level obstructions must be genuinely extension-valued.
+- **How it is useful:** This makes `towards-prize.tex` sharper for determining
+  `delta^*`: it names the exact finite object to certify and separates the
+  prize-facing KoalaBear statement from contextual row examples.
+- **What to do next:** Audit the staircase definition and KoalaBear handle
+  against `tex/cs25_cap_v12.tex`, especially endpoint convention,
+  `q_line`, and the confinement lemma for subfield rows.
 
 ### 2026-07-02 - Towards-prize v3 cap-paper package
 

@@ -40,6 +40,7 @@
 \aliascntresetthe{remark}
 
 \newcommand{\F}{\mathbb{F}}
+\newcommand{\B}{\mathbb{B}}
 \newcommand{\RS}{\mathrm{RS}}
 \newcommand{\dist}{\operatorname{dist}}
 \newcommand{\supp}{\operatorname{supp}}
@@ -98,7 +99,7 @@ Every ingredient except the single import in (3) is proved here from first princ
 The upper bounds sharpen, and the composition follows, a line of work on capacity-edge obstructions: the conditional universal cap of \cite{Cho26b} (gap $2^{-11}$ under $|\F|\ge2n$), the locator framework of \cite{Cho26a}, and the conversion perspective of \cite{CS25}; the strongest known positive results for plain correlated agreement are \cite{BCIKS20,BCHKS25}, reaching the Johnson radius. A companion manuscript \cite{Cho26b} develops the deployed-parameter refinements (subfield-pigeonhole floors widening the unsafe frontier to gap $\approx2^{-4.96}$ at $n=2^{21}$, circle and genus-one rows, explicit witnesses) and the structured form of the remaining problem.  To keep this note compact, we use the following cap-paper package as a cited certificate theorem rather than reproducing its long scanner and transport sections.
 
 \begin{theorem}[cap-paper refinements for threshold determination]\label{thm:cap-paper-package}
-The following consequences of the cap paper \cite{Cho26b} may be combined with \cref{thm:main}.
+Fix a target $\varepsilon^*\in(0,1)$. The following consequences of the cap paper \cite{Cho26b} may be combined with \cref{thm:main}.
 \begin{enumerate}
 \item \textup{(Self-contained half-Johnson safe edge.)} Let $C=\RS[\F,D,k]$, let $r\ge0$, and put
 \[
@@ -116,7 +117,21 @@ then $\delta^*_C(\varepsilon^*)\ge r/n$.  Asymptotically this gives an import-fr
         \frac{r_{\rm hJ}}n\right\},
 \]
 where $r_{\rm hJ}$ is the largest integer satisfying the displayed half-Johnson certificate.
-\item \textup{(Finite staircase certificates.)} A row certificate consists of an unsafe prefix/rational-floor handle and a safe handle \textup(deep, half-Johnson, or the single imported half-distance CA theorem\textup).  Once its integer inequalities are checked, it proves a concrete interval
+\item \textup{(Finite staircase certificates.)} For a fixed finite-slope line field $F_{\rm line}$, write $q_{\rm line}:=|F_{\rm line}|$, and let $B_{\rm mca}(a)$ be the maximum number of MCA-bad line parameters with an agreement witness of size at least $a$.  Then, at the closed integer radius $\delta=1-a/n$,
+\[
+        \emca(C,1-a/n)=\frac{B_{\rm mca}(a)}{q_{\rm line}} .
+\]
+Thus determining $\delta^*_C(\varepsilon^*)$ is an integer-staircase problem: find the first agreement $a$ for which
+\[
+        B_{\rm mca}(a)\le \varepsilon^*q_{\rm line}.
+\]
+A one-step certificate
+\[
+        B_{\rm mca}(a_0)>\varepsilon^*q_{\rm line},
+        \qquad
+        B_{\rm mca}(a_0+1)\le \varepsilon^*q_{\rm line}
+\]
+pins the threshold to the adjacent closed-ball endpoint $\delta=1-a_0/n$ in the usual supremum convention. More generally, a row certificate consists of an unsafe prefix/rational-floor handle and a safe handle \textup{(deep, half-Johnson, or the single imported half-distance CA theorem)}.  Once its integer inequalities are checked, it proves a concrete interval
 \[
         \frac{r_{\rm safe}}n
         \le
@@ -124,28 +139,28 @@ where $r_{\rm hJ}$ is the largest integer satisfying the displayed half-Johnson 
         \le
         1-\frac{a_{\rm unsafe}}n .
 \]
-Adjacent safe/unsafe certificates determine the integer staircase exactly.  In particular, for the KoalaBear sextic row at target $2^{-128}$,
+If the unsafe and safe certificates occur at consecutive agreements, they determine the threshold to one integer step.  In particular, for the KoalaBear sextic row at target $2^{-128}$,
 \[
 \begin{array}{ll}
-        \delta^*_C\in
+        \delta^*_C(2^{-128})\in
         \left[\frac{349525}{2^{21}},\,\frac{15331}{32768}\right],
         &\text{self-contained,}\\[2mm]
-        \delta^*_C\in
+        \delta^*_C(2^{-128})\in
         \left[\frac14,\,\frac{15331}{32768}\right],
         &\text{with the imported half-distance theorem.}
 \end{array}
 \]
-For the Mersenne-$31$ circle line-round row at target $2^{-100}$, the corresponding intervals are
+The optimized unsafe handle behind the KoalaBear upper edge is
 \[
-\begin{array}{ll}
-        \delta^*_C\in
-        \left[\frac{349525}{2^{21}},\,\frac{30663}{65536}\right],
-        &\text{self-contained,}\\[2mm]
-        \delta^*_C\in
-        \left[\frac14,\,\frac{30663}{65536}\right],
-        &\text{with the import.}
-\end{array}
+        (c,m,w,\Delta)=(16,69748,4211,67392),
+        \qquad
+        1-\frac{mc}{n}
+        =
+        1-\frac{16\cdot69748}{2^{21}}
+        =
+        \frac{15331}{32768}.
 \]
+Here $\Delta$ is the checked surplus in the cap-paper certificate.
 The same certificate grammar applies to map-smooth, circle, and genus-one/rational-smooth rows after the transports proved in \cite{Cho26b}.
 \item \textup{(Failure profile.)} Let $T=\frac1k(1-\frac nq)$ and suppose a list floor gives $L\ge1+\kappa qT$ at an integer-admissible radius.  Then
 \[
@@ -156,8 +171,22 @@ and hence MCA failure follows on the same monotone interval.  This does not move
 \end{theorem}
 
 \begin{proof}[Proof sketch]
-Clause \textup{(1)} is the elementary half-Johnson CA theorem of \cite{Cho26b}: two bad slopes recover a pair-list at agreement $n-2r$, the pair-interleaved Johnson bound gives $L_2(r)$, and the pincer from CA to MCA transfers the result below half the distance. Clause \textup{(2)} is the finite scanner/certificate closure of \cite{Cho26b}: unsafe handles are prefix or rational floors composed with the deep-point conversion, while safe handles are the deep, half-Johnson, or imported half-distance certificates. The displayed intervals are the exact integer certificates printed there. Clause \textup{(3)} is the optimized form of the same deep-point conversion: rearranging its dichotomy with $\eta=\eca/T$ gives the factor $\kappa/(\kappa+1)$.
+Clause \textup{(1)} is the elementary half-Johnson CA theorem of \cite{Cho26b}: two bad slopes recover a pair-list at agreement $n-2r$, the pair-interleaved Johnson bound gives $L_2(r)$, and the pincer from CA to MCA transfers the result below half the distance. Clause \textup{(2)} is the finite scanner/certificate closure of \cite{Cho26b}: the function $B_{\rm mca}(a)$ is exactly the retained bad-slope numerator at agreement $a$, unsafe handles are prefix or rational floors composed with the deep-point conversion, and safe handles are the deep, half-Johnson, or imported half-distance certificates. The KoalaBear interval and handle are the exact integer certificates printed there. Clause \textup{(3)} is the optimized form of the same deep-point conversion: rearranging its dichotomy with $\eta=\eca/T$ gives the factor $\kappa/(\kappa+1)$.
 \end{proof}
+
+\begin{remark}[a second row-certificate example]\label{rem:circle-certificate}
+For the Mersenne-$31$ circle line-round row at target $2^{-100}$, \cite{Cho26b} gives the parallel intervals
+\[
+\begin{array}{ll}
+        \delta^*_C\in
+        \left[\frac{349525}{2^{21}},\,\frac{30663}{65536}\right],
+        &\text{self-contained,}\\[2mm]
+        \delta^*_C\in
+        \left[\frac14,\,\frac{30663}{65536}\right],
+        &\text{with the import.}
+\end{array}
+\]
+\end{remark}
 
 The present paper is therefore the minimal self-contained core plus the residual reductions needed to state the current picture; \cref{thm:cap-paper-package} records the compact row-determination upgrades that are better left as citations to the cap paper.
 
@@ -679,6 +708,14 @@ In the companion framework \cite{Cho26b}, periodic witnesses are counted by
 quotient and extension ledgers; what remains is the aperiodic Hankel/residue-line
 packing problem.
 \end{problem}
+
+For deployed subfield rows the residual search must also separate base-valued
+and genuinely extension-valued line witnesses.  In the KoalaBear sextic row,
+$D\subseteq\B$ but the line field is the ambient extension $\F/\B$; the
+confinement lemma of \cite{Cho26b} shows that $\B$-valued line words contribute
+bad-slope density at most $|\B|/|\F|<2^{-154}$, far below the target
+$2^{-128}$.  Thus any target-level deployed obstruction in that row must use
+genuinely $\F$-valued line data.
 
 Thus the current complete picture is this.  Small fields are degenerate.  Large
 fields are safe to one third of the distance by a self-contained theorem, often
