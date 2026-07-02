@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 defect-threshold profile
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md`;
+  `experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `A=386` moving-slope packet now converts the
+  strongest over-budget survival profiles into exact closure-by-defect
+  thresholds.
+- **How it is useful:** The line `e_G=72` case closes unless all six finite
+  classes have a base root and at least five have two.  The conic `e_G=69`
+  case closes unless at least `14` of `15` pair secants occur before external
+  excess, forcing at least `16` secant triangles.
+- **What to do next:** Try to prove that these extremal base/secant patterns
+  are impossible, paid, or force duplicate slopes; otherwise search for a
+  minimal witness.
+
 ### 2026-07-02 - A386 over-budget survival profile
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

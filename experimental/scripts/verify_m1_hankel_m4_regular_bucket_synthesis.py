@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v11",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v12",
 }
 
 
@@ -396,6 +396,22 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         == "nontrivial secant graph",
         "conic e=71 secant-pressure label mismatch",
     )
+    line_e72 = summary["line_e72_defect_thresholds"]
+    require(line_e72["required_total_base_root_incidences"] == 11, "line e=72 base count")
+    require(line_e72["minimum_two_base_root_classes"] == 5, "line e=72 two-root classes")
+    require(line_e72["maximum_zero_base_root_classes"] == 0, "line e=72 zero-root classes")
+    require(
+        line_e72["closes_if_total_base_root_incidences_at_most"] == 10,
+        "line e=72 base-defect closure threshold",
+    )
+    conic_e69 = summary["conic_e69_defect_thresholds"]
+    require(conic_e69["required_secant_edges_before_external_excess"] == 14, "conic e=69 edges")
+    require(conic_e69["maximum_missing_secants_before_external_excess"] == 1, "conic e=69 missing")
+    require(conic_e69["minimum_possible_secant_triangles"] == 16, "conic e=69 triangles")
+    require(
+        conic_e69["closes_if_secant_edges_at_most"] == 13,
+        "conic e=69 edge-defect closure threshold",
+    )
     nonclaims = set(data["nonclaims"])
     require(
         "does not claim the punctured tangent numerator at the residual threshold is within the original row budget"
@@ -506,6 +522,7 @@ def build_certificate() -> dict[str, Any]:
                 "within those ranges, the one-over-budget subranges are line e_G=72..80 and 120, conic e_G=69..76 and 120; the current worst projective bounds are 18 and 26",
                 "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the e_G=120 cases must instead saturate the punctured projective tangent bound",
                 "a genuine over-budget one-over witness must also have six distinct finite slopes and an unpaid endpoint; the strongest remaining pressure is line e_G=72 base splitting and conic e_G=69 almost-complete secants",
+                "line e_G=72 closes unless all six finite classes have a base root and at least five have two; conic e_G=69 closes unless at least 14 of 15 pair secants occur, forcing at least 16 secant triangles",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",

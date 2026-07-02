@@ -312,6 +312,12 @@ near-complete base splitting among the six finite classes, while conic core
 `|E|=69` needs an almost complete external-secant graph among the six conic
 points.
 
+The exact defect thresholds are now part of the packet.  The line `|E|=72`
+case closes unless all six finite classes have a base root and at least five
+have two.  The conic `|E|=69` case closes unless at least `14` of the `15`
+pair secants occur before external excess, which forces at least `16` secant
+triangles.
+
 Replay:
 
 ```sh

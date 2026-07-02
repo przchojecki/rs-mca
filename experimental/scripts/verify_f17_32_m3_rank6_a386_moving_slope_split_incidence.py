@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import itertools
 from hashlib import sha256
 import json
 from pathlib import Path
@@ -18,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v11"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v12"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -538,6 +539,104 @@ def tangent_tail_over_budget_survival_row(
     }
 
 
+def line_base_defect_threshold_row(survival_row: dict[str, Any]) -> dict[str, Any]:
+    """Exact base-root distribution thresholds for six surviving line classes."""
+    required_total = survival_row["total_base_roots_across_six_classes_at_least"]
+    distributions = [
+        tuple(counts)
+        for counts in itertools.product(range(3), repeat=FINITE_BUDGET)
+        if sum(counts) >= required_total
+    ]
+    require(distributions, "line base-root distributions should be feasible")
+    min_two_root_classes = min(sum(1 for value in counts if value == 2) for counts in distributions)
+    max_zero_root_classes = max(sum(1 for value in counts if value == 0) for counts in distributions)
+    return {
+        "component_type": "line",
+        "forced_external_core_size": survival_row["forced_external_core_size"],
+        "six_finite_classes": FINITE_BUDGET,
+        "required_total_base_root_incidences": required_total,
+        "minimum_two_base_root_classes": min_two_root_classes,
+        "maximum_zero_base_root_classes": max_zero_root_classes,
+        "closes_if_total_base_root_incidences_at_most": (
+            required_total - 1 if required_total > 0 else None
+        ),
+        "closes_if_two_base_root_classes_at_most": (
+            min_two_root_classes - 1 if min_two_root_classes > 0 else None
+        ),
+        "closes_if_zero_base_root_classes_at_least": (
+            max_zero_root_classes + 1
+            if max_zero_root_classes < FINITE_BUDGET
+            else None
+        ),
+    }
+
+
+def graph_extremal_stats(vertex_count: int, required_edges: int) -> dict[str, Any]:
+    """Brute-force tiny graph extremal facts for required secant edges."""
+    vertices = range(vertex_count)
+    all_edges = list(itertools.combinations(vertices, 2))
+    best_min_degree: int | None = None
+    best_min_triangles: int | None = None
+    for mask in range(1 << len(all_edges)):
+        edge_count = mask.bit_count()
+        if edge_count < required_edges:
+            continue
+        degrees = [0] * vertex_count
+        edge_set = set()
+        for index, edge in enumerate(all_edges):
+            if mask & (1 << index):
+                a, b = edge
+                degrees[a] += 1
+                degrees[b] += 1
+                edge_set.add(edge)
+        triangle_count = 0
+        for a, b, c in itertools.combinations(vertices, 3):
+            if (
+                tuple(sorted((a, b))) in edge_set
+                and tuple(sorted((a, c))) in edge_set
+                and tuple(sorted((b, c))) in edge_set
+            ):
+                triangle_count += 1
+        min_degree = min(degrees)
+        best_min_degree = min_degree if best_min_degree is None else min(best_min_degree, min_degree)
+        best_min_triangles = (
+            triangle_count
+            if best_min_triangles is None
+            else min(best_min_triangles, triangle_count)
+        )
+    require(best_min_degree is not None, "graph extremal search should have feasible graphs")
+    require(best_min_triangles is not None, "graph extremal search should have feasible graphs")
+    return {
+        "vertex_count": vertex_count,
+        "possible_edges": len(all_edges),
+        "required_edges": required_edges,
+        "maximum_missing_edges": len(all_edges) - required_edges,
+        "minimum_possible_min_degree": best_min_degree,
+        "minimum_possible_triangles": best_min_triangles,
+    }
+
+
+def conic_secant_defect_threshold_row(survival_row: dict[str, Any]) -> dict[str, Any]:
+    """Exact six-point graph thresholds for conic secant-overlap survival."""
+    required_edges = survival_row["secant_graph_edges_required_before_external_excess_at_least"]
+    stats = graph_extremal_stats(FINITE_BUDGET, required_edges)
+    return {
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": survival_row["forced_external_core_size"],
+        "six_finite_classes": FINITE_BUDGET,
+        "required_secant_edges_before_external_excess": required_edges,
+        "maximum_missing_secants_before_external_excess": stats["maximum_missing_edges"],
+        "minimum_possible_secant_graph_min_degree": stats["minimum_possible_min_degree"],
+        "minimum_possible_secant_triangles": stats["minimum_possible_triangles"],
+        "closes_if_secant_edges_at_most": required_edges - 1 if required_edges > 0 else None,
+        "closes_if_secant_triangles_at_most": (
+            stats["minimum_possible_triangles"] - 1
+            if stats["minimum_possible_triangles"] > 0
+            else None
+        ),
+    }
+
+
 def quotient_residual_row(
     component_type: str,
     forced_external_core_threshold: int,
@@ -923,6 +1022,12 @@ def build_certificate() -> dict[str, Any]:
         tangent_tail_over_budget_survival_row(component_type, tangent_tail_saturation_rows[0])
         for component_type in ["line", "irreducible_conic"]
     ]
+    line_base_defect_rows = [
+        line_base_defect_threshold_row(row) for row in line_survival_rows
+    ]
+    conic_secant_defect_rows = [
+        conic_secant_defect_threshold_row(row) for row in conic_survival_rows
+    ]
     require(line_residual_core_threshold == 72, "line residual threshold mismatch")
     require(conic_residual_core_threshold == 69, "conic residual threshold mismatch")
     require(
@@ -1085,6 +1190,46 @@ def build_certificate() -> dict[str, Any]:
         conic_survival_rows[-1]["secant_pressure_label"]
         == "pair-overlap pressure not forced before external excess",
         "conic e=76 secant pressure changed",
+    )
+    require(
+        line_base_defect_rows[0]["required_total_base_root_incidences"] == 11,
+        "line e=72 required base-root count changed",
+    )
+    require(
+        line_base_defect_rows[0]["minimum_two_base_root_classes"] == 5,
+        "line e=72 two-base-root threshold changed",
+    )
+    require(
+        line_base_defect_rows[0]["maximum_zero_base_root_classes"] == 0,
+        "line e=72 zero-base-root threshold changed",
+    )
+    require(
+        line_base_defect_rows[1]["required_total_base_root_incidences"] == 6,
+        "line e=73 required base-root count changed",
+    )
+    require(
+        line_base_defect_rows[2]["required_total_base_root_incidences"] == 1,
+        "line e=74 required base-root count changed",
+    )
+    require(
+        conic_secant_defect_rows[0]["required_secant_edges_before_external_excess"] == 14,
+        "conic e=69 required secants changed",
+    )
+    require(
+        conic_secant_defect_rows[0]["maximum_missing_secants_before_external_excess"] == 1,
+        "conic e=69 missing secants changed",
+    )
+    require(
+        conic_secant_defect_rows[0]["minimum_possible_secant_triangles"] == 16,
+        "conic e=69 triangle threshold changed",
+    )
+    require(
+        conic_secant_defect_rows[1]["required_secant_edges_before_external_excess"] == 9,
+        "conic e=70 required secants changed",
+    )
+    require(
+        conic_secant_defect_rows[2]["required_secant_edges_before_external_excess"] == 4,
+        "conic e=71 required secants changed",
     )
 
     return {
@@ -1286,6 +1431,14 @@ def build_certificate() -> dict[str, Any]:
                 "pressure respectively.  Conic cores e_G=69,70,71 force almost "
                 "complete, dense, and nontrivial external-secants respectively."
             ),
+            "defect_threshold_profile": (
+                "The survival pressures are converted into exact closure-by-defect "
+                "thresholds.  At line e_G=72, six finite classes require at least "
+                "eleven base-root incidences, so all six classes have a base root "
+                "and at least five have two.  At conic e_G=69, six finite classes "
+                "require at least fourteen of the fifteen pair secants before "
+                "external excess, hence at least sixteen secant triangles."
+            ),
         },
         "budget_formula": {
             "locator_degree_j": j_value,
@@ -1359,6 +1512,10 @@ def build_certificate() -> dict[str, Any]:
             "irreducible_conic_pair_overlap_survival_rows": conic_survival_rows,
             "punctured_tangent_tail_survival_rows": tangent_tail_survival_rows,
         },
+        "defect_threshold_profile": {
+            "line_base_defect_threshold_rows": line_base_defect_rows,
+            "irreducible_conic_secant_defect_threshold_rows": conic_secant_defect_rows,
+        },
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -1412,6 +1569,7 @@ def build_certificate() -> dict[str, Any]:
                 str(row["forced_external_core_size"]): row["base_pressure_label"]
                 for row in line_survival_rows
             },
+            "line_e72_defect_thresholds": line_base_defect_rows[0],
             "line_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in line_intermediate_profile_rows
             ),
@@ -1455,6 +1613,7 @@ def build_certificate() -> dict[str, Any]:
                 str(row["forced_external_core_size"]): row["secant_pressure_label"]
                 for row in conic_survival_rows
             },
+            "conic_e69_defect_thresholds": conic_secant_defect_rows[0],
             "conic_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows
             ),
@@ -1491,6 +1650,7 @@ def build_certificate() -> dict[str, Any]:
             "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds",
             "one-over finite-incidence saturation conditions are computed for the endpoint-only subranges",
             "over-budget survival conditions require bound saturation, distinct finite slopes, and an unpaid endpoint",
+            "line base-root and conic secant-graph defect thresholds are computed by six-class exact enumeration",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",

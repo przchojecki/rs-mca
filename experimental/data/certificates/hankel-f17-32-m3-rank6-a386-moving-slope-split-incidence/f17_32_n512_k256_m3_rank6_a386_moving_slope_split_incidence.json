@@ -182,7 +182,8 @@
     "very-high-core tail e>=121 is projective-safe by the punctured projective tangent staircase",
     "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds",
     "one-over finite-incidence saturation conditions are computed for the endpoint-only subranges",
-    "over-budget survival conditions require bound saturation, distinct finite slopes, and an unpaid endpoint"
+    "over-budget survival conditions require bound saturation, distinct finite slopes, and an unpaid endpoint",
+    "line base-root and conic secant-graph defect thresholds are computed by six-class exact enumeration"
   ],
   "conic_pair_overlap_sample_rows": [
     {
@@ -241,6 +242,199 @@
       "six_Q_classes_excluded": false
     }
   ],
+  "defect_threshold_profile": {
+    "irreducible_conic_secant_defect_threshold_rows": [
+      {
+        "closes_if_secant_edges_at_most": 13,
+        "closes_if_secant_triangles_at_most": 15,
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": 69,
+        "maximum_missing_secants_before_external_excess": 1,
+        "minimum_possible_secant_graph_min_degree": 4,
+        "minimum_possible_secant_triangles": 16,
+        "required_secant_edges_before_external_excess": 14,
+        "six_finite_classes": 6
+      },
+      {
+        "closes_if_secant_edges_at_most": 8,
+        "closes_if_secant_triangles_at_most": null,
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": 70,
+        "maximum_missing_secants_before_external_excess": 6,
+        "minimum_possible_secant_graph_min_degree": 0,
+        "minimum_possible_secant_triangles": 0,
+        "required_secant_edges_before_external_excess": 9,
+        "six_finite_classes": 6
+      },
+      {
+        "closes_if_secant_edges_at_most": 3,
+        "closes_if_secant_triangles_at_most": null,
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": 71,
+        "maximum_missing_secants_before_external_excess": 11,
+        "minimum_possible_secant_graph_min_degree": 0,
+        "minimum_possible_secant_triangles": 0,
+        "required_secant_edges_before_external_excess": 4,
+        "six_finite_classes": 6
+      },
+      {
+        "closes_if_secant_edges_at_most": null,
+        "closes_if_secant_triangles_at_most": null,
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": 72,
+        "maximum_missing_secants_before_external_excess": 15,
+        "minimum_possible_secant_graph_min_degree": 0,
+        "minimum_possible_secant_triangles": 0,
+        "required_secant_edges_before_external_excess": 0,
+        "six_finite_classes": 6
+      },
+      {
+        "closes_if_secant_edges_at_most": null,
+        "closes_if_secant_triangles_at_most": null,
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": 73,
+        "maximum_missing_secants_before_external_excess": 15,
+        "minimum_possible_secant_graph_min_degree": 0,
+        "minimum_possible_secant_triangles": 0,
+        "required_secant_edges_before_external_excess": 0,
+        "six_finite_classes": 6
+      },
+      {
+        "closes_if_secant_edges_at_most": null,
+        "closes_if_secant_triangles_at_most": null,
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": 74,
+        "maximum_missing_secants_before_external_excess": 15,
+        "minimum_possible_secant_graph_min_degree": 0,
+        "minimum_possible_secant_triangles": 0,
+        "required_secant_edges_before_external_excess": 0,
+        "six_finite_classes": 6
+      },
+      {
+        "closes_if_secant_edges_at_most": null,
+        "closes_if_secant_triangles_at_most": null,
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": 75,
+        "maximum_missing_secants_before_external_excess": 15,
+        "minimum_possible_secant_graph_min_degree": 0,
+        "minimum_possible_secant_triangles": 0,
+        "required_secant_edges_before_external_excess": 0,
+        "six_finite_classes": 6
+      },
+      {
+        "closes_if_secant_edges_at_most": null,
+        "closes_if_secant_triangles_at_most": null,
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": 76,
+        "maximum_missing_secants_before_external_excess": 15,
+        "minimum_possible_secant_graph_min_degree": 0,
+        "minimum_possible_secant_triangles": 0,
+        "required_secant_edges_before_external_excess": 0,
+        "six_finite_classes": 6
+      }
+    ],
+    "line_base_defect_threshold_rows": [
+      {
+        "closes_if_total_base_root_incidences_at_most": 10,
+        "closes_if_two_base_root_classes_at_most": 4,
+        "closes_if_zero_base_root_classes_at_least": 1,
+        "component_type": "line",
+        "forced_external_core_size": 72,
+        "maximum_zero_base_root_classes": 0,
+        "minimum_two_base_root_classes": 5,
+        "required_total_base_root_incidences": 11,
+        "six_finite_classes": 6
+      },
+      {
+        "closes_if_total_base_root_incidences_at_most": 5,
+        "closes_if_two_base_root_classes_at_most": null,
+        "closes_if_zero_base_root_classes_at_least": 4,
+        "component_type": "line",
+        "forced_external_core_size": 73,
+        "maximum_zero_base_root_classes": 3,
+        "minimum_two_base_root_classes": 0,
+        "required_total_base_root_incidences": 6,
+        "six_finite_classes": 6
+      },
+      {
+        "closes_if_total_base_root_incidences_at_most": 0,
+        "closes_if_two_base_root_classes_at_most": null,
+        "closes_if_zero_base_root_classes_at_least": 6,
+        "component_type": "line",
+        "forced_external_core_size": 74,
+        "maximum_zero_base_root_classes": 5,
+        "minimum_two_base_root_classes": 0,
+        "required_total_base_root_incidences": 1,
+        "six_finite_classes": 6
+      },
+      {
+        "closes_if_total_base_root_incidences_at_most": null,
+        "closes_if_two_base_root_classes_at_most": null,
+        "closes_if_zero_base_root_classes_at_least": null,
+        "component_type": "line",
+        "forced_external_core_size": 75,
+        "maximum_zero_base_root_classes": 6,
+        "minimum_two_base_root_classes": 0,
+        "required_total_base_root_incidences": 0,
+        "six_finite_classes": 6
+      },
+      {
+        "closes_if_total_base_root_incidences_at_most": null,
+        "closes_if_two_base_root_classes_at_most": null,
+        "closes_if_zero_base_root_classes_at_least": null,
+        "component_type": "line",
+        "forced_external_core_size": 76,
+        "maximum_zero_base_root_classes": 6,
+        "minimum_two_base_root_classes": 0,
+        "required_total_base_root_incidences": 0,
+        "six_finite_classes": 6
+      },
+      {
+        "closes_if_total_base_root_incidences_at_most": null,
+        "closes_if_two_base_root_classes_at_most": null,
+        "closes_if_zero_base_root_classes_at_least": null,
+        "component_type": "line",
+        "forced_external_core_size": 77,
+        "maximum_zero_base_root_classes": 6,
+        "minimum_two_base_root_classes": 0,
+        "required_total_base_root_incidences": 0,
+        "six_finite_classes": 6
+      },
+      {
+        "closes_if_total_base_root_incidences_at_most": null,
+        "closes_if_two_base_root_classes_at_most": null,
+        "closes_if_zero_base_root_classes_at_least": null,
+        "component_type": "line",
+        "forced_external_core_size": 78,
+        "maximum_zero_base_root_classes": 6,
+        "minimum_two_base_root_classes": 0,
+        "required_total_base_root_incidences": 0,
+        "six_finite_classes": 6
+      },
+      {
+        "closes_if_total_base_root_incidences_at_most": null,
+        "closes_if_two_base_root_classes_at_most": null,
+        "closes_if_zero_base_root_classes_at_least": null,
+        "component_type": "line",
+        "forced_external_core_size": 79,
+        "maximum_zero_base_root_classes": 6,
+        "minimum_two_base_root_classes": 0,
+        "required_total_base_root_incidences": 0,
+        "six_finite_classes": 6
+      },
+      {
+        "closes_if_total_base_root_incidences_at_most": null,
+        "closes_if_two_base_root_classes_at_most": null,
+        "closes_if_zero_base_root_classes_at_least": null,
+        "component_type": "line",
+        "forced_external_core_size": 80,
+        "maximum_zero_base_root_classes": 6,
+        "minimum_two_base_root_classes": 0,
+        "required_total_base_root_incidences": 0,
+        "six_finite_classes": 6
+      }
+    ]
+  },
   "high_core_quotient_residual_rows": [
     {
       "component_type": "line",
@@ -2890,7 +3084,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v11",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v12",
   "source_artifacts": {
     "a386_global_component_slope_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json",
@@ -2926,6 +3120,17 @@
     "agreement": 386,
     "base_root_cap_per_Q": 2,
     "boundary_defect_h": 3,
+    "conic_e69_defect_thresholds": {
+      "closes_if_secant_edges_at_most": 13,
+      "closes_if_secant_triangles_at_most": 15,
+      "component_type": "irreducible_conic",
+      "forced_external_core_size": 69,
+      "maximum_missing_secants_before_external_excess": 1,
+      "minimum_possible_secant_graph_min_degree": 4,
+      "minimum_possible_secant_triangles": 16,
+      "required_secant_edges_before_external_excess": 14,
+      "six_finite_classes": 6
+    },
     "conic_finite_safe_for_external_core_at_most": 76,
     "conic_high_core_forced_core_is_global_common_core": true,
     "conic_intermediate_max_current_projective_upper_bound": 26,
@@ -2966,6 +3171,17 @@
       14
     ],
     "external_root_count": 385,
+    "line_e72_defect_thresholds": {
+      "closes_if_total_base_root_incidences_at_most": 10,
+      "closes_if_two_base_root_classes_at_most": 4,
+      "closes_if_zero_base_root_classes_at_least": 1,
+      "component_type": "line",
+      "forced_external_core_size": 72,
+      "maximum_zero_base_root_classes": 0,
+      "minimum_two_base_root_classes": 5,
+      "required_total_base_root_incidences": 11,
+      "six_finite_classes": 6
+    },
     "line_finite_safe_for_external_core_at_most": 80,
     "line_high_core_forced_core_is_dual_evaluation_fiber": true,
     "line_incidence_one_over_external_core_range": [
@@ -3023,6 +3239,7 @@
     "conic_projective_safe_threshold": "For irreducible conics, e_G<=68 gives at most five finite Q-classes by pair-overlap packing.  Adding the endpoint-uniform contribution gives projective total at most 6.",
     "conic_remaining_residual": "Irreducible conics with forced external split-root core e_G>=69 remain residual for a sharper split, paid, or exact-root-table argument.",
     "conic_status": "For an irreducible conic c=2, the base-sharpened budget gives six finite Q-classes at e_G=0 and finite safety through e_G<=19, but the projective endpoint still makes total seven at best.  The conic pair-overlap packing lemma below supplies the needed extra saving through e_G<=68.",
+    "defect_threshold_profile": "The survival pressures are converted into exact closure-by-defect thresholds.  At line e_G=72, six finite classes require at least eleven base-root incidences, so all six classes have a base root and at least five have two.  At conic e_G=69, six finite classes require at least fourteen of the fifteen pair secants before external excess, hence at least sixteen secant triangles.",
     "high_core_forced_core_structure": "The forced-core condition is a linear condition in the Q-plane.  For a line component P(U), a forced external root is exactly an external evaluation functional that vanishes on U, so C_E is a two-polynomial gcd on the line's underlying vector subspace.  For an irreducible conic, containment in a root hyperplane can only occur when the evaluation functional is zero on the whole Q-plane; hence C_E is a global common divisor of all three basis kernel polynomials.",
     "high_core_quotient_normal_form": "For any remaining high-core line or conic component, let E be the forced external split-root core and C_E(X)=prod_{s in E}(X-s).  Every Q-class on the component has L_Q divisible by C_E.  After factoring, L_Q=C_E R_Q with deg R_Q<=126-|E|, and the split-locator gate is exactly R_Q | (X^512-1)/C_E plus the remaining noncontainment filters.  Thus residual line components reduce to quotient degree <=54, while residual conic components reduce to quotient degree <=57.",
     "incidence_budget": "For r_G<j, each valid degree-j split locator on G needs at least j-r_G additional intersections with non-forced root hyperplanes.  Each non-forced E_s cuts G in length at most c.  Hence the number of valid Q-classes, and therefore the number of finite slopes represented by this component, is at most floor(c*(512-r_G)/(126-r_G)).",

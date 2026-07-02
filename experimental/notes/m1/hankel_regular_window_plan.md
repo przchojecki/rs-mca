@@ -333,7 +333,10 @@ slack `1..41`, and conic six-class saturation needs `0..14` forced
 pair-overlap events before external excess.  A genuine over-budget witness must
 also have six distinct finite slopes and an unpaid endpoint; the strongest
 remaining pressure cases are line `e_G=72` near-complete base splitting and
-conic `e_G=69` almost-complete secants.
+conic `e_G=69` almost-complete secants.  The line `e_G=72` case closes unless
+all six classes have a base root and at least five have two; the conic
+`e_G=69` case closes unless at least `14` of `15` pair secants occur, forcing
+at least `16` secant triangles.
 
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
