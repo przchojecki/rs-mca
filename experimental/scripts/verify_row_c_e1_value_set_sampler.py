@@ -115,6 +115,90 @@ def sample_value(reps: list[int], weighted_t: list[tuple[int, int]], total: int,
     return value % p
 
 
+def sample_value_with_class(
+    reps: list[int],
+    weighted_t: list[tuple[int, int]],
+    total: int,
+    p: int,
+    rng: random.Random,
+) -> tuple[int, tuple[int, ...]]:
+    """Sample one class and return ``(e_1 mod p, signed singleton-pair key)``."""
+    t = sample_t(rng, weighted_t, total)
+    if t == 0:
+        return 0, ()
+    indices = rng.sample(range(len(reps)), t)
+    value = 0
+    signed_indices = []
+    for idx in indices:
+        x = reps[idx]
+        positive = rng.getrandbits(1)
+        if positive:
+            value += x
+            signed_indices.append(idx + 1)
+        else:
+            value -= x
+            signed_indices.append(-(idx + 1))
+    return value % p, tuple(sorted(signed_indices, key=abs))
+
+
+def class_digest(class_key: tuple[int, ...]) -> str:
+    payload = json.dumps(class_key, separators=(",", ":"))
+    return sha256_text(payload)
+
+
+def value_digest(value: int) -> str:
+    return sha256_text(str(value))
+
+
+def classify_duplicate_values(
+    duplicate_values: list[int],
+    order: int,
+    samples: int,
+    seed: int,
+    p: int,
+    limit: int = 5,
+) -> tuple[list[dict], bool]:
+    """Replay a deterministic run and classify the first repeated values."""
+    targets = set(duplicate_values[:limit])
+    if not targets:
+        return [], False
+    ell_num = RHO_NUM * order
+    ell = ell_num // RHO_DEN + 1
+    reps = antipodal_representatives(p, order)
+    weighted_t = feasible_t_values(order, ell)
+    total = sum(count for _, count in weighted_t)
+    rng = random.Random(seed + order * 1_000_003 + samples)
+    found: dict[int, list[dict]] = {value: [] for value in targets}
+    for sample_index in range(samples):
+        value, class_key = sample_value_with_class(reps, weighted_t, total, p, rng)
+        if value not in targets:
+            continue
+        occurrences = found[value]
+        if len(occurrences) < 2:
+            occurrences.append({
+                "sample_index": sample_index,
+                "t_singletons": len(class_key),
+                "class_sha256": class_digest(class_key),
+                "signed_singleton_pair_indices": list(class_key),
+            })
+        if all(len(v) >= 2 for v in found.values()):
+            break
+    witnesses = []
+    for value, occurrences in found.items():
+        if len(occurrences) < 2:
+            continue
+        first, second = occurrences[:2]
+        witnesses.append({
+            "value_sha256": value_digest(value),
+            "first_two_occurrences": occurrences[:2],
+            "same_antipodal_class": first["class_sha256"] == second["class_sha256"],
+            "distinct_class_value_collision": (
+                first["class_sha256"] != second["class_sha256"]
+            ),
+        })
+    return witnesses, len(duplicate_values) > limit
+
+
 def collision_lower_bound(samples: int, alpha: float = 0.05) -> float:
     """95% lower bound on effective support when zero collisions are observed."""
     pairs = samples * (samples - 1) / 2
@@ -193,6 +277,7 @@ def run_cell_exact_set(order: int, samples: int, seed: int, p: int) -> dict:
     rng = random.Random(seed + order * 1_000_003 + samples)
     seen: set[int] = set()
     repeated_counts: Counter[int] = Counter()
+    duplicate_values = []
     duplicate_pairs = 0
     for _ in range(samples):
         value = sample_value(reps, weighted_t, total, p, rng)
@@ -200,6 +285,8 @@ def run_cell_exact_set(order: int, samples: int, seed: int, p: int) -> dict:
             previous = repeated_counts[value] + 1
             duplicate_pairs += previous
             repeated_counts[value] = previous
+            if previous == 1:
+                duplicate_values.append(value)
         else:
             seen.add(value)
 
@@ -213,6 +300,13 @@ def run_cell_exact_set(order: int, samples: int, seed: int, p: int) -> dict:
         else [1]
     )
     interpretation = collision_interpretation(duplicate_pairs, expected_full)
+    duplicate_witnesses, witnesses_truncated = classify_duplicate_values(
+        duplicate_values, order, samples, seed, p
+    )
+    distinct_class_witnesses = sum(
+        int(witness["distinct_class_value_collision"])
+        for witness in duplicate_witnesses
+    )
     return {
         "sampling_mode": "exact_set_canonical_field_values",
         "N_prime": order,
@@ -234,6 +328,21 @@ def run_cell_exact_set(order: int, samples: int, seed: int, p: int) -> dict:
         ),
         "interpretation": interpretation,
         "top_multiplicities": top_multiplicities,
+        "duplicate_value_witnesses": duplicate_witnesses,
+        "duplicate_value_witnesses_truncated": witnesses_truncated,
+        "distinct_class_value_collision_witnesses": distinct_class_witnesses,
+        "duplicate_witness_interpretation": (
+            "no duplicate values observed"
+            if not duplicate_witnesses
+            else (
+                "at least one distinct antipodal class e1 collision witnessed"
+                if distinct_class_witnesses
+                else (
+                    "witnessed duplicate values are repeated antipodal classes; "
+                    "no distinct-class e1 collision witnessed"
+                )
+            )
+        ),
     }
 
 

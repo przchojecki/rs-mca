@@ -67,6 +67,25 @@ Keep entries concise and link to the relevant files.
   explicitly requested; audit Paper D itself through theorem statements and
   certificate checks.
 
+### 2026-07-02 - E1 duplicate-witness audit
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/roadmaps/e1_row_c_value_set_sampling.md`;
+  `experimental/scripts/verify_row_c_e1_value_set_sampler.py`;
+  `experimental/data/certificates/row-c-e1-sampling/`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / EVIDENCE.
+- **What is being added:** The Row-C E1 exact-set replay now records compact
+  witnesses for repeated `e_1` values.  In the `N'=64`, `2^24` artifact, the
+  lone duplicate value is the same antipodal class sampled twice, not a
+  distinct-class modular collision.
+- **How it is useful:** This strengthens the interpretation of the E1
+  birthday-pressure run: it still shows no early heavy-collapse signal, and
+  the only duplicate observed is explained by ordinary class resampling.
+- **What to do next:** Use this witness machinery before any larger E1 run,
+  and reserve the next PR-scale evidence increment for either a true
+  `2^25`--`2^26` run or the collision-norm criterion.
+
 ### 2026-07-02 - Towards-prize sparse note documentation pass
 
 - **Agent/model:** Codex.

@@ -9,7 +9,8 @@ Row-C slack-one quotient value-set sampler.
 - `row_c_e1_sampling_n64_2pow24_exact.json` records the larger exact
   `N'=64`, `2^24`-sample follow-up.  It observes one duplicate pair, consistent
   with the full-value-set birthday expectation rather than a heavy-collision
-  signal.
+  signal.  The duplicate-witness replay shows that duplicate is the same
+  antipodal class sampled twice, not a distinct-class `e_1` collision.
 - The generating script is
   `experimental/scripts/verify_row_c_e1_value_set_sampler.py`.
 - The companion note is

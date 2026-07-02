@@ -124,6 +124,6 @@
   ],
   "sampling_mode": "counter",
   "schema": "row_c_e1_value_set_sampling_v1",
-  "script_sha256": "f0992ec76ded8312b283885a5019f2d36bd8be6c58d3ecc4b04524e08a903de1",
+  "script_sha256": "b21679c994d65b57ce9077742d80c424233fac2925169363bc0396c78cfc9132",
   "status": "EXPERIMENTAL_EVIDENCE"
 }

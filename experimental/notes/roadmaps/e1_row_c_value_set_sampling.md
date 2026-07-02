@@ -106,12 +106,21 @@ N' = 64,   ell' = 33,   samples = 2^24.
 ```
 
 It observes one duplicate pair.  Under the injective/full-value-set birthday
-model the expected duplicate-pair count is about `0.156`, so the Poisson tail
-for observing at least one duplicate is about `0.145`.  This is therefore
-consistent with the fullness branch of the E1 interpretation table; it is not
-evidence of a heavy-collision structure.  The run is still smaller than the
-roadmap's suggested `2^25`--`2^26` decisive run, so the conservative conclusion
-is only that no early heavy-collapse signal appeared.
+model the expected duplicate-pair count is about `0.152`, so the Poisson tail
+for observing at least one duplicate is about `0.141`.  The verifier now
+replays repeated values and records compact class witnesses.  In this artifact,
+the duplicate value is the **same antipodal class sampled twice**, with matching
+class digest
+
+```text
+497f13c6842c4bf08d1d97cc9fda6459aa650bf491d3c0be522d45545f6c8472.
+```
+
+Thus the `2^24` follow-up contains no witnessed distinct-class `e_1` collision.
+This is consistent with the fullness branch of the E1 interpretation table and
+is not evidence of a heavy-collision structure.  The run is still smaller than
+the roadmap's suggested `2^25`--`2^26` decisive run, so the conservative
+conclusion is only that no early heavy-collapse signal appeared.
 
 ## Reproduce
 
