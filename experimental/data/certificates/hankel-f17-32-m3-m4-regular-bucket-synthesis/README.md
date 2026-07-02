@@ -310,6 +310,20 @@ for `e_G>=122`.  Together with incidence and the conic product-collapse packet,
 all separated fixed two-core line/conic moving-slope components are
 projective-budget safe.
 
+The `A=385` fixed-core synthesis packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a385-fixed-core-synthesis/
+  f17_32_n512_k256_m3_rank6_a385_fixed_core_synthesis.json
+```
+
+composes the fixed four-core, fixed three-core, fixed three-core residual, and
+fixed two-core packet tree.  It verifies that every separated `A=385` rank-6
+branch with a fixed forced base core of size at least two is projective-budget
+safe.  The remaining A385 frontier is outside that fixed-core hypothesis:
+branches without a fixed two-point base core, moving-core/no-common-core
+behavior, overlapping support, and row-level M3 synthesis.
+
 The `A=387` separated-boundary safety packet
 
 ```text
@@ -630,6 +644,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_product_
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_closure.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-closure/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_closure.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_fixed_core_synthesis.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-fixed-core-synthesis/f17_32_n512_k256_m3_rank6_a385_fixed_core_synthesis.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

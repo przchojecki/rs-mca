@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A385 fixed-core synthesis
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a385_fixed_core_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a385-fixed-core-synthesis/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a385_fixed_core_synthesis.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A synthesis packet proving that every separated
+  `A=385` rank-6 branch with a fixed forced base core of size at least two is
+  projective-budget safe, by composing the four-core, three-core, residual
+  three-core, and two-core packet tree.
+- **How it is useful:** This turns the fixed-core chain into one auditable
+  frontier statement: any remaining separated `A=385` over-budget obstruction
+  must avoid a fixed two-point base core in the counted branch.
+- **What to do next:** Attack the no-fixed-core/moving-core frontier,
+  overlapping-support rank-6 pencils, and row-level `A=385` synthesis.
+
 ### 2026-07-02 - A385 three-core residual closure
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

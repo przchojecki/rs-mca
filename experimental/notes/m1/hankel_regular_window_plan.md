@@ -987,13 +987,19 @@ same product-collapse dichotomy, and after puncturing the forced external core
 the projective tangent tail is budget-safe for `e_G>=122`.  Combined with the
 incidence packet, all separated fixed two-core line/conic moving-slope
 components are projective-budget safe.
+The fixed-core synthesis companion composes the four-core, three-core,
+three-core residual, and two-core packet tree.  It verifies that every
+separated `A=385` rank-6 branch with a fixed forced base core of size at least
+two is projective-budget safe.  The remaining `A=385` frontier is therefore
+outside that hypothesis: no fixed two-point base core, moving-core/no-common-core
+behavior, overlapping support, and row-level synthesis.
 For `A=387`, the projective `Q`-space is a point, so the arbitrary-weight
 separated branch is already projective-safe with total at most `2`.
 For `A=386`, a no-common-component pair of direction conics gives projective
 safety by Bezout, and the separated-boundary closure companion now closes the
 common-component tree for line/conic global components.  The remaining boundary
-work here is `A=385`, overlapping support, and non-separated row-level
-stratification.
+work here is the `A=385` no-fixed-core/moving-core frontier, overlapping
+support, and non-separated row-level stratification.
 
 Replay:
 
@@ -1054,6 +1060,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_product_
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_closure.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-closure/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_closure.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_fixed_core_synthesis.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-fixed-core-synthesis/f17_32_n512_k256_m3_rank6_a385_fixed_core_synthesis.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

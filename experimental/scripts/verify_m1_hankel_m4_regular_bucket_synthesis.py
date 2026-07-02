@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v45"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v46"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -151,6 +151,10 @@ A385_TWO_CORE_HIGH_CORE_CLOSURE_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-closure/"
     "f17_32_n512_k256_m3_rank6_a385_two_core_high_core_closure.json"
 )
+A385_FIXED_CORE_SYNTHESIS_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-fixed-core-synthesis/"
+    "f17_32_n512_k256_m3_rank6_a385_fixed_core_synthesis.json"
+)
 
 
 EXPECTED_SCHEMAS = {
@@ -200,6 +204,9 @@ EXPECTED_SCHEMAS = {
     ),
     A385_TWO_CORE_HIGH_CORE_CLOSURE_REF: (
         "f17-32-m3-rank6-a385-two-core-high-core-closure-v1"
+    ),
+    A385_FIXED_CORE_SYNTHESIS_REF: (
+        "f17-32-m3-rank6-a385-fixed-core-synthesis-v1"
     ),
 }
 
@@ -2604,6 +2611,75 @@ def check_a385_two_core_high_core_closure_packet(data: dict[str, Any]) -> None:
     )
 
 
+def check_a385_fixed_core_synthesis_packet(data: dict[str, Any]) -> None:
+    require(
+        data["agreement"]["A"] == 385,
+        "A385 fixed-core synthesis agreement mismatch",
+    )
+    require(
+        data["status"] == "PROVED / AUDIT",
+        "A385 fixed-core synthesis status mismatch",
+    )
+    summary = data["summary"]
+    require(
+        summary["boundary_defect_h"] == 5
+        and summary["projective_Q_search_dimension_before_core"] == 4
+        and summary["projective_budget"] == BUDGET,
+        "A385 fixed-core synthesis dimension/budget mismatch",
+    )
+    require(
+        summary["fixed_four_or_more_core_projective_safe"]
+        and summary["fixed_three_core_projective_safe"]
+        and summary["fixed_two_core_projective_safe"]
+        and summary["fixed_base_core_size_at_least_two_projective_safe"],
+        "A385 fixed-core synthesis safety flags mismatch",
+    )
+    core_sizes = {str(row["fixed_base_core_size"]): row for row in data["branch_synthesis"]}
+    require(
+        set(core_sizes) == {">=4", "3", "2"},
+        "A385 fixed-core synthesis branch partition mismatch",
+    )
+    require(
+        all(row["status"] == "projective_budget_safe" for row in core_sizes.values()),
+        "A385 fixed-core synthesis branch status mismatch",
+    )
+    require(
+        A385_BASE_CORE_REF in core_sizes[">=4"]["consumed_by"]
+        and A385_THREE_CORE_REF in core_sizes["3"]["consumed_by"]
+        and A385_THREE_CORE_RESIDUAL_REF in core_sizes["3"]["consumed_by"]
+        and A385_TWO_CORE_HIGH_CORE_CLOSURE_REF in core_sizes["2"]["consumed_by"],
+        "A385 fixed-core synthesis dependency list mismatch",
+    )
+    require(
+        data["remaining_frontier_after_this_packet"]
+        == [
+            "separated A=385 branches without a fixed two-point base core",
+            "moving-core/no-common-core A=385 branches",
+            "overlapping-support rank-6 pencils",
+            "row-level M3 synthesis across all A=385 rank-6 buckets",
+        ],
+        "A385 fixed-core synthesis frontier mismatch",
+    )
+    nonclaims = set(data["nonclaims"])
+    require(
+        "does not prove every A=385 over-budget branch has a fixed two-point base core"
+        in nonclaims,
+        "A385 fixed-core synthesis missing fixed-core nonclaim",
+    )
+    require(
+        "does not close moving-core or no-common-core A=385 branches" in nonclaims,
+        "A385 fixed-core synthesis missing moving-core nonclaim",
+    )
+    require(
+        "does not classify overlapping-support rank-6 pencils" in nonclaims,
+        "A385 fixed-core synthesis missing overlap nonclaim",
+    )
+    require(
+        "does not produce a row-level M3 safe-side bound" in nonclaims,
+        "A385 fixed-core synthesis missing row-bound nonclaim",
+    )
+
+
 def build_certificate() -> dict[str, Any]:
     field = Field(P, MODULUS)
     descriptor = load_json(ROW_DESCRIPTOR_REF)
@@ -2640,6 +2716,9 @@ def build_certificate() -> dict[str, Any]:
     )
     check_a385_two_core_high_core_closure_packet(
         dependencies[A385_TWO_CORE_HIGH_CORE_CLOSURE_REF]
+    )
+    check_a385_fixed_core_synthesis_packet(
+        dependencies[A385_FIXED_CORE_SYNTHESIS_REF]
     )
 
     domain_encodings = descriptor["domain"]["domain_encodings"]
@@ -2791,6 +2870,12 @@ def build_certificate() -> dict[str, Any]:
                 "after puncturing a forced external core E, the residual tangent radius is r'=127-|E| and the projective tangent bound is r'+1=128-|E|",
                 "the punctured tangent tail is projective-budget safe for |E|>=122, so the line high-core range e_G=71..126 and the conic high-core range e_G=68..126 are covered by incidence/product/tangent-tail accounting",
             ],
+            "a385_fixed_core_synthesis": [
+                "composing the four-core, three-core, three-core residual, and two-core packet tree closes every separated A=385 rank-6 branch with a fixed forced base core of size at least two",
+                "the fixed two-core packet tree consumes the conic-pair, component-cut, global constant-slope, slope-free, moving-slope incidence, high-core quotient, conic product-collapse, and high-core closure packets",
+                "therefore any remaining separated A=385 over-budget obstruction must avoid a fixed forced two-point base core in the counted branch",
+                "the remaining frontier is branches without a fixed two-point base core, moving-core/no-common-core behavior, overlapping support, and row-level M3 synthesis",
+            ],
             "a386_moving_slope_refinement": [
                 "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
                 "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
@@ -2902,6 +2987,7 @@ def build_certificate() -> dict[str, Any]:
             "a385_two_core_high_core_quotient_count": 1,
             "a385_two_core_conic_product_collapse_count": 1,
             "a385_two_core_high_core_closure_count": 1,
+            "a385_fixed_core_synthesis_count": 1,
             "a386_moving_slope_refinement_count": 1,
             "m3_rank_node_dichotomy_count": 1,
             "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -2935,6 +3021,7 @@ def build_certificate() -> dict[str, Any]:
             "A=385 separated rank-6 fixed two-core high-core moving-slope branches reduce to quotient pencils/families of degrees at most 56 and 59",
             "A=385 separated rank-6 fixed two-core irreducible-conic high-core branches close by product collapse except for the e_G=123 quotient tail",
             "A=385 separated rank-6 fixed two-core high-core line/conic branches are projective-budget safe after line product collapse and the punctured tangent tail",
+            "A=385 separated rank-6 branches with a fixed forced base core of size at least two are projective-budget safe",
             "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
             "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
             "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",

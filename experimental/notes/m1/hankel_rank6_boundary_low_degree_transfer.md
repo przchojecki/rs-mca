@@ -219,6 +219,20 @@ external core, the projective tangent bound is `128-e_G`, so the tail
 `e_G>=122` is projective-budget safe.  Together with incidence, this covers
 the line range `e_G>=71` and the conic range `e_G>=68`.
 
+The fixed-core synthesis companion is
+
+```text
+experimental/notes/m1/hankel_rank6_a385_fixed_core_synthesis.md
+```
+
+It composes the fixed four-core, fixed three-core, fixed three-core residual,
+and fixed two-core packet tree.  The result is that every separated `A=385`
+rank-6 branch with a fixed forced base split-root core of size at least two is
+projective-budget safe.  Thus any remaining separated `A=385` over-budget
+obstruction must avoid a fixed forced two-point base core in the counted
+branch; the remaining frontier is moving-core/no-common-core behavior,
+overlapping support, and row-level M3 synthesis.
+
 At `A=387`, this transfer already closes the separated branch for arbitrary
 nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at
 most one finite slope.  The companion note
@@ -371,6 +385,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_product_
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_closure.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-closure/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_closure.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_fixed_core_synthesis.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-fixed-core-synthesis/f17_32_n512_k256_m3_rank6_a385_fixed_core_synthesis.json
 ```
 
 Nonclaims:
