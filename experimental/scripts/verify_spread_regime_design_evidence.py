@@ -126,6 +126,20 @@ def nullspace_basis(matrix: list[list[int]], width: int, p: int = P) -> list[lis
     return basis
 
 
+def transpose(matrix: list[list[int]]) -> list[list[int]]:
+    if not matrix:
+        return []
+    return [list(column) for column in zip(*matrix)]
+
+
+def canonical_vector(values: list[int], p: int = P) -> list[int]:
+    for value in values:
+        if value % p:
+            factor = inv_mod(value, p)
+            return [(factor * entry) % p for entry in values]
+    return [entry % p for entry in values]
+
+
 def factor_int(n: int) -> list[int]:
     factors = []
     d = 2
@@ -181,6 +195,20 @@ def eval_poly(poly: list[int], x: int, p: int = P) -> int:
         value = (value + coeff * power) % p
         power = (power * x) % p
     return value
+
+
+def trim_poly(poly: list[int], p: int = P) -> list[int]:
+    out = [entry % p for entry in poly]
+    while out and out[-1] == 0:
+        out.pop()
+    return out
+
+
+def add_scaled_poly(target: list[int], poly: list[int], scale: int, p: int = P) -> None:
+    if len(target) < len(poly):
+        target.extend([0] * (len(poly) - len(target)))
+    for idx, coeff in enumerate(poly):
+        target[idx] = (target[idx] + scale * coeff) % p
 
 
 def syndrome_matrix_for_indices(
@@ -374,6 +402,62 @@ def degree_moment_inclusion_certificate(
     }
 
 
+def row_dependency_certificate(
+    domain: list[int],
+    family: list[tuple[int, ...]],
+    t: int,
+    slopes: list[int],
+    p: int = P,
+) -> dict[str, Any]:
+    matrix = stacked_alignment_matrix(domain, family, t, slopes, p)
+    rank = rank_mod_p(matrix, p)
+    left_nullspace = [
+        canonical_vector(vector, p)
+        for vector in nullspace_basis(transpose(matrix), len(matrix), p)
+    ]
+    relation_records = []
+    for relation in left_nullspace:
+        u_poly: list[int] = []
+        v_poly: list[int] = []
+        entries = []
+        row_idx = 0
+        for line_idx, roots in enumerate(family):
+            locator = locator_poly([domain[idx] for idx in roots], p)
+            for moment in range(1, t + 1):
+                coeff = relation[row_idx]
+                row_idx += 1
+                moment_poly = [0] * moment + locator
+                add_scaled_poly(u_poly, moment_poly, coeff, p)
+                add_scaled_poly(v_poly, moment_poly, coeff * slopes[line_idx], p)
+                entries.append({
+                    "line_index": line_idx,
+                    "moment": moment,
+                    "coefficient": coeff,
+                    "slope": slopes[line_idx],
+                })
+        u_poly = trim_poly(u_poly, p)
+        v_poly = trim_poly(v_poly, p)
+        relation_records.append({
+            "entries": entries,
+            "u_polynomial_coefficients": u_poly,
+            "v_polynomial_coefficients": v_poly,
+            "u_polynomial_zero": not u_poly,
+            "v_polynomial_zero": not v_poly,
+        })
+    if not all(
+        item["u_polynomial_zero"] and item["v_polynomial_zero"]
+        for item in relation_records
+    ):
+        raise AssertionError("row dependency did not produce zero polynomial identities")
+    return {
+        "row_count": len(matrix),
+        "rank": rank,
+        "left_nullity": len(left_nullspace),
+        "expected_left_nullity": len(matrix) - rank,
+        "relations": relation_records,
+    }
+
+
 def nondegeneracy_certificate(
     domain: list[int],
     family: list[tuple[int, ...]],
@@ -529,6 +613,13 @@ def explicit_ag24_exception_witnesses(domain: list[int], p: int = P) -> list[dic
             raise AssertionError(f"{witness['name']} has no below-cap rank loss")
         if not cert["union_bound_certifies_nondegenerate_solution"]:
             raise AssertionError(f"{witness['name']} is degenerate")
+        relation_certificate = row_dependency_certificate(
+            domain,
+            family,
+            t,
+            slopes,
+            p,
+        )
         rows.append({
             "name": witness["name"],
             "slope_mode": witness["slope_mode"],
@@ -542,6 +633,7 @@ def explicit_ag24_exception_witnesses(domain: list[int], p: int = P) -> list[dic
             "degree_deficiency": degree_deficiency,
             "pairwise_spread_stats": stats,
             "nondegeneracy_certificate": cert,
+            "row_dependency_certificate": relation_certificate,
             "interpretation": (
                 "bounded_nonzero_finite_slope_below_cap_exception"
             ),

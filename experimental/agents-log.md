@@ -98,7 +98,9 @@ Keep entries concise and link to the relevant files.
   exceptional-family clause.  The optional exact census shows these exceptions
   are tiny in the toy model: 195/38760 nondegenerate six-line losses and
   2/77520 seven-line losses for linear slopes, 176/38760 and 0/77520 for
-  geometric slopes.
+  geometric slopes.  The explicit witnesses also carry normalized row
+  dependency certificates whose `u`- and `v`-side polynomial sums are
+  identically zero.
 - **What to do next:** Turn the observed pattern into a lemma target:
   higher-order rank loss in spread families should either be a bounded
   AG(2,4)-type exception or force `v`-syndrome degeneracy.  Broaden the

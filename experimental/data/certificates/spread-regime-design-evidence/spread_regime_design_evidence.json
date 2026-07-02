@@ -71,6 +71,94 @@
         }
       },
       "rank": 11,
+      "row_dependency_certificate": {
+        "expected_left_nullity": 1,
+        "left_nullity": 1,
+        "rank": 11,
+        "relations": [
+          {
+            "entries": [
+              {
+                "coefficient": 1,
+                "line_index": 0,
+                "moment": 1,
+                "slope": 1
+              },
+              {
+                "coefficient": 46,
+                "line_index": 0,
+                "moment": 2,
+                "slope": 1
+              },
+              {
+                "coefficient": 96,
+                "line_index": 1,
+                "moment": 1,
+                "slope": 2
+              },
+              {
+                "coefficient": 120,
+                "line_index": 1,
+                "moment": 2,
+                "slope": 2
+              },
+              {
+                "coefficient": 145,
+                "line_index": 2,
+                "moment": 1,
+                "slope": 3
+              },
+              {
+                "coefficient": 112,
+                "line_index": 2,
+                "moment": 2,
+                "slope": 3
+              },
+              {
+                "coefficient": 156,
+                "line_index": 3,
+                "moment": 1,
+                "slope": 4
+              },
+              {
+                "coefficient": 28,
+                "line_index": 3,
+                "moment": 2,
+                "slope": 4
+              },
+              {
+                "coefficient": 137,
+                "line_index": 4,
+                "moment": 1,
+                "slope": 5
+              },
+              {
+                "coefficient": 56,
+                "line_index": 4,
+                "moment": 2,
+                "slope": 5
+              },
+              {
+                "coefficient": 169,
+                "line_index": 5,
+                "moment": 1,
+                "slope": 6
+              },
+              {
+                "coefficient": 24,
+                "line_index": 5,
+                "moment": 2,
+                "slope": 6
+              }
+            ],
+            "u_polynomial_coefficients": [],
+            "u_polynomial_zero": true,
+            "v_polynomial_coefficients": [],
+            "v_polynomial_zero": true
+          }
+        ],
+        "row_count": 12
+      },
       "slope_mode": "distinct_linear",
       "slopes": [
         1,
@@ -159,6 +247,290 @@
         }
       },
       "rank": 11,
+      "row_dependency_certificate": {
+        "expected_left_nullity": 3,
+        "left_nullity": 3,
+        "rank": 11,
+        "relations": [
+          {
+            "entries": [
+              {
+                "coefficient": 1,
+                "line_index": 0,
+                "moment": 1,
+                "slope": 1
+              },
+              {
+                "coefficient": 182,
+                "line_index": 0,
+                "moment": 2,
+                "slope": 1
+              },
+              {
+                "coefficient": 86,
+                "line_index": 1,
+                "moment": 1,
+                "slope": 2
+              },
+              {
+                "coefficient": 152,
+                "line_index": 1,
+                "moment": 2,
+                "slope": 2
+              },
+              {
+                "coefficient": 170,
+                "line_index": 2,
+                "moment": 1,
+                "slope": 3
+              },
+              {
+                "coefficient": 165,
+                "line_index": 2,
+                "moment": 2,
+                "slope": 3
+              },
+              {
+                "coefficient": 128,
+                "line_index": 3,
+                "moment": 1,
+                "slope": 4
+              },
+              {
+                "coefficient": 19,
+                "line_index": 3,
+                "moment": 2,
+                "slope": 4
+              },
+              {
+                "coefficient": 147,
+                "line_index": 4,
+                "moment": 1,
+                "slope": 5
+              },
+              {
+                "coefficient": 72,
+                "line_index": 4,
+                "moment": 2,
+                "slope": 5
+              },
+              {
+                "coefficient": 34,
+                "line_index": 5,
+                "moment": 1,
+                "slope": 6
+              },
+              {
+                "coefficient": 182,
+                "line_index": 5,
+                "moment": 2,
+                "slope": 6
+              },
+              {
+                "coefficient": 0,
+                "line_index": 6,
+                "moment": 1,
+                "slope": 7
+              },
+              {
+                "coefficient": 0,
+                "line_index": 6,
+                "moment": 2,
+                "slope": 7
+              }
+            ],
+            "u_polynomial_coefficients": [],
+            "u_polynomial_zero": true,
+            "v_polynomial_coefficients": [],
+            "v_polynomial_zero": true
+          },
+          {
+            "entries": [
+              {
+                "coefficient": 1,
+                "line_index": 0,
+                "moment": 1,
+                "slope": 1
+              },
+              {
+                "coefficient": 0,
+                "line_index": 0,
+                "moment": 2,
+                "slope": 1
+              },
+              {
+                "coefficient": 0,
+                "line_index": 1,
+                "moment": 1,
+                "slope": 2
+              },
+              {
+                "coefficient": 0,
+                "line_index": 1,
+                "moment": 2,
+                "slope": 2
+              },
+              {
+                "coefficient": 0,
+                "line_index": 2,
+                "moment": 1,
+                "slope": 3
+              },
+              {
+                "coefficient": 0,
+                "line_index": 2,
+                "moment": 2,
+                "slope": 3
+              },
+              {
+                "coefficient": 29,
+                "line_index": 3,
+                "moment": 1,
+                "slope": 4
+              },
+              {
+                "coefficient": 0,
+                "line_index": 3,
+                "moment": 2,
+                "slope": 4
+              },
+              {
+                "coefficient": 50,
+                "line_index": 4,
+                "moment": 1,
+                "slope": 5
+              },
+              {
+                "coefficient": 0,
+                "line_index": 4,
+                "moment": 2,
+                "slope": 5
+              },
+              {
+                "coefficient": 0,
+                "line_index": 5,
+                "moment": 1,
+                "slope": 6
+              },
+              {
+                "coefficient": 0,
+                "line_index": 5,
+                "moment": 2,
+                "slope": 6
+              },
+              {
+                "coefficient": 113,
+                "line_index": 6,
+                "moment": 1,
+                "slope": 7
+              },
+              {
+                "coefficient": 0,
+                "line_index": 6,
+                "moment": 2,
+                "slope": 7
+              }
+            ],
+            "u_polynomial_coefficients": [],
+            "u_polynomial_zero": true,
+            "v_polynomial_coefficients": [],
+            "v_polynomial_zero": true
+          },
+          {
+            "entries": [
+              {
+                "coefficient": 0,
+                "line_index": 0,
+                "moment": 1,
+                "slope": 1
+              },
+              {
+                "coefficient": 1,
+                "line_index": 0,
+                "moment": 2,
+                "slope": 1
+              },
+              {
+                "coefficient": 0,
+                "line_index": 1,
+                "moment": 1,
+                "slope": 2
+              },
+              {
+                "coefficient": 0,
+                "line_index": 1,
+                "moment": 2,
+                "slope": 2
+              },
+              {
+                "coefficient": 0,
+                "line_index": 2,
+                "moment": 1,
+                "slope": 3
+              },
+              {
+                "coefficient": 0,
+                "line_index": 2,
+                "moment": 2,
+                "slope": 3
+              },
+              {
+                "coefficient": 0,
+                "line_index": 3,
+                "moment": 1,
+                "slope": 4
+              },
+              {
+                "coefficient": 29,
+                "line_index": 3,
+                "moment": 2,
+                "slope": 4
+              },
+              {
+                "coefficient": 0,
+                "line_index": 4,
+                "moment": 1,
+                "slope": 5
+              },
+              {
+                "coefficient": 50,
+                "line_index": 4,
+                "moment": 2,
+                "slope": 5
+              },
+              {
+                "coefficient": 0,
+                "line_index": 5,
+                "moment": 1,
+                "slope": 6
+              },
+              {
+                "coefficient": 0,
+                "line_index": 5,
+                "moment": 2,
+                "slope": 6
+              },
+              {
+                "coefficient": 0,
+                "line_index": 6,
+                "moment": 1,
+                "slope": 7
+              },
+              {
+                "coefficient": 113,
+                "line_index": 6,
+                "moment": 2,
+                "slope": 7
+              }
+            ],
+            "u_polynomial_coefficients": [],
+            "u_polynomial_zero": true,
+            "v_polynomial_coefficients": [],
+            "v_polynomial_zero": true
+          }
+        ],
+        "row_count": 14
+      },
       "slope_mode": "distinct_linear",
       "slopes": [
         1,
@@ -2523,7 +2895,7 @@
   "overall_interpretation": "BOUNDED_EXCEPTION_WITNESS_FOUND",
   "pre_registered_question": "Can co-support designs with pairwise support intersections < k create hidden distinct-slope alignment dependencies before the ambient 2n-variable rank limit?",
   "prime": 193,
-  "script_sha256": "52aa1229030cfdc09a13cec11b05fcd342a76395333257d499191286dd83968f",
+  "script_sha256": "4fa7bde0bf62a116e9aafc602255d608f1fb48281f7fdde79359e28d9e860818",
   "seed": 2026070203,
   "status": "EXPERIMENTAL / AUDIT",
   "title": "E3 spread-regime design evidence"

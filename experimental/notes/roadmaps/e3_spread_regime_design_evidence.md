@@ -169,6 +169,21 @@ intersects in at most one point, while `j-t=2`.  The nondegeneracy certificate
 shows that the nullspace is not covered by the hyperplanes `S_T(v)=0`, so a
 finite-slope realization exists for the prescribed distinct slopes.
 
+The artifact also records exact row-dependence certificates for these
+witnesses.  For the six-line witness, the `12` stacked rows have rank `11`,
+so the left nullspace is one-dimensional.  The verifier normalizes its
+generator and checks the two polynomial identities
+
+```text
+sum_{T,m} c_{T,m} X^m ell_T(X) = 0,
+sum_{T,m} c_{T,m} z_T X^m ell_T(X) = 0.
+```
+
+For the seven-line witness, the `14` stacked rows still have rank `11`, and
+the verifier records a three-dimensional left-nullspace basis with the same
+zero-polynomial checks.  Thus the bounded exceptions are represented by
+explicit algebraic dependencies, not only by rank numerics.
+
 The optional exact census enumerates all AG(2,4) subfamilies of size `6` and
 `7` for the two tested distinct-slope schedules:
 
