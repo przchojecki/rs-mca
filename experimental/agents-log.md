@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Adjacency staircase localization
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/adjacency_staircase_localization.md`;
+  `experimental/scripts/verify_adjacency_staircase_localization.py`;
+  `experimental/data/certificates/adjacency-staircase-localization/README.md`;
+  `experimental/data/certificates/adjacency-staircase-localization/adjacency_staircase_localization.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / COMPILER-ARITHMETIC.
+- **What is being added:** A row-independent proof note and exact verifier for
+  the integer staircase, lower/upper corridor, list-radius staircase, and
+  relative-envelope steepness compiler lemmas.  The note discharges the DAG
+  nodes `crossing_localization`, `staircase_steepness`, and
+  `list_crossing_localization`, with explicit all-safe/all-unsafe edge cases.
+- **How it is useful:** Turns the final prize-facing threshold step into a
+  finite list of pointwise numerator decisions once row-specific lower and
+  upper packets exist, without confusing the MCA, list, or denominator ledgers.
+- **What to do next:** Apply the compiler to row-specific v12 packets and keep
+  `list_planted_arithmetic` separate, since it needs exact planted-count
+  formulas rather than only monotone staircase arithmetic.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.
