@@ -193,6 +193,7 @@
     "line e=72 and conic e=69 extremal finite design shapes are enumerated",
     "line e=72 and conic e=69 extremal multiplicity profiles are enumerated",
     "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
+    "line e=72 extremal quotient-pencil fibers are fully split degree-54 members",
     "conic e=69 extremal secant graphs carry Pascal collinearity obstruction counts",
     "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
     "abstract incidence-only sharpness witnesses are constructed for every finite-incidence one-over core",
@@ -10245,6 +10246,78 @@
       }
     ]
   },
+  "line_e72_quotient_pencil_obstruction_profile": [
+    {
+      "base_root_count_sequence": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "base_root_histogram": [
+        0,
+        0,
+        6
+      ],
+      "closure_if_condition_fails": true,
+      "covered_nonforced_external_root_lines": 312,
+      "every_listed_member_is_full_degree_split": true,
+      "external_partition_status": "covers_all_but_one",
+      "finite_split_fiber_count": 6,
+      "forced_external_core_size": 72,
+      "hidden_non_subgroup_roots_per_member": 0,
+      "necessary_condition": "After factoring the forced external core C_E, the residual line component is a two-dimensional quotient pencil of degree 54.  An extremal e_G=72 over-budget witness requires six distinct projective pencil parameters whose quotient polynomials are squarefree split degree-54 divisors of the remaining subgroup polynomial.",
+      "next_algebraic_test": "Show that no degree-54 quotient pencil can have these six full-split fibers with the printed external partition, or force two fibers to produce the same finite slope.",
+      "nonforced_external_class_sizes": [
+        52,
+        52,
+        52,
+        52,
+        52,
+        52
+      ],
+      "pairwise_external_root_sets_disjoint": true,
+      "quotient_degree": 54,
+      "unused_nonforced_external_root_lines": 1
+    },
+    {
+      "base_root_count_sequence": [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "base_root_histogram": [
+        0,
+        1,
+        5
+      ],
+      "closure_if_condition_fails": true,
+      "covered_nonforced_external_root_lines": 313,
+      "every_listed_member_is_full_degree_split": true,
+      "external_partition_status": "covers_all",
+      "finite_split_fiber_count": 6,
+      "forced_external_core_size": 72,
+      "hidden_non_subgroup_roots_per_member": 0,
+      "necessary_condition": "After factoring the forced external core C_E, the residual line component is a two-dimensional quotient pencil of degree 54.  An extremal e_G=72 over-budget witness requires six distinct projective pencil parameters whose quotient polynomials are squarefree split degree-54 divisors of the remaining subgroup polynomial.",
+      "next_algebraic_test": "Show that no degree-54 quotient pencil can have these six full-split fibers with the printed external partition, or force two fibers to produce the same finite slope.",
+      "nonforced_external_class_sizes": [
+        53,
+        52,
+        52,
+        52,
+        52,
+        52
+      ],
+      "pairwise_external_root_sets_disjoint": true,
+      "quotient_degree": 54,
+      "unused_nonforced_external_root_lines": 0
+    }
+  ],
   "nonclaims": [
     "does not prove every moving-slope component is a line",
     "does not close line components with forced external split-root core in 72..118 in projective accounting",
@@ -11464,7 +11537,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v29",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v30",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -12544,6 +12617,46 @@
         "unused_nonforced_external_root_lines": 0
       }
     ],
+    "line_e72_quotient_pencil_obstruction_base_root_counts": [
+      [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      [
+        1,
+        2,
+        2,
+        2,
+        2,
+        2
+      ]
+    ],
+    "line_e72_quotient_pencil_obstruction_class_sizes": [
+      [
+        52,
+        52,
+        52,
+        52,
+        52,
+        52
+      ],
+      [
+        53,
+        52,
+        52,
+        52,
+        52,
+        52
+      ]
+    ],
+    "line_e72_quotient_pencil_obstruction_unused_external_counts": [
+      1,
+      0
+    ],
     "line_exact_current_one_over_external_core_ranges": [
       [
         72,
@@ -12981,6 +13094,7 @@
     "high_core_quotient_normal_form": "For any remaining high-core line or conic component, let E be the forced external split-root core and C_E(X)=prod_{s in E}(X-s).  Every Q-class on the component has L_Q divisible by C_E.  After factoring, L_Q=C_E R_Q with deg R_Q<=126-|E|, and the split-locator gate is exactly R_Q | (X^512-1)/C_E plus the remaining noncontainment filters.  Thus residual line components reduce to quotient degree <=54, while residual conic components reduce to quotient degree <=57.",
     "incidence_budget": "For r_G<j, each valid degree-j split locator on G needs at least j-r_G additional intersections with non-forced root hyperplanes.  Each non-forced E_s cuts G in length at most c.  Hence the number of valid Q-classes, and therefore the number of finite slopes represented by this component, is at most floor(c*(512-r_G)/(126-r_G)).",
     "intermediate_residual_profile": "Combining the external-incidence, pair-overlap, and punctured projective tangent bounds gives a sharp current proof envelope for the unresolved intermediate cores.  The one-over-budget finite-incidence subranges are line e_G=72..80 and conic e_G=69..76.  The tangent-tail row e_G=120 is closed by the cofactor-span obstruction, and the next tangent-tail row e_G=119 is closed by exact-agreement residual-budget splitting; all other intermediate cores need more than a single endpoint/root saving under the present methods.",
+    "line_e72_quotient_pencil_obstruction_profile": "In the extremal line e_G=72 branch, factoring the forced external core leaves a degree-54 quotient pencil.  Any remaining over-budget witness must give six distinct full-degree split members of this pencil: either six fibers with 52 external roots and two base roots each, leaving one nonforced external point unused, or one fiber with 53 external roots and one base root plus five fibers with 52 external roots and two base roots, covering all nonforced external points.",
     "line_projective_safe_core_threshold": "For a line component c=1, the unrefined all-root budget gives projective safety at r_G<=48.  The base-sharpened external budget improves this: e_G<=71 gives at most five finite Q-classes.  Adding the endpoint-uniform contribution gives projective total at most 6, exactly the projective budget.",
     "no_identically_split_positive_dimensional_component": "A positive-dimensional component cannot have r_G>=j=126.  Otherwise every L_Q on G would be divisible by the same degree-j split locator, hence scalar-multiple to it because deg L_Q<=j, contradicting projective injectivity of Q -> L_Q on G.",
     "one_over_design_catalog": "The whole endpoint-only finite-incidence one-over range now has an exact compact catalog.  Line cores 72,73,74 allow 2,16,27 base-root histograms respectively, and line cores 75..80 allow all 28 histograms with increasing unused external slack.  Conic cores 69,70,71 allow 2,16,27 histograms respectively, while cores 72..76 allow all 28; pair-overlap pressure disappears from cores 75 and 76.",

@@ -412,6 +412,15 @@ secant-degree/singleton sequences are `(5^6;50^6)`,
 `((4,4,5,5,5,5);(51,51,50,50,50,50))`, or
 `(5^6;(51,50,50,50,50,50))`.
 
+For the extremal line `e_G=72` branch, this is now recorded as a quotient
+pencil obstruction.  After the forced external core is factored, the line
+component is a degree-`54` quotient pencil.  Any surviving over-budget witness
+must contain six distinct fully split degree-`54` members: either six fibers
+with `52` nonforced external roots and two base roots each, leaving one
+nonforced external point unused, or one `53`-external-root fiber with one base
+root plus five `52`-external-root fibers with two base roots, covering all
+nonforced external points.
+
 For the extremal conic `e_G=69` branch, the packet also records a classical
 Pascal obstruction profile.  If the six finite classes really lie on an
 irreducible conic and the secant graph is `K6`, every Hamiltonian cycle gives a

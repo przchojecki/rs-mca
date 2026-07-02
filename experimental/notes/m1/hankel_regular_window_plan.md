@@ -368,6 +368,9 @@ The local line singleton sequences are `52^6` or `(53,52^5)`, and the local
 conic secant/singleton profiles are `(5^6;50^6)`,
 `((4,4,5,5,5,5);(51,51,50,50,50,50))`, or
 `(5^6;(51,50,50,50,50,50))`.
+The extremal line `e_G=72` branch is now a degree-`54` quotient-pencil
+obstruction: any survivor needs six fully split fibers of sizes `52^6` or
+`53,52^5`, covering all or all but one nonforced external root.
 The extremal conic `e_G=69` branch now has a Pascal obstruction profile:
 `K6` secant covers force `60` Pascal collinearities among opposite external
 secant intersections, while `K6` minus one edge forces `36`; failure of these

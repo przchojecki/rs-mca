@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v29"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v30"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -1559,6 +1559,61 @@ def line_design_local_profiles(shapes: list[dict[str, Any]]) -> list[dict[str, A
     return profiles
 
 
+def line_e72_quotient_pencil_obstruction_profile(
+    shapes: list[dict[str, Any]],
+    quotient_degree: int,
+) -> list[dict[str, Any]]:
+    """Quotient-pencil normal form for the extremal line e_G=72 branch."""
+    rows: list[dict[str, Any]] = []
+    for shape in shapes:
+        external_sizes = shape["nonforced_external_class_sizes"]
+        base_root_counts = [quotient_degree - size for size in external_sizes]
+        require(
+            all(0 <= count <= 2 for count in base_root_counts),
+            "line e=72 base-root counts should respect the degree<3 cap",
+        )
+        require(
+            sum(base_root_counts)
+            == sum(index * count for index, count in enumerate(shape["base_root_histogram"])),
+            "line e=72 quotient fiber base-root count mismatch",
+        )
+        rows.append(
+            {
+                "base_root_histogram": shape["base_root_histogram"],
+                "forced_external_core_size": 72,
+                "quotient_degree": quotient_degree,
+                "finite_split_fiber_count": FINITE_BUDGET,
+                "nonforced_external_class_sizes": external_sizes,
+                "base_root_count_sequence": sorted(base_root_counts),
+                "covered_nonforced_external_root_lines": shape[
+                    "covered_nonforced_external_root_lines"
+                ],
+                "unused_nonforced_external_root_lines": shape[
+                    "unused_nonforced_external_root_lines"
+                ],
+                "external_partition_status": shape["partition_status"],
+                "hidden_non_subgroup_roots_per_member": 0,
+                "every_listed_member_is_full_degree_split": True,
+                "pairwise_external_root_sets_disjoint": True,
+                "necessary_condition": (
+                    "After factoring the forced external core C_E, the residual "
+                    "line component is a two-dimensional quotient pencil of "
+                    "degree 54.  An extremal e_G=72 over-budget witness requires "
+                    "six distinct projective pencil parameters whose quotient "
+                    "polynomials are squarefree split degree-54 divisors of the "
+                    "remaining subgroup polynomial."
+                ),
+                "closure_if_condition_fails": True,
+                "next_algebraic_test": (
+                    "Show that no degree-54 quotient pencil can have these six "
+                    "full-split fibers with the printed external partition, or "
+                    "force two fibers to produce the same finite slope."
+                ),
+            }
+        )
+    return rows
+
+
 def conic_design_local_profiles(shapes: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Per-Q-class local secant/singleton counts for conic extremal designs."""
     profiles: list[dict[str, Any]] = []
@@ -2416,6 +2471,12 @@ def build_certificate() -> dict[str, Any]:
     line_e72_design_local_profiles = line_design_local_profiles(
         line_e72_extremal_design_shapes
     )
+    line_e72_quotient_pencil_obstruction_rows = (
+        line_e72_quotient_pencil_obstruction_profile(
+            line_e72_extremal_design_shapes,
+            quotient_degree=j_value - line_residual_core_threshold,
+        )
+    )
     conic_e69_design_local_profiles = conic_design_local_profiles(
         conic_e69_extremal_design_shapes
     )
@@ -3057,6 +3118,32 @@ def build_certificate() -> dict[str, Any]:
             },
         ],
         "line e=72 design local profiles changed",
+    )
+    require(
+        [
+            (
+                row["base_root_histogram"],
+                row["quotient_degree"],
+                row["nonforced_external_class_sizes"],
+                row["base_root_count_sequence"],
+                row["unused_nonforced_external_root_lines"],
+            )
+            for row in line_e72_quotient_pencil_obstruction_rows
+        ]
+        == [
+            ([0, 0, 6], 54, [52, 52, 52, 52, 52, 52], [2, 2, 2, 2, 2, 2], 1),
+            ([0, 1, 5], 54, [53, 52, 52, 52, 52, 52], [1, 2, 2, 2, 2, 2], 0),
+        ],
+        "line e=72 quotient-pencil obstruction profile changed",
+    )
+    require(
+        all(
+            row["every_listed_member_is_full_degree_split"]
+            and row["pairwise_external_root_sets_disjoint"]
+            and row["closure_if_condition_fails"]
+            for row in line_e72_quotient_pencil_obstruction_rows
+        ),
+        "line e=72 quotient-pencil obstruction rows should be closure criteria",
     )
     require(
         conic_e69_design_local_profiles
@@ -3768,6 +3855,16 @@ def build_certificate() -> dict[str, Any]:
                 "((4,4,5,5,5,5);(51,51,50,50,50,50)), or "
                 "(5^6;(51,50,50,50,50,50))."
             ),
+            "line_e72_quotient_pencil_obstruction_profile": (
+                "In the extremal line e_G=72 branch, factoring the forced "
+                "external core leaves a degree-54 quotient pencil.  Any remaining "
+                "over-budget witness must give six distinct full-degree split "
+                "members of this pencil: either six fibers with 52 external roots "
+                "and two base roots each, leaving one nonforced external point "
+                "unused, or one fiber with 53 external roots and one base root "
+                "plus five fibers with 52 external roots and two base roots, "
+                "covering all nonforced external points."
+            ),
             "conic_e69_pascal_obstruction_profile": (
                 "In the extremal conic e_G=69 branch, the K6 and K6-minus-one "
                 "secant graphs are not arbitrary incidence graphs if they come "
@@ -3965,6 +4062,9 @@ def build_certificate() -> dict[str, Any]:
             "line_e72": line_e72_design_local_profiles,
             "irreducible_conic_e69": conic_e69_design_local_profiles,
         },
+        "line_e72_quotient_pencil_obstruction_profile": (
+            line_e72_quotient_pencil_obstruction_rows
+        ),
         "conic_e69_pascal_obstruction_profile": conic_e69_pascal_obstruction_rows,
         "one_over_design_catalog": {
             "line_endpoint_only_incidence_range": line_one_over_design_catalog_rows,
@@ -4076,6 +4176,18 @@ def build_certificate() -> dict[str, Any]:
                 line_e72_design_multiplicity_profiles
             ),
             "line_e72_design_local_profiles": line_e72_design_local_profiles,
+            "line_e72_quotient_pencil_obstruction_class_sizes": [
+                row["nonforced_external_class_sizes"]
+                for row in line_e72_quotient_pencil_obstruction_rows
+            ],
+            "line_e72_quotient_pencil_obstruction_base_root_counts": [
+                row["base_root_count_sequence"]
+                for row in line_e72_quotient_pencil_obstruction_rows
+            ],
+            "line_e72_quotient_pencil_obstruction_unused_external_counts": [
+                row["unused_nonforced_external_root_lines"]
+                for row in line_e72_quotient_pencil_obstruction_rows
+            ],
             "line_one_over_design_catalog": line_one_over_design_catalog_rows,
             "line_incidence_only_sharpness_witness_count": len(
                 line_incidence_only_sharpness_witnesses
@@ -4282,6 +4394,7 @@ def build_certificate() -> dict[str, Any]:
             "line e=72 and conic e=69 extremal finite design shapes are enumerated",
             "line e=72 and conic e=69 extremal multiplicity profiles are enumerated",
             "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
+            "line e=72 extremal quotient-pencil fibers are fully split degree-54 members",
             "conic e=69 extremal secant graphs carry Pascal collinearity obstruction counts",
             "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
             "abstract incidence-only sharpness witnesses are constructed for every finite-incidence one-over core",

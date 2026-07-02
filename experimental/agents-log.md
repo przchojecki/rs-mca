@@ -47,7 +47,8 @@ Keep entries concise and link to the relevant files.
   quotient tail, exact-agreement closure of the `e_G=119` tangent-tail row,
   abstract incidence-only sharpness witnesses for every finite-incidence
   one-over core, exact-current residual profiles, and a minimal obstruction
-  profile for the remaining finite-incidence rows, including a Pascal
+  profile for the remaining finite-incidence rows, including a quotient-pencil
+  obstruction profile for the extremal line `e_G=72` branch and a Pascal
   obstruction profile for the extremal conic `e_G=69` branch.
 - **How it is useful:** A seven-slope saturated tangent-star tail has at most
   one original endpoint, so at least six bad points must be finite component
@@ -67,9 +68,11 @@ Keep entries concise and link to the relevant files.
   remaining over-budget normal form now has exactly `17` rows: line `72..80`
   and conic `69..76`, each requiring six distinct finite slopes plus an unpaid
   endpoint and the printed saturated incidence/overlap conditions.  In the
-  hardest conic `e_G=69` case, the `K6` and `K6`-minus-one secant-cover shapes
-  must satisfy respectively `60` and `36` Pascal collinearity relations among
-  opposite external secants.
+  hardest line `e_G=72` case, the quotient pencil must contain six fully split
+  degree-`54` fibers of sizes `52^6` or `53,52^5`; in the hardest conic
+  `e_G=69` case, the `K6` and `K6`-minus-one secant-cover shapes must satisfy
+  respectively `60` and `36` Pascal collinearity relations among opposite
+  external secants.
 - **What to do next:** Focus remaining A386 work on algebraic endpoint
   payment, finite-slope collisions, quotient-fiber structure, or the larger
   middle quotient ranges.
