@@ -200,14 +200,255 @@
       "field": "F_5",
       "formula": "P_h = [q(q^h-1)q^(2(t-h)) + q^2(q^(t-h)-1)^2] / q^(4t-2h)",
       "t": 2
+    },
+    "overlap_excess_decomposition": {
+      "examples": [
+        {
+          "agreement": 3,
+          "baseline_independent_second_moment": {
+            "denominator": 49,
+            "numerator": 14400
+          },
+          "baseline_plus_correction_matches_second_moment": true,
+          "correction": {
+            "denominator": 49,
+            "numerator": 120
+          },
+          "defect_positive_overlap_threshold": 3,
+          "high_overlap_excess_positive": true,
+          "j": 3,
+          "k": 2,
+          "locator_count": 20,
+          "low_overlap_excess_zero": true,
+          "n": 6,
+          "q": 7,
+          "records": [
+            {
+              "defect_h": 0,
+              "excess_contribution": {
+                "denominator": 1,
+                "numerator": 0
+              },
+              "excess_over_independent": {
+                "denominator": 1,
+                "numerator": 0
+              },
+              "ordered_pairs": 20,
+              "overlap": 0,
+              "probability": {
+                "denominator": 49,
+                "numerator": 36
+              }
+            },
+            {
+              "defect_h": 0,
+              "excess_contribution": {
+                "denominator": 1,
+                "numerator": 0
+              },
+              "excess_over_independent": {
+                "denominator": 1,
+                "numerator": 0
+              },
+              "ordered_pairs": 180,
+              "overlap": 1,
+              "probability": {
+                "denominator": 49,
+                "numerator": 36
+              }
+            },
+            {
+              "defect_h": 0,
+              "excess_contribution": {
+                "denominator": 1,
+                "numerator": 0
+              },
+              "excess_over_independent": {
+                "denominator": 1,
+                "numerator": 0
+              },
+              "ordered_pairs": 180,
+              "overlap": 2,
+              "probability": {
+                "denominator": 49,
+                "numerator": 36
+              }
+            },
+            {
+              "defect_h": 1,
+              "excess_contribution": {
+                "denominator": 49,
+                "numerator": 120
+              },
+              "excess_over_independent": {
+                "denominator": 49,
+                "numerator": 6
+              },
+              "ordered_pairs": 20,
+              "overlap": 3,
+              "probability": {
+                "denominator": 7,
+                "numerator": 6
+              }
+            }
+          ],
+          "second_moment": {
+            "denominator": 49,
+            "numerator": 14520
+          },
+          "slack_one_pairwise_independence_variance": {
+            "formula": {
+              "denominator": 49,
+              "numerator": 120
+            },
+            "matches": true,
+            "variance": {
+              "denominator": 49,
+              "numerator": 120
+            }
+          },
+          "t": 1
+        },
+        {
+          "agreement": 5,
+          "baseline_independent_second_moment": {
+            "denominator": 1771561,
+            "numerator": 914457600
+          },
+          "baseline_plus_correction_matches_second_moment": true,
+          "correction": {
+            "denominator": 1771561,
+            "numerator": 105983640
+          },
+          "defect_positive_overlap_threshold": 4,
+          "high_overlap_excess_positive": true,
+          "j": 5,
+          "k": 3,
+          "locator_count": 252,
+          "low_overlap_excess_zero": true,
+          "n": 10,
+          "q": 11,
+          "records": [
+            {
+              "defect_h": 0,
+              "excess_contribution": {
+                "denominator": 1,
+                "numerator": 0
+              },
+              "excess_over_independent": {
+                "denominator": 1,
+                "numerator": 0
+              },
+              "ordered_pairs": 252,
+              "overlap": 0,
+              "probability": {
+                "denominator": 1771561,
+                "numerator": 14400
+              }
+            },
+            {
+              "defect_h": 0,
+              "excess_contribution": {
+                "denominator": 1,
+                "numerator": 0
+              },
+              "excess_over_independent": {
+                "denominator": 1,
+                "numerator": 0
+              },
+              "ordered_pairs": 6300,
+              "overlap": 1,
+              "probability": {
+                "denominator": 1771561,
+                "numerator": 14400
+              }
+            },
+            {
+              "defect_h": 0,
+              "excess_contribution": {
+                "denominator": 1,
+                "numerator": 0
+              },
+              "excess_over_independent": {
+                "denominator": 1,
+                "numerator": 0
+              },
+              "ordered_pairs": 25200,
+              "overlap": 2,
+              "probability": {
+                "denominator": 1771561,
+                "numerator": 14400
+              }
+            },
+            {
+              "defect_h": 0,
+              "excess_contribution": {
+                "denominator": 1,
+                "numerator": 0
+              },
+              "excess_over_independent": {
+                "denominator": 1,
+                "numerator": 0
+              },
+              "ordered_pairs": 25200,
+              "overlap": 3,
+              "probability": {
+                "denominator": 1771561,
+                "numerator": 14400
+              }
+            },
+            {
+              "defect_h": 1,
+              "excess_contribution": {
+                "denominator": 1771561,
+                "numerator": 69363000
+              },
+              "excess_over_independent": {
+                "denominator": 1771561,
+                "numerator": 11010
+              },
+              "ordered_pairs": 6300,
+              "overlap": 4,
+              "probability": {
+                "denominator": 14641,
+                "numerator": 210
+              }
+            },
+            {
+              "defect_h": 2,
+              "excess_contribution": {
+                "denominator": 1771561,
+                "numerator": 36620640
+              },
+              "excess_over_independent": {
+                "denominator": 1771561,
+                "numerator": 145320
+              },
+              "ordered_pairs": 252,
+              "overlap": 5,
+              "probability": {
+                "denominator": 1331,
+                "numerator": 120
+              }
+            }
+          ],
+          "second_moment": {
+            "denominator": 1771561,
+            "numerator": 1020441240
+          },
+          "t": 2
+        }
+      ],
+      "formula": "E[N^2] = E_indep[N^2] + sum_{c>=j-t+1} ordered_pairs(c)(P_h-P_0)"
     }
   },
   "dag_node": "fm1",
   "definition": "For a split degree-j locator ell, set a=S_ell(u), b=S_ell(v) in F_q^t. The locator is aligned when b != 0 and a lies in the one-dimensional span of b.",
+  "overlap_excess_statement": "The second-moment excess over independent locator indicators is supported exactly on overlaps c >= j-t+1.",
   "paley_zygmund_consumer": "Pr[N_A>0] >= E[N_A]^2 / E[N_A^2]",
   "passed": true,
   "schema": "fm1_exact_first_moment_v1",
-  "script_sha256": "a0ef81a7d6489be40187910ec4958dc72175ed92f73feb29efb62484a13e4260",
+  "script_sha256": "32f22523731ebef059fdc6c0b79517b87bd8edb73542f78e0f1dbbeba5d3c686",
   "second_moment_statement": "E[N_A^2] is the ordered-overlap sum of the exact defect-h joint alignment probabilities.",
   "statement": "E[# aligned split locators] = binom(n,j)(1-q^-t)q^(1-t)",
   "status": "PROVED_LOCAL_VERIFICATION"

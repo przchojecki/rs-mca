@@ -142,6 +142,66 @@ def second_moment_formula(q: int, n: int, k: int, agreement: int) -> Fraction:
     return total
 
 
+def overlap_decomposition(q: int, n: int, k: int, agreement: int) -> dict:
+    t = agreement - k
+    j = n - agreement
+    one_locator = joint_alignment_probability(q, t, 0)
+    locator_count = comb(n, j)
+    baseline = locator_count * locator_count * one_locator
+    records = []
+    correction = Fraction(0, 1)
+    for c in range(j + 1):
+        if j - c > n - j:
+            continue
+        ordered_pairs = comb(n, j) * comb(j, c) * comb(n - j, j - c)
+        h = max(0, t - j + c)
+        probability = joint_alignment_probability(q, t, h)
+        excess = probability - one_locator
+        contribution = ordered_pairs * excess
+        correction += contribution
+        records.append({
+            "overlap": c,
+            "defect_h": h,
+            "ordered_pairs": ordered_pairs,
+            "probability": {
+                "numerator": probability.numerator,
+                "denominator": probability.denominator,
+            },
+            "excess_over_independent": {
+                "numerator": excess.numerator,
+                "denominator": excess.denominator,
+            },
+            "excess_contribution": {
+                "numerator": contribution.numerator,
+                "denominator": contribution.denominator,
+            },
+        })
+    second = second_moment_formula(q, n, k, agreement)
+    return {
+        "q": q,
+        "n": n,
+        "k": k,
+        "agreement": agreement,
+        "t": t,
+        "j": j,
+        "locator_count": locator_count,
+        "defect_positive_overlap_threshold": j - t + 1,
+        "baseline_independent_second_moment": {
+            "numerator": baseline.numerator,
+            "denominator": baseline.denominator,
+        },
+        "correction": {
+            "numerator": correction.numerator,
+            "denominator": correction.denominator,
+        },
+        "second_moment": {
+            "numerator": second.numerator,
+            "denominator": second.denominator,
+        },
+        "records": records,
+    }
+
+
 def paley_zygmund_nonzero_bound(q: int, n: int, k: int, agreement: int) -> Fraction:
     mean = expected_value(q, n, k, agreement)
     second = second_moment_formula(q, n, k, agreement)
@@ -300,6 +360,71 @@ def check_fiber_product_joint_probability() -> tuple[bool, dict]:
     }
 
 
+def check_overlap_excess_decomposition() -> tuple[bool, dict]:
+    examples = []
+    ok = True
+    for q, n, k, agreement in [(7, 6, 2, 3), (11, 10, 3, 5)]:
+        decomp = overlap_decomposition(q, n, k, agreement)
+        baseline = Fraction(
+            decomp["baseline_independent_second_moment"]["numerator"],
+            decomp["baseline_independent_second_moment"]["denominator"],
+        )
+        correction = Fraction(
+            decomp["correction"]["numerator"],
+            decomp["correction"]["denominator"],
+        )
+        second = Fraction(
+            decomp["second_moment"]["numerator"],
+            decomp["second_moment"]["denominator"],
+        )
+        t, j = decomp["t"], decomp["j"]
+        threshold = decomp["defect_positive_overlap_threshold"]
+        low_excess_zero = all(
+            rec["defect_h"] == 0
+            and rec["excess_over_independent"]["numerator"] == 0
+            for rec in decomp["records"]
+            if rec["overlap"] < threshold
+        )
+        high_excess_positive = all(
+            rec["defect_h"] > 0
+            and rec["excess_over_independent"]["numerator"] > 0
+            for rec in decomp["records"]
+            if rec["overlap"] >= threshold
+        )
+        example = {
+            **decomp,
+            "baseline_plus_correction_matches_second_moment": baseline + correction == second,
+            "low_overlap_excess_zero": low_excess_zero,
+            "high_overlap_excess_positive": high_excess_positive,
+        }
+        if t == 1:
+            mean = expected_value(q, n, k, agreement)
+            variance = second - mean * mean
+            locator_count = comb(n, j)
+            p1 = Fraction((q ** t - 1) * q, q ** (2 * t))
+            expected_variance = locator_count * p1 * (1 - p1)
+            example["slack_one_pairwise_independence_variance"] = {
+                "variance": {
+                    "numerator": variance.numerator,
+                    "denominator": variance.denominator,
+                },
+                "formula": {
+                    "numerator": expected_variance.numerator,
+                    "denominator": expected_variance.denominator,
+                },
+                "matches": variance == expected_variance,
+            }
+            ok &= variance == expected_variance
+        ok &= baseline + correction == second
+        ok &= low_excess_zero
+        ok &= high_excess_positive
+        examples.append(example)
+    return ok, {
+        "formula": "E[N^2] = E_indep[N^2] + sum_{c>=j-t+1} ordered_pairs(c)(P_h-P_0)",
+        "examples": examples,
+    }
+
+
 def check_f5_bruteforce() -> tuple[bool, dict]:
     p, n, k, agreement = 5, 4, 1, 3
     t, j = agreement - k, n - agreement
@@ -436,6 +561,7 @@ def build_report() -> dict:
     ok_f13, f13 = check_f13_surjectivity()
     ok_joint, joint = check_f13_joint_rank_formula()
     ok_fiber, fiber = check_fiber_product_joint_probability()
+    ok_overlap, overlap = check_overlap_excess_decomposition()
     ok_f5, f5 = check_f5_bruteforce()
     ok_window, window = check_f17_regular_window_tail()
     source = Path(__file__).read_text()
@@ -449,6 +575,10 @@ def build_report() -> dict:
             "alignment probabilities."
         ),
         "paley_zygmund_consumer": "Pr[N_A>0] >= E[N_A]^2 / E[N_A^2]",
+        "overlap_excess_statement": (
+            "The second-moment excess over independent locator indicators is "
+            "supported exactly on overlaps c >= j-t+1."
+        ),
         "definition": (
             "For a split degree-j locator ell, set a=S_ell(u), b=S_ell(v) in F_q^t. "
             "The locator is aligned when b != 0 and a lies in the one-dimensional span of b."
@@ -457,10 +587,11 @@ def build_report() -> dict:
             "f13_surjectivity": f13,
             "f13_joint_rank_formula": joint,
             "f5_fiber_product_joint_probability": fiber,
+            "overlap_excess_decomposition": overlap,
             "f5_bruteforce": f5,
             "f17_regular_window_markov_tail": window,
         },
-        "passed": ok_f13 and ok_joint and ok_fiber and ok_f5 and ok_window,
+        "passed": ok_f13 and ok_joint and ok_fiber and ok_overlap and ok_f5 and ok_window,
         "script_sha256": sha256_text(source),
     }
 
@@ -496,6 +627,13 @@ def main() -> None:
                 for row in data["checked_defects"]
             }
             print(f"        {data['field']}: t={data['t']}, probabilities by h={summary}")
+        elif name == "overlap_excess_decomposition":
+            for example in data["examples"]:
+                print(
+                    "        q={q}, n={n}, k={k}, A={agreement}, t={t}, j={j}: "
+                    "threshold c>={defect_positive_overlap_threshold}, "
+                    "matches={baseline_plus_correction_matches_second_moment}".format(**example)
+                )
         elif name == "f5_bruteforce":
             print(
                 "        {field}: n={n}, k={k}, A={agreement}, t={t}, j={j}, "

@@ -269,6 +269,53 @@ where the sum ranges over valid overlaps `c`.  This is an ordered-pair sum:
 choose `R`, then choose the `c` common roots and the `j-c` roots of `T`
 outside `R`.
 
+## Overlap-excess decomposition
+
+Let
+
+```text
+p_1 = (1-q^{-t})q^{1-t}
+```
+
+be the one-locator alignment probability.  Since `P_0=p_1^2`, the second
+moment can be written as an independent baseline plus an overlap-excess
+ledger:
+
+```text
+E[N_A^2]
+  = binom(n,j)^2 p_1^2
+    + sum_{c >= j-t+1}
+        binom(n,j) binom(j,c) binom(n-j,j-c)
+        ( P_{t-j+c} - p_1^2 ).
+```
+
+Terms with invalid `c` are omitted.  Equivalently, all covariance between
+distinct locator indicators is supported on high-overlap pairs
+
+```text
+|R cap T| >= j-t+1,
+```
+
+or, in symmetric-difference language,
+
+```text
+|R triangle T| <= 2(t-1).
+```
+
+This is the useful form for later exchange or averaged-slope arguments:
+away from a thin high-overlap neighborhood in the Johnson graph, the locator
+alignment indicators are independent.
+
+In the slack-one case `t=1`, only the diagonal `R=T` has positive defect.
+Thus distinct locator indicators are pairwise independent and
+
+```text
+Var(N_A) = binom(n,j) p_1(1-p_1).
+```
+
+This does not imply higher-order independence, but it identifies the exact
+second-moment obstruction at the first slack rung.
+
 ## Averaged-existence consumer
 
 The exact second moment gives the following immediate averaged-existence
@@ -344,7 +391,10 @@ rank S_{R,T} = 2t - max(0,t-j+|R cap T|).
 3. **Joint-probability fiber-product check, `F_5`.**  For `t=2`, the verifier
    enumerates the standard fiber products `U_h`, `h=0,1,2`, and checks the
    displayed `P_h` formula exactly.
-4. **Exact brute-force check, `F_5`.**  For `D=F_5^*`, `n=4`, `k=1`,
+4. **Overlap-excess decomposition check.**  The verifier checks the baseline
+   plus high-overlap correction identity in two finite parameter sets.  In the
+   slack-one case it also verifies the pairwise-independence variance formula.
+5. **Exact brute-force check, `F_5`.**  For `D=F_5^*`, `n=4`, `k=1`,
    `A=3`, `t=2`, `j=1`, enumeration over all `5^8` word pairs gives
 
 ```text
@@ -363,7 +413,7 @@ binom(4,1) * (1 - 5^(-2)) * 5^(-1) = 96/125.
 
 and the exact second-moment / Paley-Zygmund formulas above.
 
-5. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
+6. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
    the script computes the FM1/Markov one-locator upper bound across
    `385 <= A <= 426` and verifies the endpoint ranges above.
 
