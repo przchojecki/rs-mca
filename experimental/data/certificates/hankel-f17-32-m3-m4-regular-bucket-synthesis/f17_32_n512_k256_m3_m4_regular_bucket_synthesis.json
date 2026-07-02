@@ -367,6 +367,7 @@
     "A=385 separated rank-6 no-fixed-core over-budget branches force a pair of finite classes with at least 24 common external roots",
     "A=385 separated rank-6 no-fixed-core large pair-core branches reduce to quotient pencils with two full-split degree<=103 quotient members",
     "A=385 separated rank-6 no-fixed-core pair-core branches must have a 24 x 5 external-evaluation matrix of rank at most 3",
+    "A=385 separated rank-6 no-fixed-core pair-core rank tests have an explicit weighted Cauchy-moment matrix factorization",
     "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
     "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
     "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
@@ -509,7 +510,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v49",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v50",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -570,6 +571,10 @@
     "f17_32_n512_k256_m3_rank6_a385_no_fixed_core_pressure": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-no-fixed-core-pressure/f17_32_n512_k256_m3_rank6_a385_no_fixed_core_pressure.json",
       "sha256": "fcaf493aa8b829d2ece876dbad450976ab85d9fdf66680678ecc1c935c769ded"
+    },
+    "f17_32_n512_k256_m3_rank6_a385_pair_core_cauchy_moment": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-cauchy-moment/f17_32_n512_k256_m3_rank6_a385_pair_core_cauchy_moment.json",
+      "sha256": "9c83ef56f635c750ce48cbbdcd44061709506d35b09ba2fcb960c46f1acd2564"
     },
     "f17_32_n512_k256_m3_rank6_a385_pair_core_quotient_reduction": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-quotient-reduction/f17_32_n512_k256_m3_rank6_a385_pair_core_quotient_reduction.json",
@@ -653,6 +658,7 @@
     "a385_base_core_closure_count": 1,
     "a385_fixed_core_synthesis_count": 1,
     "a385_no_fixed_core_pressure_count": 1,
+    "a385_pair_core_cauchy_moment_count": 1,
     "a385_pair_core_quotient_reduction_count": 1,
     "a385_pair_core_rank_test_count": 1,
     "a385_three_core_quadratic_cut_count": 1,
@@ -669,7 +675,7 @@
     "a386_separated_boundary_closure_count": 1,
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 33,
+    "dependencies_checked": 34,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
     "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -702,6 +708,12 @@
       "the A=385 low-degree transfer has deg Q<5, so each finite class has at most four base roots and the six degree-127 split locators have at least 738 external-root incidences",
       "occupancy in the 384 external subgroup points forces total pairwise external overlap at least 354, hence some pair of finite classes shares at least 24 external roots",
       "therefore the no-fixed-core frontier has a concrete large pair-core target: if every pair shares at most 23 external roots, the branch is projective-budget safe"
+    ],
+    "a385_pair_core_cauchy_moment": [
+      "writing W_x=Omega_x/a_x and P_X(T)=prod_{x in X}(T-x), the external row ev_s has coordinates P_X(s) sum_x W_x x^r/((s-x)P_X'(x)) for 0<=r<=4",
+      "the nonzero row factor P_X(s) may be removed on the external core, leaving a reduced Cauchy-moment matrix D_E",
+      "D_E factors as C_{E,X} diag(W_x/P_X'(x)) V_X with C_{s,x}=1/(s-x) and V_{x,r}=x^r",
+      "the rank<=3 obstruction is therefore the vanishing of all 4x4 weighted Cauchy-moment minors, with each minor expanded by Cauchy-Binet over four base nodes"
     ],
     "a385_pair_core_quotient_reduction": [
       "the large pair-core pair spans a projective Q-line because the low-degree transfer Q -> L_Q is linear",

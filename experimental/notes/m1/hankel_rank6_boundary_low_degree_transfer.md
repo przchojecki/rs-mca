@@ -269,6 +269,10 @@ It states the same target as a linear-algebra gate.  For a common external core
 `E`, the matrix with rows `ev_s(Q)=L_Q(s)` has five columns, and a two-class
 pair line forces `rank M_E<=3`.  Thus a pressure-forced survivor needs a
 `24 x 5` external-evaluation matrix with all `4 x 4` minors vanishing.
+The Cauchy-moment companion then writes those rows explicitly as
+`P_X(s) sum_x W_x x^r/((s-x)P_X'(x))`, or after removing nonzero row factors,
+as the weighted Cauchy-moment matrix
+`C_{E,X} diag(W_x/P_X'(x)) V_X`.
 
 At `A=387`, this transfer already closes the separated branch for arbitrary
 nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at

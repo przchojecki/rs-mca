@@ -364,6 +364,18 @@ A common external core `E` gives a matrix with rows `ev_s(Q)=L_Q(s)` and five
 columns.  The pair line forces rank at most `3`, so at the pressure-forced core
 size `24` all `4 x 4` minors of the `24 x 5` matrix must vanish.
 
+The `A=385` pair-core Cauchy-moment packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-cauchy-moment/
+  f17_32_n512_k256_m3_rank6_a385_pair_core_cauchy_moment.json
+```
+
+expands the rank-test rows.  After dividing by the nonzero row factors
+`P_X(s)`, the external-evaluation matrix is
+`C_{E,X} diag(W_x/P_X'(x)) V_X`, so every rank-`<=3` obstruction is a weighted
+Cauchy-moment minor system.
+
 The `A=387` separated-boundary safety packet
 
 ```text

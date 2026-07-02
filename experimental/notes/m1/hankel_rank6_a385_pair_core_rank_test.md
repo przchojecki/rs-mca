@@ -79,6 +79,17 @@ has a three-dimensional annihilator.  Even `24` forced roots only give the
 rank-`<=3` condition unless an additional theorem collapses that rank-three
 span.
 
+The companion Cauchy-moment note
+
+```text
+experimental/notes/m1/hankel_rank6_a385_pair_core_cauchy_moment.md
+```
+
+gives explicit rows for this matrix.  After removing nonzero row factors
+`P_X(s)`, the rank test is the rank test for
+`C_{E,X} diag(W_x/P_X'(x)) V_X`, so every obstruction is a weighted
+Cauchy-moment minor equation.
+
 Replay:
 
 ```sh

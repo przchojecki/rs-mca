@@ -639,6 +639,12 @@ external-evaluation matrix, and the pair line forces rank at most `3`.
 Equivalently, all `4 x 4` minors vanish.  This is the exact no-fixed-core
 rank-three obstruction left for the next closure attempt.
 
+The `A=385` pair-core Cauchy-moment companion writes that matrix explicitly.
+With `W_x=Omega_x/a_x`, the reduced rows are
+`sum_x W_x x^r/((s-x)P_X'(x))`, so the matrix factors as
+`C_{E,X} diag(W_x/P_X'(x)) V_X`; the remaining obstruction is a weighted
+Cauchy-moment minor system.
+
 The `A=387` separated-boundary safety companion uses the `h=1` specialization
 to close that agreement for arbitrary nonzero separated weights: the finite
 root table has at most one ambient root, the split-locator gate cannot increase

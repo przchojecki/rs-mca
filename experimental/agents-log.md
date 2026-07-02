@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A385 pair-core Cauchy-moment normal form
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a385_pair_core_cauchy_moment.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-cauchy-moment/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a385_pair_core_cauchy_moment.md`;
+  `experimental/notes/m1/hankel_rank6_a385_pair_core_rank_test.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** An explicit weighted Cauchy-moment normal form for
+  the `A=385` pair-core rank-test matrix:
+  `D_E=C_{E,X} diag(W_x/P_X'(x)) V_X`.
+- **How it is useful:** The no-fixed-core rank-`<=3` obstruction is now a
+  concrete system of weighted Cauchy-moment `4 x 4` minor equations, with a
+  Cauchy-Binet expansion over four base nodes.
+- **What to do next:** Attack those weighted Cauchy-moment minors directly:
+  prove the `24`-row rank collapse is impossible/paid under the remaining
+  gates, or construct a minimal rank-deficient witness.
+
 ### 2026-07-02 - A385 pair-core rank test
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

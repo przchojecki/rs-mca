@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v49"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v50"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -167,6 +167,10 @@ A385_PAIR_CORE_RANK_TEST_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-rank-test/"
     "f17_32_n512_k256_m3_rank6_a385_pair_core_rank_test.json"
 )
+A385_PAIR_CORE_CAUCHY_MOMENT_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-pair-core-cauchy-moment/"
+    "f17_32_n512_k256_m3_rank6_a385_pair_core_cauchy_moment.json"
+)
 
 
 EXPECTED_SCHEMAS = {
@@ -228,6 +232,9 @@ EXPECTED_SCHEMAS = {
     ),
     A385_PAIR_CORE_RANK_TEST_REF: (
         "f17-32-m3-rank6-a385-pair-core-rank-test-v1"
+    ),
+    A385_PAIR_CORE_CAUCHY_MOMENT_REF: (
+        "f17-32-m3-rank6-a385-pair-core-cauchy-moment-v1"
     ),
 }
 
@@ -2859,6 +2866,61 @@ def check_a385_pair_core_rank_test_packet(data: dict[str, Any]) -> None:
     )
 
 
+def check_a385_pair_core_cauchy_moment_packet(data: dict[str, Any]) -> None:
+    require(
+        data["agreement"]["A"] == 385,
+        "A385 pair-core Cauchy-moment agreement mismatch",
+    )
+    require(
+        data["status"] == "PROVED / AUDIT",
+        "A385 pair-core Cauchy-moment status mismatch",
+    )
+    summary = data["summary"]
+    require(
+        summary["Q_vector_dimension"] == 5
+        and summary["pair_core_min"] == 24
+        and summary["rank_threshold"] == 3
+        and summary["raw_row_factor_removed"] == "P_X(s)",
+        "A385 pair-core Cauchy-moment summary mismatch",
+    )
+    require(
+        summary["reduced_matrix_factorization_available"]
+        and summary["cauchy_binet_minor_formula_available"],
+        "A385 pair-core Cauchy-moment formula flags mismatch",
+    )
+    consequence = data["consequence_for_pair_core_frontier"]
+    require(
+        consequence["matrix_size_at_forced_core"] == [24, 5]
+        and consequence["required_rank"] == "<=3"
+        and "4 x 4 minors" in consequence["required_minor_vanishing"],
+        "A385 pair-core Cauchy-moment consequence mismatch",
+    )
+    normal = data["normal_form"]
+    require(
+        "D_E = C_{E,X} diag(W_x/P_X'(x)) V_X" in normal["matrix_factorization"],
+        "A385 pair-core Cauchy-moment factorization missing",
+    )
+    require(
+        "Cauchy-Binet" in normal["cauchy_binet_minor"]
+        or "sum over T subset X" in normal["cauchy_binet_minor"],
+        "A385 pair-core Cauchy-moment minor formula missing",
+    )
+    nonclaims = set(data["nonclaims"])
+    require(
+        "does not close the no-fixed-core A=385 frontier" in nonclaims,
+        "A385 pair-core Cauchy-moment missing frontier nonclaim",
+    )
+    require(
+        "does not prove that rank<=3 Cauchy-moment cores of size 24 are impossible"
+        in nonclaims,
+        "A385 pair-core Cauchy-moment missing impossibility nonclaim",
+    )
+    require(
+        "does not specialize the arbitrary nonzero base weights W_x" in nonclaims,
+        "A385 pair-core Cauchy-moment missing weight nonclaim",
+    )
+
+
 def build_certificate() -> dict[str, Any]:
     field = Field(P, MODULUS)
     descriptor = load_json(ROW_DESCRIPTOR_REF)
@@ -2907,6 +2969,9 @@ def build_certificate() -> dict[str, Any]:
     )
     check_a385_pair_core_rank_test_packet(
         dependencies[A385_PAIR_CORE_RANK_TEST_REF]
+    )
+    check_a385_pair_core_cauchy_moment_packet(
+        dependencies[A385_PAIR_CORE_CAUCHY_MOMENT_REF]
     )
 
     domain_encodings = descriptor["domain"]["domain_encodings"]
@@ -3082,6 +3147,12 @@ def build_certificate() -> dict[str, Any]:
                 "conversely rank(M_E)<=3 gives a kernel Q-line for the linear common-core condition, but not the split-locator or noncontainment gates",
                 "the fixed two-core product-collapse lemma does not automatically apply here: the no-fixed-core line annihilator has dimension 3 rather than 1",
             ],
+            "a385_pair_core_cauchy_moment": [
+                "writing W_x=Omega_x/a_x and P_X(T)=prod_{x in X}(T-x), the external row ev_s has coordinates P_X(s) sum_x W_x x^r/((s-x)P_X'(x)) for 0<=r<=4",
+                "the nonzero row factor P_X(s) may be removed on the external core, leaving a reduced Cauchy-moment matrix D_E",
+                "D_E factors as C_{E,X} diag(W_x/P_X'(x)) V_X with C_{s,x}=1/(s-x) and V_{x,r}=x^r",
+                "the rank<=3 obstruction is therefore the vanishing of all 4x4 weighted Cauchy-moment minors, with each minor expanded by Cauchy-Binet over four base nodes",
+            ],
             "a386_moving_slope_refinement": [
                 "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
                 "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
@@ -3197,6 +3268,7 @@ def build_certificate() -> dict[str, Any]:
             "a385_no_fixed_core_pressure_count": 1,
             "a385_pair_core_quotient_reduction_count": 1,
             "a385_pair_core_rank_test_count": 1,
+            "a385_pair_core_cauchy_moment_count": 1,
             "a386_moving_slope_refinement_count": 1,
             "m3_rank_node_dichotomy_count": 1,
             "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -3234,6 +3306,7 @@ def build_certificate() -> dict[str, Any]:
             "A=385 separated rank-6 no-fixed-core over-budget branches force a pair of finite classes with at least 24 common external roots",
             "A=385 separated rank-6 no-fixed-core large pair-core branches reduce to quotient pencils with two full-split degree<=103 quotient members",
             "A=385 separated rank-6 no-fixed-core pair-core branches must have a 24 x 5 external-evaluation matrix of rank at most 3",
+            "A=385 separated rank-6 no-fixed-core pair-core rank tests have an explicit weighted Cauchy-moment matrix factorization",
             "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
             "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
             "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
