@@ -1,0 +1,1624 @@
+{
+  "cases": [
+    {
+      "A": 12,
+      "construction": "all 20 lines of AG(2,4), pairwise intersections 0 or 1",
+      "family_size": 20,
+      "field": "F_193",
+      "interpretation": "NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE",
+      "j": 4,
+      "k": 10,
+      "n": 16,
+      "name": "ag2_4_lines",
+      "pairwise_spread_stats": {
+        "all_pairs_below_fm1_dependency_threshold": true,
+        "all_support_intersections_lt_k": true,
+        "cosupport_intersection_histogram": {
+          "0": 30,
+          "1": 160
+        },
+        "fm1_dependency_threshold_c_ge": 2,
+        "k": 10,
+        "max_cosupport_intersection": 1,
+        "max_support_intersection": 9,
+        "support_intersection_histogram": {
+          "8": 30,
+          "9": 160
+        }
+      },
+      "slope_mode_results": [
+        {
+          "all_prefix_rows_sha256": "21f38a71e8dad0329f70654d61dd61ef013927f72139d9fb0667a098b0ef5905",
+          "ambient_bound_prefix_nondegeneracy_certificate": {
+            "all_v_syndrome_restrictions_nonzero": false,
+            "logic": "Inside the nullspace, each condition S_T(v)=0 is a proper linear subspace. Since p is larger than the number of tested locators, the union of these proper subspaces cannot cover the nullspace.",
+            "nullity": 20,
+            "p_greater_than_locator_count": true,
+            "union_bound_certifies_nondegenerate_solution": false,
+            "zero_restriction_first_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "zero_restriction_locator_count": 15
+          },
+          "ambient_linear_bound_floor((2n-1)/t)": 15,
+          "classification": "rank_loss_detected_but_degenerate_v_kernel",
+          "first_prefix_with_full_ambient_rank": 21,
+          "hidden_loss_nondegenerate_prefixes": {
+            "count": 0,
+            "first": null,
+            "last": null,
+            "max_deficiency": 0,
+            "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "hidden_losses_before_ambient_saturation": {
+            "count": 11,
+            "first": {
+              "deficiency": 1,
+              "prefix": 6
+            },
+            "last": {
+              "deficiency": 20,
+              "prefix": 16
+            },
+            "max_deficiency": 20,
+            "records_sha256": "b975bdf91e5323b3ffb0ec80738ca58ace0dd015dba982ae63f48e7896eb1322"
+          },
+          "largest_nondegenerate_prefix_certified": 4,
+          "largest_nondegenerate_prefix_nullity": 24,
+          "sampled_prefix_rows": [
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 2,
+              "expected_ambient_rank": 2,
+              "nullity": 30,
+              "prefix_locators": 1,
+              "rank": 2
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 4,
+              "expected_ambient_rank": 4,
+              "nullity": 28,
+              "prefix_locators": 2,
+              "rank": 4
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 6,
+              "expected_ambient_rank": 6,
+              "nullity": 26,
+              "prefix_locators": 3,
+              "rank": 6
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 8,
+              "expected_ambient_rank": 8,
+              "nullity": 24,
+              "prefix_locators": 4,
+              "rank": 8
+            },
+            {
+              "deficiency_vs_ambient": 4,
+              "equation_rows": 16,
+              "expected_ambient_rank": 16,
+              "nullity": 20,
+              "prefix_locators": 8,
+              "rank": 12
+            },
+            {
+              "deficiency_vs_ambient": 18,
+              "equation_rows": 30,
+              "expected_ambient_rank": 30,
+              "nullity": 20,
+              "prefix_locators": 15,
+              "rank": 12
+            },
+            {
+              "deficiency_vs_ambient": 20,
+              "equation_rows": 32,
+              "expected_ambient_rank": 32,
+              "nullity": 20,
+              "prefix_locators": 16,
+              "rank": 12
+            },
+            {
+              "deficiency_vs_ambient": 20,
+              "equation_rows": 40,
+              "expected_ambient_rank": 32,
+              "nullity": 20,
+              "prefix_locators": 20,
+              "rank": 12
+            }
+          ],
+          "slope_mode": "distinct_linear"
+        },
+        {
+          "all_prefix_rows_sha256": "21f38a71e8dad0329f70654d61dd61ef013927f72139d9fb0667a098b0ef5905",
+          "ambient_bound_prefix_nondegeneracy_certificate": {
+            "all_v_syndrome_restrictions_nonzero": false,
+            "logic": "Inside the nullspace, each condition S_T(v)=0 is a proper linear subspace. Since p is larger than the number of tested locators, the union of these proper subspaces cannot cover the nullspace.",
+            "nullity": 20,
+            "p_greater_than_locator_count": true,
+            "union_bound_certifies_nondegenerate_solution": false,
+            "zero_restriction_first_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "zero_restriction_locator_count": 15
+          },
+          "ambient_linear_bound_floor((2n-1)/t)": 15,
+          "classification": "rank_loss_detected_but_degenerate_v_kernel",
+          "first_prefix_with_full_ambient_rank": 21,
+          "hidden_loss_nondegenerate_prefixes": {
+            "count": 0,
+            "first": null,
+            "last": null,
+            "max_deficiency": 0,
+            "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "hidden_losses_before_ambient_saturation": {
+            "count": 11,
+            "first": {
+              "deficiency": 1,
+              "prefix": 6
+            },
+            "last": {
+              "deficiency": 20,
+              "prefix": 16
+            },
+            "max_deficiency": 20,
+            "records_sha256": "b975bdf91e5323b3ffb0ec80738ca58ace0dd015dba982ae63f48e7896eb1322"
+          },
+          "largest_nondegenerate_prefix_certified": 4,
+          "largest_nondegenerate_prefix_nullity": 24,
+          "sampled_prefix_rows": [
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 2,
+              "expected_ambient_rank": 2,
+              "nullity": 30,
+              "prefix_locators": 1,
+              "rank": 2
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 4,
+              "expected_ambient_rank": 4,
+              "nullity": 28,
+              "prefix_locators": 2,
+              "rank": 4
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 6,
+              "expected_ambient_rank": 6,
+              "nullity": 26,
+              "prefix_locators": 3,
+              "rank": 6
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 8,
+              "expected_ambient_rank": 8,
+              "nullity": 24,
+              "prefix_locators": 4,
+              "rank": 8
+            },
+            {
+              "deficiency_vs_ambient": 4,
+              "equation_rows": 16,
+              "expected_ambient_rank": 16,
+              "nullity": 20,
+              "prefix_locators": 8,
+              "rank": 12
+            },
+            {
+              "deficiency_vs_ambient": 18,
+              "equation_rows": 30,
+              "expected_ambient_rank": 30,
+              "nullity": 20,
+              "prefix_locators": 15,
+              "rank": 12
+            },
+            {
+              "deficiency_vs_ambient": 20,
+              "equation_rows": 32,
+              "expected_ambient_rank": 32,
+              "nullity": 20,
+              "prefix_locators": 16,
+              "rank": 12
+            },
+            {
+              "deficiency_vs_ambient": 20,
+              "equation_rows": 40,
+              "expected_ambient_rank": 32,
+              "nullity": 20,
+              "prefix_locators": 20,
+              "rank": 12
+            }
+          ],
+          "slope_mode": "distinct_geometric"
+        },
+        {
+          "all_prefix_rows_sha256": "f882c45a9a3fba5cc010be9e47840644dcdb8c298295271b9a3a19bfcc7a8d9d",
+          "ambient_bound_prefix_nondegeneracy_certificate": {
+            "all_v_syndrome_restrictions_nonzero": true,
+            "logic": "Inside the nullspace, each condition S_T(v)=0 is a proper linear subspace. Since p is larger than the number of tested locators, the union of these proper subspaces cannot cover the nullspace.",
+            "nullity": 26,
+            "p_greater_than_locator_count": true,
+            "union_bound_certifies_nondegenerate_solution": true,
+            "zero_restriction_first_indices": [],
+            "zero_restriction_locator_count": 0
+          },
+          "ambient_linear_bound_floor((2n-1)/t)": 15,
+          "classification": "same_slope_diagnostic_not_an_E3_distinct_slope_test",
+          "first_prefix_with_full_ambient_rank": 21,
+          "hidden_loss_nondegenerate_prefixes": {
+            "count": 14,
+            "first": {
+              "deficiency": 1,
+              "nullity": 27,
+              "prefix": 3
+            },
+            "last": {
+              "deficiency": 26,
+              "nullity": 26,
+              "prefix": 16
+            },
+            "max_deficiency": 26,
+            "records_sha256": "d929f68c7c236b0da13a22dbaf3e8c02a8940558784fcda2d10ccf733d5147a0"
+          },
+          "hidden_losses_before_ambient_saturation": {
+            "count": 14,
+            "first": {
+              "deficiency": 1,
+              "prefix": 3
+            },
+            "last": {
+              "deficiency": 26,
+              "prefix": 16
+            },
+            "max_deficiency": 26,
+            "records_sha256": "c532b10bfb220ae1143d8c53a671d03d19cdc326e06867bab53e8a8eda054b4f"
+          },
+          "largest_nondegenerate_prefix_certified": 20,
+          "largest_nondegenerate_prefix_nullity": 26,
+          "sampled_prefix_rows": [
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 2,
+              "expected_ambient_rank": 2,
+              "nullity": 30,
+              "prefix_locators": 1,
+              "rank": 2
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 4,
+              "expected_ambient_rank": 4,
+              "nullity": 28,
+              "prefix_locators": 2,
+              "rank": 4
+            },
+            {
+              "deficiency_vs_ambient": 1,
+              "equation_rows": 6,
+              "expected_ambient_rank": 6,
+              "nullity": 27,
+              "prefix_locators": 3,
+              "rank": 5
+            },
+            {
+              "deficiency_vs_ambient": 3,
+              "equation_rows": 8,
+              "expected_ambient_rank": 8,
+              "nullity": 27,
+              "prefix_locators": 4,
+              "rank": 5
+            },
+            {
+              "deficiency_vs_ambient": 10,
+              "equation_rows": 16,
+              "expected_ambient_rank": 16,
+              "nullity": 26,
+              "prefix_locators": 8,
+              "rank": 6
+            },
+            {
+              "deficiency_vs_ambient": 24,
+              "equation_rows": 30,
+              "expected_ambient_rank": 30,
+              "nullity": 26,
+              "prefix_locators": 15,
+              "rank": 6
+            },
+            {
+              "deficiency_vs_ambient": 26,
+              "equation_rows": 32,
+              "expected_ambient_rank": 32,
+              "nullity": 26,
+              "prefix_locators": 16,
+              "rank": 6
+            },
+            {
+              "deficiency_vs_ambient": 26,
+              "equation_rows": 40,
+              "expected_ambient_rank": 32,
+              "nullity": 26,
+              "prefix_locators": 20,
+              "rank": 6
+            }
+          ],
+          "slope_mode": "constant_one"
+        }
+      ],
+      "t": 2
+    },
+    {
+      "A": 27,
+      "construction": "deterministic random-greedy 5-subset packing, pairwise intersections <= 1",
+      "family_size": 33,
+      "field": "F_193",
+      "interpretation": "NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE",
+      "j": 5,
+      "k": 24,
+      "n": 32,
+      "name": "greedy_32_j5_lambda1",
+      "pairwise_spread_stats": {
+        "all_pairs_below_fm1_dependency_threshold": true,
+        "all_support_intersections_lt_k": true,
+        "cosupport_intersection_histogram": {
+          "0": 177,
+          "1": 351
+        },
+        "fm1_dependency_threshold_c_ge": 2,
+        "k": 24,
+        "max_cosupport_intersection": 1,
+        "max_support_intersection": 23,
+        "support_intersection_histogram": {
+          "22": 177,
+          "23": 351
+        }
+      },
+      "slope_mode_results": [
+        {
+          "all_prefix_rows_sha256": "fc618172648fe249384ab2d5d43f1a17f4b490d31da4e7a64161da196b91a466",
+          "ambient_bound_prefix_nondegeneracy_certificate": {
+            "all_v_syndrome_restrictions_nonzero": false,
+            "logic": "Inside the nullspace, each condition S_T(v)=0 is a proper linear subspace. Since p is larger than the number of tested locators, the union of these proper subspaces cannot cover the nullspace.",
+            "nullity": 48,
+            "p_greater_than_locator_count": true,
+            "union_bound_certifies_nondegenerate_solution": false,
+            "zero_restriction_first_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "zero_restriction_locator_count": 21
+          },
+          "ambient_linear_bound_floor((2n-1)/t)": 21,
+          "classification": "rank_loss_detected_but_degenerate_v_kernel",
+          "first_prefix_with_full_ambient_rank": 34,
+          "hidden_loss_nondegenerate_prefixes": {
+            "count": 0,
+            "first": null,
+            "last": null,
+            "max_deficiency": 0,
+            "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "hidden_losses_before_ambient_saturation": {
+            "count": 16,
+            "first": {
+              "deficiency": 2,
+              "prefix": 6
+            },
+            "last": {
+              "deficiency": 47,
+              "prefix": 21
+            },
+            "max_deficiency": 47,
+            "records_sha256": "0555805b8e8e2092343a7e8e0d7715536d5151cef22f7522c376d22a1d2f3ec1"
+          },
+          "largest_nondegenerate_prefix_certified": 5,
+          "largest_nondegenerate_prefix_nullity": 49,
+          "sampled_prefix_rows": [
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 3,
+              "expected_ambient_rank": 3,
+              "nullity": 61,
+              "prefix_locators": 1,
+              "rank": 3
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 6,
+              "expected_ambient_rank": 6,
+              "nullity": 58,
+              "prefix_locators": 2,
+              "rank": 6
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 9,
+              "expected_ambient_rank": 9,
+              "nullity": 55,
+              "prefix_locators": 3,
+              "rank": 9
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 12,
+              "expected_ambient_rank": 12,
+              "nullity": 52,
+              "prefix_locators": 4,
+              "rank": 12
+            },
+            {
+              "deficiency_vs_ambient": 8,
+              "equation_rows": 24,
+              "expected_ambient_rank": 24,
+              "nullity": 48,
+              "prefix_locators": 8,
+              "rank": 16
+            },
+            {
+              "deficiency_vs_ambient": 32,
+              "equation_rows": 48,
+              "expected_ambient_rank": 48,
+              "nullity": 48,
+              "prefix_locators": 16,
+              "rank": 16
+            },
+            {
+              "deficiency_vs_ambient": 47,
+              "equation_rows": 63,
+              "expected_ambient_rank": 63,
+              "nullity": 48,
+              "prefix_locators": 21,
+              "rank": 16
+            },
+            {
+              "deficiency_vs_ambient": 48,
+              "equation_rows": 96,
+              "expected_ambient_rank": 64,
+              "nullity": 48,
+              "prefix_locators": 32,
+              "rank": 16
+            },
+            {
+              "deficiency_vs_ambient": 48,
+              "equation_rows": 99,
+              "expected_ambient_rank": 64,
+              "nullity": 48,
+              "prefix_locators": 33,
+              "rank": 16
+            }
+          ],
+          "slope_mode": "distinct_linear"
+        },
+        {
+          "all_prefix_rows_sha256": "fc618172648fe249384ab2d5d43f1a17f4b490d31da4e7a64161da196b91a466",
+          "ambient_bound_prefix_nondegeneracy_certificate": {
+            "all_v_syndrome_restrictions_nonzero": false,
+            "logic": "Inside the nullspace, each condition S_T(v)=0 is a proper linear subspace. Since p is larger than the number of tested locators, the union of these proper subspaces cannot cover the nullspace.",
+            "nullity": 48,
+            "p_greater_than_locator_count": true,
+            "union_bound_certifies_nondegenerate_solution": false,
+            "zero_restriction_first_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "zero_restriction_locator_count": 21
+          },
+          "ambient_linear_bound_floor((2n-1)/t)": 21,
+          "classification": "rank_loss_detected_but_degenerate_v_kernel",
+          "first_prefix_with_full_ambient_rank": 34,
+          "hidden_loss_nondegenerate_prefixes": {
+            "count": 0,
+            "first": null,
+            "last": null,
+            "max_deficiency": 0,
+            "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "hidden_losses_before_ambient_saturation": {
+            "count": 16,
+            "first": {
+              "deficiency": 2,
+              "prefix": 6
+            },
+            "last": {
+              "deficiency": 47,
+              "prefix": 21
+            },
+            "max_deficiency": 47,
+            "records_sha256": "0555805b8e8e2092343a7e8e0d7715536d5151cef22f7522c376d22a1d2f3ec1"
+          },
+          "largest_nondegenerate_prefix_certified": 5,
+          "largest_nondegenerate_prefix_nullity": 49,
+          "sampled_prefix_rows": [
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 3,
+              "expected_ambient_rank": 3,
+              "nullity": 61,
+              "prefix_locators": 1,
+              "rank": 3
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 6,
+              "expected_ambient_rank": 6,
+              "nullity": 58,
+              "prefix_locators": 2,
+              "rank": 6
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 9,
+              "expected_ambient_rank": 9,
+              "nullity": 55,
+              "prefix_locators": 3,
+              "rank": 9
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 12,
+              "expected_ambient_rank": 12,
+              "nullity": 52,
+              "prefix_locators": 4,
+              "rank": 12
+            },
+            {
+              "deficiency_vs_ambient": 8,
+              "equation_rows": 24,
+              "expected_ambient_rank": 24,
+              "nullity": 48,
+              "prefix_locators": 8,
+              "rank": 16
+            },
+            {
+              "deficiency_vs_ambient": 32,
+              "equation_rows": 48,
+              "expected_ambient_rank": 48,
+              "nullity": 48,
+              "prefix_locators": 16,
+              "rank": 16
+            },
+            {
+              "deficiency_vs_ambient": 47,
+              "equation_rows": 63,
+              "expected_ambient_rank": 63,
+              "nullity": 48,
+              "prefix_locators": 21,
+              "rank": 16
+            },
+            {
+              "deficiency_vs_ambient": 48,
+              "equation_rows": 96,
+              "expected_ambient_rank": 64,
+              "nullity": 48,
+              "prefix_locators": 32,
+              "rank": 16
+            },
+            {
+              "deficiency_vs_ambient": 48,
+              "equation_rows": 99,
+              "expected_ambient_rank": 64,
+              "nullity": 48,
+              "prefix_locators": 33,
+              "rank": 16
+            }
+          ],
+          "slope_mode": "distinct_geometric"
+        },
+        {
+          "all_prefix_rows_sha256": "8f4315b015b66dafad3fd8895c267d8a631f802b5099c3cbdedb990931f49125",
+          "ambient_bound_prefix_nondegeneracy_certificate": {
+            "all_v_syndrome_restrictions_nonzero": true,
+            "logic": "Inside the nullspace, each condition S_T(v)=0 is a proper linear subspace. Since p is larger than the number of tested locators, the union of these proper subspaces cannot cover the nullspace.",
+            "nullity": 56,
+            "p_greater_than_locator_count": true,
+            "union_bound_certifies_nondegenerate_solution": true,
+            "zero_restriction_first_indices": [],
+            "zero_restriction_locator_count": 0
+          },
+          "ambient_linear_bound_floor((2n-1)/t)": 21,
+          "classification": "same_slope_diagnostic_not_an_E3_distinct_slope_test",
+          "first_prefix_with_full_ambient_rank": 34,
+          "hidden_loss_nondegenerate_prefixes": {
+            "count": 19,
+            "first": {
+              "deficiency": 1,
+              "nullity": 56,
+              "prefix": 3
+            },
+            "last": {
+              "deficiency": 55,
+              "nullity": 56,
+              "prefix": 21
+            },
+            "max_deficiency": 55,
+            "records_sha256": "f5e101d977d51c7d7a53c2d684f7ae4d92e0bb4fa64fa33e47e7a9893ec9b6bd"
+          },
+          "hidden_losses_before_ambient_saturation": {
+            "count": 19,
+            "first": {
+              "deficiency": 1,
+              "prefix": 3
+            },
+            "last": {
+              "deficiency": 55,
+              "prefix": 21
+            },
+            "max_deficiency": 55,
+            "records_sha256": "0c41364015e0c30750a4e74d3580029f45fe89eb9a73d382390f9e1dc687a3cb"
+          },
+          "largest_nondegenerate_prefix_certified": 33,
+          "largest_nondegenerate_prefix_nullity": 56,
+          "sampled_prefix_rows": [
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 3,
+              "expected_ambient_rank": 3,
+              "nullity": 61,
+              "prefix_locators": 1,
+              "rank": 3
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 6,
+              "expected_ambient_rank": 6,
+              "nullity": 58,
+              "prefix_locators": 2,
+              "rank": 6
+            },
+            {
+              "deficiency_vs_ambient": 1,
+              "equation_rows": 9,
+              "expected_ambient_rank": 9,
+              "nullity": 56,
+              "prefix_locators": 3,
+              "rank": 8
+            },
+            {
+              "deficiency_vs_ambient": 4,
+              "equation_rows": 12,
+              "expected_ambient_rank": 12,
+              "nullity": 56,
+              "prefix_locators": 4,
+              "rank": 8
+            },
+            {
+              "deficiency_vs_ambient": 16,
+              "equation_rows": 24,
+              "expected_ambient_rank": 24,
+              "nullity": 56,
+              "prefix_locators": 8,
+              "rank": 8
+            },
+            {
+              "deficiency_vs_ambient": 40,
+              "equation_rows": 48,
+              "expected_ambient_rank": 48,
+              "nullity": 56,
+              "prefix_locators": 16,
+              "rank": 8
+            },
+            {
+              "deficiency_vs_ambient": 55,
+              "equation_rows": 63,
+              "expected_ambient_rank": 63,
+              "nullity": 56,
+              "prefix_locators": 21,
+              "rank": 8
+            },
+            {
+              "deficiency_vs_ambient": 56,
+              "equation_rows": 96,
+              "expected_ambient_rank": 64,
+              "nullity": 56,
+              "prefix_locators": 32,
+              "rank": 8
+            },
+            {
+              "deficiency_vs_ambient": 56,
+              "equation_rows": 99,
+              "expected_ambient_rank": 64,
+              "nullity": 56,
+              "prefix_locators": 33,
+              "rank": 8
+            }
+          ],
+          "slope_mode": "constant_one"
+        }
+      ],
+      "t": 3
+    },
+    {
+      "A": 26,
+      "construction": "deterministic random-greedy 6-subset packing, pairwise intersections <= 2",
+      "family_size": 64,
+      "field": "F_193",
+      "interpretation": "NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE",
+      "j": 6,
+      "k": 23,
+      "n": 32,
+      "name": "greedy_32_j6_lambda2",
+      "pairwise_spread_stats": {
+        "all_pairs_below_fm1_dependency_threshold": true,
+        "all_support_intersections_lt_k": true,
+        "cosupport_intersection_histogram": {
+          "0": 516,
+          "1": 874,
+          "2": 626
+        },
+        "fm1_dependency_threshold_c_ge": 3,
+        "k": 23,
+        "max_cosupport_intersection": 2,
+        "max_support_intersection": 22,
+        "support_intersection_histogram": {
+          "20": 516,
+          "21": 874,
+          "22": 626
+        }
+      },
+      "slope_mode_results": [
+        {
+          "all_prefix_rows_sha256": "048c2592c13600c637987f42597ab7d7479effd9e1ea4ed2dc145f2c1c5110bb",
+          "ambient_bound_prefix_nondegeneracy_certificate": {
+            "all_v_syndrome_restrictions_nonzero": false,
+            "logic": "Inside the nullspace, each condition S_T(v)=0 is a proper linear subspace. Since p is larger than the number of tested locators, the union of these proper subspaces cannot cover the nullspace.",
+            "nullity": 46,
+            "p_greater_than_locator_count": true,
+            "union_bound_certifies_nondegenerate_solution": false,
+            "zero_restriction_first_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "zero_restriction_locator_count": 21
+          },
+          "ambient_linear_bound_floor((2n-1)/t)": 21,
+          "classification": "rank_loss_detected_but_degenerate_v_kernel",
+          "first_prefix_with_full_ambient_rank": 65,
+          "hidden_loss_nondegenerate_prefixes": {
+            "count": 0,
+            "first": null,
+            "last": null,
+            "max_deficiency": 0,
+            "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "hidden_losses_before_ambient_saturation": {
+            "count": 15,
+            "first": {
+              "deficiency": 3,
+              "prefix": 7
+            },
+            "last": {
+              "deficiency": 45,
+              "prefix": 21
+            },
+            "max_deficiency": 45,
+            "records_sha256": "010f74d3d79cae697f826d3e904f047103d8b2de21f1f1bdeb9c7a8173cdda03"
+          },
+          "largest_nondegenerate_prefix_certified": 5,
+          "largest_nondegenerate_prefix_nullity": 49,
+          "sampled_prefix_rows": [
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 3,
+              "expected_ambient_rank": 3,
+              "nullity": 61,
+              "prefix_locators": 1,
+              "rank": 3
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 6,
+              "expected_ambient_rank": 6,
+              "nullity": 58,
+              "prefix_locators": 2,
+              "rank": 6
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 9,
+              "expected_ambient_rank": 9,
+              "nullity": 55,
+              "prefix_locators": 3,
+              "rank": 9
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 12,
+              "expected_ambient_rank": 12,
+              "nullity": 52,
+              "prefix_locators": 4,
+              "rank": 12
+            },
+            {
+              "deficiency_vs_ambient": 6,
+              "equation_rows": 24,
+              "expected_ambient_rank": 24,
+              "nullity": 46,
+              "prefix_locators": 8,
+              "rank": 18
+            },
+            {
+              "deficiency_vs_ambient": 30,
+              "equation_rows": 48,
+              "expected_ambient_rank": 48,
+              "nullity": 46,
+              "prefix_locators": 16,
+              "rank": 18
+            },
+            {
+              "deficiency_vs_ambient": 45,
+              "equation_rows": 63,
+              "expected_ambient_rank": 63,
+              "nullity": 46,
+              "prefix_locators": 21,
+              "rank": 18
+            },
+            {
+              "deficiency_vs_ambient": 46,
+              "equation_rows": 96,
+              "expected_ambient_rank": 64,
+              "nullity": 46,
+              "prefix_locators": 32,
+              "rank": 18
+            },
+            {
+              "deficiency_vs_ambient": 46,
+              "equation_rows": 192,
+              "expected_ambient_rank": 64,
+              "nullity": 46,
+              "prefix_locators": 64,
+              "rank": 18
+            }
+          ],
+          "slope_mode": "distinct_linear"
+        },
+        {
+          "all_prefix_rows_sha256": "048c2592c13600c637987f42597ab7d7479effd9e1ea4ed2dc145f2c1c5110bb",
+          "ambient_bound_prefix_nondegeneracy_certificate": {
+            "all_v_syndrome_restrictions_nonzero": false,
+            "logic": "Inside the nullspace, each condition S_T(v)=0 is a proper linear subspace. Since p is larger than the number of tested locators, the union of these proper subspaces cannot cover the nullspace.",
+            "nullity": 46,
+            "p_greater_than_locator_count": true,
+            "union_bound_certifies_nondegenerate_solution": false,
+            "zero_restriction_first_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "zero_restriction_locator_count": 21
+          },
+          "ambient_linear_bound_floor((2n-1)/t)": 21,
+          "classification": "rank_loss_detected_but_degenerate_v_kernel",
+          "first_prefix_with_full_ambient_rank": 65,
+          "hidden_loss_nondegenerate_prefixes": {
+            "count": 0,
+            "first": null,
+            "last": null,
+            "max_deficiency": 0,
+            "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "hidden_losses_before_ambient_saturation": {
+            "count": 15,
+            "first": {
+              "deficiency": 3,
+              "prefix": 7
+            },
+            "last": {
+              "deficiency": 45,
+              "prefix": 21
+            },
+            "max_deficiency": 45,
+            "records_sha256": "010f74d3d79cae697f826d3e904f047103d8b2de21f1f1bdeb9c7a8173cdda03"
+          },
+          "largest_nondegenerate_prefix_certified": 5,
+          "largest_nondegenerate_prefix_nullity": 49,
+          "sampled_prefix_rows": [
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 3,
+              "expected_ambient_rank": 3,
+              "nullity": 61,
+              "prefix_locators": 1,
+              "rank": 3
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 6,
+              "expected_ambient_rank": 6,
+              "nullity": 58,
+              "prefix_locators": 2,
+              "rank": 6
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 9,
+              "expected_ambient_rank": 9,
+              "nullity": 55,
+              "prefix_locators": 3,
+              "rank": 9
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 12,
+              "expected_ambient_rank": 12,
+              "nullity": 52,
+              "prefix_locators": 4,
+              "rank": 12
+            },
+            {
+              "deficiency_vs_ambient": 6,
+              "equation_rows": 24,
+              "expected_ambient_rank": 24,
+              "nullity": 46,
+              "prefix_locators": 8,
+              "rank": 18
+            },
+            {
+              "deficiency_vs_ambient": 30,
+              "equation_rows": 48,
+              "expected_ambient_rank": 48,
+              "nullity": 46,
+              "prefix_locators": 16,
+              "rank": 18
+            },
+            {
+              "deficiency_vs_ambient": 45,
+              "equation_rows": 63,
+              "expected_ambient_rank": 63,
+              "nullity": 46,
+              "prefix_locators": 21,
+              "rank": 18
+            },
+            {
+              "deficiency_vs_ambient": 46,
+              "equation_rows": 96,
+              "expected_ambient_rank": 64,
+              "nullity": 46,
+              "prefix_locators": 32,
+              "rank": 18
+            },
+            {
+              "deficiency_vs_ambient": 46,
+              "equation_rows": 192,
+              "expected_ambient_rank": 64,
+              "nullity": 46,
+              "prefix_locators": 64,
+              "rank": 18
+            }
+          ],
+          "slope_mode": "distinct_geometric"
+        },
+        {
+          "all_prefix_rows_sha256": "49f8ca7af7a1555aafe5886019935a34c6c5b8a529a340c81e266b0fcea98994",
+          "ambient_bound_prefix_nondegeneracy_certificate": {
+            "all_v_syndrome_restrictions_nonzero": true,
+            "logic": "Inside the nullspace, each condition S_T(v)=0 is a proper linear subspace. Since p is larger than the number of tested locators, the union of these proper subspaces cannot cover the nullspace.",
+            "nullity": 55,
+            "p_greater_than_locator_count": true,
+            "union_bound_certifies_nondegenerate_solution": true,
+            "zero_restriction_first_indices": [],
+            "zero_restriction_locator_count": 0
+          },
+          "ambient_linear_bound_floor((2n-1)/t)": 21,
+          "classification": "same_slope_diagnostic_not_an_E3_distinct_slope_test",
+          "first_prefix_with_full_ambient_rank": 65,
+          "hidden_loss_nondegenerate_prefixes": {
+            "count": 18,
+            "first": {
+              "deficiency": 3,
+              "nullity": 55,
+              "prefix": 4
+            },
+            "last": {
+              "deficiency": 54,
+              "nullity": 55,
+              "prefix": 21
+            },
+            "max_deficiency": 54,
+            "records_sha256": "929fe78fad820604b3f23bf51eb615fdbfd6febc3fd9cd9ab8e63dc089666ef5"
+          },
+          "hidden_losses_before_ambient_saturation": {
+            "count": 18,
+            "first": {
+              "deficiency": 3,
+              "prefix": 4
+            },
+            "last": {
+              "deficiency": 54,
+              "prefix": 21
+            },
+            "max_deficiency": 54,
+            "records_sha256": "250adde831d1e89691f23d5b869d0d7c9b7633b2e9c5c66908156914c3f9ea78"
+          },
+          "largest_nondegenerate_prefix_certified": 64,
+          "largest_nondegenerate_prefix_nullity": 55,
+          "sampled_prefix_rows": [
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 3,
+              "expected_ambient_rank": 3,
+              "nullity": 61,
+              "prefix_locators": 1,
+              "rank": 3
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 6,
+              "expected_ambient_rank": 6,
+              "nullity": 58,
+              "prefix_locators": 2,
+              "rank": 6
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 9,
+              "expected_ambient_rank": 9,
+              "nullity": 55,
+              "prefix_locators": 3,
+              "rank": 9
+            },
+            {
+              "deficiency_vs_ambient": 3,
+              "equation_rows": 12,
+              "expected_ambient_rank": 12,
+              "nullity": 55,
+              "prefix_locators": 4,
+              "rank": 9
+            },
+            {
+              "deficiency_vs_ambient": 15,
+              "equation_rows": 24,
+              "expected_ambient_rank": 24,
+              "nullity": 55,
+              "prefix_locators": 8,
+              "rank": 9
+            },
+            {
+              "deficiency_vs_ambient": 39,
+              "equation_rows": 48,
+              "expected_ambient_rank": 48,
+              "nullity": 55,
+              "prefix_locators": 16,
+              "rank": 9
+            },
+            {
+              "deficiency_vs_ambient": 54,
+              "equation_rows": 63,
+              "expected_ambient_rank": 63,
+              "nullity": 55,
+              "prefix_locators": 21,
+              "rank": 9
+            },
+            {
+              "deficiency_vs_ambient": 55,
+              "equation_rows": 96,
+              "expected_ambient_rank": 64,
+              "nullity": 55,
+              "prefix_locators": 32,
+              "rank": 9
+            },
+            {
+              "deficiency_vs_ambient": 55,
+              "equation_rows": 192,
+              "expected_ambient_rank": 64,
+              "nullity": 55,
+              "prefix_locators": 64,
+              "rank": 9
+            }
+          ],
+          "slope_mode": "constant_one"
+        }
+      ],
+      "t": 3
+    },
+    {
+      "A": 58,
+      "construction": "deterministic random-greedy 6-subset packing, pairwise intersections <= 1",
+      "family_size": 69,
+      "field": "F_193",
+      "interpretation": "NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE",
+      "j": 6,
+      "k": 54,
+      "n": 64,
+      "name": "greedy_64_j6_lambda1",
+      "pairwise_spread_stats": {
+        "all_pairs_below_fm1_dependency_threshold": true,
+        "all_support_intersections_lt_k": true,
+        "cosupport_intersection_histogram": {
+          "0": 1199,
+          "1": 1147
+        },
+        "fm1_dependency_threshold_c_ge": 2,
+        "k": 54,
+        "max_cosupport_intersection": 1,
+        "max_support_intersection": 53,
+        "support_intersection_histogram": {
+          "52": 1199,
+          "53": 1147
+        }
+      },
+      "slope_mode_results": [
+        {
+          "all_prefix_rows_sha256": "8e13595d8b94239e4ae5df2b02127464ce45cd852ced5f93e99b50a577459348",
+          "ambient_bound_prefix_nondegeneracy_certificate": {
+            "all_v_syndrome_restrictions_nonzero": false,
+            "logic": "Inside the nullspace, each condition S_T(v)=0 is a proper linear subspace. Since p is larger than the number of tested locators, the union of these proper subspaces cannot cover the nullspace.",
+            "nullity": 108,
+            "p_greater_than_locator_count": true,
+            "union_bound_certifies_nondegenerate_solution": false,
+            "zero_restriction_first_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "zero_restriction_locator_count": 31
+          },
+          "ambient_linear_bound_floor((2n-1)/t)": 31,
+          "classification": "rank_loss_detected_but_degenerate_v_kernel",
+          "first_prefix_with_full_ambient_rank": 70,
+          "hidden_loss_nondegenerate_prefixes": {
+            "count": 0,
+            "first": null,
+            "last": null,
+            "max_deficiency": 0,
+            "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "hidden_losses_before_ambient_saturation": {
+            "count": 27,
+            "first": {
+              "deficiency": 4,
+              "prefix": 6
+            },
+            "last": {
+              "deficiency": 108,
+              "prefix": 32
+            },
+            "max_deficiency": 108,
+            "records_sha256": "e66123618360c5d64dfdc85d4f5506847cf546ec5e6d8e3d09cc1ff522cce09d"
+          },
+          "largest_nondegenerate_prefix_certified": 4,
+          "largest_nondegenerate_prefix_nullity": 112,
+          "sampled_prefix_rows": [
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 4,
+              "expected_ambient_rank": 4,
+              "nullity": 124,
+              "prefix_locators": 1,
+              "rank": 4
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 8,
+              "expected_ambient_rank": 8,
+              "nullity": 120,
+              "prefix_locators": 2,
+              "rank": 8
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 12,
+              "expected_ambient_rank": 12,
+              "nullity": 116,
+              "prefix_locators": 3,
+              "rank": 12
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 16,
+              "expected_ambient_rank": 16,
+              "nullity": 112,
+              "prefix_locators": 4,
+              "rank": 16
+            },
+            {
+              "deficiency_vs_ambient": 12,
+              "equation_rows": 32,
+              "expected_ambient_rank": 32,
+              "nullity": 108,
+              "prefix_locators": 8,
+              "rank": 20
+            },
+            {
+              "deficiency_vs_ambient": 44,
+              "equation_rows": 64,
+              "expected_ambient_rank": 64,
+              "nullity": 108,
+              "prefix_locators": 16,
+              "rank": 20
+            },
+            {
+              "deficiency_vs_ambient": 104,
+              "equation_rows": 124,
+              "expected_ambient_rank": 124,
+              "nullity": 108,
+              "prefix_locators": 31,
+              "rank": 20
+            },
+            {
+              "deficiency_vs_ambient": 108,
+              "equation_rows": 128,
+              "expected_ambient_rank": 128,
+              "nullity": 108,
+              "prefix_locators": 32,
+              "rank": 20
+            },
+            {
+              "deficiency_vs_ambient": 108,
+              "equation_rows": 256,
+              "expected_ambient_rank": 128,
+              "nullity": 108,
+              "prefix_locators": 64,
+              "rank": 20
+            },
+            {
+              "deficiency_vs_ambient": 108,
+              "equation_rows": 276,
+              "expected_ambient_rank": 128,
+              "nullity": 108,
+              "prefix_locators": 69,
+              "rank": 20
+            }
+          ],
+          "slope_mode": "distinct_linear"
+        },
+        {
+          "all_prefix_rows_sha256": "8e13595d8b94239e4ae5df2b02127464ce45cd852ced5f93e99b50a577459348",
+          "ambient_bound_prefix_nondegeneracy_certificate": {
+            "all_v_syndrome_restrictions_nonzero": false,
+            "logic": "Inside the nullspace, each condition S_T(v)=0 is a proper linear subspace. Since p is larger than the number of tested locators, the union of these proper subspaces cannot cover the nullspace.",
+            "nullity": 108,
+            "p_greater_than_locator_count": true,
+            "union_bound_certifies_nondegenerate_solution": false,
+            "zero_restriction_first_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11
+            ],
+            "zero_restriction_locator_count": 31
+          },
+          "ambient_linear_bound_floor((2n-1)/t)": 31,
+          "classification": "rank_loss_detected_but_degenerate_v_kernel",
+          "first_prefix_with_full_ambient_rank": 70,
+          "hidden_loss_nondegenerate_prefixes": {
+            "count": 0,
+            "first": null,
+            "last": null,
+            "max_deficiency": 0,
+            "records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "hidden_losses_before_ambient_saturation": {
+            "count": 27,
+            "first": {
+              "deficiency": 4,
+              "prefix": 6
+            },
+            "last": {
+              "deficiency": 108,
+              "prefix": 32
+            },
+            "max_deficiency": 108,
+            "records_sha256": "e66123618360c5d64dfdc85d4f5506847cf546ec5e6d8e3d09cc1ff522cce09d"
+          },
+          "largest_nondegenerate_prefix_certified": 4,
+          "largest_nondegenerate_prefix_nullity": 112,
+          "sampled_prefix_rows": [
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 4,
+              "expected_ambient_rank": 4,
+              "nullity": 124,
+              "prefix_locators": 1,
+              "rank": 4
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 8,
+              "expected_ambient_rank": 8,
+              "nullity": 120,
+              "prefix_locators": 2,
+              "rank": 8
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 12,
+              "expected_ambient_rank": 12,
+              "nullity": 116,
+              "prefix_locators": 3,
+              "rank": 12
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 16,
+              "expected_ambient_rank": 16,
+              "nullity": 112,
+              "prefix_locators": 4,
+              "rank": 16
+            },
+            {
+              "deficiency_vs_ambient": 12,
+              "equation_rows": 32,
+              "expected_ambient_rank": 32,
+              "nullity": 108,
+              "prefix_locators": 8,
+              "rank": 20
+            },
+            {
+              "deficiency_vs_ambient": 44,
+              "equation_rows": 64,
+              "expected_ambient_rank": 64,
+              "nullity": 108,
+              "prefix_locators": 16,
+              "rank": 20
+            },
+            {
+              "deficiency_vs_ambient": 104,
+              "equation_rows": 124,
+              "expected_ambient_rank": 124,
+              "nullity": 108,
+              "prefix_locators": 31,
+              "rank": 20
+            },
+            {
+              "deficiency_vs_ambient": 108,
+              "equation_rows": 128,
+              "expected_ambient_rank": 128,
+              "nullity": 108,
+              "prefix_locators": 32,
+              "rank": 20
+            },
+            {
+              "deficiency_vs_ambient": 108,
+              "equation_rows": 256,
+              "expected_ambient_rank": 128,
+              "nullity": 108,
+              "prefix_locators": 64,
+              "rank": 20
+            },
+            {
+              "deficiency_vs_ambient": 108,
+              "equation_rows": 276,
+              "expected_ambient_rank": 128,
+              "nullity": 108,
+              "prefix_locators": 69,
+              "rank": 20
+            }
+          ],
+          "slope_mode": "distinct_geometric"
+        },
+        {
+          "all_prefix_rows_sha256": "06a4d670b27768d10c9c44970cb4fa45c9fe07e21bf4119a7770c332ef764588",
+          "ambient_bound_prefix_nondegeneracy_certificate": {
+            "all_v_syndrome_restrictions_nonzero": true,
+            "logic": "Inside the nullspace, each condition S_T(v)=0 is a proper linear subspace. Since p is larger than the number of tested locators, the union of these proper subspaces cannot cover the nullspace.",
+            "nullity": 118,
+            "p_greater_than_locator_count": true,
+            "union_bound_certifies_nondegenerate_solution": true,
+            "zero_restriction_first_indices": [],
+            "zero_restriction_locator_count": 0
+          },
+          "ambient_linear_bound_floor((2n-1)/t)": 31,
+          "classification": "same_slope_diagnostic_not_an_E3_distinct_slope_test",
+          "first_prefix_with_full_ambient_rank": 70,
+          "hidden_loss_nondegenerate_prefixes": {
+            "count": 30,
+            "first": {
+              "deficiency": 2,
+              "nullity": 118,
+              "prefix": 3
+            },
+            "last": {
+              "deficiency": 118,
+              "nullity": 118,
+              "prefix": 32
+            },
+            "max_deficiency": 118,
+            "records_sha256": "1bc5f882d30e5d7998f1e03c20fe13d37d503ab0425a6e251a782fd4c4731ba8"
+          },
+          "hidden_losses_before_ambient_saturation": {
+            "count": 30,
+            "first": {
+              "deficiency": 2,
+              "prefix": 3
+            },
+            "last": {
+              "deficiency": 118,
+              "prefix": 32
+            },
+            "max_deficiency": 118,
+            "records_sha256": "bf0ae44a545c8d78521d65c4905ef65d7ef851c733210167cedafa02e23732e5"
+          },
+          "largest_nondegenerate_prefix_certified": 69,
+          "largest_nondegenerate_prefix_nullity": 118,
+          "sampled_prefix_rows": [
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 4,
+              "expected_ambient_rank": 4,
+              "nullity": 124,
+              "prefix_locators": 1,
+              "rank": 4
+            },
+            {
+              "deficiency_vs_ambient": 0,
+              "equation_rows": 8,
+              "expected_ambient_rank": 8,
+              "nullity": 120,
+              "prefix_locators": 2,
+              "rank": 8
+            },
+            {
+              "deficiency_vs_ambient": 2,
+              "equation_rows": 12,
+              "expected_ambient_rank": 12,
+              "nullity": 118,
+              "prefix_locators": 3,
+              "rank": 10
+            },
+            {
+              "deficiency_vs_ambient": 6,
+              "equation_rows": 16,
+              "expected_ambient_rank": 16,
+              "nullity": 118,
+              "prefix_locators": 4,
+              "rank": 10
+            },
+            {
+              "deficiency_vs_ambient": 22,
+              "equation_rows": 32,
+              "expected_ambient_rank": 32,
+              "nullity": 118,
+              "prefix_locators": 8,
+              "rank": 10
+            },
+            {
+              "deficiency_vs_ambient": 54,
+              "equation_rows": 64,
+              "expected_ambient_rank": 64,
+              "nullity": 118,
+              "prefix_locators": 16,
+              "rank": 10
+            },
+            {
+              "deficiency_vs_ambient": 114,
+              "equation_rows": 124,
+              "expected_ambient_rank": 124,
+              "nullity": 118,
+              "prefix_locators": 31,
+              "rank": 10
+            },
+            {
+              "deficiency_vs_ambient": 118,
+              "equation_rows": 128,
+              "expected_ambient_rank": 128,
+              "nullity": 118,
+              "prefix_locators": 32,
+              "rank": 10
+            },
+            {
+              "deficiency_vs_ambient": 118,
+              "equation_rows": 256,
+              "expected_ambient_rank": 128,
+              "nullity": 118,
+              "prefix_locators": 64,
+              "rank": 10
+            },
+            {
+              "deficiency_vs_ambient": 118,
+              "equation_rows": 276,
+              "expected_ambient_rank": 128,
+              "nullity": 118,
+              "prefix_locators": 69,
+              "rank": 10
+            }
+          ],
+          "slope_mode": "constant_one"
+        }
+      ],
+      "t": 4
+    }
+  ],
+  "dag_nodes": [
+    "spread_regime_bound",
+    "r2_rigidity"
+  ],
+  "fable_evidence_item": "E3",
+  "hidden_cases": [],
+  "interpretation_table": {
+    "CANDIDATE_SPREAD_COUNTEREXAMPLE": "A nondegenerate distinct-slope rank loss before ambient saturation was found; package the minimal case as a counterexample candidate.",
+    "NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE": "No tested spread design produced a nondegenerate distinct-slope rank-loss prefix. Rank losses that do appear collapse into the S_T(v)=0 kernel, so they are not finite-slope mass."
+  },
+  "method": "For each design family, stack the linear systems S_T(u)+z_T S_T(v)=0 over F_193 for distinct slopes z_T. Pairwise intersections are below the FM1 dependency threshold, so any early rank loss is higher-order spread evidence.",
+  "overall_interpretation": "NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE",
+  "pre_registered_question": "Can co-support designs with pairwise support intersections < k create hidden distinct-slope alignment dependencies before the ambient 2n-variable rank limit?",
+  "prime": 193,
+  "script_sha256": "99c77dbc08905729ccf0d2dd47636d7b552ef4918b807a3c046b7c728abf38d5",
+  "seed": 2026070203,
+  "status": "EXPERIMENTAL / AUDIT",
+  "title": "E3 spread-regime design evidence"
+}

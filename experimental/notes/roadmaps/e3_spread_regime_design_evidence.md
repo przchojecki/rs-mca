@@ -1,0 +1,120 @@
+# E3 spread-regime design evidence
+
+- **Status:** EXPERIMENTAL / AUDIT.
+- **DAG nodes:** `spread_regime_bound`, `r2_rigidity`.
+- **Fable evidence item:** E3, "Spread-regime designs".
+- **Verifier:** `experimental/scripts/verify_spread_regime_design_evidence.py`.
+- **Artifact:**
+  `experimental/data/certificates/spread-regime-design-evidence/spread_regime_design_evidence.json`.
+
+This packet tests one concrete version of the spread-regime worry: a family of
+co-supports may have pairwise intersections below the FM1 dependency threshold,
+but still create higher-order dependencies that realize many distinct bad
+slopes.
+
+It is evidence only.  It does not prove the spread-regime bound.
+
+## Pre-registered question
+
+For a toy row with
+
+```text
+t = A-k,     j = n-A,
+```
+
+take `j`-element co-supports `T`.  The spread condition tested here is
+
+```text
+|T cap T'| < j-t
+```
+
+for every distinct pair.  Equivalently, the agreement supports
+`D\T` and `D\T'` have intersection `< k`, so the FM1 two-locator rank defect
+is zero pairwise.
+
+For a chosen finite slope `z_T`, impose the split-locator equations
+
+```text
+S_T(u) + z_T S_T(v) = 0,
+```
+
+where `S_T` is the FM1 locator-syndrome map.  The verifier stacks these
+equations over a spread design family and computes the rank over `F_193`.
+
+The decision rule is:
+
+```text
+nondegenerate distinct-slope rank loss before ambient saturation
+    => candidate spread counterexample;
+
+rank loss only after all tested finite slopes become S_T(v)=0
+    => degenerate v-kernel collapse, not finite-slope mass;
+
+no hidden loss
+    => ambient-limited evidence for the spread-regime route.
+```
+
+## Tested families
+
+The packet tests four deterministic spread families:
+
+```text
+AG(2,4) lines:        n=16, j=4, t=2, 20 blocks, max |T cap T'|=1
+greedy packing:       n=32, j=5, t=3, 33 blocks, max |T cap T'|=1
+greedy packing:       n=32, j=6, t=3, 64 blocks, max |T cap T'|=2
+greedy packing:       n=64, j=6, t=4, 69 blocks, max |T cap T'|=1
+```
+
+For each family the verifier tries two distinct-slope assignments
+(`1,2,3,...` and a geometric progression) plus a constant-slope diagnostic.
+
+## Outcome
+
+The verifier reports:
+
+```text
+overall: NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE
+```
+
+The important nuance is that rank losses do occur.  They are not ambient
+random-matrix behavior.  However, in the distinct-slope tests every rank-loss
+prefix checked by the verifier collapses into the degenerate `S_T(v)=0`
+kernel: the union-bound nondegeneracy certificate fails for those prefixes,
+and no hidden-loss prefix is certified as genuine finite-slope mass.
+
+The largest certified nondegenerate distinct-slope prefixes are small:
+
+```text
+AG(2,4) lines:        4
+greedy n=32,j=5:      5
+greedy n=32,j=6:      5
+greedy n=64,j=6:      4
+```
+
+By contrast, the constant-slope diagnostic certifies the full tested family in
+all four cases.  This is not an E3 counterexample because it creates one slope,
+not many distinct slopes, but it is a useful warning: spread designs can carry
+large one-slope fibers, and the proof program must keep finite-slope
+nondegeneracy separate from same-slope or zero-`v` collapse.
+
+## Interpretation
+
+This shifts the E3 prior mildly toward the clean spread-regime route.  The
+tested designs do not expose a new nondegenerate many-slope mechanism.  The
+evidence also suggests a useful proof target:
+
+```text
+In the spread regime, any higher-order rank loss for prescribed distinct
+slopes either stays below a bounded prefix size or forces the v-syndrome
+degeneracy S_T(v)=0 on the affected locator family.
+```
+
+That statement would be a real lemma toward `spread_regime_bound`; this packet
+is only its first finite-model pressure test.
+
+## Reproduce
+
+```bash
+python3 experimental/scripts/verify_spread_regime_design_evidence.py
+python3 experimental/scripts/verify_spread_regime_design_evidence.py --emit
+```

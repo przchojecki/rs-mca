@@ -67,6 +67,30 @@ Keep entries concise and link to the relevant files.
   explicitly requested; audit Paper D itself through theorem statements and
   certificate checks.
 
+### 2026-07-02 - E3 spread-regime design evidence
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/e3_spread_regime_design_evidence.md`;
+  `experimental/scripts/verify_spread_regime_design_evidence.py`;
+  `experimental/data/certificates/spread-regime-design-evidence/spread_regime_design_evidence.json`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A deterministic E3 evidence packet tests spread
+  co-support designs with pairwise agreement-support intersections `< k`.
+  The verifier stacks distinct-slope split-locator equations and checks
+  whether rank losses before ambient saturation are nondegenerate finite-slope
+  mass or collapse into the `S_T(v)=0` kernel.
+- **How it is useful:** This probes the `spread_regime_bound` / `r2_rigidity`
+  fork from Fable's evidence plan.  The tested AG(2,4) and greedy packing
+  families produce no nondegenerate distinct-slope spread counterexample, while
+  the constant-slope diagnostic shows why one-slope fibers must be separated
+  from many-slope evidence.
+- **What to do next:** Turn the observed pattern into a lemma target:
+  higher-order rank loss in spread families should either be bounded-prefix or
+  force `v`-syndrome degeneracy.  Broaden the falsifier to larger designs only
+  after that statement is made precise.
+
 ### 2026-07-02 - Towards-prize sparse note documentation pass
 
 - **Agent/model:** Codex.
