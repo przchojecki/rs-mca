@@ -260,6 +260,8 @@ pair secants occur, forcing at least `16` secant triangles.  Equivalently, line
 Exact degree-`126` accounting leaves line `e_G=72` with either one unused
 nonforced external root line or none, and conic `e_G=69` with either `14`
 pair-overlaps or all `15`.
+Combining the shape and root-budget constraints leaves two line partition
+shapes and three conic secant-cover shapes.
 
 The rank-node dichotomy packet
 

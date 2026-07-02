@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v14"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v15"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -783,6 +783,88 @@ def exact_conic_root_budget_alternatives(
     return alternatives
 
 
+def class_sizes_from_histogram(
+    histogram: list[int],
+    forced_external_core_size: int,
+    locator_degree: int,
+) -> list[int]:
+    """Nonforced external roots demanded by classes with 0/1/2 base roots."""
+    sizes: list[int] = []
+    for base_root_count, class_count in enumerate(histogram):
+        sizes.extend([locator_degree - forced_external_core_size - base_root_count] * class_count)
+    return sorted(sizes, reverse=True)
+
+
+def line_extremal_design_shapes(
+    alternatives: list[dict[str, Any]],
+    forced_external_core_size: int,
+    locator_degree: int,
+) -> list[dict[str, Any]]:
+    """Combine the line histogram alternatives with disjoint external roots."""
+    shapes: list[dict[str, Any]] = []
+    for alternative in alternatives:
+        unused = alternative["unused_nonforced_external_root_lines"]
+        shapes.append(
+            {
+                "base_root_histogram": alternative["base_root_histogram"],
+                "nonforced_external_class_sizes": class_sizes_from_histogram(
+                    alternative["base_root_histogram"],
+                    forced_external_core_size,
+                    locator_degree,
+                ),
+                "covered_nonforced_external_root_lines": (
+                    alternative["exact_nonforced_external_root_incidences"]
+                ),
+                "unused_nonforced_external_root_lines": unused,
+                "partition_status": "covers_all" if unused == 0 else "covers_all_but_one",
+            }
+        )
+    return shapes
+
+
+def conic_extremal_design_shapes(
+    alternatives: list[dict[str, Any]],
+    forced_external_core_size: int,
+    locator_degree: int,
+    external_root_count: int,
+) -> list[dict[str, Any]]:
+    """Combine conic histograms with the K6/K6-minus-one secant alternatives."""
+    shapes: list[dict[str, Any]] = []
+    available_external = external_root_count - forced_external_core_size
+    max_pair_overlaps = FINITE_BUDGET * (FINITE_BUDGET - 1) // 2
+    for alternative in alternatives:
+        max_missing = alternative["maximum_missing_secants_before_external_excess"]
+        for missing_secants in range(max_missing + 1):
+            pair_overlaps = max_pair_overlaps - missing_secants
+            covered = (
+                alternative["exact_nonforced_external_root_incidences_before_overlap"]
+                - pair_overlaps
+            )
+            unused = available_external - covered
+            if unused < 0:
+                continue
+            shapes.append(
+                {
+                    "base_root_histogram": alternative["base_root_histogram"],
+                    "nonforced_external_class_sizes": class_sizes_from_histogram(
+                        alternative["base_root_histogram"],
+                        forced_external_core_size,
+                        locator_degree,
+                    ),
+                    "secant_graph": (
+                        "K6" if missing_secants == 0 else "K6_minus_one_edge"
+                    ),
+                    "pair_overlaps": pair_overlaps,
+                    "missing_secants": missing_secants,
+                    "secant_triangles": 20 if missing_secants == 0 else 16,
+                    "covered_nonforced_external_root_lines": covered,
+                    "unused_nonforced_external_root_lines": unused,
+                    "cover_status": "covers_all" if unused == 0 else "covers_all_but_one",
+                }
+            )
+    return shapes
+
+
 def quotient_residual_row(
     component_type: str,
     forced_external_core_threshold: int,
@@ -1186,6 +1268,17 @@ def build_certificate() -> dict[str, Any]:
         locator_degree=j_value,
         external_root_count=external_root_count,
     )
+    line_e72_extremal_design_shapes = line_extremal_design_shapes(
+        line_e72_exact_root_budget_alternatives,
+        forced_external_core_size=72,
+        locator_degree=j_value,
+    )
+    conic_e69_extremal_design_shapes = conic_extremal_design_shapes(
+        conic_e69_exact_root_budget_alternatives,
+        forced_external_core_size=69,
+        locator_degree=j_value,
+        external_root_count=external_root_count,
+    )
     require(line_residual_core_threshold == 72, "line residual threshold mismatch")
     require(conic_residual_core_threshold == 69, "conic residual threshold mismatch")
     require(
@@ -1445,6 +1538,65 @@ def build_certificate() -> dict[str, Any]:
         ],
         "conic e=69 exact root-budget alternatives changed",
     )
+    require(
+        line_e72_extremal_design_shapes
+        == [
+            {
+                "base_root_histogram": [0, 0, 6],
+                "nonforced_external_class_sizes": [52, 52, 52, 52, 52, 52],
+                "covered_nonforced_external_root_lines": 312,
+                "unused_nonforced_external_root_lines": 1,
+                "partition_status": "covers_all_but_one",
+            },
+            {
+                "base_root_histogram": [0, 1, 5],
+                "nonforced_external_class_sizes": [53, 52, 52, 52, 52, 52],
+                "covered_nonforced_external_root_lines": 313,
+                "unused_nonforced_external_root_lines": 0,
+                "partition_status": "covers_all",
+            },
+        ],
+        "line e=72 extremal design shapes changed",
+    )
+    require(
+        conic_e69_extremal_design_shapes
+        == [
+            {
+                "base_root_histogram": [0, 0, 6],
+                "nonforced_external_class_sizes": [55, 55, 55, 55, 55, 55],
+                "secant_graph": "K6",
+                "pair_overlaps": 15,
+                "missing_secants": 0,
+                "secant_triangles": 20,
+                "covered_nonforced_external_root_lines": 315,
+                "unused_nonforced_external_root_lines": 1,
+                "cover_status": "covers_all_but_one",
+            },
+            {
+                "base_root_histogram": [0, 0, 6],
+                "nonforced_external_class_sizes": [55, 55, 55, 55, 55, 55],
+                "secant_graph": "K6_minus_one_edge",
+                "pair_overlaps": 14,
+                "missing_secants": 1,
+                "secant_triangles": 16,
+                "covered_nonforced_external_root_lines": 316,
+                "unused_nonforced_external_root_lines": 0,
+                "cover_status": "covers_all",
+            },
+            {
+                "base_root_histogram": [0, 1, 5],
+                "nonforced_external_class_sizes": [56, 55, 55, 55, 55, 55],
+                "secant_graph": "K6",
+                "pair_overlaps": 15,
+                "missing_secants": 0,
+                "secant_triangles": 20,
+                "covered_nonforced_external_root_lines": 316,
+                "unused_nonforced_external_root_lines": 0,
+                "cover_status": "covers_all",
+            },
+        ],
+        "conic e=69 extremal design shapes changed",
+    )
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -1667,6 +1819,16 @@ def build_certificate() -> dict[str, Any]:
                 "histogram (0,0,6) requires fourteen pair overlaps and histogram "
                 "(0,1,5) requires all fifteen pair overlaps."
             ),
+            "extremal_design_shapes": (
+                "Combining the root budgets with the extremal line/conic shapes, "
+                "line e_G=72 is a disjoint partition by six size-52 classes plus "
+                "one unused nonforced external root line, or by one size-53 class "
+                "and five size-52 classes covering all nonforced external roots.  "
+                "Conic e_G=69 has only three designs: six size-55 classes with K6 "
+                "and one unused root line, six size-55 classes with K6 minus one "
+                "edge covering all roots, or one size-56 plus five size-55 classes "
+                "with K6 covering all roots."
+            ),
         },
         "budget_formula": {
             "locator_degree_j": j_value,
@@ -1752,6 +1914,10 @@ def build_certificate() -> dict[str, Any]:
             "line_e72": line_e72_exact_root_budget_alternatives,
             "irreducible_conic_e69": conic_e69_exact_root_budget_alternatives,
         },
+        "extremal_design_shapes": {
+            "line_e72": line_e72_extremal_design_shapes,
+            "irreducible_conic_e69": conic_e69_extremal_design_shapes,
+        },
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -1810,6 +1976,7 @@ def build_certificate() -> dict[str, Any]:
                 line_e72_extremal_shape["allowed_base_root_histograms"]
             ),
             "line_e72_exact_root_budget_alternatives": line_e72_exact_root_budget_alternatives,
+            "line_e72_extremal_design_shapes": line_e72_extremal_design_shapes,
             "line_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in line_intermediate_profile_rows
             ),
@@ -1863,6 +2030,7 @@ def build_certificate() -> dict[str, Any]:
             "conic_e69_exact_root_budget_alternatives": (
                 conic_e69_exact_root_budget_alternatives
             ),
+            "conic_e69_extremal_design_shapes": conic_e69_extremal_design_shapes,
             "conic_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows
             ),
@@ -1902,6 +2070,7 @@ def build_certificate() -> dict[str, Any]:
             "line base-root and conic secant-graph defect thresholds are computed by six-class exact enumeration",
             "line e=72 and conic e=69 extremal survival shapes are classified by exact enumeration",
             "line e=72 and conic e=69 exact degree-126 root-budget alternatives are enumerated",
+            "line e=72 and conic e=69 extremal finite design shapes are enumerated",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",

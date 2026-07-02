@@ -342,6 +342,8 @@ secant graph `K6` or `K6` minus one edge.
 Exact degree-`126` accounting leaves line `e_G=72` with either one unused
 nonforced external root line or none, and conic `e_G=69` with either `14`
 pair-overlaps or all `15`.
+Combining the shape and root-budget constraints leaves two line partition
+shapes and three conic secant-cover shapes.
 
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets

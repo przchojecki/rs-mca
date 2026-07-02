@@ -328,6 +328,14 @@ histogram `(0,1,5)` uses every nonforced external root line, conic histogram
 `(0,0,6)` requires `14` pair-overlaps, and conic histogram `(0,1,5)` requires
 all `15` pair-overlaps.
 
+Combining the shape and root-budget constraints leaves exactly two line design
+targets and three conic design targets.  In the line case, either six size-`52`
+classes cover all but one nonforced external root line, or one size-`53` class
+and five size-`52` classes cover them all.  In the conic case, either six
+size-`55` classes with secant graph `K6` leave one line unused, six size-`55`
+classes with `K6` minus one edge cover all lines, or one size-`56` class and
+five size-`55` classes with `K6` cover all lines.
+
 Replay:
 
 ```sh
