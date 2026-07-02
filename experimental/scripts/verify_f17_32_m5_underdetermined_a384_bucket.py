@@ -26,6 +26,12 @@ the top-coefficient chart, the Cramer locator is valid iff it divides X^16-1.
 The check compares direct specialized division, pseudo-remainder vanishing, and
 root containment in mu_16 at every finite slope.
 
+Turn 6 records the abstract deficiency-one degree budget used by the real
+A=384 row: Cramer minors have slope-degree <= t, rank-drop/low-degree side
+charts are cut by degree-<=t minors, and the top-chart pseudo-remainder
+coefficients have slope-degree <= (n-j+1)t.  This specializes to 49,280 for the
+F_17^32 A=384 row and to the exact observed degree 52 in the F_97 toy.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -572,6 +578,65 @@ def toy_u1_u5_payload():
     }
 
 
+def deficiency_one_degree_bounds(n: int, k: int, agreement: int):
+    """Structural chart degree bounds for a deficiency-one Hankel pencil.
+
+    Assumptions recorded in the companion note: the t x (t+1) matrix entries
+    are affine-linear in Z, the maximal minors are not all zero as polynomials,
+    and the top coefficient minor is not identically zero on the top chart.
+    """
+    t = agreement - k
+    j = n - agreement
+    deficiency = (j + 1) - t
+    pseudo_delta = n - j + 1
+    cramer_degree = t
+    return {
+        "n": n,
+        "k": k,
+        "agreement": agreement,
+        "t": t,
+        "j": j,
+        "deficiency": deficiency,
+        "cramer_minor_degree_bound": cramer_degree,
+        "rank_drop_side_chart_degree_cap": cramer_degree,
+        "low_degree_side_chart_degree_cap": cramer_degree,
+        "pseudo_remainder_delta": pseudo_delta,
+        "top_chart_pseudo_remainder_degree_bound": pseudo_delta * cramer_degree,
+        "rough_resultant_degree_bound": n * cramer_degree,
+    }
+
+
+def check_deficiency_one_degree_budget():
+    """Verify the abstract U6 degree-budget arithmetic and its two specializations."""
+    toy_bounds = deficiency_one_degree_bounds(16, 8, 12)
+    real_bounds = deficiency_one_degree_bounds(N, K, A_STAR)
+    toy_payload = toy_u1_u5_payload()
+    toy_degrees = toy_payload["coefficient_polynomial_degrees"]
+
+    ok = True
+    ok &= toy_bounds["deficiency"] == 1
+    ok &= real_bounds["deficiency"] == 1
+    ok &= toy_bounds["top_chart_pseudo_remainder_degree_bound"] == 52
+    ok &= real_bounds["top_chart_pseudo_remainder_degree_bound"] == 49280
+    ok &= real_bounds["rough_resultant_degree_bound"] == 65536
+    ok &= max(toy_degrees) <= toy_bounds["top_chart_pseudo_remainder_degree_bound"]
+
+    d = [
+        "abstract setup: t x (t+1) affine-linear Hankel pencil, deficiency (j+1)-t = 1",
+        "Cramer minors c_i(Z) are t x t determinants, hence deg_Z c_i <= t",
+        "generic rank-drop side chart is contained in roots of one nonzero minor; "
+        "low-degree side chart is contained in roots of c_j; both have degree cap <= t",
+        "top chart: pseudo-remainder of X^n-1 by L_Z has delta = n-j+1 pseudo-division steps, "
+        "so each coefficient has deg_Z <= (n-j+1)t",
+        f"F_97 toy specialization: t=j=4, delta={toy_bounds['pseudo_remainder_delta']}, "
+        f"bound={toy_bounds['top_chart_pseudo_remainder_degree_bound']}, observed degrees={toy_degrees}",
+        f"F_17^32 A={A_STAR} specialization: t=j=128, delta={real_bounds['pseudo_remainder_delta']}, "
+        f"top-chart coefficient degree bound={real_bounds['top_chart_pseudo_remainder_degree_bound']}; "
+        f"rough resultant bound={real_bounds['rough_resultant_degree_bound']}",
+    ]
+    return ok, d
+
+
 def expected_toy_packet():
     payload = toy_u1_u5_payload()
     domain_hash = "sha256:" + hash_json_value(payload["domain"])
@@ -658,6 +723,7 @@ CHECKS = [
     ("pencil nondegeneracy of declared toy families",     check_pencil_nondegeneracy_summary),
     ("pivot chart + splitting filter (X^n - 1)",          check_divisibility_filter_top_chart),
     ("eliminant or certified residual obstruction",       check_toy_eliminant_dichotomy),
+    ("deficiency-1 degree budget for real row",           check_deficiency_one_degree_budget),
     ("packet emission + local replay validation",         lambda: check_toy_packet(DEFAULT_TOY_PACKET)),
 ]
 

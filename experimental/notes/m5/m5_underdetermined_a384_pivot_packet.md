@@ -1,15 +1,16 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 5: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 6: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
-  top-chart eliminant dichotomy, and compact toy packet emission are done).
+  top-chart eliminant dichotomy, compact toy packet emission, and the
+  abstract deficiency-one degree budget for the real `A=384` row are done).
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
   regular window `385 <= A <= 426`, synthetic rank ladders and kernel charts):
   this note works strictly BELOW the regular window, where the v10 regular
   branch is structurally unavailable rather than merely singular.
-- **Branch:** `allen/m5-underdetermined-pivot`.
+- **Branch:** `codex/m5-a384-u1-u2`.
 - **Script:** `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`.
 
 Row: `C = RS[F_17^32, H, 256]`, `n=512`, `k=256`, `q_line = 17^32`, `B_Q = 6`.
@@ -73,12 +74,32 @@ roadmap's list: rank-drop slopes (kernel dim `>= 2`, `all M_i(Z) = 0`),
 low-degree kernels (`c_j(Z) = 0` — the "projective infinity" analogue in
 coefficient space), each to be closed or certified as a labelled residual.
 
-**Degree budget (structural, to be proved not assumed):** `deg_Z c_i <= 128`,
-so `Res_X(L_Z, X^512 - 1)` has `deg_Z <= 512 * 128 = 65536` — an eliminant of
-that degree is far above the budget `B_Q = 6` before paid-ledger subtraction,
-and the packet will say so plainly. Its value is structural: the first filter
-with actual content below `A=385`, in packet form, with the paid-ledger
-subtraction deferred to M4 where it belongs.
+**Degree budget (structural, now verified in U6):** `deg_Z c_i <= 128`.  The
+coarse resultant filter has
+
+```text
+deg_Z Res_X(L_Z, X^512 - 1) <= 512 * 128 = 65536.
+```
+
+The pseudo-remainder coefficient filter is sharper.  Since
+`deg_X L_Z = j = 128` on the top chart, pseudo-division of `X^512-1` by
+`L_Z` takes
+
+```text
+delta = 512 - 128 + 1 = 385
+```
+
+steps, and each step raises `Z`-degree by at most `128`.  Thus every
+pseudo-remainder coefficient has
+
+```text
+deg_Z <= 385 * 128 = 49280.
+```
+
+This is still far above the budget `B_Q = 6` before paid-ledger subtraction.
+Its value is structural: the first filter with actual content below `A=385`,
+in packet form, with the paid-ledger subtraction deferred to M4 where it
+belongs.
 
 ## Attack plan (one verified increment per loop turn)
 
@@ -89,7 +110,8 @@ subtraction deferred to M4 where it belongs.
 | 3 | pivot chart: divisibility filter into `X^n - 1`, chart ideal + saturation | **done on the F_97 top-chart toy** |
 | 4 | eliminant `Q(Z)` on a declared input family, or certified `residual_obstruction` | **done on the F_97 top-chart toy** |
 | 5a | compact toy packet emission and local replay validation | **done** |
-| 5b | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/` for a declared `F_17^32` family | pending |
+| 5b | abstract degree-budget theorem specialized to real `A=384` | **done** |
+| 5c | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/` for a declared `F_17^32` family | pending |
 
 ### Verified so far (turn 1)
 
@@ -226,6 +248,39 @@ This is a local packet format for the toy deficiency-one chart.  It is not the
 generic v10 `aperiodic-hankel-eliminant-v1` schema, whose current checker only
 has arithmetic support for regular-minor packets rather than M5
 deficiency-one pivot charts.
+
+### Verified in turn 6
+
+**U6, abstract degree budget.** Let `M(Z)` be a deficiency-one
+`t x (t+1)` Hankel pencil whose entries are affine-linear in `Z`.  The signed
+maximal minors
+
+```text
+c_i(Z)=(-1)^i det(M with column i omitted)
+```
+
+have `deg_Z c_i <= t`.  Hence, for a nondegenerate declared family:
+
+- the rank-drop side chart is contained in the roots of any nonzero maximal
+  minor, so it has degree cap `<= t`;
+- the low-degree side chart is contained in the roots of the top coefficient
+  minor `c_j`, so it has degree cap `<= t` when that chart polynomial is not
+  identically zero;
+- on the top chart, pseudo-division of `X^n-1` by
+  `L_Z(X)=sum_i c_i(Z)X^i` has `delta=n-j+1` steps, so every
+  pseudo-remainder coefficient has degree at most `(n-j+1)t`.
+
+For the `F_97/mu_16` toy row this gives `t=j=4`, `delta=13`, and bound `52`;
+the observed coefficient degrees in the U5 packet are exactly
+`[52,52,52,52]`.  For the real row at `A=384` it gives `t=j=128`,
+`delta=385`, side-chart degree caps `128`, and top-chart coefficient degree
+bound `49280`.
+
+This is a theorem-level chart budget, not a real-row root count.  Its purpose
+is to make the next `F_17^32` packet falsifiable: any top-chart computation
+must produce pseudo-remainder coefficient data within this degree budget, and
+any side-chart residual must say whether the relevant degree-`<=128` chart
+polynomial is identically zero or has a replayed root table.
 
 ## Honest scope
 

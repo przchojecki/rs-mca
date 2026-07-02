@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 degree-budget theorem
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  No threshold or worst-case row
+  claim.
+- **What is being added:** Turn 6 of the `A=384` underdetermined M5 packet:
+  an abstract deficiency-one chart degree budget.  For a `t x (t+1)`
+  affine-linear Hankel pencil, Cramer minors have slope-degree `<= t`, the
+  generic rank-drop and low-degree side charts have degree cap `<= t`, and
+  top-chart pseudo-remainder coefficients have degree `<= (n-j+1)t`.
+- **How it is useful:** Specializes the first real underdetermined row to
+  side-chart caps `128` and top-chart coefficient cap `49280`, making the next
+  `F_17^32` packet a precise finite algebraic target rather than an informal
+  large computation.
+- **What to do next:** Attempt a declared `F_17^32` family packet or emit a
+  labelled residual with replayed spot checks and the U6 degree caps.
+
 ### 2026-07-02 - M5 A384 toy U1-U5 packet
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
