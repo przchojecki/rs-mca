@@ -1,0 +1,1387 @@
+{
+  "budget_windows": [
+    {
+      "budget_bits": 64,
+      "budget_interval": [
+        916312070471295267,
+        11975573020964041433067793888190275874
+      ],
+      "lower_scale_count": 916312070471295267,
+      "number_of_budget_values": 11975573020964041432151481817718980608,
+      "q_interval_for_floor_q_over_2_128": [
+        311804840178198118772139816749781793930020457420267978752,
+        4075076332808177436786407085671185215730343525610811652099269580159975423999
+      ],
+      "q_interval_size": 4075076332808177436474602245492987096958203708861029858169249122739707445248,
+      "rate": "1/2",
+      "upper_scale_count": 11975573020964041433067793888190275875
+    },
+    {
+      "budget_bits": 64,
+      "budget_interval": [
+        366395202809685,
+        1108355191126710500011856080724
+      ],
+      "lower_scale_count": 366395202809685,
+      "number_of_budget_values": 1108355191126710133616653271040,
+      "q_interval_for_floor_q_over_2_128": [
+        124677826840556894610612818680975884071991078404751360,
+        377153727825706181428965072910772119786605566480321716844511205785599
+      ],
+      "q_interval_size": 377153727825706056751138232353877509173786885504437644853432801034240,
+      "rate": "1/4",
+      "upper_scale_count": 1108355191126710500011856080725
+    },
+    {
+      "budget_bits": 64,
+      "budget_interval": [
+        3872894697,
+        81675143551104405224
+      ],
+      "lower_scale_count": 3872894697,
+      "number_of_budget_values": 81675143547231510528,
+      "q_interval_for_floor_q_over_2_128": [
+        1317877774330710793410631770846951895481117048832,
+        27792611166177230128090402830366988013575523152520911257599
+      ],
+      "q_interval_size": 27792611164859352353759692036956356242728571257039794208768,
+      "rate": "1/8",
+      "upper_scale_count": 81675143551104405225
+    },
+    {
+      "budget_bits": 64,
+      "budget_interval": [
+        1340346236625,
+        9448829626895919257468624
+      ],
+      "lower_scale_count": 1340346236625,
+      "number_of_budget_values": 9448829626894578911232000,
+      "q_interval_for_floor_q_over_2_128": [
+        456096189892327258416344218593757278694356811776000,
+        3215270110072831278797125946764564262413945775067590786285567999
+      ],
+      "q_interval_size": 3215270110072375182607233619506147918195352017788896429473792000,
+      "rate": "1/16",
+      "upper_scale_count": 9448829626895919257468625
+    },
+    {
+      "budget_bits": 96,
+      "budget_interval": [
+        916312070471295267,
+        11975573020964041433067793888190275874
+      ],
+      "lower_scale_count": 916312070471295267,
+      "number_of_budget_values": 11975573020964041432151481817718980608,
+      "q_interval_for_floor_q_over_2_128": [
+        311804840178198118772139816749781793930020457420267978752,
+        4075076332808177436786407085671185215730343525610811652099269580159975423999
+      ],
+      "q_interval_size": 4075076332808177436474602245492987096958203708861029858169249122739707445248,
+      "rate": "1/2",
+      "upper_scale_count": 11975573020964041433067793888190275875
+    },
+    {
+      "budget_bits": 96,
+      "budget_interval": [
+        366395202809685,
+        1108355191126710500011856080724
+      ],
+      "lower_scale_count": 366395202809685,
+      "number_of_budget_values": 1108355191126710133616653271040,
+      "q_interval_for_floor_q_over_2_128": [
+        124677826840556894610612818680975884071991078404751360,
+        377153727825706181428965072910772119786605566480321716844511205785599
+      ],
+      "q_interval_size": 377153727825706056751138232353877509173786885504437644853432801034240,
+      "rate": "1/4",
+      "upper_scale_count": 1108355191126710500011856080725
+    },
+    {
+      "budget_bits": 96,
+      "budget_interval": [
+        81675143551104405225,
+        50964019775576912153703782274307996667624
+      ],
+      "lower_scale_count": 81675143551104405225,
+      "number_of_budget_values": 50964019775576912153622107130756892262400,
+      "q_interval_for_floor_q_over_2_128": [
+        27792611166177230128090402830366988013575523152520911257600,
+        17342157277038826746673317769221190658372473017384634551793443699633854349311999
+      ],
+      "q_interval_size": 17342157277038826746645525158055013428244382614554267563779868176481333438054400,
+      "rate": "1/8",
+      "upper_scale_count": 50964019775576912153703782274307996667625
+    },
+    {
+      "budget_bits": 96,
+      "budget_interval": [
+        9448829626895919257468625,
+        658888362802442085954412326226040171365878624534224
+      ],
+      "lower_scale_count": 9448829626895919257468625,
+      "number_of_budget_values": 658888362802442085954412316777210544469959367065600,
+      "q_interval_for_floor_q_over_2_128": [
+        3215270110072831278797125946764564262413945775067590786285568000,
+        224208091631077020019722318248073246282059146921786188518507690413275225725698689309081599
+      ],
+      "q_interval_size": 224208091631077020019722315032803136209227868124660241753943427999329450658107903023513600,
+      "rate": "1/16",
+      "upper_scale_count": 658888362802442085954412326226040171365878624534225
+    },
+    {
+      "budget_bits": 128,
+      "budget_interval": [
+        11975573020964041433067793888190275875,
+        2884329411724603169044874178931143443870105850987581016304218283632259375394
+      ],
+      "lower_scale_count": 11975573020964041433067793888190275875,
+      "number_of_budget_values": 2884329411724603169044874178931143443858130277966616974871150489744069099520,
+      "q_interval_for_floor_q_over_2_128": [
+        4075076332808177436786407085671185215730343525610811652099269580159975424000,
+        981486439201326003329562976425903383576133726431280780306087046864575866106820237261495141992838344503586843525119
+      ],
+      "q_interval_size": 981486439201326003329562976425903383572058650098472602869300639778904680891089893735884330340739074923426868101120,
+      "rate": "1/2",
+      "upper_scale_count": 2884329411724603169044874178931143443870105850987581016304218283632259375395
+    },
+    {
+      "budget_bits": 128,
+      "budget_interval": [
+        1108355191126710500011856080725,
+        14282853361848836315351365633679499331844685450041107658551124
+      ],
+      "lower_scale_count": 1108355191126710500011856080725,
+      "number_of_budget_values": 14282853361848836315351365633678390976653558739541095802470400,
+      "q_interval_for_floor_q_over_2_128": [
+        377153727825706181428965072910772119786605566480321716844511205785600,
+        4860203148354605184668246543310034661534403817478038787103013129140895121489848231692638185586687999
+      ],
+      "q_interval_size": 4860203148354605184668246543309657507806578111296609822030102357021108515923367909975793674380902400,
+      "rate": "1/4",
+      "upper_scale_count": 14282853361848836315351365633679499331844685450041107658551125
+    },
+    {
+      "budget_bits": 128,
+      "budget_interval": [
+        81675143551104405225,
+        50964019775576912153703782274307996667624
+      ],
+      "lower_scale_count": 81675143551104405225,
+      "number_of_budget_values": 50964019775576912153622107130756892262400,
+      "q_interval_for_floor_q_over_2_128": [
+        27792611166177230128090402830366988013575523152520911257600,
+        17342157277038826746673317769221190658372473017384634551793443699633854349311999
+      ],
+      "q_interval_size": 17342157277038826746645525158055013428244382614554267563779868176481333438054400,
+      "rate": "1/8",
+      "upper_scale_count": 50964019775576912153703782274307996667625
+    },
+    {
+      "budget_bits": 128,
+      "budget_interval": [
+        9448829626895919257468625,
+        658888362802442085954412326226040171365878624534224
+      ],
+      "lower_scale_count": 9448829626895919257468625,
+      "number_of_budget_values": 658888362802442085954412316777210544469959367065600,
+      "q_interval_for_floor_q_over_2_128": [
+        3215270110072831278797125946764564262413945775067590786285568000,
+        224208091631077020019722318248073246282059146921786188518507690413275225725698689309081599
+      ],
+      "q_interval_size": 224208091631077020019722315032803136209227868124660241753943427999329450658107903023513600,
+      "rate": "1/16",
+      "upper_scale_count": 658888362802442085954412326226040171365878624534225
+    }
+  ],
+  "compiler_theorem": {
+    "active_scale_set": "{M | gcd(n,k): sigma < M and k/M <= n/M - 1}",
+    "compiled_lower_bound": "Lst(C,1-rho-sigma/n) >= max_M binom(n/M - 1,k/M)",
+    "planted_count_at_scale_M": "binom(n/M - 1, k/M)",
+    "unsafe_test": "max_M binom(n/M - 1,k/M) > floor(q_list/2^128)"
+  },
+  "dyadic_crossings": [
+    {
+      "budget_bits": 64,
+      "budget_floor": 18446744073709551615,
+      "checked_prefix": [
+        {
+          "beats_budget": false,
+          "count": 1,
+          "count_bit_length": 1,
+          "quotient_dimension": 1,
+          "quotient_order": 2
+        },
+        {
+          "beats_budget": false,
+          "count": 3,
+          "count_bit_length": 2,
+          "quotient_dimension": 2,
+          "quotient_order": 4
+        },
+        {
+          "beats_budget": false,
+          "count": 35,
+          "count_bit_length": 6,
+          "quotient_dimension": 4,
+          "quotient_order": 8
+        },
+        {
+          "beats_budget": false,
+          "count": 6435,
+          "count_bit_length": 13,
+          "quotient_dimension": 8,
+          "quotient_order": 16
+        },
+        {
+          "beats_budget": false,
+          "count": 300540195,
+          "count_bit_length": 29,
+          "quotient_dimension": 16,
+          "quotient_order": 32
+        },
+        {
+          "beats_budget": false,
+          "count": 916312070471295267,
+          "count_bit_length": 60,
+          "quotient_dimension": 32,
+          "quotient_order": 64
+        },
+        {
+          "beats_budget": true,
+          "count": 11975573020964041433067793888190275875,
+          "count_bit_length": 124,
+          "quotient_dimension": 64,
+          "quotient_order": 128
+        }
+      ],
+      "first_planted_unsafe_scale": {
+        "beats_budget": true,
+        "count": 11975573020964041433067793888190275875,
+        "count_bit_length": 124,
+        "quotient_dimension": 64,
+        "quotient_order": 128
+      },
+      "last_not_certified_by_this_scale": {
+        "beats_budget": false,
+        "count": 916312070471295267,
+        "count_bit_length": 60,
+        "quotient_dimension": 32,
+        "quotient_order": 64
+      },
+      "rate": "1/2",
+      "slack_boundary": {
+        "previous_dyadic_boundary": "n/64",
+        "unsafe_lower_certificate_when": "sigma < n/128"
+      }
+    },
+    {
+      "budget_bits": 64,
+      "budget_floor": 18446744073709551615,
+      "checked_prefix": [
+        {
+          "beats_budget": false,
+          "count": 3,
+          "count_bit_length": 2,
+          "quotient_dimension": 1,
+          "quotient_order": 4
+        },
+        {
+          "beats_budget": false,
+          "count": 21,
+          "count_bit_length": 5,
+          "quotient_dimension": 2,
+          "quotient_order": 8
+        },
+        {
+          "beats_budget": false,
+          "count": 1365,
+          "count_bit_length": 11,
+          "quotient_dimension": 4,
+          "quotient_order": 16
+        },
+        {
+          "beats_budget": false,
+          "count": 7888725,
+          "count_bit_length": 23,
+          "quotient_dimension": 8,
+          "quotient_order": 32
+        },
+        {
+          "beats_budget": false,
+          "count": 366395202809685,
+          "count_bit_length": 49,
+          "quotient_dimension": 16,
+          "quotient_order": 64
+        },
+        {
+          "beats_budget": true,
+          "count": 1108355191126710500011856080725,
+          "count_bit_length": 100,
+          "quotient_dimension": 32,
+          "quotient_order": 128
+        }
+      ],
+      "first_planted_unsafe_scale": {
+        "beats_budget": true,
+        "count": 1108355191126710500011856080725,
+        "count_bit_length": 100,
+        "quotient_dimension": 32,
+        "quotient_order": 128
+      },
+      "last_not_certified_by_this_scale": {
+        "beats_budget": false,
+        "count": 366395202809685,
+        "count_bit_length": 49,
+        "quotient_dimension": 16,
+        "quotient_order": 64
+      },
+      "rate": "1/4",
+      "slack_boundary": {
+        "previous_dyadic_boundary": "n/64",
+        "unsafe_lower_certificate_when": "sigma < n/128"
+      }
+    },
+    {
+      "budget_bits": 64,
+      "budget_floor": 18446744073709551615,
+      "checked_prefix": [
+        {
+          "beats_budget": false,
+          "count": 7,
+          "count_bit_length": 3,
+          "quotient_dimension": 1,
+          "quotient_order": 8
+        },
+        {
+          "beats_budget": false,
+          "count": 105,
+          "count_bit_length": 7,
+          "quotient_dimension": 2,
+          "quotient_order": 16
+        },
+        {
+          "beats_budget": false,
+          "count": 31465,
+          "count_bit_length": 15,
+          "quotient_dimension": 4,
+          "quotient_order": 32
+        },
+        {
+          "beats_budget": false,
+          "count": 3872894697,
+          "count_bit_length": 32,
+          "quotient_dimension": 8,
+          "quotient_order": 64
+        },
+        {
+          "beats_budget": true,
+          "count": 81675143551104405225,
+          "count_bit_length": 67,
+          "quotient_dimension": 16,
+          "quotient_order": 128
+        }
+      ],
+      "first_planted_unsafe_scale": {
+        "beats_budget": true,
+        "count": 81675143551104405225,
+        "count_bit_length": 67,
+        "quotient_dimension": 16,
+        "quotient_order": 128
+      },
+      "last_not_certified_by_this_scale": {
+        "beats_budget": false,
+        "count": 3872894697,
+        "count_bit_length": 32,
+        "quotient_dimension": 8,
+        "quotient_order": 64
+      },
+      "rate": "1/8",
+      "slack_boundary": {
+        "previous_dyadic_boundary": "n/64",
+        "unsafe_lower_certificate_when": "sigma < n/128"
+      }
+    },
+    {
+      "budget_bits": 64,
+      "budget_floor": 18446744073709551615,
+      "checked_prefix": [
+        {
+          "beats_budget": false,
+          "count": 15,
+          "count_bit_length": 4,
+          "quotient_dimension": 1,
+          "quotient_order": 16
+        },
+        {
+          "beats_budget": false,
+          "count": 465,
+          "count_bit_length": 9,
+          "quotient_dimension": 2,
+          "quotient_order": 32
+        },
+        {
+          "beats_budget": false,
+          "count": 595665,
+          "count_bit_length": 20,
+          "quotient_dimension": 4,
+          "quotient_order": 64
+        },
+        {
+          "beats_budget": false,
+          "count": 1340346236625,
+          "count_bit_length": 41,
+          "quotient_dimension": 8,
+          "quotient_order": 128
+        },
+        {
+          "beats_budget": true,
+          "count": 9448829626895919257468625,
+          "count_bit_length": 83,
+          "quotient_dimension": 16,
+          "quotient_order": 256
+        }
+      ],
+      "first_planted_unsafe_scale": {
+        "beats_budget": true,
+        "count": 9448829626895919257468625,
+        "count_bit_length": 83,
+        "quotient_dimension": 16,
+        "quotient_order": 256
+      },
+      "last_not_certified_by_this_scale": {
+        "beats_budget": false,
+        "count": 1340346236625,
+        "count_bit_length": 41,
+        "quotient_dimension": 8,
+        "quotient_order": 128
+      },
+      "rate": "1/16",
+      "slack_boundary": {
+        "previous_dyadic_boundary": "n/128",
+        "unsafe_lower_certificate_when": "sigma < n/256"
+      }
+    },
+    {
+      "budget_bits": 96,
+      "budget_floor": 79228162514264337593543950335,
+      "checked_prefix": [
+        {
+          "beats_budget": false,
+          "count": 1,
+          "count_bit_length": 1,
+          "quotient_dimension": 1,
+          "quotient_order": 2
+        },
+        {
+          "beats_budget": false,
+          "count": 3,
+          "count_bit_length": 2,
+          "quotient_dimension": 2,
+          "quotient_order": 4
+        },
+        {
+          "beats_budget": false,
+          "count": 35,
+          "count_bit_length": 6,
+          "quotient_dimension": 4,
+          "quotient_order": 8
+        },
+        {
+          "beats_budget": false,
+          "count": 6435,
+          "count_bit_length": 13,
+          "quotient_dimension": 8,
+          "quotient_order": 16
+        },
+        {
+          "beats_budget": false,
+          "count": 300540195,
+          "count_bit_length": 29,
+          "quotient_dimension": 16,
+          "quotient_order": 32
+        },
+        {
+          "beats_budget": false,
+          "count": 916312070471295267,
+          "count_bit_length": 60,
+          "quotient_dimension": 32,
+          "quotient_order": 64
+        },
+        {
+          "beats_budget": true,
+          "count": 11975573020964041433067793888190275875,
+          "count_bit_length": 124,
+          "quotient_dimension": 64,
+          "quotient_order": 128
+        }
+      ],
+      "first_planted_unsafe_scale": {
+        "beats_budget": true,
+        "count": 11975573020964041433067793888190275875,
+        "count_bit_length": 124,
+        "quotient_dimension": 64,
+        "quotient_order": 128
+      },
+      "last_not_certified_by_this_scale": {
+        "beats_budget": false,
+        "count": 916312070471295267,
+        "count_bit_length": 60,
+        "quotient_dimension": 32,
+        "quotient_order": 64
+      },
+      "rate": "1/2",
+      "slack_boundary": {
+        "previous_dyadic_boundary": "n/64",
+        "unsafe_lower_certificate_when": "sigma < n/128"
+      }
+    },
+    {
+      "budget_bits": 96,
+      "budget_floor": 79228162514264337593543950335,
+      "checked_prefix": [
+        {
+          "beats_budget": false,
+          "count": 3,
+          "count_bit_length": 2,
+          "quotient_dimension": 1,
+          "quotient_order": 4
+        },
+        {
+          "beats_budget": false,
+          "count": 21,
+          "count_bit_length": 5,
+          "quotient_dimension": 2,
+          "quotient_order": 8
+        },
+        {
+          "beats_budget": false,
+          "count": 1365,
+          "count_bit_length": 11,
+          "quotient_dimension": 4,
+          "quotient_order": 16
+        },
+        {
+          "beats_budget": false,
+          "count": 7888725,
+          "count_bit_length": 23,
+          "quotient_dimension": 8,
+          "quotient_order": 32
+        },
+        {
+          "beats_budget": false,
+          "count": 366395202809685,
+          "count_bit_length": 49,
+          "quotient_dimension": 16,
+          "quotient_order": 64
+        },
+        {
+          "beats_budget": true,
+          "count": 1108355191126710500011856080725,
+          "count_bit_length": 100,
+          "quotient_dimension": 32,
+          "quotient_order": 128
+        }
+      ],
+      "first_planted_unsafe_scale": {
+        "beats_budget": true,
+        "count": 1108355191126710500011856080725,
+        "count_bit_length": 100,
+        "quotient_dimension": 32,
+        "quotient_order": 128
+      },
+      "last_not_certified_by_this_scale": {
+        "beats_budget": false,
+        "count": 366395202809685,
+        "count_bit_length": 49,
+        "quotient_dimension": 16,
+        "quotient_order": 64
+      },
+      "rate": "1/4",
+      "slack_boundary": {
+        "previous_dyadic_boundary": "n/64",
+        "unsafe_lower_certificate_when": "sigma < n/128"
+      }
+    },
+    {
+      "budget_bits": 96,
+      "budget_floor": 79228162514264337593543950335,
+      "checked_prefix": [
+        {
+          "beats_budget": false,
+          "count": 7,
+          "count_bit_length": 3,
+          "quotient_dimension": 1,
+          "quotient_order": 8
+        },
+        {
+          "beats_budget": false,
+          "count": 105,
+          "count_bit_length": 7,
+          "quotient_dimension": 2,
+          "quotient_order": 16
+        },
+        {
+          "beats_budget": false,
+          "count": 31465,
+          "count_bit_length": 15,
+          "quotient_dimension": 4,
+          "quotient_order": 32
+        },
+        {
+          "beats_budget": false,
+          "count": 3872894697,
+          "count_bit_length": 32,
+          "quotient_dimension": 8,
+          "quotient_order": 64
+        },
+        {
+          "beats_budget": false,
+          "count": 81675143551104405225,
+          "count_bit_length": 67,
+          "quotient_dimension": 16,
+          "quotient_order": 128
+        },
+        {
+          "beats_budget": true,
+          "count": 50964019775576912153703782274307996667625,
+          "count_bit_length": 136,
+          "quotient_dimension": 32,
+          "quotient_order": 256
+        }
+      ],
+      "first_planted_unsafe_scale": {
+        "beats_budget": true,
+        "count": 50964019775576912153703782274307996667625,
+        "count_bit_length": 136,
+        "quotient_dimension": 32,
+        "quotient_order": 256
+      },
+      "last_not_certified_by_this_scale": {
+        "beats_budget": false,
+        "count": 81675143551104405225,
+        "count_bit_length": 67,
+        "quotient_dimension": 16,
+        "quotient_order": 128
+      },
+      "rate": "1/8",
+      "slack_boundary": {
+        "previous_dyadic_boundary": "n/128",
+        "unsafe_lower_certificate_when": "sigma < n/256"
+      }
+    },
+    {
+      "budget_bits": 96,
+      "budget_floor": 79228162514264337593543950335,
+      "checked_prefix": [
+        {
+          "beats_budget": false,
+          "count": 15,
+          "count_bit_length": 4,
+          "quotient_dimension": 1,
+          "quotient_order": 16
+        },
+        {
+          "beats_budget": false,
+          "count": 465,
+          "count_bit_length": 9,
+          "quotient_dimension": 2,
+          "quotient_order": 32
+        },
+        {
+          "beats_budget": false,
+          "count": 595665,
+          "count_bit_length": 20,
+          "quotient_dimension": 4,
+          "quotient_order": 64
+        },
+        {
+          "beats_budget": false,
+          "count": 1340346236625,
+          "count_bit_length": 41,
+          "quotient_dimension": 8,
+          "quotient_order": 128
+        },
+        {
+          "beats_budget": false,
+          "count": 9448829626895919257468625,
+          "count_bit_length": 83,
+          "quotient_dimension": 16,
+          "quotient_order": 256
+        },
+        {
+          "beats_budget": true,
+          "count": 658888362802442085954412326226040171365878624534225,
+          "count_bit_length": 169,
+          "quotient_dimension": 32,
+          "quotient_order": 512
+        }
+      ],
+      "first_planted_unsafe_scale": {
+        "beats_budget": true,
+        "count": 658888362802442085954412326226040171365878624534225,
+        "count_bit_length": 169,
+        "quotient_dimension": 32,
+        "quotient_order": 512
+      },
+      "last_not_certified_by_this_scale": {
+        "beats_budget": false,
+        "count": 9448829626895919257468625,
+        "count_bit_length": 83,
+        "quotient_dimension": 16,
+        "quotient_order": 256
+      },
+      "rate": "1/16",
+      "slack_boundary": {
+        "previous_dyadic_boundary": "n/256",
+        "unsafe_lower_certificate_when": "sigma < n/512"
+      }
+    },
+    {
+      "budget_bits": 128,
+      "budget_floor": 340282366920938463463374607431768211455,
+      "checked_prefix": [
+        {
+          "beats_budget": false,
+          "count": 1,
+          "count_bit_length": 1,
+          "quotient_dimension": 1,
+          "quotient_order": 2
+        },
+        {
+          "beats_budget": false,
+          "count": 3,
+          "count_bit_length": 2,
+          "quotient_dimension": 2,
+          "quotient_order": 4
+        },
+        {
+          "beats_budget": false,
+          "count": 35,
+          "count_bit_length": 6,
+          "quotient_dimension": 4,
+          "quotient_order": 8
+        },
+        {
+          "beats_budget": false,
+          "count": 6435,
+          "count_bit_length": 13,
+          "quotient_dimension": 8,
+          "quotient_order": 16
+        },
+        {
+          "beats_budget": false,
+          "count": 300540195,
+          "count_bit_length": 29,
+          "quotient_dimension": 16,
+          "quotient_order": 32
+        },
+        {
+          "beats_budget": false,
+          "count": 916312070471295267,
+          "count_bit_length": 60,
+          "quotient_dimension": 32,
+          "quotient_order": 64
+        },
+        {
+          "beats_budget": false,
+          "count": 11975573020964041433067793888190275875,
+          "count_bit_length": 124,
+          "quotient_dimension": 64,
+          "quotient_order": 128
+        },
+        {
+          "beats_budget": true,
+          "count": 2884329411724603169044874178931143443870105850987581016304218283632259375395,
+          "count_bit_length": 251,
+          "quotient_dimension": 128,
+          "quotient_order": 256
+        }
+      ],
+      "first_planted_unsafe_scale": {
+        "beats_budget": true,
+        "count": 2884329411724603169044874178931143443870105850987581016304218283632259375395,
+        "count_bit_length": 251,
+        "quotient_dimension": 128,
+        "quotient_order": 256
+      },
+      "last_not_certified_by_this_scale": {
+        "beats_budget": false,
+        "count": 11975573020964041433067793888190275875,
+        "count_bit_length": 124,
+        "quotient_dimension": 64,
+        "quotient_order": 128
+      },
+      "rate": "1/2",
+      "slack_boundary": {
+        "previous_dyadic_boundary": "n/128",
+        "unsafe_lower_certificate_when": "sigma < n/256"
+      }
+    },
+    {
+      "budget_bits": 128,
+      "budget_floor": 340282366920938463463374607431768211455,
+      "checked_prefix": [
+        {
+          "beats_budget": false,
+          "count": 3,
+          "count_bit_length": 2,
+          "quotient_dimension": 1,
+          "quotient_order": 4
+        },
+        {
+          "beats_budget": false,
+          "count": 21,
+          "count_bit_length": 5,
+          "quotient_dimension": 2,
+          "quotient_order": 8
+        },
+        {
+          "beats_budget": false,
+          "count": 1365,
+          "count_bit_length": 11,
+          "quotient_dimension": 4,
+          "quotient_order": 16
+        },
+        {
+          "beats_budget": false,
+          "count": 7888725,
+          "count_bit_length": 23,
+          "quotient_dimension": 8,
+          "quotient_order": 32
+        },
+        {
+          "beats_budget": false,
+          "count": 366395202809685,
+          "count_bit_length": 49,
+          "quotient_dimension": 16,
+          "quotient_order": 64
+        },
+        {
+          "beats_budget": false,
+          "count": 1108355191126710500011856080725,
+          "count_bit_length": 100,
+          "quotient_dimension": 32,
+          "quotient_order": 128
+        },
+        {
+          "beats_budget": true,
+          "count": 14282853361848836315351365633679499331844685450041107658551125,
+          "count_bit_length": 204,
+          "quotient_dimension": 64,
+          "quotient_order": 256
+        }
+      ],
+      "first_planted_unsafe_scale": {
+        "beats_budget": true,
+        "count": 14282853361848836315351365633679499331844685450041107658551125,
+        "count_bit_length": 204,
+        "quotient_dimension": 64,
+        "quotient_order": 256
+      },
+      "last_not_certified_by_this_scale": {
+        "beats_budget": false,
+        "count": 1108355191126710500011856080725,
+        "count_bit_length": 100,
+        "quotient_dimension": 32,
+        "quotient_order": 128
+      },
+      "rate": "1/4",
+      "slack_boundary": {
+        "previous_dyadic_boundary": "n/128",
+        "unsafe_lower_certificate_when": "sigma < n/256"
+      }
+    },
+    {
+      "budget_bits": 128,
+      "budget_floor": 340282366920938463463374607431768211455,
+      "checked_prefix": [
+        {
+          "beats_budget": false,
+          "count": 7,
+          "count_bit_length": 3,
+          "quotient_dimension": 1,
+          "quotient_order": 8
+        },
+        {
+          "beats_budget": false,
+          "count": 105,
+          "count_bit_length": 7,
+          "quotient_dimension": 2,
+          "quotient_order": 16
+        },
+        {
+          "beats_budget": false,
+          "count": 31465,
+          "count_bit_length": 15,
+          "quotient_dimension": 4,
+          "quotient_order": 32
+        },
+        {
+          "beats_budget": false,
+          "count": 3872894697,
+          "count_bit_length": 32,
+          "quotient_dimension": 8,
+          "quotient_order": 64
+        },
+        {
+          "beats_budget": false,
+          "count": 81675143551104405225,
+          "count_bit_length": 67,
+          "quotient_dimension": 16,
+          "quotient_order": 128
+        },
+        {
+          "beats_budget": true,
+          "count": 50964019775576912153703782274307996667625,
+          "count_bit_length": 136,
+          "quotient_dimension": 32,
+          "quotient_order": 256
+        }
+      ],
+      "first_planted_unsafe_scale": {
+        "beats_budget": true,
+        "count": 50964019775576912153703782274307996667625,
+        "count_bit_length": 136,
+        "quotient_dimension": 32,
+        "quotient_order": 256
+      },
+      "last_not_certified_by_this_scale": {
+        "beats_budget": false,
+        "count": 81675143551104405225,
+        "count_bit_length": 67,
+        "quotient_dimension": 16,
+        "quotient_order": 128
+      },
+      "rate": "1/8",
+      "slack_boundary": {
+        "previous_dyadic_boundary": "n/128",
+        "unsafe_lower_certificate_when": "sigma < n/256"
+      }
+    },
+    {
+      "budget_bits": 128,
+      "budget_floor": 340282366920938463463374607431768211455,
+      "checked_prefix": [
+        {
+          "beats_budget": false,
+          "count": 15,
+          "count_bit_length": 4,
+          "quotient_dimension": 1,
+          "quotient_order": 16
+        },
+        {
+          "beats_budget": false,
+          "count": 465,
+          "count_bit_length": 9,
+          "quotient_dimension": 2,
+          "quotient_order": 32
+        },
+        {
+          "beats_budget": false,
+          "count": 595665,
+          "count_bit_length": 20,
+          "quotient_dimension": 4,
+          "quotient_order": 64
+        },
+        {
+          "beats_budget": false,
+          "count": 1340346236625,
+          "count_bit_length": 41,
+          "quotient_dimension": 8,
+          "quotient_order": 128
+        },
+        {
+          "beats_budget": false,
+          "count": 9448829626895919257468625,
+          "count_bit_length": 83,
+          "quotient_dimension": 16,
+          "quotient_order": 256
+        },
+        {
+          "beats_budget": true,
+          "count": 658888362802442085954412326226040171365878624534225,
+          "count_bit_length": 169,
+          "quotient_dimension": 32,
+          "quotient_order": 512
+        }
+      ],
+      "first_planted_unsafe_scale": {
+        "beats_budget": true,
+        "count": 658888362802442085954412326226040171365878624534225,
+        "count_bit_length": 169,
+        "quotient_dimension": 32,
+        "quotient_order": 512
+      },
+      "last_not_certified_by_this_scale": {
+        "beats_budget": false,
+        "count": 9448829626895919257468625,
+        "count_bit_length": 83,
+        "quotient_dimension": 16,
+        "quotient_order": 256
+      },
+      "rate": "1/16",
+      "slack_boundary": {
+        "previous_dyadic_boundary": "n/256",
+        "unsafe_lower_certificate_when": "sigma < n/512"
+      }
+    }
+  ],
+  "non_claims": [
+    "This packet is a lower-bound/planted arithmetic compiler only.",
+    "It does not prove the matching ImgFib safe-side upper bound.",
+    "It does not bound non-planted sunflower or petal extras."
+  ],
+  "object": {
+    "agreement": "k + sigma",
+    "budget": "floor(q_list / 2^128)",
+    "code": "RS[F_q,H,k] with |H|=n",
+    "endpoint": "strict qcore activity condition 1 <= sigma < M",
+    "list_radius": "1 - rho - sigma/n",
+    "lower_bound_object": "Lst(C,1-rho-sigma/n)"
+  },
+  "paper_dependency": {
+    "source": "tex/slackMCA_v4.tex",
+    "theorem": "thm:qcore",
+    "used_statement": "If M|k, k/M <= n/M - 1, and 1 <= sigma < M, then a received word has at least binom(n/M - 1, k/M) codewords at agreement k + sigma."
+  },
+  "sample_active_profiles": [
+    {
+      "best_scale": {
+        "M": 16384,
+        "count": 916312070471295267,
+        "quotient_dimension": 32,
+        "quotient_order": 64
+      },
+      "max_planted_count": 916312070471295267,
+      "max_planted_count_bit_length": 60,
+      "n": 1048576,
+      "rate": "1/2",
+      "sigma": 8192,
+      "sigma_over_n": "1/128"
+    },
+    {
+      "best_scale": {
+        "M": 8192,
+        "count": 11975573020964041433067793888190275875,
+        "quotient_dimension": 64,
+        "quotient_order": 128
+      },
+      "max_planted_count": 11975573020964041433067793888190275875,
+      "max_planted_count_bit_length": 124,
+      "n": 1048576,
+      "rate": "1/2",
+      "sigma": 4096,
+      "sigma_over_n": "1/256"
+    },
+    {
+      "best_scale": {
+        "M": 4096,
+        "count": 2884329411724603169044874178931143443870105850987581016304218283632259375395,
+        "quotient_dimension": 128,
+        "quotient_order": 256
+      },
+      "max_planted_count": 2884329411724603169044874178931143443870105850987581016304218283632259375395,
+      "max_planted_count_bit_length": 251,
+      "n": 1048576,
+      "rate": "1/2",
+      "sigma": 2048,
+      "sigma_over_n": "1/512"
+    },
+    {
+      "best_scale": {
+        "M": 16384,
+        "count": 366395202809685,
+        "quotient_dimension": 16,
+        "quotient_order": 64
+      },
+      "max_planted_count": 366395202809685,
+      "max_planted_count_bit_length": 49,
+      "n": 1048576,
+      "rate": "1/4",
+      "sigma": 8192,
+      "sigma_over_n": "1/128"
+    },
+    {
+      "best_scale": {
+        "M": 8192,
+        "count": 1108355191126710500011856080725,
+        "quotient_dimension": 32,
+        "quotient_order": 128
+      },
+      "max_planted_count": 1108355191126710500011856080725,
+      "max_planted_count_bit_length": 100,
+      "n": 1048576,
+      "rate": "1/4",
+      "sigma": 4096,
+      "sigma_over_n": "1/256"
+    },
+    {
+      "best_scale": {
+        "M": 4096,
+        "count": 14282853361848836315351365633679499331844685450041107658551125,
+        "quotient_dimension": 64,
+        "quotient_order": 256
+      },
+      "max_planted_count": 14282853361848836315351365633679499331844685450041107658551125,
+      "max_planted_count_bit_length": 204,
+      "n": 1048576,
+      "rate": "1/4",
+      "sigma": 2048,
+      "sigma_over_n": "1/512"
+    },
+    {
+      "best_scale": {
+        "M": 16384,
+        "count": 3872894697,
+        "quotient_dimension": 8,
+        "quotient_order": 64
+      },
+      "max_planted_count": 3872894697,
+      "max_planted_count_bit_length": 32,
+      "n": 1048576,
+      "rate": "1/8",
+      "sigma": 8192,
+      "sigma_over_n": "1/128"
+    },
+    {
+      "best_scale": {
+        "M": 8192,
+        "count": 81675143551104405225,
+        "quotient_dimension": 16,
+        "quotient_order": 128
+      },
+      "max_planted_count": 81675143551104405225,
+      "max_planted_count_bit_length": 67,
+      "n": 1048576,
+      "rate": "1/8",
+      "sigma": 4096,
+      "sigma_over_n": "1/256"
+    },
+    {
+      "best_scale": {
+        "M": 4096,
+        "count": 50964019775576912153703782274307996667625,
+        "quotient_dimension": 32,
+        "quotient_order": 256
+      },
+      "max_planted_count": 50964019775576912153703782274307996667625,
+      "max_planted_count_bit_length": 136,
+      "n": 1048576,
+      "rate": "1/8",
+      "sigma": 2048,
+      "sigma_over_n": "1/512"
+    },
+    {
+      "best_scale": {
+        "M": 16384,
+        "count": 595665,
+        "quotient_dimension": 4,
+        "quotient_order": 64
+      },
+      "max_planted_count": 595665,
+      "max_planted_count_bit_length": 20,
+      "n": 1048576,
+      "rate": "1/16",
+      "sigma": 8192,
+      "sigma_over_n": "1/128"
+    },
+    {
+      "best_scale": {
+        "M": 8192,
+        "count": 1340346236625,
+        "quotient_dimension": 8,
+        "quotient_order": 128
+      },
+      "max_planted_count": 1340346236625,
+      "max_planted_count_bit_length": 41,
+      "n": 1048576,
+      "rate": "1/16",
+      "sigma": 4096,
+      "sigma_over_n": "1/256"
+    },
+    {
+      "best_scale": {
+        "M": 4096,
+        "count": 9448829626895919257468625,
+        "quotient_dimension": 16,
+        "quotient_order": 256
+      },
+      "max_planted_count": 9448829626895919257468625,
+      "max_planted_count_bit_length": 83,
+      "n": 1048576,
+      "rate": "1/16",
+      "sigma": 2048,
+      "sigma_over_n": "1/512"
+    },
+    {
+      "best_scale": {
+        "M": 17179869184,
+        "count": 916312070471295267,
+        "quotient_dimension": 32,
+        "quotient_order": 64
+      },
+      "max_planted_count": 916312070471295267,
+      "max_planted_count_bit_length": 60,
+      "n": 1099511627776,
+      "rate": "1/2",
+      "sigma": 8589934592,
+      "sigma_over_n": "1/128"
+    },
+    {
+      "best_scale": {
+        "M": 8589934592,
+        "count": 11975573020964041433067793888190275875,
+        "quotient_dimension": 64,
+        "quotient_order": 128
+      },
+      "max_planted_count": 11975573020964041433067793888190275875,
+      "max_planted_count_bit_length": 124,
+      "n": 1099511627776,
+      "rate": "1/2",
+      "sigma": 4294967296,
+      "sigma_over_n": "1/256"
+    },
+    {
+      "best_scale": {
+        "M": 4294967296,
+        "count": 2884329411724603169044874178931143443870105850987581016304218283632259375395,
+        "quotient_dimension": 128,
+        "quotient_order": 256
+      },
+      "max_planted_count": 2884329411724603169044874178931143443870105850987581016304218283632259375395,
+      "max_planted_count_bit_length": 251,
+      "n": 1099511627776,
+      "rate": "1/2",
+      "sigma": 2147483648,
+      "sigma_over_n": "1/512"
+    },
+    {
+      "best_scale": {
+        "M": 17179869184,
+        "count": 366395202809685,
+        "quotient_dimension": 16,
+        "quotient_order": 64
+      },
+      "max_planted_count": 366395202809685,
+      "max_planted_count_bit_length": 49,
+      "n": 1099511627776,
+      "rate": "1/4",
+      "sigma": 8589934592,
+      "sigma_over_n": "1/128"
+    },
+    {
+      "best_scale": {
+        "M": 8589934592,
+        "count": 1108355191126710500011856080725,
+        "quotient_dimension": 32,
+        "quotient_order": 128
+      },
+      "max_planted_count": 1108355191126710500011856080725,
+      "max_planted_count_bit_length": 100,
+      "n": 1099511627776,
+      "rate": "1/4",
+      "sigma": 4294967296,
+      "sigma_over_n": "1/256"
+    },
+    {
+      "best_scale": {
+        "M": 4294967296,
+        "count": 14282853361848836315351365633679499331844685450041107658551125,
+        "quotient_dimension": 64,
+        "quotient_order": 256
+      },
+      "max_planted_count": 14282853361848836315351365633679499331844685450041107658551125,
+      "max_planted_count_bit_length": 204,
+      "n": 1099511627776,
+      "rate": "1/4",
+      "sigma": 2147483648,
+      "sigma_over_n": "1/512"
+    },
+    {
+      "best_scale": {
+        "M": 17179869184,
+        "count": 3872894697,
+        "quotient_dimension": 8,
+        "quotient_order": 64
+      },
+      "max_planted_count": 3872894697,
+      "max_planted_count_bit_length": 32,
+      "n": 1099511627776,
+      "rate": "1/8",
+      "sigma": 8589934592,
+      "sigma_over_n": "1/128"
+    },
+    {
+      "best_scale": {
+        "M": 8589934592,
+        "count": 81675143551104405225,
+        "quotient_dimension": 16,
+        "quotient_order": 128
+      },
+      "max_planted_count": 81675143551104405225,
+      "max_planted_count_bit_length": 67,
+      "n": 1099511627776,
+      "rate": "1/8",
+      "sigma": 4294967296,
+      "sigma_over_n": "1/256"
+    },
+    {
+      "best_scale": {
+        "M": 4294967296,
+        "count": 50964019775576912153703782274307996667625,
+        "quotient_dimension": 32,
+        "quotient_order": 256
+      },
+      "max_planted_count": 50964019775576912153703782274307996667625,
+      "max_planted_count_bit_length": 136,
+      "n": 1099511627776,
+      "rate": "1/8",
+      "sigma": 2147483648,
+      "sigma_over_n": "1/512"
+    },
+    {
+      "best_scale": {
+        "M": 17179869184,
+        "count": 595665,
+        "quotient_dimension": 4,
+        "quotient_order": 64
+      },
+      "max_planted_count": 595665,
+      "max_planted_count_bit_length": 20,
+      "n": 1099511627776,
+      "rate": "1/16",
+      "sigma": 8589934592,
+      "sigma_over_n": "1/128"
+    },
+    {
+      "best_scale": {
+        "M": 8589934592,
+        "count": 1340346236625,
+        "quotient_dimension": 8,
+        "quotient_order": 128
+      },
+      "max_planted_count": 1340346236625,
+      "max_planted_count_bit_length": 41,
+      "n": 1099511627776,
+      "rate": "1/16",
+      "sigma": 4294967296,
+      "sigma_over_n": "1/256"
+    },
+    {
+      "best_scale": {
+        "M": 4294967296,
+        "count": 9448829626895919257468625,
+        "quotient_dimension": 16,
+        "quotient_order": 256
+      },
+      "max_planted_count": 9448829626895919257468625,
+      "max_planted_count_bit_length": 83,
+      "n": 1099511627776,
+      "rate": "1/16",
+      "sigma": 2147483648,
+      "sigma_over_n": "1/512"
+    }
+  ],
+  "schema": "list-planted-arithmetic-v1",
+  "status": "PROVED_ARITHMETIC_COMPILER__CITES_PAPER_B_QCORE"
+}

@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - List planted arithmetic compiler
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/l1/list_planted_arithmetic_compiler.md`;
+  `experimental/scripts/verify_list_planted_arithmetic_compiler.py`;
+  `experimental/data/certificates/list-planted-arithmetic/README.md`;
+  `experimental/data/certificates/list-planted-arithmetic/list_planted_arithmetic_compiler.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / ARITHMETIC-COMPILER.
+- **What is being added:** Packages Paper B's quotient-core planted list
+  obstruction into an exact active-scale compiler and exact `floor(q/2^128)`
+  budget-window arithmetic for the official dyadic rates.
+- **How it is useful:** Discharges the roadmap's `list_planted_arithmetic`
+  node on the lower-bound side: planted list certificates reduce to integer
+  binomial counts and Diophantine windows, with no per-prime value-set search.
+- **What to do next:** Use the repaired `ImgFib` theorem plus the extras
+  ledger to supply the matching safe-side list certificates; keep petal
+  fixed-excess enumeration as a separate package.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.
