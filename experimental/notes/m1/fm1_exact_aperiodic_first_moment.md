@@ -100,6 +100,57 @@ Pr[R aligned] = ((q^t - 1)q) / q^(2t)
 Finally there are `binom(n,j)` choices of `R`, and linearity of expectation
 gives the formula.
 
+## Consumer corollary
+
+Let `N_A(u,v)` be the number of aligned split locators at agreement `A`.
+For every `M >= 1`, Markov's inequality gives
+
+```text
+Pr_{u,v}[ N_A(u,v) >= M ]
+    <= binom(n,j) * (1 - q^(-t)) * q^(1-t) / M.
+```
+
+In particular,
+
+```text
+Pr_{u,v}[ there exists an aligned split locator ]
+    <= binom(n,j) * (1 - q^(-t)) * q^(1-t).
+```
+
+This is often the right diagnostic for whether a chart is generically empty.
+It does **not** say that every pair has few aligned locators; all safe-side
+work still needs a worst-case theorem or a paid-structure classification.
+
+For the finite row
+
+```text
+C = RS[F_17^32, H, 256],     n=512,     k=256,
+```
+
+in the regular M3 window `385 <= A <= 426`, the verifier records the upper
+bound
+
+```text
+log2 E[N_A] <= log2 binom(512,512-A) + (1-(A-256)) log2(17^32).
+```
+
+At the endpoints:
+
+```text
+A=385:  log2 E[N_A] < -16320
+A=426:  log2 E[N_A] < -21760
+```
+
+and every `A` in the window has
+
+```text
+Pr[there exists an aligned split locator] < 2^-16000
+```
+
+for a random word-pair.  Thus any obstruction in this window is necessarily a
+highly structured worst-case phenomenon, not random-pair mass.  This is a
+sanity check for the M3/M5 chart program, not a replacement for root tables.
+
 ## Verification
 
 The verifier records two checks.
@@ -120,6 +171,10 @@ matching the formula
 ```text
 binom(4,1) * (1 - 5^(-2)) * 5^(-1) = 96/125.
 ```
+
+3. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
+   the script computes the FM1/Markov one-locator upper bound across
+   `385 <= A <= 426` and verifies the endpoint ranges above.
 
 ## Scope
 

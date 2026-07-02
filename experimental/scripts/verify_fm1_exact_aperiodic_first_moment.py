@@ -23,6 +23,7 @@ import argparse
 import hashlib
 import itertools
 import json
+import math
 from fractions import Fraction
 from math import comb
 from pathlib import Path
@@ -115,6 +116,17 @@ def expected_value(q: int, n: int, k: int, agreement: int) -> Fraction:
     return Fraction(comb(n, j) * (q ** t - 1) * q, q ** (2 * t))
 
 
+def log2_comb(n: int, r: int) -> float:
+    return (math.lgamma(n + 1) - math.lgamma(r + 1) - math.lgamma(n - r + 1)) / math.log(2)
+
+
+def fm1_log2_upper(q: int, n: int, k: int, agreement: int) -> float:
+    """Upper log2 of FM1 expectation, dropping the factor (1-q^-t)<1."""
+    t = agreement - k
+    j = n - agreement
+    return log2_comb(n, j) + (1 - t) * math.log2(q)
+
+
 def check_f13_surjectivity() -> tuple[bool, dict]:
     p, n, k, agreement = 13, 12, 3, 8
     t, j = agreement - k, n - agreement
@@ -200,9 +212,57 @@ def check_f5_bruteforce() -> tuple[bool, dict]:
     return mean == expected and rank_hist == {t: len(locators)}, data
 
 
+def check_f17_regular_window_tail() -> tuple[bool, dict]:
+    """FM1/Markov consumer scale for the F_17^32 regular M3 window.
+
+    This is not a worst-case theorem.  It records that a random pair has
+    astronomically small probability of even one aligned split locator in the
+    385..426 window, so any worst-case mass must be structured.
+    """
+    q, n, k = 17 ** 32, 512, 256
+    rows = []
+    ok = True
+    for agreement in range(385, 427):
+        t = agreement - k
+        j = n - agreement
+        upper = fm1_log2_upper(q, n, k, agreement)
+        rows.append({
+            "agreement": agreement,
+            "t": t,
+            "j": j,
+            "log2_fm1_expectation_upper": upper,
+            "markov_probability_at_least_one_upper_log2": upper,
+        })
+        ok &= upper < -16_000
+    endpoints = {row["agreement"]: row for row in rows if row["agreement"] in {385, 426}}
+    ok &= -16_340 < endpoints[385]["log2_fm1_expectation_upper"] < -16_320
+    ok &= -21_790 < endpoints[426]["log2_fm1_expectation_upper"] < -21_760
+    data = {
+        "field": "F_17^32",
+        "q": q,
+        "n": n,
+        "k": k,
+        "agreement_range": [385, 426],
+        "row_count": len(rows),
+        "max_log2_fm1_expectation_upper": max(row["log2_fm1_expectation_upper"] for row in rows),
+        "min_log2_fm1_expectation_upper": min(row["log2_fm1_expectation_upper"] for row in rows),
+        "endpoint_rows": endpoints,
+        "all_markov_one_locator_bounds_below_2^-16000": all(
+            row["markov_probability_at_least_one_upper_log2"] < -16_000 for row in rows
+        ),
+        "interpretation": (
+            "By Markov, a random word-pair has probability at most the FM1 "
+            "expectation of containing any aligned split locator. This does not "
+            "bound worst-case pairs."
+        ),
+    }
+    return ok, data
+
+
 def build_report() -> dict:
     ok_f13, f13 = check_f13_surjectivity()
     ok_f5, f5 = check_f5_bruteforce()
+    ok_window, window = check_f17_regular_window_tail()
     source = Path(__file__).read_text()
     return {
         "schema": "fm1_exact_first_moment_v1",
@@ -216,8 +276,9 @@ def build_report() -> dict:
         "checks": {
             "f13_surjectivity": f13,
             "f5_bruteforce": f5,
+            "f17_regular_window_markov_tail": window,
         },
-        "passed": ok_f13 and ok_f5,
+        "passed": ok_f13 and ok_f5 and ok_window,
         "script_sha256": sha256_text(source),
     }
 
@@ -232,19 +293,32 @@ def main() -> None:
     print("=" * 74)
     for name, data in report["checks"].items():
         print(f"\n[{'PASS' if report['passed'] else 'CHECK'}] {name}")
-        print(
-            "        {field}: n={n}, k={k}, A={agreement}, t={t}, j={j}, "
-            "locators={locator_count}, ranks={rank_histogram}".format(**data)
-        )
         if name == "f13_surjectivity":
+            print(
+                "        {field}: n={n}, k={k}, A={agreement}, t={t}, j={j}, "
+                "locators={locator_count}, ranks={rank_histogram}".format(**data)
+            )
             ev = data["expected_aligned_locators"]
             print(f"        formula expectation = {ev['numerator']}/{ev['denominator']} = {ev['decimal']:.12f}")
-        else:
+        elif name == "f5_bruteforce":
+            print(
+                "        {field}: n={n}, k={k}, A={agreement}, t={t}, j={j}, "
+                "locators={locator_count}, ranks={rank_histogram}".format(**data)
+            )
             bf = data["bruteforce_mean"]
             fm = data["formula_mean"]
             print(f"        brute mean = {bf['numerator']}/{bf['denominator']} = {bf['decimal']:.12f}")
             print(f"        formula    = {fm['numerator']}/{fm['denominator']} = {fm['decimal']:.12f}")
             print(f"        total aligned locators over all word pairs = {data['total_aligned_locators']}")
+        elif name == "f17_regular_window_markov_tail":
+            e385 = data["endpoint_rows"][385]["log2_fm1_expectation_upper"]
+            e426 = data["endpoint_rows"][426]["log2_fm1_expectation_upper"]
+            print(f"        A=385 log2 expectation upper = {e385:.1f}")
+            print(f"        A=426 log2 expectation upper = {e426:.1f}")
+            print(
+                "        all A in 385..426 have Markov one-locator probability "
+                f"< 2^-16000: {data['all_markov_one_locator_bounds_below_2^-16000']}"
+            )
     if args.emit:
         OUTPUT.parent.mkdir(parents=True, exist_ok=True)
         OUTPUT.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")

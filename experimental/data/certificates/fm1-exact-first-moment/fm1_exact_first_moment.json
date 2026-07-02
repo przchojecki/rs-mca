@@ -19,6 +19,37 @@
       },
       "t": 5
     },
+    "f17_regular_window_markov_tail": {
+      "agreement_range": [
+        385,
+        426
+      ],
+      "all_markov_one_locator_bounds_below_2^-16000": true,
+      "endpoint_rows": {
+        "385": {
+          "agreement": 385,
+          "j": 127,
+          "log2_fm1_expectation_upper": -16333.081359512838,
+          "markov_probability_at_least_one_upper_log2": -16333.081359512838,
+          "t": 129
+        },
+        "426": {
+          "agreement": 426,
+          "j": 86,
+          "log2_fm1_expectation_upper": -21775.051793212304,
+          "markov_probability_at_least_one_upper_log2": -21775.051793212304,
+          "t": 170
+        }
+      },
+      "field": "F_17^32",
+      "interpretation": "By Markov, a random word-pair has probability at most the FM1 expectation of containing any aligned split locator. This does not bound worst-case pairs.",
+      "k": 256,
+      "max_log2_fm1_expectation_upper": -16333.081359512838,
+      "min_log2_fm1_expectation_upper": -21775.051793212304,
+      "n": 512,
+      "q": 2367911594760467245844106297320951247361,
+      "row_count": 42
+    },
     "f5_bruteforce": {
       "agreement": 3,
       "aligned_locator_count_histogram": {
@@ -56,7 +87,7 @@
   "definition": "For a split degree-j locator ell, set a=S_ell(u), b=S_ell(v) in F_q^t. The locator is aligned when b != 0 and a lies in the one-dimensional span of b.",
   "passed": true,
   "schema": "fm1_exact_first_moment_v1",
-  "script_sha256": "f43491537f105cca59ec110af1a18dc2dc9c639113c8c1f91d38a8590e05afc3",
+  "script_sha256": "251ed015c18493dcec70e0cfe5c360c5c083fa6173a99150a850bf01e4dbb6be",
   "statement": "E[# aligned split locators] = binom(n,j)(1-q^-t)q^(1-t)",
   "status": "PROVED_LOCAL_VERIFICATION"
 }
