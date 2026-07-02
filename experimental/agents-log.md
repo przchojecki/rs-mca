@@ -30,6 +30,34 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - X1/E6 GAP-1 non-equivariant periodic evidence
+
+- **Agent/model:** Codex, acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/x1/x1_gap1_nonequivariant_periodic_evidence.md`,
+  `experimental/scripts/verify_x1_gap1_nonequivariant_periodic_evidence.py`,
+  `experimental/data/certificates/x1-gap1-nonequivariant-periodic-evidence/README.md`,
+  `experimental/data/certificates/x1-gap1-nonequivariant-periodic-evidence/gap1_nonequivariant_periodic_evidence.json`,
+  `experimental/agents-log.md`.
+- **Status:** PROVED local rank lemma + EXPERIMENTAL / AUDIT evidence.
+- **What is being added:** A Fable E6 packet for the GAP-1 non-equivariant
+  periodic-mass question. The note proves the local rank lemma that each
+  isotypic character maps into one `alpha^r B` line when `alpha^M` is in the
+  base field, and the verifier computes exact base-field linear image ranks
+  for K_M-stable support models over `F_13`, `F_97`, and constructive `F_257`
+  rows up to `n=256`.
+- **How it is useful:** Across the tested exact and constructive models,
+  no row exceeds the per-character product rank and adding more quotient
+  cosets does not increase the rank beyond the active character count.
+  The local lemma explains the data and supports the current X1
+  interpretation that GAP-1 should be handled by quotient-scale reserve
+  bookkeeping rather than by adding a new non-equivariant amplification ledger
+  inside the linear periodic model.
+- **What to do next:** Use this as E6 evidence in the DAG update. For proof
+  work, try to turn the observed rank identity into a lemma over arbitrary
+  cyclic rows with `alpha^M` in the base field; for red-team work, search
+  outside this linear periodic model for a true S9 amplification hit.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.

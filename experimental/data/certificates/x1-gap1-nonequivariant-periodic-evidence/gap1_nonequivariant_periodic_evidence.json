@@ -1,0 +1,1675 @@
+{
+  "cases": [
+    {
+      "active_set_count": 1,
+      "actual_rank_histogram": {
+        "2": 41
+      },
+      "alpha_power_relation": "alpha^2 = 2 in F_13",
+      "base_field": "F_13",
+      "compression_rank_histogram": {
+        "0": 41
+      },
+      "coset_amplification_hits": 0,
+      "coset_counts": [
+        1,
+        2,
+        3
+      ],
+      "extra_amplification_hits": 0,
+      "field": "F_13^2",
+      "label": "exact_F13_n12_period2_all_KM_supports",
+      "max_actual_rank": 2,
+      "max_compression_rank": 0,
+      "max_distinct_slope_count_as_power": "13^2",
+      "max_product_rank": 2,
+      "n": 12,
+      "period": 2,
+      "rows_checked": 41,
+      "support_mode": "all",
+      "top_representatives": [
+        {
+          "active_chars": [
+            0,
+            1
+          ],
+          "actual_rank": 2,
+          "basis_dimension": 2,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1
+          },
+          "product_rank": 2,
+          "support_size": 2
+        },
+        {
+          "active_chars": [
+            0,
+            1
+          ],
+          "actual_rank": 2,
+          "basis_dimension": 2,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            1
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1
+          },
+          "product_rank": 2,
+          "support_size": 2
+        },
+        {
+          "active_chars": [
+            0,
+            1
+          ],
+          "actual_rank": 2,
+          "basis_dimension": 2,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            2
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1
+          },
+          "product_rank": 2,
+          "support_size": 2
+        },
+        {
+          "active_chars": [
+            0,
+            1
+          ],
+          "actual_rank": 2,
+          "basis_dimension": 2,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            3
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1
+          },
+          "product_rank": 2,
+          "support_size": 2
+        },
+        {
+          "active_chars": [
+            0,
+            1
+          ],
+          "actual_rank": 2,
+          "basis_dimension": 2,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            4
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1
+          },
+          "product_rank": 2,
+          "support_size": 2
+        },
+        {
+          "active_chars": [
+            0,
+            1
+          ],
+          "actual_rank": 2,
+          "basis_dimension": 2,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            5
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1
+          },
+          "product_rank": 2,
+          "support_size": 2
+        },
+        {
+          "active_chars": [
+            0,
+            1
+          ],
+          "actual_rank": 2,
+          "basis_dimension": 4,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            1
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1
+          },
+          "product_rank": 2,
+          "support_size": 4
+        },
+        {
+          "active_chars": [
+            0,
+            1
+          ],
+          "actual_rank": 2,
+          "basis_dimension": 4,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            2
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1
+          },
+          "product_rank": 2,
+          "support_size": 4
+        }
+      ]
+    },
+    {
+      "active_set_count": 11,
+      "actual_rank_histogram": {
+        "2": 36,
+        "3": 24,
+        "4": 6
+      },
+      "alpha_power_relation": "alpha^4 = 2 in F_13",
+      "base_field": "F_13",
+      "compression_rank_histogram": {
+        "0": 66
+      },
+      "coset_amplification_hits": 0,
+      "coset_counts": [
+        1,
+        2
+      ],
+      "extra_amplification_hits": 0,
+      "field": "F_13^4",
+      "label": "exact_F13_n12_period4_all_KM_supports",
+      "max_actual_rank": 4,
+      "max_compression_rank": 0,
+      "max_distinct_slope_count_as_power": "13^4",
+      "max_product_rank": 4,
+      "n": 12,
+      "period": 4,
+      "rows_checked": 66,
+      "support_mode": "all",
+      "top_representatives": [
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_rank": 4,
+          "basis_dimension": 4,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "product_rank": 4,
+          "support_size": 4
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_rank": 4,
+          "basis_dimension": 4,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            1
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "product_rank": 4,
+          "support_size": 4
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_rank": 4,
+          "basis_dimension": 4,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            2
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "product_rank": 4,
+          "support_size": 4
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_rank": 4,
+          "basis_dimension": 8,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            1
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "product_rank": 4,
+          "support_size": 8
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_rank": 4,
+          "basis_dimension": 8,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            2
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "product_rank": 4,
+          "support_size": 8
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_rank": 4,
+          "basis_dimension": 8,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            1,
+            2
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "product_rank": 4,
+          "support_size": 8
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2
+          ],
+          "actual_rank": 3,
+          "basis_dimension": 3,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1
+          },
+          "product_rank": 3,
+          "support_size": 4
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2
+          ],
+          "actual_rank": 3,
+          "basis_dimension": 3,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            1
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1
+          },
+          "product_rank": 3,
+          "support_size": 4
+        }
+      ]
+    },
+    {
+      "active_set_count": 11,
+      "actual_rank_histogram": {
+        "2": 552,
+        "3": 368,
+        "4": 92
+      },
+      "alpha_power_relation": "alpha^4 = 5 in F_97",
+      "base_field": "F_97",
+      "compression_rank_histogram": {
+        "0": 1012
+      },
+      "coset_amplification_hits": 0,
+      "coset_counts": [
+        1,
+        2,
+        3
+      ],
+      "extra_amplification_hits": 0,
+      "field": "F_97^4",
+      "label": "exact_F97_n32_period4_all_KM_supports",
+      "max_actual_rank": 4,
+      "max_compression_rank": 0,
+      "max_distinct_slope_count_as_power": "97^4",
+      "max_product_rank": 4,
+      "n": 32,
+      "period": 4,
+      "rows_checked": 1012,
+      "support_mode": "all",
+      "top_representatives": [
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_rank": 4,
+          "basis_dimension": 4,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "product_rank": 4,
+          "support_size": 4
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_rank": 4,
+          "basis_dimension": 4,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            1
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "product_rank": 4,
+          "support_size": 4
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_rank": 4,
+          "basis_dimension": 4,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            2
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "product_rank": 4,
+          "support_size": 4
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_rank": 4,
+          "basis_dimension": 4,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            3
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "product_rank": 4,
+          "support_size": 4
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_rank": 4,
+          "basis_dimension": 4,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            4
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "product_rank": 4,
+          "support_size": 4
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_rank": 4,
+          "basis_dimension": 4,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            5
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "product_rank": 4,
+          "support_size": 4
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_rank": 4,
+          "basis_dimension": 4,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            6
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "product_rank": 4,
+          "support_size": 4
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "actual_rank": 4,
+          "basis_dimension": 4,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            7
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1
+          },
+          "product_rank": 4,
+          "support_size": 4
+        }
+      ]
+    },
+    {
+      "active_set_count": 85,
+      "actual_rank_histogram": {
+        "2": 280,
+        "3": 560,
+        "8": 10
+      },
+      "alpha_power_relation": "alpha^8 = 5 in F_97",
+      "base_field": "F_97",
+      "compression_rank_histogram": {
+        "0": 850
+      },
+      "coset_amplification_hits": 0,
+      "coset_counts": [
+        1,
+        2
+      ],
+      "extra_amplification_hits": 0,
+      "field": "F_97^8",
+      "label": "exact_F97_n32_period8_all_KM_supports",
+      "max_actual_rank": 8,
+      "max_compression_rank": 0,
+      "max_distinct_slope_count_as_power": "97^8",
+      "max_product_rank": 8,
+      "n": 32,
+      "period": 8,
+      "rows_checked": 850,
+      "support_mode": "all",
+      "top_representatives": [
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 8,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 8
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 8,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            1
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 8
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 8,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            2
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 8
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 8,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            3
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 8
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 16,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            1
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 16
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 16,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            2
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 16
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 16,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            3
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 16
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 16,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            1,
+            2
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 16
+        }
+      ]
+    },
+    {
+      "active_set_count": 85,
+      "actual_rank_histogram": {
+        "2": 252,
+        "3": 504,
+        "8": 9
+      },
+      "alpha_power_relation": "alpha^8 = 3 in F_257",
+      "base_field": "F_257",
+      "compression_rank_histogram": {
+        "0": 765
+      },
+      "coset_amplification_hits": 0,
+      "coset_counts": [
+        1,
+        2,
+        4
+      ],
+      "extra_amplification_hits": 0,
+      "field": "F_257^8",
+      "label": "constructive_F257_n64_period8_spaced_supports",
+      "max_actual_rank": 8,
+      "max_compression_rank": 0,
+      "max_distinct_slope_count_as_power": "257^8",
+      "max_product_rank": 8,
+      "n": 64,
+      "period": 8,
+      "rows_checked": 765,
+      "support_mode": "deterministic",
+      "top_representatives": [
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 8,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 8
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 8,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            7
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 8
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 16,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            1
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 16
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 16,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            2
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 16
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 16,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            4
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 16
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 16,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            6,
+            7
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 16
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 32,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 32
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "actual_rank": 8,
+          "basis_dimension": 32,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            2,
+            4,
+            6
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1
+          },
+          "product_rank": 8,
+          "support_size": 32
+        }
+      ]
+    },
+    {
+      "active_set_count": 5,
+      "actual_rank_histogram": {
+        "2": 10,
+        "4": 10,
+        "8": 20,
+        "16": 10
+      },
+      "alpha_power_relation": "alpha^16 = 3 in F_257",
+      "base_field": "F_257",
+      "compression_rank_histogram": {
+        "0": 50
+      },
+      "coset_amplification_hits": 0,
+      "coset_counts": [
+        1,
+        2,
+        4
+      ],
+      "extra_amplification_hits": 0,
+      "field": "F_257^16",
+      "label": "constructive_F257_n256_period16_spaced_supports",
+      "max_actual_rank": 16,
+      "max_compression_rank": 0,
+      "max_distinct_slope_count_as_power": "257^16",
+      "max_product_rank": 16,
+      "n": 256,
+      "period": 16,
+      "rows_checked": 50,
+      "support_mode": "deterministic",
+      "top_representatives": [
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "actual_rank": 16,
+          "basis_dimension": 16,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "10": 1,
+            "11": 1,
+            "12": 1,
+            "13": 1,
+            "14": 1,
+            "15": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1,
+            "8": 1,
+            "9": 1
+          },
+          "product_rank": 16,
+          "support_size": 16
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "actual_rank": 16,
+          "basis_dimension": 16,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            15
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "10": 1,
+            "11": 1,
+            "12": 1,
+            "13": 1,
+            "14": 1,
+            "15": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1,
+            "8": 1,
+            "9": 1
+          },
+          "product_rank": 16,
+          "support_size": 16
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "actual_rank": 16,
+          "basis_dimension": 32,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            1
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "10": 1,
+            "11": 1,
+            "12": 1,
+            "13": 1,
+            "14": 1,
+            "15": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1,
+            "8": 1,
+            "9": 1
+          },
+          "product_rank": 16,
+          "support_size": 32
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "actual_rank": 16,
+          "basis_dimension": 32,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            2
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "10": 1,
+            "11": 1,
+            "12": 1,
+            "13": 1,
+            "14": 1,
+            "15": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1,
+            "8": 1,
+            "9": 1
+          },
+          "product_rank": 16,
+          "support_size": 32
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "actual_rank": 16,
+          "basis_dimension": 32,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            8
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "10": 1,
+            "11": 1,
+            "12": 1,
+            "13": 1,
+            "14": 1,
+            "15": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1,
+            "8": 1,
+            "9": 1
+          },
+          "product_rank": 16,
+          "support_size": 32
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "actual_rank": 16,
+          "basis_dimension": 32,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            14,
+            15
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "10": 1,
+            "11": 1,
+            "12": 1,
+            "13": 1,
+            "14": 1,
+            "15": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1,
+            "8": 1,
+            "9": 1
+          },
+          "product_rank": 16,
+          "support_size": 32
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "actual_rank": 16,
+          "basis_dimension": 64,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "10": 1,
+            "11": 1,
+            "12": 1,
+            "13": 1,
+            "14": 1,
+            "15": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1,
+            "8": 1,
+            "9": 1
+          },
+          "product_rank": 16,
+          "support_size": 64
+        },
+        {
+          "active_chars": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "actual_rank": 16,
+          "basis_dimension": 64,
+          "compression_rank": 0,
+          "coset_amplification": false,
+          "cosets": [
+            0,
+            2,
+            4,
+            6
+          ],
+          "extra_amplification": false,
+          "per_character_ranks": {
+            "0": 1,
+            "1": 1,
+            "10": 1,
+            "11": 1,
+            "12": 1,
+            "13": 1,
+            "14": 1,
+            "15": 1,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 1,
+            "6": 1,
+            "7": 1,
+            "8": 1,
+            "9": 1
+          },
+          "product_rank": 16,
+          "support_size": 64
+        }
+      ]
+    }
+  ],
+  "classification": "NO_GAP1_AMPLIFICATION_SIGNAL_IN_TESTED_PERIODIC_MODELS",
+  "dag_nodes": [
+    "gap1_noneq_mass",
+    "payment_completeness"
+  ],
+  "fable_evidence_item": "E6",
+  "question": "Can multi-isotypic periodic data amplify slope mass beyond the per-character product model?",
+  "status": "EXPERIMENTAL / AUDIT",
+  "summary": {
+    "cases": 6,
+    "interpretation": "Adding quotient cosets never increased the B-rank beyond the number of active isotypic characters, and no row exceeded the per-character product rank. Full-character rows can fill the expected extension degree, but that is the product model rather than a new GAP-1 mechanism.",
+    "max_actual_rank_seen": 16,
+    "max_compression_rank_seen": 0,
+    "total_coset_amplification_hits": 0,
+    "total_extra_amplification_hits": 0
+  },
+  "title": "E6 GAP-1 non-equivariant periodic evidence"
+}
