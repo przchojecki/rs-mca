@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 stratification partition theorem
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m5/m5_stratification_partition_theorem.md`;
+  `experimental/scripts/verify_m5_stratification_partition.py`;
+  `experimental/data/certificates/m5-stratification-partition/`.
+- **Status:** PROVED / COMBINATORIAL / FINITE REPLAY.
+- **What is being added:** A first-match partition theorem for the v12 M5
+  leaf-accounting layer.  Given ordered paid, dedup, closed-chart, and residual
+  predicates, every candidate slope or chart instance lands in exactly one
+  terminal leaf, with unresolved cases explicitly labelled residual unknown.
+- **How it is useful:** This supplies the accounting convention needed by M4/M5
+  packet tables before geometric Hankel predicates and root tables are attached:
+  overlapping tangent, quotient, extension, eliminant, and residual claims are
+  deduped by one ordered rule.
+- **What to do next:** Attach actual row-level predicate emitters and root
+  tables to this leaf convention; promote the same first-match order into the
+  v12 packet checker once the M4 table generator is wired.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.

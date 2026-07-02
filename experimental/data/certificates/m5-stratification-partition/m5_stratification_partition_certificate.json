@@ -1,0 +1,150 @@
+{
+  "dag_node": "stratification_partition_thm",
+  "exhaustive_overlap_check": {
+    "leaf_counts": {
+      "T0": 64,
+      "T1": 32,
+      "T2": 16,
+      "T3": 8,
+      "T4": 4,
+      "T5": 2,
+      "T6": 1,
+      "T7": 1
+    },
+    "masks_checked": 128,
+    "non_residual_predicates": 7,
+    "outcome_hash": "5e5784ba1dcbb592ea02c8659f6f94ce9e48d820cb1bd48c9dbdfbfe444d82c7"
+  },
+  "invalid_label_checks": {
+    "rejected": [
+      {
+        "field": "chart_status",
+        "value": "root_table"
+      },
+      {
+        "field": "chart_status",
+        "value": "closed"
+      },
+      {
+        "field": "chart_status",
+        "value": "mystery"
+      },
+      {
+        "field": "residual_label",
+        "value": "periodic"
+      },
+      {
+        "field": "residual_label",
+        "value": "paid"
+      },
+      {
+        "field": "residual_label",
+        "value": "new"
+      }
+    ],
+    "rejected_count": 6
+  },
+  "mixed_overlap_example": {
+    "first_match_count": 8,
+    "leaves": {
+      "dedup:higher_agreement": [
+        13
+      ],
+      "dimension_degree": [
+        55
+      ],
+      "eliminant": [
+        21
+      ],
+      "empty": [
+        34
+      ],
+      "paid:extension": [
+        8
+      ],
+      "paid:quotient": [
+        5
+      ],
+      "paid:tangent": [
+        3
+      ],
+      "residual:candidate_new_obstruction": [
+        89
+      ]
+    },
+    "naive_claim_count": 19,
+    "root_count": 8
+  },
+  "ordered_leaves": [
+    {
+      "leaf_id": "T0",
+      "terminal_label": "excluded"
+    },
+    {
+      "leaf_id": "T1",
+      "terminal_label": "paid:degenerate"
+    },
+    {
+      "leaf_id": "T2",
+      "terminal_label": "paid:tangent"
+    },
+    {
+      "leaf_id": "T3",
+      "terminal_label": "paid:quotient"
+    },
+    {
+      "leaf_id": "T4",
+      "terminal_label": "paid:extension"
+    },
+    {
+      "leaf_id": "T5",
+      "terminal_label": "dedup:higher_agreement"
+    },
+    {
+      "leaf_id": "T6",
+      "terminal_label": "closed_chart"
+    },
+    {
+      "leaf_id": "T7",
+      "terminal_label": "residual:<label>"
+    }
+  ],
+  "queue_item": "Q2.10",
+  "random_partition_checks": {
+    "field_modulus": 97,
+    "fingerprint_hash": "2817ff0a8b80972307014a5729f0adb1e63a39226f73b79e3468972907196573",
+    "seed": 2026070208,
+    "terminal_labels_seen": [
+      "dedup:higher_agreement",
+      "dimension_degree",
+      "eliminant",
+      "empty",
+      "excluded",
+      "paid:degenerate",
+      "paid:extension",
+      "paid:quotient",
+      "paid:tangent",
+      "residual:candidate_new_obstruction",
+      "residual:extension",
+      "residual:quotient",
+      "residual:tangent",
+      "residual:unknown"
+    ],
+    "trials": 500
+  },
+  "schema": "m5-stratification-partition-v1",
+  "script_sha256": "424a72db9ed542b5192e0bd00d51b89225524501ce26f64b83b3b8a92e7ad0d1",
+  "status": "PROVED_COMBINATORIAL_WITH_FINITE_REPLAY",
+  "valid_closed_statuses": [
+    "dimension_degree",
+    "eliminant",
+    "empty"
+  ],
+  "valid_residual_labels": [
+    "candidate_new_obstruction",
+    "extension",
+    "quotient",
+    "tangent",
+    "unknown"
+  ]
+}
