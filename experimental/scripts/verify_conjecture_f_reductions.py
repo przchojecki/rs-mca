@@ -9,6 +9,8 @@ the identities over F_97 with H = mu_16:
 * gcd-trivial projective pencils meet D_j(H) in at most floor(n/j) points.
 * D_j(H) on a gcd-trivial projective plane equals j-fold concurrency for
   the evaluation-hyperplane arrangement.
+* simple projective-plane evaluation arrangements satisfy the pair-counting
+  bound #D_j <= binom(n,2)/binom(j,2).
 """
 from __future__ import annotations
 
@@ -146,6 +148,14 @@ def canonical_projective(poly: tuple[int, ...]) -> tuple[int, ...] | None:
     for coeff in poly:
         if coeff % P:
             return poly_scale(pow(coeff, -1, P), poly)
+    return None
+
+
+def canonical_vector(values: tuple[int, ...]) -> tuple[int, ...] | None:
+    for value in values:
+        if value % P:
+            inv = pow(value, -1, P)
+            return tuple((inv * x) % P for x in values)
     return None
 
 
@@ -428,6 +438,86 @@ def check_hyperplane_concurrency(H: list[int]) -> dict:
     }
 
 
+def evaluation_lines(basis: list[tuple[int, ...]], H: list[int]) -> list[tuple[int, ...]]:
+    lines = []
+    for x in H:
+        line = canonical_vector(tuple(poly_eval(poly, x) for poly in basis))
+        if line is None:
+            raise AssertionError("basis is not gcd-trivial on H")
+        lines.append(line)
+    return lines
+
+
+def incidence_multiplicity(point: tuple[int, ...], line: tuple[int, ...]) -> bool:
+    return sum((a * b) % P for a, b in zip(point, line)) % P == 0
+
+
+def check_simple_plane_bound(H: list[int]) -> dict:
+    rng = random.Random(SEED + 3)
+    accepted = 0
+    attempts = 0
+    simple_planes = 0
+    skipped_repeated_line_planes = 0
+    max_concurrent_points = 0
+    max_pair_sum = 0
+    pair_bound_num = comb(N, 2)
+    pair_bound_den = comb(J_VOTING, 2)
+    while accepted < PLANE_TRIALS:
+        attempts += 1
+        basis = [random_poly(rng, J_VOTING) for _ in range(3)]
+        if rank_polys(basis, J_VOTING + 1) != 3:
+            continue
+        if not gcd_trivial_space(basis, H):
+            continue
+        lines = evaluation_lines(basis, H)
+        if len(set(lines)) != len(lines):
+            skipped_repeated_line_planes += 1
+            continue
+        points = projective_plane_points(basis)
+        high_points = 0
+        pair_sum = 0
+        for point in points:
+            multiplicity = sum(1 for line in lines if incidence_multiplicity(point, line))
+            pair_sum += comb(multiplicity, 2)
+            if multiplicity >= J_VOTING:
+                high_points += 1
+        if pair_sum != pair_bound_num:
+            return {
+                "name": "simple_plane_pair_counting_bound",
+                "status": "FAIL",
+                "reason": "pair-counting identity failed",
+                "pair_sum": pair_sum,
+                "expected_pair_sum": pair_bound_num,
+            }
+        if high_points * pair_bound_den > pair_bound_num:
+            return {
+                "name": "simple_plane_pair_counting_bound",
+                "status": "FAIL",
+                "reason": "high-incidence count exceeds pair bound",
+                "high_points": high_points,
+                "bound_numerator": pair_bound_num,
+                "bound_denominator": pair_bound_den,
+            }
+        max_concurrent_points = max(max_concurrent_points, high_points)
+        max_pair_sum = max(max_pair_sum, pair_sum)
+        simple_planes += 1
+        accepted += 1
+    return {
+        "name": "simple_plane_pair_counting_bound",
+        "status": "PASS",
+        "n": N,
+        "j": J_VOTING,
+        "accepted_simple_planes": accepted,
+        "attempts": attempts,
+        "skipped_repeated_line_planes": skipped_repeated_line_planes,
+        "bound_floor": pair_bound_num // pair_bound_den,
+        "bound_rational": f"{pair_bound_num}/{pair_bound_den}",
+        "max_observed_high_incidence_points": max_concurrent_points,
+        "pair_count_identity_value": max_pair_sum,
+        "simple_planes": simple_planes,
+    }
+
+
 def build_report() -> dict:
     H = subgroup(N)
     checks = [
@@ -435,6 +525,7 @@ def build_report() -> dict:
         check_scale_recursion(H),
         check_voting_bound(H),
         check_hyperplane_concurrency(H),
+        check_simple_plane_bound(H),
     ]
     return {
         "schema": "conjecture_f_reduction_toy_v1",

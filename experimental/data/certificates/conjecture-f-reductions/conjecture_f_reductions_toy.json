@@ -42,6 +42,20 @@
       "plane_points_each": 9507,
       "projective_dimension": 2,
       "status": "PASS"
+    },
+    {
+      "accepted_simple_planes": 25,
+      "attempts": 25,
+      "bound_floor": 20,
+      "bound_rational": "120/6",
+      "j": 4,
+      "max_observed_high_incidence_points": 1,
+      "n": 16,
+      "name": "simple_plane_pair_counting_bound",
+      "pair_count_identity_value": 120,
+      "simple_planes": 25,
+      "skipped_repeated_line_planes": 0,
+      "status": "PASS"
     }
   ],
   "domain": {
@@ -70,6 +84,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "588b48fcaef37ac2620cb50e933128ebadd93e7ac689f213c89cea99a2e9d8c6",
+  "script_sha256": "2eb17ea7f6a8054f49208e7abd2580538e0199c773f16aa9600e5a778bc64108",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

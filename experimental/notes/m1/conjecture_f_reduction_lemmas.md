@@ -7,7 +7,7 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_reductions.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`.
 
-This note records four elementary reductions around the fiber-rigidity
+This note records five elementary reductions around the fiber-rigidity
 statement called Conjecture F in the proof sketch.  They do not prove the
 primitive core.  Their role is to remove two paid structures from the statement
 to settle the dimension-one base case, and to restate the remaining primitive
@@ -207,6 +207,37 @@ of the `E_h`, then `L` has at least `j` distinct roots in `H`.  But
 `deg L <= j` and `L` is nonzero, so it has exactly `j` roots and is a scalar
 multiple of their locator.  Thus `[L]` lies in `D_j(H)`.
 
+## Lemma 5: Simple-Plane Pair-Counting Bound
+
+Keep the hypotheses of Lemma 4 and assume additionally that `dim P(W)=2` and
+that the evaluation hyperplanes `E_h` are pairwise distinct lines in this
+projective plane.  Then
+
+```text
+#(P(W) cap D_j(H)) <= binom(|H|,2) / binom(j,2).
+```
+
+More generally the same proof bounds the number of points lying on at least
+`j` lines in any simple arrangement of `|H|` projective lines.
+
+**Proof.**  For a point `p in P(W)`, let `m(p)` be the number of evaluation
+lines passing through it.  Since the arrangement is simple, every unordered
+pair of distinct evaluation lines meets in exactly one point, and no line-pair
+is counted at two points.  Hence
+
+```text
+sum_p binom(m(p),2) = binom(|H|,2).
+```
+
+Every point with `m(p) >= j` contributes at least `binom(j,2)` to the left
+side.  Lemma 4 identifies `P(W) cap D_j(H)` with the points satisfying
+`m(p) >= j`, so the stated bound follows.
+
+Thus the primitive dimension-two case is already polynomial in the simple
+evaluation-line regime.  Any dimension-two counterexample to this route must
+come from collapsed/repeated evaluation lines or from the paid structures
+removed by Lemmas 1 and 2.
+
 ## Verification
 
 The verifier checks these lemmas over `F_97` with `H = mu_16`:
@@ -218,6 +249,8 @@ python3 experimental/scripts/verify_conjecture_f_reductions.py --emit
 
 It exhaustively checks the common-GCD and quotient-pullback identities in the
 toy parameters used by the script, tests the voting bound on deterministic
-random gcd-trivial pencils, and checks the hyperplane-concurrency equivalence
-on deterministic random gcd-trivial projective planes.  The verifier is
-supporting evidence only; the proofs above are the mathematical content.
+random gcd-trivial pencils, checks the hyperplane-concurrency equivalence on
+deterministic random gcd-trivial projective planes, and verifies the
+simple-plane pair-counting bound where the evaluation lines are pairwise
+distinct.  The verifier is supporting evidence only; the proofs above are the
+mathematical content.
