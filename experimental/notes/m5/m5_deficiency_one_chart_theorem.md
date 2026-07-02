@@ -96,6 +96,17 @@ degree-`j` extensions are charged to agreement
 n-(j-1)=A+1.
 ```
 
+Equivalently, this is a common-factor filter for rank-one kernels.  If
+
+```text
+ker M(z0) = A(X) * F_{<=1}[X]
+```
+
+for a split degree-`j-1` divisor `A(X) | X^n-1`, then every split degree-`j`
+locator in the kernel has the form `A(X)(X-r)` with `r in H`.  These locators
+are contained extensions of the lower-degree annihilator `A` and are not new
+exact-`A` contributions.
+
 ## Specializations
 
 For the toy acid row `F_97`, `n=16`, `k=8`, `A=12`:

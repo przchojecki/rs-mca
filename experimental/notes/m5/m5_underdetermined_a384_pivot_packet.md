@@ -1,6 +1,6 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 25: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 26: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
@@ -23,6 +23,8 @@
   disjoint top branch is now closed by the quadratic root-multiplicity table.
   A rank-one contained rank-drop packet now covers the generic `rank=t-1`,
   kernel-dimension-two moment-support branch and dedupes it to agreement `385`.
+  The rank-one common-factor filter now separates these contained kernels from
+  the genuinely non-contained kernel-pivot residuals.
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -156,7 +158,8 @@ belongs.
 | 5s | planted top-chart disjoint Hermite reduction | **done** |
 | 5t | declared `F_17^32` disjoint top-branch closure | **done** |
 | 5u | rank-one contained rank-drop packet | **done** |
-| 5v | full `F_17^32` root-table packet for non-contained generic rank-drop charts | pending |
+| 5v | rank-one common-factor filter theorem | **done** |
+| 5w | full `F_17^32` root-table packet for non-contained generic rank-drop charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -971,6 +974,23 @@ domain root is charged to the higher-agreement bucket, not counted as a new
 exact-`A=384` obstruction.  Thus the packet separates a harmless generic
 rank-one contained branch from the genuinely open non-contained rank-drop
 kernel-pivot branches.
+
+### Verified in turn 26
+
+**U26, rank-one common-factor filter.** In a rank-one rank-drop chart, suppose
+
+```text
+ker M(z0) = A(X) F_{<=1}[X]
+```
+
+for a split degree-`j-1` divisor `A | X^n-1`.  Then every degree-`j` split
+locator in the kernel has the form `A(X)(X-r)` with `r in H`.  The lower-degree
+locator `A` already witnesses agreement `A+1`, so all such degree-`j` locators
+are contained extensions and are not new exact-`A` contributions.
+
+The rank-one packet verifies this filter with support size `127`: rank exactly
+`127`, kernel dimension `2`, degree-127 annihilator, degree-128 extension, and
+dedup target agreement `385`.
 
 ## Honest scope
 

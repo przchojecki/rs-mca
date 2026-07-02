@@ -127,6 +127,10 @@ Turn 25 adds the rank-one contained rank-drop packet: a support of size 127
 has rank exactly t-1 and kernel dimension 2, but its degree-127 annihilator
 already charges the branch to agreement 385.
 
+Turn 26 records the rank-one common-factor filter: if a rank-one kernel is
+exactly A(X) times the two-dimensional space of linear quotients, with A split
+of degree j-1, every valid degree-j locator is contained and deduped.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -1113,6 +1117,42 @@ def check_rank_drop_contained_branch_dedup_theorem():
         "contained branch, not a new exact-A=384 contribution",
     ]
     return ok, d
+
+
+def check_rank_one_common_factor_filter_theorem():
+    """Record the common-factor filter for rank-one contained rank drops."""
+    payload = f17_rank_one_contained_rank_drop_payload()
+    rank_locator = payload["rank_locator"]
+    valid_locator = payload["valid_locator"]
+    chart = payload["rank_drop_chart"]
+    rank_certificate = payload["rank_certificate"]
+
+    ok = True
+    ok &= chart["rank"] == 127
+    ok &= chart["kernel_dimension"] == 2
+    ok &= chart["lower_degree_annihilator_degree"] == 127
+    ok &= chart["dedup_target_agreement"] == 385
+    ok &= chart["contained_branch_deduped"]
+    ok &= not chart["new_exact_a384_contribution"]
+    ok &= rank_locator["degree"] == 127
+    ok &= rank_locator["recurrence_rows_checked"] == 129
+    ok &= rank_locator["recurrence_residual_all_zero"]
+    ok &= valid_locator["degree"] == 128
+    ok &= valid_locator["recurrence_rows_checked"] == 128
+    ok &= valid_locator["recurrence_residual_all_zero"]
+    ok &= rank_certificate["rank_exact"] == 127
+    ok &= rank_certificate["kernel_dimension"] == 2
+
+    return ok, [
+        "rank-one common-factor filter: if ker M(z0)=A(X)*F_{<=1} with "
+        "deg A=j-1 and A split over H, every degree-j split locator is A(X)(X-r)",
+        "such locators witness the same lower co-support plus one extra root, so "
+        "they are charged to agreement A+1 rather than exact A",
+        f"F_17^32 rank-one packet: rank={chart['rank']}=t-1, kernel_dim={chart['kernel_dimension']}, "
+        f"lower annihilator degree={rank_locator['degree']}",
+        f"dedup target agreement={chart['dedup_target_agreement']}; "
+        f"new exact-A contribution={chart['new_exact_a384_contribution']}",
+    ]
 
 
 def toy_subgroup_locators(p: int, n: int, j: int):
@@ -3019,6 +3059,7 @@ CHECKS = [
     ("rank-drop kernel-pivot reduction",                  check_rank_drop_kernel_pivot_reduction),
     ("moment-support rank-extension theorem",             check_moment_support_rank_extension_theorem),
     ("rank-drop contained-branch dedup theorem",          check_rank_drop_contained_branch_dedup_theorem),
+    ("rank-one common-factor filter theorem",             check_rank_one_common_factor_filter_theorem),
     ("abstract deficiency-one chart theorem",             check_deficiency_one_abstract_chart_theorem),
     ("planted top-chart overlap pruning",                 check_planted_top_overlap_pruning),
     ("planted top-chart support-only residual",           check_planted_top_support_only_residual),

@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 rank-one common-factor filter
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_deficiency_one_chart_theorem.md`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  Structural filter for rank-one
+  contained kernels; no worst-case row claim.
+- **What is being added:** Turn 26 of the `A=384` M5 packet: if a rank-one
+  rank-drop kernel is `A(X)F_{<=1}[X]` for a split degree-`j-1` divisor
+  `A | X^n-1`, every degree-`j` split locator is `A(X)(X-r)` and dedupes to
+  agreement `A+1`.
+- **How it is useful:** Gives root-table generation a crisp removal test:
+  common-factor rank-one kernels are contained and only genuinely
+  non-contained rank-drop kernel-pivot roots remain in the residual.
+- **What to do next:** Attack non-contained generic rank-drop kernel-pivot
+  roots.
+
 ### 2026-07-02 - M5 A384 rank-one contained rank-drop packet
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
