@@ -16,6 +16,8 @@ the identities over F_97 with H = mu_16:
 * sparse evaluation dependencies force a closure/descent rule: containing
   all but one dependent root forces the last root, and the all-contained
   branch drops degree by more than projective dimension.
+* low-weight dual words are exactly common-root/twin/sparse degeneracies,
+  and a dual-distance gap gives the expected r-wise containment moments.
 * vanishing on m domain points cuts any degree <= j subspace down to dimension
   at most j+1-m.
 * fixed projective dimension d gives #D_j <= binom(n,d).
@@ -2020,6 +2022,195 @@ def check_sparse_dependence_descent(H: list[int]) -> dict:
     }
 
 
+def evaluation_rank_on_roots(basis: list[tuple[int, ...]], roots: tuple[int, ...]) -> int:
+    return matrix_rank([[poly_eval(poly, root) for poly in basis] for root in roots])
+
+
+def dependent_support_witness(
+    basis: list[tuple[int, ...]], H: list[int], max_weight: int
+) -> tuple[int | None, tuple[int, ...] | None]:
+    for weight in range(1, max_weight + 1):
+        for roots in itertools.combinations(H, weight):
+            if evaluation_rank_on_roots(basis, roots) < weight:
+                return weight, roots
+    return None, None
+
+
+def full_degree_monomial_basis(max_degree: int) -> list[tuple[int, ...]]:
+    return [
+        tuple(1 if i == degree else 0 for i in range(max_degree + 1))
+        for degree in range(max_degree + 1)
+    ]
+
+
+def count_hits_containing_roots(
+    hits: list[tuple[int, ...]], roots: tuple[int, ...], H: list[int]
+) -> int:
+    root_set_T = set(roots)
+    return sum(1 for poly in hits if root_set_T <= set(locator_roots(poly, H)))
+
+
+def check_dual_distance_moment_frame(H: list[int]) -> dict:
+    D = divisor_set(H, J_VOTING)
+    full_basis = full_degree_monomial_basis(J_VOTING)
+    d = J_VOTING
+    hits = [poly for poly in D if in_span(poly, full_basis, J_VOTING + 1)]
+    if len(hits) != comb(N, J_VOTING):
+        return {
+            "name": "dual_distance_moment_frame",
+            "status": "FAIL",
+            "reason": "full degree-j space did not contain all D_j locators",
+            "hits": len(hits),
+            "expected": comb(N, J_VOTING),
+        }
+
+    witness_weight, witness_roots = dependent_support_witness(full_basis, H, d)
+    if witness_weight is not None:
+        return {
+            "name": "dual_distance_moment_frame",
+            "status": "FAIL",
+            "reason": "full degree-j space had a dependent support of size <= d",
+            "weight": witness_weight,
+            "roots": list(witness_roots or ()),
+        }
+
+    moment_rows = []
+    for r in range(0, d + 1):
+        total_containment = 0
+        max_containing = 0
+        per_T_bound = comb(N - r, d - r)
+        for roots in itertools.combinations(H, r):
+            containing = count_hits_containing_roots(hits, roots, H)
+            total_containment += containing
+            max_containing = max(max_containing, containing)
+            if containing > per_T_bound:
+                return {
+                    "name": "dual_distance_moment_frame",
+                    "status": "FAIL",
+                    "reason": "fixed T containment exceeded moment bound",
+                    "r": r,
+                    "roots": list(roots),
+                    "containing": containing,
+                    "bound": per_T_bound,
+                }
+        lhs = len(hits) * comb(J_VOTING, r)
+        rhs = comb(N, r) * per_T_bound
+        if total_containment != lhs or lhs != rhs:
+            return {
+                "name": "dual_distance_moment_frame",
+                "status": "FAIL",
+                "reason": "full-space moment equality failed",
+                "r": r,
+                "total_containment": total_containment,
+                "lhs": lhs,
+                "rhs": rhs,
+            }
+        moment_rows.append({
+            "r": r,
+            "hit_count": len(hits),
+            "moment": lhs,
+            "bound": rhs,
+            "max_containing_fixed_T": max_containing,
+        })
+
+    common_root = H[0]
+    common_basis = [
+        poly_mul(locator((common_root,)), poly)
+        for poly in full_degree_monomial_basis(J_VOTING - 1)
+    ]
+    common_weight, common_witness = dependent_support_witness(common_basis, H, 1)
+    if common_weight != 1 or common_witness != (common_root,):
+        return {
+            "name": "dual_distance_moment_frame",
+            "status": "FAIL",
+            "reason": "support-one dual witness did not match forced common root",
+            "weight": common_weight,
+            "witness": list(common_witness or ()),
+            "common_root": common_root,
+        }
+
+    rng = random.Random(SEED + 13)
+    twin_basis = forced_duplicate_plane(H, rng)
+    if twin_basis is None:
+        return {
+            "name": "dual_distance_moment_frame",
+            "status": "FAIL",
+            "reason": "could not construct forced twin plane",
+        }
+    twin_weight, twin_witness = dependent_support_witness(twin_basis, H, 2)
+    twin_groups = [
+        roots for roots in line_groups_for_basis(twin_basis, H).values()
+        if len(roots) >= 2
+    ]
+    if twin_weight != 2 or not twin_witness or not any(set(twin_witness) <= set(group) for group in twin_groups):
+        return {
+            "name": "dual_distance_moment_frame",
+            "status": "FAIL",
+            "reason": "support-two dual witness did not match a twin class",
+            "weight": twin_weight,
+            "witness": list(twin_witness or ()),
+            "twin_groups": [list(group) for group in twin_groups],
+        }
+
+    sparse_roots = tuple(H[:3])
+    sparse_basis = sparse_relation_space(sparse_roots, (1, 2, 3), J_VOTING)
+    sparse_weight, sparse_witness = dependent_support_witness(sparse_basis, H, 3)
+    if sparse_weight != 3 or set(sparse_witness or ()) != set(sparse_roots):
+        return {
+            "name": "dual_distance_moment_frame",
+            "status": "FAIL",
+            "reason": "support-three dual witness did not match forced sparse relation",
+            "weight": sparse_weight,
+            "witness": list(sparse_witness or ()),
+            "sparse_roots": list(sparse_roots),
+        }
+
+    ratio_rows = []
+    for n_value, j_value, d_value in [
+        (512, 256, 8),
+        (1048576, 524288, 20),
+        (1099511627776, 549755813888, 40),
+    ]:
+        exact_num = comb(n_value, d_value)
+        exact_den = comb(j_value, d_value)
+        log2_ratio = math.log2(exact_num) - math.log2(exact_den)
+        coarse_log2 = d_value * math.log2(2 * n_value / j_value)
+        ratio_rows.append({
+            "n": n_value,
+            "j": j_value,
+            "d": d_value,
+            "log2_binomial_ratio": log2_ratio,
+            "coarse_log2_2_over_rho_bound": coarse_log2,
+            "within_coarse_bound": log2_ratio <= coarse_log2 + 1e-9,
+        })
+    if not all(row["within_coarse_bound"] for row in ratio_rows):
+        return {
+            "name": "dual_distance_moment_frame",
+            "status": "FAIL",
+            "reason": "coarse log-dimensional ratio bound failed",
+            "ratio_rows": ratio_rows,
+        }
+
+    return {
+        "name": "dual_distance_moment_frame",
+        "status": "PASS",
+        "statement": (
+            "Low-weight dual words are common-root/twin/sparse degeneracies; "
+            "if no support <= r dual word exists, r-root containment moments "
+            "obey #E*binom(j,r) <= binom(n,r)binom(n-r,d-r)."
+        ),
+        "full_space_hit_count": len(hits),
+        "full_space_no_dependency_up_to": d,
+        "moment_rows": moment_rows,
+        "common_root_dual_weight": common_weight,
+        "twin_dual_weight": twin_weight,
+        "twin_witness": list(twin_witness),
+        "sparse_dual_weight": sparse_weight,
+        "sparse_witness": list(sparse_witness),
+        "ratio_rows": ratio_rows,
+    }
+
+
 def check_plane_pair_counting_bound(H: list[int]) -> dict:
     rng = random.Random(SEED + 3)
     accepted = 0
@@ -2128,6 +2319,7 @@ def build_report() -> dict:
         check_plane_pair_counting_bound(H),
         check_twin_line_decomposition(H),
         check_sparse_dependence_descent(H),
+        check_dual_distance_moment_frame(H),
         check_fixed_dimension_incidence_bound(H),
         check_common_root_fixed_dimension_bound(H),
         check_quotient_fixed_dimension_bound(H),

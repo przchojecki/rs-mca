@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Conjecture F dual-distance moment frame
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_reduction_lemmas.md`;
+  `experimental/scripts/verify_conjecture_f_reductions.py`;
+  `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`;
+  `experimental/data/certificates/conjecture-f-reductions/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL verifier.
+- **What is being added:** A QF.6 dual-distance frame: low-weight words in
+  the evaluation-code dual are exactly the common-root, twin, and sparse
+  relation degeneracies; if there is no support-`<=r` dual word, then the
+  `r`-root containment moment obeys
+  `#E binom(j,r) <= binom(n,r)binom(n-r,d-r)`.
+- **How it is useful:** This turns the sparse-descent lemma into a criterion:
+  after low-weight dual obstructions are routed to paid/descent branches, the
+  spread regime has an explicit double-counting bound, polynomial for
+  log-dimensional spread flats at fixed rate.
+- **What to do next:** Audit which M1/L1 consumer flats have sufficient
+  dual-distance gaps, then run the many-sparse-flat census for the cases where
+  the gap fails.
+
 ### 2026-07-02 - Conjecture F sparse-dependence descent
 
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.

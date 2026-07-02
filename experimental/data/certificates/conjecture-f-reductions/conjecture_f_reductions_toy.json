@@ -170,6 +170,88 @@
       "status": "PASS"
     },
     {
+      "common_root_dual_weight": 1,
+      "full_space_hit_count": 1820,
+      "full_space_no_dependency_up_to": 4,
+      "moment_rows": [
+        {
+          "bound": 1820,
+          "hit_count": 1820,
+          "max_containing_fixed_T": 1820,
+          "moment": 1820,
+          "r": 0
+        },
+        {
+          "bound": 7280,
+          "hit_count": 1820,
+          "max_containing_fixed_T": 455,
+          "moment": 7280,
+          "r": 1
+        },
+        {
+          "bound": 10920,
+          "hit_count": 1820,
+          "max_containing_fixed_T": 91,
+          "moment": 10920,
+          "r": 2
+        },
+        {
+          "bound": 7280,
+          "hit_count": 1820,
+          "max_containing_fixed_T": 13,
+          "moment": 7280,
+          "r": 3
+        },
+        {
+          "bound": 1820,
+          "hit_count": 1820,
+          "max_containing_fixed_T": 1,
+          "moment": 1820,
+          "r": 4
+        }
+      ],
+      "name": "dual_distance_moment_frame",
+      "ratio_rows": [
+        {
+          "coarse_log2_2_over_rho_bound": 16.0,
+          "d": 8,
+          "j": 256,
+          "log2_binomial_ratio": 8.080073147474963,
+          "n": 512,
+          "within_coarse_bound": true
+        },
+        {
+          "coarse_log2_2_over_rho_bound": 40.0,
+          "d": 20,
+          "j": 524288,
+          "log2_binomial_ratio": 20.000261418490823,
+          "n": 1048576,
+          "within_coarse_bound": true
+        },
+        {
+          "coarse_log2_2_over_rho_bound": 80.0,
+          "d": 40,
+          "j": 549755813888,
+          "log2_binomial_ratio": 40.00000000102341,
+          "n": 1099511627776,
+          "within_coarse_bound": true
+        }
+      ],
+      "sparse_dual_weight": 3,
+      "sparse_witness": [
+        1,
+        8,
+        64
+      ],
+      "statement": "Low-weight dual words are common-root/twin/sparse degeneracies; if no support <= r dual word exists, r-root containment moments obey #E*binom(j,r) <= binom(n,r)binom(n-r,d-r).",
+      "status": "PASS",
+      "twin_dual_weight": 2,
+      "twin_witness": [
+        1,
+        8
+      ]
+    },
+    {
       "checked_random_subspaces": 191,
       "j": 4,
       "max_hits_by_projective_dimension": {
@@ -796,6 +878,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "1520540f1ff08a9b66ab6d5502fff3fbf077f3be1967449f66f57e6e96537359",
+  "script_sha256": "5817f576579cb232399d3c6030e319f62f331d685b64f11de84917ff3eb41946",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

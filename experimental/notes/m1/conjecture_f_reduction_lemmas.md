@@ -7,7 +7,7 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_reductions.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`.
 
-This note records seventeen elementary reductions around the fiber-rigidity
+This note records eighteen elementary reductions around the fiber-rigidity
 statement called Conjecture F in the proof sketch.  They do not prove the
 primitive core.  Their role is to remove two paid structures from the statement
 to settle the dimension-one base case, and to restate the remaining primitive
@@ -425,6 +425,103 @@ dual relation is not a new primitive source by itself.  Its near-saturated
 locators are paid by common-GCD descent, and the remaining locators have a
 strictly smaller overlap with that sparse support.
 
+## Corollary 6C: Dual-Distance Moment Frame
+
+Let `W <= K[X]_{<=j}` have vector dimension `d+1`, and let
+
+```text
+ev_H(W) = { (L(h))_{h in H} : L in W } <= K^H.
+```
+
+Write `C_W^perp` for the dual code of `ev_H(W)`, and let `w_*(W,H)` be the
+minimum support size of a nonzero word of `C_W^perp`, with `w_* = infinity`
+if the dual code is zero.
+
+The low-weight dual words are exactly the degeneracies used above:
+
+- `w_*=1` occurs precisely when some `h in H` is a common root of `W`;
+- a support-two dual word on `{h,h'}` occurs precisely when the evaluation
+  functionals at `h` and `h'` are proportional on `W`, i.e. when `h,h'`
+  form a twin evaluation-line class;
+- a support-`w` dual word with all coefficients nonzero is exactly the
+  sparse-dependence input of Corollary 6B.
+
+If `w_*(W,H)>r`, then every `T subset H` with `|T|<=r` imposes independent
+conditions on `W`:
+
+```text
+dim W(-T) = dim W-|T|.
+```
+
+Consequently, for `0<=r<=min(d,j)` and
+
+```text
+E = P(W) cap D_j(H),
+```
+
+the `r`-th containment moment satisfies
+
+```text
+#E binom(j,r)
+  <= binom(|H|,r) binom(|H|-r,d-r).
+```
+
+Equivalently,
+
+```text
+#E <= binom(|H|,r) binom(|H|-r,d-r) / binom(j,r).
+```
+
+In particular, if `w_*(W,H)>d`, then
+
+```text
+#E <= binom(|H|,d) / binom(j,d).
+```
+
+Thus when `j >= theta |H|`, `d <= j/2`, and `d=O(log |H|)`, a dual-distance gap
+`w_*>d` gives the polynomial bound
+
+```text
+#E <= (2/theta)^d.
+```
+
+**Proof.**  A vector `lambda in K^H` lies in `C_W^perp` if and only if
+
+```text
+sum_{h in H} lambda_h L(h)=0       for every L in W.
+```
+
+Restricting the support of `lambda` gives exactly a linear dependence among
+the evaluation functionals on that support.  Support `1` means the corresponding
+functional is zero on `W`, hence a common root.  Support `2` means two
+nonzero evaluation functionals are proportional, unless one of them is already
+the support-one case.  Full-support words of size `w` are precisely the input
+of Corollary 6B.
+
+If `w_*>r`, no subset of size at most `r` carries a nontrivial dependence, so
+the evaluation map on every such subset has full rank.  This proves
+`dim W(-T)=dim W-|T|`.
+
+Now double-count pairs `(L,T)` with `[L] in E` and `T` an `r`-subset of the
+root set of `L`.  Each locator contributes exactly `binom(j,r)` pairs.  For a
+fixed `T`, the `T`-containing branch lies in `P(W(-T))`; after division by
+`G_T=prod_{t in T}(X-t)`, Lemma 1 and Corollary 8 bound it by
+`binom(|H|-r,d-r)`, because `P(W(-T))` has projective dimension `d-r`.
+Summing over all `binom(|H|,r)` choices of `T` gives the displayed moment
+bound.  Taking `r=d` gives the final exact inequality.  If `j>=theta |H|` and
+`d <= j/2`, then
+
+```text
+binom(|H|,d)/binom(j,d)
+  <= (|H|/(j-d+1))^d
+  <= (2/theta)^d.
+```
+
+This is the QF.6 dual-distance frame: common roots, twins, and sparse
+relations are the low-weight dual obstructions; once they are absent up to
+rank `r`, the remaining spread regime has an explicit `r`-wise containment
+moment.
+
 ## Lemma 7: Fixed-Dimension Incidence Bound
 
 Let `W <= K[X]_{<=j}` have vector dimension `d+1`, and assume `W` is
@@ -835,7 +932,9 @@ deterministic random gcd-trivial projective planes, verifies the vanishing-flat
 dimension bound, verifies the projective-plane pair-counting bound including
 forced repeated-line planes, verifies the twin-line decomposition into
 common-GCD line charts plus the sharp simple-line residual, verifies the
-sparse-dependence closure/descent rule on forced sparse relation spaces, and
+sparse-dependence closure/descent rule on forced sparse relation spaces,
+verifies the dual-distance moment frame including support-one common-root,
+support-two twin, and support-three sparse-dependence degeneracies, and
 verifies the fixed-dimension incidence bound on random subspaces plus the
 sharp full-space case.  It also verifies the
 common-root corollary on forced common-root subspaces and the

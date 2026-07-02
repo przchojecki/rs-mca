@@ -10,8 +10,9 @@ This directory contains the toy verifier output for
   the weighted projective-plane pair-counting bound, including forced
   repeated-line planes, the twin-line decomposition into common-GCD line
   charts plus a sharp simple-line residual, the sparse-dependence
-  closure/descent rule, and the fixed-dimensional incidence bound with the
-  sharp full-space case.  The later checks force
+  closure/descent rule, the dual-distance moment frame, and the
+  fixed-dimensional incidence bound with the sharp full-space case.  The
+  later checks force
   common roots, divide them out, verify the reduced fixed-dimensional bound,
   descend quotient-pullback strata, sum proper quotient-union bounds, test
   affine chart consumers, print exponent budgets, test the polynomial
