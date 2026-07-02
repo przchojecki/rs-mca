@@ -44,8 +44,8 @@ Keep entries concise and link to the relevant files.
 - **Status:** PROVED / AUDIT.
 - **What is being added:** The `A=386` moving-slope packet now has a
   cofactor-span top-saturation exclusion for the high-core punctured-tangent
-  quotient tail, exact-agreement closure of the `e_G=109..119` tangent-tail
-  rows,
+  quotient tail, exact-agreement closure of the line `e_G=109..119` and conic
+  `e_G=115..119` tangent-tail rows,
   abstract incidence-only sharpness witnesses for every finite-incidence
   one-over core, exact-current residual profiles, and a minimal obstruction
   profile for the remaining finite-incidence rows, including a quotient
@@ -58,22 +58,22 @@ Keep entries concise and link to the relevant files.
   quotient family has vector dimension at most `2` on a line and at most `3`
   on a conic.  Hence the raw tangent bound `r'+1` improves to `r'` while
   `r'` exceeds this dimension; `e_G=120` is safe and `e_G=119` is the next
-  cofactor-current tangent-tail core.  Exact agreement then closes the whole
-  tail `e_G=109..119`: for `r'=126-e_G<=17`, seven projective slopes force
-  at most two private residual coordinates beyond the common support.  The
-  cases `d<r'`, `d=r'`, and `d=r'+1` are respectively higher-agreement,
-  same-support-contained, or incompatible with the low quotient-family
-  dimension by cofactor independence.  In the `d=r'+2` branch, six finite
-  cofactors become six two-supported edge vectors; the checked
-  signless-incidence edge cap gives span dimension at least `4`, still larger
-  than the quotient-family dimensions `2` and `3`.  The
+  cofactor-current tangent-tail core.  Exact agreement then closes line
+  `e_G=109..119` and conic `e_G=115..119`: for `r'=126-e_G<=17`, seven
+  projective slopes force at most two private residual coordinates beyond the
+  common support.  The cases `d<r'`, `d=r'`, and `d=r'+1` are respectively
+  higher-agreement, same-support-contained, or incompatible with the low
+  quotient-family dimension by cofactor independence.  In the `d=r'+2` branch,
+  six finite cofactors become six two-supported signed-edge vectors; their
+  span has rank at least `3`, which closes lines but is not enough to close
+  conics by dimension alone.  The
   incidence-only witnesses show that the
   remaining finite-incidence one-over rows cannot be closed by sharpening only
   the current incidence and pair-overlap counts.  The cofactor-current profile
   removes the stale raw `e_G=120` one-over row; the exact-current profile
-  removes `e_G=109..119` and lowers the conic max bound from `26` to `25`.
-  The remaining high-core quotient ranges shrink to line `72..108` and conic
-  `69..108`.  The
+  removes line `e_G=109..119` and conic `e_G=115..119`, and lowers the conic
+  max bound from `26` to `25`.  The remaining high-core quotient ranges shrink
+  to line `72..108` and conic `69..114`.  The
   remaining over-budget normal form now has exactly `17` rows: line `72..80`
   and conic `69..76`, each requiring six distinct finite slopes plus an unpaid
   endpoint and the printed saturated incidence/overlap conditions.  In the

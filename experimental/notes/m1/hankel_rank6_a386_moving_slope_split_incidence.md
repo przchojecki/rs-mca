@@ -308,14 +308,14 @@ together with the tangent-tail core `|E|=119` for both component types.  The
 core `|E|=120` is projective-safe, and the largest conic projective bound drops
 from `26` to `25`.
 
-The cofactor-current tangent tail `109<=|E|<=119` is also closed after
-imposing exact agreement.  Put `r'=126-|E|`, so `7<=r'<=17` on this range.  If
-seven projective slopes survived, choose a nonbad projective point as infinity,
-so the seven bad points become finite on the punctured row.  The
-tangent-staircase residual-budget proof then leaves at most two private
-residual coordinates beyond the common-support complement.  When `d<r'`, the
-common support has size greater than `A=386`, so the branch is
-higher-agreement.  When `d=r'`, the common support already has size `A`, so
+The cofactor-current tangent tail is also partly closed after imposing exact
+agreement: `109<=|E|<=119` for lines, and `115<=|E|<=119` for irreducible
+conics.  Put `r'=126-|E|`.  If seven projective slopes survived, choose a
+nonbad projective point as infinity, so the seven bad points become finite on
+the punctured row.  The tangent-staircase residual-budget proof then leaves at
+most two private residual coordinates beyond the common-support complement.
+When `d<r'`, the common support has size greater than `A=386`, so the branch
+is higher-agreement.  When `d=r'`, the common support already has size `A`, so
 there is no residual coordinate left to create a private exact-`A`
 noncontainment witness.  When `d=r'+1`, the residual quotient locators are
 degree-`r'` cofactors of an `(r'+1)`-point residual set.  At most one
@@ -326,19 +326,21 @@ dimensions `2` and `3`.
 The new `109<=|E|<=114` part allows one more residual coordinate:
 `d=r'+2`.  In that branch the six finite component cofactors restrict to six
 distinct two-supported edge vectors on the residual set.  The verifier records
-the signless-incidence rank calculation: over characteristic `17`, a connected
-graph component contributes `|V|-1` to rank when bipartite and `|V|` when
-non-bipartite, so a simple graph of signless rank at most `3` has at most
-`4` edges.  Six distinct edges therefore span dimension at least `4`, still
-larger than the line and conic quotient-family dimensions `2` and `3`.  Hence
-every `|E|>=109` tangent-tail row is projective-safe in the exact-current
-profile.
+the signed-incidence rank calculation: after barycentric scaling, the two
+nonzero entries have opposite orientation, and over characteristic `17` a
+connected graph component contributes `|V|-1` to signed-incidence rank.  A
+rank-at-most-two signed incidence matrix supports at most three distinct
+simple edges, so six distinct edges span dimension at least `3`.  This closes
+the line tail because the line quotient-family dimension is `2`.  It does not
+close conic cores `109<=|E|<=114` by dimension alone, because a `K4` edge
+configuration has six edges and signed-incidence rank `3`, matching the conic
+quotient-family dimension.
 
 Thus the unclosed high-core quotient range is finite:
 
 ```text
 line residuals:  72 <= |E| <= 108;
-conic residuals: 69 <= |E| <= 108.
+conic residuals: 69 <= |E| <= 114.
 ```
 
 This uses the projective high-agreement tangent theorem on the punctured row,
@@ -477,7 +479,8 @@ raw punctured-tangent row `e_G=120` for both component types.  In each listed
 finite-incidence row, any one listed saving lowers the projective count from
 `7` to the budget `6`; for `e_G=120` that saving is supplied by the
 cofactor-span obstruction.  The subsequent exact-agreement filter closes the
-cofactor-current tangent-tail rows `e_G=109..119`, so the exact-current
+cofactor-current tangent-tail rows line `e_G=109..119` and conic
+`e_G=115..119`, so the exact-current
 one-over rows are only the finite-incidence ranges.
 
 The packet now records these exact-current rows as a minimal obstruction
@@ -493,7 +496,8 @@ line base-splitting pressure remains only for `e_G=72..74`; line cores
 `75..80` need external-slack, duplicate-slope, endpoint, or paid-class input.
 For conics, base plus secant pressure remains for `e_G=69..71`, secant-only
 pressure remains for `e_G=72..74`, and cores `75,76` need an endpoint,
-duplicate-slope, or paid-class input.  The `e_G=120` and `e_G=109..119` rows
+duplicate-slope, or paid-class input.  The `e_G=120`, line `e_G=109..119`,
+and conic `e_G=115..119` rows
 are now isolated as closed punctured-tangent tails rather than remaining proof
 targets.
 
@@ -509,7 +513,8 @@ Nonclaims:
 ```text
 no proof that every moving-slope component is a line;
 no closure of line components with forced external split-root core in 72..108 in projective accounting;
-no closure of irreducible conic moving-slope components with forced external split-root core in 69..108 in projective accounting;
+no closure of irreducible conic moving-slope components with forced external split-root core in 69..114 in projective accounting;
+no closure of conic tangent-tail cores 109..114 from the signed-edge rank bound alone;
 no proof that the high-core quotient split problem is empty or paid;
 no claim that the punctured tangent numerator at the residual threshold is within the original row budget;
 no exclusion of another independent noncontained vector at the same finite slope;
