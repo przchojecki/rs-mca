@@ -966,6 +966,11 @@ for that branch: line components are projective-safe for external forced core
 `e_G<=70`, and irreducible conics are projective-safe for `e_G<=67` after
 pair-overlap packing.  The high-core line/conic ranges remain open for
 product-collapse, quotient, tangent-tail, or split-locator analysis.
+The fixed two-core high-core quotient companion then normalizes those residuals:
+line branches are quotient pencils of degree at most `56`, and irreducible
+conic branches are quotient families of degree at most `59`.  This is the
+A385 analogue of the A386 quotient diagnostic step, but it does not yet include
+the A386 product-collapse closure.
 For `A=387`, the projective `Q`-space is a point, so the arbitrary-weight
 separated branch is already projective-safe with total at most `2`.
 For `A=386`, a no-common-component pair of direction conics gives projective
@@ -1021,6 +1026,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_slope_free_emp
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_moving_slope_incidence.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-moving-slope-incidence/f17_32_n512_k256_m3_rank6_a385_two_core_moving_slope_incidence.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_quotient.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-quotient/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

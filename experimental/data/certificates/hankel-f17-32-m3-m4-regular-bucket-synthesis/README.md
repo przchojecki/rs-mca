@@ -254,6 +254,19 @@ projective-budget safe for `e_G<=70`; irreducible conics are projective-budget
 safe for `e_G<=67` after pair-overlap packing.  The high-core line/conic ranges
 remain residual.
 
+The `A=385` two-core high-core quotient packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-quotient/
+  f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient.json
+```
+
+puts those high-core residuals into quotient normal form.  A line component
+with `e_G>=71` is a quotient pencil of degree at most `56`; an irreducible
+conic component with `e_G>=68` has a global forced external core and becomes a
+quotient family of degree at most `59`.  The packet does not prove those
+quotient branches empty or paid.
+
 The `A=387` separated-boundary safety packet
 
 ```text
@@ -562,6 +575,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_slope_free_emp
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_moving_slope_incidence.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-moving-slope-incidence/f17_32_n512_k256_m3_rank6_a385_two_core_moving_slope_incidence.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_quotient.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-quotient/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

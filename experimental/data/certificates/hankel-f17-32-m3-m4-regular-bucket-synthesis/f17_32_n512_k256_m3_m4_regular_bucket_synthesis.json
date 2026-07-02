@@ -359,6 +359,7 @@
     "A=385 separated rank-6 fixed two-core global-component constant-slope branches are projective-safe off the slope-map base locus",
     "A=385 separated rank-6 fixed two-core slope-free base loci and global components are empty by the residual degree<3 root-count obstruction",
     "A=385 separated rank-6 fixed two-core moving-slope line/conic branches have external-incidence thresholds e<=70 and e<=67 for projective safety",
+    "A=385 separated rank-6 fixed two-core high-core moving-slope branches reduce to quotient pencils/families of degrees at most 56 and 59",
     "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
     "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
     "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
@@ -501,7 +502,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v41",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v42",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -571,6 +572,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a385_two_core_global_component_slope_dichotomy.json",
       "sha256": "fcff20da15e17efc860def7d707ee17c1aff41a28a0d2ebbbd90bb670045419e"
     },
+    "f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-quotient/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient.json",
+      "sha256": "3197beb061a10b5c5d26ec658ac3926896f8eeddadfd69bfe96df057aff1f819"
+    },
     "f17_32_n512_k256_m3_rank6_a385_two_core_moving_slope_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-moving-slope-incidence/f17_32_n512_k256_m3_rank6_a385_two_core_moving_slope_incidence.json",
       "sha256": "3fc5db911b24440c3f3b4649073b600b0b9f470f12ecb41670958c74274b6e09"
@@ -615,13 +620,14 @@
     "a385_two_core_component_cut_count": 1,
     "a385_two_core_conic_pair_safety_count": 1,
     "a385_two_core_global_component_slope_dichotomy_count": 1,
+    "a385_two_core_high_core_quotient_count": 1,
     "a385_two_core_moving_slope_incidence_count": 1,
     "a385_two_core_slope_free_empty_count": 1,
     "a386_moving_slope_refinement_count": 1,
     "a386_separated_boundary_closure_count": 1,
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 25,
+    "dependencies_checked": 26,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
     "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -665,6 +671,12 @@
       "inside the fixed two-core global-component residual, the direction linear pairs induce a rational slope map on the component off the base locus",
       "if the induced slope map is constant, the non-base branch contributes at most one finite slope and projective total at most 2<=6",
       "the remaining fixed-two-core global-component residuals are a determined nonconstant slope map and a slope-free base locus or component"
+    ],
+    "a385_two_core_high_core_quotient": [
+      "inside the fixed two-core high-core moving-slope residual, forced external roots define a common divisor of every kernel polynomial on the component",
+      "for line components this gives a projective-line quotient pencil of degree at most 56",
+      "for irreducible conic components, containment in a root hyperplane forces the evaluation functional to vanish on the whole residual Q-plane, giving a projective-plane quotient family of degree at most 59",
+      "the quotient normal form does not yet prove product collapse or paidness of the high-core quotient branches"
     ],
     "a385_two_core_moving_slope_incidence": [
       "inside the remaining fixed two-core moving-slope branch, a degree-127 split locator has at most four base roots: two fixed core roots plus at most two roots of the residual degree-<3 polynomial",

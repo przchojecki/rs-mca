@@ -174,6 +174,18 @@ non-forced external roots.  Line components are projective-safe for
 `e_G<=70`; irreducible conics are projective-safe for `e_G<=67` after the
 pair-overlap saving.  High-core line/conic branches remain residual.
 
+The fixed two-core high-core quotient companion is
+
+```text
+experimental/notes/m1/hankel_rank6_a385_two_core_high_core_quotient.md
+```
+
+It puts those residual high-core branches in quotient normal form.  The line
+branch is a quotient pencil of degree at most `127-71=56`.  For an irreducible
+conic, containment in a root hyperplane forces the external root functional to
+vanish on the whole residual plane, so the branch is a quotient family of
+degree at most `127-68=59`.  The quotient branches remain unclosed.
+
 At `A=387`, this transfer already closes the separated branch for arbitrary
 nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at
 most one finite slope.  The companion note
@@ -314,6 +326,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_slope_free_emp
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_moving_slope_incidence.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-moving-slope-incidence/f17_32_n512_k256_m3_rank6_a385_two_core_moving_slope_incidence.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_quotient.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-quotient/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient.json
 ```
 
 Nonclaims:

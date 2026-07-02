@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A385 two-core high-core quotient normal form
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_quotient.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-quotient/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a385_two_core_high_core_quotient.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A high-core quotient normal form for the separated
+  `A=385` rank-6 fixed two-core moving-slope residual: line components become
+  quotient pencils of degree at most `56`, and irreducible conics become
+  quotient families of degree at most `59`.
+- **How it is useful:** This narrows the high-core residual left by the
+  incidence packet to a quotient problem with explicit degrees, matching the
+  structural route that closed the analogous `A=386` branch.
+- **What to do next:** Derive or refute an A385 product-collapse analogue for
+  these quotient pencils/families, keeping endpoint payment and row-level M3
+  closure separate.
+
 ### 2026-07-02 - A385 two-core moving-slope incidence
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

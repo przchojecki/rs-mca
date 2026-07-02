@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v41"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v42"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -135,6 +135,10 @@ A385_TWO_CORE_MOVING_SLOPE_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-moving-slope-incidence/"
     "f17_32_n512_k256_m3_rank6_a385_two_core_moving_slope_incidence.json"
 )
+A385_TWO_CORE_HIGH_CORE_QUOTIENT_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-quotient/"
+    "f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient.json"
+)
 
 
 EXPECTED_SCHEMAS = {
@@ -172,6 +176,9 @@ EXPECTED_SCHEMAS = {
     ),
     A385_TWO_CORE_MOVING_SLOPE_REF: (
         "f17-32-m3-rank6-a385-two-core-moving-slope-incidence-v1"
+    ),
+    A385_TWO_CORE_HIGH_CORE_QUOTIENT_REF: (
+        "f17-32-m3-rank6-a385-two-core-high-core-quotient-v1"
     ),
 }
 
@@ -2368,6 +2375,68 @@ def check_a385_two_core_moving_slope_packet(data: dict[str, Any]) -> None:
     )
 
 
+def check_a385_two_core_high_core_quotient_packet(data: dict[str, Any]) -> None:
+    require(
+        data["agreement"]["A"] == 385,
+        "A385 two-core high-core quotient agreement mismatch",
+    )
+    require(
+        data["status"] == "PROVED / AUDIT",
+        "A385 two-core high-core quotient status mismatch",
+    )
+    summary = data["summary"]
+    require(
+        summary["split_locator_degree"] == 127
+        and summary["positive_dimensional_external_core_upper_bound"] == 126
+        and summary["line_high_core_external_core_min"] == 71
+        and summary["line_residual_quotient_degree_at_most"] == 56
+        and summary["conic_high_core_external_core_min"] == 68
+        and summary["conic_residual_quotient_degree_at_most"] == 59,
+        "A385 two-core high-core quotient summary mismatch",
+    )
+    require(
+        summary["line_quotient_family_projective_dimension_at_most"] == 1
+        and summary["conic_quotient_family_projective_dimension_at_most"] == 2
+        and summary["remaining_residual_after_quotient_normal_form"]
+        == "fixed two-core high-core quotient pencils/families",
+        "A385 two-core high-core quotient family mismatch",
+    )
+    forms = data["quotient_normal_forms"]
+    require(
+        forms["line"]["external_core_threshold"] == 71
+        and forms["line"]["quotient_degree_at_threshold"] == 56
+        and forms["line"]["quotient_family_projective_dimension_at_most"] == 1,
+        "A385 two-core line quotient form mismatch",
+    )
+    require(
+        forms["irreducible_conic"]["external_core_threshold"] == 68
+        and forms["irreducible_conic"]["quotient_degree_at_threshold"] == 59
+        and forms["irreducible_conic"]["quotient_family_projective_dimension_at_most"]
+        == 2,
+        "A385 two-core conic quotient form mismatch",
+    )
+    nonclaims = set(data["nonclaims"])
+    require(
+        "does not prove product collapse for A=385 high-core line or conic components"
+        in nonclaims,
+        "A385 two-core high-core quotient missing product-collapse nonclaim",
+    )
+    require(
+        "does not claim the high-core quotient pencils or families are empty or paid"
+        in nonclaims,
+        "A385 two-core high-core quotient missing quotient nonclaim",
+    )
+    require(
+        "does not close the full fixed two-core nonconstant moving-slope branch"
+        in nonclaims,
+        "A385 two-core high-core quotient missing closure nonclaim",
+    )
+    require(
+        "does not produce a row-level M3 safe-side bound" in nonclaims,
+        "A385 two-core high-core quotient missing row-bound nonclaim",
+    )
+
+
 def build_certificate() -> dict[str, Any]:
     field = Field(P, MODULUS)
     descriptor = load_json(ROW_DESCRIPTOR_REF)
@@ -2394,6 +2463,9 @@ def build_certificate() -> dict[str, Any]:
     check_a385_two_core_slope_free_packet(dependencies[A385_TWO_CORE_SLOPE_FREE_REF])
     check_a385_two_core_moving_slope_packet(
         dependencies[A385_TWO_CORE_MOVING_SLOPE_REF]
+    )
+    check_a385_two_core_high_core_quotient_packet(
+        dependencies[A385_TWO_CORE_HIGH_CORE_QUOTIENT_REF]
     )
 
     domain_encodings = descriptor["domain"]["domain_encodings"]
@@ -2518,6 +2590,12 @@ def build_certificate() -> dict[str, Any]:
                 "irreducible conic components are projective-budget safe for e_G<=67 and finite-safe for e_G<=75 by pair-overlap packing",
                 "the remaining fixed two-core moving-slope residual is the high-core line/conic branch beyond those incidence thresholds",
             ],
+            "a385_two_core_high_core_quotient": [
+                "inside the fixed two-core high-core moving-slope residual, forced external roots define a common divisor of every kernel polynomial on the component",
+                "for line components this gives a projective-line quotient pencil of degree at most 56",
+                "for irreducible conic components, containment in a root hyperplane forces the evaluation functional to vanish on the whole residual Q-plane, giving a projective-plane quotient family of degree at most 59",
+                "the quotient normal form does not yet prove product collapse or paidness of the high-core quotient branches",
+            ],
             "a386_moving_slope_refinement": [
                 "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
                 "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
@@ -2625,6 +2703,7 @@ def build_certificate() -> dict[str, Any]:
             "a385_two_core_global_component_slope_dichotomy_count": 1,
             "a385_two_core_slope_free_empty_count": 1,
             "a385_two_core_moving_slope_incidence_count": 1,
+            "a385_two_core_high_core_quotient_count": 1,
             "a386_moving_slope_refinement_count": 1,
             "m3_rank_node_dichotomy_count": 1,
             "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -2654,6 +2733,7 @@ def build_certificate() -> dict[str, Any]:
             "A=385 separated rank-6 fixed two-core global-component constant-slope branches are projective-safe off the slope-map base locus",
             "A=385 separated rank-6 fixed two-core slope-free base loci and global components are empty by the residual degree<3 root-count obstruction",
             "A=385 separated rank-6 fixed two-core moving-slope line/conic branches have external-incidence thresholds e<=70 and e<=67 for projective safety",
+            "A=385 separated rank-6 fixed two-core high-core moving-slope branches reduce to quotient pencils/families of degrees at most 56 and 59",
             "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
             "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
             "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",

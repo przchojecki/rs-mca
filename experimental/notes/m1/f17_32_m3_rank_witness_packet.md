@@ -584,6 +584,12 @@ projective-safe for `e_G<=70`, while irreducible conics are projective-safe for
 `e_G<=67` by pair-overlap packing.  The high-core line/conic ranges remain
 residual.
 
+The `A=385` two-core high-core quotient companion puts those high-core residuals
+in quotient normal form.  Lines become quotient pencils of degree at most `56`;
+irreducible conics have a global forced external core and become quotient
+families of degree at most `59`.  These quotient branches are not yet proved
+empty or paid.
+
 The `A=387` separated-boundary safety companion uses the `h=1` specialization
 to close that agreement for arbitrary nonzero separated weights: the finite
 root table has at most one ambient root, the split-locator gate cannot increase
@@ -929,6 +935,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_slope_free_emp
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_moving_slope_incidence.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-moving-slope-incidence/f17_32_n512_k256_m3_rank6_a385_two_core_moving_slope_incidence.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_quotient.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-quotient/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json
