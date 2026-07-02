@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - E1 sharp norm-height constants
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/roadmaps/e1_sharp_norm_height_constants.md`;
+  `experimental/scripts/verify_e1_sharp_norm_height_constants.py`;
+  `experimental/data/certificates/row-c-e1-sampling/e1_sharp_norm_height_constants.json`;
+  `experimental/data/certificates/row-c-e1-sampling/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / ARITHMETIC-COMPILER.
+- **What is being added:** Recomputes the split-prime norm-height transfer
+  with the sharp exponent `phi(N') log(2 ell')` and exact all-even/dyadic
+  frontiers for the deployed bit budgets.
+- **How it is useful:** Discharges `are_sharp_constant` for the E1 lane and
+  records the height-only stopping point: Row-C `N'=64` is certified by pure
+  height, while `N'=128,256` require further structure.
+- **What to do next:** Use the frontier table to scope generator-economy and
+  direct norm-divisibility searches; do not use height-only arguments for the
+  larger Row-C quotient cells.
+
 ### 2026-07-02 - E1 cluster certificates
 
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.

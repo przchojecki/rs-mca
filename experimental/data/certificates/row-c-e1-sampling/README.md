@@ -17,12 +17,16 @@ Row-C slack-one quotient value-set sampler.
   also records the distinct exceptional-prime divisor budget for the checked
   pair families, the Row-C graded collision-radius table, and the QA.14
   cluster-certificate lemmas.
+- `e1_sharp_norm_height_constants.json` records the sharp height exponent
+  `phi(N') log(2 ell')`, the deployed bit-budget transfer frontiers, and the
+  Row-C pure-height stopping point.
 - The generating script is
   `experimental/scripts/verify_row_c_e1_value_set_sampler.py`.
 - Companion notes:
   `experimental/notes/roadmaps/e1_row_c_value_set_sampling.md`,
   `experimental/notes/roadmaps/e1_collision_norm_criterion.md`, and
-  `experimental/notes/roadmaps/e1_cluster_certificates.md`.
+  `experimental/notes/roadmaps/e1_cluster_certificates.md`,
+  `experimental/notes/roadmaps/e1_sharp_norm_height_constants.md`.
 
 Replay:
 
@@ -32,4 +36,5 @@ python3 experimental/scripts/verify_row_c_e1_value_set_sampler.py \
   --orders 64 --samples 16777216 --mode exact-set --emit \
   --output experimental/data/certificates/row-c-e1-sampling/row_c_e1_sampling_n64_2pow24_exact.json
 python3 experimental/scripts/verify_row_c_e1_collision_norm_criterion.py --emit
+python3 experimental/scripts/verify_e1_sharp_norm_height_constants.py --emit
 ```

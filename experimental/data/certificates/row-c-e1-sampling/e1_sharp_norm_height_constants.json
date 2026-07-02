@@ -1,0 +1,751 @@
+{
+  "frontiers": [
+    {
+      "bit_budget": 128,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 52,
+        "dyadic_simplification": null,
+        "ell_prime": 27,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 54,
+        "height_bound": 377963825299746235969115118367001548947456,
+        "height_bound_bit_length": 139,
+        "phi_N": 24,
+        "rate": "1/2"
+      },
+      "frontier_meaning": "all compatible even orders up to this value pass",
+      "max_certified": {
+        "N_prime": 50,
+        "dyadic_simplification": null,
+        "ell_prime": 26,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 52,
+        "height_bound": 20896178655943101411324274803736576,
+        "height_bound_bit_length": 115,
+        "phi_N": 20,
+        "rate": "1/2"
+      },
+      "mode": "even_prefix",
+      "rate": "1/2"
+    },
+    {
+      "bit_budget": 128,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 64,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 33,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 66,
+        "height_bound": 16803739386732805588924132780810339299166149216244183597056,
+        "height_bound_bit_length": 194,
+        "phi_N": 32,
+        "rate": "1/2"
+      },
+      "frontier_meaning": "all compatible dyadic orders up to this value pass",
+      "max_certified": {
+        "N_prime": 32,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 17,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 34,
+        "height_bound": 3189059870763703892770816,
+        "height_bound_bit_length": 82,
+        "phi_N": 16,
+        "rate": "1/2"
+      },
+      "mode": "dyadic",
+      "rate": "1/2"
+    },
+    {
+      "bit_budget": 128,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 64,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 17,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 34,
+        "height_bound": 10170102859315411774579628461341138023025901305856,
+        "height_bound_bit_length": 163,
+        "phi_N": 32,
+        "rate": "1/4"
+      },
+      "frontier_meaning": "all compatible even orders up to this value pass",
+      "max_certified": {
+        "N_prime": 60,
+        "dyadic_simplification": null,
+        "ell_prime": 16,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 32,
+        "height_bound": 1208925819614629174706176,
+        "height_bound_bit_length": 81,
+        "phi_N": 16,
+        "rate": "1/4"
+      },
+      "mode": "even_prefix",
+      "rate": "1/4"
+    },
+    {
+      "bit_budget": 128,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 64,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 17,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 34,
+        "height_bound": 10170102859315411774579628461341138023025901305856,
+        "height_bound_bit_length": 163,
+        "phi_N": 32,
+        "rate": "1/4"
+      },
+      "frontier_meaning": "all compatible dyadic orders up to this value pass",
+      "max_certified": {
+        "N_prime": 32,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 9,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 18,
+        "height_bound": 121439531096594251776,
+        "height_bound_bit_length": 67,
+        "phi_N": 16,
+        "rate": "1/4"
+      },
+      "mode": "dyadic",
+      "rate": "1/4"
+    },
+    {
+      "bit_budget": 128,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 64,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 9,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 18,
+        "height_bound": 14747559712960682275277163588165279154176,
+        "height_bound_bit_length": 134,
+        "phi_N": 32,
+        "rate": "1/8"
+      },
+      "frontier_meaning": "all compatible even orders up to this value pass",
+      "max_certified": {
+        "N_prime": 56,
+        "dyadic_simplification": null,
+        "ell_prime": 8,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 16,
+        "height_bound": 79228162514264337593543950336,
+        "height_bound_bit_length": 97,
+        "phi_N": 24,
+        "rate": "1/8"
+      },
+      "mode": "even_prefix",
+      "rate": "1/8"
+    },
+    {
+      "bit_budget": 128,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 64,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 9,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 18,
+        "height_bound": 14747559712960682275277163588165279154176,
+        "height_bound_bit_length": 134,
+        "phi_N": 32,
+        "rate": "1/8"
+      },
+      "frontier_meaning": "all compatible dyadic orders up to this value pass",
+      "max_certified": {
+        "N_prime": 32,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 5,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 10,
+        "height_bound": 10000000000000000,
+        "height_bound_bit_length": 54,
+        "phi_N": 16,
+        "rate": "1/8"
+      },
+      "mode": "dyadic",
+      "rate": "1/8"
+    },
+    {
+      "bit_budget": 128,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 112,
+        "dyadic_simplification": null,
+        "ell_prime": 8,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 16,
+        "height_bound": 6277101735386680763835789423207666416102355444464034512896,
+        "height_bound_bit_length": 193,
+        "phi_N": 48,
+        "rate": "1/16"
+      },
+      "frontier_meaning": "all compatible even orders up to this value pass",
+      "max_certified": {
+        "N_prime": 96,
+        "dyadic_simplification": null,
+        "ell_prime": 7,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 14,
+        "height_bound": 4743480741674980702700443299789930496,
+        "height_bound_bit_length": 122,
+        "phi_N": 32,
+        "rate": "1/16"
+      },
+      "mode": "even_prefix",
+      "rate": "1/16"
+    },
+    {
+      "bit_budget": 128,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 128,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 9,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 18,
+        "height_bound": 217490517487340961382742893166950969620647214876916403331613367885781133978238976,
+        "height_bound_bit_length": 267,
+        "phi_N": 64,
+        "rate": "1/16"
+      },
+      "frontier_meaning": "all compatible dyadic orders up to this value pass",
+      "max_certified": {
+        "N_prime": 64,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 5,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 10,
+        "height_bound": 100000000000000000000000000000000,
+        "height_bound_bit_length": 107,
+        "phi_N": 32,
+        "rate": "1/16"
+      },
+      "mode": "dyadic",
+      "rate": "1/16"
+    },
+    {
+      "bit_budget": 192,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 64,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 33,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 66,
+        "height_bound": 16803739386732805588924132780810339299166149216244183597056,
+        "height_bound_bit_length": 194,
+        "phi_N": 32,
+        "rate": "1/2"
+      },
+      "frontier_meaning": "all compatible even orders up to this value pass",
+      "max_certified": {
+        "N_prime": 62,
+        "dyadic_simplification": null,
+        "ell_prime": 32,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 64,
+        "height_bound": 1532495540865888858358347027150309183618739122183602176,
+        "height_bound_bit_length": 181,
+        "phi_N": 30,
+        "rate": "1/2"
+      },
+      "mode": "even_prefix",
+      "rate": "1/2"
+    },
+    {
+      "bit_budget": 192,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 64,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 33,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 66,
+        "height_bound": 16803739386732805588924132780810339299166149216244183597056,
+        "height_bound_bit_length": 194,
+        "phi_N": 32,
+        "rate": "1/2"
+      },
+      "frontier_meaning": "all compatible dyadic orders up to this value pass",
+      "max_certified": {
+        "N_prime": 32,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 17,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 34,
+        "height_bound": 3189059870763703892770816,
+        "height_bound_bit_length": 82,
+        "phi_N": 16,
+        "rate": "1/2"
+      },
+      "mode": "dyadic",
+      "rate": "1/2"
+    },
+    {
+      "bit_budget": 192,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 88,
+        "dyadic_simplification": null,
+        "ell_prime": 23,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 46,
+        "height_bound": 3238271571766698647339965484615566548083418922349006074474896818176,
+        "height_bound_bit_length": 221,
+        "phi_N": 40,
+        "rate": "1/4"
+      },
+      "frontier_meaning": "all compatible even orders up to this value pass",
+      "max_certified": {
+        "N_prime": 84,
+        "dyadic_simplification": null,
+        "ell_prime": 22,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 44,
+        "height_bound": 2772453275529134737960082842514354077696,
+        "height_bound_bit_length": 132,
+        "phi_N": 24,
+        "rate": "1/4"
+      },
+      "mode": "even_prefix",
+      "rate": "1/4"
+    },
+    {
+      "bit_budget": 192,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 128,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 33,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 66,
+        "height_bound": 282365657377235405270307754780751252031361330095689004197961218014051357270480550051149871489969454245263206971867136,
+        "height_bound_bit_length": 387,
+        "phi_N": 64,
+        "rate": "1/4"
+      },
+      "frontier_meaning": "all compatible dyadic orders up to this value pass",
+      "max_certified": {
+        "N_prime": 64,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 17,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 34,
+        "height_bound": 10170102859315411774579628461341138023025901305856,
+        "height_bound_bit_length": 163,
+        "phi_N": 32,
+        "rate": "1/4"
+      },
+      "mode": "dyadic",
+      "rate": "1/4"
+    },
+    {
+      "bit_budget": 192,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 104,
+        "dyadic_simplification": null,
+        "ell_prime": 14,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 28,
+        "height_bound": 2907940421940663515824806155298782206844250695979227198119001127387136,
+        "height_bound_bit_length": 231,
+        "phi_N": 48,
+        "rate": "1/8"
+      },
+      "frontier_meaning": "all compatible even orders up to this value pass",
+      "max_certified": {
+        "N_prime": 96,
+        "dyadic_simplification": null,
+        "ell_prime": 13,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 26,
+        "height_bound": 1901722457268488241418827816020396748021170176,
+        "height_bound_bit_length": 151,
+        "phi_N": 32,
+        "rate": "1/8"
+      },
+      "mode": "even_prefix",
+      "rate": "1/8"
+    },
+    {
+      "bit_budget": 192,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 128,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 17,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 34,
+        "height_bound": 103430992169055514261928570463230027923419620082715477977932461721944427504778339203021046059892736,
+        "height_bound_bit_length": 326,
+        "phi_N": 64,
+        "rate": "1/8"
+      },
+      "frontier_meaning": "all compatible dyadic orders up to this value pass",
+      "max_certified": {
+        "N_prime": 64,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 9,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 18,
+        "height_bound": 14747559712960682275277163588165279154176,
+        "height_bound_bit_length": 134,
+        "phi_N": 32,
+        "rate": "1/8"
+      },
+      "mode": "dyadic",
+      "rate": "1/8"
+    },
+    {
+      "bit_budget": 192,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 112,
+        "dyadic_simplification": null,
+        "ell_prime": 8,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 16,
+        "height_bound": 6277101735386680763835789423207666416102355444464034512896,
+        "height_bound_bit_length": 193,
+        "phi_N": 48,
+        "rate": "1/16"
+      },
+      "frontier_meaning": "all compatible even orders up to this value pass",
+      "max_certified": {
+        "N_prime": 96,
+        "dyadic_simplification": null,
+        "ell_prime": 7,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 14,
+        "height_bound": 4743480741674980702700443299789930496,
+        "height_bound_bit_length": 122,
+        "phi_N": 32,
+        "rate": "1/16"
+      },
+      "mode": "even_prefix",
+      "rate": "1/16"
+    },
+    {
+      "bit_budget": 192,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 128,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 9,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 18,
+        "height_bound": 217490517487340961382742893166950969620647214876916403331613367885781133978238976,
+        "height_bound_bit_length": 267,
+        "phi_N": 64,
+        "rate": "1/16"
+      },
+      "frontier_meaning": "all compatible dyadic orders up to this value pass",
+      "max_certified": {
+        "N_prime": 64,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 5,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 10,
+        "height_bound": 100000000000000000000000000000000,
+        "height_bound_bit_length": 107,
+        "phi_N": 32,
+        "rate": "1/16"
+      },
+      "mode": "dyadic",
+      "rate": "1/16"
+    },
+    {
+      "bit_budget": 256,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 86,
+        "dyadic_simplification": null,
+        "ell_prime": 44,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 88,
+        "height_bound": 4658780299470119380741798970494472832543353577695542926641952601292625602248966144,
+        "height_bound_bit_length": 272,
+        "phi_N": 42,
+        "rate": "1/2"
+      },
+      "frontier_meaning": "all compatible even orders up to this value pass",
+      "max_certified": {
+        "N_prime": 84,
+        "dyadic_simplification": null,
+        "ell_prime": 43,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 86,
+        "height_bound": 26789390314642155531533270471635940204678742016,
+        "height_bound_bit_length": 155,
+        "phi_N": 24,
+        "rate": "1/2"
+      },
+      "mode": "even_prefix",
+      "rate": "1/2"
+    },
+    {
+      "bit_budget": 256,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 128,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 65,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 130,
+        "height_bound": 1960534764307610733306597604235660154244032800041157875895909638422489610000000000000000000000000000000000000000000000000000000000000000,
+        "height_bound_bit_length": 450,
+        "phi_N": 64,
+        "rate": "1/2"
+      },
+      "frontier_meaning": "all compatible dyadic orders up to this value pass",
+      "max_certified": {
+        "N_prime": 64,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 33,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 66,
+        "height_bound": 16803739386732805588924132780810339299166149216244183597056,
+        "height_bound_bit_length": 194,
+        "phi_N": 32,
+        "rate": "1/2"
+      },
+      "mode": "dyadic",
+      "rate": "1/2"
+    },
+    {
+      "bit_budget": 256,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 104,
+        "dyadic_simplification": null,
+        "ell_prime": 27,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 54,
+        "height_bound": 142856653235217092842326469984291760405570625278223720619803331409447942221448871936,
+        "height_bound_bit_length": 277,
+        "phi_N": 48,
+        "rate": "1/4"
+      },
+      "frontier_meaning": "all compatible even orders up to this value pass",
+      "max_certified": {
+        "N_prime": 100,
+        "dyadic_simplification": null,
+        "ell_prime": 26,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 52,
+        "height_bound": 436650282421092040187518813146430946278987139944155866884131600203776,
+        "height_bound_bit_length": 229,
+        "phi_N": 40,
+        "rate": "1/4"
+      },
+      "mode": "even_prefix",
+      "rate": "1/4"
+    },
+    {
+      "bit_budget": 256,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 128,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 33,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 66,
+        "height_bound": 282365657377235405270307754780751252031361330095689004197961218014051357270480550051149871489969454245263206971867136,
+        "height_bound_bit_length": 387,
+        "phi_N": 64,
+        "rate": "1/4"
+      },
+      "frontier_meaning": "all compatible dyadic orders up to this value pass",
+      "max_certified": {
+        "N_prime": 64,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 17,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 34,
+        "height_bound": 10170102859315411774579628461341138023025901305856,
+        "height_bound_bit_length": 163,
+        "phi_N": 32,
+        "rate": "1/4"
+      },
+      "mode": "dyadic",
+      "rate": "1/4"
+    },
+    {
+      "bit_budget": 256,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 128,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 17,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 34,
+        "height_bound": 103430992169055514261928570463230027923419620082715477977932461721944427504778339203021046059892736,
+        "height_bound_bit_length": 326,
+        "phi_N": 64,
+        "rate": "1/8"
+      },
+      "frontier_meaning": "all compatible even orders up to this value pass",
+      "max_certified": {
+        "N_prime": 120,
+        "dyadic_simplification": null,
+        "ell_prime": 16,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 32,
+        "height_bound": 1461501637330902918203684832716283019655932542976,
+        "height_bound_bit_length": 161,
+        "phi_N": 32,
+        "rate": "1/8"
+      },
+      "mode": "even_prefix",
+      "rate": "1/8"
+    },
+    {
+      "bit_budget": 256,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 128,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 17,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 34,
+        "height_bound": 103430992169055514261928570463230027923419620082715477977932461721944427504778339203021046059892736,
+        "height_bound_bit_length": 326,
+        "phi_N": 64,
+        "rate": "1/8"
+      },
+      "frontier_meaning": "all compatible dyadic orders up to this value pass",
+      "max_certified": {
+        "N_prime": 64,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 9,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 18,
+        "height_bound": 14747559712960682275277163588165279154176,
+        "height_bound_bit_length": 134,
+        "phi_N": 32,
+        "rate": "1/8"
+      },
+      "mode": "dyadic",
+      "rate": "1/8"
+    },
+    {
+      "bit_budget": 256,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 128,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 9,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 18,
+        "height_bound": 217490517487340961382742893166950969620647214876916403331613367885781133978238976,
+        "height_bound_bit_length": 267,
+        "phi_N": 64,
+        "rate": "1/16"
+      },
+      "frontier_meaning": "all compatible even orders up to this value pass",
+      "max_certified": {
+        "N_prime": 112,
+        "dyadic_simplification": null,
+        "ell_prime": 8,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 16,
+        "height_bound": 6277101735386680763835789423207666416102355444464034512896,
+        "height_bound_bit_length": 193,
+        "phi_N": 48,
+        "rate": "1/16"
+      },
+      "mode": "even_prefix",
+      "rate": "1/16"
+    },
+    {
+      "bit_budget": 256,
+      "certified_condition": "(2 ell')^phi(N') < 2^bit_budget",
+      "first_failing_after_frontier": {
+        "N_prime": 128,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 9,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 18,
+        "height_bound": 217490517487340961382742893166950969620647214876916403331613367885781133978238976,
+        "height_bound_bit_length": 267,
+        "phi_N": 64,
+        "rate": "1/16"
+      },
+      "frontier_meaning": "all compatible dyadic orders up to this value pass",
+      "max_certified": {
+        "N_prime": 64,
+        "dyadic_simplification": "(N'/2) * log2(2 ell')",
+        "ell_prime": 5,
+        "exponent_shape": "phi(N') * log2(2 ell')",
+        "height_base_2ell": 10,
+        "height_bound": 100000000000000000000000000000000,
+        "height_bound_bit_length": 107,
+        "phi_N": 32,
+        "rate": "1/16"
+      },
+      "mode": "dyadic",
+      "rate": "1/16"
+    }
+  ],
+  "non_claim": "This is a height-only transfer gate.  It deliberately shows that pure height certifies Row-C N'=64 but not N'=128 or N'=256.",
+  "roadmap_task": "are_sharp_constant",
+  "row_c_compatible_orders": [
+    {
+      "N_prime": 64,
+      "certified_for_row_c_prime": true,
+      "dyadic_simplification": "(N'/2) * log2(2 ell')",
+      "ell_prime": 33,
+      "exponent_shape": "phi(N') * log2(2 ell')",
+      "height_base_2ell": 66,
+      "height_bound": 16803739386732805588924132780810339299166149216244183597056,
+      "height_bound_bit_length": 194,
+      "phi_N": 32,
+      "rate": "1/2",
+      "row_c_prime_bit_length": 251
+    },
+    {
+      "N_prime": 128,
+      "certified_for_row_c_prime": false,
+      "dyadic_simplification": "(N'/2) * log2(2 ell')",
+      "ell_prime": 65,
+      "exponent_shape": "phi(N') * log2(2 ell')",
+      "height_base_2ell": 130,
+      "height_bound": 1960534764307610733306597604235660154244032800041157875895909638422489610000000000000000000000000000000000000000000000000000000000000000,
+      "height_bound_bit_length": 450,
+      "phi_N": 64,
+      "rate": "1/2",
+      "row_c_prime_bit_length": 251
+    },
+    {
+      "N_prime": 256,
+      "certified_for_row_c_prime": false,
+      "dyadic_simplification": "(N'/2) * log2(2 ell')",
+      "ell_prime": 129,
+      "exponent_shape": "phi(N') * log2(2 ell')",
+      "height_base_2ell": 258,
+      "height_bound": 486768384669197169122095230605783507980477693142601923503917422739458103413206058170609032653209720814728456020363946428630249923838981516980852067985473454963434590553244635857634560581745516484780660283540348216320457433209932931310324222710761798950255281944278633703492035086005093911243360883361569570816,
+      "height_bound_bit_length": 1026,
+      "phi_N": 128,
+      "rate": "1/2",
+      "row_c_prime_bit_length": 251
+    }
+  ],
+  "schema": "e1-sharp-norm-height-constants-v1",
+  "status": "PROVED_ARITHMETIC_COMPILER",
+  "theorem": {
+    "dyadic_shape": "(N'/2) log(2 ell')",
+    "norm_height_bound": "|Norm(Delta)| <= (2 ell')^phi(N')",
+    "split_prime_transfer_gate": "if p > (2 ell')^phi(N'), distinct characteristic-zero e1 classes cannot collide modulo a fixed embedding at p",
+    "true_exponent_shape": "phi(N') log(2 ell')"
+  }
+}
