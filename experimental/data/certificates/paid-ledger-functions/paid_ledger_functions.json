@@ -1,0 +1,51 @@
+{
+  "checks": [
+    {
+      "details": [
+        "F_17^32 budget floor(17^32/2^128) = 6",
+        "A=506 cell: {'status': 'EXACT_HIGH_AGREEMENT', 'numerator': 7, 'radius': 6, 'radius_cap': 85}",
+        "A=507 cell: {'status': 'EXACT_HIGH_AGREEMENT', 'numerator': 6, 'radius': 5, 'radius_cap': 85}",
+        "A=426 cell: {'status': 'UNAVAILABLE_OUTSIDE_HIGH_AGREEMENT', 'radius': 86, 'radius_cap': 85}",
+        "swept 41648 small (n,k,A) range predicates"
+      ],
+      "name": "Paid_tan high-agreement partial function",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "toy n=12, A=8, divisors=[2, 3]: exact support union = 182",
+        "safe support sum = 213",
+        "safe sum is monotone decreasing in the threshold A",
+        "rate 1/2, q=2^256: N'=80 -> ZONE_A_NORM_EXACT; N'=82 -> ZONE_B_COLLISION_OPEN_INTERVAL",
+        "cap-floor override: N'=82 -> ZONE_C_CAP_FLOOR"
+      ],
+      "name": "Paid_quot support function and zone tags",
+      "status": "PASS"
+    },
+    {
+      "details": [
+        "generating F_17^32 cell: {'status': 'ZERO_GENERATING', 'numerator': 0}",
+        "proper extension field gap example: 2367911594760467245844106297320951247344",
+        "KoalaBear-style L=ceil(C(256,130)/p) has extension-pole numerator 89236348170651014436365185283577293957513290539195",
+        "q/2^128 budget floor = 274980728111395087",
+        "toy chart upper over q_gen=5, charts=[(2, 0), (3, 1), (1, 2)]: 42, normalized=42/125"
+      ],
+      "name": "Paid_ext generating guard, pole floor, and chart upper",
+      "status": "PASS"
+    }
+  ],
+  "dag_nodes": [
+    "paid_tan_fn",
+    "paid_quot_fn",
+    "paid_ext_fn"
+  ],
+  "non_claims": [
+    "does not prove global quotient-periodic exhaustion",
+    "does not resolve zone-b quotient collisions",
+    "does not prove the aperiodic local limit",
+    "does not classify every extension-valued residual chart"
+  ],
+  "note": "experimental/notes/thresholds/paid_ledger_functions.md",
+  "script": "experimental/scripts/verify_paid_ledger_functions.py",
+  "status": "PROVED-COMPILER-ARITHMETIC / CITED-LEDGER INTERFACE"
+}

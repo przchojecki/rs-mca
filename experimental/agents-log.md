@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Paid ledger functions
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/thresholds/paid_ledger_functions.md`;
+  `experimental/scripts/verify_paid_ledger_functions.py`;
+  `experimental/data/certificates/paid-ledger-functions/README.md`;
+  `experimental/data/certificates/paid-ledger-functions/paid_ledger_functions.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-COMPILER-ARITHMETIC / CITED-LEDGER INTERFACE.
+- **What is being added:** A typed compiler interface for `Paid_tan`,
+  `Paid_quot`, and `Paid_ext`, with exact high-agreement tangent cells,
+  conservative quotient support/image cells, explicit zone-b interval status,
+  and extension generating-zero / pole-floor / chart-upper arithmetic.
+- **How it is useful:** Gives v12/M4 assembly packets a disciplined way to
+  print already-paid tangent, quotient, and extension numerators without
+  silently treating quotient collision or extension residual classification as
+  solved.
+- **What to do next:** Consume these cells in row-specific packets only with a
+  packet-level branch exhaustion and deduplication proof; leave the aperiodic
+  local limit and zone-b quotient collision wall as named residual inputs.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.
