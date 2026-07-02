@@ -36,12 +36,12 @@ EDGE = {"req": 'stroke="#9aa4ac" stroke-width="1.0"',
         "ev": 'stroke="#a9b8c2" stroke-width="0.8" stroke-dasharray="2,3"',
         "ref": 'stroke="#d98880" stroke-width="0.8" stroke-dasharray="8,3"'}
 
-DR_MIN = 320        # minimum ring spacing
-ARC = 250           # arc length reserved per node on its ring
-FONT = 12
-LINE_H = 14
+DR_MIN = 380        # minimum ring spacing
+ARC = 310           # arc length reserved per node on its ring
+FONT = 15
+LINE_H = 18
 WRAP = 26           # chars per label line
-LABEL_OFF = 16      # gap between node and label block
+LABEL_OFF = 28      # gap between node and label block
 
 
 def wrap_text(t: str, width: int = WRAP, max_lines: int = 3) -> list[str]:
@@ -188,17 +188,17 @@ def main() -> None:
         c = COLORS[n["status"]]
         svg.append(f'<g><title>{escape(v)}: {escape(n["title"])} [{n["status"]}]</title>')
         if n["status"] == "REFUTED":
-            svg.append(f'<g stroke="{c}" stroke-width="2">'
-                       f'<line x1="{x-5:.0f}" y1="{y-5:.0f}" x2="{x+5:.0f}" y2="{y+5:.0f}"/>'
-                       f'<line x1="{x-5:.0f}" y1="{y+5:.0f}" x2="{x+5:.0f}" y2="{y-5:.0f}"/></g>')
+            svg.append(f'<g stroke="{c}" stroke-width="3.5">'
+                       f'<line x1="{x-9:.0f}" y1="{y-9:.0f}" x2="{x+9:.0f}" y2="{y+9:.0f}"/>'
+                       f'<line x1="{x-9:.0f}" y1="{y+9:.0f}" x2="{x+9:.0f}" y2="{y-9:.0f}"/></g>')
         elif n["status"] == "TEST":
-            svg.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="6" fill="#fbfcfd" '
-                       f'stroke="{c}" stroke-width="2"/>')
+            svg.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="11" fill="#fbfcfd" '
+                       f'stroke="{c}" stroke-width="3"/>')
         else:
-            svg.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{10 if v == root else 7}" fill="{c}"/>')
+            svg.append(f'<circle cx="{x:.0f}" cy="{y:.0f}" r="{20 if v == root else 12}" fill="{c}"/>')
         if n.get("gate") == "any":
-            svg.append(f'<path d="M{x-5:.0f},{y+10:.0f} L{x:.0f},{y+15:.0f} L{x+5:.0f},{y+10:.0f}" '
-                       f'fill="none" stroke="#666" stroke-width="1.2"/>')
+            svg.append(f'<path d="M{x-8:.0f},{y+18:.0f} L{x:.0f},{y+26:.0f} L{x+8:.0f},{y+18:.0f}" '
+                       f'fill="none" stroke="#666" stroke-width="2"/>')
         lines = wrap_text(n["title"]) + [f'[{n["status"]}]']
         weight = ' font-weight="bold"' if n.get("key") else ""
         if v == root:
@@ -210,27 +210,31 @@ def main() -> None:
         ly = y + uy * LABEL_OFF
         block_h = LINE_H * (len(lines) - 1)
         if anchor == "middle":
-            ly = ly + 12 if uy > 0 else ly - block_h - 6
+            ly = ly + 20 if uy > 0 else ly - block_h - 12
         else:
-            ly -= block_h / 2 - 4
+            ly -= block_h / 2 - 5
         for li, line in enumerate(lines):
-            small = ' font-size="10" fill="#8a949c"' if li == len(lines) - 1 else \
+            small = ' font-size="12" fill="#8a949c"' if li == len(lines) - 1 else \
                     f' font-size="{FONT}" fill="#333"'
             svg.append(f'<text x="{lx:.0f}" y="{ly + LINE_H * li:.0f}" text-anchor="{anchor}"'
                        f'{small}{weight}>{escape(line)}</text>')
         svg.append('</g>')
-    lx0, ly0 = 30, 34
+    lx0, ly0 = 60, 80
     counts2: dict[str, int] = {}
     for n in nodes.values():
         counts2[n["status"]] = counts2.get(n["status"], 0) + 1
-    svg.append(f'<text x="{lx0}" y="{ly0}" font-size="13" fill="#666">'
-               f'{len(nodes)} nodes, {len(edges)} edges | rings = dependency depth from the prize '
-               f'(center) | solid=req dashed=alt dotted=evidence sparse-red=refutes | '
-               f'fork tick = gate ANY | bold = key | '
-               + " ".join(f"{k}:{v}" for k, v in sorted(counts2.items())) + '</text>')
+    svg.append(f'<text x="{lx0}" y="{ly0}" font-size="30" fill="#555">'
+               f'{len(nodes)} nodes, {len(edges)} edges | rings = dependency depth from the '
+               f'prize (center)</text>')
+    svg.append(f'<text x="{lx0}" y="{ly0 + 40}" font-size="30" fill="#555">'
+               f'solid=req dashed=alt dotted=evidence sparse-red=refutes | '
+               f'fork tick = gate ANY | bold = key</text>')
+    svg.append(f'<text x="{lx0}" y="{ly0 + 80}" font-size="30" fill="#555">'
+               + "  ".join(f"{k}:{v}" for k, v in sorted(counts2.items())) + '</text>')
     for i, (s, c) in enumerate(COLORS.items()):
-        svg.append(f'<circle cx="{lx0 + 6}" cy="{ly0 + 22 + 18*i}" r="5" fill="{c}"/>')
-        svg.append(f'<text x="{lx0 + 16}" y="{ly0 + 26 + 18*i}" font-size="11" fill="#444">{s}</text>')
+        svg.append(f'<circle cx="{lx0 + 16}" cy="{ly0 + 130 + 52*i}" r="15" fill="{c}"/>')
+        svg.append(f'<text x="{lx0 + 44}" y="{ly0 + 140 + 52*i}" font-size="32" '
+                   f'fill="#444">{s}</text>')
     svg.append("</svg>")
     path = os.path.join(DDIR, "prize_dag.svg")
     with open(path, "w") as fh:
