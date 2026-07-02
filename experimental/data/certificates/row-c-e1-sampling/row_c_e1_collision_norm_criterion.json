@@ -1,0 +1,92 @@
+{
+  "checks": [
+    {
+      "antipodal_class_count": 40,
+      "ell_prime": 5,
+      "first_norm_hit": {
+        "fixed_embedding_collision": false,
+        "left_signed_indices": [
+          -1
+        ],
+        "norm_abs": 34,
+        "p": 17,
+        "pair_sha256": "342c49c6190addf8826617c738a33d303350f2276a4777d3c7a3ee2753262e1e",
+        "right_signed_indices": [
+          1,
+          -2,
+          -3
+        ],
+        "some_conjugate_collision": true
+      },
+      "fixed_embedding_collisions_seen": 32,
+      "height_bound": 10000,
+      "height_bound_bits": 14,
+      "max_abs_norm": 144,
+      "max_norm_bits": 8,
+      "name": "collision_norm_order_8",
+      "nonzero_norm_pairs": 780,
+      "norm_prime_hits_seen": 128,
+      "order": 8,
+      "pairs_checked": 780,
+      "primes_checked": [
+        17,
+        41,
+        73,
+        89,
+        97
+      ],
+      "sample_limit": null,
+      "status": "PASS",
+      "zero_norm_pairs_same_cyclotomic_value": 0
+    },
+    {
+      "antipodal_class_count": 3280,
+      "ell_prime": 9,
+      "first_norm_hit": {
+        "fixed_embedding_collision": false,
+        "left_signed_indices": [
+          -1
+        ],
+        "norm_abs": 514,
+        "p": 257,
+        "pair_sha256": "342c49c6190addf8826617c738a33d303350f2276a4777d3c7a3ee2753262e1e",
+        "right_signed_indices": [
+          1,
+          -2,
+          -3
+        ],
+        "some_conjugate_collision": true
+      },
+      "fixed_embedding_collisions_seen": 1621,
+      "height_bound": 11019960576,
+      "height_bound_bits": 34,
+      "max_abs_norm": 9602,
+      "max_norm_bits": 14,
+      "name": "collision_norm_order_16",
+      "nonzero_norm_pairs": 20000,
+      "norm_prime_hits_seen": 11712,
+      "order": 16,
+      "pairs_checked": 20000,
+      "primes_checked": [
+        17,
+        97,
+        113,
+        193,
+        257
+      ],
+      "sample_limit": 20000,
+      "status": "PASS",
+      "zero_norm_pairs_same_cyclotomic_value": 0
+    }
+  ],
+  "criterion": {
+    "fixed_embedding_collision_implies": "p divides Norm_Q(zeta_N)(Delta)",
+    "height_bound": "|Norm(Delta)| <= (2 ell')^phi(N), specialized to phi(2^a)=N/2",
+    "norm_divisibility_implies": "some Galois conjugate embedding collides"
+  },
+  "object": "cyclotomic norm gate for quotient e_1 value collisions",
+  "roadmap_task": "Q2.15 / collision_norm_criterion",
+  "schema": "row_c_e1_collision_norm_criterion_v1",
+  "script_sha256": "882392d9a61e27e194798d35e1a0798365a852f5066dec44854e4af4db0163aa",
+  "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_CRITERION"
+}

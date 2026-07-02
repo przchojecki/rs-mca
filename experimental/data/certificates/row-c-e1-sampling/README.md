@@ -11,10 +11,14 @@ Row-C slack-one quotient value-set sampler.
   with the full-value-set birthday expectation rather than a heavy-collision
   signal.  The duplicate-witness replay shows that duplicate is the same
   antipodal class sampled twice, not a distinct-class `e_1` collision.
+- `row_c_e1_collision_norm_criterion.json` records the Q2.15 cyclotomic norm
+  gate: fixed-embedding collisions imply norm divisibility, and norm
+  divisibility produces a collision in some Galois-conjugate embedding.
 - The generating script is
   `experimental/scripts/verify_row_c_e1_value_set_sampler.py`.
-- The companion note is
-  `experimental/notes/roadmaps/e1_row_c_value_set_sampling.md`.
+- Companion notes:
+  `experimental/notes/roadmaps/e1_row_c_value_set_sampling.md` and
+  `experimental/notes/roadmaps/e1_collision_norm_criterion.md`.
 
 Replay:
 
@@ -23,4 +27,5 @@ python3 experimental/scripts/verify_row_c_e1_value_set_sampler.py --emit
 python3 experimental/scripts/verify_row_c_e1_value_set_sampler.py \
   --orders 64 --samples 16777216 --mode exact-set --emit \
   --output experimental/data/certificates/row-c-e1-sampling/row_c_e1_sampling_n64_2pow24_exact.json
+python3 experimental/scripts/verify_row_c_e1_collision_norm_criterion.py --emit
 ```

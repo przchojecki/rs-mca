@@ -67,6 +67,25 @@ Keep entries concise and link to the relevant files.
   explicitly requested; audit Paper D itself through theorem statements and
   certificate checks.
 
+### 2026-07-02 - E1 collision norm criterion
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/roadmaps/e1_collision_norm_criterion.md`;
+  `experimental/scripts/verify_row_c_e1_collision_norm_criterion.py`;
+  `experimental/data/certificates/row-c-e1-sampling/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A cyclotomic norm criterion for quotient `e_1`
+  collisions: a fixed-embedding modular collision forces divisibility of an
+  explicit nonzero norm, and norm divisibility is equivalent to a collision in
+  some Galois-conjugate embedding.  The verifier checks the criterion on
+  dyadic toy quotient orders.
+- **How it is useful:** This turns the E1 heavy-collision branch into a
+  concrete algebraic-number-theory search over bounded-height norms, rather
+  than an unstructured sampling question.
+- **What to do next:** Use this norm gate to search for primes dividing many
+  collision norms in the larger Row-C quotient cells.
+
 ### 2026-07-02 - E1 duplicate-witness audit
 
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.

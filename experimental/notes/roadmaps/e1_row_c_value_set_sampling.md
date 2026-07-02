@@ -122,6 +122,18 @@ is not evidence of a heavy-collision structure.  The run is still smaller than
 the roadmap's suggested `2^25`--`2^26` decisive run, so the conservative
 conclusion is only that no early heavy-collapse signal appeared.
 
+## Algebraic collision gate
+
+The companion note
+`experimental/notes/roadmaps/e1_collision_norm_criterion.md` records the
+structured follow-up to this sampling packet.  For two distinct
+characteristic-zero antipodal classes, a fixed Row-C embedding collision modulo
+`p` forces `p` to divide the explicit cyclotomic norm of their `e_1`
+difference; conversely, norm divisibility gives a collision in some
+Galois-conjugate embedding.  Thus a heavy-collision branch should be searched
+as a bounded-height norm-divisibility problem, not just by increasing random
+samples.
+
 ## Reproduce
 
 ```bash
@@ -130,4 +142,5 @@ python3 experimental/scripts/verify_row_c_e1_value_set_sampler.py --emit
 python3 experimental/scripts/verify_row_c_e1_value_set_sampler.py \
   --orders 64 --samples 16777216 --mode exact-set --emit \
   --output experimental/data/certificates/row-c-e1-sampling/row_c_e1_sampling_n64_2pow24_exact.json
+python3 experimental/scripts/verify_row_c_e1_collision_norm_criterion.py --emit
 ```
