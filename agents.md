@@ -9,120 +9,45 @@ The four papers are:
 ```text
 RS_disproof_v3.tex      Paper A: no-slack obstruction
 slackMCA_v4.tex         Paper B: slack / quotient / entropy theory
-cs25_cap_v10.tex        Paper D: universal cap and v10 Hankel/ledger program
+cs25_cap_v12.tex        Paper D: two-sided cap, safe-side pincer, and certificate grammar
 snarks_v5.tex           Paper C: SNARK / protocol ledger
 ```
 
 Use logical order **A → B → D → C** unless you are working specifically on protocol ledgers.
 
-## Current priority: v10 Hankel safe-side packets
+## Current priority: audit Paper D v12 and `towards-prize.tex`
 
-The current priority is no longer finding another lower-bound example.  It is
-using Paper D v10 to produce safe-side upper-bound packets for the aperiodic
-Hankel regime.
-
-Post-v10 correction: the official prize band is underdetermined for every
-official rate.  The regular overdetermined M3 window is still the best proving
-ground for packet mechanics, paid-root accounting, and stratification style,
-but it is not the direct band-facing theorem.  The M5 underdetermined chart
-program is now on the critical path.
-
-### Next to do: M3/M4 proving-ground packet and M5 underdetermined rung
-
-Work on the row
+The main focus is now **auditing Paper D v12**:
 
 ```text
-C = RS[F_17^32, H, 256],    |H| = 512.
+tex/cs25_cap_v12.tex
+tex/towards-prize.tex
 ```
 
-For exact agreement `A`, set
+`cs25_cap_v12.tex` is the current complete Paper D candidate.  It supersedes
+v10/v11 for new work unless a maintainer asks for a historical comparison.
+`tex/towards-prize.tex` is the compact prize-facing theorem note.  It should be
+kept aligned with v12, but it is not a replacement for the full Paper D ledger.
 
-```text
-j = 512 - A,
-t = A - 256.
-```
+### Main audit task: CS25 / Paper-D cap correctness
 
-The regular overdetermined Hankel range is
+Before adding more computations, audit the cap paper itself.  The priority is:
 
-```text
-385 <= A <= 426,
-```
+1. Check the direct deep-point conversion and its integer-radius condition
+   against Crites--Stewart and ABF conventions.
+2. Audit the optional BCIKS half-distance import in the exact normalization of
+   `eca` used in v12.
+3. Verify that every "verified exactly" deployed-row inequality in v12 has a
+   reproducible script or a printed integer certificate.
+4. Check the rational-scale/genus-one and circle/stereographic transports
+   against the actual deployed code models.
+5. Keep `towards-prize.tex` scoped correctly: it is a compact theorem note for
+   the smooth multiplicative prize box, not the full ledger paper.
+6. Report any issue as `AUDIT`, not as a theorem change, unless the proof fix is
+   already written and local.
 
-and tangent exactness starts at `A=427`.  The finite-slope prize budget is
-
-```text
-floor(17^32 / 2^128) = 6.
-```
-
-The degree-only regular bound over `385 <= A <= 426` is `4515`, so it cannot
-prove safety.  The next useful contribution must compute actual root tables or
-classify singular buckets, then subtract paid roots.
-
-For each exact agreement `A`, output a table with:
-
-```text
-B_tan(A)
-B_quot_support(A)
-B_quot_image(A)
-B_ext(A)
-B_ap_regular(A)
-B_ap_pivot(A)
-deduped_total(A)
-deduped_total(A) <= 6 ?
-```
-
-Use the existing starting artifacts:
-
-```text
-experimental/data/certificates/hankel-f17-32-row-descriptor/
-experimental/data/certificates/hankel-regular-window-f17-385-426/
-experimental/data/certificates/hankel-f17-32-generic-regular-minor/
-experimental/scripts/extract_regular_hankel_minors.py
-experimental/scripts/verify_f17_32_m3_generic_regular_minor.py
-towards-prize.md
-```
-
-If a regular bucket does not close, build the v10 pivot charts instead of
-calling it evidence.  Every leftover chart must end as `eliminant`, `empty`,
-`dimension_degree`, or `residual_obstruction`, with residuals labelled
-`quotient`, `tangent`, `extension`, `candidate_new_obstruction`, or `unknown`.
-
-In parallel, refine the first underdetermined M5 rung:
-
-```text
-experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md
-```
-
-At `A=384`, the Hankel matrix is `128 x 129`, so kernel nonemptiness is
-vacuous for every slope.  The next useful step is the deficiency-one
-Cramer-kernel locator chart: turn `L_Z(X) | X^512 - 1` into an eliminant, or
-label the residual obstruction precisely.  This is the first concrete rung in
-the program that actually faces the prize band.
-
-### General v10 certificate format
-
-Paper D v10 gives the chart and ledger program: regular overdetermined
-maximal-minor gcd/lcm ledgers, finite affine noncontainment pivots
-`B_h != 0`, projective-infinity charts `B=0, A!=0`, finite-parameter curve
-coefficient pivots `(V_i)_h != 0`, quotient support/image ledgers,
-extension-pole lower-side ledgers, and named singular residual buckets.
-
-Use `scripts/aperiodic_eliminant_schema.json` for machine-readable
-certificates.  A certificate should:
-
-1. state the row, field, domain hash, agreement threshold, and sampler;
-2. remove already paid tangent/common-code-line and quotient-image ledgers;
-3. for each exact agreement `A`, set `j=n-A` and `t=A-k`;
-4. first try the v10 canonical regular Hankel gcd/lcm ledger when `t >= j+1`;
-5. otherwise build locator charts and split them by affine, projective, or
-   curve pivots;
-6. end every chart as `eliminant`, `empty`, `dimension_degree`, or
-   `residual_obstruction`;
-7. label residual obstructions as quotient, tangent, extension, candidate new
-   obstruction, or unknown.
-
-Do not call an unresolved singular bucket "aperiodic evidence."  Either supply
-the eliminant/empty certificate or name the residual obstruction.
+Only after this audit is stable should agents return to Hankel packets, M5
+underdetermined charts, or new leaderboard computations.
 
 ## Ground rules
 
@@ -187,11 +112,16 @@ Treat Papers A-D as stable reference documents unless a maintainer explicitly as
 ```text
 tex/RS_disproof_v3.tex
 tex/slackMCA_v4.tex
-tex/cs25_cap_v10.tex
+tex/cs25_cap_v12.tex
 tex/snarks_v5.tex
 ```
 
-New material should go into `experimental/` first. Use separate files there for proof notes, audits, theorem-label maps, formalization plans, reproducible experiments, and certificate generators. After review, stable `.tex` contributions can be promoted to `tex/`, and stable `.py` scripts can be promoted to `scripts/`.
+New material should go into `experimental/` first, except for explicit maintainer
+requests to edit the active Paper D/towards-prize drafts. Use separate files
+there for proof notes, audits, theorem-label maps, formalization plans,
+reproducible experiments, and certificate generators. After review, stable
+`.tex` contributions can be promoted to `tex/`, and stable `.py` scripts can be
+promoted to `scripts/`.
 
 Whenever you add or materially change something under `experimental/`, add an entry to `experimental/agents-log.md` with the date, agent/model, files changed, status, usefulness, and next step.
 
@@ -201,10 +131,12 @@ Whenever you add or materially change something under `experimental/`, add an en
 
 1. Read the abstract and scope section of `RS_disproof_v3.tex`.
 2. Read the introduction and frontier/open-problems section of `slackMCA_v4.tex`.
-3. Read the main theorem, v10 quotient/extension/Hankel ledgers, and open
-   problems of `cs25_cap_v10.tex`.
-4. Read the certificate ledgers and open problems of `snarks_v5.tex`.
-5. Return to Paper B for the exact theorem labels relevant to your task.
+3. Read the abstract, direct conversion theorem, safe-side pincer, certificate
+   grammar, and open problems of `cs25_cap_v12.tex`.
+4. Read `tex/towards-prize.tex` as the compact prize-facing version of the v12
+   theorem package.
+5. Read the certificate ledgers and open problems of `snarks_v5.tex`.
+6. Return to Paper B for the exact theorem labels relevant to your task.
 
 ### Fast orientation
 
@@ -213,8 +145,8 @@ The current research picture is:
 ```text
 Paper A gives explicit no-slack lower bounds.
 Paper B builds the corrected reserve theory and states the main missing local limits.
-Paper D v10 gives the self-contained universal MCA cap plus scanner-ready
-quotient, extension, and aperiodic Hankel ledgers.
+Paper D v12 gives the current two-sided cap, safe-side pincer, map/rational
+smooth extensions, and finite certificate grammar.
 Paper C says how a protocol must consume the theory without mixing ledgers.
 ```
 

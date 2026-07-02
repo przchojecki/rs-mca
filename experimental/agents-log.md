@@ -358,6 +358,31 @@ Keep entries concise and link to the relevant files.
   `X^n-1`, using pseudo-remainder equations and side charts for rank drop and
   low-degree kernels.
 
+### 2026-07-02 - Paper D v12 and towards-prize audit focus
+
+- **Agent/model:** Codex, reviewing maintainer-added drafts.
+- **Files added or changed:** `tex/cs25_cap_v11.tex`;
+  `tex/cs25_cap_v12.tex`; `tex/towards-prize.tex`;
+  `cs25_cap_v11.pdf`; `cs25_cap_v12.pdf`; `towards-prize.pdf`;
+  `AGENTS.md`; `experimental/agents-log.md`.
+- **Status:** AUDIT / VERSION-PROMOTION-CANDIDATE.
+- **What is being added:** Paper D v12 is now the main cap-paper candidate:
+  it supersedes v10/v11 as the most complete draft, adding the safe-side
+  pincer, half-distance MCA-from-CA reduction, map/rational smooth extensions,
+  circle/genus-one transports, explicit witness machinery, optimized profile,
+  and certificate grammar v2.  `tex/towards-prize.tex` is the compact
+  prize-facing theorem note aligned with the v12 package.
+- **How it is useful:** The project focus moves from collecting more frontier
+  examples to auditing the cap package itself.  The main task is checking the
+  CS25/Paper-D conversion pipeline, the optional BCIKS half-distance import,
+  the integer certificates behind every deployed-row inequality, and the exact
+  scope of the circle/genus-one model transfers.
+- **What to do next:** Treat CS25/Paper-D auditing as the main focus.  Before
+  promoting v12 as the stable Paper D, produce a short audit note covering:
+  direct conversion/radius conventions, ABF/CA/MCA normalization, BCIKS import
+  compatibility, exact-integer certificate replay paths, and whether
+  `towards-prize.tex` states only the claims actually proved by v12.
+
 ### 2026-07-02 - Post-v10 PR sweep: M1 reductions, M3 synthetic packets, M5 underdetermined roadmap
 
 - **Agent/model:** Codex, integrating and auditing contributions from
