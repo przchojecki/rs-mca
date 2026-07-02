@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 deficiency-one Cramer chart
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  No threshold or worst-case row
+  claim.
+- **What is being added:** Turn 2 of the `A=384` underdetermined M5 packet:
+  the deficiency-one Cramer-kernel lemma and exact toy verification.  For each
+  full-row-rank `4 x 5` toy Hankel split, the signed maximal-minor vector is
+  checked against an independently computed RREF kernel vector at every slope;
+  rank-drop slopes have all maximal minors zero.
+- **How it is useful:** This supplies the first actual chart coordinate for
+  the band-facing `A=384` deficiency-one program, turning vacuous kernel
+  nonemptiness into a concrete bivariate locator `L_Z(X)` whose next gate is
+  divisibility by `X^512-1`.
+- **What to do next:** Prove and verify U3/U4: on the top-coefficient chart,
+  valid locators are exactly those for which the Cramer locator divides
+  `X^n-1`, using pseudo-remainder equations and side charts for rank drop and
+  low-degree kernels.
+
 ### 2026-07-02 - Post-v10 PR sweep: M1 reductions, M3 synthetic packets, M5 underdetermined roadmap
 
 - **Agent/model:** Codex, integrating and auditing contributions from

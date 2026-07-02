@@ -1,7 +1,9 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 1: bucket identification done; chart
-  machinery in progress). No threshold, safety, or worst-case row claim is made.
+- **Status:** ACTIVE / EXPERIMENTAL (turn 2: bucket identification plus the
+  deficiency-one Cramer-kernel chart lemma are done; divisibility/eliminant
+  machinery remains in progress). No threshold, safety, or worst-case row
+  claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
   regular window `385 <= A <= 426`, synthetic rank ladders and kernel charts):
@@ -83,7 +85,7 @@ subtraction deferred to M4 where it belongs.
 | # | item | status |
 |---|------|--------|
 | 1 | bucket identification + extractor-convention match + toy dichotomy | **done** |
-| 2 | deficiency-1 kernel = Cramer minor vector (lemma + exact toy verification) | pending |
+| 2 | deficiency-1 kernel = Cramer minor vector (lemma + exact toy verification) | **done** |
 | 3 | pivot chart: divisibility filter into `X^n - 1`, chart ideal + saturation | pending |
 | 4 | eliminant `Q(Z)` on a declared input family, or certified `residual_obstruction` | pending |
 | 5 | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`, validated by `scripts/check_aperiodic_eliminant_packet.py` | pending |
@@ -102,6 +104,40 @@ subtraction deferred to M4 where it belongs.
   the content of the regular certificate, and its structural loss at `A=384`,
   demonstrated side by side.
 
+### Verified in turn 2
+
+**U1, Cramer kernel.** For a deficiency-one `t x (t+1)` matrix `M`, let
+
+```text
+M_i = det(M with column i omitted),        c_i = (-1)^i M_i.
+```
+
+The signed maximal-minor vector `c=(c_0,...,c_t)` satisfies `M c = 0` by the
+Laplace expansion of a bordered determinant with two equal rows.  If
+`rank M=t`, the kernel has dimension one, so this Cramer vector spans the
+kernel.  If `rank M<t`, every maximal minor vanishes and the Cramer vector is
+zero; those slopes are the rank-drop side chart, not failures of the lemma.
+
+The verifier checks this statement exactly on two declared toy families:
+
+```text
+F_13 smoke family:       deficiency-one 4x5 split, all 13 slopes;
+F_97/mu_16 acid scale:   n=16, k=8, A=12, t=j=4, all 97 slopes.
+```
+
+At every full-row-rank slope it compares the signed maximal-minor vector to an
+independently computed RREF kernel vector up to scalar.  At every rank-drop
+slope it checks that all maximal minors vanish.
+
+**U2, nondegeneracy of the declared family.** For each declared toy family, the
+verifier exhibits one nonzero maximal-minor value `M_i(z0)`.  Hence the
+Cramer vector is not identically zero and the family belongs to the generic
+Cramer chart.  A family whose maximal minors all vanish is not forced through
+this chart; it is routed to the lower-rank/proportional strata in WP-2.3.
+
+This turn does **not** yet test whether the Cramer locator divides `X^n-1`.
+That is the next gate, U3/U4.
+
 ## Honest scope
 
 - Worst-case bad-slope bounds at `A=384` quantify over all received pairs
@@ -111,6 +147,10 @@ subtraction deferred to M4 where it belongs.
 - An eliminant degree `~2^16` does not approach the budget `B_Q = 6`; this
   packet's purpose is the first structural filter and format compliance below
   the regular window, not a threshold claim.
+- The Cramer-vector lemma is only the generic deficiency-one kernel chart.  It
+  does not prove that any kernel vector is a valid split locator.  Validity
+  still requires the U3/U4 divisibility filter `L_Z(X) | X^512 - 1`, plus the
+  low-degree and rank-drop side charts.
 - If the chart cannot be closed, the end state will be a labelled
   `residual_obstruction` per §4.6 of the roadmap — named, not hidden.
 
