@@ -600,14 +600,6 @@
    ]
   },
   {
-   "id": "u1_u5_chain",
-   "title": "U1-U5: Cramer kernel -> divisibility -> dichotomy",
-   "status": "PROVABLE",
-   "refs": [
-    "wp_detail/wp2_6_underdetermined_program.md"
-   ]
-  },
-  {
    "id": "spi_dim1",
    "title": "SPI at dim 1: eliminant bound (deg <= 49408)",
    "status": "PROVABLE",
@@ -1157,6 +1149,112 @@
    "refs": [
     "experimental/lean/rs_mca_formalization"
    ]
+  },
+  {
+   "id": "l1_core_defect_reduction",
+   "title": "L1 Lemma 2: sunflower core-defect reduction",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/l1/l1_full_list_quotient_proof_program.md"
+   ]
+  },
+  {
+   "id": "l1_crt_compression",
+   "title": "L1 Lemmas 7/8: full-petal CRT compression + rank certificate",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/l1/l1_full_list_quotient_proof_program.md"
+   ]
+  },
+  {
+   "id": "l1_defect_layer_bounds",
+   "title": "L1 Lemmas 9/13-16: defect-layer bounds (full-petal case)",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/l1/l1_full_list_quotient_proof_program.md"
+   ]
+  },
+  {
+   "id": "u1_cramer",
+   "title": "U1: deficiency-1 kernel = signed-maximal-minor (Cramer) vector",
+   "status": "PROVABLE",
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ]
+  },
+  {
+   "id": "u2_nondegeneracy",
+   "title": "U2: pencil nondegeneracy certified per declared family",
+   "status": "PROVABLE",
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ]
+  },
+  {
+   "id": "u3_divisibility",
+   "title": "U3: validity = divisibility into X^512 - 1 (window m = 1..t, verified)",
+   "status": "PROVABLE",
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ]
+  },
+  {
+   "id": "u4_pseudoremainder",
+   "title": "U4: pseudo-remainder chart, deg_Z <= 49408",
+   "status": "PROVABLE",
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ]
+  },
+  {
+   "id": "u5_dichotomy",
+   "title": "U5: eliminant OR identically-valid pencil (paid / candidate_new_obstruction)",
+   "status": "PROVABLE",
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ]
+  },
+  {
+   "id": "paid_tan_fn",
+   "title": "Paid_tan(A): staircase formula as a computable function",
+   "status": "PROVABLE",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#5"
+   ]
+  },
+  {
+   "id": "paid_quot_fn",
+   "title": "Paid_quot(A): zones a/b/c, interval-valued cells",
+   "status": "PROVABLE",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#5"
+   ],
+   "notes": "interval-valued form buildable now; POINT values in zone (b) conditional on the collision question"
+  },
+  {
+   "id": "paid_ext_fn",
+   "title": "Paid_ext(A): the s6 import rule (0 if generating)",
+   "status": "PROVABLE",
+   "refs": [
+    "proof_sketch/s6_extension_lift.md#2"
+   ]
+  },
+  {
+   "id": "f1_case_pole",
+   "title": "F1 case (ii): pole-type slopes priced by the imported list term",
+   "status": "CONDITIONAL",
+   "refs": [
+    "proof_sketch/s6_extension_lift.md#4"
+   ],
+   "notes": "priced by ext_import; conditional on the list-side location"
+  },
+  {
+   "id": "f1_case_tower",
+   "title": "F1 case (iii): intermediate-subfield tower recursion",
+   "status": "TARGET",
+   "refs": [
+    "proof_sketch/s6_extension_lift.md#5"
+   ]
   }
  ],
  "edges": [
@@ -1596,28 +1694,13 @@
    "kind": "req"
   },
   {
-   "from": "u1_u5_chain",
-   "to": "deficiency_ladder",
-   "kind": "req"
-  },
-  {
    "from": "spi_dim1",
    "to": "deficiency_ladder",
    "kind": "req"
   },
   {
-   "from": "acid_test",
-   "to": "u1_u5_chain",
-   "kind": "ev"
-  },
-  {
    "from": "deficiency_growth",
    "to": "deficiency_ladder",
-   "kind": "req"
-  },
-  {
-   "from": "u1_u5_chain",
-   "to": "spi_dim1",
    "kind": "req"
   },
   {
@@ -2068,6 +2151,126 @@
   {
    "from": "lean_existing",
    "to": "lean_tier1",
+   "kind": "req"
+  },
+  {
+   "from": "l1_core_defect_reduction",
+   "to": "l1_program_frontier",
+   "kind": "req"
+  },
+  {
+   "from": "l1_crt_compression",
+   "to": "l1_program_frontier",
+   "kind": "req"
+  },
+  {
+   "from": "l1_defect_layer_bounds",
+   "to": "l1_program_frontier",
+   "kind": "req"
+  },
+  {
+   "from": "l1_crt_compression",
+   "to": "petal_fixed_excess",
+   "kind": "req"
+  },
+  {
+   "from": "u1_cramer",
+   "to": "u5_dichotomy",
+   "kind": "req"
+  },
+  {
+   "from": "u2_nondegeneracy",
+   "to": "u5_dichotomy",
+   "kind": "req"
+  },
+  {
+   "from": "u3_divisibility",
+   "to": "u5_dichotomy",
+   "kind": "req"
+  },
+  {
+   "from": "u4_pseudoremainder",
+   "to": "u5_dichotomy",
+   "kind": "req"
+  },
+  {
+   "from": "u5_dichotomy",
+   "to": "spi_dim1",
+   "kind": "req"
+  },
+  {
+   "from": "u5_dichotomy",
+   "to": "deficiency_ladder",
+   "kind": "req"
+  },
+  {
+   "from": "vtdv",
+   "to": "u1_cramer",
+   "kind": "ev"
+  },
+  {
+   "from": "acid_test",
+   "to": "u5_dichotomy",
+   "kind": "ev"
+  },
+  {
+   "from": "paid_tan_fn",
+   "to": "paid_closure",
+   "kind": "req"
+  },
+  {
+   "from": "paid_quot_fn",
+   "to": "paid_closure",
+   "kind": "req"
+  },
+  {
+   "from": "paid_ext_fn",
+   "to": "paid_closure",
+   "kind": "req"
+  },
+  {
+   "from": "staircase",
+   "to": "paid_tan_fn",
+   "kind": "req"
+  },
+  {
+   "from": "qfloor_exact",
+   "to": "paid_quot_fn",
+   "kind": "req"
+  },
+  {
+   "from": "acl_count",
+   "to": "paid_quot_fn",
+   "kind": "req"
+  },
+  {
+   "from": "ext_import",
+   "to": "paid_ext_fn",
+   "kind": "req"
+  },
+  {
+   "from": "generating_escape",
+   "to": "paid_ext_fn",
+   "kind": "req"
+  },
+  {
+   "from": "b_rational_lift",
+   "to": "f1_classification",
+   "kind": "req"
+  },
+  {
+   "from": "f1_case_pole",
+   "to": "f1_classification",
+   "kind": "req"
+  },
+  {
+   "from": "f1_case_tower",
+   "to": "f1_classification",
+   "kind": "req"
+  },
+  {
+   "from": "ext_import",
+   "to": "f1_case_pole",
    "kind": "req"
   }
  ]
