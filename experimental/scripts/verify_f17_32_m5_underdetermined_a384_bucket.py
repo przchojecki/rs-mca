@@ -31,10 +31,20 @@ Exit non-zero iff any implemented check fails.
 """
 from __future__ import annotations
 
+import argparse
+import json
+from hashlib import sha256
+from pathlib import Path
+
 Q = 17 ** 32          # q_line = |F|
 TWO128 = 2 ** 128
 N, K = 512, 256
 A_STAR = 384          # the maximal underdetermined exact agreement
+TOY_PACKET_SCHEMA = "f97-mu16-m5-a384-deficiency-one-toy-u1-u5-v1"
+DEFAULT_TOY_PACKET = Path(
+    "experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/"
+    "f97_mu16_n16_k8_a12_m5_deficiency_one_toy_u1_u5.json"
+)
 
 
 def rank_and_kernel_mod_p(matrix, p):
@@ -178,6 +188,11 @@ def pseudo_remainder(f, g, p):
 
 def is_zero_poly(poly):
     return all(c == 0 for c in poly)
+
+
+def hash_json_value(value):
+    payload = json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
+    return sha256(payload).hexdigest()
 
 
 def poly_add_mod(a, b, p):
@@ -500,6 +515,138 @@ def check_toy_eliminant_dichotomy():
     return ok, d
 
 
+def toy_u1_u5_payload():
+    """Recompute the compact toy packet payload."""
+    p = 97
+    u = [3, 17, 58, 91, 26, 44, 10, 73]
+    v = [12, 5, 81, 33, 70, 9, 61, 48]
+    subgroup = [x for x in range(1, p) if pow(x, 16, p) == 1]
+    f = [p - 1] + [0] * 15 + [1]
+    values = [[] for _ in range(4)]
+    chart_counts = {"top": 0, "low_degree": 0, "rank_drop": 0}
+    valid_slopes = []
+    for z in range(p):
+        s = [(a + z * b) % p for a, b in zip(u, v)]
+        m = hankel(s, 4, 4)
+        rank, _ = rank_and_kernel_mod_p(m, p)
+        cramer = cramer_kernel_vector(m, p)
+        if rank != 4:
+            chart_counts["rank_drop"] += 1
+            continue
+        if cramer[4] == 0:
+            chart_counts["low_degree"] += 1
+            continue
+        chart_counts["top"] += 1
+        prem = pseudo_remainder(f, cramer, p)
+        prem = prem + [0] * (4 - len(prem))
+        for i in range(4):
+            values[i].append(prem[i] % p)
+        if is_zero_poly(prem):
+            valid_slopes.append(z)
+
+    coeff_polys = [interpolate_full_field(vs, p) for vs in values]
+    gcd_poly = None
+    for poly in coeff_polys:
+        if is_zero_poly(poly):
+            continue
+        gcd_poly = poly if gcd_poly is None else poly_gcd_monic(gcd_poly, poly, p)
+    if gcd_poly is None:
+        gcd_poly = [0]
+    roots = [z for z in range(p) if poly_eval(gcd_poly, z, p) == 0]
+    return {
+        "field": "F_97",
+        "n": 16,
+        "k": 8,
+        "agreement": 12,
+        "t": 4,
+        "j": 4,
+        "domain": subgroup,
+        "u_window": u,
+        "v_window": v,
+        "chart_counts": chart_counts,
+        "coefficient_polynomial_degrees": [len(poly) - 1 for poly in coeff_polys],
+        "coefficient_polynomial_hashes": [hash_json_value(poly) for poly in coeff_polys],
+        "gcd_coefficients_mod_97_ascending": gcd_poly,
+        "gcd_roots_mod_97": roots,
+        "valid_top_chart_slopes_mod_97": valid_slopes,
+    }
+
+
+def expected_toy_packet():
+    payload = toy_u1_u5_payload()
+    domain_hash = "sha256:" + hash_json_value(payload["domain"])
+    return {
+        "schema_version": TOY_PACKET_SCHEMA,
+        "status": "PROVED-LOCAL / EXPERIMENTAL",
+        "object": "M5 A=384 deficiency-one U1-U5 top-chart toy replay",
+        "scope": {
+            "claim": (
+                "For the declared F_97/mu_16 toy family, the deficiency-one "
+                "Cramer top chart has constant eliminant 1 and hence no valid "
+                "top-chart slopes."
+            ),
+            "nonclaims": [
+                "does not prove a threshold or worst-case row bound",
+                "does not analyze the F_17^32 row",
+                "does not close rank-drop or low-degree side charts in families where they are nonempty",
+            ],
+        },
+        "row": {
+            "field": payload["field"],
+            "n": payload["n"],
+            "k": payload["k"],
+            "domain": "mu_16",
+            "domain_hash": domain_hash,
+            "domain_elements": payload["domain"],
+        },
+        "agreement": {
+            "A": payload["agreement"],
+            "t": payload["t"],
+            "j": payload["j"],
+            "deficiency": payload["j"] + 1 - payload["t"],
+        },
+        "declared_family": {
+            "u_window": payload["u_window"],
+            "v_window": payload["v_window"],
+        },
+        "checks": {
+            "u1_cramer_kernel": "verified against RREF on every slope",
+            "u2_nondegeneracy": "one nonzero maximal minor exhibited",
+            "u3_divisibility": "direct division, pseudo-remainder, and mu_16 roots agree",
+            "u4_pseudo_remainder": "prem = lc(L)^13 * rem on the top chart",
+            "u5_eliminant": "gcd of pseudo-remainder coefficient polynomials is 1",
+        },
+        "chart_summary": payload["chart_counts"],
+        "top_chart_eliminant": {
+            "coefficient_polynomial_degrees": payload["coefficient_polynomial_degrees"],
+            "coefficient_polynomial_hashes": payload["coefficient_polynomial_hashes"],
+            "gcd_coefficients_mod_97_ascending": payload["gcd_coefficients_mod_97_ascending"],
+            "gcd_roots_mod_97": payload["gcd_roots_mod_97"],
+            "valid_top_chart_slopes_mod_97": payload["valid_top_chart_slopes_mod_97"],
+        },
+        "replay": {
+            "script": "experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py",
+            "command": (
+                "python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py "
+                "--check experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/"
+                "f97_mu16_n16_k8_a12_m5_deficiency_one_toy_u1_u5.json"
+            ),
+        },
+    }
+
+
+def check_toy_packet(path: Path):
+    observed = json.loads(path.read_text(encoding="utf-8"))
+    expected = expected_toy_packet()
+    if observed != expected:
+        raise AssertionError(f"toy U1-U5 packet mismatch: {path}")
+    return True, [
+        f"packet {path} matches the recomputed U1-U5 toy payload",
+        f"schema_version = {TOY_PACKET_SCHEMA}",
+        "top-chart eliminant is the constant polynomial 1",
+    ]
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop turn"]
 
@@ -511,17 +658,22 @@ CHECKS = [
     ("pencil nondegeneracy of declared toy families",     check_pencil_nondegeneracy_summary),
     ("pivot chart + splitting filter (X^n - 1)",          check_divisibility_filter_top_chart),
     ("eliminant or certified residual obstruction",       check_toy_eliminant_dichotomy),
-    ("packet emission + v1 schema validation",            _pending),
+    ("packet emission + local replay validation",         lambda: check_toy_packet(DEFAULT_TOY_PACKET)),
 ]
 
 
-def main():
+def run_checks(check_packet: Path | None = None):
     print("=" * 74)
     print(f"M5 first singular-bucket pivot packet: A={A_STAR} underdetermined boundary")
     print("of C = RS[F_17^32, H, 256]  (n=512, k=256) -- bucket identification")
     print("=" * 74)
+    checks = CHECKS
+    if check_packet is not None:
+        checks = CHECKS[:-1] + [
+            ("packet emission + local replay validation", lambda: check_toy_packet(check_packet))
+        ]
     failed = done = pending = 0
-    for title, fn in CHECKS:
+    for title, fn in checks:
         status, details = fn()
         tag = "PENDING" if status is None else ("PASS" if status else "FAIL")
         if status is None:
@@ -538,6 +690,13 @@ def main():
     print("-" * 74)
     if failed:
         raise SystemExit(1)
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--check", type=Path, help="replay and compare a toy U1-U5 packet")
+    args = parser.parse_args()
+    run_checks(args.check)
 
 
 if __name__ == "__main__":

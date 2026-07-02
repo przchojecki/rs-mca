@@ -1,0 +1,101 @@
+{
+  "schema_version": "f97-mu16-m5-a384-deficiency-one-toy-u1-u5-v1",
+  "status": "PROVED-LOCAL / EXPERIMENTAL",
+  "object": "M5 A=384 deficiency-one U1-U5 top-chart toy replay",
+  "scope": {
+    "claim": "For the declared F_97/mu_16 toy family, the deficiency-one Cramer top chart has constant eliminant 1 and hence no valid top-chart slopes.",
+    "nonclaims": [
+      "does not prove a threshold or worst-case row bound",
+      "does not analyze the F_17^32 row",
+      "does not close rank-drop or low-degree side charts in families where they are nonempty"
+    ]
+  },
+  "row": {
+    "field": "F_97",
+    "n": 16,
+    "k": 8,
+    "domain": "mu_16",
+    "domain_hash": "sha256:31621c26e16ac23a4b7a87d9dd49d9da75d2920212ff9d2d9a2068bd7e007879",
+    "domain_elements": [
+      1,
+      8,
+      12,
+      18,
+      22,
+      27,
+      33,
+      47,
+      50,
+      64,
+      70,
+      75,
+      79,
+      85,
+      89,
+      96
+    ]
+  },
+  "agreement": {
+    "A": 12,
+    "t": 4,
+    "j": 4,
+    "deficiency": 1
+  },
+  "declared_family": {
+    "u_window": [
+      3,
+      17,
+      58,
+      91,
+      26,
+      44,
+      10,
+      73
+    ],
+    "v_window": [
+      12,
+      5,
+      81,
+      33,
+      70,
+      9,
+      61,
+      48
+    ]
+  },
+  "checks": {
+    "u1_cramer_kernel": "verified against RREF on every slope",
+    "u2_nondegeneracy": "one nonzero maximal minor exhibited",
+    "u3_divisibility": "direct division, pseudo-remainder, and mu_16 roots agree",
+    "u4_pseudo_remainder": "prem = lc(L)^13 * rem on the top chart",
+    "u5_eliminant": "gcd of pseudo-remainder coefficient polynomials is 1"
+  },
+  "chart_summary": {
+    "top": 97,
+    "low_degree": 0,
+    "rank_drop": 0
+  },
+  "top_chart_eliminant": {
+    "coefficient_polynomial_degrees": [
+      52,
+      52,
+      52,
+      52
+    ],
+    "coefficient_polynomial_hashes": [
+      "9ef7062d337d920524e5a164c25a4aa962a283c14fc56ab10c8da0efc420e8ce",
+      "f8f55fad962ea04b4aea957f0eb020920df4b9075a4d40801fd6ab6a77c62aa6",
+      "34f1c6f4111422dd6a53910a8ba91f6ecf4850e77906eefdd9503f34c098e7c0",
+      "7b734dabcdcf39676a5e6da3e27d872bac641082f394fd6edc611c6ecd1c8f98"
+    ],
+    "gcd_coefficients_mod_97_ascending": [
+      1
+    ],
+    "gcd_roots_mod_97": [],
+    "valid_top_chart_slopes_mod_97": []
+  },
+  "replay": {
+    "script": "experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py",
+    "command": "python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py --check experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/f97_mu16_n16_k8_a12_m5_deficiency_one_toy_u1_u5.json"
+  }
+}

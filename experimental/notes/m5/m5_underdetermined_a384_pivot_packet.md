@@ -1,8 +1,8 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 4: bucket identification,
-  deficiency-one Cramer-kernel chart, toy top-chart divisibility, and the toy
-  top-chart eliminant dichotomy are done; packet emission remains in progress).
+- **Status:** ACTIVE / EXPERIMENTAL (turn 5: bucket identification,
+  deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
+  top-chart eliminant dichotomy, and compact toy packet emission are done).
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -88,7 +88,8 @@ subtraction deferred to M4 where it belongs.
 | 2 | deficiency-1 kernel = Cramer minor vector (lemma + exact toy verification) | **done** |
 | 3 | pivot chart: divisibility filter into `X^n - 1`, chart ideal + saturation | **done on the F_97 top-chart toy** |
 | 4 | eliminant `Q(Z)` on a declared input family, or certified `residual_obstruction` | **done on the F_97 top-chart toy** |
-| 5 | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`, validated by `scripts/check_aperiodic_eliminant_packet.py` | pending |
+| 5a | compact toy packet emission and local replay validation | **done** |
+| 5b | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/` for a declared `F_17^32` family | pending |
 
 ### Verified so far (turn 1)
 
@@ -200,6 +201,31 @@ family.
 The remaining packet-emission step is to package these toy chart checks and
 then start the declared `F_17^32` family with honest computational/residual
 labels if the large pseudo-remainder gcd is not yet feasible.
+
+### Verified in turn 5
+
+The compact toy replay packet is now emitted at
+
+```text
+experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/
+```
+
+The packet records the declared family, the `mu_16` domain hash, the three
+chart counts, the four pseudo-remainder coefficient degrees and hashes, and
+the constant top-chart eliminant `1`.  The verifier's `--check` mode
+recomputes the U1-U5 payload and compares it to the JSON packet exactly.
+
+Replay command:
+
+```bash
+python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py \
+  --check experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/f97_mu16_n16_k8_a12_m5_deficiency_one_toy_u1_u5.json
+```
+
+This is a local packet format for the toy deficiency-one chart.  It is not the
+generic v10 `aperiodic-hankel-eliminant-v1` schema, whose current checker only
+has arithmetic support for regular-minor packets rather than M5
+deficiency-one pivot charts.
 
 ## Honest scope
 

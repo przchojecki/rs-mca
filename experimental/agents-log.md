@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 toy U1-U5 packet
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  No threshold or worst-case row
+  claim.
+- **What is being added:** A compact replay packet for the declared
+  `F_97/mu_16`, `n=16,k=8,A=12` deficiency-one top-chart toy.  The verifier's
+  `--check` mode recomputes the U1-U5 payload and compares it exactly to the
+  committed JSON.
+- **How it is useful:** Makes the M5 deficiency-one toy chart replayable as a
+  certificate-like artifact before the larger `F_17^32` packet is attempted.
+- **What to do next:** Start the declared `F_17^32` family packet or, if full
+  pseudo-remainder interpolation is too large, emit an honest computational
+  residual label with spot checks and degree bounds.
+
 ### 2026-07-02 - M5 A384 toy eliminant dichotomy
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
