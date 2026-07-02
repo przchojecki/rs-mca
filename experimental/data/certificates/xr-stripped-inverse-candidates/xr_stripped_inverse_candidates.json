@@ -1,0 +1,705 @@
+{
+  "cases": [
+    {
+      "candidate_count": 23,
+      "j": 8,
+      "n": 16,
+      "post_quotient_strip_top": [
+        {
+          "E_3": {
+            "denominator": 1024,
+            "float": 0.3349609375,
+            "numerator": 343
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "core_size": 1
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 1024,
+            "float": 0.3349609375,
+            "numerator": 343
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "hole_size": 1
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 640,
+            "float": 0.0984375,
+            "numerator": 63
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "core_size": 2
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 640,
+            "float": 0.0984375,
+            "numerator": 63
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "hole_size": 2
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 1024,
+            "float": 0.0244140625,
+            "numerator": 25
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "core_size": 3
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 1024,
+            "float": 0.0244140625,
+            "numerator": 25
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "hole_size": 3
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 208,
+            "float": 0.004807692307692308,
+            "numerator": 1
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "core_size": 4
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 208,
+            "float": 0.004807692307692308,
+            "numerator": 1
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "hole_size": 4
+          },
+          "stripped_before_inverse": false
+        }
+      ],
+      "post_strip_all_top_candidates_first_eigenspace": true,
+      "quotient_profile_present_in_raw_top": true,
+      "raw_top": [
+        {
+          "E_3": {
+            "denominator": 1024,
+            "float": 0.3349609375,
+            "numerator": 343
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "core_size": 1
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 1024,
+            "float": 0.3349609375,
+            "numerator": 343
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "hole_size": 1
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 640,
+            "float": 0.0984375,
+            "numerator": 63
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "core_size": 2
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 640,
+            "float": 0.0984375,
+            "numerator": 63
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "hole_size": 2
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 5148,
+            "float": 0.04759129759129759,
+            "numerator": 245
+          },
+          "classification": "paid_quotient_profile",
+          "family": "quotient_block_profile_cell",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "block_count": 2,
+            "block_size": 8,
+            "labeled_profile_cells_in_orbit": 1,
+            "profile_representative": [
+              4,
+              4
+            ]
+          },
+          "stripped_before_inverse": true
+        },
+        {
+          "E_3": {
+            "denominator": 146432,
+            "float": 0.02509697333916084,
+            "numerator": 3675
+          },
+          "classification": "paid_quotient_profile",
+          "family": "quotient_block_profile_cell",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "block_count": 2,
+            "block_size": 8,
+            "labeled_profile_cells_in_orbit": 2,
+            "profile_representative": [
+              3,
+              5
+            ]
+          },
+          "stripped_before_inverse": true
+        },
+        {
+          "E_3": {
+            "denominator": 1024,
+            "float": 0.0244140625,
+            "numerator": 25
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "core_size": 3
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 1024,
+            "float": 0.0244140625,
+            "numerator": 25
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "hole_size": 3
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 208,
+            "float": 0.004807692307692308,
+            "numerator": 1
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "core_size": 4
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 208,
+            "float": 0.004807692307692308,
+            "numerator": 1
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "hole_size": 4
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 45760,
+            "float": 0.0032124125874125873,
+            "numerator": 147
+          },
+          "classification": "paid_quotient_profile",
+          "family": "quotient_block_profile_cell",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "block_count": 2,
+            "block_size": 8,
+            "labeled_profile_cells_in_orbit": 2,
+            "profile_representative": [
+              2,
+              6
+            ]
+          },
+          "stripped_before_inverse": true
+        },
+        {
+          "E_3": {
+            "denominator": 5720,
+            "float": 0.0015734265734265735,
+            "numerator": 9
+          },
+          "classification": "paid_quotient_profile",
+          "family": "quotient_block_profile_cell",
+          "j": 8,
+          "n": 16,
+          "parameters": {
+            "block_count": 4,
+            "block_size": 4,
+            "labeled_profile_cells_in_orbit": 1,
+            "profile_representative": [
+              2,
+              2,
+              2,
+              2
+            ]
+          },
+          "stripped_before_inverse": true
+        }
+      ],
+      "residual_degree_cap_comment": "If a stripped residual family has induced one-exchange degree <= j, then E_3 is at most density*(j/(j(n-j)))^3.  This is the support-side shadow of the t=2 residual one-exchange degree packet.",
+      "residual_degree_cap_density_1": {
+        "denominator": 512,
+        "float": 0.001953125,
+        "numerator": 1
+      }
+    },
+    {
+      "candidate_count": 28,
+      "j": 16,
+      "n": 32,
+      "post_quotient_strip_top": [
+        {
+          "E_3": {
+            "denominator": 8192,
+            "float": 0.4119873046875,
+            "numerator": 3375
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "core_size": 1
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 8192,
+            "float": 0.4119873046875,
+            "numerator": 3375
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "hole_size": 1
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 31744,
+            "float": 0.16207787298387097,
+            "numerator": 5145
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "core_size": 2
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 31744,
+            "float": 0.16207787298387097,
+            "numerator": 5145
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "hole_size": 2
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 253952,
+            "float": 0.06055868825604839,
+            "numerator": 15379
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "core_size": 3
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 253952,
+            "float": 0.06055868825604839,
+            "numerator": 15379
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "hole_size": 3
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 115072,
+            "float": 0.021351849276974415,
+            "numerator": 2457
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "core_size": 4
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 115072,
+            "float": 0.021351849276974415,
+            "numerator": 2457
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "hole_size": 4
+          },
+          "stripped_before_inverse": false
+        }
+      ],
+      "post_strip_all_top_candidates_first_eigenspace": true,
+      "quotient_profile_present_in_raw_top": true,
+      "raw_top": [
+        {
+          "E_3": {
+            "denominator": 8192,
+            "float": 0.4119873046875,
+            "numerator": 3375
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "core_size": 1
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 8192,
+            "float": 0.4119873046875,
+            "numerator": 3375
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "hole_size": 1
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 31744,
+            "float": 0.16207787298387097,
+            "numerator": 5145
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "core_size": 2
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 31744,
+            "float": 0.16207787298387097,
+            "numerator": 5145
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "hole_size": 2
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 253952,
+            "float": 0.06055868825604839,
+            "numerator": 15379
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "core_size": 3
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 253952,
+            "float": 0.06055868825604839,
+            "numerator": 15379
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "hole_size": 3
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 26714684,
+            "float": 0.03444566291706838,
+            "numerator": 920205
+          },
+          "classification": "paid_quotient_profile",
+          "family": "quotient_block_profile_cell",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "block_count": 2,
+            "block_size": 16,
+            "labeled_profile_cells_in_orbit": 1,
+            "profile_representative": [
+              8,
+              8
+            ]
+          },
+          "stripped_before_inverse": true
+        },
+        {
+          "E_3": {
+            "denominator": 109423345664,
+            "float": 0.02596039097289797,
+            "numerator": 2840672835
+          },
+          "classification": "paid_quotient_profile",
+          "family": "quotient_block_profile_cell",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "block_count": 2,
+            "block_size": 16,
+            "labeled_profile_cells_in_orbit": 2,
+            "profile_representative": [
+              7,
+              9
+            ]
+          },
+          "stripped_before_inverse": true
+        },
+        {
+          "E_3": {
+            "denominator": 115072,
+            "float": 0.021351849276974415,
+            "numerator": 2457
+          },
+          "classification": "tangent_fixed_root",
+          "family": "fixed_core",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "core_size": 4
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 115072,
+            "float": 0.021351849276974415,
+            "numerator": 2457
+          },
+          "classification": "support_dual_fixed_hole",
+          "family": "fixed_hole",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "hole_size": 4
+          },
+          "stripped_before_inverse": false
+        },
+        {
+          "E_3": {
+            "denominator": 6838959104,
+            "float": 0.010988525279533532,
+            "numerator": 75150075
+          },
+          "classification": "paid_quotient_profile",
+          "family": "quotient_block_profile_cell",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "block_count": 2,
+            "block_size": 16,
+            "labeled_profile_cells_in_orbit": 2,
+            "profile_representative": [
+              6,
+              10
+            ]
+          },
+          "stripped_before_inverse": true
+        },
+        {
+          "E_3": {
+            "denominator": 109423345664,
+            "float": 0.0025182037098931014,
+            "numerator": 275550275
+          },
+          "classification": "paid_quotient_profile",
+          "family": "quotient_block_profile_cell",
+          "j": 16,
+          "n": 32,
+          "parameters": {
+            "block_count": 2,
+            "block_size": 16,
+            "labeled_profile_cells_in_orbit": 2,
+            "profile_representative": [
+              5,
+              11
+            ]
+          },
+          "stripped_before_inverse": true
+        }
+      ],
+      "residual_degree_cap_comment": "If a stripped residual family has induced one-exchange degree <= j, then E_3 is at most density*(j/(j(n-j)))^3.  This is the support-side shadow of the t=2 residual one-exchange degree packet.",
+      "residual_degree_cap_density_1": {
+        "denominator": 4096,
+        "float": 0.000244140625,
+        "numerator": 1
+      }
+    }
+  ],
+  "energy": "E_3^J(A)=Pr[T_0,T_1,T_2,T_3 all lie in A] on J(n,j)",
+  "interpretation": {
+    "next_step": "Attach the same stripped ranking to actual toy aligned-locator sets A_{u,v}; this packet is not a substitute for that pair-orbit scan.",
+    "outcome": "POST_QUOTIENT_STRIP_TOP_CANDIDATES_ARE_FIRST_EIGENSPACE",
+    "xr_prior_update": "Positive but scoped.  The candidate dictionary supports the stripped inverse expectation: quotient-profile cells must be removed first, and the remaining largest E_3 examples are fixed-root/fixed-hole first-eigenspace structures."
+  },
+  "nonclaims": [
+    "does not prove xr_inverse",
+    "does not enumerate arbitrary families in J(n,j)",
+    "does not enumerate actual RS word-pair orbits",
+    "does not classify fixed-hole support structure as a paid MCA ledger"
+  ],
+  "payload_sha256": "2c5517cb1eb95799dca3472d762f5eb12e6d2a37f218fd4ae80737ca0be4f004",
+  "roadmap_task": "E11 / E2b / xr_inverse_toy candidate-family scan",
+  "schema": "xr_stripped_inverse_candidates.v1",
+  "scope": "candidate-family dictionary only: fixed-core, fixed-hole, and quotient block-profile cells; not actual RS word-pair orbits",
+  "status": "EXPERIMENTAL_EVIDENCE"
+}

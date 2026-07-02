@@ -1,3 +1,27 @@
+# 2026-07-02 - XR stripped inverse candidate scan
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/xr_stripped_inverse_candidates.md`,
+  `experimental/scripts/verify_xr_stripped_inverse_candidates.py`,
+  `experimental/data/certificates/xr-stripped-inverse-candidates/README.md`,
+  `experimental/data/certificates/xr-stripped-inverse-candidates/xr_stripped_inverse_candidates.json`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / CANDIDATE-FAMILY EVIDENCE.
+- **What is being added:** A scoped E11/E2b stripped XR inverse scan over the
+  natural Johnson-support candidate dictionary at `J(16,8)` and `J(32,16)`.
+  The verifier ranks fixed-core, fixed-hole, and quotient block-profile cells
+  by exact `E_3` and then removes paid quotient-profile cells before
+  interpreting the inverse target.
+- **How it is useful:** It confirms, within this candidate dictionary, that
+  quotient profiles enter the raw high-energy list and must be stripped first;
+  after stripping, the top candidates are fixed-root/fixed-hole
+  first-eigenspace structures, consistent with the XR inverse prior and the
+  point-dictator extremals from the Johnson exchange-mixing packet.
+- **What to do next:** Attach the same quotient-stripped ranking to actual toy
+  aligned-locator sets `A_{u,v}`; this candidate-family scan is a guide, not a
+  substitute for the full pair-orbit falsifier.
+
 # Agents Log
 
 This file is the working ledger for agent-created material in `experimental/`.
