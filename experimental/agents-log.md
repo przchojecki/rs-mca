@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - WP-detail loop turn 8: bridges trio (WP-5.2/6.2/6.3)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/wp_detail/wp5_2_wp6_2_wp6_3_bridges.md`.
+- **Status:** operational detail over PROVED-cited material; per-m
+  budgets machine-checked.
+- **What is being added:** Turn 8. WP-5.2: the per-m interleaved budget
+  table (verified): under conj:B-strength L1 the worst-case route covers
+  m <= 3 ONLY — for m >= 4 in the for-all-m reading the a-regular
+  collapse is REQUIRED, promoting the a-regularity reduction to a named
+  must-have lemma (bottom-up hand-off); acceptance = descriptor-generated
+  table + §2.8 regression. WP-6.2: LD statements with the same
+  denominator (no drift), multiplicity caveat printed, round-trip
+  verifier on the 506/507 pin as acceptance. WP-6.3: the bridge ledger
+  spec (one row per crossing with radius/field/sqrt/multiplicity losses,
+  conventions, proved-where, used-where) plus a checker that fails any
+  dossier bridge-use without a ledger row — standing order 9 as
+  executable rule; unknown-loss bridges demote their claims to
+  conditional mechanically.
+- **How it is useful:** Prices the a-regularity question per-m, keeps LD
+  language audit-clean, and makes silent bridge crossings impossible.
+- **What to do next:** Turn 9: wp7_2 + wp7_3 + wp7_4 (promotion, formal
+  gates, dossier).
+
 ### 2026-07-02 - WP-detail loop turn 7: window charts + displacement (WP-2.5/4.1)
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
