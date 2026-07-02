@@ -334,6 +334,91 @@
           "radius": 3
         }
       ]
+    },
+    {
+      "deployed_shape_rows": [
+        {
+          "j": 127,
+          "n": 512,
+          "ordered_cover_log2": 502.9966095308979,
+          "ordered_exact_log2": 502.75911518484656,
+          "per_center_coarse_exponent_budget": 16,
+          "per_center_cover_log2": 93.83017128234832,
+          "per_center_cover_n_power_exponent": 10.42557458692759,
+          "per_center_exact_log2": 93.59267693629697,
+          "radius": 8,
+          "t": 9
+        },
+        {
+          "j": 247,
+          "n": 512,
+          "ordered_cover_log2": 604.1338778263378,
+          "ordered_exact_log2": 603.787548855523,
+          "per_center_coarse_exponent_budget": 16,
+          "per_center_cover_log2": 97.4160111902117,
+          "per_center_cover_n_power_exponent": 10.824001243356856,
+          "per_center_exact_log2": 97.06968221939695,
+          "radius": 8,
+          "t": 9
+        },
+        {
+          "j": 524288,
+          "n": 1048576,
+          "ordered_cover_log2": 1048674.5043348449,
+          "ordered_exact_log2": 1048674.5043100796,
+          "per_center_coarse_exponent_budget": 6,
+          "per_center_cover_log2": 108.83008325367507,
+          "per_center_cover_n_power_exponent": 5.441504162683754,
+          "per_center_exact_log2": 108.8300584882442,
+          "radius": 3,
+          "t": 4
+        }
+      ],
+      "name": "fm1_high_overlap_common_core_budget",
+      "statement": "The ordered locator pairs supporting FM1 covariance, namely d(R,T)<t, have per-center size |B_{t-1}(R)| and are covered by common-core charts with per-center bound binom(j,t-1)binom(n-j+t-1,t-1) <= n^(2(t-1)).",
+      "status": "PASS",
+      "toy_exact_rows": [
+        {
+          "common_core_cover_ordered_bound": 1820,
+          "exact_ordered_pairs": 1820,
+          "formula_ordered_pairs": 1820,
+          "j": 4,
+          "n": 16,
+          "per_center_cover_bound": 1,
+          "radius": 0,
+          "t": 1
+        },
+        {
+          "common_core_cover_ordered_bound": 94640,
+          "exact_ordered_pairs": 89180,
+          "formula_ordered_pairs": 89180,
+          "j": 4,
+          "n": 16,
+          "per_center_cover_bound": 52,
+          "radius": 1,
+          "t": 2
+        },
+        {
+          "common_core_cover_ordered_bound": 993720,
+          "exact_ordered_pairs": 809900,
+          "formula_ordered_pairs": 809900,
+          "j": 4,
+          "n": 16,
+          "per_center_cover_bound": 546,
+          "radius": 2,
+          "t": 3
+        },
+        {
+          "common_core_cover_ordered_bound": 3312400,
+          "exact_ordered_pairs": 2411500,
+          "formula_ordered_pairs": 2411500,
+          "j": 4,
+          "n": 16,
+          "per_center_cover_bound": 1820,
+          "radius": 3,
+          "t": 4
+        }
+      ]
     }
   ],
   "domain": {
@@ -362,6 +447,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "9b208bed78915f255be8fff523c978deb5378b3db659f9aeab1f2c00c1a0a80b",
+  "script_sha256": "62d2663b5a5b933a59e4d780a21ed44c8014afdf5c6195409badf5355bd29560",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

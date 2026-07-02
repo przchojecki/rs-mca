@@ -7,7 +7,7 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_reductions.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`.
 
-This note records thirteen elementary reductions around the fiber-rigidity
+This note records fourteen elementary reductions around the fiber-rigidity
 statement called Conjecture F in the proof sketch.  They do not prove the
 primitive core.  Their role is to remove two paid structures from the statement
 to settle the dimension-one base case, and to restate the remaining primitive
@@ -599,6 +599,44 @@ neighborhood is polynomially priced by common-root accounting; when `t` grows,
 this corollary identifies exactly why the remaining problem becomes
 dimension-growing rather than fixed-dimensional.
 
+## Corollary 14: FM1 High-Overlap Common-Core Budget
+
+In the FM1 second-moment notation, covariance between locator indicators can
+occur only for ordered pairs `(R,T)` with
+
+```text
+d(R,T) = j-|R cap T| < t.
+```
+
+For each fixed `R`, this high-overlap set is the Johnson ball
+`B_{t-1}(R)`.  Hence the number of ordered high-overlap pairs is exactly
+
+```text
+binom(n,j)
+*
+sum_{d=0}^{min(t-1,j,n-j)}
+    binom(j,d) binom(n-j,d),
+```
+
+and it is bounded by
+
+```text
+binom(n,j) binom(j,t-1) binom(n-j+t-1,t-1)
+  <=
+binom(n,j) n^{2(t-1)}.
+```
+
+**Proof.**  This is Corollary 13 applied independently around every center
+`R`.  The exact count is the ordered center count `binom(n,j)` times the
+radius-`t-1` Johnson ball size.  The displayed upper bound is the common-core
+cover from Corollary 13 with `r=t-1`.
+
+This is a ledger statement rather than a new probabilistic inequality.  It
+says that, for fixed slack `t`, the whole FM1 covariance support is already
+priced by common-root charts with a per-center `n^{2(t-1)}` budget.  Therefore
+fixed-slack high-overlap covariance is not part of the primitive Conjecture F
+core; the core begins when the effective Johnson radius grows with the row.
+
 ## Verification
 
 The verifier checks these lemmas over `F_97` with `H = mu_16`:
@@ -621,5 +659,7 @@ bound at `n=16,j=8` across the scales `M in {2,4,8}`.  It also checks the
 affine slope-table consumer directly on deterministic random affine charts,
 prints the resulting fixed-dimension/quotient-union exponent budgets, and
 checks the Johnson-ball common-core cover both by exact toy enumeration and by
-formula on deployed-shape rows.  The verifier is supporting evidence only; the
-proofs above are the mathematical content.
+formula on deployed-shape rows.  It also checks the FM1 high-overlap
+ordered-pair budget by exact toy enumeration and deployed-shape formulas.  The
+verifier is supporting evidence only; the proofs above are the mathematical
+content.

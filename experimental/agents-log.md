@@ -67,6 +67,25 @@ Keep entries concise and link to the relevant files.
   explicitly requested; audit Paper D itself through theorem statements and
   certificate checks.
 
+### 2026-07-02 - Conjecture F FM1 high-overlap budget
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_reduction_lemmas.md`;
+  `experimental/scripts/verify_conjecture_f_reductions.py`;
+  `experimental/data/certificates/conjecture-f-reductions/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / PROVED-LOCAL.
+- **What is being added:** A fourteenth reduction corollary: the ordered
+  locator pairs supporting FM1 covariance, `d(R,T)<t`, have exact count
+  `binom(n,j) sum_{d<=t-1} binom(j,d)binom(n-j,d)` and common-core cover
+  bound `binom(n,j)binom(j,t-1)binom(n-j+t-1,t-1) <= binom(n,j)n^(2(t-1))`.
+- **How it is useful:** Turns the FM1 high-overlap support into an explicit
+  common-root ledger.  Fixed-slack covariance neighborhoods are paid by
+  common-core charts; only growing-radius neighborhoods remain part of the
+  primitive Conjecture F difficulty.
+- **What to do next:** Use this ordered-pair budget when importing FM1
+  second-moment or dependency-degree estimates into M5/M6 aperiodic ledgers.
+
 ### 2026-07-02 - Conjecture F Johnson-ball common-core cover
 
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.

@@ -22,6 +22,8 @@ the identities over F_97 with H = mu_16:
 * fixed projective dimension gives an explicit n-exponent budget.
 * Johnson balls are covered by common-core charts with explicit polynomial
   size, linking FM1 high-overlap neighborhoods to common-root accounting.
+* the full FM1 high-overlap ordered-pair ledger is bounded by the same
+  common-core cover with an explicit n^(2(t-1)) per-center budget.
 """
 from __future__ import annotations
 
@@ -1240,6 +1242,75 @@ def check_johnson_ball_common_core_cover(H: list[int]) -> dict:
     }
 
 
+def check_fm1_high_overlap_common_core_budget(H: list[int]) -> dict:
+    D = divisor_set(H, J_VOTING)
+    locator_roots_by_poly = {poly: set(locator_roots(poly, H)) for poly in D}
+    toy_rows = []
+    ok = True
+    for t in range(1, min(4, J_VOTING) + 1):
+        radius = t - 1
+        exact_ordered_pairs = 0
+        for roots_r in locator_roots_by_poly.values():
+            exact_ordered_pairs += sum(
+                1 for roots_t in locator_roots_by_poly.values()
+                if J_VOTING - len(roots_r.intersection(roots_t)) <= radius
+            )
+        formula = comb(N, J_VOTING) * johnson_ball_size(N, J_VOTING, radius)
+        cover = comb(N, J_VOTING) * johnson_common_core_cover_bound(
+            N, J_VOTING, radius
+        )
+        ok &= exact_ordered_pairs == formula
+        ok &= formula <= cover
+        toy_rows.append({
+            "n": N,
+            "j": J_VOTING,
+            "t": t,
+            "radius": radius,
+            "exact_ordered_pairs": exact_ordered_pairs,
+            "formula_ordered_pairs": formula,
+            "common_core_cover_ordered_bound": cover,
+            "per_center_cover_bound": johnson_common_core_cover_bound(
+                N, J_VOTING, radius
+            ),
+        })
+
+    deployed_rows = []
+    for n, j, t in [(512, 127, 9), (512, 247, 9), (2 ** 20, 2 ** 19, 4)]:
+        radius = t - 1
+        per_center_exact = johnson_ball_size(n, j, radius)
+        per_center_cover = johnson_common_core_cover_bound(n, j, radius)
+        ordered_exact = comb(n, j) * per_center_exact
+        ordered_cover = comb(n, j) * per_center_cover
+        per_center_exponent = math.log(per_center_cover, n) if per_center_cover > 1 else 0.0
+        ok &= per_center_exact <= per_center_cover
+        ok &= per_center_exponent <= 2 * radius + 1e-12
+        deployed_rows.append({
+            "n": n,
+            "j": j,
+            "t": t,
+            "radius": radius,
+            "per_center_exact_log2": log2_int(per_center_exact),
+            "per_center_cover_log2": log2_int(per_center_cover),
+            "ordered_exact_log2": log2_int(ordered_exact),
+            "ordered_cover_log2": log2_int(ordered_cover),
+            "per_center_cover_n_power_exponent": per_center_exponent,
+            "per_center_coarse_exponent_budget": 2 * radius,
+        })
+
+    return {
+        "name": "fm1_high_overlap_common_core_budget",
+        "status": "PASS" if ok else "FAIL",
+        "statement": (
+            "The ordered locator pairs supporting FM1 covariance, namely "
+            "d(R,T)<t, have per-center size |B_{t-1}(R)| and are covered by "
+            "common-core charts with per-center bound "
+            "binom(j,t-1)binom(n-j+t-1,t-1) <= n^(2(t-1))."
+        ),
+        "toy_exact_rows": toy_rows,
+        "deployed_shape_rows": deployed_rows,
+    }
+
+
 def evaluation_lines(basis: list[tuple[int, ...]], H: list[int]) -> list[tuple[int, ...]]:
     lines = []
     for x in H:
@@ -1438,6 +1509,7 @@ def build_report() -> dict:
         check_affine_slope_table_consumer(H),
         check_exponent_budget_consumer(H),
         check_johnson_ball_common_core_cover(H),
+        check_fm1_high_overlap_common_core_budget(H),
     ]
     return {
         "schema": "conjecture_f_reduction_toy_v1",
