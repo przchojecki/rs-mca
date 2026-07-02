@@ -96,6 +96,12 @@ low-degree chart dedupes to higher agreement; the top chart is cut by
 pseudo-remainder coefficients of degree <= (n-j+1)t; and generic rank-drop
 kernel pivots have local degree <= n-j+1.
 
+Turn 19 adds a planted-top overlap-pruning theorem.  For the planted
+moment-support top family with perturbation direction v_m=m+2, every
+non-planted valid top-chart locator must share at most one root with the
+planted support.  The F_97 analogue is brute-forced over all subgroup locators
+and all slopes; the only valid pair there is the planted one.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -2066,6 +2072,70 @@ def check_deficiency_one_abstract_chart_theorem():
     ]
 
 
+def check_planted_top_overlap_pruning():
+    """Verify the planted-top overlap-pruning theorem on the F_97 analogue.
+
+    The general proof is in the companion note.  This check exhaustively tests
+    the finite toy model and verifies the F_17^32 planted-packet hypotheses.
+    """
+
+    p = 97
+    n = 16
+    j = 4
+    subgroup = [x for x in range(1, p) if pow(x, n, p) == 1]
+    support = tuple(subgroup[:j])
+    planted_slope = 7
+    v_window = [(m + 2) % p for m in range(2 * j)]
+    moments = [sum(pow(x, m, p) for x in support) % p for m in range(2 * j)]
+    u_window = [(moments[m] - planted_slope * v_window[m]) % p for m in range(2 * j)]
+
+    valid = []
+    violations = []
+    for z in range(p):
+        window = [(u_window[m] + z * v_window[m]) % p for m in range(2 * j)]
+        for roots in combinations(subgroup, j):
+            locator = poly_from_roots_mod(roots, p)
+            residual_zero = True
+            for row in range(j):
+                acc = sum(locator[i] * window[row + i] for i in range(j + 1)) % p
+                if acc:
+                    residual_zero = False
+                    break
+            if residual_zero:
+                overlap = len(set(support) & set(roots))
+                valid.append((z, roots, overlap))
+                if z != planted_slope and overlap >= 2:
+                    violations.append((z, roots, overlap))
+
+    descriptor = json.loads(ROW_DESCRIPTOR_REF.read_text(encoding="utf-8"))
+    field = F17Field(
+        descriptor["field_model"]["p"],
+        descriptor["field_model"]["modulus"],
+    )
+    domain = [field.decode(value) for value in descriptor["domain"]["domain_encodings"]]
+    real_support = domain[:128]
+    real_support_encodings = f17_encodings(field, real_support)
+    real_support_ok = (
+        len(set(real_support_encodings)) == 128
+        and all(field.pow(root, 512) == field.one for root in real_support)
+        and 512 % 17 != 0
+    )
+    toy_only_planted = valid == [(planted_slope, support, j)]
+    ok = (
+        len(subgroup) == n
+        and toy_only_planted
+        and not violations
+        and real_support_ok
+    )
+    return ok, [
+        "planted-top pruning theorem: if z != z0, any valid top locator must share <=1 planted support root",
+        f"F_97 toy support={support}, planted slope={planted_slope}, valid pairs={len(valid)}, violations with overlap>=2={len(violations)}",
+        f"F_97 stronger fact: only planted pair valid = {toy_only_planted}",
+        "F_17^32 planted top packet hypotheses: 128 distinct planted support roots in H and X^512-1 squarefree",
+        "remaining F_17^32 residual after pruning: near-disjoint locators with overlap 0 or 1",
+    ]
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop turn"]
 
@@ -2084,6 +2154,7 @@ CHECKS = [
     ("rank-drop kernel-pivot reduction",                  check_rank_drop_kernel_pivot_reduction),
     ("moment-support rank-extension theorem",             check_moment_support_rank_extension_theorem),
     ("abstract deficiency-one chart theorem",             check_deficiency_one_abstract_chart_theorem),
+    ("planted top-chart overlap pruning",                 check_planted_top_overlap_pruning),
     ("F_97 acid test: brute force equals charts",         check_toy_acid_test_bruteforce),
     ("F_17^32 planted top-chart packet",                  lambda: check_f17_packet(DEFAULT_F17_PACKET)),
     ("F_17^32 planted low-degree packet",                 lambda: check_f17_low_degree_packet(DEFAULT_F17_LOW_DEGREE_PACKET)),

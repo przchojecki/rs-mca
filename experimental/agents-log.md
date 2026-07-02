@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 planted top-chart overlap pruning
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_deficiency_one_chart_theorem.md`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  Structural pruning theorem for
+  the declared planted top-chart family; no threshold or worst-case row claim.
+- **What is being added:** Turn 19 of the `A=384` M5 packet: in the planted
+  top-chart family with perturbation `v_m=m+2`, any non-planted valid top
+  locator must share at most one root with the planted support.  The analogous
+  `F_97/mu_16` model is brute-forced over all subgroup locators and slopes.
+- **How it is useful:** Eliminates every near-support top-chart locator for
+  the declared `F_17^32` family and sharpens the remaining root-table wall to
+  the near-disjoint cases `|R cap T| in {0,1}`.
+- **What to do next:** Attack or label the near-disjoint residual and the
+  rank-drop kernel-pivot branches.
+
 ### 2026-07-02 - M5 A384 abstract deficiency-one chart theorem
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

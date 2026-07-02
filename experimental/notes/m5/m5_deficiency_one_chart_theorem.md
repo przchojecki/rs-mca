@@ -109,3 +109,58 @@ generic rank-drop local degree bound = 385.
 Thus the remaining full-row task is sharply defined: compute or label the
 top-chart pseudo-remainder root table and the rank-drop kernel-pivot branches.
 The low-degree chart is already deduped into higher agreement.
+
+## Planted Top-Chart Overlap Pruning
+
+The planted `F_17^32` top-chart packet uses a support `T subset H` of size
+`j=128` and a perturbation direction
+
+```text
+v_m = m + 2.
+```
+
+Write
+
+```text
+S_m = sum_{x in T} x^m,
+u_m = S_m - z0 v_m.
+```
+
+Let `R subset H` have size `j`, and let `L_R(X)=prod_{r in R}(X-r)`.
+If `z=z0`, the recurrence equations force `R=T`: the residual is
+
+```text
+sum_{x in T} x^m L_R(x),     0 <= m < j,
+```
+
+and the Vandermonde matrix on `T` is invertible.
+
+If `z != z0`, put `lambda=z-z0`.  The residual equations are
+
+```text
+sum_{x in T \\ R} x^m L_R(x)
+  + lambda * ( L_R(1)(m+2) + L_R'(1) ) = 0,     0 <= m < j.
+```
+
+If `|T \\ R| <= j-2`, these equations are a linear dependence among at most
+`j` columns of a confluent Vandermonde matrix: the exponentials `x^m` for
+`x in T \\ R`, together with the possible columns `1^m` and `m 1^m`.  The
+roots are distinct and `X^n-1` is squarefree, so this confluent Vandermonde
+minor is nonsingular.  Hence all coefficients vanish.  This is impossible:
+if `L_R(1) != 0`, the coefficient of `m 1^m` is nonzero; if `L_R(1)=0`, then
+`1 in R` and squarefreeness gives `L_R'(1) != 0`.
+
+Therefore every non-planted valid top-chart locator must satisfy
+
+```text
+|T \\ R| >= j-1,
+equivalently |T cap R| <= 1.
+```
+
+For the real `F_17^32` packet this removes every locator sharing at least two
+roots with the planted support.  The remaining top-chart residual is the
+near-disjoint case `|T cap R| in {0,1}`.
+
+The verifier checks the analogous `F_97/mu_16` model by brute force over all
+`binom(16,4)=1820` degree-four subgroup locators and all 97 slopes.  In that
+toy model the only valid pair is the planted slope and planted support.
