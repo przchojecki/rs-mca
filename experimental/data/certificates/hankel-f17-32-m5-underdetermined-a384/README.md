@@ -29,11 +29,24 @@ where `V` is the Vandermonde matrix on the 128 planted support roots.  The
 packet records both the Vandermonde determinant encoding and the prefix-minor
 encoding.
 
+The packet
+
+```text
+f17_32_n512_k256_a384_planted_low_degree.json
+```
+
+constructs a full-rank low-degree side-chart example.  It uses a degree-127
+locator, perturbs only `S_255`, and records a nonzero shifted minor on columns
+`1..128`.  Thus `c_128=0` but the row rank is still 128.
+
 Replay:
 
 ```bash
 python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py \
   --check-f17 experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/f17_32_n512_k256_a384_planted_top_chart.json
+
+python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py \
+  --check-f17-low-degree experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/f17_32_n512_k256_a384_planted_low_degree.json
 ```
 
 Non-claims: this is not a full `F_17^32` root table, threshold theorem, or

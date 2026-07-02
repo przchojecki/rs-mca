@@ -1,14 +1,15 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 11: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 12: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
   the real `A=384` row are done; the `F_97` acid test now independently
   enumerates all degree-four subgroup locators on three pinned toy families;
   the first declared `F_17^32` planted top-chart packet is emitted and now
-  carries an explicit nonzero prefix-minor certificate). No threshold, safety,
-  or worst-case row claim is made.
+  carries an explicit nonzero prefix-minor certificate; the first declared
+  `F_17^32` planted low-degree side-chart packet is emitted). No threshold,
+  safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
   regular window `385 <= A <= 426`, synthetic rank ladders and kernel charts):
@@ -127,7 +128,8 @@ belongs.
 | 5e | independent `F_97` acid test: direct locator enumeration equals chart prediction | **done** |
 | 5f | first declared `F_17^32` planted top-chart packet | **done** |
 | 5g | explicit nonzero prefix-minor certificate for the planted packet | **done** |
-| 5h | full `F_17^32` root-table packet for rank-drop / low-degree / top charts | pending |
+| 5h | first declared `F_17^32` planted low-degree side-chart packet | **done** |
+| 5i | full `F_17^32` root-table packet for rank-drop / low-degree / top charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -436,6 +438,51 @@ This packet still does not count roots over `F_17^32`.  It is the first
 replayable real-row instantiation of the M5 deficiency-one chart, meant to
 bridge the toy acid test to later rank-drop / low-degree / top root-table
 packets.
+
+### Verified in turn 12
+
+**U12, first declared `F_17^32` low-degree side-chart packet.** The verifier
+now emits and replays
+
+```text
+experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/
+  f17_32_n512_k256_a384_planted_low_degree.json
+```
+
+Construction:
+
+```text
+T = first 127 descriptor-domain roots h_0,...,h_126;
+L(X)=prod_{r=0}^{126}(X-h_r), so deg L=127;
+S_m = sum_{r=0}^{126} h_r^m for m<255;
+S_255 is then perturbed by 1.
+```
+
+The recurrence
+
+```text
+sum_{i=0}^{127} L_i S_{r+i}=0, 0<=r<128
+```
+
+does not touch `S_255`, so it remains exact and gives a kernel vector with
+top coefficient `c_128=0`.  The shifted minor on columns `1..128` does touch
+`S_255`; its determinant is
+
+```text
+perturbation * prod(T) * det(V)^2
+```
+
+where `V` is the Vandermonde matrix on the 127 planted roots.  The packet
+records
+
+```text
+shifted minor encoding = 397691351773278982853976478113205842644
+```
+
+which is nonzero.  Hence the planted slope is full row rank but lies in the
+low-degree side chart, not in rank-drop and not in the top pseudo-remainder
+chart.  This is a replayable real-row example of the dedup branch
+`c_128=0`.
 
 ## Honest scope
 

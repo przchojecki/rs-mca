@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 F17 low-degree side chart
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  No threshold or worst-case row
+  claim.
+- **What is being added:** Turn 12 of the `A=384` underdetermined M5 packet:
+  a declared `F_17^32` low-degree side-chart family.  It constructs a
+  degree-127 kernel locator with `c_128=0`, perturbs `S_255`, and verifies a
+  nonzero shifted `128 x 128` minor.
+- **How it is useful:** Gives a replayable real-row example of the full-rank
+  low-degree/dedup side chart, complementing the planted top-chart packet.
+- **What to do next:** Add a rank-drop side-chart packet or begin root-table
+  accounting for declared `F_17^32` families.
+
 ### 2026-07-02 - M5 A384 F17 prefix-minor certificate
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

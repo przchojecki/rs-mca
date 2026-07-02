@@ -60,6 +60,10 @@ Cramer coordinate is the prefix 128 x 128 moment minor, computed as det(V)^2
 for the Vandermonde matrix on the planted support.  This is the actual
 c_128 != 0 chart condition.
 
+Turn 12 adds a declared F_17^32 low-degree side-chart packet: a degree-127
+kernel locator has c_128=0, while a shifted 128 x 128 minor is nonzero.  This
+is the full-rank low-degree chart, not a rank-drop or top-chart slope.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -79,6 +83,7 @@ N, K = 512, 256
 A_STAR = 384          # the maximal underdetermined exact agreement
 TOY_PACKET_SCHEMA = "f97-mu16-m5-a384-deficiency-one-toy-u1-u5-v1"
 F17_PACKET_SCHEMA = "f17-32-m5-a384-planted-top-chart-v1"
+F17_LOW_DEGREE_PACKET_SCHEMA = "f17-32-m5-a384-planted-low-degree-v1"
 DEFAULT_TOY_PACKET = Path(
     "experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/"
     "f97_mu16_n16_k8_a12_m5_deficiency_one_toy_u1_u5.json"
@@ -90,6 +95,10 @@ ROW_DESCRIPTOR_REF = Path(
 DEFAULT_F17_PACKET = Path(
     "experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/"
     "f17_32_n512_k256_a384_planted_top_chart.json"
+)
+DEFAULT_F17_LOW_DEGREE_PACKET = Path(
+    "experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/"
+    "f17_32_n512_k256_a384_planted_low_degree.json"
 )
 
 
@@ -1118,6 +1127,230 @@ def check_f17_packet(path: Path):
     ]
 
 
+def f17_planted_low_degree_payload():
+    """Deterministic declared F_17^32 A=384 planted low-degree side chart."""
+    descriptor = json.loads(ROW_DESCRIPTOR_REF.read_text(encoding="utf-8"))
+    field = F17Field(
+        descriptor["field_model"]["p"],
+        descriptor["field_model"]["modulus"],
+    )
+    domain = [field.decode(value) for value in descriptor["domain"]["domain_encodings"]]
+    support = domain[:127]
+
+    locator = [field.one]
+    for root in support:
+        locator = f17_poly_mul(field, locator, [f17_neg(field, root), field.one])
+
+    powers = [field.one] * len(support)
+    moments = []
+    for _ in range(256):
+        acc = field.zero
+        for value in powers:
+            acc = f17_add(field, acc, value)
+        moments.append(acc)
+        powers = [field.mul(value, root) for value, root in zip(powers, support)]
+    unperturbed_s255 = moments[255]
+    perturbation = field.one
+    moments[255] = f17_add(field, moments[255], perturbation)
+
+    recurrence_residuals = []
+    for row in range(128):
+        acc = field.zero
+        for index, coeff in enumerate(locator):
+            acc = f17_add(field, acc, field.mul(coeff, moments[row + index]))
+        recurrence_residuals.append(acc)
+
+    vandermonde_det = field.one
+    for right in range(len(support)):
+        for left in range(right):
+            vandermonde_det = field.mul(
+                vandermonde_det,
+                f17_sub(field, support[right], support[left]),
+            )
+    support_product = field.one
+    for root in support:
+        support_product = field.mul(support_product, root)
+    shifted_cofactor = field.mul(support_product, field.mul(vandermonde_det, vandermonde_det))
+    shifted_minor = field.mul(perturbation, shifted_cofactor)
+
+    planted_slope = domain[2]
+    v_window = [field.decode(index + 5) for index in range(256)]
+    u_window = [
+        f17_sub(field, moments[index], field.mul(planted_slope, v_window[index]))
+        for index in range(256)
+    ]
+    recombined = [
+        f17_add(field, u_window[index], field.mul(planted_slope, v_window[index]))
+        for index in range(256)
+    ]
+
+    support_encodings = f17_encodings(field, support)
+    locator_encodings = f17_encodings(field, locator)
+    moment_encodings = f17_encodings(field, moments)
+    residual_encodings = f17_encodings(field, recurrence_residuals)
+    u_encodings = f17_encodings(field, u_window)
+    v_encodings = f17_encodings(field, v_window)
+    locator_values_on_support = f17_encodings(
+        field,
+        [f17_poly_eval(field, locator, root) for root in support],
+    )
+
+    return {
+        "row_descriptor_hash": tagged_hash(descriptor),
+        "domain_hash": descriptor["row"]["domain_hash"],
+        "support_indices": list(range(127)),
+        "support_encodings_hash": tagged_hash(support_encodings),
+        "locator_degree": len(locator) - 1,
+        "locator_leading_coefficient": field.encode(locator[-1]),
+        "locator_coefficients_hash": tagged_hash(locator_encodings),
+        "locator_values_on_support_hash": tagged_hash(locator_values_on_support),
+        "locator_values_on_support_all_zero": all(value == field.zero for value in [
+            f17_poly_eval(field, locator, root) for root in support
+        ]),
+        "support_roots_in_domain": all(field.pow(root, 512) == field.one for root in support),
+        "support_distinct": len(set(support_encodings)) == 127,
+        "moment_window_hash": tagged_hash(moment_encodings),
+        "unperturbed_s255_encoding": field.encode(unperturbed_s255),
+        "perturbation_index": 255,
+        "perturbation_encoding": field.encode(perturbation),
+        "recurrence_residual_hash": tagged_hash(residual_encodings),
+        "recurrence_residual_all_zero": all(value == field.zero for value in recurrence_residuals),
+        "vandermonde_determinant_encoding": field.encode(vandermonde_det),
+        "vandermonde_determinant_nonzero": vandermonde_det != field.zero,
+        "support_product_encoding": field.encode(support_product),
+        "support_product_nonzero": support_product != field.zero,
+        "shifted_minor_cofactor_encoding": field.encode(shifted_cofactor),
+        "shifted_minor_encoding": field.encode(shifted_minor),
+        "shifted_minor_nonzero": shifted_minor != field.zero,
+        "planted_slope_index": 2,
+        "planted_slope_encoding": field.encode(planted_slope),
+        "v_window_rule": "v_m is the base-field constant m+5, encoded in F_17^32",
+        "v_window_hash": tagged_hash(v_encodings),
+        "v_window_nonzero": any(value != field.zero for value in v_window),
+        "u_window_rule": "u_m = S_m - planted_slope * v_m, with S_255 perturbed by 1",
+        "u_window_hash": tagged_hash(u_encodings),
+        "recombination_hash": tagged_hash(f17_encodings(field, recombined)),
+        "recombination_matches_moments": recombined == moments,
+        "low_degree_chart": {
+            "t": 128,
+            "j": 128,
+            "kernel_locator_degree": len(locator) - 1,
+            "top_cramer_coordinate_zero": True,
+            "rank_certificate": "shifted minor columns 1..128 equals perturbation * prod(support) * det(V)^2",
+            "full_row_rank": shifted_minor != field.zero,
+            "dedup_status": "routes to low-degree side chart; no degree-128 top locator in the generic kernel",
+        },
+    }
+
+
+def expected_f17_low_degree_packet():
+    payload = f17_planted_low_degree_payload()
+    return {
+        "schema_version": F17_LOW_DEGREE_PACKET_SCHEMA,
+        "status": "PROVED-LOCAL / EXPERIMENTAL",
+        "object": "M5 A=384 deficiency-one planted low-degree side chart over F_17^32",
+        "scope": {
+            "claim": (
+                "For the declared deterministic F_17^32 syndrome pencil, the "
+                "planted finite slope lies in the full-rank low-degree side "
+                "chart: c_128=0 but a shifted 128x128 minor is nonzero."
+            ),
+            "nonclaims": [
+                "does not count all low-degree slopes over F_17^32",
+                "does not prove a threshold or worst-case row bound",
+                "does not close the rank-drop or top pseudo-remainder root tables",
+            ],
+        },
+        "row": {
+            "field": "F_17^32",
+            "n": 512,
+            "k": 256,
+            "agreement": 384,
+            "t": 128,
+            "j": 128,
+            "row_descriptor": str(ROW_DESCRIPTOR_REF),
+            "row_descriptor_hash": payload["row_descriptor_hash"],
+            "domain_hash": payload["domain_hash"],
+        },
+        "declared_family": {
+            "support_indices": payload["support_indices"],
+            "support_encodings_hash": payload["support_encodings_hash"],
+            "moment_rule": "S_m=sum_{r=0}^{126} h_r^m for m<255, then S_255 is perturbed by 1",
+            "moment_window_hash": payload["moment_window_hash"],
+            "unperturbed_s255_encoding": payload["unperturbed_s255_encoding"],
+            "perturbation_index": payload["perturbation_index"],
+            "perturbation_encoding": payload["perturbation_encoding"],
+            "u_window_rule": payload["u_window_rule"],
+            "u_window_hash": payload["u_window_hash"],
+            "v_window_rule": payload["v_window_rule"],
+            "v_window_hash": payload["v_window_hash"],
+            "planted_slope_index": payload["planted_slope_index"],
+            "planted_slope_encoding": payload["planted_slope_encoding"],
+        },
+        "locator": {
+            "degree": payload["locator_degree"],
+            "leading_coefficient": payload["locator_leading_coefficient"],
+            "coefficients_hash": payload["locator_coefficients_hash"],
+            "values_on_support_hash": payload["locator_values_on_support_hash"],
+        },
+        "checks": {
+            "support_distinct": payload["support_distinct"],
+            "support_roots_in_domain": payload["support_roots_in_domain"],
+            "locator_values_on_support_all_zero": payload["locator_values_on_support_all_zero"],
+            "recurrence_residual_hash": payload["recurrence_residual_hash"],
+            "recurrence_residual_all_zero": payload["recurrence_residual_all_zero"],
+            "vandermonde_determinant_encoding": payload["vandermonde_determinant_encoding"],
+            "vandermonde_determinant_nonzero": payload["vandermonde_determinant_nonzero"],
+            "support_product_encoding": payload["support_product_encoding"],
+            "support_product_nonzero": payload["support_product_nonzero"],
+            "shifted_minor_cofactor_encoding": payload["shifted_minor_cofactor_encoding"],
+            "shifted_minor_encoding": payload["shifted_minor_encoding"],
+            "shifted_minor_nonzero": payload["shifted_minor_nonzero"],
+            "v_window_nonzero": payload["v_window_nonzero"],
+            "recombination_hash": payload["recombination_hash"],
+            "recombination_matches_moments": payload["recombination_matches_moments"],
+            "low_degree_chart": payload["low_degree_chart"],
+        },
+        "replay": {
+            "script": "experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py",
+            "command": (
+                "python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py "
+                "--check-f17-low-degree experimental/data/certificates/"
+                "hankel-f17-32-m5-underdetermined-a384/"
+                "f17_32_n512_k256_a384_planted_low_degree.json"
+            ),
+        },
+    }
+
+
+def check_f17_low_degree_packet(path: Path):
+    observed = json.loads(path.read_text(encoding="utf-8"))
+    expected = expected_f17_low_degree_packet()
+    if observed != expected:
+        raise AssertionError(f"F_17^32 planted low-degree packet mismatch: {path}")
+    checks = expected["checks"]
+    ok = (
+        checks["support_distinct"]
+        and checks["support_roots_in_domain"]
+        and checks["locator_values_on_support_all_zero"]
+        and checks["recurrence_residual_all_zero"]
+        and checks["vandermonde_determinant_nonzero"]
+        and checks["support_product_nonzero"]
+        and checks["shifted_minor_nonzero"]
+        and checks["v_window_nonzero"]
+        and checks["recombination_matches_moments"]
+        and checks["low_degree_chart"]["full_row_rank"]
+        and checks["low_degree_chart"]["top_cramer_coordinate_zero"]
+    )
+    return ok, [
+        f"packet {path} matches the recomputed F_17^32 planted low-degree payload",
+        f"schema_version = {F17_LOW_DEGREE_PACKET_SCHEMA}",
+        f"planted slope encoding = {expected['declared_family']['planted_slope_encoding']}",
+        f"shifted minor encoding = {checks['shifted_minor_encoding']} != 0",
+        "degree-127 kernel locator has c_128=0 while shifted minor proves full row rank",
+    ]
+
+
 def expected_toy_packet():
     payload = toy_u1_u5_payload()
     domain_hash = "sha256:" + hash_json_value(payload["domain"])
@@ -1209,11 +1442,16 @@ CHECKS = [
     ("deficiency-1 chart reduction for real row",         check_deficiency_one_chart_reduction),
     ("F_97 acid test: brute force equals charts",         check_toy_acid_test_bruteforce),
     ("F_17^32 planted top-chart packet",                  lambda: check_f17_packet(DEFAULT_F17_PACKET)),
+    ("F_17^32 planted low-degree packet",                 lambda: check_f17_low_degree_packet(DEFAULT_F17_LOW_DEGREE_PACKET)),
     ("packet emission + local replay validation",         lambda: check_toy_packet(DEFAULT_TOY_PACKET)),
 ]
 
 
-def run_checks(check_packet: Path | None = None, check_f17: Path | None = None):
+def run_checks(
+    check_packet: Path | None = None,
+    check_f17: Path | None = None,
+    check_f17_low_degree: Path | None = None,
+):
     print("=" * 74)
     print(f"M5 first singular-bucket pivot packet: A={A_STAR} underdetermined boundary")
     print("of C = RS[F_17^32, H, 256]  (n=512, k=256) -- bucket identification")
@@ -1230,6 +1468,16 @@ def run_checks(check_packet: Path | None = None, check_f17: Path | None = None):
                 lambda path=check_f17: check_f17_packet(path),
             )
             if title == "F_17^32 planted top-chart packet"
+            else (title, fn)
+            for title, fn in checks
+        ]
+    if check_f17_low_degree is not None:
+        checks = [
+            (
+                "F_17^32 planted low-degree packet",
+                lambda path=check_f17_low_degree: check_f17_low_degree_packet(path),
+            )
+            if title == "F_17^32 planted low-degree packet"
             else (title, fn)
             for title, fn in checks
         ]
@@ -1257,7 +1505,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", type=Path, help="replay and compare a toy U1-U5 packet")
     parser.add_argument("--check-f17", type=Path, help="replay and compare an F_17^32 planted packet")
+    parser.add_argument("--check-f17-low-degree", type=Path, help="replay and compare an F_17^32 low-degree packet")
     parser.add_argument("--write-f17-packet", type=Path, help="write the deterministic F_17^32 planted packet")
+    parser.add_argument("--write-f17-low-degree-packet", type=Path, help="write the deterministic F_17^32 low-degree packet")
     args = parser.parse_args()
     if args.write_f17_packet:
         args.write_f17_packet.parent.mkdir(parents=True, exist_ok=True)
@@ -1266,7 +1516,14 @@ def main():
             encoding="utf-8",
         )
         return
-    run_checks(args.check, args.check_f17)
+    if args.write_f17_low_degree_packet:
+        args.write_f17_low_degree_packet.parent.mkdir(parents=True, exist_ok=True)
+        args.write_f17_low_degree_packet.write_text(
+            json.dumps(expected_f17_low_degree_packet(), indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+        return
+    run_checks(args.check, args.check_f17, args.check_f17_low_degree)
 
 
 if __name__ == "__main__":
