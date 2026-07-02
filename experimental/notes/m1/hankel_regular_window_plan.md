@@ -956,6 +956,11 @@ The fixed two-core global-component slope-map companion closes the
 constant-slope off-base-locus subcase with total at most `2`; the remaining
 fixed two-core global-component residuals are nonconstant moving-slope and
 slope-free branches.
+The fixed two-core slope-free companion closes the slope-free branch: after
+`Q=E R` with `deg R<3`, slope-free forces `R` to vanish at all six direction
+nodes, impossible for a nonzero residual polynomial.  The only fixed two-core
+global-component residual left is therefore the determined nonconstant
+moving-slope branch.
 For `A=387`, the projective `Q`-space is a point, so the arbitrary-weight
 separated branch is already projective-safe with total at most `2`.
 For `A=386`, a no-common-component pair of direction conics gives projective
@@ -1005,6 +1010,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_component_cut_
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_global_component_slope_dichotomy.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a385_two_core_global_component_slope_dichotomy.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_slope_free_empty.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-slope-free-empty/f17_32_n512_k256_m3_rank6_a385_two_core_slope_free_empty.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

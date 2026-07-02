@@ -226,6 +226,19 @@ slope, and with the endpoint its projective total is at most `2`.  The
 remaining fixed two-core global-component residuals are a determined
 nonconstant slope map and a slope-free base locus or component.
 
+The `A=385` two-core slope-free packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-slope-free-empty/
+  f17_32_n512_k256_m3_rank6_a385_two_core_slope_free_empty.json
+```
+
+closes the slope-free residual.  After the fixed two-point base core is
+factored, `Q=E R` with `deg R<3`; the six direction numerator equations are
+nonzero scalar multiples of `R(y)=0` at six distinct direction nodes, impossible
+for a nonzero residual polynomial.  The fixed two-core slope-free base locus
+and slope-free global component are therefore empty.
+
 The `A=387` separated-boundary safety packet
 
 ```text
@@ -528,6 +541,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_component_cut_
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_global_component_slope_dichotomy.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a385_two_core_global_component_slope_dichotomy.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_slope_free_empty.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-slope-free-empty/f17_32_n512_k256_m3_rank6_a385_two_core_slope_free_empty.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

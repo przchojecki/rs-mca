@@ -357,6 +357,7 @@
     "A=385 separated rank-6 fixed two-core branches are projective-safe whenever a no-common-component conic pair cuts the residual Q-plane",
     "A=385 separated rank-6 fixed two-core common-component branches are projective-safe whenever each common component is cut by another direction-consistency conic",
     "A=385 separated rank-6 fixed two-core global-component constant-slope branches are projective-safe off the slope-map base locus",
+    "A=385 separated rank-6 fixed two-core slope-free base loci and global components are empty by the residual degree<3 root-count obstruction",
     "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
     "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
     "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
@@ -499,7 +500,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v39",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v40",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -569,6 +570,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a385_two_core_global_component_slope_dichotomy.json",
       "sha256": "fcff20da15e17efc860def7d707ee17c1aff41a28a0d2ebbbd90bb670045419e"
     },
+    "f17_32_n512_k256_m3_rank6_a385_two_core_slope_free_empty": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-slope-free-empty/f17_32_n512_k256_m3_rank6_a385_two_core_slope_free_empty.json",
+      "sha256": "dbb223b2966837ac70bcbfa136e73bbfbe5395acfef5dc225c1a85e6a53a6864"
+    },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
       "sha256": "fbb5310c782a7740e97eddd07b7c1aa8b7c01d0d3cacf4f6b25a2f338faff48b"
@@ -605,11 +610,12 @@
     "a385_two_core_component_cut_count": 1,
     "a385_two_core_conic_pair_safety_count": 1,
     "a385_two_core_global_component_slope_dichotomy_count": 1,
+    "a385_two_core_slope_free_empty_count": 1,
     "a386_moving_slope_refinement_count": 1,
     "a386_separated_boundary_closure_count": 1,
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 23,
+    "dependencies_checked": 24,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
     "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -653,6 +659,12 @@
       "inside the fixed two-core global-component residual, the direction linear pairs induce a rational slope map on the component off the base locus",
       "if the induced slope map is constant, the non-base branch contributes at most one finite slope and projective total at most 2<=6",
       "the remaining fixed-two-core global-component residuals are a determined nonconstant slope map and a slope-free base locus or component"
+    ],
+    "a385_two_core_slope_free_empty": [
+      "inside the fixed two-core slope-free residual, write Q=E R after the forced two-point base core, with deg R<3",
+      "slope-free forces all six direction numerators N_y(R)=Omega_y E(y)R(y) to vanish; the separated support makes every Omega_y E(y) nonzero",
+      "therefore R would vanish at six distinct direction nodes, impossible for a nonzero degree-<3 residual polynomial",
+      "the fixed two-core slope-free base-locus/global-component branch is empty; the remaining fixed two-core global-component residual is the determined nonconstant slope map"
     ],
     "a386_moving_slope_refinement": [
       "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",

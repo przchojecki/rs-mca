@@ -148,6 +148,19 @@ projective contribution `<=2<=6` after adding the endpoint.  The remaining
 fixed two-core global-component residuals are a determined nonconstant slope
 map and a slope-free base locus or component.
 
+The fixed two-core slope-free companion is
+
+```text
+experimental/notes/m1/hankel_rank6_a385_two_core_slope_free_empty.md
+```
+
+It closes the slope-free residual.  In the fixed two-core branch, write
+`Q=E R` with `deg R<3`; slope-free forces the six direction numerators
+`N_y(R)=Omega_y E(y)R(y)` to vanish.  Since the direction nodes are distinct
+and disjoint from the fixed base core, a nonzero `R` would have six roots,
+impossible for degree `<3`.  Thus the fixed two-core slope-free base locus or
+global component is empty.
+
 At `A=387`, this transfer already closes the separated branch for arbitrary
 nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at
 most one finite slope.  The companion note
@@ -282,6 +295,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_component_cut_
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_global_component_slope_dichotomy.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a385_two_core_global_component_slope_dichotomy.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_slope_free_empty.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-slope-free-empty/f17_32_n512_k256_m3_rank6_a385_two_core_slope_free_empty.json
 ```
 
 Nonclaims:

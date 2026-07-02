@@ -1,0 +1,102 @@
+{
+  "agreement": {
+    "A": 385,
+    "boundary_defect_h": 5,
+    "combined_support_size": 134,
+    "direction_node_count": 6,
+    "direction_rank": 6,
+    "forced_base_core_size": 2,
+    "j": 127,
+    "m": 128,
+    "projective_Q_search_dimension_after_core": 2,
+    "projective_Q_search_dimension_before_core": 4,
+    "residual_degree_bound": "deg R < 3",
+    "residual_vector_dimension_after_core": 3,
+    "t": 129
+  },
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "A=385 has boundary defect h=5 and residual fixed-core Q-space P^2",
+    "global-component packet exposes the fixed two-core slope-free residual",
+    "direction support is separated from the fixed two-point base core",
+    "Omega_y and E(y) are nonzero for every direction node",
+    "slope-free implies R vanishes at all six direction nodes",
+    "a nonzero degree-<3 residual polynomial has at most two roots",
+    "six direction roots contradict projective nonzero residual R"
+  ],
+  "nonclaims": [
+    "does not close fixed two-core nonconstant moving-slope components",
+    "does not prove that every A=385 over-budget branch has a fixed two-point base core",
+    "does not close moving-core or no-common-core A=385 branches",
+    "does not classify overlapping-support rank-6 pencils",
+    "does not prove endpoint payment; the slope-free branch is empty",
+    "does not compute arbitrary A=385 rank-6 root tables",
+    "does not produce a row-level M3 safe-side bound"
+  ],
+  "object": "A=385 separated rank-6 fixed two-core slope-free emptiness",
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-a385-two-core-slope-free-empty-v1",
+  "setup": {
+    "direction_numerators": "For each direction node y, the numerator linear form is N_y(R)=Omega_y E(y) R(y).",
+    "fixed_two_core_factorization": "After the fixed two-point base core, write Q=E R with E the product over the two fixed base nodes and deg R<3.",
+    "nonzero_scalars": "The barycentric residue Omega_y is nonzero because the support nodes are distinct, and E(y) is nonzero because y is not in the fixed base core.",
+    "separated_support": "The six direction nodes Y are disjoint from the base support X; therefore every direction node is disjoint from the fixed core.",
+    "slope_free_condition": "A slope-free point or slope-free component requires N_y(R)=D_y(R)=0 for every direction node y."
+  },
+  "source_artifacts": {
+    "a385_two_core_global_component_slope_dichotomy": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a385_two_core_global_component_slope_dichotomy.json",
+      "sha256": "fcff20da15e17efc860def7d707ee17c1aff41a28a0d2ebbbd90bb670045419e"
+    },
+    "rank6_boundary_low_degree_transfer": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json",
+      "sha256": "4ff0d90a1e710bca56efd7a68357d2dcc473a8150c9ddcaf1b95a061ec5c2101"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement": 385,
+    "boundary_defect_h": 5,
+    "direction_node_count": 6,
+    "direction_nodes_exceed_root_bound": true,
+    "finite_noncontained_parameter_contribution": 0,
+    "forced_base_core_size": 2,
+    "max_roots_for_nonzero_residual_R": 2,
+    "projective_Q_search_dimension_after_core": 2,
+    "projective_budget": 6,
+    "projective_endpoint_parameter_contribution": 0,
+    "remaining_residual": "fixed two-core determined nonconstant slope map",
+    "residual_degree_strict_bound": 3,
+    "residual_vector_dimension_after_core": 3,
+    "slope_free_base_locus_empty": true,
+    "slope_free_global_component_empty": true
+  },
+  "theorem": {
+    "accounting": "The fixed two-core slope-free base-locus/global-component residual contributes zero finite noncontained slopes and zero projective endpoint parameters.",
+    "component_emptiness": "Any nonempty slope-free global component over the algebraic closure contains a point.  Pointwise emptiness therefore rules out a slope-free component as well as an isolated base-locus point.",
+    "pointwise_emptiness": "If [R] is slope-free, then N_y(R)=0 for all six direction nodes. Since N_y(R) is a nonzero scalar multiple of R(y), the nonzero polynomial R of degree <3 vanishes at six distinct nodes.  A nonzero degree-<3 polynomial has at most two roots, so no such projective residual class [R] exists."
+  }
+}

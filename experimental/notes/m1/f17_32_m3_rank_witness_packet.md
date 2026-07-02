@@ -572,6 +572,11 @@ most one finite slope and total projective contribution `<=2`; the residuals
 left are a determined nonconstant slope map and a slope-free base locus or
 component.
 
+The `A=385` two-core slope-free companion closes the slope-free residual.  In
+the fixed two-core branch, `Q=E R` with `deg R<3`; if all six direction
+numerators vanish, then `R` vanishes at six distinct direction nodes, which is
+impossible for a nonzero degree-`<3` residual polynomial.
+
 The `A=387` separated-boundary safety companion uses the `h=1` specialization
 to close that agreement for arbitrary nonzero separated weights: the finite
 root table has at most one ambient root, the split-locator gate cannot increase
@@ -911,6 +916,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_component_cut_
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_global_component_slope_dichotomy.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a385_two_core_global_component_slope_dichotomy.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_slope_free_empty.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-slope-free-empty/f17_32_n512_k256_m3_rank6_a385_two_core_slope_free_empty.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

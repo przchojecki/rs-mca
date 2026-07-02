@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A385 two-core slope-free emptiness
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_slope_free_empty.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-slope-free-empty/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a385_two_core_slope_free_empty.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A separated `A=385` rank-6 fixed two-core
+  slope-free emptiness theorem: after `Q=E R` with `deg R<3`, slope-free
+  forces `R` to vanish at all six direction nodes, contradicting the
+  degree bound for nonzero residual `R`.
+- **How it is useful:** This removes the fixed two-core slope-free base-locus
+  or global-component residual left by the slope-map dichotomy, leaving the
+  determined nonconstant moving-slope branch as the only fixed two-core
+  global-component residual.
+- **What to do next:** Attack that fixed two-core nonconstant moving-slope
+  branch with split-locator, quotient, or moving-slope incidence structure,
+  keeping moving-core/no-common-core and overlapping-support cases separate.
+
 ### 2026-07-02 - A385 two-core global-component slope dichotomy
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
