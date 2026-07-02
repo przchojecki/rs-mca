@@ -17,8 +17,11 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/m5-stratification-partition/valid_stratified_packet.json
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/m5-stratification-partition/invalid_wrong_leaf_stratified_packet.json
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/m5-stratification-partition/invalid_missing_removed_ledger_ref_packet.json
 ```
 
 The valid packet demonstrates first-match dedup in an inline toy table.  The
 invalid packet deliberately assigns a tangent-plus-quotient candidate to the
-quotient leaf instead of the earlier tangent leaf.
+quotient leaf instead of the earlier tangent leaf.  The missing-reference packet
+checks that removed-ledger claims point to an existing local certificate file.

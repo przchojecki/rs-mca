@@ -104,13 +104,17 @@ python3 -m py_compile experimental/scripts/verify_m5_stratification_partition.py
 The v12 packet checker also accepts an optional `stratification_leaf_table`
 field.  When present, it verifies first-match leaf assignment, rejects duplicate
 candidate rows, and recomputes the optional `stratification_counted_union` from
-the declared counted terminal labels.  The regression packets are:
+the declared counted terminal labels.  The same checker update verifies that
+local `removed_ledgers[*].certificate_ref` paths exist.  The regression packets
+are:
 
 ```bash
 python3 scripts/check_aperiodic_eliminant_packet.py \
   experimental/data/certificates/m5-stratification-partition/valid_stratified_packet.json
 python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
   experimental/data/certificates/m5-stratification-partition/invalid_wrong_leaf_stratified_packet.json
+python3 scripts/check_aperiodic_eliminant_packet.py --expect-fail \
+  experimental/data/certificates/m5-stratification-partition/invalid_missing_removed_ledger_ref_packet.json
 ```
 
 ## Nonclaims

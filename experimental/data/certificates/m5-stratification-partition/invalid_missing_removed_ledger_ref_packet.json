@@ -1,0 +1,28 @@
+{
+  "agreement_threshold": 13,
+  "declared_aperiodic_numerator": 0,
+  "exact_agreements": [
+    {
+      "A": 13,
+      "j": 3,
+      "status": "empty",
+      "t": 5
+    }
+  ],
+  "removed_ledgers": [
+    {
+      "certificate_ref": "experimental/data/certificates/m5-stratification-partition/does-not-exist.json",
+      "name": "missing_paid_ledger",
+      "numerator": 1
+    }
+  ],
+  "root_union_mod_97": [],
+  "root_union_table_ref": "inline:root_union_mod_97",
+  "row": {
+    "domain_hash": "toy-mu16",
+    "field": "F_97",
+    "k": 8,
+    "n": 16
+  },
+  "schema_version": "aperiodic-hankel-eliminant-v1"
+}

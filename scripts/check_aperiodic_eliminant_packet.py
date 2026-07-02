@@ -109,6 +109,29 @@ def first_matching_key(data: dict[str, Any], *patterns: str) -> str | None:
     return None
 
 
+def ref_path_part(ref: str) -> str:
+    return ref.split("#", 1)[0]
+
+
+def is_external_or_virtual_ref(ref: str) -> bool:
+    return ref.startswith(("inline:", "none:", "http://", "https://", "doi:"))
+
+
+def validate_local_ref(ref: str, field: str) -> None:
+    if not ref:
+        raise PacketError(f"{field}: empty reference")
+    if is_external_or_virtual_ref(ref):
+        return
+    path_part = ref_path_part(ref)
+    if not path_part:
+        raise PacketError(f"{field}: empty path before fragment")
+    path = Path(path_part)
+    if path.is_absolute():
+        raise PacketError(f"{field}: absolute paths are not portable: {ref}")
+    if not path.exists():
+        raise PacketError(f"{field}: referenced file does not exist: {path_part}")
+
+
 def validate_schema(packet: Any, schema_path: Path) -> None:
     schema = load_json(schema_path)
     try:
@@ -184,6 +207,10 @@ def validate_schema_fallback(packet: Any, schema: dict[str, Any]) -> None:
             raise PacketError(
                 f"removed_ledgers[{index}].certificate_ref must be a string"
             )
+        validate_local_ref(
+            ledger["certificate_ref"],
+            f"removed_ledgers[{index}].certificate_ref",
+        )
         if not isinstance(ledger["numerator"], int) or ledger["numerator"] < 0:
             raise PacketError(
                 f"removed_ledgers[{index}].numerator must be nonnegative integer"
@@ -279,6 +306,14 @@ def validate_residual_labels(packet: dict[str, Any]) -> None:
                             pivot=pivot.get("pivot"),
                         )
                     )
+
+
+def validate_references(packet: dict[str, Any]) -> None:
+    for index, ledger in enumerate(packet.get("removed_ledgers", [])):
+        validate_local_ref(
+            ledger.get("certificate_ref", ""),
+            f"removed_ledgers[{index}].certificate_ref",
+        )
 
 
 def validate_regular_minor(
@@ -601,6 +636,7 @@ def validate_stratification_leaf_table(packet: dict[str, Any]) -> None:
 def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
     validate_schema(packet, schema_path)
     validate_residual_labels(packet)
+    validate_references(packet)
     validate_stratification_leaf_table(packet)
 
     row = packet["row"]
@@ -645,6 +681,8 @@ def validate_packet(packet: dict[str, Any], schema_path: Path) -> None:
                 )
     elif packet.get("root_union_table_ref", "").startswith("inline"):
         raise PacketError("inline root_union_table_ref requires an inline root_union")
+    elif "root_union_table_ref" in packet:
+        validate_local_ref(packet["root_union_table_ref"], "root_union_table_ref")
 
     bad_union_key = first_matching_key(
         packet, r"enumerated_bad_slope_union_mod_\d+", r"enumerated_bad_slope_union"

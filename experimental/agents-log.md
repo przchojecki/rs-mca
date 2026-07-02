@@ -43,6 +43,8 @@ Keep entries concise and link to the relevant files.
   leaf-accounting layer.  Given ordered paid, dedup, closed-chart, and residual
   predicates, every candidate slope or chart instance lands in exactly one
   terminal leaf, with unresolved cases explicitly labelled residual unknown.
+  The v12 checker now also validates optional stratification leaf tables and
+  local removed-ledger certificate references.
 - **How it is useful:** This supplies the accounting convention needed by M4/M5
   packet tables before geometric Hankel predicates and root tables are attached:
   overlapping tangent, quotient, extension, eliminant, and residual claims are
