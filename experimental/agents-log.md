@@ -59,23 +59,22 @@ Keep entries concise and link to the relevant files.
   on a conic.  Hence the raw tangent bound `r'+1` improves to `r'` while
   `r'` exceeds this dimension; `e_G=120` is safe and `e_G=119` is the next
   cofactor-current tangent-tail core.  Exact agreement then closes line
-  `e_G=109..119` and conic `e_G=115..119`: for `r'=126-e_G<=17`, seven
+  `e_G=109..119` for both lines and conics: for `r'=126-e_G<=17`, seven
   projective slopes force at most two private residual coordinates beyond the
   common support.  The cases `d<r'`, `d=r'`, and `d=r'+1` are respectively
   higher-agreement, same-support-contained, or incompatible with the low
   quotient-family dimension by cofactor independence.  In the `d=r'+2` branch,
   six finite cofactors become six two-supported signed-edge vectors; their
-  span has rank at least `3`, which closes lines but is not enough to close
-  conics by dimension alone.  The verifier records the sharp conic boundary:
-  any conic survivor in `e_G=109..114` must use all six edges of a `K4` on
-  four residual coordinates.  The
+  span has rank at least `3`, which closes lines.  The conic K4 boundary is
+  then closed because the six pair quadratics from four residual coordinates
+  have conic-evaluation determinant `prod_{i<j}(x_j-x_i)^2`.  The
   incidence-only witnesses show that the
   remaining finite-incidence one-over rows cannot be closed by sharpening only
   the current incidence and pair-overlap counts.  The cofactor-current profile
   removes the stale raw `e_G=120` one-over row; the exact-current profile
-  removes line `e_G=109..119` and conic `e_G=115..119`, and lowers the conic
-  max bound from `26` to `25`.  The remaining high-core quotient ranges shrink
-  to line `72..108` and conic `69..114`.  The
+  removes line/conic `e_G=109..119` and lowers the conic max bound from `26`
+  to `25`.  The remaining high-core quotient ranges shrink to line `72..108`
+  and conic `69..108`.  The
   remaining over-budget normal form now has exactly `17` rows: line `72..80`
   and conic `69..76`, each requiring six distinct finite slopes plus an unpaid
   endpoint and the printed saturated incidence/overlap conditions.  In the

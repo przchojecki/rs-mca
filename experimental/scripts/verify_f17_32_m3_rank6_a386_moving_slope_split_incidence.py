@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from functools import lru_cache
 import itertools
 from hashlib import sha256
 import json
@@ -19,7 +20,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v35"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v36"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -600,6 +601,77 @@ def conic_signed_edge_tail_boundary_row(core: int) -> dict[str, Any]:
         ),
         "projective_endpoint_status": "still needs endpoint payment or a stronger conic-specific exclusion",
         "closes_branch": False,
+    }
+
+
+@lru_cache(maxsize=1)
+def pair_quadratic_conic_determinant_identity() -> dict[str, Any]:
+    """Verify that the six pair quadratics from four points are not conic-coplanar."""
+    import sympy as sp
+
+    x = sp.symbols("x0:4")
+    rows = []
+    for left, right in itertools.combinations(range(4), 2):
+        a = x[left]
+        b = x[right]
+        coeffs = [sp.Integer(1), -(a + b), a * b]
+        X, Y, Z = coeffs
+        rows.append([X * X, Y * Y, Z * Z, X * Y, X * Z, Y * Z])
+    determinant = sp.factor(sp.Matrix(rows).det())
+    vandermonde = sp.prod(x[j] - x[i] for i in range(4) for j in range(i + 1, 4))
+    require(
+        sp.factor(determinant - vandermonde**2) == 0,
+        "pair-quadratic conic determinant identity failed",
+    )
+    return {
+        "symbolic_variables": ["x0", "x1", "x2", "x3"],
+        "points": "q_ij(T)=(T-x_i)(T-x_j), 0<=i<j<=3",
+        "conic_evaluation_basis": ["X^2", "Y^2", "Z^2", "XY", "XZ", "YZ"],
+        "determinant_factorization": "prod_{0<=i<j<=3}(x_j-x_i)^2",
+        "nonzero_when": "the four residual coordinates are distinct",
+        "checked_with_sympy": sp.__version__,
+    }
+
+
+def conic_k4_tail_closure_row(boundary_row: dict[str, Any]) -> dict[str, Any]:
+    """Close the K4 signed-edge boundary by the pair-quadratic conic determinant."""
+    require(
+        boundary_row["sharp_extremizer_shape"] == "K4_on_four_residual_coordinates",
+        "K4 boundary shape expected",
+    )
+    require(not boundary_row["closes_branch"], "boundary row should be pre-closure")
+    punctured_radius = boundary_row["punctured_cosupport_radius"]
+    common_residual_zero_count = punctured_radius - 2
+    require(common_residual_zero_count >= 10, "unexpected K4 common residual core")
+    determinant_identity = pair_quadratic_conic_determinant_identity()
+    return {
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": boundary_row["forced_external_core_size"],
+        "punctured_cosupport_radius": punctured_radius,
+        "surviving_signed_edge_shape": boundary_row["sharp_extremizer_shape"],
+        "common_residual_zero_count_for_six_members": common_residual_zero_count,
+        "active_residual_coordinate_count": 4,
+        "effective_pair_quadratic_degree_after_common_core": 2,
+        "pair_quadratic_count": 6,
+        "pair_quadratic_span_dimension": 3,
+        "component_linear_image_rank": 3,
+        "linear_image_reason": (
+            "The six K4 pair cofactors have signed-incidence rank three, so the "
+            "quotient map from the conic's ambient projective plane to the "
+            "degree-two quotient-polynomial plane has rank three on these "
+            "points and is a projective linear isomorphism onto its image."
+        ),
+        "pair_quadratic_conic_determinant_identity": determinant_identity,
+        "conic_noncontainment_reason": (
+            "A projective conic through the six image points would give a "
+            "nonzero quadratic equation vanishing on all six pair quadratics.  "
+            "The determinant of the six conic-evaluation rows is the squared "
+            "Vandermonde in the four residual coordinates, hence nonzero for "
+            "distinct residual coordinates in characteristic 17."
+        ),
+        "contradiction": True,
+        "projective_safe_after_k4_conic_obstruction": True,
+        "projective_upper_bound_after_obstruction": PROJECTIVE_BUDGET,
     }
 
 
@@ -2814,19 +2886,29 @@ def build_certificate() -> dict[str, Any]:
         return max(safe_radii)
 
     line_exact_tail_safe_radius_max = exact_tail_safe_radius_max_for_component("line")
-    conic_exact_tail_safe_radius_max = exact_tail_safe_radius_max_for_component(
+    conic_signed_rank_exact_tail_safe_radius_max = exact_tail_safe_radius_max_for_component(
         "irreducible_conic"
     )
     line_exact_tail_safe_core_min = j_value - line_exact_tail_safe_radius_max
-    conic_exact_tail_safe_core_min = j_value - conic_exact_tail_safe_radius_max
+    conic_signed_rank_exact_tail_safe_core_min = (
+        j_value - conic_signed_rank_exact_tail_safe_radius_max
+    )
+    conic_exact_tail_safe_core_min = line_exact_tail_safe_core_min
     require(line_exact_tail_safe_radius_max == 17, "line exact-tail safe radius changed")
     require(line_exact_tail_safe_core_min == 109, "line exact-tail safe core changed")
-    require(conic_exact_tail_safe_radius_max == 11, "conic exact-tail safe radius changed")
-    require(conic_exact_tail_safe_core_min == 115, "conic exact-tail safe core changed")
+    require(
+        conic_signed_rank_exact_tail_safe_radius_max == 11,
+        "conic signed-rank exact-tail safe radius changed",
+    )
+    require(
+        conic_signed_rank_exact_tail_safe_core_min == 115,
+        "conic signed-rank exact-tail safe core changed",
+    )
+    require(conic_exact_tail_safe_core_min == 109, "conic exact-tail safe core changed")
     exact_tail_closure_cores_by_component = {
         "line": list(range(line_exact_tail_safe_core_min, line_cofactor_tangent_safe_core_min)),
         "irreducible_conic": list(
-            range(conic_exact_tail_safe_core_min, conic_cofactor_tangent_safe_core_min)
+            range(conic_signed_rank_exact_tail_safe_core_min, conic_cofactor_tangent_safe_core_min)
         ),
     }
     require(
@@ -2844,7 +2926,11 @@ def build_certificate() -> dict[str, Any]:
     ]
     conic_signed_edge_tail_boundary_rows = [
         conic_signed_edge_tail_boundary_row(core)
-        for core in range(line_exact_tail_safe_core_min, conic_exact_tail_safe_core_min)
+        for core in range(line_exact_tail_safe_core_min, conic_signed_rank_exact_tail_safe_core_min)
+    ]
+    conic_k4_tail_closure_rows = [
+        conic_k4_tail_closure_row(row)
+        for row in conic_signed_edge_tail_boundary_rows
     ]
     line_base_defect_rows = [
         line_base_defect_threshold_row(row) for row in line_survival_rows
@@ -3218,6 +3304,39 @@ def build_certificate() -> dict[str, Any]:
         "conic signed-edge boundary profile changed",
     )
     require(
+        [
+            (
+                row["forced_external_core_size"],
+                row["punctured_cosupport_radius"],
+                row["common_residual_zero_count_for_six_members"],
+                row["effective_pair_quadratic_degree_after_common_core"],
+                row["pair_quadratic_count"],
+                row["pair_quadratic_span_dimension"],
+                row["pair_quadratic_conic_determinant_identity"][
+                    "determinant_factorization"
+                ],
+                row["contradiction"],
+                row["projective_safe_after_k4_conic_obstruction"],
+            )
+            for row in conic_k4_tail_closure_rows
+        ]
+        == [
+            (
+                core,
+                126 - core,
+                124 - core,
+                2,
+                6,
+                3,
+                "prod_{0<=i<j<=3}(x_j-x_i)^2",
+                True,
+                True,
+            )
+            for core in range(109, 115)
+        ],
+        "conic K4 tail closure profile changed",
+    )
+    require(
         [group for group in line_exact_current_profile_groups if group["one_over_budget"]]
         == [
             {
@@ -3247,9 +3366,9 @@ def build_certificate() -> dict[str, Any]:
         "line exact-current tail should be safe from e=109",
     )
     require(
-        conic_exact_current_profile_groups[-1]["external_core_range"] == [115, 120]
+        conic_exact_current_profile_groups[-1]["external_core_range"] == [109, 120]
         and conic_exact_current_profile_groups[-1]["projective_safe"],
-        "conic exact-current tail should be safe from e=115",
+        "conic exact-current tail should be safe from e=109",
     )
     require(
         line_incidence_one_over_cores == list(range(72, 81)),
@@ -4446,7 +4565,8 @@ def build_certificate() -> dict[str, Any]:
             ),
             "exact_agreement_tangent_tail_closure": (
                 "The cofactor-current tangent tail is closed by exact agreement "
-                "for line cores e_G=109..119 and conic cores e_G=115..119.  If "
+                "for line cores e_G=109..119 and, after the K4 determinant "
+                "closure, conic cores e_G=109..119.  If "
                 "seven projective slopes survived, they could be sent to seven "
                 "finite slopes in the punctured row.  For residual radius r'<=17 "
                 "the tangent-staircase residual-budget proof allows at most two "
@@ -4462,13 +4582,21 @@ def build_certificate() -> dict[str, Any]:
                 "dimension alone."
             ),
             "conic_signed_edge_tail_boundary_profile": (
-                "For the remaining conic tangent-tail cores e_G=109..114, any "
+                "Before the determinant closure, conic tangent-tail cores e_G=109..114 "
+                "have one possible signed-edge boundary: any "
                 "seven-projective-slope survivor must lie in the d=r'+2 branch.  "
                 "The six finite two-private cofactors are signed edge vectors.  "
                 "Rank at most two supports at most three edges, while rank three "
                 "supports six edges only in the K4 extremizer.  Hence a survivor "
-                "must use all six edges on four residual coordinates; this is a "
-                "sharp obstruction profile, not a closure."
+                "must use all six edges on four residual coordinates."
+            ),
+            "conic_k4_tail_closure_profile": (
+                "The K4 signed-edge boundary is impossible for an irreducible "
+                "conic component.  After factoring the common residual zero set, "
+                "the six finite classes become the six pair quadratics from four "
+                "distinct residual coordinates.  The determinant of their six "
+                "conic-evaluation rows is prod_{i<j}(x_j-x_i)^2, so no projective "
+                "conic contains all six image points in characteristic 17."
             ),
             "single_saving_closure_ledger": (
                 "Every cofactor-current one-over row in the moving-slope packet is "
@@ -4478,7 +4606,7 @@ def build_certificate() -> dict[str, Any]:
                 "saving lowers the projective count from 7 to the budget 6."
             ),
             "exact_current_minimal_obstruction_profile": (
-                "After the component-wise exact-agreement tail closure, any remaining "
+                "After the exact-agreement plus K4 determinant tail closure, any remaining "
                 "projective over-budget witness must be an exact-current "
                 "finite-incidence obstruction: one of the line cores 72..80 or "
                 "conic cores 69..76, with exactly six finite source classes, six "
@@ -4648,6 +4776,7 @@ def build_certificate() -> dict[str, Any]:
         "punctured_tangent_tail_cofactor_span_closure": tangent_tail_cofactor_span_closure_rows,
         "punctured_tangent_tail_exact_agreement_closure": tangent_tail_exact_closure_rows,
         "conic_signed_edge_tail_boundary_profile": conic_signed_edge_tail_boundary_rows,
+        "conic_k4_tail_closure_profile": conic_k4_tail_closure_rows,
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -4800,6 +4929,9 @@ def build_certificate() -> dict[str, Any]:
             "conic_residual_projective_safe_after_exact_tail_for_external_core_at_least": (
                 conic_exact_tail_safe_core_min
             ),
+            "conic_residual_projective_safe_after_signed_rank_for_external_core_at_least": (
+                conic_signed_rank_exact_tail_safe_core_min
+            ),
             "conic_signed_edge_tail_boundary_core_range": [
                 min(row["forced_external_core_size"] for row in conic_signed_edge_tail_boundary_rows),
                 max(row["forced_external_core_size"] for row in conic_signed_edge_tail_boundary_rows),
@@ -4807,8 +4939,19 @@ def build_certificate() -> dict[str, Any]:
             "conic_signed_edge_tail_boundary_shape": (
                 conic_signed_edge_tail_boundary_rows[0]["sharp_extremizer_shape"]
             ),
-            "conic_signed_edge_tail_boundary_closes_branch": all(
-                row["closes_branch"] for row in conic_signed_edge_tail_boundary_rows
+            "conic_signed_edge_tail_boundary_closes_branch": False,
+            "conic_k4_tail_closure_core_range": [
+                min(row["forced_external_core_size"] for row in conic_k4_tail_closure_rows),
+                max(row["forced_external_core_size"] for row in conic_k4_tail_closure_rows),
+            ],
+            "conic_k4_tail_closure_determinant": (
+                conic_k4_tail_closure_rows[0]["pair_quadratic_conic_determinant_identity"][
+                    "determinant_factorization"
+                ]
+            ),
+            "conic_k4_tail_closure_closes_branch": all(
+                row["projective_safe_after_k4_conic_obstruction"]
+                for row in conic_k4_tail_closure_rows
             ),
             "conic_cofactor_improved_tangent_one_over_external_core": (
                 conic_cofactor_tangent_one_over_cores
@@ -4950,7 +5093,7 @@ def build_certificate() -> dict[str, Any]:
             "conic_high_core_forced_core_is_global_common_core": True,
             "remaining_unclosed_residuals": [
                 "moving-slope line component with forced external split-root core in 72..108 for projective accounting",
-                "irreducible moving-slope conic component with forced external split-root core in 69..114 for projective accounting",
+                "irreducible moving-slope conic component with forced external split-root core in 69..108 for projective accounting",
                 "possible independent noncontained vectors at slopes also admitting a slope-free vector",
             ],
         },
@@ -4978,7 +5121,7 @@ def build_certificate() -> dict[str, Any]:
             "the e=120 punctured tangent tail is projective-safe by the cofactor-span obstruction",
             "cofactor-span top-saturation exclusion improves the high-core tangent bound from r'+1 to r' until the cofactor degree reaches the fixed quotient-family dimension",
             "cofactor-current residual profile makes e=120 safe and exposes e=119 before exact-tail closure",
-            "exact-agreement tangent-tail closure makes line e=109..119 and conic e=115..119 projective-safe",
+            "exact-agreement plus K4 determinant tail closure makes line/conic e=109..119 projective-safe",
             "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds",
             "one-over finite-incidence saturation conditions are computed for the endpoint-only subranges",
             "over-budget survival conditions require bound saturation, distinct finite slopes, and an unpaid endpoint",
@@ -5001,8 +5144,7 @@ def build_certificate() -> dict[str, Any]:
         "nonclaims": [
             "does not prove every moving-slope component is a line",
             "does not close line components with forced external split-root core in 72..108 in projective accounting",
-            "does not close irreducible conic moving-slope components with forced external split-root core in 69..114 in projective accounting",
-            "does not close conic tangent-tail cores 109..114 from the signed-edge rank bound alone",
+            "does not close irreducible conic moving-slope components with forced external split-root core in 69..108 in projective accounting",
             "does not prove the high-core quotient split problem is empty or paid",
             "does not claim the punctured tangent numerator at the residual threshold is within the original row budget",
             "does not rule out another independent noncontained vector at the same finite slope",

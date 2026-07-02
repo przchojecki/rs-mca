@@ -338,11 +338,25 @@ quotient-family dimension.  Conversely, this is the only sharp shape: any
 surviving conic tail witness in this range must use all six edges of a `K4`
 on four residual coordinates.
 
+The `K4` boundary is then closed by a conic-determinant obstruction.  After
+factoring the common residual zero set, the six finite classes become the six
+pair quadratics `(T-x_i)(T-x_j)` from four distinct residual coordinates.  The
+determinant of the six conic-evaluation rows in the basis
+`X^2,Y^2,Z^2,XY,XZ,YZ` is
+
+```text
+prod_{0<=i<j<=3} (x_j-x_i)^2.
+```
+
+This is nonzero in characteristic `17`, so no projective conic can contain all
+six image points.  Hence the conic tangent-tail rows `109<=|E|<=114` are also
+closed.
+
 Thus the unclosed high-core quotient range is finite:
 
 ```text
 line residuals:  72 <= |E| <= 108;
-conic residuals: 69 <= |E| <= 114.
+conic residuals: 69 <= |E| <= 108.
 ```
 
 This uses the projective high-agreement tangent theorem on the punctured row,
@@ -482,7 +496,7 @@ finite-incidence row, any one listed saving lowers the projective count from
 `7` to the budget `6`; for `e_G=120` that saving is supplied by the
 cofactor-span obstruction.  The subsequent exact-agreement filter closes the
 cofactor-current tangent-tail rows line `e_G=109..119` and conic
-`e_G=115..119`, so the exact-current
+`e_G=109..119`, so the exact-current
 one-over rows are only the finite-incidence ranges.
 
 The packet now records these exact-current rows as a minimal obstruction
@@ -498,8 +512,8 @@ line base-splitting pressure remains only for `e_G=72..74`; line cores
 `75..80` need external-slack, duplicate-slope, endpoint, or paid-class input.
 For conics, base plus secant pressure remains for `e_G=69..71`, secant-only
 pressure remains for `e_G=72..74`, and cores `75,76` need an endpoint,
-duplicate-slope, or paid-class input.  The `e_G=120`, line `e_G=109..119`,
-and conic `e_G=115..119` rows
+duplicate-slope, or paid-class input.  The `e_G=120` and line/conic
+`e_G=109..119` rows
 are now isolated as closed punctured-tangent tails rather than remaining proof
 targets.
 
@@ -515,8 +529,7 @@ Nonclaims:
 ```text
 no proof that every moving-slope component is a line;
 no closure of line components with forced external split-root core in 72..108 in projective accounting;
-no closure of irreducible conic moving-slope components with forced external split-root core in 69..114 in projective accounting;
-no closure of conic tangent-tail cores 109..114 from the signed-edge rank bound alone;
+no closure of irreducible conic moving-slope components with forced external split-root core in 69..108 in projective accounting;
 no proof that the high-core quotient split problem is empty or paid;
 no claim that the punctured tangent numerator at the residual threshold is within the original row budget;
 no exclusion of another independent noncontained vector at the same finite slope;
