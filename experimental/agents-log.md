@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Towards-prize v3 cap-package constant audit
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/audits/towards_prize_v3_cap_package_audit.md`;
+  `experimental/scripts/verify_towards_prize_v3_cap_package.py`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.  Exact integer and constant check; no theorem-chain
+  promotion.
+- **What is being added:** A verifier and note for the compact v3 cap-paper
+  package constants: deployed interval endpoints, safe error gates,
+  KoalaBear half-Johnson arithmetic, and the rate comparison showing that the
+  half-Johnson handle improves the self-contained edge exactly below rate
+  `1/4`.
+- **How it is useful:** Addresses the immediate v3 audit request to check the
+  imported cap-paper package constants before relying on the compact
+  `towards-prize.tex` statement as a prize-facing guide.
+- **What to do next:** Audit the circle/stereographic and genus-one transport
+  hypotheses against the actual deployed code models.
+
 ### 2026-07-02 - Paper D v12 BCIKS import normalization audit
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
