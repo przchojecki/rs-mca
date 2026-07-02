@@ -8,7 +8,7 @@ For odd p and even N | p+1, define
     X_N = {zeta + zeta^{-1} : zeta in mu_N(F_{p^2})} subset F_p.
 
 The monic Dickson polynomial D_m is defined by D_m(z+z^{-1})=z^m+z^{-m}.
-The Chebyshev transfer in slackMCA_v3.tex uses the finite identities
+The Chebyshev transfer in slackMCA_v4.tex uses the finite identities
 
     D_m(X_N) = X_{N/m},
     D_m^{-1}(w) cap X_N has size m for w not in {+2,-2},

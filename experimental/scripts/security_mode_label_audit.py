@@ -21,10 +21,10 @@ from typing import Iterable
 
 
 SOURCE_FILES = (
-    "tex/snarks_v4.tex",
+    "tex/snarks_v5.tex",
     "tex/proximity_blueprint_v3.tex",
 )
-PAPER_C_FILE = "tex/snarks_v4.tex"
+PAPER_C_FILE = "tex/snarks_v5.tex"
 BLUEPRINT_FILE = "tex/proximity_blueprint_v3.tex"
 PROBLEM_ID = "Paper C C5 / blueprint item: Security statement modes"
 PROOF_STATUS = "AUDIT"

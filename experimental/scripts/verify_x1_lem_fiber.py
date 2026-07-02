@@ -3,7 +3,7 @@ r"""
 Independent audit of Paper D `lem:fiber`(ii) -- the SOLE remaining dependency of
 the CS25-free deep-point cap (see notes/x1/x1_cs25_free_cap.md).
 
-cs25_cap_v4.tex `lem:fiber`(ii): with B subseteq F, D subseteq B^x a coset of
+cs25_cap_v12.tex `lem:fiber`(ii): with B subseteq F, D subseteq B^x a coset of
 order n, a|k, rho=k/n, N=n/a, ell2 = rho*N + 2 <= N, and the heavy word
     u_z = (x^{k+2a} + z*x^{k+a})_{x in D},
 there is z in B with
@@ -17,7 +17,7 @@ The deep-point route (x1 bridge) drops thm:A, replacing the contrapositive
 "small eca => small list" by the DIRECT identity Bad_CA = Bad_MCA = Deep_alpha
 plus averaging. lem:fiber is kept verbatim. So the deep-point cap is
 "CS25-free MODULO lem:fiber" -- which is only meaningful if lem:fiber itself
-imports nothing from CS25. The proof in cs25_cap_v4.tex (part ii) is elementary
+imports nothing from CS25. The proof in cs25_cap_v12.tex (part ii) is elementary
 locator-polynomial combinatorics + a pigeonhole over B, self-contained (only
 part (i), the lower rung, cites Cho26a). This script CONFIRMS part (ii) by full
 enumeration over F_17, so the dependency claim rests on a checked lemma.

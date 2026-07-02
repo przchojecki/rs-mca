@@ -8,7 +8,7 @@ does not upgrade any theorem status.
 Object.  Let ``H <= F_q^*`` be the multiplicative subgroup of order ``n`` (here
 ``n | q - 1`` so ``H = mu_n`` splits completely over ``F_q``).  For a prefix
 length ``sigma`` and complement size ``m = n - (k + sigma)``, the monomial-prefix
-fiber of Paper B (`slackMCA_v3.tex`, `prop:monomial-fiber`,
+fiber of Paper B (`slackMCA_v4.tex`, `prop:monomial-fiber`,
 `conj:prefix-local`) is computed here in its *complement-locator* form, using the
 bijection recorded in `experimental/l1_aperiodic_prefix_collision.md`:
 

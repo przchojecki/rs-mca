@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Numerical certificate for Paper D v7 (tex/cs25_cap_v7.tex):
+Numerical certificate for Paper D v7 (archived/cs25_cap_v7.tex):
   thm:main  (universal cap, lines 575-618)
   cor:grand (challenge envelope, line 714) -- the headline 2^-86 / 2^-42 caps
   cor:deployed (KoalaBear sextic, line 792) -- the deployed 2^-22 row
@@ -140,7 +140,7 @@ dep = make_row("deployed/KoalaBear-sextic", Fraction(1, 2), 256, 7,
 def f(x): return "%.4f" % x
 
 print("=" * 132)
-print("Paper D v7  cs25_cap_v7.tex  --  thm:main / cor:grand numerical certificate")
+print("Paper D v7  archived/cs25_cap_v7.tex  --  thm:main / cor:grand numerical certificate")
 print("eq:hyp:  C(N, rhoN+2) >= |B|(q/k+1)      floor: (1/2k)(1-n/q) = (q-n)/(2kq)")
 print("=" * 132)
 hdr = ("rho", "N", "gap", "instance", "n", "k", "|F|bits",

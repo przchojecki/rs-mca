@@ -5,7 +5,7 @@
   generic-`alpha` density; not a single brute-certified line (infeasible over `F_{p^6}`).
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
 - **Date:** 2026-06-24.
-- **Scope:** Paper D (`tex/cs25_cap_v4.tex`) `cor:Fvalued`, `prob:explicit`,
+- **Scope:** Paper D (`tex/cs25_cap_v12.tex`) `cor:Fvalued`, `prob:explicit`,
   `cor:deployed`, `thm:main`/`cor:grand` (universal cap), `lem:fiber`; the deep-point bridge of `notes/x1` §1 /
   `notes/f1/f1_deep_point_list_to_ca_mca.md`. Does not edit Papers A--D.
 

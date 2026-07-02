@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify a Paper D v9 regular Hankel-minor certificate toy row.
+"""Verify a Paper D v12 regular Hankel-minor certificate toy row.
 
 The certificate is intentionally small and exact:
 
@@ -368,7 +368,7 @@ def main() -> None:
         print(render(certificate), end="")
         return
 
-    print("Paper D v9 regular Hankel-minor toy certificate")
+    print("Paper D v12 regular Hankel-minor toy certificate")
     print(f"row: F_17, n={N}, k={K}, threshold a={AGREEMENT_THRESHOLD}")
     print(f"domain_hash={certificate['row']['domain_hash']}")
     for item in certificate["exact_agreements"]:

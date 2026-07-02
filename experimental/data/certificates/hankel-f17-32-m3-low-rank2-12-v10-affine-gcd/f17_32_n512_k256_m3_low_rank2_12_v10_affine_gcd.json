@@ -201,7 +201,7 @@
   "claim": "For the synthetic low-rank M3 ladder of ranks 2..12 over the accepted F_17^32 row and every A=385..426, the v10 canonical affine rank-drop gcd is constant because the prefix and row-shift-1 maximal minors are coprime.  Thus the finite affine rank-drop root set is empty for these structured branches.",
   "construction": {
     "accepted_inputs_only": true,
-    "argument": "The v10 affine rank-drop gcd divides the gcd of any two nonzero maximal minors.  In every rank/agreement row, the displayed prefix and row-shift-1 minors are coprime, so the canonical affine rank-drop gcd is 1 and has no finite affine roots.",
+    "argument": "The v12 affine rank-drop gcd divides the gcd of any two nonzero maximal minors.  In every rank/agreement row, the displayed prefix and row-shift-1 minors are coprime, so the canonical affine rank-drop gcd is 1 and has no finite affine roots.",
     "branch": "synthetic_low_rank_ladder",
     "displayed_maximal_minors": [
       "prefix rows 0..j",
@@ -10874,7 +10874,7 @@
   "source_artifacts": [
     {
       "name": "paper_d_v10",
-      "ref": "tex/cs25_cap_v10.tex",
+      "ref": "tex/cs25_cap_v12.tex",
       "sha256": "64fb843392bef75b05b50fcdae7f2e6ff9ae3b229d6848cacc39ecb28fd153ea"
     },
     {

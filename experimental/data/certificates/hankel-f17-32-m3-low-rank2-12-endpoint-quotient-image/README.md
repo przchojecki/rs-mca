@@ -3,7 +3,7 @@
 This certificate is a standalone companion to the low-rank2..12 affine-gcd
 packet.  It covers the synthetic M3 low-rank ladder at ranks `2..12` and
 agreements `385 <= A <= 426`, using only accepted upstream inputs: the
-`F_17^32`, `n=512`, `k=256` Hankel row descriptor and Paper D v10.
+`F_17^32`, `n=512`, `k=256` Hankel row descriptor and Paper D v12.
 
 For the projective endpoint `[0:1]`, the synthetic update direction is
 `v_m = sum_{y in Y} y^m`.  The verifier constructs an agreement-size

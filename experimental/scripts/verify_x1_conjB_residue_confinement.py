@@ -4,7 +4,7 @@ conj:B quotient-separation, step-2 biconditional (X1): does a quotient-periodic
 denominator E in F[X^M] confine the residue-line bad slopes?
 
 CONTEXT (notes/x1/x1_conjB_proof_plan.md). conj:B's aperiodic packing Λ^aper
-separates the quotient-periodic residue lines (rem:aper, slackMCA_v3.tex 1255:
+separates the quotient-periodic residue lines (rem:aper, slackMCA_v4.tex 1255:
 denominator E a pullback through x↦x^M, M|gcd(n,k), M>1). My contribution to
 conj:B is to prove these periodic lines CONFINE (contribute the quotient term),
 isolating Λ^aper for the L1 bound. This script tests the load-bearing step on a

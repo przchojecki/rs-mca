@@ -9,7 +9,7 @@
   scripts plus the new `verify_x1_lem_fiber.py`.
 - **Agent/model:** Claude Opus 4.8 (L2/X1 lane, branch `allen/l2-x1-interleaved-mca`).
 - **Date:** 2026-06-24.
-- **Scope:** Paper D (`tex/cs25_cap_v4.tex`) `thm:main`/`cor:grand` (universal
+- **Scope:** Paper D (`tex/cs25_cap_v12.tex`) `thm:main`/`cor:grand` (universal
   cap), `thm:A` (the CS25 import being removed), `lem:fiber`. Does not edit
   Papers A--D.
 
@@ -24,7 +24,7 @@ combinatorics that imports nothing from CS25.
 ## The dependency restructuring (the whole point)
 
 Paper D proves `thm:main` by a contradiction (lines 350--397 of
-`cs25_cap_v4.tex`):
+`cs25_cap_v12.tex`):
 
 ```
    ASSUME  eca(C,delta) <= (1/2k)(1-n/q)              [small]
@@ -60,7 +60,7 @@ conversion, no `eta`. The cap becomes a *witness*, not a contradiction.
 The phrase is only meaningful if `lem:fiber` does not itself re-import CS25.
 It does not:
 
-- **Self-contained proof.** `lem:fiber`(ii)'s proof (`cs25_cap_v4.tex`
+- **Self-contained proof.** `lem:fiber`(ii)'s proof (`cs25_cap_v12.tex`
   255--273) is: take `A subseteq Q` with `|A|=ell2`; the locator
   `L_A = prod_{b in A}(X^a - b) = X^{k+2a} - e_1(A) X^{k+a} + R_A` with
   `deg R_A <= k`; set `z_A = -e_1(A) in B`, `c_A = (-R_A(x)) in RS[B,D,k+1]`;

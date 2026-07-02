@@ -32,11 +32,11 @@
   {
     "id": "paper-d",
     "letter": "D",
-    "title": "Paper D: Universal Field-Size Cap and Hankel Certificate Atlas",
-    "file": "cs25_cap_v9.pdf",
-    "pdf": "papers/cs25_cap_v9.pdf",
-    "githubPdf": "https://github.com/przchojecki/rs-mca/blob/main/cs25_cap_v9.pdf",
-    "tex": "https://github.com/przchojecki/rs-mca/blob/main/tex/cs25_cap_v9.tex",
-    "summary": "Preserves the universal and first-grid MCA caps, keeps the quotient ledgers, and adds the aperiodic Hankel chart atlas for safe-side certificate work."
+    "title": "Paper D: Two-Sided Cap and Certificate Grammar",
+    "file": "cs25_cap_v12.pdf",
+    "pdf": "papers/cs25_cap_v12.pdf",
+    "githubPdf": "https://github.com/przchojecki/rs-mca/blob/main/cs25_cap_v12.pdf",
+    "tex": "https://github.com/przchojecki/rs-mca/blob/main/tex/cs25_cap_v12.tex",
+    "summary": "Current main Paper D draft: self-contained cap route, safe-side pincer, map/rational smooth extensions, explicit witnesses, optimized profile, and certificate grammar v2."
   }
 ]

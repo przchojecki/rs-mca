@@ -4,8 +4,10 @@
 
 **Status:** AUDIT / VERSION-PROMOTION / PROVED-CERTIFICATE-FRAMEWORK.
 
-This note records the integration of the four `cs25_cap_v10_milestone*`
-folders into `tex/cs25_cap_v10.tex`.
+This note records the historical integration of the four
+`cs25_cap_v10_milestone*` folders into `tex/cs25_cap_v10.tex`.  Paper D v12 now
+supersedes v10 as the current cap-paper draft; use this note as provenance for
+the v10 ledger package, not as the active citation target.
 
 ## Integrated content
 
@@ -99,7 +101,8 @@ scripts/cs25_v10_regular_hankel_eliminant.py
 ```
 
 The one-off milestone generators and patch bundles were not retained as source
-artifacts because `tex/cs25_cap_v10.tex` is now the integrated manuscript.
+artifacts because `tex/cs25_cap_v10.tex` was the integrated manuscript at that
+stage.  Current active citations should point to `tex/cs25_cap_v12.tex`.
 
 ## Remaining open pieces
 

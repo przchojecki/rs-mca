@@ -20,9 +20,9 @@ from pathlib import Path
 
 TEX_FILES = (
     "tex/RS_disproof_v3.tex",
-    "tex/slackMCA_v3.tex",
-    "tex/cs25_cap_v4.tex",
-    "tex/snarks_v4.tex",
+    "tex/slackMCA_v4.tex",
+    "tex/cs25_cap_v12.tex",
+    "tex/snarks_v5.tex",
     "tex/proximity_blueprint_v3.tex",
 )
 REFERENCE_COMMANDS = ("cref", "Cref", "eqref", "ref", "autoref", "pageref")

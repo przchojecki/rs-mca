@@ -2,7 +2,7 @@
 r"""
 The explicit deep-point line is the CONSTRUCTIVE form of Paper D's universal cap.
 
-cs25_cap_v4.tex `thm:main`: under hypothesis (eq:hyp)
+cs25_cap_v12.tex `thm:main`: under hypothesis (eq:hyp)
     binom(N, rho*N + 2) >= |B| * (q/k + 1),      [ equivalently L := binom/|B| >= q/k + 1 ]
 the cap gives
     emca(C, delta) > (1/(2k)) * (1 - n/q)   for delta in [1-rho-2/N, 1-rho),

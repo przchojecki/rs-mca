@@ -3,7 +3,7 @@
 - **Status:** AUDIT.
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
 - **Scope:** repository-side conventions for the prize-facing
-  `RS[F_17^32,H,256]` row and the v10 Hankel packet pipeline.
+  `RS[F_17^32,H,256]` row and the v12 Hankel packet pipeline.
 
 This note supplies the M0 convention freeze requested in `towards-prize.md`.
 It records the object currently used by the repository and points to the notes

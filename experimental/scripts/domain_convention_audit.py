@@ -21,9 +21,9 @@ THEOREM_ID = "tex/proximity_blueprint_v3.tex:M0 domain convention drift"
 OBJECT = "Subgroup/coset domain-convention audit"
 SOURCE_FILES = (
     "tex/RS_disproof_v3.tex",
-    "tex/slackMCA_v3.tex",
-    "tex/cs25_cap_v4.tex",
-    "tex/snarks_v4.tex",
+    "tex/slackMCA_v4.tex",
+    "tex/cs25_cap_v12.tex",
+    "tex/snarks_v5.tex",
     "tex/proximity_blueprint_v3.tex",
 )
 
@@ -97,7 +97,7 @@ def payload(rows: list[dict[str, object]]) -> dict[str, object]:
     for row in rows:
         by_file[str(row["file"])][str(row["kind"])] += 1
     paper_a_subgroup = by_file["tex/RS_disproof_v3.tex"]["subgroup"]
-    paper_d_coset = by_file["tex/cs25_cap_v4.tex"]["coset"]
+    paper_d_coset = by_file["tex/cs25_cap_v12.tex"]["coset"]
     blueprint_mentions_drift = any(
         row["file"] == "tex/proximity_blueprint_v3.tex"
         and row["convention_candidate"]

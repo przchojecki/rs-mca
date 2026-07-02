@@ -5,7 +5,7 @@
 - **Provenance:** r1 was drafted by Codex (normalized from a Claude/Fable
   discussion). This r2 is authored by Claude (Fable 5) acting for
   AllenGrahamHart; it is self-contained and does not require r1 to read.
-- **Baseline:** `main @ 495ee489` ("Sync guides and site to Paper D v10",
+- **Baseline:** `main @ 495ee489` ("Sync guides and site to Paper D v12",
   2026-07-01), plus open PRs #170, #171, #172.
 - **Non-supersession:** `towards-prize.md` remains the maintainer's source of
   truth. This note is an execution scaffold under it.
@@ -213,7 +213,7 @@ Consequences for sequencing:
 
 ## 2. State Snapshot
 
-**Main at baseline.** Paper D v10: universal + first-grid caps; quotient
+**Main at baseline.** Paper D v12: universal + first-grid caps; quotient
 support/image/dual-cosupport ledgers; extension-pole floor; canonical
 regular-Hankel gcd/lcm ledgers; aperiodic chart atlas.
 `towards-prize.md` milestones: M0 freeze supplied by PR #171 with external
@@ -472,7 +472,7 @@ named wall) -> full (uniform theorem + list + bridges).
 
 ## 5. Standing Orders
 
-1. Every safe-side claim is a v10 packet.
+1. Every safe-side claim is a v12 packet.
 2. Counterexample-first scans before long proof attempts, when feasible.
 3. Paid-root dedup is checker logic, not prose.
 4. State new lemmas over abstract order-`2^s` subgroups when possible.

@@ -358,6 +358,26 @@ Keep entries concise and link to the relevant files.
   `X^n-1`, using pseudo-remainder equations and side charts for rank drop and
   low-degree kernels.
 
+### 2026-07-02 - Paper D v12 reference sweep
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `readme.md`; `agents.md`;
+  `towards-prize.md`; `site/index.html`; `site/data/papers.json`;
+  `site/data/rate-leaderboards.json`; `site/data/updates.json`;
+  `site/papers/cs25_cap_v12.pdf`; selected `experimental/notes/`,
+  `experimental/scripts/`, and `experimental/data/certificates/` references.
+- **Status:** AUDIT / DOCUMENTATION / VERSION-PROMOTION.
+- **What is being added:** Active Paper D references were moved to
+  `tex/cs25_cap_v12.tex`, and contributor-facing text now says that v12 is the
+  main cap paper to audit.  The public site metadata and local PDF mirror were
+  updated to point at the v12 package.
+- **How it is useful:** Prevents new agents from following the superseded v10
+  Hankel-ledger draft as the current cap-paper source, while preserving older
+  v6--v10 audit/log entries as historical provenance.
+- **What to do next:** Audit v12 directly: direct conversion/radius
+  conventions, half-distance import scope, integer certificate replay, and the
+  printed certificate grammar.
+
 ### 2026-07-02 - Paper D v12 and towards-prize audit focus
 
 - **Agent/model:** Codex, reviewing maintainer-added drafts.
@@ -418,7 +438,8 @@ Keep entries concise and link to the relevant files.
   prize band is entirely underdetermined, so regular M3 packets are a proving
   ground while M5 underdetermined charts are the real band-facing program.
   The M1 reductions isolate cleaner projected-value walls, and the M3
-  low-rank packets provide scoped synthetic tests for the v10 ledger style.
+  low-rank packets provide scoped synthetic tests for the then-current v10
+  ledger style, now superseded by Paper D v12.
 - **What to do next:** Refine the `A=384` M5 Cramer/divisibility chart into an
   eliminant or named residual obstruction; replay or split any #171 rank-6
   material before integration; and keep new PRs to one theorem cluster or
@@ -432,14 +453,14 @@ Keep entries concise and link to the relevant files.
   `towards-prize.md`; `experimental/agents-log.md`.
 - **Status:** AUDIT / DOCUMENTATION.
 - **What is being added:** The agent guide, repo overview, prize roadmap, and
-  site paper metadata now point at Paper D v10 as the current cap/Hankel-ledger
-  package.  `AGENTS.md` also names the next concrete prize task: an M3/M4
+  site paper metadata were then pointed at Paper D v10 as the cap/Hankel-ledger
+  package.  Paper D v12 now supersedes this entry.  `AGENTS.md` also named the
+  next concrete prize task: an M3/M4
   root-table and paid-root-subtraction packet for the `F_17^32`, `n=512`,
   `k=256` row over agreements `385 <= A <= 426`.
-- **How it is useful:** Prevents new agents and site readers from treating v9,
-  strict264, or strict352 as the active frontier.  The current route is v10
-  safe-side Hankel packets, singular-bucket classification, and exact ledger
-  subtraction against the six-slope `F_17^32` budget.
+- **How it is useful:** Historical provenance for the v10 transition away from
+  v9, strict264, and strict352 as the active frontier.  The current successor
+  route is Paper D v12's safe-side pincer and certificate grammar.
 - **What to do next:** Build the first M3/M4 table for selected agreements in
   `385 <= A <= 426`, including regular roots, tangent/quotient/extension
   subtraction, and residual chart labels.
@@ -504,7 +525,8 @@ Keep entries concise and link to the relevant files.
   exhaustion, singular buckets, and safe-side extension classification.
 - **What to do next:** Run the regular Hankel checker on the `F_17^32` row in
   the `385 <= A <= 426` window, combine paid-root subtraction with quotient and
-  tangent ledgers, and build pivot eliminants for any singular buckets.
+  tangent ledgers, and build pivot eliminants for any singular buckets.  For
+  current citations, use Paper D v12 rather than this v10 milestone note.
 
 ### 2026-06-30 - M2 Hankel smoke packet
 
@@ -808,8 +830,8 @@ Keep entries concise and link to the relevant files.
   `experimental/notes/audits/codex-f1-l1-20260617/README.md`,
   `experimental/agents-log.md`.
 - **Status:** PROVED / ARITHMETIC-AUDIT.
-- **What is being added:** The scanner now emits `PROVED_PAPERD_V5_CAP` for
-  active Paper D v5 cap rows whose divisor, binomial, and field hypotheses pass,
+- **What is being added:** The scanner then emitted `PROVED_PAPERD_V5_CAP` for
+  then-active Paper D v5 cap rows whose divisor, binomial, and field hypotheses pass,
   and `NO_ACTIVE_PAPERD_V5_CAP` when no such row is found. Existing scanner
   reports and leaderboard-sweep outputs are regenerated or mechanically updated
   to remove the old draft/CS25-import status, and stale experimental audit notes

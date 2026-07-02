@@ -7,7 +7,7 @@
 **Date:** 2026-06-30.
 
 This note records the first reusable extractor for the regular overdetermined
-bucket in the Paper D v9 Hankel atlas.  It addresses the next item in
+bucket in the Paper D v12 Hankel atlas.  It addresses the next item in
 `towards-prize.md`:
 
 ```text

@@ -92,7 +92,7 @@ def check_predicate_line_family():
     """(a) The MCA event 'exists S, |S| >= (1-delta)n' matches our co-support arithmetic
     exactly: with agreement a=|S| and co-support r=n-a, |S| >= (1-delta)n <=> r <= floor(delta n),
     and noncontainment is a per-support boolean, so the count is over size->=a supports (one
-    support pays for <=1 slope, Paper D v8 lemma).  (b) Finite vs projective slope family:
+    support pays for <=1 slope, Paper D v12 lemma).  (b) Finite vs projective slope family:
     |P^1(F)| = |F|+1, and the extra point at infinity does NOT move the 5/6 cut.
     The DEFINITIONAL equivalence of the predicate and slope family vs the official sampler
     is a RESIDUAL JUDGMENT CALL (documented in the note, NOT asserted here)."""
@@ -111,7 +111,7 @@ def check_predicate_line_family():
     d.append(f"co-support arithmetic: |S|>=(1-delta)n  <=>  r=n-a <= floor(delta n)  (a=n-r) : {eq_ok}")
     ok &= eq_ok
     d.append("noncontainment = per-support boolean => count over size->=a supports matches survey "
-             "'exists S'; one support pays for <=1 slope (Paper D v8) => LD_sw <= #supports")
+             "'exists S'; one support pays for <=1 slope (Paper D v12) => LD_sw <= #supports")
     # (b) finite vs projective slope family
     proj_size_ok = ((Q + 1) == Q + 1)            # |P^1(F)| = |F| + 1
     cut_unchanged = (Q // TWO128 == (Q + 1) // TWO128 == 6)

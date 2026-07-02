@@ -20,10 +20,10 @@ from pathlib import Path
 
 SOURCE_FILES = (
     "agents.md",
-    "tex/snarks_v4.tex",
+    "tex/snarks_v5.tex",
     "tex/proximity_blueprint_v3.tex",
-    "tex/slackMCA_v3.tex",
-    "tex/cs25_cap_v4.tex",
+    "tex/slackMCA_v4.tex",
+    "tex/cs25_cap_v12.tex",
 )
 PROOF_STATUS = "AUDIT"
 PROBLEM_ID = "Paper C field-ledger hygiene / agent-guide rule 2"
@@ -80,61 +80,61 @@ PHRASE_PATTERNS = {
 ANCHORS = (
     {
         "id": "paper_c_qgen_macro",
-        "file": "tex/snarks_v4.tex",
+        "file": "tex/snarks_v5.tex",
         "description": "Paper C defines the generated-field macro",
         "patterns": (r"\\newcommand\{\\qgen\}",),
     },
     {
         "id": "paper_c_qline_macro",
-        "file": "tex/snarks_v4.tex",
+        "file": "tex/snarks_v5.tex",
         "description": "Paper C defines the line-field macro",
         "patterns": (r"\\newcommand\{\\qline\}",),
     },
     {
         "id": "paper_c_qchal_macro",
-        "file": "tex/snarks_v4.tex",
+        "file": "tex/snarks_v5.tex",
         "description": "Paper C defines the challenge-field macro",
         "patterns": (r"\\newcommand\{\\qchal\}",),
     },
     {
         "id": "paper_c_qarith_macro",
-        "file": "tex/snarks_v4.tex",
+        "file": "tex/snarks_v5.tex",
         "description": "Paper C defines the arithmetic-field macro",
         "patterns": (r"\\newcommand\{\\qarith\}",),
     },
     {
         "id": "paper_c_field_section",
-        "file": "tex/snarks_v4.tex",
+        "file": "tex/snarks_v5.tex",
         "description": "Paper C has a fields and challenge-accounting section",
         "patterns": (r"\\label\{sec:fields\}",),
     },
     {
         "id": "paper_c_no_double_credit_rule",
-        "file": "tex/snarks_v4.tex",
+        "file": "tex/snarks_v5.tex",
         "description": "Paper C states the no-double-crediting rule",
         "patterns": (r"\\label\{rule:no-double-credit\}",),
     },
     {
         "id": "paper_c_no_qchal_substitution_remark",
-        "file": "tex/snarks_v4.tex",
+        "file": "tex/snarks_v5.tex",
         "description": "Paper C warns against automatic q_chal substitution",
         "patterns": (r"\\label\{rem:no-substitution\}",),
     },
     {
         "id": "paper_c_certificate_tuple",
-        "file": "tex/snarks_v4.tex",
+        "file": "tex/snarks_v5.tex",
         "description": "Paper C certificate tuple carries q_arith, q_gen, and q_line",
         "patterns": (r"\\cert=\(\\qarith,\\qgen,\\qline",),
     },
     {
         "id": "paper_c_entropy_uses_qgen",
-        "file": "tex/snarks_v4.tex",
+        "file": "tex/snarks_v5.tex",
         "description": "Paper C entropy ledger uses q_gen",
         "patterns": (r"\\entres\(a;\\qgen\)", r"\\label\{eq:entropy-ledger\}"),
     },
     {
         "id": "paper_c_list_budget_uses_qline",
-        "file": "tex/snarks_v4.tex",
+        "file": "tex/snarks_v5.tex",
         "description": "Paper C list-over-field budget uses q_line",
         "patterns": (r"\\widehat L_\{\\mu\}\(\\delta\)/\\qline",),
     },

@@ -3,7 +3,7 @@
 bucket identification at the underdetermined boundary A=384 of
 C = RS[F_17^32, H, 256]  (n=512, k=256, q_line=17^32).
 
-For exact agreement A the v10 Hankel system (extractor convention,
+For exact agreement A the v12 Hankel system (extractor convention,
 experimental/scripts/extract_regular_hankel_minors.py: rows range(t),
 cols range(j+1), entry S[row+col], S = syndrome window of u + Z*v) is
 t x (j+1) with t = A-k equations on j+1 = n-A+1 locator coefficients.

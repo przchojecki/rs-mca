@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Plan the F_17^32 regular Hankel-minor window.
 
-This script is an M3 audit helper for the Paper D v9 atlas.  It does not
+This script is an M3 audit helper for the Paper D v12 atlas.  It does not
 compute determinants over F_17^32.  Instead it records the exact arithmetic of
 the first non-tangent regular window for the prize-facing row:
 

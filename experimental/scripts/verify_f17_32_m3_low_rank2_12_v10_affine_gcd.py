@@ -36,7 +36,7 @@ SHIFT = 1
 EXPECTED_RECORDS = len(RANKS) * (AGREEMENT_MAX - AGREEMENT_MIN + 1)
 EXPECTED_DEGREE_SUM = (AGREEMENT_MAX - AGREEMENT_MIN + 1) * sum(RANKS)
 
-V10_PAPER_REF = "tex/cs25_cap_v10.tex"
+PAPER_D_REF = "tex/cs25_cap_v12.tex"
 ROW_DESCRIPTOR_REF = (
     "experimental/data/certificates/hankel-f17-32-row-descriptor/"
     "f17_32_n512_k256_hankel_row_descriptor.json"
@@ -432,7 +432,7 @@ def build_certificate() -> dict[str, Any]:
             ),
         },
         "source_artifacts": [
-            source_record("paper_d_v10", V10_PAPER_REF),
+            source_record("paper_d_v12", PAPER_D_REF),
             source_record("row_descriptor", ROW_DESCRIPTOR_REF, row_descriptor),
             source_record("regular_window_plan", WINDOW_PLAN_REF, window_plan),
             source_record("generic_regular_minor", GENERIC_REGULAR_REF, generic_regular),

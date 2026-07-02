@@ -1773,7 +1773,7 @@
   "schema_version": "f17-32-m3-endpoint-c2-capacity-v1",
   "source_artifacts": {
     "paper_d_v10": {
-      "ref": "tex/cs25_cap_v10.tex",
+      "ref": "tex/cs25_cap_v12.tex",
       "sha256": "64fb843392bef75b05b50fcdae7f2e6ff9ae3b229d6848cacc39ecb28fd153ea"
     },
     "row_descriptor": {

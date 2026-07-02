@@ -29,9 +29,9 @@ OBJECT = "Cross-citation phrase audit"
 
 SOURCE_FILES = (
     "tex/RS_disproof_v3.tex",
-    "tex/slackMCA_v3.tex",
-    "tex/cs25_cap_v4.tex",
-    "tex/snarks_v4.tex",
+    "tex/slackMCA_v4.tex",
+    "tex/cs25_cap_v12.tex",
+    "tex/snarks_v5.tex",
     "tex/proximity_blueprint_v3.tex",
 )
 

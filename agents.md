@@ -303,7 +303,10 @@ Record which quotient scales remain active.
 
 **Goal.** Determine when a corrected-reserve list bound implies a corrected-reserve CA/MCA/line-decoding bound at essentially the same radius.
 
-**Why it matters.** Paper D v10 uses a self-contained deep-point conversion to cap the MCA challenge; older list-to-agreement routes remain relevant for CA/list comparison audits. A forward positive equivalence would be powerful, but may be false.
+**Why it matters.** Paper D v12 uses a self-contained deep-point conversion and
+safe-side pincer to cap and sandwich the MCA challenge; older list-to-agreement
+routes remain relevant for CA/list comparison audits. A forward positive
+equivalence would be powerful, but may be false.
 
 **First attacks.**
 
@@ -328,11 +331,12 @@ Record which quotient scales remain active.
 
 ## Highest-priority audit targets
 
-### A0. Audit older imported CA/list conversions
+### A0. Audit Paper D v12 and older imported CA/list conversions
 
-Paper D v10's main MCA universal cap is self-contained. The older CS25/ABF
-list-to-agreement routes remain relevant for CA and list-comparison statements.
-Audit:
+Paper D v12 is now the main Paper D package. Its direct conversion route is
+self-contained, while its half-distance safe edge uses an isolated BCIKS import
+and older CS25/ABF list-to-agreement routes remain relevant for CA and
+list-comparison statements. Audit:
 
 - exact admissible radius range,
 - exact definition of the augmented code,

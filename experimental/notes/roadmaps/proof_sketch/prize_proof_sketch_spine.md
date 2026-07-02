@@ -64,7 +64,7 @@ M(Z) l = a + Z b,   a = H_{t,j}(u) l,   b = H_{t,j}(v) l  in  F^t.
 ```
 
 Hence, per valid locator `l` [SKETCH restatement of a PROVED-cited fact —
-the Paper D v8 quotient-support ledger "one support pays for <= 1 slope"]:
+the Paper D v12 quotient-support ledger "one support pays for <= 1 slope"]:
 
 ```text
 b != 0:            at most ONE bad slope Z = -a_r/b_r (consistency required
@@ -146,7 +146,7 @@ axes and seeds in WP-0.1. Fork: any inequivalent axis becomes a ledger
 column and the sketch's denominators re-print.
 
 **S1 — decomposition [PROVED-in-form].**
-`B_C <= B_tan + B_quot + B_ap + B_ext`, deduped (v10 atlas + checker).
+`B_C <= B_tan + B_quot + B_ap + B_ext`, deduped (v12 certificate grammar + checker).
 Refinement: dedup as checker logic (WP-0.4).
 
 **S2 — paid ledgers exact [mixed].** `B_tan = n - a + 1` on the staircase

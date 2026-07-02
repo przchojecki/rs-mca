@@ -1,4 +1,4 @@
-# Towards the Proximity Prize: v10 Execution Plan
+# Towards the Proximity Prize: v12 Audit and Execution Plan
 
 Status: working plan / source-of-truth roadmap
 
@@ -6,9 +6,10 @@ Date: 2026-07-01
 
 This document is the current execution plan for turning the RS-MCA repository
 into a serious Proximity Prize submission package.  It replaces the older
-strict264/frontier-search roadmap.  The center of gravity is now Paper D v10:
-the quotient ledgers, extension-pole floor, aperiodic Hankel chart atlas, and
-the corresponding proof-packet schema.
+strict264/frontier-search roadmap.  The center of gravity is now Paper D v12:
+the two-sided cap theorem, safe-side pincer, map/rational smooth extensions,
+explicit witness machinery, certificate grammar, and the corresponding
+proof-packet schema.
 
 The goal is not to collect more impressive-looking lower bounds.  The goal is
 to determine thresholds.  For a row \(C\), that means proving adjacent
@@ -68,20 +69,22 @@ The no-slack smooth-domain MCA/RCA optimism is dead.  Paper A gives explicit
 obstructions.  Positive statements must include reserve and explicit quotient
 floors.
 
-Paper D v10 is the current Paper D package.  It preserves the universal-cap package,
-first-grid cap, and aperiodic Hankel chart atlas, then adds four strictly
-stronger proof-ledger upgrades:
+Paper D v12 is the current Paper D package and the main object to audit.  It
+preserves the universal-cap package, first-grid cap, aperiodic Hankel chart
+atlas, and v10 quotient/extension ledgers, then adds the safe-side pincer and
+deployed-row certificate layer:
 
 ```text
-quantitative deep-list floors and heaviest quotient-prefix fibers;
-exact divisor-block support-union coefficients;
-gcd/lcm quotient-image coalescing for finite, projective, and curve parameters;
-canonical maximal-minor gcd/lcm ledgers for regular overdetermined Hankel buckets.
+deep-regime MCA safe theorem for all linear codes;
+MCA-from-CA reduction up to half the minimum distance;
+self-contained half-Johnson CA bound and optional BCIKS half-distance import;
+map/rational smooth caps, circle/genus-one transports, and explicit witnesses;
+certificate grammar v2 with printed deployed-row integer certificates.
 ```
 
-It also adds an extension-pole conversion: large lists over `D subset B` can be
-converted using poles in `F \ B`, giving genuinely extension-valued witness
-lines with a printed numerator.
+The immediate work is audit, not another lower-bound search: check the direct
+conversion and radius conventions, the optional BCIKS import, the exact integer
+certificates, and the scope of the circle/genus-one model transfers.
 
 The PR 161--169 integration adds two important roadmap corrections:
 
@@ -143,7 +146,7 @@ The central unresolved object is:
 with each term explicitly defined, deduplicated, and divided by the correct
 field denominator.
 
-The v10 atlas is designed to attack \(B_{\rm ap}(a)\), the aperiodic
+The v12 atlas is designed to attack \(B_{\rm ap}(a)\), the aperiodic
 Hankel/residue-line term after tangent and quotient branches have been removed.
 
 ## 3. Strategic Decision
@@ -155,23 +158,23 @@ The best path now is:
 2. stop treating strict264/strict352 as the main frontier;
 3. use strict264/strict352 only as mechanism tests and quotient-floor examples;
 4. make Hankel proof packets the standard format for every new safe-side claim;
-5. prove or refute the aperiodic local limit through the v10 chart atlas.
+5. prove or refute the aperiodic local limit through the v12 chart atlas.
 
 In practice, every useful PR should now answer one of these questions:
 
 ```text
-Does it produce a v10 Hankel proof packet?
-Does it reduce a residual v10 chart to quotient/tangent/extension structure?
+Does it produce a v12 Hankel proof packet?
+Does it reduce a residual v12 chart to quotient/tangent/extension structure?
 Does it prove a reusable theorem needed by such packets?
 Does it audit the exact prize object, denominator, or endpoint convention?
 ```
 
 If the answer is no, it is probably not on the shortest path.
 
-### 3.1 Post-v10 correction: the band is underdetermined
+### 3.1 Post-v12 status: the band is underdetermined
 
 The r2 roadmap audit in
-`experimental/notes/roadmaps/proximity_prize_execution_roadmap_post_v10_r2.md`
+`experimental/notes/roadmaps/proximity_prize_execution_roadmap_post_v12_r2.md`
 adds an important correction.  The regular overdetermined Hankel branch exists
 only when
 \[
@@ -197,7 +200,7 @@ band-facing theorem needed for a full prize solution.
 The critical safe-side program is now:
 
 ```text
-regular window      -> develop and test v10 packet mechanics;
+regular window      -> develop and test v12 packet mechanics;
 underdetermined M5  -> attack the actual prize band;
 M4 assembly         -> subtract tangent, quotient, and extension ledgers;
 M6 theorem          -> promote residual classification into a row theorem or
@@ -214,9 +217,9 @@ then vacuous for every slope, so the first meaningful filter must come from
 Cramer-kernel locator validity, divisibility by \(X^{512}-1\), pivot charts, or
 a labelled residual obstruction.
 
-## 4. The v10 Hankel Proof Packet
+## 4. The v12 Hankel Proof Packet
 
-Paper D v10 gives the contributor-facing atlas.  For a row and exact agreement
+Paper D v12 gives the contributor-facing atlas.  For a row and exact agreement
 \[
         A,\qquad j=n-A,\qquad t=A-k,
 \]
@@ -412,7 +415,7 @@ one table saying which repo theorem uses which convention
 no "officially solved" language
 ```
 
-### M1. v10 Schema Verifier
+### M1. v12 Schema Verifier
 
 Write a checker for `scripts/aperiodic_eliminant_schema.json`.
 
@@ -440,7 +443,7 @@ one intentionally failing packet
 documented expected output
 ```
 
-### M2. Smoke-Test v10 on a Settled Row
+### M2. Smoke-Test v12 on a Settled Row
 
 Create a proof packet for the already-settled high-agreement row
 \[
@@ -478,7 +481,7 @@ A=506: numerator 7, unsafe;
 A=507: numerator 6, safe.
 ```
 
-It is intentionally an "empty after tangent removal" v10 packet: the tangent
+It is intentionally an "empty after tangent removal" v12 packet: the tangent
 common-code-line ledger pays the entire numerator in this high-agreement
 range, so the declared aperiodic numerator is `0`.  This validates packet
 format and bookkeeping, not a new aperiodic eliminant theorem.
@@ -499,7 +502,7 @@ The window
 \[
         385\le A\le426
 \]
-is the first useful v10 stress test: regular Hankel minors may give upper bounds
+is the first useful v12 stress test: regular Hankel minors may give upper bounds
 where tangent exactness does not.
 
 Exit criterion:
@@ -515,13 +518,13 @@ for each A in a selected subrange:
 If the minors vanish or give weak bounds, that is useful.  It identifies the
 first real singular bucket.
 
-Status: upgraded by Paper D v10.
+Status: upgraded by Paper D v12.
 
 ```text
-scripts/cs25_v10_regular_hankel_eliminant.py
+scripts/cs25_v12_regular_hankel_eliminant.py
 ```
 
-The v10 regular branch no longer asks contributors to choose one minor.  It
+The v12 regular branch no longer asks contributors to choose one minor.  It
 takes the gcd of all nonzero maximal minors at each exact agreement, then an
 lcm over exact agreements for the closed-ball packet.  This gives a canonical
 root-count ledger for every nonsingular regular bucket.  The next M3 task is to
@@ -546,7 +549,7 @@ The next packet must compute actual root tables or identify singular buckets.
 
 ### M4. Quotient and Tangent Subtraction
 
-Integrate the v10 packets with the existing quotient-image and tangent ledgers.
+Integrate the v12 packets with the existing quotient-image and tangent ledgers.
 For each exact agreement \(A\), output:
 
 ```text
@@ -569,13 +572,13 @@ one table for a Prime192 scanner row
 no double-counting between removed ledgers and aperiodic roots
 ```
 
-Status: partially upgraded by Paper D v10.
+Status: partially upgraded by Paper D v12.
 
 ```text
-scripts/cs25_v10_quotient_support_ledger.py
-scripts/cs25_v10_quotient_image_ledger_prime.py
-scripts/cs25_v10_dual_cosupport_ledger.py
-scripts/cs25_v10_extension_pole_floor.py
+scripts/cs25_v12_quotient_support_ledger.py
+scripts/cs25_v12_quotient_image_ledger_prime.py
+scripts/cs25_v12_dual_cosupport_ledger.py
+scripts/cs25_v12_extension_pole_floor.py
 ```
 
 The quotient part now has three separate ledgers: a support-union coefficient
@@ -605,7 +608,7 @@ every residual has label quotient/tangent/extension/candidate_new_obstruction/un
 candidate_new_obstruction has a minimal reproducible example
 ```
 
-Status after v10: narrowed.
+Status after v12: narrowed.
 
 The nonsingular regular overdetermined branch is now handled by the canonical
 rank-drop gcd/lcm ledger.  M5 should focus on:
@@ -618,7 +621,7 @@ projective infinity charts;
 curve coefficient-pivot charts.
 ```
 
-Status after the post-v10 PR sweep: the first underdetermined boundary packet
+Status after the post-v12 PR sweep: the first underdetermined boundary packet
 has been added at
 
 ```text
@@ -653,7 +656,7 @@ the route to the full prize.
 
 ## 6. Parallel Mathematical Lanes
 
-The v10 Hankel lane is central, but it cannot finish the whole prize alone.
+The v12 Hankel lane is central, but it cannot finish the whole prize alone.
 These lanes feed into or consume the Hankel packets.
 
 ### L1. Generated-Field Locator Local Limit
@@ -693,7 +696,7 @@ Do not use \(q_{\rm line}\) to pay a \(q_{\rm gen}\) entropy bill.
 
 ### M1. Aperiodic Residue-Line Packing
 
-This is the main MCA theorem lane.  It should now be written in v10 language:
+This is the main MCA theorem lane.  It should now be written in v12 language:
 
 ```text
 tangent and quotient branches removed
@@ -706,7 +709,7 @@ deduped root count compared to B_*(q_line)
 The first useful theorem is not "MCA is small."  It is:
 
 ```text
-Every non-small v10 residual bucket is quotient, tangent, extension-confined,
+Every non-small v12 residual bucket is quotient, tangent, extension-confined,
 or a named new obstruction.
 ```
 
@@ -731,7 +734,7 @@ Either prove base/generated-field MCA bounds lift to F-valued lines,
 or produce a genuinely F-valued obstruction with its own ledger.
 ```
 
-Paper D v10 supplies the lower-side mechanism:
+Paper D v12 supplies the lower-side mechanism:
 
 ```text
 large list + pole alpha in F \ B
@@ -852,7 +855,7 @@ used by that statement and print the replacement.
 The next useful PRs, in order:
 
 1. **Schema checker.**
-   Validate v10 proof packets before any new math is claimed.
+   Validate v12 proof packets before any new math is claimed.
 
 2. **Hankel smoke packet for \(F_{17^{32}}\), \(A=506,507\).**
    Exercise the format on a settled row.
@@ -865,7 +868,7 @@ The next useful PRs, in order:
    Determine where the regular bucket succeeds and where singular buckets begin.
 
 5. **Quotient/tangent subtraction table.**
-   Produce one deduped table combining existing ledgers with v10 root counts.
+   Produce one deduped table combining existing ledgers with v12 root counts.
 
 6. **First singular pivot packet.**
    Pick one singular bucket and close it by affine pivots or certify the
@@ -906,7 +909,7 @@ official acceptance by prize judges
 The project is moving toward the prize if it produces:
 
 ```text
-v10 Hankel proof packets with checked eliminants
+v12 Hankel proof packets with checked eliminants
 named and minimized singular residual buckets
 explicit quotient/tangent/aperiodic/extension ledger tables
 threshold-pinned rows, not just lower bounds
@@ -920,7 +923,7 @@ The shortest current path is:
 ```text
 finite threshold package for F_17^32
   +
-v10 Hankel proof-packet pipeline
+v12 Hankel proof-packet pipeline
   +
 M1 aperiodic residual classification
   +

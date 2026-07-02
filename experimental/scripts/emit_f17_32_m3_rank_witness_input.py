@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Emit a concrete F_17^32 M3 rank-witness regular-minor input.
 
-This is a stress input for the Paper D v9 regular-window pipeline.  It uses the
+This is a stress input for the Paper D v12 regular-window pipeline.  It uses the
 pinned F_17^32 row descriptor and builds a synthetic syndrome pencil at a
 selected exact agreement A.  The construction is deliberately simple:
 

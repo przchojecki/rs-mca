@@ -4,7 +4,7 @@ Date: 2026-07-02
 
 Agent/model: Codex
 
-Scope: open PRs #170--#174 after Paper D v10.
+Scope: open PRs #170--#174 after the then-current Paper D v10 package.
 
 ## Summary
 

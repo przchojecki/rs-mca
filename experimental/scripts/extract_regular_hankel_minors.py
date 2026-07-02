@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Extract regular overdetermined Hankel-minor certificates from row data.
 
-This is the first reusable M3 extractor for the Paper D v9 atlas.  It reads
+This is the first reusable M3 extractor for the Paper D v12 atlas.  It reads
 syndrome-pencil input, tries candidate maximal Hankel row minors for each exact
 agreement, and emits an ``aperiodic-hankel-eliminant-v1`` packet.
 

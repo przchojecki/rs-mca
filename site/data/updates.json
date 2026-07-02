@@ -1,12 +1,21 @@
 [
   {
+    "date": "2026-07-02",
+    "status": "paper promotion / audit focus",
+    "author": "Przemek Chojecki / Codex audit",
+    "title": "Paper D v12 is now the main cap paper",
+    "summary": "Paper D v12 supersedes v10/v11 as the active cap draft. It keeps the self-contained cap route and adds the safe-side pincer, map/rational smooth extensions, circle/genus-one transports, explicit witness machinery, optimized failure profile, and certificate grammar v2.",
+    "impact": "The current project focus is auditing v12: direct conversion and radius conventions, optional BCIKS half-distance import, exact-integer certificate replay, and deployed model transfers.",
+    "href": "https://github.com/przchojecki/rs-mca/blob/main/tex/cs25_cap_v12.tex"
+  },
+  {
     "date": "2026-06-30",
     "status": "paper promotion / Hankel certificate atlas",
     "author": "Przemek Chojecki / Codex audit",
     "title": "Paper D v9 adds the aperiodic Hankel chart atlas",
     "summary": "Paper D v9 preserves the v8 universal, first-grid, quotient-support, and quotient-image ledgers, then adds a certificate atlas for the aperiodic safe-side MCA task: regular Hankel minors, affine pivots, projective infinity, curve pivots, and named singular residual buckets.",
     "impact": "This is proof-program infrastructure for building Hankel eliminant certificates. It is not a new numerical leaderboard row and does not close M1 by itself.",
-    "href": "https://github.com/przchojecki/rs-mca/blob/main/tex/cs25_cap_v9.tex"
+    "href": "https://github.com/przchojecki/rs-mca/blob/main/archived/cs25_cap_v9.tex"
   },
   {
     "date": "2026-06-30",
@@ -14,8 +23,8 @@
     "author": "Przemek Chojecki / Codex audit",
     "title": "Paper D v8 adds quotient support and image ledgers",
     "summary": "Paper D v8 preserves the v7 universal and first-grid MCA caps, restores the endpoint/q>n fixes, and adds conservative quotient-support plus exact quotient image ledgers for line, projective-line, curve, and interleaved-list branch accounting.",
-    "impact": "The public Paper D cap rows now cite v8 and use PROVED_PAPERD_V8_CAP / PROVED_PAPERD_V8_FIRST_GRID. The new quotient ledgers are proof-program infrastructure, not a new numeric leaderboard row or a full safe-side M1 theorem.",
-    "href": "https://github.com/przchojecki/rs-mca/blob/main/tex/cs25_cap_v8.tex"
+    "impact": "Archived milestone. The active Paper D cap rows now cite v12; the v8 quotient ledgers remain useful provenance for the proof-program infrastructure, not a standalone safe-side M1 theorem.",
+    "href": "https://github.com/przchojecki/rs-mca/blob/main/archived/cs25_cap_v8.tex"
   },
   {
     "date": "2026-06-29",
@@ -24,7 +33,7 @@
     "title": "Paper D v7 adds the first-grid MCA cap",
     "summary": "Paper D v7 keeps the v6 self-contained universal cap, extends the no-loss CA endpoint from f<n-k-1 to f<=n-k-1, and adds a quotient-remainder/first-grid theorem showing that large official-envelope rows are already CA/MCA unsafe at delta=1-rho-1/n.",
     "impact": "Historical version-promotion note: v7 added the first-grid cap. v8 now supersedes it as the public Paper D source while preserving the same cap rows.",
-    "href": "https://github.com/przchojecki/rs-mca/blob/main/tex/cs25_cap_v7.tex"
+    "href": "https://github.com/przchojecki/rs-mca/blob/main/archived/cs25_cap_v7.tex"
   },
   {
     "date": "2026-06-29",
@@ -60,14 +69,14 @@
     "title": "Paper D v6 adds the prize-facing completion program",
     "summary": "Paper D v6 kept the v5 universal MCA cap constants and CS25-free proof route, tightened the conversion collision-count derivation, and added the integer-staircase formulation plus conditional MCA/list completion theorems for turning the cap into a full threshold determination.",
     "impact": "Historical version-promotion note: v6 made the cap self-contained and prize-facing. v7 now supersedes it as the public Paper D source.",
-    "href": "https://github.com/przchojecki/rs-mca/blob/main/tex/cs25_cap_v6.tex"
+    "href": "https://github.com/przchojecki/rs-mca/blob/main/archived/cs25_cap_v6.tex"
   },
   {
     "date": "2026-06-27",
     "status": "paper versions / leaderboard audit",
     "author": "Codex",
     "title": "Papers B v4, C v5, and D v9 are now the public theory set",
-    "summary": "Paper B v4 promotes the high-agreement line/list/curve boundary layer, Paper C v5 adds the theorem-backed protocol ledger compiler, and Paper D v9 preserves the cap package while adding the aperiodic Hankel certificate atlas.",
+    "summary": "Paper B v4 promotes the high-agreement line/list/curve boundary layer, Paper C v5 adds the theorem-backed protocol ledger compiler, and Paper D v12 is now the main cap paper with the safe-side pincer and certificate grammar.",
     "impact": "The leaderboard impact is source/status hygiene plus proof-program infrastructure: existing Paper D cap rows remain cap-row records, while new Hankel rows should cite the v9 atlas and schema.",
     "href": "https://github.com/przchojecki/rs-mca/blob/main/readme.md"
   },
@@ -82,11 +91,11 @@
   },
   {
     "date": "2026-06-27",
-    "status": "PROVED_PAPERD_V8_CAP rows",
+    "status": "PROVED_PAPERD_V12_CAP rows",
     "author": "Codex scanner audit",
-    "title": "Prime192 scanner rows instantiate Paper D v8 across all four rates",
-    "summary": "The leaderboard_sweep_192 packet contributes four concrete q\u22482^192 smooth subgroup rows with k=2^40, one for each official rate, plus a small F_17^32 Paper D example. They instantiate the proved Paper D v8 cap with exact primes q = 1 mod n and +87 bit margins on the prime192 rows.",
-    "impact": "These are scanner-backed examples of the Paper D v8 cap, not new theorems beyond Paper D and not explicit slope censuses. The scanner verifies the divisor, binomial, and field ledgers for each displayed cap row.",
+    "title": "Prime192 scanner rows instantiate Paper D v12 across all four rates",
+    "summary": "The leaderboard_sweep_192 packet contributes four concrete q\u22482^192 smooth subgroup rows with k=2^40, one for each official rate, plus a small F_17^32 Paper D example. They instantiate the proved Paper D v12 cap with exact primes q = 1 mod n and +87 bit margins on the prime192 rows.",
+    "impact": "These are scanner-backed examples of the Paper D v12 cap, not new theorems beyond Paper D and not explicit slope censuses. The scanner verifies the divisor, binomial, and field ledgers for each displayed cap row.",
     "href": "https://github.com/przchojecki/rs-mca/blob/main/experimental/notes/certificate_scanner/outputs/leaderboard_sweep_192/site_candidate_rows.md"
   },
   {

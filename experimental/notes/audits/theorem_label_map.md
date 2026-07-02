@@ -229,46 +229,46 @@
 
 ## Paper D: Universal Cap
 
-- `tex/cs25_cap_v4.tex` `thm:A`
+- `tex/cs25_cap_v12.tex` `thm:A`
   - Kind/status: imported theorem; CONDITIONAL.
   - Role: Crites--Stewart list-to-agreement conversion.
-- `tex/cs25_cap_v4.tex` `thm:B`
+- `tex/cs25_cap_v12.tex` `thm:B`
   - Kind/status: imported theorem; CONDITIONAL.
   - Role: independent slacked conversion route.
-- `tex/cs25_cap_v4.tex` `rem:import`
+- `tex/cs25_cap_v12.tex` `rem:import`
   - Kind/status: remark; AUDIT.
   - Role: due-diligence checklist for the imported conversions.
-- `tex/cs25_cap_v4.tex` `lem:fiber`
+- `tex/cs25_cap_v12.tex` `lem:fiber`
   - Kind/status: lemma; PROVED.
   - Role: locator fibers produce list lower bounds over the field of definition.
-- `tex/cs25_cap_v4.tex` `lem:inter`
+- `tex/cs25_cap_v12.tex` `lem:inter`
   - Kind/status: lemma; PROVED.
   - Role: interleaving transfer for CA and MCA errors.
-- `tex/cs25_cap_v4.tex` `thm:main`
+- `tex/cs25_cap_v12.tex` `thm:main`
   - Kind/status: theorem; CONDITIONAL.
   - Role: universal cap using the imported Crites--Stewart conversion.
-- `tex/cs25_cap_v4.tex` `cor:grand`
+- `tex/cs25_cap_v12.tex` `cor:grand`
   - Kind/status: corollary; CONDITIONAL.
   - Role: field-size cap for the challenge envelope.
-- `tex/cs25_cap_v4.tex` `cor:deployed`
+- `tex/cs25_cap_v12.tex` `cor:deployed`
   - Kind/status: corollary; CONDITIONAL.
   - Role: KoalaBear sextic deployed-parameter consequence.
-- `tex/cs25_cap_v4.tex` `cor:rows`
+- `tex/cs25_cap_v12.tex` `cor:rows`
   - Kind/status: corollary; CONDITIONAL.
   - Role: applies the cap to interleaved rows from the survey tables.
-- `tex/cs25_cap_v4.tex` `prop:slacked`
+- `tex/cs25_cap_v12.tex` `prop:slacked`
   - Kind/status: proposition; CONDITIONAL.
   - Role: independent slacked variant via the second imported theorem.
-- `tex/cs25_cap_v4.tex` `lem:confine`
+- `tex/cs25_cap_v12.tex` `lem:confine`
   - Kind/status: lemma; PROVED.
   - Role: subfield confinement for base-valued line witnesses.
-- `tex/cs25_cap_v4.tex` `cor:Fvalued`
+- `tex/cs25_cap_v12.tex` `cor:Fvalued`
   - Kind/status: corollary; PROVED.
   - Role: certifying lines over extensions must be genuinely extension-valued.
-- `tex/cs25_cap_v4.tex` `prob:explicit`
+- `tex/cs25_cap_v12.tex` `prob:explicit`
   - Kind/status: problem; CONJECTURAL.
   - Role: asks for explicit extension-valued bad lines.
-- `tex/cs25_cap_v4.tex` `prob:errorone`
+- `tex/cs25_cap_v12.tex` `prob:errorone`
   - Kind/status: problem; CONJECTURAL.
   - Role: asks whether the cap can be strengthened to error one.
 

@@ -6,7 +6,7 @@
 
 **Date:** 2026-06-30.
 
-This note supplies a first concrete certificate instance for the Paper D v9
+This note supplies a first concrete certificate instance for the Paper D v12
 aperiodic Hankel chart atlas, together with a reusable packet checker for
 `scripts/aperiodic_eliminant_schema.json`.  It is deliberately small: the row is the
 `agents.md` toy case
@@ -48,7 +48,7 @@ t = A-k,
 t >= j+1.
 ```
 
-Thus the regular-minor lemma in Paper D v9 applies.  The verifier chooses the
+Thus the regular-minor lemma in Paper D v12 applies.  The verifier chooses the
 first `j+1` Hankel rows, computes
 
 ```text
@@ -93,7 +93,7 @@ claim protocol soundness.
 ```
 
 It is a replayable instance of the regular overdetermined bucket in the new
-Paper D v9 atlas.
+Paper D v12 atlas.
 
 ## Verification
 

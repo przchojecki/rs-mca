@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 r"""
-Exact enumerator for Paper B `prob:perfiber` (slackMCA_v3.tex:1227), the open core
+Exact enumerator for Paper B `prob:perfiber` (slackMCA_v4.tex:1227), the open core
 of `conj:B` (the slack-MCA positive threshold). PURE STDLIB.
 
 WHAT `prob:perfiber` IS (verbatim object).
@@ -212,7 +212,7 @@ def main():
     if a.json:
         print(json.dumps(out, default=str))
     else:
-        print("prob:perfiber exact enumerator (slackMCA_v3.tex:1227). selftest:",
+        print("prob:perfiber exact enumerator (slackMCA_v4.tex:1227). selftest:",
               "PASS" if ok else "FAIL")
         for r in out.get("regime_window_edge_sweep", [out.get("result", {})]):
             if r:

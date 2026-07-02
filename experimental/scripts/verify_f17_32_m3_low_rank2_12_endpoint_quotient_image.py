@@ -29,7 +29,7 @@ RANKS = list(range(2, 13))
 FIBER_SIZE = 2
 QUOTIENT_ORDER = N // FIBER_SIZE
 
-V10_PAPER_REF = REPO_ROOT / "tex/cs25_cap_v10.tex"
+PAPER_D_REF = REPO_ROOT / "tex/cs25_cap_v12.tex"
 ROW_DESCRIPTOR_REF = REPO_ROOT / (
     "experimental/data/certificates/hankel-f17-32-row-descriptor/"
     "f17_32_n512_k256_hankel_row_descriptor.json"
@@ -237,9 +237,9 @@ def build_certificate() -> dict[str, Any]:
         "agreement_range": [AGREEMENT_MIN, AGREEMENT_MAX],
         "ranks": RANKS,
         "source_artifacts": {
-            "paper_d_v10": {
-                "ref": str(V10_PAPER_REF.relative_to(REPO_ROOT)),
-                "sha256": file_sha256(V10_PAPER_REF),
+            "paper_d_v12": {
+                "ref": str(PAPER_D_REF.relative_to(REPO_ROOT)),
+                "sha256": file_sha256(PAPER_D_REF),
             },
             "row_descriptor": {
                 "ref": str(ROW_DESCRIPTOR_REF.relative_to(REPO_ROOT)),

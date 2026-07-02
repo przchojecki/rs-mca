@@ -10,7 +10,7 @@ Here we do the exact big-integer arithmetic at Paper D's `cor:deployed`
 parameters and show the explicit deep-point line clears the `prob:explicit`
 density `2^-22`, via the deep-point bridge (not the CS25 conversion).
 
-Parameters (cs25_cap_v4.tex cor:deployed; ABF 6.3):
+Parameters (cs25_cap_v12.tex cor:deployed; ABF 6.3):
     B = F_p, p = 2^31 - 2^24 + 1 (KoalaBear);  F = F_{p^6}, q = p^6 ~ 2^185.93;
     D = order-n subgroup, n = 2^21;  k = 2^20;  rho = 1/2;  gap 2^-7.
     lem:fiber(ii): N = n/a_q with gap 2/N = 2^-7 => N = 256, a_q = 2^13, ell2 = 130;

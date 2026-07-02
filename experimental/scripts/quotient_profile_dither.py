@@ -3,7 +3,7 @@
 
 Proof status: AUDIT / EXPERIMENTAL.
 
-The exact-divisibility profile implements the quantity from snarks_v4.tex:
+The exact-divisibility profile implements the quantity from snarks_v5.tex:
 
     Qprof_H(a,k) =
       max_{M | gcd(n,k), M > 1, a-k < M, k/M <= n/M - 1}
@@ -1229,7 +1229,7 @@ def scan(
         "theorem_problem_id": "L3-quotient-profile-dimension-dithering",
         "determinism": "deterministic finite divisor scan; no random seed",
         "object_checked": (
-            "exact Qprof_H(a,k) from snarks_v4.tex plus a separate "
+            "exact Qprof_H(a,k) from snarks_v5.tex plus a separate "
             "small-remainder quotient-core diagnostic, optionally including "
             "the proved fixed-dither slack-window first-exchange ledger and "
             "the exact one-remainder strict codegree ledger, plus optional "

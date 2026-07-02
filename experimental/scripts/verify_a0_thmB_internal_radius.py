@@ -12,7 +12,7 @@ THE RESOLUTION (convention tracking): the worry assumes BCHKS's delta = 1-rho.
 It is not, once the degree convention is matched:
   * BCHKS RS[F_q,D,k_B]  = polynomials of degree <= k_B   (dim k_B+1; bchks.txt L3071, Def 1.8)
     with k_B = (1-delta)n, so BCHKS delta = (n - k_B)/n.
-  * cs25  RS[F,D,k]      = polynomials of degree <  k      (dim k;   cs25_cap_v7.tex L83)
+  * cs25  RS[F,D,k]      = polynomials of degree <  k      (dim k;   archived/cs25_cap_v7.tex L83)
 To make the SAME code C, set k_B = k-1.  Then BCHKS delta = 1-(k-1)/n = 1-rho+1/n,
 and BCHKS's conclusion Delta([f,g],C^2) >= delta - 1/n becomes
             Delta([f,g],C^2) >= 1 - rho        (NOT 1-rho-1/n).

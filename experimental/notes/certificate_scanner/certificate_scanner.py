@@ -396,7 +396,7 @@ def paper_d_cap(row: Row, lam: int, eps_target_log2: Optional[float] = None) -> 
             })
     active.sort(key=lambda x: x["delta_cap_float"])
     return {
-        "source": "Paper D v8 universal cap",
+        "source": "Paper D v12 universal cap",
         "status": "PROVED_PAPERD_V8_CAP" if active else "NO_ACTIVE_PAPERD_V8_CAP",
         "q_base": B,
         "q_line": q,

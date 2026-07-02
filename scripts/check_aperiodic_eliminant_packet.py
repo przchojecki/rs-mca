@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check Paper D v9 aperiodic Hankel eliminant packets.
+"""Check Paper D v12 aperiodic Hankel eliminant packets.
 
 The JSON schema catches the structural contract.  This script adds the
 arithmetical checks that are easiest to get wrong in generated packets:

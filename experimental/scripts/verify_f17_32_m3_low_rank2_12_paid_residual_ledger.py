@@ -186,8 +186,8 @@ def validate_source_consistency(
     affine_sources = source_lookup(affine)
     endpoint_sources = source_lookup(endpoint)
     require(
-        affine_sources["paper_d_v10"]["sha256"]
-        == endpoint_sources["paper_d_v10"]["sha256"],
+        affine_sources["paper_d_v12"]["sha256"]
+        == endpoint_sources["paper_d_v12"]["sha256"],
         "paper v10 source hash mismatch",
     )
     require(

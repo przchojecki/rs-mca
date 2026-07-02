@@ -17,7 +17,7 @@ classification (§4) is a Galois-descent question about the pencil data.
 
 ## 2. The pole mechanism imports the LIST threshold into MCA [verified]
 
-Paper D v10's extension-pole floor converts a base list of size `L` into
+Paper D v12's extension-pole floor converts a base list of size `L` into
 genuinely `F`-valued witness lines with numerator
 `N(L) = ceil(L(|F|-|B|)/(|F|-|B|+kL))`. Verified behavior:
 
