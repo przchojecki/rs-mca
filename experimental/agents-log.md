@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - WP-detail loop turn 7: window charts + displacement (WP-2.5/4.1)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/wp_detail/wp2_5_wp4_1_window_charts_and_displacement.md`.
+- **Status:** chart plan + derivation route; extension-field anchor
+  verified this turn. No result claimed.
+- **What is being added:** Turn 7. WP-2.5: window M5 identified as
+  PER-POINT work (overdetermined kernels are generically trivial;
+  residuals live only at the finitely many rank-drop Z), the five-step
+  chart ladder per bucket, a per-A bucket log as the acceptance
+  artifact, exit = zero 'unknown' leaves, with the s3a aperiodic-0
+  prediction as the expected final column. WP-4.1: the uniformization
+  derived FROM the V^T D V factorization rather than from #170's files —
+  now verified on an EXTENSION field too (F_49 = F_7[i], mu_8,
+  entrywise), making the uniform note independent of mega-PR
+  integration and turning the WP-0.3 replay into a cross-check;
+  three-field acceptance design ((F_13, mu_4), (F_17, mu_16),
+  (F_49, mu_16), divisibilities verified) with printed nonvanishing
+  hypotheses instead of char exclusions.
+- **How it is useful:** The window cleanup becomes finite with a
+  predicted outcome; the dimension-free displacement algebra gets
+  uniform statements that do not block on integration.
+- **What to do next:** Turn 8: wp5_2 + wp6_2 + wp6_3 (L2 constants +
+  M2 statements + X1 bridge ledger).
+
 ### 2026-07-02 - WP-detail loop turn 6: row slate + second pin/wall (WP-3.1/3.3)
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
