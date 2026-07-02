@@ -159,6 +159,20 @@ def divides_x_order_minus_one(poly, order, p):
     return rem == [0]
 
 
+def pseudo_remainder_degree_bound(dividend_degree, divisor_degree, coeff_degree_bound):
+    """Degree-in-Z bound for pseudo-remainder of X^N-1 by a degree-j divisor.
+
+    If every coefficient of C_Z(X)=sum_{i=0}^j c_i(Z)X^i has Z-degree at most d
+    and c_j is not identically zero, pseudo-division performs N-j+1 reduction
+    steps.  Each step multiplies by c_j and subtracts a leading coefficient
+    times C_Z, increasing the Z-degree bound by at most d.
+    """
+    if dividend_degree < divisor_degree:
+        return 0
+    steps = dividend_degree - divisor_degree + 1
+    return steps * coeff_degree_bound
+
+
 def split_roots_in_domain(poly, domain, expected_degree, p):
     poly = poly_trim(poly)
     if len(poly) - 1 != expected_degree or poly[-1] == 0:
@@ -402,6 +416,35 @@ def check_top_chart_splitting_filter():
     return ok, d
 
 
+def check_pseudoremainder_degree_budget():
+    """Verify the degree budget used for the top-chart eliminant."""
+    ok = True
+    d = []
+    j = N - A_STAR
+    t = A_STAR - K
+    cap = pseudo_remainder_degree_bound(N, j, t)
+    resultant_cap = N * t
+    d.append(f"F_17^32 A={A_STAR}: j={j}, t={t}, pseudo-remainder degree cap "
+             f"(n-j+1)*t = {cap}")
+    d.append(f"rough resultant cap n*t = {resultant_cap}; pseudo cap improves it by "
+             f"{resultant_cap - cap}")
+    ok &= (j, t, cap, resultant_cap) == (128, 128, 49280, 65536)
+
+    toy_cap = pseudo_remainder_degree_bound(8, 4, 4)
+    d.append(f"toy |H|=8, j=t=4: pseudo-remainder degree cap = {toy_cap}")
+    ok &= toy_cap == 20
+    monotone = all(
+        pseudo_remainder_degree_bound(n, jj, dd)
+        == (n - jj + 1) * dd
+        for n in range(4, 17)
+        for jj in range(1, n + 1)
+        for dd in range(0, 7)
+    )
+    d.append(f"degree-recursion sweep for 4 <= n <= 16, 1 <= j <= n, 0 <= d <= 6: {monotone}")
+    ok &= monotone
+    return ok, d
+
+
 def check_toy_pseudoremainder_root_table():
     """Declared affine toy family with a replayed top-chart root table.
 
@@ -473,6 +516,7 @@ CHECKS = [
     ("deficiency-1 kernel = Cramer minor vector",         check_cramer_kernel_vector),
     ("rank-drop split locators dedupe to higher A",       check_rankdrop_split_locator_dedup),
     ("pivot chart + splitting filter (X^n - 1)",          check_top_chart_splitting_filter),
+    ("top-chart pseudo-remainder degree budget",          check_pseudoremainder_degree_budget),
     ("toy pseudo-remainder root table",                   check_toy_pseudoremainder_root_table),
     ("F17 root table packet or certified residual",       _pending),
     ("packet emission + v1 schema validation",            _pending),

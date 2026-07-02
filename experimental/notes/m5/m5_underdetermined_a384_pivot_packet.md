@@ -1,9 +1,10 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 4: bucket identification, Cramer
+- **Status:** ACTIVE / EXPERIMENTAL (turn 5: bucket identification, Cramer
   chart, rank-drop split-locator deduplication, top-chart divisibility filter,
-  and a toy pseudo-remainder root table done; F17 root-table packet pending).
-  No threshold, safety, or worst-case row claim is made.
+  pseudo-remainder degree budget, and a toy pseudo-remainder root table done;
+  F17 root-table packet pending). No threshold, safety, or worst-case row claim
+  is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
   regular window `385 <= A <= 426`, synthetic rank ladders and kernel charts):
@@ -192,12 +193,27 @@ coefficient space), which dedupe to higher agreement, and rank-drop slopes
 the Vandermonde-rank argument above.  The top chart is the only remaining place
 where new exact-`A` mass can enter this deficiency-one atlas.
 
-**Degree budget (structural, to be proved not assumed):** `deg_Z c_i <= 128`,
-so `Res_X(L_Z, X^512 - 1)` has `deg_Z <= 512 * 128 = 65536` — an eliminant of
-that degree is far above the budget `B_Q = 6` before paid-ledger subtraction,
-and the packet will say so plainly. Its value is structural: the first filter
-with actual content below `A=385`, in packet form, with the paid-ledger
-subtraction deferred to M4 where it belongs.
+**Degree budget (structural, now checked):** `deg_Z c_i <= t = 128`.
+Pseudo-division of `X^n-1` by a degree-`j` Cramer locator takes
+`n-j+1` reduction steps.  Each step multiplies by the top coefficient and
+increases the slope-degree bound by at most `t`, so every top-chart
+pseudo-remainder coefficient has slope-degree at most
+
+```text
+(n-j+1)t = (512-128+1)128 = 49280.
+```
+
+The rough resultant cap is
+
+```text
+nt = 512*128 = 65536,
+```
+
+so the pseudo-remainder chart improves the crude eliminant budget by `16256`
+degree units.  This degree is still far above `B_Q = 6` before paid-ledger
+subtraction; its value is structural: the first filter with actual content
+below `A=385`, in packet form, with the paid-ledger subtraction deferred to M4
+where it belongs.
 
 ## Attack plan (one verified increment per loop turn)
 
@@ -207,11 +223,12 @@ subtraction deferred to M4 where it belongs.
 | 2 | deficiency-1 kernel = Cramer minor vector (lemma + exact toy verification) | **done** |
 | 3 | rank-drop split locators dedupe to higher agreement | **done** |
 | 4 | top-chart divisibility filter into `X^n - 1` | **done** |
-| 5 | toy pseudo-remainder root table on a declared affine family | **done** |
-| 6 | F17 root table packet or certified residual obstruction | pending |
-| 7 | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`, validated by `scripts/check_aperiodic_eliminant_packet.py` | pending |
+| 5 | top-chart pseudo-remainder degree budget | **done** |
+| 6 | toy pseudo-remainder root table on a declared affine family | **done** |
+| 7 | F17 root table packet or certified residual obstruction | pending |
+| 8 | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`, validated by `scripts/check_aperiodic_eliminant_packet.py` | pending |
 
-### Verified so far (turn 4)
+### Verified so far (turn 5)
 
 - **Bucket identification.** `regular(A) <=> 2A >= 769` swept over all
   `A in [257, 512]`; `A=385` regular (`t=129 >= j+1=128`), `A=384` not
@@ -239,6 +256,11 @@ subtraction deferred to M4 where it belongs.
   tests agree.  On the order-8 subgroup of `F_97`, all 70 planted split
   degree-4 top-chart cases are Cramer kernels and divide `X^8-1`.  This
   verifies the finite chart criterion used by the pseudo-remainder eliminant.
+- **Pseudo-remainder degree budget.** A degree-only pseudo-division recurrence
+  verifies that the top-chart pseudo-remainder coefficients have slope-degree
+  at most `(n-j+1)t`; at `A=384` this is `49280`, compared with the rough
+  resultant cap `65536`.  The script also sweeps small `(n,j,d)` values to
+  check the recurrence.
 - **Toy pseudo-remainder root table (`F_97`).** For the declared affine family
   interpolating two planted split moment windows, all 97 slopes are classified.
   The root table is exactly `[0, 1]`; there is one rank-drop slope, one
