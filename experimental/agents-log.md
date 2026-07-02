@@ -30,6 +30,34 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - WP-detail loop turn 6: row slate + second pin/wall (WP-3.1/3.3)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/wp_detail/wp3_1_wp3_3_rows_and_second_pin.md`.
+- **Status:** selection plan with machine-checked slate numbers.
+- **What is being added:** Turn 6. The four-row slate with verified
+  numbers: Row A (Prime192, n = 2^20 — in the open band with a SILENT
+  zone-(a): max proved quotient mass 2^49.1 < B* = 2^64, so its unsafe
+  side rests on the cap alone — the cleanest corridor test; corridor is
+  WIDER at 192 bits, reserve ~ beta/(log q - 128)); Row B (top-of-range
+  n = 2^41, symbolic-only); Row C (small-n probe, the ONLY row where
+  zone-(b) is measurable — birthday-collision sampling of e_1 value-set
+  densities, ~sqrt(V) samples, enumeration impossible at 2^252); Row D
+  (generating extension; non-generating candidates documented
+  nonexistent at scale per s6). WP-3.3 stated as an exact dichotomy:
+  PIN (compiler emits Row-A adjacent verdicts with H6 discharged for
+  that row) or WALL (the Row-A corridor question frozen per standing
+  order 8 with the toy-reproduction chain and Row-C data attached);
+  three family-conditional partial rungs that do not wait for H6,
+  including the Row-C collision curve — the first empirical data
+  anywhere on the zone-(b) question.
+- **How it is useful:** Transfer-to-scale becomes four named rows, one
+  designed experiment, and a milestone whose both outcomes are defined
+  deliverables.
+- **What to do next:** Turn 7: wp2_5 (M5 window residual charts) +
+  wp4_1 (displacement uniformization).
+
 ### 2026-07-02 - WP-detail loop turn 5: submission note + Lean gates (WP-1.1/1.2)
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
