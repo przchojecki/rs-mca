@@ -17,4 +17,6 @@ python3 scripts/check_aperiodic_eliminant_packet.py \
 The packet is intentionally a labelled residual, not a threshold proof.  It
 records that rank-drop and low-degree Cramer branches contribute no new
 exact-`A` mass after higher-agreement deduplication, while the full-rank top
-pseudo-remainder chart remains `residual_label=unknown`.
+pseudo-remainder chart remains `residual_label=unknown`.  The named finite
+object for that residual is the top-coefficient-saturated gcd of the
+pseudo-remainder coefficients of `X^512-1` by the Cramer locator.

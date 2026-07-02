@@ -170,6 +170,65 @@ def zeval(a, z, p):
     return eval_poly_mod_p(a, z, p)
 
 
+def zmonic(a, p):
+    a = ztrim(a)
+    if a == [0]:
+        return [0]
+    return zscale(a, pow(a[-1], -1, p), p)
+
+
+def zdivmod(numer, denom, p):
+    """Return quotient, remainder for low-to-high polynomials in Z over F_p."""
+    numer = ztrim([x % p for x in numer])
+    denom = ztrim([x % p for x in denom])
+    if denom == [0]:
+        raise ZeroDivisionError("zero Z-polynomial")
+    if zdegree(numer) < zdegree(denom):
+        return [0], numer
+    rem = numer[:]
+    quot = [0] * (zdegree(numer) - zdegree(denom) + 1)
+    inv_lc = pow(denom[-1], -1, p)
+    while zdegree(rem) >= zdegree(denom) and rem != [0]:
+        shift = zdegree(rem) - zdegree(denom)
+        coeff = rem[-1] * inv_lc % p
+        quot[shift] = coeff
+        for i, di in enumerate(denom):
+            rem[shift + i] = (rem[shift + i] - coeff * di) % p
+        rem = ztrim(rem)
+    return ztrim(quot), ztrim(rem)
+
+
+def zgcd(a, b, p):
+    """Monic gcd in F_p[Z]."""
+    a = ztrim(a)
+    b = ztrim(b)
+    while b != [0]:
+        _, r = zdivmod(a, b, p)
+        a, b = b, r
+    return zmonic(a, p)
+
+
+def zsaturate_away(poly, forbidden_factor, p):
+    """Remove all common factors with the top-chart boundary factor."""
+    out = zmonic(poly, p)
+    forbidden_factor = zmonic(forbidden_factor, p)
+    while out != [0]:
+        shared = zgcd(out, forbidden_factor, p)
+        if zdegree(shared) <= 0:
+            break
+        out, rem = zdivmod(out, shared, p)
+        if rem != [0]:
+            raise AssertionError("internal error: gcd did not divide polynomial")
+        out = zmonic(out, p)
+    return out
+
+
+def zroots(poly, p):
+    if poly == [0]:
+        return list(range(p))
+    return [z for z in range(p) if zeval(poly, z, p) == 0]
+
+
 def permutation_sign(perm):
     inv = 0
     for i in range(len(perm)):
@@ -661,6 +720,75 @@ def check_toy_root_containment_certificate():
     return ok, d
 
 
+def check_toy_pseudoremainder_gcd_certificate():
+    """The top-chart saturated gcd is the canonical toy root-table certificate."""
+    p = 97
+    h = subgroup_of_order(p, 8)
+    j = 4
+    roots0 = tuple(h[:j])
+    roots1 = tuple(h[2:2 + j])
+    weights0 = [3, 7, 11, 19]
+    weights1 = [5, 13, 17, 23]
+    w0 = moments_from_support(roots0, weights0, 2 * j, p)
+    w1 = moments_from_support(roots1, weights1, 2 * j, p)
+    delta = [(b - a) % p for a, b in zip(w0, w1)]
+    matrix = [
+        [[w0[row + col] % p, delta[row + col] % p] for col in range(j + 1)]
+        for row in range(j)
+    ]
+    cramer = cramer_vector_zpoly(matrix, p)
+    dividend = [[(-1) % p]] + [[0] for _ in range(len(h) - 1)] + [[1]]
+    rem = pseudo_remainder_x_over_z(dividend, cramer, p)
+    coeffs = [c for c in rem if c != [0]]
+    raw_gcd = [0]
+    for coeff in coeffs:
+        raw_gcd = zgcd(raw_gcd, coeff, p)
+    top_coeff = cramer[-1]
+    saturated_gcd = zsaturate_away(raw_gcd, top_coeff, p)
+    raw_roots = zroots(raw_gcd, p)
+    saturated_roots = zroots(saturated_gcd, p)
+    top_boundary_roots = zroots(top_coeff, p)
+
+    table = []
+    rank_drop = low_degree = top_nonroots = 0
+    for z in range(p):
+        window = [(a + z * b) % p for a, b in zip(w0, delta)]
+        m = hankel(window, j, j)
+        rank, _ = rank_and_kernel_mod_p(m, p)
+        c = cramer_vector(m, p)
+        if rank < j:
+            rank_drop += 1
+            continue
+        if c[-1] == 0:
+            low_degree += 1
+            continue
+        if divides_x_order_minus_one(c, len(h), p):
+            table.append(z)
+        else:
+            top_nonroots += 1
+
+    ok = (
+        raw_gcd != [0]
+        and set(table).issubset(raw_roots)
+        and set(table).issubset(saturated_roots)
+        and saturated_roots == table == [0, 1]
+        and not (set(saturated_roots) & set(top_boundary_roots))
+    )
+    d = [
+        "symbolic pseudo-remainder gcd certificate over F_97[Z]: "
+        f"{len(coeffs)} nonzero coefficients, raw degree {zdegree(raw_gcd)}, "
+        f"top-boundary degree {zdegree(top_coeff)}, saturated degree {zdegree(saturated_gcd)}",
+        f"raw gcd roots = {raw_roots}; top-boundary roots = {top_boundary_roots}; "
+        f"top-saturated gcd roots = {saturated_roots}",
+        f"enumerated full-rank top-chart root table = {table} "
+        f"(rank_drop={rank_drop}, low_degree={low_degree}, top_nonroots={top_nonroots})",
+        "certificate logic: the raw gcd contains every top-chart bad slope; "
+        "saturating away c_j removes low-degree boundary factors and gives the "
+        "canonical top-chart eliminant in this toy family",
+    ]
+    return ok, d
+
+
 def build_a384_residual_packet():
     j = N - A_STAR
     t = A_STAR - K
@@ -725,9 +853,10 @@ def build_a384_residual_packet():
                                 "residual_label": "unknown",
                                 "degree": degree_cap,
                                 "eliminant_ref": (
-                                    "pseudo-remainder of X^512-1 by the Cramer "
-                                    "locator L_Z(X); degree cap only, no F17 root "
-                                    "table emitted in this packet"
+                                    "top-coefficient-saturated gcd of the "
+                                    "pseudo-remainder coefficients of X^512-1 by "
+                                    "the Cramer locator L_Z(X); degree cap only, "
+                                    "no F17 root table emitted in this packet"
                                 ),
                             },
                         ],
@@ -805,6 +934,7 @@ CHECKS = [
     ("top-chart pseudo-remainder degree budget",          check_pseudoremainder_degree_budget),
     ("toy pseudo-remainder root table",                   check_toy_pseudoremainder_root_table),
     ("toy root-containment certificate",                  check_toy_root_containment_certificate),
+    ("toy saturated-gcd root certificate",                check_toy_pseudoremainder_gcd_certificate),
     ("F17 root table packet or certified residual",       check_f17_residual_packet),
     ("packet emission + v1 schema validation",            check_packet_schema_validation),
 ]

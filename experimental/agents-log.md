@@ -130,10 +130,15 @@ Keep entries concise and link to the relevant files.
   adds a declared `F_97` pseudo-remainder root-table replay whose planted split
   slopes are exactly recovered.  On the same toy family it computes a symbolic
   `F_97[z][X]` pseudo-remainder coefficient of degree `19 <= 20` whose zero set
-  contains the root table.  The follow-up emits a v12 A384 residual packet:
-  rank-drop and low-degree Cramer branches are marked empty as new exact-`A`
-  mass after higher-agreement deduplication, while the full-rank top chart is
-  explicitly labelled `residual_obstruction / unknown` with degree cap `49280`.
+  contains the root table, then upgrades this to the canonical top-chart
+  certificate: the gcd of all nonzero pseudo-remainder coefficients, saturated
+  away from the top Cramer coefficient.  In the toy family the raw gcd has roots
+  `[0,1,75]`, the extra root lies on the low-degree boundary, and the saturated
+  gcd has exactly the root table `[0,1]`.  The follow-up emits a v12 A384
+  residual packet: rank-drop and low-degree Cramer branches are marked empty as
+  new exact-`A` mass after higher-agreement deduplication, while the full-rank
+  top chart is explicitly labelled `residual_obstruction / unknown` with degree
+  cap `49280` and the saturated-gcd finite object named.
 - **How it is useful:** This removes the valid-split rank-drop side branch from
   the first underdetermined M5 bucket and makes the full-rank top chart a
   precise pseudo-remainder problem with checked degree/root-containment logic;

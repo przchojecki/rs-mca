@@ -1,11 +1,11 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 7: bucket identification, Cramer
+- **Status:** ACTIVE / EXPERIMENTAL (turn 8: bucket identification, Cramer
   chart, rank-drop split-locator deduplication, top-chart divisibility filter,
   pseudo-remainder degree budget, toy pseudo-remainder root table, and toy
-  root-containment certificate done; A=384 residual packet emitted and accepted
-  by the v12 packet checker; F17 top-chart root table remains open). No
-  threshold, safety, or worst-case row claim is made.
+  root-containment/gcd certificates done; A=384 residual packet emitted and
+  accepted by the v12 packet checker; F17 top-chart root table remains open).
+  No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
   regular window `385 <= A <= 426`, synthetic rank ladders and kernel charts):
@@ -147,6 +147,28 @@ if all pseudo-remainder coefficients vanish identically, record an identity
 chart/residual rather than claiming a finite root table.
 ```
 
+The same declared family now verifies the canonical gcd version of this
+certificate.  Let `R_i(z)` be the nonzero pseudo-remainder coefficients and set
+
+```text
+G_raw(z)=gcd_i R_i(z).
+```
+
+Every full-rank top-chart bad slope is a root of `G_raw`.  The raw gcd may also
+contain low-degree boundary factors coming from the inequation `c_j(z) != 0`;
+therefore the top-chart eliminant is the saturation of `G_raw` away from the
+top Cramer coefficient `c_j(z)`.  In the toy `F_97` family, the raw gcd has
+roots `[0,1,75]`, the top boundary has roots `[46,75]`, and the saturated gcd
+has exactly the root table
+
+```text
+z in {0,1}.
+```
+
+This is the cleaner object for the eventual F17 top-chart branch: not one
+chosen coefficient, but the top-coefficient-saturated gcd of all
+pseudo-remainder coefficients.
+
 ## The bucket
 
 For exact agreement `A`, in the convention of the on-main extractor
@@ -241,10 +263,11 @@ where it belongs.
 | 5 | top-chart pseudo-remainder degree budget | **done** |
 | 6 | toy pseudo-remainder root table on a declared affine family | **done** |
 | 7 | toy root-containment certificate from one pseudo-remainder coefficient | **done** |
-| 8 | F17 root table packet or certified residual obstruction | **done: residual labelled `unknown`** |
-| 9 | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`, validated by `scripts/check_aperiodic_eliminant_packet.py` | **done** |
+| 8 | toy saturated-gcd root certificate for the top chart | **done** |
+| 9 | F17 root table packet or certified residual obstruction | **done: residual labelled `unknown`** |
+| 10 | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`, validated by `scripts/check_aperiodic_eliminant_packet.py` | **done** |
 
-### Verified so far (turn 7)
+### Verified so far (turn 8)
 
 - **Bucket identification.** `regular(A) <=> 2A >= 769` swept over all
   `A in [257, 512]`; `A=385` regular (`t=129 >= j+1=128`), `A=384` not
@@ -289,14 +312,22 @@ where it belongs.
   slopes.  This verifies the certificate pattern: one nonzero
   pseudo-remainder coefficient bounds the top-chart root table, while the
   all-zero case must be labelled as a residual/identity chart.
+- **Saturated-gcd certificate (`F_97[z][X]`).** Taking the gcd of all four
+  nonzero pseudo-remainder coefficients gives a raw degree-7 eliminant with
+  roots `[0,1,75]`.  The extra root is on the low-degree boundary:
+  `c_j(75)=0`.  Saturating the gcd away from the top Cramer coefficient
+  leaves a degree-2 eliminant whose roots are exactly `[0,1]`, matching the
+  enumerated full-rank top-chart root table.
 - **A=384 residual packet (`F_17^32`).** The verifier emits
   `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/f17_32_n512_k256_a384_m5_residual_packet.json`
   and replays it through `scripts/check_aperiodic_eliminant_packet.py`.  The
   packet records a `pivot_atlas` at `A=384`, `j=t=128`: the rank-drop branch and
   low-degree branch are marked `empty` as new exact-`A` mass after
   higher-agreement deduplication, while the full-rank top Cramer locator chart
-  is explicitly labelled `residual_obstruction / unknown` with degree cap
-  `49280`.  This is a certified residual packet, not a root table.
+  is explicitly labelled `residual_obstruction / unknown`.  Its named finite
+  object is the top-coefficient-saturated gcd of the pseudo-remainder
+  coefficients, with degree cap `49280`.  This is a certified residual packet,
+  not a root table.
 
 ## Honest scope
 

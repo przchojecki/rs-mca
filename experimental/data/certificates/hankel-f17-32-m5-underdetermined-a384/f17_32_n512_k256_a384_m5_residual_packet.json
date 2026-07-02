@@ -22,7 +22,7 @@
             },
             {
               "degree": 49280,
-              "eliminant_ref": "pseudo-remainder of X^512-1 by the Cramer locator L_Z(X); degree cap only, no F17 root table emitted in this packet",
+              "eliminant_ref": "top-coefficient-saturated gcd of the pseudo-remainder coefficients of X^512-1 by the Cramer locator L_Z(X); degree cap only, no F17 root table emitted in this packet",
               "pivot": "full_rank_top_cramer_locator",
               "residual_label": "unknown",
               "status": "residual_obstruction"
