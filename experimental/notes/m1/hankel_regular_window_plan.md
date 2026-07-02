@@ -346,7 +346,11 @@ selected pairs on five residual coordinates force three pair-quadratic points
 on one root-star line, impossible for an irreducible conic.  The `d=r'+2`
 two-private branch closes lines and reduces conics `109..114` to a K4
 boundary; the latter is closed by the pair-quadratic determinant
-`prod_{i<j}(x_j-x_i)^2`.  Thus the unclosed high-core ranges are now
+`prod_{i<j}(x_j-x_i)^2`.  The conic `d=r'+4` branch `97<=e_G<=102`
+is not closed, but root-star Bezout closes all max-degree-at-least-3 graphs;
+the only no-root-star survivors are two disjoint triangles or six-cycles, and
+the six-cycle must satisfy the normalized hexagon factor
+`a*b*d-a*c*d+a*c-a*d-b*c+c*d`.  Thus the unclosed high-core ranges are now
 `72<=e_G<=96` for lines and `69<=e_G<=102` for conics.  The packet now
 records an exact-current residual profile: the live one-over ranges are line
 `72..80` and conic `69..76`; the largest line projective bound remains `18`,
@@ -402,7 +406,9 @@ one-over rows, line `e_G=72..80` and conic `e_G=69..76`, plus the formerly raw
 line/conic punctured-tangent tail at `e_G=120`.  The subsequent exact-agreement
 filter closes the cofactor-current tangent-tail rows `e_G=97..119` for lines
 and `e_G=103..119` for conics, using the four-private line-pencil obstruction,
-the K4 determinant, and three-private root-star arguments.
+the K4 determinant, and three-private root-star arguments, while reducing the
+conic four-private rows `e_G=97..102` to the two-triangle or hexagon-factor
+residuals.
 The exact-current rows are also recorded as a minimal obstruction profile:
 any remaining over-budget witness must be one of the line cores `72..80` or
 conic cores `69..76`, with exactly six finite source classes, six distinct

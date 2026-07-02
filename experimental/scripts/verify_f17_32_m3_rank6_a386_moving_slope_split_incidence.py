@@ -20,7 +20,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v40"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v41"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -860,6 +860,125 @@ def six_edges_on_five_vertices_star_pigeonhole() -> dict[str, Any]:
     }
 
 
+@lru_cache(maxsize=1)
+def six_edges_on_six_vertices_four_private_profile() -> dict[str, Any]:
+    """Classify the six-edge graph shapes in the four-private conic boundary."""
+    vertices = list(range(6))
+    edges = list(itertools.combinations(vertices, 2))
+    max_degree_counts: dict[int, int] = {}
+    no_star_component_counts: dict[str, int] = {}
+    for selected in itertools.combinations(edges, 6):
+        degrees = [0 for _vertex in vertices]
+        adjacency = {vertex: set() for vertex in vertices}
+        for left, right in selected:
+            degrees[left] += 1
+            degrees[right] += 1
+            adjacency[left].add(right)
+            adjacency[right].add(left)
+        max_degree = max(degrees)
+        max_degree_counts[max_degree] = max_degree_counts.get(max_degree, 0) + 1
+        if max_degree <= 2:
+            seen: set[int] = set()
+            components: list[tuple[int, int]] = []
+            for vertex in vertices:
+                if vertex in seen:
+                    continue
+                stack = [vertex]
+                seen.add(vertex)
+                component_vertices: list[int] = []
+                edge_sum = 0
+                while stack:
+                    current = stack.pop()
+                    component_vertices.append(current)
+                    edge_sum += len(adjacency[current])
+                    for neighbour in adjacency[current]:
+                        if neighbour not in seen:
+                            seen.add(neighbour)
+                            stack.append(neighbour)
+                components.append((len(component_vertices), edge_sum // 2))
+            key = str(sorted(components, reverse=True))
+            no_star_component_counts[key] = no_star_component_counts.get(key, 0) + 1
+    require(
+        max_degree_counts == {2: 70, 3: 3525, 4: 1350, 5: 60},
+        "K6 six-edge max-degree distribution changed",
+    )
+    require(
+        no_star_component_counts == {"[(6, 6)]": 60, "[(3, 3), (3, 3)]": 10},
+        "K6 no-star component distribution changed",
+    )
+    return {
+        "edge_universe": "K6",
+        "selected_edge_count": 6,
+        "total_six_edge_subsets": sum(max_degree_counts.values()),
+        "max_degree_counts": {
+            str(degree): count for degree, count in sorted(max_degree_counts.items())
+        },
+        "root_star_closed_subset_count": sum(
+            count for degree, count in max_degree_counts.items() if degree >= 3
+        ),
+        "no_root_star_subset_count": max_degree_counts[2],
+        "no_root_star_component_counts": no_star_component_counts,
+        "surviving_graph_types_after_root_star": [
+            "six_cycle",
+            "two_disjoint_triangles",
+        ],
+    }
+
+
+@lru_cache(maxsize=1)
+def pair_quadratic_k6_hexagon_identities() -> dict[str, Any]:
+    """Symbolic identities for the four-private six-pair conic boundary."""
+    import sympy as sp
+
+    a, b, c, d = sp.symbols("a b c d")
+    x = [sp.Integer(0), sp.Integer(1), a, b, c, d]
+
+    def conic_row(left: int, right: int) -> list[Any]:
+        s = -(x[left] + x[right])
+        p = x[left] * x[right]
+        return [1, s * s, p * p, s, p, s * p]
+
+    two_triangle_edges = [(0, 1), (0, 2), (1, 2), (3, 4), (3, 5), (4, 5)]
+    two_triangle_det = sp.factor(
+        sp.Matrix([conic_row(left, right) for left, right in two_triangle_edges]).det()
+    )
+    require(two_triangle_det == 0, "two-triangle determinant should vanish identically")
+
+    cycle_edges = [(0, 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, 0)]
+    cycle_det = sp.factor(
+        sp.Matrix([conic_row(left, right) for left, right in cycle_edges]).det()
+    )
+    expected_cycle_det = sp.factor(
+        -a
+        * b
+        * c
+        * (a - c)
+        * (a - d)
+        * (b - 1)
+        * (b - d)
+        * (c - 1)
+        * (d - 1)
+        * (a * b * d - a * c * d + a * c - a * d - b * c + c * d)
+    )
+    require(
+        sp.factor(cycle_det - expected_cycle_det) == 0,
+        "six-cycle determinant identity changed",
+    )
+    return {
+        "normalization": "affine-normalize the six residual coordinates to 0,1,a,b,c,d",
+        "conic_evaluation_basis": ["X^2", "Y^2", "Z^2", "XY", "XZ", "YZ"],
+        "two_disjoint_triangles_edges": [list(edge) for edge in two_triangle_edges],
+        "two_disjoint_triangles_determinant": "0",
+        "six_cycle_edges": [list(edge) for edge in cycle_edges],
+        "six_cycle_determinant_factorization": (
+            "-a*b*c*(a-c)*(a-d)*(b-1)*(b-d)*(c-1)*(d-1)*"
+            "(a*b*d-a*c*d+a*c-a*d-b*c+c*d)"
+        ),
+        "six_cycle_hexagon_factor": "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
+        "checked_with_sympy": sp.__version__,
+    }
+
+
 def conic_three_private_tail_closure_row(core: int) -> dict[str, Any]:
     """Close the six-of-ten pair-quadratic obstruction at the three-private tail."""
     row = punctured_tangent_top_saturation_exclusion_row("irreducible_conic", core)
@@ -918,6 +1037,65 @@ def conic_three_private_tail_closure_row(core: int) -> dict[str, Any]:
         "closes_branch": True,
         "projective_safe_after_three_private_conic_obstruction": True,
         "projective_upper_bound_after_obstruction": PROJECTIVE_BUDGET,
+    }
+
+
+def conic_four_private_tail_boundary_row(core: int) -> dict[str, Any]:
+    """Reduce the four-private conic tail to explicit hexagon residuals."""
+    row = punctured_tangent_top_saturation_exclusion_row("irreducible_conic", core)
+    punctured_radius = row["punctured_cosupport_radius"]
+    require(24 <= punctured_radius <= 29, "conic four-private boundary covers r'=24..29")
+    dangerous_projective_count = PROJECTIVE_BUDGET + 1
+    near_extremizer_rows = tangent_near_extremizer_common_support_complements(
+        punctured_radius,
+        dangerous_projective_count,
+    )
+    private_coordinate_counts = [
+        max(0, entry["common_support_complement_size"] - punctured_radius)
+        for entry in near_extremizer_rows
+    ]
+    require(max(private_coordinate_counts) == 4, "conic boundary should have d=r'+4 branch")
+    graph_profile = six_edges_on_six_vertices_four_private_profile()
+    hexagon_identities = pair_quadratic_k6_hexagon_identities()
+    return {
+        "component_type": "irreducible_conic",
+        "forced_external_core_size": core,
+        "punctured_cosupport_radius": punctured_radius,
+        "dangerous_projective_count": dangerous_projective_count,
+        "finite_component_slope_count_at_least": dangerous_projective_count - 1,
+        "near_extremizer_common_support_complement_options": near_extremizer_rows,
+        "private_coordinate_count_options": sorted(set(private_coordinate_counts)),
+        "surviving_branch": "d_equals_r_plus_4_four_private_coordinates",
+        "closed_lower_private_branches": [
+            "d<r' gives higher agreement",
+            "d=r' is same-support contained at exact A",
+            "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3",
+            "d=r'+2 is closed by the K4 pair-quadratic determinant",
+            "d=r'+3 is closed by the root-star Bezout obstruction",
+        ],
+        "pair_quadratic_boundary_model": (
+            "six selected pair quadratics among the fifteen pairs of six residual coordinates"
+        ),
+        "graph_profile": graph_profile,
+        "hexagon_identities": hexagon_identities,
+        "root_star_closure": (
+            "If some residual coordinate occurs in at least three selected pairs, "
+            "the corresponding three pair-quadratic points are distinct and lie "
+            "on one root-star line, impossible for an irreducible conic by Bezout."
+        ),
+        "after_root_star_surviving_shapes": [
+            "two_disjoint_triangles: determinant zero identically; remains a named residual",
+            "six_cycle: must satisfy the printed hexagon factor after affine normalization",
+        ],
+        "residual_label": "four_private_hexagon_or_two_triangle_quotient_residual",
+        "closes_branch": False,
+        "projective_safe_after_four_private_profile": False,
+        "next_algebraic_test": (
+            "Rule out the two-triangle quotient configuration or prove the "
+            "six-cycle hexagon factor cannot vanish on the actual residual "
+            "subgroup coordinates; otherwise this is the sharp four-private "
+            "conic boundary."
+        ),
     }
 
 
@@ -3306,6 +3484,10 @@ def build_certificate() -> dict[str, Any]:
         conic_three_private_tail_closure_row(core)
         for core in range(conic_three_private_tail_safe_core_min, conic_k4_tail_safe_core_min)
     ]
+    conic_four_private_tail_boundary_rows = [
+        conic_four_private_tail_boundary_row(core)
+        for core in range(line_exact_tail_safe_core_min, conic_three_private_tail_safe_core_min)
+    ]
     line_base_defect_rows = [
         line_base_defect_threshold_row(row) for row in line_survival_rows
     ]
@@ -3751,6 +3933,33 @@ def build_certificate() -> dict[str, Any]:
             for core in range(103, 109)
         ],
         "conic three-private tail closure profile changed",
+    )
+    require(
+        [
+            (
+                row["forced_external_core_size"],
+                row["punctured_cosupport_radius"],
+                max(row["private_coordinate_count_options"]),
+                row["graph_profile"]["root_star_closed_subset_count"],
+                row["graph_profile"]["no_root_star_component_counts"],
+                row["hexagon_identities"]["six_cycle_hexagon_factor"],
+                row["closes_branch"],
+            )
+            for row in conic_four_private_tail_boundary_rows
+        ]
+        == [
+            (
+                core,
+                126 - core,
+                4,
+                4935,
+                {"[(6, 6)]": 60, "[(3, 3), (3, 3)]": 10},
+                "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
+                False,
+            )
+            for core in range(97, 103)
+        ],
+        "conic four-private boundary profile changed",
     )
     require(
         [group for group in line_exact_current_profile_groups if group["one_over_budget"]]
@@ -5100,6 +5309,15 @@ def build_certificate() -> dict[str, Any]:
                 "pair-quadratic points lie on the same root-star line, which an "
                 "irreducible conic cannot meet in three distinct points."
             ),
+            "conic_four_private_tail_boundary_profile": (
+                "Conic cores e_G=97..102 reduce to a four-private six-pair "
+                "boundary.  Root-star Bezout closes all six-edge K6 graphs with "
+                "max degree at least 3.  The only no-root-star graph types are "
+                "two disjoint triangles and six-cycles; the two-triangle "
+                "determinant vanishes identically, and a six-cycle can survive "
+                "only when the normalized hexagon factor "
+                "a*b*d-a*c*d+a*c-a*d-b*c+c*d vanishes."
+            ),
             "single_saving_closure_ledger": (
                 "Every cofactor-current one-over row in the moving-slope packet is "
                 "listed in a single-saving closure ledger.  The ledger covers "
@@ -5293,6 +5511,7 @@ def build_certificate() -> dict[str, Any]:
         "conic_signed_edge_tail_boundary_profile": conic_signed_edge_tail_boundary_rows,
         "conic_k4_tail_closure_profile": conic_k4_tail_closure_rows,
         "conic_three_private_tail_closure_profile": conic_three_private_tail_closure_rows,
+        "conic_four_private_tail_boundary_profile": conic_four_private_tail_boundary_rows,
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -5486,6 +5705,30 @@ def build_certificate() -> dict[str, Any]:
             "conic_three_private_tail_closure_closes_branch": all(
                 row["projective_safe_after_three_private_conic_obstruction"]
                 for row in conic_three_private_tail_closure_rows
+            ),
+            "conic_four_private_tail_boundary_core_range": [
+                min(row["forced_external_core_size"] for row in conic_four_private_tail_boundary_rows),
+                max(row["forced_external_core_size"] for row in conic_four_private_tail_boundary_rows),
+            ],
+            "conic_four_private_tail_boundary_surviving_graph_types": (
+                conic_four_private_tail_boundary_rows[0]["graph_profile"][
+                    "surviving_graph_types_after_root_star"
+                ]
+            ),
+            "conic_four_private_tail_boundary_root_star_closed_subset_count": (
+                conic_four_private_tail_boundary_rows[0]["graph_profile"][
+                    "root_star_closed_subset_count"
+                ]
+            ),
+            "conic_four_private_tail_boundary_no_root_star_component_counts": (
+                conic_four_private_tail_boundary_rows[0]["graph_profile"][
+                    "no_root_star_component_counts"
+                ]
+            ),
+            "conic_four_private_tail_boundary_hexagon_factor": (
+                conic_four_private_tail_boundary_rows[0]["hexagon_identities"][
+                    "six_cycle_hexagon_factor"
+                ]
             ),
             "conic_cofactor_improved_tangent_one_over_external_core": (
                 conic_cofactor_tangent_one_over_cores
@@ -5714,11 +5957,13 @@ def build_certificate() -> dict[str, Any]:
             "exact-current minimal obstruction profile requires six distinct finite slopes plus endpoint",
             "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
             "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction",
+            "conic four-private tail boundary is reduced to two-triangle or hexagon-factor residuals",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",
             "does not close line components with forced external split-root core in 72..96 in projective accounting",
             "does not close irreducible conic moving-slope components with forced external split-root core in 69..102 in projective accounting",
+            "does not rule out the conic four-private two-triangle or hexagon-factor residuals",
             "does not prove the high-core quotient split problem is empty or paid",
             "does not claim the punctured tangent numerator at the residual threshold is within the original row budget",
             "does not rule out another independent noncontained vector at the same finite slope",
@@ -5762,6 +6007,11 @@ def print_summary(certificate: dict[str, Any]) -> None:
         "exact-current residual savings: line max "
         "{line_exact_current_multi_saving_max_required_savings}, conic max "
         "{conic_exact_current_multi_saving_max_required_savings}".format(**summary)
+    )
+    print(
+        "conic four-private boundary: e={0}..{1}, residual hexagon/two-triangle".format(
+            *summary["conic_four_private_tail_boundary_core_range"]
+        )
     )
 
 

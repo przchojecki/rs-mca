@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v22"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v23"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v40",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v41",
 }
 
 
@@ -355,6 +355,15 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         and summary["conic_three_private_tail_closure_bezout_line_cap"] == 2
         and summary["conic_three_private_tail_closure_closes_branch"],
         "conic three-private closure summary mismatch",
+    )
+    require(
+        summary["conic_four_private_tail_boundary_core_range"] == [97, 102]
+        and summary["conic_four_private_tail_boundary_root_star_closed_subset_count"] == 4935
+        and summary["conic_four_private_tail_boundary_no_root_star_component_counts"]
+        == {"[(6, 6)]": 60, "[(3, 3), (3, 3)]": 10}
+        and summary["conic_four_private_tail_boundary_hexagon_factor"]
+        == "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
+        "conic four-private boundary summary mismatch",
     )
     require(
         summary["line_one_over_budget_external_core_ranges"] == [[72, 80], [120, 120]],
@@ -1386,6 +1395,36 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         ],
         "conic three-private tail closure rows mismatch",
     )
+    conic_four_private_boundary = data["conic_four_private_tail_boundary_profile"]
+    require(
+        [
+            (
+                row["forced_external_core_size"],
+                row["punctured_cosupport_radius"],
+                row["surviving_branch"],
+                max(row["private_coordinate_count_options"]),
+                row["graph_profile"]["root_star_closed_subset_count"],
+                row["graph_profile"]["no_root_star_component_counts"],
+                row["hexagon_identities"]["six_cycle_hexagon_factor"],
+                row["closes_branch"],
+            )
+            for row in conic_four_private_boundary
+        ]
+        == [
+            (
+                core,
+                126 - core,
+                "d_equals_r_plus_4_four_private_coordinates",
+                4,
+                4935,
+                {"[(6, 6)]": 60, "[(3, 3), (3, 3)]": 10},
+                "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
+                False,
+            )
+            for core in range(97, 103)
+        ],
+        "conic four-private boundary rows mismatch",
+    )
     require(
         summary["exact_current_minimal_obstruction_count"] == 17
         and summary["exact_current_minimal_obstruction_core_ranges"]
@@ -1635,6 +1674,7 @@ def build_certificate() -> dict[str, Any]:
                 "the d=r'+2 two-private-coordinate signed-edge branch closes lines and reduces conics e_G=109..114 to a K4 boundary",
                 "the K4 conic boundary is also closed: after the common residual core is factored, the six finite members become the six pair quadratics from four residual coordinates, and the determinant of their conic-evaluation matrix is prod_{i<j}(x_j-x_i)^2",
                 "the conic d=r'+3 branch e_G=103..108 is closed by a root-star Bezout obstruction: six selected pairs on five residual coordinates force three pair-quadratic points on one root-star line, impossible for an irreducible conic",
+                "the conic d=r'+4 branch e_G=97..102 is reduced to two-disjoint-triangle or six-cycle hexagon-factor quotient residuals; all max-degree-at-least-3 graphs close by root-star Bezout",
                 "the still-unclosed high-core quotient ranges are e_G=72..96 for lines and e_G=69..102 for irreducible conics",
                 "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; after exact-tail sharpening the worst projective bounds are 18 and 25",
                 "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the formerly one-over e_G=120 cases are closed by the cofactor-span contradiction",
@@ -1735,12 +1775,14 @@ def build_certificate() -> dict[str, Any]:
             "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
             "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
             "A=386 moving-slope small-core and very-high-core tail branches are recorded as projective-safe; the intermediate high-core quotient ranges remain residual",
+            "A=386 conic four-private residuals are reduced to two-triangle or hexagon-factor boundary shapes",
             "projective infinity and finite affine accounting are not conflated",
         ],
         "nonclaims": [
             "does not compute arbitrary non-proportional finite root tables",
             "does not prove the projective endpoint is empty or paid in the rank=6 case",
             "does not close the A=386 intermediate high-core quotient moving-slope residual in original-row projective accounting",
+            "does not close the A=386 conic four-private two-triangle or hexagon-factor residuals",
             "does not audit quotient or extension overlap for arbitrary root tables",
             "not a worst-case support-wise MCA row bound",
         ],

@@ -202,7 +202,8 @@
     "every exact-current moving-slope residual row has a multi-saving closure ledger entry",
     "exact-current minimal obstruction profile requires six distinct finite slopes plus endpoint",
     "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
-    "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction"
+    "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction",
+    "conic four-private tail boundary is reduced to two-triangle or hexagon-factor residuals"
   ],
   "cofactor_current_intermediate_residual_profile": {
     "irreducible_conic_projective_bound_groups": [
@@ -3747,6 +3748,1622 @@
       ],
       "secant_edge_count": 15,
       "secant_graph": "K6"
+    }
+  ],
+  "conic_four_private_tail_boundary_profile": [
+    {
+      "after_root_star_surviving_shapes": [
+        "two_disjoint_triangles: determinant zero identically; remains a named residual",
+        "six_cycle: must satisfy the printed hexagon factor after affine normalization"
+      ],
+      "closed_lower_private_branches": [
+        "d<r' gives higher agreement",
+        "d=r' is same-support contained at exact A",
+        "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3",
+        "d=r'+2 is closed by the K4 pair-quadratic determinant",
+        "d=r'+3 is closed by the root-star Bezout obstruction"
+      ],
+      "closes_branch": false,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "finite_component_slope_count_at_least": 6,
+      "forced_external_core_size": 97,
+      "graph_profile": {
+        "edge_universe": "K6",
+        "max_degree_counts": {
+          "2": 70,
+          "3": 3525,
+          "4": 1350,
+          "5": 60
+        },
+        "no_root_star_component_counts": {
+          "[(3, 3), (3, 3)]": 10,
+          "[(6, 6)]": 60
+        },
+        "no_root_star_subset_count": 70,
+        "root_star_closed_subset_count": 4935,
+        "selected_edge_count": 6,
+        "surviving_graph_types_after_root_star": [
+          "six_cycle",
+          "two_disjoint_triangles"
+        ],
+        "total_six_edge_subsets": 5005
+      },
+      "hexagon_identities": {
+        "checked_with_sympy": "1.14.0",
+        "conic_evaluation_basis": [
+          "X^2",
+          "Y^2",
+          "Z^2",
+          "XY",
+          "XZ",
+          "YZ"
+        ],
+        "normalization": "affine-normalize the six residual coordinates to 0,1,a,b,c,d",
+        "six_cycle_determinant_factorization": "-a*b*c*(a-c)*(a-d)*(b-1)*(b-d)*(c-1)*(d-1)*(a*b*d-a*c*d+a*c-a*d-b*c+c*d)",
+        "six_cycle_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "six_cycle_hexagon_factor": "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
+        "two_disjoint_triangles_determinant": "0",
+        "two_disjoint_triangles_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "near_extremizer_common_support_complement_options": [
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 7,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 7
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 8,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 8
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 9,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 9
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 10,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 10
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 11,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 11
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 12,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 12
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 13,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 13
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 14,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 14
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 15,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 15
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 16,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 16
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 17,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 17
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 18,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 18
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 19,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 19
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 20,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 20
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 21,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 21
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 22,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 22
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 23,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 23
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 24,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 24
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 25,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 25
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 26,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 26
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 27,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 27
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 28,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 28
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 29,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 29
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 30,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 30
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 31,
+          "private_zero_quota_per_slope": 2,
+          "residual_budget_bound": 15
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 32,
+          "private_zero_quota_per_slope": 3,
+          "residual_budget_bound": 10
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 33,
+          "private_zero_quota_per_slope": 4,
+          "residual_budget_bound": 8
+        }
+      ],
+      "next_algebraic_test": "Rule out the two-triangle quotient configuration or prove the six-cycle hexagon factor cannot vanish on the actual residual subgroup coordinates; otherwise this is the sharp four-private conic boundary.",
+      "pair_quadratic_boundary_model": "six selected pair quadratics among the fifteen pairs of six residual coordinates",
+      "private_coordinate_count_options": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "projective_safe_after_four_private_profile": false,
+      "punctured_cosupport_radius": 29,
+      "residual_label": "four_private_hexagon_or_two_triangle_quotient_residual",
+      "root_star_closure": "If some residual coordinate occurs in at least three selected pairs, the corresponding three pair-quadratic points are distinct and lie on one root-star line, impossible for an irreducible conic by Bezout.",
+      "surviving_branch": "d_equals_r_plus_4_four_private_coordinates"
+    },
+    {
+      "after_root_star_surviving_shapes": [
+        "two_disjoint_triangles: determinant zero identically; remains a named residual",
+        "six_cycle: must satisfy the printed hexagon factor after affine normalization"
+      ],
+      "closed_lower_private_branches": [
+        "d<r' gives higher agreement",
+        "d=r' is same-support contained at exact A",
+        "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3",
+        "d=r'+2 is closed by the K4 pair-quadratic determinant",
+        "d=r'+3 is closed by the root-star Bezout obstruction"
+      ],
+      "closes_branch": false,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "finite_component_slope_count_at_least": 6,
+      "forced_external_core_size": 98,
+      "graph_profile": {
+        "edge_universe": "K6",
+        "max_degree_counts": {
+          "2": 70,
+          "3": 3525,
+          "4": 1350,
+          "5": 60
+        },
+        "no_root_star_component_counts": {
+          "[(3, 3), (3, 3)]": 10,
+          "[(6, 6)]": 60
+        },
+        "no_root_star_subset_count": 70,
+        "root_star_closed_subset_count": 4935,
+        "selected_edge_count": 6,
+        "surviving_graph_types_after_root_star": [
+          "six_cycle",
+          "two_disjoint_triangles"
+        ],
+        "total_six_edge_subsets": 5005
+      },
+      "hexagon_identities": {
+        "checked_with_sympy": "1.14.0",
+        "conic_evaluation_basis": [
+          "X^2",
+          "Y^2",
+          "Z^2",
+          "XY",
+          "XZ",
+          "YZ"
+        ],
+        "normalization": "affine-normalize the six residual coordinates to 0,1,a,b,c,d",
+        "six_cycle_determinant_factorization": "-a*b*c*(a-c)*(a-d)*(b-1)*(b-d)*(c-1)*(d-1)*(a*b*d-a*c*d+a*c-a*d-b*c+c*d)",
+        "six_cycle_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "six_cycle_hexagon_factor": "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
+        "two_disjoint_triangles_determinant": "0",
+        "two_disjoint_triangles_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "near_extremizer_common_support_complement_options": [
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 7,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 7
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 8,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 8
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 9,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 9
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 10,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 10
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 11,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 11
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 12,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 12
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 13,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 13
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 14,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 14
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 15,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 15
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 16,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 16
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 17,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 17
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 18,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 18
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 19,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 19
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 20,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 20
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 21,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 21
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 22,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 22
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 23,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 23
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 24,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 24
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 25,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 25
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 26,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 26
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 27,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 27
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 28,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 28
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 29,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 29
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 30,
+          "private_zero_quota_per_slope": 2,
+          "residual_budget_bound": 15
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 31,
+          "private_zero_quota_per_slope": 3,
+          "residual_budget_bound": 10
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 32,
+          "private_zero_quota_per_slope": 4,
+          "residual_budget_bound": 8
+        }
+      ],
+      "next_algebraic_test": "Rule out the two-triangle quotient configuration or prove the six-cycle hexagon factor cannot vanish on the actual residual subgroup coordinates; otherwise this is the sharp four-private conic boundary.",
+      "pair_quadratic_boundary_model": "six selected pair quadratics among the fifteen pairs of six residual coordinates",
+      "private_coordinate_count_options": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "projective_safe_after_four_private_profile": false,
+      "punctured_cosupport_radius": 28,
+      "residual_label": "four_private_hexagon_or_two_triangle_quotient_residual",
+      "root_star_closure": "If some residual coordinate occurs in at least three selected pairs, the corresponding three pair-quadratic points are distinct and lie on one root-star line, impossible for an irreducible conic by Bezout.",
+      "surviving_branch": "d_equals_r_plus_4_four_private_coordinates"
+    },
+    {
+      "after_root_star_surviving_shapes": [
+        "two_disjoint_triangles: determinant zero identically; remains a named residual",
+        "six_cycle: must satisfy the printed hexagon factor after affine normalization"
+      ],
+      "closed_lower_private_branches": [
+        "d<r' gives higher agreement",
+        "d=r' is same-support contained at exact A",
+        "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3",
+        "d=r'+2 is closed by the K4 pair-quadratic determinant",
+        "d=r'+3 is closed by the root-star Bezout obstruction"
+      ],
+      "closes_branch": false,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "finite_component_slope_count_at_least": 6,
+      "forced_external_core_size": 99,
+      "graph_profile": {
+        "edge_universe": "K6",
+        "max_degree_counts": {
+          "2": 70,
+          "3": 3525,
+          "4": 1350,
+          "5": 60
+        },
+        "no_root_star_component_counts": {
+          "[(3, 3), (3, 3)]": 10,
+          "[(6, 6)]": 60
+        },
+        "no_root_star_subset_count": 70,
+        "root_star_closed_subset_count": 4935,
+        "selected_edge_count": 6,
+        "surviving_graph_types_after_root_star": [
+          "six_cycle",
+          "two_disjoint_triangles"
+        ],
+        "total_six_edge_subsets": 5005
+      },
+      "hexagon_identities": {
+        "checked_with_sympy": "1.14.0",
+        "conic_evaluation_basis": [
+          "X^2",
+          "Y^2",
+          "Z^2",
+          "XY",
+          "XZ",
+          "YZ"
+        ],
+        "normalization": "affine-normalize the six residual coordinates to 0,1,a,b,c,d",
+        "six_cycle_determinant_factorization": "-a*b*c*(a-c)*(a-d)*(b-1)*(b-d)*(c-1)*(d-1)*(a*b*d-a*c*d+a*c-a*d-b*c+c*d)",
+        "six_cycle_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "six_cycle_hexagon_factor": "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
+        "two_disjoint_triangles_determinant": "0",
+        "two_disjoint_triangles_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "near_extremizer_common_support_complement_options": [
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 7,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 7
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 8,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 8
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 9,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 9
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 10,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 10
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 11,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 11
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 12,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 12
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 13,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 13
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 14,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 14
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 15,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 15
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 16,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 16
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 17,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 17
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 18,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 18
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 19,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 19
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 20,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 20
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 21,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 21
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 22,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 22
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 23,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 23
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 24,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 24
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 25,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 25
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 26,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 26
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 27,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 27
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 28,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 28
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 29,
+          "private_zero_quota_per_slope": 2,
+          "residual_budget_bound": 14
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 30,
+          "private_zero_quota_per_slope": 3,
+          "residual_budget_bound": 10
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 31,
+          "private_zero_quota_per_slope": 4,
+          "residual_budget_bound": 7
+        }
+      ],
+      "next_algebraic_test": "Rule out the two-triangle quotient configuration or prove the six-cycle hexagon factor cannot vanish on the actual residual subgroup coordinates; otherwise this is the sharp four-private conic boundary.",
+      "pair_quadratic_boundary_model": "six selected pair quadratics among the fifteen pairs of six residual coordinates",
+      "private_coordinate_count_options": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "projective_safe_after_four_private_profile": false,
+      "punctured_cosupport_radius": 27,
+      "residual_label": "four_private_hexagon_or_two_triangle_quotient_residual",
+      "root_star_closure": "If some residual coordinate occurs in at least three selected pairs, the corresponding three pair-quadratic points are distinct and lie on one root-star line, impossible for an irreducible conic by Bezout.",
+      "surviving_branch": "d_equals_r_plus_4_four_private_coordinates"
+    },
+    {
+      "after_root_star_surviving_shapes": [
+        "two_disjoint_triangles: determinant zero identically; remains a named residual",
+        "six_cycle: must satisfy the printed hexagon factor after affine normalization"
+      ],
+      "closed_lower_private_branches": [
+        "d<r' gives higher agreement",
+        "d=r' is same-support contained at exact A",
+        "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3",
+        "d=r'+2 is closed by the K4 pair-quadratic determinant",
+        "d=r'+3 is closed by the root-star Bezout obstruction"
+      ],
+      "closes_branch": false,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "finite_component_slope_count_at_least": 6,
+      "forced_external_core_size": 100,
+      "graph_profile": {
+        "edge_universe": "K6",
+        "max_degree_counts": {
+          "2": 70,
+          "3": 3525,
+          "4": 1350,
+          "5": 60
+        },
+        "no_root_star_component_counts": {
+          "[(3, 3), (3, 3)]": 10,
+          "[(6, 6)]": 60
+        },
+        "no_root_star_subset_count": 70,
+        "root_star_closed_subset_count": 4935,
+        "selected_edge_count": 6,
+        "surviving_graph_types_after_root_star": [
+          "six_cycle",
+          "two_disjoint_triangles"
+        ],
+        "total_six_edge_subsets": 5005
+      },
+      "hexagon_identities": {
+        "checked_with_sympy": "1.14.0",
+        "conic_evaluation_basis": [
+          "X^2",
+          "Y^2",
+          "Z^2",
+          "XY",
+          "XZ",
+          "YZ"
+        ],
+        "normalization": "affine-normalize the six residual coordinates to 0,1,a,b,c,d",
+        "six_cycle_determinant_factorization": "-a*b*c*(a-c)*(a-d)*(b-1)*(b-d)*(c-1)*(d-1)*(a*b*d-a*c*d+a*c-a*d-b*c+c*d)",
+        "six_cycle_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "six_cycle_hexagon_factor": "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
+        "two_disjoint_triangles_determinant": "0",
+        "two_disjoint_triangles_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "near_extremizer_common_support_complement_options": [
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 7,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 7
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 8,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 8
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 9,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 9
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 10,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 10
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 11,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 11
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 12,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 12
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 13,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 13
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 14,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 14
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 15,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 15
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 16,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 16
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 17,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 17
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 18,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 18
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 19,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 19
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 20,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 20
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 21,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 21
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 22,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 22
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 23,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 23
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 24,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 24
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 25,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 25
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 26,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 26
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 27,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 27
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 28,
+          "private_zero_quota_per_slope": 2,
+          "residual_budget_bound": 14
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 29,
+          "private_zero_quota_per_slope": 3,
+          "residual_budget_bound": 9
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 30,
+          "private_zero_quota_per_slope": 4,
+          "residual_budget_bound": 7
+        }
+      ],
+      "next_algebraic_test": "Rule out the two-triangle quotient configuration or prove the six-cycle hexagon factor cannot vanish on the actual residual subgroup coordinates; otherwise this is the sharp four-private conic boundary.",
+      "pair_quadratic_boundary_model": "six selected pair quadratics among the fifteen pairs of six residual coordinates",
+      "private_coordinate_count_options": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "projective_safe_after_four_private_profile": false,
+      "punctured_cosupport_radius": 26,
+      "residual_label": "four_private_hexagon_or_two_triangle_quotient_residual",
+      "root_star_closure": "If some residual coordinate occurs in at least three selected pairs, the corresponding three pair-quadratic points are distinct and lie on one root-star line, impossible for an irreducible conic by Bezout.",
+      "surviving_branch": "d_equals_r_plus_4_four_private_coordinates"
+    },
+    {
+      "after_root_star_surviving_shapes": [
+        "two_disjoint_triangles: determinant zero identically; remains a named residual",
+        "six_cycle: must satisfy the printed hexagon factor after affine normalization"
+      ],
+      "closed_lower_private_branches": [
+        "d<r' gives higher agreement",
+        "d=r' is same-support contained at exact A",
+        "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3",
+        "d=r'+2 is closed by the K4 pair-quadratic determinant",
+        "d=r'+3 is closed by the root-star Bezout obstruction"
+      ],
+      "closes_branch": false,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "finite_component_slope_count_at_least": 6,
+      "forced_external_core_size": 101,
+      "graph_profile": {
+        "edge_universe": "K6",
+        "max_degree_counts": {
+          "2": 70,
+          "3": 3525,
+          "4": 1350,
+          "5": 60
+        },
+        "no_root_star_component_counts": {
+          "[(3, 3), (3, 3)]": 10,
+          "[(6, 6)]": 60
+        },
+        "no_root_star_subset_count": 70,
+        "root_star_closed_subset_count": 4935,
+        "selected_edge_count": 6,
+        "surviving_graph_types_after_root_star": [
+          "six_cycle",
+          "two_disjoint_triangles"
+        ],
+        "total_six_edge_subsets": 5005
+      },
+      "hexagon_identities": {
+        "checked_with_sympy": "1.14.0",
+        "conic_evaluation_basis": [
+          "X^2",
+          "Y^2",
+          "Z^2",
+          "XY",
+          "XZ",
+          "YZ"
+        ],
+        "normalization": "affine-normalize the six residual coordinates to 0,1,a,b,c,d",
+        "six_cycle_determinant_factorization": "-a*b*c*(a-c)*(a-d)*(b-1)*(b-d)*(c-1)*(d-1)*(a*b*d-a*c*d+a*c-a*d-b*c+c*d)",
+        "six_cycle_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "six_cycle_hexagon_factor": "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
+        "two_disjoint_triangles_determinant": "0",
+        "two_disjoint_triangles_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "near_extremizer_common_support_complement_options": [
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 7,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 7
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 8,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 8
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 9,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 9
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 10,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 10
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 11,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 11
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 12,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 12
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 13,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 13
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 14,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 14
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 15,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 15
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 16,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 16
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 17,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 17
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 18,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 18
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 19,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 19
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 20,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 20
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 21,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 21
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 22,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 22
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 23,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 23
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 24,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 24
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 25,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 25
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 26,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 26
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 27,
+          "private_zero_quota_per_slope": 2,
+          "residual_budget_bound": 13
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 28,
+          "private_zero_quota_per_slope": 3,
+          "residual_budget_bound": 9
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 29,
+          "private_zero_quota_per_slope": 4,
+          "residual_budget_bound": 7
+        }
+      ],
+      "next_algebraic_test": "Rule out the two-triangle quotient configuration or prove the six-cycle hexagon factor cannot vanish on the actual residual subgroup coordinates; otherwise this is the sharp four-private conic boundary.",
+      "pair_quadratic_boundary_model": "six selected pair quadratics among the fifteen pairs of six residual coordinates",
+      "private_coordinate_count_options": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "projective_safe_after_four_private_profile": false,
+      "punctured_cosupport_radius": 25,
+      "residual_label": "four_private_hexagon_or_two_triangle_quotient_residual",
+      "root_star_closure": "If some residual coordinate occurs in at least three selected pairs, the corresponding three pair-quadratic points are distinct and lie on one root-star line, impossible for an irreducible conic by Bezout.",
+      "surviving_branch": "d_equals_r_plus_4_four_private_coordinates"
+    },
+    {
+      "after_root_star_surviving_shapes": [
+        "two_disjoint_triangles: determinant zero identically; remains a named residual",
+        "six_cycle: must satisfy the printed hexagon factor after affine normalization"
+      ],
+      "closed_lower_private_branches": [
+        "d<r' gives higher agreement",
+        "d=r' is same-support contained at exact A",
+        "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3",
+        "d=r'+2 is closed by the K4 pair-quadratic determinant",
+        "d=r'+3 is closed by the root-star Bezout obstruction"
+      ],
+      "closes_branch": false,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "finite_component_slope_count_at_least": 6,
+      "forced_external_core_size": 102,
+      "graph_profile": {
+        "edge_universe": "K6",
+        "max_degree_counts": {
+          "2": 70,
+          "3": 3525,
+          "4": 1350,
+          "5": 60
+        },
+        "no_root_star_component_counts": {
+          "[(3, 3), (3, 3)]": 10,
+          "[(6, 6)]": 60
+        },
+        "no_root_star_subset_count": 70,
+        "root_star_closed_subset_count": 4935,
+        "selected_edge_count": 6,
+        "surviving_graph_types_after_root_star": [
+          "six_cycle",
+          "two_disjoint_triangles"
+        ],
+        "total_six_edge_subsets": 5005
+      },
+      "hexagon_identities": {
+        "checked_with_sympy": "1.14.0",
+        "conic_evaluation_basis": [
+          "X^2",
+          "Y^2",
+          "Z^2",
+          "XY",
+          "XZ",
+          "YZ"
+        ],
+        "normalization": "affine-normalize the six residual coordinates to 0,1,a,b,c,d",
+        "six_cycle_determinant_factorization": "-a*b*c*(a-c)*(a-d)*(b-1)*(b-d)*(c-1)*(d-1)*(a*b*d-a*c*d+a*c-a*d-b*c+c*d)",
+        "six_cycle_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "six_cycle_hexagon_factor": "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
+        "two_disjoint_triangles_determinant": "0",
+        "two_disjoint_triangles_edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      "near_extremizer_common_support_complement_options": [
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 7,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 7
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 8,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 8
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 9,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 9
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 10,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 10
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 11,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 11
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 12,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 12
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 13,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 13
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 14,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 14
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 15,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 15
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 16,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 16
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 17,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 17
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 18,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 18
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 19,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 19
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 20,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 20
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 21,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 21
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 22,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 22
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 23,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 23
+        },
+        {
+          "branch": "common_support_at_least_agreement",
+          "common_support_complement_size": 24,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 24
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 25,
+          "private_zero_quota_per_slope": 1,
+          "residual_budget_bound": 25
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 26,
+          "private_zero_quota_per_slope": 2,
+          "residual_budget_bound": 13
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 27,
+          "private_zero_quota_per_slope": 3,
+          "residual_budget_bound": 9
+        },
+        {
+          "branch": "common_support_below_agreement",
+          "common_support_complement_size": 28,
+          "private_zero_quota_per_slope": 4,
+          "residual_budget_bound": 7
+        }
+      ],
+      "next_algebraic_test": "Rule out the two-triangle quotient configuration or prove the six-cycle hexagon factor cannot vanish on the actual residual subgroup coordinates; otherwise this is the sharp four-private conic boundary.",
+      "pair_quadratic_boundary_model": "six selected pair quadratics among the fifteen pairs of six residual coordinates",
+      "private_coordinate_count_options": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "projective_safe_after_four_private_profile": false,
+      "punctured_cosupport_radius": 24,
+      "residual_label": "four_private_hexagon_or_two_triangle_quotient_residual",
+      "root_star_closure": "If some residual coordinate occurs in at least three selected pairs, the corresponding three pair-quadratic points are distinct and lie on one root-star line, impossible for an irreducible conic by Bezout.",
+      "surviving_branch": "d_equals_r_plus_4_four_private_coordinates"
     }
   ],
   "conic_k4_tail_closure_profile": [
@@ -14095,6 +15712,7 @@
     "does not prove every moving-slope component is a line",
     "does not close line components with forced external split-root core in 72..96 in projective accounting",
     "does not close irreducible conic moving-slope components with forced external split-root core in 69..102 in projective accounting",
+    "does not rule out the conic four-private two-triangle or hexagon-factor residuals",
     "does not prove the high-core quotient split problem is empty or paid",
     "does not claim the punctured tangent numerator at the residual threshold is within the original row budget",
     "does not rule out another independent noncontained vector at the same finite slope",
@@ -18752,7 +20370,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v40",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v41",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -19550,6 +21168,20 @@
       ]
     ],
     "conic_finite_safe_for_external_core_at_most": 76,
+    "conic_four_private_tail_boundary_core_range": [
+      97,
+      102
+    ],
+    "conic_four_private_tail_boundary_hexagon_factor": "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
+    "conic_four_private_tail_boundary_no_root_star_component_counts": {
+      "[(3, 3), (3, 3)]": 10,
+      "[(6, 6)]": 60
+    },
+    "conic_four_private_tail_boundary_root_star_closed_subset_count": 4935,
+    "conic_four_private_tail_boundary_surviving_graph_types": [
+      "six_cycle",
+      "two_disjoint_triangles"
+    ],
     "conic_high_core_forced_core_is_global_common_core": true,
     "conic_incidence_only_sharpness_external_core_range": [
       69,
@@ -24029,6 +25661,7 @@
     "cofactor_current_residual_profile": "Applying the cofactor-span top-saturation exclusion to the whole intermediate profile gives the current best projective envelope.  The previously raw one-over tail e_G=120 becomes safe, while e_G=119 becomes the next cofactor-improved tangent-tail one-over core before exact-agreement filtering.  The maximum line bound remains 18, and the maximum conic bound drops from 26 to 25.",
     "cofactor_improved_tangent_tail_profile": "The same cofactor-span obstruction excludes top saturation of the punctured projective tangent bound whenever the residual cofactor degree exceeds the fixed-core quotient-family dimension.  Thus the raw tangent bound r'+1 improves to r' in the high-core line/conic quotient tails until the cofactor degree drops to the ambient family dimension.  In particular e_G=120 is projective-safe for both lines and conics, while e_G=119 is the next cofactor-current one-over tangent-tail core.",
     "conic_e69_pascal_obstruction_profile": "In the extremal conic e_G=69 branch, the K6 and K6-minus-one secant graphs are not arbitrary incidence graphs if they come from six points on an irreducible conic.  Pascal's theorem gives one collinearity relation for every Hamiltonian cycle in the secant graph: 60 relations for K6 and 36 for K6-minus-one.  Failure of these relations in the external root-line arrangement would close the corresponding extremal conic branch.",
+    "conic_four_private_tail_boundary_profile": "Conic cores e_G=97..102 reduce to a four-private six-pair boundary.  Root-star Bezout closes all six-edge K6 graphs with max degree at least 3.  The only no-root-star graph types are two disjoint triangles and six-cycles; the two-triangle determinant vanishes identically, and a six-cycle can survive only when the normalized hexagon factor a*b*d-a*c*d+a*c-a*d-b*c+c*d vanishes.",
     "conic_k4_tail_closure_profile": "The K4 signed-edge boundary is impossible for an irreducible conic component.  After factoring the common residual zero set, the six finite classes become the six pair quadratics from four distinct residual coordinates.  The determinant of their six conic-evaluation rows is prod_{i<j}(x_j-x_i)^2, so no projective conic contains all six image points in characteristic 17.",
     "conic_pair_overlap_packing": "On an irreducible conic, two distinct Q-classes can share at most one non-forced external root hyperplane: two shared external roots would give two distinct lines through the same two points.  Thus M valid Q-classes, each requiring R=124-e_G non-forced external roots, force a union of at least M*R-binomial(M,2) external root lines.  Since only 385-e_G are available, six Q-classes are impossible for e_G<=68 and seven are impossible for e_G<=76.",
     "conic_projective_safe_threshold": "For irreducible conics, e_G<=68 gives at most five finite Q-classes by pair-overlap packing.  Adding the endpoint-uniform contribution gives projective total at most 6.",

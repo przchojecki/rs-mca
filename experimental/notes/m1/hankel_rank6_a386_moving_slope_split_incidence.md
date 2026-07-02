@@ -378,6 +378,21 @@ An irreducible conic in the quotient plane can meet a line in at most two
 points unless the line is a component, which is impossible for an irreducible
 component.  Hence the conic tangent-tail rows `103<=|E|<=108` close as well.
 
+For conic cores `97<=|E|<=102`, the first surviving exact-agreement branch is
+`d=r'+4`.  After common zero factoring, six finite classes give six pair
+quadratics among the fifteen pairs on six residual coordinates.  If the
+selected graph has maximum degree at least `3`, root-star Bezout closes it.
+The no-root-star graphs are only a six-cycle or two disjoint triangles.  The
+two-triangle determinant is identically zero, and a six-cycle can survive only
+if after affine normalization to `0,1,a,b,c,d` the hexagon factor
+
+```text
+a*b*d-a*c*d+a*c-a*d-b*c+c*d
+```
+
+vanishes.  Thus this branch is not closed, but it is reduced to two explicit
+quotient residuals.
+
 Thus the unclosed high-core quotient range is finite:
 
 ```text
@@ -523,8 +538,10 @@ finite-incidence row, any one listed saving lowers the projective count from
 cofactor-span obstruction.  The subsequent exact-agreement filter closes the
 cofactor-current tangent-tail rows `e_G=97..119` for lines and `e_G=103..119`
 for conics, using the four-private line-pencil obstruction on the line side
-and the K4 determinant and three-private root-star arguments on the conic side.
-Thus the exact-current one-over rows are only the finite-incidence ranges.
+and the K4 determinant and three-private root-star arguments on the conic side,
+while reducing the conic four-private rows `e_G=97..102` to the two-triangle
+or hexagon-factor residuals above.  Thus the exact-current one-over rows are
+only the finite-incidence ranges.
 
 The packet now records these exact-current rows as a minimal obstruction
 profile.  Any surviving projective over-budget witness must be one of the

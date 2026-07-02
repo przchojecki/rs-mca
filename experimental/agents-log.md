@@ -46,8 +46,9 @@ Keep entries concise and link to the relevant files.
   cofactor-span top-saturation exclusion for the high-core punctured-tangent
   quotient tail, exact-agreement closure of the line `e_G=97..119` and conic
   `e_G=103..119` tangent-tail rows, a line `e_G=97..102` four-private
-  line-pencil closure, and a conic `e_G=103..108` three-private root-star Bezout
-  closure,
+  line-pencil closure, a conic `e_G=103..108` three-private root-star Bezout
+  closure, and a conic `e_G=97..102` four-private boundary profile reducing
+  that branch to two-disjoint-triangle or six-cycle hexagon-factor residuals,
   abstract incidence-only sharpness witnesses for every finite-incidence
   one-over core, exact-current residual profiles, a multi-saving closure
   ledger for every exact-current unsafe residual row, and a minimal obstruction
@@ -69,6 +70,10 @@ Keep entries concise and link to the relevant files.
   conics close because six selected pairs on five residual coordinates force
   three pair-quadratic points on one root-star line, impossible for an
   irreducible conic by Bezout.
+  The conic `e_G=97..102` four-private branch is not closed, but it is sharply
+  reduced: root-star Bezout closes all six-edge K6 graphs with maximum degree
+  at least `3`, leaving only two disjoint triangles or a six-cycle satisfying
+  the normalized hexagon factor `a*b*d-a*c*d+a*c-a*d-b*c+c*d`.
   In the `d=r'+2` branch, six finite cofactors become six two-supported
   signed-edge vectors; their span has rank at least `3`, which closes lines.
   The conic K4 boundary is then closed because the six pair quadratics from

@@ -352,6 +352,7 @@
     "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
     "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
     "A=386 moving-slope small-core and very-high-core tail branches are recorded as projective-safe; the intermediate high-core quotient ranges remain residual",
+    "A=386 conic four-private residuals are reduced to two-triangle or hexagon-factor boundary shapes",
     "projective infinity and finite affine accounting are not conflated"
   ],
   "field_audit": {
@@ -364,6 +365,7 @@
     "does not compute arbitrary non-proportional finite root tables",
     "does not prove the projective endpoint is empty or paid in the rank=6 case",
     "does not close the A=386 intermediate high-core quotient moving-slope residual in original-row projective accounting",
+    "does not close the A=386 conic four-private two-triangle or hexagon-factor residuals",
     "does not audit quotient or extension overlap for arbitrary root tables",
     "not a worst-case support-wise MCA row bound"
   ],
@@ -484,7 +486,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v22",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v23",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -536,7 +538,7 @@
     },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
-      "sha256": "22d1f0e4742bf69c52e16c416a1306732c6e61544c6f89012e5a4ac08bd604c8"
+      "sha256": "6686b6c7b01629c0e5994bcf7499c6cc45518058750457a265f3456357229261"
     },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
@@ -592,6 +594,7 @@
       "the d=r'+2 two-private-coordinate signed-edge branch closes lines and reduces conics e_G=109..114 to a K4 boundary",
       "the K4 conic boundary is also closed: after the common residual core is factored, the six finite members become the six pair quadratics from four residual coordinates, and the determinant of their conic-evaluation matrix is prod_{i<j}(x_j-x_i)^2",
       "the conic d=r'+3 branch e_G=103..108 is closed by a root-star Bezout obstruction: six selected pairs on five residual coordinates force three pair-quadratic points on one root-star line, impossible for an irreducible conic",
+      "the conic d=r'+4 branch e_G=97..102 is reduced to two-disjoint-triangle or six-cycle hexagon-factor quotient residuals; all max-degree-at-least-3 graphs close by root-star Bezout",
       "the still-unclosed high-core quotient ranges are e_G=72..96 for lines and e_G=69..102 for irreducible conics",
       "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; after exact-tail sharpening the worst projective bounds are 18 and 25",
       "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the formerly one-over e_G=120 cases are closed by the cofactor-span contradiction",
