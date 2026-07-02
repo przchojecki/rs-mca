@@ -44,12 +44,19 @@ of three explicit algebraic charts -- rank-drop minors, the low-degree
 top-coefficient minor, or the top-chart pseudo-remainder coefficients -- with
 the real-row polynomial counts and degree caps printed.
 
+Turn 9 adds the independent F_97 acid test requested by the WP-2.6 plan:
+enumerate all binom(16,4)=1820 degree-four subgroup locators directly and
+compare the direct bad-slope set with the chart prediction on three pinned toy
+families (generic empty top chart, singleton valid top chart, side-chart
+routing with one low-degree and one rank-drop slope).
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
 from __future__ import annotations
 
 import argparse
+from itertools import combinations
 import json
 from hashlib import sha256
 from pathlib import Path
@@ -236,6 +243,13 @@ def poly_mul_mod(a, b, p):
 
 def poly_scale_mod(a, c, p):
     return trim([(c * x) % p for x in a])
+
+
+def poly_from_roots_mod(roots, p):
+    poly = [1]
+    for root in roots:
+        poly = poly_mul_mod(poly, [(-root) % p, 1], p)
+    return poly
 
 
 def poly_divmod_mod(a, b, p):
@@ -726,6 +740,121 @@ def check_deficiency_one_chart_reduction():
     return ok, d
 
 
+def toy_subgroup_locators(p: int, n: int, j: int):
+    """All monic degree-j divisors of X^n-1 over the toy subgroup."""
+    subgroup = [x for x in range(1, p) if pow(x, n, p) == 1]
+    locators = []
+    for roots in combinations(subgroup, j):
+        locator = poly_from_roots_mod(roots, p)
+        locators.append(locator + [0] * ((j + 1) - len(locator)))
+    return subgroup, locators
+
+
+def toy_chart_summary(u, v):
+    """Direct and chart-predicted exact-A bad slopes for the F_97 acid row."""
+    p, n, j = 97, 16, 4
+    _, locators = toy_subgroup_locators(p, n, j)
+    f = [p - 1] + [0] * (n - 1) + [1]  # X^16 - 1
+    direct_bad = []
+    top_valid = []
+    rank_drop = []
+    rank_drop_valid = []
+    low_degree = []
+    top = []
+    for z in range(p):
+        s = [(a + z * b) % p for a, b in zip(u, v)]
+        m = hankel(s, 4, 4)
+        rank, _ = rank_and_kernel_mod_p(m, p)
+        cramer = cramer_kernel_vector(m, p)
+        direct_here = any(mat_vec_zero(m, locator, p) for locator in locators)
+        if direct_here:
+            direct_bad.append(z)
+        if rank < 4:
+            rank_drop.append(z)
+            if direct_here:
+                rank_drop_valid.append(z)
+        elif cramer[4] == 0:
+            low_degree.append(z)
+        else:
+            top.append(z)
+            if is_zero_poly(pseudo_remainder(f, cramer, p)):
+                top_valid.append(z)
+    chart_predicted = sorted(set(top_valid) | set(rank_drop_valid))
+    return {
+        "direct_bad": direct_bad,
+        "chart_predicted": chart_predicted,
+        "top_valid": top_valid,
+        "rank_drop": rank_drop,
+        "rank_drop_valid": rank_drop_valid,
+        "low_degree": low_degree,
+        "top_count": len(top),
+        "locator_count": len(locators),
+    }
+
+
+def check_toy_acid_test_bruteforce():
+    """Independent F_97 acid test: direct subgroup-locator enumeration vs charts."""
+    families = [
+        (
+            "generic-empty-top",
+            [3, 17, 58, 91, 26, 44, 10, 73],
+            [12, 5, 81, 33, 70, 9, 61, 48],
+            {
+                "direct_bad": [],
+                "top_valid": [],
+                "rank_drop": [],
+                "low_degree": [],
+            },
+        ),
+        (
+            "singleton-valid-top",
+            [77, 27, 77, 4, 74, 87, 20, 55],
+            [13, 52, 12, 4, 67, 19, 84, 28],
+            {
+                "direct_bad": [33],
+                "top_valid": [33],
+                "rank_drop": [],
+                "low_degree": [],
+            },
+        ),
+        (
+            "side-chart-routing",
+            [34, 37, 69, 71, 6, 22, 30, 62],
+            [21, 18, 19, 90, 22, 88, 59, 86],
+            {
+                "direct_bad": [],
+                "top_valid": [],
+                "rank_drop": [55],
+                "low_degree": [32],
+            },
+        ),
+    ]
+    ok = True
+    d = [
+        "direct test enumerates all binom(16,4)=1820 monic degree-four divisors of X^16-1",
+        "chart prediction counts top pseudo-remainder roots plus rank-drop side decisions; "
+        "low-degree chart is excluded from exact A=12 by dedup",
+    ]
+    for name, u, v, expected in families:
+        summary = toy_chart_summary(u, v)
+        family_ok = (
+            summary["locator_count"] == 1820
+            and summary["direct_bad"] == expected["direct_bad"]
+            and summary["chart_predicted"] == expected["direct_bad"]
+            and summary["top_valid"] == expected["top_valid"]
+            and summary["rank_drop"] == expected["rank_drop"]
+            and summary["low_degree"] == expected["low_degree"]
+        )
+        ok &= family_ok
+        d.append(
+            f"{name}: direct_bad={summary['direct_bad']}, chart_predicted="
+            f"{summary['chart_predicted']}, top_valid={summary['top_valid']}, "
+            f"low_degree={summary['low_degree']}, rank_drop={summary['rank_drop']}, "
+            f"top_count={summary['top_count']} -- match: {family_ok}"
+        )
+    return ok, d
+
+
 def expected_toy_packet():
     payload = toy_u1_u5_payload()
     domain_hash = "sha256:" + hash_json_value(payload["domain"])
@@ -815,6 +944,7 @@ CHECKS = [
     ("eliminant or certified residual obstruction",       check_toy_eliminant_dichotomy),
     ("deficiency-1 degree budget for real row",           check_deficiency_one_degree_budget),
     ("deficiency-1 chart reduction for real row",         check_deficiency_one_chart_reduction),
+    ("F_97 acid test: brute force equals charts",         check_toy_acid_test_bruteforce),
     ("packet emission + local replay validation",         lambda: check_toy_packet(DEFAULT_TOY_PACKET)),
 ]
 

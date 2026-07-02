@@ -1,11 +1,12 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 8: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 9: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
-  the real `A=384` row are done). No threshold, safety, or worst-case row
-  claim is made.
+  the real `A=384` row are done; the `F_97` acid test now independently
+  enumerates all degree-four subgroup locators on three pinned toy families).
+  No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
   regular window `385 <= A <= 426`, synthetic rank ladders and kernel charts):
@@ -121,7 +122,8 @@ belongs.
 | 5b | abstract degree-budget theorem specialized to real `A=384` | **done** |
 | 5c | abstract subgroup-divisibility gate specialized to real `A=384` | **done** |
 | 5d | chart-reduction theorem: rank-drop / low-degree / top pseudo-remainder | **done** |
-| 5e | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/` for a declared `F_17^32` family | pending |
+| 5e | independent `F_97` acid test: direct locator enumeration equals chart prediction | **done** |
+| 5f | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/` for a declared `F_17^32` family | pending |
 
 ### Verified so far (turn 1)
 
@@ -338,6 +340,32 @@ Thus the real-row finite algebraic target is:
 This is the first explicit M5 chart reduction below the regular window.  It
 does not count any roots over `F_17^32`; it says exactly which root tables or
 residual labels a real-row packet must provide.
+
+### Verified in turn 9
+
+**U9, independent `F_97` acid test.** The verifier now enumerates all
+
+```text
+binom(16,4) = 1820
+```
+
+monic degree-four divisors of `X^16-1` over `mu_16` and checks, for each
+slope, whether any such locator lies directly in the Hankel kernel.  This
+direct locator enumeration is compared with the chart prediction on three
+pinned toy families:
+
+```text
+generic-empty-top:    direct_bad=[];   top chart empty.
+singleton-valid-top:  direct_bad=[33]; top pseudo-remainder chart gives [33].
+side-chart-routing:   direct_bad=[];   low_degree=[32], rank_drop=[55].
+```
+
+The side-chart family verifies routing rather than closure by a top eliminant:
+the low-degree slope is excluded from exact `A=12` by the dedup rule, and the
+rank-drop slope is decided by direct finite locator enumeration as empty.  This
+is the acid-test layer requested in the WP-2.6 detail note: the chart machinery
+is checked against a direct enumeration that does not use Cramer minors or
+pseudo-remainder gcds.
 
 ## Honest scope
 

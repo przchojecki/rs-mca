@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 F97 acid test
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  No threshold or worst-case row
+  claim.
+- **What is being added:** Turn 9 of the `A=384` underdetermined M5 packet:
+  an independent `F_97/mu_16` acid test.  The verifier enumerates all
+  `binom(16,4)=1820` monic degree-four subgroup locators and compares direct
+  bad slopes with the chart prediction on generic-empty, singleton-valid, and
+  side-chart-routing toy families.
+- **How it is useful:** Checks the Cramer/pseudo-remainder chart machinery
+  against direct finite locator enumeration before attempting the much larger
+  `F_17^32` packet.
+- **What to do next:** Move to a declared `F_17^32` family packet, splitting
+  rank-drop, low-degree, and top pseudo-remainder charts if needed.
+
 ### 2026-07-02 - M5 A384 chart-reduction theorem
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
