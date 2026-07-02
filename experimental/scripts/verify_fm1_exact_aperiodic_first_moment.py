@@ -230,6 +230,88 @@ def overlap_decomposition(q: int, n: int, k: int, agreement: int) -> dict:
     }
 
 
+def integer_record(value: int) -> dict:
+    return {
+        "value": value,
+        "log2": math.log2(value) if value > 0 else None,
+    }
+
+
+def dependency_neighborhood(n: int, j: int, t: int) -> dict:
+    """Johnson-distance dependency graph induced by the joint-rank formula."""
+    locator_count = comb(n, j)
+    max_distance = min(j, n - j)
+    distance_counts = [
+        comb(j, distance) * comb(n - j, distance)
+        for distance in range(max_distance + 1)
+    ]
+    assert sum(distance_counts) == locator_count
+    dependent_radius = min(t - 1, max_distance)
+    dependent_including_self = sum(distance_counts[:dependent_radius + 1])
+    dependent_excluding_self = dependent_including_self - 1
+    independent_neighbors = locator_count - dependent_including_self
+    rows = []
+    if max_distance <= 12:
+        for distance, count in enumerate(distance_counts):
+            rows.append({
+                "johnson_distance": distance,
+                "overlap": j - distance,
+                "neighbor_count": count,
+                "defect_h": max(0, t - distance),
+                "pairwise_independent_at_this_distance": distance >= t,
+            })
+    return {
+        "n": n,
+        "j": j,
+        "t": t,
+        "locator_count": integer_record(locator_count),
+        "max_johnson_distance": max_distance,
+        "dependent_radius": dependent_radius,
+        "dependent_neighbors_including_self": integer_record(dependent_including_self),
+        "dependent_degree_excluding_self": integer_record(dependent_excluding_self),
+        "independent_neighbors": integer_record(independent_neighbors),
+        "distance_table": rows,
+        "formula": "degree = sum_{d=1}^{min(t-1,j,n-j)} binom(j,d)binom(n-j,d)",
+    }
+
+
+def check_dependency_graph_consumer() -> tuple[bool, dict]:
+    examples = [
+        dependency_neighborhood(12, 4, 2),
+        dependency_neighborhood(64, 24, 4),
+        dependency_neighborhood(512, 127, 129),
+        dependency_neighborhood(512, 247, 9),
+    ]
+    ok = True
+    for example in examples:
+        n, j, t = example["n"], example["j"], example["t"]
+        max_distance = example["max_johnson_distance"]
+        expected_radius = min(t - 1, max_distance)
+        ok &= example["dependent_radius"] == expected_radius
+        if t == 1:
+            ok &= example["dependent_degree_excluding_self"]["value"] == 0
+        if t > max_distance:
+            ok &= example["independent_neighbors"]["value"] == 0
+        if example["distance_table"]:
+            ok &= all(
+                row["defect_h"] == max(0, t - row["johnson_distance"])
+                for row in example["distance_table"]
+            )
+            ok &= all(
+                row["pairwise_independent_at_this_distance"]
+                == (row["johnson_distance"] >= t)
+                for row in example["distance_table"]
+            )
+    return ok, {
+        "statement": (
+            "Locator indicators for R,T are pairwise independent whenever "
+            "Johnson distance d(R,T) >= t; all covariance is supported in "
+            "the radius-(t-1) Johnson ball."
+        ),
+        "examples": examples,
+    }
+
+
 def paley_zygmund_nonzero_bound(q: int, n: int, k: int, agreement: int) -> Fraction:
     mean = expected_value(q, n, k, agreement)
     second = second_moment_formula(q, n, k, agreement)
@@ -596,6 +678,7 @@ def build_report() -> dict:
     ok_joint, joint = check_f13_joint_rank_formula()
     ok_fiber, fiber = check_fiber_product_joint_probability()
     ok_overlap, overlap = check_overlap_excess_decomposition()
+    ok_dependency, dependency = check_dependency_graph_consumer()
     ok_f5, f5 = check_f5_bruteforce()
     ok_window, window = check_f17_regular_window_tail()
     source = Path(__file__).read_text()
@@ -626,10 +709,19 @@ def build_report() -> dict:
             "f13_joint_rank_formula": joint,
             "f5_fiber_product_joint_probability": fiber,
             "overlap_excess_decomposition": overlap,
+            "dependency_graph_consumer": dependency,
             "f5_bruteforce": f5,
             "f17_regular_window_markov_tail": window,
         },
-        "passed": ok_f13 and ok_joint and ok_fiber and ok_overlap and ok_f5 and ok_window,
+        "passed": (
+            ok_f13
+            and ok_joint
+            and ok_fiber
+            and ok_overlap
+            and ok_dependency
+            and ok_f5
+            and ok_window
+        ),
         "script_sha256": sha256_text(source),
     }
 
@@ -674,6 +766,19 @@ def main() -> None:
                     "relvar={relvar:.6g}".format(
                         relvar=example["relative_variance"]["decimal"],
                         **example,
+                    )
+                )
+        elif name == "dependency_graph_consumer":
+            for example in data["examples"]:
+                print(
+                    "        n={n}, j={j}, t={t}: dependent radius={dependent_radius}, "
+                    "degree log2={deg:.3f}, independent neighbors log2={ind:.3f}".format(
+                        n=example["n"],
+                        j=example["j"],
+                        t=example["t"],
+                        dependent_radius=example["dependent_radius"],
+                        deg=example["dependent_degree_excluding_self"]["log2"] or 0.0,
+                        ind=example["independent_neighbors"]["log2"] or 0.0,
                     )
                 )
         elif name == "f5_bruteforce":

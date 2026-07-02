@@ -344,6 +344,43 @@ Var(N_A) = binom(n,j) p_1(1-p_1).
 This does not imply higher-order independence, but it identifies the exact
 second-moment obstruction at the first slack rung.
 
+## Dependency graph consumer
+
+The overlap-excess formula has a useful graph-theoretic form.  Put the
+Johnson distance between two locators `R,T` as
+
+```text
+d(R,T) = j - |R cap T|.
+```
+
+The joint-rank defect is
+
+```text
+h(R,T) = max(0,t-d(R,T)).
+```
+
+Therefore the locator indicators are pairwise independent whenever
+
+```text
+d(R,T) >= t.
+```
+
+Equivalently, all covariance is supported in the radius-`t-1` Johnson ball
+around each locator.  The exact dependency degree, excluding the locator
+itself, is
+
+```text
+Delta_t(n,j)
+  =
+  sum_{d=1}^{min(t-1,j,n-j)}
+      binom(j,d) binom(n-j,d).
+```
+
+This is not a worst-case MCA bound, but it is the right local object for
+exchange-rigidity and averaged-slope arguments: FM1 is independent outside a
+printed Johnson neighborhood, and every remaining covariance edge is exactly
+one of the high-overlap terms in the second-moment ledger.
+
 ## Averaged-existence consumer
 
 The exact second moment gives the following immediate averaged-existence
@@ -404,7 +441,7 @@ sanity check for the M3/M5 chart program, not a replacement for root tables.
 
 ## Verification
 
-The verifier records six checks.
+The verifier records seven checks.
 
 1. **Surjectivity check, `F_13`.**  For `D=F_13^*`, `n=12`, `k=3`,
    `A=8`, `t=5`, `j=4`, every one of the `binom(12,4)=495`
@@ -424,7 +461,12 @@ rank S_{R,T} = 2t - max(0,t-j+|R cap T|).
    slack-one case it also verifies the pairwise-independence variance formula.
    The JSON artifact records exact relative variance and Chebyshev bounds for
    both examples.
-5. **Exact brute-force check, `F_5`.**  For `D=F_5^*`, `n=4`, `k=1`,
+5. **Dependency graph consumer.**  The verifier records exact Johnson-ball
+   dependency degrees for small and deployed-shape parameter sets.  In
+   particular it checks that covariance is supported precisely at distances
+   `d<t`; when `t` exceeds the maximum Johnson distance, the dependency graph
+   is complete, as expected.
+6. **Exact brute-force check, `F_5`.**  For `D=F_5^*`, `n=4`, `k=1`,
    `A=3`, `t=2`, `j=1`, enumeration over all `5^8` word pairs gives
 
 ```text
@@ -443,7 +485,7 @@ binom(4,1) * (1 - 5^(-2)) * 5^(-1) = 96/125.
 
 and the exact second-moment / Paley-Zygmund formulas above.
 
-6. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
+7. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
    the script computes the FM1/Markov one-locator upper bound across
    `385 <= A <= 426` and verifies the endpoint ranges above.
 
