@@ -52,7 +52,8 @@ Keep entries concise and link to the relevant files.
   component and closes line components with `e_G<=71` in projective accounting;
   a pair-overlap packing step also closes irreducible conics with `e_G<=68`.
   Large-external-core lines and conics are now reduced to quotient
-  split-locator problems of degree at most `54` and `57`.
+  split-locator problems of degree at most `54` and `57`, and are tangent-range
+  eligible after puncturing the forced core.
 - **What to do next:** Try to classify or pay the large-core line case, then
   attack irreducible moving conics with exact root tables or a sharper divisor
   incidence argument.

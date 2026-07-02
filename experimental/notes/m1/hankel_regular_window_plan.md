@@ -317,7 +317,9 @@ adding the endpoint.  For irreducible conics, pair-overlap packing closes the
 projective accounting for `e_G<=68`.  Large-external-core lines and conics
 remain residual, but in quotient normal form: after factoring the forced
 external core, the remaining split-locator degree is at most `54` for lines and
-`57` for conics.
+`57` for conics.  Puncturing the forced core puts those residual quotient
+branches in the very-high-agreement tangent range of the punctured row, though
+this does not by itself close the original-row budget.
 
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets

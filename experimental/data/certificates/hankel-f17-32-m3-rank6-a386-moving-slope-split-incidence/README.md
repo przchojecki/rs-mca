@@ -61,6 +61,17 @@ plus normalization, exact degree, and noncontainment filters.  Thus residual
 lines reduce to quotient degree at most `54`, and residual conics reduce to
 quotient degree at most `57`.
 
+After puncturing away the forced core, these same residuals are in the
+very-high-agreement tangent range of the punctured row:
+
+```text
+line threshold e=72:  n'=440, r'=54 <= floor((440-256)/3), tangent numerator 55
+conic threshold e=69: n'=443, r'=57 <= floor((443-256)/3), tangent numerator 58
+```
+
+This records tangent-ledger eligibility on the punctured row.  It is not a
+claim that the original-row projective numerator is within budget.
+
 Replay:
 
 ```sh
@@ -75,6 +86,7 @@ does not prove every moving-slope component is a line;
 does not close line components with forced external split-root core >=72 in projective accounting;
 does not close irreducible conic moving-slope components with forced external split-root core >=69 in projective accounting;
 does not prove the high-core quotient split problem is empty or paid;
+does not claim the punctured tangent numerator is within the original row budget;
 does not rule out another independent noncontained vector at the same finite slope;
 does not cover A=385;
 does not classify overlapping-support rank-6 pencils;

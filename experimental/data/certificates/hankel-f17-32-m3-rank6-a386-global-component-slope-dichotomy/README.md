@@ -63,7 +63,9 @@ closes line components whose forced external split-root core has size at most
 `71` in projective accounting.  For irreducible conics, pair-overlap packing
 closes forced external core up to `68`; large-external-core lines and conics
 remain residual but factor through quotient split-locator problems of degree at
-most `54` and `57`, respectively.
+most `54` and `57`, respectively.  After puncturing the forced core, those
+quotient branches satisfy the very-high-agreement tangent inequality on the
+punctured row; this is not an original-budget closure.
 
 Replay:
 

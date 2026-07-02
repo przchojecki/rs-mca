@@ -18,7 +18,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v4"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v5"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -259,6 +259,24 @@ def quotient_residual_row(
     }
 
 
+def punctured_tangent_row(component_type: str, forced_external_core_threshold: int) -> dict[str, Any]:
+    punctured_length = N - forced_external_core_threshold
+    punctured_radius = (N - AGREEMENT) - forced_external_core_threshold
+    tangent_radius = (punctured_length - K) // 3
+    tangent_agreement_start = punctured_length - tangent_radius
+    return {
+        "component_type": component_type,
+        "forced_external_core_at_least": forced_external_core_threshold,
+        "punctured_length_at_threshold": punctured_length,
+        "punctured_exact_agreement": AGREEMENT,
+        "punctured_radius_at_threshold": punctured_radius,
+        "punctured_tangent_radius_floor": tangent_radius,
+        "punctured_tangent_exact_start": tangent_agreement_start,
+        "in_high_agreement_tangent_range_at_threshold": punctured_radius <= tangent_radius,
+        "tangent_numerator_at_threshold": punctured_radius + 1,
+    }
+
+
 def build_certificate() -> dict[str, Any]:
     descriptor = load_json(ROW_DESCRIPTOR_REF)
     low_degree = load_json(LOW_DEGREE_TRANSFER_REF)
@@ -488,6 +506,10 @@ def build_certificate() -> dict[str, Any]:
             base_root_cap,
         ),
     ]
+    punctured_tangent_rows = [
+        punctured_tangent_row("line", line_residual_core_threshold),
+        punctured_tangent_row("irreducible_conic", conic_residual_core_threshold),
+    ]
     require(line_residual_core_threshold == 72, "line residual threshold mismatch")
     require(conic_residual_core_threshold == 69, "conic residual threshold mismatch")
     require(
@@ -497,6 +519,19 @@ def build_certificate() -> dict[str, Any]:
     require(
         j_value - conic_residual_core_threshold == 57,
         "conic residual quotient degree mismatch",
+    )
+    for row in punctured_tangent_rows:
+        require(
+            row["in_high_agreement_tangent_range_at_threshold"],
+            f"{row['component_type']} threshold should be tangent-exact after puncturing",
+        )
+    require(
+        punctured_tangent_rows[0]["tangent_numerator_at_threshold"] == 55,
+        "line tangent numerator mismatch",
+    )
+    require(
+        punctured_tangent_rows[1]["tangent_numerator_at_threshold"] == 58,
+        "conic tangent numerator mismatch",
     )
 
     return {
@@ -643,6 +678,15 @@ def build_certificate() -> dict[str, Any]:
                 "to quotient degree <=54, while residual conic components reduce "
                 "to quotient degree <=57."
             ),
+            "punctured_high_agreement_tangent_reduction": (
+                "Deleting the forced external core E leaves a punctured RS row of "
+                "length n'=512-|E|, while the same witness has exact agreement "
+                "386 and co-support radius r'=126-|E|.  Since r' <= floor((n'-256)/3) "
+                "for |E|>=61, every remaining high-core branch lies in the "
+                "very-high-agreement tangent-staircase range of the punctured row.  "
+                "This is a tangent-ledger eligibility statement, not a budget "
+                "closure for the original row."
+            ),
         },
         "budget_formula": {
             "locator_degree_j": j_value,
@@ -698,6 +742,7 @@ def build_certificate() -> dict[str, Any]:
         "base_sharpened_sample_budget_rows": base_sharpened_sample_rows,
         "conic_pair_overlap_sample_rows": conic_packing_sample_rows,
         "high_core_quotient_residual_rows": quotient_residual_rows,
+        "punctured_tangent_reduction_rows": punctured_tangent_rows,
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -720,6 +765,9 @@ def build_certificate() -> dict[str, Any]:
             "line_projective_safe_for_external_core_at_most": line_projective_safe_external_core_max,
             "line_finite_safe_for_external_core_at_most": line_finite_safe_external_core_max,
             "line_residual_quotient_degree_at_most": j_value - line_residual_core_threshold,
+            "line_residual_punctured_tangent_numerator_at_threshold": (
+                punctured_tangent_rows[0]["tangent_numerator_at_threshold"]
+            ),
             "conic_projective_safe_for_external_core_at_most": (
                 conic_projective_safe_packing_external_core_max
             ),
@@ -727,6 +775,9 @@ def build_certificate() -> dict[str, Any]:
                 conic_finite_safe_packing_external_core_max
             ),
             "conic_residual_quotient_degree_at_most": j_value - conic_residual_core_threshold,
+            "conic_residual_punctured_tangent_numerator_at_threshold": (
+                punctured_tangent_rows[1]["tangent_numerator_at_threshold"]
+            ),
             "remaining_unclosed_residuals": [
                 "moving-slope line component with forced external split-root core >=72 for projective accounting",
                 "irreducible moving-slope conic component with forced external split-root core >=69 for projective accounting",
@@ -750,11 +801,14 @@ def build_certificate() -> dict[str, Any]:
             "conic pair-overlap packing excludes seven Q-classes for e<=76",
             "high-core line residuals factor through quotient locators of degree <=54",
             "high-core conic residuals factor through quotient locators of degree <=57",
+            "high-core residuals satisfy the punctured high-agreement tangent inequality",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",
             "does not close line components with forced external split-root core >=72 in projective accounting",
             "does not close irreducible conic moving-slope components with forced external split-root core >=69 in projective accounting",
+            "does not prove the high-core quotient split problem is empty or paid",
+            "does not claim the punctured tangent numerator is within the original row budget",
             "does not rule out another independent noncontained vector at the same finite slope",
             "does not cover A=385",
             "does not classify overlapping-support rank-6 pencils",

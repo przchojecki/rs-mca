@@ -177,6 +177,44 @@ families of degree at most
 This is not a closure, but it makes the remaining branch a low-degree quotient
 split problem rather than a full degree-126 locator problem.
 
+The same high-core branches also lie in the high-agreement tangent range after
+puncturing away the forced external core.  Deleting a core `E` leaves a row of
+length
+
+```text
+n' = 512-|E|,
+```
+
+while the represented witness still has exact agreement
+
+```text
+a' = 386
+```
+
+on the punctured row, with co-support radius
+
+```text
+r' = n'-a' = 126-|E|.
+```
+
+The very-high-agreement tangent staircase applies when
+
+```text
+r' <= floor((n'-256)/3),
+```
+
+and this holds for every `|E|>=61`.  In particular, it holds for both residual
+thresholds:
+
+```text
+line residuals:  |E|>=72, r'<=54, tangent numerator <=55;
+conic residuals: |E|>=69, r'<=57, tangent numerator <=58.
+```
+
+This is a tangent-ledger eligibility statement on the punctured row.  It does
+not by itself prove that the original-row projective numerator is within the
+budget `6`.
+
 Replay:
 
 ```sh
@@ -191,6 +229,7 @@ no proof that every moving-slope component is a line;
 no closure of line components with forced external split-root core >=72 in projective accounting;
 no closure of irreducible conic moving-slope components with forced external split-root core >=69 in projective accounting;
 no proof that the high-core quotient split problem is empty or paid;
+no claim that the punctured tangent numerator is within the original row budget;
 no exclusion of another independent noncontained vector at the same finite slope;
 no A=385 closure;
 no overlapping-support rank-6 classification;

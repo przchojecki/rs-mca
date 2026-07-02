@@ -124,6 +124,11 @@ factoring the forced external core `C_E`, the remaining split-locator gate is a
 quotient divisor condition of degree at most `54` for residual lines and at
 most `57` for residual conics.
 
+After deleting the forced core, those residual quotient branches also satisfy
+the very-high-agreement tangent inequality on the punctured row.  This records
+tangent-ledger eligibility for the residual but does not close the original
+projective budget.
+
 The other cases remain residual:
 
 ```text

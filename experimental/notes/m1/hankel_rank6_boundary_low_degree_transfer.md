@@ -164,7 +164,9 @@ with `e_G<=71` is projective-safe after adding the endpoint.  For irreducible
 conics, pair-overlap packing closes the projective accounting for `e_G<=68`.
 Large-external-core lines and conics remain residual, but the packet factors
 their forced external core and reduces them to quotient split-locator problems
-of degree at most `54` and `57`, respectively.
+of degree at most `54` and `57`, respectively.  It also records that, after
+puncturing the forced core, those quotient branches are inside the
+very-high-agreement tangent range of the punctured row.
 
 Replay:
 

@@ -85,7 +85,9 @@ incidences on the moving component, using the base-support cap that nonzero
 external split-root core `e_G<=71`.  A conic pair-overlap packing step closes
 irreducible conics with `e_G<=68`; large-external-core lines and conics remain
 residual but factor through quotient split-locator problems of degree at most
-`54` and `57`, respectively.
+`54` and `57`, respectively.  After deleting the forced core, those quotient
+branches lie in the very-high-agreement tangent range of the punctured row,
+without claiming an original-budget closure.
 
 Replay:
 
