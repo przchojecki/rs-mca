@@ -248,6 +248,256 @@
     {
       "deployed_shape_rows": [
         {
+          "atlas_count": 1806,
+          "max_projective_dimension": 6,
+          "n": 512,
+          "nonquotient_exponent_budget": 7.202064686386763,
+          "quotient_scale_count": 3,
+          "quotient_union_exponent_budget": 7.690099955584402
+        },
+        {
+          "atlas_count": 1024,
+          "max_projective_dimension": 6,
+          "n": 1048576,
+          "nonquotient_exponent_budget": 6.5,
+          "quotient_scale_count": 8,
+          "quotient_union_exponent_budget": 6.790367746102881
+        },
+        {
+          "atlas_count": 65536,
+          "max_projective_dimension": 8,
+          "n": 1099511627776,
+          "nonquotient_exponent_budget": 8.4,
+          "quotient_scale_count": 16,
+          "quotient_union_exponent_budget": 8.579248125036058
+        }
+      ],
+      "name": "chart_atlas_consumer",
+      "nonquotient_atlas": {
+        "chart_count": 14,
+        "chart_rows": [
+          {
+            "affine_dimension": 1,
+            "bound": 16,
+            "chart_index": 0,
+            "common_roots": 0,
+            "hits": 3,
+            "projective_dimension": 1
+          },
+          {
+            "affine_dimension": 2,
+            "bound": 120,
+            "chart_index": 1,
+            "common_roots": 0,
+            "hits": 3,
+            "projective_dimension": 2
+          },
+          {
+            "affine_dimension": 3,
+            "bound": 560,
+            "chart_index": 2,
+            "common_roots": 0,
+            "hits": 115,
+            "projective_dimension": 3
+          },
+          {
+            "affine_dimension": 1,
+            "bound": 16,
+            "chart_index": 3,
+            "common_roots": 0,
+            "hits": 2,
+            "projective_dimension": 1
+          },
+          {
+            "affine_dimension": 2,
+            "bound": 120,
+            "chart_index": 4,
+            "common_roots": 0,
+            "hits": 5,
+            "projective_dimension": 2
+          },
+          {
+            "affine_dimension": 3,
+            "bound": 560,
+            "chart_index": 5,
+            "common_roots": 0,
+            "hits": 115,
+            "projective_dimension": 3
+          },
+          {
+            "affine_dimension": 1,
+            "bound": 16,
+            "chart_index": 6,
+            "common_roots": 0,
+            "hits": 0,
+            "projective_dimension": 1
+          },
+          {
+            "affine_dimension": 2,
+            "bound": 120,
+            "chart_index": 7,
+            "common_roots": 0,
+            "hits": 0,
+            "projective_dimension": 2
+          },
+          {
+            "affine_dimension": 3,
+            "bound": 560,
+            "chart_index": 8,
+            "common_roots": 0,
+            "hits": 0,
+            "projective_dimension": 3
+          },
+          {
+            "affine_dimension": 1,
+            "bound": 16,
+            "chart_index": 9,
+            "common_roots": 0,
+            "hits": 0,
+            "projective_dimension": 1
+          },
+          {
+            "affine_dimension": 2,
+            "bound": 120,
+            "chart_index": 10,
+            "common_roots": 0,
+            "hits": 0,
+            "projective_dimension": 2
+          },
+          {
+            "affine_dimension": 3,
+            "bound": 560,
+            "chart_index": 11,
+            "common_roots": 0,
+            "hits": 0,
+            "projective_dimension": 3
+          },
+          {
+            "affine_dimension": 1,
+            "bound": 16,
+            "chart_index": 12,
+            "common_roots": 0,
+            "hits": 0,
+            "projective_dimension": 1
+          },
+          {
+            "affine_dimension": 2,
+            "bound": 120,
+            "chart_index": 13,
+            "common_roots": 0,
+            "hits": 0,
+            "projective_dimension": 2
+          }
+        ],
+        "coarse_bound": 57344,
+        "max_projective_dimension": 3,
+        "sum_chart_bounds": 2920,
+        "union_hits": 115
+      },
+      "quotient_atlas": {
+        "chart_count": 12,
+        "chart_rows": [
+          {
+            "affine_dimension": 1,
+            "bound": 17,
+            "chart_index": 0,
+            "hits": 2,
+            "projective_dimension": 1
+          },
+          {
+            "affine_dimension": 2,
+            "bound": 52,
+            "chart_index": 1,
+            "hits": 3,
+            "projective_dimension": 2
+          },
+          {
+            "affine_dimension": 3,
+            "bound": 112,
+            "chart_index": 2,
+            "hits": 0,
+            "projective_dimension": 3
+          },
+          {
+            "affine_dimension": 4,
+            "bound": 183,
+            "chart_index": 3,
+            "hits": 0,
+            "projective_dimension": 4
+          },
+          {
+            "affine_dimension": 1,
+            "bound": 17,
+            "chart_index": 4,
+            "hits": 2,
+            "projective_dimension": 1
+          },
+          {
+            "affine_dimension": 2,
+            "bound": 52,
+            "chart_index": 5,
+            "hits": 3,
+            "projective_dimension": 2
+          },
+          {
+            "affine_dimension": 3,
+            "bound": 112,
+            "chart_index": 6,
+            "hits": 0,
+            "projective_dimension": 3
+          },
+          {
+            "affine_dimension": 4,
+            "bound": 183,
+            "chart_index": 7,
+            "hits": 0,
+            "projective_dimension": 4
+          },
+          {
+            "affine_dimension": 1,
+            "bound": 17,
+            "chart_index": 8,
+            "hits": 0,
+            "projective_dimension": 1
+          },
+          {
+            "affine_dimension": 2,
+            "bound": 52,
+            "chart_index": 9,
+            "hits": 0,
+            "projective_dimension": 2
+          },
+          {
+            "affine_dimension": 3,
+            "bound": 112,
+            "chart_index": 10,
+            "hits": 0,
+            "projective_dimension": 3
+          },
+          {
+            "affine_dimension": 4,
+            "bound": 183,
+            "chart_index": 11,
+            "hits": 0,
+            "projective_dimension": 4
+          }
+        ],
+        "coarse_bound": 11796480,
+        "max_projective_dimension": 4,
+        "quotient_scales": [
+          2,
+          4,
+          8
+        ],
+        "sum_chart_bounds": 1092,
+        "union_hits": 10
+      },
+      "statement": "If a residual locator family is covered by A affine charts whose projective spans have dimension at most d, then the nonquotient part has budget A*n^d; the quotient-union part has budget A*tau(gcd(n,j))*(d+1)*n^d.",
+      "status": "PASS"
+    },
+    {
+      "deployed_shape_rows": [
+        {
           "coarse_exponent_budget": 16,
           "cover_bound_log2": 93.83017128234832,
           "cover_n_power_exponent": 10.42557458692759,
@@ -447,6 +697,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "62d2663b5a5b933a59e4d780a21ed44c8014afdf5c6195409badf5355bd29560",
+  "script_sha256": "16e68eae1f064c3bbf60755a13df0f9b8d558febfc98e685a539195d5763f03e",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

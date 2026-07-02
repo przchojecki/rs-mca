@@ -7,7 +7,7 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_reductions.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`.
 
-This note records fourteen elementary reductions around the fiber-rigidity
+This note records fifteen elementary reductions around the fiber-rigidity
 statement called Conjecture F in the proof sketch.  They do not prove the
 primitive core.  Their role is to remove two paid structures from the statement
 to settle the dimension-one base case, and to restate the remaining primitive
@@ -637,6 +637,63 @@ priced by common-root charts with a per-center `n^{2(t-1)}` budget.  Therefore
 fixed-slack high-overlap covariance is not part of the primitive Conjecture F
 core; the core begins when the effective Johnson radius grows with the row.
 
+## Corollary 15: Polynomial Chart-Atlas Consumer
+
+Let `R subset D_j(H)` be covered by affine charts
+
+```text
+A_alpha = L_alpha + V_alpha        (alpha in I),
+```
+
+where `V_alpha` is a finite-dimensional vector space of polynomial directions.
+Put
+
+```text
+W_alpha = span(L_alpha,V_alpha),        d_alpha = dim P(W_alpha),
+```
+
+and let `c_alpha` be the number of common roots of `W_alpha` on `H`.  Then
+
+```text
+#R <= sum_{alpha in I} binom(|H|-c_alpha,d_alpha).
+```
+
+In particular, if `|I| <= A` and `d_alpha <= d` for every chart, then
+
+```text
+#R <= A |H|^d.
+```
+
+For `H=mu_n`, the proper quotient-periodic part covered by the same atlas
+satisfies the coarser ledger bound
+
+```text
+#(R cap D_j^{quot}(mu_n))
+  <= A tau(gcd(n,j)) (d+1) n^d.
+```
+
+Equivalently, if `A <= n^a`, the chart atlas has non-quotient exponent budget
+
+```text
+B = a+d,
+```
+
+and quotient-union exponent budget
+
+```text
+B = a+d+log_n(tau(gcd(n,j))(d+1)).
+```
+
+**Proof.**  Apply Corollary 11 to each affine chart and take the union bound.
+For the quotient-periodic part, apply the quotient-union estimate from
+Corollary 12 chart by chart and again take the union bound.
+
+This is the direct interface for M5/M6 chart decompositions.  A finite or
+polynomial-size atlas of bounded projective dimension is already a polynomial
+Conjecture F ledger.  Any super-polynomial residual must either require
+super-polynomially many charts, growing projective dimension, or a chart family
+outside the fixed-dimensional affine model.
+
 ## Verification
 
 The verifier checks these lemmas over `F_97` with `H = mu_16`:
@@ -657,7 +714,8 @@ common-root corollary on forced common-root subspaces and the
 fixed-dimensional quotient-pullback consumer, plus the proper quotient-union
 bound at `n=16,j=8` across the scales `M in {2,4,8}`.  It also checks the
 affine slope-table consumer directly on deterministic random affine charts,
-prints the resulting fixed-dimension/quotient-union exponent budgets, and
+prints the resulting fixed-dimension/quotient-union exponent budgets, checks
+the polynomial chart-atlas consumer on deterministic affine atlases, and
 checks the Johnson-ball common-core cover both by exact toy enumeration and by
 formula on deployed-shape rows.  It also checks the FM1 high-overlap
 ordered-pair budget by exact toy enumeration and deployed-shape formulas.  The

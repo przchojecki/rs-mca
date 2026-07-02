@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Conjecture F polynomial chart-atlas consumer
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_reduction_lemmas.md`;
+  `experimental/scripts/verify_conjecture_f_reductions.py`;
+  `experimental/data/certificates/conjecture-f-reductions/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / PROVED-LOCAL.
+- **What is being added:** A fifteenth reduction corollary: a residual locator
+  family covered by `A` affine charts whose projective spans have dimension at
+  most `d` has nonquotient budget `A n^d`; its proper quotient-union part has
+  budget `A tau(gcd(n,j))(d+1)n^d`.
+- **How it is useful:** This is the direct Conjecture F interface for M5/M6
+  chart decompositions.  A polynomial-size bounded-dimensional atlas is now
+  a ledger theorem, leaving only super-polynomially many charts or growing
+  projective dimension as the primitive hard case.
+- **What to do next:** Use this atlas consumer when converting M5/M6 chart
+  packets into explicit `n^B` residual ledgers.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.

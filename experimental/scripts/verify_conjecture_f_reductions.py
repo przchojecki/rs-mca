@@ -20,6 +20,8 @@ the identities over F_97 with H = mu_16:
   polynomial by summing the descended bounds.
 * affine slope-table families inherit the same bounds after homogenization.
 * fixed projective dimension gives an explicit n-exponent budget.
+* a finite affine chart atlas with bounded projective span dimension has the
+  expected union-bound n-exponent budget.
 * Johnson balls are covered by common-core charts with explicit polynomial
   size, linking FM1 high-overlap neighborhoods to common-root accounting.
 * the full FM1 high-overlap ordered-pair ledger is bounded by the same
@@ -1152,6 +1154,206 @@ def check_exponent_budget_consumer(H: list[int]) -> dict:
     }
 
 
+def check_chart_atlas_consumer(H: list[int]) -> dict:
+    D = divisor_set(H, J_VOTING)
+    quotient_union = quotient_union_for_j(H, J_QUOTIENT_UNION)
+    rng = random.Random(SEED + 10)
+    divisor_rows = sorted(D)
+    quotient_rows = sorted(quotient_union)
+
+    chart_count = 14
+    nonquotient_chart_rows = []
+    nonquotient_union_hits: set[tuple[int, ...]] = set()
+    nonquotient_sum_bound = 0
+    nonquotient_max_dim = 0
+    for chart_index in range(chart_count):
+        affine_dim = 1 + (chart_index % 3)
+        if chart_index < 6:
+            base = chart_index * 4
+            anchor = divisor_rows[base]
+            directions = [
+                poly_sub(divisor_rows[base + offset + 1], anchor)
+                for offset in range(affine_dim)
+            ]
+            if rank_polys(directions, J_VOTING + 1) != affine_dim:
+                directions = random_independent_basis(rng, affine_dim, J_VOTING)
+                anchor = random_poly(rng, J_VOTING)
+        else:
+            directions = random_independent_basis(rng, affine_dim, J_VOTING)
+            anchor = random_poly(rng, J_VOTING)
+        while in_span(anchor, directions, J_VOTING + 1):
+            anchor = random_poly(rng, J_VOTING)
+        projective_basis = [anchor] + directions
+        projective_dim = rank_polys(projective_basis, J_VOTING + 1) - 1
+        common_roots = common_roots_of_space(projective_basis, H)
+        hits = {
+            poly for poly in D
+            if in_affine_span(poly, anchor, directions, J_VOTING + 1)
+        }
+        chart_bound = comb(N - len(common_roots), projective_dim)
+        if len(hits) > chart_bound:
+            return {
+                "name": "chart_atlas_consumer",
+                "status": "FAIL",
+                "reason": "single nonquotient chart exceeded its bound",
+                "chart_index": chart_index,
+                "hits": len(hits),
+                "bound": chart_bound,
+            }
+        nonquotient_union_hits.update(hits)
+        nonquotient_sum_bound += chart_bound
+        nonquotient_max_dim = max(nonquotient_max_dim, projective_dim)
+        nonquotient_chart_rows.append({
+            "chart_index": chart_index,
+            "affine_dimension": affine_dim,
+            "projective_dimension": projective_dim,
+            "common_roots": len(common_roots),
+            "hits": len(hits),
+            "bound": chart_bound,
+        })
+
+    nonquotient_coarse_bound = chart_count * (N ** nonquotient_max_dim)
+    if len(nonquotient_union_hits) > nonquotient_sum_bound:
+        return {
+            "name": "chart_atlas_consumer",
+            "status": "FAIL",
+            "reason": "nonquotient atlas union exceeded summed chart bounds",
+            "union_hits": len(nonquotient_union_hits),
+            "sum_bound": nonquotient_sum_bound,
+        }
+    if nonquotient_sum_bound > nonquotient_coarse_bound:
+        return {
+            "name": "chart_atlas_consumer",
+            "status": "FAIL",
+            "reason": "nonquotient summed bound exceeded coarse A*n^d budget",
+            "sum_bound": nonquotient_sum_bound,
+            "coarse_bound": nonquotient_coarse_bound,
+        }
+
+    quotient_chart_count = 12
+    quotient_chart_rows = []
+    quotient_union_hits: set[tuple[int, ...]] = set()
+    quotient_sum_bound = 0
+    quotient_max_dim = 0
+    quotient_scales = quotient_divisors(J_QUOTIENT_UNION)
+    for chart_index in range(quotient_chart_count):
+        affine_dim = 1 + (chart_index % 4)
+        if chart_index < 6:
+            base = chart_index * 5
+            anchor = quotient_rows[base]
+            directions = [
+                poly_sub(quotient_rows[base + offset + 1], anchor)
+                for offset in range(affine_dim)
+            ]
+            if rank_polys(directions, J_QUOTIENT_UNION + 1) != affine_dim:
+                directions = random_independent_basis(rng, affine_dim, J_QUOTIENT_UNION)
+                anchor = random_poly(rng, J_QUOTIENT_UNION)
+        else:
+            directions = random_independent_basis(rng, affine_dim, J_QUOTIENT_UNION)
+            anchor = random_poly(rng, J_QUOTIENT_UNION)
+        while in_span(anchor, directions, J_QUOTIENT_UNION + 1):
+            anchor = random_poly(rng, J_QUOTIENT_UNION)
+        projective_basis = [anchor] + directions
+        projective_dim = rank_polys(projective_basis, J_QUOTIENT_UNION + 1) - 1
+        hits = {
+            poly for poly in quotient_union
+            if in_affine_span(poly, anchor, directions, J_QUOTIENT_UNION + 1)
+        }
+        chart_bound = sum(
+            sum(comb(N // m, r) for r in range(0, min(projective_dim, N // m) + 1))
+            for m in quotient_scales
+        )
+        if len(hits) > chart_bound:
+            return {
+                "name": "chart_atlas_consumer",
+                "status": "FAIL",
+                "reason": "single quotient chart exceeded its bound",
+                "chart_index": chart_index,
+                "hits": len(hits),
+                "bound": chart_bound,
+            }
+        quotient_union_hits.update(hits)
+        quotient_sum_bound += chart_bound
+        quotient_max_dim = max(quotient_max_dim, projective_dim)
+        quotient_chart_rows.append({
+            "chart_index": chart_index,
+            "affine_dimension": affine_dim,
+            "projective_dimension": projective_dim,
+            "hits": len(hits),
+            "bound": chart_bound,
+        })
+
+    quotient_coarse_constant = len(quotient_scales) * (quotient_max_dim + 1)
+    quotient_coarse_bound = (
+        quotient_chart_count * quotient_coarse_constant * (N ** quotient_max_dim)
+    )
+    if len(quotient_union_hits) > quotient_sum_bound:
+        return {
+            "name": "chart_atlas_consumer",
+            "status": "FAIL",
+            "reason": "quotient atlas union exceeded summed chart bounds",
+            "union_hits": len(quotient_union_hits),
+            "sum_bound": quotient_sum_bound,
+        }
+    if quotient_sum_bound > quotient_coarse_bound:
+        return {
+            "name": "chart_atlas_consumer",
+            "status": "FAIL",
+            "reason": "quotient summed bound exceeded coarse budget",
+            "sum_bound": quotient_sum_bound,
+            "coarse_bound": quotient_coarse_bound,
+        }
+
+    deployed_rows = []
+    for n, atlas_count, dimension, quotient_scale_count in [
+        (512, 1806, 6, 3),
+        (2 ** 20, 2 ** 10, 6, 8),
+        (2 ** 40, 2 ** 16, 8, 16),
+    ]:
+        atlas_exponent = dimension + math.log(atlas_count, n)
+        quotient_exponent = (
+            dimension
+            + math.log(atlas_count * quotient_scale_count * (dimension + 1), n)
+        )
+        deployed_rows.append({
+            "n": n,
+            "atlas_count": atlas_count,
+            "max_projective_dimension": dimension,
+            "quotient_scale_count": quotient_scale_count,
+            "nonquotient_exponent_budget": atlas_exponent,
+            "quotient_union_exponent_budget": quotient_exponent,
+        })
+
+    return {
+        "name": "chart_atlas_consumer",
+        "status": "PASS",
+        "statement": (
+            "If a residual locator family is covered by A affine charts whose "
+            "projective spans have dimension at most d, then the nonquotient "
+            "part has budget A*n^d; the quotient-union part has budget "
+            "A*tau(gcd(n,j))*(d+1)*n^d."
+        ),
+        "nonquotient_atlas": {
+            "chart_count": chart_count,
+            "max_projective_dimension": nonquotient_max_dim,
+            "union_hits": len(nonquotient_union_hits),
+            "sum_chart_bounds": nonquotient_sum_bound,
+            "coarse_bound": nonquotient_coarse_bound,
+            "chart_rows": nonquotient_chart_rows,
+        },
+        "quotient_atlas": {
+            "chart_count": quotient_chart_count,
+            "max_projective_dimension": quotient_max_dim,
+            "quotient_scales": quotient_scales,
+            "union_hits": len(quotient_union_hits),
+            "sum_chart_bounds": quotient_sum_bound,
+            "coarse_bound": quotient_coarse_bound,
+            "chart_rows": quotient_chart_rows,
+        },
+        "deployed_shape_rows": deployed_rows,
+    }
+
+
 def log2_int(value: int) -> float | None:
     return math.log2(value) if value > 0 else None
 
@@ -1508,6 +1710,7 @@ def build_report() -> dict:
         check_quotient_union_fixed_dimension_bound(H),
         check_affine_slope_table_consumer(H),
         check_exponent_budget_consumer(H),
+        check_chart_atlas_consumer(H),
         check_johnson_ball_common_core_cover(H),
         check_fm1_high_overlap_common_core_budget(H),
     ]
