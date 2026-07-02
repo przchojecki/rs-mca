@@ -67,6 +67,24 @@ Keep entries concise and link to the relevant files.
   explicitly requested; audit Paper D itself through theorem statements and
   certificate checks.
 
+### 2026-07-02 - E7 fixed-dimension consistency check
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_dim2_evidence.md`;
+  `experimental/scripts/verify_conjecture_f_dim2_evidence.py`;
+  `experimental/data/certificates/conjecture-f-dim2-evidence/conjecture_f_dim2_n16_f17.json`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / EVIDENCE.
+- **What is being added:** The E7 dimension-two packet now includes a
+  fixed-dimensional theorem-consistency check against the Conjecture F
+  reduction lemmas: every exact `j=3` plane and sampled `j=5` kernel plane
+  satisfies the `binom(16-c,2)` common-root bound.
+- **How it is useful:** This keeps the evidence packet synchronized with the
+  stronger fixed-dimensional theorem in PR #182 and reframes E7 as calibration
+  and regression evidence rather than an open dimension-two target.
+- **What to do next:** Use future E7 work for dimension-growing stress tests,
+  or as regression data for a faster `n=16,j=4` Grassmannian census.
+
 ### 2026-07-02 - Towards-prize sparse note documentation pass
 
 - **Agent/model:** Codex.

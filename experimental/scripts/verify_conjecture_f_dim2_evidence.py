@@ -9,6 +9,8 @@ plan from the roadmap/DAG lane:
 * classify common-root planes as the paid tangent/common-divisor shape;
 * record the maximum primitive intersection with D_3(H);
 * sample genuine Hankel-kernel projective planes at n=16, j=5, t=3.
+* check both runs against the fixed-dimensional Conjecture F consumer bound
+  proved in the companion reduction-lemma package.
 
 The exact census is small because projective planes in P^3 are hyperplanes:
 (17^4 - 1)/(17 - 1) = 5220.
@@ -363,11 +365,78 @@ def kernel_plane_sample_j5(domain: list[int]) -> dict[str, Any]:
     }
 
 
+def fixed_dimension_consistency_check(domain: list[int]) -> dict[str, Any]:
+    exact_degree = J_EXACT
+    exact_divisors = divisor_locators(domain, exact_degree)
+    exact_violations = 0
+    exact_max_slack = 0
+    exact_sharp_common_root_planes = 0
+    for functional in projective_functionals(exact_degree + 1):
+        hits = sum(1 for loc in exact_divisors if dot(functional, loc) == 0)
+        common_roots = [
+            x for x in domain
+            if canonical_vector(eval_vector(x, exact_degree)) == functional
+        ]
+        bound = comb(N - len(common_roots), 2)
+        if hits > bound:
+            exact_violations += 1
+        exact_max_slack = max(exact_max_slack, bound - hits)
+        if common_roots and hits == bound:
+            exact_sharp_common_root_planes += 1
+
+    kernel_degree = J_KERNEL
+    kernel_divisors = divisor_locators(domain, kernel_degree)
+    rng = random.Random(SEED)
+    accepted = 0
+    attempts = 0
+    kernel_violations = 0
+    kernel_max_hits = 0
+    kernel_min_slack = None
+    while accepted < KERNEL_SAMPLE_COUNT:
+        attempts += 1
+        rowspace = random_hankel_rows(rng, kernel_degree, T_KERNEL)
+        if rank_mod_p(rowspace, kernel_degree + 1) != T_KERNEL:
+            continue
+        accepted += 1
+        hits = sum(
+            1 for loc in kernel_divisors
+            if all(dot(row, loc) == 0 for row in rowspace)
+        )
+        common_roots = [
+            x for x in domain
+            if in_rowspace(eval_vector(x, kernel_degree), rowspace, kernel_degree + 1)
+        ]
+        bound = comb(N - len(common_roots), 2)
+        slack = bound - hits
+        if hits > bound:
+            kernel_violations += 1
+        kernel_max_hits = max(kernel_max_hits, hits)
+        kernel_min_slack = slack if kernel_min_slack is None else min(kernel_min_slack, slack)
+
+    ok = exact_violations == 0 and kernel_violations == 0 and accepted == KERNEL_SAMPLE_COUNT
+    return {
+        "name": "fixed_dimension_theorem_consistency",
+        "status": "PASS" if ok else "FAIL",
+        "consumer": "Conjecture F fixed-dimensional/common-root bound",
+        "projective_dimension": 2,
+        "j3_exact_planes_checked": len(projective_functionals(exact_degree + 1)),
+        "j3_violations": exact_violations,
+        "j3_sharp_common_root_planes": exact_sharp_common_root_planes,
+        "j3_max_bound_slack": exact_max_slack,
+        "j5_sampled_kernel_planes_checked": accepted,
+        "j5_attempts": attempts,
+        "j5_violations": kernel_violations,
+        "j5_max_hits": kernel_max_hits,
+        "j5_min_bound_slack": kernel_min_slack,
+    }
+
+
 def build_report() -> dict[str, Any]:
     domain = list(range(1, P))
     checks = [
         exact_j3_plane_census(domain),
         kernel_plane_sample_j5(domain),
+        fixed_dimension_consistency_check(domain),
     ]
     return {
         "schema": "conjecture_f_dim2_evidence_v1",

@@ -6,10 +6,12 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_dim2_evidence.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-dim2-evidence/conjecture_f_dim2_n16_f17.json`.
 
-This packet is a small, pre-registered evidence run for the first primitive
-dimension in Conjecture F.  It does not prove Conjecture F.  It records one
-exact toy census and one deterministic kernel-plane sample that can guide the
-next proof or falsification attempt.
+This packet is a small, pre-registered evidence run for low-dimensional
+Conjecture F geometry.  It does not prove Conjecture F.  In light of the
+companion reduction-lemma package in PR #182, fixed projective dimensions are
+now theorem-controlled; this packet should be read as calibration and
+regression evidence for the first toy dimensions, not as claiming dimension
+two is still an open primitive case.
 
 ## Object
 
@@ -80,18 +82,34 @@ Most sampled kernel planes have no `D_5(H)` point at all.  No quotient stratum
 is present for `j=5`, and no unclassified rich primitive plane appears in this
 sample.
 
+The verifier also replays both runs against the fixed-dimensional/common-root
+consumer bound from the Conjecture F reduction lemmas.  For projective
+dimension two, every plane with `c` common roots should have at most
+
+```text
+binom(16-c,2)
+```
+
+hits after common-root accounting.  The exact `j=3` census has zero violations
+and the `16` common-root planes are sharp at `binom(15,2)=105`.  The sampled
+`j=5` kernel planes also have zero violations; their maximum hit count is far
+below the fixed-dimensional bound.
+
 ## Interpretation
 
-This moves the E7 prior in the positive direction: the first exact dimension-two
-toy has only the expected common-root spike, and the kernel-plane sample shows
-small primitive intersections.  The evidence also says what to do next.  The
-next E7 packet should either exhaust `n=16,j=4` projective planes with a more
-efficient Grassmannian enumerator, or replace random Hankel samples by a
-structured enumeration of low-complexity syndrome row spaces.
+This moves the E7 prior in the positive direction: the exact toy has only the
+expected common-root spike, the kernel-plane sample shows small primitive
+intersections, and both are consistent with the fixed-dimensional theorem
+consumer.  The evidence also says what to do next.  Future E7 work should not
+try to re-prove fixed dimension two; it should either stress-test higher
+dimension-growing families, exhaust `n=16,j=4` projective planes as a
+regression target with a more efficient Grassmannian enumerator, or replace
+random Hankel samples by a structured enumeration of low-complexity syndrome
+row spaces.
 
 Non-claims:
 
-- no theorem for arbitrary `n` or arbitrary `j`;
+- no theorem for arbitrary growing dimension;
 - no exhaustive statement for `j=5` kernel planes;
 - no M1/MCA threshold or safe-side claim.
 
