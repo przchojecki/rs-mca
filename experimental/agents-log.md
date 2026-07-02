@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - WP-detail loop turn 4: symbolic scaling (WP-3.2)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/wp_detail/wp3_2_symbolic_scaling.md`.
+- **Status:** inventory + spec; two open items named; numerics checked.
+- **What is being added:** Turn 4. The symbolization inventory (what is
+  already symbolic and must only be cited; what needs one-lemma
+  restatement — the U1-U5 chain and the fold predicate; what needs real
+  work — the A_cl second-order term and the WP-4.1 displacement
+  identities). The symbolic-row-descriptor spec: (p, e, s, rho) -> full
+  derived table (gates, generating, staircase pin, corridor numbers,
+  zone-(a) boundary N'_max with verified samples 46/62/80 at log2 q =
+  130.8/192/256, m-sweep cap) — everything O(poly(s, log q)), no
+  enumeration, so an n = 2^41 row costs the same as n = 512. Acceptance
+  = double regression: exact reproduction of the pinned-row values and
+  of the s5_s0 master table; the script becomes the single source for
+  every dossier constant. The two open items framed for bottom-up
+  hand-off with toy validation targets (exact e_1 value sets at
+  N' = 8..32; norm-threshold extension toward N' ~ 161).
+- **How it is useful:** Replaces hand-derived row constants everywhere
+  downstream and names exactly where symbolic knowledge ends.
+- **What to do next:** Turn 5: wp1_1 + wp1_2 (submission note + Lean).
+
 ### 2026-07-02 - WP-detail loop turn 3: replay audits + harness (WP-0.3/0.4)
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
