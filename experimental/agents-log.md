@@ -88,7 +88,10 @@ Keep entries concise and link to the relevant files.
   from many-slope evidence.  The degree-moment cap explains the universal
   ambient rank loss and prevents misreading it as design-specific evidence;
   the verifier checks this by appending every stack to the explicit moment
-  basis and confirming the rank does not increase.
+  basis and confirming the rank does not increase.  A further cap-saturation
+  certificate records that once a distinct-slope stack reaches the full
+  `2(j+t)` moment cap, all tested locator syndromes have `S_T(v)=0`, so the
+  saturated branch is finite-slope-degenerate.
 - **What to do next:** Turn the observed pattern into a lemma target:
   higher-order rank loss in spread families should either be bounded-prefix or
   force `v`-syndrome degeneracy.  Broaden the falsifier to larger designs only

@@ -52,6 +52,18 @@
             "zero_restriction_locator_count": 15
           },
           "ambient_linear_bound_floor((2n-1)/t)": 15,
+          "cap_saturation_degeneracy_certificate": {
+            "cap_saturation_forces_v_zero_on_full_tested_family": true,
+            "degree_cap": 12,
+            "full_family_size": 20,
+            "full_family_v_zero_restriction_count": 20,
+            "logic": "For distinct slopes, degree-cap saturation means the rowspace is the full W_u plus W_v moment quotient. The nullspace therefore annihilates W_v, so every tested locator syndrome S_T(v) is zero.",
+            "nullity": 20,
+            "prefix_size": 7,
+            "prefix_v_zero_restriction_count": 7,
+            "rank": 12,
+            "saturates_degree_cap": true
+          },
           "classification": "design_specific_rank_loss_detected_but_degenerate_v_kernel",
           "degree_cap_loss_nondegenerate_prefixes": {
             "count": 0,
@@ -226,6 +238,18 @@
             "zero_restriction_locator_count": 15
           },
           "ambient_linear_bound_floor((2n-1)/t)": 15,
+          "cap_saturation_degeneracy_certificate": {
+            "cap_saturation_forces_v_zero_on_full_tested_family": true,
+            "degree_cap": 12,
+            "full_family_size": 20,
+            "full_family_v_zero_restriction_count": 20,
+            "logic": "For distinct slopes, degree-cap saturation means the rowspace is the full W_u plus W_v moment quotient. The nullspace therefore annihilates W_v, so every tested locator syndrome S_T(v) is zero.",
+            "nullity": 20,
+            "prefix_size": 7,
+            "prefix_v_zero_restriction_count": 7,
+            "rank": 12,
+            "saturates_degree_cap": true
+          },
           "classification": "design_specific_rank_loss_detected_but_degenerate_v_kernel",
           "degree_cap_loss_nondegenerate_prefixes": {
             "count": 0,
@@ -387,6 +411,7 @@
             "zero_restriction_locator_count": 0
           },
           "ambient_linear_bound_floor((2n-1)/t)": 15,
+          "cap_saturation_degeneracy_certificate": null,
           "classification": "same_slope_design_specific_degree_loss",
           "degree_cap_loss_nondegenerate_prefixes": {
             "count": 1,
@@ -607,6 +632,18 @@
             "zero_restriction_locator_count": 21
           },
           "ambient_linear_bound_floor((2n-1)/t)": 21,
+          "cap_saturation_degeneracy_certificate": {
+            "cap_saturation_forces_v_zero_on_full_tested_family": true,
+            "degree_cap": 16,
+            "full_family_size": 33,
+            "full_family_v_zero_restriction_count": 33,
+            "logic": "For distinct slopes, degree-cap saturation means the rowspace is the full W_u plus W_v moment quotient. The nullspace therefore annihilates W_v, so every tested locator syndrome S_T(v) is zero.",
+            "nullity": 48,
+            "prefix_size": 6,
+            "prefix_v_zero_restriction_count": 6,
+            "rank": 16,
+            "saturates_degree_cap": true
+          },
           "classification": "moment_quotient_cap_limited_no_extra_dependency",
           "degree_cap_loss_nondegenerate_prefixes": {
             "count": 0,
@@ -785,6 +822,18 @@
             "zero_restriction_locator_count": 21
           },
           "ambient_linear_bound_floor((2n-1)/t)": 21,
+          "cap_saturation_degeneracy_certificate": {
+            "cap_saturation_forces_v_zero_on_full_tested_family": true,
+            "degree_cap": 16,
+            "full_family_size": 33,
+            "full_family_v_zero_restriction_count": 33,
+            "logic": "For distinct slopes, degree-cap saturation means the rowspace is the full W_u plus W_v moment quotient. The nullspace therefore annihilates W_v, so every tested locator syndrome S_T(v) is zero.",
+            "nullity": 48,
+            "prefix_size": 6,
+            "prefix_v_zero_restriction_count": 6,
+            "rank": 16,
+            "saturates_degree_cap": true
+          },
           "classification": "moment_quotient_cap_limited_no_extra_dependency",
           "degree_cap_loss_nondegenerate_prefixes": {
             "count": 0,
@@ -950,6 +999,7 @@
             "zero_restriction_locator_count": 0
           },
           "ambient_linear_bound_floor((2n-1)/t)": 21,
+          "cap_saturation_degeneracy_certificate": null,
           "classification": "same_slope_degree_cap_diagnostic_not_an_E3_distinct_slope_test",
           "degree_cap_loss_nondegenerate_prefixes": {
             "count": 0,
@@ -1158,6 +1208,18 @@
             "zero_restriction_locator_count": 21
           },
           "ambient_linear_bound_floor((2n-1)/t)": 21,
+          "cap_saturation_degeneracy_certificate": {
+            "cap_saturation_forces_v_zero_on_full_tested_family": true,
+            "degree_cap": 18,
+            "full_family_size": 64,
+            "full_family_v_zero_restriction_count": 64,
+            "logic": "For distinct slopes, degree-cap saturation means the rowspace is the full W_u plus W_v moment quotient. The nullspace therefore annihilates W_v, so every tested locator syndrome S_T(v) is zero.",
+            "nullity": 46,
+            "prefix_size": 6,
+            "prefix_v_zero_restriction_count": 6,
+            "rank": 18,
+            "saturates_degree_cap": true
+          },
           "classification": "moment_quotient_cap_limited_no_extra_dependency",
           "degree_cap_loss_nondegenerate_prefixes": {
             "count": 0,
@@ -1336,6 +1398,18 @@
             "zero_restriction_locator_count": 21
           },
           "ambient_linear_bound_floor((2n-1)/t)": 21,
+          "cap_saturation_degeneracy_certificate": {
+            "cap_saturation_forces_v_zero_on_full_tested_family": true,
+            "degree_cap": 18,
+            "full_family_size": 64,
+            "full_family_v_zero_restriction_count": 64,
+            "logic": "For distinct slopes, degree-cap saturation means the rowspace is the full W_u plus W_v moment quotient. The nullspace therefore annihilates W_v, so every tested locator syndrome S_T(v) is zero.",
+            "nullity": 46,
+            "prefix_size": 6,
+            "prefix_v_zero_restriction_count": 6,
+            "rank": 18,
+            "saturates_degree_cap": true
+          },
           "classification": "moment_quotient_cap_limited_no_extra_dependency",
           "degree_cap_loss_nondegenerate_prefixes": {
             "count": 0,
@@ -1501,6 +1575,7 @@
             "zero_restriction_locator_count": 0
           },
           "ambient_linear_bound_floor((2n-1)/t)": 21,
+          "cap_saturation_degeneracy_certificate": null,
           "classification": "same_slope_degree_cap_diagnostic_not_an_E3_distinct_slope_test",
           "degree_cap_loss_nondegenerate_prefixes": {
             "count": 0,
@@ -1707,6 +1782,18 @@
             "zero_restriction_locator_count": 31
           },
           "ambient_linear_bound_floor((2n-1)/t)": 31,
+          "cap_saturation_degeneracy_certificate": {
+            "cap_saturation_forces_v_zero_on_full_tested_family": true,
+            "degree_cap": 20,
+            "full_family_size": 69,
+            "full_family_v_zero_restriction_count": 69,
+            "logic": "For distinct slopes, degree-cap saturation means the rowspace is the full W_u plus W_v moment quotient. The nullspace therefore annihilates W_v, so every tested locator syndrome S_T(v) is zero.",
+            "nullity": 108,
+            "prefix_size": 5,
+            "prefix_v_zero_restriction_count": 5,
+            "rank": 20,
+            "saturates_degree_cap": true
+          },
           "classification": "moment_quotient_cap_limited_no_extra_dependency",
           "degree_cap_loss_nondegenerate_prefixes": {
             "count": 0,
@@ -1895,6 +1982,18 @@
             "zero_restriction_locator_count": 31
           },
           "ambient_linear_bound_floor((2n-1)/t)": 31,
+          "cap_saturation_degeneracy_certificate": {
+            "cap_saturation_forces_v_zero_on_full_tested_family": true,
+            "degree_cap": 20,
+            "full_family_size": 69,
+            "full_family_v_zero_restriction_count": 69,
+            "logic": "For distinct slopes, degree-cap saturation means the rowspace is the full W_u plus W_v moment quotient. The nullspace therefore annihilates W_v, so every tested locator syndrome S_T(v) is zero.",
+            "nullity": 108,
+            "prefix_size": 5,
+            "prefix_v_zero_restriction_count": 5,
+            "rank": 20,
+            "saturates_degree_cap": true
+          },
           "classification": "moment_quotient_cap_limited_no_extra_dependency",
           "degree_cap_loss_nondegenerate_prefixes": {
             "count": 0,
@@ -2070,6 +2169,7 @@
             "zero_restriction_locator_count": 0
           },
           "ambient_linear_bound_floor((2n-1)/t)": 31,
+          "cap_saturation_degeneracy_certificate": null,
           "classification": "same_slope_degree_cap_diagnostic_not_an_E3_distinct_slope_test",
           "degree_cap_loss_nondegenerate_prefixes": {
             "count": 0,
@@ -2249,7 +2349,7 @@
   "overall_interpretation": "NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE",
   "pre_registered_question": "Can co-support designs with pairwise support intersections < k create hidden distinct-slope alignment dependencies before the ambient 2n-variable rank limit?",
   "prime": 193,
-  "script_sha256": "8e3a8e328c243548d444c98eb57e53a8191b98324a349799079c029126f1ac20",
+  "script_sha256": "920a90084e229ff26ad6f70370d92460e8e5c1cda0e6f3342b077f2262dc1ac8",
   "seed": 2026070203,
   "status": "EXPERIMENTAL / AUDIT",
   "title": "E3 spread-regime design evidence"

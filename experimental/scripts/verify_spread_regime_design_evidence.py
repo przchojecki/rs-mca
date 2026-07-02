@@ -418,6 +418,65 @@ def nondegeneracy_certificate(
     }
 
 
+def v_zero_restriction_indices(
+    domain: list[int],
+    nullspace: list[list[int]],
+    family: list[tuple[int, ...]],
+    t: int,
+    p: int = P,
+) -> list[int]:
+    n = len(domain)
+    zero_restrictions = []
+    for idx, roots in enumerate(family):
+        syndrome_rows = syndrome_matrix_for_indices(domain, roots, t, p)
+        restriction_rows = []
+        for syn_row in syndrome_rows:
+            restriction_rows.append([
+                sum(syn_row[col] * vector[n + col] for col in range(n)) % p
+                for vector in nullspace
+            ])
+        restriction_rank = rank_mod_p(restriction_rows, p)
+        if restriction_rank == 0:
+            zero_restrictions.append(idx)
+    return zero_restrictions
+
+
+def cap_saturation_degeneracy_certificate(
+    domain: list[int],
+    prefix_family: list[tuple[int, ...]],
+    full_family: list[tuple[int, ...]],
+    t: int,
+    slopes: list[int],
+    degree_cap: int,
+    p: int = P,
+) -> dict[str, Any]:
+    n = len(domain)
+    matrix = stacked_alignment_matrix(domain, prefix_family, t, slopes, p)
+    rank = rank_mod_p(matrix, p)
+    nullspace = nullspace_basis(matrix, 2 * n, p)
+    prefix_zero = v_zero_restriction_indices(domain, nullspace, prefix_family, t, p)
+    full_zero = v_zero_restriction_indices(domain, nullspace, full_family, t, p)
+    saturated = rank == degree_cap
+    return {
+        "prefix_size": len(prefix_family),
+        "rank": rank,
+        "degree_cap": degree_cap,
+        "saturates_degree_cap": saturated,
+        "nullity": len(nullspace),
+        "prefix_v_zero_restriction_count": len(prefix_zero),
+        "full_family_v_zero_restriction_count": len(full_zero),
+        "full_family_size": len(full_family),
+        "cap_saturation_forces_v_zero_on_full_tested_family": (
+            saturated and len(full_zero) == len(full_family)
+        ),
+        "logic": (
+            "For distinct slopes, degree-cap saturation means the rowspace is "
+            "the full W_u plus W_v moment quotient. The nullspace therefore "
+            "annihilates W_v, so every tested locator syndrome S_T(v) is zero."
+        ),
+    }
+
+
 def summarize_prefix_records(records: list[dict[str, Any]]) -> dict[str, Any]:
     if not records:
         return {
@@ -530,6 +589,19 @@ def analyze_slope_mode(
         first_saturation = len(family) + 1
     if first_degree_cap_prefix is None:
         first_degree_cap_prefix = len(family) + 1
+    cap_degeneracy = None
+    if name != "constant_one" and first_degree_cap_prefix <= len(family):
+        cap_degeneracy = cap_saturation_degeneracy_certificate(
+            domain,
+            family[:first_degree_cap_prefix],
+            family,
+            t,
+            full_slopes[:first_degree_cap_prefix],
+            degree_cap,
+            p,
+        )
+        if not cap_degeneracy["cap_saturation_forces_v_zero_on_full_tested_family"]:
+            raise AssertionError(f"{name} cap saturation did not force v-zero")
     if name == "constant_one":
         classification = (
             "same_slope_design_specific_degree_loss"
@@ -565,6 +637,7 @@ def analyze_slope_mode(
         "degree_cap_loss_nondegenerate_prefixes": summarize_prefix_records(
             degree_cap_loss_nondegenerate_prefixes
         ),
+        "cap_saturation_degeneracy_certificate": cap_degeneracy,
         "sampled_prefix_rows": [
             row for row in rows
             if (
@@ -739,6 +812,14 @@ def main() -> None:
                     nondeg=result["largest_nondegenerate_prefix_certified"],
                 )
             )
+            cap_cert = result["cap_saturation_degeneracy_certificate"]
+            if cap_cert is not None:
+                print(
+                    "        cap saturation v-zero: {zero}/{total}".format(
+                        zero=cap_cert["full_family_v_zero_restriction_count"],
+                        total=cap_cert["full_family_size"],
+                    )
+                )
     print(f"overall: {report['overall_interpretation']}")
 
     if args.emit:

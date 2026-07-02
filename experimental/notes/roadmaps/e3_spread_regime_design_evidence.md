@@ -86,6 +86,28 @@ giving rank at most `j+t`.  The verifier records this as an explicit
 row-space inclusion certificate: for every tested slope mode, appending the
 stacked rows to the corresponding moment basis does not increase its rank.
 
+There is also a useful consumer.  For distinct slopes, if the stack reaches
+the full degree-moment cap `2(j+t)`, then the row space is the whole
+
+```text
+W_u direct-sum W_v,
+        W = span{M_1,...,M_{j+t}}.
+```
+
+Any solution `(u,v)` of the stacked equations is orthogonal to this row space.
+In particular `v` is orthogonal to `W`.  Since every locator-syndrome row
+`S_T` lies in `W`, this forces
+
+```text
+S_T(v)=0
+```
+
+for every tested locator `T`.  Thus cap saturation itself cannot witness many
+finite slopes; after saturation, the only remaining solutions are degenerate
+in the finite-slope denominator.  The verifier records this as a
+cap-saturation degeneracy certificate at the first prefix reaching the
+degree-moment cap.
+
 The verifier therefore compares rank both to the naive `2n` ambient variable
 space and to this degree-moment cap.  The decision rule is:
 
@@ -127,10 +149,11 @@ overall: NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE
 
 The important nuance is that ambient rank losses do occur, but most are now
 explained by the universal degree-moment quotient above.  The greedy families
-reach the degree cap with no extra distinct-slope loss.  The `AG(2,4)` line
-ordering has one prefix loss below the cap, but it is not certified as
-nondegenerate finite-slope mass.  Across all tested distinct-slope cases, no
-below-cap rank-loss prefix is certified as genuine finite-slope mass.
+reach the degree cap with no extra distinct-slope loss, and cap saturation
+forces `S_T(v)=0` on the whole tested family.  The `AG(2,4)` line ordering has
+one prefix loss below the cap, but it is not certified as nondegenerate
+finite-slope mass.  Across all tested distinct-slope cases, no below-cap
+rank-loss prefix is certified as genuine finite-slope mass.
 
 The largest certified nondegenerate distinct-slope prefixes are small:
 
