@@ -1,0 +1,180 @@
+{
+  "agreement": {
+    "A": 385,
+    "boundary_defect_h": 5,
+    "combined_support_size": 134,
+    "direction_rank": 6,
+    "forced_base_core_size": 2,
+    "j": 127,
+    "m": 128,
+    "projective_Q_search_dimension_after_core": 2,
+    "residual_vector_dimension_after_core": 3,
+    "split_locator_degree": 127,
+    "t": 129
+  },
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "A=385 fixed two-core residual has Q-plane P^2 and locator degree 127",
+    "line high-core begins at e_G=71 and conic high-core begins at e_G=68",
+    "two forced roots on a line component trigger the product-collapse classification",
+    "line product collapse requires e_G>=123 for any degree-127 split locator",
+    "line product collapse closes e_G=71..122",
+    "conic product-collapse dependency closes e_G=68..122",
+    "punctured projective tangent tail is budget-safe for e_G>=122",
+    "line and conic high-core ranges are covered by product collapse plus tangent tail"
+  ],
+  "component_closures": {
+    "irreducible_conic": {
+      "all_fixed_two_core_irreducible_conic_components_projective_safe": true,
+      "high_core_product_closed_range": [
+        68,
+        122
+      ],
+      "high_core_tangent_tail_safe_range": [
+        122,
+        126
+      ],
+      "small_core_pair_overlap_safe_range": [
+        0,
+        67
+      ]
+    },
+    "line": {
+      "all_fixed_two_core_line_components_projective_safe": true,
+      "high_core_product_closed_range": [
+        71,
+        122
+      ],
+      "high_core_tangent_tail_safe_range": [
+        122,
+        126
+      ],
+      "small_core_incidence_safe_range": [
+        0,
+        70
+      ]
+    }
+  },
+  "line_product_collapse": {
+    "closed_external_core_range_by_product_collapse": [
+      71,
+      122
+    ],
+    "evaluation_functional_formula": {
+      "ev_s_coefficients": [
+        "H(s)",
+        "s*H(s)-A*P_X(s)",
+        "s^2*H(s)-(A*s+C)*P_X(s)"
+      ],
+      "notation": "Write G=q_0 P_X+H, H=A*T^(m-1)+B*T^(m-2)+..., P_X=T^m+p*T^(m-1)+..., and C=B-A*p.",
+      "valid_for": "s outside X, where P_X(s) is nonzero"
+    },
+    "minimum_external_core_for_any_degree_127_split_locator": 123,
+    "setup": "Let U be the two-dimensional residual subspace defining a line component in the fixed two-core Q-plane, and let U^perp=<phi> in the dual Q-plane.  A forced external root s has ev_s in span(phi).",
+    "two_forced_roots_classification": [
+      {
+        "case": "common_root_pencil",
+        "consequence": "Two distinct forced roots make the compatibility identity vanish identically.  Thus U is the pencil R(alpha)=0.  For R=(T-alpha)S, L_{E R}=F*S with F=(T-alpha)H-A*P_X and deg F<=126.",
+        "hypotheses": "u!=0 and A!=0 in the dual-line notation",
+        "root_count": "F has the two fixed base-core roots and at most one additional base root x=alpha; S has at most one further subgroup root.  Thus a degree-127 split locator needs external forced core size at least 123."
+      },
+      {
+        "case": "product_without_reduction",
+        "consequence": "The top terms or the line U force modular reduction to vanish on U: L_{E R}=H*R for R in U.",
+        "hypotheses": "all remaining two-forced-root line cases",
+        "root_count": "H carries the two fixed base roots and the forced external core, while R contributes at most two further subgroup roots.  Thus a degree-127 split locator again needs external forced core size at least 123."
+      }
+    ]
+  },
+  "nonclaims": [
+    "does not prove a row-level M3 safe-side bound",
+    "does not prove that every A=385 over-budget branch has a fixed two-point base core",
+    "does not close moving-core or no-common-core A=385 branches",
+    "does not classify overlapping-support rank-6 pencils",
+    "does not prove endpoint payment outside the projective tangent/tail accounting used here",
+    "does not audit quotient or extension overlap for arbitrary root tables"
+  ],
+  "object": "A=385 separated rank-6 fixed two-core high-core line/conic closure",
+  "punctured_tangent_tail": {
+    "closed_external_core_range_by_tangent_tail": [
+      122,
+      126
+    ],
+    "projective_bound": "projective bad slopes on the branch <= r'+1 = 128-|E|",
+    "projective_bound_at_safe_min": 6,
+    "projective_safe_external_core_min": 122,
+    "punctured_row": "After removing a forced external core E, the residual row has n'=512-|E|, a'=385, and r'=127-|E|.",
+    "tangent_range_check": "For every high-core line or conic threshold here, r' <= floor((n'-256)/3), so the high-agreement projective tangent staircase applies."
+  },
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-a385-two-core-high-core-closure-v1",
+  "source_artifacts": {
+    "a385_two_core_conic_product_collapse": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-product-collapse/f17_32_n512_k256_m3_rank6_a385_two_core_conic_product_collapse.json",
+      "sha256": "aec03f363c3f922f3896c1101f0da3ca5eac205682182bba4c8e7f32f3a23f14"
+    },
+    "a385_two_core_high_core_quotient": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-quotient/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient.json",
+      "sha256": "3197beb061a10b5c5d26ec658ac3926896f8eeddadfd69bfe96df057aff1f819"
+    },
+    "a385_two_core_moving_slope_incidence": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-moving-slope-incidence/f17_32_n512_k256_m3_rank6_a385_two_core_moving_slope_incidence.json",
+      "sha256": "3fc5db911b24440c3f3b4649073b600b0b9f470f12ecb41670958c74274b6e09"
+    },
+    "nullpolynomial_split_locator_gate": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-nullpolynomial-split-locator-gate/f17_32_n512_k256_m3_nullpolynomial_split_locator_gate.json",
+      "sha256": "fd918c7ddbf47b9037840a7dddf5d9a49c77b7d8d889924bbb6b861f8bb2bc42"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement": 385,
+    "conic_high_core_closed_external_core_range": [
+      68,
+      126
+    ],
+    "conic_high_core_components_projective_safe": true,
+    "conic_high_core_external_core_min": 68,
+    "fixed_base_roots": 2,
+    "fixed_two_core_line_or_conic_moving_slope_components_projective_safe": true,
+    "line_high_core_closed_external_core_range": [
+      71,
+      126
+    ],
+    "line_high_core_components_projective_safe": true,
+    "line_high_core_external_core_min": 71,
+    "line_product_collapse_closed_external_core_range": [
+      71,
+      122
+    ],
+    "line_product_collapse_min_core_for_any_split_locator": 123,
+    "positive_dimensional_external_core_upper_bound": 126,
+    "punctured_tangent_tail_projective_bound_at_min": 6,
+    "punctured_tangent_tail_projective_safe_external_core_min": 122,
+    "residual_extra_root_cap": 2,
+    "split_locator_degree": 127
+  }
+}

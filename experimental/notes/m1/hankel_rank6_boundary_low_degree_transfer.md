@@ -184,7 +184,8 @@ It puts those residual high-core branches in quotient normal form.  The line
 branch is a quotient pencil of degree at most `127-71=56`.  For an irreducible
 conic, containment in a root hyperplane forces the external root functional to
 vanish on the whole residual plane, so the branch is a quotient family of
-degree at most `127-68=59`.  The quotient branches remain unclosed.
+degree at most `127-68=59`.  At this quotient-normal-form stage, the quotient
+branches remain unclosed.
 
 The fixed two-core conic product-collapse companion is
 
@@ -199,6 +200,20 @@ common factor `H` to vanish, so `L_{E R}=H R` with `deg H<=125`.  Thus
 `e_G<=122` cannot pass the degree-`127` split-locator gate, while `e_G>=124`
 is impossible.  The remaining irreducible-conic high-core tail from this
 packet is exactly `e_G=123`.
+
+The fixed two-core high-core closure companion is
+
+```text
+experimental/notes/m1/hankel_rank6_a385_two_core_high_core_closure.md
+```
+
+It closes the separated fixed two-core high-core line/conic residual.  On line
+components, two forced external roots imply either a common-root pencil or
+product without modular reduction; in both cases a degree-`127` split locator
+needs `e_G>=123`, closing line cores `71<=e_G<=122`.  After puncturing a forced
+external core, the projective tangent bound is `128-e_G`, so the tail
+`e_G>=122` is projective-budget safe.  Together with incidence, this covers
+the line range `e_G>=71` and the conic range `e_G>=68`.
 
 At `A=387`, this transfer already closes the separated branch for arbitrary
 nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at
@@ -346,6 +361,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_quot
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_product_collapse.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-product-collapse/f17_32_n512_k256_m3_rank6_a385_two_core_conic_product_collapse.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-closure/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_closure.json
 ```
 
 Nonclaims:

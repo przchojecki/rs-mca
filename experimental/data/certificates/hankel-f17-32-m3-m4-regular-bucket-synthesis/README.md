@@ -280,7 +280,23 @@ forced-core conic case, comparison of the remainders of `G`, `T G`, and
 to vanish, so `L_{E R}=H R` with `deg H<=125`.  Therefore `e_G<=122` cannot
 pass the degree-`127` split-locator gate, while `e_G>=124` is impossible.  The
 packet leaves only the conic quotient tail `e_G=123` and does not address line
-high-core branches.
+high-core branches; both are consumed by the high-core closure packet below.
+
+The `A=385` two-core high-core closure packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-closure/
+  f17_32_n512_k256_m3_rank6_a385_two_core_high_core_closure.json
+```
+
+closes the separated fixed two-core high-core line/conic residual.  Line
+components with two forced roots have a product-collapse dichotomy, and either
+case forces `e_G>=123` for any degree-`127` split locator; hence
+`71<=e_G<=122` is impossible on the line side.  The punctured projective
+tangent tail gives at most `128-e_G` projective bad slopes and is budget-safe
+for `e_G>=122`.  Together with incidence and the conic product-collapse packet,
+all separated fixed two-core line/conic moving-slope components are
+projective-budget safe.
 
 The `A=387` separated-boundary safety packet
 
@@ -596,6 +612,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_quot
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_product_collapse.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-product-collapse/f17_32_n512_k256_m3_rank6_a385_two_core_conic_product_collapse.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-closure/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_closure.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

@@ -7,6 +7,7 @@ of the high-core branch in
 
 ```text
 experimental/notes/m1/hankel_rank6_a385_two_core_high_core_quotient.md
+experimental/notes/m1/hankel_rank6_a385_two_core_high_core_closure.md
 ```
 
 The setting is the separated `A=385` rank-6 fixed two-core moving-slope branch.
@@ -90,8 +91,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_product_
 Nonclaims:
 
 ```text
-no closure of the e_G=123 irreducible-conic quotient tail;
-no product-collapse theorem for A=385 high-core line components;
+this conic product-collapse packet alone does not close the e_G=123 tail;
+the e_G=123 tail is closed separately by the high-core punctured tangent tail;
+this conic product-collapse packet does not prove the line product-collapse theorem;
 no closure of the full fixed two-core nonconstant moving-slope branch;
 no proof that every A=385 over-budget branch has a fixed two-point base core;
 no closure of moving-core or no-common-core A=385 branches;

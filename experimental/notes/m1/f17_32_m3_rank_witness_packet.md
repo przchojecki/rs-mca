@@ -581,8 +581,8 @@ The `A=385` two-core moving-slope incidence companion starts the remaining
 nonconstant branch.  Because a degree-`127` split locator has at most four base
 roots after the fixed two-core factorization, line components are
 projective-safe for `e_G<=70`, while irreducible conics are projective-safe for
-`e_G<=67` by pair-overlap packing.  The high-core line/conic ranges remain
-residual.
+`e_G<=67` by pair-overlap packing.  At this incidence-only stage, the high-core
+line/conic ranges remain residual.
 
 The `A=385` two-core high-core quotient companion puts those high-core residuals
 in quotient normal form.  Lines become quotient pencils of degree at most `56`;
@@ -595,8 +595,17 @@ comparison of the remainders of `G`, `T G`, and `T^2 G` modulo `P_X` forces the
 top two coefficients of the common factor `H` to vanish, so `L_{E R}=H R` with
 `deg H<=125`.  Hence `e_G<=122` cannot pass the degree-`127` split-locator
 gate and `e_G>=124` is impossible; the remaining conic quotient tail is
-`e_G=123`.  The line high-core quotient branches are not addressed by this
-packet.
+`e_G=123`.  The line high-core quotient branches are addressed by the next
+high-core closure packet, not by this conic packet.
+
+The `A=385` two-core high-core closure companion closes the separated
+line/conic high-core residual.  For line components, two forced roots give a
+common-root pencil or product without modular reduction; either way a
+degree-`127` split locator needs `e_G>=123`, so `71<=e_G<=122` is impossible.
+The punctured projective tangent tail gives at most `128-e_G` projective bad
+slopes and is budget-safe for `e_G>=122`.  Together with incidence and the
+conic product-collapse packet, the fixed two-core line/conic moving-slope
+components are projective-budget safe.
 
 The `A=387` separated-boundary safety companion uses the `h=1` specialization
 to close that agreement for arbitrary nonzero separated weights: the finite
@@ -949,6 +958,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_quot
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_product_collapse.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-product-collapse/f17_32_n512_k256_m3_rank6_a385_two_core_conic_product_collapse.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-closure/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_closure.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

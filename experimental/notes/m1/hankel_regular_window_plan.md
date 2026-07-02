@@ -964,7 +964,8 @@ moving-slope branch.
 The fixed two-core moving-slope incidence companion gives the first thresholds
 for that branch: line components are projective-safe for external forced core
 `e_G<=70`, and irreducible conics are projective-safe for `e_G<=67` after
-pair-overlap packing.  The high-core line/conic ranges remain open for
+pair-overlap packing.  At this incidence-only stage the high-core line/conic
+ranges remain open for
 product-collapse, quotient, tangent-tail, or split-locator analysis.
 The fixed two-core high-core quotient companion then normalizes those residuals:
 line branches are quotient pencils of degree at most `56`, and irreducible
@@ -976,6 +977,12 @@ irreducible-conic high-core branch: the global forced core makes the remainder
 factor as `L_{E R}=H R` with `deg H<=125`, so `e_G<=122` cannot meet the
 degree-`127` split-locator gate and `e_G>=124` is impossible.  The conic
 quotient tail left by this packet is exactly `e_G=123`.
+The fixed two-core high-core closure companion then closes the full separated
+line/conic high-core residual: line components close for `71<=e_G<=122` by the
+same product-collapse dichotomy, and after puncturing the forced external core
+the projective tangent tail is budget-safe for `e_G>=122`.  Combined with the
+incidence packet, all separated fixed two-core line/conic moving-slope
+components are projective-budget safe.
 For `A=387`, the projective `Q`-space is a point, so the arbitrary-weight
 separated branch is already projective-safe with total at most `2`.
 For `A=386`, a no-common-component pair of direction conics gives projective
@@ -1037,6 +1044,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_quot
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_conic_product_collapse.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-conic-product-collapse/f17_32_n512_k256_m3_rank6_a385_two_core_conic_product_collapse.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-closure/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_closure.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

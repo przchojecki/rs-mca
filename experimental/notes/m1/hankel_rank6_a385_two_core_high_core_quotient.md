@@ -19,6 +19,7 @@ and is refined on the irreducible-conic side by
 
 ```text
 experimental/notes/m1/hankel_rank6_a385_two_core_conic_product_collapse.md
+experimental/notes/m1/hankel_rank6_a385_two_core_high_core_closure.md
 ```
 
 After a fixed forced two-point base core is factored, write
@@ -111,8 +112,8 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_quot
 Nonclaims:
 
 ```text
-no A385 high-core line product-collapse theorem;
-the irreducible-conic product collapse is proved separately but leaves `e_G=123`;
+this quotient-normal-form packet alone does not close the high-core branches;
+the high-core closure is proved separately by line product collapse plus the punctured tangent tail;
 no claim that the high-core quotient pencils or families are empty or paid;
 no closure of the full fixed two-core nonconstant moving-slope branch;
 no proof that every A=385 over-budget branch has a fixed two-point base core;

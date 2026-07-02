@@ -16,7 +16,11 @@ experimental/notes/m1/hankel_rank6_a385_two_core_global_component_slope_dichotom
 experimental/notes/m1/hankel_rank6_a385_two_core_slope_free_empty.md
 ```
 
-and does not close the high-core moving-slope branch.
+The high-core moving-slope branch is closed separately in
+
+```text
+experimental/notes/m1/hankel_rank6_a385_two_core_high_core_closure.md
+```
 
 After a fixed forced two-point base core is factored, write
 
@@ -118,8 +122,7 @@ Nonclaims:
 
 ```text
 no closure of the full fixed two-core nonconstant moving-slope branch;
-no A385 high-core product-collapse theorem;
-no proof that high-core quotient diagnostics are empty or paid;
+the high-core line/conic branch is closed separately, not by this incidence packet;
 no proof that every A=385 over-budget branch has a fixed two-point base core;
 no closure of moving-core or no-common-core A=385 branches;
 no overlapping-support rank-6 classification;

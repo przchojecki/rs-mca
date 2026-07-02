@@ -361,6 +361,7 @@
     "A=385 separated rank-6 fixed two-core moving-slope line/conic branches have external-incidence thresholds e<=70 and e<=67 for projective safety",
     "A=385 separated rank-6 fixed two-core high-core moving-slope branches reduce to quotient pencils/families of degrees at most 56 and 59",
     "A=385 separated rank-6 fixed two-core irreducible-conic high-core branches close by product collapse except for the e_G=123 quotient tail",
+    "A=385 separated rank-6 fixed two-core high-core line/conic branches are projective-budget safe after line product collapse and the punctured tangent tail",
     "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
     "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
     "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
@@ -503,7 +504,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v43",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v44",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -577,6 +578,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a385_two_core_global_component_slope_dichotomy.json",
       "sha256": "fcff20da15e17efc860def7d707ee17c1aff41a28a0d2ebbbd90bb670045419e"
     },
+    "f17_32_n512_k256_m3_rank6_a385_two_core_high_core_closure": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-closure/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_closure.json",
+      "sha256": "62ad2c14f7a34d8ac719833a99d426731602ddbe868654b633b2081bcb7e9666"
+    },
     "f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-two-core-high-core-quotient/f17_32_n512_k256_m3_rank6_a385_two_core_high_core_quotient.json",
       "sha256": "3197beb061a10b5c5d26ec658ac3926896f8eeddadfd69bfe96df057aff1f819"
@@ -626,6 +631,7 @@
     "a385_two_core_conic_pair_safety_count": 1,
     "a385_two_core_conic_product_collapse_count": 1,
     "a385_two_core_global_component_slope_dichotomy_count": 1,
+    "a385_two_core_high_core_closure_count": 1,
     "a385_two_core_high_core_quotient_count": 1,
     "a385_two_core_moving_slope_incidence_count": 1,
     "a385_two_core_slope_free_empty_count": 1,
@@ -633,7 +639,7 @@
     "a386_separated_boundary_closure_count": 1,
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 27,
+    "dependencies_checked": 28,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
     "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -684,6 +690,13 @@
       "inside the fixed two-core global-component residual, the direction linear pairs induce a rational slope map on the component off the base locus",
       "if the induced slope map is constant, the non-base branch contributes at most one finite slope and projective total at most 2<=6",
       "the remaining fixed-two-core global-component residuals are a determined nonconstant slope map and a slope-free base locus or component"
+    ],
+    "a385_two_core_high_core_closure": [
+      "two forced external roots on an A=385 fixed two-core line component force either a common-root pencil or product without modular reduction",
+      "in both line cases, the two fixed base roots plus the residual root cap imply any degree-127 split locator needs external forced core at least 123",
+      "therefore the high-core line range e_G=71..122 is closed by product collapse",
+      "after puncturing a forced external core E, the residual tangent radius is r'=127-|E| and the projective tangent bound is r'+1=128-|E|",
+      "the punctured tangent tail is projective-budget safe for |E|>=122, so the line high-core range e_G=71..126 and the conic high-core range e_G=68..126 are covered by incidence/product/tangent-tail accounting"
     ],
     "a385_two_core_high_core_quotient": [
       "inside the fixed two-core high-core moving-slope residual, forced external roots define a common divisor of every kernel polynomial on the component",
