@@ -23,6 +23,7 @@ Exit non-zero iff any implemented check fails.
 from __future__ import annotations
 
 from itertools import combinations
+from itertools import permutations
 
 Q = 17 ** 32          # q_line = |F|
 TWO128 = 2 ** 128
@@ -122,6 +123,93 @@ def poly_trim(poly):
     while out and out[-1] == 0:
         out.pop()
     return out or [0]
+
+
+def ztrim(poly):
+    return poly_trim(poly)
+
+
+def zadd(a, b, p):
+    n = max(len(a), len(b))
+    return ztrim([((a[i] if i < len(a) else 0) + (b[i] if i < len(b) else 0)) % p
+                  for i in range(n)])
+
+
+def zsub(a, b, p):
+    n = max(len(a), len(b))
+    return ztrim([((a[i] if i < len(a) else 0) - (b[i] if i < len(b) else 0)) % p
+                  for i in range(n)])
+
+
+def zmul(a, b, p):
+    return poly_mul_mod_p(a, b, p)
+
+
+def zscale(a, c, p):
+    return ztrim([(c * x) % p for x in a])
+
+
+def zdegree(a):
+    a = ztrim(a)
+    return -1 if a == [0] else len(a) - 1
+
+
+def zeval(a, z, p):
+    return eval_poly_mod_p(a, z, p)
+
+
+def permutation_sign(perm):
+    inv = 0
+    for i in range(len(perm)):
+        for j in range(i + 1, len(perm)):
+            inv += int(perm[i] > perm[j])
+    return -1 if inv % 2 else 1
+
+
+def det_zpoly(matrix, p):
+    n = len(matrix)
+    out = [0]
+    for perm in permutations(range(n)):
+        term = [1]
+        for r, c in enumerate(perm):
+            term = zmul(term, matrix[r][c], p)
+        out = zadd(out, zscale(term, permutation_sign(perm), p), p)
+    return out
+
+
+def cramer_vector_zpoly(matrix, p):
+    rows = len(matrix)
+    cols = len(matrix[0])
+    assert cols == rows + 1
+    out = []
+    for omitted in range(cols):
+        minor = [[row[c] for c in range(cols) if c != omitted] for row in matrix]
+        out.append(zscale(det_zpoly(minor, p), -1 if omitted % 2 else 1, p))
+    return out
+
+
+def pseudo_remainder_x_over_z(dividend, divisor, p):
+    """Pseudo-remainder in F_p[z][X], low-to-high in X and z."""
+    rem = [ztrim(c) for c in dividend]
+    divisor = [ztrim(c) for c in divisor]
+    divisor_degree = len(divisor) - 1
+    lc_divisor = divisor[-1]
+    while len(rem) - 1 >= divisor_degree and rem != [[0]]:
+        rem_degree = len(rem) - 1
+        shift = rem_degree - divisor_degree
+        lc_rem = rem[-1]
+        scaled = [zmul(lc_divisor, c, p) for c in rem]
+        subtract = [[0] for _ in range(shift)] + [zmul(lc_rem, c, p) for c in divisor]
+        n = max(len(scaled), len(subtract))
+        new_rem = []
+        for i in range(n):
+            a = scaled[i] if i < len(scaled) else [0]
+            b = subtract[i] if i < len(subtract) else [0]
+            new_rem.append(zsub(a, b, p))
+        while new_rem and new_rem[-1] == [0]:
+            new_rem.pop()
+        rem = new_rem or [[0]]
+    return rem
 
 
 def poly_divmod_mod_p(numer, denom, p):
@@ -506,6 +594,61 @@ def check_toy_pseudoremainder_root_table():
     return ok, d
 
 
+def check_toy_root_containment_certificate():
+    """Symbolic pseudo-remainder coefficient contains the toy root table."""
+    p = 97
+    h = subgroup_of_order(p, 8)
+    j = 4
+    roots0 = tuple(h[:j])
+    roots1 = tuple(h[2:2 + j])
+    weights0 = [3, 7, 11, 19]
+    weights1 = [5, 13, 17, 23]
+    w0 = moments_from_support(roots0, weights0, 2 * j, p)
+    w1 = moments_from_support(roots1, weights1, 2 * j, p)
+    delta = [(b - a) % p for a, b in zip(w0, w1)]
+    matrix = [
+        [[w0[row + col] % p, delta[row + col] % p] for col in range(j + 1)]
+        for row in range(j)
+    ]
+    cramer = cramer_vector_zpoly(matrix, p)
+    dividend = [[(-1) % p]] + [[0] for _ in range(len(h) - 1)] + [[1]]
+    rem = pseudo_remainder_x_over_z(dividend, cramer, p)
+    coeffs = [c for c in rem if c != [0]]
+    cert = min(coeffs, key=lambda c: (zdegree(c), c))
+    zeros = [z for z in range(p) if zeval(cert, z, p) == 0]
+
+    # Numeric root table from the same declared family.
+    table = []
+    top_nonroots = 0
+    for z in range(p):
+        window = [(a + z * b) % p for a, b in zip(w0, delta)]
+        m = hankel(window, j, j)
+        rank, _ = rank_and_kernel_mod_p(m, p)
+        c = cramer_vector(m, p)
+        if rank == j and c[-1] != 0:
+            if divides_x_order_minus_one(c, len(h), p):
+                table.append(z)
+            else:
+                top_nonroots += 1
+    degree_cap = pseudo_remainder_degree_bound(len(h), j, j)
+    ok = (
+        set(table).issubset(zeros)
+        and zdegree(cert) <= degree_cap
+        and cert != [0]
+        and table == [0, 1]
+    )
+    d = [
+        f"symbolic pseudo-remainder over F_{p}[z][X]: nonzero coefficient degree "
+        f"{zdegree(cert)} <= cap {degree_cap}",
+        f"certificate zero set has {len(zeros)} slopes; root-table slopes {table} are contained: "
+        f"{set(table).issubset(zeros)}",
+        f"top-chart nonroots checked against certificate/table: {top_nonroots}",
+        "certificate logic: any full-rank top-chart root must vanish on every pseudo-remainder "
+        "coefficient, hence on this one nonzero coefficient",
+    ]
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop turn"]
 
@@ -518,6 +661,7 @@ CHECKS = [
     ("pivot chart + splitting filter (X^n - 1)",          check_top_chart_splitting_filter),
     ("top-chart pseudo-remainder degree budget",          check_pseudoremainder_degree_budget),
     ("toy pseudo-remainder root table",                   check_toy_pseudoremainder_root_table),
+    ("toy root-containment certificate",                  check_toy_root_containment_certificate),
     ("F17 root table packet or certified residual",       _pending),
     ("packet emission + v1 schema validation",            _pending),
 ]

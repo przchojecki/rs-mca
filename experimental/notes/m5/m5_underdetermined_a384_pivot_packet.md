@@ -1,10 +1,10 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 5: bucket identification, Cramer
+- **Status:** ACTIVE / EXPERIMENTAL (turn 6: bucket identification, Cramer
   chart, rank-drop split-locator deduplication, top-chart divisibility filter,
-  pseudo-remainder degree budget, and a toy pseudo-remainder root table done;
-  F17 root-table packet pending). No threshold, safety, or worst-case row claim
-  is made.
+  pseudo-remainder degree budget, toy pseudo-remainder root table, and toy
+  root-containment certificate done; F17 root-table packet pending). No
+  threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
   regular window `385 <= A <= 426`, synthetic rank ladders and kernel charts):
@@ -132,6 +132,20 @@ z in {0,1},
 and these two slopes recover the two planted split root sets.  This is only a
 toy declared-family root table; it does not claim the corresponding F17 table.
 
+The same toy family also verifies the root-containment certificate logic in
+symbolic form.  The script computes the Cramer locator over `F_97[z][X]`,
+pseudo-divides `X^8-1` by it, and selects one nonzero pseudo-remainder
+coefficient.  That coefficient has degree `19 <= 20`, where `20=(8-4+1)4` is
+the toy degree cap, and its zero set contains the root table `[0,1]`.  Thus the
+general packet logic is:
+
+```text
+if one pseudo-remainder coefficient Q(z) is nonzero, then every full-rank
+top-chart bad slope is a root of Q;
+if all pseudo-remainder coefficients vanish identically, record an identity
+chart/residual rather than claiming a finite root table.
+```
+
 ## The bucket
 
 For exact agreement `A`, in the convention of the on-main extractor
@@ -225,10 +239,11 @@ where it belongs.
 | 4 | top-chart divisibility filter into `X^n - 1` | **done** |
 | 5 | top-chart pseudo-remainder degree budget | **done** |
 | 6 | toy pseudo-remainder root table on a declared affine family | **done** |
-| 7 | F17 root table packet or certified residual obstruction | pending |
-| 8 | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`, validated by `scripts/check_aperiodic_eliminant_packet.py` | pending |
+| 7 | toy root-containment certificate from one pseudo-remainder coefficient | **done** |
+| 8 | F17 root table packet or certified residual obstruction | pending |
+| 9 | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`, validated by `scripts/check_aperiodic_eliminant_packet.py` | pending |
 
-### Verified so far (turn 5)
+### Verified so far (turn 6)
 
 - **Bucket identification.** `regular(A) <=> 2A >= 769` swept over all
   `A in [257, 512]`; `A=385` regular (`t=129 >= j+1=128`), `A=384` not
@@ -267,6 +282,12 @@ where it belongs.
   low-degree slope, and 93 full-rank top-chart nonroots.  The two table roots
   recover the planted root sets, so the pseudo-remainder root-table mechanism
   is replayed end to end on a finite declared family.
+- **Root-containment certificate (`F_97[z][X]`).** On the same family, the
+  symbolic pseudo-remainder has a nonzero coefficient of degree `19`, below the
+  degree cap `20`; its zero set has three slopes and contains the two root-table
+  slopes.  This verifies the certificate pattern: one nonzero
+  pseudo-remainder coefficient bounds the top-chart root table, while the
+  all-zero case must be labelled as a residual/identity chart.
 
 ## Honest scope
 

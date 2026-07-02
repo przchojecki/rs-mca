@@ -126,11 +126,14 @@ Keep entries concise and link to the relevant files.
   divisibility filter `L_z | X^n-1`.  It verifies the top-chart
   pseudo-remainder degree cap `(n-j+1)t=49280` for the F17 A384 bucket and
   adds a declared `F_97` pseudo-remainder root-table replay whose planted split
-  slopes are exactly recovered.
+  slopes are exactly recovered.  On the same toy family it computes a symbolic
+  `F_97[z][X]` pseudo-remainder coefficient of degree `19 <= 20` whose zero set
+  contains the root table.
 - **How it is useful:** This removes the valid-split rank-drop side branch from
   the first underdetermined M5 bucket and makes the full-rank top chart a
-  precise pseudo-remainder problem with a checked degree budget; the F17 A384
-  pseudo-remainder root table is the remaining finite branch to attack.
+  precise pseudo-remainder problem with checked degree/root-containment logic;
+  the F17 A384 pseudo-remainder root table is the remaining finite branch to
+  attack.
 - **What to do next:** Close or label the F17 top-chart pseudo-remainder
   root-table branch in a later increment, or pivot to the roadmap evidence
   program if that is the current coordination priority.
