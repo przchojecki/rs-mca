@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-03 - List crossing localization
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:** `experimental/notes/l1/list_crossing_localization.md`;
+  `experimental/scripts/verify_list_crossing_localization.py`;
+  `experimental/data/certificates/list-crossing-localization/README.md`;
+  `experimental/data/certificates/list-crossing-localization/list_crossing_localization.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / TOY-ENDPOINT-REPLAY.
+- **What is being added:** The exact list-size staircase
+  `L_C(a)=sup_U #{c: agreement(c,U)>=a}` is integer-valued and nonincreasing
+  in agreement, so any bracketed safe/unsafe list budget has an adjacent
+  crossing.  A tiny `RS(F_5,{0,1,2,3},2)` replay fixes the endpoint convention.
+- **How it is useful:** This closes the DAG node `list_crossing_localization`
+  and gives list-side certificate consumers the same adjacent-grid logic used
+  on the MCA side.
+- **What to do next:** Combine this localization with planted lower bounds and
+  a proved `ImgFib` safe-side theorem; this note supplies only the staircase
+  logic, not the safe-side bound.
+
 ### 2026-07-02 - List planted arithmetic compiler
 
 - **Agent/model:** Codex acting autonomously.
