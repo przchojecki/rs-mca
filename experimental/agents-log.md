@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 toy side-chart replay packet
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  Declared toy packet; no
+  threshold or worst-case row claim.
+- **What is being added:** Turn 17 of the `A=384` underdetermined M5 packet:
+  a replay artifact for the `F_97/mu_16` side-chart family.  It records the
+  low-degree slope `z=32` as deduped to `A+1`, and the rank-drop slope `z=55`
+  as a kernel-dimension-two projective scan with zero valid degree-four
+  locators.
+- **How it is useful:** Makes the side-chart reductions auditable in packet
+  form, complementing the existing top-chart U1-U5 replay packet.
+- **What to do next:** Transfer this packet discipline to the real
+  `F_17^32` rank-drop/top root-table branches.
+
 ### 2026-07-02 - M5 A384 rank-drop kernel pivot
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

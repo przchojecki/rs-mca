@@ -1,6 +1,6 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 16: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 17: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
@@ -12,7 +12,8 @@
   The moment-support rank-extension lemma behind the planted top and rank-drop
   packets is now stated explicitly, and the full-rank low-degree side chart is
   deduped into higher-agreement buckets.  The generic rank-drop side chart is
-  reduced to a kernel-pivot divisibility problem.
+  reduced to a kernel-pivot divisibility problem; the `F_97/mu_16` side-chart
+  toy now has a replay packet.
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -137,7 +138,8 @@ belongs.
 | 5j | moment-support rank-extension theorem for top/rank-drop packets | **done** |
 | 5k | low-degree side-chart exact-bucket dedup theorem | **done** |
 | 5l | rank-drop kernel-pivot reduction theorem | **done** |
-| 5m | full `F_17^32` root-table packet for rank-drop / top charts | pending |
+| 5m | `F_97/mu_16` side-chart replay packet | **done** |
+| 5n | full `F_17^32` root-table packet for rank-drop / top charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -647,6 +649,33 @@ The `F_97/mu_16` side-chart family provides the sanity check: the rank-drop
 slope is `z=55`, the specialized `4 x 5` matrix has rank `3` and kernel
 dimension `2`, and direct degree-four subgroup-locator enumeration finds no
 valid exact-`A` rank-drop slope.
+
+### Verified in turn 17
+
+**U17, side-chart replay packet.** The verifier now emits and replays
+
+```text
+experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/
+  f97_mu16_n16_k8_a12_m5_side_chart_kernel_pivot.json
+```
+
+for the side-chart toy family used in the acid test.  It records both side
+branches:
+
+```text
+low-degree slope: z=32, rank=4, kernel dimension=1,
+                  Cramer top coordinate c_4=0, Cramer degree=3,
+                  dedup target agreement A+1=13;
+
+rank-drop slope:  z=55, rank=3, kernel dimension=2,
+                  |P(ker)|=98, degree-four candidates=97,
+                  valid degree-four kernel locators=0.
+```
+
+Thus the toy packet now checks the whole side-chart story independently of
+the top-chart `U1-U5` packet: the low-degree branch is not a new exact-`A`
+contribution, and the generic rank-drop branch is decided by the projective
+kernel-pivot scan.
 
 ## Honest scope
 

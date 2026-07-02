@@ -1,0 +1,110 @@
+{
+  "agreement": {
+    "A": 12,
+    "deficiency": 1,
+    "j": 4,
+    "t": 4
+  },
+  "declared_family": {
+    "chart_summary": {
+      "chart_predicted": [],
+      "direct_bad": [],
+      "locator_count": 1820,
+      "low_degree": [
+        32
+      ],
+      "rank_drop": [
+        55
+      ],
+      "rank_drop_valid": [],
+      "top_count": 95,
+      "top_valid": []
+    },
+    "u_window": [
+      34,
+      37,
+      69,
+      71,
+      6,
+      22,
+      30,
+      62
+    ],
+    "v_window": [
+      21,
+      18,
+      19,
+      90,
+      22,
+      88,
+      59,
+      86
+    ]
+  },
+  "low_degree_dedup": {
+    "cramer_degree": 3,
+    "cramer_vector": [
+      68,
+      6,
+      56,
+      93,
+      0
+    ],
+    "dedup_target_agreement": 13,
+    "direct_exact_a_bad": false,
+    "kernel_dimension": 1,
+    "rank": 4,
+    "slope": 32,
+    "top_coordinate_zero": true
+  },
+  "object": "M5 A=384 deficiency-one side-chart kernel-pivot toy replay",
+  "rank_drop_kernel_pivot": {
+    "degree_j_candidate_count": 97,
+    "degree_j_candidates_hash": "sha256:e41519e77a0ba5168a80752d5d54633d9cb0d266c74740d5b6da8e702f5ccb0c",
+    "direct_exact_a_valid_rank_drop": false,
+    "kernel_basis": [
+      [
+        32,
+        20,
+        17,
+        1,
+        0
+      ],
+      [
+        38,
+        80,
+        22,
+        0,
+        1
+      ]
+    ],
+    "kernel_dimension": 2,
+    "projective_kernel_line_count": 98,
+    "projective_kernel_lines_hash": "sha256:f3cf0a3e46ebbb02b2439e244c1f803d2a07447dcda9ae36707db14c1fb07399",
+    "pseudo_remainder_degree_bound": 13,
+    "rank": 3,
+    "slope": 55,
+    "valid_degree_j_locator_count": 0,
+    "valid_degree_j_locators": []
+  },
+  "replay": {
+    "command": "python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py --check-side experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/f97_mu16_n16_k8_a12_m5_side_chart_kernel_pivot.json",
+    "script": "experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py"
+  },
+  "row": {
+    "domain": "mu_16",
+    "field": "F_97",
+    "k": 8,
+    "n": 16
+  },
+  "schema_version": "f97-mu16-m5-a384-side-chart-kernel-pivot-v1",
+  "scope": {
+    "claim": "For the declared F_97/mu_16 side-chart toy family, the low-degree slope is deduped to agreement >= A+1 and the rank-drop slope has no valid degree-j projective-kernel locator.",
+    "nonclaims": [
+      "does not prove a threshold or worst-case row bound",
+      "does not analyze the F_17^32 row",
+      "does not close the top pseudo-remainder chart over F_17^32"
+    ]
+  },
+  "status": "PROVED-LOCAL / EXPERIMENTAL"
+}

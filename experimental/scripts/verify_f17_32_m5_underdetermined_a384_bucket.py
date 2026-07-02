@@ -86,6 +86,10 @@ the divisor condition L | X^n-1; in the generic kernel-dimension-two case this
 is a univariate pseudo-remainder problem of degree <= n-j+1 in the kernel
 parameter.
 
+Turn 17 adds a replay packet for the F_97/mu_16 side-chart toy family: the
+low-degree slope dedupes to A+1 and the rank-drop slope has a projective
+kernel scan with no valid degree-j locator.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -104,12 +108,17 @@ TWO128 = 2 ** 128
 N, K = 512, 256
 A_STAR = 384          # the maximal underdetermined exact agreement
 TOY_PACKET_SCHEMA = "f97-mu16-m5-a384-deficiency-one-toy-u1-u5-v1"
+TOY_SIDE_PACKET_SCHEMA = "f97-mu16-m5-a384-side-chart-kernel-pivot-v1"
 F17_PACKET_SCHEMA = "f17-32-m5-a384-planted-top-chart-v1"
 F17_LOW_DEGREE_PACKET_SCHEMA = "f17-32-m5-a384-planted-low-degree-v1"
 F17_RANK_DROP_PACKET_SCHEMA = "f17-32-m5-a384-planted-rank-drop-v1"
 DEFAULT_TOY_PACKET = Path(
     "experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/"
     "f97_mu16_n16_k8_a12_m5_deficiency_one_toy_u1_u5.json"
+)
+DEFAULT_TOY_SIDE_PACKET = Path(
+    "experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/"
+    "f97_mu16_n16_k8_a12_m5_side_chart_kernel_pivot.json"
 )
 ROW_DESCRIPTOR_REF = Path(
     "experimental/data/certificates/hankel-f17-32-row-descriptor/"
@@ -160,6 +169,39 @@ def rank_and_kernel_mod_p(matrix, p):
     for i, c in enumerate(pivot_cols):
         vec[c] = (-m[i][free[0]]) % p
     return rank, vec
+
+
+def nullspace_basis_mod_p(matrix, p):
+    """RREF over F_p (small toy sizes): return (rank, basis for the nullspace)."""
+    rows = len(matrix)
+    cols = len(matrix[0]) if rows else 0
+    m = [[x % p for x in row] for row in matrix]
+    pivot_cols = []
+    r = 0
+    for c in range(cols):
+        pivot = next((i for i in range(r, rows) if m[i][c]), None)
+        if pivot is None:
+            continue
+        m[r], m[pivot] = m[pivot], m[r]
+        inv = pow(m[r][c], -1, p)
+        m[r] = [(x * inv) % p for x in m[r]]
+        for i in range(rows):
+            if i != r and m[i][c]:
+                f = m[i][c]
+                m[i] = [(x - f * y) % p for x, y in zip(m[i], m[r])]
+        pivot_cols.append(c)
+        r += 1
+        if r == rows:
+            break
+    free = [c for c in range(cols) if c not in pivot_cols]
+    basis = []
+    for free_col in free:
+        vec = [0] * cols
+        vec[free_col] = 1
+        for i, pivot_col in enumerate(pivot_cols):
+            vec[pivot_col] = (-m[i][free_col]) % p
+        basis.append(vec)
+    return len(pivot_cols), basis
 
 
 def det_mod_p(matrix, p):
@@ -1722,6 +1764,187 @@ def check_f17_rank_drop_packet(path: Path):
     ]
 
 
+def canonical_projective_vector(vec, p):
+    """Normalize a nonzero projective vector by its first nonzero coordinate."""
+    reduced = [x % p for x in vec]
+    pivot = next((x for x in reduced if x), None)
+    if pivot is None:
+        return None
+    inv = pow(pivot, -1, p)
+    return [(x * inv) % p for x in reduced]
+
+
+def top_monic_vector(vec, p):
+    """Normalize a locator by its top coefficient, if it has full degree."""
+    if vec[-1] % p == 0:
+        return None
+    inv = pow(vec[-1] % p, -1, p)
+    return [(x * inv) % p for x in vec]
+
+
+def projective_kernel_lines_from_basis(basis, p):
+    """Enumerate P^1 lines for a two-vector kernel basis over F_p."""
+    assert len(basis) == 2
+    lines = []
+    for lam in range(p):
+        vec = [(basis[0][i] + lam * basis[1][i]) % p for i in range(len(basis[0]))]
+        lines.append(canonical_projective_vector(vec, p))
+    lines.append(canonical_projective_vector(basis[1], p))
+    return sorted({tuple(line) for line in lines if line is not None})
+
+
+def poly_degree(poly):
+    for index in range(len(poly) - 1, -1, -1):
+        if poly[index]:
+            return index
+    return -1
+
+
+def toy_side_chart_payload():
+    """Deterministic F_97/mu_16 side-chart replay packet."""
+    p, n, k, agreement, t, j = 97, 16, 8, 12, 4, 4
+    u = [34, 37, 69, 71, 6, 22, 30, 62]
+    v = [21, 18, 19, 90, 22, 88, 59, 86]
+    f = [p - 1] + [0] * (n - 1) + [1]
+    summary = toy_chart_summary(u, v)
+    low_z = summary["low_degree"][0]
+    rank_drop_z = summary["rank_drop"][0]
+
+    low_s = [(a + low_z * b) % p for a, b in zip(u, v)]
+    low_matrix = hankel(low_s, t, j)
+    low_rank, _ = rank_and_kernel_mod_p(low_matrix, p)
+    low_cramer = cramer_kernel_vector(low_matrix, p)
+
+    rd_s = [(a + rank_drop_z * b) % p for a, b in zip(u, v)]
+    rd_matrix = hankel(rd_s, t, j)
+    rd_rank, rd_basis = nullspace_basis_mod_p(rd_matrix, p)
+    rd_lines = projective_kernel_lines_from_basis(rd_basis, p)
+    degree_j_lines = []
+    valid_degree_j_lines = []
+    for line in rd_lines:
+        locator = list(line)
+        monic = top_monic_vector(locator, p)
+        if monic is None:
+            continue
+        degree_j_lines.append(monic)
+        if is_zero_poly(pseudo_remainder(f, monic, p)):
+            valid_degree_j_lines.append(monic)
+    degree_j_lines = sorted({tuple(line) for line in degree_j_lines})
+    valid_degree_j_lines = sorted({tuple(line) for line in valid_degree_j_lines})
+
+    return {
+        "field": "F_97",
+        "n": n,
+        "k": k,
+        "domain": "mu_16",
+        "agreement": agreement,
+        "t": t,
+        "j": j,
+        "u_window": u,
+        "v_window": v,
+        "chart_summary": summary,
+        "low_degree": {
+            "slope": low_z,
+            "rank": low_rank,
+            "kernel_dimension": (j + 1) - low_rank,
+            "cramer_vector": low_cramer,
+            "cramer_degree": poly_degree(low_cramer),
+            "top_coordinate_zero": low_cramer[j] == 0,
+            "dedup_target_agreement": agreement + 1,
+            "direct_exact_a_bad": low_z in summary["direct_bad"],
+        },
+        "rank_drop": {
+            "slope": rank_drop_z,
+            "rank": rd_rank,
+            "kernel_dimension": (j + 1) - rd_rank,
+            "kernel_basis": rd_basis,
+            "projective_kernel_line_count": len(rd_lines),
+            "projective_kernel_lines_hash": tagged_hash([list(line) for line in rd_lines]),
+            "degree_j_candidate_count": len(degree_j_lines),
+            "degree_j_candidates_hash": tagged_hash([list(line) for line in degree_j_lines]),
+            "valid_degree_j_locators": [list(line) for line in valid_degree_j_lines],
+            "valid_degree_j_locator_count": len(valid_degree_j_lines),
+            "pseudo_remainder_degree_bound": n - j + 1,
+            "direct_exact_a_valid_rank_drop": rank_drop_z in summary["rank_drop_valid"],
+        },
+    }
+
+
+def expected_toy_side_packet():
+    payload = toy_side_chart_payload()
+    return {
+        "schema_version": TOY_SIDE_PACKET_SCHEMA,
+        "status": "PROVED-LOCAL / EXPERIMENTAL",
+        "object": "M5 A=384 deficiency-one side-chart kernel-pivot toy replay",
+        "scope": {
+            "claim": (
+                "For the declared F_97/mu_16 side-chart toy family, the "
+                "low-degree slope is deduped to agreement >= A+1 and the "
+                "rank-drop slope has no valid degree-j projective-kernel locator."
+            ),
+            "nonclaims": [
+                "does not prove a threshold or worst-case row bound",
+                "does not analyze the F_17^32 row",
+                "does not close the top pseudo-remainder chart over F_17^32",
+            ],
+        },
+        "row": {
+            "field": payload["field"],
+            "n": payload["n"],
+            "k": payload["k"],
+            "domain": payload["domain"],
+        },
+        "agreement": {
+            "A": payload["agreement"],
+            "t": payload["t"],
+            "j": payload["j"],
+            "deficiency": payload["j"] + 1 - payload["t"],
+        },
+        "declared_family": {
+            "u_window": payload["u_window"],
+            "v_window": payload["v_window"],
+            "chart_summary": payload["chart_summary"],
+        },
+        "low_degree_dedup": payload["low_degree"],
+        "rank_drop_kernel_pivot": payload["rank_drop"],
+        "replay": {
+            "script": "experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py",
+            "command": (
+                "python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py "
+                "--check-side experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/"
+                "f97_mu16_n16_k8_a12_m5_side_chart_kernel_pivot.json"
+            ),
+        },
+    }
+
+
+def check_toy_side_packet(path: Path):
+    observed = json.loads(path.read_text(encoding="utf-8"))
+    expected = expected_toy_side_packet()
+    if observed != expected:
+        raise AssertionError(f"toy side-chart packet mismatch: {path}")
+    low = expected["low_degree_dedup"]
+    rank_drop = expected["rank_drop_kernel_pivot"]
+    ok = (
+        low["rank"] == 4
+        and low["kernel_dimension"] == 1
+        and low["top_coordinate_zero"]
+        and not low["direct_exact_a_bad"]
+        and rank_drop["rank"] == 3
+        and rank_drop["kernel_dimension"] == 2
+        and rank_drop["projective_kernel_line_count"] == 98
+        and rank_drop["valid_degree_j_locator_count"] == 0
+        and not rank_drop["direct_exact_a_valid_rank_drop"]
+    )
+    return ok, [
+        f"packet {path} matches the recomputed side-chart toy payload",
+        f"schema_version = {TOY_SIDE_PACKET_SCHEMA}",
+        f"low-degree slope {low['slope']} dedupes to agreement >= {low['dedup_target_agreement']}",
+        f"rank-drop slope {rank_drop['slope']} has kernel dimension {rank_drop['kernel_dimension']} "
+        f"and {rank_drop['valid_degree_j_locator_count']} valid degree-j kernel locators",
+    ]
+
+
 def expected_toy_packet():
     payload = toy_u1_u5_payload()
     domain_hash = "sha256:" + hash_json_value(payload["domain"])
@@ -1818,12 +2041,14 @@ CHECKS = [
     ("F_17^32 planted top-chart packet",                  lambda: check_f17_packet(DEFAULT_F17_PACKET)),
     ("F_17^32 planted low-degree packet",                 lambda: check_f17_low_degree_packet(DEFAULT_F17_LOW_DEGREE_PACKET)),
     ("F_17^32 planted rank-drop packet",                  lambda: check_f17_rank_drop_packet(DEFAULT_F17_RANK_DROP_PACKET)),
+    ("side-chart packet + local replay validation",       lambda: check_toy_side_packet(DEFAULT_TOY_SIDE_PACKET)),
     ("packet emission + local replay validation",         lambda: check_toy_packet(DEFAULT_TOY_PACKET)),
 ]
 
 
 def run_checks(
     check_packet: Path | None = None,
+    check_side_packet: Path | None = None,
     check_f17: Path | None = None,
     check_f17_low_degree: Path | None = None,
     check_f17_rank_drop: Path | None = None,
@@ -1836,6 +2061,16 @@ def run_checks(
     if check_packet is not None:
         checks = CHECKS[:-1] + [
             ("packet emission + local replay validation", lambda: check_toy_packet(check_packet))
+        ]
+    if check_side_packet is not None:
+        checks = [
+            (
+                "side-chart packet + local replay validation",
+                lambda path=check_side_packet: check_toy_side_packet(path),
+            )
+            if title == "side-chart packet + local replay validation"
+            else (title, fn)
+            for title, fn in checks
         ]
     if check_f17 is not None:
         checks = [
@@ -1890,12 +2125,14 @@ def run_checks(
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", type=Path, help="replay and compare a toy U1-U5 packet")
+    parser.add_argument("--check-side", type=Path, help="replay and compare a toy side-chart packet")
     parser.add_argument("--check-f17", type=Path, help="replay and compare an F_17^32 planted packet")
     parser.add_argument("--check-f17-low-degree", type=Path, help="replay and compare an F_17^32 low-degree packet")
     parser.add_argument("--check-f17-rank-drop", type=Path, help="replay and compare an F_17^32 rank-drop packet")
     parser.add_argument("--write-f17-packet", type=Path, help="write the deterministic F_17^32 planted packet")
     parser.add_argument("--write-f17-low-degree-packet", type=Path, help="write the deterministic F_17^32 low-degree packet")
     parser.add_argument("--write-f17-rank-drop-packet", type=Path, help="write the deterministic F_17^32 rank-drop packet")
+    parser.add_argument("--write-side-packet", type=Path, help="write the deterministic toy side-chart packet")
     args = parser.parse_args()
     if args.write_f17_packet:
         args.write_f17_packet.parent.mkdir(parents=True, exist_ok=True)
@@ -1918,8 +2155,16 @@ def main():
             encoding="utf-8",
         )
         return
+    if args.write_side_packet:
+        args.write_side_packet.parent.mkdir(parents=True, exist_ok=True)
+        args.write_side_packet.write_text(
+            json.dumps(expected_toy_side_packet(), indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+        return
     run_checks(
         args.check,
+        args.check_side,
         args.check_f17,
         args.check_f17_low_degree,
         args.check_f17_rank_drop,
