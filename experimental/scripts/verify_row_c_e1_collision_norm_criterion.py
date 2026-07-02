@@ -19,6 +19,8 @@ import hashlib
 import itertools
 import json
 import math
+import functools
+import operator
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -135,6 +137,9 @@ def check_order(order: int, ell: int, sample_limit: int | None = None) -> dict:
     max_abs_norm = 0
     max_norm_bits = 0
     first_norm_hit = None
+    norm_product_abs = 1
+    prime_divisors_seen: set[int] = set()
+    log2_norm_sum = 0.0
 
     for left, right in pair_iter:
         pairs_checked += 1
@@ -144,8 +149,12 @@ def check_order(order: int, ell: int, sample_limit: int | None = None) -> dict:
             zero_norm_pairs += 1
             continue
         nonzero_norm_pairs += 1
-        max_abs_norm = max(max_abs_norm, abs(norm))
-        max_norm_bits = max(max_norm_bits, abs(norm).bit_length())
+        abs_norm = abs(norm)
+        max_abs_norm = max(max_abs_norm, abs_norm)
+        max_norm_bits = max(max_norm_bits, abs_norm.bit_length())
+        norm_product_abs *= abs_norm
+        log2_norm_sum += math.log2(abs_norm)
+        prime_divisors_seen.update(sympy.factorint(abs_norm).keys())
         for p in primes:
             omega = primitive_order_element(p, order)
             fixed_collision = eval_coeffs_mod_p(diff, omega, p) == 0
@@ -184,7 +193,26 @@ def check_order(order: int, ell: int, sample_limit: int | None = None) -> dict:
                 }
 
     height_bound = (2 * ell) ** (order // 2)
-    ok = max_abs_norm <= height_bound
+    prime_floor = min(primes)
+    large_prime_divisors = sorted(q for q in prime_divisors_seen if q >= prime_floor)
+    large_prime_product = functools.reduce(
+        operator.mul, large_prime_divisors, 1
+    )
+    large_prime_product_divides = norm_product_abs % large_prime_product == 0
+    exact_prime_budget_ok = (
+        large_prime_product_divides and large_prime_product <= norm_product_abs
+    )
+    log_prime_count_bound = (
+        math.floor(log2_norm_sum / math.log2(prime_floor))
+        if nonzero_norm_pairs
+        else 0
+    )
+    height_prime_count_bound = (
+        math.floor(nonzero_norm_pairs * math.log2(height_bound) / math.log2(prime_floor))
+        if nonzero_norm_pairs
+        else 0
+    )
+    ok = max_abs_norm <= height_bound and exact_prime_budget_ok
     return {
         "name": f"collision_norm_order_{order}",
         "status": "PASS" if ok else "FAIL",
@@ -202,6 +230,15 @@ def check_order(order: int, ell: int, sample_limit: int | None = None) -> dict:
         "max_norm_bits": max_norm_bits,
         "height_bound": height_bound,
         "height_bound_bits": height_bound.bit_length(),
+        "prime_floor_for_exceptional_count": prime_floor,
+        "distinct_prime_divisors_seen": sorted(prime_divisors_seen),
+        "large_prime_divisors_seen": large_prime_divisors,
+        "large_prime_divisor_count": len(large_prime_divisors),
+        "large_prime_product_divides_norm_product": large_prime_product_divides,
+        "large_prime_product_le_norm_product": exact_prime_budget_ok,
+        "log_prime_count_bound": log_prime_count_bound,
+        "height_prime_count_bound": height_prime_count_bound,
+        "log2_norm_product": log2_norm_sum,
         "first_norm_hit": first_norm_hit,
     }
 
@@ -220,6 +257,10 @@ def build_report() -> dict:
             "fixed_embedding_collision_implies": "p divides Norm_Q(zeta_N)(Delta)",
             "norm_divisibility_implies": "some Galois conjugate embedding collides",
             "height_bound": "|Norm(Delta)| <= (2 ell')^phi(N), specialized to phi(2^a)=N/2",
+            "exceptional_prime_count": (
+                "#{p >= P0 dividing some nonzero norm} <= "
+                "sum_pairs log |Norm(Delta)| / log P0"
+            ),
         },
         "checks": checks,
         "script_sha256": sha256_text(Path(__file__).read_text()),

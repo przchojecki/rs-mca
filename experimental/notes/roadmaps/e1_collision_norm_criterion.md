@@ -119,6 +119,40 @@ For the Row-C dyadic quotient orders `N=2^a`, this becomes
 
 This is the bounded-height norm family mentioned in the E1 roadmap.
 
+## Exceptional-Prime Counting Corollary
+
+Let `F` be any finite family of unordered pairs of distinct characteristic-zero
+classes, and write
+
+```text
+M_F = product_{(B,B') in F} |N_{B,B'}|
+```
+
+after omitting pairs with zero norm.  For any threshold `P_0 >= 2`, the number
+of primes `p >= P_0` that can produce a modular collision for some pair in `F`
+is at most
+
+```text
+floor(log(M_F) / log(P_0)).
+```
+
+Using the height bound above, this gives the uniform estimate
+
+```text
+#{exceptional primes p >= P_0}
+  <= |F| * phi(N) * log(2 ell') / log(P_0).
+```
+
+**Proof.**  By the norm criterion, every such exceptional prime divides at
+least one nonzero norm `N_{B,B'}`, hence divides `M_F`.  Distinct primes
+`p_1,...,p_s >= P_0` have product at least `P_0^s`, and this product divides
+`M_F`.  Therefore `P_0^s <= M_F`, giving the logarithmic bound.  The displayed
+height estimate follows by bounding every factor by `(2 ell')^{phi(N)}`.
+
+This is not yet a full zone-(b) density theorem, because the all-pairs family
+is enormous at prize scale.  It is the precise finite-prime budget that a
+future density argument or adversarial prime search must beat.
+
 ## Verification
 
 The verifier performs:
@@ -128,6 +162,8 @@ The verifier performs:
 - primes `p == 1 mod N` listed in the JSON artifact;
 - both implications above;
 - the height bound.
+- the exact distinct-prime divisor budget and the height-based prime-count
+  bound for the checked pair family.
 
 Replay:
 

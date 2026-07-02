@@ -67,6 +67,25 @@ Keep entries concise and link to the relevant files.
   explicitly requested; audit Paper D itself through theorem statements and
   certificate checks.
 
+### 2026-07-02 - E1 exceptional-prime counting bound
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/roadmaps/e1_collision_norm_criterion.md`;
+  `experimental/scripts/verify_row_c_e1_collision_norm_criterion.py`;
+  `experimental/data/certificates/row-c-e1-sampling/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** The collision norm note now includes the
+  exceptional-prime counting corollary: a finite family of nonzero collision
+  norms has at most `log(M_F)/log(P_0)` prime divisors above `P_0`, with the
+  height-bound specialization `|F| phi(N) log(2 ell')/log(P_0)`.
+- **How it is useful:** This is the first density-style E1 consequence of the
+  norm criterion.  It gives future zone-(b) work an explicit prime-divisor
+  budget to improve or adversarially attack.
+- **What to do next:** Use the bound to design a structured search for primes
+  dividing many Row-C collision norms, rather than increasing random samples
+  blindly.
+
 ### 2026-07-02 - E1 collision norm criterion
 
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.

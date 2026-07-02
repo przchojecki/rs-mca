@@ -13,7 +13,9 @@ Row-C slack-one quotient value-set sampler.
   antipodal class sampled twice, not a distinct-class `e_1` collision.
 - `row_c_e1_collision_norm_criterion.json` records the Q2.15 cyclotomic norm
   gate: fixed-embedding collisions imply norm divisibility, and norm
-  divisibility produces a collision in some Galois-conjugate embedding.
+  divisibility produces a collision in some Galois-conjugate embedding.  It
+  also records the distinct exceptional-prime divisor budget for the checked
+  pair families.
 - The generating script is
   `experimental/scripts/verify_row_c_e1_value_set_sampler.py`.
 - Companion notes:
