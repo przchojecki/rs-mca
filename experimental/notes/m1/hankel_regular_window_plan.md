@@ -337,9 +337,10 @@ the raw tangent bound `r'+1` is impossible whenever `r'` exceeds this quotient
 dimension, so the cofactor-improved tangent bound is `r'`; `e_G=119` is the
 next one-over tangent-tail core and `e_G>=120` is projective-safe.  The
 unclosed high-core ranges are now `72<=e_G<=119` for lines and `69<=e_G<=119`
-for conics.  The
-worst current projective upper bounds in the middle are `18` for lines and
-`26` for conics.  The endpoint-only finite-incidence subranges now have
+for conics.  The packet now records a cofactor-current residual profile:
+the live one-over ranges are line `72..80` plus `119` and conic `69..76` plus
+`119`; the largest line projective bound remains `18`, while the largest conic
+bound drops from `26` to `25`.  The endpoint-only finite-incidence subranges now have
 explicit saturation targets: line six-class saturation has external slack
 `1..41`, and conic six-class saturation needs `0..14` forced pair-overlap
 events before external excess.  A genuine over-budget finite-incidence witness
@@ -373,9 +374,10 @@ multiplicity at most one with no triple-used external line.  Thus these rows
 cannot be closed by incidence and pair-overlap counting alone; the next input
 must pay the endpoint, force a finite-slope collision, or use algebraic
 quotient-fiber structure.
-The packet also records a single-saving closure ledger for all `19` one-over
-moving-slope residual rows: line `e_G=72..80`, conic `e_G=69..76`, and the
-line/conic punctured-tangent tail at `e_G=120`.
+The packet also records a single-saving closure ledger for the finite-incidence
+one-over rows, line `e_G=72..80` and conic `e_G=69..76`, plus the formerly raw
+line/conic punctured-tangent tail at `e_G=120`.  After the cofactor-current
+update the live tangent-tail one-over core is `e_G=119`.
 Those rows split by first available saving mechanism into line base-active
 `72..74`, line external-slack `75..80`, conic base+secant `69..71`, conic
 secant-only `72..74`, conic endpoint/duplicate-only `75..76`, and the

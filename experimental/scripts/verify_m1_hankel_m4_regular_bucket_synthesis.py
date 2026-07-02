@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v7"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v8"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v25",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v26",
 }
 
 
@@ -855,6 +855,38 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         "conic remaining range after tail closure",
     )
     require(
+        summary["line_cofactor_current_one_over_external_core_ranges"] == [[72, 80], [119, 119]],
+        "line cofactor-current one-over profile mismatch",
+    )
+    require(
+        summary["conic_cofactor_current_one_over_external_core_ranges"] == [[69, 76], [119, 119]],
+        "conic cofactor-current one-over profile mismatch",
+    )
+    require(
+        summary["line_cofactor_current_safe_external_core_ranges"] == [[120, 120]]
+        and summary["conic_cofactor_current_safe_external_core_ranges"] == [[120, 120]],
+        "cofactor-current safe tail mismatch",
+    )
+    require(
+        summary["line_cofactor_current_max_projective_upper_bound"] == 18,
+        "line cofactor-current max bound mismatch",
+    )
+    require(
+        summary["conic_cofactor_current_max_projective_upper_bound"] == 25,
+        "conic cofactor-current max bound mismatch",
+    )
+    cofactor_current = data["cofactor_current_intermediate_residual_profile"]
+    require(
+        cofactor_current["line_rows"][-2]["forced_external_core_size"] == 119
+        and cofactor_current["line_rows"][-2]["one_over_budget"],
+        "line e=119 should be one-over in the cofactor-current profile",
+    )
+    require(
+        cofactor_current["irreducible_conic_rows"][-2]["forced_external_core_size"] == 119
+        and cofactor_current["irreducible_conic_rows"][-2]["one_over_budget"],
+        "conic e=119 should be one-over in the cofactor-current profile",
+    )
+    require(
         summary["line_incidence_only_sharpness_witness_count"] == 9
         and summary["line_incidence_only_sharpness_external_core_range"] == [72, 80],
         "line incidence-only sharpness summary mismatch",
@@ -1011,8 +1043,9 @@ def build_certificate() -> dict[str, Any]:
                 "after puncturing the forced core, the projective tangent staircase closes the tail e_G>=121",
                 "the e_G=120 punctured-tangent tail is closed by a cofactor-span obstruction: at least six tangent-star cofactors must be finite component classes and are independent, but the fixed-core quotient family has vector dimension at most 2 or 3",
                 "the generalized cofactor-span top-saturation exclusion improves the high-core tangent tail bound from r'+1 to r', making e_G=119 the next one-over tangent-tail core and e_G>=120 projective-safe",
+                "the cofactor-current residual profile has one-over ranges line e_G=72..80 plus e_G=119 and conic e_G=69..76 plus e_G=119; the conic maximum projective bound drops from 26 to 25",
                 "the still-unclosed high-core quotient ranges are e_G=72..119 for lines and e_G=69..119 for irreducible conics",
-                "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; the current worst projective bounds are 18 and 26",
+                "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; after cofactor-current sharpening the worst projective bounds are 18 and 25",
                 "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the formerly one-over e_G=120 cases are closed by the cofactor-span contradiction",
                 "a genuine over-budget one-over witness must also have six distinct finite slopes and an unpaid endpoint; the strongest remaining pressure is line e_G=72 base splitting and conic e_G=69 almost-complete secants",
                 "line e_G=72 closes unless all six finite classes have a base root and at least five have two; conic e_G=69 closes unless at least 14 of 15 pair secants occur, forcing at least 16 secant triangles",

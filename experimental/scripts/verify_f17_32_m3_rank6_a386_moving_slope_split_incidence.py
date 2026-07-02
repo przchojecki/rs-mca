@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v25"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v26"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -281,6 +281,46 @@ def projective_bound_profile_groups(rows: list[dict[str, Any]]) -> list[dict[str
                 }
             )
     return groups
+
+
+def cofactor_improved_intermediate_residual_profile_row(
+    raw_row: dict[str, Any],
+) -> dict[str, Any]:
+    """Apply the cofactor-span top-saturation exclusion to the current envelope."""
+    component_type = raw_row["component_type"]
+    core = raw_row["forced_external_core_size"]
+    cofactor_row = punctured_tangent_top_saturation_exclusion_row(component_type, core)
+    if component_type == "line":
+        incidence_projective_bound = raw_row["external_incidence_projective_bound"]
+        incidence_method = "external incidence plus endpoint"
+    else:
+        require(component_type == "irreducible_conic", "unknown component type")
+        pair_bound = raw_row["pair_overlap_finite_bound"]
+        incidence_projective_bound = None if pair_bound is None else pair_bound + 1
+        incidence_method = "pair-overlap packing plus endpoint"
+    cofactor_bound = cofactor_row["cofactor_improved_projective_tangent_bound"]
+    current_bound = min(
+        bound for bound in [incidence_projective_bound, cofactor_bound] if bound is not None
+    )
+    active_methods = []
+    if incidence_projective_bound == current_bound:
+        active_methods.append(incidence_method)
+    if cofactor_bound == current_bound:
+        active_methods.append("cofactor-improved punctured projective tangent")
+    return {
+        "component_type": component_type,
+        "forced_external_core_size": core,
+        "incidence_or_pair_projective_bound": incidence_projective_bound,
+        "raw_punctured_projective_tangent_bound": raw_row["punctured_projective_tangent_bound"],
+        "cofactor_improved_projective_tangent_bound": cofactor_bound,
+        "cofactor_top_saturation_excluded": cofactor_row[
+            "top_saturation_excluded_by_cofactor_span"
+        ],
+        "current_projective_upper_bound": current_bound,
+        "active_best_methods": active_methods,
+        "projective_safe": current_bound <= PROJECTIVE_BUDGET,
+        "one_over_budget": current_bound == PROJECTIVE_BUDGET + 1,
+    }
 
 
 def intermediate_residual_profile_row(
@@ -1953,6 +1993,20 @@ def build_certificate() -> dict[str, Any]:
     ]
     line_profile_groups = projective_bound_profile_groups(line_intermediate_profile_rows)
     conic_profile_groups = projective_bound_profile_groups(conic_intermediate_profile_rows)
+    line_cofactor_current_profile_rows = [
+        cofactor_improved_intermediate_residual_profile_row(row)
+        for row in line_intermediate_profile_rows
+    ]
+    conic_cofactor_current_profile_rows = [
+        cofactor_improved_intermediate_residual_profile_row(row)
+        for row in conic_intermediate_profile_rows
+    ]
+    line_cofactor_current_profile_groups = projective_bound_profile_groups(
+        line_cofactor_current_profile_rows
+    )
+    conic_cofactor_current_profile_groups = projective_bound_profile_groups(
+        conic_cofactor_current_profile_rows
+    )
     line_incidence_one_over_cores = [
         row["forced_external_core_size"]
         for row in line_intermediate_profile_rows
@@ -2214,6 +2268,62 @@ def build_certificate() -> dict[str, Any]:
         max(row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows)
         == 26,
         "conic profile max bound changed",
+    )
+    require(
+        [group for group in line_cofactor_current_profile_groups if group["one_over_budget"]]
+        == [
+            {
+                "external_core_range": [72, 80],
+                "current_projective_upper_bound": 7,
+                "projective_safe": False,
+                "one_over_budget": True,
+            },
+            {
+                "external_core_range": [119, 119],
+                "current_projective_upper_bound": 7,
+                "projective_safe": False,
+                "one_over_budget": True,
+            },
+        ],
+        "line cofactor-current one-over profile changed",
+    )
+    require(
+        [group for group in conic_cofactor_current_profile_groups if group["one_over_budget"]]
+        == [
+            {
+                "external_core_range": [69, 76],
+                "current_projective_upper_bound": 7,
+                "projective_safe": False,
+                "one_over_budget": True,
+            },
+            {
+                "external_core_range": [119, 119],
+                "current_projective_upper_bound": 7,
+                "projective_safe": False,
+                "one_over_budget": True,
+            },
+        ],
+        "conic cofactor-current one-over profile changed",
+    )
+    require(
+        max(row["current_projective_upper_bound"] for row in line_cofactor_current_profile_rows)
+        == 18,
+        "line cofactor-current profile max bound changed",
+    )
+    require(
+        max(row["current_projective_upper_bound"] for row in conic_cofactor_current_profile_rows)
+        == 25,
+        "conic cofactor-current profile max bound changed",
+    )
+    require(
+        line_cofactor_current_profile_rows[-1]["forced_external_core_size"] == 120
+        and line_cofactor_current_profile_rows[-1]["projective_safe"],
+        "line e=120 should be safe in the cofactor-current profile",
+    )
+    require(
+        conic_cofactor_current_profile_rows[-1]["forced_external_core_size"] == 120
+        and conic_cofactor_current_profile_rows[-1]["projective_safe"],
+        "conic e=120 should be safe in the cofactor-current profile",
     )
     require(
         line_incidence_one_over_cores == list(range(72, 81)),
@@ -3192,6 +3302,14 @@ def build_certificate() -> dict[str, Any]:
                 "realisability witnesses; they show that incidence counting "
                 "alone cannot close the rows."
             ),
+            "cofactor_current_residual_profile": (
+                "Applying the cofactor-span top-saturation exclusion to the "
+                "whole intermediate profile gives the current best projective "
+                "envelope.  The previously raw one-over tail e_G=120 becomes "
+                "safe, while e_G=119 becomes the next cofactor-improved "
+                "tangent-tail one-over core.  The maximum line bound remains "
+                "18, and the maximum conic bound drops from 26 to 25."
+            ),
             "single_saving_closure_ledger": (
                 "Every currently one-over row in the moving-slope packet is "
                 "listed in a single-saving closure ledger.  The ledger covers "
@@ -3284,6 +3402,12 @@ def build_certificate() -> dict[str, Any]:
             "irreducible_conic_rows": conic_intermediate_profile_rows,
             "irreducible_conic_projective_bound_groups": conic_profile_groups,
         },
+        "cofactor_current_intermediate_residual_profile": {
+            "line_rows": line_cofactor_current_profile_rows,
+            "line_projective_bound_groups": line_cofactor_current_profile_groups,
+            "irreducible_conic_rows": conic_cofactor_current_profile_rows,
+            "irreducible_conic_projective_bound_groups": conic_cofactor_current_profile_groups,
+        },
         "one_over_saturation_profile": {
             "line_six_finite_saturation_rows": line_six_saturation_rows,
             "irreducible_conic_six_finite_saturation_rows": conic_six_saturation_rows,
@@ -3375,6 +3499,16 @@ def build_certificate() -> dict[str, Any]:
             "line_one_over_budget_external_core_ranges": [
                 group["external_core_range"] for group in line_profile_groups if group["one_over_budget"]
             ],
+            "line_cofactor_current_one_over_external_core_ranges": [
+                group["external_core_range"]
+                for group in line_cofactor_current_profile_groups
+                if group["one_over_budget"]
+            ],
+            "line_cofactor_current_safe_external_core_ranges": [
+                group["external_core_range"]
+                for group in line_cofactor_current_profile_groups
+                if group["projective_safe"]
+            ],
             "line_incidence_one_over_external_core_range": [
                 min(line_incidence_one_over_cores),
                 max(line_incidence_one_over_cores),
@@ -3420,6 +3554,10 @@ def build_certificate() -> dict[str, Any]:
             "line_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in line_intermediate_profile_rows
             ),
+            "line_cofactor_current_max_projective_upper_bound": max(
+                row["current_projective_upper_bound"]
+                for row in line_cofactor_current_profile_rows
+            ),
             "conic_projective_safe_for_external_core_at_most": (
                 conic_projective_safe_packing_external_core_max
             ),
@@ -3447,6 +3585,16 @@ def build_certificate() -> dict[str, Any]:
                 group["external_core_range"]
                 for group in conic_profile_groups
                 if group["one_over_budget"]
+            ],
+            "conic_cofactor_current_one_over_external_core_ranges": [
+                group["external_core_range"]
+                for group in conic_cofactor_current_profile_groups
+                if group["one_over_budget"]
+            ],
+            "conic_cofactor_current_safe_external_core_ranges": [
+                group["external_core_range"]
+                for group in conic_cofactor_current_profile_groups
+                if group["projective_safe"]
             ],
             "conic_pair_one_over_external_core_range": [
                 min(conic_pair_one_over_cores),
@@ -3482,6 +3630,10 @@ def build_certificate() -> dict[str, Any]:
             ),
             "conic_e69_design_local_profiles": conic_e69_design_local_profiles,
             "conic_one_over_design_catalog": conic_one_over_design_catalog_rows,
+            "conic_cofactor_current_max_projective_upper_bound": max(
+                row["current_projective_upper_bound"]
+                for row in conic_cofactor_current_profile_rows
+            ),
             "conic_incidence_only_sharpness_witness_count": len(
                 conic_incidence_only_sharpness_witnesses
             ),
@@ -3549,6 +3701,7 @@ def build_certificate() -> dict[str, Any]:
             "very-high-core tail e>=121 is projective-safe by the punctured projective tangent staircase",
             "the e=120 punctured tangent tail is projective-safe by the cofactor-span obstruction",
             "cofactor-span top-saturation exclusion improves the high-core tangent bound from r'+1 to r' until the cofactor degree reaches the fixed quotient-family dimension",
+            "cofactor-current residual profile makes e=120 safe and exposes e=119 as the next one-over tangent-tail core",
             "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds",
             "one-over finite-incidence saturation conditions are computed for the endpoint-only subranges",
             "over-budget survival conditions require bound saturation, distinct finite slopes, and an unpaid endpoint",

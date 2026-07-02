@@ -301,6 +301,13 @@ line, `3` for an irreducible conic).  Thus the tangent-tail bound improves from
 `r'+1` to `r'` in the high-core range.  In particular, `|E|=120` is safe and
 `|E|=119` is the next one-over tangent-tail core.
 
+The packet records both the raw intermediate profile and the cofactor-current
+profile.  In the cofactor-current profile the live one-over ranges are the
+finite-incidence ranges `72<=|E|<=80` for lines and `69<=|E|<=76` for conics,
+together with the tangent-tail core `|E|=119` for both component types.  The
+core `|E|=120` is projective-safe, and the largest conic projective bound drops
+from `26` to `25`.
+
 Thus the unclosed high-core quotient range is finite:
 
 ```text
@@ -311,17 +318,17 @@ conic residuals: 69 <= |E| <= 119.
 This uses the projective high-agreement tangent theorem on the punctured row,
 not a separate finite-plus-endpoint overcount.
 
-Within the remaining intermediate range, the current proved bounds split the
+Within the remaining intermediate range, the raw audit profile splits the
 residual further.  Combining the external incidence bound (for lines), the
-pair-overlap packing bound (for irreducible conics), and the punctured
-projective tangent bound gives the following current projective upper-bound
-profile.
+pair-overlap packing bound (for irreducible conics), and the unrefined
+punctured projective tangent bound gives the following pre-cofactor
+projective upper-bound profile.
 
 For line components, before applying the cofactor-span tail obstruction:
 
 ```text
 one-over-budget: 72 <= |E| <= 80, and |E| = 120;
-worst current projective upper bound: 18, attained in the middle range.
+worst raw projective upper bound: 18, attained in the middle range.
 ```
 
 For irreducible conic components, before applying the cofactor-span tail
@@ -329,7 +336,7 @@ obstruction:
 
 ```text
 one-over-budget: 69 <= |E| <= 76, and |E| = 120;
-worst current projective upper bound: 26, attained in the middle range.
+worst raw projective upper bound: 26, attained in the middle range.
 ```
 
 Thus the endpoint-only subranges are now separated from the genuinely larger
@@ -409,12 +416,13 @@ closed by sharpening only the present incidence and pair-overlap counts; a
 closure now needs endpoint payment, a finite-slope collision, or algebraic
 quotient-fiber input.
 
-Finally, the packet includes a single-saving closure ledger for every row that
-was exactly one over budget before the new tail obstruction: line cores
-`72..80`, conic cores `69..76`, and the punctured-tangent tail at `e_G=120` for
-both component types.  In each of these `19` rows, any one listed saving lowers
-the current projective count from `7` to the budget `6`; for `e_G=120` that
-saving is now supplied by the cofactor-span obstruction.
+Finally, the packet includes a single-saving closure ledger for every
+finite-incidence row that is exactly one over budget, together with the formerly
+raw punctured-tangent row `e_G=120` for both component types.  In each listed
+finite-incidence row, any one listed saving lowers the projective count from
+`7` to the budget `6`; for `e_G=120` that saving is supplied by the
+cofactor-span obstruction.  The live tangent-tail one-over core after this
+cofactor-current update is `e_G=119`.
 
 The same ledger splits the next proof targets by first available mechanism:
 line base-splitting pressure remains only for `e_G=72..74`; line cores

@@ -484,7 +484,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v7",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v8",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -536,7 +536,7 @@
     },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
-      "sha256": "e0383677e9506e7e959d16341f2fa69ed0b0978f3640aa0a2c1b421fecf80f0b"
+      "sha256": "210622d187a0e0dcd587b0566fc5e788e9df62d15f6a58b0ac3636969f6af6c1"
     },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
@@ -588,8 +588,9 @@
       "after puncturing the forced core, the projective tangent staircase closes the tail e_G>=121",
       "the e_G=120 punctured-tangent tail is closed by a cofactor-span obstruction: at least six tangent-star cofactors must be finite component classes and are independent, but the fixed-core quotient family has vector dimension at most 2 or 3",
       "the generalized cofactor-span top-saturation exclusion improves the high-core tangent tail bound from r'+1 to r', making e_G=119 the next one-over tangent-tail core and e_G>=120 projective-safe",
+      "the cofactor-current residual profile has one-over ranges line e_G=72..80 plus e_G=119 and conic e_G=69..76 plus e_G=119; the conic maximum projective bound drops from 26 to 25",
       "the still-unclosed high-core quotient ranges are e_G=72..119 for lines and e_G=69..119 for irreducible conics",
-      "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; the current worst projective bounds are 18 and 26",
+      "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; after cofactor-current sharpening the worst projective bounds are 18 and 25",
       "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the formerly one-over e_G=120 cases are closed by the cofactor-span contradiction",
       "a genuine over-budget one-over witness must also have six distinct finite slopes and an unpaid endpoint; the strongest remaining pressure is line e_G=72 base splitting and conic e_G=69 almost-complete secants",
       "line e_G=72 closes unless all six finite classes have a base root and at least five have two; conic e_G=69 closes unless at least 14 of 15 pair secants occur, forcing at least 16 secant triangles",

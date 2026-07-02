@@ -45,7 +45,7 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** The `A=386` moving-slope packet now has a
   cofactor-span top-saturation exclusion for the high-core punctured-tangent
   quotient tail, plus abstract incidence-only sharpness witnesses for every
-  finite-incidence one-over core.
+  finite-incidence one-over core and a cofactor-current residual profile.
 - **How it is useful:** A seven-slope saturated tangent-star tail has at most
   one original endpoint, so at least six bad points must be finite component
   classes.  Their degree-`6` cofactors are independent, but the fixed-core
@@ -54,7 +54,9 @@ Keep entries concise and link to the relevant files.
   `r'` exceeds this dimension; `e_G=120` is safe and `e_G=119` is the next
   one-over tangent-tail core.  The incidence-only witnesses show that the
   remaining finite-incidence one-over rows cannot be closed by sharpening only
-  the current incidence and pair-overlap counts.
+  the current incidence and pair-overlap counts.  The cofactor-current profile
+  removes the stale raw `e_G=120` one-over row, exposes `e_G=119` as the live
+  tangent-tail one-over core, and lowers the conic max bound from `26` to `25`.
 - **What to do next:** Focus remaining A386 work on algebraic endpoint
   payment, finite-slope collisions, quotient-fiber structure, or the larger
   middle quotient ranges.

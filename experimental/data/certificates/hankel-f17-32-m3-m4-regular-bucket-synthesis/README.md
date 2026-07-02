@@ -252,10 +252,13 @@ dimension, so the cofactor-improved tangent bound is `r'`; `e_G=119` is the
 next one-over tangent-tail core and `e_G>=120` is projective-safe.  The
 remaining unclosed intermediate ranges are `72<=e_G<=119` for lines and
 `69<=e_G<=119` for irreducible conics.
-Inside these ranges the current proof envelope has finite-incidence
+The cofactor-current residual profile has live one-over ranges line
+`e_G=72..80` plus `e_G=119` and irreducible conic `e_G=69..76` plus
+`e_G=119`; the largest conic projective bound drops from `26` to `25`.
+Inside these ranges the cofactor-current proof envelope has finite-incidence
 one-over-budget subranges `72<=e_G<=80` for lines and `69<=e_G<=76` for
 irreducible conics; the worst current projective upper bounds in the middle are
-`18` and `26`, respectively.  The endpoint-only finite-incidence subranges now
+`18` and `25`, respectively.  The endpoint-only finite-incidence subranges now
 carry saturation constraints: line six-class saturation has external slack
 `1..41`, while conic six-class saturation needs `0..14` forced pair-overlap
 events before external excess.  A genuine finite-incidence over-budget witness
