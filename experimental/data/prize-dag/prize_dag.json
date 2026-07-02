@@ -1031,6 +1031,132 @@
     "proof_sketch/s2_paid_ledger.md#3"
    ],
    "notes": "the precise collision-free reading of zone-(b); Row-C sampling measures exactly this"
+  },
+  {
+   "id": "paper_a_noslack",
+   "title": "Paper A: explicit no-slack obstructions (unslacked MCA refuted)",
+   "status": "PROVED",
+   "refs": [
+    "tex/RS_disproof_v3.tex"
+   ],
+   "notes": "the founding negative result \u2014 why every positive statement carries a reserve"
+  },
+  {
+   "id": "route_noslack",
+   "title": "Route: the original no-slack MCA conjecture",
+   "status": "REFUTED",
+   "refs": [
+    "tex/RS_disproof_v3.tex"
+   ]
+  },
+  {
+   "id": "route_one_scale",
+   "title": "Route: one-scale ambient-q entropy-gap prediction",
+   "status": "REFUTED",
+   "refs": [
+    "proof_sketch/s7_list_side.md#1"
+   ],
+   "notes": "refuted by quotient cores even over prime fields (cor:one-scale-false)"
+  },
+  {
+   "id": "m1_packet_transport",
+   "title": "Packet transport lemmas: root-slice lift, top-packet lift & compression",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/m1/m1_root_slice_lift.md",
+    "experimental/notes/m1/m1_top_packet_lift_compression.md"
+   ]
+  },
+  {
+   "id": "m1_rank_defect_nf",
+   "title": "Rank-defect packet normal form",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/m1/m1_rank_defect_packet_normal_form.md"
+   ]
+  },
+  {
+   "id": "m1_two_root_closure",
+   "title": "Two-root line-packet closure",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/m1/m1_two_root_line_packet_closure.md"
+   ]
+  },
+  {
+   "id": "m1_sift_caps",
+   "title": "Packet-sift popularity caps (Cauchy floor, U_eq = 8mu, U = 16)",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/m1/m1_packet_sift_popularity_digest.md"
+   ],
+   "notes": "missing piece stays open: nonlocal model-entry/multiplicity for actual Hankel packet families"
+  },
+  {
+   "id": "m3_generic_minor",
+   "title": "Generic-minor theorem: every window row-set minor generically nonzero, deg j+1",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/m1/f17_32_m3_generic_regular_minor.md"
+   ],
+   "notes": "rules out structural collapse of the regular method; degree-only sum 4515 vs budget 6 => root tables required"
+  },
+  {
+   "id": "smoke_packet",
+   "title": "M2 smoke packet: A=506/507 with aperiodic numerator 0 (format test)",
+   "status": "PROVED",
+   "refs": [
+    "experimental/data/certificates/hankel-smoke-f17-506-507"
+   ]
+  },
+  {
+   "id": "f1_pencil_nf",
+   "title": "F1 syndrome-pencil normal form (exact Hankel pencil; t = 1, 2 ledgers)",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/f1/f1_syndrome_pencil_normal_form.md"
+   ]
+  },
+  {
+   "id": "ld_bridge",
+   "title": "Line-decoding bridge: LD/MCA/CA slope sets coincide on the simple-pole family",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/m2/m2_abf_gg_line_decoding_parameter_match.md"
+   ],
+   "notes": "multiplicity caveat: slope SETS coincide, list sizes differ (x1 \u00a72.7)"
+  },
+  {
+   "id": "ext_slice_realized",
+   "title": "Extension line = M_z-coupled slice of e-fold base object (realized over F_17^2)",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/x1/x1_deep_point_interleaved_bridge.md"
+   ]
+  },
+  {
+   "id": "l1_program_frontier",
+   "title": "L1 proof program: all branches closed except full-petal d-ell -> infinity (Thm 21/B11)",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/l1/l1_full_list_quotient_proof_program.md"
+   ]
+  },
+  {
+   "id": "monomial_dyadic",
+   "title": "Monomial dyadic descent replay packet (F_17^32 row)",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/l1/l1_monomial_dyadic_descent_survivors.md"
+   ]
+  },
+  {
+   "id": "lean_existing",
+   "title": "Lean ledgers build green (Basic, DeepPoint, BetaTwo, F1; stdlib-only)",
+   "status": "PROVED",
+   "refs": [
+    "experimental/lean/rs_mca_formalization"
+   ]
   }
  ],
  "edges": [
@@ -1817,6 +1943,131 @@
   {
    "from": "exchange_ledger_gen_t",
    "to": "xr_expansion",
+   "kind": "req"
+  },
+  {
+   "from": "paper_a_noslack",
+   "to": "route_noslack",
+   "kind": "ref"
+  },
+  {
+   "from": "route_noslack",
+   "to": "mca_safe",
+   "kind": "alt"
+  },
+  {
+   "from": "qcore",
+   "to": "route_one_scale",
+   "kind": "ref"
+  },
+  {
+   "from": "route_one_scale",
+   "to": "list_safe",
+   "kind": "alt"
+  },
+  {
+   "from": "paper_a_noslack",
+   "to": "cap_theorem",
+   "kind": "ev"
+  },
+  {
+   "from": "m1_packet_transport",
+   "to": "window_m5_charts",
+   "kind": "req"
+  },
+  {
+   "from": "m1_rank_defect_nf",
+   "to": "window_m5_charts",
+   "kind": "req"
+  },
+  {
+   "from": "m1_two_root_closure",
+   "to": "strat_tree",
+   "kind": "ev"
+  },
+  {
+   "from": "m1_sift_caps",
+   "to": "xr_crystallization",
+   "kind": "ev"
+  },
+  {
+   "from": "m1_rank_defect_nf",
+   "to": "strat_tree",
+   "kind": "ev"
+  },
+  {
+   "from": "m3_generic_minor",
+   "to": "window_program",
+   "kind": "req"
+  },
+  {
+   "from": "m3_generic_minor",
+   "to": "alpha_front",
+   "kind": "ev"
+  },
+  {
+   "from": "smoke_packet",
+   "to": "pinned_row",
+   "kind": "ev"
+  },
+  {
+   "from": "smoke_packet",
+   "to": "window_pred_aper0",
+   "kind": "ev"
+  },
+  {
+   "from": "f1_pencil_nf",
+   "to": "counting_frame",
+   "kind": "ev"
+  },
+  {
+   "from": "vtdv",
+   "to": "f1_pencil_nf",
+   "kind": "ev"
+  },
+  {
+   "from": "ld_bridge",
+   "to": "bridge_ledger",
+   "kind": "req"
+  },
+  {
+   "from": "ld_bridge",
+   "to": "mca_grand",
+   "kind": "ev"
+  },
+  {
+   "from": "deep_point",
+   "to": "ld_bridge",
+   "kind": "req"
+  },
+  {
+   "from": "ext_slice_realized",
+   "to": "f1_classification",
+   "kind": "ev"
+  },
+  {
+   "from": "codegree",
+   "to": "ext_slice_realized",
+   "kind": "ev"
+  },
+  {
+   "from": "l1_program_frontier",
+   "to": "imgfib",
+   "kind": "req"
+  },
+  {
+   "from": "monomial_dyadic",
+   "to": "imgfib",
+   "kind": "ev"
+  },
+  {
+   "from": "l1_program_frontier",
+   "to": "petal_growth",
+   "kind": "ev"
+  },
+  {
+   "from": "lean_existing",
+   "to": "lean_tier1",
    "kind": "req"
   }
  ]
