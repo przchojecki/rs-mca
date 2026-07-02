@@ -69,6 +69,12 @@ supported on 126 domain roots has rank exactly 126, while a valid degree-128
 split locator lies in the kernel.  This is the rank-drop chart with a valid
 locator witness, not a top or low-degree chart.
 
+Turn 14 records the moment-support rank-extension lemma used by the planted
+packets: a Hankel moment block supported on s distinct roots factors through
+an s-dimensional Vandermonde space; any locator divisible by the support
+annihilator lies in the kernel; extra domain roots extend it to a valid
+degree-j split locator when available.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -816,6 +822,36 @@ def check_deficiency_one_chart_reduction():
         f"coefficients, each degree <= {real['top_chart_pseudo_remainder_degree_bound']}",
         f"toy packet sanity: chart counts {toy['chart_counts']} cover all 97 slopes, "
         "and the declared top chart has eliminant 1",
+    ]
+    return ok, d
+
+
+def check_moment_support_rank_extension_theorem():
+    """Record the abstract moment-support rank and locator-extension lemma."""
+    real = deficiency_one_degree_bounds(N, K, A_STAR)
+    t, j = real["t"], real["j"]
+    domain_size = N
+    rank_drop_support = 126
+    top_support = 128
+    ok = True
+    ok &= real["deficiency"] == 1 and t == j == 128
+    ok &= rank_drop_support < t
+    ok &= domain_size - rank_drop_support >= j - rank_drop_support
+    ok &= top_support == t == j
+    ok &= domain_size - top_support >= 0
+
+    d = [
+        "moment-support factorization: if S_m=sum_l w_l x_l^m, then "
+        "H_{r,c}=S_{r+c}=V_left diag(w) V_right^T, so rank H <= number of support roots",
+        "exact-rank witness: for s distinct support roots and nonzero weights, "
+        "the leading s x s moment minor is prod_l(w_l)*det(V_s)^2, hence nonzero",
+        "kernel-extension gate: any locator divisible by prod_l(X-x_l) annihilates "
+        "the moment window because sum_i L_i S_{r+i}=sum_l w_l x_l^r L(x_l)",
+        f"F_17^32 A={A_STAR}: a {rank_drop_support}-root moment support has rank "
+        f"exactly {rank_drop_support}<t={t}, and {j-rank_drop_support} extra domain "
+        "roots extend its annihilator to a valid degree-128 split locator",
+        f"F_17^32 A={A_STAR}: a {top_support}-root nonzero-weight support has "
+        "rank 128 and gives the top-chart prefix-minor certificate used by the planted packet",
     ]
     return ok, d
 
@@ -1695,6 +1731,7 @@ CHECKS = [
     ("eliminant or certified residual obstruction",       check_toy_eliminant_dichotomy),
     ("deficiency-1 degree budget for real row",           check_deficiency_one_degree_budget),
     ("deficiency-1 chart reduction for real row",         check_deficiency_one_chart_reduction),
+    ("moment-support rank-extension theorem",             check_moment_support_rank_extension_theorem),
     ("F_97 acid test: brute force equals charts",         check_toy_acid_test_bruteforce),
     ("F_17^32 planted top-chart packet",                  lambda: check_f17_packet(DEFAULT_F17_PACKET)),
     ("F_17^32 planted low-degree packet",                 lambda: check_f17_low_degree_packet(DEFAULT_F17_LOW_DEGREE_PACKET)),

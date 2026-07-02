@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 moment-support rank extension
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  No threshold or worst-case row
+  claim.
+- **What is being added:** Turn 14 of the `A=384` underdetermined M5 packet:
+  the abstract moment-support factorization and locator-extension lemma.  It
+  records that `S_m=sum w_l x_l^m` gives a Hankel block of rank at most the
+  support size, with exact rank from the Vandermonde square, and that locators
+  divisible by the support annihilator lie in the kernel.
+- **How it is useful:** Promotes the planted top and rank-drop packets from
+  isolated examples to instances of a reusable chart lemma for moment-support
+  families.
+- **What to do next:** Use this lemma as the clean low-rank/rank-drop branch
+  while moving toward actual root-table accounting for the remaining
+  `F_17^32` `A=384` charts.
+
 ### 2026-07-02 - M5 A384 F17 rank-drop side chart
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

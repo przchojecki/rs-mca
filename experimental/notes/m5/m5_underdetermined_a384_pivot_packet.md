@@ -1,6 +1,6 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 13: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 14: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
@@ -9,6 +9,8 @@
   the first declared `F_17^32` planted top-chart packet is emitted and now
   carries an explicit nonzero prefix-minor certificate; the first declared
   `F_17^32` planted low-degree and rank-drop side-chart packets are emitted).
+  The moment-support rank-extension lemma behind the planted top and rank-drop
+  packets is now stated explicitly.
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -130,7 +132,8 @@ belongs.
 | 5g | explicit nonzero prefix-minor certificate for the planted packet | **done** |
 | 5h | first declared `F_17^32` planted low-degree side-chart packet | **done** |
 | 5i | first declared `F_17^32` planted rank-drop side-chart packet | **done** |
-| 5j | full `F_17^32` root-table packet for rank-drop / low-degree / top charts | pending |
+| 5j | moment-support rank-extension theorem for top/rank-drop packets | **done** |
+| 5k | full `F_17^32` root-table packet for rank-drop / low-degree / top charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -524,6 +527,47 @@ locator `L_128` also satisfies the same 128 recurrence equations and lies in
 the kernel.  This completes the first replayable real-row triad of declared
 top, low-degree, and rank-drop chart examples for the `A=384` deficiency-one
 bucket.
+
+### Verified in turn 14
+
+**U14, moment-support rank-extension theorem.** The planted top and rank-drop
+packets use the same structural lemma.  If
+
+```text
+S_m = sum_{ell=1}^s w_ell x_ell^m
+```
+
+with distinct support roots `x_ell` and nonzero weights, then the Hankel
+moment block factors as
+
+```text
+H_{r,c}=S_{r+c}=V_left diag(w) V_right^T.
+```
+
+So `rank H <= s`; and when the leading `s x s` Vandermonde minor is available,
+
+```text
+det(S_{r+c})_{0<=r,c<s} = (prod_ell w_ell) det(V_s)^2 != 0,
+```
+
+so the rank is exactly `s`.  Moreover, every locator divisible by
+`prod_ell(X-x_ell)` annihilates the moment window:
+
+```text
+sum_i L_i S_{r+i} = sum_ell w_ell x_ell^r L(x_ell)=0.
+```
+
+For `F_17^32`, `A=384`, `t=j=128`, this gives:
+
+```text
+s=128: full-rank top-chart prefix-minor certificate;
+s=126: rank exactly 126<t, and two extra domain roots extend the support
+       annihilator to a valid degree-128 split locator in the kernel.
+```
+
+This is still not a root count.  It upgrades the planted packets from isolated
+examples to instances of a reusable rank/extension lemma for moment-support
+families.
 
 ## Honest scope
 
