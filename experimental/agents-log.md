@@ -93,14 +93,16 @@ Keep entries concise and link to the relevant files.
   consumers, extracts the exact radius-`t-1` Johnson dependency graph for
   locator indicators, proves the portable dependency-degree concentration
   criterion `Var(N_A)/E[N_A]^2 <= D_t(n,j)/E[N_A]`, packages it in exponent
-  form as `E[N_A]>=n^{2(t-1)+s} => Var(N_A)/E[N_A]^2<=n^{-s}`, records the
-  Paley-Zygmund averaged-existence consumer, and records the Markov
-  one-locator consumer bound across the `F_17^32` regular M3 window.
+  form as `E[N_A]>=n^{2(t-1)+s} => Var(N_A)/E[N_A]^2<=n^{-s}`, records a
+  random-pair phase criterion combining Markov emptiness with Chebyshev
+  nonemptiness/concentration, records the Paley-Zygmund averaged-existence
+  consumer, and records the Markov one-locator consumer bound across the
+  `F_17^32` regular M3 window.
 - **How it is useful:** FM1 is a key first-moment input for the aperiodic
   safe-side model and the `mca_safe` DAG path.  The note makes clear that this
   is a first/second-moment statement, not a worst-case or bad-slope bound.
 - **What to do next:** Use FM1, the exact overlap second moment, and the
-  exponent-form concentration consumer as inputs to averaged slope conversion,
+  random-pair phase criterion as inputs to averaged slope conversion,
   exchange-rigidity, or M5 underdetermined chart accounting.
 
 ### 2026-07-02 - PR sweep: G3 toy evidence, v12 audits, and M5 A384 atlas

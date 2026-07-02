@@ -841,6 +841,167 @@
         }
       ],
       "formula": "E[N^2] = E_indep[N^2] + sum_{c>=j-t+1} ordered_pairs(c)(P_h-P_0)"
+    },
+    "random_pair_phase_criterion": {
+      "exponent_rows": [
+        {
+          "concentrated_mean_exponent": 24,
+          "high_mean_exponent": 20,
+          "high_phase_zero_bound": {
+            "decimal": 1.4551915228366852e-11,
+            "denominator": 68719476736,
+            "log2": -36.0,
+            "numerator": 1
+          },
+          "low_mean_exponent_s": 8,
+          "low_phase_markov_bound": {
+            "decimal": 2.117582368135751e-22,
+            "denominator": 4722366482869645213696,
+            "log2": -72.0,
+            "numerator": 1
+          },
+          "n": 512,
+          "relative_deviation_probability_bound": {
+            "decimal": 1.4551915228366852e-11,
+            "denominator": 68719476736,
+            "log2": -36.0,
+            "numerator": 1
+          },
+          "relative_error_exponent_r": 2,
+          "t": 9
+        },
+        {
+          "concentrated_mean_exponent": 20,
+          "high_mean_exponent": 14,
+          "high_phase_zero_bound": {
+            "decimal": 6.842277657836021e-49,
+            "denominator": 1461501637330902918203684832716283019655932542976,
+            "log2": -160.0,
+            "numerator": 1
+          },
+          "low_mean_exponent_s": 16,
+          "low_phase_markov_bound": {
+            "decimal": 4.6816763546921983e-97,
+            "denominator": 2135987035920910082395021706169552114602704522356652769947041607822219725780640550022962086936576,
+            "log2": -320.0,
+            "numerator": 1
+          },
+          "n": 1048576,
+          "relative_deviation_probability_bound": {
+            "decimal": 6.842277657836021e-49,
+            "denominator": 1461501637330902918203684832716283019655932542976,
+            "log2": -160.0,
+            "numerator": 1
+          },
+          "relative_error_exponent_r": 3,
+          "t": 4
+        }
+      ],
+      "finite_rows": [
+        {
+          "agreement": 8,
+          "chebyshev_half_mean_deviation_upper": {
+            "decimal": 114244.3076931364,
+            "denominator": 92823,
+            "log2": 16.8017627581668,
+            "numerator": 10604499373
+          },
+          "chebyshev_zero_upper": {
+            "decimal": 28561.0769232841,
+            "denominator": 371292,
+            "log2": 14.8017627581668,
+            "numerator": 10604499373
+          },
+          "dependency_neighborhood_size": 495,
+          "j": 4,
+          "k": 3,
+          "markov_nonempty_upper": {
+            "decimal": 0.017331279255666188,
+            "denominator": 10604499373,
+            "log2": -5.8504780431998284,
+            "numerator": 183789540
+          },
+          "mean": {
+            "decimal": 0.017331279255666188,
+            "denominator": 10604499373,
+            "log2": -5.8504780431998284,
+            "numerator": 183789540
+          },
+          "n": 12,
+          "phase_reading": "low_mean_empty",
+          "q": 13,
+          "t": 5
+        },
+        {
+          "agreement": 3,
+          "chebyshev_half_mean_deviation_upper": {
+            "decimal": 0.23333333333333334,
+            "denominator": 30,
+            "log2": -2.0995356735509145,
+            "numerator": 7
+          },
+          "chebyshev_zero_upper": {
+            "decimal": 0.058333333333333334,
+            "denominator": 120,
+            "log2": -4.099535673550914,
+            "numerator": 7
+          },
+          "dependency_neighborhood_size": 1,
+          "j": 3,
+          "k": 2,
+          "markov_nonempty_upper": {
+            "decimal": 17.142857142857142,
+            "denominator": 7,
+            "log2": 4.099535673550914,
+            "numerator": 120
+          },
+          "mean": {
+            "decimal": 17.142857142857142,
+            "denominator": 7,
+            "log2": 4.099535673550914,
+            "numerator": 120
+          },
+          "n": 6,
+          "phase_reading": "dependency_dominated_nonempty",
+          "q": 7,
+          "t": 1
+        },
+        {
+          "agreement": 5,
+          "chebyshev_half_mean_deviation_upper": {
+            "decimal": 4.5775132275132275,
+            "denominator": 3780,
+            "log2": 2.194564054944549,
+            "numerator": 17303
+          },
+          "chebyshev_zero_upper": {
+            "decimal": 1.1443783068783069,
+            "denominator": 15120,
+            "log2": 0.19456405494454893,
+            "numerator": 17303
+          },
+          "dependency_neighborhood_size": 26,
+          "j": 5,
+          "k": 3,
+          "markov_nonempty_upper": {
+            "decimal": 22.719759579263712,
+            "denominator": 1331,
+            "log2": 4.5058756631965435,
+            "numerator": 30240
+          },
+          "mean": {
+            "decimal": 22.719759579263712,
+            "denominator": 1331,
+            "log2": 4.5058756631965435,
+            "numerator": 30240
+          },
+          "n": 10,
+          "phase_reading": "borderline_for_this_coarse_consumer",
+          "q": 11,
+          "t": 2
+        }
+      ],
+      "statement": "FM1 gives a random-pair phase criterion: if the mean is tiny, Markov makes aligned locators unlikely; if the mean dominates the dependency neighborhood, Chebyshev makes nonemptiness and relative concentration likely."
     }
   },
   "dag_node": "fm1",
@@ -850,8 +1011,9 @@
   "overlap_excess_statement": "The variance is the second-moment excess over independent locator indicators, supported exactly on overlaps c >= j-t+1.",
   "paley_zygmund_consumer": "Pr[N_A>0] >= E[N_A]^2 / E[N_A^2]",
   "passed": true,
+  "random_pair_phase_criterion": "Markov controls the low-mean phase; Chebyshev and the dependency neighborhood control the high-mean phase.",
   "schema": "fm1_exact_first_moment_v1",
-  "script_sha256": "d36ad16a6adc9cd6f34b0d0077deb57454e7770e351a92d963a83e52ecf80ae2",
+  "script_sha256": "d4ee666be49985f4888a9a68ebdf1afe6094c1e0e67f0c935301be76bdc6c9fc",
   "second_moment_statement": "E[N_A^2] is the ordered-overlap sum of the exact defect-h joint alignment probabilities.",
   "statement": "E[# aligned split locators] = binom(n,j)(1-q^-t)q^(1-t)",
   "status": "PROVED_LOCAL_VERIFICATION"

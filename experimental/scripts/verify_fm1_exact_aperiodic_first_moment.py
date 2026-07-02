@@ -398,6 +398,77 @@ def check_exponent_concentration_consumer() -> tuple[bool, dict]:
     }
 
 
+def check_random_pair_phase_criterion() -> tuple[bool, dict]:
+    finite_rows = []
+    ok = True
+    for q, n, k, agreement in [(13, 12, 3, 8), (7, 6, 2, 3), (11, 10, 3, 5)]:
+        t = agreement - k
+        j = n - agreement
+        mean = expected_value(q, n, k, agreement)
+        neighborhood = dependency_neighborhood(n, j, t)
+        dependency = neighborhood["dependent_neighbors_including_self"]["value"]
+        zero_upper = Fraction(dependency, 1) / mean
+        half_deviation_upper = 4 * zero_upper
+        finite_rows.append({
+            "q": q,
+            "n": n,
+            "k": k,
+            "agreement": agreement,
+            "t": t,
+            "j": j,
+            "mean": fraction_record(mean),
+            "markov_nonempty_upper": fraction_record(mean),
+            "dependency_neighborhood_size": dependency,
+            "chebyshev_zero_upper": fraction_record(zero_upper),
+            "chebyshev_half_mean_deviation_upper": fraction_record(half_deviation_upper),
+            "phase_reading": (
+                "low_mean_empty" if mean < 1 else
+                "dependency_dominated_nonempty" if zero_upper < 1 else
+                "borderline_for_this_coarse_consumer"
+            ),
+        })
+    ok &= finite_rows[0]["phase_reading"] == "low_mean_empty"
+    ok &= finite_rows[1]["phase_reading"] == "dependency_dominated_nonempty"
+    ok &= finite_rows[2]["phase_reading"] == "borderline_for_this_coarse_consumer"
+
+    exponent_rows = []
+    for n, t, low_s, high_s, rel_s in [(512, 9, 8, 4, 2), (2 ** 20, 4, 16, 8, 3)]:
+        low_mean = Fraction(1, n ** low_s)
+        high_mean = Fraction(n ** (2 * (t - 1) + high_s), 1)
+        zero_bound = Fraction(n ** (2 * (t - 1)), 1) / high_mean
+        rel_eps = Fraction(1, n ** rel_s)
+        concentrated_mean = Fraction(n ** (2 * (t - 1) + high_s + 2 * rel_s), 1)
+        rel_deviation_bound = (
+            Fraction(n ** (2 * (t - 1)), 1)
+            / (rel_eps * rel_eps * concentrated_mean)
+        )
+        ok &= low_mean == Fraction(1, n ** low_s)
+        ok &= zero_bound == Fraction(1, n ** high_s)
+        ok &= rel_deviation_bound == Fraction(1, n ** high_s)
+        exponent_rows.append({
+            "n": n,
+            "t": t,
+            "low_mean_exponent_s": low_s,
+            "low_phase_markov_bound": fraction_record(low_mean),
+            "high_mean_exponent": 2 * (t - 1) + high_s,
+            "high_phase_zero_bound": fraction_record(zero_bound),
+            "relative_error_exponent_r": rel_s,
+            "concentrated_mean_exponent": 2 * (t - 1) + high_s + 2 * rel_s,
+            "relative_deviation_probability_bound": fraction_record(rel_deviation_bound),
+        })
+
+    return ok, {
+        "statement": (
+            "FM1 gives a random-pair phase criterion: if the mean is tiny, "
+            "Markov makes aligned locators unlikely; if the mean dominates "
+            "the dependency neighborhood, Chebyshev makes nonemptiness and "
+            "relative concentration likely."
+        ),
+        "finite_rows": finite_rows,
+        "exponent_rows": exponent_rows,
+    }
+
+
 def paley_zygmund_nonzero_bound(q: int, n: int, k: int, agreement: int) -> Fraction:
     mean = expected_value(q, n, k, agreement)
     second = second_moment_formula(q, n, k, agreement)
@@ -767,6 +838,7 @@ def build_report() -> dict:
     ok_dependency, dependency = check_dependency_graph_consumer()
     ok_dep_concentration, dep_concentration = check_dependency_degree_concentration()
     ok_exp_concentration, exp_concentration = check_exponent_concentration_consumer()
+    ok_phase, phase = check_random_pair_phase_criterion()
     ok_f5, f5 = check_f5_bruteforce()
     ok_window, window = check_f17_regular_window_tail()
     source = Path(__file__).read_text()
@@ -797,6 +869,10 @@ def build_report() -> dict:
             "Since D_t(n,j) <= n^(2(t-1)), the sufficient condition "
             "E[N_A] >= n^(2(t-1)+s) gives relative variance at most n^-s."
         ),
+        "random_pair_phase_criterion": (
+            "Markov controls the low-mean phase; Chebyshev and the dependency "
+            "neighborhood control the high-mean phase."
+        ),
         "definition": (
             "For a split degree-j locator ell, set a=S_ell(u), b=S_ell(v) in F_q^t. "
             "The locator is aligned when b != 0 and a lies in the one-dimensional span of b."
@@ -809,6 +885,7 @@ def build_report() -> dict:
             "dependency_graph_consumer": dependency,
             "dependency_degree_concentration": dep_concentration,
             "exponent_concentration_consumer": exp_concentration,
+            "random_pair_phase_criterion": phase,
             "f5_bruteforce": f5,
             "f17_regular_window_markov_tail": window,
         },
@@ -820,6 +897,7 @@ def build_report() -> dict:
             and ok_dependency
             and ok_dep_concentration
             and ok_exp_concentration
+            and ok_phase
             and ok_f5
             and ok_window
         ),
@@ -899,6 +977,29 @@ def main() -> None:
                     "        n={n}, t={t}, s={reserve_exponent_s}: "
                     "mean exponent {mean_threshold_exponent} -> relvar <= {target_n_power}".format(
                         **row
+                    )
+                )
+        elif name == "random_pair_phase_criterion":
+            for row in data["finite_rows"]:
+                print(
+                    "        q={q}, n={n}, k={k}, A={agreement}: "
+                    "mean={mean:.6g}, zero_bound={zero:.6g}, phase={phase}".format(
+                        q=row["q"],
+                        n=row["n"],
+                        k=row["k"],
+                        agreement=row["agreement"],
+                        mean=row["mean"]["decimal"],
+                        zero=row["chebyshev_zero_upper"]["decimal"],
+                        phase=row["phase_reading"],
+                    )
+                )
+            for row in data["exponent_rows"]:
+                print(
+                    "        n={n}, t={t}: low <= n^-{low}, high zero <= {high}".format(
+                        n=row["n"],
+                        t=row["t"],
+                        low=row["low_mean_exponent_s"],
+                        high=row["high_phase_zero_bound"]["decimal"],
                     )
                 )
         elif name == "f5_bruteforce":

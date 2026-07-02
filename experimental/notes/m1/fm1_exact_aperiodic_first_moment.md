@@ -461,6 +461,54 @@ charts indexed by `(j-t+1)`-root cores.  Thus the exponent `2(t-1)` is not an
 extra probabilistic loss; it is the explicit common-root ledger cost of the
 FM1 covariance neighborhood.
 
+## Random-pair phase criterion
+
+Combining the Markov and dependency-degree consumers gives a two-sided
+random-pair phase test.
+
+Let
+
+```text
+mu = E[N_A],
+        D = D_t(n,j).
+```
+
+Then
+
+```text
+Pr[N_A > 0] <= mu,
+```
+
+and
+
+```text
+Pr[N_A = 0] <= D/mu,
+Pr[ |N_A-mu| >= eps mu ] <= D/(eps^2 mu).
+```
+
+Thus a tiny FM1 mean proves random-pair emptiness, while a mean that dominates
+the dependency neighborhood proves random-pair nonemptiness and concentration.
+In exponent form, for every `s,r >= 0`,
+
+```text
+mu <= n^{-s}
+    implies
+Pr[N_A > 0] <= n^{-s},
+
+mu >= n^{2(t-1)+s}
+    implies
+Pr[N_A = 0] <= n^{-s},
+
+mu >= n^{2(t-1)+s+2r}
+    implies
+Pr[ |N_A-mu| >= n^{-r} mu ] <= n^{-s}.
+```
+
+This criterion is average-over-word-pairs only.  It does not classify
+worst-case pairs.  Its value is that it tells later M5/M6 and XR arguments
+exactly where the random model is already theorem-backed and where
+worst-case rigidity is genuinely required.
+
 ## Averaged-existence consumer
 
 The exact second moment gives the following immediate averaged-existence
@@ -521,7 +569,7 @@ sanity check for the M3/M5 chart program, not a replacement for root tables.
 
 ## Verification
 
-The verifier records nine checks.
+The verifier records ten checks.
 
 1. **Surjectivity check, `F_13`.**  For `D=F_13^*`, `n=12`, `k=3`,
    `A=8`, `t=5`, `j=4`, every one of the `binom(12,4)=495`
@@ -553,7 +601,10 @@ rank S_{R,T} = 2t - max(0,t-j+|R cap T|).
    arithmetic implication
    `E[N_A] >= n^{2(t-1)+s} => Var(N_A)/E[N_A]^2 <= n^{-s}` in small and
    deployed-shape parameter rows.
-8. **Exact brute-force check, `F_5`.**  For `D=F_5^*`, `n=4`, `k=1`,
+8. **Random-pair phase criterion.**  The verifier checks one low-mean finite
+   row, one dependency-dominated finite row, one borderline finite row, and
+   two exponent-form phase implications.
+9. **Exact brute-force check, `F_5`.**  For `D=F_5^*`, `n=4`, `k=1`,
    `A=3`, `t=2`, `j=1`, enumeration over all `5^8` word pairs gives
 
 ```text
@@ -572,7 +623,7 @@ binom(4,1) * (1 - 5^(-2)) * 5^(-1) = 96/125.
 
 and the exact second-moment / Paley-Zygmund formulas above.
 
-9. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
+10. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
    the script computes the FM1/Markov one-locator upper bound across
    `385 <= A <= 426` and verifies the endpoint ranges above.
 
