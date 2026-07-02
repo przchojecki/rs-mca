@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - WP-detail loop turn 5: submission note + Lean gates (WP-1.1/1.2)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/wp_detail/wp1_1_wp1_2_submission_and_lean.md`.
+- **Status:** packaging plan over PROVED-cited material; witnesses
+  machine-checked. No result claimed.
+- **What is being added:** Turn 5. WP-1.1: the six-section submission
+  note spec (conventions block with both gates and the delta-regime
+  label; the adjacent-pin claim; staircase + two-independent-replays
+  proof summary; the official-language column that CONDITIONS on the
+  open S0 axes instead of asserting equivalence; verbatim non-claims;
+  prize-relevance via the fetched partial-results clause) — with the
+  acceptance test that every constant is emitted by the wp3_2 descriptor
+  and the envelope map generalizes the note to the whole small-q family.
+  WP-1.2: the Lean scope pinned to the stdlib-only constraint in three
+  tiers — tier 1 provable now via ADDITION CERTIFICATES (both gate
+  witnesses computed and verified: 6*2^128 + w1 = 17^32, 17^32 + w2 =
+  7*2^128 — kernel-friendly, no numeral-comparison risk), tier 2 = M4
+  dedup arithmetic when the table exists, tier 3 = FM1/R2/Conj F as
+  named Props marked TARGET. Acceptance: lake build green, zero sorry,
+  CERTIFICATION_MAP.md mapping theorems to claims.
+- **How it is useful:** The program's first submittable artifact, fully
+  conditioned and machine-generated, with a kernel-certified arithmetic
+  core — the template for every later dossier rung; formal verification
+  is officially encouraged, so tier 1 has direct submission value.
+- **What to do next:** Turn 6: wp3_1 + wp3_3 (row selection + second pin
+  or named wall).
+
 ### 2026-07-02 - WP-detail loop turn 4: symbolic scaling (WP-3.2)
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
