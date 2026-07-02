@@ -244,6 +244,96 @@
         }
       ],
       "status": "PASS"
+    },
+    {
+      "deployed_shape_rows": [
+        {
+          "coarse_exponent_budget": 16,
+          "cover_bound_log2": 93.83017128234832,
+          "cover_n_power_exponent": 10.42557458692759,
+          "exact_ball_size_log2": 93.59267693629697,
+          "exact_le_cover": true,
+          "exact_n_power_exponent": 10.399186326255219,
+          "j": 127,
+          "n": 512,
+          "radius": 8
+        },
+        {
+          "coarse_exponent_budget": 16,
+          "cover_bound_log2": 97.4160111902117,
+          "cover_n_power_exponent": 10.824001243356856,
+          "exact_ball_size_log2": 97.06968221939695,
+          "exact_le_cover": true,
+          "exact_n_power_exponent": 10.785520246599662,
+          "j": 247,
+          "n": 512,
+          "radius": 8
+        },
+        {
+          "coarse_exponent_budget": 6,
+          "cover_bound_log2": 108.83008325367507,
+          "cover_n_power_exponent": 5.441504162683754,
+          "exact_ball_size_log2": 108.8300584882442,
+          "exact_le_cover": true,
+          "exact_n_power_exponent": 5.44150292441221,
+          "j": 524288,
+          "n": 1048576,
+          "radius": 3
+        }
+      ],
+      "name": "johnson_ball_common_core_cover",
+      "statement": "The radius-r Johnson ball around a degree-j locator is the union over its (j-r)-root cores of common-root charts; its exact size is sum_{d<=r} binom(j,d)binom(n-j,d), bounded by binom(j,r)binom(n-j+r,r).",
+      "status": "PASS",
+      "toy_exact_rows": [
+        {
+          "common_core_size": 4,
+          "core_chart_count": 1,
+          "cover_sum_bound": 1,
+          "cover_union_matches_ball": true,
+          "exact_ball_size": 1,
+          "formula_ball_size": 1,
+          "j": 4,
+          "max_chart_size": 1,
+          "n": 16,
+          "radius": 0
+        },
+        {
+          "common_core_size": 3,
+          "core_chart_count": 4,
+          "cover_sum_bound": 52,
+          "cover_union_matches_ball": true,
+          "exact_ball_size": 49,
+          "formula_ball_size": 49,
+          "j": 4,
+          "max_chart_size": 13,
+          "n": 16,
+          "radius": 1
+        },
+        {
+          "common_core_size": 2,
+          "core_chart_count": 6,
+          "cover_sum_bound": 546,
+          "cover_union_matches_ball": true,
+          "exact_ball_size": 445,
+          "formula_ball_size": 445,
+          "j": 4,
+          "max_chart_size": 91,
+          "n": 16,
+          "radius": 2
+        },
+        {
+          "common_core_size": 1,
+          "core_chart_count": 4,
+          "cover_sum_bound": 1820,
+          "cover_union_matches_ball": true,
+          "exact_ball_size": 1325,
+          "formula_ball_size": 1325,
+          "j": 4,
+          "max_chart_size": 455,
+          "n": 16,
+          "radius": 3
+        }
+      ]
     }
   ],
   "domain": {
@@ -272,6 +362,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "52904760acfcffdeed7e960af9861ddf64ef3ac23281fb6859f3833b65f317c3",
+  "script_sha256": "9b208bed78915f255be8fff523c978deb5378b3db659f9aeab1f2c00c1a0a80b",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

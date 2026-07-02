@@ -67,6 +67,29 @@ Keep entries concise and link to the relevant files.
   explicitly requested; audit Paper D itself through theorem statements and
   certificate checks.
 
+### 2026-07-02 - Conjecture F Johnson-ball common-core cover
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_reduction_lemmas.md`;
+  `experimental/scripts/verify_conjecture_f_reductions.py`;
+  `experimental/data/certificates/conjecture-f-reductions/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / PROVED-LOCAL.
+- **What is being added:** A thirteenth reduction corollary: the radius-`r`
+  Johnson ball around a degree-`j` locator is exactly covered by common-root
+  charts indexed by `(j-r)`-root cores, with exact size
+  `sum_{d<=r} binom(j,d)binom(n-j,d)` and cover bound
+  `binom(j,r)binom(n-j+r,r) <= n^(2r)`.
+- **How it is useful:** Bridges the FM1 high-overlap/dependency neighborhood
+  to Conjecture F common-root accounting.  Fixed-slack covariance
+  neighborhoods are explicitly polynomial and paid by common-core charts; when
+  the radius grows, this identifies the remaining hard part as genuinely
+  dimension-growing.
+- **What to do next:** Use this bridge when feeding FM1 second-moment or
+  exchange-rigidity estimates into M5/M6 ledgers, especially to separate
+  fixed-slack common-core neighborhoods from the primitive growing-dimension
+  Conjecture F core.
+
 ### 2026-07-02 - Conjecture F exponent budget consumer
 
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.

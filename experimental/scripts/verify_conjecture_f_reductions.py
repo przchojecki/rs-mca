@@ -20,6 +20,8 @@ the identities over F_97 with H = mu_16:
   polynomial by summing the descended bounds.
 * affine slope-table families inherit the same bounds after homogenization.
 * fixed projective dimension gives an explicit n-exponent budget.
+* Johnson balls are covered by common-core charts with explicit polynomial
+  size, linking FM1 high-overlap neighborhoods to common-root accounting.
 """
 from __future__ import annotations
 
@@ -1148,6 +1150,96 @@ def check_exponent_budget_consumer(H: list[int]) -> dict:
     }
 
 
+def log2_int(value: int) -> float | None:
+    return math.log2(value) if value > 0 else None
+
+
+def johnson_ball_size(n: int, j: int, radius: int) -> int:
+    return sum(
+        comb(j, d) * comb(n - j, d)
+        for d in range(0, min(radius, j, n - j) + 1)
+    )
+
+
+def johnson_common_core_cover_bound(n: int, j: int, radius: int) -> int:
+    if radius < 0:
+        return 0
+    r = min(radius, j)
+    return comb(j, r) * comb(n - j + r, r)
+
+
+def check_johnson_ball_common_core_cover(H: list[int]) -> dict:
+    center = tuple(H[:J_VOTING])
+    D = divisor_set(H, J_VOTING)
+    exact_rows = []
+    ok = True
+    for radius in range(0, min(3, J_VOTING) + 1):
+        ball = {
+            poly for poly in D
+            if J_VOTING - len(set(locator_roots(poly, H)).intersection(center)) <= radius
+        }
+        formula_size = johnson_ball_size(N, J_VOTING, radius)
+        core_size = J_VOTING - radius
+        cover = set()
+        chart_sizes = []
+        for core in itertools.combinations(center, core_size):
+            chart = {
+                poly for poly in D
+                if set(core).issubset(locator_roots(poly, H))
+            }
+            cover.update(chart)
+            chart_sizes.append(len(chart))
+        cover_bound = johnson_common_core_cover_bound(N, J_VOTING, radius)
+        ok &= len(ball) == formula_size
+        ok &= cover == ball
+        ok &= sum(chart_sizes) == cover_bound
+        exact_rows.append({
+            "n": N,
+            "j": J_VOTING,
+            "radius": radius,
+            "exact_ball_size": len(ball),
+            "formula_ball_size": formula_size,
+            "common_core_size": core_size,
+            "core_chart_count": comb(J_VOTING, radius),
+            "max_chart_size": max(chart_sizes) if chart_sizes else 0,
+            "cover_sum_bound": cover_bound,
+            "cover_union_matches_ball": cover == ball,
+        })
+
+    deployed_rows = []
+    for n, j, radius in [(512, 127, 8), (512, 247, 8), (2 ** 20, 2 ** 19, 3)]:
+        exact = johnson_ball_size(n, j, radius)
+        cover = johnson_common_core_cover_bound(n, j, radius)
+        exact_exponent = 0.0 if exact <= 1 else math.log(exact, n)
+        cover_exponent = 0.0 if cover <= 1 else math.log(cover, n)
+        ok &= exact <= cover
+        ok &= cover_exponent <= 2 * radius + 1e-12
+        deployed_rows.append({
+            "n": n,
+            "j": j,
+            "radius": radius,
+            "exact_ball_size_log2": log2_int(exact),
+            "cover_bound_log2": log2_int(cover),
+            "exact_n_power_exponent": exact_exponent,
+            "cover_n_power_exponent": cover_exponent,
+            "coarse_exponent_budget": 2 * radius,
+            "exact_le_cover": exact <= cover,
+        })
+
+    return {
+        "name": "johnson_ball_common_core_cover",
+        "status": "PASS" if ok else "FAIL",
+        "statement": (
+            "The radius-r Johnson ball around a degree-j locator is the union "
+            "over its (j-r)-root cores of common-root charts; its exact size is "
+            "sum_{d<=r} binom(j,d)binom(n-j,d), bounded by "
+            "binom(j,r)binom(n-j+r,r)."
+        ),
+        "toy_exact_rows": exact_rows,
+        "deployed_shape_rows": deployed_rows,
+    }
+
+
 def evaluation_lines(basis: list[tuple[int, ...]], H: list[int]) -> list[tuple[int, ...]]:
     lines = []
     for x in H:
@@ -1345,6 +1437,7 @@ def build_report() -> dict:
         check_quotient_union_fixed_dimension_bound(H),
         check_affine_slope_table_consumer(H),
         check_exponent_budget_consumer(H),
+        check_johnson_ball_common_core_cover(H),
     ]
     return {
         "schema": "conjecture_f_reduction_toy_v1",

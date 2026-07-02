@@ -7,7 +7,7 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_reductions.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`.
 
-This note records twelve elementary reductions around the fiber-rigidity
+This note records thirteen elementary reductions around the fiber-rigidity
 statement called Conjecture F in the proof sketch.  They do not prove the
 primitive core.  Their role is to remove two paid structures from the statement
 to settle the dimension-one base case, and to restate the remaining primitive
@@ -546,6 +546,59 @@ Any counterexample to an `n^B` Conjecture F consumer with `B` above this budget
 must therefore come from dimension-growing primitive charts, not from
 fixed-dimensional common-root, quotient, or affine-chart bookkeeping.
 
+## Corollary 13: Johnson-Ball Common-Core Cover
+
+Fix a locator root set `R subset H` with `|R|=j`.  For an integer
+`0 <= r <= j`, let
+
+```text
+B_r(R) = { T subset H : |T|=j and j-|R cap T| <= r }
+```
+
+be the radius-`r` Johnson ball around `R`.  Then
+
+```text
+|B_r(R)|
+  =
+  sum_{d=0}^{min(r,j,|H|-j)}
+      binom(j,d) binom(|H|-j,d).
+```
+
+Moreover `B_r(R)` is covered by common-root charts:
+
+```text
+B_r(R)
+  =
+  union_{C subset R, |C|=j-r}
+      { T subset H : |T|=j and C subset T },
+```
+
+Hence
+
+```text
+|B_r(R)|
+  <=
+  binom(j,r) binom(|H|-j+r,r)
+  <=
+  |H|^{2r}.
+```
+
+**Proof.**  A locator at Johnson distance `d` from `R` is obtained by removing
+`d` roots of `R` and adding `d` roots from `H\R`, giving the exact sum.  If
+`T` has distance at most `r`, then `|R cap T| >= j-r`, so choosing any
+`(j-r)`-subset `C` of `R cap T` places `T` in the common-root chart indexed by
+`C`.  Conversely every locator containing such a `C` shares at least `j-r`
+roots with `R`, so it lies in `B_r(R)`.  For a fixed `C`, the chart size is
+`binom(|H|-(j-r),r)=binom(|H|-j+r,r)`, and there are `binom(j,r)` possible
+cores.
+
+This corollary is the bridge to the FM1 overlap ledger: FM1 covariance is
+supported in a Johnson ball of radius `t-1`, and this ball is a union of
+explicit common-root charts.  When `t` is fixed, the entire high-overlap
+neighborhood is polynomially priced by common-root accounting; when `t` grows,
+this corollary identifies exactly why the remaining problem becomes
+dimension-growing rather than fixed-dimensional.
+
 ## Verification
 
 The verifier checks these lemmas over `F_97` with `H = mu_16`:
@@ -565,7 +618,8 @@ on random subspaces plus the sharp full-space case.  It also verifies the
 common-root corollary on forced common-root subspaces and the
 fixed-dimensional quotient-pullback consumer, plus the proper quotient-union
 bound at `n=16,j=8` across the scales `M in {2,4,8}`.  It also checks the
-affine slope-table consumer directly on deterministic random affine charts and
-prints the resulting fixed-dimension/quotient-union exponent budgets.  The
-verifier is supporting evidence only; the proofs above are the mathematical
-content.
+affine slope-table consumer directly on deterministic random affine charts,
+prints the resulting fixed-dimension/quotient-union exponent budgets, and
+checks the Johnson-ball common-core cover both by exact toy enumeration and by
+formula on deployed-shape rows.  The verifier is supporting evidence only; the
+proofs above are the mathematical content.
