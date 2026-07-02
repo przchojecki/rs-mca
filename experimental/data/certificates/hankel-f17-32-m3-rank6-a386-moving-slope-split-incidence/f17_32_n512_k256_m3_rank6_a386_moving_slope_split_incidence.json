@@ -199,6 +199,7 @@
     "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
     "abstract incidence-only sharpness witnesses are constructed for every finite-incidence one-over core",
     "every one-over moving-slope residual row has a single-saving closure ledger entry",
+    "every exact-current moving-slope residual row has a multi-saving closure ledger entry",
     "exact-current minimal obstruction profile requires six distinct finite slopes plus endpoint",
     "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
     "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction"
@@ -8548,6 +8549,1378 @@
         0,
         12
       ]
+    }
+  ],
+  "exact_current_multi_saving_closure_ledger": [
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 72,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 73,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 74,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 75,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 76,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 77,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 78,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 79,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 80,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 8,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 7,
+      "forced_external_core_size": 81,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 2,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 8,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 7,
+      "forced_external_core_size": 82,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 2,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 8,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 7,
+      "forced_external_core_size": 83,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 2,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 8,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 7,
+      "forced_external_core_size": 84,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 2,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 8,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 7,
+      "forced_external_core_size": 85,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 2,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 8,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 7,
+      "forced_external_core_size": 86,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 2,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 9,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 8,
+      "forced_external_core_size": 87,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 3,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 9,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 8,
+      "forced_external_core_size": 88,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 3,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 9,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 8,
+      "forced_external_core_size": 89,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 3,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 9,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 8,
+      "forced_external_core_size": 90,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 3,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 9,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 8,
+      "forced_external_core_size": 91,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 3,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 10,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 9,
+      "forced_external_core_size": 92,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 4,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 10,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 9,
+      "forced_external_core_size": 93,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 4,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 10,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 9,
+      "forced_external_core_size": 94,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 4,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 11,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 10,
+      "forced_external_core_size": 95,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 5,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "external incidence plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "line",
+      "current_projective_upper_bound": 11,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 10,
+      "forced_external_core_size": 96,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 5,
+      "status": "line quotient-pencil residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit beyond the current line envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 69,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 70,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 71,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 72,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 73,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 74,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 75,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 7,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 6,
+      "forced_external_core_size": 76,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 1,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 8,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 7,
+      "forced_external_core_size": 77,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 2,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 8,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 7,
+      "forced_external_core_size": 78,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 2,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 8,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 7,
+      "forced_external_core_size": 79,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 2,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 8,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 7,
+      "forced_external_core_size": 80,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 2,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 8,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 7,
+      "forced_external_core_size": 81,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 2,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 8,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 7,
+      "forced_external_core_size": 82,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 2,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 9,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 8,
+      "forced_external_core_size": 83,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 3,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 9,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 8,
+      "forced_external_core_size": 84,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 3,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 9,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 8,
+      "forced_external_core_size": 85,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 3,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 9,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 8,
+      "forced_external_core_size": 86,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 3,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 10,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 9,
+      "forced_external_core_size": 87,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 4,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 10,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 9,
+      "forced_external_core_size": 88,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 4,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 10,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 9,
+      "forced_external_core_size": 89,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 4,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 11,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 10,
+      "forced_external_core_size": 90,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 5,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 11,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 10,
+      "forced_external_core_size": 91,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 5,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 11,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 10,
+      "forced_external_core_size": 92,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 5,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 12,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 11,
+      "forced_external_core_size": 93,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 6,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 12,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 11,
+      "forced_external_core_size": 94,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 6,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 13,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 12,
+      "forced_external_core_size": 95,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 7,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 14,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 13,
+      "forced_external_core_size": 96,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 8,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 15,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 14,
+      "forced_external_core_size": 97,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 9,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 16,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 15,
+      "forced_external_core_size": 98,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 10,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 17,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 16,
+      "forced_external_core_size": 99,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 11,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "pair-overlap packing plus endpoint",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 20,
+      "endpoint_counted_in_bound": 1,
+      "finite_source_class_upper_bound": 19,
+      "forced_external_core_size": 100,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 14,
+      "status": "irreducible-conic quotient-family residual",
+      "sufficient_saving_sources": [
+        "one finite split Q-class absent or paid",
+        "one finite split Q-class coalesces with another finite slope",
+        "projective endpoint absent or paid",
+        "external secant or base-root deficit beyond the current conic envelope"
+      ]
+    },
+    {
+      "active_best_method": "cofactor-improved punctured projective tangent",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 25,
+      "endpoint_counted_in_bound": "included in projective tangent bound",
+      "finite_source_class_upper_bound": null,
+      "forced_external_core_size": 101,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 19,
+      "status": "irreducible_conic punctured-tangent residual",
+      "sufficient_saving_sources": [
+        "one projective tangent slope absent",
+        "one projective tangent slope paid by tangent, quotient, extension, or containment",
+        "two projective tangent source classes coalesce to one projective parameter",
+        "a stronger exact-agreement cofactor obstruction lowers the tangent envelope"
+      ]
+    },
+    {
+      "active_best_method": "cofactor-improved punctured projective tangent",
+      "closure_criterion": "If at least the stated number of independent counted parameters are removed, paid, or coalesced among the finite source classes and the projective endpoint, this exact-current row is projective-safe.",
+      "component_type": "irreducible_conic",
+      "current_projective_upper_bound": 24,
+      "endpoint_counted_in_bound": "included in projective tangent bound",
+      "finite_source_class_upper_bound": null,
+      "forced_external_core_size": 102,
+      "projective_budget": 6,
+      "required_independent_savings_to_reach_budget": 18,
+      "status": "irreducible_conic punctured-tangent residual",
+      "sufficient_saving_sources": [
+        "one projective tangent slope absent",
+        "one projective tangent slope paid by tangent, quotient, extension, or containment",
+        "two projective tangent source classes coalesce to one projective parameter",
+        "a stronger exact-agreement cofactor obstruction lowers the tangent envelope"
+      ]
+    }
+  ],
+  "exact_current_multi_saving_depth_groups": [
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 8,
+      "external_core_ranges": [
+        [
+          69,
+          76
+        ]
+      ],
+      "external_core_values": [
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76
+      ],
+      "required_independent_savings_to_reach_budget": 1
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 6,
+      "external_core_ranges": [
+        [
+          77,
+          82
+        ]
+      ],
+      "external_core_values": [
+        77,
+        78,
+        79,
+        80,
+        81,
+        82
+      ],
+      "required_independent_savings_to_reach_budget": 2
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 4,
+      "external_core_ranges": [
+        [
+          83,
+          86
+        ]
+      ],
+      "external_core_values": [
+        83,
+        84,
+        85,
+        86
+      ],
+      "required_independent_savings_to_reach_budget": 3
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 3,
+      "external_core_ranges": [
+        [
+          87,
+          89
+        ]
+      ],
+      "external_core_values": [
+        87,
+        88,
+        89
+      ],
+      "required_independent_savings_to_reach_budget": 4
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 3,
+      "external_core_ranges": [
+        [
+          90,
+          92
+        ]
+      ],
+      "external_core_values": [
+        90,
+        91,
+        92
+      ],
+      "required_independent_savings_to_reach_budget": 5
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 2,
+      "external_core_ranges": [
+        [
+          93,
+          94
+        ]
+      ],
+      "external_core_values": [
+        93,
+        94
+      ],
+      "required_independent_savings_to_reach_budget": 6
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 1,
+      "external_core_ranges": [
+        [
+          95,
+          95
+        ]
+      ],
+      "external_core_values": [
+        95
+      ],
+      "required_independent_savings_to_reach_budget": 7
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 1,
+      "external_core_ranges": [
+        [
+          96,
+          96
+        ]
+      ],
+      "external_core_values": [
+        96
+      ],
+      "required_independent_savings_to_reach_budget": 8
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 1,
+      "external_core_ranges": [
+        [
+          97,
+          97
+        ]
+      ],
+      "external_core_values": [
+        97
+      ],
+      "required_independent_savings_to_reach_budget": 9
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 1,
+      "external_core_ranges": [
+        [
+          98,
+          98
+        ]
+      ],
+      "external_core_values": [
+        98
+      ],
+      "required_independent_savings_to_reach_budget": 10
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 1,
+      "external_core_ranges": [
+        [
+          99,
+          99
+        ]
+      ],
+      "external_core_values": [
+        99
+      ],
+      "required_independent_savings_to_reach_budget": 11
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 1,
+      "external_core_ranges": [
+        [
+          100,
+          100
+        ]
+      ],
+      "external_core_values": [
+        100
+      ],
+      "required_independent_savings_to_reach_budget": 14
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 1,
+      "external_core_ranges": [
+        [
+          102,
+          102
+        ]
+      ],
+      "external_core_values": [
+        102
+      ],
+      "required_independent_savings_to_reach_budget": 18
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 1,
+      "external_core_ranges": [
+        [
+          101,
+          101
+        ]
+      ],
+      "external_core_values": [
+        101
+      ],
+      "required_independent_savings_to_reach_budget": 19
+    },
+    {
+      "component_type": "line",
+      "core_count": 9,
+      "external_core_ranges": [
+        [
+          72,
+          80
+        ]
+      ],
+      "external_core_values": [
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80
+      ],
+      "required_independent_savings_to_reach_budget": 1
+    },
+    {
+      "component_type": "line",
+      "core_count": 6,
+      "external_core_ranges": [
+        [
+          81,
+          86
+        ]
+      ],
+      "external_core_values": [
+        81,
+        82,
+        83,
+        84,
+        85,
+        86
+      ],
+      "required_independent_savings_to_reach_budget": 2
+    },
+    {
+      "component_type": "line",
+      "core_count": 5,
+      "external_core_ranges": [
+        [
+          87,
+          91
+        ]
+      ],
+      "external_core_values": [
+        87,
+        88,
+        89,
+        90,
+        91
+      ],
+      "required_independent_savings_to_reach_budget": 3
+    },
+    {
+      "component_type": "line",
+      "core_count": 3,
+      "external_core_ranges": [
+        [
+          92,
+          94
+        ]
+      ],
+      "external_core_values": [
+        92,
+        93,
+        94
+      ],
+      "required_independent_savings_to_reach_budget": 4
+    },
+    {
+      "component_type": "line",
+      "core_count": 2,
+      "external_core_ranges": [
+        [
+          95,
+          96
+        ]
+      ],
+      "external_core_values": [
+        95,
+        96
+      ],
+      "required_independent_savings_to_reach_budget": 5
     }
   ],
   "exact_root_budget_alternatives": {
@@ -17379,7 +18752,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v39",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v40",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -18020,6 +19393,150 @@
       36,
       60
     ],
+    "conic_exact_current_multi_saving_depth_groups": [
+      {
+        "core_count": 8,
+        "external_core_ranges": [
+          [
+            69,
+            76
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 1
+      },
+      {
+        "core_count": 6,
+        "external_core_ranges": [
+          [
+            77,
+            82
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 2
+      },
+      {
+        "core_count": 4,
+        "external_core_ranges": [
+          [
+            83,
+            86
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 3
+      },
+      {
+        "core_count": 3,
+        "external_core_ranges": [
+          [
+            87,
+            89
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 4
+      },
+      {
+        "core_count": 3,
+        "external_core_ranges": [
+          [
+            90,
+            92
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 5
+      },
+      {
+        "core_count": 2,
+        "external_core_ranges": [
+          [
+            93,
+            94
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 6
+      },
+      {
+        "core_count": 1,
+        "external_core_ranges": [
+          [
+            95,
+            95
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 7
+      },
+      {
+        "core_count": 1,
+        "external_core_ranges": [
+          [
+            96,
+            96
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 8
+      },
+      {
+        "core_count": 1,
+        "external_core_ranges": [
+          [
+            97,
+            97
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 9
+      },
+      {
+        "core_count": 1,
+        "external_core_ranges": [
+          [
+            98,
+            98
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 10
+      },
+      {
+        "core_count": 1,
+        "external_core_ranges": [
+          [
+            99,
+            99
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 11
+      },
+      {
+        "core_count": 1,
+        "external_core_ranges": [
+          [
+            100,
+            100
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 14
+      },
+      {
+        "core_count": 1,
+        "external_core_ranges": [
+          [
+            102,
+            102
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 18
+      },
+      {
+        "core_count": 1,
+        "external_core_ranges": [
+          [
+            101,
+            101
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 19
+      }
+    ],
+    "conic_exact_current_multi_saving_max_required_savings": 19,
+    "conic_exact_current_multi_saving_row_count": 34,
     "conic_exact_current_one_over_external_core_ranges": [
       [
         69,
@@ -18319,6 +19836,7 @@
     "exact_current_minimal_obstruction_count": 17,
     "exact_current_minimal_obstruction_required_finite_slopes": 6,
     "exact_current_minimal_obstruction_requires_unpaid_endpoint": true,
+    "exact_current_multi_saving_closure_ledger_count": 59,
     "external_root_count": 385,
     "line_cofactor_current_max_projective_upper_bound": 18,
     "line_cofactor_current_one_over_external_core_ranges": [
@@ -18573,6 +20091,60 @@
       1,
       0
     ],
+    "line_exact_current_multi_saving_depth_groups": [
+      {
+        "core_count": 9,
+        "external_core_ranges": [
+          [
+            72,
+            80
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 1
+      },
+      {
+        "core_count": 6,
+        "external_core_ranges": [
+          [
+            81,
+            86
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 2
+      },
+      {
+        "core_count": 5,
+        "external_core_ranges": [
+          [
+            87,
+            91
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 3
+      },
+      {
+        "core_count": 3,
+        "external_core_ranges": [
+          [
+            92,
+            94
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 4
+      },
+      {
+        "core_count": 2,
+        "external_core_ranges": [
+          [
+            95,
+            96
+          ]
+        ],
+        "required_independent_savings_to_reach_budget": 5
+      }
+    ],
+    "line_exact_current_multi_saving_max_required_savings": 5,
+    "line_exact_current_multi_saving_row_count": 25,
     "line_exact_current_one_over_external_core_ranges": [
       [
         72,
@@ -22480,6 +24052,7 @@
     "intermediate_residual_profile": "Combining the external-incidence, pair-overlap, and punctured projective tangent bounds gives a sharp current proof envelope for the unresolved intermediate cores.  The one-over-budget finite-incidence subranges are line e_G=72..80 and conic e_G=69..76.  The tangent-tail row e_G=120 is closed by the cofactor-span obstruction, and exact-agreement residual-budget splitting closes the cofactor-current tangent tail e_G=97..119 for lines and e_G=103..119 for irreducible conics, using the four-private line-pencil obstruction on the line side and the K4 determinant and root-star Bezout arguments on the conic side; all other intermediate cores need more than a single endpoint/root saving under the present methods.",
     "line_e72_quotient_pencil_obstruction_profile": "In the extremal line e_G=72 branch, factoring the forced external core leaves a degree-54 quotient pencil.  Any remaining over-budget witness must give six distinct full-degree split members of this pencil: either six fibers with 52 external roots and two base roots each, leaving one nonforced external point unused, or one fiber with 53 external roots and one base root plus five fibers with 52 external roots and two base roots, covering all nonforced external points.",
     "line_projective_safe_core_threshold": "For a line component c=1, the unrefined all-root budget gives projective safety at r_G<=48.  The base-sharpened external budget improves this: e_G<=71 gives at most five finite Q-classes.  Adding the endpoint-uniform contribution gives projective total at most 6, exactly the projective budget.",
+    "multi_saving_closure_ledger": "The exact-current residual rows beyond the one-over frontier are now listed in a multi-saving closure ledger.  For each line core 72..96 and conic core 69..102, the ledger records the current projective upper bound, the finite source-class upper bound, and the number of independent counted parameters that must be absent, paid, or coalesced to reach the projective budget.  Line rows need saving depths 1..5; conic rows need depths up to 19.  This is not a closure, but it makes the remaining quotient-fiber target row-local and checkable.",
     "no_identically_split_positive_dimensional_component": "A positive-dimensional component cannot have r_G>=j=126.  Otherwise every L_Q on G would be divisible by the same degree-j split locator, hence scalar-multiple to it because deg L_Q<=j, contradicting projective injectivity of Q -> L_Q on G.",
     "one_over_design_catalog": "The whole endpoint-only finite-incidence one-over range now has an exact compact catalog.  Line cores 72,73,74 allow 2,16,27 base-root histograms respectively, and line cores 75..80 allow all 28 histograms with increasing unused external slack.  Conic cores 69,70,71 allow 2,16,27 histograms respectively, while cores 72..76 allow all 28; pair-overlap pressure disappears from cores 75 and 76.",
     "one_over_mechanism_priority_ledger": "The one-over rows split into six mechanism classes: line base-splitting active (72..74), line external-slack only (75..80), conic base+secant pressure active (69..71), conic secant-only pressure (72..74), conic endpoint-or-duplicate only (75..76), and the punctured tangent tail (120), now closed by the cofactor-span obstruction.",

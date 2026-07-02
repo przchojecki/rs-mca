@@ -325,6 +325,12 @@ any remaining over-budget witness must be one of the line cores `72..80` or
 conic cores `69..76`, with exactly six finite source classes, six distinct
 finite slopes, and an unpaid projective endpoint, plus the printed saturated
 base-root, external-slack, and secant-overlap conditions.
+The exact-current residuals now also carry a multi-saving closure ledger:
+line cores `72..96` require saving depths `1..5`, while conic cores `69..102`
+require depths up to `19`; conic cores `101,102` are governed by the
+cofactor-improved projective tangent envelope rather than the pair-overlap
+envelope.  This is a row-local closure criterion, not a proof that the listed
+savings occur.
 Those rows split by first available saving mechanism into line base-active
 `72..74`, line external-slack `75..80`, conic base+secant `69..71`, conic
 secant-only `72..74`, conic endpoint/duplicate-only `75..76`, and the

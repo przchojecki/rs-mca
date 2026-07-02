@@ -49,7 +49,8 @@ Keep entries concise and link to the relevant files.
   line-pencil closure, and a conic `e_G=103..108` three-private root-star Bezout
   closure,
   abstract incidence-only sharpness witnesses for every finite-incidence
-  one-over core, exact-current residual profiles, and a minimal obstruction
+  one-over core, exact-current residual profiles, a multi-saving closure
+  ledger for every exact-current unsafe residual row, and a minimal obstruction
   profile for the remaining finite-incidence rows, including a quotient
   obstruction catalog for every exact-current finite-incidence row, a
   quotient-pencil obstruction profile for the extremal line `e_G=72` branch,
@@ -89,7 +90,11 @@ Keep entries concise and link to the relevant files.
   split quotient-conic members of degrees `57..50` with the printed overlap
   ranges.  In the hardest conic `e_G=69` case, the `K6` and `K6`-minus-one
   secant-cover shapes must satisfy respectively `60` and `36` Pascal
-  collinearity relations among opposite external secants.
+  collinearity relations among opposite external secants.  The new
+  multi-saving ledger records the full remaining exact-current closure depth:
+  line cores `72..96` require `1..5` independent savings, while conic cores
+  `69..102` require up to `19`; conic cores `101,102` are controlled by the
+  cofactor-improved projective tangent envelope rather than pair-overlap.
 - **What to do next:** Focus remaining A386 work on algebraic endpoint
   payment, finite-slope collisions, quotient-fiber structure, or the larger
   middle quotient ranges.

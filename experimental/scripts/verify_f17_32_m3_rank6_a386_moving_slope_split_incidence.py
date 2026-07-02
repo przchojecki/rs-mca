@@ -20,7 +20,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v39"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v40"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -1250,6 +1250,124 @@ def tangent_tail_single_saving_closure_row(survival_row: dict[str, Any]) -> dict
             "cofactor-span obstruction excludes the seven-slope tangent-star saturation profile",
         ],
     }
+
+
+def exact_current_multi_saving_closure_rows(
+    component_type: str,
+    exact_current_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Savings ledger for every exact-current row still above projective budget."""
+    rows: list[dict[str, Any]] = []
+    for row in exact_current_rows:
+        if row["projective_safe"]:
+            continue
+        require(row["component_type"] == component_type, "component mismatch")
+        current_bound = row["current_projective_upper_bound"]
+        require(current_bound > PROJECTIVE_BUDGET, "unsafe row should exceed budget")
+        method = row["active_best_methods"]
+        require(len(method) == 1, "multi-saving ledger expects a unique active method")
+        if method[0].endswith(" plus endpoint"):
+            require(
+                row["incidence_or_pair_projective_bound"] == current_bound,
+                "incidence/pair-overlap rows should carry the current bound",
+            )
+            finite_source_bound: int | None = current_bound - 1
+            endpoint_counted: int | str = 1
+        else:
+            require(
+                method[0] == "cofactor-improved punctured projective tangent",
+                "unexpected non-endpoint exact-current residual method",
+            )
+            finite_source_bound = None
+            endpoint_counted = "included in projective tangent bound"
+        required_savings = current_bound - PROJECTIVE_BUDGET
+        require(required_savings >= 1, "unsafe row needs at least one saving")
+        if method[0] == "cofactor-improved punctured projective tangent":
+            saving_sources = [
+                "one projective tangent slope absent",
+                "one projective tangent slope paid by tangent, quotient, extension, or containment",
+                "two projective tangent source classes coalesce to one projective parameter",
+                "a stronger exact-agreement cofactor obstruction lowers the tangent envelope",
+            ]
+            residual_label = f"{component_type} punctured-tangent residual"
+        elif component_type == "line":
+            saving_sources = [
+                "one finite split Q-class absent or paid",
+                "one finite split Q-class coalesces with another finite slope",
+                "projective endpoint absent or paid",
+                "external/base incidence deficit beyond the current line envelope",
+            ]
+            residual_label = "line quotient-pencil residual"
+        else:
+            require(component_type == "irreducible_conic", "unknown component type")
+            saving_sources = [
+                "one finite split Q-class absent or paid",
+                "one finite split Q-class coalesces with another finite slope",
+                "projective endpoint absent or paid",
+                "external secant or base-root deficit beyond the current conic envelope",
+            ]
+            residual_label = "irreducible-conic quotient-family residual"
+        rows.append(
+            {
+                "component_type": component_type,
+                "forced_external_core_size": row["forced_external_core_size"],
+                "status": residual_label,
+                "active_best_method": method[0],
+                "current_projective_upper_bound": current_bound,
+                "finite_source_class_upper_bound": finite_source_bound,
+                "endpoint_counted_in_bound": endpoint_counted,
+                "projective_budget": PROJECTIVE_BUDGET,
+                "required_independent_savings_to_reach_budget": required_savings,
+                "sufficient_saving_sources": saving_sources,
+                "closure_criterion": (
+                    "If at least the stated number of independent counted "
+                    "parameters are removed, paid, or coalesced among the finite "
+                    "source classes and the projective endpoint, this exact-current "
+                    "row is projective-safe."
+                ),
+            }
+        )
+    return rows
+
+
+def consecutive_ranges(values: list[int]) -> list[list[int]]:
+    """Turn sorted integer values into inclusive consecutive ranges."""
+    if not values:
+        return []
+    sorted_values = sorted(values)
+    ranges: list[list[int]] = []
+    start = previous = sorted_values[0]
+    for value in sorted_values[1:]:
+        if value == previous + 1:
+            previous = value
+            continue
+        ranges.append([start, previous])
+        start = previous = value
+    ranges.append([start, previous])
+    return ranges
+
+
+def multi_saving_depth_groups(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Group exact-current residual rows by required saving depth."""
+    grouped: dict[tuple[str, int], list[int]] = {}
+    for row in rows:
+        key = (
+            row["component_type"],
+            row["required_independent_savings_to_reach_budget"],
+        )
+        grouped.setdefault(key, []).append(row["forced_external_core_size"])
+    result: list[dict[str, Any]] = []
+    for (component_type, saving_depth), cores in sorted(grouped.items()):
+        result.append(
+            {
+                "component_type": component_type,
+                "required_independent_savings_to_reach_budget": saving_depth,
+                "external_core_values": sorted(cores),
+                "external_core_ranges": consecutive_ranges(cores),
+                "core_count": len(cores),
+            }
+        )
+    return result
 
 
 def tangent_tail_projective_extremizer_row(
@@ -3280,6 +3398,18 @@ def build_certificate() -> dict[str, Any]:
     conic_exact_current_profile_groups = projective_bound_profile_groups(
         conic_exact_current_profile_rows
     )
+    line_multi_saving_closure_rows = exact_current_multi_saving_closure_rows(
+        "line",
+        line_exact_current_profile_rows,
+    )
+    conic_multi_saving_closure_rows = exact_current_multi_saving_closure_rows(
+        "irreducible_conic",
+        conic_exact_current_profile_rows,
+    )
+    multi_saving_closure_rows = (
+        line_multi_saving_closure_rows + conic_multi_saving_closure_rows
+    )
+    multi_saving_groups = multi_saving_depth_groups(multi_saving_closure_rows)
     line_incidence_only_sharpness_witnesses = [
         first_line_incidence_only_sharpness_witness(
             core,
@@ -3655,6 +3785,86 @@ def build_certificate() -> dict[str, Any]:
         conic_exact_current_profile_groups[-1]["external_core_range"] == [103, 120]
         and conic_exact_current_profile_groups[-1]["projective_safe"],
         "conic exact-current tail should be safe from e=103",
+    )
+    require(
+        [
+            (
+                row["forced_external_core_size"],
+                row["current_projective_upper_bound"],
+                row["finite_source_class_upper_bound"],
+                row["required_independent_savings_to_reach_budget"],
+            )
+            for row in line_multi_saving_closure_rows
+        ]
+        == [
+            *[(core, 7, 6, 1) for core in range(72, 81)],
+            *[(core, 8, 7, 2) for core in range(81, 87)],
+            *[(core, 9, 8, 3) for core in range(87, 92)],
+            *[(core, 10, 9, 4) for core in range(92, 95)],
+            *[(core, 11, 10, 5) for core in range(95, 97)],
+        ],
+        "line multi-saving closure ledger changed",
+    )
+    require(
+        [
+            (
+                row["forced_external_core_size"],
+                row["current_projective_upper_bound"],
+                row["finite_source_class_upper_bound"],
+                row["required_independent_savings_to_reach_budget"],
+            )
+            for row in conic_multi_saving_closure_rows
+        ]
+        == [
+            *[(core, 7, 6, 1) for core in range(69, 77)],
+            *[(core, 8, 7, 2) for core in range(77, 83)],
+            *[(core, 9, 8, 3) for core in range(83, 87)],
+            *[(core, 10, 9, 4) for core in range(87, 90)],
+            *[(core, 11, 10, 5) for core in range(90, 93)],
+            *[(core, 12, 11, 6) for core in range(93, 95)],
+            (95, 13, 12, 7),
+            (96, 14, 13, 8),
+            (97, 15, 14, 9),
+            (98, 16, 15, 10),
+            (99, 17, 16, 11),
+            (100, 20, 19, 14),
+            (101, 25, None, 19),
+            (102, 24, None, 18),
+        ],
+        "conic multi-saving closure ledger changed",
+    )
+    require(
+        [
+            (
+                row["component_type"],
+                row["required_independent_savings_to_reach_budget"],
+                row["external_core_ranges"],
+                row["core_count"],
+            )
+            for row in multi_saving_groups
+        ]
+        == [
+            ("irreducible_conic", 1, [[69, 76]], 8),
+            ("irreducible_conic", 2, [[77, 82]], 6),
+            ("irreducible_conic", 3, [[83, 86]], 4),
+            ("irreducible_conic", 4, [[87, 89]], 3),
+            ("irreducible_conic", 5, [[90, 92]], 3),
+            ("irreducible_conic", 6, [[93, 94]], 2),
+            ("irreducible_conic", 7, [[95, 95]], 1),
+            ("irreducible_conic", 8, [[96, 96]], 1),
+            ("irreducible_conic", 9, [[97, 97]], 1),
+            ("irreducible_conic", 10, [[98, 98]], 1),
+            ("irreducible_conic", 11, [[99, 99]], 1),
+            ("irreducible_conic", 14, [[100, 100]], 1),
+            ("irreducible_conic", 18, [[102, 102]], 1),
+            ("irreducible_conic", 19, [[101, 101]], 1),
+            ("line", 1, [[72, 80]], 9),
+            ("line", 2, [[81, 86]], 6),
+            ("line", 3, [[87, 91]], 5),
+            ("line", 4, [[92, 94]], 3),
+            ("line", 5, [[95, 96]], 2),
+        ],
+        "multi-saving depth groups changed",
     )
     require(
         line_incidence_one_over_cores == list(range(72, 81)),
@@ -4897,6 +5107,17 @@ def build_certificate() -> dict[str, Any]:
                 "punctured-tangent tail at core 120.  In each row, any one listed "
                 "saving lowers the projective count from 7 to the budget 6."
             ),
+            "multi_saving_closure_ledger": (
+                "The exact-current residual rows beyond the one-over frontier are "
+                "now listed in a multi-saving closure ledger.  For each line core "
+                "72..96 and conic core 69..102, the ledger records the current "
+                "projective upper bound, the finite source-class upper bound, and "
+                "the number of independent counted parameters that must be absent, "
+                "paid, or coalesced to reach the projective budget.  Line rows "
+                "need saving depths 1..5; conic rows need depths up to 19.  This "
+                "is not a closure, but it makes the remaining quotient-fiber target "
+                "row-local and checkable."
+            ),
             "exact_current_minimal_obstruction_profile": (
                 "After the exact-agreement tangent-tail closure, any remaining "
                 "projective over-budget witness must be an exact-current "
@@ -5062,6 +5283,8 @@ def build_certificate() -> dict[str, Any]:
             ),
         },
         "single_saving_closure_ledger": single_saving_closure_rows,
+        "exact_current_multi_saving_closure_ledger": multi_saving_closure_rows,
+        "exact_current_multi_saving_depth_groups": multi_saving_groups,
         "exact_current_minimal_obstruction_profile": exact_current_minimal_obstruction_rows,
         "one_over_mechanism_priority_ledger": mechanism_priority_rows,
         "punctured_tangent_tail_extremizer_profile": tangent_tail_extremizer_rows,
@@ -5373,6 +5596,45 @@ def build_certificate() -> dict[str, Any]:
                 "irreducible_conic_pair_overlap": [69, 76],
                 "punctured_tangent_tail": [120, 120],
             },
+            "exact_current_multi_saving_closure_ledger_count": len(
+                multi_saving_closure_rows
+            ),
+            "line_exact_current_multi_saving_row_count": len(
+                line_multi_saving_closure_rows
+            ),
+            "line_exact_current_multi_saving_max_required_savings": max(
+                row["required_independent_savings_to_reach_budget"]
+                for row in line_multi_saving_closure_rows
+            ),
+            "line_exact_current_multi_saving_depth_groups": [
+                {
+                    "required_independent_savings_to_reach_budget": row[
+                        "required_independent_savings_to_reach_budget"
+                    ],
+                    "external_core_ranges": row["external_core_ranges"],
+                    "core_count": row["core_count"],
+                }
+                for row in multi_saving_groups
+                if row["component_type"] == "line"
+            ],
+            "conic_exact_current_multi_saving_row_count": len(
+                conic_multi_saving_closure_rows
+            ),
+            "conic_exact_current_multi_saving_max_required_savings": max(
+                row["required_independent_savings_to_reach_budget"]
+                for row in conic_multi_saving_closure_rows
+            ),
+            "conic_exact_current_multi_saving_depth_groups": [
+                {
+                    "required_independent_savings_to_reach_budget": row[
+                        "required_independent_savings_to_reach_budget"
+                    ],
+                    "external_core_ranges": row["external_core_ranges"],
+                    "core_count": row["core_count"],
+                }
+                for row in multi_saving_groups
+                if row["component_type"] == "irreducible_conic"
+            ],
             "exact_current_minimal_obstruction_count": len(
                 exact_current_minimal_obstruction_rows
             ),
@@ -5448,6 +5710,7 @@ def build_certificate() -> dict[str, Any]:
             "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
             "abstract incidence-only sharpness witnesses are constructed for every finite-incidence one-over core",
             "every one-over moving-slope residual row has a single-saving closure ledger entry",
+            "every exact-current moving-slope residual row has a multi-saving closure ledger entry",
             "exact-current minimal obstruction profile requires six distinct finite slopes plus endpoint",
             "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
             "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction",
@@ -5494,6 +5757,11 @@ def print_summary(certificate: dict[str, Any]) -> None:
         "{conic_residual_projective_safe_after_exact_tail_for_external_core_at_least}".format(
             **summary
         )
+    )
+    print(
+        "exact-current residual savings: line max "
+        "{line_exact_current_multi_saving_max_required_savings}, conic max "
+        "{conic_exact_current_multi_saving_max_required_savings}".format(**summary)
     )
 
 

@@ -309,8 +309,8 @@ core `|E|=120` is projective-safe, and the largest conic projective bound drops
 from `26` to `25`.
 
 The cofactor-current tangent tail is also sharpened after imposing exact
-agreement.  It closes line cores `103<=|E|<=119` and conic cores
-`109<=|E|<=119`.  Put `r'=126-|E|`.  If seven projective slopes survived,
+agreement.  It closes line cores `97<=|E|<=119` and conic cores
+`103<=|E|<=119`.  Put `r'=126-|E|`.  If seven projective slopes survived,
 choose a nonbad projective point as infinity, so the seven bad points become
 finite on the punctured row.
 
@@ -533,6 +533,16 @@ source classes, must keep all six finite slopes distinct, and must keep the
 projective endpoint unpaid.  The profile attaches the saturated base-root,
 external-slack, and secant-overlap conditions for each row, so the next proof
 step can target a concrete failure of this normal form.
+
+The packet also records a multi-saving closure ledger for every exact-current
+row still above budget.  Line cores `72..96` require saving depths `1..5`:
+`72..80`, `81..86`, `87..91`, `92..94`, and `95..96` require respectively
+`1,2,3,4,5` independent endpoint/finite-class savings.  Conic cores `69..102`
+require saving depths up to `19`; the last two cores `101,102` are controlled
+by the cofactor-improved projective tangent envelope rather than by the
+pair-overlap envelope.  This ledger is a closure criterion: if the listed
+number of counted projective parameters is removed, paid, or coalesced, the
+row is safe.  It does not prove those savings occur.
 
 The same ledger splits the next proof targets by first available mechanism:
 line base-splitting pressure remains only for `e_G=72..74`; line cores

@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v21"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v22"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v39",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v40",
 }
 
 
@@ -901,6 +901,124 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         "single-saving closure ledger core ranges",
     )
     require(
+        summary["exact_current_multi_saving_closure_ledger_count"] == 59
+        and summary["line_exact_current_multi_saving_row_count"] == 25
+        and summary["conic_exact_current_multi_saving_row_count"] == 34,
+        "multi-saving closure ledger counts",
+    )
+    require(
+        summary["line_exact_current_multi_saving_max_required_savings"] == 5
+        and summary["conic_exact_current_multi_saving_max_required_savings"] == 19,
+        "multi-saving closure maximum depths",
+    )
+    require(
+        summary["line_exact_current_multi_saving_depth_groups"]
+        == [
+            {
+                "required_independent_savings_to_reach_budget": 1,
+                "external_core_ranges": [[72, 80]],
+                "core_count": 9,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 2,
+                "external_core_ranges": [[81, 86]],
+                "core_count": 6,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 3,
+                "external_core_ranges": [[87, 91]],
+                "core_count": 5,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 4,
+                "external_core_ranges": [[92, 94]],
+                "core_count": 3,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 5,
+                "external_core_ranges": [[95, 96]],
+                "core_count": 2,
+            },
+        ],
+        "line multi-saving depth groups",
+    )
+    require(
+        summary["conic_exact_current_multi_saving_depth_groups"]
+        == [
+            {
+                "required_independent_savings_to_reach_budget": 1,
+                "external_core_ranges": [[69, 76]],
+                "core_count": 8,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 2,
+                "external_core_ranges": [[77, 82]],
+                "core_count": 6,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 3,
+                "external_core_ranges": [[83, 86]],
+                "core_count": 4,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 4,
+                "external_core_ranges": [[87, 89]],
+                "core_count": 3,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 5,
+                "external_core_ranges": [[90, 92]],
+                "core_count": 3,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 6,
+                "external_core_ranges": [[93, 94]],
+                "core_count": 2,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 7,
+                "external_core_ranges": [[95, 95]],
+                "core_count": 1,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 8,
+                "external_core_ranges": [[96, 96]],
+                "core_count": 1,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 9,
+                "external_core_ranges": [[97, 97]],
+                "core_count": 1,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 10,
+                "external_core_ranges": [[98, 98]],
+                "core_count": 1,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 11,
+                "external_core_ranges": [[99, 99]],
+                "core_count": 1,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 14,
+                "external_core_ranges": [[100, 100]],
+                "core_count": 1,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 18,
+                "external_core_ranges": [[102, 102]],
+                "core_count": 1,
+            },
+            {
+                "required_independent_savings_to_reach_budget": 19,
+                "external_core_ranges": [[101, 101]],
+                "core_count": 1,
+            },
+        ],
+        "conic multi-saving depth groups",
+    )
+    require(
         summary["one_over_mechanism_priority_classes"]
         == [
             {
@@ -1282,6 +1400,58 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         and summary["exact_current_minimal_obstruction_requires_unpaid_endpoint"],
         "exact-current minimal obstruction requirements mismatch",
     )
+    multi_saving = data["exact_current_multi_saving_closure_ledger"]
+    require(
+        [
+            (
+                row["component_type"],
+                row["forced_external_core_size"],
+                row["current_projective_upper_bound"],
+                row["required_independent_savings_to_reach_budget"],
+            )
+            for row in multi_saving[:25]
+        ]
+        == [
+            *[("line", core, 7, 1) for core in range(72, 81)],
+            *[("line", core, 8, 2) for core in range(81, 87)],
+            *[("line", core, 9, 3) for core in range(87, 92)],
+            *[("line", core, 10, 4) for core in range(92, 95)],
+            *[("line", core, 11, 5) for core in range(95, 97)],
+        ],
+        "line multi-saving ledger rows",
+    )
+    require(
+        [
+            (
+                row["forced_external_core_size"],
+                row["current_projective_upper_bound"],
+                row["finite_source_class_upper_bound"],
+                row["endpoint_counted_in_bound"],
+                row["active_best_method"],
+            )
+            for row in multi_saving
+            if row["component_type"] == "irreducible_conic"
+            and row["forced_external_core_size"] in {100, 101, 102}
+        ]
+        == [
+            (100, 20, 19, 1, "pair-overlap packing plus endpoint"),
+            (
+                101,
+                25,
+                None,
+                "included in projective tangent bound",
+                "cofactor-improved punctured projective tangent",
+            ),
+            (
+                102,
+                24,
+                None,
+                "included in projective tangent bound",
+                "cofactor-improved punctured projective tangent",
+            ),
+        ],
+        "high conic multi-saving ledger method split",
+    )
     minimal = data["exact_current_minimal_obstruction_profile"]
     require(
         [
@@ -1481,6 +1651,7 @@ def build_certificate() -> dict[str, Any]:
                 "the endpoint-only one-over finite-incidence range has a compact exact catalog: line histogram counts 2,16,27,28^6 across e_G=72..80 and conic counts 2,16,27,28^5 across e_G=69..76",
                 "abstract incidence-only sharpness witnesses exist for every finite-incidence one-over core, so those rows cannot be closed by sharpening only the current incidence and pair-overlap axioms",
                 "the cofactor-current moving-slope one-over residual rows have a single-saving closure ledger entry: line e_G=72..80, conic e_G=69..76, and the punctured-tangent tail e_G=120",
+                "the exact-current moving-slope residual rows have a multi-saving closure ledger: line e_G=72..96 requires saving depth 1..5, while conic e_G=69..102 requires saving depth up to 19, with e_G=101..102 controlled by the cofactor-improved tangent envelope",
                 "after exact-tail closure, the remaining over-budget normal form has exactly 17 finite-incidence rows, each requiring six distinct finite slopes plus an unpaid endpoint",
                 "the finite-incidence one-over rows split by first available saving mechanism into line base-active 72..74, line external-slack 75..80, conic base+secant 69..71, conic secant-only 72..74, and conic endpoint/duplicate-only 75..76; the punctured-tangent tail e_G=120, line e_G=97..119, and conic e_G=103..119 are now closed by cofactor-span, exact-agreement, K4 determinant, three-private root-star, and four-private line-pencil arguments",
             ],
