@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Paper D v12 transport-scope audit
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/audits/cs25_v12_transport_scope_audit.md`;
+  `experimental/scripts/verify_cs25_v12_transport_scope.py`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.  Exact deployed arithmetic and small-field algebra check;
+  no theorem-chain promotion.
+- **What is being added:** A verifier and note for the circle/stereographic
+  and genus-one transport gates: Mersenne-31 standard-position dyadic scales,
+  field-of-definition split for `i`, stereographic model algebra on exhaustive
+  small fields, deployed circle line-round and bivariate-circle arithmetic,
+  the no-`i` stereographic rational-floor gate, and genus-one rational-floor
+  boundary inequalities.
+- **How it is useful:** Addresses the fourth current Paper D v12 audit
+  priority in `agents.md`, checking that the compact transport claims match
+  the deployed code-model arithmetic and certificate assumptions.
+- **What to do next:** Continue the v12 audit with proof-status hygiene:
+  isolate any remaining "verified exactly" claims without a replay path, or
+  audit the profile/explicit-witness constants.
+
 ### 2026-07-02 - Towards-prize v3 cap-package constant audit
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
