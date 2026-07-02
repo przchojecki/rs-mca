@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v18"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v19"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v36",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v37",
 }
 
 
@@ -333,7 +333,7 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         "conic cofactor tail threshold mismatch",
     )
     require(
-        summary["line_remaining_unclosed_external_core_range"] == [72, 108],
+        summary["line_remaining_unclosed_external_core_range"] == [72, 102],
         "line unclosed core range mismatch",
     )
     require(
@@ -348,6 +348,13 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         and summary["conic_k4_tail_closure_determinant"] == "prod_{0<=i<j<=3}(x_j-x_i)^2"
         and summary["conic_k4_tail_closure_closes_branch"],
         "conic signed-edge boundary summary mismatch",
+    )
+    require(
+        summary["conic_three_private_tail_boundary_core_range"] == [103, 108]
+        and summary["conic_three_private_tail_boundary_rank_counts"] == {"5": 85, "6": 125}
+        and summary["conic_three_private_tail_boundary_dependent_count"] == 85
+        and not summary["conic_three_private_tail_boundary_closes_branch"],
+        "conic three-private boundary summary mismatch",
     )
     require(
         summary["line_one_over_budget_external_core_ranges"] == [[72, 80], [120, 120]],
@@ -1004,7 +1011,7 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         "conic cofactor profile should make e=120 safe",
     )
     require(
-        summary["line_remaining_unclosed_external_core_range"] == [72, 108],
+        summary["line_remaining_unclosed_external_core_range"] == [72, 102],
         "line remaining range after exact tail closure",
     )
     require(
@@ -1044,7 +1051,7 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         "conic e=119 should be one-over in the cofactor-current profile",
     )
     require(
-        summary["line_residual_projective_safe_after_exact_tail_for_external_core_at_least"] == 109
+        summary["line_residual_projective_safe_after_exact_tail_for_external_core_at_least"] == 103
         and summary["conic_residual_projective_safe_after_exact_tail_for_external_core_at_least"] == 109,
         "exact-tail safe threshold mismatch",
     )
@@ -1054,7 +1061,7 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         "exact-current one-over profile mismatch",
     )
     require(
-        summary["line_exact_current_safe_external_core_ranges"] == [[109, 120]]
+        summary["line_exact_current_safe_external_core_ranges"] == [[103, 120]]
         and summary["conic_exact_current_safe_external_core_ranges"] == [[109, 120]],
         "exact-current safe tail mismatch",
     )
@@ -1063,9 +1070,9 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         [
             row["forced_external_core_size"]
             for row in exact_current["line_rows"]
-            if row["projective_safe"] and row["forced_external_core_size"] >= 109
+            if row["projective_safe"] and row["forced_external_core_size"] >= 103
         ]
-        == list(range(109, 121)),
+        == list(range(103, 121)),
         "line exact-current safe tail rows changed",
     )
     require(
@@ -1088,7 +1095,12 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
                 row["finite_component_cofactor_span_dimension_at_least"],
                 row["private_rank_obstruction"]["branch"],
                 (
-                    row["private_rank_obstruction"]["rank_capacity_check"]["max_edges"]
+                    row["private_rank_obstruction"]["rank_capacity_check"].get(
+                        "max_edges",
+                        row["private_rank_obstruction"]["rank_capacity_check"].get(
+                            "max_three_private_cofactors"
+                        ),
+                    )
                     if row["private_rank_obstruction"]["rank_capacity_check"] is not None
                     else None
                 ),
@@ -1101,14 +1113,36 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
                     "line",
                     core,
                     6,
-                    2 if core <= 114 else 1,
-                    3 if core <= 114 else 6,
-                    "two_private_coordinate_signed_edge"
-                    if core <= 114
-                    else "one_private_coordinate",
-                    3 if core <= 114 else None,
+                    3,
+                    3,
+                    "three_private_coordinate_pair_quadratic",
+                    4,
                 )
-                for core in range(109, 120)
+                for core in range(103, 109)
+            ],
+            *[
+                (
+                    "line",
+                    core,
+                    6,
+                    2,
+                    3,
+                    "two_private_coordinate_signed_edge",
+                    3,
+                )
+                for core in range(109, 115)
+            ],
+            *[
+                (
+                    "line",
+                    core,
+                    6,
+                    1,
+                    6,
+                    "one_private_coordinate",
+                    None,
+                )
+                for core in range(115, 120)
             ],
             *[
                 (
@@ -1186,6 +1220,40 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
             for core in range(109, 115)
         ],
         "conic K4 tail closure rows mismatch",
+    )
+    conic_three_private_boundary = data["conic_three_private_tail_boundary_profile"]
+    require(
+        [
+            (
+                row["forced_external_core_size"],
+                row["punctured_cosupport_radius"],
+                row["surviving_branch"],
+                max(row["private_coordinate_count_options"]),
+                row["signed_rank_lower_bound"],
+                row["pair_quadratic_conic_rank_distribution"][
+                    "rank_counts_for_six_subsets"
+                ],
+                row["pair_quadratic_conic_rank_distribution"][
+                    "dependent_six_subset_count"
+                ],
+                row["closes_branch"],
+            )
+            for row in conic_three_private_boundary
+        ]
+        == [
+            (
+                core,
+                126 - core,
+                "d_equals_r_plus_3_three_private_coordinates",
+                3,
+                3,
+                {"5": 85, "6": 125},
+                85,
+                False,
+            )
+            for core in range(103, 109)
+        ],
+        "conic three-private tail boundary rows mismatch",
     )
     require(
         summary["exact_current_minimal_obstruction_count"] == 17
@@ -1380,9 +1448,11 @@ def build_certificate() -> dict[str, Any]:
                 "after puncturing the forced core, the projective tangent staircase closes the tail e_G>=121",
                 "the e_G=120 punctured-tangent tail is closed by a cofactor-span obstruction: at least six tangent-star cofactors must be finite component classes and are independent, but the fixed-core quotient family has vector dimension at most 2 or 3",
                 "the generalized cofactor-span top-saturation exclusion improves the high-core tangent tail bound from r'+1 to r', making e_G=119 the next cofactor-current one-over tangent-tail core and e_G>=120 projective-safe",
-                "the exact-agreement residual-budget split closes the cofactor-current tangent tail e_G=109..119 for lines and e_G=115..119 for irreducible conics by cofactor rank; the d=r'+2 two-private-coordinate signed-edge branch closes lines and reduces conics e_G=109..114 to a K4 boundary",
+                "the exact-agreement residual-budget split closes the cofactor-current tangent tail e_G=103..119 for lines and e_G=115..119 for irreducible conics by cofactor rank; the d=r'+3 three-private-coordinate branch closes lines e_G=103..108 because six such cofactors span at least dimension 3",
+                "the d=r'+2 two-private-coordinate signed-edge branch closes lines and reduces conics e_G=109..114 to a K4 boundary",
                 "the K4 conic boundary is also closed: after the common residual core is factored, the six finite members become the six pair quadratics from four residual coordinates, and the determinant of their conic-evaluation matrix is prod_{i<j}(x_j-x_i)^2",
-                "the still-unclosed high-core quotient ranges are e_G=72..108 for lines and e_G=69..108 for irreducible conics",
+                "the conic d=r'+3 branch e_G=103..108 reduces to a six-of-ten pair-quadratic boundary on five residual coordinates with 85 dependent and 125 independent six-subsets over characteristic 17; this is recorded as a boundary profile, not a closure",
+                "the still-unclosed high-core quotient ranges are e_G=72..102 for lines and e_G=69..108 for irreducible conics",
                 "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; after exact-tail sharpening the worst projective bounds are 18 and 25",
                 "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the formerly one-over e_G=120 cases are closed by the cofactor-span contradiction",
                 "a genuine over-budget one-over witness must also have six distinct finite slopes and an unpaid endpoint; the strongest remaining pressure is line e_G=72 base splitting and conic e_G=69 almost-complete secants",
@@ -1399,7 +1469,7 @@ def build_certificate() -> dict[str, Any]:
                 "abstract incidence-only sharpness witnesses exist for every finite-incidence one-over core, so those rows cannot be closed by sharpening only the current incidence and pair-overlap axioms",
                 "the cofactor-current moving-slope one-over residual rows have a single-saving closure ledger entry: line e_G=72..80, conic e_G=69..76, and the punctured-tangent tail e_G=120",
                 "after exact-tail closure, the remaining over-budget normal form has exactly 17 finite-incidence rows, each requiring six distinct finite slopes plus an unpaid endpoint",
-                "the finite-incidence one-over rows split by first available saving mechanism into line base-active 72..74, line external-slack 75..80, conic base+secant 69..71, conic secant-only 72..74, and conic endpoint/duplicate-only 75..76; the punctured-tangent tails e_G=120 and line/conic e_G=109..119 are now closed by cofactor-span, exact-agreement, and K4 determinant arguments",
+                "the finite-incidence one-over rows split by first available saving mechanism into line base-active 72..74, line external-slack 75..80, conic base+secant 69..71, conic secant-only 72..74, and conic endpoint/duplicate-only 75..76; the punctured-tangent tail e_G=120, line e_G=103..119, and conic e_G=109..119 are now closed by cofactor-span, exact-agreement, and K4 determinant arguments",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",
@@ -1430,7 +1500,7 @@ def build_certificate() -> dict[str, Any]:
             "still_requires_m5_or_other_ledgers": [
                 "rank-deficient finite regular buckets not covered by a paid family",
                 "non-proportional direction-rank-6 buckets when the projective endpoint is not empty or paid and the 6x6 compressed exact finite root table has six surviving roots",
-                "the remaining A=386 separated moving-slope intermediate high-core quotient branches e_G=72..108 for lines and e_G=69..108 for irreducible conics",
+                "the remaining A=386 separated moving-slope intermediate high-core quotient branches e_G=72..102 for lines and e_G=69..108 for irreducible conics",
                 "non-proportional finite buckets with direction rank > 6 unless exact root tables plus kernel filters improve the bound",
                 "quotient, quotient-image, extension, and subfield overlap for future non-proportional root tables",
             ],

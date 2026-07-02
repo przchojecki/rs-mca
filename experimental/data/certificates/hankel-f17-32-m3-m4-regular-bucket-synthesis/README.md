@@ -251,19 +251,17 @@ tangent bound `r'+1` is impossible whenever `r'` exceeds this quotient-family
 dimension, so the cofactor-improved tangent bound is `r'`; `e_G=119` is the
 next cofactor-current one-over tangent-tail core and `e_G>=120` is
 projective-safe.  Exact-agreement residual-budget splitting closes the
-cofactor-current tangent tail `e_G=109..119` for lines and `e_G=115..119` for
-irreducible conics.  For `r'=126-e_G<=17`, seven projective slopes force at
-most two private residual coordinates beyond the common support.  The cases
-`d<r'`, `d=r'`, and `d=r'+1` are respectively higher-agreement,
-same-support-contained at exact `A`, or incompatible with the `2`- or
-`3`-dimensional quotient family by cofactor independence.  In the new
-`d=r'+2` branch, six finite cofactors become six two-supported signed-edge
-vectors.  Their span has rank at least `3`, which closes the line case but is
-a conic boundary by dimension alone: any conic survivor in `e_G=109..114`
-must use all six edges of a `K4` on four residual coordinates.  The `K4`
-boundary is closed by the pair-quadratic determinant
-`prod_{i<j}(x_j-x_i)^2`, so the remaining unclosed intermediate ranges are
-`72<=e_G<=108` for lines and `69<=e_G<=108` for irreducible conics.
+cofactor-current tangent tail `e_G=103..119` for lines and `e_G=109..119` for
+irreducible conics.  The `d=r'+3` three-private branch closes line cores
+`103..108` because six such cofactors span dimension at least `3`, exceeding
+the line quotient-family dimension `2`.  The `d=r'+2` two-private branch
+closes lines and reduces conics `109..114` to a K4 boundary; the latter is
+closed by the pair-quadratic determinant `prod_{i<j}(x_j-x_i)^2`.  Conic cores
+`103..108` remain a recorded boundary profile: six selected pair quadratics
+among the ten pairs of five residual coordinates have rank distribution
+`85` dependent and `125` independent six-subsets over characteristic `17`.
+Thus the remaining unclosed intermediate ranges are `72<=e_G<=102` for lines
+and `69<=e_G<=108` for irreducible conics.
 The exact-current residual profile has live one-over ranges line
 `e_G=72..80` and irreducible conic `e_G=69..76`; the largest conic projective
 bound drops from `26` to `25`.
@@ -319,7 +317,8 @@ The packet also records a single-saving closure ledger for all cofactor-current
 one-over moving-slope residual rows: line `e_G=72..80`, conic `e_G=69..76`,
 and the line/conic punctured-tangent tail at `e_G=120`.  The subsequent
 exact-agreement filter closes the cofactor-current tangent-tail rows
-`e_G=109..119` for both lines and conics.
+line `e_G=103..119` and conic `e_G=109..119`, while conic `e_G=103..108`
+is retained as the three-private pair-quadratic boundary profile.
 The exact-current rows are also recorded as a minimal obstruction profile:
 any remaining over-budget witness must be one of the line cores `72..80` or
 conic cores `69..76`, with exactly six finite source classes, six distinct
