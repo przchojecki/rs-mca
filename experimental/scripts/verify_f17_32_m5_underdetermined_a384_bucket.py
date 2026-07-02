@@ -14,7 +14,8 @@ A=384 is the MAXIMAL underdetermined agreement: t = j = 128, the matrix is
 and kernel-nonemptiness certifies nothing.  This script identifies that bucket
 exactly, demonstrates the regular/underdetermined dichotomy over a toy field,
 checks the deficiency-1 Cramer kernel vector, and verifies the rank-drop
-split-locator deduplication lemma on a finite toy subgroup.
+split-locator deduplication lemma and top-chart divisibility filter on finite
+toy subgroups.
 
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
@@ -116,12 +117,63 @@ def poly_mul_mod_p(a, b, p):
     return out
 
 
+def poly_trim(poly):
+    out = [x for x in poly]
+    while out and out[-1] == 0:
+        out.pop()
+    return out or [0]
+
+
+def poly_divmod_mod_p(numer, denom, p):
+    """Return quotient, remainder for low-to-high polynomials over F_p."""
+    numer = poly_trim([x % p for x in numer])
+    denom = poly_trim([x % p for x in denom])
+    if denom == [0]:
+        raise ZeroDivisionError("zero polynomial")
+    if len(numer) < len(denom):
+        return [0], numer
+    rem = numer[:]
+    quot = [0] * (len(numer) - len(denom) + 1)
+    inv_lc = pow(denom[-1], -1, p)
+    while len(rem) >= len(denom) and rem != [0]:
+        shift = len(rem) - len(denom)
+        coeff = rem[-1] * inv_lc % p
+        quot[shift] = coeff
+        for i, di in enumerate(denom):
+            rem[shift + i] = (rem[shift + i] - coeff * di) % p
+        rem = poly_trim(rem)
+    return poly_trim(quot), rem
+
+
 def locator_poly(roots, p):
     """Low-to-high coefficients of prod_{r in roots} (X-r)."""
     poly = [1]
     for r in roots:
         poly = poly_mul_mod_p(poly, [(-r) % p, 1], p)
     return poly
+
+
+def divides_x_order_minus_one(poly, order, p):
+    target = [(-1) % p] + [0] * (order - 1) + [1]
+    _, rem = poly_divmod_mod_p(target, poly, p)
+    return rem == [0]
+
+
+def split_roots_in_domain(poly, domain, expected_degree, p):
+    poly = poly_trim(poly)
+    if len(poly) - 1 != expected_degree or poly[-1] == 0:
+        return False
+    roots = [x for x in domain if eval_poly_mod_p(poly, x, p) == 0]
+    return len(roots) == expected_degree
+
+
+def eval_poly_mod_p(poly, x, p):
+    value = 0
+    power = 1
+    for coeff in poly:
+        value = (value + coeff * power) % p
+        power = (power * x) % p
+    return value
 
 
 def moments_from_support(roots, weights, length, p):
@@ -293,6 +345,63 @@ def check_rankdrop_split_locator_dedup():
     return ok, d
 
 
+def check_top_chart_splitting_filter():
+    """Top-chart locator validity equals divisibility by X^|H|-1.
+
+    In a full-row-rank deficiency-one chart, the Cramer vector spans the unique
+    kernel.  If its top coefficient is nonzero, it gives a degree-j locator.
+    Since H is the full root set of X^|H|-1 and char does not divide |H|, this
+    locator is valid exactly when it divides X^|H|-1.
+    """
+    ok = True
+    d = []
+
+    p = 13
+    h = list(range(1, p))
+    u = [1, 2, 3, 4, 5, 6, 7, 8]
+    v = [8, 1, 5, 2, 9, 3, 7, 4]
+    j = 4
+    top = split = non_split = 0
+    mismatches = []
+    for z in range(p):
+        s = [(a + z * b) % p for a, b in zip(u, v)]
+        m = hankel(s, j, j)
+        rank, _ = rank_and_kernel_mod_p(m, p)
+        c = cramer_vector(m, p)
+        if rank == j and c[-1] != 0:
+            top += 1
+            by_roots = split_roots_in_domain(c, h, j, p)
+            by_division = divides_x_order_minus_one(c, len(h), p)
+            split += int(by_roots)
+            non_split += int(not by_roots)
+            if by_roots != by_division:
+                mismatches.append((z, c, by_roots, by_division))
+    ok &= top > 0 and not mismatches
+    d.append(f"F_{p} toy pencil: checked {top} full-rank top-chart slopes; "
+             f"split={split}, non-split={non_split}, divisibility mismatches={len(mismatches)}")
+
+    p2 = 97
+    h2 = subgroup_of_order(p2, 8)
+    positive_cases = 0
+    for roots in combinations(h2, j):
+        roots = list(roots)
+        weights = [(19 + 5 * i) % p2 for i in range(j)]
+        window = moments_from_support(roots, weights, 2 * j, p2)
+        m = hankel(window, j, j)
+        rank, _ = rank_and_kernel_mod_p(m, p2)
+        c = cramer_vector(m, p2)
+        top_chart = rank == j and c[-1] != 0
+        by_roots = split_roots_in_domain(c, h2, j, p2)
+        by_division = divides_x_order_minus_one(c, len(h2), p2)
+        ok &= top_chart and by_roots and by_division and mat_vec_zero(m, c, p2)
+        positive_cases += 1
+    d.append(f"F_{p2} planted split top-chart cases: verified {positive_cases} "
+             f"degree-{j} locators divide X^{len(h2)}-1 and are Cramer kernels")
+    d.append("top-chart conclusion: valid split locator <=> Cramer locator divides X^|H|-1; "
+             "otherwise the slope is not exact-A bad on this chart")
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop turn"]
 
@@ -302,7 +411,7 @@ CHECKS = [
     ("toy dichotomy: underdetermined vs regular",         check_toy_dichotomy),
     ("deficiency-1 kernel = Cramer minor vector",         check_cramer_kernel_vector),
     ("rank-drop split locators dedupe to higher A",       check_rankdrop_split_locator_dedup),
-    ("pivot chart + splitting filter (X^n - 1)",          _pending),
+    ("pivot chart + splitting filter (X^n - 1)",          check_top_chart_splitting_filter),
     ("eliminant or certified residual obstruction",       _pending),
     ("packet emission + v1 schema validation",            _pending),
 ]

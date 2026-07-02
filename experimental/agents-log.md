@@ -122,13 +122,15 @@ Keep entries concise and link to the relevant files.
   valid degree-`j` split locator has a lower-degree active-root locator in the
   same kernel, hence is charged to a higher-agreement bucket rather than counted
   as new exact-`A` mass.  The script adds exact toy checks for the Cramer kernel
-  vector and the rank-drop deduplication mechanism.
+  vector, the rank-drop deduplication mechanism, and the top-chart
+  divisibility filter `L_z | X^n-1`.
 - **How it is useful:** This removes the valid-split rank-drop side branch from
-  the first underdetermined M5 bucket, leaving the full-rank top
-  pseudo-remainder root table as the remaining finite branch to attack.
-- **What to do next:** Close or label the top-chart divisibility/eliminant
-  branch in a separate small PR, or pivot to the roadmap evidence program if
-  that is the current coordination priority.
+  the first underdetermined M5 bucket and makes the full-rank top chart a
+  precise pseudo-remainder problem; the top pseudo-remainder root table is the
+  remaining finite branch to attack.
+- **What to do next:** Close or label the top-chart pseudo-remainder root-table
+  branch in a later increment, or pivot to the roadmap evidence program if that
+  is the current coordination priority.
 
 ### 2026-07-02 - PR sweep: G3 toy evidence, v12 audits, and M5 A384 atlas
 
