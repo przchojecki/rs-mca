@@ -1,12 +1,13 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 9: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 10: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
   the real `A=384` row are done; the `F_97` acid test now independently
-  enumerates all degree-four subgroup locators on three pinned toy families).
-  No threshold, safety, or worst-case row claim is made.
+  enumerates all degree-four subgroup locators on three pinned toy families;
+  the first declared `F_17^32` planted top-chart packet is emitted). No
+  threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
   regular window `385 <= A <= 426`, synthetic rank ladders and kernel charts):
@@ -123,7 +124,8 @@ belongs.
 | 5c | abstract subgroup-divisibility gate specialized to real `A=384` | **done** |
 | 5d | chart-reduction theorem: rank-drop / low-degree / top pseudo-remainder | **done** |
 | 5e | independent `F_97` acid test: direct locator enumeration equals chart prediction | **done** |
-| 5f | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/` for a declared `F_17^32` family | pending |
+| 5f | first declared `F_17^32` planted top-chart packet | **done** |
+| 5g | full `F_17^32` root-table packet for rank-drop / low-degree / top charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -366,6 +368,50 @@ rank-drop slope is decided by direct finite locator enumeration as empty.  This
 is the acid-test layer requested in the WP-2.6 detail note: the chart machinery
 is checked against a direct enumeration that does not use Cramer minors or
 pseudo-remainder gcds.
+
+### Verified in turn 10
+
+**U10, first declared `F_17^32` planted top-chart packet.** The verifier now
+emits and replays
+
+```text
+experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/
+  f17_32_n512_k256_a384_planted_top_chart.json
+```
+
+using the pinned row descriptor
+
+```text
+experimental/data/certificates/hankel-f17-32-row-descriptor/
+  f17_32_n512_k256_hankel_row_descriptor.json
+```
+
+Construction:
+
+```text
+T = first 128 descriptor-domain roots h_0,...,h_127;
+L(X)=prod_{r=0}^{127}(X-h_r), so deg L=128 and L | X^512-1;
+S_m = sum_{r=0}^{127} h_r^m, 0<=m<256;
+v_m = m+2 in the embedded base field;
+u_m = S_m - z0 v_m, with z0 = h_1.
+```
+
+At the planted finite slope `z0`, the pencil window `u+z0*v` equals `S`, and
+the Hankel recurrence check gives
+
+```text
+sum_i L_i S_{r+i}=0, 0<=r<128.
+```
+
+The rank/top-chart certificate is structural: the leading coefficient of `L`
+is `1`, and the `128 x 128` moment block factors as `V diag(1) V^T` for the
+Vandermonde matrix on 128 distinct descriptor-domain roots.  Thus the planted
+slope is a genuine top-chart slope with a valid degree-128 split locator.
+
+This packet still does not count roots over `F_17^32`.  It is the first
+replayable real-row instantiation of the M5 deficiency-one chart, meant to
+bridge the toy acid test to later rank-drop / low-degree / top root-table
+packets.
 
 ## Honest scope
 

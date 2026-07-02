@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 F17 planted top chart
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  No threshold or worst-case row
+  claim.
+- **What is being added:** Turn 10 of the `A=384` underdetermined M5 packet:
+  a declared `F_17^32` planted top-chart family.  The packet constructs a
+  degree-128 locator from the first 128 descriptor-domain roots, generates the
+  annihilated moment window, and verifies a nonconstant syndrome pencil hits it
+  at a planted finite slope.
+- **How it is useful:** Provides the first replayable real-row instantiation
+  of the M5 deficiency-one chart, bridging the `F_97` acid tests to later
+  `F_17^32` root-table packets.
+- **What to do next:** Count or label the rank-drop, low-degree, and top
+  pseudo-remainder charts for declared `F_17^32` families.
+
 ### 2026-07-02 - M5 A384 F97 acid test
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

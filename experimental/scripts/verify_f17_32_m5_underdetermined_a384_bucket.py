@@ -50,6 +50,11 @@ compare the direct bad-slope set with the chart prediction on three pinned toy
 families (generic empty top chart, singleton valid top chart, side-chart
 routing with one low-degree and one rank-drop slope).
 
+Turn 10 adds the first declared F_17^32 family packet: a planted top-chart
+slope at A=384.  It constructs a degree-128 locator from the first 128
+descriptor-domain roots, generates the annihilated moment window, and verifies
+that a nonconstant syndrome pencil hits that window at a planted finite slope.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -61,14 +66,25 @@ import json
 from hashlib import sha256
 from pathlib import Path
 
+from emit_f17_32_hankel_row_descriptor import Field as F17Field
+
 Q = 17 ** 32          # q_line = |F|
 TWO128 = 2 ** 128
 N, K = 512, 256
 A_STAR = 384          # the maximal underdetermined exact agreement
 TOY_PACKET_SCHEMA = "f97-mu16-m5-a384-deficiency-one-toy-u1-u5-v1"
+F17_PACKET_SCHEMA = "f17-32-m5-a384-planted-top-chart-v1"
 DEFAULT_TOY_PACKET = Path(
     "experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/"
     "f97_mu16_n16_k8_a12_m5_deficiency_one_toy_u1_u5.json"
+)
+ROW_DESCRIPTOR_REF = Path(
+    "experimental/data/certificates/hankel-f17-32-row-descriptor/"
+    "f17_32_n512_k256_hankel_row_descriptor.json"
+)
+DEFAULT_F17_PACKET = Path(
+    "experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/"
+    "f17_32_n512_k256_a384_planted_top_chart.json"
 )
 
 
@@ -220,6 +236,10 @@ def hash_json_value(value):
     return sha256(payload).hexdigest()
 
 
+def tagged_hash(value):
+    return "sha256:" + hash_json_value(value)
+
+
 def v_adic(value: int, prime: int) -> int:
     exponent = 0
     while value % prime == 0 and value:
@@ -250,6 +270,42 @@ def poly_from_roots_mod(roots, p):
     for root in roots:
         poly = poly_mul_mod(poly, [(-root) % p, 1], p)
     return poly
+
+
+def f17_add(field: F17Field, left, right):
+    return tuple((a + b) % field.p for a, b in zip(left, right))
+
+
+def f17_sub(field: F17Field, left, right):
+    return tuple((a - b) % field.p for a, b in zip(left, right))
+
+
+def f17_neg(field: F17Field, value):
+    return tuple((-a) % field.p for a in value)
+
+
+def f17_poly_mul(field: F17Field, left, right):
+    zero = field.zero
+    out = [zero] * (len(left) + len(right) - 1)
+    for i, a_i in enumerate(left):
+        if a_i == zero:
+            continue
+        for j, b_j in enumerate(right):
+            if b_j == zero:
+                continue
+            out[i + j] = f17_add(field, out[i + j], field.mul(a_i, b_j))
+    return out
+
+
+def f17_poly_eval(field: F17Field, poly, value):
+    acc = field.zero
+    for coeff in reversed(poly):
+        acc = f17_add(field, field.mul(acc, value), coeff)
+    return acc
+
+
+def f17_encodings(field: F17Field, values):
+    return [field.encode(value) for value in values]
 
 
 def poly_divmod_mod(a, b, p):
@@ -855,6 +911,186 @@ def check_toy_acid_test_bruteforce():
     return ok, d
 
 
+def f17_planted_top_chart_payload():
+    """Deterministic declared F_17^32 A=384 planted top-chart family."""
+    descriptor = json.loads(ROW_DESCRIPTOR_REF.read_text(encoding="utf-8"))
+    field = F17Field(
+        descriptor["field_model"]["p"],
+        descriptor["field_model"]["modulus"],
+    )
+    domain = [field.decode(value) for value in descriptor["domain"]["domain_encodings"]]
+    support = domain[:128]
+
+    locator = [field.one]
+    for root in support:
+        locator = f17_poly_mul(field, locator, [f17_neg(field, root), field.one])
+
+    powers = [field.one] * len(support)
+    moments = []
+    for _ in range(256):
+        acc = field.zero
+        for value in powers:
+            acc = f17_add(field, acc, value)
+        moments.append(acc)
+        powers = [field.mul(value, root) for value, root in zip(powers, support)]
+
+    recurrence_residuals = []
+    for row in range(128):
+        acc = field.zero
+        for index, coeff in enumerate(locator):
+            acc = f17_add(field, acc, field.mul(coeff, moments[row + index]))
+        recurrence_residuals.append(acc)
+
+    planted_slope = domain[1]
+    v_window = [field.decode(index + 2) for index in range(256)]
+    u_window = [
+        f17_sub(field, moments[index], field.mul(planted_slope, v_window[index]))
+        for index in range(256)
+    ]
+    recombined = [
+        f17_add(field, u_window[index], field.mul(planted_slope, v_window[index]))
+        for index in range(256)
+    ]
+
+    locator_encodings = f17_encodings(field, locator)
+    support_encodings = f17_encodings(field, support)
+    moment_encodings = f17_encodings(field, moments)
+    u_encodings = f17_encodings(field, u_window)
+    v_encodings = f17_encodings(field, v_window)
+    residual_encodings = f17_encodings(field, recurrence_residuals)
+    locator_values_on_support = f17_encodings(
+        field,
+        [f17_poly_eval(field, locator, root) for root in support],
+    )
+
+    return {
+        "row_descriptor_hash": tagged_hash(descriptor),
+        "domain_hash": descriptor["row"]["domain_hash"],
+        "support_indices": list(range(128)),
+        "support_encodings_hash": tagged_hash(support_encodings),
+        "locator_degree": len(locator) - 1,
+        "locator_leading_coefficient": field.encode(locator[-1]),
+        "locator_coefficients_hash": tagged_hash(locator_encodings),
+        "locator_values_on_support_hash": tagged_hash(locator_values_on_support),
+        "locator_values_on_support_all_zero": all(value == field.zero for value in [
+            f17_poly_eval(field, locator, root) for root in support
+        ]),
+        "support_roots_in_domain": all(field.pow(root, 512) == field.one for root in support),
+        "support_distinct": len(set(support_encodings)) == 128,
+        "moment_window_hash": tagged_hash(moment_encodings),
+        "recurrence_residual_hash": tagged_hash(residual_encodings),
+        "recurrence_residual_all_zero": all(value == field.zero for value in recurrence_residuals),
+        "planted_slope_index": 1,
+        "planted_slope_encoding": field.encode(planted_slope),
+        "v_window_rule": "v_m is the base-field constant m+2, encoded in F_17^32",
+        "v_window_hash": tagged_hash(v_encodings),
+        "v_window_nonzero": any(value != field.zero for value in v_window),
+        "u_window_rule": "u_m = S_m - planted_slope * v_m, where S_m=sum_{r=0}^{127} h_r^m",
+        "u_window_hash": tagged_hash(u_encodings),
+        "recombination_hash": tagged_hash(f17_encodings(field, recombined)),
+        "recombination_matches_moments": recombined == moments,
+        "top_chart": {
+            "t": 128,
+            "j": 128,
+            "rank_certificate": "moment Hankel block V diag(1) V^T with 128 distinct support roots",
+            "top_coefficient_nonzero": locator[-1] == field.one,
+            "validity_certificate": "locator is product of 128 distinct roots from H, hence divides X^512-1",
+        },
+    }
+
+
+def expected_f17_packet():
+    payload = f17_planted_top_chart_payload()
+    return {
+        "schema_version": F17_PACKET_SCHEMA,
+        "status": "PROVED-LOCAL / EXPERIMENTAL",
+        "object": "M5 A=384 deficiency-one planted top-chart family over F_17^32",
+        "scope": {
+            "claim": (
+                "For the declared deterministic F_17^32 syndrome pencil, the "
+                "planted finite slope lies in the A=384 top chart and has a "
+                "valid degree-128 split locator."
+            ),
+            "nonclaims": [
+                "does not count all bad slopes over F_17^32",
+                "does not prove a threshold or worst-case row bound",
+                "does not close the rank-drop, low-degree, or full top-chart root tables",
+            ],
+        },
+        "row": {
+            "field": "F_17^32",
+            "n": 512,
+            "k": 256,
+            "agreement": 384,
+            "t": 128,
+            "j": 128,
+            "row_descriptor": str(ROW_DESCRIPTOR_REF),
+            "row_descriptor_hash": payload["row_descriptor_hash"],
+            "domain_hash": payload["domain_hash"],
+        },
+        "declared_family": {
+            "support_indices": payload["support_indices"],
+            "support_encodings_hash": payload["support_encodings_hash"],
+            "moment_rule": "S_m = sum_{r=0}^{127} h_r^m for descriptor-domain roots h_r",
+            "moment_window_hash": payload["moment_window_hash"],
+            "u_window_rule": payload["u_window_rule"],
+            "u_window_hash": payload["u_window_hash"],
+            "v_window_rule": payload["v_window_rule"],
+            "v_window_hash": payload["v_window_hash"],
+            "planted_slope_index": payload["planted_slope_index"],
+            "planted_slope_encoding": payload["planted_slope_encoding"],
+        },
+        "locator": {
+            "degree": payload["locator_degree"],
+            "leading_coefficient": payload["locator_leading_coefficient"],
+            "coefficients_hash": payload["locator_coefficients_hash"],
+            "values_on_support_hash": payload["locator_values_on_support_hash"],
+        },
+        "checks": {
+            "support_distinct": payload["support_distinct"],
+            "support_roots_in_domain": payload["support_roots_in_domain"],
+            "locator_values_on_support_all_zero": payload["locator_values_on_support_all_zero"],
+            "recurrence_residual_hash": payload["recurrence_residual_hash"],
+            "recurrence_residual_all_zero": payload["recurrence_residual_all_zero"],
+            "v_window_nonzero": payload["v_window_nonzero"],
+            "recombination_hash": payload["recombination_hash"],
+            "recombination_matches_moments": payload["recombination_matches_moments"],
+            "top_chart": payload["top_chart"],
+        },
+        "replay": {
+            "script": "experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py",
+            "command": (
+                "python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py "
+                "--check-f17 experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/"
+                "f17_32_n512_k256_a384_planted_top_chart.json"
+            ),
+        },
+    }
+
+
+def check_f17_packet(path: Path):
+    observed = json.loads(path.read_text(encoding="utf-8"))
+    expected = expected_f17_packet()
+    if observed != expected:
+        raise AssertionError(f"F_17^32 planted top-chart packet mismatch: {path}")
+    checks = expected["checks"]
+    ok = (
+        checks["support_distinct"]
+        and checks["support_roots_in_domain"]
+        and checks["locator_values_on_support_all_zero"]
+        and checks["recurrence_residual_all_zero"]
+        and checks["v_window_nonzero"]
+        and checks["recombination_matches_moments"]
+        and checks["top_chart"]["top_coefficient_nonzero"]
+    )
+    return ok, [
+        f"packet {path} matches the recomputed F_17^32 planted top-chart payload",
+        f"schema_version = {F17_PACKET_SCHEMA}",
+        f"planted slope encoding = {expected['declared_family']['planted_slope_encoding']}",
+        "degree-128 locator is a product of 128 descriptor-domain roots and annihilates the planted moment window",
+    ]
+
+
 def expected_toy_packet():
     payload = toy_u1_u5_payload()
     domain_hash = "sha256:" + hash_json_value(payload["domain"])
@@ -945,11 +1181,12 @@ CHECKS = [
     ("deficiency-1 degree budget for real row",           check_deficiency_one_degree_budget),
     ("deficiency-1 chart reduction for real row",         check_deficiency_one_chart_reduction),
     ("F_97 acid test: brute force equals charts",         check_toy_acid_test_bruteforce),
+    ("F_17^32 planted top-chart packet",                  lambda: check_f17_packet(DEFAULT_F17_PACKET)),
     ("packet emission + local replay validation",         lambda: check_toy_packet(DEFAULT_TOY_PACKET)),
 ]
 
 
-def run_checks(check_packet: Path | None = None):
+def run_checks(check_packet: Path | None = None, check_f17: Path | None = None):
     print("=" * 74)
     print(f"M5 first singular-bucket pivot packet: A={A_STAR} underdetermined boundary")
     print("of C = RS[F_17^32, H, 256]  (n=512, k=256) -- bucket identification")
@@ -958,6 +1195,16 @@ def run_checks(check_packet: Path | None = None):
     if check_packet is not None:
         checks = CHECKS[:-1] + [
             ("packet emission + local replay validation", lambda: check_toy_packet(check_packet))
+        ]
+    if check_f17 is not None:
+        checks = [
+            (
+                "F_17^32 planted top-chart packet",
+                lambda path=check_f17: check_f17_packet(path),
+            )
+            if title == "F_17^32 planted top-chart packet"
+            else (title, fn)
+            for title, fn in checks
         ]
     failed = done = pending = 0
     for title, fn in checks:
@@ -982,8 +1229,17 @@ def run_checks(check_packet: Path | None = None):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", type=Path, help="replay and compare a toy U1-U5 packet")
+    parser.add_argument("--check-f17", type=Path, help="replay and compare an F_17^32 planted packet")
+    parser.add_argument("--write-f17-packet", type=Path, help="write the deterministic F_17^32 planted packet")
     args = parser.parse_args()
-    run_checks(args.check)
+    if args.write_f17_packet:
+        args.write_f17_packet.parent.mkdir(parents=True, exist_ok=True)
+        args.write_f17_packet.write_text(
+            json.dumps(expected_f17_packet(), indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+        return
+    run_checks(args.check, args.check_f17)
 
 
 if __name__ == "__main__":
