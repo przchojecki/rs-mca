@@ -15,6 +15,7 @@ the identities over F_97 with H = mu_16:
   at most j+1-m.
 * fixed projective dimension d gives #D_j <= binom(n,d).
 * after common-root removal, fixed dimension gives #D_j <= binom(n-c,d).
+* the same fixed-dimensional bound descends to quotient-pullback strata.
 """
 from __future__ import annotations
 
@@ -714,6 +715,147 @@ def check_common_root_fixed_dimension_bound(H: list[int]) -> dict:
     }
 
 
+def check_quotient_fixed_dimension_bound(H: list[int]) -> dict:
+    small_order = N // SCALE_M
+    small_j = J_SCALE // SCALE_M
+    H_small = subgroup(small_order)
+    small_divisors = divisor_set(H_small, small_j)
+    big_divisors = divisor_set(H, J_SCALE)
+    rng = random.Random(SEED + 7)
+    checked_spaces = 0
+    common_root_spaces = 0
+    max_hits = 0
+    max_common_root_hits = 0
+    equality_checks = 0
+
+    for d in range(0, small_j + 1):
+        for _ in range(30):
+            reduced_basis = random_independent_basis(rng, d + 1, small_j)
+            if not gcd_trivial_space(reduced_basis, H_small):
+                continue
+            lifted_basis = [
+                compose_x_power(poly, SCALE_M) for poly in reduced_basis
+            ]
+            small_hits = [
+                poly for poly in small_divisors
+                if in_span(poly, reduced_basis, small_j + 1)
+            ]
+            big_hits = [
+                compose_x_power(poly, SCALE_M) for poly in small_divisors
+                if in_span(
+                    compose_x_power(poly, SCALE_M),
+                    lifted_basis,
+                    J_SCALE + 1,
+                )
+            ]
+            if set(big_hits) != {compose_x_power(poly, SCALE_M) for poly in small_hits}:
+                return {
+                    "name": "quotient_fixed_dimension_bound",
+                    "status": "FAIL",
+                    "reason": "pullback hits did not match descended hits",
+                    "d": d,
+                }
+            if not set(big_hits).issubset(big_divisors):
+                return {
+                    "name": "quotient_fixed_dimension_bound",
+                    "status": "FAIL",
+                    "reason": "pulled hit left D_j(mu_n)",
+                    "d": d,
+                }
+            bound = comb(small_order, d)
+            if len(big_hits) > bound:
+                return {
+                    "name": "quotient_fixed_dimension_bound",
+                    "status": "FAIL",
+                    "reason": "quotient fixed-dimensional hit count exceeded bound",
+                    "d": d,
+                    "hits": len(big_hits),
+                    "bound": bound,
+                }
+            checked_spaces += 1
+            equality_checks += len(big_hits)
+            max_hits = max(max_hits, len(big_hits))
+
+    for c in range(1, small_j):
+        common = tuple(H_small[:c])
+        G = locator(common)
+        H_reduced = [x for x in H_small if x not in common]
+        for d in range(0, small_j - c + 1):
+            for _ in range(20):
+                core_basis = random_independent_basis(rng, d + 1, small_j - c)
+                if not gcd_trivial_space(core_basis, H_reduced):
+                    continue
+                reduced_basis = [poly_mul(G, poly) for poly in core_basis]
+                if set(common_roots_of_space(reduced_basis, H_small)) != set(common):
+                    return {
+                        "name": "quotient_fixed_dimension_bound",
+                        "status": "FAIL",
+                        "reason": "small quotient common-root set changed",
+                        "common_degree": c,
+                    }
+                lifted_basis = [
+                    compose_x_power(poly, SCALE_M) for poly in reduced_basis
+                ]
+                small_hits = [
+                    poly for poly in small_divisors
+                    if in_span(poly, reduced_basis, small_j + 1)
+                ]
+                big_hits = [
+                    compose_x_power(poly, SCALE_M) for poly in small_hits
+                    if in_span(
+                        compose_x_power(poly, SCALE_M),
+                        lifted_basis,
+                        J_SCALE + 1,
+                    )
+                ]
+                if len(big_hits) != len(small_hits):
+                    return {
+                        "name": "quotient_fixed_dimension_bound",
+                        "status": "FAIL",
+                        "reason": "common-root quotient pullback lost hits",
+                        "common_degree": c,
+                        "d": d,
+                    }
+                for poly in small_hits:
+                    divided = poly_div_exact(poly, G)
+                    if divided not in divisor_set(H_reduced, small_j - c):
+                        return {
+                            "name": "quotient_fixed_dimension_bound",
+                            "status": "FAIL",
+                            "reason": "small hit did not reduce after common roots",
+                            "common_degree": c,
+                            "d": d,
+                        }
+                bound = comb(small_order - c, d)
+                if len(big_hits) > bound:
+                    return {
+                        "name": "quotient_fixed_dimension_bound",
+                        "status": "FAIL",
+                        "reason": "common-root quotient hit count exceeded bound",
+                        "common_degree": c,
+                        "d": d,
+                        "hits": len(big_hits),
+                        "bound": bound,
+                    }
+                common_root_spaces += 1
+                max_common_root_hits = max(max_common_root_hits, len(big_hits))
+
+    return {
+        "name": "quotient_fixed_dimension_bound",
+        "status": "PASS",
+        "n": N,
+        "M": SCALE_M,
+        "j": J_SCALE,
+        "small_order": small_order,
+        "small_j": small_j,
+        "checked_gcd_trivial_quotient_spaces": checked_spaces,
+        "checked_common_root_quotient_spaces": common_root_spaces,
+        "pullback_equality_checks": equality_checks,
+        "max_gcd_trivial_hits": max_hits,
+        "max_common_root_hits": max_common_root_hits,
+    }
+
+
 def evaluation_lines(basis: list[tuple[int, ...]], H: list[int]) -> list[tuple[int, ...]]:
     lines = []
     for x in H:
@@ -907,6 +1049,7 @@ def build_report() -> dict:
         check_plane_pair_counting_bound(H),
         check_fixed_dimension_incidence_bound(H),
         check_common_root_fixed_dimension_bound(H),
+        check_quotient_fixed_dimension_bound(H),
     ]
     return {
         "schema": "conjecture_f_reduction_toy_v1",

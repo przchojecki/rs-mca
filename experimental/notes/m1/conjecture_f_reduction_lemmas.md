@@ -7,7 +7,7 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_reductions.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`.
 
-This note records eight elementary reductions around the fiber-rigidity
+This note records nine elementary reductions around the fiber-rigidity
 statement called Conjecture F in the proof sketch.  They do not prove the
 primitive core.  Their role is to remove two paid structures from the statement
 to settle the dimension-one base case, and to restate the remaining primitive
@@ -369,6 +369,45 @@ This packages the common-divisor/tangent branch and the fixed-dimensional
 primitive branch into one reusable statement: after stripping common roots, all
 fixed-dimensional fibers are polynomially bounded.
 
+## Corollary 9: Fixed Dimension on Quotient-Pullback Strata
+
+Assume `H=mu_n`, `char(K)` does not divide `n`, and `M | gcd(n,j)`.  Write
+`H_M=mu_{n/M}` and `iota_M(g)(X)=g(X^M)`.  Let `W <= K[X]_{<=j}` have
+projective dimension `d`, and define the descended quotient space
+
+```text
+W_M = iota_M^{-1}(W) <= K[Y]_{<= j/M}.
+```
+
+If `W_M` is gcd-trivial on `H_M`, then
+
+```text
+#(P(W) cap iota_M(D_{j/M}(H_M))) <= binom(n/M,d).
+```
+
+More generally, if `C_M` is the common root set of `W_M` on `H_M`, with
+`c=|C_M|`, then
+
+```text
+#(P(W) cap iota_M(D_{j/M}(H_M))) <= binom(n/M-c,d).
+```
+
+**Proof.**  Lemma 2 identifies the left-hand side with
+
+```text
+P(W_M) cap D_{j/M}(H_M).
+```
+
+The linear map `iota_M` is injective on `K[Y]_{<=j/M}`, so `dim P(W_M) <= d`.
+If `W_M` is gcd-trivial, Lemma 7 gives the first bound.  If `W_M` has common
+root set `C_M`, Corollary 8 applied on the quotient domain gives the second
+bound.
+
+Thus the quotient-periodic paid branch inherits the same fixed-dimensional
+polynomial control after descent.  Conjecture F's genuinely new content is not
+in fixed-dimensional tangent or quotient strata; it is in primitive
+dimension-growing intersections.
+
 ## Verification
 
 The verifier checks these lemmas over `F_97` with `H = mu_16`:
@@ -385,5 +424,6 @@ deterministic random gcd-trivial projective planes, verifies the vanishing-flat
 dimension bound, verifies the projective-plane pair-counting bound including
 forced repeated-line planes, and verifies the fixed-dimension incidence bound
 on random subspaces plus the sharp full-space case.  It also verifies the
-common-root corollary on forced common-root subspaces.  The verifier is
-supporting evidence only; the proofs above are the mathematical content.
+common-root corollary on forced common-root subspaces and the
+fixed-dimensional quotient-pullback consumer.  The verifier is supporting
+evidence only; the proofs above are the mathematical content.

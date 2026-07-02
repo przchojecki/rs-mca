@@ -96,6 +96,20 @@
       "name": "common_root_fixed_dimension_bound",
       "reduction_checks": 13792,
       "status": "PASS"
+    },
+    {
+      "M": 2,
+      "checked_common_root_quotient_spaces": 98,
+      "checked_gcd_trivial_quotient_spaces": 114,
+      "j": 6,
+      "max_common_root_hits": 21,
+      "max_gcd_trivial_hits": 56,
+      "n": 16,
+      "name": "quotient_fixed_dimension_bound",
+      "pullback_equality_checks": 1706,
+      "small_j": 3,
+      "small_order": 8,
+      "status": "PASS"
     }
   ],
   "domain": {
@@ -124,6 +138,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "5463ef6b8c2f429a2cab7e7397abcf18d08d3d0a63b80565fd71be841c9f14eb",
+  "script_sha256": "57f0ad4008c2b81b11151d3ccb8d2fbc3572beac676cee397809bfd886e52e3c",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

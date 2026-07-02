@@ -67,6 +67,25 @@ Keep entries concise and link to the relevant files.
   explicitly requested; audit Paper D itself through theorem statements and
   certificate checks.
 
+### 2026-07-02 - Conjecture F quotient fixed-dimension consumer
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_reduction_lemmas.md`;
+  `experimental/scripts/verify_conjecture_f_reductions.py`;
+  `experimental/data/certificates/conjecture-f-reductions/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** A ninth reduction lemma: fixed-dimensional
+  intersections with the quotient-pullback stratum descend to the quotient
+  domain and inherit the `binom(n/M,d)` bound, or `binom(n/M-c,d)` after
+  common-root removal.
+- **How it is useful:** This packages quotient-periodic paid structure as a
+  consumer of the existing fixed-dimensional incidence theorem.  It further
+  isolates Conjecture F's primitive hard core as dimension-growing,
+  gcd-trivial, non-pullback intersections.
+- **What to do next:** Use this quotient consumer when classifying paid leaves
+  before attempting new primitive Conjecture F bounds.
+
 ### 2026-07-02 - Towards-prize sparse note documentation pass
 
 - **Agent/model:** Codex.
