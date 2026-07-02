@@ -97,7 +97,7 @@ rules out only
 extreme collapse at the printed effective-support scale; it does not certify
 fullness of the value set.
 
-## Birthday-pressure follow-up
+## Birthday-pressure follow-up and radius certificate
 
 The second committed artifact uses exact canonical field values, not hashes, for
 
@@ -118,9 +118,16 @@ class digest
 
 Thus the `2^24` follow-up contains no witnessed distinct-class `e_1` collision.
 This is consistent with the fullness branch of the E1 interpretation table and
-is not evidence of a heavy-collision structure.  The run is still smaller than
-the roadmap's suggested `2^25`--`2^26` decisive run, so the conservative
-conclusion is only that no early heavy-collapse signal appeared.
+is not evidence of a heavy-collision structure.
+
+The companion norm-height certificate now proves a stronger statement for this
+cell.  For Row-C, the whole `N'=64` antipodal class space has coefficient
+half-`l_1` diameter at most `ell'=33`, while the norm criterion certifies
+injectivity up to half-`l_1` radius `112`.  Consequently, distinct
+characteristic-zero classes cannot collide modulo the Row-C prime at `N'=64`.
+The duplicate in the `2^24` artifact is therefore forced to be a resampled
+class duplicate, not a distinct-class value-set collision.  The E1 uncertainty
+has shifted to `N' >= 128` and to the bounded-height norm-divisibility family.
 
 ## Algebraic collision gate
 
@@ -133,6 +140,18 @@ difference; conversely, norm divisibility gives a collision in some
 Galois-conjugate embedding.  Thus a heavy-collision branch should be searched
 as a bounded-height norm-divisibility problem, not just by increasing random
 samples.
+
+The same verifier also records the Row-C graded collision radii:
+
+```text
+N'=64:  full class injectivity certified
+N'=128: no collision for coefficient half-l1 distance <= 7
+N'=256: no collision for coefficient half-l1 distance <= 1
+```
+
+This downgrades the old `N'=64` birthday run from "more samples needed" to
+"decided by height"; future E1 work should spend effort on `N' >= 128` or on
+adversarial norm-divisibility constructions.
 
 ## Reproduce
 

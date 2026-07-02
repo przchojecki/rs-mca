@@ -119,6 +119,39 @@ For the Row-C dyadic quotient orders `N=2^a`, this becomes
 
 This is the bounded-height norm family mentioned in the E1 roadmap.
 
+## Graded Collision Radius
+
+The same argument gives a local injectivity certificate.  If two dyadic
+antipodal classes differ by coefficient `l_1` norm at most `2d`, then
+
+```text
+|N_{B,B'}| <= (2d)^phi(N).
+```
+
+Therefore, for any fixed prime `p == 1 mod N`, the norm criterion forbids a
+distinct-class collision whenever
+
+```text
+(2d)^phi(N) < p.
+```
+
+The verifier computes this radius for the Row-C prime.  For the compatible
+quotient orders, it gives:
+
+| `N'` | `ell'` | full class injective? | certified half-`l_1` radius `d` |
+|---:|---:|:---:|---:|
+| 64 | 33 | yes | 112 |
+| 128 | 65 | no | 7 |
+| 256 | 129 | no | 1 |
+
+For `N'=64`, the maximum possible half-`l_1` distance between two classes is
+at most `ell'=33`, well below the certified radius `112`.  Thus the entire
+`N'=64` Row-C value set is injective modulo the Row-C prime: duplicate sampled
+values in the birthday run can only come from resampling the same
+characteristic-zero class, not from a distinct-class modular collision.  The
+actual E1 uncertainty starts at `N' >= 128`, where the height bound certifies
+only local neighborhoods.
+
 ## Exceptional-Prime Counting Corollary
 
 Let `F` be any finite family of unordered pairs of distinct characteristic-zero
@@ -164,6 +197,8 @@ The verifier performs:
 - the height bound.
 - the exact distinct-prime divisor budget and the height-based prime-count
   bound for the checked pair family.
+- the Row-C graded collision-radius table above, including full injectivity
+  at `N'=64`.
 
 Replay:
 

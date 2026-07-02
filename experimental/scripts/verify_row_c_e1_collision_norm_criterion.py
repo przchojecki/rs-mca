@@ -31,6 +31,9 @@ OUTPUT = Path(
     "experimental/data/certificates/row-c-e1-sampling/"
     "row_c_e1_collision_norm_criterion.json"
 )
+ROW_N = 2 ** 10
+ROW_C_COMPATIBLE_ORDERS = [64, 128, 256]
+RHO_NUM, RHO_DEN = 1, 2
 PRIMES_BY_ORDER = {
     8: [17, 41, 73, 89, 97],
     16: [17, 97, 113, 193, 257],
@@ -61,6 +64,14 @@ def primitive_order_element(p: int, order: int) -> int:
     assert pow(omega, order, p) == 1
     assert all(pow(omega, order // q, p) != 1 for q in sympy.factorint(order))
     return omega
+
+
+def row_c_prime() -> int:
+    """Smallest prime p > 2^250 with p = 1 mod 1024."""
+    p = (1 << 250) + ((1 - (1 << 250)) % ROW_N)
+    while not sympy.isprime(p):
+        p += ROW_N
+    return p
 
 
 def feasible_t_values(order: int, ell: int) -> list[int]:
@@ -243,6 +254,82 @@ def check_order(order: int, ell: int, sample_limit: int | None = None) -> dict:
     }
 
 
+def max_certified_half_l1_radius(order: int, p: int) -> int:
+    """Largest d with (2d)^phi(order) < p."""
+    phi = int(sympy.totient(order))
+    radius = 0
+    while (2 * (radius + 1)) ** phi < p:
+        radius += 1
+    return radius
+
+
+def row_c_graded_collision_radius() -> dict:
+    """Exact Row-C consequences of the norm-height gate.
+
+    If two characteristic-zero dyadic antipodal classes differ by coefficient
+    l1 norm at most 2d, then every nonzero norm has absolute value < p whenever
+    (2d)^phi(N) < p.  The norm criterion then forbids fixed-embedding modular
+    collisions.  For N=64 the full class diameter already satisfies the bound.
+    """
+    p = row_c_prime()
+    rows = []
+    for order in ROW_C_COMPATIBLE_ORDERS:
+        assert ROW_N % order == 0
+        assert (p - 1) % order == 0
+        ell_num = RHO_NUM * order
+        assert ell_num % RHO_DEN == 0
+        ell = ell_num // RHO_DEN + 1
+        phi = int(sympy.totient(order))
+        full_l1_diameter = 2 * ell
+        full_height_bound = full_l1_diameter ** phi
+        certified_radius = max_certified_half_l1_radius(order, p)
+        certified_height_bound = (2 * certified_radius) ** phi
+        next_height_bound = (2 * (certified_radius + 1)) ** phi
+        full_injective = full_height_bound < p
+        rows.append({
+            "N_prime": order,
+            "ell_prime": ell,
+            "phi_N": phi,
+            "row_c_prime_bits": p.bit_length(),
+            "full_class_l1_diameter": full_l1_diameter,
+            "full_height_bound_bits": full_height_bound.bit_length(),
+            "full_class_injective_mod_row_c_prime": full_injective,
+            "certified_half_l1_radius_d": certified_radius,
+            "certified_l1_radius_2d": 2 * certified_radius,
+            "certified_height_bound_bits": certified_height_bound.bit_length(),
+            "next_radius_height_bound_bits": next_height_bound.bit_length(),
+            "radius_is_maximal_by_height_gate": (
+                certified_height_bound < p <= next_height_bound
+            ),
+        })
+    ok = (
+        p > 2 ** 250
+        and p % ROW_N == 1
+        and rows[0]["N_prime"] == 64
+        and rows[0]["full_class_injective_mod_row_c_prime"]
+        and rows[0]["certified_half_l1_radius_d"] >= rows[0]["ell_prime"]
+        and rows[1]["certified_half_l1_radius_d"] == 7
+        and rows[2]["certified_half_l1_radius_d"] == 1
+        and all(row["radius_is_maximal_by_height_gate"] for row in rows)
+    )
+    return {
+        "name": "row_c_graded_collision_radius",
+        "status": "PASS" if ok else "FAIL",
+        "row_c_prime": p,
+        "row_c_prime_sha256": sha256_text(str(p)),
+        "rule": (
+            "coefficient l1-distance <= 2d and (2d)^phi(N) < p "
+            "implies no distinct characteristic-zero class collision modulo p"
+        ),
+        "dyadic_basis_note": (
+            "for N=2^a, powers 1,zeta,...,zeta^(N/2-1) form the coefficient "
+            "basis used by the antipodal class normal form, so distinct class "
+            "keys have nonzero cyclotomic difference"
+        ),
+        "rows": rows,
+    }
+
+
 def build_report() -> dict:
     checks = [
         check_order(order=8, ell=5),
@@ -257,12 +344,17 @@ def build_report() -> dict:
             "fixed_embedding_collision_implies": "p divides Norm_Q(zeta_N)(Delta)",
             "norm_divisibility_implies": "some Galois conjugate embedding collides",
             "height_bound": "|Norm(Delta)| <= (2 ell')^phi(N), specialized to phi(2^a)=N/2",
+            "graded_collision_radius": (
+                "if coefficient l1-distance <= 2d and (2d)^phi(N) < p, "
+                "the norm criterion forbids distinct-class modular collisions"
+            ),
             "exceptional_prime_count": (
                 "#{p >= P0 dividing some nonzero norm} <= "
                 "sum_pairs log |Norm(Delta)| / log P0"
             ),
         },
         "checks": checks,
+        "row_c_graded_collision_radius": row_c_graded_collision_radius(),
         "script_sha256": sha256_text(Path(__file__).read_text()),
     }
 
@@ -284,6 +376,20 @@ def main() -> None:
             if key not in {"name", "status", "first_norm_hit"}:
                 print(f"        {key}: {value}")
         print(f"        first_norm_hit: {check.get('first_norm_hit')}")
+    radius = report["row_c_graded_collision_radius"]
+    ok &= radius["status"] == "PASS"
+    print(f"[{radius['status']}] {radius['name']}")
+    print(f"        row_c_prime_sha256: {radius['row_c_prime_sha256']}")
+    print(f"        rule: {radius['rule']}")
+    for row in radius["rows"]:
+        print(
+            "        "
+            f"N'={row['N_prime']} ell'={row['ell_prime']} "
+            f"full_injective={row['full_class_injective_mod_row_c_prime']} "
+            f"certified_half_l1_radius={row['certified_half_l1_radius_d']} "
+            f"full_height_bits={row['full_height_bound_bits']} "
+            f"next_radius_bits={row['next_radius_height_bound_bits']}"
+        )
     if args.emit:
         OUTPUT.parent.mkdir(parents=True, exist_ok=True)
         OUTPUT.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")

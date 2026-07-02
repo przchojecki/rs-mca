@@ -185,12 +185,65 @@
   "criterion": {
     "exceptional_prime_count": "#{p >= P0 dividing some nonzero norm} <= sum_pairs log |Norm(Delta)| / log P0",
     "fixed_embedding_collision_implies": "p divides Norm_Q(zeta_N)(Delta)",
+    "graded_collision_radius": "if coefficient l1-distance <= 2d and (2d)^phi(N) < p, the norm criterion forbids distinct-class modular collisions",
     "height_bound": "|Norm(Delta)| <= (2 ell')^phi(N), specialized to phi(2^a)=N/2",
     "norm_divisibility_implies": "some Galois conjugate embedding collides"
   },
   "object": "cyclotomic norm gate for quotient e_1 value collisions",
   "roadmap_task": "Q2.15 / collision_norm_criterion",
+  "row_c_graded_collision_radius": {
+    "dyadic_basis_note": "for N=2^a, powers 1,zeta,...,zeta^(N/2-1) form the coefficient basis used by the antipodal class normal form, so distinct class keys have nonzero cyclotomic difference",
+    "name": "row_c_graded_collision_radius",
+    "row_c_prime": 1809251394333065553493296640760748560207343510400633813116524750123642699777,
+    "row_c_prime_sha256": "145c6097e1274715956d653d15550b4697d671742f084c1ea0a00487bed5471b",
+    "rows": [
+      {
+        "N_prime": 64,
+        "certified_half_l1_radius_d": 112,
+        "certified_height_bound_bits": 250,
+        "certified_l1_radius_2d": 224,
+        "ell_prime": 33,
+        "full_class_injective_mod_row_c_prime": true,
+        "full_class_l1_diameter": 66,
+        "full_height_bound_bits": 194,
+        "next_radius_height_bound_bits": 251,
+        "phi_N": 32,
+        "radius_is_maximal_by_height_gate": true,
+        "row_c_prime_bits": 251
+      },
+      {
+        "N_prime": 128,
+        "certified_half_l1_radius_d": 7,
+        "certified_height_bound_bits": 244,
+        "certified_l1_radius_2d": 14,
+        "ell_prime": 65,
+        "full_class_injective_mod_row_c_prime": false,
+        "full_class_l1_diameter": 130,
+        "full_height_bound_bits": 450,
+        "next_radius_height_bound_bits": 257,
+        "phi_N": 64,
+        "radius_is_maximal_by_height_gate": true,
+        "row_c_prime_bits": 251
+      },
+      {
+        "N_prime": 256,
+        "certified_half_l1_radius_d": 1,
+        "certified_height_bound_bits": 129,
+        "certified_l1_radius_2d": 2,
+        "ell_prime": 129,
+        "full_class_injective_mod_row_c_prime": false,
+        "full_class_l1_diameter": 258,
+        "full_height_bound_bits": 1026,
+        "next_radius_height_bound_bits": 257,
+        "phi_N": 128,
+        "radius_is_maximal_by_height_gate": true,
+        "row_c_prime_bits": 251
+      }
+    ],
+    "rule": "coefficient l1-distance <= 2d and (2d)^phi(N) < p implies no distinct characteristic-zero class collision modulo p",
+    "status": "PASS"
+  },
   "schema": "row_c_e1_collision_norm_criterion_v1",
-  "script_sha256": "e8ce7e5e73904044f8ce1f55429c53466396638975d3a69ca595ffc4ad92128c",
+  "script_sha256": "f30fbb42c587458031f7149fda1302f82a1fc59fb12690f585fa0cf759f6c39e",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_CRITERION"
 }

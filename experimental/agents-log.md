@@ -67,6 +67,31 @@ Keep entries concise and link to the relevant files.
   explicitly requested; audit Paper D itself through theorem statements and
   certificate checks.
 
+### 2026-07-02 - E1 Row-C graded collision radius
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/roadmaps/e1_row_c_value_set_sampling.md`;
+  `experimental/notes/roadmaps/e1_collision_norm_criterion.md`;
+  `experimental/scripts/verify_row_c_e1_collision_norm_criterion.py`;
+  `experimental/data/certificates/row-c-e1-sampling/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** The collision-norm verifier now computes the exact
+  Row-C graded collision-radius table.  If two dyadic antipodal classes differ
+  by coefficient half-`l_1` distance `d` and `(2d)^phi(N) < p`, the norm
+  criterion forbids a distinct-class modular collision.  For Row-C this proves
+  full injectivity at `N'=64` (certified radius `112` covers the full class
+  diameter `ell'=33`) and certifies only local radii at `N'=128` (`d=7`) and
+  `N'=256` (`d=1`).
+- **How it is useful:** This upgrades the `N'=64` birthday-pressure cell from
+  evidence to a decided case: its duplicate in the `2^24` artifact must be
+  resampling of the same characteristic-zero class.  The live E1 uncertainty
+  is now the larger quotient cells and the bounded-height norm-divisibility
+  search.
+- **What to do next:** Stop spending large random-sampling budget on `N'=64`;
+  attack `N' >= 128` with norm-divisibility constructions or certified
+  value-set lower bounds.
+
 ### 2026-07-02 - E1 exceptional-prime counting bound
 
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.
