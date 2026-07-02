@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - E5 multiscale resonance evidence
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/x1/x1_e5_multiscale_resonance_evidence.md`;
+  `experimental/scripts/verify_x1_e5_multiscale_resonance_evidence.py`;
+  `experimental/data/certificates/x1-e5-multiscale-resonance/`;
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** A pre-registered E5 evidence packet for the
+  multiscale-resonance red-team question.  The verifier searches
+  phase-locked, adversarial-spread, and seeded-random dyadic periodic
+  character families at `n in {1024,2048,4096}` and checks whether the combined
+  slope rank exceeds the deduped union of per-scale character payments.
+- **How it is useful:** It gives a bounded test of the
+  `payment_completeness` hiding-room concern from Fable's evidence plan:
+  multiscale accumulation appears in the model, but no hidden rank beyond
+  deduped character payments is observed.
+- **What to do next:** Either extend the search to nonlinear Hankel/pivot
+  families, or return to proof lemmas using this packet as evidence that the
+  simple linear periodic model is not the likely fifth mechanism.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.

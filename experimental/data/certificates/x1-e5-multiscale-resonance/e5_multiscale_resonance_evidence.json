@@ -1,0 +1,481 @@
+{
+  "classification": "NO_MULTISCALE_HIDDEN_RANK_SIGNAL_IN_PRE_REGISTERED_LINEAR_PERIODIC_MODEL",
+  "dag_targets": [
+    "payment_completeness",
+    "redteam_multiscale"
+  ],
+  "fable_evidence_item": "E5",
+  "interpretation_table": {
+    "max_hidden_excess_over_deduped_union = 0": "supports payment-completeness in this model; multiscale accumulation is exactly paid by the union of character lines",
+    "max_hidden_excess_over_deduped_union > 0": "candidate fifth mechanism; minimize the witness and add a new paid-ledger column before using payment completeness"
+  },
+  "model": "linear periodic dyadic character model; combined image rank is computed in a common binomial extension basis and compared with the deduped union of per-scale character payments",
+  "nonclaims": [
+    "does not prove payment_completeness",
+    "does not search arbitrary received words",
+    "does not model nonlinear Hankel chart interactions",
+    "does not change Paper A-D statements"
+  ],
+  "pre_registered_search_space": {
+    "active_characters_per_scale": [
+      2,
+      3
+    ],
+    "adversarial_spread_families": "all phases with residues spread across scales",
+    "binomial": "X^32-11",
+    "binomial_irreducible_over_Fp": true,
+    "dyadic_scales": {
+      "1024": [
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024
+      ],
+      "2048": [
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "4096": [
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024,
+        2048,
+        4096
+      ]
+    },
+    "extension_degree": 32,
+    "extension_gamma": 11,
+    "phase_locked_families": "all phases modulo extension_degree",
+    "prime": 12289,
+    "random_seed": 20260702,
+    "rows_n": [
+      1024,
+      2048,
+      4096
+    ],
+    "seeded_random_trials_per_row_and_cap": 512
+  },
+  "schema_version": "x1-e5-multiscale-resonance-v1",
+  "status": "EXPERIMENTAL/AUDIT",
+  "summaries": [
+    {
+      "families_checked": 192,
+      "max_combined_rank": 3,
+      "max_hidden_excess_over_deduped_union": 0,
+      "max_ratio_vs_single_scale": 1.0,
+      "name": "phase_locked_same_residue_windows",
+      "witness_for_max_rank": {
+        "actual_combined_rank": 3,
+        "additive_overcount_removed_by_dedup": 15,
+        "additive_rank_without_dedup": 18,
+        "deduped_union_rank": 3,
+        "extension_degree": 32,
+        "hidden_excess_over_deduped_union": 0,
+        "max_single_scale_rank": 3,
+        "n": 1024,
+        "per_scale_ranks": {
+          "1024": 3,
+          "128": 3,
+          "256": 3,
+          "32": 3,
+          "512": 3,
+          "64": 3
+        },
+        "ratio_vs_max_single_scale": 1.0,
+        "residues_by_scale": {
+          "1024": [
+            0,
+            1,
+            2
+          ],
+          "128": [
+            0,
+            1,
+            2
+          ],
+          "256": [
+            0,
+            1,
+            2
+          ],
+          "32": [
+            0,
+            1,
+            2
+          ],
+          "512": [
+            0,
+            1,
+            2
+          ],
+          "64": [
+            0,
+            1,
+            2
+          ]
+        },
+        "scales": [
+          32,
+          64,
+          128,
+          256,
+          512,
+          1024
+        ]
+      },
+      "witness_for_max_ratio": {
+        "actual_combined_rank": 2,
+        "additive_overcount_removed_by_dedup": 10,
+        "additive_rank_without_dedup": 12,
+        "deduped_union_rank": 2,
+        "extension_degree": 32,
+        "hidden_excess_over_deduped_union": 0,
+        "max_single_scale_rank": 2,
+        "n": 1024,
+        "per_scale_ranks": {
+          "1024": 2,
+          "128": 2,
+          "256": 2,
+          "32": 2,
+          "512": 2,
+          "64": 2
+        },
+        "ratio_vs_max_single_scale": 1.0,
+        "residues_by_scale": {
+          "1024": [
+            0,
+            1
+          ],
+          "128": [
+            0,
+            1
+          ],
+          "256": [
+            0,
+            1
+          ],
+          "32": [
+            0,
+            1
+          ],
+          "512": [
+            0,
+            1
+          ],
+          "64": [
+            0,
+            1
+          ]
+        },
+        "scales": [
+          32,
+          64,
+          128,
+          256,
+          512,
+          1024
+        ]
+      }
+    },
+    {
+      "families_checked": 192,
+      "max_combined_rank": 24,
+      "max_hidden_excess_over_deduped_union": 0,
+      "max_ratio_vs_single_scale": 8.0,
+      "name": "adversarial_residue_spread",
+      "witness_for_max_rank": {
+        "actual_combined_rank": 24,
+        "additive_overcount_removed_by_dedup": 0,
+        "additive_rank_without_dedup": 24,
+        "deduped_union_rank": 24,
+        "extension_degree": 32,
+        "hidden_excess_over_deduped_union": 0,
+        "max_single_scale_rank": 3,
+        "n": 4096,
+        "per_scale_ranks": {
+          "1024": 3,
+          "128": 3,
+          "2048": 3,
+          "256": 3,
+          "32": 3,
+          "4096": 3,
+          "512": 3,
+          "64": 3
+        },
+        "ratio_vs_max_single_scale": 8.0,
+        "residues_by_scale": {
+          "1024": [
+            15,
+            16,
+            17
+          ],
+          "128": [
+            6,
+            7,
+            8
+          ],
+          "2048": [
+            18,
+            19,
+            20
+          ],
+          "256": [
+            9,
+            10,
+            11
+          ],
+          "32": [
+            0,
+            1,
+            2
+          ],
+          "4096": [
+            21,
+            22,
+            23
+          ],
+          "512": [
+            12,
+            13,
+            14
+          ],
+          "64": [
+            3,
+            4,
+            5
+          ]
+        },
+        "scales": [
+          32,
+          64,
+          128,
+          256,
+          512,
+          1024,
+          2048,
+          4096
+        ]
+      },
+      "witness_for_max_ratio": {
+        "actual_combined_rank": 16,
+        "additive_overcount_removed_by_dedup": 0,
+        "additive_rank_without_dedup": 16,
+        "deduped_union_rank": 16,
+        "extension_degree": 32,
+        "hidden_excess_over_deduped_union": 0,
+        "max_single_scale_rank": 2,
+        "n": 4096,
+        "per_scale_ranks": {
+          "1024": 2,
+          "128": 2,
+          "2048": 2,
+          "256": 2,
+          "32": 2,
+          "4096": 2,
+          "512": 2,
+          "64": 2
+        },
+        "ratio_vs_max_single_scale": 8.0,
+        "residues_by_scale": {
+          "1024": [
+            10,
+            11
+          ],
+          "128": [
+            4,
+            5
+          ],
+          "2048": [
+            12,
+            13
+          ],
+          "256": [
+            6,
+            7
+          ],
+          "32": [
+            0,
+            1
+          ],
+          "4096": [
+            14,
+            15
+          ],
+          "512": [
+            8,
+            9
+          ],
+          "64": [
+            2,
+            3
+          ]
+        },
+        "scales": [
+          32,
+          64,
+          128,
+          256,
+          512,
+          1024,
+          2048,
+          4096
+        ]
+      }
+    },
+    {
+      "families_checked": 3072,
+      "max_combined_rank": 23,
+      "max_hidden_excess_over_deduped_union": 0,
+      "max_ratio_vs_single_scale": 8.0,
+      "name": "seeded_random_phase_locked_residue_sets",
+      "witness_for_max_rank": {
+        "actual_combined_rank": 23,
+        "additive_overcount_removed_by_dedup": 1,
+        "additive_rank_without_dedup": 24,
+        "deduped_union_rank": 23,
+        "extension_degree": 32,
+        "hidden_excess_over_deduped_union": 0,
+        "max_single_scale_rank": 3,
+        "n": 4096,
+        "per_scale_ranks": {
+          "1024": 3,
+          "128": 3,
+          "2048": 3,
+          "256": 3,
+          "32": 3,
+          "4096": 3,
+          "512": 3,
+          "64": 3
+        },
+        "ratio_vs_max_single_scale": 7.666666666666667,
+        "residues_by_scale": {
+          "1024": [
+            9,
+            82,
+            702
+          ],
+          "128": [
+            34,
+            46,
+            102
+          ],
+          "2048": [
+            444,
+            935,
+            1913
+          ],
+          "256": [
+            0,
+            186,
+            246
+          ],
+          "32": [
+            3,
+            5,
+            21
+          ],
+          "4096": [
+            1403,
+            2052,
+            2391
+          ],
+          "512": [
+            10,
+            335,
+            435
+          ],
+          "64": [
+            45,
+            51,
+            61
+          ]
+        },
+        "scales": [
+          32,
+          64,
+          128,
+          256,
+          512,
+          1024,
+          2048,
+          4096
+        ]
+      },
+      "witness_for_max_ratio": {
+        "actual_combined_rank": 16,
+        "additive_overcount_removed_by_dedup": 0,
+        "additive_rank_without_dedup": 16,
+        "deduped_union_rank": 16,
+        "extension_degree": 32,
+        "hidden_excess_over_deduped_union": 0,
+        "max_single_scale_rank": 2,
+        "n": 4096,
+        "per_scale_ranks": {
+          "1024": 2,
+          "128": 2,
+          "2048": 2,
+          "256": 2,
+          "32": 2,
+          "4096": 2,
+          "512": 2,
+          "64": 2
+        },
+        "ratio_vs_max_single_scale": 8.0,
+        "residues_by_scale": {
+          "1024": [
+            293,
+            478
+          ],
+          "128": [
+            23,
+            80
+          ],
+          "2048": [
+            899,
+            940
+          ],
+          "256": [
+            40,
+            243
+          ],
+          "32": [
+            9,
+            31
+          ],
+          "4096": [
+            3225,
+            4059
+          ],
+          "512": [
+            285,
+            426
+          ],
+          "64": [
+            22,
+            26
+          ]
+        },
+        "scales": [
+          32,
+          64,
+          128,
+          256,
+          512,
+          1024,
+          2048,
+          4096
+        ]
+      }
+    }
+  ]
+}
