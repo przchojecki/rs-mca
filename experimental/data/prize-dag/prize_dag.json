@@ -1,6 +1,6 @@
 {
  "schema": "prize-dag-v1",
- "description": "Dependency DAG of the Proximity Prize program. Nodes = statements/artifacts/experiments; edges point FROM a dependency TO the statement it supports. gate=all: every 'req' child needed; gate=any: one 'alt' child suffices (plus all 'req'). Statuses: PROVED (on main w/ proof or exact verification), PROVABLE (route pinned, write-up pending), CONDITIONAL (proved under stated hypothesis), CONJECTURE (precise statement, unproved), TARGET (fuzzy, expected to sharpen), WALL (frozen hard core w/ consumer theorem), REFUTED (dead route), TEST (experiment/prediction). Source of truth for statuses: experimental/notes/roadmaps/ (r2 + proof_sketch + wp_detail).",
+ "description": "Dependency DAG of the Proximity Prize program. Nodes = statements/artifacts/experiments; edges point FROM a dependency TO the statement it supports. gate=all: every 'req' child needed; gate=any: one 'alt' child suffices (plus all 'req'). Statuses: PROVED (on main w/ proof or exact verification), PROVABLE (route pinned, write-up pending), CONDITIONAL (proved under stated hypothesis), CONJECTURE (precise statement, unproved), TARGET (fuzzy, expected to sharpen), WALL (frozen hard core w/ consumer theorem), REFUTED (dead route), TEST (experiment/prediction). Source of truth for statuses: experimental/notes/roadmaps/ (r2 + proof_sketch + wp_detail). REFINEMENT PRINCIPLES (2026-07-02): (1) critical nodes carry exact 'statement' fields (+ attack_surface/falsifier notes) \u2014 machine-enforced; (2) new conjectured nodes are admitted ONLY as branches of exhaustive splits, proved equivalences/reductions, or with a named non-ev consumer + truth-confidence note \u2014 never as speculative lemma chains presuming a proof shape; (3) every critical conjecture gets a cheap wired falsifier TEST. INTEGRATED UPSTREAM 2026-07-02 (commit 01add412, PR #174 closed-integrated): this DAG is in-tree subordinate roadmap material; towards-prize.md is the source of truth.",
  "root": "prize",
  "nodes": [
   {
@@ -11,7 +11,8 @@
    "key": true,
    "refs": [
     "proof_sketch/prize_proof_sketch_spine.md#1"
-   ]
+   ],
+   "statement": "Both grand challenges resolved per the official statement, packaged per the rules (partials creditable)."
   },
   {
    "id": "mca_grand",
@@ -21,7 +22,8 @@
    "key": true,
    "refs": [
     "proof_sketch/prize_proof_sketch_spine.md#1"
-   ]
+   ],
+   "statement": "For each admissible C: exhibit adjacent a with B_C(a-1) > floor(q_line/2^128) >= B_C(a), all conventions printed."
   },
   {
    "id": "list_grand",
@@ -31,7 +33,8 @@
    "key": true,
    "refs": [
     "proof_sketch/s7_list_side.md"
-   ]
+   ],
+   "statement": "For each admissible C and constant m: exhibit adjacent delta with |Lambda(C^{==m},.)| crossing 2^-128 |F| at it."
   },
   {
    "id": "packaging",
@@ -40,7 +43,8 @@
    "gate": "all",
    "refs": [
     "proof_sketch/s8_s9_assembly_and_negative.md#1"
-   ]
+   ],
+   "statement": "Compiler emits verdicts under the refusal rule; dossier versions gate-checked; every constant descriptor-generated."
   },
   {
    "id": "s0_zero_open",
@@ -50,7 +54,8 @@
    "key": true,
    "refs": [
     "proof_sketch/s5_s0_statements_and_object.md#4"
-   ]
+   ],
+   "statement": "Every object axis EQUAL or BRIDGED(loss printed); zero OPEN axes before any prize-facing claim."
   },
   {
    "id": "axes_verified",
@@ -66,7 +71,8 @@
    "status": "TARGET",
    "refs": [
     "wp_detail/wp_consolidation_sketch_extracts.md"
-   ]
+   ],
+   "statement": "Resolve: does the official sampler batch as affine lines u + zv (repo convention) or another shape (powers-of-alpha)? Quote-level audit vs the ABF text."
   },
   {
    "id": "axis2_ell",
@@ -74,7 +80,8 @@
    "status": "TARGET",
    "refs": [
     "proof_sketch/s5_s0_statements_and_object.md#4"
-   ]
+   ],
+   "statement": "Resolve: official MCA quantifies pairs (C^{==2}) or ell-tuples? If tuples: supply the tuple-to-pair reduction or per-ell gates."
   },
   {
    "id": "axis4_predicate",
@@ -83,7 +90,8 @@
    "key": true,
    "refs": [
     "proof_sketch/s4_reserve_dictionary.md#2"
-   ]
+   ],
+   "statement": "Resolve: is ABF's Delta_S((f1,f2), C^{==2}) > 0 exactly the same-support degenerate-pencil predicate (a = b = 0 stratum)? Quote-level audit."
   },
   {
    "id": "axis9_dither",
@@ -100,7 +108,9 @@
    "key": true,
    "refs": [
     "wp_detail/wp0_2_wp4_4_rules_freeze_and_dither.md#1"
-   ]
+   ],
+   "statement": "Confirm or refute in ePrint 2026/680: k <= 2^40 and |F| < 2^256. Determines B* magnitudes, the ~90-bit band statement, and whether non-generating rows (hence the tower case) are admissible.",
+   "notes": "HALF-RESOLVED 2026-07-02: towards-prize v3 (source of truth) formally adopts k <= 2^40, |F| < 2^256, B* = floor(q_line/2^128) as the prize regime. Repo-official; the ePrint quote-check remains the dossier-grade acceptance for Q0.1."
   },
   {
    "id": "rules_freeze",
@@ -108,7 +118,8 @@
    "status": "TARGET",
    "refs": [
     "wp_detail/wp0_2_wp4_4_rules_freeze_and_dither.md#2"
-   ]
+   ],
+   "statement": "Pin every operative rule as quote + hash with a drift detector; plan against the stricter reading on any ambiguity."
   },
   {
    "id": "mca_unsafe",
@@ -117,15 +128,18 @@
    "gate": "all",
    "refs": [
     "proof_sketch/s2_paid_ledger.md#4"
-   ]
+   ],
+   "statement": "B_C(a_safe - 1) > B*: cap above 1-rho-2^-9 (proved) + witnesses at the adjacent grid point (unsafe_at_crossing)."
   },
   {
    "id": "cap_theorem",
    "title": "Paper D universal cap (unsafe above 1-rho-2^-9)",
    "status": "PROVED",
    "refs": [
-    "proof_sketch/s2_paid_ledger.md#3"
-   ]
+    "proof_sketch/s2_paid_ledger.md#3",
+    "tex/cs25_cap_v12.tex"
+   ],
+   "notes": "v12 audit DONE (#177 integrated e7042160; one rounding fix patched by maintainer); external G3 rank-boundary toy packet open (#175, latifkasuli \u2014 NEW external lane)."
   },
   {
    "id": "qfloor_exact",
@@ -151,7 +165,11 @@
    "key": true,
    "refs": [
     "proof_sketch/s2_paid_ledger.md#3"
-   ]
+   ],
+   "statement": "Determine |{e_1(B) mod p : B in binom(Q, l')}| for quotient orders 80 < N' < 512 at prize-scale p: (1-o(1))-full vs collided (= prob:perfiber at sigma = 1). SHARPENED (E1 compatibility): on 2-power rows the open cells are the 2-power divisors in (80, 512) \u2014 for Row C exactly N' in {128, 256}: the corridor question is TWO value sets per row.",
+   "attack_surface": "extend the split-prime transfer range, or the norm threshold, or prove e1-fullness directly",
+   "falsifier": "Row-C birthday sampling showing collision rates far from either the full or the heavily-collided prediction",
+   "notes": "PREFERRED ROUTE (evidence-backed): collision-free branch via norm criterion -> density -> typicality (e1_random_prime_model); collided-branch machinery (averaged_slope_conversion) is INSURANCE, not the plan."
   },
   {
    "id": "acl_second_order",
@@ -159,7 +177,10 @@
    "status": "TARGET",
    "refs": [
     "wp_detail/wp3_2_symbolic_scaling.md#3"
-   ]
+   ],
+   "statement": "Compute the second-order term of the antipodal class count Acl(N', l') beyond leading order, with explicit error control, so the corridor's quotient end becomes a NUMBER per rate instead of an interval. With it, per-rate bracket widths are exact and the adjacency question (adjacency_closing) is decidable rate-by-rate. Route shape: generating-function / saddle-point expansion of the class count.",
+   "attack_surface": "computation-shaped: expand the counting generating function one order past S2's leading term; verify against exact small-N' counts (already tabulated in the E1 packet: log2 A = 49.72/100.44/201.88)",
+   "falsifier": "exact small-N' counts disagreeing with the expansion (arithmetic check, not a conjecture risk)"
   },
   {
    "id": "norm_threshold_ext",
@@ -186,7 +207,8 @@
    "key": true,
    "refs": [
     "proof_sketch/prize_proof_sketch_spine.md#4"
-   ]
+   ],
+   "statement": "B_C(a_safe) <= B*: via the stratified sum tan+quot+ap+ext with dedup (first-match) and R2 on the aperiodic stratum."
   },
   {
    "id": "counting_frame",
@@ -220,7 +242,8 @@
    "key": true,
    "refs": [
     "proof_sketch/s2_paid_ledger.md#2"
-   ]
+   ],
+   "notes": "IN FLIGHT: PR #181 (Codex) = the standalone proof note (Q2.1); flips to PROVED on integration."
   },
   {
    "id": "vtdv",
@@ -253,7 +276,8 @@
    "gate": "all",
    "refs": [
     "proof_sketch/s2_paid_ledger.md#5"
-   ]
+   ],
+   "statement": "Paid(A) as one computable function assembled from paid_tan_fn + paid_quot_fn (intervals) + paid_ext_fn."
   },
   {
    "id": "staircase",
@@ -328,7 +352,11 @@
    "status": "CONJECTURE",
    "refs": [
     "proof_sketch/s3b_ii_strip_periodic.md#3"
-   ]
+   ],
+   "statement": "#{aligned (l, Z): root set K_M-stable but (u,v) multi-isotypic (non-equivariant) on the stratum} <= poly(n) * FM \u2014 the isotypic escape stratum carries no super-poly alignment mass.",
+   "attack_surface": "bound the multi-isotypic stratum via the isotypic decomposition + FM; the stratum is thin (non-equivariant data on stable supports)",
+   "falsifier": "toy enumeration (gap1_toy_test) showing non-equivariant periodic alignments outgrowing poly",
+   "notes": "E6 (PR #187): NO amplification signal in any tested periodic model (exact F_13/F_97 all-support + F_257 to n=256); packet PROVES the local isotypic base-line rank lemma (alpha^M in base field => each character maps into one line alpha^r B => cosets cannot add slope exponent) \u2014 the per-character product model looks like the MECHANISM, not just a bound. Prior UP strongly."
   },
   {
    "id": "gap2_seam",
@@ -336,7 +364,8 @@
    "status": "PROVABLE",
    "refs": [
     "proof_sketch/s4_reserve_dictionary.md#3"
-   ]
+   ],
+   "notes": "IN FLIGHT: PR #189 (Q2.2 executed)."
   },
   {
    "id": "r2_rigidity",
@@ -346,7 +375,10 @@
    "key": true,
    "refs": [
     "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#3"
-   ]
+   ],
+   "statement": "For every pair (u,v): #(D_j cap X_{u,v} minus paid strata) <= n^B max(1, C(n,j) q^{1-t}) with B <= 3, X_{u,v} = V(2x2 minors of (H_u l ; H_v l)).",
+   "attack_surface": "any ONE of the four wall routes; budget B <= 3 verified",
+   "falsifier": "an unpaid collision in the window scan (P1c) or an unpaid identically-valid pencil at deficiency 1 (P3)"
   },
   {
    "id": "budget_b3",
@@ -436,7 +468,8 @@
    "status": "PROVABLE",
    "refs": [
     "wp_detail/wp2_5_wp4_1_window_charts_and_displacement.md#2"
-   ]
+   ],
+   "notes": "IN FLIGHT: PR #191 packet 1 = the uniform V^T D V identities + Toeplitz-Cauchy displacement (Q2.5 executed); flips on integration."
   },
   {
    "id": "conj_f",
@@ -446,7 +479,10 @@
    "key": true,
    "refs": [
     "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
-   ]
+   ],
+   "statement": "For every linear P <= P^j and pair (u,v): the D_j-points of P are, up to n^{B_F} exceptions, covered by a shared divisor of degree >= j - dim P - O(log_n) (tangent shape) or a proper quotient-pullback stratum (periodic shape).",
+   "attack_surface": "prove coordinate planes first (= prob:perfiber, minimal instance), then kernel planes; the crux is classifying exceptional planes (ES-type)",
+   "falsifier": "a toy-scale plane family (n = 16..32, enumerable) with super-poly D_j points, no deep shared divisor, no pullback symmetry"
   },
   {
    "id": "perfiber",
@@ -571,7 +607,8 @@
    "status": "TARGET",
    "refs": [
     "wp_detail/wp_consolidation_sketch_extracts.md"
-   ]
+   ],
+   "statement": "Script-emitted per-A table: tan/quot(zones, intervals)/ext/ap columns, deduped total vs B*, checker-recomputed."
   },
   {
    "id": "strat_tree",
@@ -579,7 +616,8 @@
    "status": "TARGET",
    "refs": [
     "wp_detail/wp2_3_stratification_case_tree.md"
-   ]
+   ],
+   "statement": "The executable T0-T7 first-match tree = THE dedup convention; partition theorem proved; fuzz-tested per wp2_3 \u00a74."
   },
   {
    "id": "deficiency_ladder",
@@ -595,14 +633,6 @@
    "id": "a384_bucket",
    "title": "A=384 bucket identified (d=1; PR #172 turn 1)",
    "status": "PROVED",
-   "refs": [
-    "wp_detail/wp2_6_underdetermined_program.md"
-   ]
-  },
-  {
-   "id": "u1_u5_chain",
-   "title": "U1-U5: Cramer kernel -> divisibility -> dichotomy",
-   "status": "PROVABLE",
    "refs": [
     "wp_detail/wp2_6_underdetermined_program.md"
    ]
@@ -664,7 +694,8 @@
    "key": true,
    "refs": [
     "proof_sketch/s7_list_side.md#5"
-   ]
+   ],
+   "statement": "#Lambda(C^{==m}, delta) <= 2^-128 |F| above the window: ImgFib bound + codegree conversion + m-handling per the official quantifier."
   },
   {
    "id": "imgfib",
@@ -673,7 +704,10 @@
    "key": true,
    "refs": [
     "wp_detail/wp_consolidation_sketch_extracts.md"
-   ]
+   ],
+   "statement": "For ALL received words U: #ImgFib_U(k+sigma) <= n^B once sigma log2(q_D) >= (1+eps) log2 C(n, k+sigma) and the quotient profile is budgeted.",
+   "attack_surface": "close the petal escape route (the only open branch of the Thm 21/B11 frontier); monomial instance already proved in quasi-poly range",
+   "falsifier": "a toy word family with super-poly image fibers above the corrected reserve"
   },
   {
    "id": "petal_growth",
@@ -683,7 +717,10 @@
    "refs": [
     "proof_sketch/s7_list_side.md#4"
    ],
-   "gate": "any"
+   "gate": "any",
+   "statement": "Full-petal extras at cofactor excess d-ell = c are poly(n) uniformly in c (equivalently: the amplification bound closes the Thm 21/B11 escape route).",
+   "attack_surface": "fixed-excess enumerations (Q2.9) then the amplification statement; CRT compression makes small cases finite",
+   "falsifier": "fixed-excess counts growing super-poly in n at some c"
   },
   {
    "id": "petal_witnesses",
@@ -732,7 +769,10 @@
    "key": true,
    "refs": [
     "wp_detail/wp5_2_wp6_2_wp6_3_bridges.md#1"
-   ]
+   ],
+   "statement": "Every interleaved configuration reduces with poly loss to the a-regular case (all base agreements exactly a), or the irregular stratum contributes <= poly(n) to interleaved counts.",
+   "attack_surface": "agreement-trimming regularization or a direct irregular-stratum bound",
+   "falsifier": "toy interleaved counts (a_regularity_test) exceeding regularized predictions"
   },
   {
    "id": "clique_cap",
@@ -757,7 +797,8 @@
    "gate": "all",
    "refs": [
     "proof_sketch/s6_extension_lift.md"
-   ]
+   ],
+   "statement": "Every F-valued bad slope above the reserve is B-rational, pole-type (priced by the imported list term), or tower-confined."
   },
   {
    "id": "b_rational_lift",
@@ -781,7 +822,8 @@
    "status": "PROVABLE",
    "refs": [
     "proof_sketch/s6_extension_lift.md#2"
-   ]
+   ],
+   "notes": "IN FLIGHT: PR #190 (Q2.4 executed)."
   },
   {
    "id": "generating_escape",
@@ -797,7 +839,8 @@
    "status": "CONJECTURE",
    "refs": [
     "proof_sketch/s6_extension_lift.md#4"
-   ]
+   ],
+   "statement": "Trichotomy: every F-valued bad slope above the reserve is (i) B-pencil-rational, (ii) pole-type, or (iii) confined to an intermediate subfield B <= K <= F, each priced by its ledger."
   },
   {
    "id": "sigma1_cx",
@@ -813,7 +856,8 @@
    "status": "TARGET",
    "refs": [
     "proof_sketch/s8_s9_assembly_and_negative.md#1"
-   ]
+   ],
+   "statement": "Row + packets -> SAFE/UNSAFE/CONDITIONAL/UNKNOWN verdicts per grid A; refuses prize-facing output on OPEN axes or conjectural ledgers."
   },
   {
    "id": "harness",
@@ -821,7 +865,8 @@
    "status": "TARGET",
    "refs": [
     "wp_detail/wp0_3_wp0_4_replay_and_harness.md#2"
-   ]
+   ],
+   "statement": "run_all_verifiers: discovery + manifest + cert hashes + six-packet negative-control suite all red."
   },
   {
    "id": "descriptor",
@@ -829,7 +874,8 @@
    "status": "TARGET",
    "refs": [
     "wp_detail/wp3_2_symbolic_scaling.md#2"
-   ]
+   ],
+   "statement": "(p, e, s, rho) -> full derived row table, O(poly), double regression (pinned row + master table); sole source of dossier constants."
   },
   {
    "id": "lean_tier1",
@@ -845,7 +891,8 @@
    "status": "TARGET",
    "refs": [
     "wp_detail/wp7_2_wp7_3_wp7_4_promotion_gates_dossier.md#3"
-   ]
+   ],
+   "statement": "v-PARTIAL assembled and gate-checked: pinned-row note + envelope family + freeze tables + tier-1 Lean certificates + non-claims, S0-conditioned."
   },
   {
    "id": "bridge_ledger",
@@ -853,7 +900,8 @@
    "status": "TARGET",
    "refs": [
     "wp_detail/wp5_2_wp6_2_wp6_3_bridges.md#3"
-   ]
+   ],
+   "statement": "One row per object crossing (losses, conventions, provenance); checker fails silent bridge use; includes the proved LD_sw forward-only separation."
   },
   {
    "id": "row_slate",
@@ -969,17 +1017,20 @@
    "status": "TARGET",
    "refs": [
     "proof_sketch/s3b_iii_2_displacement_spectral.md#3"
-   ]
+   ],
+   "statement": "ASSEMBLY (honest form): combine (a) the anticode toolkit (distance-s independence, combinatorial factors), (b) the same-slope exchange exclusion radius from the residual ledger (t = 2 PROVED in #152 via exchange_calculus; general t = exchange_ledger_gen_t), and (c) the v8 one-support-one-slope cap (PROVED \u2014 the q-scale input) into partial B_ap bounds: per-slope alignment sets are distance-excluded and per-locator capped, giving FM-scale bounds on the strata where the exclusion radius is large. HONEST GAP: where the radius is small, closing to FM scale hands off to the energy/inverse pipeline (xr_gvn -> xr_inverse) \u2014 the wall's two halves meet here, and the meeting is the wall.",
+   "attack_surface": "rung 1: the toolkit note (classical, S); rung 2: Q4.1's ledger generalization sets the exclusion radius s(t); rung 3: the assembly computation \u2014 which strata get FM-scale bounds at which s; the remainder is the pipeline's job, stated without pretense"
   },
   {
    "id": "xr_crystallization",
-   "title": "Crystallization: surviving dense alignment IS tangent/quotient structure",
+   "title": "XR classification: members of the exchange-inverse class C_XR are paid",
    "status": "TARGET",
    "key": true,
    "refs": [
     "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#3"
    ],
-   "notes": "the content beyond even moments \u2014 the genuinely new ingredient every mechanism needs"
+   "notes": "the content beyond even moments \u2014 the genuinely new ingredient every mechanism needs",
+   "statement": "Every member of the class C_XR produced by the exchange inverse theorem (xr_inverse) is tangent-type, quotient-type, or extension-type \u2014 or is a NEW named ledger. The class is complete BY CONSTRUCTION of the inverse step; this node is pure classification."
   },
   {
    "id": "spi_genericity",
@@ -991,12 +1042,13 @@
   },
   {
    "id": "spi_exceptional_class",
-   "title": "ES exceptional varieties over F_q classified = paid strata",
+   "title": "SPI classification: high-dimensional components map to paid strata",
    "status": "TARGET",
    "key": true,
    "refs": [
     "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#4"
-   ]
+   ],
+   "statement": "Every irreducible component of the alignment/structure loci with dimension above the poly-count threshold is contained in a tangent, quotient(-tower), or extension stratum \u2014 or is a NEW named ledger. Completeness of the component list is Noetherian/degree-bounded (spi_component_control)."
   },
   {
    "id": "spi_dimension_free",
@@ -1021,7 +1073,9 @@
    "status": "TARGET",
    "refs": [
     "proof_sketch/s7_list_side.md#4"
-   ]
+   ],
+   "statement": "The program's first precise target (note, Consequences of the mixed-petal analysis): count degree-<=d polynomials W with many zeros across the shifted-target family W - c_i L_D on T_i; super-polynomial amplification must force quotient, low-defect, or another explicitly budgeted structured family. A lower-dimensional incidence question.",
+   "attack_surface": "the incidence count over the shifted-target family; Q2.9's fixed-excess data grounds the exponents"
   },
   {
    "id": "e1_fullness",
@@ -1030,7 +1084,7 @@
    "refs": [
     "proof_sketch/s2_paid_ledger.md#3"
    ],
-   "notes": "the precise collision-free reading of zone-(b); Row-C sampling measures exactly this"
+   "notes": "the precise collision-free reading of zone-(b); Row-C sampling measures exactly this | E1 PILOT (PR #180, replayed green): zero collisions at 2^18 samples/cell for N' in {64,128,256} on Row C => support >= 2^33.4 (95%), extreme collapse ruled out at printed scale. Class counts log2 A = 49.7/100.4/201.9: only N'=64 is birthday-DECIDABLE (~2^25 samples); open in-corridor cells need structured estimators or the norm-criterion route. Spec correction adopted: N' must divide n (96/192 dropped)."
   },
   {
    "id": "paper_a_noslack",
@@ -1157,6 +1211,1001 @@
    "refs": [
     "experimental/lean/rs_mca_formalization"
    ]
+  },
+  {
+   "id": "l1_core_defect_reduction",
+   "title": "L1 Lemma 2: sunflower core-defect reduction",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/l1/l1_full_list_quotient_proof_program.md"
+   ]
+  },
+  {
+   "id": "l1_crt_compression",
+   "title": "L1 Lemmas 7/8: full-petal CRT compression + rank certificate",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/l1/l1_full_list_quotient_proof_program.md"
+   ]
+  },
+  {
+   "id": "l1_defect_layer_bounds",
+   "title": "L1 Lemmas 9/13-16: defect-layer bounds (full-petal case)",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/l1/l1_full_list_quotient_proof_program.md"
+   ]
+  },
+  {
+   "id": "u1_cramer",
+   "title": "U1: deficiency-1 kernel = signed-maximal-minor (Cramer) vector",
+   "status": "PROVABLE",
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ],
+   "notes": "#176 closed-superseded; modular follow-ups begin at #179 (rank-drop split-locator dedup)."
+  },
+  {
+   "id": "u2_nondegeneracy",
+   "title": "U2: pencil nondegeneracy certified per declared family",
+   "status": "PROVABLE",
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ],
+   "notes": "IN FLIGHT: PR #176 (Codex)."
+  },
+  {
+   "id": "u3_divisibility",
+   "title": "U3: validity = divisibility into X^512 - 1 (window m = 1..t, verified)",
+   "status": "PROVABLE",
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ]
+  },
+  {
+   "id": "u4_pseudoremainder",
+   "title": "U4: pseudo-remainder chart, deg_Z <= 49408",
+   "status": "PROVABLE",
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ]
+  },
+  {
+   "id": "u5_dichotomy",
+   "title": "U5: eliminant OR identically-valid pencil (paid / candidate_new_obstruction)",
+   "status": "PROVABLE",
+   "refs": [
+    "wp_detail/wp2_6_underdetermined_program.md"
+   ]
+  },
+  {
+   "id": "paid_tan_fn",
+   "title": "Paid_tan(A): staircase formula as a computable function",
+   "status": "PROVABLE",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#5"
+   ]
+  },
+  {
+   "id": "paid_quot_fn",
+   "title": "Paid_quot(A): zones a/b/c, interval-valued cells",
+   "status": "PROVABLE",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#5"
+   ],
+   "notes": "interval-valued form buildable now; POINT values in zone (b) conditional on the collision question"
+  },
+  {
+   "id": "paid_ext_fn",
+   "title": "Paid_ext(A): the s6 import rule (0 if generating)",
+   "status": "PROVABLE",
+   "refs": [
+    "proof_sketch/s6_extension_lift.md#2"
+   ]
+  },
+  {
+   "id": "f1_case_pole",
+   "title": "F1 case (ii): pole-type slopes priced by the imported list term",
+   "status": "CONDITIONAL",
+   "refs": [
+    "proof_sketch/s6_extension_lift.md#4"
+   ],
+   "notes": "priced by ext_import; conditional on the list-side location"
+  },
+  {
+   "id": "f1_case_tower",
+   "title": "F1 case (iii): intermediate-subfield tower recursion",
+   "status": "TARGET",
+   "refs": [
+    "proof_sketch/s6_extension_lift.md#5"
+   ],
+   "statement": "Case (iii) closes: intermediate-subfield-confined slopes are priced by the same two mechanisms one level up, recursively, with per-level denominators printed. NOTE: critical only if the official family admits non-generating rows (Q0.1)."
+  },
+  {
+   "id": "two_slope_intersection",
+   "title": "Two distinct bad slopes explain u AND v individually on the support intersection",
+   "status": "PROVED",
+   "refs": [
+    "tex/slackMCA_v4.tex"
+   ],
+   "notes": "elementary 2x2 solve on S1 cap S2; the engine that makes many-slope configurations structured \u2014 large intersections force tangent-type payment"
+  },
+  {
+   "id": "spread_regime_bound",
+   "title": "Spread regime: all pairwise support intersections < k => poly(n) slopes",
+   "status": "CONJECTURE",
+   "key": true,
+   "refs": [
+    "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#3"
+   ],
+   "notes": "the open half of crystallization in slope-side form: with two_slope_intersection it decomposes 'dense alignment => paid' into PROVED (large-intersection) + THIS (small-intersection/entropy) branches; any final safe-side proof proves something equivalent | E3 outcome: BOUNDED_EXCEPTION_WITNESS_FOUND \u2014 pre-registration caught the false naive form BEFORE proof effort; witness bounded (no growing mass). New proved ingredient on integration: the row-space cap.",
+   "statement": "REVISED per E3 witness (PR #185, replayed green): below the universal degree-moment row-space cap (PROVED in the packet: distinct-slope stacks lie in span{(M_d,0),(0,M_d)}; saturation forces S_T(v)=0), spread rank loss is either a BOUNDED AG(2,4)-type exception or forces v-syndrome degeneracy. The naive no-exception spread lemma is FALSE: explicit six/seven-line AG(2,4) subfamilies achieve rank 11/12 below cap with nondegeneracy certificates. The poly-slope conclusion survives; the route to it must carry the exception class.",
+   "falsifier": "an AG-type exception FAMILY with growing rank deficit (would refute the revised form too)"
+  },
+  {
+   "id": "char0_collision_classification",
+   "title": "thm:upstairs: char-0 prefix collisions among 2-power roots of unity are EXACTLY quotient-periodic",
+   "status": "PROVED",
+   "refs": [
+    "tex/slackMCA_v4.tex"
+   ],
+   "notes": "the collision family is fully classified in characteristic zero; zone-(b)'s open content is purely the finite-field transfer"
+  },
+  {
+   "id": "galois_amplification",
+   "title": "Split-prime transfer: for p > exp(Cn log n / sigma), finite prefix collisions ARE char-0 collisions",
+   "status": "PROVED",
+   "refs": [
+    "tex/slackMCA_v4.tex"
+   ],
+   "notes": "cor:quasipoly-upper machinery \u2014 the proved beachhead of the transfer; prize-scale p ~ 2^256 is far below the proved range"
+  },
+  {
+   "id": "amplification_range_ext",
+   "title": "Extend the split-prime transfer range from exp(Cn log n/sigma) toward prize-scale p",
+   "status": "TARGET",
+   "key": true,
+   "refs": [
+    "tex/slackMCA_v4.tex"
+   ],
+   "notes": "the repo's own proved route to e1-fullness/zone-(b); every range improvement is direct progress on the corridor question"
+  },
+  {
+   "id": "stratification_partition_thm",
+   "title": "The T0-T7 first-match stratification is a PARTITION (total + disjoint) of all pairs",
+   "status": "PROVABLE",
+   "refs": [
+    "wp_detail/wp2_3_stratification_case_tree.md"
+   ],
+   "notes": "true by construction; the final theorem literally sums over these strata, so this is load-bearing, not scaffolding | IN FLIGHT: PR #192 (Q2.10 executed)."
+  },
+  {
+   "id": "beta2_moment_corroboration",
+   "title": "Second moments M_2(p) -> 1 over primes <= 181 (irreducibility corroboration)",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/m1/m1_beta2_conditional_close.md"
+   ]
+  },
+  {
+   "id": "ldsw_ld_separation",
+   "title": "LD_sw does NOT imply ABF/GG line-decodability (finite counterexample)",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/m2/m2_ldsw_line_decoding_separation.md"
+   ],
+   "notes": "the bridge imports external LD theorems FORWARD only; mandatory loss-column entry"
+  },
+  {
+   "id": "common_code_line_budget",
+   "title": "Common code-line residual budget (MDS): tangent-agreeing lines pay residual slopes outside the support",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/m2/m2_common_code_line_residual_budget.md"
+   ],
+   "notes": "the proved general tangent-payment engine \u2014 crystallization's large-intersection branch converts to payment through this"
+  },
+  {
+   "id": "unsafe_at_crossing",
+   "title": "Unsafe witnesses at the adjacent grid point (the determination's other half)",
+   "status": "TARGET",
+   "gate": "any",
+   "key": true,
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#4"
+   ],
+   "notes": "two exhaustive routes: collision-free => qfloor-family witnesses; collided => averaged slope conversion | PREFERRED ROUTE: qfloor witness family (collision-free branch), per E1 + the typicality model.",
+   "statement": "For each admissible row: B_C(a_safe - 1) > B* witnessed at the ADJACENT grid point \u2014 collision-free branch: qfloor value-set family; collided branch: averaged fiber-to-slope conversion.",
+   "attack_surface": "collision-free: count the qfloor family at the crossing scale; collided: prove averaged_slope_conversion",
+   "falsifier": "n/a (existence claim; the branch dichotomy is exhaustive)"
+  },
+  {
+   "id": "averaged_slope_conversion",
+   "title": "Averaged fiber-to-slope conversion: FM locator mean => existence of a many-SLOPE pair",
+   "status": "CONJECTURE",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#6"
+   ],
+   "notes": "s2 fork F2: plausibly provable (second moment + paid-fiber exclusion); needed exactly when zone-(b) is collided"
+  },
+  {
+   "id": "dyadic_profile_evaluation",
+   "title": "Compute Q_H(eta) exactly for 2-power domains at the four rates",
+   "status": "PROVABLE",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ],
+   "notes": "pure divisor-count computation; conj:B's profile hypothesis is unverifiable on official rows without it"
+  },
+  {
+   "id": "thm_exactslack",
+   "title": "thm:exactslack: canonical-line bad slopes = the multi-symmetric image B_T exactly",
+   "status": "PROVED",
+   "refs": [
+    "tex/slackMCA_v4.tex"
+   ],
+   "notes": "exact characterization on the monomial stratum \u2014 the unsafe side's sharpest proved tool"
+  },
+  {
+   "id": "prop_collapse",
+   "title": "prop:collapse: subgroup-symmetric witnesses collapse to the one-condition ladder",
+   "status": "PROVED",
+   "refs": [
+    "tex/slackMCA_v4.tex"
+   ]
+  },
+  {
+   "id": "two_moment_fullness",
+   "title": "thm:twomoment: two-moment fullness at the root barrier (unconditional failure mechanism)",
+   "status": "PROVED",
+   "refs": [
+    "tex/slackMCA_v4.tex"
+   ]
+  },
+  {
+   "id": "dyadic_descent",
+   "title": "thm:descent: dyadic descent failure mechanism (unconditional)",
+   "status": "PROVED",
+   "refs": [
+    "tex/slackMCA_v4.tex"
+   ]
+  },
+  {
+   "id": "free_pool_ladder",
+   "title": "thm:ladder: polynomial-range free-pool ladder",
+   "status": "CONDITIONAL",
+   "refs": [
+    "tex/slackMCA_v4.tex"
+   ],
+   "notes": "conditional on a precise subgroup exponential-sum import"
+  },
+  {
+   "id": "subgroup_expsum_input",
+   "title": "The named exp-sum import: subgroup ranges beyond N >= p^{3/7+eps}",
+   "status": "CONJECTURE",
+   "refs": [
+    "tex/slackMCA_v4.tex"
+   ],
+   "notes": "exp sums are DEAD as a route to the core (route_expsums) but ALIVE as this ladder's import \u2014 the nuance matters"
+  },
+  {
+   "id": "m_handling",
+   "title": "Interleaved m-handling per the official quantifier",
+   "status": "TARGET",
+   "gate": "any",
+   "statement": "Either the official reading bounds m (exists-m / fixed small m: worst-case route suffices) or for-all-m holds (a-regular collapse required for m >= 4). Exhaustive over readings.",
+   "refs": [
+    "proof_sketch/s7_list_side.md#3"
+   ]
+  },
+  {
+   "id": "m_le3_route",
+   "title": "Worst-case interleaved route for m <= 3 (given base exponent ~1)",
+   "status": "CONDITIONAL",
+   "notes": "proved-modulo: imgfib at exponent ~1 AND the rules reading; budget 128/(m*40) verified",
+   "refs": [
+    "wp_detail/wp5_2_wp6_2_wp6_3_bridges.md#1"
+   ]
+  },
+  {
+   "id": "rules_m_reading",
+   "title": "Official resolution of the 'constant m' quantifier",
+   "status": "TEST",
+   "refs": [
+    "wp_detail/wp0_2_wp4_4_rules_freeze_and_dither.md#1"
+   ]
+  },
+  {
+   "id": "imgfib_monomial",
+   "title": "PROVED instance: monomial-prefix list sizes poly at corrected reserve (split primes, quasi-poly range)",
+   "status": "PROVED",
+   "refs": [
+    "tex/slackMCA_v4.tex"
+   ],
+   "notes": "cor:quasipoly-upper \u2014 the minimal proved instance of imgfib; range extension = amplification_range_ext"
+  },
+  {
+   "id": "gap1_toy_test",
+   "title": "Toy enumeration: non-equivariant periodic alignment mass (F_13/F_97 rows)",
+   "status": "TEST",
+   "refs": [
+    "proof_sketch/s3b_ii_strip_periodic.md#3"
+   ]
+  },
+  {
+   "id": "a_regularity_test",
+   "title": "Toy measurement: a-regularity frequency + irregular-stratum contribution",
+   "status": "TEST",
+   "refs": [
+    "wp_detail/wp5_2_wp6_2_wp6_3_bridges.md#1"
+   ]
+  },
+  {
+   "id": "f_gcd_reduction",
+   "title": "F WLOG reduction: factor out the plane's common divisor",
+   "status": "PROVABLE",
+   "statement": "Let w = deg gcd(P cap D_j). Division by the gcd maps P cap D_j injectively into P' cap D'_{j-w} for an explicit linear P' of dim <= dim P over the co-domain (X^n-1)/gcd, with trivial image gcd. Hence F reduces to gcd-trivial planes; the deep-gcd branch IS the tangent shape.",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ],
+   "notes": "elementary: multiples-of-ell_W form a subspace; division is linear | IN FLIGHT: PR #182 (Codex) proves this (verifier replayed green locally, 13792 reduction checks; tip adds a bonus common-root consumer bound). Flips to PROVED on integration."
+  },
+  {
+   "id": "f_scale_recursion",
+   "title": "F scale recursion: pullback points are plane points of the quotient instance",
+   "status": "PROVABLE",
+   "statement": "P cap D_j^per(M) is linearly isomorphic to P' cap D'_{j/M} at scale n/M (an M-pullback ell = g(X^M) places g's coefficients at multiples of M \u2014 a linear embedding). Hence F(n) <= F_primitive(n) + sum over M | gcd(n,j) of F(n/M): the periodic branch recurses, bottoming out at checkable scales.",
+   "refs": [
+    "proof_sketch/s3b_ii_strip_periodic.md#1"
+   ],
+   "notes": "the same multi-scale self-similarity as Q_M = Q_1 and the coset-move dynamics \u2014 third appearance of the recursion | IN FLIGHT: PR #182 (Codex) proves this (verifier replayed green locally, 13792 reduction checks; tip adds a bonus common-root consumer bound). Flips to PROVED on integration."
+  },
+  {
+   "id": "f_primitive_case",
+   "title": "F primitive core: gcd-trivial, aperiodic plane points are poly",
+   "status": "CONJECTURE",
+   "key": true,
+   "statement": "For every linear P <= P^j and pair (u,v): #{ell in P cap D_j : gcd(P cap D_j) = 1, ell not a pullback, ell unpaid} <= n^{B_F}. By f_gcd_reduction + f_scale_recursion this implies full Conjecture F.",
+   "attack_surface": "the irreducible instance every route must face; coordinate planes first (perfiber is its coordinate case), kernel planes second",
+   "falsifier": "toy-scale (n = 16..32) exhaustive plane searches finding super-poly primitive unpaid points",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ],
+   "notes": "E7 EVIDENCE (PR #183, replayed green): exact n=16 j=3 projective-plane census \u2014 the paid spike is EXACTLY the 16 common-root planes (105 = C(15,2) points each, the tangent shape as predicted); primitive max after removing them = 38 across 240 top planes, BELOW the weighted pair-bound floor 60. Hankel-kernel sample (j=5, t=3, 2048 full-rank planes \u2014 the consumer-relevant family): primitive max 13 < floor 30. No rich unpaid primitive dim-2 plane in census or sample. Prior UP. Next refinement: exhaustive j=4 Grassmannian or structured Hankel row-space enumeration."
+  },
+  {
+   "id": "collision_norm_criterion",
+   "title": "Non-quotient e1-collisions mod p <=> p divides an explicit bounded nonzero norm",
+   "status": "PROVABLE",
+   "statement": "For B != B' non-quotient-related: e1(B) = e1(B') mod frak-p iff frak-p | (e1(B)-e1(B')) in Z[zeta_N'], a NONZERO (by thm:upstairs) cyclotomic integer with all archimedean conjugates <= 2l'. Hence zone-(b) = counting prime divisors of an explicit bounded-height difference family.",
+   "refs": [
+    "tex/slackMCA_v4.tex"
+   ],
+   "notes": "the mechanism inside prop:qfloor's norm threshold, isolated as a reusable statement; makes zone-(b) concrete algebraic number theory | IN FLIGHT: implemented on the E1 branch (#180: 'Add E1 collision norm criterion')."
+  },
+  {
+   "id": "payment_completeness",
+   "title": "Payment-completeness hypothesis: the ledger taxonomy is EXHAUSTIVE",
+   "status": "CONJECTURE",
+   "key": true,
+   "statement": "The ledger taxonomy is exhaustive. NOT to be assumed or merely evidenced: it is the CLASSIFICATION OUTPUT of whichever enumeration route completes \u2014 the inverse class C_XR, the component list, the regularity-lemma exceptional sets, or the monodromy subgroup classification \u2014 each of which is complete by construction. Red-team results preview its content; they do not certify it.",
+   "attack_surface": "complete step 2 (classification) of any one enumeration route; a new class member discovered there = the S9 protocol, built into the strategy rather than bolted on",
+   "falsifier": "the red-team multi-scale resonance search (redteam_multiscale): any constructed super-poly alignment family outside the three ledger types. HISTORICAL BASE RATE: this class of assumption has already failed three times in this project (no-slack, one-scale entropy, raw fibers).",
+   "refs": [
+    "proof_sketch/s8_s9_assembly_and_negative.md#4"
+   ],
+   "notes": "previously smeared invisibly across every safe-side statement; now explicit and machine-classified | Mild support from E7: the dim-2 census's entire excess is classified by the KNOWN paid shapes (common-root/tangent); no unclassified spike. | E5 DELIVERED (#188): NO_MULTISCALE_HIDDEN_RANK_SIGNAL \u2014 phase-locked, adversarial-spread, and random dyadic families at n = 1024..4096: combined multiscale rank never exceeds deduped per-scale payments. FIRST data in the hiding room; scope = linear periodic model. Prior UP.",
+   "gate": "any"
+  },
+  {
+   "id": "redteam_multiscale",
+   "title": "RED TEAM: construct a fifth mechanism from cross-scale resonance",
+   "status": "TEST",
+   "key": true,
+   "statement": "Adversarial search at n = 2^10..2^12 (enough nested dyadic scales, unlike toys): deliberately construct pairs with simultaneous structure at MANY quotient scales and measure their unpaid alignment mass. Success = a counterexample contribution (COUNTEREXAMPLE status, S9 trigger); sustained failure across a structured search space = the first evidence that touches the actual hiding room.",
+   "refs": [
+    "proof_sketch/s3b_ii_strip_periodic.md#3"
+   ],
+   "notes": "First sweep executed (#188): empty in the pre-registered linear periodic model."
+  },
+  {
+   "id": "xr_gvn",
+   "title": "XR stage 1: generalized von Neumann \u2014 FM-excess controlled by iterated exchange energies",
+   "status": "TARGET",
+   "statement": "Define E_k(u,v) = the k-fold iterated exchange-correlation (Johnson-scheme energy of order k). Prove: unpaid alignment excess over FM is bounded by some E_k being large (Cauchy-Schwarz chain over exchange moves).",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#2"
+   ],
+   "notes": "template-standard mechanics; ingredients proved (exchange calculus, Johnson gap, averaged_xr = the k=2 case) | #191's endpoint multi-exchange inequality Pr[T_0,T_s in A] <= delta^2 + lambda*^s delta(1-delta) supplies the s-step decay the Cauchy-Schwarz chain needs."
+  },
+  {
+   "id": "xr_inverse",
+   "title": "XR stage 2: the inverse theorem \u2014 large E_k => correlation with explicit class C_XR",
+   "status": "CONJECTURE",
+   "key": true,
+   "statement": "STRIPPED FORM (per the E2 scaffold caveat): after removing paid quotient strata, E_k large (multi-exchange variant if needed) implies correlation with an explicit class C_XR \u2014 expected content post-strip: TANGENT structure only at low k. The class is complete by construction; quotient content is invisible to one-exchange energy and must be stripped first, else false negatives.",
+   "attack_surface": "the Gowers-inverse analogue; start at k = 3 (odd moments \u2014 the Hooley-Katz input is exactly the k=3 shadow)",
+   "falsifier": "an E_k-large pair correlating with nothing structured at toy scale",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#3"
+   ],
+   "notes": "E2 scaffold caveat (PR #184): frozen full-block quotient fibers have ZERO one-exchange energy \u2014 the inverse test MUST strip paid quotient strata first or use a multi-exchange variant, else designed-in false negative. Structured >> random baseline confirmed on the walk-energy proxy. | K=1 BASE CASE IN FLIGHT (#191): E_1-extremal families are point-dictator/common-root = PAID structures, exactly the 'energy-extremal => paid' shape this node conjectures at k=3. First inverse-flavor theorem on the board."
+  },
+  {
+   "id": "spi_component_control",
+   "title": "SPI stage 1: effective component control \u2014 count and degrees of irreducible components",
+   "status": "TARGET",
+   "statement": "Bezout-type bounds: the alignment variety X_{u,v} and its intersections with structure loci have an explicitly bounded number of irreducible components with bounded degrees (explicit in n, t, j). The component LIST is the finite enumeration.",
+   "refs": [
+    "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#1"
+   ]
+  },
+  {
+   "id": "spi_point_counting",
+   "title": "SPI stage 2: points of D_j on components \u2014 low-dim components contribute poly",
+   "status": "CONJECTURE",
+   "statement": "For each component V of dim below threshold: #(V cap D_j) <= poly(n). HONEST NOTE: this is where the core resurfaces in the SPI dialect \u2014 D_j is a special finite set, not generic points, so Lang-Weil-type counting does not apply verbatim; the divisor structure must enter.",
+   "refs": [
+    "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#5"
+   ]
+  },
+  {
+   "id": "es_regularity",
+   "title": "ES route: adapt the algebraic regularity lemma (Tao) as the off-the-shelf enumerator",
+   "status": "TARGET",
+   "key": true,
+   "statement": "Formulate alignment as a definable relation of bounded description complexity and apply an F_q algebraic-regularity/ES-type theorem: structure-vs-pseudorandomness with power savings, exceptional sets ALGEBRAIC and classifiable. Named obstacle: bounded complexity vs our degrees growing with t \u2014 the same dimension-free obstacle in regularity-lemma clothing.",
+   "refs": [
+    "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#4"
+   ]
+  },
+  {
+   "id": "monodromy_realization",
+   "title": "Monodromy route stage 0: realize general aperiodic alignment as sheaf monodromy",
+   "status": "TARGET",
+   "key": true,
+   "statement": "Express the aperiodic alignment count (general pairs, in-band agreements) as the trace function of an explicit sheaf family, so that big-monodromy + subgroup classification (the BETA_2 machinery, worked for the slack-line instance) applies. The enumeration = the subgroup classification (Kantor/ADW-style), complete by group theory.",
+   "refs": [
+    "experimental/notes/m1/m1_beta2_conditional_close.md"
+   ],
+   "notes": "the unmapped step: BETA_2's sheaf covers ONE instance; the general realization is open"
+  },
+  {
+   "id": "pma_aux_list_reduction",
+   "title": "PMA stage 1: mixed-petal extras = RS list of the auxiliary pieced word (one level down)",
+   "status": "PROVABLE",
+   "statement": "Fix defect set D (|D| = d) and background R_P. Non-planted extras inject (P -> W_P, proved unique) into the list of degree-<=d polynomials agreeing with the auxiliary word U*(x) = c_i L_D(x) on T_i (well-defined: petals disjoint) at agreement N = d+1+sigma-|R_P|, with W = 0 on R_P. The D-choice entropy C(k-1,d) is charged to the reserve \u2014 the same budget line as all locator combinatorics.",
+   "refs": [
+    "experimental/notes/l1/l1_full_list_quotient_proof_program.md"
+   ],
+   "notes": "elementary from the PROVED core-defect lemma; turns the amplification problem into list decoding at degree d"
+  },
+  {
+   "id": "pma_johnson_regime",
+   "title": "PMA stage 2: few-petal regime is CLASSICAL \u2014 Johnson/GS list bound applies",
+   "status": "PROVABLE",
+   "statement": "Whenever N^2 > d |T| (T = union of petals, |T| = M(sigma+1)), i.e. petal count M below ~(d+sigma)^2/(d(sigma+1)), the per-D auxiliary list is poly by Guruswami-Sudan \u2014 an unconditional classical import (forward direction; bridge-ledger row).",
+   "refs": [
+    "experimental/notes/l1/l1_full_list_quotient_proof_program.md"
+   ]
+  },
+  {
+   "id": "pma_wide_residual",
+   "title": "PMA stage 3 (the residue): many-petal, sub-Johnson regime with CORRELATED targets",
+   "status": "TARGET",
+   "key": true,
+   "statement": "For M above the Johnson threshold: bound the auxiliary list despite sub-Johnson agreement. The structure not yet exploited: all petal targets c_i L_D come from ONE polynomial L_D (the word is far from arbitrary), the per-petal cap |S_i| <= d spreads agreement thin, and W vanishes on R_P.",
+   "attack_surface": "two independent angles: (a) correlated-target strengthening of GS (the c_i are scalars times a COMMON L_D \u2014 one-dimensional target space per petal); (b) descent: extras of the auxiliary problem are degree-d objects \u2014 the SAME problem at (k, sigma) -> (d+1, ...), strictly smaller; iterate until Johnson-safe. Q2.9 fixed-excess data calibrates both.",
+   "falsifier": "an adversarial many-petal family (R3 attack) with super-poly auxiliary list",
+   "refs": [
+    "experimental/notes/l1/l1_full_list_quotient_proof_program.md"
+   ],
+   "notes": "E4 (PR #186): exact toy window F_109 l=3 d=5 \u2014 Johnson-covered rows empty, wide rows nonempty but tame (M=12: 2023 aux polys, max agreement 11). NO_SUPERPOLY_SIGNAL. Prior up mildly; window small."
+  },
+  {
+   "id": "f_dim1",
+   "title": "F at dimension 1: pencils meet D_j in at most n/j points (VOTING)",
+   "status": "PROVABLE",
+   "statement": "For a gcd-trivial pencil l_0 + t l_1: each x in H roots the member at a UNIQUE parameter t_x = -l_0(x)/l_1(x) (shared roots excluded by gcd-triviality; l_1(x)=0 gives no vote). A D_j member needs j votes; n votes exist. Hence <= n/j members (+1 for the leading-coefficient degeneracy). Far below the n^{B_F} target.",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ],
+   "notes": "elementary; the base case of F is TRUE with room to spare | IN FLIGHT: PR #182 (Codex) proves this (verifier replayed green locally, 13792 reduction checks; tip adds a bonus common-root consumer bound). Flips to PROVED on integration."
+  },
+  {
+   "id": "f_concurrency_equiv",
+   "title": "F-primitive = j-fold concurrency of the evaluation-hyperplane arrangement (exact reformulation)",
+   "status": "PROVABLE",
+   "statement": "On an r-flat P of parameter space, member-at-t has root x iff t lies on the hyperplane H_x = {P(x) = 0}. P cap D_j corresponds EXACTLY (up to the leading-coefficient hyperplane) to points lying on >= j of the n evaluation hyperplanes {H_x : x in H}. F-primitive <=> poly bound on j-fold concurrency points, with tangent shape = flats near {multiples of l_S} and periodic shape = pullback flats.",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ],
+   "notes": "turns F into finite-field incidence geometry: concurrency loci of a Vandermonde-type arrangement \u2014 a searchable literature (multiplicity incidence bounds, Furstenberg-type sets)"
+  },
+  {
+   "id": "xr_e3_calculus",
+   "title": "E_3 calculus: the 3-fold exchange energy + the structured lower-bound direction",
+   "status": "PROVABLE",
+   "statement": "Define E_3(u,v) = the 3-fold iterated exchange correlation (odd-order Johnson-scheme sum; E_2 = averaged_xr). Prove the EASY direction of the inverse: folded/equivariant words and tangent pairs have E_3 large (explicit lower bounds). Consistency check: E_2 reproduces the averaged-XR variance.",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#2"
+   ],
+   "notes": "E2 scaffold caveat (PR #184): frozen full-block quotient fibers have ZERO one-exchange energy \u2014 the inverse test MUST strip paid quotient strata first or use a multi-exchange variant, else designed-in false negative. Structured >> random baseline confirmed on the walk-energy proxy."
+  },
+  {
+   "id": "xr_inverse_toy",
+   "title": "TOY INVERSE at n = 16/32: every E_3-large pair is structured (exhaustive)",
+   "status": "TEST",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#3"
+   ],
+   "notes": "the k=3 inverse verified exhaustively at toy scale \u2014 falsifier and content-preview for C_XR in one experiment"
+  },
+  {
+   "id": "are_sharp_constant",
+   "title": "Sharpen the transfer range: recompute the norm-height bound with explicit constants",
+   "status": "PROVABLE",
+   "statement": "Re-derive the split-prime transfer's height bound exp(C n log n / sigma) with the sharpest explicit C (archimedean conjugate bounds (2l')^{N'/2} per level); determine the TRUE exponent shape (is N' log l' achievable in place of n log n?). Every constant improvement is direct range progress.",
+   "refs": [
+    "tex/slackMCA_v4.tex"
+   ]
+  },
+  {
+   "id": "are_exceptional_density",
+   "title": "Almost-all-primes collision-lightness (the density partial)",
+   "status": "PROVABLE",
+   "statement": "Sum over the bounded-height norm family: Sum_p #collisions(p) <= Sum_pairs Omega(Norm(diff)) <= #pairs * log(height). Hence in ANY dyadic prime range, all but a poly-sized exceptional set of primes have collision-light e1 value sets. Partial (the official p could be exceptional) but dossier-grade.",
+   "refs": [
+    "tex/slackMCA_v4.tex"
+   ],
+   "notes": "IN FLIGHT: #180's 'Bound E1 exceptional collision primes' commit (QZ.2 executed)."
+  },
+  {
+   "id": "are_subfield_amp",
+   "title": "Subfield amplification: norms from intermediate fields shrink the height",
+   "status": "TARGET",
+   "statement": "For structured differences lying in (or near) proper subfields of Q(zeta_N'), take norms from the subfield: height (2l')^{deg/2} with smaller degree extends the per-class transfer range. Classify which collision classes admit subfield descent.",
+   "refs": [
+    "tex/slackMCA_v4.tex"
+   ]
+  },
+  {
+   "id": "mca_from_ca_reduction",
+   "title": "v12: MCA-from-CA reduction up to half the minimum distance",
+   "status": "PROVED",
+   "refs": [
+    "tex/cs25_cap_v12.tex"
+   ],
+   "notes": "external correlated-agreement theorems now IMPORT into MCA up to d_min/2 \u2014 a new bridge; mandatory bridge-ledger row; conventions audit = #177"
+  },
+  {
+   "id": "half_johnson_ca",
+   "title": "v12: self-contained half-Johnson CA bound (+ optional BCIKS import)",
+   "status": "PROVED",
+   "refs": [
+    "tex/cs25_cap_v12.tex"
+   ],
+   "notes": "feeds the CA->MCA reduction; the BCIKS variant is an optional external import (bridge row if used)"
+  },
+  {
+   "id": "deep_safe_all_linear",
+   "title": "v12: deep-regime MCA safe theorem for ALL linear codes",
+   "status": "PROVED",
+   "refs": [
+    "tex/cs25_cap_v12.tex"
+   ],
+   "notes": "new proved safe-side ground; its range vs the prize corridor is exactly what #177 audits \u2014 do not assume band coverage until audited"
+  },
+  {
+   "id": "map_rational_caps",
+   "title": "v12: map/rational smooth caps via circle/genus-one transports",
+   "status": "PROVED",
+   "refs": [
+    "tex/cs25_cap_v12.tex"
+   ],
+   "notes": "extends the cap package across the admissible smooth-domain family; scope of the model transfers under audit (#177)"
+  },
+  {
+   "id": "certificate_grammar_v2",
+   "title": "v12: certificate grammar v2 + printed deployed-row integer certificates",
+   "status": "PROVED",
+   "refs": [
+    "tex/cs25_cap_v12.tex"
+   ],
+   "notes": "the packaging layer has a paper-side counterpart \u2014 align compiler/descriptor/dossier with this grammar instead of inventing a parallel one | AUDIT #177 integrated (e7042160): package passed with one real find \u2014 the explicit-pair integer rounding step, patched by the maintainer in cs25_cap_v12.tex."
+  },
+  {
+   "id": "e1_random_prime_model",
+   "title": "Random-prime typicality model for zone-(b) collisions (grounded by E1)",
+   "status": "CONJECTURE",
+   "statement": "The official-scale prime behaves collision-typically: #collisions at quotient order N' matches the random-prime expectation #pairs * E[Omega(Norm)] / pi(range) \u2014 negligible at the open cells (N' >= 128, log2 A >= 100, log2 p ~ 250), and with collision ONSET at the birthday scale of a 2^49.7 support for the feasible N'=64 cell (~2^25 samples). Via collision_norm_criterion + thm:upstairs this is exactly 'p divides none of the bounded-height difference norms beyond chance'.",
+   "attack_surface": "the N'=64 decisive run tests the model QUANTITATIVELY (onset curve, not just presence); the R4 conspiracy search attacks it adversarially (hunt primes dividing many norms); are_exceptional_density proves it for almost all primes",
+   "falsifier": "CORRECTED: the N'=64 cell tests NOTHING (fullness there is unconditionally forced by graded_collision_radius \u2014 E1's zero collisions were a theorem, not evidence). The model's support is the density theorem + the R4 conspiracy search; no sampling test reaches its open content at N' >= 128.",
+   "refs": [
+    "experimental/notes/roadmaps/evidence_plan_codex.md"
+   ],
+   "notes": "the E1 pilot's zero-collision data is consistent with the model; the model converts the un-sampleable open cells into a per-prime typicality question with a provable almost-all backstop (Pilot packet ref: PR #180's e1_row_c_value_set_sampling.md \u2014 repoint on integration.)"
+  },
+  {
+   "id": "spread_exception_classification",
+   "title": "LEAP: below-cap spread exceptions are exactly the finite-geometry class",
+   "status": "CONJECTURE",
+   "key": true,
+   "statement": "Every below-cap spread rank-loss configuration is (i) an AG(2,q)-type finite-geometry subfamily (nets/affine planes \u2014 the E3 witnesses' shape), bounded in count per (n,j) and payable as a ledger, or (ii) v-syndrome degenerate. PATH: (1) exhaustive small-scale exception census \u2014 do ALL exceptions embed in finite-geometry configurations?; (2) classification via the PROVED row-space cap's kernel structure; (3) pay the bounded class.",
+   "attack_surface": "rung 1 is a computation (extend E3's search to all configurations at n = 16..32); rung 2 uses the cap theorem's span structure; the AG witnesses' rank pattern (11/12, one deficit) suggests a one-relation characterization",
+   "falsifier": "an exception at small scale embedding in NO finite-geometry configuration, or a growing-deficit family",
+   "refs": [
+    "experimental/notes/roadmaps/evidence_plan_codex.md"
+   ],
+   "notes": "CALCULATED LEAP grounded in E3 (PR #185): witness shape + proved cap + saturation-degeneracy. Replaces the refuted naive form with a classified-exception form."
+  },
+  {
+   "id": "gap1_product_model",
+   "title": "LEAP: non-equivariant periodic mass EQUALS the per-character product (tower extension)",
+   "status": "CONJECTURE",
+   "key": true,
+   "statement": "The per-character product model is exact: non-equivariant K_M-periodic slope mass is bounded by the product over active characters, uniformly \u2014 via tower recursion on the E6 base-line lemma (alpha^M in an intermediate field K: each character maps into one K-line; recurse K down to the base). GAP-1 follows with the fitted constant.",
+   "attack_surface": "extend the PROVED base-case lemma (alpha^M in base field) to intermediate fields \u2014 the repo's most-repeated recursion pattern, fourth appearance; then sum over characters",
+   "falsifier": "a periodic model exceeding the per-character product rank (E6 found none across F_13/F_97 exact + F_257 to n=256)",
+   "refs": [
+    "experimental/notes/roadmaps/evidence_plan_codex.md"
+   ],
+   "notes": "CALCULATED LEAP grounded in E6 (PR #187): the mechanism lemma is proved in the base case and no tested model exceeds the product. Closing this flips strip's conditionality."
+  },
+  {
+   "id": "f_pair_bound_envelope",
+   "title": "LEAP: the weighted pair bound is the true envelope for primitive planes",
+   "status": "CONJECTURE",
+   "statement": "Primitive (gcd-trivial, aperiodic) plane counts obey the weighted pair bound: #primitive(P cap D_j) <= C * PairBound(P) with small C \u2014 the E7 census sits at ~60% of the floor in both the exact census (38/60) and the kernel sample (13/30). PATH: (1) adopt the packet's PairBound definition; (2) prove it at dim 2 via pencil decomposition through the top concurrency point + the PROVED n/j voting bound; (3) induct via the concurrency form.",
+   "attack_surface": "dim 2 first: a plane is q+1 pencils through any point; the voting bound prices each pencil; the weighting must absorb the overlap \u2014 this is where the one new idea lives",
+   "falsifier": "the j=4 Grassmannian refinement (E7's named next step) breaching the envelope",
+   "refs": [
+    "experimental/notes/roadmaps/evidence_plan_codex.md"
+   ],
+   "notes": "CALCULATED LEAP grounded in E7 (PR #183): two independent measurements below floor. If proved at dim 2, F's first open instance closes SHARPLY. | f_dim2_skeleton PROVES the envelope at dim 2 with C = 1 + twin correction \u2014 the leap's base case is now route-pinned."
+  },
+  {
+   "id": "mixed_radix_frontier",
+   "title": "Mixed-radix uniformity: does the machinery survive non-2-power smooth domains?",
+   "status": "TARGET",
+   "key": false,
+   "statement": "LIKELY VACUOUS \u2014 the standard reading of 'smooth' in the FRI/STARK proximity literature is 2-smooth (power-of-2 order), and every repo row is 2-power. The live prize page leaves it undefined, so the ePrint confirmation (Q0.1 freeze row) closes this. IF the official family were broader: (a) wp0_2's conservativity sketch \u2014 2-power domains are the MOST quotient-rich, so the adverse analysis is conservative for broader smooth classes; (b) the residual work would be lattice-compatible restatements of chain-ordered tools (dedup, tower descent), a repair job priced by the E8 toy.",
+   "attack_surface": "audit which arguments used chain structure (first-match dedup ordering, tower descent, scale recursion composition) vs which are per-M and lattice-agnostic (periodic strata counts, f_scale_recursion, coset dynamics per M); the lattice-forced analogue of multi-scale resonance (E5/R1) is the danger zone",
+   "falsifier": "the n=48 toy row (E8): any 2-power-verified invariant failing on the first mixed-radix row",
+   "refs": [
+    "experimental/notes/roadmaps/evidence_plan_codex.md"
+   ],
+   "notes": "downgraded 2026-07-02 after review discussion: initially overweighted; the definitional risk is one lookup and the broad-reading direction is favorable per wp0_2 [SKETCH]. E8 = insurance, run only if the freeze lands broad."
+  },
+  {
+   "id": "mixed_radix_toy_row",
+   "title": "E8: the n=48 mixed-radix toy row (F_97) \u2014 rerun the base machinery off the 2-power chain",
+   "status": "TEST",
+   "key": true,
+   "statement": "F_97 supports n = 48 = 2^4*3: rerun FM exact means, periodic strata counts C(n/M, j/M) over the FULL divisor lattice (incl. incomparable M = 2^a*3^b), first-match dedup totality/disjointness, and coset-move dynamics. Every 2-power-verified invariant either reproduces or the breakage is named.",
+   "refs": [
+    "experimental/notes/roadmaps/evidence_plan_codex.md"
+   ]
+  },
+  {
+   "id": "adjacency_closing",
+   "title": "The adjacency endgame: safe and unsafe bounds must MEET at consecutive grid points",
+   "status": "TARGET",
+   "key": true,
+   "statement": "For each admissible row: the proved safe agreement a and proved unsafe agreement a-1 are ADJACENT \u2014 the bracket between the two sides collapses to one grid step. Current per-rate corridor widths are 1.12-2.17 grid steps: even with every mapped conjecture closed, the slack must be eaten by (i) the Acl second-order term (makes the quotient end a number), (ii) per-point window cleanup at the boundary, and (iii) the extension-crossing arithmetic \u2014 or the determination lands with a gap and only bracket-grade partials.",
+   "attack_surface": "rate-by-rate: compute which corridors provably collapse under acl_second_order alone (width 1.12 = rho 1/8 is closest); the 506/507 pinned row is the existence proof that adjacency IS achievable where tangent exactness rules",
+   "falsifier": "a rate whose bracket provably CANNOT collapse to one step under the mapped mechanisms \u2014 would mean the prize needs a mechanism not yet on the map",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ],
+   "notes": "the assembly implication of mca_grand made explicit (same move as payment_completeness): the composite says 'adjacent' but nothing priced the meet until now. The least-clear remaining path on the map after the mixed-radix downgrade."
+  },
+  {
+   "id": "crossing_localization",
+   "title": "B_C is an integer staircase: the adjacent crossing EXISTS; corridor = candidate list",
+   "status": "PROVABLE",
+   "statement": "B_C(a) is nonincreasing and integer-valued in a, so a unique a* with B_C(a*-1) > B* >= B_C(a*) exists UNCONDITIONALLY for every row. The corridor arithmetic already brackets a* to at most ceil(width)+1 = 2-3 candidate grid points per rate. The endgame is therefore a FINITE list of pointwise decisions, not an analytic meeting of bounds.",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ],
+   "notes": "elementary; reframes adjacency_closing from 'no mechanism' to 'decide <= 3 points per rate'"
+  },
+  {
+   "id": "staircase_steepness",
+   "title": "Consecutive grid counts differ by ~q-factors: sign decisions need only coarse relative precision",
+   "status": "PROVABLE",
+   "statement": "At consecutive grid points t changes by 1, so the leading-order stratum counts jump by factors ~ q (from the exact C(n,j) q^{1-t} shape and the Acl formulas). Hence B* is crossed in ONE step, and each candidate-point comparison B_C(A) vs B* is decided by relative precision far coarser than the step factor \u2014 EXCEPT on a knife-edge set where the count sits within the estimate's error band of B*.",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ],
+   "notes": "the reason the endgame is tractable: steep staircases make comparisons cheap"
+  },
+  {
+   "id": "aperiodic_zero_at_crossing",
+   "title": "Integrality: R2 (any poly) + tiny FM => aperiodic contribution EXACTLY 0 at candidates",
+   "status": "CONDITIONAL",
+   "statement": "At every candidate crossing point of every official rate, n^B * FM < 1 (the FM mean there is ~2^-thousands per the window evaluations), so under R2 with ANY polynomial exponent the integer aperiodic count is EXACTLY zero. This is why B <= 3 suffices for exact adjacency: integrality absorbs the polynomial slack. The FM-evaluation table at all candidate points is the PROVABLE computational half.",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ],
+   "notes": "conditional on r2_rigidity; crystallizes the integrality mechanism discovered in the proved-results survey (pinned row, exactslack, qfloor, FM1 are all exactness-on-a-stratum)"
+  },
+  {
+   "id": "knife_edge_census",
+   "title": "The genuine residue: census + exact handling of knife-edge rows",
+   "status": "TARGET",
+   "key": true,
+   "statement": "REFINED: with bounded scales + exact counts, the census is exact Diophantine arithmetic \u2014 windows [L(n,A), K(n,A)) in B*-space per rate/candidate, undecided rows = admissible primes landing inside. Ties exist systematically (B* sweeps all integers as q varies); the residual undecided set shrinks exactly as certification strength L grows toward K. Full grand-challenge closure requires L within O(1) of K at the tie point OR per-prime typicality; exhibited-row partials dodge entirely (census_dodge_selection).",
+   "attack_surface": "needs acl_second_order first (the error band's width); then the census is mechanical over the descriptor family",
+   "falsifier": "a dense knife-edge family (would mean the expansion's error model is wrong, not that adjacency fails)",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ]
+  },
+  {
+   "id": "certified_valueset_lower",
+   "title": "Certified per-prime value-set LOWER bounds at the crossing scale (the knife-edge core)",
+   "status": "TARGET",
+   "key": true,
+   "statement": "For a knife-edge row (specific p): certify |{e1(B) mod p}| > B* by exhibiting a provably all-pairs-distinct class family of size > B*. Collision-monotonicity makes the safe side free; THIS is the entire hard half. Per-prime (almost-all-primes tools do not apply); sampling unreachable at N' >= 128.",
+   "attack_surface": "compose pairwise height-certified distinctness (norm < p => no collision) into large families: a packing/coding problem in the swap metric \u2014 minimum-swap-distance families whose difference heights stay below p, or a smarter invariant certifying blocks at once",
+   "falsifier": "n/a (a construction target; its absence just leaves knife-edge rows undecided)",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ],
+   "notes": "the knife-edge census's difficulty CONCENTRATED into one object; everything else in Tier A is estimates + elementary structure"
+  },
+  {
+   "id": "single_swap_injectivity",
+   "title": "FREE RUNG: single-swap collisions are impossible at prize scale (unconditional)",
+   "status": "PROVABLE",
+   "statement": "For classes differing in one element, e1(B) - e1(B') = zeta^i - zeta^j has all archimedean conjugates <= 2, so its norm is <= 2^{phi(N')} ~ 2^{N'/2} << p ~ 2^250. Nonzero (thm:upstairs) and of height below p => p cannot divide it => single-swap pairs NEVER collide at prize scale. Unconditional, for every prime in the admissible range.",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ],
+   "notes": "the base case of certified distinctness: the swap-metric graph's edges are all collision-free; the open problem is composing this into large all-pairs-distinct families | Subsumed as the s=1 case of graded_collision_radius; kept as the write-up's base case."
+  },
+  {
+   "id": "census_bounded_scales",
+   "title": "The deciding scale is PINNED in an absolute window (n-uniformity of the census)",
+   "status": "PROVABLE",
+   "key": true,
+   "statement": "At agreement A the quotient stratum on scale N' has forced class ratio l'/N' = j/n, so counts grow strictly as 2^{N' H(j/n)} with H(j/n) bounded below on the corridor (j/n ~ 0.4-0.5 => H >= 0.97). Hence exactly ONE scale's count lands within the staircase-step factor of B*, and it lies in an ABSOLUTE window N' in [~120, ~400] \u2014 independent of n and k up to 2^40. The census is n-uniform because every crossing only sees bounded scales.",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ],
+   "notes": "the lemma that makes a symbolic census possible at all; also gives UNIQUENESS of the deciding scale (monotone counts, q-factor gaps)"
+  },
+  {
+   "id": "census_exact_counts",
+   "title": "Exact bignum evaluation at bounded scales: expansions unnecessary at candidates",
+   "status": "PROVABLE",
+   "statement": "With N' <= ~400 absolute, the deciding class counts K are exactly computable big integers (binomial-sum sized ~2^400 at worst). At candidate points, EXACT K replaces the leading+second-order expansion entirely: the knife-edge condition sharpens from 'estimate cannot decide' to the exact Diophantine condition B* = floor(q/2^128) in [L, K), where L is the certified lower bound strength. (acl_second_order remains needed only for corridor WIDTH/candidate localization, not for tie decisions.)",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ]
+  },
+  {
+   "id": "census_window_arithmetic",
+   "title": "The undecided set as an explicit function of certification strength L",
+   "status": "PROVABLE",
+   "statement": "For each (rate, candidate A): undecided rows = {admissible q = 1 mod n : floor(q/2^128) in [L(n,A), K(n,A))} \u2014 explicit prime-counting windows. Deliverables: the window list, size estimates, and the dodge complement. As L -> K the windows vanish; the census OUTPUT is the map from certification strength to residual undecided rows.",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ],
+   "notes": "couples the census to certified_valueset_lower parametrically instead of blocking on it"
+  },
+  {
+   "id": "census_dodge_selection",
+   "title": "Dodge selection: exhibited dossier rows verified OUTSIDE all windows (immediate partial value)",
+   "status": "PROVABLE",
+   "statement": "For each row the dossier exhibits (pinned row, Row C, the P3 slate): verify B* is outside every [L, K) window \u2014 then adjacency at that row is FULLY decided by exact counts + integrality, with no dependence on QA.6. E1's Row-C data already shows margins of 2^22 and 2^79: comfortably dodged.",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ],
+   "notes": "cheap, and upgrades every exhibited-row partial to full adjacency-grade"
+  },
+  {
+   "id": "list_adjacency_closing",
+   "title": "The LIST adjacency endgame: worst-word list crosses eps*|F| at consecutive grid radii",
+   "status": "TARGET",
+   "key": true,
+   "statement": "For each admissible row and constant m: exhibit adjacent delta with sup_U |Lambda(U, delta-1)| > eps*|F| >= sup_U |Lambda(U, delta)| (per the official m-quantifier). The determination's list half, previously unpriced \u2014 the exact mirror of adjacency_closing.",
+   "attack_surface": "the hardness SWAPS sides vs MCA: unsafe witnesses are CONSTRUCTIVE (planted families = explicit codewords), the safe half is imgfib + integrality; the residue is worst-word extremality + exact planted arithmetic",
+   "falsifier": "n/a (composite obligation)",
+   "refs": [
+    "proof_sketch/s7_list_side.md"
+   ]
+  },
+  {
+   "id": "list_crossing_localization",
+   "title": "List staircase: sup-over-words list size is a monotone integer => unique crossing exists",
+   "status": "PROVABLE",
+   "statement": "sup_U |Lambda(U, delta)| is nondecreasing and integer-valued in delta, so a unique adjacent crossing of eps*|F| exists unconditionally per row and m. The list-window arithmetic [H/128, H/256] brackets the candidates. Same elementary argument as the MCA side.",
+   "refs": [
+    "proof_sketch/s7_list_side.md"
+   ]
+  },
+  {
+   "id": "worst_word_planted",
+   "title": "LEAP: at the crossing radii the extremal words are the planted sunflower family",
+   "status": "CONJECTURE",
+   "key": true,
+   "statement": "At the candidate crossing radii, sup_U |Lambda(U, delta)| is attained (up to the integrality margin) by planted sunflower words: |Lambda(U, delta)| <= planted_count(delta) + extras, with extras < 1 under imgfib + integrality. Grounded: the L1 program constructed these AS the extremal candidates; every witness found lives in this family; the fixed-defect layers are proved polynomial.",
+   "attack_surface": "toy probe: search word families at n = 16..64 for lists exceeding the planted count at matched radius; the L1 sunflower machinery prices any challenger's structure",
+   "falsifier": "a toy word family beating the planted list at a crossing radius",
+   "refs": [
+    "proof_sketch/s7_list_side.md"
+   ],
+   "notes": "the list endgame's one genuine leap; everything else is arithmetic + already-mapped imgfib"
+  },
+  {
+   "id": "list_planted_arithmetic",
+   "title": "Exact planted-count formulas + the Diophantine window vs eps*|F| (list dodge/census)",
+   "status": "PROVABLE",
+   "statement": "planted_count(delta) is an explicit combinatorial formula (core/petal choices x scalar factors). Under worst_word_planted + imgfib + integrality, the list crossing is decided by EXACT arithmetic: windows [planted_count - margin, planted_count) in eps*|F|-space, the census/dodge structure transferring verbatim from the MCA side \u2014 with NO zone-(b) analogue (no value sets mod p; counts are explicit).",
+   "refs": [
+    "proof_sketch/s7_list_side.md"
+   ],
+   "notes": "unsafe witnesses are free (exhibit the plants); the safe certificate is imgfib at the candidates + the FM-style extras table"
+  },
+  {
+   "id": "f_dim2_skeleton",
+   "title": "F at dimension 2: elementary pair bound + twins are tangent-paid",
+   "status": "PROVABLE",
+   "key": true,
+   "statement": "On a gcd-trivial plane P: (i) domain traces H_x cap P are genuine lines; (ii) DISTINCT-trace pairs meet in one point, so sum of C(mult,2) <= C(n,2), giving #(P cap D_j) <= C(n,2)/C(j,2) for twin-free planes \u2014 elementary double counting; (iii) TWINS (coincident traces x,y) force every member through x to pass through y: the sub-pencil shares divisor (X-x)(X-y) and f_gcd_reduction pays it as tangent. F-dim-2 = pair bound + twin reduction, with the twin count T entering as (C(n,2) + (q+1)T)/C(j,2).",
+   "attack_surface": "write-up + verifier; TESTABLE PREDICTION against E7's own artifact: the j=5 kernel-sample top planes (primitive max 13 > 12 = C(16,2)/C(5,2)) must contain >= 1 twin pair \u2014 count twins in the recorded top planes",
+   "falsifier": "a twin-free plane exceeding C(n,2)/C(j,2) (would break the double count \u2014 arithmetic, not conjecture, so a hit means an error in the skeleton)",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ],
+   "notes": "explains the E7 numbers: 38 <= 40 at j=3 (bound TIGHTER than the packet's floor 60); the kernel excess 13 > 12 is the twin signature | CROSS-POLLINATION: #183's 'Align E7 evidence with fixed-dimension theorem' commit followed this node's publication on the #178 branch \u2014 the census packet is being aligned to the pair-bound frame."
+  },
+  {
+   "id": "f_dim_induction",
+   "title": "The divisor-depth induction: excess concurrency buys shared-divisor depth, one unit per dimension",
+   "status": "TARGET",
+   "key": true,
+   "statement": "F_r for gcd-trivial r-flats by induction: at each point of multiplicity >= j, either the hyperplanes through it are SPREAD in the flat (local pair-type counting binds) or coincidences abound (twin-type structure) \u2014 forcing a shared divisor factor and descent to F_{r-1} of the reduced instance. Each dimension of excess buys one unit of divisor depth, matching Conjecture F's j - dim P threshold shape. Base case r = 2 = f_dim2_skeleton.",
+   "attack_surface": "the open quantification: the spread-vs-coincidence dichotomy at dim r (how much coincidence forces a factor); naive slicing degrades by q^{r-2} so the divisor structure MUST compound \u2014 high plane dimensions merge into the fiber/petal machinery already mapped (perfiber, imgfib)",
+   "falsifier": "toy r = 3 census (extend E7) exceeding the compounding-depth prediction",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ]
+  },
+  {
+   "id": "f_dual_distance_frame",
+   "title": "The frame: trace degeneracies = low-weight words of the flat's dual code P-perp",
+   "status": "PROVABLE",
+   "key": true,
+   "statement": "For a flat P, a subset S of domain points has dependent traces iff P-perp (dual of the evaluation code) contains a word supported on S. Weight 1 = common root (gcd), weight 2 = twins, weight w = the general obstruction; minimal support => all coordinates nonzero => the CLOSURE property (a member vanishing on all-but-one of S vanishes on all of S). If the dual distance w* > r, ALL r-subsets of traces are in general position.",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ],
+   "notes": "unifies gcd-reduction (w=1) and twins (w=2) as rungs of one ladder; the syndrome machinery is already dual-code language"
+  },
+  {
+   "id": "f_spread_moment_count",
+   "title": "Dually-spread flats: r-wise moment count gives C(n,r)/C(j,r) \u2014 poly to LOG dimension",
+   "status": "PROVABLE",
+   "statement": "If w*(P-perp) > r: every r-subset of traces meets in exactly one point, so sum of C(mult, r) <= C(n,r), giving #(P cap D_j) <= C(n,r)/C(j,r) ~ (n/j)^r. HONEST SCOPE: poly(n) only for r = O(log n); in-band deficiencies r ~ n 2^-9 exceed this \u2014 high dimension MUST route through descent/structure, not moments.",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ]
+  },
+  {
+   "id": "f_sparse_descent_step",
+   "title": "The descent step: a sparse dual word buys divisor depth faster than it costs dimension",
+   "status": "PROVABLE",
+   "statement": "Given a minimal weight-w dual word on S: (a) members containing S in their roots form a subflat of codim <= w-1 (the relation makes one vanishing condition redundant) and factor as l_S x (degree j-w instance) \u2014 DEGREE drops w, DIMENSION drops <= w-1: net one unit of divisor depth gained, exactly F's j - dim P threshold shape; (b) by closure, all other members have <= w-2 roots in S: recurse on H minus S with root budget j-w+2. Single-step accounting elementary; assembly belongs to f_dim_induction.",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ]
+  },
+  {
+   "id": "f_many_sparse_structure",
+   "title": "THE RESIDUE: flats with many sparse dual words are quotient/pullback or tangent structured",
+   "status": "CONJECTURE",
+   "key": true,
+   "statement": "If P-perp contains many low-weight words (supports not absorbable by O(poly) descent steps), then P is structured: contained in a pullback/quotient stratum or a deep-divisor (tangent) stratum. PROVED CONTAINMENT one way: M-pullback flats have ev_x = ev_y on every M-coset pair \u2014 maximally many weight-2 words; the conjecture is the converse \u2014 nothing UNPAID lives in the many-sparse branch.",
+   "attack_surface": "coding-theory structure: codes with many minimal low-weight words are classified in known regimes; the coset-support pattern (supports = unions of coset pairs) is the signature to force; toy-enumerable falsifier at n = 16",
+   "falsifier": "a toy flat (n = 16 exhaustive over dims 2-3) with many sparse dual words that is neither pullback- nor tangent-classified",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ],
+   "notes": "where ALL the residual risk of the F induction concentrates; the other three parts are elementary"
+  },
+  {
+   "id": "safe_assembly_uniformity",
+   "title": "The mca_safe assembly implication, priced: constants and conventions uniform over the family",
+   "status": "TARGET",
+   "key": true,
+   "statement": "The implicit lemma 'counting_frame + fm1 + strip + paid_closure + r2 + ext_lift => mca_safe' holds UNIFORMLY over the admissible family: (i) every exponent (B <= 3, B_F, budget arithmetic) is an absolute constant, not n-drifting; (ii) the stratified sum + first-match dedup compose with endpoint conventions printed once (descriptor-generated); (iii) the composition survives k up to 2^40 scales symbolically (wp3_2). The last unpriced composite implication of the adjacency/payment-completeness class.",
+   "attack_surface": "mostly bookkeeping made explicit: a one-note assembly proof template with a constants ledger; the genuine content is the uniformity audit of each input's constant",
+   "falsifier": "any input theorem whose constant is discovered to drift with n (would localize immediately in the constants ledger)",
+   "refs": [
+    "proof_sketch/s8_s9_assembly_and_negative.md"
+   ],
+   "notes": "prices the children => parent step that the map previously asserted silently; its mirror on the list side rides list_planted_arithmetic + imgfib's uniform exponent"
+  },
+  {
+   "id": "graded_collision_radius",
+   "title": "Graded radius: collisions require swap distance > d*(N',p); small scales unconditionally FULL",
+   "status": "PROVABLE",
+   "key": true,
+   "statement": "Pairs at swap distance s have e1-difference height <= 2s, norm <= (2s)^{phi(N')}; if (2s)^{phi(N')} < p the pair is collision-free (nonzero by thm:upstairs, norm below p). At N'=128, p ~ 2^250: d* = 7. COROLLARY: when 2l' < p^{1/phi(N')} (true at N' <= 64 for prize p), ALL pairs are certified \u2014 unconditional fullness, the prop:qfloor norm-threshold mechanism restated as certification. Subsumes single_swap_injectivity as the s = 1 case.",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ]
+  },
+  {
+   "id": "height_only_impossibility",
+   "title": "IMPOSSIBILITY: pure height certificates cannot reach full strength at N' >= 128",
+   "status": "PROVABLE",
+   "statement": "Every pair's difference height is <= 2l' (total budget), so height-only certification caps at diameter p^{1/phi(N')} and, at N' >= 128 with p < (2l')^{phi(N')} ~ 2^449, provably CANNOT certify all pairs. Any full-strength technology must use p-SPECIFIC input beyond archimedean height. Scopes the attack: do not attempt pure-height fullness above the frontier.",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ],
+   "notes": "negative result with queue value \u2014 prevents doomed attempts"
+  },
+  {
+   "id": "far_pair_separation",
+   "title": "THE RESIDUE: generator-factored difference designs + per-row generator certification",
+   "status": "TARGET",
+   "key": true,
+   "statement": "Construct class families F with |F| > B*/poly whose pairwise e1-differences all factor as (unit of height < p^{1/phi}) x (one of g <= poly generators). Then g per-row valuation checks certify ALL pairs of F simultaneously \u2014 constant per-row computation replacing 2^244 pairwise checks. The open problem is the DESIGN: Sidon-flavored difference structure in Z[zeta_N'] compatible with the class-to-e1 map. DECOMPOSED: = cluster_certificates (free cliques + one-check pairing + integer freebies, PROVABLE) + generator_economy (multiplicative difference-designs \u2014 the sharpened open core, with the root-difference factorization as its proved germ).",
+   "attack_surface": "toy design search at small N' (measure achievable |F| vs g); telescoping-chain and hierarchical-core approaches provably fail by height_only_impossibility unless generator-factored; the difference-set literature in abelian groups is the import candidate",
+   "falsifier": "n/a (construction target); partial designs have PROPORTIONAL value \u2014 census_window_arithmetic converts any achieved L into decided window fractions",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ]
+  },
+  {
+   "id": "cluster_certificates",
+   "title": "Cluster machinery: free cliques + one-check cluster pairing",
+   "status": "PROVABLE",
+   "key": true,
+   "statement": "(a) Diameter-d* class sets are fully certified free cliques (~2^33 at N'=128) by graded_collision_radius. (b) For clusters with center-difference Delta EVERYWHERE-BIG (min conjugate >= spread/(budget-1)): every cross-pair diff = Delta(1 + Delta^{-1} eta) with quotient norm < p, so ONE precomputable norm check on Delta certifies ALL cross-pairs of the two clusters. (c) FREEBIE: integer factors are self-certified (p does not divide integers < p), so integer multiples of certified elements are certified.",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ],
+   "notes": "certification compresses quadratically: pairs -> cluster pairs -> generator checks"
+  },
+  {
+   "id": "generator_economy",
+   "title": "THE CORE, SHARPENED: multiplicative difference-designs (few bases certify everything)",
+   "status": "TARGET",
+   "key": true,
+   "statement": "Construct cluster-center configurations of size ~B*/2^33 whose pairwise differences lie in (height-budget units) x the MULTIPLICATIVE semigroup generated by g <= poly base elements \u2014 then g norm checks certify the entire family (divisibility distributes over products). PROVED GERM: root differences factor as zeta^b (zeta^k - 1): the full difference set of mu_N' is certified by g = N' bases. The open problem: lift this factorization from single roots to l'-sums. ADMISSIBILITY GUARD: the design's existence proof must not consume fiber counts (circularity with perfiber).",
+   "attack_surface": "toy design search at small N' (measure |F| vs g achievable); cyclotomic-unit literature (the (zeta^k - 1) multiplicative structure is classical); partial designs = proportional window fractions",
+   "falsifier": "n/a (construction); a proof that multiplicative designs cap at size << B*/poly would refocus on p-specific alternatives",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ]
+  },
+  {
+   "id": "xr_anticode_toolkit",
+   "title": "Anticode/EKR toolkit for exchange-distance independence \u2014 with the honest spectral scoping",
+   "status": "PROVABLE",
+   "statement": "Instantiate Delsarte/Frankl-Wilson anticode bounds on J(n,j): sets of locators pairwise exchange-distance > s have size <= C(n-s, j-s)-type bounds \u2014 factors (j/n)^s relative to C(n,j). SCOPING NEGATIVE (included): the Johnson gap n is tiny vs degree ~n^2/4, so single-step expander mixing is near-vacuous, and pure combinatorial distance bounds CANNOT reach q-power (FM) scales \u2014 the q-scale input must be algebraic (v8 per-locator cap, exchange residual systems). Prevents doomed naive-EML attempts.",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#2"
+   ],
+   "notes": "PARTIALLY DELIVERED in flight: PR #191's Johnson exchange-mixing lemma proves the single-step bound with the predicted (1 - n/(j(n-j))) factor TIGHT (point-dictators attain equality) plus the geometric endpoint decay lambda*^s \u2014 the spectral half of this toolkit."
+  },
+  {
+   "id": "f_consumer_scoped",
+   "title": "Consumer-scoped F: the proof only needs F on TWO classical flat families",
+   "status": "TARGET",
+   "key": true,
+   "statement": "F restricted to the families the consumers actually feed it: (a) coordinate-slice/fiber flats \u2014 direction spaces are shortened RS, hence MDS, hence dual distance w* provably LARGE: no sparse dual words exist and the spread/moment branch applies wholesale; (b) Hankel-pencil kernel flats \u2014 displacement rank <= 2: sparse dual words are governed by the structured-kernel theory (the #191 V^T D V identities). If the scope audit confirms consumers stay within (a) u (b), general F demotes from critical to nice-to-have and the many-sparse census narrows to displacement kernels.",
+   "attack_surface": "GATE FIRST (QF.9): audit r2's fiber argument and imgfib's plane sections \u2014 verify every F-consumption lies in family (a) or (b); THEN (a) is classical MDS duality + the moment count, and (b) inherits #191; criticality rewiring only after the audit passes",
+   "falsifier": "a consumer found feeding F a flat outside both families (the audit's negative outcome \u2014 then general F stays critical)",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ],
+   "notes": "potentially the largest effective-difficulty reduction on the F front: the fiber side may fall to Singleton + moments outright"
   }
  ],
  "edges": [
@@ -1596,28 +2645,13 @@
    "kind": "req"
   },
   {
-   "from": "u1_u5_chain",
-   "to": "deficiency_ladder",
-   "kind": "req"
-  },
-  {
    "from": "spi_dim1",
    "to": "deficiency_ladder",
    "kind": "req"
   },
   {
-   "from": "acid_test",
-   "to": "u1_u5_chain",
-   "kind": "ev"
-  },
-  {
    "from": "deficiency_growth",
    "to": "deficiency_ladder",
-   "kind": "req"
-  },
-  {
-   "from": "u1_u5_chain",
-   "to": "spi_dim1",
    "kind": "req"
   },
   {
@@ -1657,11 +2691,6 @@
   },
   {
    "from": "codegree",
-   "to": "list_safe",
-   "kind": "req"
-  },
-  {
-   "from": "a_regular_collapse",
    "to": "list_safe",
    "kind": "req"
   },
@@ -2069,6 +3098,1016 @@
    "from": "lean_existing",
    "to": "lean_tier1",
    "kind": "req"
+  },
+  {
+   "from": "l1_core_defect_reduction",
+   "to": "l1_program_frontier",
+   "kind": "req"
+  },
+  {
+   "from": "l1_crt_compression",
+   "to": "l1_program_frontier",
+   "kind": "req"
+  },
+  {
+   "from": "l1_defect_layer_bounds",
+   "to": "l1_program_frontier",
+   "kind": "req"
+  },
+  {
+   "from": "l1_crt_compression",
+   "to": "petal_fixed_excess",
+   "kind": "req"
+  },
+  {
+   "from": "u1_cramer",
+   "to": "u5_dichotomy",
+   "kind": "req"
+  },
+  {
+   "from": "u2_nondegeneracy",
+   "to": "u5_dichotomy",
+   "kind": "req"
+  },
+  {
+   "from": "u3_divisibility",
+   "to": "u5_dichotomy",
+   "kind": "req"
+  },
+  {
+   "from": "u4_pseudoremainder",
+   "to": "u5_dichotomy",
+   "kind": "req"
+  },
+  {
+   "from": "u5_dichotomy",
+   "to": "spi_dim1",
+   "kind": "req"
+  },
+  {
+   "from": "u5_dichotomy",
+   "to": "deficiency_ladder",
+   "kind": "req"
+  },
+  {
+   "from": "vtdv",
+   "to": "u1_cramer",
+   "kind": "ev"
+  },
+  {
+   "from": "acid_test",
+   "to": "u5_dichotomy",
+   "kind": "ev"
+  },
+  {
+   "from": "paid_tan_fn",
+   "to": "paid_closure",
+   "kind": "req"
+  },
+  {
+   "from": "paid_quot_fn",
+   "to": "paid_closure",
+   "kind": "req"
+  },
+  {
+   "from": "paid_ext_fn",
+   "to": "paid_closure",
+   "kind": "req"
+  },
+  {
+   "from": "staircase",
+   "to": "paid_tan_fn",
+   "kind": "req"
+  },
+  {
+   "from": "qfloor_exact",
+   "to": "paid_quot_fn",
+   "kind": "req"
+  },
+  {
+   "from": "acl_count",
+   "to": "paid_quot_fn",
+   "kind": "req"
+  },
+  {
+   "from": "ext_import",
+   "to": "paid_ext_fn",
+   "kind": "req"
+  },
+  {
+   "from": "generating_escape",
+   "to": "paid_ext_fn",
+   "kind": "req"
+  },
+  {
+   "from": "b_rational_lift",
+   "to": "f1_classification",
+   "kind": "req"
+  },
+  {
+   "from": "f1_case_pole",
+   "to": "f1_classification",
+   "kind": "req"
+  },
+  {
+   "from": "f1_case_tower",
+   "to": "f1_classification",
+   "kind": "req"
+  },
+  {
+   "from": "ext_import",
+   "to": "f1_case_pole",
+   "kind": "req"
+  },
+  {
+   "from": "two_slope_intersection",
+   "to": "xr_crystallization",
+   "kind": "req"
+  },
+  {
+   "from": "spread_regime_bound",
+   "to": "xr_crystallization",
+   "kind": "req"
+  },
+  {
+   "from": "two_slope_intersection",
+   "to": "spi_exceptional_class",
+   "kind": "ev"
+  },
+  {
+   "from": "fm1",
+   "to": "spread_regime_bound",
+   "kind": "ev"
+  },
+  {
+   "from": "char0_collision_classification",
+   "to": "galois_amplification",
+   "kind": "req"
+  },
+  {
+   "from": "galois_amplification",
+   "to": "amplification_range_ext",
+   "kind": "req"
+  },
+  {
+   "from": "amplification_range_ext",
+   "to": "e1_fullness",
+   "kind": "alt"
+  },
+  {
+   "from": "galois_amplification",
+   "to": "e1_fullness",
+   "kind": "ev"
+  },
+  {
+   "from": "char0_collision_classification",
+   "to": "perfiber",
+   "kind": "ev"
+  },
+  {
+   "from": "stratification_partition_thm",
+   "to": "strat_tree",
+   "kind": "req"
+  },
+  {
+   "from": "beta2_moment_corroboration",
+   "to": "beta2_irreducibility",
+   "kind": "ev"
+  },
+  {
+   "from": "conj_f",
+   "to": "spi_dimension_free",
+   "kind": "ev"
+  },
+  {
+   "from": "ldsw_ld_separation",
+   "to": "ld_bridge",
+   "kind": "ev"
+  },
+  {
+   "from": "ldsw_ld_separation",
+   "to": "bridge_ledger",
+   "kind": "req"
+  },
+  {
+   "from": "common_code_line_budget",
+   "to": "xr_crystallization",
+   "kind": "req"
+  },
+  {
+   "from": "common_code_line_budget",
+   "to": "paid_tan_fn",
+   "kind": "req"
+  },
+  {
+   "from": "common_code_line_budget",
+   "to": "strat_tree",
+   "kind": "ev"
+  },
+  {
+   "from": "unsafe_at_crossing",
+   "to": "mca_unsafe",
+   "kind": "req"
+  },
+  {
+   "from": "e1_fullness",
+   "to": "unsafe_at_crossing",
+   "kind": "alt"
+  },
+  {
+   "from": "averaged_slope_conversion",
+   "to": "unsafe_at_crossing",
+   "kind": "alt"
+  },
+  {
+   "from": "qfloor_exact",
+   "to": "unsafe_at_crossing",
+   "kind": "ev"
+  },
+  {
+   "from": "fm1",
+   "to": "averaged_slope_conversion",
+   "kind": "req"
+  },
+  {
+   "from": "conj_f",
+   "to": "averaged_slope_conversion",
+   "kind": "ev"
+  },
+  {
+   "from": "dyadic_profile_evaluation",
+   "to": "imgfib",
+   "kind": "req"
+  },
+  {
+   "from": "dyadic_profile_evaluation",
+   "to": "paid_quot_fn",
+   "kind": "ev"
+  },
+  {
+   "from": "thm_exactslack",
+   "to": "unsafe_at_crossing",
+   "kind": "ev"
+  },
+  {
+   "from": "thm_exactslack",
+   "to": "strat_tree",
+   "kind": "ev"
+  },
+  {
+   "from": "thm_exactslack",
+   "to": "acl_count",
+   "kind": "ev"
+  },
+  {
+   "from": "prop_collapse",
+   "to": "strat_tree",
+   "kind": "ev"
+  },
+  {
+   "from": "two_moment_fullness",
+   "to": "cap_theorem",
+   "kind": "ev"
+  },
+  {
+   "from": "two_moment_fullness",
+   "to": "unsafe_at_crossing",
+   "kind": "ev"
+  },
+  {
+   "from": "dyadic_descent",
+   "to": "cap_theorem",
+   "kind": "ev"
+  },
+  {
+   "from": "dyadic_descent",
+   "to": "unsafe_at_crossing",
+   "kind": "ev"
+  },
+  {
+   "from": "subgroup_expsum_input",
+   "to": "free_pool_ladder",
+   "kind": "req"
+  },
+  {
+   "from": "free_pool_ladder",
+   "to": "unsafe_at_crossing",
+   "kind": "alt"
+  },
+  {
+   "from": "m_handling",
+   "to": "list_safe",
+   "kind": "req"
+  },
+  {
+   "from": "a_regular_collapse",
+   "to": "m_handling",
+   "kind": "alt"
+  },
+  {
+   "from": "m_le3_route",
+   "to": "m_handling",
+   "kind": "alt"
+  },
+  {
+   "from": "rules_m_reading",
+   "to": "m_le3_route",
+   "kind": "req"
+  },
+  {
+   "from": "imgfib",
+   "to": "m_le3_route",
+   "kind": "req"
+  },
+  {
+   "from": "imgfib_monomial",
+   "to": "imgfib",
+   "kind": "ev"
+  },
+  {
+   "from": "galois_amplification",
+   "to": "imgfib_monomial",
+   "kind": "req"
+  },
+  {
+   "from": "gap1_toy_test",
+   "to": "gap1_noneq_mass",
+   "kind": "ev"
+  },
+  {
+   "from": "a_regularity_test",
+   "to": "a_regularity_forcing",
+   "kind": "ev"
+  },
+  {
+   "from": "f_gcd_reduction",
+   "to": "conj_f",
+   "kind": "req"
+  },
+  {
+   "from": "f_scale_recursion",
+   "to": "conj_f",
+   "kind": "req"
+  },
+  {
+   "from": "f_primitive_case",
+   "to": "conj_f",
+   "kind": "req"
+  },
+  {
+   "from": "fiber_planted_law",
+   "to": "f_gcd_reduction",
+   "kind": "ev"
+  },
+  {
+   "from": "periodic_strata",
+   "to": "f_scale_recursion",
+   "kind": "req"
+  },
+  {
+   "from": "perfiber",
+   "to": "f_primitive_case",
+   "kind": "ev"
+  },
+  {
+   "from": "collision_norm_criterion",
+   "to": "zone_b",
+   "kind": "req"
+  },
+  {
+   "from": "char0_collision_classification",
+   "to": "collision_norm_criterion",
+   "kind": "req"
+  },
+  {
+   "from": "collision_norm_criterion",
+   "to": "amplification_range_ext",
+   "kind": "ev"
+  },
+  {
+   "from": "averaged_xr",
+   "to": "averaged_slope_conversion",
+   "kind": "req"
+  },
+  {
+   "from": "payment_completeness",
+   "to": "r2_rigidity",
+   "kind": "req"
+  },
+  {
+   "from": "payment_completeness",
+   "to": "imgfib",
+   "kind": "req"
+  },
+  {
+   "from": "redteam_multiscale",
+   "to": "payment_completeness",
+   "kind": "ev"
+  },
+  {
+   "from": "redteam_multiscale",
+   "to": "gap1_noneq_mass",
+   "kind": "ev"
+  },
+  {
+   "from": "isotypic",
+   "to": "payment_completeness",
+   "kind": "ev"
+  },
+  {
+   "from": "xr_gvn",
+   "to": "xr_inverse",
+   "kind": "req"
+  },
+  {
+   "from": "xr_inverse",
+   "to": "xr_crystallization",
+   "kind": "req"
+  },
+  {
+   "from": "averaged_xr",
+   "to": "xr_gvn",
+   "kind": "req"
+  },
+  {
+   "from": "hooley_katz",
+   "to": "xr_inverse",
+   "kind": "ev"
+  },
+  {
+   "from": "spi_component_control",
+   "to": "spi_point_counting",
+   "kind": "req"
+  },
+  {
+   "from": "spi_component_control",
+   "to": "spi_exceptional_class",
+   "kind": "req"
+  },
+  {
+   "from": "spi_point_counting",
+   "to": "spi_wall",
+   "kind": "req"
+  },
+  {
+   "from": "es_regularity",
+   "to": "spi_exceptional_class",
+   "kind": "ev"
+  },
+  {
+   "from": "monodromy_realization",
+   "to": "monodromy_route",
+   "kind": "req"
+  },
+  {
+   "from": "xr_crystallization",
+   "to": "payment_completeness",
+   "kind": "alt"
+  },
+  {
+   "from": "spi_exceptional_class",
+   "to": "payment_completeness",
+   "kind": "alt"
+  },
+  {
+   "from": "es_regularity",
+   "to": "payment_completeness",
+   "kind": "alt"
+  },
+  {
+   "from": "monodromy_realization",
+   "to": "payment_completeness",
+   "kind": "alt"
+  },
+  {
+   "from": "pma_aux_list_reduction",
+   "to": "petal_mixed_amplification",
+   "kind": "req"
+  },
+  {
+   "from": "pma_johnson_regime",
+   "to": "petal_mixed_amplification",
+   "kind": "req"
+  },
+  {
+   "from": "pma_wide_residual",
+   "to": "petal_mixed_amplification",
+   "kind": "req"
+  },
+  {
+   "from": "pma_aux_list_reduction",
+   "to": "pma_johnson_regime",
+   "kind": "req"
+  },
+  {
+   "from": "pma_aux_list_reduction",
+   "to": "pma_wide_residual",
+   "kind": "req"
+  },
+  {
+   "from": "petal_fixed_excess",
+   "to": "pma_wide_residual",
+   "kind": "ev"
+  },
+  {
+   "from": "ldsw_ld_separation",
+   "to": "pma_johnson_regime",
+   "kind": "ref"
+  },
+  {
+   "from": "f_dim1",
+   "to": "f_primitive_case",
+   "kind": "req"
+  },
+  {
+   "from": "f_concurrency_equiv",
+   "to": "f_primitive_case",
+   "kind": "req"
+  },
+  {
+   "from": "f_dim1",
+   "to": "f_concurrency_equiv",
+   "kind": "ev"
+  },
+  {
+   "from": "xr_e3_calculus",
+   "to": "xr_inverse",
+   "kind": "req"
+  },
+  {
+   "from": "xr_inverse_toy",
+   "to": "xr_inverse",
+   "kind": "ev"
+  },
+  {
+   "from": "xr_gvn",
+   "to": "xr_e3_calculus",
+   "kind": "ref"
+  },
+  {
+   "from": "hooley_katz",
+   "to": "xr_e3_calculus",
+   "kind": "ev"
+  },
+  {
+   "from": "are_sharp_constant",
+   "to": "amplification_range_ext",
+   "kind": "req"
+  },
+  {
+   "from": "are_subfield_amp",
+   "to": "amplification_range_ext",
+   "kind": "req"
+  },
+  {
+   "from": "collision_norm_criterion",
+   "to": "are_exceptional_density",
+   "kind": "req"
+  },
+  {
+   "from": "are_exceptional_density",
+   "to": "e1_fullness",
+   "kind": "ev"
+  },
+  {
+   "from": "are_exceptional_density",
+   "to": "dossier_partial",
+   "kind": "ev"
+  },
+  {
+   "from": "half_johnson_ca",
+   "to": "mca_from_ca_reduction",
+   "kind": "req"
+  },
+  {
+   "from": "mca_from_ca_reduction",
+   "to": "bridge_ledger",
+   "kind": "req"
+  },
+  {
+   "from": "mca_from_ca_reduction",
+   "to": "mca_safe",
+   "kind": "ev"
+  },
+  {
+   "from": "deep_safe_all_linear",
+   "to": "mca_safe",
+   "kind": "ev"
+  },
+  {
+   "from": "map_rational_caps",
+   "to": "cap_theorem",
+   "kind": "ev"
+  },
+  {
+   "from": "certificate_grammar_v2",
+   "to": "compiler",
+   "kind": "ev"
+  },
+  {
+   "from": "certificate_grammar_v2",
+   "to": "descriptor",
+   "kind": "ev"
+  },
+  {
+   "from": "certificate_grammar_v2",
+   "to": "dossier_partial",
+   "kind": "ev"
+  },
+  {
+   "from": "e1_random_prime_model",
+   "to": "e1_fullness",
+   "kind": "ev"
+  },
+  {
+   "from": "collision_norm_criterion",
+   "to": "e1_random_prime_model",
+   "kind": "req"
+  },
+  {
+   "from": "are_exceptional_density",
+   "to": "e1_random_prime_model",
+   "kind": "ev"
+  },
+  {
+   "from": "spread_exception_classification",
+   "to": "spread_regime_bound",
+   "kind": "req"
+  },
+  {
+   "from": "gap1_product_model",
+   "to": "gap1_noneq_mass",
+   "kind": "req"
+  },
+  {
+   "from": "f_pair_bound_envelope",
+   "to": "f_primitive_case",
+   "kind": "ev"
+  },
+  {
+   "from": "mixed_radix_frontier",
+   "to": "mca_grand",
+   "kind": "req"
+  },
+  {
+   "from": "mixed_radix_frontier",
+   "to": "list_grand",
+   "kind": "req"
+  },
+  {
+   "from": "rules_freeze",
+   "to": "mixed_radix_frontier",
+   "kind": "req"
+  },
+  {
+   "from": "mixed_radix_toy_row",
+   "to": "mixed_radix_frontier",
+   "kind": "ev"
+  },
+  {
+   "from": "f_scale_recursion",
+   "to": "mixed_radix_frontier",
+   "kind": "ev"
+  },
+  {
+   "from": "adjacency_closing",
+   "to": "mca_grand",
+   "kind": "req"
+  },
+  {
+   "from": "acl_second_order",
+   "to": "adjacency_closing",
+   "kind": "req"
+  },
+  {
+   "from": "window_m5_charts",
+   "to": "adjacency_closing",
+   "kind": "ev"
+  },
+  {
+   "from": "pinned_row",
+   "to": "adjacency_closing",
+   "kind": "ev"
+  },
+  {
+   "from": "crossing_localization",
+   "to": "adjacency_closing",
+   "kind": "req"
+  },
+  {
+   "from": "staircase_steepness",
+   "to": "adjacency_closing",
+   "kind": "req"
+  },
+  {
+   "from": "aperiodic_zero_at_crossing",
+   "to": "adjacency_closing",
+   "kind": "req"
+  },
+  {
+   "from": "knife_edge_census",
+   "to": "adjacency_closing",
+   "kind": "req"
+  },
+  {
+   "from": "r2_rigidity",
+   "to": "aperiodic_zero_at_crossing",
+   "kind": "req"
+  },
+  {
+   "from": "fm1",
+   "to": "aperiodic_zero_at_crossing",
+   "kind": "req"
+  },
+  {
+   "from": "qfloor_exact",
+   "to": "knife_edge_census",
+   "kind": "ev"
+  },
+  {
+   "from": "pinned_row",
+   "to": "crossing_localization",
+   "kind": "ev"
+  },
+  {
+   "from": "certified_valueset_lower",
+   "to": "knife_edge_census",
+   "kind": "req"
+  },
+  {
+   "from": "collision_norm_criterion",
+   "to": "single_swap_injectivity",
+   "kind": "req"
+  },
+  {
+   "from": "e1_random_prime_model",
+   "to": "certified_valueset_lower",
+   "kind": "ev"
+  },
+  {
+   "from": "census_bounded_scales",
+   "to": "census_exact_counts",
+   "kind": "req"
+  },
+  {
+   "from": "census_exact_counts",
+   "to": "census_window_arithmetic",
+   "kind": "req"
+  },
+  {
+   "from": "census_window_arithmetic",
+   "to": "knife_edge_census",
+   "kind": "req"
+  },
+  {
+   "from": "census_window_arithmetic",
+   "to": "census_dodge_selection",
+   "kind": "req"
+  },
+  {
+   "from": "census_dodge_selection",
+   "to": "dossier_partial",
+   "kind": "ev"
+  },
+  {
+   "from": "list_adjacency_closing",
+   "to": "list_grand",
+   "kind": "req"
+  },
+  {
+   "from": "list_crossing_localization",
+   "to": "list_adjacency_closing",
+   "kind": "req"
+  },
+  {
+   "from": "worst_word_planted",
+   "to": "list_adjacency_closing",
+   "kind": "req"
+  },
+  {
+   "from": "list_planted_arithmetic",
+   "to": "list_adjacency_closing",
+   "kind": "req"
+  },
+  {
+   "from": "imgfib",
+   "to": "worst_word_planted",
+   "kind": "req"
+  },
+  {
+   "from": "l1_program_frontier",
+   "to": "worst_word_planted",
+   "kind": "ev"
+  },
+  {
+   "from": "petal_fixed_excess",
+   "to": "worst_word_planted",
+   "kind": "ev"
+  },
+  {
+   "from": "rules_m_reading",
+   "to": "list_adjacency_closing",
+   "kind": "ev"
+  },
+  {
+   "from": "f_dim2_skeleton",
+   "to": "f_primitive_case",
+   "kind": "req"
+  },
+  {
+   "from": "f_dim_induction",
+   "to": "f_primitive_case",
+   "kind": "req"
+  },
+  {
+   "from": "f_gcd_reduction",
+   "to": "f_dim2_skeleton",
+   "kind": "req"
+  },
+  {
+   "from": "f_dim1",
+   "to": "f_dim2_skeleton",
+   "kind": "ev"
+  },
+  {
+   "from": "f_dim2_skeleton",
+   "to": "f_dim_induction",
+   "kind": "req"
+  },
+  {
+   "from": "f_dim2_skeleton",
+   "to": "f_pair_bound_envelope",
+   "kind": "ev"
+  },
+  {
+   "from": "f_dual_distance_frame",
+   "to": "f_dim_induction",
+   "kind": "req"
+  },
+  {
+   "from": "f_spread_moment_count",
+   "to": "f_dim_induction",
+   "kind": "req"
+  },
+  {
+   "from": "f_sparse_descent_step",
+   "to": "f_dim_induction",
+   "kind": "req"
+  },
+  {
+   "from": "f_many_sparse_structure",
+   "to": "f_dim_induction",
+   "kind": "req"
+  },
+  {
+   "from": "f_dual_distance_frame",
+   "to": "f_spread_moment_count",
+   "kind": "req"
+  },
+  {
+   "from": "f_dual_distance_frame",
+   "to": "f_sparse_descent_step",
+   "kind": "req"
+  },
+  {
+   "from": "f_dual_distance_frame",
+   "to": "f_many_sparse_structure",
+   "kind": "req"
+  },
+  {
+   "from": "f_gcd_reduction",
+   "to": "f_dual_distance_frame",
+   "kind": "ev"
+  },
+  {
+   "from": "f_dim2_skeleton",
+   "to": "f_dual_distance_frame",
+   "kind": "ev"
+  },
+  {
+   "from": "periodic_strata",
+   "to": "f_many_sparse_structure",
+   "kind": "ev"
+  },
+  {
+   "from": "safe_assembly_uniformity",
+   "to": "mca_safe",
+   "kind": "req"
+  },
+  {
+   "from": "descriptor",
+   "to": "safe_assembly_uniformity",
+   "kind": "req"
+  },
+  {
+   "from": "budget_b3",
+   "to": "safe_assembly_uniformity",
+   "kind": "ev"
+  },
+  {
+   "from": "collision_norm_criterion",
+   "to": "graded_collision_radius",
+   "kind": "req"
+  },
+  {
+   "from": "single_swap_injectivity",
+   "to": "graded_collision_radius",
+   "kind": "ev"
+  },
+  {
+   "from": "graded_collision_radius",
+   "to": "certified_valueset_lower",
+   "kind": "req"
+  },
+  {
+   "from": "far_pair_separation",
+   "to": "certified_valueset_lower",
+   "kind": "req"
+  },
+  {
+   "from": "height_only_impossibility",
+   "to": "far_pair_separation",
+   "kind": "ev"
+  },
+  {
+   "from": "height_only_impossibility",
+   "to": "certified_valueset_lower",
+   "kind": "ev"
+  },
+  {
+   "from": "graded_collision_radius",
+   "to": "e1_fullness",
+   "kind": "ev"
+  },
+  {
+   "from": "graded_collision_radius",
+   "to": "cluster_certificates",
+   "kind": "req"
+  },
+  {
+   "from": "cluster_certificates",
+   "to": "far_pair_separation",
+   "kind": "req"
+  },
+  {
+   "from": "generator_economy",
+   "to": "far_pair_separation",
+   "kind": "req"
+  },
+  {
+   "from": "cluster_certificates",
+   "to": "generator_economy",
+   "kind": "req"
+  },
+  {
+   "from": "xr_anticode_toolkit",
+   "to": "xr_expansion",
+   "kind": "req"
+  },
+  {
+   "from": "johnson_gap",
+   "to": "xr_anticode_toolkit",
+   "kind": "req"
+  },
+  {
+   "from": "v8_ledger",
+   "to": "xr_expansion",
+   "kind": "req"
+  },
+  {
+   "from": "exchange_calculus",
+   "to": "xr_expansion",
+   "kind": "ev"
+  },
+  {
+   "from": "f_dual_distance_frame",
+   "to": "f_consumer_scoped",
+   "kind": "req"
+  },
+  {
+   "from": "conj_f",
+   "to": "f_consumer_scoped",
+   "kind": "alt"
+  },
+  {
+   "from": "displacement_uniform",
+   "to": "f_consumer_scoped",
+   "kind": "ev"
+  },
+  {
+   "from": "f_spread_moment_count",
+   "to": "f_consumer_scoped",
+   "kind": "ev"
+  },
+  {
+   "from": "f_consumer_scoped",
+   "to": "r2_rigidity",
+   "kind": "ev"
+  },
+  {
+   "from": "f_consumer_scoped",
+   "to": "imgfib",
+   "kind": "ev"
   }
  ]
 }

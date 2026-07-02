@@ -121,6 +121,45 @@ def main() -> None:
             if all(s in okset2 for s in reqs) and (not gate_any or any(s in okset2 for s in alts)):
                 ripe.append(i)
 
+    # critical-set analysis: which OPEN nodes lie on EVERY route to the root?
+    SAT = {"PROVED", "PROVABLE", "CONDITIONAL"}
+    open_ids = [i for i, n in nodes.items()
+                if n["status"] not in SAT and n["status"] != "REFUTED"]
+    import functools
+    def satisfiable(granted: frozenset) -> bool:
+        memo: dict[str, bool] = {}
+        def sat(v: str) -> bool:
+            if v in memo:
+                return memo[v]
+            memo[v] = False              # cycle guard (graph is acyclic anyway)
+            n = nodes[v]
+            if n["status"] == "REFUTED":
+                memo[v] = False
+                return False
+            reqs = [f for f, k in inc[v] if k == "req"]
+            alts = [f for f, k in inc[v] if k == "alt"]
+            base = n["status"] in SAT or v in granted
+            req_ok = all(sat(f) for f in reqs)
+            alt_ok = (not (n.get("gate", "all") == "any" and alts)) or any(sat(f) for f in alts)
+            # SAT-status nodes still owe their hypothesis edges (CONDITIONAL!);
+            # open nodes additionally need to be granted themselves.
+            memo[v] = req_ok and alt_ok and (base if n["status"] not in SAT else True)
+            return memo[v]
+        return sat(root)
+    all_granted = frozenset(open_ids)
+    if satisfiable(all_granted):
+        critical = [x for x in open_ids
+                    if not satisfiable(frozenset(i for i in open_ids if i != x))]
+        print("CRITICAL open nodes (on EVERY route to the prize):")
+        for c in sorted(critical):
+            print(f"  ! {c}: {nodes[c]['title'][:66]} [{nodes[c]['status']}]")
+        # precision invariant: critical nodes must carry an exact statement
+        for c in sorted(critical):
+            if not nodes[c].get("statement"):
+                errors.append(f"{c}: CRITICAL but has no 'statement' field (precision invariant)")
+    else:
+        print("WARNING: root not satisfiable even granting all open nodes (check gates)")
+
     print(f"prize-dag: {len(nodes)} nodes, {len(edges)} edges")
     counts: dict[str, int] = {}
     for n in nodes.values():

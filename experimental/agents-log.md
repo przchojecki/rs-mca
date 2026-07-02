@@ -1354,3 +1354,18 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-07-02 - DAG maintenance: analysis layer + current map (compact repackage of PR #178)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files:** `experimental/data/prize-dag/prize_dag.json` + `.svg` (149 -> 201 nodes / 304
+  edges), `experimental/scripts/verify_prize_dag.py` (computed critical set + the
+  CRITICAL=>statement precision invariant; exits 1 on FAIL),
+  `experimental/scripts/prize_dag_strategy.py` (NEW: CRITICAL/ROUTE/SUPPORT classifier),
+  `experimental/notes/roadmaps/{strategic_recommendations,redteam_attack_plan,enumeration_routes,execution_queue,evidence_plan_codex}.md`.
+- **Status:** AUDIT. Statuses honest (PROVED only cited; PROVABLE only route-pinned); in-flight
+  PR annotations current through #183; E1/E7 pilot evidence processed with priors recorded.
+- **Scope per maintainer review (PR #178): the computed critical-set invariant, the strategy
+  classifier, the enumeration-route map, and the red-team queue, plus the claimable execution
+  queue and pre-registered evidence campaign they point at.**
+- **What to do next:** statuses flip on integration of #179-#183; strategy layer re-runs per flip.
