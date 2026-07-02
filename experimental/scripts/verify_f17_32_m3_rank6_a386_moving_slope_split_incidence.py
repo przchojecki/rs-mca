@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v27"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v28"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -969,6 +969,113 @@ def one_over_mechanism_priority_ledger(
             ],
         },
     ]
+
+
+def exact_current_minimal_obstruction_profile(
+    line_survival_rows: list[dict[str, Any]],
+    conic_survival_rows: list[dict[str, Any]],
+    line_catalog_rows: list[dict[str, Any]],
+    conic_catalog_rows: list[dict[str, Any]],
+    single_saving_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Normal form for any exact-current one-over witness that still survives."""
+    line_catalog_by_core = {
+        row["forced_external_core_size"]: row for row in line_catalog_rows
+    }
+    conic_catalog_by_core = {
+        row["forced_external_core_size"]: row for row in conic_catalog_rows
+    }
+    saving_by_key = {
+        (row["component_type"], row["forced_external_core_size"]): row
+        for row in single_saving_rows
+        if row["component_type"] in {"line", "irreducible_conic"}
+        and row["forced_external_core_size"] != 120
+    }
+    rows: list[dict[str, Any]] = []
+    for survival in line_survival_rows:
+        core = survival["forced_external_core_size"]
+        catalog = line_catalog_by_core[core]
+        saving = saving_by_key[("line", core)]
+        rows.append(
+            {
+                "component_type": "line",
+                "forced_external_core_size": core,
+                "status": "minimal exact-current finite-incidence obstruction",
+                "one_over_source": saving["one_over_source"],
+                "dangerous_projective_count": survival["dangerous_projective_count"],
+                "finite_source_classes_must_equal": survival[
+                    "finite_source_classes_must_equal"
+                ],
+                "finite_slopes_must_be_distinct": survival[
+                    "finite_slopes_must_be_distinct"
+                ],
+                "endpoint_must_survive_unpaid": survival[
+                    "endpoint_must_survive_unpaid"
+                ],
+                "all_incidence_inequalities_must_saturate": survival[
+                    "all_incidence_inequalities_must_saturate"
+                ],
+                "base_pressure_label": survival["base_pressure_label"],
+                "allowed_base_root_histogram_count": catalog[
+                    "allowed_base_root_histogram_count"
+                ],
+                "total_base_root_incidence_range": catalog[
+                    "total_base_root_incidence_range"
+                ],
+                "unused_nonforced_external_root_line_range": catalog[
+                    "unused_nonforced_external_root_line_range"
+                ],
+                "pairwise_external_root_sets_disjoint": True,
+                "single_savings_that_close": saving["sufficient_single_savings"],
+                "next_algebraic_inputs": [
+                    "force a duplicate finite slope in the line slope map",
+                    "pay or remove the projective endpoint",
+                    "prove a forced split-class absence from the quotient pencil",
+                ],
+            }
+        )
+    for survival in conic_survival_rows:
+        core = survival["forced_external_core_size"]
+        catalog = conic_catalog_by_core[core]
+        saving = saving_by_key[("irreducible_conic", core)]
+        rows.append(
+            {
+                "component_type": "irreducible_conic",
+                "forced_external_core_size": core,
+                "status": "minimal exact-current finite-incidence obstruction",
+                "one_over_source": saving["one_over_source"],
+                "dangerous_projective_count": survival["dangerous_projective_count"],
+                "finite_source_classes_must_equal": survival[
+                    "finite_source_classes_must_equal"
+                ],
+                "finite_slopes_must_be_distinct": survival[
+                    "finite_slopes_must_be_distinct"
+                ],
+                "endpoint_must_survive_unpaid": survival[
+                    "endpoint_must_survive_unpaid"
+                ],
+                "all_pair_overlap_inequalities_must_saturate": survival[
+                    "all_pair_overlap_inequalities_must_saturate"
+                ],
+                "secant_pressure_label": survival["secant_pressure_label"],
+                "allowed_base_root_histogram_count": catalog[
+                    "allowed_base_root_histogram_count"
+                ],
+                "total_base_root_incidence_range": catalog[
+                    "total_base_root_incidence_range"
+                ],
+                "required_pair_overlap_range": catalog["required_pair_overlap_range"],
+                "maximum_missing_secant_range": catalog["maximum_missing_secant_range"],
+                "nonforced_external_triple_use_forbidden": True,
+                "single_savings_that_close": saving["sufficient_single_savings"],
+                "next_algebraic_inputs": [
+                    "force a duplicate finite slope in the conic slope map",
+                    "pay or remove the projective endpoint",
+                    "prove a forced secant deficit or split-class absence",
+                ],
+            }
+        )
+    return rows
 
 
 def line_base_defect_threshold_row(survival_row: dict[str, Any]) -> dict[str, Any]:
@@ -2278,6 +2385,13 @@ def build_certificate() -> dict[str, Any]:
             for row in tangent_tail_survival_rows
         ]
     )
+    exact_current_minimal_obstruction_rows = exact_current_minimal_obstruction_profile(
+        line_survival_rows,
+        conic_survival_rows,
+        line_one_over_design_catalog_rows,
+        conic_one_over_design_catalog_rows,
+        single_saving_closure_rows,
+    )
     mechanism_priority_rows = one_over_mechanism_priority_ledger(
         line_one_over_design_catalog_rows,
         conic_one_over_design_catalog_rows,
@@ -3132,6 +3246,56 @@ def build_certificate() -> dict[str, Any]:
     )
     require(
         [
+            (row["component_type"], row["forced_external_core_size"])
+            for row in exact_current_minimal_obstruction_rows
+        ]
+        == [
+            *[("line", core) for core in range(72, 81)],
+            *[("irreducible_conic", core) for core in range(69, 77)],
+        ],
+        "exact-current minimal obstruction coverage changed",
+    )
+    require(
+        all(
+            row["dangerous_projective_count"] == PROJECTIVE_BUDGET + 1
+            and row["finite_source_classes_must_equal"] == PROJECTIVE_BUDGET
+            and row["finite_slopes_must_be_distinct"]
+            and row["endpoint_must_survive_unpaid"]
+            and row["status"] == "minimal exact-current finite-incidence obstruction"
+            for row in exact_current_minimal_obstruction_rows
+        ),
+        "exact-current minimal obstructions should all require six distinct finite slopes plus endpoint",
+    )
+    require(
+        [
+            row["base_pressure_label"]
+            for row in exact_current_minimal_obstruction_rows
+            if row["component_type"] == "line"
+        ]
+        == [
+            "near-complete base splitting",
+            "positive base splitting",
+            "weak base splitting",
+            *["external slack alone can absorb base deficit"] * 6,
+        ],
+        "line minimal obstruction pressure labels changed",
+    )
+    require(
+        [
+            row["secant_pressure_label"]
+            for row in exact_current_minimal_obstruction_rows
+            if row["component_type"] == "irreducible_conic"
+        ]
+        == [
+            "almost complete secant graph",
+            "dense secant graph",
+            "nontrivial secant graph",
+            *["pair-overlap pressure not forced before external excess"] * 5,
+        ],
+        "conic minimal obstruction pressure labels changed",
+    )
+    require(
+        [
             (
                 row["mechanism_class"],
                 row["component_type"],
@@ -3531,6 +3695,15 @@ def build_certificate() -> dict[str, Any]:
                 "punctured-tangent tail at core 120.  In each row, any one listed "
                 "saving lowers the projective count from 7 to the budget 6."
             ),
+            "exact_current_minimal_obstruction_profile": (
+                "After the e_G=119 exact-agreement closure, any remaining "
+                "projective over-budget witness must be an exact-current "
+                "finite-incidence obstruction: one of the line cores 72..80 or "
+                "conic cores 69..76, with exactly six finite source classes, six "
+                "distinct finite slopes, and an unpaid projective endpoint.  The "
+                "profile records the saturated base-root, external-slack, and "
+                "secant-overlap conditions that must also hold in each row."
+            ),
             "one_over_mechanism_priority_ledger": (
                 "The one-over rows split into six mechanism classes: line "
                 "base-splitting active (72..74), line external-slack only "
@@ -3675,6 +3848,7 @@ def build_certificate() -> dict[str, Any]:
             ),
         },
         "single_saving_closure_ledger": single_saving_closure_rows,
+        "exact_current_minimal_obstruction_profile": exact_current_minimal_obstruction_rows,
         "one_over_mechanism_priority_ledger": mechanism_priority_rows,
         "punctured_tangent_tail_extremizer_profile": tangent_tail_extremizer_rows,
         "punctured_tangent_tail_cofactor_span_closure": tangent_tail_cofactor_span_closure_rows,
@@ -3898,6 +4072,15 @@ def build_certificate() -> dict[str, Any]:
                 "irreducible_conic_pair_overlap": [69, 76],
                 "punctured_tangent_tail": [120, 120],
             },
+            "exact_current_minimal_obstruction_count": len(
+                exact_current_minimal_obstruction_rows
+            ),
+            "exact_current_minimal_obstruction_core_ranges": {
+                "line_external_incidence": [72, 80],
+                "irreducible_conic_pair_overlap": [69, 76],
+            },
+            "exact_current_minimal_obstruction_required_finite_slopes": PROJECTIVE_BUDGET,
+            "exact_current_minimal_obstruction_requires_unpaid_endpoint": True,
             "one_over_mechanism_priority_classes": [
                 {
                     "mechanism_class": row["mechanism_class"],
@@ -3963,6 +4146,7 @@ def build_certificate() -> dict[str, Any]:
             "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
             "abstract incidence-only sharpness witnesses are constructed for every finite-incidence one-over core",
             "every one-over moving-slope residual row has a single-saving closure ledger entry",
+            "exact-current minimal obstruction profile requires six distinct finite slopes plus endpoint",
             "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
             "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction",
         ],

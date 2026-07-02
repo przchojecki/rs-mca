@@ -441,6 +441,14 @@ cofactor-span obstruction.  The subsequent exact-agreement filter closes the
 cofactor-current tangent-tail row `e_G=119`, so the exact-current one-over rows
 are only the finite-incidence ranges.
 
+The packet now records these exact-current rows as a minimal obstruction
+profile.  Any surviving projective over-budget witness must be one of the
+line cores `72..80` or conic cores `69..76`, must have exactly six finite
+source classes, must keep all six finite slopes distinct, and must keep the
+projective endpoint unpaid.  The profile attaches the saturated base-root,
+external-slack, and secant-overlap conditions for each row, so the next proof
+step can target a concrete failure of this normal form.
+
 The same ledger splits the next proof targets by first available mechanism:
 line base-splitting pressure remains only for `e_G=72..74`; line cores
 `75..80` need external-slack, duplicate-slope, endpoint, or paid-class input.

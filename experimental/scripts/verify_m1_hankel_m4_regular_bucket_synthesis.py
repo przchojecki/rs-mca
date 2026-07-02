@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v9"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v10"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v27",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v28",
 }
 
 
@@ -933,6 +933,42 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         "e=119 exact-tail closure mismatch",
     )
     require(
+        summary["exact_current_minimal_obstruction_count"] == 17
+        and summary["exact_current_minimal_obstruction_core_ranges"]
+        == {
+            "line_external_incidence": [72, 80],
+            "irreducible_conic_pair_overlap": [69, 76],
+        },
+        "exact-current minimal obstruction summary mismatch",
+    )
+    require(
+        summary["exact_current_minimal_obstruction_required_finite_slopes"] == 6
+        and summary["exact_current_minimal_obstruction_requires_unpaid_endpoint"],
+        "exact-current minimal obstruction requirements mismatch",
+    )
+    minimal = data["exact_current_minimal_obstruction_profile"]
+    require(
+        [
+            (row["component_type"], row["forced_external_core_size"])
+            for row in minimal
+        ]
+        == [
+            *[("line", core) for core in range(72, 81)],
+            *[("irreducible_conic", core) for core in range(69, 77)],
+        ],
+        "exact-current minimal obstruction profile coverage mismatch",
+    )
+    require(
+        all(
+            row["dangerous_projective_count"] == 7
+            and row["finite_source_classes_must_equal"] == 6
+            and row["finite_slopes_must_be_distinct"]
+            and row["endpoint_must_survive_unpaid"]
+            for row in minimal
+        ),
+        "exact-current minimal obstruction rows should all be six finite plus endpoint",
+    )
+    require(
         summary["line_incidence_only_sharpness_witness_count"] == 9
         and summary["line_incidence_only_sharpness_external_core_range"] == [72, 80],
         "line incidence-only sharpness summary mismatch",
@@ -1103,6 +1139,7 @@ def build_certificate() -> dict[str, Any]:
                 "the endpoint-only one-over finite-incidence range has a compact exact catalog: line histogram counts 2,16,27,28^6 across e_G=72..80 and conic counts 2,16,27,28^5 across e_G=69..76",
                 "abstract incidence-only sharpness witnesses exist for every finite-incidence one-over core, so those rows cannot be closed by sharpening only the current incidence and pair-overlap axioms",
                 "the cofactor-current moving-slope one-over residual rows have a single-saving closure ledger entry: line e_G=72..80, conic e_G=69..76, and the punctured-tangent tail e_G=120",
+                "after exact-tail closure, the remaining over-budget normal form has exactly 17 finite-incidence rows, each requiring six distinct finite slopes plus an unpaid endpoint",
                 "the finite-incidence one-over rows split by first available saving mechanism into line base-active 72..74, line external-slack 75..80, conic base+secant 69..71, conic secant-only 72..74, and conic endpoint/duplicate-only 75..76; the punctured-tangent tails e_G=120 and e_G=119 are now closed by cofactor-span and exact-agreement arguments",
             ],
             "m3_rank_node_dichotomy": [

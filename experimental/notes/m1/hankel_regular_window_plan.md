@@ -382,6 +382,11 @@ The packet also records a single-saving closure ledger for the finite-incidence
 one-over rows, line `e_G=72..80` and conic `e_G=69..76`, plus the formerly raw
 line/conic punctured-tangent tail at `e_G=120`.  The subsequent exact-agreement
 filter closes the cofactor-current tangent-tail row `e_G=119`.
+The exact-current rows are also recorded as a minimal obstruction profile:
+any remaining over-budget witness must be one of the line cores `72..80` or
+conic cores `69..76`, with exactly six finite source classes, six distinct
+finite slopes, and an unpaid projective endpoint, plus the printed saturated
+base-root, external-slack, and secant-overlap conditions.
 Those rows split by first available saving mechanism into line base-active
 `72..74`, line external-slack `75..80`, conic base+secant `69..71`, conic
 secant-only `72..74`, conic endpoint/duplicate-only `75..76`, and the

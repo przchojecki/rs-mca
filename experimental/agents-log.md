@@ -46,7 +46,8 @@ Keep entries concise and link to the relevant files.
   cofactor-span top-saturation exclusion for the high-core punctured-tangent
   quotient tail, exact-agreement closure of the `e_G=119` tangent-tail row,
   abstract incidence-only sharpness witnesses for every finite-incidence
-  one-over core, and exact-current residual profiles.
+  one-over core, exact-current residual profiles, and a minimal obstruction
+  profile for the remaining finite-incidence rows.
 - **How it is useful:** A seven-slope saturated tangent-star tail has at most
   one original endpoint, so at least six bad points must be finite component
   classes.  Their degree-`6` cofactors are independent, but the fixed-core
@@ -61,7 +62,10 @@ Keep entries concise and link to the relevant files.
   remaining finite-incidence one-over rows cannot be closed by sharpening only
   the current incidence and pair-overlap counts.  The cofactor-current profile
   removes the stale raw `e_G=120` one-over row; the exact-current profile
-  removes `e_G=119` and lowers the conic max bound from `26` to `25`.
+  removes `e_G=119` and lowers the conic max bound from `26` to `25`.  The
+  remaining over-budget normal form now has exactly `17` rows: line `72..80`
+  and conic `69..76`, each requiring six distinct finite slopes plus an unpaid
+  endpoint and the printed saturated incidence/overlap conditions.
 - **What to do next:** Focus remaining A386 work on algebraic endpoint
   payment, finite-slope collisions, quotient-fiber structure, or the larger
   middle quotient ranges.

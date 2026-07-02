@@ -196,6 +196,7 @@
     "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
     "abstract incidence-only sharpness witnesses are constructed for every finite-incidence one-over core",
     "every one-over moving-slope residual row has a single-saving closure ledger entry",
+    "exact-current minimal obstruction profile requires six distinct finite slopes plus endpoint",
     "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
     "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction"
   ],
@@ -5839,6 +5840,618 @@
       }
     ]
   },
+  "exact_current_minimal_obstruction_profile": [
+    {
+      "all_incidence_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 2,
+      "base_pressure_label": "near-complete base splitting",
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 72,
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the line slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced split-class absence from the quotient pencil"
+      ],
+      "one_over_source": "external incidence plus endpoint",
+      "pairwise_external_root_sets_disjoint": true,
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        11,
+        12
+      ],
+      "unused_nonforced_external_root_line_range": [
+        0,
+        1
+      ]
+    },
+    {
+      "all_incidence_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 16,
+      "base_pressure_label": "positive base splitting",
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 73,
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the line slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced split-class absence from the quotient pencil"
+      ],
+      "one_over_source": "external incidence plus endpoint",
+      "pairwise_external_root_sets_disjoint": true,
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        6,
+        12
+      ],
+      "unused_nonforced_external_root_line_range": [
+        0,
+        6
+      ]
+    },
+    {
+      "all_incidence_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 27,
+      "base_pressure_label": "weak base splitting",
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 74,
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the line slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced split-class absence from the quotient pencil"
+      ],
+      "one_over_source": "external incidence plus endpoint",
+      "pairwise_external_root_sets_disjoint": true,
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        1,
+        12
+      ],
+      "unused_nonforced_external_root_line_range": [
+        0,
+        11
+      ]
+    },
+    {
+      "all_incidence_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 28,
+      "base_pressure_label": "external slack alone can absorb base deficit",
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 75,
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the line slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced split-class absence from the quotient pencil"
+      ],
+      "one_over_source": "external incidence plus endpoint",
+      "pairwise_external_root_sets_disjoint": true,
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        0,
+        12
+      ],
+      "unused_nonforced_external_root_line_range": [
+        4,
+        16
+      ]
+    },
+    {
+      "all_incidence_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 28,
+      "base_pressure_label": "external slack alone can absorb base deficit",
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 76,
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the line slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced split-class absence from the quotient pencil"
+      ],
+      "one_over_source": "external incidence plus endpoint",
+      "pairwise_external_root_sets_disjoint": true,
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        0,
+        12
+      ],
+      "unused_nonforced_external_root_line_range": [
+        9,
+        21
+      ]
+    },
+    {
+      "all_incidence_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 28,
+      "base_pressure_label": "external slack alone can absorb base deficit",
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 77,
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the line slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced split-class absence from the quotient pencil"
+      ],
+      "one_over_source": "external incidence plus endpoint",
+      "pairwise_external_root_sets_disjoint": true,
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        0,
+        12
+      ],
+      "unused_nonforced_external_root_line_range": [
+        14,
+        26
+      ]
+    },
+    {
+      "all_incidence_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 28,
+      "base_pressure_label": "external slack alone can absorb base deficit",
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 78,
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the line slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced split-class absence from the quotient pencil"
+      ],
+      "one_over_source": "external incidence plus endpoint",
+      "pairwise_external_root_sets_disjoint": true,
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        0,
+        12
+      ],
+      "unused_nonforced_external_root_line_range": [
+        19,
+        31
+      ]
+    },
+    {
+      "all_incidence_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 28,
+      "base_pressure_label": "external slack alone can absorb base deficit",
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 79,
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the line slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced split-class absence from the quotient pencil"
+      ],
+      "one_over_source": "external incidence plus endpoint",
+      "pairwise_external_root_sets_disjoint": true,
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        0,
+        12
+      ],
+      "unused_nonforced_external_root_line_range": [
+        24,
+        36
+      ]
+    },
+    {
+      "all_incidence_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 28,
+      "base_pressure_label": "external slack alone can absorb base deficit",
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 80,
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the line slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced split-class absence from the quotient pencil"
+      ],
+      "one_over_source": "external incidence plus endpoint",
+      "pairwise_external_root_sets_disjoint": true,
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        0,
+        12
+      ],
+      "unused_nonforced_external_root_line_range": [
+        29,
+        41
+      ]
+    },
+    {
+      "all_pair_overlap_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 2,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 69,
+      "maximum_missing_secant_range": [
+        0,
+        1
+      ],
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the conic slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced secant deficit or split-class absence"
+      ],
+      "nonforced_external_triple_use_forbidden": true,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "required_pair_overlap_range": [
+        14,
+        15
+      ],
+      "secant_pressure_label": "almost complete secant graph",
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        11,
+        12
+      ]
+    },
+    {
+      "all_pair_overlap_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 16,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 70,
+      "maximum_missing_secant_range": [
+        0,
+        6
+      ],
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the conic slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced secant deficit or split-class absence"
+      ],
+      "nonforced_external_triple_use_forbidden": true,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "required_pair_overlap_range": [
+        9,
+        15
+      ],
+      "secant_pressure_label": "dense secant graph",
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        6,
+        12
+      ]
+    },
+    {
+      "all_pair_overlap_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 27,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 71,
+      "maximum_missing_secant_range": [
+        0,
+        11
+      ],
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the conic slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced secant deficit or split-class absence"
+      ],
+      "nonforced_external_triple_use_forbidden": true,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "required_pair_overlap_range": [
+        4,
+        15
+      ],
+      "secant_pressure_label": "nontrivial secant graph",
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        1,
+        12
+      ]
+    },
+    {
+      "all_pair_overlap_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 28,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 72,
+      "maximum_missing_secant_range": [
+        4,
+        15
+      ],
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the conic slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced secant deficit or split-class absence"
+      ],
+      "nonforced_external_triple_use_forbidden": true,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "required_pair_overlap_range": [
+        0,
+        11
+      ],
+      "secant_pressure_label": "pair-overlap pressure not forced before external excess",
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        0,
+        12
+      ]
+    },
+    {
+      "all_pair_overlap_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 28,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 73,
+      "maximum_missing_secant_range": [
+        9,
+        15
+      ],
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the conic slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced secant deficit or split-class absence"
+      ],
+      "nonforced_external_triple_use_forbidden": true,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "required_pair_overlap_range": [
+        0,
+        6
+      ],
+      "secant_pressure_label": "pair-overlap pressure not forced before external excess",
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        0,
+        12
+      ]
+    },
+    {
+      "all_pair_overlap_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 28,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 74,
+      "maximum_missing_secant_range": [
+        14,
+        15
+      ],
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the conic slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced secant deficit or split-class absence"
+      ],
+      "nonforced_external_triple_use_forbidden": true,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "required_pair_overlap_range": [
+        0,
+        1
+      ],
+      "secant_pressure_label": "pair-overlap pressure not forced before external excess",
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        0,
+        12
+      ]
+    },
+    {
+      "all_pair_overlap_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 28,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 75,
+      "maximum_missing_secant_range": [
+        15,
+        15
+      ],
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the conic slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced secant deficit or split-class absence"
+      ],
+      "nonforced_external_triple_use_forbidden": true,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "required_pair_overlap_range": [
+        0,
+        0
+      ],
+      "secant_pressure_label": "pair-overlap pressure not forced before external excess",
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        0,
+        12
+      ]
+    },
+    {
+      "all_pair_overlap_inequalities_must_saturate": true,
+      "allowed_base_root_histogram_count": 28,
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "endpoint_must_survive_unpaid": true,
+      "finite_slopes_must_be_distinct": true,
+      "finite_source_classes_must_equal": 6,
+      "forced_external_core_size": 76,
+      "maximum_missing_secant_range": [
+        15,
+        15
+      ],
+      "next_algebraic_inputs": [
+        "force a duplicate finite slope in the conic slope map",
+        "pay or remove the projective endpoint",
+        "prove a forced secant deficit or split-class absence"
+      ],
+      "nonforced_external_triple_use_forbidden": true,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "required_pair_overlap_range": [
+        0,
+        0
+      ],
+      "secant_pressure_label": "pair-overlap pressure not forced before external excess",
+      "single_savings_that_close": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ],
+      "status": "minimal exact-current finite-incidence obstruction",
+      "total_base_root_incidence_range": [
+        0,
+        12
+      ]
+    }
+  ],
   "exact_root_budget_alternatives": {
     "irreducible_conic_e69": [
       {
@@ -10683,7 +11296,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v27",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v28",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -11526,6 +12139,19 @@
       0,
       14
     ],
+    "exact_current_minimal_obstruction_core_ranges": {
+      "irreducible_conic_pair_overlap": [
+        69,
+        76
+      ],
+      "line_external_incidence": [
+        72,
+        80
+      ]
+    },
+    "exact_current_minimal_obstruction_count": 17,
+    "exact_current_minimal_obstruction_required_finite_slopes": 6,
+    "exact_current_minimal_obstruction_requires_unpaid_endpoint": true,
     "external_root_count": 385,
     "line_cofactor_current_max_projective_upper_bound": 18,
     "line_cofactor_current_one_over_external_core_ranges": [
@@ -12165,6 +12791,7 @@
     "conic_status": "For an irreducible conic c=2, the base-sharpened budget gives six finite Q-classes at e_G=0 and finite safety through e_G<=19, but the projective endpoint still makes total seven at best.  The conic pair-overlap packing lemma below supplies the needed extra saving through e_G<=68.",
     "defect_threshold_profile": "The survival pressures are converted into exact closure-by-defect thresholds.  At line e_G=72, six finite classes require at least eleven base-root incidences, so all six classes have a base root and at least five have two.  At conic e_G=69, six finite classes require at least fourteen of the fifteen pair secants before external excess, hence at least sixteen secant triangles.",
     "exact_agreement_e119_tangent_tail_closure": "The live e_G=119 tangent-tail one-over row is closed by using exact agreement.  Seven projective slopes can be sent to seven finite slopes in the punctured row.  The tangent-staircase residual-budget proof then allows only common-support complement sizes 7 and 8.  Complement size 7 would force a higher-agreement or same-support-contained branch, not an exact-A noncontained split locator.  Complement size 8 gives degree-7 cofactors of an eight-point residual set; at least six finite component cofactors would be independent, exceeding the line/conic quotient-family dimensions 2 and 3.",
+    "exact_current_minimal_obstruction_profile": "After the e_G=119 exact-agreement closure, any remaining projective over-budget witness must be an exact-current finite-incidence obstruction: one of the line cores 72..80 or conic cores 69..76, with exactly six finite source classes, six distinct finite slopes, and an unpaid projective endpoint.  The profile records the saturated base-root, external-slack, and secant-overlap conditions that must also hold in each row.",
     "exact_root_budget_alternatives": "Using exact degree-126 split-locator accounting, line e_G=72 has only two alternatives: histogram (0,0,6) leaves exactly one unused nonforced external root line, while histogram (0,1,5) uses all nonforced external root lines.  For conic e_G=69, histogram (0,0,6) requires fourteen pair overlaps and histogram (0,1,5) requires all fifteen pair overlaps.",
     "extremal_design_local_profiles": "Locally, the line designs have singleton-root sequences (52,52,52,52,52,52) or (53,52,52,52,52,52).  The conic designs have secant-degree/singleton pairs (5^6;50^6), ((4,4,5,5,5,5);(51,51,50,50,50,50)), or (5^6;(51,50,50,50,50,50)).",
     "extremal_design_multiplicity_profiles": "The line designs have no pairwise external overlap: their nonforced external roots have multiplicities (zero, one, >=two) equal to (1,312,0) or (0,313,0).  The conic designs have no triple external overlap, and their multiplicities (zero, one, two) are (1,300,15), (0,302,14), or (0,301,15).",
