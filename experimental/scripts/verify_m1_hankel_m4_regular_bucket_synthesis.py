@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v34"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v35"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -107,6 +107,10 @@ A386_SEPARATED_BOUNDARY_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-separated-boundary-closure/"
     "f17_32_n512_k256_m3_rank6_a386_separated_boundary_closure.json"
 )
+A385_BASE_CORE_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-base-core-closure/"
+    "f17_32_n512_k256_m3_rank6_a385_base_core_closure.json"
+)
 
 
 EXPECTED_SCHEMAS = {
@@ -130,6 +134,7 @@ EXPECTED_SCHEMAS = {
     A386_SEPARATED_BOUNDARY_REF: (
         "f17-32-m3-rank6-a386-separated-boundary-closure-v1"
     ),
+    A385_BASE_CORE_REF: "f17-32-m3-rank6-a385-base-core-closure-v1",
 }
 
 
@@ -1825,6 +1830,62 @@ def check_a386_separated_boundary_packet(data: dict[str, Any]) -> None:
     )
 
 
+def check_a385_base_core_packet(data: dict[str, Any]) -> None:
+    require(data["agreement"]["A"] == 385, "A385 base-core agreement mismatch")
+    require(data["status"] == "PROVED / AUDIT", "A385 base-core status mismatch")
+    summary = data["summary"]
+    require(
+        summary["boundary_defect_h"] == 5
+        and summary["projective_Q_search_dimension_before_core"] == 4
+        and summary["forced_base_core_size"] == 4
+        and summary["projective_Q_search_dimension_after_core"] == 0,
+        "A385 base-core dimension summary mismatch",
+    )
+    require(
+        summary["finite_noncontained_parameter_upper_bound"] == 1
+        and summary["projective_endpoint_count"] == 1
+        and summary["support_wise_projective_total_upper_bound"] == 2
+        and summary["projective_budget"] == BUDGET,
+        "A385 base-core budget summary mismatch",
+    )
+    require(
+        summary["fixed_four_base_core_branch_projective_safe"]
+        and summary["over_budget_witness_must_avoid_common_four_base_core"],
+        "A385 base-core closure summary mismatch",
+    )
+    branches = {row["branch"]: row for row in data["branch_partition"]}
+    require(
+        set(branches)
+        == {
+            "unique_Q_class_with_some_nonzero_direction_denominator",
+            "unique_Q_class_slope_free",
+        },
+        "A385 base-core branch partition mismatch",
+    )
+    require(
+        branches["unique_Q_class_with_some_nonzero_direction_denominator"][
+            "finite_parameter_upper_bound"
+        ]
+        == 1
+        and branches["unique_Q_class_slope_free"]["finite_parameter_upper_bound"] == 0,
+        "A385 base-core branch bounds mismatch",
+    )
+    nonclaims = set(data["nonclaims"])
+    require(
+        "does not close A=385 branches without a common forced four-point base core"
+        in nonclaims,
+        "A385 base-core missing low-core nonclaim",
+    )
+    require(
+        "does not classify overlapping-support rank-6 pencils" in nonclaims,
+        "A385 base-core missing overlap nonclaim",
+    )
+    require(
+        "does not produce a row-level M3 safe-side bound" in nonclaims,
+        "A385 base-core missing row-bound nonclaim",
+    )
+
+
 def build_certificate() -> dict[str, Any]:
     field = Field(P, MODULUS)
     descriptor = load_json(ROW_DESCRIPTOR_REF)
@@ -1839,6 +1900,7 @@ def build_certificate() -> dict[str, Any]:
         check_dependency(ref, data)
     check_a386_moving_slope_packet(dependencies[A386_MOVING_SLOPE_REF])
     check_a386_separated_boundary_packet(dependencies[A386_SEPARATED_BOUNDARY_REF])
+    check_a385_base_core_packet(dependencies[A385_BASE_CORE_REF])
 
     domain_encodings = descriptor["domain"]["domain_encodings"]
     require(len(domain_encodings) == N, "domain length mismatch")
@@ -1919,6 +1981,12 @@ def build_certificate() -> dict[str, Any]:
                 "the conic-pair and component-cut branches give Bezout projective totals at most 5, while the global-component dichotomy reduces the remaining component to constant-slope, slope-free, or moving-slope cases",
                 "slope-free transfer vectors add zero support-wise parameters, and every nonconstant moving-slope line or irreducible-conic component is projective-safe for every external forced-core size",
                 "the closure is local to separated-support A=386 rank-6 boundary buckets and does not classify A=385, overlapping supports, or arbitrary row-level M3 safe-side bounds",
+            ],
+            "a385_base_core_closure": [
+                "inside the separated A=385 rank-6 boundary, any branch with a common forced four-point base split-root core is projective-budget safe",
+                "the four base roots collapse the P^4 auxiliary Q-space to one projective Q-class, so the direction equations yield at most one finite noncontained parameter",
+                "after adding the single projective endpoint, the fixed-core branch has projective total at most 2<=6",
+                "any over-budget separated A=385 obstruction must avoid a common forced four-point base core in the counted branch",
             ],
             "a386_moving_slope_refinement": [
                 "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
@@ -2020,6 +2088,7 @@ def build_certificate() -> dict[str, Any]:
             "m4_affine_pivot_compression_count": 1,
             "m4_affine_pivot_gcd_equivalence_count": 1,
             "a386_separated_boundary_closure_count": 1,
+            "a385_base_core_closure_count": 1,
             "a386_moving_slope_refinement_count": 1,
             "m3_rank_node_dichotomy_count": 1,
             "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -2042,6 +2111,7 @@ def build_certificate() -> dict[str, Any]:
             "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
             "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
             "A=386 separated rank-6 boundary buckets are projective-safe after composing the conic, component-cut, slope-free, and moving-slope packets",
+            "A=385 separated rank-6 boundary branches with a common forced four-point base core are projective-safe",
             "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
             "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
             "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",

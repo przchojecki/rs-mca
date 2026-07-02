@@ -534,6 +534,14 @@ comes from an auxiliary polynomial `Q` of degree `< h=|X union Y|-t`, where
 `h=5,3,1`, satisfying six direction-node consistency equations before the
 split-locator divisor gate is tested.
 
+The `A=385` fixed base-core companion closes the branch where all surviving
+split-locator candidates share a forced base-root core of size at least four.
+The four base roots impose four independent conditions on `deg Q<5`, leaving a
+single projective `Q`-class.  The direction equations then give at most one
+finite noncontained slope, and the endpoint gives total projective contribution
+`<=2`.  An over-budget separated `A=385` obstruction must therefore avoid a
+common four-point base core.
+
 The `A=387` separated-boundary safety companion uses the `h=1` specialization
 to close that agreement for arbitrary nonzero separated weights: the finite
 root table has at most one ambient root, the split-locator gate cannot increase
@@ -858,6 +866,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_exact_root_table
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-base-core-closure/f17_32_n512_k256_m3_rank6_a385_base_core_closure.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

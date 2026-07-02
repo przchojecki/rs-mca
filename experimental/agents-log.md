@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A385 fixed base-core closure
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a385-base-core-closure/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a385_base_core_closure.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A separated `A=385` rank-6 fixed-core criterion:
+  if all counted split-locator candidates share a forced four-point base-root
+  core, then the `deg Q<5` auxiliary space collapses to one projective
+  `Q`-class, giving at most one finite noncontained slope and projective total
+  at most `2<=6`.
+- **How it is useful:** This starts the `A=385` attack by removing the fixed
+  high-base-core branch.  Any over-budget separated `A=385` obstruction must
+  avoid a common four-point base core, narrowing the remaining work to
+  low-base-core or moving-core configurations.
+- **What to do next:** Attack the remaining separated `A=385` branches without
+  a common four-point base core, then overlapping-support rank-6 pencils.
+
 ### 2026-07-02 - A386 separated boundary closure packet
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

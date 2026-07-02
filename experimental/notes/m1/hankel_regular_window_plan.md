@@ -933,6 +933,10 @@ that barycentric family, so after filtering only the endpoint remains.
 The low-degree transfer theorem gives the corresponding search object for
 arbitrary separated-support boundary weights: projective `Q`-spaces of
 dimensions `4,2,0` plus six consistency equations and the split-locator gate.
+For `A=385`, a common forced four-point base split-root core collapses the
+`P^4` auxiliary space to a single `Q`-class, so that fixed-core branch is
+projective-safe with total at most `2`; any over-budget separated branch must
+avoid such a common base core.
 For `A=387`, the projective `Q`-space is a point, so the arbitrary-weight
 separated branch is already projective-safe with total at most `2`.
 For `A=386`, a no-common-component pair of direction conics gives projective
@@ -967,6 +971,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_exact_root_table
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-base-core-closure/f17_32_n512_k256_m3_rank6_a385_base_core_closure.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

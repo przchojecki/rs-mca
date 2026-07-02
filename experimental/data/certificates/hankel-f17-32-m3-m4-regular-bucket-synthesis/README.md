@@ -160,6 +160,19 @@ weights at `A=385,386,387` reduce to an auxiliary `Q` of degree `< h` with
 `h=5,3,1`, six direction-node consistency equations, and then the
 split-locator gate.
 
+The `A=385` fixed base-core closure packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a385-base-core-closure/
+  f17_32_n512_k256_m3_rank6_a385_base_core_closure.json
+```
+
+handles the first high-core subcase of the `P^4` boundary.  If every surviving
+split-locator candidate in a separated `A=385` branch has a common forced
+four-point base-root core, then the base roots collapse the `deg Q<5` projective
+space to one `Q`-class.  The branch has at most one finite noncontained slope,
+and with the endpoint its projective total is at most `2`.
+
 The `A=387` separated-boundary safety packet
 
 ```text
@@ -447,6 +460,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_barycentric_exact_root_table
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-base-core-closure/f17_32_n512_k256_m3_rank6_a385_base_core_closure.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

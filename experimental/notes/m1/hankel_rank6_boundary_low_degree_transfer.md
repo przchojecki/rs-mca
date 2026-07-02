@@ -83,6 +83,19 @@ The barycentric exact-root packet is the special case `a_s=b_s=Omega_s`.  In
 that case the consistency equations force the ambient root table `{1}`, and
 the split-locator filter removes that root from finite support-wise counting.
 
+At `A=385`, the first fixed-core closure companion is
+
+```text
+experimental/notes/m1/hankel_rank6_a385_base_core_closure.md
+```
+
+If all candidates in a separated branch share a forced base-root core of size
+at least four, then `Q` vanishes at four distinct base nodes.  Since
+`deg Q<5`, this leaves one projective `Q`-class, hence at most one finite
+noncontained slope.  Adding the endpoint gives projective total `<=2<=6`.
+Thus any over-budget separated `A=385` obstruction must avoid a common
+four-point base core in the counted branch.
+
 At `A=387`, this transfer already closes the separated branch for arbitrary
 nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at
 most one finite slope.  The companion note
@@ -202,6 +215,9 @@ Replay:
 ```sh
 python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-base-core-closure/f17_32_n512_k256_m3_rank6_a385_base_core_closure.json
 ```
 
 Nonclaims:
