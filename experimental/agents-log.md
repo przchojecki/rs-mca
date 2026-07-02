@@ -124,13 +124,13 @@ Keep entries concise and link to the relevant files.
   gcd-trivial projective pencils meet `D_j` in at most `floor(n/j)` points by
   a voting argument.  The note also proves the exact hyperplane-concurrency
   reformulation for arbitrary gcd-trivial projective linear spaces and the
-  pair-counting bound for simple projective planes.
+  weighted pair-counting bound for gcd-trivial projective planes.
 - **How it is useful:** The note turns two paid structures in the proof sketch
   into reductions rather than separate cases, proves the dimension-one base
   case, and identifies the primitive dimension-at-least-two core as a
   `j`-fold incidence problem for evaluation hyperplanes.  In dimension two,
-  it closes the simple-line-arrangement case and isolates repeated evaluation
-  lines as the next obstruction.
+  it gives a polynomial bound even with repeated evaluation lines, leaving
+  dimension at least three as the first remaining primitive incidence core.
 - **What to do next:** Use these reductions before running the E7
   dimension-two plane census, and state future Conjecture F attacks on the
   gcd-trivial non-pullback primitive core.

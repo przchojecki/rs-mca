@@ -44,18 +44,22 @@
       "status": "PASS"
     },
     {
-      "accepted_simple_planes": 25,
+      "accepted_random_planes": 25,
       "attempts": 25,
-      "bound_floor": 20,
-      "bound_rational": "120/6",
+      "forced_repeated_line_planes": 5,
       "j": 4,
-      "max_observed_high_incidence_points": 1,
+      "max_cross_pair_sum": 120,
+      "max_observed_high_incidence_points": 2,
+      "max_observed_line_multiplicity": 2,
       "n": 16,
-      "name": "simple_plane_pair_counting_bound",
-      "pair_count_identity_value": 120,
-      "simple_planes": 25,
-      "skipped_repeated_line_planes": 0,
-      "status": "PASS"
+      "name": "projective_plane_pair_counting_bound",
+      "random_simple_planes": 25,
+      "repeated_line_planes_total": 5,
+      "simple_bound_floor": 20,
+      "simple_bound_rational": "120/6",
+      "status": "PASS",
+      "weighted_bound_floor": 40,
+      "weighted_bound_rational": "120/3"
     }
   ],
   "domain": {
@@ -84,6 +88,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "2eb17ea7f6a8054f49208e7abd2580538e0199c773f16aa9600e5a778bc64108",
+  "script_sha256": "9769066ab76a4c028b4d21ede35f038a2523c7f3b2ad9e86abb62c7a5df19b22",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

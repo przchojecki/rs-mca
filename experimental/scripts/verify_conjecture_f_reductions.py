@@ -9,8 +9,8 @@ the identities over F_97 with H = mu_16:
 * gcd-trivial projective pencils meet D_j(H) in at most floor(n/j) points.
 * D_j(H) on a gcd-trivial projective plane equals j-fold concurrency for
   the evaluation-hyperplane arrangement.
-* simple projective-plane evaluation arrangements satisfy the pair-counting
-  bound #D_j <= binom(n,2)/binom(j,2).
+* gcd-trivial projective-plane evaluation arrangements satisfy the weighted
+  pair-counting bound #D_j <= binom(n,2)/(j-1).
 """
 from __future__ import annotations
 
@@ -19,6 +19,7 @@ import hashlib
 import itertools
 import json
 import random
+from collections import Counter
 from math import comb
 from pathlib import Path
 
@@ -452,16 +453,86 @@ def incidence_multiplicity(point: tuple[int, ...], line: tuple[int, ...]) -> boo
     return sum((a * b) % P for a, b in zip(point, line)) % P == 0
 
 
-def check_simple_plane_bound(H: list[int]) -> dict:
+def forced_duplicate_plane(H: list[int], rng: random.Random) -> list[tuple[int, ...]] | None:
+    a, b = H[0], H[1]
+    relation = [(pow(a, i, P) - pow(b, i, P)) % P for i in range(J_VOTING + 1)]
+    pivot = next(i for i, value in enumerate(relation) if value)
+    inv_pivot = pow(relation[pivot], -1, P)
+    null_basis = []
+    for free in range(J_VOTING + 1):
+        if free == pivot:
+            continue
+        vec = [0] * (J_VOTING + 1)
+        vec[free] = 1
+        vec[pivot] = (-relation[free] * inv_pivot) % P
+        null_basis.append(trim(tuple(vec)))
+
+    for _ in range(200):
+        basis = []
+        for _row in range(3):
+            poly = (0,)
+            for vector in null_basis:
+                poly = poly_add(poly, poly_scale(rng.randrange(P), vector))
+            basis.append(poly)
+        if rank_polys(basis, J_VOTING + 1) != 3:
+            continue
+        if not gcd_trivial_space(basis, H):
+            continue
+        if len(set(evaluation_lines(basis, H))) < len(H):
+            return basis
+    return None
+
+
+def plane_pair_bound_record(basis: list[tuple[int, ...]], H: list[int]) -> dict:
+    line_counts = Counter(evaluation_lines(basis, H))
+    points = projective_plane_points(basis)
+    high_points = 0
+    cross_pair_sum = 0
+    max_multiplicity_at_point = 0
+    for point in points:
+        incident = [
+            multiplicity
+            for line, multiplicity in line_counts.items()
+            if incidence_multiplicity(point, line)
+        ]
+        total = sum(incident)
+        max_multiplicity_at_point = max(max_multiplicity_at_point, total)
+        for index, left in enumerate(incident):
+            for right in incident[index + 1:]:
+                cross_pair_sum += left * right
+        if total >= J_VOTING:
+            high_points += 1
+
+    total_cross_pairs = 0
+    counts = list(line_counts.values())
+    for index, left in enumerate(counts):
+        for right in counts[index + 1:]:
+            total_cross_pairs += left * right
+
+    return {
+        "distinct_lines": len(line_counts),
+        "max_line_multiplicity": max(counts),
+        "high_points": high_points,
+        "max_multiplicity_at_point": max_multiplicity_at_point,
+        "cross_pair_sum": cross_pair_sum,
+        "total_cross_pairs": total_cross_pairs,
+        "weighted_bound_ok": high_points * (J_VOTING - 1) <= comb(N, 2),
+        "simple_bound_ok": (
+            len(line_counts) == N
+            and high_points * comb(J_VOTING, 2) <= comb(N, 2)
+        ),
+    }
+
+
+def check_plane_pair_counting_bound(H: list[int]) -> dict:
     rng = random.Random(SEED + 3)
     accepted = 0
     attempts = 0
     simple_planes = 0
-    skipped_repeated_line_planes = 0
+    repeated_planes = 0
     max_concurrent_points = 0
-    max_pair_sum = 0
-    pair_bound_num = comb(N, 2)
-    pair_bound_den = comb(J_VOTING, 2)
+    max_line_multiplicity = 0
+    max_cross_pair_sum = 0
     while accepted < PLANE_TRIALS:
         attempts += 1
         basis = [random_poly(rng, J_VOTING) for _ in range(3)]
@@ -469,52 +540,84 @@ def check_simple_plane_bound(H: list[int]) -> dict:
             continue
         if not gcd_trivial_space(basis, H):
             continue
-        lines = evaluation_lines(basis, H)
-        if len(set(lines)) != len(lines):
-            skipped_repeated_line_planes += 1
-            continue
-        points = projective_plane_points(basis)
-        high_points = 0
-        pair_sum = 0
-        for point in points:
-            multiplicity = sum(1 for line in lines if incidence_multiplicity(point, line))
-            pair_sum += comb(multiplicity, 2)
-            if multiplicity >= J_VOTING:
-                high_points += 1
-        if pair_sum != pair_bound_num:
+        record = plane_pair_bound_record(basis, H)
+        if record["cross_pair_sum"] != record["total_cross_pairs"]:
             return {
-                "name": "simple_plane_pair_counting_bound",
+                "name": "projective_plane_pair_counting_bound",
                 "status": "FAIL",
-                "reason": "pair-counting identity failed",
-                "pair_sum": pair_sum,
-                "expected_pair_sum": pair_bound_num,
+                "reason": "weighted pair-counting identity failed",
+                "cross_pair_sum": record["cross_pair_sum"],
+                "total_cross_pairs": record["total_cross_pairs"],
             }
-        if high_points * pair_bound_den > pair_bound_num:
+        if record["max_line_multiplicity"] >= J_VOTING:
             return {
-                "name": "simple_plane_pair_counting_bound",
+                "name": "projective_plane_pair_counting_bound",
                 "status": "FAIL",
-                "reason": "high-incidence count exceeds pair bound",
-                "high_points": high_points,
-                "bound_numerator": pair_bound_num,
-                "bound_denominator": pair_bound_den,
+                "reason": "line multiplicity reached j in a gcd-trivial plane",
+                "max_line_multiplicity": record["max_line_multiplicity"],
             }
-        max_concurrent_points = max(max_concurrent_points, high_points)
-        max_pair_sum = max(max_pair_sum, pair_sum)
-        simple_planes += 1
+        if not record["weighted_bound_ok"]:
+            return {
+                "name": "projective_plane_pair_counting_bound",
+                "status": "FAIL",
+                "reason": "weighted high-incidence bound failed",
+                "high_points": record["high_points"],
+            }
+        max_concurrent_points = max(max_concurrent_points, record["high_points"])
+        max_line_multiplicity = max(max_line_multiplicity, record["max_line_multiplicity"])
+        max_cross_pair_sum = max(max_cross_pair_sum, record["cross_pair_sum"])
+        if record["distinct_lines"] == N:
+            simple_planes += 1
+        else:
+            repeated_planes += 1
         accepted += 1
+
+    forced_repeated = 0
+    for _ in range(5):
+        basis = forced_duplicate_plane(H, rng)
+        if basis is None:
+            continue
+        record = plane_pair_bound_record(basis, H)
+        if record["distinct_lines"] == N or record["max_line_multiplicity"] < 2:
+            return {
+                "name": "projective_plane_pair_counting_bound",
+                "status": "FAIL",
+                "reason": "forced duplicate plane did not have repeated lines",
+            }
+        if (
+            record["cross_pair_sum"] != record["total_cross_pairs"]
+            or record["max_line_multiplicity"] >= J_VOTING
+            or not record["weighted_bound_ok"]
+        ):
+            return {
+                "name": "projective_plane_pair_counting_bound",
+                "status": "FAIL",
+                "reason": "forced duplicate plane failed weighted bound",
+                "record": record,
+            }
+        forced_repeated += 1
+        repeated_planes += 1
+        max_concurrent_points = max(max_concurrent_points, record["high_points"])
+        max_line_multiplicity = max(max_line_multiplicity, record["max_line_multiplicity"])
+        max_cross_pair_sum = max(max_cross_pair_sum, record["cross_pair_sum"])
+
     return {
-        "name": "simple_plane_pair_counting_bound",
+        "name": "projective_plane_pair_counting_bound",
         "status": "PASS",
         "n": N,
         "j": J_VOTING,
-        "accepted_simple_planes": accepted,
+        "accepted_random_planes": accepted,
+        "forced_repeated_line_planes": forced_repeated,
         "attempts": attempts,
-        "skipped_repeated_line_planes": skipped_repeated_line_planes,
-        "bound_floor": pair_bound_num // pair_bound_den,
-        "bound_rational": f"{pair_bound_num}/{pair_bound_den}",
+        "random_simple_planes": simple_planes,
+        "repeated_line_planes_total": repeated_planes,
+        "weighted_bound_floor": comb(N, 2) // (J_VOTING - 1),
+        "weighted_bound_rational": f"{comb(N, 2)}/{J_VOTING - 1}",
+        "simple_bound_floor": comb(N, 2) // comb(J_VOTING, 2),
+        "simple_bound_rational": f"{comb(N, 2)}/{comb(J_VOTING, 2)}",
         "max_observed_high_incidence_points": max_concurrent_points,
-        "pair_count_identity_value": max_pair_sum,
-        "simple_planes": simple_planes,
+        "max_observed_line_multiplicity": max_line_multiplicity,
+        "max_cross_pair_sum": max_cross_pair_sum,
     }
 
 
@@ -525,7 +628,7 @@ def build_report() -> dict:
         check_scale_recursion(H),
         check_voting_bound(H),
         check_hyperplane_concurrency(H),
-        check_simple_plane_bound(H),
+        check_plane_pair_counting_bound(H),
     ]
     return {
         "schema": "conjecture_f_reduction_toy_v1",

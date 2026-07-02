@@ -207,36 +207,67 @@ of the `E_h`, then `L` has at least `j` distinct roots in `H`.  But
 `deg L <= j` and `L` is nonzero, so it has exactly `j` roots and is a scalar
 multiple of their locator.  Thus `[L]` lies in `D_j(H)`.
 
-## Lemma 5: Simple-Plane Pair-Counting Bound
+## Lemma 5: Projective-Plane Pair-Counting Bound
 
-Keep the hypotheses of Lemma 4 and assume additionally that `dim P(W)=2` and
-that the evaluation hyperplanes `E_h` are pairwise distinct lines in this
-projective plane.  Then
+Keep the hypotheses of Lemma 4 and assume additionally that `dim P(W)=2`.
+Then
+
+```text
+#(P(W) cap D_j(H)) <= binom(|H|,2) / (j-1).
+```
+
+If the evaluation lines `E_h` are pairwise distinct, the sharper simple-line
+bound holds:
 
 ```text
 #(P(W) cap D_j(H)) <= binom(|H|,2) / binom(j,2).
 ```
 
-More generally the same proof bounds the number of points lying on at least
-`j` lines in any simple arrangement of `|H|` projective lines.
-
 **Proof.**  For a point `p in P(W)`, let `m(p)` be the number of evaluation
-lines passing through it.  Since the arrangement is simple, every unordered
-pair of distinct evaluation lines meets in exactly one point, and no line-pair
-is counted at two points.  Hence
+lines passing through it, counted with multiplicity in `H`.
+
+First note that no projective line `E` can occur with multiplicity at least
+`j`.  If `m > j` distinct points of `H` had the same evaluation line, then
+every nonzero locator point on `E` would have more than `j` roots, impossible
+for degree at most `j`.  If `m = j`, then the vector subspace underlying `E`
+would consist of degree-`<=j` polynomials vanishing on the same `j` points.
+That full vanishing subspace is one-dimensional, spanned by the locator of
+those `j` roots, contradicting that `E` is a projective line.  Hence every
+repeated evaluation line has multiplicity at most `j-1`.
+
+Group the evaluation lines by equality, with multiplicities `a_i`.  For any
+point lying on groups whose total multiplicity is at least `j`, the number of
+unordered pairs of roots drawn from two distinct line-groups through that point
+is
+
+```text
+sum_{r<s} a_r a_s.
+```
+
+Because each `a_i <= j-1`, this cross-pair count is at least `j-1`: the
+minimum occurs by placing `j-1` roots in one line-group and `1` in another.
+Each unordered pair of roots from distinct line-groups determines exactly one
+intersection point of the two corresponding projective lines, so these
+cross-pair charges are disjoint over high-incidence points.  The total number
+of unordered root-pairs is at most `binom(|H|,2)`, giving
+
+```text
+# {p : m(p) >= j} <= binom(|H|,2)/(j-1).
+```
+
+Lemma 4 identifies this high-incidence set with `P(W) cap D_j(H)`.
+
+In the pairwise-distinct case all `a_i` are `1`.  Then every high-incidence
+point carries at least `binom(j,2)` line-pairs, and the sharper simple-line
+bound follows from
 
 ```text
 sum_p binom(m(p),2) = binom(|H|,2).
 ```
 
-Every point with `m(p) >= j` contributes at least `binom(j,2)` to the left
-side.  Lemma 4 identifies `P(W) cap D_j(H)` with the points satisfying
-`m(p) >= j`, so the stated bound follows.
-
-Thus the primitive dimension-two case is already polynomial in the simple
-evaluation-line regime.  Any dimension-two counterexample to this route must
-come from collapsed/repeated evaluation lines or from the paid structures
-removed by Lemmas 1 and 2.
+Thus the primitive dimension-two Conjecture F case is polynomial for arbitrary
+gcd-trivial projective planes.  Higher-dimensional primitive intersections are
+the first remaining incidence-theoretic core.
 
 ## Verification
 
@@ -251,6 +282,6 @@ It exhaustively checks the common-GCD and quotient-pullback identities in the
 toy parameters used by the script, tests the voting bound on deterministic
 random gcd-trivial pencils, checks the hyperplane-concurrency equivalence on
 deterministic random gcd-trivial projective planes, and verifies the
-simple-plane pair-counting bound where the evaluation lines are pairwise
-distinct.  The verifier is supporting evidence only; the proofs above are the
-mathematical content.
+projective-plane pair-counting bound, including forced repeated-line planes.
+The verifier is supporting evidence only; the proofs above are the mathematical
+content.
