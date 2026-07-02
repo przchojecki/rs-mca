@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Paper D v12 profile and explicit-pair audit
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/audits/cs25_v12_profile_explicit_audit.md`;
+  `experimental/scripts/verify_cs25_v12_profile_explicit.py`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.  Exact algebra and deployed integer check, with one
+  narrow proof-writing correction found; no theorem-chain promotion.
+- **What is being added:** A verifier and note for the optimized failure
+  profile algebra, deployed `kappa` profile factors, explicit head-and-pairs
+  list floors, and simple-pole majority-pole constants from Paper D v12.  The
+  check finds that the displayed rational Cauchy bound is just below the
+  printed `ceil((q-n)/(3k))` majority-pole count in the deployed rows, but
+  integrality of the slope count recovers the printed integer conclusion and
+  the stated density exponents.
+- **How it is useful:** Checks the constants behind the failure margin and
+  explicit-pair discussion, not only the threshold edges already covered by
+  the deployed certificate table.
+- **What to do next:** Patch the Paper D proof text to insert the integrality
+  rounding step if requested by the maintainer, then continue mapping any
+  remaining exact claims in Paper D v12 to replay commands.
+
 ### 2026-07-02 - Paper D v12 transport-scope audit
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
