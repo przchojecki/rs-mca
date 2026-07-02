@@ -30,6 +30,35 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M3 A386 line forced-core product collapse
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The separated rank-6 `A=386` moving-slope line
+  branch now has a forced-core product-collapse theorem.  Two distinct forced
+  external roots make the line either a common-root pencil with
+  `L_{(T-alpha)S}=F*S`, `deg F<=125`, or a product branch `L_Q=R*Q`; in both
+  cases a degree-126 split locator requires at least `124` external forced
+  roots.
+- **How it is useful:** This closes line components for every external core
+  size: incidence covers `e_G<=71`, the product collapse covers
+  `72<=e_G<=120`, and the punctured tangent tail covers `e_G>=121`.  Together
+  with the conic collapse, no separated positive-dimensional moving-slope
+  line/conic component remains live in the `A=386` rank-6 packet.
+- **What to do next:** Audit the remaining nonclaims: possible independent
+  noncontained vectors at slopes also admitting a slope-free vector, `A=385`,
+  overlapping-support rank-6 cases, and general non-proportional rank-6
+  endpoint payment/root tables.
+
 ### 2026-07-02 - A386 dense conic Pascal pressure
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

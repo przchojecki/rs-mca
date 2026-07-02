@@ -83,27 +83,31 @@ handles the next non-slope-free branch by counting split-root hyperplane
 incidences on the moving component, using the base-support cap that nonzero
 `Q` has at most two roots on `X`.  It closes line components with forced
 external split-root core `e_G<=71`.  A conic pair-overlap packing step closes
-irreducible conics with `e_G<=68`; large-external-core lines and conics remain
-residual but have sharper quotient structure.  A high-core line is a
-dual-evaluation-fiber quotient pencil of degree at most `54`, while a high-core
-irreducible conic has a global common forced core across the whole `Q`-plane
-and becomes a quotient family of degree at most `57`.  After deleting the
-forced core, those quotient branches lie in the very-high-agreement tangent
-range of the punctured row.  The projective tangent staircase closes the tail
-`e_G>=121`; the intermediate ranges `72<=e_G<=120` for lines and
-`69<=e_G<=120` for irreducible conics remain unclosed.  The current projective
-proof envelope is only one over budget for line cores `72<=e_G<=80` and
-`e_G=120`, and for conic cores `69<=e_G<=76` and `e_G=120`; the worst current
-projective upper bounds in the middle are `18` and `26`, respectively.  The
-endpoint-only finite-incidence subranges now have explicit saturation targets:
-line six-class saturation has external slack `1..41`, and conic six-class
-saturation needs `0..14` forced pair-overlap events before external excess.  A
-genuine over-budget witness must also have six distinct finite slopes and an
-unpaid endpoint; the strongest remaining pressure cases are line `e_G=72`
+irreducible conics with `e_G<=68`; large-external-core lines and conics then
+enter forced-core product-collapse analysis.  A high-core line first appears as
+a dual-evaluation-fiber quotient pencil of degree at most `54`, while a
+high-core irreducible conic has a global common forced core across the whole
+`Q`-plane and becomes a quotient family of degree at most `57`.  The current
+companion packet proves that two forced external roots on a line component
+force product form, and that the conic global core forces `L_Q=RQ`; together
+with the tangent tail `e_G>=121`, this closes separated positive-dimensional
+line and irreducible-conic moving-slope components for every external core
+size.
+
+The quotient and incidence rows remain as pre-collapse diagnostics.  Before
+the product collapses, the projective proof envelope was only one over budget
+for line cores `72<=e_G<=80` and `e_G=120`, and for conic cores
+`69<=e_G<=76` and `e_G=120`; the worst diagnostic projective upper bounds in
+the middle were `18` and `26`, respectively.  The endpoint-only
+finite-incidence subranges have explicit saturation targets: line six-class
+saturation has external slack `1..41`, and conic six-class saturation needs
+`0..14` forced pair-overlap events before external excess.  A pre-collapse
+over-budget diagnostic witness also had to have six distinct finite slopes and
+an unpaid endpoint; the sharpest pressure cases were line `e_G=72`
 near-complete base splitting and conic `e_G=69` almost-complete secants.  The
-line `e_G=72` case closes unless all six classes have a base root and at least
-five have two; the conic `e_G=69` case closes unless at least `14` of `15`
-pair secants occur, forcing at least `16` secant triangles.  Equivalently, line
+line `e_G=72` case closed unless all six classes had a base root and at least
+five had two; the conic `e_G=69` case closed unless at least `14` of `15`
+pair secants occurred, forcing at least `16` secant triangles.  Equivalently, line
 `e_G=72` survival has base-root histogram `(0,0,6)` or `(0,1,5)`, and conic
 `e_G=69` survival has secant graph `K6` or `K6` minus one edge.
 Exact degree-`126` accounting leaves line `e_G=72` with either one unused

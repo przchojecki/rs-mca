@@ -26,7 +26,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v49"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v50"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -1125,11 +1125,11 @@ def six_cycle_hexagon_reducibility_profile() -> dict[str, Any]:
             "and cycle edges 1,3,5 are collinear.  An irreducible conic cannot "
             "contain three distinct points on either line by Bezout."
         ),
-        "live_irreducible_branch": "generic irreducible hexagon branch",
+        "live_irreducible_branch": "diagnostic generic irreducible hexagon branch",
         "conclusion": (
             "The alternating-line subbranch is closed for irreducible conic "
-            "components; the remaining six-cycle irreducible residual is the "
-            "generic irreducible hexagon branch."
+            "components; the diagnostic six-cycle irreducible branch is the "
+            "generic irreducible hexagon branch before the conic product collapse."
         ),
         "not_an_mca_witness": (
             "This is a coordinate-level residual decomposition; it does not "
@@ -3342,6 +3342,115 @@ def conic_global_core_collapse_row(
     }
 
 
+def line_forced_core_collapse_row(
+    line_residual_core_threshold: int,
+    tangent_safe_core_threshold: int,
+    locator_degree: int,
+    base_support_size: int,
+    base_root_cap: int,
+) -> dict[str, Any]:
+    """Close high-core line components using forced-core transfer collapse."""
+    require(line_residual_core_threshold == 72, "unexpected line residual threshold")
+    require(tangent_safe_core_threshold == 121, "unexpected tangent tail threshold")
+    require(locator_degree == 126, "unexpected A=386 locator degree")
+    require(base_support_size == 127, "unexpected A=386 base support size")
+    require(base_root_cap == 2, "unexpected A=386 base-root cap")
+    min_forced_core_for_split = locator_degree - base_root_cap
+    require(min_forced_core_for_split == 124, "line collapse threshold changed")
+    require(
+        line_residual_core_threshold <= tangent_safe_core_threshold - 1 < min_forced_core_for_split,
+        "line collapse should cover the whole pre-tangent line residual interval",
+    )
+    return {
+        "component_type": "line",
+        "status": "PROVED",
+        "input_branch": (
+            "A=386 moving-slope line component with at least two forced "
+            "external split roots"
+        ),
+        "dual_line_setup": (
+            "Let U be the two-dimensional Q-subspace defining the component, "
+            "and let phi=(u,v,w) span U^perp in the dual Q-plane.  A forced "
+            "external root s has ev_s in span(phi), where ev_s(Q)=L_Q(s)."
+        ),
+        "evaluation_functional_formula": {
+            "notation": (
+                "Write R=A*T^(m-1)+B*T^(m-2)+... and "
+                "P_X=T^m+p*T^(m-1)+... .  Put C=B-A*p."
+            ),
+            "ev_s_coefficients": [
+                "R(s)",
+                "s*R(s)-A*P_X(s)",
+                "s^2*R(s)-(A*s+C)*P_X(s)",
+            ],
+            "valid_for": "s outside X, where P_X(s) is nonzero",
+        },
+        "two_forced_roots_classification": [
+            {
+                "case": "common_root_pencil",
+                "hypotheses": "u!=0 and A!=0",
+                "consequence": (
+                    "Two distinct forced roots make the linear compatibility "
+                    "identity vanish identically, so C=A*alpha and beta=alpha^2. "
+                    "Thus U is the pencil Q(alpha)=0.  With "
+                    "F=(T-alpha)R-A*P_X, deg F<=125 and L_{(T-alpha)S}=F*S "
+                    "without reduction."
+                ),
+                "base_root_bound_for_common_factor": (
+                    "F(x)=(x-alpha)R(x) on X and R(x)=Omega_x/a_x is nonzero, "
+                    "so F has at most one base-support root."
+                ),
+                "split_locator_consequence": (
+                    "A degree-126 split locator F*S needs F to supply at least "
+                    "125 subgroup roots; since F has at most one base root, the "
+                    "external forced core has size at least 124."
+                ),
+            },
+            {
+                "case": "product_without_reduction",
+                "hypotheses": "all remaining two-forced-root cases",
+                "consequence": (
+                    "The top terms or the line U force modular reduction to "
+                    "vanish on U: L_Q=R*Q for Q in U, with quotient factor "
+                    "degree at most two."
+                ),
+                "base_root_bound_for_common_factor": (
+                    "R(x)=Omega_x/a_x is nonzero on every base point x in X, "
+                    "so the common factor R has no base-support roots."
+                ),
+                "split_locator_consequence": (
+                    "A degree-126 split locator R*Q needs R to supply at least "
+                    "124 subgroup roots, all external.  Hence the external "
+                    "forced core has size at least 124."
+                ),
+            },
+        ],
+        "minimum_external_core_for_any_degree_126_split_locator": (
+            min_forced_core_for_split
+        ),
+        "closed_external_core_range_by_product_collapse": [
+            line_residual_core_threshold,
+            min_forced_core_for_split - 1,
+        ],
+        "pre_tangent_line_residual_range_closed": [
+            line_residual_core_threshold,
+            tangent_safe_core_threshold - 1,
+        ],
+        "tangent_tail_safe_from": tangent_safe_core_threshold,
+        "consequence": (
+            "All line moving-slope components in the A=386 separated rank-6 "
+            "branch are projective-safe: e_G<=71 was already closed by the "
+            "incidence bound, 72<=e_G<=120 is closed by this product collapse, "
+            "and e_G>=121 is closed by the punctured projective tangent tail."
+        ),
+        "diagnostic_tables_superseded": [
+            "line endpoint-only incidence one-over catalog",
+            "line quotient-pencil obstruction catalog",
+            "line multi-saving ledger",
+        ],
+    }
+
+
 def interval_size(interval: list[int]) -> int:
     return interval[1] - interval[0]
 
@@ -3919,6 +4028,13 @@ def build_certificate() -> dict[str, Any]:
         punctured_tangent_tail_row(tail_projective_safe_core_min),
         punctured_tangent_tail_row(j_value - 1),
     ]
+    line_forced_core_collapse = line_forced_core_collapse_row(
+        line_residual_core_threshold,
+        tail_projective_safe_core_min,
+        locator_degree=j_value,
+        base_support_size=base_support_size,
+        base_root_cap=base_root_cap,
+    )
     conic_global_core_collapse = conic_global_core_collapse_row(
         conic_residual_core_threshold,
         tail_projective_safe_core_min,
@@ -4328,6 +4444,10 @@ def build_certificate() -> dict[str, Any]:
         "conic tangent numerator mismatch",
     )
     require(tail_projective_safe_core_min == 121, "punctured projective tangent tail threshold mismatch")
+    require(
+        line_forced_core_collapse["pre_tangent_line_residual_range_closed"] == [72, 120],
+        "line forced-core collapse should close the pre-tangent residual range",
+    )
     require(
         conic_global_core_collapse["pre_tangent_conic_residual_range_closed"] == [69, 120],
         "conic global-core collapse should close the pre-tangent residual range",
@@ -5799,6 +5919,26 @@ def build_certificate() -> dict[str, Any]:
                 "Q-plane; hence C_E is a global common divisor of all three "
                 "basis kernel polynomials."
             ),
+            "line_forced_core_product_collapse": (
+                "For a line component, two distinct forced external roots also "
+                "force product collapse.  If the annihilator has nonzero constant "
+                "coordinate and the base interpolant top coefficient A is nonzero, "
+                "the component is the common-root pencil Q(alpha)=0 and "
+                "L_{(T-alpha)S}=F*S with deg F<=125; F has at most one base root. "
+                "In every other two-forced-root case, modular reduction vanishes "
+                "on the component as L_Q=R*Q, and R has no base roots.  Therefore "
+                "any degree-126 split locator on such a line component requires "
+                "at least 124 forced external roots."
+            ),
+            "line_projective_closure": (
+                "Combining the small-core incidence bound, the line product "
+                "collapse, and the punctured projective tangent tail closes line "
+                "moving-slope components for every external core size: e_G<=71 "
+                "by incidence, 72<=e_G<=120 by product collapse, and e_G>=121 by "
+                "the tangent staircase.  The later line quotient-pencil and "
+                "multi-saving ledgers are retained only as diagnostic "
+                "pre-collapse ledgers."
+            ),
             "irreducible_conic_global_core_product_collapse": (
                 "The global-common-core condition is stronger than quotient "
                 "factorization.  Write R for the degree-<127 base interpolant "
@@ -5826,7 +5966,7 @@ def build_certificate() -> dict[str, Any]:
                 "Deleting the forced external core E leaves a punctured RS row of "
                 "length n'=512-|E|, while the same witness has exact agreement "
                 "386 and co-support radius r'=126-|E|.  Since r' <= floor((n'-256)/3) "
-                "for |E|>=61, every remaining high-core branch lies in the "
+                "for |E|>=61, every high-core diagnostic branch lies in the "
                 "very-high-agreement tangent-staircase range of the punctured row."
             ),
             "very_high_core_projective_tail_closure": (
@@ -5834,7 +5974,8 @@ def build_certificate() -> dict[str, Any]:
                 "punctured row and bounds finite plus infinity slopes together by "
                 "r'+1=127-|E|.  Hence every high-core branch with |E|>=121 has "
                 "projective contribution at most 6.  This closes the very-high-core "
-                "tail but leaves the intermediate high-core quotient range unresolved."
+                "tail; the lower intermediate line and conic ranges are closed by "
+                "the forced-core product collapses."
             ),
             "punctured_tangent_tail_cofactor_span_closure": (
                 "The remaining one-over tangent tail at e_G=120 is also closed.  "
@@ -5860,17 +6001,17 @@ def build_certificate() -> dict[str, Any]:
             ),
             "intermediate_residual_profile": (
                 "Combining the external-incidence, pair-overlap, and punctured "
-                "projective tangent bounds gives a sharp current proof envelope "
-                "for the unresolved intermediate cores.  The one-over-budget "
+                "projective tangent bounds gives a sharp pre-collapse diagnostic "
+                "proof envelope for the intermediate cores.  The one-over-budget "
                 "finite-incidence subranges are line e_G=72..80 and conic e_G=69..76.  "
                 "The tangent-tail row e_G=120 is closed by the cofactor-span obstruction, "
                 "and exact-agreement residual-budget splitting closes the "
                 "cofactor-current tangent tail e_G=97..119 for lines and "
                 "e_G=103..119 for irreducible conics, using the four-private "
                 "line-pencil obstruction on the line side and the K4 determinant "
-                "and root-star Bezout arguments on the conic side; "
-                "all other intermediate cores need more than a "
-                "single endpoint/root saving under the present methods."
+                "and root-star Bezout arguments on the conic side.  These rows "
+                "are retained as diagnostics because the line and conic product "
+                "collapses close the separated positive-dimensional branch."
             ),
             "one_over_saturation_profile": (
                 "If a one-over finite-incidence branch actually reaches six "
@@ -6106,17 +6247,19 @@ def build_certificate() -> dict[str, Any]:
                 "records the current projective upper bound, the finite "
                 "source-class upper bound, and the number of independent counted "
                 "parameters that must be absent, paid, or coalesced to reach the "
-                "projective budget.  After the global-core product collapse, only "
-                "the line rows remain live proof targets."
+                "projective budget.  After the line and conic product collapses, "
+                "these rows are diagnostic rather than live proof targets."
             ),
             "exact_current_minimal_obstruction_profile": (
-                "After the exact-agreement tangent-tail closure, any remaining "
-                "projective over-budget witness must be an exact-current "
+                "After the exact-agreement tangent-tail closure but before the "
+                "product collapses, any projective over-budget witness had to be an exact-current "
                 "finite-incidence obstruction: one of the line cores 72..80 or "
                 "conic cores 69..76, with exactly six finite source classes, six "
                 "distinct finite slopes, and an unpaid projective endpoint.  The "
                 "profile records the saturated base-root, external-slack, and "
-                "secant-overlap conditions that must also hold in each row."
+                "secant-overlap conditions that must also hold in each row.  "
+                "After the line and conic product collapses, the post-collapse "
+                "profile is empty."
             ),
             "one_over_mechanism_priority_ledger": (
                 "The one-over rows split into six mechanism classes: line "
@@ -6252,6 +6395,7 @@ def build_certificate() -> dict[str, Any]:
         "line_e72_quotient_pencil_obstruction_profile": (
             line_e72_quotient_pencil_obstruction_rows
         ),
+        "line_forced_core_collapse": line_forced_core_collapse,
         "irreducible_conic_global_core_collapse": conic_global_core_collapse,
         "conic_dense_secant_pascal_pressure": conic_dense_secant_pascal_pressure,
         "conic_e69_pascal_obstruction_profile": conic_e69_pascal_obstruction_rows,
@@ -6282,6 +6426,7 @@ def build_certificate() -> dict[str, Any]:
         "exact_current_minimal_obstruction_profile_after_global_core_collapse": (
             exact_current_minimal_obstruction_rows_after_global_core_collapse
         ),
+        "exact_current_minimal_obstruction_profile_after_line_and_conic_collapse": [],
         "one_over_mechanism_priority_ledger": mechanism_priority_rows,
         "punctured_tangent_tail_extremizer_profile": tangent_tail_extremizer_rows,
         "punctured_tangent_tail_cofactor_span_closure": tangent_tail_cofactor_span_closure_rows,
@@ -6336,13 +6481,21 @@ def build_certificate() -> dict[str, Any]:
             "line_residual_projective_safe_after_exact_tail_for_external_core_at_least": (
                 line_exact_tail_safe_core_min
             ),
+            "line_forced_core_collapse_closed_external_core_range": (
+                line_forced_core_collapse["closed_external_core_range_by_product_collapse"]
+            ),
+            "line_pre_tangent_residual_closed_by_forced_core_range": (
+                line_forced_core_collapse["pre_tangent_line_residual_range_closed"]
+            ),
+            "line_moving_slope_components_projective_safe_all_external_cores": True,
             "line_cofactor_improved_tangent_one_over_external_core": (
                 line_cofactor_tangent_one_over_cores
             ),
-            "line_remaining_unclosed_external_core_range": [
+            "line_pre_forced_core_collapse_remaining_unclosed_external_core_range": [
                 line_residual_core_threshold,
                 line_exact_tail_safe_core_min - 1,
             ],
+            "line_remaining_unclosed_external_core_range": [],
             "line_one_over_budget_external_core_ranges": [
                 group["external_core_range"] for group in line_profile_groups if group["one_over_budget"]
             ],
@@ -6753,6 +6906,7 @@ def build_certificate() -> dict[str, Any]:
             "exact_current_minimal_obstruction_count_after_global_core_collapse": len(
                 exact_current_minimal_obstruction_rows_after_global_core_collapse
             ),
+            "exact_current_minimal_obstruction_count_after_line_and_conic_collapse": 0,
             "exact_current_minimal_obstruction_core_ranges": {
                 "line_external_incidence": [72, 80],
                 "irreducible_conic_pair_overlap": [69, 76],
@@ -6760,6 +6914,7 @@ def build_certificate() -> dict[str, Any]:
             "exact_current_minimal_obstruction_core_ranges_after_global_core_collapse": {
                 "line_external_incidence": [72, 80],
             },
+            "exact_current_minimal_obstruction_core_ranges_after_line_and_conic_collapse": {},
             "exact_current_minimal_obstruction_required_finite_slopes": PROJECTIVE_BUDGET,
             "exact_current_minimal_obstruction_requires_unpaid_endpoint": True,
             "one_over_mechanism_priority_classes": [
@@ -6783,7 +6938,6 @@ def build_certificate() -> dict[str, Any]:
             "line_high_core_forced_core_is_dual_evaluation_fiber": True,
             "conic_high_core_forced_core_is_global_common_core": True,
             "remaining_unclosed_residuals": [
-                "moving-slope line component with forced external split-root core in 72..96 for projective accounting",
                 "possible independent noncontained vectors at slopes also admitting a slope-free vector",
             ],
         },
@@ -6802,9 +6956,10 @@ def build_certificate() -> dict[str, Any]:
             "base-sharpened conic finite-safe threshold is e<=19",
             "conic pair-overlap packing excludes six Q-classes for e<=68",
             "conic pair-overlap packing excludes seven Q-classes for e<=76",
-            "high-core line residuals factor through quotient locators of degree <=54",
+            "pre-collapse high-core line diagnostics factor through quotient locators of degree <=54",
             "pre-collapse high-core conic diagnostics factor through quotient locators of degree <=57",
             "line high-core forced roots are dual-evaluation fibers on a projective line",
+            "line components with at least two forced external roots collapse to product form, so e_G<=123 has no degree-126 split locator",
             "irreducible conic high-core forced roots are global common roots of the whole Q-plane",
             "irreducible conic global common cores force the base interpolant top two coefficients to vanish, so L_Q=R*Q and e_G<=123 has no degree-126 split locator",
             "high-core residuals satisfy the punctured high-agreement tangent inequality",
@@ -6830,7 +6985,7 @@ def build_certificate() -> dict[str, Any]:
             "abstract incidence-only sharpness witnesses are constructed for every finite-incidence one-over core",
             "every pre-collapse one-over moving-slope row has a single-saving closure ledger entry",
             "every pre-collapse exact-current moving-slope row has a multi-saving closure ledger entry",
-            "post-collapse exact-current live obstruction profile requires six distinct finite slopes plus endpoint on line components",
+            "after line and conic product collapses no positive-dimensional moving-slope component remains live",
             "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
             "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction",
             "conic four-private tail boundary is reduced to two-triangle or hexagon-factor residuals",
@@ -6839,15 +6994,15 @@ def build_certificate() -> dict[str, Any]:
             "six-cycle alternating-line subbranch is closed for irreducible conic components",
             "six-cycle diagnostic irreducible branch is the generic irreducible hexagon branch",
             "two-triangle reducibility dismissal is refuted by a nondegenerate conic witness",
-            "the conic diagnostic incidence/Pascal ledgers are superseded as live residuals by the global-core product collapse",
+            "the line quotient and conic incidence/Pascal ledgers are superseded as live residuals by the forced-core product collapses",
         ],
         "nonclaims": [
-            "does not prove every moving-slope component is a line",
-            "does not close line components with forced external split-root core in 72..96 in projective accounting",
-            "does not use the conic diagnostic Pascal or four-private tables as the closure mechanism; those ledgers are superseded by the global-core product collapse",
+            "does not prove every moving-slope component is covered by the separated line/conic positive-dimensional branch",
+            "line and conic quotient/incidence ledgers are retained as diagnostics rather than the final closure mechanism",
+            "does not use the line quotient-pencil or conic diagnostic Pascal/four-private tables as the closure mechanism; those ledgers are superseded by the forced-core product collapses",
             "the conic four-private hexagon sharpness witness is not an MCA bad-slope witness",
             "the conic four-private two-triangle sharpness witness is not an MCA bad-slope witness",
-            "does not prove the high-core quotient split problem is empty or paid",
+            "does not claim the high-core quotient diagnostic problems are empty or paid",
             "does not claim the punctured tangent numerator at the residual threshold is within the original row budget",
             "does not rule out another independent noncontained vector at the same finite slope",
             "does not cover A=385",
@@ -6887,14 +7042,14 @@ def print_summary(certificate: dict[str, Any]) -> None:
         )
     )
     print(
-        "live residual: line cores {0}; conic cores closed by global-core collapse {1}".format(
-            summary["line_remaining_unclosed_external_core_range"],
+        "positive-dimensional moving-slope components closed: line cores {0}; conic cores {1}".format(
+            summary["line_pre_tangent_residual_closed_by_forced_core_range"],
             summary["conic_pre_tangent_residual_closed_by_global_core_range"],
         )
     )
     print(
         "post-collapse minimal obstruction rows: {0}".format(
-            summary["exact_current_minimal_obstruction_count_after_global_core_collapse"]
+            summary["exact_current_minimal_obstruction_count_after_line_and_conic_collapse"]
         )
     )
 

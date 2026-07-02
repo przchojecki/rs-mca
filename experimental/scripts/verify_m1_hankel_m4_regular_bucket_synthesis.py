@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v31"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v32"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v49",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v50",
 }
 
 
@@ -333,8 +333,10 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         "conic cofactor tail threshold mismatch",
     )
     require(
-        summary["line_remaining_unclosed_external_core_range"] == [72, 96],
-        "line unclosed core range mismatch",
+        summary["line_pre_forced_core_collapse_remaining_unclosed_external_core_range"]
+        == [72, 96]
+        and summary["line_remaining_unclosed_external_core_range"] == [],
+        "line post-collapse core range mismatch",
     )
     require(
         summary["conic_pre_global_core_collapse_remaining_unclosed_external_core_range"]
@@ -391,7 +393,7 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         == "a**2*b*c - a**2*b - a**2*c**2 + a*b*c + a*c**2 - b*c**2"
         and summary["conic_four_private_six_cycle_alternating_line_branch_closes"]
         and summary["conic_four_private_six_cycle_live_branch"]
-        == "generic irreducible hexagon branch",
+        == "diagnostic generic irreducible hexagon branch",
         "conic four-private six-cycle reducibility summary mismatch",
     )
     require(
@@ -1197,8 +1199,10 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         "conic cofactor profile should make e=120 safe",
     )
     require(
-        summary["line_remaining_unclosed_external_core_range"] == [72, 96],
-        "line remaining range after exact tail closure",
+        summary["line_pre_forced_core_collapse_remaining_unclosed_external_core_range"]
+        == [72, 96]
+        and summary["line_remaining_unclosed_external_core_range"] == [],
+        "line remaining range after forced-core collapse",
     )
     require(
         summary["conic_pre_global_core_collapse_remaining_unclosed_external_core_range"]
@@ -1244,6 +1248,12 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         "exact-tail safe threshold mismatch",
     )
     require(
+        summary["line_forced_core_collapse_closed_external_core_range"] == [72, 123]
+        and summary["line_pre_tangent_residual_closed_by_forced_core_range"] == [72, 120]
+        and summary["line_moving_slope_components_projective_safe_all_external_cores"],
+        "line forced-core collapse summary mismatch",
+    )
+    require(
         summary["conic_global_core_collapse_closed_external_core_range"] == [69, 123]
         and summary["conic_pre_tangent_residual_closed_by_global_core_range"] == [69, 120]
         and summary["conic_moving_slope_components_projective_safe_all_external_cores"],
@@ -1277,6 +1287,18 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         ]
         == list(range(103, 121)),
         "conic exact-current safe tail rows changed",
+    )
+    line_forced_core = data["line_forced_core_collapse"]
+    require(
+        line_forced_core["status"] == "PROVED"
+        and line_forced_core["closed_external_core_range_by_product_collapse"] == [72, 123]
+        and line_forced_core["pre_tangent_line_residual_range_closed"] == [72, 120]
+        and line_forced_core["minimum_external_core_for_any_degree_126_split_locator"] == 124
+        and any(
+            "F*S" in case["consequence"] or "R*Q" in case["consequence"]
+            for case in line_forced_core["two_forced_roots_classification"]
+        ),
+        "line forced-core collapse row mismatch",
     )
     conic_global_core = data["irreducible_conic_global_core_collapse"]
     require(
@@ -1523,8 +1545,8 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         == "a**2*b*c - a**2*b - a**2*c**2 + a*b*c + a*c**2 - b*c**2"
         and six_cycle_profile["alternating_line_branch_closes_for_irreducible_conic"]
         and six_cycle_profile["live_irreducible_branch"]
-        == "generic irreducible hexagon branch"
-        and "generic irreducible hexagon branch" in six_cycle_profile["conclusion"]
+        == "diagnostic generic irreducible hexagon branch"
+        and "diagnostic six-cycle irreducible branch" in six_cycle_profile["conclusion"]
         and six_cycle_profile["not_an_mca_witness"],
         "conic four-private six-cycle reducibility profile mismatch",
     )
@@ -1559,7 +1581,13 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         summary["exact_current_minimal_obstruction_count_after_global_core_collapse"] == 9
         and summary["exact_current_minimal_obstruction_core_ranges_after_global_core_collapse"]
         == {"line_external_incidence": [72, 80]},
-        "post-collapse minimal obstruction summary mismatch",
+        "post-conic-collapse diagnostic obstruction summary mismatch",
+    )
+    require(
+        summary["exact_current_minimal_obstruction_count_after_line_and_conic_collapse"] == 0
+        and summary["exact_current_minimal_obstruction_core_ranges_after_line_and_conic_collapse"]
+        == {},
+        "post-line-and-conic-collapse obstruction summary mismatch",
     )
     require(
         summary["exact_current_minimal_obstruction_required_finite_slopes"] == 6
@@ -1647,7 +1675,12 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
             for row in live_minimal
         ]
         == [("line", core) for core in range(72, 81)],
-        "post-collapse minimal obstruction profile coverage mismatch",
+        "post-conic-collapse diagnostic obstruction profile coverage mismatch",
+    )
+    require(
+        data["exact_current_minimal_obstruction_profile_after_line_and_conic_collapse"]
+        == [],
+        "post-line-and-conic-collapse obstruction profile should be empty",
     )
     require(
         summary["line_incidence_only_sharpness_witness_count"] == 9
@@ -1801,7 +1834,8 @@ def build_certificate() -> dict[str, Any]:
             "a386_moving_slope_refinement": [
                 "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
                 "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
-                "the remaining high-core line branch is a dual-evaluation-fiber quotient pencil of degree <=54",
+                "the high-core line branch is a dual-evaluation-fiber quotient pencil of degree <=54 before the forced-core product collapse is applied",
+                "two distinct forced external roots on a line component force product collapse: either the component is a common-root pencil with L_{(T-alpha)S}=F*S and deg F<=125, or modular reduction vanishes as L_Q=R*Q; in both cases a degree-126 split locator requires at least 124 external forced roots",
                 "the remaining high-core irreducible-conic branch has a global common forced core and becomes a quotient family of degree <=57",
                 "the global common core in the irreducible-conic branch forces the base interpolant top two coefficients to vanish, so L_Q=R*Q; hence e_G<=123 cannot supply a degree-126 split locator, closing the conic pre-tangent residual e_G=69..120",
                 "after puncturing the forced core, the projective tangent staircase closes the tail e_G>=121",
@@ -1816,26 +1850,27 @@ def build_certificate() -> dict[str, Any]:
                 "within the six-cycle residual, one alternating-line factor separates the generic irreducible conic branch from the reducible branch where cycle edges 0,2,4 and 1,3,5 lie on two lines; that alternating-line subbranch is closed for irreducible conic components by Bezout",
                 "the two-disjoint-triangle residual is a genuine irreducible conic branch for every pair of disjoint residual triples; the six points are co-conic, and reducibility would force a forbidden line through three pair-quadratic points",
                 "the subgroup exponents 0,1,2,3,4,5 give a concrete arithmetic replay of the two-triangle irreducible branch",
-                "after the conic product collapse, the still-unclosed high-core quotient range is e_G=72..96 for lines only; the conic e_G=69..102 rows remain as pre-collapse diagnostics",
-                "within the live line range, the finite-incidence one-over-budget subrange is e_G=72..80; the pre-collapse conic diagnostic subrange was e_G=69..76",
+                "after the line and conic product collapses, no separated positive-dimensional moving-slope line or conic component remains live; the line e_G=72..96 and conic e_G=69..102 rows remain as pre-collapse diagnostics",
+                "within the pre-collapse line diagnostic range, the finite-incidence one-over-budget subrange is e_G=72..80; the pre-collapse conic diagnostic subrange was e_G=69..76",
                 "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the formerly one-over e_G=120 cases are closed by the cofactor-span contradiction",
-                "a genuine over-budget one-over witness must also have six distinct finite slopes and an unpaid endpoint; the strongest remaining pressure is line e_G=72 base splitting and conic e_G=69 almost-complete secants",
-                "line e_G=72 closes unless all six finite classes have a base root and at least five have two; conic e_G=69 closes unless at least 14 of 15 pair secants occur, forcing at least 16 secant triangles",
-                "line e_G=72 survival has only base-root histograms (0,0,6) or (0,1,5); conic e_G=69 survival has secant graph K6 or K6 minus one edge",
-                "exact degree-126 accounting leaves line e_G=72 with either one unused nonforced external root line or none, and conic e_G=69 with either 14 pair overlaps or all 15 pair overlaps",
+                "a pre-collapse over-budget one-over diagnostic witness must also have six distinct finite slopes and an unpaid endpoint; the strongest diagnostic pressure is line e_G=72 base splitting and conic e_G=69 almost-complete secants",
+                "diagnostically, line e_G=72 closes unless all six finite classes have a base root and at least five have two; conic e_G=69 closes unless at least 14 of 15 pair secants occur, forcing at least 16 secant triangles",
+                "diagnostic line e_G=72 survival has only base-root histograms (0,0,6) or (0,1,5); conic e_G=69 survival has secant graph K6 or K6 minus one edge",
+                "diagnostic exact degree-126 accounting leaves line e_G=72 with either one unused nonforced external root line or none, and conic e_G=69 with either 14 pair overlaps or all 15 pair overlaps",
                 "extremal design accounting leaves two line partition shapes and three conic secant-cover shapes",
                 "extremal multiplicity accounting leaves line profiles (1,312,0)/(0,313,0) and conic profiles (1,300,15)/(0,302,14)/(0,301,15)",
                 "local incidence accounting leaves line singleton sequences 52^6 or (53,52^5), and conic secant/singleton profiles (5^6;50^6), ((4,4,5,5,5,5);(51,51,50,50,50,50)), or (5^6;(51,50,50,50,50,50))",
-                "the line e_G=72 extremal branch is a degree-54 quotient-pencil obstruction: six full-split fibers of sizes 52^6 or 53,52^5 cover all or all-but-one nonforced external roots",
-                "the exact-current finite-incidence residuals include a live quotient obstruction catalog for line e_G=72..80, which needs six full-split pencil fibers of degrees 54..46; the conic e_G=69..76 quotient-conic catalog is retained as pre-collapse diagnostics",
+                "the diagnostic line e_G=72 extremal branch is a degree-54 quotient-pencil obstruction: six full-split fibers of sizes 52^6 or 53,52^5 cover all or all-but-one nonforced external roots",
+                "the exact-current finite-incidence diagnostics include a quotient obstruction catalog for line e_G=72..80, which needs six full-split pencil fibers of degrees 54..46; the conic e_G=69..76 quotient-conic catalog is retained as pre-collapse diagnostics",
                 "Pascal's theorem gives a concrete obstruction test for the conic e_G=69 extremal branch: K6 secant covers force 60 Pascal collinearities and K6-minus-one covers force 36",
                 "dense conic one-over subcases with at least 12 pair secants force Pascal pressure across cores e_G=69,70,71: minimum Hamiltonian-cycle counts are 6,18,36,60 for secant lower bounds 12,13,14,15",
                 "the endpoint-only one-over finite-incidence range has a compact exact catalog: line histogram counts 2,16,27,28^6 across e_G=72..80 and conic counts 2,16,27,28^5 across e_G=69..76",
                 "abstract incidence-only sharpness witnesses exist for every finite-incidence one-over core, so those rows cannot be closed by sharpening only the current incidence and pair-overlap axioms",
                 "the cofactor-current moving-slope one-over rows have a pre-collapse single-saving ledger: line e_G=72..80, diagnostic conic e_G=69..76, and the punctured-tangent tail e_G=120",
                 "the exact-current moving-slope rows have a pre-collapse multi-saving ledger: line e_G=72..96 requires saving depth 1..5, while diagnostic conic e_G=69..102 requires saving depth up to 19",
-                "after the conic product collapse, the remaining over-budget normal form has exactly 9 live finite-incidence rows, all line components requiring six distinct finite slopes plus an unpaid endpoint",
-                "the live finite-incidence one-over rows split by first available saving mechanism into line base-active 72..74 and line external-slack 75..80; the conic mechanism classes are retained only as pre-collapse diagnostics",
+                "after the conic product collapse alone, the remaining over-budget diagnostic normal form has exactly 9 finite-incidence line rows requiring six distinct finite slopes plus an unpaid endpoint",
+                "after both line and conic product collapses, the post-collapse exact-current live profile is empty",
+                "the pre-collapse finite-incidence one-over rows split by first available saving mechanism into line base-active 72..74 and line external-slack 75..80; the conic mechanism classes are retained only as pre-collapse diagnostics",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",
@@ -1866,7 +1901,6 @@ def build_certificate() -> dict[str, Any]:
             "still_requires_m5_or_other_ledgers": [
                 "rank-deficient finite regular buckets not covered by a paid family",
                 "non-proportional direction-rank-6 buckets when the projective endpoint is not empty or paid and the 6x6 compressed exact finite root table has six surviving roots",
-                "the remaining A=386 separated moving-slope intermediate high-core quotient branches e_G=72..96 for lines",
                 "non-proportional finite buckets with direction rank > 6 unless exact root tables plus kernel filters improve the bound",
                 "quotient, quotient-image, extension, and subfield overlap for future non-proportional root tables",
             ],
@@ -1916,7 +1950,7 @@ def build_certificate() -> dict[str, Any]:
             "projective split-locator testing separates ambient infinity endpoints from genuine support-wise endpoint witnesses",
             "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
             "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
-            "A=386 moving-slope conic high-core branches are closed by the global-core product collapse; the intermediate high-core quotient range remains residual only for lines",
+            "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
             "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
             "A=386 conic four-private residuals are reduced to two-triangle or hexagon-factor boundary shapes",
             "A=386 generic conic hexagon-factor subgroup nonvanishing is ruled out as a closure route by a deterministic witness off the alternating-line factor",
@@ -1928,8 +1962,7 @@ def build_certificate() -> dict[str, Any]:
         "nonclaims": [
             "does not compute arbitrary non-proportional finite root tables",
             "does not prove the projective endpoint is empty or paid in the rank=6 case",
-            "does not close the A=386 intermediate high-core line quotient moving-slope residual in original-row projective accounting",
-            "does not use the A=386 conic four-private/Pascal diagnostic ledgers as the closure mechanism",
+            "does not use the A=386 line quotient-pencil or conic four-private/Pascal diagnostic ledgers as the closure mechanism",
             "does not treat the A=386 hexagon sharpness witness as an MCA bad-slope witness",
             "does not treat the A=386 two-triangle sharpness witness as an MCA bad-slope witness",
             "does not audit quotient or extension overlap for arbitrary root tables",

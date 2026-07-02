@@ -174,9 +174,10 @@
     "base-sharpened conic finite-safe threshold is e<=19",
     "conic pair-overlap packing excludes six Q-classes for e<=68",
     "conic pair-overlap packing excludes seven Q-classes for e<=76",
-    "high-core line residuals factor through quotient locators of degree <=54",
+    "pre-collapse high-core line diagnostics factor through quotient locators of degree <=54",
     "pre-collapse high-core conic diagnostics factor through quotient locators of degree <=57",
     "line high-core forced roots are dual-evaluation fibers on a projective line",
+    "line components with at least two forced external roots collapse to product form, so e_G<=123 has no degree-126 split locator",
     "irreducible conic high-core forced roots are global common roots of the whole Q-plane",
     "irreducible conic global common cores force the base interpolant top two coefficients to vanish, so L_Q=R*Q and e_G<=123 has no degree-126 split locator",
     "high-core residuals satisfy the punctured high-agreement tangent inequality",
@@ -202,7 +203,7 @@
     "abstract incidence-only sharpness witnesses are constructed for every finite-incidence one-over core",
     "every pre-collapse one-over moving-slope row has a single-saving closure ledger entry",
     "every pre-collapse exact-current moving-slope row has a multi-saving closure ledger entry",
-    "post-collapse exact-current live obstruction profile requires six distinct finite slopes plus endpoint on line components",
+    "after line and conic product collapses no positive-dimensional moving-slope component remains live",
     "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
     "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction",
     "conic four-private tail boundary is reduced to two-triangle or hexagon-factor residuals",
@@ -211,7 +212,7 @@
     "six-cycle alternating-line subbranch is closed for irreducible conic components",
     "six-cycle diagnostic irreducible branch is the generic irreducible hexagon branch",
     "two-triangle reducibility dismissal is refuted by a nondegenerate conic witness",
-    "the conic diagnostic incidence/Pascal ledgers are superseded as live residuals by the global-core product collapse"
+    "the line quotient and conic incidence/Pascal ledgers are superseded as live residuals by the forced-core product collapses"
   ],
   "cofactor_current_intermediate_residual_profile": {
     "irreducible_conic_projective_bound_groups": [
@@ -4460,11 +4461,11 @@
         ]
       }
     ],
-    "conclusion": "The alternating-line subbranch is closed for irreducible conic components; the remaining six-cycle irreducible residual is the generic irreducible hexagon branch.",
+    "conclusion": "The alternating-line subbranch is closed for irreducible conic components; the diagnostic six-cycle irreducible branch is the generic irreducible hexagon branch before the conic product collapse.",
     "distinctness_denominator": "a*b-a*c-a+c",
     "hexagon_relation": "a*b*d-a*c*d+a*c-a*d-b*c+c*d=0",
     "irreducible_branch_condition": "all normalized coordinates are distinct and the alternating_line_factor is nonzero",
-    "live_irreducible_branch": "generic irreducible hexagon branch",
+    "live_irreducible_branch": "diagnostic generic irreducible hexagon branch",
     "normalization": "residual coordinates are 0,1,a,b,c,d",
     "not_an_mca_witness": "This is a coordinate-level residual decomposition; it does not assert split-locator noncontainment, quotient membership, or endpoint accounting.",
     "reducible_branch_condition": "all normalized coordinates are distinct and the alternating_line_factor is zero",
@@ -11321,6 +11322,7 @@
       ]
     }
   ],
+  "exact_current_minimal_obstruction_profile_after_line_and_conic_collapse": [],
   "exact_current_multi_saving_closure_ledger": [
     {
       "active_best_method": "external incidence plus endpoint",
@@ -16896,13 +16898,60 @@
       "unused_nonforced_external_root_lines": 0
     }
   ],
+  "line_forced_core_collapse": {
+    "closed_external_core_range_by_product_collapse": [
+      72,
+      123
+    ],
+    "component_type": "line",
+    "consequence": "All line moving-slope components in the A=386 separated rank-6 branch are projective-safe: e_G<=71 was already closed by the incidence bound, 72<=e_G<=120 is closed by this product collapse, and e_G>=121 is closed by the punctured projective tangent tail.",
+    "diagnostic_tables_superseded": [
+      "line endpoint-only incidence one-over catalog",
+      "line quotient-pencil obstruction catalog",
+      "line multi-saving ledger"
+    ],
+    "dual_line_setup": "Let U be the two-dimensional Q-subspace defining the component, and let phi=(u,v,w) span U^perp in the dual Q-plane.  A forced external root s has ev_s in span(phi), where ev_s(Q)=L_Q(s).",
+    "evaluation_functional_formula": {
+      "ev_s_coefficients": [
+        "R(s)",
+        "s*R(s)-A*P_X(s)",
+        "s^2*R(s)-(A*s+C)*P_X(s)"
+      ],
+      "notation": "Write R=A*T^(m-1)+B*T^(m-2)+... and P_X=T^m+p*T^(m-1)+... .  Put C=B-A*p.",
+      "valid_for": "s outside X, where P_X(s) is nonzero"
+    },
+    "input_branch": "A=386 moving-slope line component with at least two forced external split roots",
+    "minimum_external_core_for_any_degree_126_split_locator": 124,
+    "pre_tangent_line_residual_range_closed": [
+      72,
+      120
+    ],
+    "status": "PROVED",
+    "tangent_tail_safe_from": 121,
+    "two_forced_roots_classification": [
+      {
+        "base_root_bound_for_common_factor": "F(x)=(x-alpha)R(x) on X and R(x)=Omega_x/a_x is nonzero, so F has at most one base-support root.",
+        "case": "common_root_pencil",
+        "consequence": "Two distinct forced roots make the linear compatibility identity vanish identically, so C=A*alpha and beta=alpha^2. Thus U is the pencil Q(alpha)=0.  With F=(T-alpha)R-A*P_X, deg F<=125 and L_{(T-alpha)S}=F*S without reduction.",
+        "hypotheses": "u!=0 and A!=0",
+        "split_locator_consequence": "A degree-126 split locator F*S needs F to supply at least 125 subgroup roots; since F has at most one base root, the external forced core has size at least 124."
+      },
+      {
+        "base_root_bound_for_common_factor": "R(x)=Omega_x/a_x is nonzero on every base point x in X, so the common factor R has no base-support roots.",
+        "case": "product_without_reduction",
+        "consequence": "The top terms or the line U force modular reduction to vanish on U: L_Q=R*Q for Q in U, with quotient factor degree at most two.",
+        "hypotheses": "all remaining two-forced-root cases",
+        "split_locator_consequence": "A degree-126 split locator R*Q needs R to supply at least 124 subgroup roots, all external.  Hence the external forced core has size at least 124."
+      }
+    ]
+  },
   "nonclaims": [
-    "does not prove every moving-slope component is a line",
-    "does not close line components with forced external split-root core in 72..96 in projective accounting",
-    "does not use the conic diagnostic Pascal or four-private tables as the closure mechanism; those ledgers are superseded by the global-core product collapse",
+    "does not prove every moving-slope component is covered by the separated line/conic positive-dimensional branch",
+    "line and conic quotient/incidence ledgers are retained as diagnostics rather than the final closure mechanism",
+    "does not use the line quotient-pencil or conic diagnostic Pascal/four-private tables as the closure mechanism; those ledgers are superseded by the forced-core product collapses",
     "the conic four-private hexagon sharpness witness is not an MCA bad-slope witness",
     "the conic four-private two-triangle sharpness witness is not an MCA bad-slope witness",
-    "does not prove the high-core quotient split problem is empty or paid",
+    "does not claim the high-core quotient diagnostic problems are empty or paid",
     "does not claim the punctured tangent numerator at the residual threshold is within the original row budget",
     "does not rule out another independent noncontained vector at the same finite slope",
     "does not cover A=385",
@@ -21559,7 +21608,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v49",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v50",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -22394,7 +22443,7 @@
         5
       ]
     ],
-    "conic_four_private_six_cycle_live_branch": "generic irreducible hexagon branch",
+    "conic_four_private_six_cycle_live_branch": "diagnostic generic irreducible hexagon branch",
     "conic_four_private_tail_boundary_core_range": [
       97,
       102
@@ -22725,8 +22774,10 @@
         80
       ]
     },
+    "exact_current_minimal_obstruction_core_ranges_after_line_and_conic_collapse": {},
     "exact_current_minimal_obstruction_count": 17,
     "exact_current_minimal_obstruction_count_after_global_core_collapse": 9,
+    "exact_current_minimal_obstruction_count_after_line_and_conic_collapse": 0,
     "exact_current_minimal_obstruction_required_finite_slopes": 6,
     "exact_current_minimal_obstruction_requires_unpaid_endpoint": true,
     "exact_current_multi_saving_closure_ledger_count": 59,
@@ -23051,6 +23102,10 @@
       ]
     ],
     "line_finite_safe_for_external_core_at_most": 80,
+    "line_forced_core_collapse_closed_external_core_range": [
+      72,
+      123
+    ],
     "line_high_core_forced_core_is_dual_evaluation_fiber": true,
     "line_incidence_one_over_external_core_range": [
       72,
@@ -23062,6 +23117,7 @@
     ],
     "line_incidence_only_sharpness_witness_count": 9,
     "line_intermediate_max_current_projective_upper_bound": 18,
+    "line_moving_slope_components_projective_safe_all_external_cores": true,
     "line_one_over_budget_external_core_ranges": [
       [
         72,
@@ -23211,6 +23267,14 @@
       "79": "external slack alone can absorb base deficit",
       "80": "external slack alone can absorb base deficit"
     },
+    "line_pre_forced_core_collapse_remaining_unclosed_external_core_range": [
+      72,
+      96
+    ],
+    "line_pre_tangent_residual_closed_by_forced_core_range": [
+      72,
+      120
+    ],
     "line_projective_safe_for_external_core_at_most": 71,
     "line_quotient_pencil_obstruction_degrees": [
       54,
@@ -23234,10 +23298,7 @@
       28,
       28
     ],
-    "line_remaining_unclosed_external_core_range": [
-      72,
-      96
-    ],
+    "line_remaining_unclosed_external_core_range": [],
     "line_residual_projective_safe_after_cofactor_span_for_external_core_at_least": 120,
     "line_residual_projective_safe_after_exact_tail_for_external_core_at_least": 97,
     "line_residual_projective_safe_by_punctured_tangent_for_external_core_at_least": 121,
@@ -26895,7 +26956,6 @@
       }
     ],
     "remaining_unclosed_residuals": [
-      "moving-slope line component with forced external split-root core in 72..96 for projective accounting",
       "possible independent noncontained vectors at slopes also admitting a slope-free vector"
     ],
     "single_saving_closure_ledger_core_ranges": {
@@ -26935,7 +26995,7 @@
     "conic_three_private_tail_closure_profile": "Conic cores e_G=103..108 are closed by a root-star Bezout obstruction.  Six selected pairs on five residual coordinates force three pairs to share one residual coordinate; their pair-quadratic points lie on the same root-star line, which an irreducible conic cannot meet in three distinct points.",
     "defect_threshold_profile": "The survival pressures are converted into exact closure-by-defect thresholds.  At line e_G=72, six finite classes require at least eleven base-root incidences, so all six classes have a base root and at least five have two.  At conic e_G=69, six finite classes require at least fourteen of the fifteen pair secants before external excess, hence at least sixteen secant triangles.",
     "exact_agreement_tangent_tail_closure": "The cofactor-current tangent tail is closed by exact agreement for line cores e_G=97..119 and conic cores e_G=103..119.  If seven projective slopes survived, they could be sent to seven finite slopes in the punctured row.  For line residual radius r'<=29 and conic residual radius r'<=23, the tangent-staircase residual-budget proof leaves at most four private residual coordinates beyond the common support complement.  The d=r'+4 branch closes line cores by the two-dimensional pencil disjoint-zero obstruction; the d=r'+3 branch closes line cores by cofactor span and conic cores by the root-star Bezout obstruction.  The d=r'+2 branch gives signed-edge cofactors and closes lines while reducing conics e_G=109..114 to the K4 boundary, which is then closed by the determinant obstruction.",
-    "exact_current_minimal_obstruction_profile": "After the exact-agreement tangent-tail closure, any remaining projective over-budget witness must be an exact-current finite-incidence obstruction: one of the line cores 72..80 or conic cores 69..76, with exactly six finite source classes, six distinct finite slopes, and an unpaid projective endpoint.  The profile records the saturated base-root, external-slack, and secant-overlap conditions that must also hold in each row.",
+    "exact_current_minimal_obstruction_profile": "After the exact-agreement tangent-tail closure but before the product collapses, any projective over-budget witness had to be an exact-current finite-incidence obstruction: one of the line cores 72..80 or conic cores 69..76, with exactly six finite source classes, six distinct finite slopes, and an unpaid projective endpoint.  The profile records the saturated base-root, external-slack, and secant-overlap conditions that must also hold in each row.  After the line and conic product collapses, the post-collapse profile is empty.",
     "exact_root_budget_alternatives": "Using exact degree-126 split-locator accounting, line e_G=72 has only two alternatives: histogram (0,0,6) leaves exactly one unused nonforced external root line, while histogram (0,1,5) uses all nonforced external root lines.  For conic e_G=69, histogram (0,0,6) requires fourteen pair overlaps and histogram (0,1,5) requires all fifteen pair overlaps.",
     "extremal_design_local_profiles": "Locally, the line designs have singleton-root sequences (52,52,52,52,52,52) or (53,52,52,52,52,52).  The conic designs have secant-degree/singleton pairs (5^6;50^6), ((4,4,5,5,5,5);(51,51,50,50,50,50)), or (5^6;(51,50,50,50,50,50)).",
     "extremal_design_multiplicity_profiles": "The line designs have no pairwise external overlap: their nonforced external roots have multiplicities (zero, one, >=two) equal to (1,312,0) or (0,313,0).  The conic designs have no triple external overlap, and their multiplicities (zero, one, two) are (1,300,15), (0,302,14), or (0,301,15).",
@@ -26946,22 +27006,24 @@
     "high_core_forced_core_structure": "The forced-core condition is a linear condition in the Q-plane.  For a line component P(U), a forced external root is exactly an external evaluation functional that vanishes on U, so C_E is a two-polynomial gcd on the line's underlying vector subspace.  For an irreducible conic, containment in a root hyperplane can only occur when the evaluation functional is zero on the whole Q-plane; hence C_E is a global common divisor of all three basis kernel polynomials.",
     "high_core_quotient_normal_form": "For any remaining high-core line or conic component, let E be the forced external split-root core and C_E(X)=prod_{s in E}(X-s).  Every Q-class on the component has L_Q divisible by C_E.  After factoring, L_Q=C_E R_Q with deg R_Q<=126-|E|, and the split-locator gate is exactly R_Q | (X^512-1)/C_E plus the remaining noncontainment filters.  Thus residual line components reduce to quotient degree <=54, while residual conic components reduce to quotient degree <=57.",
     "incidence_budget": "For r_G<j, each valid degree-j split locator on G needs at least j-r_G additional intersections with non-forced root hyperplanes.  Each non-forced E_s cuts G in length at most c.  Hence the number of valid Q-classes, and therefore the number of finite slopes represented by this component, is at most floor(c*(512-r_G)/(126-r_G)).",
-    "intermediate_residual_profile": "Combining the external-incidence, pair-overlap, and punctured projective tangent bounds gives a sharp current proof envelope for the unresolved intermediate cores.  The one-over-budget finite-incidence subranges are line e_G=72..80 and conic e_G=69..76.  The tangent-tail row e_G=120 is closed by the cofactor-span obstruction, and exact-agreement residual-budget splitting closes the cofactor-current tangent tail e_G=97..119 for lines and e_G=103..119 for irreducible conics, using the four-private line-pencil obstruction on the line side and the K4 determinant and root-star Bezout arguments on the conic side; all other intermediate cores need more than a single endpoint/root saving under the present methods.",
+    "intermediate_residual_profile": "Combining the external-incidence, pair-overlap, and punctured projective tangent bounds gives a sharp pre-collapse diagnostic proof envelope for the intermediate cores.  The one-over-budget finite-incidence subranges are line e_G=72..80 and conic e_G=69..76.  The tangent-tail row e_G=120 is closed by the cofactor-span obstruction, and exact-agreement residual-budget splitting closes the cofactor-current tangent tail e_G=97..119 for lines and e_G=103..119 for irreducible conics, using the four-private line-pencil obstruction on the line side and the K4 determinant and root-star Bezout arguments on the conic side.  These rows are retained as diagnostics because the line and conic product collapses close the separated positive-dimensional branch.",
     "irreducible_conic_global_core_product_collapse": "The global-common-core condition is stronger than quotient factorization.  Write R for the degree-<127 base interpolant with R(x)=Omega_x/a_x on X.  Since L_Q is the remainder of RQ mod P_X and deg Q<3, an external functional ev_s(Q)=L_Q(s) has coefficients R(s), sR(s)-A P_X(s), and s^2R(s)-(A s+B-Ap)P_X(s), where A,B are the top two coefficients of R and P_X=T^127+pT^126+... .  If one external functional is zero on the whole Q-plane, then P_X(s)!=0 forces A=B=0.  Hence deg R<=124 and L_Q=RQ without reduction for all Q.  A split locator can then have at most e_G+2 subgroup roots. Thus every irreducible conic high-core branch with e_G<=123 has no finite split-locator class.",
     "irreducible_conic_projective_closure": "Combining pair-overlap packing, the global-core product collapse, and the punctured projective tangent tail closes irreducible conic moving-slope components for every external core size: e_G<=68 by pair-overlap, 69<=e_G<=120 by product collapse, and e_G>=121 by the tangent staircase.  The later conic incidence, Pascal, and quotient-family tables are retained only as diagnostic pre-collapse ledgers.",
     "line_e72_quotient_pencil_obstruction_profile": "In the extremal line e_G=72 branch, factoring the forced external core leaves a degree-54 quotient pencil.  Any remaining over-budget witness must give six distinct full-degree split members of this pencil: either six fibers with 52 external roots and two base roots each, leaving one nonforced external point unused, or one fiber with 53 external roots and one base root plus five fibers with 52 external roots and two base roots, covering all nonforced external points.",
+    "line_forced_core_product_collapse": "For a line component, two distinct forced external roots also force product collapse.  If the annihilator has nonzero constant coordinate and the base interpolant top coefficient A is nonzero, the component is the common-root pencil Q(alpha)=0 and L_{(T-alpha)S}=F*S with deg F<=125; F has at most one base root. In every other two-forced-root case, modular reduction vanishes on the component as L_Q=R*Q, and R has no base roots.  Therefore any degree-126 split locator on such a line component requires at least 124 forced external roots.",
+    "line_projective_closure": "Combining the small-core incidence bound, the line product collapse, and the punctured projective tangent tail closes line moving-slope components for every external core size: e_G<=71 by incidence, 72<=e_G<=120 by product collapse, and e_G>=121 by the tangent staircase.  The later line quotient-pencil and multi-saving ledgers are retained only as diagnostic pre-collapse ledgers.",
     "line_projective_safe_core_threshold": "For a line component c=1, the unrefined all-root budget gives projective safety at r_G<=48.  The base-sharpened external budget improves this: e_G<=71 gives at most five finite Q-classes.  Adding the endpoint-uniform contribution gives projective total at most 6, exactly the projective budget.",
-    "multi_saving_closure_ledger": "The exact-current rows beyond the one-over frontier are also listed in a pre-collapse multi-saving ledger.  For each line core 72..96 and diagnostic conic core 69..102, the ledger records the current projective upper bound, the finite source-class upper bound, and the number of independent counted parameters that must be absent, paid, or coalesced to reach the projective budget.  After the global-core product collapse, only the line rows remain live proof targets.",
+    "multi_saving_closure_ledger": "The exact-current rows beyond the one-over frontier are also listed in a pre-collapse multi-saving ledger.  For each line core 72..96 and diagnostic conic core 69..102, the ledger records the current projective upper bound, the finite source-class upper bound, and the number of independent counted parameters that must be absent, paid, or coalesced to reach the projective budget.  After the line and conic product collapses, these rows are diagnostic rather than live proof targets.",
     "no_identically_split_positive_dimensional_component": "A positive-dimensional component cannot have r_G>=j=126.  Otherwise every L_Q on G would be divisible by the same degree-j split locator, hence scalar-multiple to it because deg L_Q<=j, contradicting projective injectivity of Q -> L_Q on G.",
     "one_over_design_catalog": "The whole endpoint-only finite-incidence one-over range now has an exact compact catalog.  Line cores 72,73,74 allow 2,16,27 base-root histograms respectively, and line cores 75..80 allow all 28 histograms with increasing unused external slack.  Conic cores 69,70,71 allow 2,16,27 histograms respectively, while cores 72..76 allow all 28; pair-overlap pressure disappears from cores 75 and 76.",
     "one_over_mechanism_priority_ledger": "The one-over rows split into six mechanism classes: line base-splitting active (72..74), line external-slack only (75..80), conic base+secant pressure active (69..71), conic secant-only pressure (72..74), conic endpoint-or-duplicate only (75..76), and the punctured tangent tail (120), now closed by the cofactor-span obstruction.",
     "one_over_saturation_profile": "If a one-over finite-incidence branch actually reaches six finite Q-classes, the root sets must nearly saturate the incidence inequality.  For line cores e_G=72..80 the six external root sets are pairwise disjoint and have total external excess at most 5e_G-359.  For conic cores e_G=69..76, six classes require at least max(0,359-5e_G) pair-overlap events before any external excess.  The e_G=120 cases are different: they would have to saturate the punctured projective tangent bound itself.",
     "over_budget_survival_profile": "A genuine over-budget witness in a one-over row must saturate the source-class bound, have six distinct finite slopes, and keep the projective endpoint unpaid.  Line cores e_G=72,73,74 also force near-complete, positive, and weak base-splitting pressure respectively.  Conic cores e_G=69,70,71 force almost complete, dense, and nontrivial external-secants respectively.",
-    "punctured_high_agreement_tangent_reduction": "Deleting the forced external core E leaves a punctured RS row of length n'=512-|E|, while the same witness has exact agreement 386 and co-support radius r'=126-|E|.  Since r' <= floor((n'-256)/3) for |E|>=61, every remaining high-core branch lies in the very-high-agreement tangent-staircase range of the punctured row.",
+    "punctured_high_agreement_tangent_reduction": "Deleting the forced external core E leaves a punctured RS row of length n'=512-|E|, while the same witness has exact agreement 386 and co-support radius r'=126-|E|.  Since r' <= floor((n'-256)/3) for |E|>=61, every high-core diagnostic branch lies in the very-high-agreement tangent-staircase range of the punctured row.",
     "punctured_tangent_tail_cofactor_span_closure": "The remaining one-over tangent tail at e_G=120 is also closed.  If it had seven projective slopes, the tangent-star extremizer profile on the punctured row would give seven degree-6 cofactors of a seven-point residual set.  At most one of the seven projective bad points is the original endpoint, so at least six cofactors come from finite Q-classes on the component.  Any six cofactors are linearly independent by evaluation on the residual points, but the fixed-core quotient family has vector dimension at most 2 on a line component and at most 3 on an irreducible conic component.  This contradiction bounds the tail by six projective slopes.",
     "punctured_tangent_tail_extremizer_profile": "If the e_G=120 tail actually exceeds budget, it must saturate the projective tangent staircase on the punctured row (n',a')=(392,386).  Since the projective bad set has size 7 and P^1(F) has q+1 points, a nonbad projective point can be sent to infinity.  The finite tangent-star extremizer corollary then forces a common support of size 385 and a bijection from the seven punctured residual coordinates to the seven bad projective slopes.",
     "single_saving_closure_ledger": "Every cofactor-current one-over row in the pre-collapse moving-slope packet is listed in a single-saving closure ledger.  The ledger covers line cores 72..80, diagnostic conic cores 69..76, and the line/conic punctured-tangent tail at core 120.  In each listed row, any one saving lowers the projective count from 7 to the budget 6.",
-    "very_high_core_projective_tail_closure": "The high-agreement projective tangent staircase applies to the punctured row and bounds finite plus infinity slopes together by r'+1=127-|E|.  Hence every high-core branch with |E|>=121 has projective contribution at most 6.  This closes the very-high-core tail but leaves the intermediate high-core quotient range unresolved."
+    "very_high_core_projective_tail_closure": "The high-agreement projective tangent staircase applies to the punctured row and bounds finite plus infinity slopes together by r'+1=127-|E|.  Hence every high-core branch with |E|>=121 has projective contribution at most 6.  This closes the very-high-core tail; the lower intermediate line and conic ranges are closed by the forced-core product collapses."
   },
   "unrefined_sample_budget_rows": [
     {

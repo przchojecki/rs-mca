@@ -314,32 +314,38 @@ core `r_G`, the unrefined finite source classes are bounded by
 `deg Q<3` to sharpen this to `floor(c(385-e_G)/(124-e_G))` for forced external
 core `e_G`.  Thus line components with `e_G<=71` are projective-safe after
 adding the endpoint.  For irreducible conics, pair-overlap packing closes the
-projective accounting for `e_G<=68`.  The high-core line branch remains in
-quotient normal form: after factoring the forced external core, the remaining
-split-locator degree is at most `54`.  The high-core irreducible-conic branch
-has a global common forced core across the whole `Q`-plane, and the product
-collapse now closes it: the base interpolant has its top two coefficients zero,
-so `L_Q=RQ`, and `e_G<=123` cannot supply a degree-`126` split locator.  Thus
-irreducible conic moving-slope components are projective-safe for every
-external core size.  Puncturing the forced core puts the line quotient branch
-in the very-high-agreement tangent range of the punctured row.  The projective
-tangent staircase closes the line tail `e_G>=121`, so the remaining unclosed
-intermediate line range is `72<=e_G<=120`.  Within that range the current
-projective proof envelope is only one over budget for line cores
-`72<=e_G<=80` and, before the cofactor-span refinement, `e_G=120`.  The
-cofactor-span obstruction closes the punctured-tangent tail `e_G=120`: seven
-tangent-star cofactors on the punctured row `(n',a')=(392,386)` would arise,
-and at most one of the seven projective bad points is the original endpoint.
-Thus at least six independent cofactors must be finite `Q`-classes on the
-component, while the fixed-core quotient family has vector dimension at most
-`2` on a line and at most `3` on a conic.  More generally, top saturation of
-the raw tangent bound `r'+1` is impossible whenever `r'` exceeds this quotient
-dimension, so the cofactor-improved tangent bound is `r'`; `e_G=119` is the
-next cofactor-current one-over tangent-tail core and `e_G>=120` is
-projective-safe.  Exact-agreement residual-budget splitting closes the
-cofactor-current tangent tail `e_G=97..119` for lines and `e_G=103..119` for
-irreducible conics.  The `d=r'+4` four-private branch closes line cores
-`97..102` by a two-dimensional pencil disjoint-zero obstruction.  The
+projective accounting for `e_G<=68`.
+
+The high-core line branch first appears in quotient normal form: after
+factoring the forced external core, the remaining split-locator degree is at
+most `54`.  The forced-core product collapse closes this branch.  If a line
+component has two distinct forced external roots, either it is a common-root
+pencil with `L_{(T-alpha)S}=F*S`, `deg F<=125`, and at most one base root for
+`F`, or modular reduction vanishes as `L_Q=R*Q` with `R` nonzero on the base
+support.  A degree-`126` split locator would therefore require at least `124`
+external forced roots, so the pre-tangent line range `72<=e_G<=120` is empty.
+
+The high-core irreducible-conic branch has a global common forced core across
+the whole `Q`-plane, and the product collapse closes it: the base interpolant
+has its top two coefficients zero, so `L_Q=RQ`, and `e_G<=123` cannot supply a
+degree-`126` split locator.  Thus line and irreducible-conic moving-slope
+components are projective-safe for every external core size in the separated
+positive-dimensional branch.
+
+The packet still records the punctured-tangent and exact-agreement diagnostics.
+The cofactor-span obstruction closes the punctured-tangent tail `e_G=120`:
+seven tangent-star cofactors on the punctured row `(n',a')=(392,386)` would
+arise, and at most one of the seven projective bad points is the original
+endpoint.  Thus at least six independent cofactors must be finite `Q`-classes
+on the component, while the fixed-core quotient family has vector dimension at
+most `2` on a line and at most `3` on a conic.  More generally, top saturation
+of the raw tangent bound `r'+1` is impossible whenever `r'` exceeds this
+quotient dimension, so the cofactor-improved tangent bound is `r'`; `e_G=119`
+is the next cofactor-current one-over tangent-tail diagnostic core and
+`e_G>=120` is projective-safe.  Exact-agreement residual-budget splitting
+closes the cofactor-current tangent tail `e_G=97..119` for lines and
+`e_G=103..119` for irreducible conics.  The `d=r'+4` four-private branch closes
+line cores `97..102` by a two-dimensional pencil disjoint-zero obstruction. The
 `d=r'+3` three-private branch closes line cores `103..108` by cofactor span,
 and closes conic cores `103..108` by a root-star Bezout obstruction: six
 selected pairs on five residual coordinates force three pair-quadratic points
@@ -362,27 +368,25 @@ irreducible conics by Bezout.  The two-triangle
 branch is stronger: for every pair of disjoint residual triples, the six
 pair-quadratic points are co-conic and no line contains three of them, so the
 conic is irreducible; exponents `0,1,2,3,4,5` give the arithmetic replay.
-Thus the live unclosed high-core range is now `72<=e_G<=96` for lines.  The
-conic incidence, Pascal, and four-private rows remain as pre-collapse
-diagnostics.  The packet now records an exact-current live residual profile:
-the one-over range is line `72..80`; the largest line projective bound remains
-`18`.  The endpoint-only
-finite-incidence subranges now have explicit saturation targets: line
-six-class saturation has external slack `1..41`.  A genuine live over-budget
-finite-incidence witness must also have six distinct finite slopes and an
-unpaid endpoint.  The strongest remaining pressure case is line `e_G=72`
-near-complete base splitting; it closes unless all six classes have a base root
-and at least five have two.  Equivalently, line `e_G=72` survival has
-base-root histogram `(0,0,6)` or `(0,1,5)`.  Exact degree-`126` accounting
-leaves that line branch with either one unused nonforced external root line or
-none.
+After the line and conic product collapses, no separated positive-dimensional
+moving-slope line or conic component remains live.  The line quotient-pencil
+rows and the conic incidence, Pascal, and four-private rows remain as
+pre-collapse diagnostics.  The packet still records the exact-current
+diagnostic profile: before the line product collapse, the one-over range was
+line `72..80`, the largest line projective bound was `18`, and line six-class
+saturation had external slack `1..41`.  The sharpest diagnostic pressure case
+was line `e_G=72` near-complete base splitting; it closed unless all six
+classes had a base root and at least five had two.  Equivalently, line
+`e_G=72` survival had base-root histogram `(0,0,6)` or `(0,1,5)`.  Exact
+degree-`126` accounting left that line branch with either one unused nonforced
+external root line or none.
 
-The extremal line `e_G=72` branch is now a degree-`54` quotient-pencil
-obstruction: any survivor needs six fully split fibers of sizes `52^6` or
+The diagnostic extremal line `e_G=72` branch is a degree-`54` quotient-pencil
+obstruction: any survivor would need six fully split fibers of sizes `52^6` or
 `53,52^5`, covering all or all but one nonforced external root.  More
-generally, line cores `e_G=72..80` require six full-split pencil fibers of
-degrees `54..46`.  The conic secant, Pascal, and quotient-conic catalogs are
-retained as pre-collapse diagnostics only.
+generally, line cores `e_G=72..80` would require six full-split pencil fibers
+of degrees `54..46`.  The line quotient-pencil and conic secant, Pascal, and
+quotient-conic catalogs are retained as pre-collapse diagnostics only.
 Across the full endpoint-only one-over range, the line histogram counts are
 `2,16,27,28^6` for `e_G=72..80`, and the conic counts are `2,16,27,28^5`
 for `e_G=69..76`.
@@ -394,18 +398,16 @@ cannot be closed by incidence and pair-overlap counting alone; the next input
 must pay the endpoint, force a finite-slope collision, or use algebraic
 quotient-fiber structure.
 The packet also records a single-saving closure ledger for the finite-incidence
-one-over rows, line `e_G=72..80` and conic `e_G=69..76`, plus the formerly raw
-line/conic punctured-tangent tail at `e_G=120`.  The subsequent exact-agreement
-filter closes the cofactor-current tangent-tail rows `e_G=97..119` for lines.
-The exact-current live rows are recorded as a minimal obstruction profile: any
-remaining over-budget witness must be one of the line cores `72..80`, with
-exactly six finite source classes, six distinct finite slopes, and an unpaid
-projective endpoint, plus the printed saturated base-root and external-slack
-conditions.  A pre-collapse diagnostic multi-saving ledger is still retained
-for the conic rows, but the conic branch is no longer live after the
-global-core product collapse.  The line rows split by first available mechanism
-into line base-active `72..74` and line external-slack `75..80`; the
-punctured-tangent tail `120` is closed by the cofactor-span obstruction.
+one-over diagnostic rows, line `e_G=72..80` and conic `e_G=69..76`, plus the
+formerly raw line/conic punctured-tangent tail at `e_G=120`.  The subsequent
+exact-agreement filter closes the cofactor-current tangent-tail rows
+`e_G=97..119` for lines.  The exact-current rows are recorded as a
+pre-collapse minimal obstruction profile: before product collapse, any
+over-budget witness had to be one of the line cores `72..80`, with exactly six
+finite source classes, six distinct finite slopes, and an unpaid projective
+endpoint, plus the printed saturated base-root and external-slack conditions.
+After both line and conic product collapses, that post-collapse profile is
+empty.
 
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets

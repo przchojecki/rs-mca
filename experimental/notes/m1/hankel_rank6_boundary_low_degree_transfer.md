@@ -162,25 +162,25 @@ floor(c(385-e_G)/(124-e_G))
 for forced external split-root core `e_G`.  In particular, a line component
 with `e_G<=71` is projective-safe after adding the endpoint.  For irreducible
 conics, pair-overlap packing closes the projective accounting for `e_G<=68`.
-The high-core line branch remains a dual-evaluation-fiber quotient pencil of
-degree at most `54`.  The high-core irreducible-conic branch has a global
-common forced core across the whole `Q`-plane, and this now collapses further:
-the base interpolant has its top two coefficients zero, so `L_Q=RQ`; hence
-`e_G<=123` cannot supply a degree-`126` split locator.  Together with the
-punctured tangent tail `e_G>=121`, this closes irreducible conic moving-slope
-components for every external core size.
+The high-core line branch first appears as a dual-evaluation-fiber quotient
+pencil of degree at most `54`, but two distinct forced external roots force a
+product collapse: either the component is a common-root pencil with
+`L_{(T-alpha)S}=F*S`, `deg F<=125`, and at most one base root for `F`, or
+modular reduction vanishes as `L_Q=R*Q` with `R` nonzero on the base support.
+Hence any degree-`126` split locator on the high-core line branch would require
+at least `124` external forced roots, closing the pre-tangent line range
+`72<=e_G<=120`.
 
-Thus the live moving-slope high-core residual is line-only:
+The high-core irreducible-conic branch has a global common forced core across
+the whole `Q`-plane, and this collapses further: the base interpolant has its
+top two coefficients zero, so `L_Q=RQ`; hence `e_G<=123` cannot supply a
+degree-`126` split locator.  Together with the punctured tangent tail
+`e_G>=121`, this closes both line and irreducible-conic moving-slope components
+for every external core size in the separated positive-dimensional branch.
 
-```text
-line residuals: 72 <= e_G <= 96.
-```
-
-The conic incidence, Pascal, and quotient-conic ledgers remain in the packet as
-pre-collapse diagnostics showing why incidence counting alone was insufficient.
-The line endpoint-only one-over rows are still `e_G=72..80`; the extremal
-`e_G=72` case closes unless all six classes have a base root and at least five
-have two, with local singleton sequences `52^6` or `(53,52^5)`.
+The line quotient-pencil rows and the conic incidence, Pascal, and
+quotient-conic ledgers remain in the packet as pre-collapse diagnostics showing
+why incidence counting alone was insufficient.
 
 Replay:
 

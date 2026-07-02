@@ -161,22 +161,23 @@ quotient split-locator condition
 R_Q | (X^512-1)/C_E.
 ```
 
-Thus the remaining line residuals (`e_G>=72`) are quotient-locator pencils of
-degree at most
+Thus, before the product-collapse step below, the high-core line diagnostics
+(`e_G>=72`) are quotient-locator pencils of degree at most
 
 ```text
 126-72 = 54,
 ```
 
-and the remaining irreducible conic residuals (`e_G>=69`) are quotient-locator
+and the high-core irreducible conic diagnostics (`e_G>=69`) are quotient-locator
 families of degree at most
 
 ```text
 126-69 = 57.
 ```
 
-This is not a closure, but it makes the remaining branch a low-degree quotient
-split problem rather than a full degree-126 locator problem.
+These quotient forms are retained as diagnostic normal forms.  The line and
+conic product collapses below supersede them as closure mechanisms for the
+separated positive-dimensional moving-slope branch.
 
 The high-core quotient branch has a more precise forced-core structure.  Let
 `W` be the three-dimensional vector space of `Q`'s, and let
@@ -199,6 +200,49 @@ Equivalently, the forced core is a dual-evaluation fiber, and `C_E` is a common
 divisor of the two basis kernel polynomials spanning the line subspace `U`.
 After factoring `C_E`, the residual split problem is a projective-line quotient
 pencil of degree at most `54`.
+
+This line branch also has a product collapse once it has two distinct forced
+external roots.  Write `U^perp=<phi>` with `phi=(u,v,w)`, and write
+
+```text
+R=A T^126+B T^125+...,
+P_X=T^127+pT^126+...,
+C=B-Ap.
+```
+
+For `s notin X`,
+
+```text
+ev_s = (R(s), s R(s)-A P_X(s), s^2 R(s)-(A s+C)P_X(s)).
+```
+
+If `u!=0` and `A!=0`, two distinct forced roots make the compatibility identity
+vanish identically.  The line is the common-root pencil `Q(alpha)=0`, with
+`C=A alpha` and beta `alpha^2`.  Then
+
+```text
+L_{(T-alpha)S}=F S,        F=(T-alpha)R-A P_X,        deg F<=125.
+```
+
+On the base support, `F(x)=(x-alpha)R(x)` and `R(x)=Omega_x/a_x` is nonzero.
+Hence `F` has at most one base-support root, so a degree-`126` split locator
+would require at least `124` forced external roots.
+
+In all remaining two-forced-root line cases, modular reduction vanishes on the
+line as
+
+```text
+L_Q = R Q,
+```
+
+with quotient factor degree at most two.  Since `R(x)=Omega_x/a_x` is nonzero
+on every base point, the same degree-`126` split locator would again require at
+least `124` forced external roots.  Therefore the pre-tangent line residual
+`72<=e_G<=120` is impossible.  Together with the incidence closure
+`e_G<=71` and the punctured tangent tail `e_G>=121`, line moving-slope
+components are projective-safe for every external core size.  The line
+quotient-pencil catalogs below remain as pre-collapse diagnostics, not as live
+residuals.
 
 For an irreducible conic component, containment in a root hyperplane can occur
 only when `ev_s=0` on the whole `Q`-plane: a nonzero linear equation cuts a
@@ -266,8 +310,8 @@ and this holds for every `|E|>=61`.  In particular, it holds for both residual
 thresholds:
 
 ```text
-line residuals:  |E|>=72, r'<=54, tangent numerator <=55;
-conic residuals: |E|>=69, r'<=57, tangent numerator <=58.
+line diagnostics:  |E|>=72, r'<=54, tangent numerator <=55;
+conic diagnostics: |E|>=69, r'<=57, tangent numerator <=58.
 ```
 
 At the residual thresholds this is only a tangent-ledger eligibility statement
@@ -447,7 +491,7 @@ Off this factor the six-cycle survivor is an irreducible conic.  On this
 factor the conic is the reducible union of the two alternating lines, and this
 subbranch is closed for irreducible conic components: an irreducible conic
 cannot meet either alternating line in three distinct points without containing
-that line, by Bezout.  Thus the live irreducible six-cycle branch is the
+that line, by Bezout.  Thus the diagnostic irreducible six-cycle branch is the
 generic irreducible hexagon branch where the alternating-line factor is
 nonzero.
 
@@ -462,16 +506,16 @@ line contains three of the six points, and the conic is nondegenerate.  The
 subgroup exponents `0,1,2,3,4,5` remain in the packet as a concrete arithmetic
 replay of this branch.  This is not an MCA bad-slope witness.
 
-Thus the line high-core quotient range remains finite:
+Thus the pre-collapse line high-core quotient diagnostic range is finite:
 
 ```text
-line residuals:  72 <= |E| <= 96;
+line diagnostics:  72 <= |E| <= 96;
 ```
 
 This uses the projective high-agreement tangent theorem on the punctured row,
 not a separate finite-plus-endpoint overcount.
 
-Within the remaining intermediate range, the raw audit profile splits the
+Within the pre-collapse intermediate range, the raw audit profile splits the
 residual further.  Combining the external incidence bound (for lines), the
 pair-overlap packing bound (for irreducible conics), and the unrefined
 punctured projective tangent bound gives the following pre-cofactor
@@ -619,16 +663,17 @@ or generic irreducible hexagon residuals above.  Thus the exact-current
 one-over rows are only the finite-incidence ranges.
 
 The packet now records these exact-current rows as a pre-collapse minimal
-obstruction profile.  Before the conic global-core collapse, a surviving
-projective over-budget witness had to be one of the line cores `72..80` or
-conic cores `69..76`, with exactly six finite source classes, six distinct
-finite slopes, and an unpaid projective endpoint.  After the collapse, the live
-finite-incidence obstruction profile contains only the line cores `72..80`.
-The conic rows remain useful as an audit trail showing why incidence counting
-alone was insufficient.
+obstruction profile.  Before the product collapses, a surviving projective
+over-budget witness had to be one of the line cores `72..80` or conic cores
+`69..76`, with exactly six finite source classes, six distinct finite slopes,
+and an unpaid projective endpoint.  After the conic collapse alone, the
+diagnostic finite-incidence profile contains only the line cores `72..80`.
+After the line product collapse as well, the post-collapse profile is empty.
+The old line and conic rows remain useful as an audit trail showing why
+incidence counting alone was insufficient.
 
 The packet also records a multi-saving closure ledger for every exact-current
-row still above budget.  Line cores `72..96` require saving depths `1..5`:
+pre-collapse row still above budget.  Line cores `72..96` require saving depths `1..5`:
 `72..80`, `81..86`, `87..91`, `92..94`, and `95..96` require respectively
 `1,2,3,4,5` independent endpoint/finite-class savings.  Conic cores `69..102`
 require saving depths up to `19`; the last two cores `101,102` are controlled
@@ -637,14 +682,13 @@ pair-overlap envelope.  This ledger is a closure criterion: if the listed
 number of counted projective parameters is removed, paid, or coalesced, the
 row is safe.  It does not prove those savings occur.
 
-The same ledger splits the next live proof targets by first available
-mechanism: line base-splitting pressure remains only for `e_G=72..74`, while
-line cores `75..80` need external-slack, duplicate-slope, endpoint, or
-paid-class input.  The conic mechanism classes are retained only as
-pre-collapse diagnostics, because the global-core product collapse closes the
-irreducible-conic branch.  The `e_G=120` tail and the line `e_G=97..119`
-tangent-tail rows are isolated as closed punctured-tangent tails rather than
-remaining proof targets.
+The same ledger splits the pre-collapse diagnostic targets by first available
+mechanism: line base-splitting pressure appears only for `e_G=72..74`, while
+line cores `75..80` would need external-slack, duplicate-slope, endpoint, or
+paid-class input if the product collapse were not used.  The conic mechanism
+classes are likewise retained only as pre-collapse diagnostics.  The
+`e_G=120` tail and the line `e_G=97..119` tangent-tail rows are isolated as
+closed punctured-tangent tails rather than remaining proof targets.
 
 Replay:
 
@@ -656,10 +700,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_inci
 Nonclaims:
 
 ```text
-no proof that every moving-slope component is a line;
-no closure of line components with forced external split-root core in 72..96 in projective accounting;
-conic Pascal/four-private diagnostics are not used as the closure mechanism, because the global-core product collapse supersedes them;
-no proof that the high-core quotient split problem is empty or paid;
+no proof that every moving-slope component is covered by the separated line/conic positive-dimensional branch;
+line quotient-pencil and conic Pascal/four-private diagnostics are not used as the closure mechanism, because the product collapses supersede them;
+no claim that the high-core quotient diagnostic problems are empty or paid;
 no claim that the punctured tangent numerator at the residual threshold is within the original row budget;
 no exclusion of another independent noncontained vector at the same finite slope;
 no A=385 closure;
