@@ -402,13 +402,16 @@ subgroup.  Any closure must use more structure: quotient-family equations,
 Hankel constraints, endpoint payment, or split-locator noncontainment.  This
 witness is not an MCA bad-slope witness.
 
-The two-disjoint-triangle survivor is also not dismissed by reducibility.  The
-subgroup exponents `0,1,2,3,4,5`, split as triangles
-`{0,1,2}` and `{3,4,5}`, give a rank-`5` six-row conic system with a unique
-conic through the six pair-quadratic points.  Its scaled symmetric determinant
-is nonzero, so this is a nondegenerate conic at the coordinate-model level.
-Again, this is not an MCA bad-slope witness; it only shows that the local
-two-triangle branch is a genuine residual.
+The two-disjoint-triangle survivor is in fact a genuine irreducible conic
+branch for every pair of disjoint residual triples.  The six pair-quadratic
+points are co-conic identically.  If this conic were reducible, one component
+line would contain at least three of the six points.  But any three selected
+points contain two edges from one root triangle; the line through those two
+points is the corresponding root-star line, and the third selected edge does
+not contain that root because the two root triples are disjoint.  Hence no
+line contains three of the six points, and the conic is nondegenerate.  The
+subgroup exponents `0,1,2,3,4,5` remain in the packet as a concrete arithmetic
+replay of this branch.  This is not an MCA bad-slope witness.
 
 Thus the unclosed high-core quotient range is finite:
 

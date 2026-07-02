@@ -354,7 +354,7 @@
     "A=386 moving-slope small-core and very-high-core tail branches are recorded as projective-safe; the intermediate high-core quotient ranges remain residual",
     "A=386 conic four-private residuals are reduced to two-triangle or hexagon-factor boundary shapes",
     "A=386 conic hexagon-factor subgroup nonvanishing is ruled out as a closure route by a deterministic witness",
-    "A=386 conic two-triangle reducibility dismissal is ruled out as a closure route by a nondegenerate witness",
+    "A=386 conic two-triangle residuals are proved irreducible for all disjoint residual triples",
     "projective infinity and finite affine accounting are not conflated"
   ],
   "field_audit": {
@@ -490,7 +490,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v25",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v26",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -542,7 +542,7 @@
     },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
-      "sha256": "87fc8d301f911c3661bf0b97a2b279bd958d73bed6799d825f88f86d5aa487c4"
+      "sha256": "029e3af3df07274045809120303e002e568d3f776630807d19617a5a2af10959"
     },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
@@ -600,7 +600,8 @@
       "the conic d=r'+3 branch e_G=103..108 is closed by a root-star Bezout obstruction: six selected pairs on five residual coordinates force three pair-quadratic points on one root-star line, impossible for an irreducible conic",
       "the conic d=r'+4 branch e_G=97..102 is reduced to two-disjoint-triangle or six-cycle hexagon-factor quotient residuals; all max-degree-at-least-3 graphs close by root-star Bezout",
       "the six-cycle hexagon residual is real at subgroup-coordinate level: exponents 0,255,417,261,6,356 make the normalized hexagon factor vanish, so closure must use quotient/Hankel/split-locator constraints rather than subgroup nonvanishing",
-      "the two-disjoint-triangle residual is also real at subgroup-coordinate level: exponents 0,1,2,3,4,5 give a unique nondegenerate conic, so closure cannot rely on reducibility dismissal",
+      "the two-disjoint-triangle residual is a genuine irreducible conic branch for every pair of disjoint residual triples; the six points are co-conic, and reducibility would force a forbidden line through three pair-quadratic points",
+      "the subgroup exponents 0,1,2,3,4,5 give a concrete arithmetic replay of the two-triangle irreducible branch",
       "the still-unclosed high-core quotient ranges are e_G=72..96 for lines and e_G=69..102 for irreducible conics",
       "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; after exact-tail sharpening the worst projective bounds are 18 and 25",
       "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the formerly one-over e_G=120 cases are closed by the cofactor-span contradiction",

@@ -78,10 +78,10 @@ Keep entries concise and link to the relevant files.
   subgroup-coordinate witness: exponents `0,255,417,261,6,356` make the
   normalized hexagon factor vanish.  This is not an MCA bad-slope witness; it
   says the remaining closure must use quotient/Hankel/split-locator structure.
-  The two-triangle reducibility dismissal is also ruled out by a deterministic
-  subgroup-coordinate witness: exponents `0,1,2,3,4,5` split into two
-  triangles give a unique nondegenerate conic through the six pair-quadratic
-  points.
+  The two-triangle branch is now proved irreducible for every pair of disjoint
+  residual triples: the six pair-quadratic points are co-conic, and a reducible
+  conic would force a line through three points, contradicting the root-star
+  incidence argument.  Exponents `0,1,2,3,4,5` remain as an arithmetic replay.
   In the `d=r'+2` branch, six finite cofactors become six two-supported
   signed-edge vectors; their span has rank at least `3`, which closes lines.
   The conic K4 boundary is then closed because the six pair quadratics from

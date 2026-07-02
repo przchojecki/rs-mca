@@ -205,6 +205,7 @@
     "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction",
     "conic four-private tail boundary is reduced to two-triangle or hexagon-factor residuals",
     "subgroup-coordinate hexagon nonvanishing is refuted by a six-cycle witness",
+    "two-triangle residual is proved irreducible by root-star incidence for all disjoint residual triples",
     "two-triangle reducibility dismissal is refuted by a nondegenerate conic witness"
   ],
   "cofactor_current_intermediate_residual_profile": {
@@ -5427,6 +5428,61 @@
       "surviving_branch": "d_equals_r_plus_4_four_private_coordinates"
     }
   ],
+  "conic_four_private_two_triangle_family_profile": {
+    "characteristic_assumption": "char != 2; here char F = 17",
+    "co_conic_identity": "the six conic-evaluation rows have determinant 0 identically",
+    "co_conic_identity_source": "pair_quadratic_k6_hexagon_identities.two_disjoint_triangles_determinant",
+    "conclusion": "For any six distinct residual coordinates split into two disjoint triples, the two-triangle branch gives a nondegenerate irreducible conic in the quotient plane.",
+    "no_three_collinear_reason": "Any three selected pair-quadratic points contain two edges from one root triangle.  The line through those two points is the corresponding root-star line, and the third selected edge does not contain that root because the two root triples are disjoint.",
+    "not_an_mca_witness": "This proves the coordinate-level residual is genuine; it does not assert split-locator noncontainment, quotient membership, or endpoint accounting.",
+    "pair_quadratic_edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "reducible_conic_exclusion": "A reducible conic is a union of two lines.  If it contained the six points, one component line would contain at least three of them, contradicting the no-three-collinear root-star argument.",
+    "residual_shape": "two_disjoint_triangles",
+    "root_triples": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        3,
+        4,
+        5
+      ]
+    ],
+    "status": "PROVED",
+    "three_point_profile": {
+      "0+3": 1,
+      "1+2": 9,
+      "2+1": 9,
+      "3+0": 1
+    }
+  },
   "conic_four_private_two_triangle_sharpness_witness": {
     "conic_evaluation_basis": [
       "X^2",
@@ -20501,7 +20557,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v43",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v44",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -21322,6 +21378,13 @@
       "six_cycle",
       "two_disjoint_triangles"
     ],
+    "conic_four_private_two_triangle_family_status": "PROVED",
+    "conic_four_private_two_triangle_family_three_point_profile": {
+      "0+3": 1,
+      "1+2": 9,
+      "2+1": 9,
+      "3+0": 1
+    },
     "conic_four_private_two_triangle_sharpness_determinant_nonzero": true,
     "conic_four_private_two_triangle_sharpness_exponents": [
       0,
@@ -25813,6 +25876,7 @@
     "conic_e69_pascal_obstruction_profile": "In the extremal conic e_G=69 branch, the K6 and K6-minus-one secant graphs are not arbitrary incidence graphs if they come from six points on an irreducible conic.  Pascal's theorem gives one collinearity relation for every Hamiltonian cycle in the secant graph: 60 relations for K6 and 36 for K6-minus-one.  Failure of these relations in the external root-line arrangement would close the corresponding extremal conic branch.",
     "conic_four_private_hexagon_sharpness_witness": "The subgroup nonvanishing route for the six-cycle residual is false.  The six order-512 subgroup exponents 0,255,417,261,6,356 give distinct residual coordinates whose affine-normalized hexagon factor is zero.  This is only a coordinate-level sharpness witness, not a split-locator MCA witness.",
     "conic_four_private_tail_boundary_profile": "Conic cores e_G=97..102 reduce to a four-private six-pair boundary.  Root-star Bezout closes all six-edge K6 graphs with max degree at least 3.  The only no-root-star graph types are two disjoint triangles and six-cycles; the two-triangle determinant vanishes identically, and a six-cycle can survive only when the normalized hexagon factor a*b*d-a*c*d+a*c-a*d-b*c+c*d vanishes.",
+    "conic_four_private_two_triangle_family_profile": "The two-disjoint-triangle residual is a genuine irreducible conic branch for every pair of disjoint residual triples.  The six points are co-conic identically.  If that conic were reducible, one component line would contain at least three of the six points; but any three selected points contain two edges from one root triangle, whose line is a root-star line, and the third selected edge does not contain that root.",
     "conic_four_private_two_triangle_sharpness_witness": "The two-disjoint-triangle residual is also a genuine coordinate-level conic branch, not just a reducible artifact. The order-512 subgroup exponents 0,1,2,3,4,5 split into two triangles give a rank-5 six-row conic system whose unique conic has nonzero scaled symmetric determinant.",
     "conic_k4_tail_closure_profile": "The K4 signed-edge boundary is impossible for an irreducible conic component.  After factoring the common residual zero set, the six finite classes become the six pair quadratics from four distinct residual coordinates.  The determinant of their six conic-evaluation rows is prod_{i<j}(x_j-x_i)^2, so no projective conic contains all six image points in characteristic 17.",
     "conic_pair_overlap_packing": "On an irreducible conic, two distinct Q-classes can share at most one non-forced external root hyperplane: two shared external roots would give two distinct lines through the same two points.  Thus M valid Q-classes, each requiring R=124-e_G non-forced external roots, force a union of at least M*R-binomial(M,2) external root lines.  Since only 385-e_G are available, six Q-classes are impossible for e_G<=68 and seven are impossible for e_G<=76.",

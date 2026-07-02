@@ -267,10 +267,11 @@ the six-cycle must satisfy the normalized hexagon factor
 `a*b*d-a*c*d+a*c-a*d-b*c+c*d`.  The subgroup-coordinate nonvanishing route for
 the six-cycle is false: exponents `0,255,417,261,6,356` give a deterministic
 order-512 subgroup witness with zero hexagon factor.  The two-triangle
-reducibility dismissal is also false: exponents `0,1,2,3,4,5` split into two
-triangles give a unique nondegenerate conic.  Thus the remaining unclosed
-intermediate ranges are `72<=e_G<=96` for lines and `69<=e_G<=102` for
-irreducible conics.
+branch is stronger: for every pair of disjoint residual triples, the six
+pair-quadratic points are co-conic and no line contains three of them, so the
+conic is irreducible; exponents `0,1,2,3,4,5` give the arithmetic replay.
+Thus the remaining unclosed intermediate ranges are `72<=e_G<=96` for lines
+and `69<=e_G<=102` for irreducible conics.
 The exact-current residual profile has live one-over ranges line
 `e_G=72..80` and irreducible conic `e_G=69..76`; the largest conic projective
 bound drops from `26` to `25`.

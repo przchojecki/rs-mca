@@ -26,7 +26,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v43"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v44"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -982,6 +982,68 @@ def pair_quadratic_k6_hexagon_identities() -> dict[str, Any]:
         ),
         "six_cycle_hexagon_factor": "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
         "checked_with_sympy": sp.__version__,
+    }
+
+
+@lru_cache(maxsize=1)
+def two_triangle_irreducible_family_profile() -> dict[str, Any]:
+    """Family proof that the two-triangle residual is a genuine conic branch."""
+    identities = pair_quadratic_k6_hexagon_identities()
+    require(
+        identities["two_disjoint_triangles_determinant"] == "0",
+        "two-triangle co-conic identity changed",
+    )
+    first_triangle = {(0, 1), (0, 2), (1, 2)}
+    second_triangle = {(3, 4), (3, 5), (4, 5)}
+    edges = sorted(first_triangle | second_triangle)
+    triple_profiles: dict[str, int] = {}
+    for selected in itertools.combinations(edges, 3):
+        first_count = sum(edge in first_triangle for edge in selected)
+        second_count = sum(edge in second_triangle for edge in selected)
+        require(first_count + second_count == 3, "two-triangle edge split changed")
+        common_vertices = set(selected[0])
+        for edge in selected[1:]:
+            common_vertices &= set(edge)
+        require(
+            not common_vertices,
+            "a two-triangle triple should not be a root-star triple",
+        )
+        profile = f"{first_count}+{second_count}"
+        triple_profiles[profile] = triple_profiles.get(profile, 0) + 1
+    require(
+        triple_profiles == {"0+3": 1, "1+2": 9, "2+1": 9, "3+0": 1},
+        "two-triangle three-point profile changed",
+    )
+    return {
+        "status": "PROVED",
+        "residual_shape": "two_disjoint_triangles",
+        "root_triples": [[0, 1, 2], [3, 4, 5]],
+        "pair_quadratic_edges": [list(edge) for edge in edges],
+        "co_conic_identity": "the six conic-evaluation rows have determinant 0 identically",
+        "co_conic_identity_source": "pair_quadratic_k6_hexagon_identities.two_disjoint_triangles_determinant",
+        "three_point_profile": triple_profiles,
+        "no_three_collinear_reason": (
+            "Any three selected pair-quadratic points contain two edges from "
+            "one root triangle.  The line through those two points is the "
+            "corresponding root-star line, and the third selected edge does "
+            "not contain that root because the two root triples are disjoint."
+        ),
+        "reducible_conic_exclusion": (
+            "A reducible conic is a union of two lines.  If it contained the "
+            "six points, one component line would contain at least three of "
+            "them, contradicting the no-three-collinear root-star argument."
+        ),
+        "conclusion": (
+            "For any six distinct residual coordinates split into two disjoint "
+            "triples, the two-triangle branch gives a nondegenerate irreducible "
+            "conic in the quotient plane."
+        ),
+        "characteristic_assumption": "char != 2; here char F = 17",
+        "not_an_mca_witness": (
+            "This proves the coordinate-level residual is genuine; it does not "
+            "assert split-locator noncontainment, quotient membership, or "
+            "endpoint accounting."
+        ),
     }
 
 
@@ -3713,6 +3775,9 @@ def build_certificate() -> dict[str, Any]:
         conic_four_private_tail_boundary_row(core)
         for core in range(line_exact_tail_safe_core_min, conic_three_private_tail_safe_core_min)
     ]
+    conic_four_private_two_triangle_family_profile = (
+        two_triangle_irreducible_family_profile()
+    )
     conic_four_private_hexagon_sharpness_witness = (
         subgroup_hexagon_factor_sharpness_witness()
     )
@@ -4199,6 +4264,14 @@ def build_certificate() -> dict[str, Any]:
         and conic_four_private_hexagon_sharpness_witness["status"]
         == "COUNTEREXAMPLE_TO_SUBGROUP_HEXAGON_NONVANISHING",
         "conic four-private hexagon sharpness witness changed",
+    )
+    require(
+        conic_four_private_two_triangle_family_profile["status"] == "PROVED"
+        and conic_four_private_two_triangle_family_profile["three_point_profile"]
+        == {"0+3": 1, "1+2": 9, "2+1": 9, "3+0": 1}
+        and "nondegenerate irreducible conic"
+        in conic_four_private_two_triangle_family_profile["conclusion"],
+        "conic four-private two-triangle family profile changed",
     )
     require(
         conic_four_private_two_triangle_sharpness_witness["subgroup_exponents"]
@@ -5578,6 +5651,15 @@ def build_certificate() -> dict[str, Any]:
                 "coordinate-level sharpness witness, not a split-locator MCA "
                 "witness."
             ),
+            "conic_four_private_two_triangle_family_profile": (
+                "The two-disjoint-triangle residual is a genuine irreducible "
+                "conic branch for every pair of disjoint residual triples.  "
+                "The six points are co-conic identically.  If that conic were "
+                "reducible, one component line would contain at least three of "
+                "the six points; but any three selected points contain two "
+                "edges from one root triangle, whose line is a root-star line, "
+                "and the third selected edge does not contain that root."
+            ),
             "conic_four_private_two_triangle_sharpness_witness": (
                 "The two-disjoint-triangle residual is also a genuine "
                 "coordinate-level conic branch, not just a reducible artifact. "
@@ -5781,6 +5863,9 @@ def build_certificate() -> dict[str, Any]:
         "conic_four_private_tail_boundary_profile": conic_four_private_tail_boundary_rows,
         "conic_four_private_hexagon_sharpness_witness": (
             conic_four_private_hexagon_sharpness_witness
+        ),
+        "conic_four_private_two_triangle_family_profile": (
+            conic_four_private_two_triangle_family_profile
         ),
         "conic_four_private_two_triangle_sharpness_witness": (
             conic_four_private_two_triangle_sharpness_witness
@@ -6013,6 +6098,12 @@ def build_certificate() -> dict[str, Any]:
             ),
             "conic_four_private_two_triangle_sharpness_exponents": (
                 conic_four_private_two_triangle_sharpness_witness["subgroup_exponents"]
+            ),
+            "conic_four_private_two_triangle_family_status": (
+                conic_four_private_two_triangle_family_profile["status"]
+            ),
+            "conic_four_private_two_triangle_family_three_point_profile": (
+                conic_four_private_two_triangle_family_profile["three_point_profile"]
             ),
             "conic_four_private_two_triangle_sharpness_rank": (
                 conic_four_private_two_triangle_sharpness_witness["conic_matrix_rank"]
@@ -6252,6 +6343,7 @@ def build_certificate() -> dict[str, Any]:
             "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction",
             "conic four-private tail boundary is reduced to two-triangle or hexagon-factor residuals",
             "subgroup-coordinate hexagon nonvanishing is refuted by a six-cycle witness",
+            "two-triangle residual is proved irreducible by root-star incidence for all disjoint residual triples",
             "two-triangle reducibility dismissal is refuted by a nondegenerate conic witness",
         ],
         "nonclaims": [
