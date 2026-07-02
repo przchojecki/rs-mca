@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 low-degree dedup theorem
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  Exact-bucket dedup theorem; no
+  threshold or worst-case row claim.
+- **What is being added:** Turn 15 of the `A=384` underdetermined M5 packet:
+  in the full-row-rank low-degree side chart `c_j=0`, the unique
+  deficiency-one kernel locator has degree `<j`, so a split locator there is
+  charged to agreement `>=A+1` rather than counted as a new exact-`A` root.
+- **How it is useful:** Removes the low-degree side chart from the new
+  exact-`A=384` root-table obligation, leaving the rank-drop and top
+  pseudo-remainder charts as the substantive remaining branches.
+- **What to do next:** Continue with root-table accounting or a closure lemma
+  for the rank-drop and top-chart branches.
+
 ### 2026-07-02 - M5 A384 moment-support rank extension
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
