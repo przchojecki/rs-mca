@@ -1,0 +1,173 @@
+{
+  "schema_version": "cs25-v12-deployed-certificates-v1",
+  "source": "tex/cs25_cap_v12.tex, Table certs and adjacent deployed-profile corollary",
+  "status": "AUDIT",
+  "rows": {
+    "koalabear": {
+      "description": "KoalaBear sextic deployed row",
+      "base_prime": "2^31 - 2^24 + 1",
+      "extension_degree": 6,
+      "n": 2097152,
+      "k": 1048576,
+      "target_power": 128
+    },
+    "circle": {
+      "description": "Mersenne-31 circle line-round row over QM31",
+      "base_prime": "2^31 - 1",
+      "extension_degree": 4,
+      "n": 2097152,
+      "k": 1048576,
+      "target_power": 100
+    },
+    "ifree_circle": {
+      "description": "Mersenne-31 i-free stereographic circle-code row",
+      "base_prime": "2^31 - 1",
+      "n": 4194304,
+      "k": 2097153,
+      "target_power": 100
+    }
+  },
+  "checks": [
+    {
+      "id": "kb_mca_pf",
+      "kind": "prefix_mca",
+      "row": "koalabear",
+      "label": "KB MCA, PF",
+      "c": 16,
+      "N": 131072,
+      "m": 69748,
+      "w": 4211,
+      "delta_excess": 67392
+    },
+    {
+      "id": "kb_list_pf",
+      "kind": "prefix_list",
+      "row": "koalabear",
+      "label": "KB list, PF",
+      "c": 32,
+      "N": 65536,
+      "m": 34874,
+      "w": 2106,
+      "delta_excess": 67392,
+      "target_power": 128
+    },
+    {
+      "id": "circle_mca_pf",
+      "kind": "prefix_mca",
+      "row": "circle",
+      "label": "Circle MCA, PF",
+      "c": 32,
+      "N": 65536,
+      "m": 34873,
+      "w": 2104,
+      "delta_excess": 67360
+    },
+    {
+      "id": "circle_list_pf",
+      "kind": "prefix_list",
+      "row": "circle",
+      "label": "Circle list, PF",
+      "c": 32,
+      "N": 65536,
+      "m": 34874,
+      "w": 2106,
+      "delta_excess": 67392,
+      "target_power": 100
+    },
+    {
+      "id": "kb_mca_xh",
+      "kind": "explicit_head_mca",
+      "row": "koalabear",
+      "label": "KB MCA, XH",
+      "count_N": 256,
+      "count_m": 129
+    },
+    {
+      "id": "kb_list_xh",
+      "kind": "explicit_head_list",
+      "row": "koalabear",
+      "label": "KB list, XH",
+      "count_N": 63,
+      "count_m": 32,
+      "target_power": 128
+    },
+    {
+      "id": "circle_mca_xh",
+      "kind": "explicit_head_mca",
+      "row": "circle",
+      "label": "Circle MCA, XH",
+      "count_N": 256,
+      "count_m": 129
+    },
+    {
+      "id": "circle_list_xh",
+      "kind": "explicit_head_list",
+      "row": "circle",
+      "label": "Circle list, XH",
+      "count_N": 63,
+      "count_m": 32,
+      "target_power": 100
+    },
+    {
+      "id": "both_rows_mc",
+      "kind": "mutual_from_correlated",
+      "rows": ["koalabear", "circle"],
+      "label": "Both rows, MC",
+      "r": 524288
+    },
+    {
+      "id": "kb_safe_hj",
+      "kind": "half_johnson",
+      "row": "koalabear",
+      "label": "KB safe, HJ",
+      "r": 307121,
+      "L2": 1001282,
+      "target_power": 147
+    },
+    {
+      "id": "kb_safe_ch_import",
+      "kind": "conditional_half_import",
+      "row": "koalabear",
+      "label": "KB safe, CH import",
+      "r": 524288,
+      "target_power": 164
+    },
+    {
+      "id": "circle_safe_ch_import",
+      "kind": "conditional_half_import",
+      "row": "circle",
+      "label": "Circle safe, CH import",
+      "r": 524288,
+      "target_power": 102
+    },
+    {
+      "id": "kb_profile_pr",
+      "kind": "profile",
+      "row": "koalabear",
+      "label": "KB profile, PR",
+      "count_N": 256,
+      "count_m": 130,
+      "kappa_power": 54
+    },
+    {
+      "id": "circle_profile_corollary",
+      "kind": "profile",
+      "row": "circle",
+      "label": "Circle profile corollary",
+      "count_N": 256,
+      "count_m": 130,
+      "kappa_power": 116
+    },
+    {
+      "id": "ifree_circle_rf",
+      "kind": "rational_floor",
+      "row": "ifree_circle",
+      "label": "i-free circle, RF",
+      "N": 2097152,
+      "m": 1081345,
+      "w": 65536,
+      "dominance_power": 256,
+      "margin_power": 63000
+    }
+  ]
+}

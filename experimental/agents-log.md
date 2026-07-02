@@ -52,6 +52,28 @@ Keep entries concise and link to the relevant files.
   `tex/cs25_cap_v12.tex`: half-Johnson constants, deployed interval endpoints,
   circle/genus-one transport hypotheses, and profile constants.
 
+### 2026-07-02 - Paper D v12 deployed certificate replay
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/data/certificates/cs25-v12-deployed-certificates/`;
+  `experimental/notes/audits/cs25_v12_deployed_certificate_audit.md`;
+  `experimental/scripts/verify_cs25_v12_deployed_certificates.py`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.  Exact arithmetic replay of printed certificate
+  inequalities; no theorem-chain promotion.
+- **What is being added:** A machine-readable packet and verifier for the
+  deployed-row certificate table in Paper D v12, including optimized
+  prefix-floor rows, explicit-head rows, half-distance/half-Johnson
+  denominator checks, deployed profile checks, and the `i`-free circle
+  rational-floor margin.
+- **How it is useful:** Directly addresses the current v12 audit priority that
+  every "verified exactly" deployed-row inequality should have a reproducible
+  script or printed integer certificate.
+- **What to do next:** Extend the same packet style to the new
+  `towards-prize.tex` v2 constants (`alpha_rho`, ordinary-locator entropy
+  table, residual shortening image, and doubled-radius pair-list reductions).
+
 ### 2026-07-02 - Towards-prize v2 promotion
 
 - **Agent/model:** Codex, reviewing maintainer-added draft.
