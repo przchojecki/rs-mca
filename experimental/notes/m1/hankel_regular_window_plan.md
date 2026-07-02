@@ -937,6 +937,11 @@ For `A=385`, a common forced four-point base split-root core collapses the
 `P^4` auxiliary space to a single `Q`-class, so that fixed-core branch is
 projective-safe with total at most `2`; any over-budget separated branch must
 avoid such a common base core.
+The next fixed-core reduction factors a common three-point base core.  If a
+pairwise direction-consistency equation is nonzero on the residual projective
+`Q`-line, then at most two finite noncontained slopes survive and the endpoint
+gives total at most `3`.  The only residual in that fixed-three-core subcase is
+the ratio-identically-consistent `Q`-line.
 For `A=387`, the projective `Q`-space is a point, so the arbitrary-weight
 separated branch is already projective-safe with total at most `2`.
 For `A=386`, a no-common-component pair of direction conics gives projective
@@ -974,6 +979,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-base-core-closure/f17_32_n512_k256_m3_rank6_a385_base_core_closure.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cut.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

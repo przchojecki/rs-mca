@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A385 three-core quadratic cut
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cut.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a385_three_core_quadratic_cut.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/f17_32_m3_rank_witness_packet.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A separated `A=385` rank-6 fixed three-core
+  criterion: after a forced three-point base core is factored, any nonzero
+  pairwise direction-consistency quadratic on the residual `Q`-line gives at
+  most two finite noncontained slopes, hence projective total at most `3<=6`.
+- **How it is useful:** This narrows the remaining fixed-core `A=385`
+  obstruction to the ratio-identically-consistent `Q`-line, giving a concrete
+  structural target for the next attack instead of a broad low-core residual.
+- **What to do next:** Analyze the ratio-identically-consistent fixed
+  three-core line using slope-map, quotient, or split-locator structure; keep
+  moving-core, no-common-core, and overlapping-support cases separate.
+
 ### 2026-07-02 - A385 fixed base-core closure
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

@@ -173,6 +173,20 @@ four-point base-root core, then the base roots collapse the `deg Q<5` projective
 space to one `Q`-class.  The branch has at most one finite noncontained slope,
 and with the endpoint its projective total is at most `2`.
 
+The `A=385` three-core quadratic-cut packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/
+  f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json
+```
+
+handles the next fixed-core subcase.  A common forced three-point base core
+leaves a projective `Q`-line; if any pairwise direction-consistency equation is
+a nonzero binary quadratic on that line, the branch has at most two finite
+noncontained slopes, and with the endpoint its projective total is at most `3`.
+The remaining fixed-three-core residual is the ratio-identically-consistent
+`Q`-line.
+
 The `A=387` separated-boundary safety packet
 
 ```text
@@ -463,6 +477,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-base-core-closure/f17_32_n512_k256_m3_rank6_a385_base_core_closure.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cut.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v35"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v36"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -111,6 +111,10 @@ A385_BASE_CORE_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-base-core-closure/"
     "f17_32_n512_k256_m3_rank6_a385_base_core_closure.json"
 )
+A385_THREE_CORE_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/"
+    "f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json"
+)
 
 
 EXPECTED_SCHEMAS = {
@@ -135,6 +139,7 @@ EXPECTED_SCHEMAS = {
         "f17-32-m3-rank6-a386-separated-boundary-closure-v1"
     ),
     A385_BASE_CORE_REF: "f17-32-m3-rank6-a385-base-core-closure-v1",
+    A385_THREE_CORE_REF: "f17-32-m3-rank6-a385-three-core-quadratic-cut-v1",
 }
 
 
@@ -1886,6 +1891,80 @@ def check_a385_base_core_packet(data: dict[str, Any]) -> None:
     )
 
 
+def check_a385_three_core_packet(data: dict[str, Any]) -> None:
+    require(data["agreement"]["A"] == 385, "A385 three-core agreement mismatch")
+    require(data["status"] == "PROVED / AUDIT", "A385 three-core status mismatch")
+    summary = data["summary"]
+    require(
+        summary["boundary_defect_h"] == 5
+        and summary["projective_Q_search_dimension_before_core"] == 4
+        and summary["forced_base_core_size"] == 3
+        and summary["residual_vector_dimension_after_core"] == 2
+        and summary["projective_Q_search_dimension_after_core"] == 1,
+        "A385 three-core dimension summary mismatch",
+    )
+    require(
+        summary["nonzero_quadratic_finite_q_class_upper_bound"] == 2
+        and summary["finite_noncontained_parameter_upper_bound_under_quadratic_cut"] == 2
+        and summary["projective_endpoint_count"] == 1
+        and summary["support_wise_projective_total_upper_bound_under_quadratic_cut"] == 3
+        and summary["projective_budget"] == BUDGET,
+        "A385 three-core budget summary mismatch",
+    )
+    require(
+        summary["fixed_three_core_nonzero_quadratic_branch_projective_safe"]
+        and "identically" in summary["remaining_residual"],
+        "A385 three-core closure summary mismatch",
+    )
+    branches = {row["branch"]: row for row in data["branch_partition"]}
+    require(
+        set(branches)
+        == {
+            "nonzero_pairwise_direction_consistency_quadratic",
+            "all_pairwise_quadratics_identically_zero_on_the_Q_line",
+            "slope_free_points_on_the_Q_line",
+        },
+        "A385 three-core branch partition mismatch",
+    )
+    require(
+        branches["nonzero_pairwise_direction_consistency_quadratic"][
+            "finite_noncontained_parameter_upper_bound"
+        ]
+        == 2
+        and branches["nonzero_pairwise_direction_consistency_quadratic"][
+            "projective_total_upper_bound"
+        ]
+        == 3
+        and branches["all_pairwise_quadratics_identically_zero_on_the_Q_line"][
+            "status"
+        ]
+        == "named_residual"
+        and branches["slope_free_points_on_the_Q_line"][
+            "finite_noncontained_parameter_upper_bound"
+        ]
+        == 0,
+        "A385 three-core branch bounds mismatch",
+    )
+    nonclaims = set(data["nonclaims"])
+    require(
+        "does not close the ratio-identically-consistent fixed three-core Q-line residual"
+        in nonclaims,
+        "A385 three-core missing residual nonclaim",
+    )
+    require(
+        "does not close moving-core or no-common-core A=385 branches" in nonclaims,
+        "A385 three-core missing moving-core nonclaim",
+    )
+    require(
+        "does not classify overlapping-support rank-6 pencils" in nonclaims,
+        "A385 three-core missing overlap nonclaim",
+    )
+    require(
+        "does not produce a row-level M3 safe-side bound" in nonclaims,
+        "A385 three-core missing row-bound nonclaim",
+    )
+
+
 def build_certificate() -> dict[str, Any]:
     field = Field(P, MODULUS)
     descriptor = load_json(ROW_DESCRIPTOR_REF)
@@ -1901,6 +1980,7 @@ def build_certificate() -> dict[str, Any]:
     check_a386_moving_slope_packet(dependencies[A386_MOVING_SLOPE_REF])
     check_a386_separated_boundary_packet(dependencies[A386_SEPARATED_BOUNDARY_REF])
     check_a385_base_core_packet(dependencies[A385_BASE_CORE_REF])
+    check_a385_three_core_packet(dependencies[A385_THREE_CORE_REF])
 
     domain_encodings = descriptor["domain"]["domain_encodings"]
     require(len(domain_encodings) == N, "domain length mismatch")
@@ -1987,6 +2067,12 @@ def build_certificate() -> dict[str, Any]:
                 "the four base roots collapse the P^4 auxiliary Q-space to one projective Q-class, so the direction equations yield at most one finite noncontained parameter",
                 "after adding the single projective endpoint, the fixed-core branch has projective total at most 2<=6",
                 "any over-budget separated A=385 obstruction must avoid a common forced four-point base core in the counted branch",
+            ],
+            "a385_three_core_quadratic_cut": [
+                "inside the separated A=385 rank-6 boundary, a fixed three-point base split-root core leaves a projective Q-line",
+                "if at least one pairwise direction-consistency equation restricts to a nonzero binary quadratic on that Q-line, there are at most two compatible Q-classes",
+                "each compatible non-slope-free Q-class determines at most one finite noncontained slope, and the endpoint gives projective total at most 3<=6",
+                "the remaining fixed-three-core residual is exactly the ratio-identically-consistent Q-line where every pairwise direction-consistency quadratic vanishes identically",
             ],
             "a386_moving_slope_refinement": [
                 "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
@@ -2089,6 +2175,7 @@ def build_certificate() -> dict[str, Any]:
             "m4_affine_pivot_gcd_equivalence_count": 1,
             "a386_separated_boundary_closure_count": 1,
             "a385_base_core_closure_count": 1,
+            "a385_three_core_quadratic_cut_count": 1,
             "a386_moving_slope_refinement_count": 1,
             "m3_rank_node_dichotomy_count": 1,
             "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -2112,6 +2199,7 @@ def build_certificate() -> dict[str, Any]:
             "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
             "A=386 separated rank-6 boundary buckets are projective-safe after composing the conic, component-cut, slope-free, and moving-slope packets",
             "A=385 separated rank-6 boundary branches with a common forced four-point base core are projective-safe",
+            "A=385 separated rank-6 fixed three-core branches are projective-safe whenever a nonzero pairwise consistency quadratic cuts the residual Q-line",
             "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
             "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
             "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",

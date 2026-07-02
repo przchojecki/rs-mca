@@ -353,6 +353,7 @@
     "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
     "A=386 separated rank-6 boundary buckets are projective-safe after composing the conic, component-cut, slope-free, and moving-slope packets",
     "A=385 separated rank-6 boundary branches with a common forced four-point base core are projective-safe",
+    "A=385 separated rank-6 fixed three-core branches are projective-safe whenever a nonzero pairwise consistency quadratic cuts the residual Q-line",
     "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
     "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
     "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
@@ -495,7 +496,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v35",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v36",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -549,6 +550,10 @@
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-base-core-closure/f17_32_n512_k256_m3_rank6_a385_base_core_closure.json",
       "sha256": "3a922cb3941fd69b6038a97ab90ebc4151ea8f31c6f919c8670f05384314cbcc"
     },
+    "f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json",
+      "sha256": "28d6cd8a357679b188d94e2cd6955d7e9efd46305fe4468993c88e4579e3affe"
+    },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
       "sha256": "fbb5310c782a7740e97eddd07b7c1aa8b7c01d0d3cacf4f6b25a2f338faff48b"
@@ -581,11 +586,12 @@
   "status": "AUDIT",
   "summary": {
     "a385_base_core_closure_count": 1,
+    "a385_three_core_quadratic_cut_count": 1,
     "a386_moving_slope_refinement_count": 1,
     "a386_separated_boundary_closure_count": 1,
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 19,
+    "dependencies_checked": 20,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
     "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -606,6 +612,12 @@
       "the four base roots collapse the P^4 auxiliary Q-space to one projective Q-class, so the direction equations yield at most one finite noncontained parameter",
       "after adding the single projective endpoint, the fixed-core branch has projective total at most 2<=6",
       "any over-budget separated A=385 obstruction must avoid a common forced four-point base core in the counted branch"
+    ],
+    "a385_three_core_quadratic_cut": [
+      "inside the separated A=385 rank-6 boundary, a fixed three-point base split-root core leaves a projective Q-line",
+      "if at least one pairwise direction-consistency equation restricts to a nonzero binary quadratic on that Q-line, there are at most two compatible Q-classes",
+      "each compatible non-slope-free Q-class determines at most one finite noncontained slope, and the endpoint gives projective total at most 3<=6",
+      "the remaining fixed-three-core residual is exactly the ratio-identically-consistent Q-line where every pairwise direction-consistency quadratic vanishes identically"
     ],
     "a386_moving_slope_refinement": [
       "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",

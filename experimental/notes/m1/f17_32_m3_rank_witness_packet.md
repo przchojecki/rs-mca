@@ -542,6 +542,15 @@ finite noncontained slope, and the endpoint gives total projective contribution
 `<=2`.  An over-budget separated `A=385` obstruction must therefore avoid a
 common four-point base core.
 
+The `A=385` three-core quadratic-cut companion handles the next fixed-core
+subcase: after a common forced three-point base core is factored, the residual
+`Q`-space is a projective line.  If any pairwise direction-consistency equation
+restricts to a nonzero binary quadratic on that line, it leaves at most two
+compatible `Q`-classes, hence at most two finite noncontained slopes; adding
+the endpoint gives total projective contribution `<=3`.  The only fixed
+three-core residual left by this criterion is the ratio-identically-consistent
+`Q`-line.
+
 The `A=387` separated-boundary safety companion uses the `h=1` specialization
 to close that agreement for arbitrary nonzero separated weights: the finite
 root table has at most one ambient root, the split-locator gate cannot increase
@@ -869,6 +878,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-base-core-closure/f17_32_n512_k256_m3_rank6_a385_base_core_closure.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cut.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

@@ -96,6 +96,20 @@ noncontained slope.  Adding the endpoint gives projective total `<=2<=6`.
 Thus any over-budget separated `A=385` obstruction must avoid a common
 four-point base core in the counted branch.
 
+The next fixed-core companion is
+
+```text
+experimental/notes/m1/hankel_rank6_a385_three_core_quadratic_cut.md
+```
+
+After a fixed three-point base core is factored, the residual `Q`-space is a
+projective line.  If at least one pairwise direction-consistency equation is a
+nonzero binary quadratic on that line, it cuts the finite search to at most two
+projective `Q`-classes.  With one slope per compatible non-slope-free class
+and the endpoint added, the branch has projective total `<=3<=6`.  The
+remaining fixed-three-core residual is exactly the ratio-identically-consistent
+`Q`-line where all pairwise consistency quadratics vanish identically.
+
 At `A=387`, this transfer already closes the separated branch for arbitrary
 nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at
 most one finite slope.  The companion note
@@ -218,6 +232,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_boundary_low_degree_transfer
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_base_core_closure.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-base-core-closure/f17_32_n512_k256_m3_rank6_a385_base_core_closure.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_three_core_quadratic_cut.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json
 ```
 
 Nonclaims:
