@@ -432,6 +432,35 @@ the Johnson dependency neighborhood, then `N_A` is nonzero with positive
 average probability, and if the mean dominates that neighborhood by a large
 factor, the averaged model is concentrated.
 
+## Exponent-form concentration consumer
+
+For ledger comparisons it is useful to package the previous criterion in
+`n^B` form.  Since
+
+```text
+D_t(n,j) <= n^{2(t-1)},
+```
+
+the dependency-degree criterion gives
+
+```text
+Var(N_A) / E[N_A]^2 <= n^{2(t-1)} / E[N_A].
+```
+
+Consequently, for every `s >= 0`,
+
+```text
+E[N_A] >= n^{2(t-1)+s}
+    implies
+Var(N_A) / E[N_A]^2 <= n^{-s}.
+```
+
+The bound `D_t(n,j) <= n^{2(t-1)}` is the same common-core cover recorded in
+the Conjecture F reduction packet: the radius-`t-1` Johnson ball is covered by
+charts indexed by `(j-t+1)`-root cores.  Thus the exponent `2(t-1)` is not an
+extra probabilistic loss; it is the explicit common-root ledger cost of the
+FM1 covariance neighborhood.
+
 ## Averaged-existence consumer
 
 The exact second moment gives the following immediate averaged-existence
@@ -492,7 +521,7 @@ sanity check for the M3/M5 chart program, not a replacement for root tables.
 
 ## Verification
 
-The verifier records eight checks.
+The verifier records nine checks.
 
 1. **Surjectivity check, `F_13`.**  For `D=F_13^*`, `n=12`, `k=3`,
    `A=8`, `t=5`, `j=4`, every one of the `binom(12,4)=495`
@@ -520,7 +549,11 @@ rank S_{R,T} = 2t - max(0,t-j+|R cap T|).
 6. **Dependency-degree concentration criterion.**  The verifier compares the
    exact relative variance against the portable bound `D_t/E[N_A]` in three
    finite parameter sets, including the `F_13` row used for the rank checks.
-7. **Exact brute-force check, `F_5`.**  For `D=F_5^*`, `n=4`, `k=1`,
+7. **Exponent-form concentration consumer.**  The verifier checks the
+   arithmetic implication
+   `E[N_A] >= n^{2(t-1)+s} => Var(N_A)/E[N_A]^2 <= n^{-s}` in small and
+   deployed-shape parameter rows.
+8. **Exact brute-force check, `F_5`.**  For `D=F_5^*`, `n=4`, `k=1`,
    `A=3`, `t=2`, `j=1`, enumeration over all `5^8` word pairs gives
 
 ```text
@@ -539,7 +572,7 @@ binom(4,1) * (1 - 5^(-2)) * 5^(-1) = 96/125.
 
 and the exact second-moment / Paley-Zygmund formulas above.
 
-8. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
+9. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
    the script computes the FM1/Markov one-locator upper bound across
    `385 <= A <= 426` and verifies the endpoint ranges above.
 

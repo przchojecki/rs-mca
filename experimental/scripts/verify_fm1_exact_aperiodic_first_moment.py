@@ -332,11 +332,15 @@ def check_dependency_degree_concentration() -> tuple[bool, dict]:
         variance = second - mean * mean
         neighborhood = dependency_neighborhood(n, j, t)
         dependency = neighborhood["dependent_neighbors_including_self"]["value"]
+        coarse_dependency_bound = n ** (2 * (t - 1))
         variance_bound = dependency * mean
         relative_variance = variance / (mean * mean)
         relative_bound = Fraction(dependency, 1) / mean
+        coarse_relative_bound = Fraction(coarse_dependency_bound, 1) / mean
+        ok &= dependency <= coarse_dependency_bound
         ok &= variance <= variance_bound
         ok &= relative_variance <= relative_bound
+        ok &= relative_bound <= coarse_relative_bound
         rows.append({
             "q": q,
             "n": n,
@@ -347,9 +351,11 @@ def check_dependency_degree_concentration() -> tuple[bool, dict]:
             "mean": fraction_record(mean),
             "variance": fraction_record(variance),
             "dependency_neighborhood_size": dependency,
+            "coarse_dependency_bound_n_power": coarse_dependency_bound,
             "variance_upper_bound": fraction_record(variance_bound),
             "relative_variance": fraction_record(relative_variance),
             "relative_variance_upper_bound": fraction_record(relative_bound),
+            "coarse_relative_variance_upper_bound": fraction_record(coarse_relative_bound),
             "mean_over_dependency": fraction_record(mean / dependency),
             "criterion_gives_nonzero_probability": relative_bound < 1,
         })
@@ -359,6 +365,34 @@ def check_dependency_degree_concentration() -> tuple[bool, dict]:
             "and every joint event is contained in one locator event, "
             "Var(N_A) <= E[N_A] * D_t where D_t is the dependency "
             "neighborhood size. Hence Var(N_A)/E[N_A]^2 <= D_t/E[N_A]."
+        ),
+        "rows": rows,
+    }
+
+
+def check_exponent_concentration_consumer() -> tuple[bool, dict]:
+    rows = []
+    ok = True
+    for n, t, reserve in [(16, 1, 2), (512, 9, 4), (2 ** 20, 4, 8)]:
+        radius_exponent = 2 * (t - 1)
+        mean_threshold = n ** (radius_exponent + reserve)
+        dependency_bound = n ** radius_exponent
+        relative_bound = Fraction(dependency_bound, mean_threshold)
+        target = Fraction(1, n ** reserve)
+        ok &= relative_bound == target
+        rows.append({
+            "n": n,
+            "t": t,
+            "reserve_exponent_s": reserve,
+            "dependency_exponent_budget": radius_exponent,
+            "mean_threshold_exponent": radius_exponent + reserve,
+            "relative_variance_bound": fraction_record(relative_bound),
+            "target_n_power": f"n^-{reserve}",
+        })
+    return ok, {
+        "statement": (
+            "Using D_t(n,j) <= n^(2(t-1)), if E[N_A] >= n^(2(t-1)+s), "
+            "then Var(N_A)/E[N_A]^2 <= n^-s."
         ),
         "rows": rows,
     }
@@ -732,6 +766,7 @@ def build_report() -> dict:
     ok_overlap, overlap = check_overlap_excess_decomposition()
     ok_dependency, dependency = check_dependency_graph_consumer()
     ok_dep_concentration, dep_concentration = check_dependency_degree_concentration()
+    ok_exp_concentration, exp_concentration = check_exponent_concentration_consumer()
     ok_f5, f5 = check_f5_bruteforce()
     ok_window, window = check_f17_regular_window_tail()
     source = Path(__file__).read_text()
@@ -758,6 +793,10 @@ def build_report() -> dict:
             "neighborhood D_t, then the exact second moment is concentrated "
             "by Var(N_A)/E[N_A]^2 <= D_t/E[N_A]."
         ),
+        "exponent_concentration_consumer": (
+            "Since D_t(n,j) <= n^(2(t-1)), the sufficient condition "
+            "E[N_A] >= n^(2(t-1)+s) gives relative variance at most n^-s."
+        ),
         "definition": (
             "For a split degree-j locator ell, set a=S_ell(u), b=S_ell(v) in F_q^t. "
             "The locator is aligned when b != 0 and a lies in the one-dimensional span of b."
@@ -769,6 +808,7 @@ def build_report() -> dict:
             "overlap_excess_decomposition": overlap,
             "dependency_graph_consumer": dependency,
             "dependency_degree_concentration": dep_concentration,
+            "exponent_concentration_consumer": exp_concentration,
             "f5_bruteforce": f5,
             "f17_regular_window_markov_tail": window,
         },
@@ -779,6 +819,7 @@ def build_report() -> dict:
             and ok_overlap
             and ok_dependency
             and ok_dep_concentration
+            and ok_exp_concentration
             and ok_f5
             and ok_window
         ),
@@ -850,6 +891,14 @@ def main() -> None:
                         rel=row["relative_variance"]["decimal"],
                         bound=row["relative_variance_upper_bound"]["decimal"],
                         **row,
+                    )
+                )
+        elif name == "exponent_concentration_consumer":
+            for row in data["rows"]:
+                print(
+                    "        n={n}, t={t}, s={reserve_exponent_s}: "
+                    "mean exponent {mean_threshold_exponent} -> relvar <= {target_n_power}".format(
+                        **row
                     )
                 )
         elif name == "f5_bruteforce":
