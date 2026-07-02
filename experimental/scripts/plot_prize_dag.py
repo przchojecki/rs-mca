@@ -159,17 +159,25 @@ def main() -> None:
                 ang[cur] = ang[prev] + minsep
 
     Rmax = R[-1]
-    margin = 320
-    C = Rmax + margin
-    size = int(2 * C)
+    C = Rmax
     xy: dict[str, tuple[float, float]] = {}
     for v in nodes:
         r = R[ring[v]]
         xy[v] = (C + r * math.cos(ang[v]), C + r * math.sin(ang[v]))
 
-    svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" '
-           f'viewBox="0 0 {size} {size}" font-family="Helvetica,Arial,sans-serif">',
-           f'<rect width="{size}" height="{size}" fill="#fbfcfd"/>']
+    # crop the canvas to actual content (labels included), uniform margin
+    LBL_W, LBL_H, MARG = 270, 115, 70
+    xmin = min(x - LBL_W for x, _ in xy.values())
+    xmax = max(x + LBL_W for x, _ in xy.values())
+    ymin = min(y - LBL_H for _, y in xy.values())
+    ymax = max(y + LBL_H for _, y in xy.values())
+    dx, dy = MARG - xmin, MARG - ymin
+    Wd, Hd = int(xmax - xmin + 2 * MARG), int(ymax - ymin + 2 * MARG)
+
+    svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{Wd}" height="{Hd}" '
+           f'viewBox="0 0 {Wd} {Hd}" font-family="Helvetica,Arial,sans-serif">',
+           f'<rect width="{Wd}" height="{Hd}" fill="#fbfcfd"/>',
+           f'<g transform="translate({dx:.0f},{dy:.0f})">']
     for e in edges:             # polar-interpolated links (leave/arrive along radii)
         a1, r1 = ang[e["from"]], R[ring[e["from"]]]
         a2, r2 = ang[e["to"]], R[ring[e["to"]]]
@@ -216,7 +224,14 @@ def main() -> None:
             svg.append(f'<text x="{lx:.0f}" y="{ly + LINE_H * li:.0f}" text-anchor="{anchor}"'
                        f'{small}{weight}>{escape(line)}</text>')
         svg.append('</g>')
+    svg.append('</g>')   # end translated graph group
     lx0, ly0 = 60, 80
+    # legend collision check (informational): graph nodes inside the legend box?
+    leg_w, leg_h = 560, 620
+    clash = [v for v, (x, y) in xy.items()
+             if x + dx < lx0 + leg_w and y + dy < ly0 + leg_h]
+    if clash:
+        print(f"WARNING: {len(clash)} node(s) under the legend box: {clash[:4]}")
     counts2: dict[str, int] = {}
     for n in nodes.values():
         counts2[n["status"]] = counts2.get(n["status"], 0) + 1
@@ -237,7 +252,7 @@ def main() -> None:
     with open(path, "w") as fh:
         fh.write("\n".join(svg))
     print(f"wrote {path} ({len(nodes)} nodes, {len(edges)} edges, "
-          f"{nring} rings, Rmax {Rmax:.0f}, canvas {size}x{size})")
+          f"{nring} rings, Rmax {Rmax:.0f}, canvas {Wd}x{Hd})")
 
 
 if __name__ == "__main__":
