@@ -402,6 +402,67 @@ def check_top_chart_splitting_filter():
     return ok, d
 
 
+def check_toy_pseudoremainder_root_table():
+    """Declared affine toy family with a replayed top-chart root table.
+
+    The family is built from two planted split moment windows at z=0 and z=1:
+    W(z)=W0+z(W1-W0).  The replay enumerates all slopes, applies the Cramer
+    top-chart test, and records exactly those slopes whose Cramer locator
+    divides X^|H|-1.
+    """
+    p = 97
+    h = subgroup_of_order(p, 8)
+    j = 4
+    roots0 = tuple(h[:j])
+    roots1 = tuple(h[2:2 + j])
+    weights0 = [3, 7, 11, 19]
+    weights1 = [5, 13, 17, 23]
+    w0 = moments_from_support(roots0, weights0, 2 * j, p)
+    w1 = moments_from_support(roots1, weights1, 2 * j, p)
+    delta = [(b - a) % p for a, b in zip(w0, w1)]
+    root_table = []
+    rank_drop = low_degree = top_nonroots = 0
+    planted_ok = True
+    for z in range(p):
+        window = [(a + z * b) % p for a, b in zip(w0, delta)]
+        m = hankel(window, j, j)
+        rank, _ = rank_and_kernel_mod_p(m, p)
+        c = cramer_vector(m, p)
+        if rank < j:
+            rank_drop += 1
+            continue
+        if c[-1] == 0:
+            low_degree += 1
+            continue
+        if divides_x_order_minus_one(c, len(h), p):
+            roots = [x for x in h if eval_poly_mod_p(c, x, p) == 0]
+            root_table.append({
+                "slope": z,
+                "roots": roots,
+                "locator": poly_trim(c),
+            })
+        else:
+            top_nonroots += 1
+    slopes = {row["slope"] for row in root_table}
+    planted_ok &= 0 in slopes and 1 in slopes
+    for row in root_table:
+        if row["slope"] == 0:
+            planted_ok &= set(row["roots"]) == set(roots0)
+        if row["slope"] == 1:
+            planted_ok &= set(row["roots"]) == set(roots1)
+    ok = planted_ok and len(root_table) >= 2 and rank_drop + low_degree + top_nonroots + len(root_table) == p
+    d = [
+        f"declared F_{p}, |H|=8, j=t={j} affine family W(z)=W0+z(W1-W0)",
+        f"root table slopes = {[row['slope'] for row in root_table]} "
+        f"(rank_drop={rank_drop}, low_degree={low_degree}, top_nonroots={top_nonroots})",
+        "planted split slopes z=0 and z=1 are recovered with the planted root sets: "
+        f"{planted_ok}",
+        "root-table rule: enumerate full-rank top-chart slopes and retain exactly "
+        "those with zero pseudo-remainder modulo the Cramer locator",
+    ]
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop turn"]
 
@@ -412,7 +473,8 @@ CHECKS = [
     ("deficiency-1 kernel = Cramer minor vector",         check_cramer_kernel_vector),
     ("rank-drop split locators dedupe to higher A",       check_rankdrop_split_locator_dedup),
     ("pivot chart + splitting filter (X^n - 1)",          check_top_chart_splitting_filter),
-    ("eliminant or certified residual obstruction",       _pending),
+    ("toy pseudo-remainder root table",                   check_toy_pseudoremainder_root_table),
+    ("F17 root table packet or certified residual",       _pending),
     ("packet emission + v1 schema validation",            _pending),
 ]
 

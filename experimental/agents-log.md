@@ -123,14 +123,16 @@ Keep entries concise and link to the relevant files.
   same kernel, hence is charged to a higher-agreement bucket rather than counted
   as new exact-`A` mass.  The script adds exact toy checks for the Cramer kernel
   vector, the rank-drop deduplication mechanism, and the top-chart
-  divisibility filter `L_z | X^n-1`.
+  divisibility filter `L_z | X^n-1`.  It also adds a declared `F_97`
+  pseudo-remainder root-table replay whose planted split slopes are exactly
+  recovered.
 - **How it is useful:** This removes the valid-split rank-drop side branch from
   the first underdetermined M5 bucket and makes the full-rank top chart a
-  precise pseudo-remainder problem; the top pseudo-remainder root table is the
-  remaining finite branch to attack.
-- **What to do next:** Close or label the top-chart pseudo-remainder root-table
-  branch in a later increment, or pivot to the roadmap evidence program if that
-  is the current coordination priority.
+  precise pseudo-remainder problem; the F17 A384 pseudo-remainder root table is
+  the remaining finite branch to attack.
+- **What to do next:** Close or label the F17 top-chart pseudo-remainder
+  root-table branch in a later increment, or pivot to the roadmap evidence
+  program if that is the current coordination priority.
 
 ### 2026-07-02 - PR sweep: G3 toy evidence, v12 audits, and M5 A384 atlas
 

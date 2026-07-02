@@ -1,9 +1,9 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 3: bucket identification, Cramer
-  chart, rank-drop split-locator deduplication, and top-chart divisibility
-  filter done; eliminant/root-table machinery pending). No threshold, safety,
-  or worst-case row claim is made.
+- **Status:** ACTIVE / EXPERIMENTAL (turn 4: bucket identification, Cramer
+  chart, rank-drop split-locator deduplication, top-chart divisibility filter,
+  and a toy pseudo-remainder root table done; F17 root-table packet pending).
+  No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
   regular window `385 <= A <= 426`, synthetic rank ladders and kernel charts):
@@ -113,6 +113,24 @@ is cut out by the pseudo-remainder of `X^n-1` on division by `L_z`.  A
 full-rank top-chart slope whose Cramer locator does not divide `X^n-1` is not
 bad at exact agreement `A`.
 
+The verifier also includes a declared affine toy family over `F_97`.  Two
+planted split moment windows `W0,W1` on an order-8 subgroup are joined by
+
+```text
+W(z)=W0+z(W1-W0).
+```
+
+For every `z in F_97`, the verifier computes the deficiency-one Cramer locator,
+classifies rank-drop and low-degree slopes, and applies the top-chart
+pseudo-remainder test.  The resulting root table is exactly
+
+```text
+z in {0,1},
+```
+
+and these two slopes recover the two planted split root sets.  This is only a
+toy declared-family root table; it does not claim the corresponding F17 table.
+
 ## The bucket
 
 For exact agreement `A`, in the convention of the on-main extractor
@@ -189,10 +207,11 @@ subtraction deferred to M4 where it belongs.
 | 2 | deficiency-1 kernel = Cramer minor vector (lemma + exact toy verification) | **done** |
 | 3 | rank-drop split locators dedupe to higher agreement | **done** |
 | 4 | top-chart divisibility filter into `X^n - 1` | **done** |
-| 5 | eliminant `Q(Z)` on a declared input family, or certified `residual_obstruction` | pending |
-| 6 | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`, validated by `scripts/check_aperiodic_eliminant_packet.py` | pending |
+| 5 | toy pseudo-remainder root table on a declared affine family | **done** |
+| 6 | F17 root table packet or certified residual obstruction | pending |
+| 7 | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`, validated by `scripts/check_aperiodic_eliminant_packet.py` | pending |
 
-### Verified so far (turn 3)
+### Verified so far (turn 4)
 
 - **Bucket identification.** `regular(A) <=> 2A >= 769` swept over all
   `A in [257, 512]`; `A=385` regular (`t=129 >= j+1=128`), `A=384` not
@@ -220,6 +239,12 @@ subtraction deferred to M4 where it belongs.
   tests agree.  On the order-8 subgroup of `F_97`, all 70 planted split
   degree-4 top-chart cases are Cramer kernels and divide `X^8-1`.  This
   verifies the finite chart criterion used by the pseudo-remainder eliminant.
+- **Toy pseudo-remainder root table (`F_97`).** For the declared affine family
+  interpolating two planted split moment windows, all 97 slopes are classified.
+  The root table is exactly `[0, 1]`; there is one rank-drop slope, one
+  low-degree slope, and 93 full-rank top-chart nonroots.  The two table roots
+  recover the planted root sets, so the pseudo-remainder root-table mechanism
+  is replayed end to end on a finite declared family.
 
 ## Honest scope
 
@@ -232,6 +257,9 @@ subtraction deferred to M4 where it belongs.
   the regular window, not a threshold claim.
 - If the top pseudo-remainder root table cannot be closed, the end state will be a labelled
   `residual_obstruction` per §4.6 of the roadmap — named, not hidden.
+- The committed root table is a toy declared-family table.  It is evidence
+  that the mechanism is correctly wired, not evidence that the F17 A384
+  root table is small.
 
 ## Reproduce
 
