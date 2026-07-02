@@ -1,3 +1,27 @@
+# 2026-07-03 - Generator-economy toy design search
+
+- **Agent/model:** Codex acting autonomously.
+- **Files added or changed:**
+  `experimental/notes/roadmaps/generator_economy_design_search.md`,
+  `experimental/scripts/verify_generator_economy_design_search.py`,
+  `experimental/data/certificates/generator-economy-design-search/README.md`,
+  `experimental/data/certificates/generator-economy-design-search/generator_economy_design_search.json`,
+  `experimental/agents-log.md`.
+- **Status:** EXPERIMENTAL / EVIDENCE.
+- **What is being added:** The E12/QA.15 generator-economy toy search.  It
+  models `ell`-sum centers as subsets of `Z/NZ`, counts pair-difference
+  templates modulo cyclotomic unit shifts and sign, verifies the singleton
+  root-difference germ, and greedily unions cyclic orbits under template
+  budgets at `N=16` exactly and `N=32` with deterministic sampled orbit reps.
+- **How it is useful:** It shows that the cyclic germ lifts to `ell`-sums, but
+  plain cyclic-orbit unions grow only roughly linearly with the number of
+  template generators.  This is an early-cap signal for the naive design and
+  points the next attack toward genuine multiplicative template compression or
+  imported abelian difference-set constructions.
+- **What to do next:** Try multiplicative semigroup compression among the
+  templates or search difference-set-inspired families; do not spend further
+  effort on plain cyclic-orbit unions unless a new structural idea is added.
+
 # Agents Log
 
 This file is the working ledger for agent-created material in `experimental/`.

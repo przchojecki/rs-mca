@@ -1,0 +1,1753 @@
+{
+  "cases": [
+    {
+      "N_prime": 16,
+      "ambient_class_count": 12870,
+      "best_family_size_per_template": {
+        "ratio": 2.0,
+        "row": {
+          "family_size": 16,
+          "orbit_count": 1,
+          "orbit_size_prefix": [
+            16
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          ],
+          "template_budget": 8,
+          "template_generators_used": 8
+        }
+      },
+      "best_single_orbits": [
+        {
+          "orbit_size": 16,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "template_generators": 8
+        },
+        {
+          "orbit_size": 16,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8
+          ],
+          "template_generators": 8
+        },
+        {
+          "orbit_size": 16,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            9
+          ],
+          "template_generators": 8
+        },
+        {
+          "orbit_size": 16,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            10
+          ],
+          "template_generators": 8
+        },
+        {
+          "orbit_size": 16,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            11
+          ],
+          "template_generators": 8
+        }
+      ],
+      "ell_prime": 8,
+      "greedy_orbit_union_rows": [
+        {
+          "family_size": 16,
+          "orbit_count": 1,
+          "orbit_size_prefix": [
+            16
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ]
+          ],
+          "template_budget": 8,
+          "template_generators_used": 8
+        },
+        {
+          "family_size": 24,
+          "orbit_count": 2,
+          "orbit_size_prefix": [
+            16,
+            8
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            [
+              0,
+              1,
+              2,
+              3,
+              8,
+              9,
+              10,
+              11
+            ]
+          ],
+          "template_budget": 16,
+          "template_generators_used": 16
+        },
+        {
+          "family_size": 34,
+          "orbit_count": 4,
+          "orbit_size_prefix": [
+            16,
+            8,
+            8,
+            2
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            [
+              0,
+              1,
+              2,
+              3,
+              8,
+              9,
+              10,
+              11
+            ],
+            [
+              0,
+              2,
+              3,
+              5,
+              8,
+              10,
+              11,
+              13
+            ],
+            [
+              0,
+              2,
+              4,
+              6,
+              8,
+              10,
+              12,
+              14
+            ]
+          ],
+          "template_budget": 32,
+          "template_generators_used": 30
+        },
+        {
+          "family_size": 52,
+          "orbit_count": 5,
+          "orbit_size_prefix": [
+            16,
+            8,
+            8,
+            16,
+            4
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            [
+              0,
+              1,
+              2,
+              3,
+              8,
+              9,
+              10,
+              11
+            ],
+            [
+              0,
+              2,
+              3,
+              5,
+              8,
+              10,
+              11,
+              13
+            ],
+            [
+              0,
+              1,
+              4,
+              5,
+              6,
+              7,
+              10,
+              11
+            ],
+            [
+              0,
+              1,
+              4,
+              5,
+              8,
+              9,
+              12,
+              13
+            ]
+          ],
+          "template_budget": 64,
+          "template_generators_used": 62
+        },
+        {
+          "family_size": 80,
+          "orbit_count": 6,
+          "orbit_size_prefix": [
+            16,
+            8,
+            8,
+            16,
+            16,
+            16
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            [
+              0,
+              1,
+              2,
+              3,
+              8,
+              9,
+              10,
+              11
+            ],
+            [
+              0,
+              2,
+              3,
+              5,
+              8,
+              10,
+              11,
+              13
+            ],
+            [
+              0,
+              1,
+              4,
+              5,
+              6,
+              7,
+              10,
+              11
+            ],
+            [
+              0,
+              1,
+              2,
+              5,
+              6,
+              7,
+              11,
+              12
+            ]
+          ],
+          "template_budget": 128,
+          "template_generators_used": 125
+        },
+        {
+          "family_size": 130,
+          "orbit_count": 10,
+          "orbit_size_prefix": [
+            16,
+            8,
+            8,
+            16,
+            16,
+            16,
+            16,
+            16
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            [
+              0,
+              1,
+              2,
+              3,
+              8,
+              9,
+              10,
+              11
+            ],
+            [
+              0,
+              2,
+              3,
+              5,
+              8,
+              10,
+              11,
+              13
+            ],
+            [
+              0,
+              1,
+              4,
+              5,
+              6,
+              7,
+              10,
+              11
+            ],
+            [
+              0,
+              1,
+              2,
+              5,
+              6,
+              7,
+              11,
+              12
+            ]
+          ],
+          "template_budget": 256,
+          "template_generators_used": 249
+        }
+      ],
+      "mode": "exact_all_orbit_reps",
+      "orbit_representatives": 810,
+      "sampled_rep_count": null,
+      "singleton_root_difference_germ": {
+        "ell": 1,
+        "expected_template_generators": 8,
+        "orbit_size": 16,
+        "status": "PASS",
+        "template_generators": 8
+      }
+    },
+    {
+      "N_prime": 16,
+      "ambient_class_count": 11440,
+      "best_family_size_per_template": {
+        "ratio": 2.0,
+        "row": {
+          "family_size": 16,
+          "orbit_count": 1,
+          "orbit_size_prefix": [
+            16
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          ],
+          "template_budget": 8,
+          "template_generators_used": 8
+        }
+      },
+      "best_single_orbits": [
+        {
+          "orbit_size": 16,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "template_generators": 8
+        },
+        {
+          "orbit_size": 16,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9
+          ],
+          "template_generators": 8
+        },
+        {
+          "orbit_size": 16,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            10
+          ],
+          "template_generators": 8
+        },
+        {
+          "orbit_size": 16,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            11
+          ],
+          "template_generators": 8
+        },
+        {
+          "orbit_size": 16,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9
+          ],
+          "template_generators": 8
+        }
+      ],
+      "ell_prime": 9,
+      "greedy_orbit_union_rows": [
+        {
+          "family_size": 16,
+          "orbit_count": 1,
+          "orbit_size_prefix": [
+            16
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          ],
+          "template_budget": 8,
+          "template_generators_used": 8
+        },
+        {
+          "family_size": 16,
+          "orbit_count": 1,
+          "orbit_size_prefix": [
+            16
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ]
+          ],
+          "template_budget": 16,
+          "template_generators_used": 8
+        },
+        {
+          "family_size": 32,
+          "orbit_count": 2,
+          "orbit_size_prefix": [
+            16,
+            16
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            [
+              0,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              10
+            ]
+          ],
+          "template_budget": 32,
+          "template_generators_used": 29
+        },
+        {
+          "family_size": 48,
+          "orbit_count": 3,
+          "orbit_size_prefix": [
+            16,
+            16,
+            16
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            [
+              0,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              10
+            ],
+            [
+              0,
+              1,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              11
+            ]
+          ],
+          "template_budget": 64,
+          "template_generators_used": 62
+        },
+        {
+          "family_size": 64,
+          "orbit_count": 4,
+          "orbit_size_prefix": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            [
+              0,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              10
+            ],
+            [
+              0,
+              1,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              11
+            ],
+            [
+              0,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              10,
+              11
+            ]
+          ],
+          "template_budget": 128,
+          "template_generators_used": 104
+        },
+        {
+          "family_size": 96,
+          "orbit_count": 6,
+          "orbit_size_prefix": [
+            16,
+            16,
+            16,
+            16,
+            16,
+            16
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            [
+              0,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              10
+            ],
+            [
+              0,
+              1,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              11
+            ],
+            [
+              0,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              10,
+              11
+            ],
+            [
+              0,
+              2,
+              4,
+              5,
+              6,
+              7,
+              8,
+              10,
+              12
+            ]
+          ],
+          "template_budget": 256,
+          "template_generators_used": 220
+        }
+      ],
+      "mode": "exact_all_orbit_reps",
+      "orbit_representatives": 715,
+      "sampled_rep_count": null,
+      "singleton_root_difference_germ": {
+        "ell": 1,
+        "expected_template_generators": 8,
+        "orbit_size": 16,
+        "status": "PASS",
+        "template_generators": 8
+      }
+    },
+    {
+      "N_prime": 32,
+      "ambient_class_count": null,
+      "best_family_size_per_template": {
+        "ratio": 2.0,
+        "row": {
+          "family_size": 32,
+          "orbit_count": 1,
+          "orbit_size_prefix": [
+            32
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ]
+          ],
+          "template_budget": 16,
+          "template_generators_used": 16
+        }
+      },
+      "best_single_orbits": [
+        {
+          "orbit_size": 32,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "template_generators": 16
+        },
+        {
+          "orbit_size": 32,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            14,
+            20,
+            21,
+            24
+          ],
+          "template_generators": 16
+        },
+        {
+          "orbit_size": 32,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            11,
+            14,
+            15,
+            16,
+            20,
+            24,
+            25
+          ],
+          "template_generators": 16
+        },
+        {
+          "orbit_size": 32,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            11,
+            13,
+            14,
+            16,
+            19,
+            20,
+            22
+          ],
+          "template_generators": 16
+        },
+        {
+          "orbit_size": 32,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            13,
+            14,
+            16,
+            18,
+            19,
+            20,
+            22
+          ],
+          "template_generators": 16
+        }
+      ],
+      "ell_prime": 16,
+      "greedy_orbit_union_rows": [
+        {
+          "family_size": 2,
+          "orbit_count": 1,
+          "orbit_size_prefix": [
+            2
+          ],
+          "representative_prefix": [
+            [
+              0,
+              2,
+              4,
+              6,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18,
+              20,
+              22,
+              24,
+              26,
+              28,
+              30
+            ]
+          ],
+          "template_budget": 8,
+          "template_generators_used": 1
+        },
+        {
+          "family_size": 32,
+          "orbit_count": 1,
+          "orbit_size_prefix": [
+            32
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ]
+          ],
+          "template_budget": 16,
+          "template_generators_used": 16
+        },
+        {
+          "family_size": 34,
+          "orbit_count": 2,
+          "orbit_size_prefix": [
+            32,
+            2
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            [
+              0,
+              2,
+              4,
+              6,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18,
+              20,
+              22,
+              24,
+              26,
+              28,
+              30
+            ]
+          ],
+          "template_budget": 32,
+          "template_generators_used": 18
+        },
+        {
+          "family_size": 66,
+          "orbit_count": 3,
+          "orbit_size_prefix": [
+            32,
+            2,
+            32
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            [
+              0,
+              2,
+              4,
+              6,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18,
+              20,
+              22,
+              24,
+              26,
+              28,
+              30
+            ],
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              21,
+              22,
+              23,
+              24,
+              25
+            ]
+          ],
+          "template_budget": 64,
+          "template_generators_used": 62
+        },
+        {
+          "family_size": 66,
+          "orbit_count": 3,
+          "orbit_size_prefix": [
+            32,
+            2,
+            32
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            [
+              0,
+              2,
+              4,
+              6,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18,
+              20,
+              22,
+              24,
+              26,
+              28,
+              30
+            ],
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              21,
+              22,
+              23,
+              24,
+              25
+            ]
+          ],
+          "template_budget": 128,
+          "template_generators_used": 62
+        },
+        {
+          "family_size": 130,
+          "orbit_count": 5,
+          "orbit_size_prefix": [
+            32,
+            2,
+            32,
+            32,
+            32
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            [
+              0,
+              2,
+              4,
+              6,
+              8,
+              10,
+              12,
+              14,
+              16,
+              18,
+              20,
+              22,
+              24,
+              26,
+              28,
+              30
+            ],
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              21,
+              22,
+              23,
+              24,
+              25
+            ],
+            [
+              0,
+              2,
+              3,
+              5,
+              6,
+              8,
+              9,
+              11,
+              12,
+              14,
+              15,
+              17,
+              20,
+              23,
+              26,
+              29
+            ],
+            [
+              0,
+              1,
+              4,
+              5,
+              6,
+              9,
+              10,
+              13,
+              14,
+              15,
+              18,
+              19,
+              23,
+              24,
+              27,
+              28
+            ]
+          ],
+          "template_budget": 256,
+          "template_generators_used": 240
+        }
+      ],
+      "mode": "sampled_orbit_reps",
+      "orbit_representatives": 512,
+      "sampled_rep_count": 512,
+      "singleton_root_difference_germ": {
+        "ell": 1,
+        "expected_template_generators": 16,
+        "orbit_size": 32,
+        "status": "PASS",
+        "template_generators": 16
+      }
+    },
+    {
+      "N_prime": 32,
+      "ambient_class_count": null,
+      "best_family_size_per_template": {
+        "ratio": 2.0,
+        "row": {
+          "family_size": 32,
+          "orbit_count": 1,
+          "orbit_size_prefix": [
+            32
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16
+            ]
+          ],
+          "template_budget": 16,
+          "template_generators_used": 16
+        }
+      },
+      "best_single_orbits": [
+        {
+          "orbit_size": 32,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ],
+          "template_generators": 16
+        },
+        {
+          "orbit_size": 32,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            11,
+            12,
+            13,
+            17,
+            18,
+            23,
+            25
+          ],
+          "template_generators": 16
+        },
+        {
+          "orbit_size": 32,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            11,
+            12,
+            16,
+            20,
+            24,
+            25,
+            26
+          ],
+          "template_generators": 16
+        },
+        {
+          "orbit_size": 32,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            14,
+            15,
+            16,
+            20,
+            21,
+            23,
+            27
+          ],
+          "template_generators": 16
+        },
+        {
+          "orbit_size": 32,
+          "representative": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10,
+            14,
+            16,
+            17,
+            20,
+            21,
+            22,
+            27
+          ],
+          "template_generators": 16
+        }
+      ],
+      "ell_prime": 17,
+      "greedy_orbit_union_rows": [
+        {
+          "family_size": 0,
+          "orbit_count": 0,
+          "orbit_size_prefix": [],
+          "representative_prefix": [],
+          "template_budget": 8,
+          "template_generators_used": 0
+        },
+        {
+          "family_size": 32,
+          "orbit_count": 1,
+          "orbit_size_prefix": [
+            32
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16
+            ]
+          ],
+          "template_budget": 16,
+          "template_generators_used": 16
+        },
+        {
+          "family_size": 32,
+          "orbit_count": 1,
+          "orbit_size_prefix": [
+            32
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16
+            ]
+          ],
+          "template_budget": 32,
+          "template_generators_used": 16
+        },
+        {
+          "family_size": 64,
+          "orbit_count": 2,
+          "orbit_size_prefix": [
+            32,
+            32
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16
+            ],
+            [
+              0,
+              1,
+              2,
+              3,
+              6,
+              7,
+              8,
+              10,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              19,
+              20,
+              21
+            ]
+          ],
+          "template_budget": 64,
+          "template_generators_used": 64
+        },
+        {
+          "family_size": 64,
+          "orbit_count": 2,
+          "orbit_size_prefix": [
+            32,
+            32
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16
+            ],
+            [
+              0,
+              1,
+              2,
+              3,
+              6,
+              7,
+              8,
+              10,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              19,
+              20,
+              21
+            ]
+          ],
+          "template_budget": 128,
+          "template_generators_used": 64
+        },
+        {
+          "family_size": 128,
+          "orbit_count": 4,
+          "orbit_size_prefix": [
+            32,
+            32,
+            32,
+            32
+          ],
+          "representative_prefix": [
+            [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16
+            ],
+            [
+              0,
+              1,
+              2,
+              3,
+              6,
+              7,
+              8,
+              10,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              19,
+              20,
+              21
+            ],
+            [
+              0,
+              2,
+              3,
+              5,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              14,
+              15,
+              16,
+              19,
+              20,
+              21,
+              22
+            ],
+            [
+              0,
+              2,
+              3,
+              4,
+              6,
+              7,
+              8,
+              11,
+              12,
+              13,
+              14,
+              16,
+              18,
+              19,
+              20,
+              21,
+              22
+            ]
+          ],
+          "template_budget": 256,
+          "template_generators_used": 256
+        }
+      ],
+      "mode": "sampled_orbit_reps",
+      "orbit_representatives": 512,
+      "sampled_rep_count": 512,
+      "singleton_root_difference_germ": {
+        "ell": 1,
+        "expected_template_generators": 16,
+        "orbit_size": 32,
+        "status": "PASS",
+        "template_generators": 16
+      }
+    }
+  ],
+  "interpretation": {
+    "early_cap_seen": true,
+    "next_step": "Try genuinely multiplicative compression of templates, or import abelian difference-set constructions; plain cyclic-orbit unions appear capped early.",
+    "outcome": "CYCLIC_GERM_LIFTS_BUT_EARLY_TEMPLATE_CAP_IN_TOYS",
+    "summary": "The singleton root-difference germ lifts to l-sum cyclic orbits: an orbit of size N uses at most N/2 unit/sign templates.  Greedy unions at N=16 exact and N=32 sampled grow only roughly linearly with the template budget, so this baseline does not yet exhibit a large K/poly-style generator-economy design."
+  },
+  "nonclaims": [
+    "does not prove nonexistence of generator-economy designs",
+    "does not use or estimate locator-fiber counts",
+    "does not certify actual Row-C values modulo a prime",
+    "does not attempt multiplicative semigroup factorization among templates",
+    "N=32 cases use deterministic sampled orbit representatives"
+  ],
+  "object": "l-subset centers in Z/NZ; pair differences 1_S-1_T in Z[zeta_N] modulo cyclic unit shifts and sign",
+  "payload_sha256": "43ecaa3f5379c088c5712b141d6991b23719f0d75124ace8a8074c6996c2d4bd",
+  "roadmap_task": "E12 / QA.15 / generator_economy",
+  "schema": "generator_economy_design_search.v1",
+  "status": "EXPERIMENTAL_EVIDENCE",
+  "template_budgets": [
+    8,
+    16,
+    32,
+    64,
+    128,
+    256
+  ],
+  "template_generator_interpretation": "one norm check per unit/sign difference template; no multiplicative semigroup compression is attempted"
+}
