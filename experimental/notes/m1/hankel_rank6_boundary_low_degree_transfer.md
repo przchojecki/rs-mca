@@ -163,9 +163,11 @@ for forced external split-root core `e_G`.  In particular, a line component
 with `e_G<=71` is projective-safe after adding the endpoint.  For irreducible
 conics, pair-overlap packing closes the projective accounting for `e_G<=68`.
 Large-external-core lines and conics remain residual, but the packet factors
-their forced external core and reduces them to quotient split-locator problems
-of degree at most `54` and `57`, respectively.  It also records that, after
-puncturing the forced core, those quotient branches are inside the
+their forced external core more precisely: a high-core line is a
+dual-evaluation-fiber quotient pencil of degree at most `54`, while a high-core
+irreducible conic has a global common forced core across the whole `Q`-plane
+and becomes a quotient family of degree at most `57`.  It also records that,
+after puncturing the forced core, those quotient branches are inside the
 very-high-agreement tangent range of the punctured row.
 
 Replay:

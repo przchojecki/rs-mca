@@ -536,7 +536,7 @@
     },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
-      "sha256": "17949dc2cf8ac441f3d015450bc690512a69e70fd41c06b427cea4a015bbc3f7"
+      "sha256": "4d66bab5ae29f2d5f33647a54623b448474504a938a68d606ca13ca94b16bd7e"
     },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
@@ -583,7 +583,8 @@
     "a386_moving_slope_refinement": [
       "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
       "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
-      "the remaining high-core line and conic branches factor through quotient split-locator problems of degrees <=54 and <=57",
+      "the remaining high-core line branch is a dual-evaluation-fiber quotient pencil of degree <=54",
+      "the remaining high-core irreducible-conic branch has a global common forced core and becomes a quotient family of degree <=57",
       "after puncturing the forced core, those high-core quotient branches are tangent-range eligible on the punctured row, but this is not an original-row projective budget closure"
     ],
     "closed_by_current_lemmas": [

@@ -121,8 +121,10 @@ only large-external-core conics as residual.
 
 The high-external-core residual is then put in quotient normal form: after
 factoring the forced external core `C_E`, the remaining split-locator gate is a
-quotient divisor condition of degree at most `54` for residual lines and at
-most `57` for residual conics.
+quotient divisor condition.  A residual line is a dual-evaluation-fiber
+quotient pencil of degree at most `54`; a residual irreducible conic has a
+global common forced core across the whole `Q`-plane and becomes a quotient
+family of degree at most `57`.
 
 After deleting the forced core, those residual quotient branches also satisfy
 the very-high-agreement tangent inequality on the punctured row.  This records

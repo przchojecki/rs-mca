@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v5",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v6",
 }
 
 
@@ -304,6 +304,14 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         summary["conic_residual_punctured_tangent_numerator_at_threshold"] == 58,
         "conic punctured tangent numerator mismatch",
     )
+    require(
+        summary["line_high_core_forced_core_is_dual_evaluation_fiber"],
+        "line high-core forced-core classification missing",
+    )
+    require(
+        summary["conic_high_core_forced_core_is_global_common_core"],
+        "conic high-core forced-core classification missing",
+    )
     nonclaims = set(data["nonclaims"])
     require(
         "does not claim the punctured tangent numerator is within the original row budget" in nonclaims,
@@ -406,7 +414,8 @@ def build_certificate() -> dict[str, Any]:
             "a386_moving_slope_refinement": [
                 "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
                 "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
-                "the remaining high-core line and conic branches factor through quotient split-locator problems of degrees <=54 and <=57",
+                "the remaining high-core line branch is a dual-evaluation-fiber quotient pencil of degree <=54",
+                "the remaining high-core irreducible-conic branch has a global common forced core and becomes a quotient family of degree <=57",
                 "after puncturing the forced core, those high-core quotient branches are tangent-range eligible on the punctured row, but this is not an original-row projective budget closure",
             ],
             "m3_rank_node_dichotomy": [

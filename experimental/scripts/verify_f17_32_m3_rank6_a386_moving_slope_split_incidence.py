@@ -18,7 +18,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v5"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v6"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -244,12 +244,18 @@ def quotient_residual_row(
     forced_external_core_threshold: int,
     locator_degree: int,
     base_root_cap: int,
+    projective_source_dimension: int,
+    forced_core_gcd_arity: int,
+    forced_core_structure: str,
 ) -> dict[str, Any]:
     quotient_degree_bound = locator_degree - forced_external_core_threshold
     required_noncore_roots = locator_degree - base_root_cap - forced_external_core_threshold
     return {
         "component_type": component_type,
         "residual_forced_external_core_at_least": forced_external_core_threshold,
+        "projective_source_dimension_after_core_factor": projective_source_dimension,
+        "forced_core_gcd_arity": forced_core_gcd_arity,
+        "forced_core_structure": forced_core_structure,
         "quotient_degree_at_most": quotient_degree_bound,
         "required_noncore_external_roots_after_base_cap_at_most": max(required_noncore_roots, 0),
         "normal_form": (
@@ -498,12 +504,24 @@ def build_certificate() -> dict[str, Any]:
             line_residual_core_threshold,
             j_value,
             base_root_cap,
+            projective_source_dimension=1,
+            forced_core_gcd_arity=2,
+            forced_core_structure=(
+                "dual-evaluation fiber: the external evaluation functional "
+                "vanishes on the two-dimensional vector subspace underlying the line"
+            ),
         ),
         quotient_residual_row(
             "irreducible_conic",
             conic_residual_core_threshold,
             j_value,
             base_root_cap,
+            projective_source_dimension=2,
+            forced_core_gcd_arity=3,
+            forced_core_structure=(
+                "global common core: an irreducible conic is not contained in a "
+                "projective line, so the external evaluation functional is zero on the whole Q-plane"
+            ),
         ),
     ]
     punctured_tangent_rows = [
@@ -519,6 +537,22 @@ def build_certificate() -> dict[str, Any]:
     require(
         j_value - conic_residual_core_threshold == 57,
         "conic residual quotient degree mismatch",
+    )
+    require(
+        quotient_residual_rows[0]["projective_source_dimension_after_core_factor"] == 1,
+        "line residual should remain a projective line after core factoring",
+    )
+    require(
+        quotient_residual_rows[0]["forced_core_gcd_arity"] == 2,
+        "line residual forced core should be a two-polynomial gcd",
+    )
+    require(
+        quotient_residual_rows[1]["projective_source_dimension_after_core_factor"] == 2,
+        "irreducible conic residual should remain a projective plane family after core factoring",
+    )
+    require(
+        quotient_residual_rows[1]["forced_core_gcd_arity"] == 3,
+        "irreducible conic residual forced core should be a three-polynomial gcd",
     )
     for row in punctured_tangent_rows:
         require(
@@ -678,6 +712,16 @@ def build_certificate() -> dict[str, Any]:
                 "to quotient degree <=54, while residual conic components reduce "
                 "to quotient degree <=57."
             ),
+            "high_core_forced_core_structure": (
+                "The forced-core condition is a linear condition in the Q-plane.  "
+                "For a line component P(U), a forced external root is exactly an "
+                "external evaluation functional that vanishes on U, so C_E is a "
+                "two-polynomial gcd on the line's underlying vector subspace.  "
+                "For an irreducible conic, containment in a root hyperplane can "
+                "only occur when the evaluation functional is zero on the whole "
+                "Q-plane; hence C_E is a global common divisor of all three "
+                "basis kernel polynomials."
+            ),
             "punctured_high_agreement_tangent_reduction": (
                 "Deleting the forced external core E leaves a punctured RS row of "
                 "length n'=512-|E|, while the same witness has exact agreement "
@@ -778,6 +822,8 @@ def build_certificate() -> dict[str, Any]:
             "conic_residual_punctured_tangent_numerator_at_threshold": (
                 punctured_tangent_rows[1]["tangent_numerator_at_threshold"]
             ),
+            "line_high_core_forced_core_is_dual_evaluation_fiber": True,
+            "conic_high_core_forced_core_is_global_common_core": True,
             "remaining_unclosed_residuals": [
                 "moving-slope line component with forced external split-root core >=72 for projective accounting",
                 "irreducible moving-slope conic component with forced external split-root core >=69 for projective accounting",
@@ -801,6 +847,8 @@ def build_certificate() -> dict[str, Any]:
             "conic pair-overlap packing excludes seven Q-classes for e<=76",
             "high-core line residuals factor through quotient locators of degree <=54",
             "high-core conic residuals factor through quotient locators of degree <=57",
+            "line high-core forced roots are dual-evaluation fibers on a projective line",
+            "irreducible conic high-core forced roots are global common roots of the whole Q-plane",
             "high-core residuals satisfy the punctured high-agreement tangent inequality",
         ],
         "nonclaims": [

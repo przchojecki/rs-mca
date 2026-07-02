@@ -84,10 +84,12 @@ incidences on the moving component, using the base-support cap that nonzero
 `Q` has at most two roots on `X`.  It closes line components with forced
 external split-root core `e_G<=71`.  A conic pair-overlap packing step closes
 irreducible conics with `e_G<=68`; large-external-core lines and conics remain
-residual but factor through quotient split-locator problems of degree at most
-`54` and `57`, respectively.  After deleting the forced core, those quotient
-branches lie in the very-high-agreement tangent range of the punctured row,
-without claiming an original-budget closure.
+residual but have sharper quotient structure.  A high-core line is a
+dual-evaluation-fiber quotient pencil of degree at most `54`, while a high-core
+irreducible conic has a global common forced core across the whole `Q`-plane
+and becomes a quotient family of degree at most `57`.  After deleting the
+forced core, those quotient branches lie in the very-high-agreement tangent
+range of the punctured row, without claiming an original-budget closure.
 
 Replay:
 

@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 high-core forced-core structure
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `A=386` moving-slope packet now identifies the
+  high-core quotient residual: line components are dual-evaluation-fiber
+  quotient pencils, while irreducible conic components have a global common
+  forced core across the whole `Q`-plane.
+- **How it is useful:** This narrows the remaining rank-6 residual from a vague
+  high-core split-locator branch to concrete quotient/common-core objects that
+  can be paid or attacked by exact quotient root tables.
+- **What to do next:** Try to pay the dual-fiber pencil and global common-core
+  family through the quotient/tangent ledgers, or produce exact root tables for
+  the surviving quotient families.
+
 ### 2026-07-02 - M4 synthesis consumes A386 moving-slope packet
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

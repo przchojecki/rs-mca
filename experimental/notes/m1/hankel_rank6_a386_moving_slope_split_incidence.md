@@ -177,6 +177,36 @@ families of degree at most
 This is not a closure, but it makes the remaining branch a low-degree quotient
 split problem rather than a full degree-126 locator problem.
 
+The high-core quotient branch has a more precise forced-core structure.  Let
+`W` be the three-dimensional vector space of `Q`'s, and let
+
+```text
+ev_s: W -> F,        Q |-> L_Q(s)
+```
+
+be the external evaluation functional.  Then `E_s` is the projectivized kernel
+of `ev_s` when `ev_s` is nonzero, and is the whole `Q`-plane when `ev_s=0`.
+
+For a line component `G=P(U)`, a forced external root is exactly an `s` for
+which
+
+```text
+ev_s|_U = 0.
+```
+
+Equivalently, the forced core is a dual-evaluation fiber, and `C_E` is a common
+divisor of the two basis kernel polynomials spanning the line subspace `U`.
+After factoring `C_E`, the residual split problem is a projective-line quotient
+pencil of degree at most `54`.
+
+For an irreducible conic component, containment in a root hyperplane can occur
+only when `ev_s=0` on the whole `Q`-plane: a nonzero linear equation cuts a
+line, and an irreducible conic is not contained in a line.  Thus the high-core
+conic residual is not component-specific; its forced core is a global common
+divisor of all three basis kernel polynomials in the `Q`-plane.  After factoring
+that global core, the residual split problem is a projective-plane quotient
+family of degree at most `57`.
+
 The same high-core branches also lie in the high-agreement tangent range after
 puncturing away the forced external core.  Deleting a core `E` leaves a row of
 length

@@ -234,9 +234,11 @@ Using the base-support cap that `deg Q<3`, this sharpens to
 `floor(c(385-e_G)/(124-e_G))` for forced external split-root core `e_G`.  Line
 components with `e_G<=71` are projective-safe after the endpoint.  For
 irreducible conics, pair-overlap packing closes projective accounting for
-`e_G<=68`; large-external-core lines and conics remain residual but factor
-through quotient split-locator problems of degree at most `54` and `57`,
-respectively.  After puncturing the forced core they lie in the
+`e_G<=68`.  Large-external-core lines and conics remain residual, but their
+forced cores now have a sharper structure: a high-core line is a
+dual-evaluation-fiber quotient pencil of degree at most `54`, while a high-core
+irreducible conic has a global common forced core and becomes a quotient family
+of degree at most `57`.  After puncturing the forced core they lie in the
 very-high-agreement tangent range of the punctured row; this records
 tangent-ledger eligibility, not original-budget closure.
 
