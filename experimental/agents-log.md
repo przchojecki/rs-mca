@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 single-saving closure ledger
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md`;
+  `experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `A=386` moving-slope packet now has a
+  single-saving closure ledger for every row that is exactly one over budget.
+- **How it is useful:** The ledger covers all `19` one-over rows: line
+  `e_G=72..80`, conic `e_G=69..76`, and the line/conic punctured-tangent tail
+  at `e_G=120`.  In each row, any one listed saving lowers the projective count
+  from `7` to the budget `6`.
+- **What to do next:** Target one of the ledger savings directly: endpoint
+  payment, duplicate finite slopes, missing split classes, or one paid/absent
+  punctured tangent slope at `e_G=120`.
+
 ### 2026-07-02 - A386 one-over design catalog
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

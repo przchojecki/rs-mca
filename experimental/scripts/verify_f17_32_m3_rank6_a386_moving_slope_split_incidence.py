@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v18"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v19"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -532,6 +532,60 @@ def tangent_tail_over_budget_survival_row(
         "punctured_cosupport_radius": saturation_row["punctured_cosupport_radius"],
         "punctured_length": saturation_row["punctured_length"],
         "breakers": [
+            "one punctured tangent slope absent",
+            "one duplicate slope after returning to the original branch",
+            "one slope paid by tangent, quotient, extension, or containment",
+        ],
+    }
+
+
+def single_saving_closure_row(survival_row: dict[str, Any]) -> dict[str, Any]:
+    """A one-over row closes after any one of these single-saving events."""
+    component_type = survival_row["component_type"]
+    core = survival_row["forced_external_core_size"]
+    if component_type == "line":
+        return {
+            "component_type": component_type,
+            "forced_external_core_size": core,
+            "one_over_source": "external incidence plus endpoint",
+            "dangerous_projective_count": PROJECTIVE_BUDGET + 1,
+            "safe_projective_count_after_one_saving": PROJECTIVE_BUDGET,
+            "sufficient_single_savings": [
+                "at most five finite split Q-classes",
+                "at most five distinct finite slopes",
+                "one duplicate among the six finite slopes",
+                "projective endpoint absent or paid",
+                "external/base incidence deficit exceeds the printed slack",
+            ],
+        }
+    if component_type == "irreducible_conic":
+        return {
+            "component_type": component_type,
+            "forced_external_core_size": core,
+            "one_over_source": "pair-overlap packing plus endpoint",
+            "dangerous_projective_count": PROJECTIVE_BUDGET + 1,
+            "safe_projective_count_after_one_saving": PROJECTIVE_BUDGET,
+            "sufficient_single_savings": [
+                "at most five finite split Q-classes",
+                "at most five distinct finite slopes",
+                "one duplicate among the six finite slopes",
+                "projective endpoint absent or paid",
+                "too few external-root secants for the printed pair-overlap threshold",
+            ],
+        }
+    raise AssertionError(f"unknown one-over component type: {component_type}")
+
+
+def tangent_tail_single_saving_closure_row(survival_row: dict[str, Any]) -> dict[str, Any]:
+    """Single-saving closure row for the e=120 punctured-tangent one-over case."""
+    return {
+        "component_type": survival_row["component_type"],
+        "forced_external_core_size": survival_row["forced_external_core_size"],
+        "one_over_source": "punctured projective tangent",
+        "dangerous_projective_count": survival_row["dangerous_projective_count"],
+        "safe_projective_count_after_one_saving": PROJECTIVE_BUDGET,
+        "sufficient_single_savings": [
+            "punctured projective tangent count at most six",
             "one punctured tangent slope absent",
             "one duplicate slope after returning to the original branch",
             "one slope paid by tangent, quotient, extension, or containment",
@@ -1493,6 +1547,14 @@ def build_certificate() -> dict[str, Any]:
         locator_degree=j_value,
         external_root_count=external_root_count,
     )
+    single_saving_closure_rows = (
+        [single_saving_closure_row(row) for row in line_survival_rows]
+        + [single_saving_closure_row(row) for row in conic_survival_rows]
+        + [
+            tangent_tail_single_saving_closure_row(row)
+            for row in tangent_tail_survival_rows
+        ]
+    )
     require(line_residual_core_threshold == 72, "line residual threshold mismatch")
     require(conic_residual_core_threshold == 69, "conic residual threshold mismatch")
     require(
@@ -2125,6 +2187,30 @@ def build_certificate() -> dict[str, Any]:
         ],
         "conic one-over design catalog changed",
     )
+    require(
+        [
+            (row["component_type"], row["forced_external_core_size"], row["one_over_source"])
+            for row in single_saving_closure_rows
+        ]
+        == [
+            *[("line", core, "external incidence plus endpoint") for core in range(72, 81)],
+            *[
+                ("irreducible_conic", core, "pair-overlap packing plus endpoint")
+                for core in range(69, 77)
+            ],
+            ("line", 120, "punctured projective tangent"),
+            ("irreducible_conic", 120, "punctured projective tangent"),
+        ],
+        "single-saving closure ledger coverage changed",
+    )
+    require(
+        all(
+            row["dangerous_projective_count"] == PROJECTIVE_BUDGET + 1
+            and row["safe_projective_count_after_one_saving"] == PROJECTIVE_BUDGET
+            for row in single_saving_closure_rows
+        ),
+        "single-saving closure ledger should be exactly one over budget",
+    )
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -2380,6 +2466,13 @@ def build_certificate() -> dict[str, Any]:
                 "cores 72..76 allow all 28; pair-overlap pressure disappears "
                 "from cores 75 and 76."
             ),
+            "single_saving_closure_ledger": (
+                "Every currently one-over row in the moving-slope packet is "
+                "listed in a single-saving closure ledger.  The ledger covers "
+                "line cores 72..80, conic cores 69..76, and the line/conic "
+                "punctured-tangent tail at core 120.  In each row, any one listed "
+                "saving lowers the projective count from 7 to the budget 6."
+            ),
         },
         "budget_formula": {
             "locator_degree_j": j_value,
@@ -2483,6 +2576,7 @@ def build_certificate() -> dict[str, Any]:
                 conic_one_over_design_catalog_rows
             ),
         },
+        "single_saving_closure_ledger": single_saving_closure_rows,
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -2606,6 +2700,12 @@ def build_certificate() -> dict[str, Any]:
             ),
             "conic_e69_design_local_profiles": conic_e69_design_local_profiles,
             "conic_one_over_design_catalog": conic_one_over_design_catalog_rows,
+            "single_saving_closure_ledger_count": len(single_saving_closure_rows),
+            "single_saving_closure_ledger_core_ranges": {
+                "line_external_incidence": [72, 80],
+                "irreducible_conic_pair_overlap": [69, 76],
+                "punctured_tangent_tail": [120, 120],
+            },
             "conic_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows
             ),
@@ -2649,6 +2749,7 @@ def build_certificate() -> dict[str, Any]:
             "line e=72 and conic e=69 extremal multiplicity profiles are enumerated",
             "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
             "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
+            "every one-over moving-slope residual row has a single-saving closure ledger entry",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",

@@ -356,6 +356,14 @@ external slack, not base splitting.  For conic cores `e_G=69..76`, the counts
 are `2,16,27,28,28,28,28,28`; from `e_G=72` onward all base histograms are
 possible, and pair-overlap pressure disappears completely at `e_G=75,76`.
 
+Finally, the packet includes a single-saving closure ledger for every row that
+is exactly one over budget: line cores `72..80`, conic cores `69..76`, and the
+punctured-tangent tail at `e_G=120` for both component types.  In each of these
+`19` rows, any one listed saving lowers the current projective count from `7`
+to the budget `6`: one missing split class, one duplicate finite slope, an
+absent/paid endpoint, the relevant incidence/secant deficit, or, at `e_G=120`,
+one missing/paid/duplicated punctured tangent slope.
+
 Replay:
 
 ```sh

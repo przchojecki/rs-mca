@@ -189,7 +189,8 @@
     "line e=72 and conic e=69 extremal finite design shapes are enumerated",
     "line e=72 and conic e=69 extremal multiplicity profiles are enumerated",
     "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
-    "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated"
+    "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
+    "every one-over moving-slope residual row has a single-saving closure ledger entry"
   ],
   "conic_pair_overlap_sample_rows": [
     {
@@ -3892,7 +3893,273 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v18",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v19",
+  "single_saving_closure_ledger": [
+    {
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 72,
+      "one_over_source": "external incidence plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ]
+    },
+    {
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 73,
+      "one_over_source": "external incidence plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ]
+    },
+    {
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 74,
+      "one_over_source": "external incidence plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ]
+    },
+    {
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 75,
+      "one_over_source": "external incidence plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ]
+    },
+    {
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 76,
+      "one_over_source": "external incidence plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ]
+    },
+    {
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 77,
+      "one_over_source": "external incidence plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ]
+    },
+    {
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 78,
+      "one_over_source": "external incidence plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ]
+    },
+    {
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 79,
+      "one_over_source": "external incidence plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ]
+    },
+    {
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 80,
+      "one_over_source": "external incidence plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "external/base incidence deficit exceeds the printed slack"
+      ]
+    },
+    {
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 69,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ]
+    },
+    {
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 70,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ]
+    },
+    {
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 71,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ]
+    },
+    {
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 72,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ]
+    },
+    {
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 73,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ]
+    },
+    {
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 74,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ]
+    },
+    {
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 75,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ]
+    },
+    {
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 76,
+      "one_over_source": "pair-overlap packing plus endpoint",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "at most five finite split Q-classes",
+        "at most five distinct finite slopes",
+        "one duplicate among the six finite slopes",
+        "projective endpoint absent or paid",
+        "too few external-root secants for the printed pair-overlap threshold"
+      ]
+    },
+    {
+      "component_type": "line",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 120,
+      "one_over_source": "punctured projective tangent",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "punctured projective tangent count at most six",
+        "one punctured tangent slope absent",
+        "one duplicate slope after returning to the original branch",
+        "one slope paid by tangent, quotient, extension, or containment"
+      ]
+    },
+    {
+      "component_type": "irreducible_conic",
+      "dangerous_projective_count": 7,
+      "forced_external_core_size": 120,
+      "one_over_source": "punctured projective tangent",
+      "safe_projective_count_after_one_saving": 6,
+      "sufficient_single_savings": [
+        "punctured projective tangent count at most six",
+        "one punctured tangent slope absent",
+        "one duplicate slope after returning to the original branch",
+        "one slope paid by tangent, quotient, extension, or containment"
+      ]
+    }
+  ],
   "source_artifacts": {
     "a386_global_component_slope_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json",
@@ -4797,7 +5064,22 @@
       "moving-slope line component with forced external split-root core in 72..120 for projective accounting",
       "irreducible moving-slope conic component with forced external split-root core in 69..120 for projective accounting",
       "possible independent noncontained vectors at slopes also admitting a slope-free vector"
-    ]
+    ],
+    "single_saving_closure_ledger_core_ranges": {
+      "irreducible_conic_pair_overlap": [
+        69,
+        76
+      ],
+      "line_external_incidence": [
+        72,
+        80
+      ],
+      "punctured_tangent_tail": [
+        120,
+        120
+      ]
+    },
+    "single_saving_closure_ledger_count": 19
   },
   "theorem": {
     "base_interpolation_injective": "The linear map Q -> L_Q is injective: if L_Q=0 then Q vanishes on the base support X of size m=127, impossible for deg Q<3 unless Q=0.",
@@ -4823,6 +5105,7 @@
     "one_over_saturation_profile": "If a one-over finite-incidence branch actually reaches six finite Q-classes, the root sets must nearly saturate the incidence inequality.  For line cores e_G=72..80 the six external root sets are pairwise disjoint and have total external excess at most 5e_G-359.  For conic cores e_G=69..76, six classes require at least max(0,359-5e_G) pair-overlap events before any external excess.  The e_G=120 cases are different: they would have to saturate the punctured projective tangent bound itself.",
     "over_budget_survival_profile": "A genuine over-budget witness in a one-over row must saturate the source-class bound, have six distinct finite slopes, and keep the projective endpoint unpaid.  Line cores e_G=72,73,74 also force near-complete, positive, and weak base-splitting pressure respectively.  Conic cores e_G=69,70,71 force almost complete, dense, and nontrivial external-secants respectively.",
     "punctured_high_agreement_tangent_reduction": "Deleting the forced external core E leaves a punctured RS row of length n'=512-|E|, while the same witness has exact agreement 386 and co-support radius r'=126-|E|.  Since r' <= floor((n'-256)/3) for |E|>=61, every remaining high-core branch lies in the very-high-agreement tangent-staircase range of the punctured row.",
+    "single_saving_closure_ledger": "Every currently one-over row in the moving-slope packet is listed in a single-saving closure ledger.  The ledger covers line cores 72..80, conic cores 69..76, and the line/conic punctured-tangent tail at core 120.  In each row, any one listed saving lowers the projective count from 7 to the budget 6.",
     "very_high_core_projective_tail_closure": "The high-agreement projective tangent staircase applies to the punctured row and bounds finite plus infinity slopes together by r'+1=127-|E|.  Hence every high-core branch with |E|>=121 has projective contribution at most 6.  This closes the very-high-core tail but leaves the intermediate high-core quotient range unresolved."
   },
   "unrefined_sample_budget_rows": [
