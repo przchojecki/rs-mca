@@ -7,7 +7,7 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_reductions.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`.
 
-This note records sixteen elementary reductions around the fiber-rigidity
+This note records seventeen elementary reductions around the fiber-rigidity
 statement called Conjecture F in the proof sketch.  They do not prove the
 primitive core.  Their role is to remove two paid structures from the statement
 to settle the dimension-one base case, and to restate the remaining primitive
@@ -356,6 +356,74 @@ line-pairs, giving the displayed bound.
 This is the QF.4 skeleton used by the roadmap: simple arrangements are handled
 by the sharp pair count, while repeated-line violations are not new primitive
 mass; they are common-divisor charts one degree lower.
+
+## Corollary 6B: Sparse-Dependence Descent
+
+Let `W <= K[X]_{<=j}` have projective dimension `d`, and let
+`T subset H` have size `w`.  Suppose the evaluation functionals on `T` have a
+full-support linear dependence on `W`: there are nonzero scalars
+`lambda_t`, `t in T`, such that
+
+```text
+sum_{t in T} lambda_t L(t) = 0          for every L in W.
+```
+
+Then every locator point `[L] in P(W) cap D_j(H)` with at least `w-1` roots in
+`T` contains all roots of `T`.  Consequently the `T`-containing branch has a
+common divisor
+
+```text
+G_T(X)=prod_{t in T}(X-t)
+```
+
+and division by `G_T` injects it into
+
+```text
+P(W(-T)/G_T) cap D_{j-w}(H\T).
+```
+
+If `rho` is the rank of the `T`-evaluation map on `W`, then `rho <= w-1` and
+
+```text
+dim P(W(-T)/G_T) = d-rho
+```
+
+whenever the branch is nonempty.  Hence the quantity `j-d` drops by
+
+```text
+w-rho >= 1.
+```
+
+After removing the `T`-containing branch, every residual locator contains at
+most `w-2` roots of `T`.
+
+**Proof.**  If `L` vanishes at all roots of `T` except possibly `t0`, the
+displayed dependence reduces to
+
+```text
+lambda_{t0} L(t0)=0.
+```
+
+Since `lambda_{t0}` is nonzero, `L(t0)=0`.  Thus any locator containing
+`w-1` roots of `T` contains all of `T`.  The all-contained branch is then
+exactly a common-GCD branch with divisor `G_T`, so Lemma 1 gives the injection
+after division.
+
+The vector space `W(-T)` is the kernel of the `T`-evaluation map on `W`, so
+its vector dimension is `dim W-rho`.  Division by `G_T` is a linear injection,
+and therefore the reduced projective dimension is `d-rho`.  The assumed
+linear dependence gives `rho <= w-1`, which yields
+
+```text
+(j-w)-(d-rho) = (j-d) - (w-rho) <= (j-d)-1.
+```
+
+The residual assertion is the contrapositive of the closure statement.
+
+This is the sparse descent rung used after the QF.4 twin split: a low-support
+dual relation is not a new primitive source by itself.  Its near-saturated
+locators are paid by common-GCD descent, and the remaining locators have a
+strictly smaller overlap with that sparse support.
 
 ## Lemma 7: Fixed-Dimension Incidence Bound
 
@@ -766,9 +834,10 @@ random gcd-trivial pencils, checks the hyperplane-concurrency equivalence on
 deterministic random gcd-trivial projective planes, verifies the vanishing-flat
 dimension bound, verifies the projective-plane pair-counting bound including
 forced repeated-line planes, verifies the twin-line decomposition into
-common-GCD line charts plus the sharp simple-line residual, and verifies the
-fixed-dimension incidence bound on random subspaces plus the sharp full-space
-case.  It also verifies the
+common-GCD line charts plus the sharp simple-line residual, verifies the
+sparse-dependence closure/descent rule on forced sparse relation spaces, and
+verifies the fixed-dimension incidence bound on random subspaces plus the
+sharp full-space case.  It also verifies the
 common-root corollary on forced common-root subspaces and the
 fixed-dimensional quotient-pullback consumer, plus the proper quotient-union
 bound at `n=16,j=8` across the scales `M in {2,4,8}`.  It also checks the

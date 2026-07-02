@@ -98,6 +98,78 @@
       ]
     },
     {
+      "checked_relations": 9,
+      "closure_forced_hits": 393,
+      "max_depth_gain": 1,
+      "max_rank_defect": 1,
+      "name": "sparse_dependence_descent",
+      "records": [
+        {
+          "all_contained_hits": 91,
+          "depth_gain": 1,
+          "evaluation_rank": 1,
+          "hits": 102,
+          "projective_dimension": 3,
+          "reduced_j": 2,
+          "reduced_projective_dimension": 2,
+          "support_size": 2
+        },
+        {
+          "all_contained_hits": 13,
+          "depth_gain": 1,
+          "evaluation_rank": 2,
+          "hits": 32,
+          "projective_dimension": 3,
+          "reduced_j": 1,
+          "reduced_projective_dimension": 1,
+          "support_size": 3
+        },
+        {
+          "all_contained_hits": 1,
+          "depth_gain": 1,
+          "evaluation_rank": 3,
+          "hits": 16,
+          "projective_dimension": 3,
+          "reduced_j": 0,
+          "reduced_projective_dimension": 0,
+          "support_size": 4
+        },
+        {
+          "all_contained_hits": 13,
+          "depth_gain": 1,
+          "evaluation_rank": 2,
+          "hits": 28,
+          "projective_dimension": 3,
+          "reduced_j": 1,
+          "reduced_projective_dimension": 1,
+          "support_size": 3
+        },
+        {
+          "all_contained_hits": 91,
+          "depth_gain": 1,
+          "evaluation_rank": 1,
+          "hits": 99,
+          "projective_dimension": 3,
+          "reduced_j": 2,
+          "reduced_projective_dimension": 2,
+          "support_size": 2
+        },
+        {
+          "all_contained_hits": 91,
+          "depth_gain": 1,
+          "evaluation_rank": 1,
+          "hits": 100,
+          "projective_dimension": 3,
+          "reduced_j": 2,
+          "reduced_projective_dimension": 2,
+          "support_size": 2
+        }
+      ],
+      "residual_hits": 119,
+      "statement": "A full-support sparse dependence among evaluation functionals forces all-but-one root closure; the all-contained branch divides by the support locator and decreases j-d by at least one.",
+      "status": "PASS"
+    },
+    {
       "checked_random_subspaces": 191,
       "j": 4,
       "max_hits_by_projective_dimension": {
@@ -724,6 +796,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "bf0a6ddceb78892fa4d00227aae4fa5bfc1b80fd0d771e248fe0b5685e58aa4d",
+  "script_sha256": "1520540f1ff08a9b66ab6d5502fff3fbf077f3be1967449f66f57e6e96537359",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

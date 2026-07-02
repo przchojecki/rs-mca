@@ -13,6 +13,9 @@ the identities over F_97 with H = mu_16:
   pair-counting bound #D_j <= binom(n,2)/(j-1).
 * repeated evaluation lines in a projective plane decompose into common-GCD
   twin charts plus a residual simple-line bound.
+* sparse evaluation dependencies force a closure/descent rule: containing
+  all but one dependent root forces the last root, and the all-contained
+  branch drops degree by more than projective dimension.
 * vanishing on m domain points cuts any degree <= j subspace down to dimension
   at most j+1-m.
 * fixed projective dimension d gives #D_j <= binom(n,d).
@@ -1835,6 +1838,188 @@ def check_twin_line_decomposition(H: list[int]) -> dict:
     }
 
 
+def sparse_relation_space(
+    roots: tuple[int, ...], weights: tuple[int, ...], max_degree: int
+) -> list[tuple[int, ...]]:
+    relation = [
+        sum(weight * pow(root, degree, P) for root, weight in zip(roots, weights)) % P
+        for degree in range(max_degree + 1)
+    ]
+    coeff_basis = nullspace_vectors_mod_p([relation], max_degree + 1)
+    return [trim(coeffs) for coeffs in coeff_basis]
+
+
+def check_sparse_dependence_descent(H: list[int]) -> dict:
+    """Verify the closure and depth-gain accounting for sparse dependencies."""
+    D = divisor_set(H, J_VOTING)
+    rng = random.Random(SEED + 12)
+    checked_relations = 0
+    closure_forced_hits = 0
+    residual_hits = 0
+    max_rank_defect = 0
+    max_depth_gain = 0
+    records = []
+
+    cases: list[tuple[tuple[int, ...], tuple[int, ...]]] = [
+        (tuple(H[:2]), (1, P - 1)),
+        (tuple(H[:3]), (1, 2, 3)),
+        (tuple(H[3:7]), (2, 5, 7, 11)),
+    ]
+    for _ in range(6):
+        width = rng.choice([2, 3, 4])
+        roots = tuple(rng.sample(H, width))
+        weights = tuple(rng.randrange(1, P) for _ in range(width))
+        cases.append((roots, weights))
+
+    for roots, weights in cases:
+        if any(weight % P == 0 for weight in weights):
+            return {
+                "name": "sparse_dependence_descent",
+                "status": "FAIL",
+                "reason": "relation weight was not full-support",
+                "roots": list(roots),
+            }
+        basis = sparse_relation_space(roots, weights, J_VOTING)
+        if rank_polys(basis, J_VOTING + 1) != J_VOTING:
+            return {
+                "name": "sparse_dependence_descent",
+                "status": "FAIL",
+                "reason": "forced relation space had unexpected dimension",
+                "roots": list(roots),
+                "basis_size": len(basis),
+            }
+        relation_values = [
+            sum(weight * poly_eval(poly, root) for root, weight in zip(roots, weights)) % P
+            for poly in basis
+        ]
+        if any(relation_values):
+            return {
+                "name": "sparse_dependence_descent",
+                "status": "FAIL",
+                "reason": "basis did not satisfy sparse relation",
+                "roots": list(roots),
+                "relation_values": relation_values,
+            }
+
+        eval_rows = [[poly_eval(poly, root) for poly in basis] for root in roots]
+        eval_rank = matrix_rank(eval_rows)
+        if eval_rank > len(roots) - 1:
+            return {
+                "name": "sparse_dependence_descent",
+                "status": "FAIL",
+                "reason": "dependent root evaluations had full rank",
+                "roots": list(roots),
+                "rank": eval_rank,
+            }
+        max_rank_defect = max(max_rank_defect, len(roots) - eval_rank)
+
+        hits = [poly for poly in D if in_span(poly, basis, J_VOTING + 1)]
+        root_set_T = set(roots)
+        all_contained = []
+        for poly in hits:
+            hit_roots = set(locator_roots(poly, H))
+            overlap = len(hit_roots & root_set_T)
+            if overlap >= len(roots) - 1 and not root_set_T <= hit_roots:
+                return {
+                    "name": "sparse_dependence_descent",
+                    "status": "FAIL",
+                    "reason": "locator contained all but one dependent root",
+                    "roots": list(roots),
+                    "locator_roots": list(hit_roots),
+                }
+            if root_set_T <= hit_roots:
+                all_contained.append(poly)
+            else:
+                residual_hits += 1
+                if overlap > len(roots) - 2:
+                    return {
+                        "name": "sparse_dependence_descent",
+                        "status": "FAIL",
+                        "reason": "residual kept too many dependent roots",
+                        "roots": list(roots),
+                        "locator_roots": list(hit_roots),
+                    }
+
+        G = locator(roots)
+        reduced_H = [x for x in H if x not in root_set_T]
+        reduced_j = J_VOTING - len(roots)
+        vanishing_basis = subspace_vanishing_basis(basis, roots)
+        reduced_basis = [poly_div_exact(poly, G) for poly in vanishing_basis]
+        reduced_rank = rank_polys(reduced_basis, reduced_j + 1)
+        projective_dimension = len(basis) - 1
+        reduced_projective_dimension = max(-1, reduced_rank - 1)
+        expected_reduced_projective_dimension = projective_dimension - eval_rank
+        if reduced_projective_dimension != expected_reduced_projective_dimension:
+            return {
+                "name": "sparse_dependence_descent",
+                "status": "FAIL",
+                "reason": "projective dimension drop did not match evaluation rank",
+                "roots": list(roots),
+                "reduced_projective_dimension": reduced_projective_dimension,
+                "expected": expected_reduced_projective_dimension,
+            }
+        depth_gain = (J_VOTING - projective_dimension) - (
+            reduced_j - reduced_projective_dimension
+        )
+        if depth_gain < 1:
+            return {
+                "name": "sparse_dependence_descent",
+                "status": "FAIL",
+                "reason": "degree-minus-dimension did not improve",
+                "roots": list(roots),
+                "depth_gain": depth_gain,
+            }
+        max_depth_gain = max(max_depth_gain, depth_gain)
+
+        reduced_D = divisor_set(reduced_H, reduced_j)
+        for poly in all_contained:
+            reduced = poly_div_exact(poly, G)
+            if reduced not in reduced_D:
+                return {
+                    "name": "sparse_dependence_descent",
+                    "status": "FAIL",
+                    "reason": "all-contained hit did not reduce to smaller divisor set",
+                    "roots": list(roots),
+                }
+            if not in_span(reduced, reduced_basis, reduced_j + 1):
+                return {
+                    "name": "sparse_dependence_descent",
+                    "status": "FAIL",
+                    "reason": "reduced hit left reduced sparse chart",
+                    "roots": list(roots),
+                }
+
+        closure_forced_hits += len(all_contained)
+        checked_relations += 1
+        if len(records) < 6:
+            records.append({
+                "support_size": len(roots),
+                "evaluation_rank": eval_rank,
+                "projective_dimension": projective_dimension,
+                "reduced_j": reduced_j,
+                "reduced_projective_dimension": reduced_projective_dimension,
+                "depth_gain": depth_gain,
+                "hits": len(hits),
+                "all_contained_hits": len(all_contained),
+            })
+
+    return {
+        "name": "sparse_dependence_descent",
+        "status": "PASS",
+        "statement": (
+            "A full-support sparse dependence among evaluation functionals "
+            "forces all-but-one root closure; the all-contained branch divides "
+            "by the support locator and decreases j-d by at least one."
+        ),
+        "checked_relations": checked_relations,
+        "closure_forced_hits": closure_forced_hits,
+        "residual_hits": residual_hits,
+        "max_rank_defect": max_rank_defect,
+        "max_depth_gain": max_depth_gain,
+        "records": records,
+    }
+
+
 def check_plane_pair_counting_bound(H: list[int]) -> dict:
     rng = random.Random(SEED + 3)
     accepted = 0
@@ -1942,6 +2127,7 @@ def build_report() -> dict:
         check_vanishing_flat_bound(H),
         check_plane_pair_counting_bound(H),
         check_twin_line_decomposition(H),
+        check_sparse_dependence_descent(H),
         check_fixed_dimension_incidence_bound(H),
         check_common_root_fixed_dimension_bound(H),
         check_quotient_fixed_dimension_bound(H),

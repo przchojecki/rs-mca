@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Conjecture F sparse-dependence descent
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_reduction_lemmas.md`;
+  `experimental/scripts/verify_conjecture_f_reductions.py`;
+  `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`;
+  `experimental/data/certificates/conjecture-f-reductions/README.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL verifier.
+- **What is being added:** A sparse-dependence descent corollary: a
+  full-support low-weight dependence among evaluation functionals forces
+  all-but-one root closure, routes the all-contained branch through
+  common-GCD division, and decreases `j-d` by at least one.
+- **How it is useful:** This is the QF.7 proof-side rung following the E7
+  twin evidence: sparse degeneracies are converted into smaller Conjecture F
+  charts rather than treated as new primitive mass.
+- **What to do next:** Combine this with the dual-distance frame to classify
+  which sparse dependencies can occur in the consumer flats, then stress-test
+  many-sparse flats as a separate evidence packet.
+
 ### 2026-07-02 - Conjecture F twin-line plane decomposition
 
 - **Agent/model:** Codex acting autonomously for Allen Graham Hart.
