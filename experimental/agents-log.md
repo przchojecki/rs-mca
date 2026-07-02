@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 one-over design catalog
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md`;
+  `experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `A=386` moving-slope packet now records a compact
+  exact design catalog for the whole endpoint-only finite-incidence one-over
+  range, not only the first line/conic rows.
+- **How it is useful:** Line cores `e_G=72..80` have allowed histogram counts
+  `2,16,27,28^6`; conic cores `e_G=69..76` have counts `2,16,27,28^5`.
+  This shows precisely where base splitting and pair-overlap pressure disappear
+  and where later arguments must use a different saving.
+- **What to do next:** Use the catalog to split future closure attempts: base
+  collision arguments for the first few cores, and quotient/tangent/external
+  slack arguments once all base histograms are possible.
+
 ### 2026-07-02 - A386 extremal local incidence profiles
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

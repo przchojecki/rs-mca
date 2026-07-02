@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v17",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v18",
 }
 
 
@@ -671,6 +671,48 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         ],
         "conic e=69 design local profiles",
     )
+    line_catalog = summary["line_one_over_design_catalog"]
+    require(
+        [row["forced_external_core_size"] for row in line_catalog]
+        == list(range(72, 81)),
+        "line one-over catalog core range",
+    )
+    require(
+        [row["allowed_base_root_histogram_count"] for row in line_catalog]
+        == [2, 16, 27, 28, 28, 28, 28, 28, 28],
+        "line one-over catalog histogram counts",
+    )
+    require(
+        [row["unused_nonforced_external_root_line_range"] for row in line_catalog]
+        == [[0, 1], [0, 6], [0, 11], [4, 16], [9, 21], [14, 26], [19, 31], [24, 36], [29, 41]],
+        "line one-over catalog unused ranges",
+    )
+    require(
+        [row["all_histograms_allowed"] for row in line_catalog]
+        == [False, False, False, True, True, True, True, True, True],
+        "line one-over catalog all-histogram flags",
+    )
+    conic_catalog = summary["conic_one_over_design_catalog"]
+    require(
+        [row["forced_external_core_size"] for row in conic_catalog]
+        == list(range(69, 77)),
+        "conic one-over catalog core range",
+    )
+    require(
+        [row["allowed_base_root_histogram_count"] for row in conic_catalog]
+        == [2, 16, 27, 28, 28, 28, 28, 28],
+        "conic one-over catalog histogram counts",
+    )
+    require(
+        [row["required_pair_overlap_range"] for row in conic_catalog]
+        == [[14, 15], [9, 15], [4, 15], [0, 11], [0, 6], [0, 1], [0, 0], [0, 0]],
+        "conic one-over catalog pair-overlap ranges",
+    )
+    require(
+        [row["zero_pair_overlap_allowed"] for row in conic_catalog]
+        == [False, False, False, True, True, True, True, True],
+        "conic one-over catalog zero-overlap flags",
+    )
     nonclaims = set(data["nonclaims"])
     require(
         "does not claim the punctured tangent numerator at the residual threshold is within the original row budget"
@@ -787,6 +829,7 @@ def build_certificate() -> dict[str, Any]:
                 "extremal design accounting leaves two line partition shapes and three conic secant-cover shapes",
                 "extremal multiplicity accounting leaves line profiles (1,312,0)/(0,313,0) and conic profiles (1,300,15)/(0,302,14)/(0,301,15)",
                 "local incidence accounting leaves line singleton sequences 52^6 or (53,52^5), and conic secant/singleton profiles (5^6;50^6), ((4,4,5,5,5,5);(51,51,50,50,50,50)), or (5^6;(51,50,50,50,50,50))",
+                "the endpoint-only one-over finite-incidence range has a compact exact catalog: line histogram counts 2,16,27,28^6 across e_G=72..80 and conic counts 2,16,27,28^5 across e_G=69..76",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",

@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v17"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v18"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -783,6 +783,74 @@ def exact_conic_root_budget_alternatives(
     return alternatives
 
 
+def line_one_over_design_catalog(
+    forced_external_core_sizes: list[int],
+    locator_degree: int,
+    external_root_count: int,
+) -> list[dict[str, Any]]:
+    """Compact exact design catalog for the line one-over finite-incidence range."""
+    rows: list[dict[str, Any]] = []
+    for core in forced_external_core_sizes:
+        alternatives = exact_line_root_budget_alternatives(
+            core, locator_degree, external_root_count
+        )
+        base_totals = [row["total_base_root_incidences"] for row in alternatives]
+        unused = [row["unused_nonforced_external_root_lines"] for row in alternatives]
+        histograms = [row["base_root_histogram"] for row in alternatives]
+        rows.append(
+            {
+                "forced_external_core_size": core,
+                "allowed_base_root_histogram_count": len(alternatives),
+                "total_base_root_incidence_range": [min(base_totals), max(base_totals)],
+                "unused_nonforced_external_root_line_range": [min(unused), max(unused)],
+                "all_zero_base_root_histogram_allowed": [FINITE_BUDGET, 0, 0] in histograms,
+                "all_histograms_allowed": len(alternatives)
+                == len(base_root_histograms(0)),
+            }
+        )
+    return rows
+
+
+def conic_one_over_design_catalog(
+    forced_external_core_sizes: list[int],
+    locator_degree: int,
+    external_root_count: int,
+) -> list[dict[str, Any]]:
+    """Compact exact design catalog for the conic one-over finite-incidence range."""
+    rows: list[dict[str, Any]] = []
+    for core in forced_external_core_sizes:
+        alternatives = exact_conic_root_budget_alternatives(
+            core, locator_degree, external_root_count
+        )
+        base_totals = [row["total_base_root_incidences"] for row in alternatives]
+        required_overlaps = [
+            row["required_pair_overlaps_before_external_excess"]
+            for row in alternatives
+        ]
+        missing_secants = [
+            row["maximum_missing_secants_before_external_excess"]
+            for row in alternatives
+        ]
+        histograms = [row["base_root_histogram"] for row in alternatives]
+        rows.append(
+            {
+                "forced_external_core_size": core,
+                "allowed_base_root_histogram_count": len(alternatives),
+                "total_base_root_incidence_range": [min(base_totals), max(base_totals)],
+                "required_pair_overlap_range": [
+                    min(required_overlaps),
+                    max(required_overlaps),
+                ],
+                "maximum_missing_secant_range": [min(missing_secants), max(missing_secants)],
+                "all_zero_base_root_histogram_allowed": [FINITE_BUDGET, 0, 0] in histograms,
+                "zero_pair_overlap_allowed": min(required_overlaps) == 0,
+                "all_histograms_allowed": len(alternatives)
+                == len(base_root_histograms(0)),
+            }
+        )
+    return rows
+
+
 def class_sizes_from_histogram(
     histogram: list[int],
     forced_external_core_size: int,
@@ -1415,6 +1483,16 @@ def build_certificate() -> dict[str, Any]:
     conic_e69_design_local_profiles = conic_design_local_profiles(
         conic_e69_extremal_design_shapes
     )
+    line_one_over_design_catalog_rows = line_one_over_design_catalog(
+        line_incidence_one_over_cores,
+        locator_degree=j_value,
+        external_root_count=external_root_count,
+    )
+    conic_one_over_design_catalog_rows = conic_one_over_design_catalog(
+        conic_pair_one_over_cores,
+        locator_degree=j_value,
+        external_root_count=external_root_count,
+    )
     require(line_residual_core_threshold == 72, "line residual threshold mismatch")
     require(conic_residual_core_threshold == 69, "conic residual threshold mismatch")
     require(
@@ -1883,6 +1961,170 @@ def build_certificate() -> dict[str, Any]:
         ],
         "conic e=69 design local profiles changed",
     )
+    require(
+        line_one_over_design_catalog_rows
+        == [
+            {
+                "forced_external_core_size": 72,
+                "allowed_base_root_histogram_count": 2,
+                "total_base_root_incidence_range": [11, 12],
+                "unused_nonforced_external_root_line_range": [0, 1],
+                "all_zero_base_root_histogram_allowed": False,
+                "all_histograms_allowed": False,
+            },
+            {
+                "forced_external_core_size": 73,
+                "allowed_base_root_histogram_count": 16,
+                "total_base_root_incidence_range": [6, 12],
+                "unused_nonforced_external_root_line_range": [0, 6],
+                "all_zero_base_root_histogram_allowed": False,
+                "all_histograms_allowed": False,
+            },
+            {
+                "forced_external_core_size": 74,
+                "allowed_base_root_histogram_count": 27,
+                "total_base_root_incidence_range": [1, 12],
+                "unused_nonforced_external_root_line_range": [0, 11],
+                "all_zero_base_root_histogram_allowed": False,
+                "all_histograms_allowed": False,
+            },
+            {
+                "forced_external_core_size": 75,
+                "allowed_base_root_histogram_count": 28,
+                "total_base_root_incidence_range": [0, 12],
+                "unused_nonforced_external_root_line_range": [4, 16],
+                "all_zero_base_root_histogram_allowed": True,
+                "all_histograms_allowed": True,
+            },
+            {
+                "forced_external_core_size": 76,
+                "allowed_base_root_histogram_count": 28,
+                "total_base_root_incidence_range": [0, 12],
+                "unused_nonforced_external_root_line_range": [9, 21],
+                "all_zero_base_root_histogram_allowed": True,
+                "all_histograms_allowed": True,
+            },
+            {
+                "forced_external_core_size": 77,
+                "allowed_base_root_histogram_count": 28,
+                "total_base_root_incidence_range": [0, 12],
+                "unused_nonforced_external_root_line_range": [14, 26],
+                "all_zero_base_root_histogram_allowed": True,
+                "all_histograms_allowed": True,
+            },
+            {
+                "forced_external_core_size": 78,
+                "allowed_base_root_histogram_count": 28,
+                "total_base_root_incidence_range": [0, 12],
+                "unused_nonforced_external_root_line_range": [19, 31],
+                "all_zero_base_root_histogram_allowed": True,
+                "all_histograms_allowed": True,
+            },
+            {
+                "forced_external_core_size": 79,
+                "allowed_base_root_histogram_count": 28,
+                "total_base_root_incidence_range": [0, 12],
+                "unused_nonforced_external_root_line_range": [24, 36],
+                "all_zero_base_root_histogram_allowed": True,
+                "all_histograms_allowed": True,
+            },
+            {
+                "forced_external_core_size": 80,
+                "allowed_base_root_histogram_count": 28,
+                "total_base_root_incidence_range": [0, 12],
+                "unused_nonforced_external_root_line_range": [29, 41],
+                "all_zero_base_root_histogram_allowed": True,
+                "all_histograms_allowed": True,
+            },
+        ],
+        "line one-over design catalog changed",
+    )
+    require(
+        conic_one_over_design_catalog_rows
+        == [
+            {
+                "forced_external_core_size": 69,
+                "allowed_base_root_histogram_count": 2,
+                "total_base_root_incidence_range": [11, 12],
+                "required_pair_overlap_range": [14, 15],
+                "maximum_missing_secant_range": [0, 1],
+                "all_zero_base_root_histogram_allowed": False,
+                "zero_pair_overlap_allowed": False,
+                "all_histograms_allowed": False,
+            },
+            {
+                "forced_external_core_size": 70,
+                "allowed_base_root_histogram_count": 16,
+                "total_base_root_incidence_range": [6, 12],
+                "required_pair_overlap_range": [9, 15],
+                "maximum_missing_secant_range": [0, 6],
+                "all_zero_base_root_histogram_allowed": False,
+                "zero_pair_overlap_allowed": False,
+                "all_histograms_allowed": False,
+            },
+            {
+                "forced_external_core_size": 71,
+                "allowed_base_root_histogram_count": 27,
+                "total_base_root_incidence_range": [1, 12],
+                "required_pair_overlap_range": [4, 15],
+                "maximum_missing_secant_range": [0, 11],
+                "all_zero_base_root_histogram_allowed": False,
+                "zero_pair_overlap_allowed": False,
+                "all_histograms_allowed": False,
+            },
+            {
+                "forced_external_core_size": 72,
+                "allowed_base_root_histogram_count": 28,
+                "total_base_root_incidence_range": [0, 12],
+                "required_pair_overlap_range": [0, 11],
+                "maximum_missing_secant_range": [4, 15],
+                "all_zero_base_root_histogram_allowed": True,
+                "zero_pair_overlap_allowed": True,
+                "all_histograms_allowed": True,
+            },
+            {
+                "forced_external_core_size": 73,
+                "allowed_base_root_histogram_count": 28,
+                "total_base_root_incidence_range": [0, 12],
+                "required_pair_overlap_range": [0, 6],
+                "maximum_missing_secant_range": [9, 15],
+                "all_zero_base_root_histogram_allowed": True,
+                "zero_pair_overlap_allowed": True,
+                "all_histograms_allowed": True,
+            },
+            {
+                "forced_external_core_size": 74,
+                "allowed_base_root_histogram_count": 28,
+                "total_base_root_incidence_range": [0, 12],
+                "required_pair_overlap_range": [0, 1],
+                "maximum_missing_secant_range": [14, 15],
+                "all_zero_base_root_histogram_allowed": True,
+                "zero_pair_overlap_allowed": True,
+                "all_histograms_allowed": True,
+            },
+            {
+                "forced_external_core_size": 75,
+                "allowed_base_root_histogram_count": 28,
+                "total_base_root_incidence_range": [0, 12],
+                "required_pair_overlap_range": [0, 0],
+                "maximum_missing_secant_range": [15, 15],
+                "all_zero_base_root_histogram_allowed": True,
+                "zero_pair_overlap_allowed": True,
+                "all_histograms_allowed": True,
+            },
+            {
+                "forced_external_core_size": 76,
+                "allowed_base_root_histogram_count": 28,
+                "total_base_root_incidence_range": [0, 12],
+                "required_pair_overlap_range": [0, 0],
+                "maximum_missing_secant_range": [15, 15],
+                "all_zero_base_root_histogram_allowed": True,
+                "zero_pair_overlap_allowed": True,
+                "all_histograms_allowed": True,
+            },
+        ],
+        "conic one-over design catalog changed",
+    )
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -2129,6 +2371,15 @@ def build_certificate() -> dict[str, Any]:
                 "((4,4,5,5,5,5);(51,51,50,50,50,50)), or "
                 "(5^6;(51,50,50,50,50,50))."
             ),
+            "one_over_design_catalog": (
+                "The whole endpoint-only finite-incidence one-over range now has "
+                "an exact compact catalog.  Line cores 72,73,74 allow 2,16,27 "
+                "base-root histograms respectively, and line cores 75..80 allow "
+                "all 28 histograms with increasing unused external slack.  Conic "
+                "cores 69,70,71 allow 2,16,27 histograms respectively, while "
+                "cores 72..76 allow all 28; pair-overlap pressure disappears "
+                "from cores 75 and 76."
+            ),
         },
         "budget_formula": {
             "locator_degree_j": j_value,
@@ -2226,6 +2477,12 @@ def build_certificate() -> dict[str, Any]:
             "line_e72": line_e72_design_local_profiles,
             "irreducible_conic_e69": conic_e69_design_local_profiles,
         },
+        "one_over_design_catalog": {
+            "line_endpoint_only_incidence_range": line_one_over_design_catalog_rows,
+            "irreducible_conic_endpoint_only_incidence_range": (
+                conic_one_over_design_catalog_rows
+            ),
+        },
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -2289,6 +2546,7 @@ def build_certificate() -> dict[str, Any]:
                 line_e72_design_multiplicity_profiles
             ),
             "line_e72_design_local_profiles": line_e72_design_local_profiles,
+            "line_one_over_design_catalog": line_one_over_design_catalog_rows,
             "line_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in line_intermediate_profile_rows
             ),
@@ -2347,6 +2605,7 @@ def build_certificate() -> dict[str, Any]:
                 conic_e69_design_multiplicity_profiles
             ),
             "conic_e69_design_local_profiles": conic_e69_design_local_profiles,
+            "conic_one_over_design_catalog": conic_one_over_design_catalog_rows,
             "conic_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows
             ),
@@ -2389,6 +2648,7 @@ def build_certificate() -> dict[str, Any]:
             "line e=72 and conic e=69 extremal finite design shapes are enumerated",
             "line e=72 and conic e=69 extremal multiplicity profiles are enumerated",
             "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
+            "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",

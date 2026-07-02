@@ -198,6 +198,9 @@ The local line singleton sequences are `52^6` or `(53,52^5)`, and the local
 conic secant/singleton profiles are `(5^6;50^6)`,
 `((4,4,5,5,5,5);(51,51,50,50,50,50))`, or
 `(5^6;(51,50,50,50,50,50))`.
+Across the full endpoint-only one-over range, the line histogram counts are
+`2,16,27,28^6` for `e_G=72..80`, and the conic counts are `2,16,27,28^5`
+for `e_G=69..76`.
 
 Replay:
 

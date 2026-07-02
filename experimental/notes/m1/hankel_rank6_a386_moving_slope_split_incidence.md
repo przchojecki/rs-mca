@@ -348,6 +348,14 @@ secant-degree/singleton sequences are `(5^6;50^6)`,
 `((4,4,5,5,5,5);(51,51,50,50,50,50))`, or
 `(5^6;(51,50,50,50,50,50))`.
 
+The packet also records a compact exact catalog for the whole endpoint-only
+finite-incidence one-over range.  For line cores `e_G=72..80`, the counts of
+allowed base-root histograms are `2,16,27,28,28,28,28,28,28`; from `e_G=75`
+onward all `28` histograms are possible and the remaining obstruction is
+external slack, not base splitting.  For conic cores `e_G=69..76`, the counts
+are `2,16,27,28,28,28,28,28`; from `e_G=72` onward all base histograms are
+possible, and pair-overlap pressure disappears completely at `e_G=75,76`.
+
 Replay:
 
 ```sh
