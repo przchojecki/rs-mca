@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v28"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v29"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -1592,6 +1592,98 @@ def conic_design_local_profiles(shapes: list[dict[str, Any]]) -> list[dict[str, 
     return profiles
 
 
+def canonical_cycle(cycle: tuple[int, ...]) -> tuple[int, ...]:
+    """Canonical representative of an undirected Hamiltonian cycle."""
+    n = len(cycle)
+    rotations = [cycle[i:] + cycle[:i] for i in range(n)]
+    reversed_cycle = tuple(reversed(cycle))
+    rotations.extend(reversed_cycle[i:] + reversed_cycle[:i] for i in range(n))
+    return min(rotations)
+
+
+def graph_edges_for_conic_secant_shape(secant_graph: str) -> set[tuple[int, int]]:
+    """Representative six-vertex secant graph for the conic extremal shape."""
+    edges = {
+        (i, j)
+        for i in range(FINITE_BUDGET)
+        for j in range(i + 1, FINITE_BUDGET)
+    }
+    if secant_graph == "K6":
+        return edges
+    require(secant_graph == "K6_minus_one_edge", "unknown secant graph")
+    edges.remove((0, 1))
+    return edges
+
+
+def hamiltonian_cycles(edge_set: set[tuple[int, int]]) -> list[tuple[int, ...]]:
+    """Enumerate undirected Hamiltonian cycles supported by a six-vertex graph."""
+    cycles: set[tuple[int, ...]] = set()
+    vertices = tuple(range(FINITE_BUDGET))
+    for perm in itertools.permutations(vertices):
+        if perm[0] != 0:
+            continue
+        if all(
+            tuple(sorted((perm[i], perm[(i + 1) % FINITE_BUDGET]))) in edge_set
+            for i in range(FINITE_BUDGET)
+        ):
+            cycles.add(canonical_cycle(perm))
+    return sorted(cycles)
+
+
+def pascal_relation_for_cycle(cycle: tuple[int, ...]) -> tuple[tuple[tuple[int, int], ...], ...]:
+    """Return the three opposite-side intersection pairs for a Pascal relation."""
+    a, b, c, d, e, f = cycle
+    pairs = [
+        (tuple(sorted((a, b))), tuple(sorted((d, e)))),
+        (tuple(sorted((b, c))), tuple(sorted((e, f)))),
+        (tuple(sorted((c, d))), tuple(sorted((f, a)))),
+    ]
+    return tuple(sorted(tuple(sorted(pair)) for pair in pairs))
+
+
+def conic_e69_pascal_obstruction_profile(
+    shapes: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Pascal-line necessary conditions for the extremal conic e_G=69 branch."""
+    rows: list[dict[str, Any]] = []
+    for shape in shapes:
+        edge_set = graph_edges_for_conic_secant_shape(shape["secant_graph"])
+        cycles = hamiltonian_cycles(edge_set)
+        pascal_relations = sorted({pascal_relation_for_cycle(cycle) for cycle in cycles})
+        require(cycles, "extremal conic graph should have Hamiltonian cycles")
+        require(
+            len(pascal_relations) == len(cycles),
+            "generic Pascal relation count should match the cycle count",
+        )
+        rows.append(
+            {
+                "base_root_histogram": shape["base_root_histogram"],
+                "secant_graph": shape["secant_graph"],
+                "missing_secants": shape["missing_secants"],
+                "secant_edge_count": len(edge_set),
+                "hamiltonian_cycle_count": len(cycles),
+                "pascal_collinearity_relation_count": len(pascal_relations),
+                "representative_hamiltonian_cycle": list(cycles[0]),
+                "representative_pascal_relation": [
+                    [list(edge_pair[0]), list(edge_pair[1])]
+                    for edge_pair in pascal_relations[0]
+                ],
+                "necessary_condition": (
+                    "For every Hamiltonian cycle in the six-class secant graph, "
+                    "Pascal's theorem forces the three intersections of opposite "
+                    "external-root secants to be collinear in the Q-plane."
+                ),
+                "closure_if_condition_fails": True,
+                "nonclosure_reason": (
+                    "This records necessary Pascal constraints on any Hankel-realizable "
+                    "extremal conic obstruction; it does not yet test the actual "
+                    "external root-line arrangement."
+                ),
+            }
+        )
+    return rows
+
+
 def interval_size(interval: list[int]) -> int:
     return interval[1] - interval[0]
 
@@ -2327,6 +2419,9 @@ def build_certificate() -> dict[str, Any]:
     conic_e69_design_local_profiles = conic_design_local_profiles(
         conic_e69_extremal_design_shapes
     )
+    conic_e69_pascal_obstruction_rows = conic_e69_pascal_obstruction_profile(
+        conic_e69_extremal_design_shapes
+    )
     line_one_over_design_catalog_rows = line_one_over_design_catalog(
         line_incidence_one_over_cores,
         locator_degree=j_value,
@@ -3009,6 +3104,32 @@ def build_certificate() -> dict[str, Any]:
         "conic e=69 design local profiles changed",
     )
     require(
+        [
+            (
+                row["base_root_histogram"],
+                row["secant_graph"],
+                row["missing_secants"],
+                row["hamiltonian_cycle_count"],
+                row["pascal_collinearity_relation_count"],
+            )
+            for row in conic_e69_pascal_obstruction_rows
+        ]
+        == [
+            ([0, 0, 6], "K6", 0, 60, 60),
+            ([0, 0, 6], "K6_minus_one_edge", 1, 36, 36),
+            ([0, 1, 5], "K6", 0, 60, 60),
+        ],
+        "conic e=69 Pascal obstruction profile changed",
+    )
+    require(
+        all(
+            row["closure_if_condition_fails"]
+            and row["secant_edge_count"] in {14, 15}
+            for row in conic_e69_pascal_obstruction_rows
+        ),
+        "conic e=69 Pascal obstruction rows should be closure criteria",
+    )
+    require(
         line_one_over_design_catalog_rows
         == [
             {
@@ -3647,6 +3768,15 @@ def build_certificate() -> dict[str, Any]:
                 "((4,4,5,5,5,5);(51,51,50,50,50,50)), or "
                 "(5^6;(51,50,50,50,50,50))."
             ),
+            "conic_e69_pascal_obstruction_profile": (
+                "In the extremal conic e_G=69 branch, the K6 and K6-minus-one "
+                "secant graphs are not arbitrary incidence graphs if they come "
+                "from six points on an irreducible conic.  Pascal's theorem gives "
+                "one collinearity relation for every Hamiltonian cycle in the "
+                "secant graph: 60 relations for K6 and 36 for K6-minus-one.  "
+                "Failure of these relations in the external root-line arrangement "
+                "would close the corresponding extremal conic branch."
+            ),
             "one_over_design_catalog": (
                 "The whole endpoint-only finite-incidence one-over range now has "
                 "an exact compact catalog.  Line cores 72,73,74 allow 2,16,27 "
@@ -3835,6 +3965,7 @@ def build_certificate() -> dict[str, Any]:
             "line_e72": line_e72_design_local_profiles,
             "irreducible_conic_e69": conic_e69_design_local_profiles,
         },
+        "conic_e69_pascal_obstruction_profile": conic_e69_pascal_obstruction_rows,
         "one_over_design_catalog": {
             "line_endpoint_only_incidence_range": line_one_over_design_catalog_rows,
             "irreducible_conic_endpoint_only_incidence_range": (
@@ -4048,6 +4179,14 @@ def build_certificate() -> dict[str, Any]:
                 conic_e69_design_multiplicity_profiles
             ),
             "conic_e69_design_local_profiles": conic_e69_design_local_profiles,
+            "conic_e69_pascal_obstruction_relation_counts": [
+                row["pascal_collinearity_relation_count"]
+                for row in conic_e69_pascal_obstruction_rows
+            ],
+            "conic_e69_pascal_obstruction_cycle_counts": [
+                row["hamiltonian_cycle_count"]
+                for row in conic_e69_pascal_obstruction_rows
+            ],
             "conic_one_over_design_catalog": conic_one_over_design_catalog_rows,
             "conic_cofactor_current_max_projective_upper_bound": max(
                 row["current_projective_upper_bound"]
@@ -4143,6 +4282,7 @@ def build_certificate() -> dict[str, Any]:
             "line e=72 and conic e=69 extremal finite design shapes are enumerated",
             "line e=72 and conic e=69 extremal multiplicity profiles are enumerated",
             "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
+            "conic e=69 extremal secant graphs carry Pascal collinearity obstruction counts",
             "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
             "abstract incidence-only sharpness witnesses are constructed for every finite-incidence one-over core",
             "every one-over moving-slope residual row has a single-saving closure ledger entry",

@@ -412,6 +412,15 @@ secant-degree/singleton sequences are `(5^6;50^6)`,
 `((4,4,5,5,5,5);(51,51,50,50,50,50))`, or
 `(5^6;(51,50,50,50,50,50))`.
 
+For the extremal conic `e_G=69` branch, the packet also records a classical
+Pascal obstruction profile.  If the six finite classes really lie on an
+irreducible conic and the secant graph is `K6`, every Hamiltonian cycle gives a
+Pascal collinearity among intersections of opposite external-root secants,
+giving `60` required collinearities.  In the `K6` minus one edge branch, the
+same test gives `36` required collinearities.  Failure of these relations in
+the actual external root-line arrangement would close the corresponding
+extremal conic branch; the packet does not yet run that arrangement test.
+
 The packet also records a compact exact catalog for the whole endpoint-only
 finite-incidence one-over range.  For line cores `e_G=72..80`, the counts of
 allowed base-root histograms are `2,16,27,28,28,28,28,28,28`; from `e_G=75`

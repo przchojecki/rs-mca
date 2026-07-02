@@ -484,7 +484,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v10",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v11",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -536,7 +536,7 @@
     },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
-      "sha256": "55c0ded201ef437753b187a198499f39fe761fa707436220092909aeda1a1a61"
+      "sha256": "053d59a7af5f9650ba31f48099614c48ba640f6a307a169296cda735cbeced11"
     },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
@@ -599,6 +599,7 @@
       "extremal design accounting leaves two line partition shapes and three conic secant-cover shapes",
       "extremal multiplicity accounting leaves line profiles (1,312,0)/(0,313,0) and conic profiles (1,300,15)/(0,302,14)/(0,301,15)",
       "local incidence accounting leaves line singleton sequences 52^6 or (53,52^5), and conic secant/singleton profiles (5^6;50^6), ((4,4,5,5,5,5);(51,51,50,50,50,50)), or (5^6;(51,50,50,50,50,50))",
+      "Pascal's theorem gives a concrete obstruction test for the conic e_G=69 extremal branch: K6 secant covers force 60 Pascal collinearities and K6-minus-one covers force 36",
       "the endpoint-only one-over finite-incidence range has a compact exact catalog: line histogram counts 2,16,27,28^6 across e_G=72..80 and conic counts 2,16,27,28^5 across e_G=69..76",
       "abstract incidence-only sharpness witnesses exist for every finite-incidence one-over core, so those rows cannot be closed by sharpening only the current incidence and pair-overlap axioms",
       "the cofactor-current moving-slope one-over residual rows have a single-saving closure ledger entry: line e_G=72..80, conic e_G=69..76, and the punctured-tangent tail e_G=120",

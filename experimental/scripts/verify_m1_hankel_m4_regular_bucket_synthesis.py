@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v10"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v11"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v28",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v29",
 }
 
 
@@ -681,6 +681,34 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         ],
         "conic e=69 design local profiles",
     )
+    require(
+        summary["conic_e69_pascal_obstruction_relation_counts"] == [60, 36, 60]
+        and summary["conic_e69_pascal_obstruction_cycle_counts"] == [60, 36, 60],
+        "conic e=69 Pascal obstruction counts",
+    )
+    pascal_rows = data["conic_e69_pascal_obstruction_profile"]
+    require(
+        [
+            (
+                row["base_root_histogram"],
+                row["secant_graph"],
+                row["missing_secants"],
+                row["secant_edge_count"],
+                row["pascal_collinearity_relation_count"],
+            )
+            for row in pascal_rows
+        ]
+        == [
+            ([0, 0, 6], "K6", 0, 15, 60),
+            ([0, 0, 6], "K6_minus_one_edge", 1, 14, 36),
+            ([0, 1, 5], "K6", 0, 15, 60),
+        ],
+        "conic e=69 Pascal obstruction profile rows",
+    )
+    require(
+        all(row["closure_if_condition_fails"] for row in pascal_rows),
+        "conic e=69 Pascal rows should be closure criteria",
+    )
     line_catalog = summary["line_one_over_design_catalog"]
     require(
         [row["forced_external_core_size"] for row in line_catalog]
@@ -1136,6 +1164,7 @@ def build_certificate() -> dict[str, Any]:
                 "extremal design accounting leaves two line partition shapes and three conic secant-cover shapes",
                 "extremal multiplicity accounting leaves line profiles (1,312,0)/(0,313,0) and conic profiles (1,300,15)/(0,302,14)/(0,301,15)",
                 "local incidence accounting leaves line singleton sequences 52^6 or (53,52^5), and conic secant/singleton profiles (5^6;50^6), ((4,4,5,5,5,5);(51,51,50,50,50,50)), or (5^6;(51,50,50,50,50,50))",
+                "Pascal's theorem gives a concrete obstruction test for the conic e_G=69 extremal branch: K6 secant covers force 60 Pascal collinearities and K6-minus-one covers force 36",
                 "the endpoint-only one-over finite-incidence range has a compact exact catalog: line histogram counts 2,16,27,28^6 across e_G=72..80 and conic counts 2,16,27,28^5 across e_G=69..76",
                 "abstract incidence-only sharpness witnesses exist for every finite-incidence one-over core, so those rows cannot be closed by sharpening only the current incidence and pair-overlap axioms",
                 "the cofactor-current moving-slope one-over residual rows have a single-saving closure ledger entry: line e_G=72..80, conic e_G=69..76, and the punctured-tangent tail e_G=120",
