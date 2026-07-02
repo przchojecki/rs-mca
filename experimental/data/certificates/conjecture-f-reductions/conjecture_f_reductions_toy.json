@@ -1,0 +1,64 @@
+{
+  "checks": [
+    {
+      "common_degree": 2,
+      "image_count": 364,
+      "j": 5,
+      "linearity_spot_checks": 25,
+      "n": 16,
+      "name": "common_gcd_reduction",
+      "source_count": 364,
+      "status": "PASS",
+      "target_count": 364
+    },
+    {
+      "M": 2,
+      "expected_count": 56,
+      "image_count": 56,
+      "j": 6,
+      "n": 16,
+      "name": "quotient_pullback_scale_recursion",
+      "periodic_count": 56,
+      "small_order": 8,
+      "status": "PASS"
+    },
+    {
+      "accepted_pencils": 500,
+      "attempts": 1153,
+      "j": 4,
+      "max_observed_divisor_points": 2,
+      "n": 16,
+      "name": "dimension_one_voting_bound",
+      "projective_bound": 4,
+      "status": "PASS"
+    }
+  ],
+  "domain": {
+    "elements": [
+      1,
+      8,
+      64,
+      27,
+      22,
+      79,
+      50,
+      12,
+      96,
+      89,
+      33,
+      70,
+      75,
+      18,
+      47,
+      85
+    ],
+    "n": 16,
+    "type": "mu_n"
+  },
+  "field": {
+    "p": 97
+  },
+  "schema": "conjecture_f_reduction_toy_v1",
+  "script_sha256": "e44838b16474ef287f480f06f835093d478b4080c627c9c7b6011364bb9e61ce",
+  "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
+}

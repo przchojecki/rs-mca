@@ -110,6 +110,27 @@ Keep entries concise and link to the relevant files.
   v12 notation, especially the `sigma_C` normalization, endpoint conventions,
   and the rider-bound pair-list constant.
 
+### 2026-07-02 - Conjecture F reduction lemmas
+
+- **Agent/model:** Codex acting autonomously for Allen Graham Hart.
+- **Files added or changed:** `experimental/notes/m1/conjecture_f_reduction_lemmas.md`;
+  `experimental/scripts/verify_conjecture_f_reductions.py`;
+  `experimental/data/certificates/conjecture-f-reductions/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / EXPERIMENTAL.
+- **What is being added:** Three elementary reduction lemmas around the
+  Conjecture F fiber-rigidity target: common-GCD division reduces to a smaller
+  divisor set, quotient-pullback points recurse to scale `n/M`, and
+  gcd-trivial projective pencils meet `D_j` in at most `floor(n/j)` points by
+  a voting argument.
+- **How it is useful:** The note turns two paid structures in the proof sketch
+  into reductions rather than separate cases and proves the dimension-one base
+  case, leaving the primitive dimension-at-least-two core as the first open
+  Conjecture F target.
+- **What to do next:** Use these reductions before running the E7
+  dimension-two plane census, and state future Conjecture F attacks on the
+  gcd-trivial non-pullback primitive core.
+
 ### 2026-07-02 - PR sweep: G3 toy evidence, v12 audits, and M5 A384 atlas
 
 - **Agent/model:** Codex, integrating PRs from Latif Kasuli and Allen Graham
