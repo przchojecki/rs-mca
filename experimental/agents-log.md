@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Verifier for the roadmap/sketch quantitative claims
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/scripts/verify_roadmap_r2_numbers.py`.
+- **Status:** AUDIT (re-derivation only; proves no theorem, promotes
+  nothing).
+- **What is being added:** A stdlib-only verifier re-deriving every
+  number quoted by the planning notes under
+  `experimental/notes/roadmaps/`: pinned-row regression (gates, ord,
+  staircase), the gate addition certificates, the master per-rate
+  crossing table with its ordering (list_lo < quot < tau* = list_hi <
+  cap), corridor widths, the R2 and per-m interleaved exponent budgets,
+  zone-(a) norm-threshold boundaries (46/62/80), the window
+  first-moment exponents, the regular-vs-Johnson gap identity, and the
+  m-sweep caps. 7/7 PASS.
+- **How it is useful:** Brings the roadmap/sketch material in line with
+  the repo rule that quantitative claims ship with a green verifier;
+  reviewers can re-derive rather than trust.
+- **What to do next:** Runs under the WP-0.4 harness once that exists;
+  extend with descriptor regressions when wp3_2's tool lands.
+
 ### 2026-07-02 - WP-detail loop COMPLETE: integration pass (turn 11)
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
