@@ -48,14 +48,14 @@
 \newcommand{\Lst}{\Lambda}
 \newcommand{\Hb}{\mathrm{H}_2}
 
-\title{A Pincer and Certificate Picture for the Mutual Correlated Agreement Threshold}
+\title{A Pincer Picture for the Mutual Correlated Agreement Threshold}
 \author{Przemek Chojecki}
 \date{July 2, 2026}
 
 \begin{document}
 
 \begin{abstract}
-For Reed--Solomon codes with $k\le2^{40}$ and $|\F|<2^{256}$ --- the parameter box singled out by the Proximity Prize --- we give a sharpened pincer picture for the grand mutual correlated agreement threshold $\delta^*_C(2^{-128})$. For $|\F|<2^{128}$ the threshold is exactly $0$. For $|\F|\ge2^{128}$ and the four challenge rates, ordinary locator-prefix floors already force plain correlated-agreement failure from $\delta=1-\rho-s_\rho/n$ up to capacity, where $s_\rho=\lceil\alpha_\rho n\rceil$ and $\alpha_{1/2}=1/300$, $\alpha_{1/4}=3/1000$, $\alpha_{1/8}=41/20000$, $\alpha_{1/16}=3/2500$; in particular the old near-capacity problem has a negative answer on an explicit upper slice of its band. On the safe side, a self-contained theorem gives MCA with error $(\lfloor\delta n\rfloor+1)/q$ below one third of the distance, an elementary half-Johnson certificate improves that self-contained edge in low-rate rows, and the unique-decoding proximity gap of Ben-Sasson--Carmon--Ishai--Kopparty--Saraf raises the safe frontier to one half of the distance whenever $|\F|\ge2^{128}n$. Above half the distance, the extra mutual-only layer is reduced to explicit finite objects: tangent slopes, residual Reed--Solomon shortenings of dimension at most $\max(0,2r-(n-k))$, and equivalently a doubled-radius pair-list obstruction. The half-distance wall is sharp, and the remaining threshold problem is reduced to a middle plain-CA band together with those residual shortening or pair-list images.  Finally, the cap-paper certificate grammar turns these bounds into finite row certificates for deployed multiplicative, circle, and genus-one/rational-smooth rows.
+For Reed--Solomon codes with $k\le2^{40}$ and $|\F|<2^{256}$ --- the parameter box singled out by the Proximity Prize --- we give a sharpened pincer picture for the grand mutual correlated agreement threshold $\delta^*_C(2^{-128})$. For $|\F|<2^{128}$ the threshold is exactly $0$. For $|\F|\ge2^{128}$ and the four challenge rates, ordinary locator-prefix floors already force plain correlated-agreement failure from $\delta=1-\rho-s_\rho/n$ up to capacity, where $s_\rho=\lceil\alpha_\rho n\rceil$ and $\alpha_{1/2}=1/300$, $\alpha_{1/4}=3/1000$, $\alpha_{1/8}=41/20000$, $\alpha_{1/16}=3/2500$; in particular the old near-capacity problem has a negative answer on an explicit upper slice of its band. On the safe side, a self-contained theorem gives MCA with error $(\lfloor\delta n\rfloor+1)/q$ below one third of the distance, and the unique-decoding proximity gap of Ben-Sasson--Carmon--Ishai--Kopparty--Saraf raises the safe frontier to one half of the distance whenever $|\F|\ge2^{128}n$. Above half the distance, the extra mutual-only layer is reduced to explicit finite objects: tangent slopes, residual Reed--Solomon shortenings of dimension at most $\max(0,2r-(n-k))$, and equivalently a doubled-radius pair-list obstruction. The half-distance wall is sharp, and the remaining threshold problem is reduced to a middle plain-CA band together with those residual shortening or pair-list images.
 \end{abstract}
 
 \maketitle
@@ -95,71 +95,7 @@ a determination within a factor smaller than two.
 
 Every ingredient except the single import in (3) is proved here from first principles: a graded locator-prefix pigeonhole (\cref{lem:floor}), a deep-point list-to-correlated-agreement conversion (\cref{thm:conversion}), an ordinary locator-prefix specialization that resolves the top of the plain-CA band (\cref{cor:ordinary-top}), a deep-regime theorem showing MCA \emph{holds} with error $(\lfloor\delta n\rfloor+1)/q$ below one third of the minimum distance for every linear code (\cref{thm:deep}), and a theorem showing that below one half of the distance mutual and plain correlated agreement coincide up to an explicit tangent term (\cref{thm:half}). No value-set counting, exponential-sum estimate, or equidistribution input is used. The one import, \cite[Thm.~4.1]{BCIKS20}, is a published theorem, so clause (3) stands on the literature as stated; we track it separately only to delimit the self-contained core. \Cref{sec:barriers} then proves two barriers --- an entropy envelope past which no prefix floor can certify failure (\cref{prop:envelope-barrier}), and a ceiling of $\frac1k$ on the error certifiable through the conversion (\cref{prop:ceiling}) --- and states the residual kernel after the two broad band questions are sharpened: a smaller plain-CA interval (\cref{prob:ca}) and the residual shortening or pair-list obstruction (\cref{prob:mutual}). Remarks \ref{rem:instantiations}--\ref{rem:small-n} complete the parameter box: characteristic-two additive smooth domains and odd $3$-smooth orders satisfy the same baseline bounds, small $n$ down to $2^{12}$ retains a nonvacuous cap of gap $3/n$, and rates outside the four challenge values are covered by the same finite criterion.
 
-The upper bounds sharpen, and the composition follows, a line of work on capacity-edge obstructions: the conditional universal cap of \cite{Cho26b} (gap $2^{-11}$ under $|\F|\ge2n$), the locator framework of \cite{Cho26a}, and the conversion perspective of \cite{CS25}; the strongest known positive results for plain correlated agreement are \cite{BCIKS20,BCHKS25}, reaching the Johnson radius. A companion manuscript \cite{Cho26b} develops the deployed-parameter refinements (subfield-pigeonhole floors widening the unsafe frontier to gap $\approx2^{-4.96}$ at $n=2^{21}$, circle and genus-one rows, explicit witnesses) and the structured form of the remaining problem.  To keep this note compact, we use the following cap-paper package as a cited certificate theorem rather than reproducing its long scanner and transport sections.
-
-\begin{theorem}[cap-paper refinements for threshold determination]\label{thm:cap-paper-package}
-The following consequences of the cap paper \cite{Cho26b} may be combined with \cref{thm:main}.
-\begin{enumerate}
-\item \textup{(Self-contained half-Johnson safe edge.)} Let $C=\RS[\F,D,k]$, let $r\ge0$, and put
-\[
-        L_2(r):=
-        \frac{n\,(n-2r-k+1)}
-             {(n-2r)^2-(k-1)n}.
-\]
-If $n-2r>0$, $(n-2r)^2>(k-1)n$, and
-\[
-        1+(r+1)L_2(r)\le \varepsilon^* q,
-\]
-then $\delta^*_C(\varepsilon^*)\ge r/n$.  Asymptotically this gives an import-free safe edge at $\delta\approx(1-\sqrt\rho)/2$, so the self-contained lower edge in \cref{thm:main} may be replaced by
-\[
-        \max\left\{\frac1n\Bigl\lfloor\frac{n-k}{3}\Bigr\rfloor,\,
-        \frac{r_{\rm hJ}}n\right\},
-\]
-where $r_{\rm hJ}$ is the largest integer satisfying the displayed half-Johnson certificate.
-\item \textup{(Finite staircase certificates.)} A row certificate consists of an unsafe prefix/rational-floor handle and a safe handle \textup(deep, half-Johnson, or the single imported half-distance CA theorem\textup).  Once its integer inequalities are checked, it proves a concrete interval
-\[
-        \frac{r_{\rm safe}}n
-        \le
-        \delta^*_C(\varepsilon^*)
-        \le
-        1-\frac{a_{\rm unsafe}}n .
-\]
-Adjacent safe/unsafe certificates determine the integer staircase exactly.  In particular, for the KoalaBear sextic row at target $2^{-128}$,
-\[
-\begin{array}{ll}
-        \delta^*_C\in
-        \left[\frac{349525}{2^{21}},\,\frac{15331}{32768}\right],
-        &\text{self-contained,}\\[2mm]
-        \delta^*_C\in
-        \left[\frac14,\,\frac{15331}{32768}\right],
-        &\text{with the imported half-distance theorem.}
-\end{array}
-\]
-For the Mersenne-$31$ circle line-round row at target $2^{-100}$, the corresponding intervals are
-\[
-\begin{array}{ll}
-        \delta^*_C\in
-        \left[\frac{349525}{2^{21}},\,\frac{30663}{65536}\right],
-        &\text{self-contained,}\\[2mm]
-        \delta^*_C\in
-        \left[\frac14,\,\frac{30663}{65536}\right],
-        &\text{with the import.}
-\end{array}
-\]
-The same certificate grammar applies to map-smooth, circle, and genus-one/rational-smooth rows after the transports proved in \cite{Cho26b}.
-\item \textup{(Failure profile.)} Let $T=\frac1k(1-\frac nq)$ and suppose a list floor gives $L\ge1+\kappa qT$ at an integer-admissible radius.  Then
-\[
-        \eca(C,\delta)\ge\frac{\kappa}{\kappa+1}T,
-\]
-and hence MCA failure follows on the same monotone interval.  This does not move the right edge of $\delta^*$, but it improves the failure margin; at the KoalaBear first staircase step one has $\kappa\ge2^{54}$.
-\end{enumerate}
-\end{theorem}
-
-\begin{proof}[Proof sketch]
-Clause \textup{(1)} is the elementary half-Johnson CA theorem of \cite{Cho26b}: two bad slopes recover a pair-list at agreement $n-2r$, the pair-interleaved Johnson bound gives $L_2(r)$, and the pincer from CA to MCA transfers the result below half the distance. Clause \textup{(2)} is the finite scanner/certificate closure of \cite{Cho26b}: unsafe handles are prefix or rational floors composed with the deep-point conversion, while safe handles are the deep, half-Johnson, or imported half-distance certificates. The displayed intervals are the exact integer certificates printed there. Clause \textup{(3)} is the optimized form of the same deep-point conversion: rearranging its dichotomy with $\eta=\eca/T$ gives the factor $\kappa/(\kappa+1)$.
-\end{proof}
-
-The present paper is therefore the minimal self-contained core plus the residual reductions needed to state the current picture; \cref{thm:cap-paper-package} records the compact row-determination upgrades that are better left as citations to the cap paper.
+The upper bounds sharpen, and the composition follows, a line of work on capacity-edge obstructions: the conditional universal cap of \cite{Cho26b} (gap $2^{-11}$ under $|\F|\ge2n$), the locator framework of \cite{Cho26a}, and the conversion perspective of \cite{CS25}; the strongest known positive results for plain correlated agreement are \cite{BCIKS20,BCHKS25}, reaching the Johnson radius. A companion manuscript \cite{Cho26b} develops the deployed-parameter refinements (subfield-pigeonhole floors widening the unsafe frontier to gap $\approx2^{-4.96}$ at $n=2^{21}$, circle and genus-one rows, explicit witnesses) and the structured form of the remaining problem; the present paper is the minimal self-contained core plus the residual reductions needed to state the current picture.
 
 \section{Definitions}\label{sec:defs}
 
@@ -656,12 +592,11 @@ $q\ge2^{128}n$. Determine $\eca(C,\delta)$ in the residual interval
         1-\sqrt\rho<\delta<1-\rho-\frac{s_\rho}{n}.
 \]
 Equivalently, in the self-contained core without importing the current
-Johnson-radius CA theorems, replace the left endpoint by the largest
-self-contained safe certificate supplied by the deep regime and the
-half-Johnson handle of \cref{thm:cap-paper-package}.  The original question
-below the coarse cap edge $1-\rho-g_\rho$ is already negative on its upper slice
-by \cref{cor:old-ca-band-not-safe}, positive for plain CA up to the Johnson
-radius by \cite{BCIKS20,BCHKS25}, and open only in the displayed middle range.
+Johnson-radius CA theorems, replace the left endpoint by $(1-\rho)/2$.  The
+original question below the coarse cap edge $1-\rho-g_\rho$ is already negative
+on its upper slice by \cref{cor:old-ca-band-not-safe}, positive for plain CA up
+to the Johnson radius by \cite{BCIKS20,BCHKS25}, and open only in the displayed
+middle range.
 \end{problem}
 
 \begin{problem}[residual shortening and pair-list images]\label{prob:mutual}
@@ -681,13 +616,11 @@ packing problem.
 \end{problem}
 
 Thus the current complete picture is this.  Small fields are degenerate.  Large
-fields are safe to one third of the distance by a self-contained theorem, often
-safe farther by the self-contained half-Johnson certificate of
-\cref{thm:cap-paper-package}, and safe to one half of the distance with the
-single BCIKS import.  They are unsafe, already for plain correlated agreement,
-from $1-\rho-s_\rho/n$ to capacity; over deployed subfield rows, optimized cap-paper
-floors push this unsafe frontier much farther left and print finite staircase
-certificates.  What remains is not the original broad pair of problems, but the
+fields are safe to one third of the distance by a self-contained theorem and safe
+to one half of the distance with the single BCIKS import.  They are unsafe,
+already for plain correlated agreement, from $1-\rho-s_\rho/n$ to capacity; over
+deployed subfield rows, optimized companion floors push this unsafe frontier much
+farther left.  What remains is not the original broad pair of problems, but the
 middle CA interval of \cref{prob:ca} and the residual shortening or pair-list
 kernel of \cref{prob:mutual}.
 

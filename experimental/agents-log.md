@@ -358,6 +358,28 @@ Keep entries concise and link to the relevant files.
   `X^n-1`, using pseudo-remainder equations and side charts for rank drop and
   low-degree kernels.
 
+### 2026-07-02 - Towards-prize v3 cap-paper package
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `tex/towards-prize.tex`;
+  `towards-prize.pdf`; `archived/towards-prize_v2.tex`;
+  `archived/towards-prize_v2.pdf`; `experimental/agents-log.md`.
+- **Status:** AUDIT / VERSION-PROMOTION-CANDIDATE / COMPILED.
+- **What is being added:** `towards-prize.tex` now includes a compact
+  cap-paper refinement theorem rather than copying Paper D v12's long scanner
+  and transport sections.  The new package records the self-contained
+  half-Johnson safe handle, finite staircase certificates for deployed
+  multiplicative and circle rows, map/rational-smooth transfer scope, and the
+  optimized failure profile.
+- **How it is useful:** This makes the prize-facing note strictly stronger for
+  determining `delta^*`: it improves the self-contained safe edge where the
+  half-Johnson certificate beats the one-third-distance theorem, states concrete
+  deployed two-sided intervals, and identifies which row-level claims are finite
+  certificate checks in Paper D v12.
+- **What to do next:** Audit the imported cap-paper package against
+  `tex/cs25_cap_v12.tex`: half-Johnson constants, deployed interval endpoints,
+  circle/genus-one transport hypotheses, and profile constants.
+
 ### 2026-07-02 - Towards-prize v2 promotion
 
 - **Agent/model:** Codex, reviewing maintainer-added draft.
