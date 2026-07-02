@@ -682,7 +682,8 @@
    "key": true,
    "refs": [
     "proof_sketch/s7_list_side.md#4"
-   ]
+   ],
+   "gate": "any"
   },
   {
    "id": "petal_witnesses",
@@ -893,6 +894,143 @@
     "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
    ],
    "notes": "named by PR #173; same collision family as SPI/XR/perfiber in projected-list coordinates"
+  },
+  {
+   "id": "beta2_rank8",
+   "title": "F has rank 8 (stalk 11 = 8 + 3 Tate)",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/m1/m1_beta2_conditional_close.md"
+   ]
+  },
+  {
+   "id": "beta2_transvection",
+   "title": "Genuine unipotent transvection at 9z+14, in the weight-1 constituent",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/m1/m1_beta2_conditional_close.md"
+   ]
+  },
+  {
+   "id": "beta2_not_selfdual",
+   "title": "F not self-dual for general psi => SL (not Sp/SO) branch",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/m1/m1_beta2_conditional_close.md"
+   ]
+  },
+  {
+   "id": "beta2_q8_benign",
+   "title": "Q8 locus benign for every psi (interior roots)",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/m1/m1_beta2_conditional_close.md"
+   ]
+  },
+  {
+   "id": "beta2_consumer_chain",
+   "title": "Consumer theorem citable + non-circular (Gabber/ESDE 1.5 + Kantor/ADW, l>=5)",
+   "status": "PROVED",
+   "refs": [
+    "experimental/notes/m1/m1_beta2_conditional_close.md"
+   ]
+  },
+  {
+   "id": "beta2_irreducibility",
+   "title": "(I) geometric irreducibility of F",
+   "status": "CONJECTURE",
+   "key": true,
+   "refs": [
+    "experimental/notes/m1/m1_beta2_conditional_close.md"
+   ],
+   "notes": "corroborated (2nd moments -> 1 over primes <= 181); PROVABLY not closable by local data (non-rigid, moduli dim >= 74) \u2014 needs a global big-monodromy input"
+  },
+  {
+   "id": "beta2_primitivity_trace",
+   "title": "(II) primitivity <=> ONE integer: Tr(gamma|V) = m+ - m- != 0 at z = -2",
+   "status": "CONJECTURE",
+   "key": true,
+   "refs": [
+    "experimental/notes/m1/m1_beta2_conditional_close.md"
+   ],
+   "notes": "reduced exactly and p-independently to a single deck-trace integer; elementary Lefschetz route provably dead (sigma permutes the psi-variable)"
+  },
+  {
+   "id": "beta2_dead_routes",
+   "title": "Routes: Katz CE (circular), Hall (Legendre only), rigidity (13 > 3 pts), elementary Lefschetz trace",
+   "status": "REFUTED",
+   "refs": [
+    "experimental/notes/m1/m1_beta2_conditional_close.md"
+   ]
+  },
+  {
+   "id": "xr_expansion",
+   "title": "Expansion pumping: dense aligned Johnson-neighborhoods over-constrain",
+   "status": "TARGET",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#3"
+   ]
+  },
+  {
+   "id": "xr_crystallization",
+   "title": "Crystallization: surviving dense alignment IS tangent/quotient structure",
+   "status": "TARGET",
+   "key": true,
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#3"
+   ],
+   "notes": "the content beyond even moments \u2014 the genuinely new ingredient every mechanism needs"
+  },
+  {
+   "id": "spi_genericity",
+   "title": "Post-strip D_j^aper carries no subgroup symmetry (ES hypothesis available)",
+   "status": "PROVABLE",
+   "refs": [
+    "proof_sketch/s3b_ii_strip_periodic.md#4"
+   ]
+  },
+  {
+   "id": "spi_exceptional_class",
+   "title": "ES exceptional varieties over F_q classified = paid strata",
+   "status": "TARGET",
+   "key": true,
+   "refs": [
+    "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#4"
+   ]
+  },
+  {
+   "id": "spi_dimension_free",
+   "title": "Dimension-free form of SPI (or the route stalls at bounded d)",
+   "status": "TARGET",
+   "key": true,
+   "refs": [
+    "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#5"
+   ]
+  },
+  {
+   "id": "petal_fixed_excess",
+   "title": "Bound full-petal extras at each fixed excess d-ell <= c (finite toy enumerations)",
+   "status": "PROVABLE",
+   "refs": [
+    "proof_sketch/s7_list_side.md#4"
+   ]
+  },
+  {
+   "id": "petal_mixed_amplification",
+   "title": "Mixed-petal sunflower amplification theorem",
+   "status": "TARGET",
+   "refs": [
+    "proof_sketch/s7_list_side.md#4"
+   ]
+  },
+  {
+   "id": "e1_fullness",
+   "title": "e1 value sets stay (1-o(1))-full below the saturation scale",
+   "status": "CONJECTURE",
+   "refs": [
+    "proof_sketch/s2_paid_ledger.md#3"
+   ],
+   "notes": "the precise collision-free reading of zone-(b); Row-C sampling measures exactly this"
   }
  ],
  "edges": [
@@ -1550,6 +1688,136 @@
    "from": "deep_point",
    "to": "plv_reduction",
    "kind": "ev"
+  },
+  {
+   "from": "beta2_rank8",
+   "to": "beta2_reduction",
+   "kind": "req"
+  },
+  {
+   "from": "beta2_transvection",
+   "to": "beta2_reduction",
+   "kind": "req"
+  },
+  {
+   "from": "beta2_not_selfdual",
+   "to": "beta2_reduction",
+   "kind": "req"
+  },
+  {
+   "from": "beta2_q8_benign",
+   "to": "beta2_reduction",
+   "kind": "req"
+  },
+  {
+   "from": "beta2_consumer_chain",
+   "to": "beta2_reduction",
+   "kind": "req"
+  },
+  {
+   "from": "beta2_irreducibility",
+   "to": "monodromy_route",
+   "kind": "req"
+  },
+  {
+   "from": "beta2_primitivity_trace",
+   "to": "monodromy_route",
+   "kind": "req"
+  },
+  {
+   "from": "beta2_reduction",
+   "to": "beta2_dead_routes",
+   "kind": "ref"
+  },
+  {
+   "from": "beta2_dead_routes",
+   "to": "monodromy_route",
+   "kind": "alt"
+  },
+  {
+   "from": "xr_expansion",
+   "to": "xr_wall",
+   "kind": "req"
+  },
+  {
+   "from": "xr_crystallization",
+   "to": "xr_wall",
+   "kind": "req"
+  },
+  {
+   "from": "johnson_gap",
+   "to": "xr_expansion",
+   "kind": "req"
+  },
+  {
+   "from": "hooley_katz",
+   "to": "xr_crystallization",
+   "kind": "ev"
+  },
+  {
+   "from": "spi_genericity",
+   "to": "spi_wall",
+   "kind": "req"
+  },
+  {
+   "from": "spi_exceptional_class",
+   "to": "spi_wall",
+   "kind": "req"
+  },
+  {
+   "from": "spi_dimension_free",
+   "to": "spi_wall",
+   "kind": "req"
+  },
+  {
+   "from": "periodic_strata",
+   "to": "spi_genericity",
+   "kind": "req"
+  },
+  {
+   "from": "deficiency_growth",
+   "to": "spi_dimension_free",
+   "kind": "ev"
+  },
+  {
+   "from": "displacement_uniform",
+   "to": "spi_dimension_free",
+   "kind": "alt"
+  },
+  {
+   "from": "xr_crystallization",
+   "to": "spi_exceptional_class",
+   "kind": "ev"
+  },
+  {
+   "from": "petal_fixed_excess",
+   "to": "petal_growth",
+   "kind": "req"
+  },
+  {
+   "from": "petal_mixed_amplification",
+   "to": "petal_growth",
+   "kind": "alt"
+  },
+  {
+   "from": "e1_fullness",
+   "to": "zone_b",
+   "kind": "alt"
+  },
+  {
+   "from": "acl_count",
+   "to": "e1_fullness",
+   "kind": "ev"
+  },
+  {
+   "from": "row_c_experiment",
+   "to": "e1_fullness",
+   "kind": "ev"
+  },
+  {
+   "from": "exchange_ledger_gen_t",
+   "to": "xr_expansion",
+   "kind": "req"
   }
  ]
 }
