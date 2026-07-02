@@ -81,6 +81,25 @@ one-parameter monic locator pencil, each of degree at most `n-j+1` in the
 kernel parameter.  Higher kernel dimension and identically valid pencils are
 honest residual branches.
 
+Equivalently, this rank-drop pivot test has a support-fiber form.  Let
+`ker M(z0)=span(P,Q)` with `deg P,deg Q <= j`, and let
+
+```text
+B0 = {h in H : P(h)=Q(h)=0}.
+```
+
+On `H\B0`, define the projective evaluation map
+
+```text
+phi_K(h) = [P(h):Q(h)] in P^1(F).
+```
+
+A line `aP+bQ` has root set `B0` plus one fiber of this map, using the
+projectively dual parameter `[a:b]`.  Thus a rank-one rank-drop kernel contains
+a degree-`j` split locator exactly when some fiber has size `j-|B0|` and the
+corresponding line has nonzero top coefficient.  This is the finite root-table
+form of the rank-drop pivot chart.
+
 There is one rank-drop branch that is not a residual.  If the Hankel moment
 window is supported on `s<j` distinct domain roots, then the degree-`s`
 support annihilator already lies in the kernel.  Any degree-`j` split locator

@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 rank-drop pivot fiber criterion
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_deficiency_one_chart_theorem.md`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/data/certificates/hankel-f97-mu16-m5-a384-toy/f97_mu16_n16_k8_a12_m5_side_chart_kernel_pivot.json`;
+  `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/f17_32_n512_k256_a384_rank_one_contained_rank_drop.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  Projective-fiber criterion for
+  rank-one rank-drop kernel pivots; no worst-case row claim.
+- **What is being added:** Turn 27 of the `A=384` M5 packet: for a
+  two-dimensional kernel `span(P,Q)`, exact split locators are detected by
+  fibers of `h -> [P(h):Q(h)]` after common base roots are removed.
+- **How it is useful:** Replaces the remaining rank-drop pivot divisor test
+  with a finite support-fiber table.  The toy side-chart packet records an
+  empty fiber table, and the real rank-one contained packet records the
+  `127+1` contained profile.
+- **What to do next:** Use the fiber criterion to attack non-contained generic
+  rank-drop roots.
+
 ### 2026-07-02 - M5 A384 rank-one common-factor filter
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

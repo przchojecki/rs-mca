@@ -131,6 +131,10 @@ Turn 26 records the rank-one common-factor filter: if a rank-one kernel is
 exactly A(X) times the two-dimensional space of linear quotients, with A split
 of degree j-1, every valid degree-j locator is contained and deduped.
 
+Turn 27 records the rank-drop pivot fiber criterion: in a two-dimensional
+kernel span(P,Q), valid split locators are read from the projective evaluation
+fibers h -> [P(h):Q(h)] on H, after removing common base roots.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -490,6 +494,13 @@ def f17_poly_eval(field: F17Field, poly, value):
     for coeff in reversed(poly):
         acc = f17_add(field, field.mul(acc, value), coeff)
     return acc
+
+
+def f17_poly_degree(field: F17Field, poly):
+    for index in range(len(poly) - 1, -1, -1):
+        if poly[index] != field.zero:
+            return index
+    return -1
 
 
 def f17_encodings(field: F17Field, values):
@@ -1051,6 +1062,39 @@ def check_rank_drop_kernel_pivot_reduction():
         "higher kernel dimension or identically-valid kernel pencils are labelled residual branches, not hidden in this theorem",
     ]
     return ok, d
+
+
+def check_rank_drop_pivot_fiber_criterion():
+    """Record the projective-evaluation fiber test for two-dimensional kernels."""
+    toy_profile = toy_side_chart_payload()["rank_drop"]["projective_evaluation_fiber_profile"]
+    real_profile = f17_rank_one_contained_rank_drop_payload()["rank_drop_chart"][
+        "projective_evaluation_fiber_profile"
+    ]
+
+    ok = True
+    ok &= toy_profile["criterion_matches_direct"]
+    ok &= toy_profile["candidate_exact_a_line_count"] == 0
+    ok &= toy_profile["direct_valid_line_count"] == 0
+    ok &= toy_profile["max_total_root_count_from_fiber"] < 4
+    ok &= real_profile["common_zero_count"] == 127
+    ok &= real_profile["max_noncommon_fiber_size"] == 1
+    ok &= real_profile["max_total_root_count_from_fiber"] == 128
+    ok &= real_profile["candidate_exact_a_line_count"] == 385
+
+    return ok, [
+        "rank-drop fiber criterion: for K=span(P,Q), common roots of P and Q "
+        "are base roots and every other root of a line aP+bQ lies in one "
+        "projective evaluation fiber h -> [P(h):Q(h)]",
+        "therefore a degree-j split locator in a two-dimensional kernel is "
+        "equivalent to a fiber whose size plus the common-base count is j, with "
+        "nonzero top coefficient",
+        f"F_97 side-chart packet: common={toy_profile['common_zero_count']}, "
+        f"max total roots from one fiber={toy_profile['max_total_root_count_from_fiber']}, "
+        f"criterion matches direct projective scan={toy_profile['criterion_matches_direct']}",
+        f"F_17^32 rank-one contained packet: common={real_profile['common_zero_count']}, "
+        f"max fiber={real_profile['max_noncommon_fiber_size']}, "
+        f"candidate contained degree-128 lines={real_profile['candidate_exact_a_line_count']}",
+    ]
 
 
 def check_moment_support_rank_extension_theorem():
@@ -1771,7 +1815,6 @@ def f17_planted_rank_drop_payload():
         field,
         [f17_poly_eval(field, valid_locator, root) for root in valid_roots],
     )
-
     return {
         "row_descriptor_hash": tagged_hash(descriptor),
         "domain_hash": descriptor["row"]["domain_hash"],
@@ -2021,6 +2064,12 @@ def f17_rank_one_contained_rank_drop_payload():
         field,
         [f17_poly_eval(field, valid_locator, root) for root in valid_roots],
     )
+    fiber_profile = f17_rank_one_common_factor_fiber_profile(
+        field,
+        domain,
+        rank_locator,
+        128,
+    )
 
     return {
         "row_descriptor_hash": tagged_hash(descriptor),
@@ -2084,6 +2133,7 @@ def f17_rank_one_contained_rank_drop_payload():
             "dedup_target_agreement": 512 - (len(rank_locator) - 1),
             "contained_branch_deduped": True,
             "new_exact_a384_contribution": False,
+            "projective_evaluation_fiber_profile": fiber_profile,
             "chart_status": "generic rank-one rank-drop side chart, contained and deduped",
         },
     }
@@ -2194,6 +2244,8 @@ def check_f17_rank_one_packet(path: Path):
         and checks["rank_certificate"]["kernel_dimension"] == 2
         and checks["rank_drop_chart"]["dedup_target_agreement"] == 385
         and checks["rank_drop_chart"]["contained_branch_deduped"]
+        and checks["rank_drop_chart"]["projective_evaluation_fiber_profile"]["common_zero_count"] == 127
+        and checks["rank_drop_chart"]["projective_evaluation_fiber_profile"]["candidate_exact_a_line_count"] == 385
         and not checks["rank_drop_chart"]["new_exact_a384_contribution"]
         and checks["v_window_nonzero"]
         and checks["recombination_matches_moments"]
@@ -2204,6 +2256,7 @@ def check_f17_rank_one_packet(path: Path):
         f"rank certificate prefix 127-minor = {checks['rank_certificate']['prefix_127_minor_encoding']} != 0",
         "rank is exactly 127=t-1, so the rank-drop kernel dimension is exactly 2",
         f"degree-127 annihilator dedupes the branch to agreement >= {checks['rank_drop_chart']['dedup_target_agreement']}",
+        "projective fiber profile has 127 common roots and one extra-root fiber per outside domain point",
     ]
 
 
@@ -2236,6 +2289,110 @@ def projective_kernel_lines_from_basis(basis, p):
     return sorted({tuple(line) for line in lines if line is not None})
 
 
+def rank_drop_projective_fiber_profile_mod_p(basis, subgroup, j, p):
+    """Fiber criterion for a two-dimensional polynomial kernel over F_p."""
+    assert len(basis) == 2
+    f = [p - 1] + [0] * (len(subgroup) - 1) + [1]
+    common_roots = []
+    fibers = Counter()
+    fiber_lines = {}
+    for h in subgroup:
+        values = [poly_eval(basis[0], h, p), poly_eval(basis[1], h, p)]
+        if values[0] == 0 and values[1] == 0:
+            common_roots.append(h)
+            continue
+        key = tuple(canonical_projective_vector(values, p))
+        fibers[key] += 1
+        first, second = key
+        line = [
+            (second * basis[0][index] - first * basis[1][index]) % p
+            for index in range(len(basis[0]))
+        ]
+        fiber_lines[key] = tuple(canonical_projective_vector(line, p))
+
+    candidate_lines = sorted({
+        fiber_lines[key]
+        for key, count in fibers.items()
+        if len(common_roots) + count == j and poly_degree(fiber_lines[key]) == j
+    })
+    direct_valid_lines = []
+    for line in projective_kernel_lines_from_basis(basis, p):
+        locator = top_monic_vector(list(line), p)
+        if locator is not None and is_zero_poly(pseudo_remainder(f, locator, p)):
+            direct_valid_lines.append(tuple(canonical_projective_vector(line, p)))
+    direct_valid_lines = sorted(set(direct_valid_lines))
+
+    max_fiber = max(fibers.values(), default=0)
+    return {
+        "common_zero_count": len(common_roots),
+        "noncommon_fiber_count": len(fibers),
+        "max_noncommon_fiber_size": max_fiber,
+        "max_total_root_count_from_fiber": len(common_roots) + max_fiber,
+        "candidate_exact_a_line_count": len(candidate_lines),
+        "candidate_exact_a_lines_hash": tagged_hash([list(line) for line in candidate_lines]),
+        "direct_valid_line_count": len(direct_valid_lines),
+        "direct_valid_lines_hash": tagged_hash([list(line) for line in direct_valid_lines]),
+        "criterion_matches_direct": candidate_lines == direct_valid_lines,
+    }
+
+
+def canonical_f17_projective_vector(field: F17Field, vec):
+    """Normalize a nonzero F_17^32 projective vector by its first nonzero entry."""
+    pivot = next((value for value in vec if value != field.zero), None)
+    if pivot is None:
+        return None
+    inv = f17_inv(field, pivot)
+    return tuple(field.mul(value, inv) for value in vec)
+
+
+def f17_rank_one_common_factor_fiber_profile(field, domain, common_factor, j):
+    """Fiber profile for K=A(X)F_{<=1}[X] on the pinned domain."""
+    basis0 = list(common_factor) + [field.zero]
+    basis1 = [field.zero] + list(common_factor)
+    common_roots = []
+    fibers = Counter()
+    fiber_lines = {}
+    for point in domain:
+        values = [
+            f17_poly_eval(field, basis0, point),
+            f17_poly_eval(field, basis1, point),
+        ]
+        if values[0] == field.zero and values[1] == field.zero:
+            common_roots.append(point)
+            continue
+        key = canonical_f17_projective_vector(field, values)
+        fibers[key] += 1
+        first, second = key
+        line = [
+            f17_sub(
+                field,
+                field.mul(second, basis0[index]),
+                field.mul(first, basis1[index]),
+            )
+            for index in range(len(basis0))
+        ]
+        line = canonical_f17_projective_vector(field, line)
+        if line is not None:
+            fiber_lines[key] = line
+
+    candidate_lines = sorted({
+        fiber_lines[key]
+        for key, count in fibers.items()
+        if len(common_roots) + count == j and f17_poly_degree(field, fiber_lines[key]) == j
+    }, key=lambda line: f17_encodings(field, line))
+    max_fiber = max(fibers.values(), default=0)
+    return {
+        "common_zero_count": len(common_roots),
+        "noncommon_fiber_count": len(fibers),
+        "max_noncommon_fiber_size": max_fiber,
+        "max_total_root_count_from_fiber": len(common_roots) + max_fiber,
+        "candidate_exact_a_line_count": len(candidate_lines),
+        "candidate_exact_a_lines_hash": tagged_hash([
+            f17_encodings(field, line) for line in candidate_lines
+        ]),
+    }
+
+
 def poly_degree(poly):
     for index in range(len(poly) - 1, -1, -1):
         if poly[index]:
@@ -2262,6 +2419,8 @@ def toy_side_chart_payload():
     rd_matrix = hankel(rd_s, t, j)
     rd_rank, rd_basis = nullspace_basis_mod_p(rd_matrix, p)
     rd_lines = projective_kernel_lines_from_basis(rd_basis, p)
+    subgroup = [x for x in range(1, p) if pow(x, n, p) == 1]
+    rd_fiber_profile = rank_drop_projective_fiber_profile_mod_p(rd_basis, subgroup, j, p)
     degree_j_lines = []
     valid_degree_j_lines = []
     for line in rd_lines:
@@ -2307,6 +2466,7 @@ def toy_side_chart_payload():
             "degree_j_candidates_hash": tagged_hash([list(line) for line in degree_j_lines]),
             "valid_degree_j_locators": [list(line) for line in valid_degree_j_lines],
             "valid_degree_j_locator_count": len(valid_degree_j_lines),
+            "projective_evaluation_fiber_profile": rd_fiber_profile,
             "pseudo_remainder_degree_bound": n - j + 1,
             "direct_exact_a_valid_rank_drop": rank_drop_z in summary["rank_drop_valid"],
         },
@@ -2377,6 +2537,8 @@ def check_toy_side_packet(path: Path):
         and rank_drop["kernel_dimension"] == 2
         and rank_drop["projective_kernel_line_count"] == 98
         and rank_drop["valid_degree_j_locator_count"] == 0
+        and rank_drop["projective_evaluation_fiber_profile"]["criterion_matches_direct"]
+        and rank_drop["projective_evaluation_fiber_profile"]["candidate_exact_a_line_count"] == 0
         and not rank_drop["direct_exact_a_valid_rank_drop"]
     )
     return ok, [
@@ -2385,6 +2547,7 @@ def check_toy_side_packet(path: Path):
         f"low-degree slope {low['slope']} dedupes to agreement >= {low['dedup_target_agreement']}",
         f"rank-drop slope {rank_drop['slope']} has kernel dimension {rank_drop['kernel_dimension']} "
         f"and {rank_drop['valid_degree_j_locator_count']} valid degree-j kernel locators",
+        "rank-drop fiber profile matches the direct projective-kernel scan",
     ]
 
 
@@ -3057,6 +3220,7 @@ CHECKS = [
     ("deficiency-1 chart reduction for real row",         check_deficiency_one_chart_reduction),
     ("low-degree side-chart dedup theorem",               check_low_degree_dedup_theorem),
     ("rank-drop kernel-pivot reduction",                  check_rank_drop_kernel_pivot_reduction),
+    ("rank-drop pivot fiber criterion",                   check_rank_drop_pivot_fiber_criterion),
     ("moment-support rank-extension theorem",             check_moment_support_rank_extension_theorem),
     ("rank-drop contained-branch dedup theorem",          check_rank_drop_contained_branch_dedup_theorem),
     ("rank-one common-factor filter theorem",             check_rank_one_common_factor_filter_theorem),

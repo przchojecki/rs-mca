@@ -1,6 +1,6 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 26: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 27: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
@@ -24,7 +24,8 @@
   A rank-one contained rank-drop packet now covers the generic `rank=t-1`,
   kernel-dimension-two moment-support branch and dedupes it to agreement `385`.
   The rank-one common-factor filter now separates these contained kernels from
-  the genuinely non-contained kernel-pivot residuals.
+  the genuinely non-contained kernel-pivot residuals.  The rank-drop pivot
+  test now has an equivalent projective evaluation-fiber criterion on `H`.
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -159,7 +160,8 @@ belongs.
 | 5t | declared `F_17^32` disjoint top-branch closure | **done** |
 | 5u | rank-one contained rank-drop packet | **done** |
 | 5v | rank-one common-factor filter theorem | **done** |
-| 5w | full `F_17^32` root-table packet for non-contained generic rank-drop charts | pending |
+| 5w | rank-drop pivot projective-fiber criterion | **done** |
+| 5x | full `F_17^32` root-table packet for non-contained generic rank-drop charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -991,6 +993,30 @@ are contained extensions and are not new exact-`A` contributions.
 The rank-one packet verifies this filter with support size `127`: rank exactly
 `127`, kernel dimension `2`, degree-127 annihilator, degree-128 extension, and
 dedup target agreement `385`.
+
+### Verified in turn 27
+
+**U27, rank-drop pivot projective-fiber criterion.** For a two-dimensional
+rank-drop kernel `K=span(P,Q)`, let
+
+```text
+B0 = {h in H : P(h)=Q(h)=0},        phi_K(h)=[P(h):Q(h)].
+```
+
+Then every line `aP+bQ` has roots in `H` equal to the common base roots `B0`
+plus one projective evaluation fiber of `phi_K` on `H\B0`.  Hence the
+rank-drop pivot root table can be computed by fiber multiplicities:
+
+```text
+degree-j split locator  <=>  |B0| + |fiber| = j
+                              and the corresponding line has degree j.
+```
+
+The `F_97/mu_16` side-chart packet records `common_zero_count=0`, no candidate
+exact-`A` line, and agreement with the direct projective-kernel scan.  The
+`F_17^32` rank-one contained packet records `common_zero_count=127`,
+`max_noncommon_fiber_size=1`, and `385` contained degree-128 candidate lines,
+all deduped to agreement `385`.
 
 ## Honest scope
 

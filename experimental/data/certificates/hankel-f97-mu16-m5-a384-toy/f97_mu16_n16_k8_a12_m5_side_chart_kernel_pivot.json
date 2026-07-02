@@ -79,6 +79,17 @@
       ]
     ],
     "kernel_dimension": 2,
+    "projective_evaluation_fiber_profile": {
+      "candidate_exact_a_line_count": 0,
+      "candidate_exact_a_lines_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "common_zero_count": 0,
+      "criterion_matches_direct": true,
+      "direct_valid_line_count": 0,
+      "direct_valid_lines_hash": "sha256:4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "max_noncommon_fiber_size": 1,
+      "max_total_root_count_from_fiber": 1,
+      "noncommon_fiber_count": 16
+    },
     "projective_kernel_line_count": 98,
     "projective_kernel_lines_hash": "sha256:f3cf0a3e46ebbb02b2439e244c1f803d2a07447dcda9ae36707db14c1fb07399",
     "pseudo_remainder_degree_bound": 13,

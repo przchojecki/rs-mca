@@ -19,6 +19,14 @@
       "kernel_dimension": 2,
       "lower_degree_annihilator_degree": 127,
       "new_exact_a384_contribution": false,
+      "projective_evaluation_fiber_profile": {
+        "candidate_exact_a_line_count": 385,
+        "candidate_exact_a_lines_hash": "sha256:e0b93186771166d24143af9e422ad8f7776ebd7642163c34827e8bf70b657eea",
+        "common_zero_count": 127,
+        "max_noncommon_fiber_size": 1,
+        "max_total_root_count_from_fiber": 128,
+        "noncommon_fiber_count": 385
+      },
       "rank": 127,
       "t": 128,
       "valid_degree_128_locator_in_kernel": true
