@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v6",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v7",
 }
 
 
@@ -312,9 +312,28 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         summary["conic_high_core_forced_core_is_global_common_core"],
         "conic high-core forced-core classification missing",
     )
+    require(
+        summary["line_residual_projective_safe_by_punctured_tangent_for_external_core_at_least"]
+        == 122,
+        "line punctured tangent tail threshold mismatch",
+    )
+    require(
+        summary["conic_residual_projective_safe_by_punctured_tangent_for_external_core_at_least"]
+        == 122,
+        "conic punctured tangent tail threshold mismatch",
+    )
+    require(
+        summary["line_remaining_unclosed_external_core_range"] == [72, 121],
+        "line unclosed core range mismatch",
+    )
+    require(
+        summary["conic_remaining_unclosed_external_core_range"] == [69, 121],
+        "conic unclosed core range mismatch",
+    )
     nonclaims = set(data["nonclaims"])
     require(
-        "does not claim the punctured tangent numerator is within the original row budget" in nonclaims,
+        "does not claim the punctured tangent numerator at the residual threshold is within the original row budget"
+        in nonclaims,
         "A386 moving-slope packet must keep the original-budget nonclaim",
     )
     require(
@@ -416,7 +435,8 @@ def build_certificate() -> dict[str, Any]:
                 "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
                 "the remaining high-core line branch is a dual-evaluation-fiber quotient pencil of degree <=54",
                 "the remaining high-core irreducible-conic branch has a global common forced core and becomes a quotient family of degree <=57",
-                "after puncturing the forced core, those high-core quotient branches are tangent-range eligible on the punctured row, but this is not an original-row projective budget closure",
+                "after puncturing the forced core, those high-core quotient branches are tangent-range eligible; the tail e_G>=122 is projective-safe by finite punctured tangent plus one endpoint",
+                "the still-unclosed high-core quotient ranges are e_G=72..121 for lines and e_G=69..121 for irreducible conics",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",
@@ -447,7 +467,7 @@ def build_certificate() -> dict[str, Any]:
             "still_requires_m5_or_other_ledgers": [
                 "rank-deficient finite regular buckets not covered by a paid family",
                 "non-proportional direction-rank-6 buckets when the projective endpoint is not empty or paid and the 6x6 compressed exact finite root table has six surviving roots",
-                "the A=386 separated moving-slope high-core quotient branches unless a punctured tangent-ledger payment or an original-row endpoint/root-table refinement is supplied",
+                "the A=386 separated moving-slope intermediate high-core quotient branches e_G=72..121 for lines and e_G=69..121 for irreducible conics",
                 "non-proportional finite buckets with direction rank > 6 unless exact root tables plus kernel filters improve the bound",
                 "quotient, quotient-image, extension, and subfield overlap for future non-proportional root tables",
             ],
@@ -497,13 +517,13 @@ def build_certificate() -> dict[str, Any]:
             "projective split-locator testing separates ambient infinity endpoints from genuine support-wise endpoint witnesses",
             "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
             "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
-            "A=386 moving-slope small-core branches are recorded as projective-safe while high-core branches remain quotient/punctured-tangent residuals",
+            "A=386 moving-slope small-core and very-high-core tail branches are recorded as projective-safe; the intermediate high-core quotient ranges remain residual",
             "projective infinity and finite affine accounting are not conflated",
         ],
         "nonclaims": [
             "does not compute arbitrary non-proportional finite root tables",
             "does not prove the projective endpoint is empty or paid in the rank=6 case",
-            "does not close the A=386 high-core quotient moving-slope residual in original-row projective accounting",
+            "does not close the A=386 intermediate high-core quotient moving-slope residual in original-row projective accounting",
             "does not audit quotient or extension overlap for arbitrary root tables",
             "not a worst-case support-wise MCA row bound",
         ],

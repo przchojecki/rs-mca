@@ -18,7 +18,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v6"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v7"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -283,6 +283,28 @@ def punctured_tangent_row(component_type: str, forced_external_core_threshold: i
     }
 
 
+def punctured_tangent_tail_row(forced_external_core_size: int) -> dict[str, Any]:
+    punctured_length = N - forced_external_core_size
+    punctured_radius = (N - AGREEMENT) - forced_external_core_size
+    tangent_radius = (punctured_length - K) // 3
+    finite_tangent_bound = punctured_radius + 1
+    projective_bound_with_original_endpoint = finite_tangent_bound + 1
+    return {
+        "forced_external_core_size": forced_external_core_size,
+        "punctured_length": punctured_length,
+        "punctured_exact_agreement": AGREEMENT,
+        "punctured_radius": punctured_radius,
+        "punctured_tangent_radius_floor": tangent_radius,
+        "in_high_agreement_tangent_range": punctured_radius <= tangent_radius,
+        "finite_slope_bound_from_punctured_tangent": finite_tangent_bound,
+        "endpoint_uniform_extra": 1,
+        "projective_bound_using_separate_endpoint": projective_bound_with_original_endpoint,
+        "projective_safe_using_separate_endpoint": (
+            projective_bound_with_original_endpoint <= PROJECTIVE_BUDGET
+        ),
+    }
+
+
 def build_certificate() -> dict[str, Any]:
     descriptor = load_json(ROW_DESCRIPTOR_REF)
     low_degree = load_json(LOW_DEGREE_TRANSFER_REF)
@@ -528,6 +550,16 @@ def build_certificate() -> dict[str, Any]:
         punctured_tangent_row("line", line_residual_core_threshold),
         punctured_tangent_row("irreducible_conic", conic_residual_core_threshold),
     ]
+    tail_projective_safe_core_min = min(
+        core
+        for core in range(line_residual_core_threshold, j_value)
+        if punctured_tangent_tail_row(core)["projective_safe_using_separate_endpoint"]
+    )
+    punctured_tangent_tail_rows = [
+        punctured_tangent_tail_row(tail_projective_safe_core_min - 1),
+        punctured_tangent_tail_row(tail_projective_safe_core_min),
+        punctured_tangent_tail_row(j_value - 1),
+    ]
     require(line_residual_core_threshold == 72, "line residual threshold mismatch")
     require(conic_residual_core_threshold == 69, "conic residual threshold mismatch")
     require(
@@ -566,6 +598,19 @@ def build_certificate() -> dict[str, Any]:
     require(
         punctured_tangent_rows[1]["tangent_numerator_at_threshold"] == 58,
         "conic tangent numerator mismatch",
+    )
+    require(tail_projective_safe_core_min == 122, "punctured tangent tail threshold mismatch")
+    require(
+        not punctured_tangent_tail_rows[0]["projective_safe_using_separate_endpoint"],
+        "core 121 should not be projective-safe with a separate endpoint",
+    )
+    require(
+        punctured_tangent_tail_rows[1]["projective_bound_using_separate_endpoint"] == PROJECTIVE_BUDGET,
+        "core 122 should exactly meet the projective budget",
+    )
+    require(
+        punctured_tangent_tail_rows[2]["projective_safe_using_separate_endpoint"],
+        "maximal high core should be projective-safe",
     )
 
     return {
@@ -728,8 +773,14 @@ def build_certificate() -> dict[str, Any]:
                 "386 and co-support radius r'=126-|E|.  Since r' <= floor((n'-256)/3) "
                 "for |E|>=61, every remaining high-core branch lies in the "
                 "very-high-agreement tangent-staircase range of the punctured row.  "
-                "This is a tangent-ledger eligibility statement, not a budget "
-                "closure for the original row."
+                "The finite slopes in the branch are therefore bounded by r'+1=127-|E|."
+            ),
+            "very_high_core_projective_tail_closure": (
+                "Using the punctured finite tangent bound plus the original-row "
+                "endpoint-uniform contribution, every high-core branch with "
+                "|E|>=122 has projective contribution at most (127-|E|)+1<=6.  "
+                "This closes the very-high-core tail but leaves the intermediate "
+                "high-core quotient range unresolved."
             ),
         },
         "budget_formula": {
@@ -787,6 +838,7 @@ def build_certificate() -> dict[str, Any]:
         "conic_pair_overlap_sample_rows": conic_packing_sample_rows,
         "high_core_quotient_residual_rows": quotient_residual_rows,
         "punctured_tangent_reduction_rows": punctured_tangent_rows,
+        "punctured_tangent_tail_rows": punctured_tangent_tail_rows,
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -812,6 +864,13 @@ def build_certificate() -> dict[str, Any]:
             "line_residual_punctured_tangent_numerator_at_threshold": (
                 punctured_tangent_rows[0]["tangent_numerator_at_threshold"]
             ),
+            "line_residual_projective_safe_by_punctured_tangent_for_external_core_at_least": (
+                tail_projective_safe_core_min
+            ),
+            "line_remaining_unclosed_external_core_range": [
+                line_residual_core_threshold,
+                tail_projective_safe_core_min - 1,
+            ],
             "conic_projective_safe_for_external_core_at_most": (
                 conic_projective_safe_packing_external_core_max
             ),
@@ -822,11 +881,18 @@ def build_certificate() -> dict[str, Any]:
             "conic_residual_punctured_tangent_numerator_at_threshold": (
                 punctured_tangent_rows[1]["tangent_numerator_at_threshold"]
             ),
+            "conic_residual_projective_safe_by_punctured_tangent_for_external_core_at_least": (
+                tail_projective_safe_core_min
+            ),
+            "conic_remaining_unclosed_external_core_range": [
+                conic_residual_core_threshold,
+                tail_projective_safe_core_min - 1,
+            ],
             "line_high_core_forced_core_is_dual_evaluation_fiber": True,
             "conic_high_core_forced_core_is_global_common_core": True,
             "remaining_unclosed_residuals": [
-                "moving-slope line component with forced external split-root core >=72 for projective accounting",
-                "irreducible moving-slope conic component with forced external split-root core >=69 for projective accounting",
+                "moving-slope line component with forced external split-root core in 72..121 for projective accounting",
+                "irreducible moving-slope conic component with forced external split-root core in 69..121 for projective accounting",
                 "possible independent noncontained vectors at slopes also admitting a slope-free vector",
             ],
         },
@@ -850,13 +916,14 @@ def build_certificate() -> dict[str, Any]:
             "line high-core forced roots are dual-evaluation fibers on a projective line",
             "irreducible conic high-core forced roots are global common roots of the whole Q-plane",
             "high-core residuals satisfy the punctured high-agreement tangent inequality",
+            "very-high-core tail e>=122 is projective-safe by punctured tangent plus one endpoint",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",
-            "does not close line components with forced external split-root core >=72 in projective accounting",
-            "does not close irreducible conic moving-slope components with forced external split-root core >=69 in projective accounting",
+            "does not close line components with forced external split-root core in 72..121 in projective accounting",
+            "does not close irreducible conic moving-slope components with forced external split-root core in 69..121 in projective accounting",
             "does not prove the high-core quotient split problem is empty or paid",
-            "does not claim the punctured tangent numerator is within the original row budget",
+            "does not claim the punctured tangent numerator at the residual threshold is within the original row budget",
             "does not rule out another independent noncontained vector at the same finite slope",
             "does not cover A=385",
             "does not classify overlapping-support rank-6 pencils",
@@ -879,6 +946,12 @@ def print_summary(certificate: dict[str, Any]) -> None:
     print(
         "line projective safe external core<= {line_projective_safe_for_external_core_at_most}; "
         "conic projective safe external core<= {conic_projective_safe_for_external_core_at_most}".format(
+            **summary
+        )
+    )
+    print(
+        "punctured tangent tail projective safe for external core>= "
+        "{line_residual_projective_safe_by_punctured_tangent_for_external_core_at_least}".format(
             **summary
         )
     )

@@ -178,7 +178,8 @@
     "high-core conic residuals factor through quotient locators of degree <=57",
     "line high-core forced roots are dual-evaluation fibers on a projective line",
     "irreducible conic high-core forced roots are global common roots of the whole Q-plane",
-    "high-core residuals satisfy the punctured high-agreement tangent inequality"
+    "high-core residuals satisfy the punctured high-agreement tangent inequality",
+    "very-high-core tail e>=122 is projective-safe by punctured tangent plus one endpoint"
   ],
   "conic_pair_overlap_sample_rows": [
     {
@@ -267,10 +268,10 @@
   },
   "nonclaims": [
     "does not prove every moving-slope component is a line",
-    "does not close line components with forced external split-root core >=72 in projective accounting",
-    "does not close irreducible conic moving-slope components with forced external split-root core >=69 in projective accounting",
+    "does not close line components with forced external split-root core in 72..121 in projective accounting",
+    "does not close irreducible conic moving-slope components with forced external split-root core in 69..121 in projective accounting",
     "does not prove the high-core quotient split problem is empty or paid",
-    "does not claim the punctured tangent numerator is within the original row budget",
+    "does not claim the punctured tangent numerator at the residual threshold is within the original row budget",
     "does not rule out another independent noncontained vector at the same finite slope",
     "does not cover A=385",
     "does not classify overlapping-support rank-6 pencils",
@@ -300,6 +301,44 @@
       "punctured_tangent_exact_start": 381,
       "punctured_tangent_radius_floor": 62,
       "tangent_numerator_at_threshold": 58
+    }
+  ],
+  "punctured_tangent_tail_rows": [
+    {
+      "endpoint_uniform_extra": 1,
+      "finite_slope_bound_from_punctured_tangent": 6,
+      "forced_external_core_size": 121,
+      "in_high_agreement_tangent_range": true,
+      "projective_bound_using_separate_endpoint": 7,
+      "projective_safe_using_separate_endpoint": false,
+      "punctured_exact_agreement": 386,
+      "punctured_length": 391,
+      "punctured_radius": 5,
+      "punctured_tangent_radius_floor": 45
+    },
+    {
+      "endpoint_uniform_extra": 1,
+      "finite_slope_bound_from_punctured_tangent": 5,
+      "forced_external_core_size": 122,
+      "in_high_agreement_tangent_range": true,
+      "projective_bound_using_separate_endpoint": 6,
+      "projective_safe_using_separate_endpoint": true,
+      "punctured_exact_agreement": 386,
+      "punctured_length": 390,
+      "punctured_radius": 4,
+      "punctured_tangent_radius_floor": 44
+    },
+    {
+      "endpoint_uniform_extra": 1,
+      "finite_slope_bound_from_punctured_tangent": 2,
+      "forced_external_core_size": 125,
+      "in_high_agreement_tangent_range": true,
+      "projective_bound_using_separate_endpoint": 3,
+      "projective_safe_using_separate_endpoint": true,
+      "punctured_exact_agreement": 386,
+      "punctured_length": 387,
+      "punctured_radius": 1,
+      "punctured_tangent_radius_floor": 43
     }
   ],
   "row": {
@@ -341,7 +380,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v6",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v7",
   "source_artifacts": {
     "a386_global_component_slope_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-global-component-slope-dichotomy/f17_32_n512_k256_m3_rank6_a386_global_component_slope_dichotomy.json",
@@ -376,19 +415,29 @@
     "conic_finite_safe_for_external_core_at_most": 76,
     "conic_high_core_forced_core_is_global_common_core": true,
     "conic_projective_safe_for_external_core_at_most": 68,
+    "conic_remaining_unclosed_external_core_range": [
+      69,
+      121
+    ],
+    "conic_residual_projective_safe_by_punctured_tangent_for_external_core_at_least": 122,
     "conic_residual_punctured_tangent_numerator_at_threshold": 58,
     "conic_residual_quotient_degree_at_most": 57,
     "external_root_count": 385,
     "line_finite_safe_for_external_core_at_most": 80,
     "line_high_core_forced_core_is_dual_evaluation_fiber": true,
     "line_projective_safe_for_external_core_at_most": 71,
+    "line_remaining_unclosed_external_core_range": [
+      72,
+      121
+    ],
+    "line_residual_projective_safe_by_punctured_tangent_for_external_core_at_least": 122,
     "line_residual_punctured_tangent_numerator_at_threshold": 55,
     "line_residual_quotient_degree_at_most": 54,
     "locator_degree_j": 126,
     "positive_dimensional_component_forced_core_upper_bound": 125,
     "remaining_unclosed_residuals": [
-      "moving-slope line component with forced external split-root core >=72 for projective accounting",
-      "irreducible moving-slope conic component with forced external split-root core >=69 for projective accounting",
+      "moving-slope line component with forced external split-root core in 72..121 for projective accounting",
+      "irreducible moving-slope conic component with forced external split-root core in 69..121 for projective accounting",
       "possible independent noncontained vectors at slopes also admitting a slope-free vector"
     ]
   },
@@ -405,7 +454,8 @@
     "incidence_budget": "For r_G<j, each valid degree-j split locator on G needs at least j-r_G additional intersections with non-forced root hyperplanes.  Each non-forced E_s cuts G in length at most c.  Hence the number of valid Q-classes, and therefore the number of finite slopes represented by this component, is at most floor(c*(512-r_G)/(126-r_G)).",
     "line_projective_safe_core_threshold": "For a line component c=1, the unrefined all-root budget gives projective safety at r_G<=48.  The base-sharpened external budget improves this: e_G<=71 gives at most five finite Q-classes.  Adding the endpoint-uniform contribution gives projective total at most 6, exactly the projective budget.",
     "no_identically_split_positive_dimensional_component": "A positive-dimensional component cannot have r_G>=j=126.  Otherwise every L_Q on G would be divisible by the same degree-j split locator, hence scalar-multiple to it because deg L_Q<=j, contradicting projective injectivity of Q -> L_Q on G.",
-    "punctured_high_agreement_tangent_reduction": "Deleting the forced external core E leaves a punctured RS row of length n'=512-|E|, while the same witness has exact agreement 386 and co-support radius r'=126-|E|.  Since r' <= floor((n'-256)/3) for |E|>=61, every remaining high-core branch lies in the very-high-agreement tangent-staircase range of the punctured row.  This is a tangent-ledger eligibility statement, not a budget closure for the original row."
+    "punctured_high_agreement_tangent_reduction": "Deleting the forced external core E leaves a punctured RS row of length n'=512-|E|, while the same witness has exact agreement 386 and co-support radius r'=126-|E|.  Since r' <= floor((n'-256)/3) for |E|>=61, every remaining high-core branch lies in the very-high-agreement tangent-staircase range of the punctured row.  The finite slopes in the branch are therefore bounded by r'+1=127-|E|.",
+    "very_high_core_projective_tail_closure": "Using the punctured finite tangent bound plus the original-row endpoint-uniform contribution, every high-core branch with |E|>=122 has projective contribution at most (127-|E|)+1<=6.  This closes the very-high-core tail but leaves the intermediate high-core quotient range unresolved."
   },
   "unrefined_sample_budget_rows": [
     {

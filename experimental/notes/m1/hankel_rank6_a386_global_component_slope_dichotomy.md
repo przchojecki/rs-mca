@@ -127,9 +127,11 @@ global common forced core across the whole `Q`-plane and becomes a quotient
 family of degree at most `57`.
 
 After deleting the forced core, those residual quotient branches also satisfy
-the very-high-agreement tangent inequality on the punctured row.  This records
-tangent-ledger eligibility for the residual but does not close the original
-projective budget.
+the very-high-agreement tangent inequality on the punctured row.  The
+very-high-core tail `e_G>=122` is projective-safe by the punctured finite
+tangent bound plus one endpoint.  The remaining unclosed intermediate ranges
+are `72<=e_G<=121` for residual lines and `69<=e_G<=121` for residual
+irreducible conics.
 
 The other cases remain residual:
 

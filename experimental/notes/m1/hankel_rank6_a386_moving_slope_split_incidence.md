@@ -241,9 +241,40 @@ line residuals:  |E|>=72, r'<=54, tangent numerator <=55;
 conic residuals: |E|>=69, r'<=57, tangent numerator <=58.
 ```
 
-This is a tangent-ledger eligibility statement on the punctured row.  It does
-not by itself prove that the original-row projective numerator is within the
-budget `6`.
+At the residual thresholds this is only a tangent-ledger eligibility statement
+on the punctured row: the numerators `55` and `58` are far above the original
+budget `6`.  However the same formula closes the very-high-core tail.  The
+finite slopes represented by a fixed high-core branch inject into the
+support-wise bad slopes of the punctured row, so the punctured tangent
+staircase gives
+
+```text
+finite slopes on the branch <= r'+1 = 127-|E|.
+```
+
+Adding the original projective endpoint as a separate one-point contribution,
+the branch is projective-safe whenever
+
+```text
+(127-|E|) + 1 <= 6,
+```
+
+that is,
+
+```text
+|E| >= 122.
+```
+
+Thus the unclosed high-core quotient range is finite:
+
+```text
+line residuals:  72 <= |E| <= 121;
+conic residuals: 69 <= |E| <= 121.
+```
+
+This uses only the finite-slope punctured tangent bound plus the already
+recorded endpoint-uniform contribution; it does not claim a sharper projective
+tangent theorem for the punctured row.
 
 Replay:
 
@@ -256,10 +287,10 @@ Nonclaims:
 
 ```text
 no proof that every moving-slope component is a line;
-no closure of line components with forced external split-root core >=72 in projective accounting;
-no closure of irreducible conic moving-slope components with forced external split-root core >=69 in projective accounting;
+no closure of line components with forced external split-root core in 72..121 in projective accounting;
+no closure of irreducible conic moving-slope components with forced external split-root core in 69..121 in projective accounting;
 no proof that the high-core quotient split problem is empty or paid;
-no claim that the punctured tangent numerator is within the original row budget;
+no claim that the punctured tangent numerator at the residual threshold is within the original row budget;
 no exclusion of another independent noncontained vector at the same finite slope;
 no A=385 closure;
 no overlapping-support rank-6 classification;

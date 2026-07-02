@@ -351,7 +351,7 @@
     "projective split-locator testing separates ambient infinity endpoints from genuine support-wise endpoint witnesses",
     "rank-6 finite-root refinement is assigned an affine-pivot 6x6 compression theorem",
     "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
-    "A=386 moving-slope small-core branches are recorded as projective-safe while high-core branches remain quotient/punctured-tangent residuals",
+    "A=386 moving-slope small-core and very-high-core tail branches are recorded as projective-safe; the intermediate high-core quotient ranges remain residual",
     "projective infinity and finite affine accounting are not conflated"
   ],
   "field_audit": {
@@ -363,7 +363,7 @@
   "nonclaims": [
     "does not compute arbitrary non-proportional finite root tables",
     "does not prove the projective endpoint is empty or paid in the rank=6 case",
-    "does not close the A=386 high-core quotient moving-slope residual in original-row projective accounting",
+    "does not close the A=386 intermediate high-core quotient moving-slope residual in original-row projective accounting",
     "does not audit quotient or extension overlap for arbitrary root tables",
     "not a worst-case support-wise MCA row bound"
   ],
@@ -536,7 +536,7 @@
     },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
-      "sha256": "4d66bab5ae29f2d5f33647a54623b448474504a938a68d606ca13ca94b16bd7e"
+      "sha256": "4935fe079be58e32f63d27a1bd72c8d92d0ff0ab2a1aedb423d2410670e071d9"
     },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
@@ -585,7 +585,8 @@
       "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
       "the remaining high-core line branch is a dual-evaluation-fiber quotient pencil of degree <=54",
       "the remaining high-core irreducible-conic branch has a global common forced core and becomes a quotient family of degree <=57",
-      "after puncturing the forced core, those high-core quotient branches are tangent-range eligible on the punctured row, but this is not an original-row projective budget closure"
+      "after puncturing the forced core, those high-core quotient branches are tangent-range eligible; the tail e_G>=122 is projective-safe by finite punctured tangent plus one endpoint",
+      "the still-unclosed high-core quotient ranges are e_G=72..121 for lines and e_G=69..121 for irreducible conics"
     ],
     "closed_by_current_lemmas": [
       "zero-v with full-rank H(u): no finite roots, infinity tangent-paid",
@@ -639,7 +640,7 @@
     "still_requires_m5_or_other_ledgers": [
       "rank-deficient finite regular buckets not covered by a paid family",
       "non-proportional direction-rank-6 buckets when the projective endpoint is not empty or paid and the 6x6 compressed exact finite root table has six surviving roots",
-      "the A=386 separated moving-slope high-core quotient branches unless a punctured tangent-ledger payment or an original-row endpoint/root-table refinement is supplied",
+      "the A=386 separated moving-slope intermediate high-core quotient branches e_G=72..121 for lines and e_G=69..121 for irreducible conics",
       "non-proportional finite buckets with direction rank > 6 unless exact root tables plus kernel filters improve the bound",
       "quotient, quotient-image, extension, and subfield overlap for future non-proportional root tables"
     ]

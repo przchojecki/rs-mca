@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 very-high-core tangent tail closure
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `A=386` moving-slope packet now uses the
+  punctured high-agreement tangent staircase to close the very-high-core tail:
+  forced external core `e_G>=122` has finite bound `127-e_G`, hence projective
+  total at most `6` after adding the one endpoint.
+- **How it is useful:** It shrinks the remaining rank-6 moving-slope residual
+  to the intermediate ranges `72<=e_G<=121` for lines and `69<=e_G<=121` for
+  irreducible conics.
+- **What to do next:** Attack the intermediate quotient/common-core ranges by
+  exact root tables or a quotient/tangent payment theorem.
+
 ### 2026-07-02 - A386 high-core forced-core structure
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

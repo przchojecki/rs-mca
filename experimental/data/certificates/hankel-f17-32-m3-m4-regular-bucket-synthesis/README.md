@@ -238,9 +238,11 @@ irreducible conics, pair-overlap packing closes projective accounting for
 forced cores now have a sharper structure: a high-core line is a
 dual-evaluation-fiber quotient pencil of degree at most `54`, while a high-core
 irreducible conic has a global common forced core and becomes a quotient family
-of degree at most `57`.  After puncturing the forced core they lie in the
-very-high-agreement tangent range of the punctured row; this records
-tangent-ledger eligibility, not original-budget closure.
+of degree at most `57`.  After puncturing the forced core, the finite slopes in
+the branch are bounded by `127-e_G`; hence the very-high-core tail `e_G>=122`
+is projective-safe after adding the one endpoint.  The remaining unclosed
+intermediate ranges are `72<=e_G<=121` for lines and `69<=e_G<=121` for
+irreducible conics.
 
 The rank-node dichotomy packet
 

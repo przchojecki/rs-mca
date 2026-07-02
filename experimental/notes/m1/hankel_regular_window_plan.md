@@ -321,7 +321,10 @@ external core, the remaining split-locator degree is at most `54` for lines and
 quotient pencil, while a high-core irreducible conic has a global common forced
 core across the whole `Q`-plane.  Puncturing the forced core puts those residual
 quotient branches in the very-high-agreement tangent range of the punctured
-row, though this does not by itself close the original-row budget.
+row.  For the tail `e_G>=122`, the punctured finite tangent bound plus the one
+projective endpoint gives projective total at most `6`, so the remaining
+unclosed intermediate ranges are `72<=e_G<=121` for lines and `69<=e_G<=121`
+for irreducible conics.
 
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
