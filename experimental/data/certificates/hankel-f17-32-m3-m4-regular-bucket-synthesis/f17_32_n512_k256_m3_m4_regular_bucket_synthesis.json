@@ -364,6 +364,7 @@
     "A=385 separated rank-6 fixed two-core irreducible-conic high-core branches close by product collapse except for the e_G=123 quotient tail",
     "A=385 separated rank-6 fixed two-core high-core line/conic branches are projective-budget safe after line product collapse and the punctured tangent tail",
     "A=385 separated rank-6 branches with a fixed forced base core of size at least two are projective-budget safe",
+    "A=385 separated rank-6 no-fixed-core over-budget branches force a pair of finite classes with at least 24 common external roots",
     "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
     "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
     "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
@@ -506,7 +507,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v46",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v47",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -563,6 +564,10 @@
     "f17_32_n512_k256_m3_rank6_a385_fixed_core_synthesis": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-fixed-core-synthesis/f17_32_n512_k256_m3_rank6_a385_fixed_core_synthesis.json",
       "sha256": "ddfd45b172281a828541dba52b96c1e3de9c0af6ab541af32f4324e3671f626c"
+    },
+    "f17_32_n512_k256_m3_rank6_a385_no_fixed_core_pressure": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-no-fixed-core-pressure/f17_32_n512_k256_m3_rank6_a385_no_fixed_core_pressure.json",
+      "sha256": "fcaf493aa8b829d2ece876dbad450976ab85d9fdf66680678ecc1c935c769ded"
     },
     "f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-three-core-quadratic-cut/f17_32_n512_k256_m3_rank6_a385_three_core_quadratic_cut.json",
@@ -637,6 +642,7 @@
   "summary": {
     "a385_base_core_closure_count": 1,
     "a385_fixed_core_synthesis_count": 1,
+    "a385_no_fixed_core_pressure_count": 1,
     "a385_three_core_quadratic_cut_count": 1,
     "a385_three_core_residual_closure_count": 1,
     "a385_two_core_component_cut_count": 1,
@@ -651,7 +657,7 @@
     "a386_separated_boundary_closure_count": 1,
     "agreement_count": 42,
     "closed_case_count": 3,
-    "dependencies_checked": 30,
+    "dependencies_checked": 31,
     "endpoint_sensitive_rank_cutoff_case_count": 1,
     "finite_slope_budget": 6,
     "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -678,6 +684,12 @@
       "the fixed two-core packet tree consumes the conic-pair, component-cut, global constant-slope, slope-free, moving-slope incidence, high-core quotient, conic product-collapse, and high-core closure packets",
       "therefore any remaining separated A=385 over-budget obstruction must avoid a fixed forced two-point base core in the counted branch",
       "the remaining frontier is branches without a fixed two-point base core, moving-core/no-common-core behavior, overlapping support, and row-level M3 synthesis"
+    ],
+    "a385_no_fixed_core_pressure": [
+      "after fixed-core synthesis, a projective over-budget separated A=385 branch must have exactly six finite noncontained classes plus an unpaid endpoint",
+      "the A=385 low-degree transfer has deg Q<5, so each finite class has at most four base roots and the six degree-127 split locators have at least 738 external-root incidences",
+      "occupancy in the 384 external subgroup points forces total pairwise external overlap at least 354, hence some pair of finite classes shares at least 24 external roots",
+      "therefore the no-fixed-core frontier has a concrete large pair-core target: if every pair shares at most 23 external roots, the branch is projective-budget safe"
     ],
     "a385_three_core_quadratic_cut": [
       "inside the separated A=385 rank-6 boundary, a fixed three-point base split-root core leaves a projective Q-line",

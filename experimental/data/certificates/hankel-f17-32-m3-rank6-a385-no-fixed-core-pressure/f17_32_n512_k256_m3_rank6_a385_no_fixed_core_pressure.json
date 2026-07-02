@@ -1,0 +1,260 @@
+{
+  "agreement": {
+    "A": 385,
+    "boundary_defect_h": 5,
+    "direction_rank": 6,
+    "external_subgroup_size": 384,
+    "j": 127,
+    "m": 128,
+    "projective_Q_search_dimension": 4,
+    "split_locator_degree": 127,
+    "t": 129
+  },
+  "base_incidence_pressure_table": [
+    {
+      "external_root_incidence_lower_bound": 762,
+      "pairwise_external_overlap_sum_lower_bound": 378,
+      "some_pair_external_common_core_lower_bound": 26,
+      "total_base_root_incidences": 0
+    },
+    {
+      "external_root_incidence_lower_bound": 761,
+      "pairwise_external_overlap_sum_lower_bound": 377,
+      "some_pair_external_common_core_lower_bound": 26,
+      "total_base_root_incidences": 1
+    },
+    {
+      "external_root_incidence_lower_bound": 760,
+      "pairwise_external_overlap_sum_lower_bound": 376,
+      "some_pair_external_common_core_lower_bound": 26,
+      "total_base_root_incidences": 2
+    },
+    {
+      "external_root_incidence_lower_bound": 759,
+      "pairwise_external_overlap_sum_lower_bound": 375,
+      "some_pair_external_common_core_lower_bound": 25,
+      "total_base_root_incidences": 3
+    },
+    {
+      "external_root_incidence_lower_bound": 758,
+      "pairwise_external_overlap_sum_lower_bound": 374,
+      "some_pair_external_common_core_lower_bound": 25,
+      "total_base_root_incidences": 4
+    },
+    {
+      "external_root_incidence_lower_bound": 757,
+      "pairwise_external_overlap_sum_lower_bound": 373,
+      "some_pair_external_common_core_lower_bound": 25,
+      "total_base_root_incidences": 5
+    },
+    {
+      "external_root_incidence_lower_bound": 756,
+      "pairwise_external_overlap_sum_lower_bound": 372,
+      "some_pair_external_common_core_lower_bound": 25,
+      "total_base_root_incidences": 6
+    },
+    {
+      "external_root_incidence_lower_bound": 755,
+      "pairwise_external_overlap_sum_lower_bound": 371,
+      "some_pair_external_common_core_lower_bound": 25,
+      "total_base_root_incidences": 7
+    },
+    {
+      "external_root_incidence_lower_bound": 754,
+      "pairwise_external_overlap_sum_lower_bound": 370,
+      "some_pair_external_common_core_lower_bound": 25,
+      "total_base_root_incidences": 8
+    },
+    {
+      "external_root_incidence_lower_bound": 753,
+      "pairwise_external_overlap_sum_lower_bound": 369,
+      "some_pair_external_common_core_lower_bound": 25,
+      "total_base_root_incidences": 9
+    },
+    {
+      "external_root_incidence_lower_bound": 752,
+      "pairwise_external_overlap_sum_lower_bound": 368,
+      "some_pair_external_common_core_lower_bound": 25,
+      "total_base_root_incidences": 10
+    },
+    {
+      "external_root_incidence_lower_bound": 751,
+      "pairwise_external_overlap_sum_lower_bound": 367,
+      "some_pair_external_common_core_lower_bound": 25,
+      "total_base_root_incidences": 11
+    },
+    {
+      "external_root_incidence_lower_bound": 750,
+      "pairwise_external_overlap_sum_lower_bound": 366,
+      "some_pair_external_common_core_lower_bound": 25,
+      "total_base_root_incidences": 12
+    },
+    {
+      "external_root_incidence_lower_bound": 749,
+      "pairwise_external_overlap_sum_lower_bound": 365,
+      "some_pair_external_common_core_lower_bound": 25,
+      "total_base_root_incidences": 13
+    },
+    {
+      "external_root_incidence_lower_bound": 748,
+      "pairwise_external_overlap_sum_lower_bound": 364,
+      "some_pair_external_common_core_lower_bound": 25,
+      "total_base_root_incidences": 14
+    },
+    {
+      "external_root_incidence_lower_bound": 747,
+      "pairwise_external_overlap_sum_lower_bound": 363,
+      "some_pair_external_common_core_lower_bound": 25,
+      "total_base_root_incidences": 15
+    },
+    {
+      "external_root_incidence_lower_bound": 746,
+      "pairwise_external_overlap_sum_lower_bound": 362,
+      "some_pair_external_common_core_lower_bound": 25,
+      "total_base_root_incidences": 16
+    },
+    {
+      "external_root_incidence_lower_bound": 745,
+      "pairwise_external_overlap_sum_lower_bound": 361,
+      "some_pair_external_common_core_lower_bound": 25,
+      "total_base_root_incidences": 17
+    },
+    {
+      "external_root_incidence_lower_bound": 744,
+      "pairwise_external_overlap_sum_lower_bound": 360,
+      "some_pair_external_common_core_lower_bound": 24,
+      "total_base_root_incidences": 18
+    },
+    {
+      "external_root_incidence_lower_bound": 743,
+      "pairwise_external_overlap_sum_lower_bound": 359,
+      "some_pair_external_common_core_lower_bound": 24,
+      "total_base_root_incidences": 19
+    },
+    {
+      "external_root_incidence_lower_bound": 742,
+      "pairwise_external_overlap_sum_lower_bound": 358,
+      "some_pair_external_common_core_lower_bound": 24,
+      "total_base_root_incidences": 20
+    },
+    {
+      "external_root_incidence_lower_bound": 741,
+      "pairwise_external_overlap_sum_lower_bound": 357,
+      "some_pair_external_common_core_lower_bound": 24,
+      "total_base_root_incidences": 21
+    },
+    {
+      "external_root_incidence_lower_bound": 740,
+      "pairwise_external_overlap_sum_lower_bound": 356,
+      "some_pair_external_common_core_lower_bound": 24,
+      "total_base_root_incidences": 22
+    },
+    {
+      "external_root_incidence_lower_bound": 739,
+      "pairwise_external_overlap_sum_lower_bound": 355,
+      "some_pair_external_common_core_lower_bound": 24,
+      "total_base_root_incidences": 23
+    },
+    {
+      "external_root_incidence_lower_bound": 738,
+      "pairwise_external_overlap_sum_lower_bound": 354,
+      "some_pair_external_common_core_lower_bound": 24,
+      "total_base_root_incidences": 24
+    }
+  ],
+  "checks": [
+    "row descriptor and dependency schemas match",
+    "A=385 has j=127, m=128, h=5, and 384 external subgroup points",
+    "direction-rank cap bounds finite roots by six",
+    "projective-budget split makes rank six endpoint-sensitive",
+    "fixed-core synthesis removes all fixed base cores of size at least two",
+    "low-degree transfer caps base roots at four per finite class",
+    "six finite degree-127 split locators require at least 738 external-root incidences",
+    "external occupancy forces pairwise overlap sum at least 354",
+    "one pair of finite classes must share at least 24 external roots"
+  ],
+  "nonclaims": [
+    "does not close the no-fixed-core A=385 frontier",
+    "does not prove existence of a no-fixed-core over-budget witness",
+    "does not classify overlapping-support rank-6 pencils",
+    "does not prove the projective endpoint is unpaid",
+    "does not prove that a large external pair-core is quotient-paid or impossible",
+    "does not compute arbitrary A=385 rank-6 root tables",
+    "does not produce a row-level M3 safe-side bound"
+  ],
+  "object": "A=385 separated rank-6 no-fixed-core external pair-core pressure",
+  "pressure_profile": {
+    "base_root_cap_per_finite_class": 4,
+    "external_root_incidence_lower_bound": 738,
+    "external_universe_size": 384,
+    "finite_class_pair_count": 15,
+    "finite_classes_required_for_projective_overbudget": 6,
+    "max_total_base_root_incidences": 24,
+    "pairwise_external_overlap_sum_lower_bound": 354,
+    "projective_endpoint_must_be_unpaid": true,
+    "some_pair_external_common_core_lower_bound": 24
+  },
+  "row": {
+    "code": "RS[F_17^32,H,256]",
+    "domain_hash": "35904a892e0319b3805e91438ec2733427a351a72ce9654428d6a33bd3575b92",
+    "field": "F_17^32",
+    "k": 256,
+    "n": 512,
+    "q_line": 2367911594760467245844106297320951247361
+  },
+  "sampler_denominators": {
+    "finite_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247361,
+      "denominator_formula": "|F|"
+    },
+    "projective_line": {
+      "budget_floor_denominator_over_2_128": 6,
+      "denominator": 2367911594760467245844106297320951247362,
+      "denominator_formula": "|P^1(F)| = |F| + 1"
+    }
+  },
+  "schema_version": "f17-32-m3-rank6-a385-no-fixed-core-pressure-v1",
+  "source_artifacts": {
+    "a385_fixed_core_synthesis": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-fixed-core-synthesis/f17_32_n512_k256_m3_rank6_a385_fixed_core_synthesis.json",
+      "sha256": "ddfd45b172281a828541dba52b96c1e3de9c0af6ab541af32f4324e3671f626c"
+    },
+    "direction_rank_degree_cap": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
+      "sha256": "ed76390f8a0cac98793e9da0d767787750559e3b5816432f4a4106d56ec93fd0"
+    },
+    "m4_projective_budget_split": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-m4-projective-budget-split/f17_32_n512_k256_m3_m4_projective_budget_split.json",
+      "sha256": "5347a6cee7009d6b5041550ad2ce6f0f273e0bb5cc2cd9e042c2b741fdc1d9b7"
+    },
+    "rank6_boundary_low_degree_transfer": {
+      "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-boundary-low-degree-transfer/f17_32_n512_k256_m3_rank6_boundary_low_degree_transfer.json",
+      "sha256": "4ff0d90a1e710bca56efd7a68357d2dcc473a8150c9ddcaf1b95a061ec5c2101"
+    },
+    "row_descriptor": {
+      "ref": "experimental/data/certificates/hankel-f17-32-row-descriptor/f17_32_n512_k256_hankel_row_descriptor.json",
+      "sha256": "db5706e437eedf38dbd17f762775167f456b3af0db061c230cc621d496361c87"
+    }
+  },
+  "status": "PROVED / AUDIT",
+  "summary": {
+    "agreement": 385,
+    "base_root_cap_per_class": 4,
+    "external_root_incidence_lower_bound": 738,
+    "finite_classes_required_for_projective_overbudget": 6,
+    "fixed_core_synthesis_consumed": true,
+    "max_total_base_roots_across_six_classes": 24,
+    "pairwise_external_overlap_sum_lower_bound": 354,
+    "safe_if_all_pair_external_common_cores_at_most": 23,
+    "some_pair_external_common_core_lower_bound": 24
+  },
+  "theorem": {
+    "base_root_cap": "At A=385 the low-degree transfer has deg Q<5.  On the base support, L_Q(x)=0 iff Q(x)=0, so each nonzero finite class has at most four base-support roots.",
+    "contrapositive_use": "A separated A=385 branch with no fixed two-point base core and with every pair of finite classes sharing at most 23 external roots is projective-budget safe.",
+    "external_incidence": "Six degree-127 split locators therefore have at most 24 total base-root incidences and at least 738 external-root incidences inside the 384-point external subgroup complement.",
+    "finite_root_saturation": "The direction-rank degree cap gives at most six finite affine roots in a rank-6 regular bucket.  Since the projective budget is also six and there is at most one projective endpoint, any projective over-budget survivor must have exactly six distinct finite noncontained classes and an unpaid endpoint.",
+    "pair_core_pressure": "Distributing 738 incidences over 384 external points gives sum_{i<j}|E_i cap E_j| >= 354.  Since there are 15 pairs of finite classes, one pair has external intersection at least 24.",
+    "statement": "After the A=385 fixed-core synthesis, any remaining separated rank-6 branch that is projectively over budget must contain two finite split-locator classes sharing at least 24 external subgroup roots."
+  }
+}

@@ -324,6 +324,21 @@ safe.  The remaining A385 frontier is outside that fixed-core hypothesis:
 branches without a fixed two-point base core, moving-core/no-common-core
 behavior, overlapping support, and row-level M3 synthesis.
 
+The `A=385` no-fixed-core pressure packet
+
+```text
+experimental/data/certificates/hankel-f17-32-m3-rank6-a385-no-fixed-core-pressure/
+  f17_32_n512_k256_m3_rank6_a385_no_fixed_core_pressure.json
+```
+
+records the first necessary profile for that remaining separated frontier.
+Any projective over-budget survivor must have six finite classes plus an
+unpaid endpoint; `deg Q<5` caps the six total base-root incidences by `24`, so
+the six degree-`127` split locators require at least `738` external-root
+incidences.  Occupancy in `384` external points forces total pairwise external
+overlap at least `354`, hence some pair of finite classes has external common
+core size at least `24`.
+
 The `A=387` separated-boundary safety packet
 
 ```text
@@ -647,6 +662,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_clos
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_fixed_core_synthesis.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-fixed-core-synthesis/f17_32_n512_k256_m3_rank6_a385_fixed_core_synthesis.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_no_fixed_core_pressure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-no-fixed-core-pressure/f17_32_n512_k256_m3_rank6_a385_no_fixed_core_pressure.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

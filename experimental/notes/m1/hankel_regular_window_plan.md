@@ -993,6 +993,11 @@ separated `A=385` rank-6 branch with a fixed forced base core of size at least
 two is projective-budget safe.  The remaining `A=385` frontier is therefore
 outside that hypothesis: no fixed two-point base core, moving-core/no-common-core
 behavior, overlapping support, and row-level synthesis.
+The no-fixed-core pressure companion then shows that this frontier is not
+arbitrary: any separated projective over-budget survivor must have six finite
+classes plus an unpaid endpoint, and some pair of those finite classes must
+share at least `24` external split roots.  Thus the next separated `A=385`
+target is a large pair-core quotient/product-collapse problem.
 For `A=387`, the projective `Q`-space is a point, so the arbitrary-weight
 separated branch is already projective-safe with total at most `2`.
 For `A=386`, a no-common-component pair of direction conics gives projective
@@ -1063,6 +1068,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_clos
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_fixed_core_synthesis.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-fixed-core-synthesis/f17_32_n512_k256_m3_rank6_a385_fixed_core_synthesis.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_no_fixed_core_pressure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-no-fixed-core-pressure/f17_32_n512_k256_m3_rank6_a385_no_fixed_core_pressure.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

@@ -233,6 +233,20 @@ obstruction must avoid a fixed forced two-point base core in the counted
 branch; the remaining frontier is moving-core/no-common-core behavior,
 overlapping support, and row-level M3 synthesis.
 
+The no-fixed-core pressure companion is
+
+```text
+experimental/notes/m1/hankel_rank6_a385_no_fixed_core_pressure.md
+```
+
+It turns that remaining separated frontier into a large pair-core target.  A
+projective over-budget survivor must have six finite classes plus an unpaid
+endpoint.  Since `deg Q<5`, each finite class has at most four base roots, so
+the six degree-`127` split locators have at least `738` external-root
+incidences in the `384` external subgroup points.  Hence total pairwise
+external overlap is at least `354`, and some pair of finite classes shares at
+least `24` external roots.
+
 At `A=387`, this transfer already closes the separated branch for arbitrary
 nonzero weights: `h=1`, so the projective `Q`-space is a point and there is at
 most one finite slope.  The companion note
@@ -388,6 +402,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_clos
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_fixed_core_synthesis.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-fixed-core-synthesis/f17_32_n512_k256_m3_rank6_a385_fixed_core_synthesis.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_no_fixed_core_pressure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-no-fixed-core-pressure/f17_32_n512_k256_m3_rank6_a385_no_fixed_core_pressure.json
 ```
 
 Nonclaims:

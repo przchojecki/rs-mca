@@ -620,6 +620,12 @@ separated `A=385` obstruction must avoid a fixed two-point base core; moving-cor
 or no-common-core behavior, overlapping support, and row-level synthesis are
 still separate.
 
+The `A=385` no-fixed-core pressure companion gives the first necessary profile
+for that remaining separated frontier.  Six finite degree-`127` split locators
+can have at most `24` total base-root incidences because `deg Q<5`; therefore
+they need at least `738` external-root incidences in `384` external points.
+Some pair of finite classes must share at least `24` external roots.
+
 The `A=387` separated-boundary safety companion uses the `h=1` specialization
 to close that agreement for arbitrary nonzero separated weights: the finite
 root table has at most one ambient root, the split-locator gate cannot increase
@@ -980,6 +986,9 @@ python3 experimental/scripts/verify_f17_32_m3_rank6_a385_two_core_high_core_clos
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a385_fixed_core_synthesis.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-fixed-core-synthesis/f17_32_n512_k256_m3_rank6_a385_fixed_core_synthesis.json
+
+python3 experimental/scripts/verify_f17_32_m3_rank6_a385_no_fixed_core_pressure.py \
+  --check experimental/data/certificates/hankel-f17-32-m3-rank6-a385-no-fixed-core-pressure/f17_32_n512_k256_m3_rank6_a385_no_fixed_core_pressure.json
 
 python3 experimental/scripts/verify_f17_32_m3_rank6_a387_separated_boundary_safety.py \
   --check experimental/data/certificates/hankel-f17-32-m3-rank6-a387-separated-boundary-safety/f17_32_n512_k256_m3_rank6_a387_separated_boundary_safety.json

@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v46"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v47"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -155,6 +155,10 @@ A385_FIXED_CORE_SYNTHESIS_REF = (
     "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-fixed-core-synthesis/"
     "f17_32_n512_k256_m3_rank6_a385_fixed_core_synthesis.json"
 )
+A385_NO_FIXED_CORE_PRESSURE_REF = (
+    "experimental/data/certificates/hankel-f17-32-m3-rank6-a385-no-fixed-core-pressure/"
+    "f17_32_n512_k256_m3_rank6_a385_no_fixed_core_pressure.json"
+)
 
 
 EXPECTED_SCHEMAS = {
@@ -207,6 +211,9 @@ EXPECTED_SCHEMAS = {
     ),
     A385_FIXED_CORE_SYNTHESIS_REF: (
         "f17-32-m3-rank6-a385-fixed-core-synthesis-v1"
+    ),
+    A385_NO_FIXED_CORE_PRESSURE_REF: (
+        "f17-32-m3-rank6-a385-no-fixed-core-pressure-v1"
     ),
 }
 
@@ -2680,6 +2687,62 @@ def check_a385_fixed_core_synthesis_packet(data: dict[str, Any]) -> None:
     )
 
 
+def check_a385_no_fixed_core_pressure_packet(data: dict[str, Any]) -> None:
+    require(
+        data["agreement"]["A"] == 385,
+        "A385 no-fixed-core pressure agreement mismatch",
+    )
+    require(
+        data["status"] == "PROVED / AUDIT",
+        "A385 no-fixed-core pressure status mismatch",
+    )
+    summary = data["summary"]
+    require(
+        summary["fixed_core_synthesis_consumed"]
+        and summary["finite_classes_required_for_projective_overbudget"] == BUDGET
+        and summary["base_root_cap_per_class"] == 4
+        and summary["max_total_base_roots_across_six_classes"] == 24,
+        "A385 no-fixed-core pressure class/base summary mismatch",
+    )
+    require(
+        summary["external_root_incidence_lower_bound"] == 738
+        and summary["pairwise_external_overlap_sum_lower_bound"] == 354
+        and summary["some_pair_external_common_core_lower_bound"] == 24
+        and summary["safe_if_all_pair_external_common_cores_at_most"] == 23,
+        "A385 no-fixed-core pressure overlap summary mismatch",
+    )
+    profile = data["pressure_profile"]
+    require(
+        profile["external_universe_size"] == 384
+        and profile["finite_class_pair_count"] == 15
+        and profile["projective_endpoint_must_be_unpaid"],
+        "A385 no-fixed-core pressure profile mismatch",
+    )
+    table = data["base_incidence_pressure_table"]
+    require(
+        len(table) == 25
+        and table[24]["external_root_incidence_lower_bound"] == 738
+        and table[24]["some_pair_external_common_core_lower_bound"] == 24
+        and table[0]["external_root_incidence_lower_bound"] == 762
+        and table[0]["some_pair_external_common_core_lower_bound"] == 26,
+        "A385 no-fixed-core pressure table mismatch",
+    )
+    nonclaims = set(data["nonclaims"])
+    require(
+        "does not close the no-fixed-core A=385 frontier" in nonclaims,
+        "A385 no-fixed-core pressure missing frontier nonclaim",
+    )
+    require(
+        "does not prove that a large external pair-core is quotient-paid or impossible"
+        in nonclaims,
+        "A385 no-fixed-core pressure missing pair-core nonclaim",
+    )
+    require(
+        "does not produce a row-level M3 safe-side bound" in nonclaims,
+        "A385 no-fixed-core pressure missing row-bound nonclaim",
+    )
+
+
 def build_certificate() -> dict[str, Any]:
     field = Field(P, MODULUS)
     descriptor = load_json(ROW_DESCRIPTOR_REF)
@@ -2719,6 +2782,9 @@ def build_certificate() -> dict[str, Any]:
     )
     check_a385_fixed_core_synthesis_packet(
         dependencies[A385_FIXED_CORE_SYNTHESIS_REF]
+    )
+    check_a385_no_fixed_core_pressure_packet(
+        dependencies[A385_NO_FIXED_CORE_PRESSURE_REF]
     )
 
     domain_encodings = descriptor["domain"]["domain_encodings"]
@@ -2876,6 +2942,12 @@ def build_certificate() -> dict[str, Any]:
                 "therefore any remaining separated A=385 over-budget obstruction must avoid a fixed forced two-point base core in the counted branch",
                 "the remaining frontier is branches without a fixed two-point base core, moving-core/no-common-core behavior, overlapping support, and row-level M3 synthesis",
             ],
+            "a385_no_fixed_core_pressure": [
+                "after fixed-core synthesis, a projective over-budget separated A=385 branch must have exactly six finite noncontained classes plus an unpaid endpoint",
+                "the A=385 low-degree transfer has deg Q<5, so each finite class has at most four base roots and the six degree-127 split locators have at least 738 external-root incidences",
+                "occupancy in the 384 external subgroup points forces total pairwise external overlap at least 354, hence some pair of finite classes shares at least 24 external roots",
+                "therefore the no-fixed-core frontier has a concrete large pair-core target: if every pair shares at most 23 external roots, the branch is projective-budget safe",
+            ],
             "a386_moving_slope_refinement": [
                 "within the separated A=386 rank-6 common-component residual, moving-slope line components with external forced core e_G<=71 are projective-safe",
                 "within the same residual, irreducible moving-slope conics with external forced core e_G<=68 are projective-safe by pair-overlap packing",
@@ -2988,6 +3060,7 @@ def build_certificate() -> dict[str, Any]:
             "a385_two_core_conic_product_collapse_count": 1,
             "a385_two_core_high_core_closure_count": 1,
             "a385_fixed_core_synthesis_count": 1,
+            "a385_no_fixed_core_pressure_count": 1,
             "a386_moving_slope_refinement_count": 1,
             "m3_rank_node_dichotomy_count": 1,
             "m3_nullpolynomial_split_locator_gate_count": 1,
@@ -3022,6 +3095,7 @@ def build_certificate() -> dict[str, Any]:
             "A=385 separated rank-6 fixed two-core irreducible-conic high-core branches close by product collapse except for the e_G=123 quotient tail",
             "A=385 separated rank-6 fixed two-core high-core line/conic branches are projective-budget safe after line product collapse and the punctured tangent tail",
             "A=385 separated rank-6 branches with a fixed forced base core of size at least two are projective-budget safe",
+            "A=385 separated rank-6 no-fixed-core over-budget branches force a pair of finite classes with at least 24 common external roots",
             "A=386 moving-slope line and conic high-core branches are closed by forced-core product collapses; the intermediate high-core quotient ledgers remain diagnostics",
             "A=386 slope-free same-slope shadows contribute zero additional parameters beyond the non-slope-free branch",
             "A=386 dense conic one-over subcases carry exact Pascal pressure thresholds",
