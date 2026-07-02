@@ -7,10 +7,11 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_reductions.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`.
 
-This note records three elementary reductions around the fiber-rigidity
+This note records four elementary reductions around the fiber-rigidity
 statement called Conjecture F in the proof sketch.  They do not prove the
 primitive core.  Their role is to remove two paid structures from the statement
-and to settle the dimension-one base case.
+to settle the dimension-one base case, and to restate the remaining primitive
+core as a hyperplane-arrangement incidence problem.
 
 ## Setup
 
@@ -167,6 +168,45 @@ so it receives exactly `j` votes.  Hence the number of such members is at most
 This proves the dimension-one primitive Conjecture F case with a linear bound.
 The first genuinely open primitive case is therefore dimension at least two.
 
+## Lemma 4: Hyperplane-Concurrency Reformulation
+
+Let `W <= K[X]_{<= j}` be a nonzero vector space and let `P(W)` be its
+projectivization.  For each `h in H`, define the evaluation subspace
+
+```text
+E_h = { [L] in P(W) : L(h)=0 }.
+```
+
+If no `h in H` is a common root of all members of `W`, then every `E_h` is a
+proper hyperplane in `P(W)`.  In this gcd-trivial case,
+
+```text
+P(W) cap D_j(H)
+```
+
+is exactly the set of projective points of `P(W)` lying on at least `j` of the
+hyperplanes `E_h`.
+
+Equivalently, after Lemmas 1 and 2 remove common-divisor and quotient-pullback
+structure, the primitive Conjecture F problem is a `j`-fold concurrency problem
+for the arrangement of evaluation hyperplanes on `P(W)`.
+
+**Proof.**  Since no `h` is a common root, the evaluation functional
+`L -> L(h)` is not identically zero on `W`, so `E_h` is a proper hyperplane.
+For any nonzero `L in W`, the number of hyperplanes containing `[L]` is
+exactly
+
+```text
+#{h in H : L(h)=0}.
+```
+
+If `[L]` lies in `P(W) cap D_j(H)`, then `L` is a scalar multiple of a
+degree-`j` squarefree divisor of `P_H`, so it has exactly `j` roots in `H` and
+lies on exactly `j` of the `E_h`.  Conversely, if `[L]` lies on at least `j`
+of the `E_h`, then `L` has at least `j` distinct roots in `H`.  But
+`deg L <= j` and `L` is nonzero, so it has exactly `j` roots and is a scalar
+multiple of their locator.  Thus `[L]` lies in `D_j(H)`.
+
 ## Verification
 
 The verifier checks these lemmas over `F_97` with `H = mu_16`:
@@ -177,6 +217,7 @@ python3 experimental/scripts/verify_conjecture_f_reductions.py --emit
 ```
 
 It exhaustively checks the common-GCD and quotient-pullback identities in the
-toy parameters used by the script, and tests the voting bound on deterministic
-random gcd-trivial pencils.  The verifier is supporting evidence only; the
-proofs above are the mathematical content.
+toy parameters used by the script, tests the voting bound on deterministic
+random gcd-trivial pencils, and checks the hyperplane-concurrency equivalence
+on deterministic random gcd-trivial projective planes.  The verifier is
+supporting evidence only; the proofs above are the mathematical content.

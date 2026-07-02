@@ -7,6 +7,8 @@ the identities over F_97 with H = mu_16:
 * common-GCD division maps D_j(H) points injectively into D_{j-w}(H');
 * quotient pullback g(Y) -> g(X^M) is exactly the M-periodic stratum;
 * gcd-trivial projective pencils meet D_j(H) in at most floor(n/j) points.
+* D_j(H) on a gcd-trivial projective plane equals j-fold concurrency for
+  the evaluation-hyperplane arrangement.
 """
 from __future__ import annotations
 
@@ -27,6 +29,7 @@ J_SCALE = 6
 SCALE_M = 2
 J_VOTING = 4
 PENCIL_TRIALS = 500
+PLANE_TRIALS = 25
 SEED = 2026070202
 OUTPUT = Path(
     "experimental/data/certificates/conjecture-f-reductions/"
@@ -78,6 +81,10 @@ def poly_add(a: tuple[int, ...], b: tuple[int, ...]) -> tuple[int, ...]:
 
 def poly_scale(c: int, a: tuple[int, ...]) -> tuple[int, ...]:
     return trim(tuple((c * x) % P for x in a))
+
+
+def coeff_at(poly: tuple[int, ...], index: int) -> int:
+    return poly[index] % P if index < len(poly) else 0
 
 
 def poly_mul(a: tuple[int, ...], b: tuple[int, ...]) -> tuple[int, ...]:
@@ -132,6 +139,14 @@ def monic_degree_j(poly: tuple[int, ...], j: int) -> tuple[int, ...] | None:
         return None
     inv = pow(poly[-1], -1, P)
     return poly_scale(inv, poly)
+
+
+def canonical_projective(poly: tuple[int, ...]) -> tuple[int, ...] | None:
+    poly = trim(poly)
+    for coeff in poly:
+        if coeff % P:
+            return poly_scale(pow(coeff, -1, P), poly)
+    return None
 
 
 def divisor_set(H: list[int], j: int) -> set[tuple[int, ...]]:
@@ -240,6 +255,57 @@ def random_poly(rng: random.Random, max_degree: int) -> tuple[int, ...]:
     return trim(tuple(rng.randrange(P) for _ in range(max_degree + 1)))
 
 
+def rank_polys(polys: list[tuple[int, ...]], width: int) -> int:
+    rows = [[coeff_at(poly, i) for i in range(width)] for poly in polys]
+    rank = 0
+    for col in range(width):
+        pivot = None
+        for row in range(rank, len(rows)):
+            if rows[row][col] % P:
+                pivot = row
+                break
+        if pivot is None:
+            continue
+        rows[rank], rows[pivot] = rows[pivot], rows[rank]
+        inv = pow(rows[rank][col], -1, P)
+        rows[rank] = [(inv * x) % P for x in rows[rank]]
+        for row in range(len(rows)):
+            if row != rank and rows[row][col] % P:
+                factor = rows[row][col]
+                rows[row] = [
+                    (rows[row][i] - factor * rows[rank][i]) % P
+                    for i in range(width)
+                ]
+        rank += 1
+        if rank == len(rows):
+            break
+    return rank
+
+
+def gcd_trivial_space(basis: list[tuple[int, ...]], H: list[int]) -> bool:
+    return all(any(poly_eval(poly, x) != 0 for poly in basis) for x in H)
+
+
+def projective_plane_points(basis: list[tuple[int, ...]]) -> set[tuple[int, ...]]:
+    assert len(basis) == 3
+    points = set()
+    for a in range(P):
+        for b in range(P):
+            poly = poly_add(basis[0], poly_add(poly_scale(a, basis[1]), poly_scale(b, basis[2])))
+            point = canonical_projective(poly)
+            assert point is not None
+            points.add(point)
+    for b in range(P):
+        poly = poly_add(basis[1], poly_scale(b, basis[2]))
+        point = canonical_projective(poly)
+        assert point is not None
+        points.add(point)
+    point = canonical_projective(basis[2])
+    assert point is not None
+    points.add(point)
+    return points
+
+
 def count_divisor_points(a: tuple[int, ...], b: tuple[int, ...],
                          D: set[tuple[int, ...]]) -> int:
     count = 0
@@ -307,12 +373,68 @@ def check_voting_bound(H: list[int]) -> dict:
     }
 
 
+def check_hyperplane_concurrency(H: list[int]) -> dict:
+    D_classes = {
+        canonical_projective(poly)
+        for poly in divisor_set(H, J_VOTING)
+    }
+    assert None not in D_classes
+    rng = random.Random(SEED + 2)
+    accepted = 0
+    attempts = 0
+    max_concurrent_points = 0
+    total_points = P * P + P + 1
+    while accepted < PLANE_TRIALS:
+        attempts += 1
+        basis = [random_poly(rng, J_VOTING) for _ in range(3)]
+        if rank_polys(basis, J_VOTING + 1) != 3:
+            continue
+        if not gcd_trivial_space(basis, H):
+            continue
+        points = projective_plane_points(basis)
+        if len(points) != total_points:
+            return {
+                "name": "hyperplane_concurrency_reformulation",
+                "status": "FAIL",
+                "reason": "projective plane point count mismatch",
+                "observed_points": len(points),
+                "expected_points": total_points,
+            }
+        concurrent = {
+            point for point in points
+            if len(root_set(point, H)) >= J_VOTING
+        }
+        divisor_points = points & D_classes
+        if concurrent != divisor_points:
+            return {
+                "name": "hyperplane_concurrency_reformulation",
+                "status": "FAIL",
+                "reason": "concurrency set differs from D_j intersection",
+                "concurrent_count": len(concurrent),
+                "divisor_count": len(divisor_points),
+            }
+        max_concurrent_points = max(max_concurrent_points, len(concurrent))
+        accepted += 1
+    return {
+        "name": "hyperplane_concurrency_reformulation",
+        "status": "PASS",
+        "n": N,
+        "j": J_VOTING,
+        "projective_dimension": 2,
+        "plane_points_each": total_points,
+        "accepted_planes": accepted,
+        "attempts": attempts,
+        "max_observed_concurrent_points": max_concurrent_points,
+    }
+
+
 def build_report() -> dict:
     H = subgroup(N)
     checks = [
         check_gcd_reduction(H),
         check_scale_recursion(H),
         check_voting_bound(H),
+        check_hyperplane_concurrency(H),
     ]
     return {
         "schema": "conjecture_f_reduction_toy_v1",

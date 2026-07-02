@@ -31,6 +31,17 @@
       "name": "dimension_one_voting_bound",
       "projective_bound": 4,
       "status": "PASS"
+    },
+    {
+      "accepted_planes": 25,
+      "attempts": 25,
+      "j": 4,
+      "max_observed_concurrent_points": 1,
+      "n": 16,
+      "name": "hyperplane_concurrency_reformulation",
+      "plane_points_each": 9507,
+      "projective_dimension": 2,
+      "status": "PASS"
     }
   ],
   "domain": {
@@ -59,6 +70,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "e44838b16474ef287f480f06f835093d478b4080c627c9c7b6011364bb9e61ce",
+  "script_sha256": "588b48fcaef37ac2620cb50e933128ebadd93e7ac689f213c89cea99a2e9d8c6",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

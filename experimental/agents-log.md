@@ -118,15 +118,16 @@ Keep entries concise and link to the relevant files.
   `experimental/data/certificates/conjecture-f-reductions/`;
   `experimental/agents-log.md`.
 - **Status:** PROVED / EXPERIMENTAL.
-- **What is being added:** Three elementary reduction lemmas around the
+- **What is being added:** Four elementary reduction lemmas around the
   Conjecture F fiber-rigidity target: common-GCD division reduces to a smaller
   divisor set, quotient-pullback points recurse to scale `n/M`, and
   gcd-trivial projective pencils meet `D_j` in at most `floor(n/j)` points by
-  a voting argument.
+  a voting argument.  The note also proves the exact hyperplane-concurrency
+  reformulation for arbitrary gcd-trivial projective linear spaces.
 - **How it is useful:** The note turns two paid structures in the proof sketch
-  into reductions rather than separate cases and proves the dimension-one base
-  case, leaving the primitive dimension-at-least-two core as the first open
-  Conjecture F target.
+  into reductions rather than separate cases, proves the dimension-one base
+  case, and identifies the primitive dimension-at-least-two core as a
+  `j`-fold incidence problem for evaluation hyperplanes.
 - **What to do next:** Use these reductions before running the E7
   dimension-two plane census, and state future Conjecture F attacks on the
   gcd-trivial non-pullback primitive core.
