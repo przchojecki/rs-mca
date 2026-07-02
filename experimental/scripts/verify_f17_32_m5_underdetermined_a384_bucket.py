@@ -102,6 +102,11 @@ non-planted valid top-chart locator must share at most one root with the
 planted support.  The F_97 analogue is brute-forced over all subgroup locators
 and all slopes; the only valid pair there is the planted one.
 
+Turn 20 adds the support-only residual reduction for the planted top chart:
+for each candidate support R, the slope is unique, and the remaining equations
+are explicit support-consistency equations.  The F_97 analogue checks that
+this support-only test exactly matches the brute-force slope/support search.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -2136,6 +2141,83 @@ def check_planted_top_overlap_pruning():
     ]
 
 
+def check_planted_top_support_only_residual():
+    """Verify the slope-uniqueness/support-only residual theorem on F_97."""
+
+    p = 97
+    n = 16
+    j = 4
+    subgroup = [x for x in range(1, p) if pow(x, n, p) == 1]
+    support = tuple(subgroup[:j])
+    planted_slope = 7
+    v_window = [(m + 2) % p for m in range(2 * j)]
+    moments = [sum(pow(x, m, p) for x in support) % p for m in range(2 * j)]
+    u_window = [(moments[m] - planted_slope * v_window[m]) % p for m in range(2 * j)]
+
+    support_only_valid = []
+    brute_valid = []
+    zero_b_rows = []
+    near_disjoint_supports = 0
+    for roots in combinations(subgroup, j):
+        locator = poly_from_roots_mod(roots, p)
+        root_set = set(roots)
+        overlap = len(set(support) & root_set)
+        if overlap <= 1:
+            near_disjoint_supports += 1
+
+        a_vals = []
+        b_vals = []
+        l_at_one = poly_eval(locator, 1, p)
+        l_deriv_one = sum(i * locator[i] for i in range(1, len(locator))) % p
+        for row in range(j):
+            a_val = sum(
+                pow(x, row, p) * poly_eval(locator, x, p)
+                for x in support
+                if x not in root_set
+            ) % p
+            b_val = (l_at_one * (row + 2) + l_deriv_one) % p
+            direct_b_val = sum(locator[i] * (row + i + 2) for i in range(j + 1)) % p
+            if b_val != direct_b_val:
+                raise AssertionError(("B formula mismatch", roots, row, b_val, direct_b_val))
+            a_vals.append(a_val)
+            b_vals.append(b_val)
+
+        pivot = next((idx for idx, value in enumerate(b_vals) if value), None)
+        if pivot is None:
+            zero_b_rows.append(roots)
+            continue
+        lam = (-a_vals[pivot] * pow(b_vals[pivot], -1, p)) % p
+        consistent = all((a_vals[row] + lam * b_vals[row]) % p == 0 for row in range(j))
+        if consistent:
+            support_only_valid.append(((planted_slope + lam) % p, roots, overlap))
+
+        for z in range(p):
+            window = [(u_window[m] + z * v_window[m]) % p for m in range(2 * j)]
+            residual_zero = True
+            for row in range(j):
+                acc = sum(locator[i] * window[row + i] for i in range(j + 1)) % p
+                if acc:
+                    residual_zero = False
+                    break
+            if residual_zero:
+                brute_valid.append((z, roots, overlap))
+
+    support_only_valid = sorted(support_only_valid)
+    brute_valid = sorted(brute_valid)
+    ok = (
+        support_only_valid == brute_valid == [(planted_slope, support, j)]
+        and zero_b_rows == []
+        and near_disjoint_supports == 1375
+    )
+    return ok, [
+        "support-only residual theorem: each candidate root set R determines at most one slope",
+        "consistency equations are A_m B_m0 - A_m0 B_m = 0 after choosing any B_m0 != 0",
+        f"F_97 toy near-disjoint supports={near_disjoint_supports}; support-only valid={support_only_valid}",
+        f"F_97 brute-force valid={brute_valid}; support-only test matches brute force = {support_only_valid == brute_valid}",
+        "F_17^32 residual form: scan near-disjoint supports R with the unique slope lambda(R)",
+    ]
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop turn"]
 
@@ -2155,6 +2237,7 @@ CHECKS = [
     ("moment-support rank-extension theorem",             check_moment_support_rank_extension_theorem),
     ("abstract deficiency-one chart theorem",             check_deficiency_one_abstract_chart_theorem),
     ("planted top-chart overlap pruning",                 check_planted_top_overlap_pruning),
+    ("planted top-chart support-only residual",           check_planted_top_support_only_residual),
     ("F_97 acid test: brute force equals charts",         check_toy_acid_test_bruteforce),
     ("F_17^32 planted top-chart packet",                  lambda: check_f17_packet(DEFAULT_F17_PACKET)),
     ("F_17^32 planted low-degree packet",                 lambda: check_f17_low_degree_packet(DEFAULT_F17_LOW_DEGREE_PACKET)),

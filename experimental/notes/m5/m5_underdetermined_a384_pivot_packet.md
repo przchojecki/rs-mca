@@ -1,6 +1,6 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 19: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 20: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
@@ -15,7 +15,7 @@
   reduced to a kernel-pivot divisibility problem; the `F_97/mu_16` side-chart
   toy now has a replay packet.  The abstract deficiency-one chart theorem is
   now extracted as a reusable note, and the planted top-chart family has a
-  near-support overlap pruning theorem.
+  near-support overlap pruning theorem plus a support-only residual reduction.
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -143,7 +143,8 @@ belongs.
 | 5m | `F_97/mu_16` side-chart replay packet | **done** |
 | 5n | abstract deficiency-one chart theorem | **done** |
 | 5o | planted top-chart overlap pruning theorem | **done** |
-| 5p | full `F_17^32` root-table packet for rank-drop / top charts | pending |
+| 5p | planted top-chart support-only residual reduction | **done** |
+| 5q | full `F_17^32` root-table packet for rank-drop / top charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -746,6 +747,38 @@ enumeration of all `binom(16,4)=1820` subgroup locators and all slopes.  In the
 toy model the only valid pair is the planted support at the planted slope.
 For `F_17^32`, this does not close the top root table, but it replaces a broad
 unknown by a named near-disjoint residual: `|R cap T| in {0,1}`.
+
+### Verified in turn 20
+
+**U20, planted top-chart support-only residual.** For a fixed candidate root
+set `R`, the planted-family recurrence has the form
+
+```text
+A_m(R) + (z-z0) B_m(R) = 0,
+B_m(R)=L_R(1)(m+2)+L_R'(1).
+```
+
+The vector `B_m(R)` is never identically zero, since otherwise `L_R(1)` and
+`L_R'(1)` would both vanish, forcing a double root in a squarefree divisor of
+`X^n-1`.  Hence each candidate support determines at most one slope, and the
+remaining equations are support-only:
+
+```text
+A_m(R) B_m0(R) - A_m0(R) B_m(R) = 0.
+```
+
+Combined with U19, the planted `F_17^32` top residual is now explicitly:
+
+```text
+R subset H, |R|=128, |R cap T| in {0,1},
+support-only consistency equations hold,
+z = z0 - A_m0(R)/B_m0(R).
+```
+
+The verifier checks this reduction on the `F_97/mu_16` analogue by comparing
+the support-only test with a full brute-force slope/support search over all
+97 slopes and all `binom(16,4)=1820` subgroup locators.  The tests agree
+exactly, and only the planted support at the planted slope survives.
 
 ## Honest scope
 

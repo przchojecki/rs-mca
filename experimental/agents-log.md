@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 planted top support-only residual
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_deficiency_one_chart_theorem.md`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  Residual reduction for the
+  declared planted top-chart family; no threshold or worst-case row claim.
+- **What is being added:** Turn 20 of the `A=384` M5 packet: for each
+  candidate support `R`, the planted top-chart equations determine at most one
+  slope and reduce to explicit support-only consistency equations.  The
+  `F_97/mu_16` toy compares this support-only test with full brute force.
+- **How it is useful:** Converts the remaining planted top-chart wall from a
+  slope/support search to a near-disjoint support-only residual.
+- **What to do next:** Attack the support-only near-disjoint equations or the
+  rank-drop kernel-pivot residual.
+
 ### 2026-07-02 - M5 A384 planted top-chart overlap pruning
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

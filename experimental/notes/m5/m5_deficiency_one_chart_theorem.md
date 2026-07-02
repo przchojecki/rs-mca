@@ -164,3 +164,47 @@ near-disjoint case `|T cap R| in {0,1}`.
 The verifier checks the analogous `F_97/mu_16` model by brute force over all
 `binom(16,4)=1820` degree-four subgroup locators and all 97 slopes.  In that
 toy model the only valid pair is the planted slope and planted support.
+
+## Support-Only Residual Reduction
+
+The same equations also remove slope multiplicity from the residual.  For a
+fixed candidate root set `R`, define
+
+```text
+A_m(R) = sum_{x in T\\R} x^m L_R(x),
+B_m(R) = L_R(1)(m+2) + L_R'(1).
+```
+
+Then `R` is valid at slope `z=z0+lambda` exactly when
+
+```text
+A_m(R) + lambda B_m(R) = 0,     0 <= m < j.
+```
+
+The row vector `B_m(R)` is never identically zero.  If it were zero for every
+`m`, then `L_R(1)=0` and `L_R'(1)=0`; this would make `1` a double root of the
+squarefree divisor `L_R | X^n-1`.
+
+Therefore any valid support `R` determines at most one slope:
+
+```text
+lambda(R) = -A_m0(R)/B_m0(R)    for any m0 with B_m0(R) != 0.
+```
+
+The remaining top-chart condition is support-only:
+
+```text
+A_m(R) B_m0(R) - A_m0(R) B_m(R) = 0
+for all m.
+```
+
+Together with the overlap pruning, the planted `F_17^32` top residual is:
+
+```text
+find R subset H, |R|=128, |R cap T| in {0,1},
+such that the support-only consistency equations hold.
+```
+
+The verifier checks the `F_97/mu_16` analogue by comparing this support-only
+test with a full brute-force search over all slopes and all subgroup locators.
+They agree exactly; only the planted support at the planted slope survives.
