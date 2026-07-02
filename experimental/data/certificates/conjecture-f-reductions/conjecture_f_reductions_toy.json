@@ -44,6 +44,15 @@
       "status": "PASS"
     },
     {
+      "j": 4,
+      "max_observed_slack": 4,
+      "n": 16,
+      "name": "vanishing_flat_dimension_bound",
+      "random_subspace_checks": 200,
+      "sharp_full_space_equalities": 5,
+      "status": "PASS"
+    },
+    {
       "accepted_random_planes": 25,
       "attempts": 25,
       "forced_repeated_line_planes": 5,
@@ -88,6 +97,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "9769066ab76a4c028b4d21ede35f038a2523c7f3b2ad9e86abb62c7a5df19b22",
+  "script_sha256": "f4a930a4c0093dc01ef52a0b4173b908aa6f1913d7d487ff14c9dc91061742eb",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

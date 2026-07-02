@@ -11,6 +11,8 @@ the identities over F_97 with H = mu_16:
   the evaluation-hyperplane arrangement.
 * gcd-trivial projective-plane evaluation arrangements satisfy the weighted
   pair-counting bound #D_j <= binom(n,2)/(j-1).
+* vanishing on m domain points cuts any degree <= j subspace down to dimension
+  at most j+1-m.
 """
 from __future__ import annotations
 
@@ -293,6 +295,36 @@ def rank_polys(polys: list[tuple[int, ...]], width: int) -> int:
     return rank
 
 
+def matrix_rank(rows: list[list[int]]) -> int:
+    if not rows:
+        return 0
+    work = [[x % P for x in row] for row in rows]
+    rank = 0
+    width = len(work[0])
+    for col in range(width):
+        pivot = None
+        for row in range(rank, len(work)):
+            if work[row][col] % P:
+                pivot = row
+                break
+        if pivot is None:
+            continue
+        work[rank], work[pivot] = work[pivot], work[rank]
+        inv = pow(work[rank][col], -1, P)
+        work[rank] = [(inv * x) % P for x in work[rank]]
+        for row in range(len(work)):
+            if row != rank and work[row][col] % P:
+                factor = work[row][col]
+                work[row] = [
+                    (work[row][i] - factor * work[rank][i]) % P
+                    for i in range(width)
+                ]
+        rank += 1
+        if rank == len(work):
+            break
+    return rank
+
+
 def gcd_trivial_space(basis: list[tuple[int, ...]], H: list[int]) -> bool:
     return all(any(poly_eval(poly, x) != 0 for poly in basis) for x in H)
 
@@ -436,6 +468,72 @@ def check_hyperplane_concurrency(H: list[int]) -> dict:
         "accepted_planes": accepted,
         "attempts": attempts,
         "max_observed_concurrent_points": max_concurrent_points,
+    }
+
+
+def vanishing_dimension(basis: list[tuple[int, ...]], roots: tuple[int, ...]) -> int:
+    if not roots:
+        return len(basis)
+    rows = [[poly_eval(poly, root) for poly in basis] for root in roots]
+    return len(basis) - matrix_rank(rows)
+
+
+def check_vanishing_flat_bound(H: list[int]) -> dict:
+    full_basis = [
+        tuple(1 if i == degree else 0 for i in range(J_VOTING + 1))
+        for degree in range(J_VOTING + 1)
+    ]
+    sharp_equalities = 0
+    for m in range(J_VOTING + 1):
+        roots = tuple(H[:m])
+        dim = vanishing_dimension(full_basis, roots)
+        expected = J_VOTING + 1 - m
+        if dim != expected:
+            return {
+                "name": "vanishing_flat_dimension_bound",
+                "status": "FAIL",
+                "reason": "full space did not attain sharp dimension",
+                "m": m,
+                "dimension": dim,
+                "expected": expected,
+            }
+        sharp_equalities += 1
+
+    rng = random.Random(SEED + 4)
+    random_checks = 0
+    max_slack = 0
+    for _ in range(200):
+        basis_size = rng.randrange(1, J_VOTING + 2)
+        basis = []
+        while len(basis) < basis_size:
+            candidate = random_poly(rng, J_VOTING)
+            if rank_polys(basis + [candidate], J_VOTING + 1) == len(basis) + 1:
+                basis.append(candidate)
+        m = rng.randrange(0, J_VOTING + 1)
+        roots = tuple(rng.sample(H, m))
+        dim = vanishing_dimension(basis, roots)
+        bound = J_VOTING + 1 - m
+        if dim > bound:
+            return {
+                "name": "vanishing_flat_dimension_bound",
+                "status": "FAIL",
+                "reason": "random subspace exceeded vanishing bound",
+                "m": m,
+                "dimension": dim,
+                "bound": bound,
+                "basis_size": basis_size,
+            }
+        max_slack = max(max_slack, bound - dim)
+        random_checks += 1
+
+    return {
+        "name": "vanishing_flat_dimension_bound",
+        "status": "PASS",
+        "n": N,
+        "j": J_VOTING,
+        "sharp_full_space_equalities": sharp_equalities,
+        "random_subspace_checks": random_checks,
+        "max_observed_slack": max_slack,
     }
 
 
@@ -628,6 +726,7 @@ def build_report() -> dict:
         check_scale_recursion(H),
         check_voting_bound(H),
         check_hyperplane_concurrency(H),
+        check_vanishing_flat_bound(H),
         check_plane_pair_counting_bound(H),
     ]
     return {

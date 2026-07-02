@@ -7,7 +7,7 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_reductions.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`.
 
-This note records five elementary reductions around the fiber-rigidity
+This note records six elementary reductions around the fiber-rigidity
 statement called Conjecture F in the proof sketch.  They do not prove the
 primitive core.  Their role is to remove two paid structures from the statement
 to settle the dimension-one base case, and to restate the remaining primitive
@@ -207,7 +207,41 @@ of the `E_h`, then `L` has at least `j` distinct roots in `H`.  But
 `deg L <= j` and `L` is nonzero, so it has exactly `j` roots and is a scalar
 multiple of their locator.  Thus `[L]` lies in `D_j(H)`.
 
-## Lemma 5: Projective-Plane Pair-Counting Bound
+## Lemma 5: Vanishing-Flat Dimension Bound
+
+Let `W <= K[X]_{<= j}` be a vector space and let `T subset H` have size `m`.
+Define
+
+```text
+W(-T) = { L in W : L(t)=0 for every t in T }.
+```
+
+Then
+
+```text
+dim_K W(-T) <= j+1-m.
+```
+
+Equivalently, if `P(W(-T))` is nonempty, its projective dimension is at most
+`j-m`.
+
+**Proof.**  Let
+
+```text
+L_T(X)=prod_{t in T}(X-t).
+```
+
+Every polynomial in `W(-T)` is divisible by `L_T`, because the points of `T`
+are distinct.  Division by `L_T` injects `W(-T)` into `K[X]_{<= j-m}`, whose
+dimension is `j+1-m`.
+
+This bound is sharp for the full space `W=K[X]_{<=j}`.  It is the local
+dimension obstruction behind the repeated-line step in Lemma 6: if `m` domain
+points induce the same evaluation hyperplane on a projective plane, then the
+line underlying that hyperplane is contained in `W(-T)`, so `2 <= j+1-m` and
+therefore `m <= j-1`.
+
+## Lemma 6: Projective-Plane Pair-Counting Bound
 
 Keep the hypotheses of Lemma 4 and assume additionally that `dim P(W)=2`.
 Then
@@ -227,13 +261,10 @@ bound holds:
 lines passing through it, counted with multiplicity in `H`.
 
 First note that no projective line `E` can occur with multiplicity at least
-`j`.  If `m > j` distinct points of `H` had the same evaluation line, then
-every nonzero locator point on `E` would have more than `j` roots, impossible
-for degree at most `j`.  If `m = j`, then the vector subspace underlying `E`
-would consist of degree-`<=j` polynomials vanishing on the same `j` points.
-That full vanishing subspace is one-dimensional, spanned by the locator of
-those `j` roots, contradicting that `E` is a projective line.  Hence every
-repeated evaluation line has multiplicity at most `j-1`.
+`j`.  If `m` distinct points of `H` have the same evaluation line, then the
+vector subspace underlying `E` lies in `W(-T)` for a set `T` of size `m`.
+Since that vector subspace has dimension `2`, Lemma 5 gives `2 <= j+1-m`, so
+`m <= j-1`.
 
 Group the evaluation lines by equality, with multiplicities `a_i`.  For any
 point lying on groups whose total multiplicity is at least `j`, the number of
@@ -281,7 +312,7 @@ python3 experimental/scripts/verify_conjecture_f_reductions.py --emit
 It exhaustively checks the common-GCD and quotient-pullback identities in the
 toy parameters used by the script, tests the voting bound on deterministic
 random gcd-trivial pencils, checks the hyperplane-concurrency equivalence on
-deterministic random gcd-trivial projective planes, and verifies the
-projective-plane pair-counting bound, including forced repeated-line planes.
-The verifier is supporting evidence only; the proofs above are the mathematical
-content.
+deterministic random gcd-trivial projective planes, verifies the vanishing-flat
+dimension bound, and verifies the projective-plane pair-counting bound,
+including forced repeated-line planes.  The verifier is supporting evidence
+only; the proofs above are the mathematical content.
