@@ -1,0 +1,411 @@
+{
+  "classification": "GAP2_SEAM_ARITHMETIC_CLOSED_FOR_RATE_PRESERVING_PULLBACKS",
+  "dag_target": "gap2_seam",
+  "lemma": {
+    "conclusion": "M|j iff M|t_win; quotient row parameters n/M,k/M,A/M exist exactly on these buckets",
+    "non_rate_preserving_seam": "M|n and M|j but M not dividing k gives no quotient row of dimension k/M",
+    "rate_preserving_hypothesis": "M divides gcd(n,k)",
+    "variables": "n,k,A,j=n-A,t_win=A-k,r=n-k,M"
+  },
+  "non_rate_preserving_seam": {
+    "checked_support_periodic_non_rate_preserving_buckets": 234,
+    "counterexamples": [],
+    "sample_seams": [
+      {
+        "A": 16,
+        "M": 16,
+        "j": 0,
+        "k": 8,
+        "n": 16,
+        "rate": "1/2",
+        "reason": "A and j descend but k and t_win do not",
+        "t_win": 8
+      },
+      {
+        "A": 8,
+        "M": 8,
+        "j": 8,
+        "k": 4,
+        "n": 16,
+        "rate": "1/4",
+        "reason": "A and j descend but k and t_win do not",
+        "t_win": 4
+      },
+      {
+        "A": 16,
+        "M": 8,
+        "j": 0,
+        "k": 4,
+        "n": 16,
+        "rate": "1/4",
+        "reason": "A and j descend but k and t_win do not",
+        "t_win": 12
+      },
+      {
+        "A": 16,
+        "M": 16,
+        "j": 0,
+        "k": 4,
+        "n": 16,
+        "rate": "1/4",
+        "reason": "A and j descend but k and t_win do not",
+        "t_win": 12
+      },
+      {
+        "A": 4,
+        "M": 4,
+        "j": 12,
+        "k": 2,
+        "n": 16,
+        "rate": "1/8",
+        "reason": "A and j descend but k and t_win do not",
+        "t_win": 2
+      },
+      {
+        "A": 8,
+        "M": 4,
+        "j": 8,
+        "k": 2,
+        "n": 16,
+        "rate": "1/8",
+        "reason": "A and j descend but k and t_win do not",
+        "t_win": 6
+      },
+      {
+        "A": 12,
+        "M": 4,
+        "j": 4,
+        "k": 2,
+        "n": 16,
+        "rate": "1/8",
+        "reason": "A and j descend but k and t_win do not",
+        "t_win": 10
+      },
+      {
+        "A": 16,
+        "M": 4,
+        "j": 0,
+        "k": 2,
+        "n": 16,
+        "rate": "1/8",
+        "reason": "A and j descend but k and t_win do not",
+        "t_win": 14
+      }
+    ],
+    "seam_buckets": 234
+  },
+  "nonclaims": [
+    "does not prove stable support implies pullback denominator",
+    "does not prove GAP-1 non-equivariant periodic pricing",
+    "does not prove the aperiodic local limit",
+    "does not change Papers A-D"
+  ],
+  "official_2power_profiles": [
+    {
+      "gcd_n_k": 128,
+      "k": 128,
+      "max_rate_preserving_scale": 128,
+      "n": 256,
+      "rate": "1/2",
+      "rate_preserving_pullback_scales": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128
+      ]
+    },
+    {
+      "gcd_n_k": 64,
+      "k": 64,
+      "max_rate_preserving_scale": 64,
+      "n": 256,
+      "rate": "1/4",
+      "rate_preserving_pullback_scales": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64
+      ]
+    },
+    {
+      "gcd_n_k": 32,
+      "k": 32,
+      "max_rate_preserving_scale": 32,
+      "n": 256,
+      "rate": "1/8",
+      "rate_preserving_pullback_scales": [
+        2,
+        4,
+        8,
+        16,
+        32
+      ]
+    },
+    {
+      "gcd_n_k": 16,
+      "k": 16,
+      "max_rate_preserving_scale": 16,
+      "n": 256,
+      "rate": "1/16",
+      "rate_preserving_pullback_scales": [
+        2,
+        4,
+        8,
+        16
+      ]
+    },
+    {
+      "gcd_n_k": 2048,
+      "k": 2048,
+      "max_rate_preserving_scale": 2048,
+      "n": 4096,
+      "rate": "1/2",
+      "rate_preserving_pullback_scales": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024,
+        2048
+      ]
+    },
+    {
+      "gcd_n_k": 1024,
+      "k": 1024,
+      "max_rate_preserving_scale": 1024,
+      "n": 4096,
+      "rate": "1/4",
+      "rate_preserving_pullback_scales": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024
+      ]
+    },
+    {
+      "gcd_n_k": 512,
+      "k": 512,
+      "max_rate_preserving_scale": 512,
+      "n": 4096,
+      "rate": "1/8",
+      "rate_preserving_pullback_scales": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512
+      ]
+    },
+    {
+      "gcd_n_k": 256,
+      "k": 256,
+      "max_rate_preserving_scale": 256,
+      "n": 4096,
+      "rate": "1/16",
+      "rate_preserving_pullback_scales": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256
+      ]
+    },
+    {
+      "gcd_n_k": 32768,
+      "k": 32768,
+      "max_rate_preserving_scale": 32768,
+      "n": 65536,
+      "rate": "1/2",
+      "rate_preserving_pullback_scales": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024,
+        2048,
+        4096,
+        8192,
+        16384,
+        32768
+      ]
+    },
+    {
+      "gcd_n_k": 16384,
+      "k": 16384,
+      "max_rate_preserving_scale": 16384,
+      "n": 65536,
+      "rate": "1/4",
+      "rate_preserving_pullback_scales": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024,
+        2048,
+        4096,
+        8192,
+        16384
+      ]
+    },
+    {
+      "gcd_n_k": 8192,
+      "k": 8192,
+      "max_rate_preserving_scale": 8192,
+      "n": 65536,
+      "rate": "1/8",
+      "rate_preserving_pullback_scales": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024,
+        2048,
+        4096,
+        8192
+      ]
+    },
+    {
+      "gcd_n_k": 4096,
+      "k": 4096,
+      "max_rate_preserving_scale": 4096,
+      "n": 65536,
+      "rate": "1/16",
+      "rate_preserving_pullback_scales": [
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128,
+        256,
+        512,
+        1024,
+        2048,
+        4096
+      ]
+    }
+  ],
+  "pullback_degree_divisibility": {
+    "checked_pullback_degrees": 8272,
+    "counterexamples": []
+  },
+  "rate_preserving_equivalence": {
+    "checked_rate_preserving_buckets": 207594,
+    "counterexamples": [],
+    "sample_descents": [
+      {
+        "A": 8,
+        "M": 2,
+        "k": 8,
+        "n": 16,
+        "quotient_A": 4,
+        "quotient_j": 4,
+        "quotient_k": 4,
+        "quotient_n": 8,
+        "quotient_t_win": 0,
+        "rate": "1/2"
+      },
+      {
+        "A": 10,
+        "M": 2,
+        "k": 8,
+        "n": 16,
+        "quotient_A": 5,
+        "quotient_j": 3,
+        "quotient_k": 4,
+        "quotient_n": 8,
+        "quotient_t_win": 1,
+        "rate": "1/2"
+      },
+      {
+        "A": 12,
+        "M": 2,
+        "k": 8,
+        "n": 16,
+        "quotient_A": 6,
+        "quotient_j": 2,
+        "quotient_k": 4,
+        "quotient_n": 8,
+        "quotient_t_win": 2,
+        "rate": "1/2"
+      },
+      {
+        "A": 14,
+        "M": 2,
+        "k": 8,
+        "n": 16,
+        "quotient_A": 7,
+        "quotient_j": 1,
+        "quotient_k": 4,
+        "quotient_n": 8,
+        "quotient_t_win": 3,
+        "rate": "1/2"
+      },
+      {
+        "A": 16,
+        "M": 2,
+        "k": 8,
+        "n": 16,
+        "quotient_A": 8,
+        "quotient_j": 0,
+        "quotient_k": 4,
+        "quotient_n": 8,
+        "quotient_t_win": 4,
+        "rate": "1/2"
+      },
+      {
+        "A": 8,
+        "M": 4,
+        "k": 8,
+        "n": 16,
+        "quotient_A": 2,
+        "quotient_j": 2,
+        "quotient_k": 2,
+        "quotient_n": 4,
+        "quotient_t_win": 0,
+        "rate": "1/2"
+      }
+    ]
+  },
+  "schema_version": "m1-gap2-seam-v1",
+  "status": "PROVED/ARITHMETIC"
+}

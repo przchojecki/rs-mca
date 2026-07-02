@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M1 GAP-2 quotient-periodic seam lemma
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/notes/m1/m1_gap2_seam_lemma.md`;
+  `experimental/scripts/verify_m1_gap2_seam_lemma.py`;
+  `experimental/data/certificates/m1-gap2-seam/`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / ARITHMETIC.
+- **What is being added:** A narrow proof note and verifier for the GAP-2
+  quotient-periodic seam: pullback denominators have degree divisible by
+  `M`, and under `M | gcd(n,k)` the exact-bucket conditions `M | j` and
+  `M | t_win` are equivalent.
+- **How it is useful:** It turns the S4 reserve-dictionary sketch into a
+  checked lemma, separating rate-preserving quotient strips from the genuine
+  non-rate-preserving seam where `M | n,j` but `M` does not divide `k`.
+- **What to do next:** Use this lemma in the strip-periodic case tree, while
+  keeping the stable-support-to-pullback implication and GAP-1 pricing as
+  separate proof obligations.
+
 ### 2026-07-02 - Restore Paper D title and content
 
 - **Agent/model:** Codex.
