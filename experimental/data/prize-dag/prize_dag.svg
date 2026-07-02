@@ -480,19 +480,19 @@
 <text x="3860" y="1296" text-anchor="start" font-size="12" fill="#8a949c">[PROVED]</text>
 </g>
 <g><title>route_prime_avg: Route: prime averaging / density theorems [REFUTED]</title>
-<g stroke="#9e9e9e" stroke-width="3.5"><line x1="4594" y1="2610" x2="4612" y2="2628"/><line x1="4594" y1="2628" x2="4612" y2="2610"/></g>
+<g stroke="#d62728" stroke-width="3.5"><line x1="4594" y1="2610" x2="4612" y2="2628"/><line x1="4594" y1="2628" x2="4612" y2="2610"/></g>
 <text x="4630" y="2598" text-anchor="start" font-size="15" fill="#333">Route: prime averaging /</text>
 <text x="4630" y="2616" text-anchor="start" font-size="15" fill="#333">density theorems</text>
 <text x="4630" y="2634" text-anchor="start" font-size="12" fill="#8a949c">[REFUTED]</text>
 </g>
 <g><title>route_expsums: Route: subgroup exp sums (ends N &gt;= p^{3/7+eps}) [REFUTED]</title>
-<g stroke="#9e9e9e" stroke-width="3.5"><line x1="4663" y1="3223" x2="4681" y2="3241"/><line x1="4663" y1="3241" x2="4681" y2="3223"/></g>
+<g stroke="#d62728" stroke-width="3.5"><line x1="4663" y1="3223" x2="4681" y2="3241"/><line x1="4663" y1="3241" x2="4681" y2="3223"/></g>
 <text x="4700" y="3221" text-anchor="start" font-size="15" fill="#333">Route: subgroup exp sums</text>
 <text x="4700" y="3239" text-anchor="start" font-size="15" fill="#333">(ends N &gt;= p^{3/7+eps})</text>
 <text x="4700" y="3257" text-anchor="start" font-size="12" fill="#8a949c">[REFUTED]</text>
 </g>
 <g><title>route_anticonc: Route: anticoncentration (reduces to even moments) [REFUTED]</title>
-<g stroke="#9e9e9e" stroke-width="3.5"><line x1="4659" y1="2913" x2="4677" y2="2931"/><line x1="4659" y1="2931" x2="4677" y2="2913"/></g>
+<g stroke="#d62728" stroke-width="3.5"><line x1="4659" y1="2913" x2="4677" y2="2931"/><line x1="4659" y1="2931" x2="4677" y2="2913"/></g>
 <text x="4696" y="2906" text-anchor="start" font-size="15" fill="#333">Route: anticoncentration</text>
 <text x="4696" y="2924" text-anchor="start" font-size="15" fill="#333">(reduces to even moments)</text>
 <text x="4696" y="2942" text-anchor="start" font-size="12" fill="#8a949c">[REFUTED]</text>
@@ -641,7 +641,7 @@
 <text x="3620" y="5072" text-anchor="middle" font-size="12" fill="#8a949c">[PROVED]</text>
 </g>
 <g><title>route_exact_rank: Route: exact rank formula r_{I,d} [REFUTED]</title>
-<g stroke="#9e9e9e" stroke-width="3.5"><line x1="3300" y1="5037" x2="3318" y2="5055"/><line x1="3300" y1="5055" x2="3318" y2="5037"/></g>
+<g stroke="#d62728" stroke-width="3.5"><line x1="3300" y1="5037" x2="3318" y2="5055"/><line x1="3300" y1="5055" x2="3318" y2="5037"/></g>
 <text x="3312" y="5094" text-anchor="middle" font-size="15" fill="#333">Route: exact rank formula</text>
 <text x="3312" y="5112" text-anchor="middle" font-size="15" fill="#333">r_{I,d}</text>
 <text x="3312" y="5130" text-anchor="middle" font-size="12" fill="#8a949c">[REFUTED]</text>
@@ -800,8 +800,8 @@
 <text x="104" y="428" font-size="32" fill="#444">TARGET</text>
 <circle cx="76" cy="470" r="15" fill="#c0392b"/>
 <text x="104" y="480" font-size="32" fill="#444">WALL</text>
-<circle cx="76" cy="522" r="15" fill="#5c6bc0"/>
+<circle cx="76" cy="522" r="13" fill="#fbfcfd" stroke="#5c6bc0" stroke-width="4"/>
 <text x="104" y="532" font-size="32" fill="#444">TEST</text>
-<circle cx="76" cy="574" r="15" fill="#9e9e9e"/>
+<g stroke="#d62728" stroke-width="4"><line x1="64" y1="562" x2="88" y2="586"/><line x1="64" y1="586" x2="88" y2="562"/></g>
 <text x="104" y="584" font-size="32" fill="#444">REFUTED</text>
 </svg>

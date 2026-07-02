@@ -30,7 +30,7 @@ DDIR = os.path.join(REPO, "experimental", "data", "prize-dag")
 
 COLORS = {"PROVED": "#1b7837", "PROVABLE": "#7fbf7b", "CONDITIONAL": "#35978f",
           "CONJECTURE": "#e6a817", "TARGET": "#a8b8c8", "WALL": "#c0392b",
-          "TEST": "#5c6bc0", "REFUTED": "#9e9e9e"}
+          "TEST": "#5c6bc0", "REFUTED": "#d62728"}
 EDGE = {"req": 'stroke="#9aa4ac" stroke-width="1.0"',
         "alt": 'stroke="#9aa4ac" stroke-width="1.0" stroke-dasharray="6,4"',
         "ev": 'stroke="#a9b8c2" stroke-width="0.8" stroke-dasharray="2,3"',
@@ -243,10 +243,19 @@ def main() -> None:
                f'fork tick = gate ANY | bold = key</text>')
     svg.append(f'<text x="{lx0}" y="{ly0 + 80}" font-size="30" fill="#555">'
                + "  ".join(f"{k}:{v}" for k, v in sorted(counts2.items())) + '</text>')
-    for i, (s, c) in enumerate(COLORS.items()):
-        svg.append(f'<circle cx="{lx0 + 16}" cy="{ly0 + 130 + 52*i}" r="15" fill="{c}"/>')
-        svg.append(f'<text x="{lx0 + 44}" y="{ly0 + 140 + 52*i}" font-size="32" '
-                   f'fill="#444">{s}</text>')
+    for i, (st, c) in enumerate(COLORS.items()):
+        cy = ly0 + 130 + 52 * i
+        if st == "REFUTED":
+            svg.append(f'<g stroke="{c}" stroke-width="4">'
+                       f'<line x1="{lx0 + 4}" y1="{cy - 12}" x2="{lx0 + 28}" y2="{cy + 12}"/>'
+                       f'<line x1="{lx0 + 4}" y1="{cy + 12}" x2="{lx0 + 28}" y2="{cy - 12}"/></g>')
+        elif st == "TEST":
+            svg.append(f'<circle cx="{lx0 + 16}" cy="{cy}" r="13" fill="#fbfcfd" '
+                       f'stroke="{c}" stroke-width="4"/>')
+        else:
+            svg.append(f'<circle cx="{lx0 + 16}" cy="{cy}" r="15" fill="{c}"/>')
+        svg.append(f'<text x="{lx0 + 44}" y="{cy + 10}" font-size="32" '
+                   f'fill="#444">{st}</text>')
     svg.append("</svg>")
     path = os.path.join(DDIR, "prize_dag.svg")
     with open(path, "w") as fh:
