@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - Prize DAG renderer: radial layout (prize at center)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:** `experimental/scripts/plot_prize_dag.py`;
+  `experimental/data/prize-dag/prize_dag.svg`.
+- **Status:** AUDIT/tooling; no content change to the DAG data.
+- **What is being added:** Radial re-layout to minimize arc clutter: the
+  prize at the center, dependencies fanning outward on concentric rings
+  (ring = dependency depth), angular sectors assigned by a leaf-weighted
+  spanning tree with one cross-edge reorder pass, adaptive ring radii
+  (each ring gets circumference for its population), min-separation
+  within rings, gentle center-pulled curves, faint ring guides. Every
+  node keeps its full wrapped label + status, anchored radially outward.
+  Canvas 5760x5760 (zoom-first). Verified: well-formed, zero
+  out-of-bounds elements, closest node pair 248px.
+- **How it is useful:** The fan uses all directions, so label space
+  scales with radius and long arcs shorten; depth-from-prize reads as
+  distance-from-center.
+- **What to do next:** Optional: edge bundling per sector; collapse
+  toggle for the packaging cluster.
+
 ### 2026-07-02 - Prize dependency DAG: data + validator + SVG renderer
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
