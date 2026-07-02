@@ -30,6 +30,34 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - WP-detail loop COMPLETE: integration pass (turn 11)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/proximity_prize_execution_roadmap_post_v10_r2.md`
+  (§0.1: refinement marked COMPLETE; the full WP-to-file map; the
+  unbroken-chain statement).
+- **Status:** INTEGRATION PASS — no new mathematics; audit results only.
+- **What is being added:** Terminal turn of the wp-detail loop.
+  Machine-checked audit: 11 wp_detail files + 12 proof_sketch files;
+  all cross-references resolve; every detail note carries acceptance
+  tests and failure branches (the DONE-definition fields). The r2 root
+  now carries the complete WP-to-file map for all 28 package slots
+  (0.1-7.4; three — 4.2/4.3/6.1 — carry their L3 content in the r2 body
+  plus the existing wall freezes on main), and the unbroken-chain
+  statement from rules freeze to dossier. Combined with the proof-sketch
+  tree (turns 1-13) this closes the top-down program: an entire plan
+  from current results to the prize, every leaf with pinned statements,
+  routes, acceptance tests, failure branches, and executability tags;
+  the mathematical core isolated as the minimal win set {R2, zone-(b),
+  S0 zero-OPEN}; falsifiable predictions wired to scheduled experiments.
+- **How it is useful:** The maintainer and every lane can now navigate
+  from any prize-level question to the exact note, test, and hand-off
+  that addresses it.
+- **What to do next:** Review of the branch (28 commits); candidate
+  next actions: open the upstream PR; execute wp0_2's ePrint
+  confirmation; resume PR #172 (tests P3); run the Row-C measurement.
+
 ### 2026-07-02 - WP-detail loop turn 10: consolidation extracts (six WPs)
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).

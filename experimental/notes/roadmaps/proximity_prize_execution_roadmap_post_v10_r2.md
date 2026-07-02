@@ -67,9 +67,57 @@ L3  per-WP detail notes: pinned statements, lemma DAG,
 (e) an executability tag: AGENT / MAINT / EXPERT.
 ```
 
-Detail notes live in `experimental/notes/roadmaps/wp_detail/`. Refinement
-queue (priority order): **wp2_6** (done, exemplar), wp0_1, wp2_1, wp2_2,
-wp2_3, wp5_1, wp4_3, wp4_2, wp3_2, wp7_1, remainder on demand.
+Detail notes live in `experimental/notes/roadmaps/wp_detail/`.
+**REFINEMENT COMPLETE (2026-07-02):** every work package below has an L3
+detail note meeting the DONE-definition, and the mathematical spine lives
+in `proof_sketch/` (12 files: the heuristic path-chart, prediction ledger,
+and minimal win set). The full map:
+
+```text
+WP    -> detail note (wp_detail/)                | math content (proof_sketch/)
+0.1   -> wp_consolidation_sketch_extracts.md     | s5_s0 §4 (normative ledger)
+0.2   -> wp0_2_wp4_4_rules_freeze_and_dither.md  | (live-fetch grounded)
+0.3   -> wp0_3_wp0_4_replay_and_harness.md       | —
+0.4   -> wp0_3_wp0_4_replay_and_harness.md       | s8_s9 §1 (refusal rule)
+1.1   -> wp1_1_wp1_2_submission_and_lean.md      | s2 (two-regime picture)
+1.2   -> wp1_1_wp1_2_submission_and_lean.md      | (addition certificates)
+2.1   -> wp_consolidation_sketch_extracts.md     | s3a §3 (P1a/b/c)
+2.2   -> wp_consolidation_sketch_extracts.md     | s3a §4 (codim argument)
+2.3   -> wp2_3_stratification_case_tree.md       | s3b_ii (strip)
+2.4   -> wp_consolidation_sketch_extracts.md     | s2 §5 (Paid spec)
+2.5   -> wp2_5_wp4_1_window_charts_and_displacement.md | s3a (aperiodic-0)
+2.6   -> wp2_6_underdetermined_program.md        | s3b_iii_1 (SPI dim 1)
+3.1   -> wp3_1_wp3_3_rows_and_second_pin.md      | s2/s6 (slate numbers)
+3.2   -> wp3_2_symbolic_scaling.md               | s4 (parametric formulas)
+3.3   -> wp3_1_wp3_3_rows_and_second_pin.md      | s8_s9 §3 (win set)
+4.1   -> wp2_5_wp4_1_window_charts_and_displacement.md | s3b_iii_2 (V^T D V)
+4.2   -> (r2 WP-4.2 + s3b_iii walls)             | s3b_iii_1/2 + Graver note
+4.3   -> (r2 WP-4.3, freeze exists on main)      | BETA_2 conditional close
+4.4   -> wp0_2_wp4_4_rules_freeze_and_dither.md  | s5_s0 (hypothesis table)
+5.1   -> wp_consolidation_sketch_extracts.md     | s7 §4 (petal battle)
+5.2   -> wp5_2_wp6_2_wp6_3_bridges.md            | s7 §3 (per-m budgets)
+6.1   -> (r2 WP-6.1)                             | s6 (classification)
+6.2   -> wp5_2_wp6_2_wp6_3_bridges.md            | s4 (dictionary)
+6.3   -> wp5_2_wp6_2_wp6_3_bridges.md            | (ledger spec)
+7.1   -> wp_consolidation_sketch_extracts.md     | s8_s9 §1 (contract)
+7.2   -> wp7_2_wp7_3_wp7_4_promotion_gates_dossier.md | —
+7.3   -> wp7_2_wp7_3_wp7_4_promotion_gates_dossier.md | (G1-G5)
+7.4   -> wp7_2_wp7_3_wp7_4_promotion_gates_dossier.md | s8_s9 §3 (ladder)
+(4.2/4.3/6.1 carry their L3 content in the r2 body + sketch walls: the
+freezes exist — m1_beta2_conditional_close on main, the Graver dichotomy
+note on main, s6's classification — no separate file needed.)
+```
+
+**The unbroken chain, start to prize:** rules freeze + object audit
+(0.2/0.1) -> replay + harness (0.3/0.4) -> ship v-PARTIAL (1.1/1.2) ->
+proving-ground campaign (2.1-2.5, predicted aperiodic-0) + deficiency
+ladder (2.6, tests SPI at dim 1) -> slate rows + Row-C measurement
+(3.1-3.3, the first zone-(b) data) + symbolic scaling (3.2) -> the walls
+(4.1-4.3) and the minimal win set {R2, zone-(b), S0} -> list side
+(5.1/5.2, a-regularity priced) -> bridges (6.1-6.3) -> compiler +
+promotion + dossier (7.1-7.4, v-INTERIM then v-FULL). Negative branches
+land in named postures throughout (s8_s9 §4); the one non-determination
+scenario is exactly the unresolved minimal win set.
 
 ## 1. Ground Truth
 
