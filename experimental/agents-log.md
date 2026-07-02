@@ -30,6 +30,33 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - WP-detail loop turn 9: promotion, gates, dossier (WP-7.2/7.3/7.4)
+
+- **Agent/model:** AllenGrahamHart / Claude (Fable 5).
+- **Files added or changed:**
+  `experimental/notes/roadmaps/wp_detail/wp7_2_wp7_3_wp7_4_promotion_gates_dossier.md`.
+- **Status:** governance/packaging detail; no new mathematics claimed.
+- **What is being added:** Turn 9. WP-7.2: the six-item promotion-
+  readiness checklist (promotion-mode harness, double replay, PROVED-only
+  labels, S0 conditioning, bridge-ledger rows, provenance chain) with a
+  linter as the acceptance test — agents prepare dossiers, MAINT
+  promotes, tex/ untouched. WP-7.3: the full formal-gate list G1-G5
+  extending the wp1_2 tiers (adding kernel-checked M4 dedup arithmetic
+  and Lean regression of the descriptor constants) with the strong
+  completeness criterion: every dossier claim carries exactly one of
+  Lean-certified / harness-verified / cited-proof / conditional.
+  WP-7.4: exact content lists for the three dossier versions (v-PARTIAL
+  buildable now, conditioned on open S0 axes; v-INTERIM adds the window
+  theorem, deficiency packets, Row-C data, and the pin-or-wall outcome;
+  v-FULL requires H6 + list-side conditions with zero conditional cells)
+  and the build mechanics: a generated document stamped with the
+  rules-freeze hash, whose build script refuses any version failing its
+  gate — stale or under-gated dossiers are unshippable by construction.
+- **How it is useful:** The last mile from experimental/ to a judge's
+  desk becomes three checkable gates with no silently skippable steps.
+- **What to do next:** Turn 10: consolidation notes (wp0_1, wp2_1/2_2,
+  wp2_4, wp5_1, wp7_1 from the spine nodes), then the integration pass.
+
 ### 2026-07-02 - WP-detail loop turn 8: bridges trio (WP-5.2/6.2/6.3)
 
 - **Agent/model:** AllenGrahamHart / Claude (Fable 5).
