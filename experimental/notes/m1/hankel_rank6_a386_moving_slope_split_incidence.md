@@ -136,8 +136,9 @@ c = 2 and e_G <= 68
      total projective contribution <= 6.
 ```
 
-Irreducible conics with `e_G>=69` remain residual unless a sharper
-split-locator, paid-ledger, or exact-root-table argument cuts them further.
+The range `e_G>=69` is closed below by the global-core product collapse: after
+one forced external root the base interpolant has top two coefficients zero,
+so `L_Q=RQ` and `e_G<=123` cannot supply a degree-`126` split locator.
 
 The high-core residual has an exact quotient normal form.  Let `E` be the
 forced external split-root core and
@@ -206,6 +207,34 @@ conic residual is not component-specific; its forced core is a global common
 divisor of all three basis kernel polynomials in the `Q`-plane.  After factoring
 that global core, the residual split problem is a projective-plane quotient
 family of degree at most `57`.
+
+This global-common-core branch has an additional collapse.  Let `R` be the
+degree-`<127` base interpolant with `R(x)=Omega_x/a_x` on `X`, and let
+`P_X(T)=prod_{x in X}(T-x)`.  Then `L_Q` is the remainder of `RQ` modulo
+`P_X`.  If `R=A T^126+B T^125+...`, the external evaluation functional at
+`s notin X` has coefficients
+
+```text
+R(s),
+s R(s)-A P_X(s),
+s^2 R(s)-(A s+B-Ap)P_X(s),
+```
+
+where `P_X=T^127+pT^126+...`.  A forced external root for an irreducible conic
+makes this whole functional zero.  Since `P_X(s) != 0`, this forces
+`R(s)=0` and `A=B=0`.  Therefore `deg R<=124`, and no reduction occurs:
+
+```text
+L_Q = R Q        for every deg Q<3.
+```
+
+Consequently every conic-branch kernel polynomial has at most `e_G+2` subgroup
+roots.  It cannot be a degree-`126` split locator when `e_G<=123`.  Combining
+this with the pair-overlap closure for `e_G<=68` and the punctured tangent
+tail for `e_G>=121`, irreducible conic moving-slope components are
+projective-safe for every external core size.  The conic incidence, Pascal,
+and quotient-conic catalogs below remain in the packet as diagnostic
+pre-collapse ledgers, not as live residuals.
 
 The same high-core branches also lie in the high-agreement tangent range after
 puncturing away the forced external core.  Deleting a core `E` leaves a row of
@@ -433,11 +462,10 @@ line contains three of the six points, and the conic is nondegenerate.  The
 subgroup exponents `0,1,2,3,4,5` remain in the packet as a concrete arithmetic
 replay of this branch.  This is not an MCA bad-slope witness.
 
-Thus the unclosed high-core quotient range is finite:
+Thus the line high-core quotient range remains finite:
 
 ```text
 line residuals:  72 <= |E| <= 96;
-conic residuals: 69 <= |E| <= 102.
 ```
 
 This uses the projective high-agreement tangent theorem on the punctured row,
@@ -590,13 +618,14 @@ while reducing the conic four-private rows `e_G=97..102` to the two-triangle
 or generic irreducible hexagon residuals above.  Thus the exact-current
 one-over rows are only the finite-incidence ranges.
 
-The packet now records these exact-current rows as a minimal obstruction
-profile.  Any surviving projective over-budget witness must be one of the
-line cores `72..80` or conic cores `69..76`, must have exactly six finite
-source classes, must keep all six finite slopes distinct, and must keep the
-projective endpoint unpaid.  The profile attaches the saturated base-root,
-external-slack, and secant-overlap conditions for each row, so the next proof
-step can target a concrete failure of this normal form.
+The packet now records these exact-current rows as a pre-collapse minimal
+obstruction profile.  Before the conic global-core collapse, a surviving
+projective over-budget witness had to be one of the line cores `72..80` or
+conic cores `69..76`, with exactly six finite source classes, six distinct
+finite slopes, and an unpaid projective endpoint.  After the collapse, the live
+finite-incidence obstruction profile contains only the line cores `72..80`.
+The conic rows remain useful as an audit trail showing why incidence counting
+alone was insufficient.
 
 The packet also records a multi-saving closure ledger for every exact-current
 row still above budget.  Line cores `72..96` require saving depths `1..5`:
@@ -608,15 +637,14 @@ pair-overlap envelope.  This ledger is a closure criterion: if the listed
 number of counted projective parameters is removed, paid, or coalesced, the
 row is safe.  It does not prove those savings occur.
 
-The same ledger splits the next proof targets by first available mechanism:
-line base-splitting pressure remains only for `e_G=72..74`; line cores
-`75..80` need external-slack, duplicate-slope, endpoint, or paid-class input.
-For conics, base plus secant pressure remains for `e_G=69..71`, secant-only
-pressure remains for `e_G=72..74`, and cores `75,76` need an endpoint,
-duplicate-slope, or paid-class input.  The `e_G=120` tail, the line
-`e_G=97..119` tangent-tail rows, and the conic `e_G=103..119` tangent-tail
-rows are now isolated as closed punctured-tangent tails rather than remaining
-proof targets.
+The same ledger splits the next live proof targets by first available
+mechanism: line base-splitting pressure remains only for `e_G=72..74`, while
+line cores `75..80` need external-slack, duplicate-slope, endpoint, or
+paid-class input.  The conic mechanism classes are retained only as
+pre-collapse diagnostics, because the global-core product collapse closes the
+irreducible-conic branch.  The `e_G=120` tail and the line `e_G=97..119`
+tangent-tail rows are isolated as closed punctured-tangent tails rather than
+remaining proof targets.
 
 Replay:
 
@@ -630,7 +658,7 @@ Nonclaims:
 ```text
 no proof that every moving-slope component is a line;
 no closure of line components with forced external split-root core in 72..96 in projective accounting;
-no closure of irreducible conic moving-slope components with forced external split-root core in 69..102 in projective accounting;
+conic Pascal/four-private diagnostics are not used as the closure mechanism, because the global-core product collapse supersedes them;
 no proof that the high-core quotient split problem is empty or paid;
 no claim that the punctured tangent numerator at the residual threshold is within the original row budget;
 no exclusion of another independent noncontained vector at the same finite slope;

@@ -872,6 +872,32 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Analyze the common-component residual or implement a
   small scanner to test how often it appears in structured weight families.
 
+### 2026-07-02 - M3 A386 irreducible-conic global-core collapse
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** A product-collapse theorem for the separated
+  rank-6 `A=386` moving-slope branch: an irreducible conic with any forced
+  external root has zero evaluation functional on the whole `Q`-plane, forcing
+  the base interpolant's top two coefficients to vanish.  Hence `L_Q=RQ`, so
+  `e_G<=123` cannot give a degree-126 split locator.
+- **How it is useful:** It closes all irreducible-conic moving-slope components:
+  pair-overlap covers `e_G<=68`, the product collapse covers `69<=e_G<=120`,
+  and the punctured tangent tail covers `e_G>=121`.  The live high-core
+  moving-slope residual is now line-only, `72<=e_G<=96`.
+- **What to do next:** Attack the remaining line quotient-pencil obstruction,
+  especially the one-over line cores `72<=e_G<=80`, or seek endpoint/payment
+  input for the same branch.
+
 ### 2026-07-01 - M3 rank-6 boundary dual gcd
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

@@ -162,52 +162,25 @@ floor(c(385-e_G)/(124-e_G))
 for forced external split-root core `e_G`.  In particular, a line component
 with `e_G<=71` is projective-safe after adding the endpoint.  For irreducible
 conics, pair-overlap packing closes the projective accounting for `e_G<=68`.
-Large-external-core lines and conics remain residual, but the packet factors
-their forced external core more precisely: a high-core line is a
-dual-evaluation-fiber quotient pencil of degree at most `54`, while a high-core
-irreducible conic has a global common forced core across the whole `Q`-plane
-and becomes a quotient family of degree at most `57`.  It also records that,
-after puncturing the forced core, those quotient branches are inside the
-very-high-agreement tangent range of the punctured row.  The projective
-tangent staircase closes the tail `e_G>=121`, so the remaining unclosed ranges
-are `72<=e_G<=120` for lines and `69<=e_G<=120` for irreducible conics.
-Within those ranges the current projective proof envelope is only one over
-budget for line cores `72<=e_G<=80` and `e_G=120`, and for conic cores
-`69<=e_G<=76` and `e_G=120`; the worst current projective upper bounds in the
-middle are `18` for lines and `26` for conics.  The endpoint-only
-finite-incidence subranges now have explicit saturation targets: line
-six-class saturation has external slack `1..41`, and conic six-class
-saturation needs `0..14` forced pair-overlap events before external excess.  A
-genuine over-budget witness must also have six distinct finite slopes and an
-unpaid endpoint; the strongest remaining pressure cases are line `e_G=72`
-near-complete base splitting and conic `e_G=69` almost-complete secants.  The
-line `e_G=72` case closes unless all six classes have a base root and at least
-five have two; the conic `e_G=69` case closes unless at least `14` of `15`
-pair secants occur, forcing at least `16` secant triangles.  Equivalently, line
-`e_G=72` survival has base-root histogram `(0,0,6)` or `(0,1,5)`, and conic
-`e_G=69` survival has secant graph `K6` or `K6` minus one edge.
-Exact degree-`126` accounting leaves line `e_G=72` with either one unused
-nonforced external root line or none, and conic `e_G=69` with either `14`
-pair-overlaps or all `15`.
-Combining the shape and root-budget constraints leaves two line partition
-shapes and three conic secant-cover shapes.
-Equivalently, the line multiplicity profiles are `(1,312,0)` and `(0,313,0)`,
-while the conic multiplicity profiles are `(1,300,15)`, `(0,302,14)`, and
-`(0,301,15)`.
-The local line singleton sequences are `52^6` or `(53,52^5)`, and the local
-conic secant/singleton profiles are `(5^6;50^6)`,
-`((4,4,5,5,5,5);(51,51,50,50,50,50))`, or
-`(5^6;(51,50,50,50,50,50))`.
-Across the full endpoint-only one-over range, the line histogram counts are
-`2,16,27,28^6` for `e_G=72..80`, and the conic counts are `2,16,27,28^5`
-for `e_G=69..76`.
-The packet also records a single-saving closure ledger for all `19` one-over
-moving-slope residual rows: line `e_G=72..80`, conic `e_G=69..76`, and the
-line/conic punctured-tangent tail at `e_G=120`.
-Those rows split by first available saving mechanism into line base-active
-`72..74`, line external-slack `75..80`, conic base+secant `69..71`, conic
-secant-only `72..74`, conic endpoint/duplicate-only `75..76`, and the
-punctured-tangent tail `120`.
+The high-core line branch remains a dual-evaluation-fiber quotient pencil of
+degree at most `54`.  The high-core irreducible-conic branch has a global
+common forced core across the whole `Q`-plane, and this now collapses further:
+the base interpolant has its top two coefficients zero, so `L_Q=RQ`; hence
+`e_G<=123` cannot supply a degree-`126` split locator.  Together with the
+punctured tangent tail `e_G>=121`, this closes irreducible conic moving-slope
+components for every external core size.
+
+Thus the live moving-slope high-core residual is line-only:
+
+```text
+line residuals: 72 <= e_G <= 96.
+```
+
+The conic incidence, Pascal, and quotient-conic ledgers remain in the packet as
+pre-collapse diagnostics showing why incidence counting alone was insufficient.
+The line endpoint-only one-over rows are still `e_G=72..80`; the extremal
+`e_G=72` case closes unless all six classes have a base root and at least five
+have two, with local singleton sequences `52^6` or `(53,52^5)`.
 
 Replay:
 
