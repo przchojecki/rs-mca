@@ -350,8 +350,11 @@ boundary; the latter is closed by the pair-quadratic determinant
 is not closed, but root-star Bezout closes all max-degree-at-least-3 graphs;
 the only no-root-star survivors are two disjoint triangles or six-cycles, and
 the six-cycle must satisfy the normalized hexagon factor
-`a*b*d-a*c*d+a*c-a*d-b*c+c*d`.  Thus the unclosed high-core ranges are now
-`72<=e_G<=96` for lines and `69<=e_G<=102` for conics.  The packet now
+`a*b*d-a*c*d+a*c-a*d-b*c+c*d`.  The subgroup-coordinate nonvanishing route for
+the six-cycle is false: exponents `0,255,417,261,6,356` give a deterministic
+order-512 subgroup witness with zero hexagon factor.  Thus the unclosed
+high-core ranges are now `72<=e_G<=96` for lines and `69<=e_G<=102` for
+conics.  The packet now
 records an exact-current residual profile: the live one-over ranges are line
 `72..80` and conic `69..76`; the largest line projective bound remains `18`,
 while the largest conic bound drops from `26` to `25`.  The endpoint-only

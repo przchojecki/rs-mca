@@ -74,6 +74,10 @@ Keep entries concise and link to the relevant files.
   reduced: root-star Bezout closes all six-edge K6 graphs with maximum degree
   at least `3`, leaving only two disjoint triangles or a six-cycle satisfying
   the normalized hexagon factor `a*b*d-a*c*d+a*c-a*d-b*c+c*d`.
+  The six-cycle nonvanishing route is ruled out by a deterministic
+  subgroup-coordinate witness: exponents `0,255,417,261,6,356` make the
+  normalized hexagon factor vanish.  This is not an MCA bad-slope witness; it
+  says the remaining closure must use quotient/Hankel/split-locator structure.
   In the `d=r'+2` branch, six finite cofactors become six two-supported
   signed-edge vectors; their span has rank at least `3`, which closes lines.
   The conic K4 boundary is then closed because the six pair quadratics from

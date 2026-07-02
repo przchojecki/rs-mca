@@ -203,7 +203,8 @@
     "exact-current minimal obstruction profile requires six distinct finite slopes plus endpoint",
     "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
     "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction",
-    "conic four-private tail boundary is reduced to two-triangle or hexagon-factor residuals"
+    "conic four-private tail boundary is reduced to two-triangle or hexagon-factor residuals",
+    "subgroup-coordinate hexagon nonvanishing is refuted by a six-cycle witness"
   ],
   "cofactor_current_intermediate_residual_profile": {
     "irreducible_conic_projective_bound_groups": [
@@ -3750,6 +3751,65 @@
       "secant_graph": "K6"
     }
   ],
+  "conic_four_private_hexagon_sharpness_witness": {
+    "affine_normalization": "x_i -> (x_i-x_0)/(x_1-x_0)",
+    "hexagon_factor": "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
+    "hexagon_factor_value_encoding": 0,
+    "meaning": "The six-cycle residual cannot be closed by proving the normalized hexagon factor is nonzero on the order-512 subgroup.",
+    "next_step": "Use quotient-family, Hankel, endpoint, or split-locator constraints; do not spend effort on a subgroup-coordinate nonvanishing proof.",
+    "normalized_coordinates_encoding": [
+      0,
+      1,
+      1265421695020533545158939437636233480771,
+      1352568190188468367502842667541843022568,
+      2146510582955423951675994390518119983933,
+      2284461819678056387413222436092585158143
+    ],
+    "not_an_mca_witness": "This is only a coordinate-level sharpness witness for the four-private boundary model; split-locator noncontainment, quotient membership, and endpoint accounting are not asserted.",
+    "six_cycle_edges": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        0
+      ]
+    ],
+    "status": "COUNTEREXAMPLE_TO_SUBGROUP_HEXAGON_NONVANISHING",
+    "subgroup_encodings": [
+      1,
+      299830421351099739425461514467808717440,
+      1354309806432336621857655416424926609397,
+      2220520808236087166051949422527217115064,
+      1582646309773387062485994669847238549242,
+      1870304225663789427777961072626065185923
+    ],
+    "subgroup_exponents": [
+      0,
+      255,
+      417,
+      261,
+      6,
+      356
+    ]
+  },
   "conic_four_private_tail_boundary_profile": [
     {
       "after_root_star_surviving_shapes": [
@@ -4020,7 +4080,7 @@
           "residual_budget_bound": 8
         }
       ],
-      "next_algebraic_test": "Rule out the two-triangle quotient configuration or prove the six-cycle hexagon factor cannot vanish on the actual residual subgroup coordinates; otherwise this is the sharp four-private conic boundary.",
+      "next_algebraic_test": "Rule out the two-triangle quotient configuration or eliminate the six-cycle hexagon branch using quotient-family, Hankel, endpoint, or split-locator constraints.  Subgroup-coordinate hexagon nonvanishing is false.",
       "pair_quadratic_boundary_model": "six selected pair quadratics among the fifteen pairs of six residual coordinates",
       "private_coordinate_count_options": [
         0,
@@ -4298,7 +4358,7 @@
           "residual_budget_bound": 8
         }
       ],
-      "next_algebraic_test": "Rule out the two-triangle quotient configuration or prove the six-cycle hexagon factor cannot vanish on the actual residual subgroup coordinates; otherwise this is the sharp four-private conic boundary.",
+      "next_algebraic_test": "Rule out the two-triangle quotient configuration or eliminate the six-cycle hexagon branch using quotient-family, Hankel, endpoint, or split-locator constraints.  Subgroup-coordinate hexagon nonvanishing is false.",
       "pair_quadratic_boundary_model": "six selected pair quadratics among the fifteen pairs of six residual coordinates",
       "private_coordinate_count_options": [
         0,
@@ -4570,7 +4630,7 @@
           "residual_budget_bound": 7
         }
       ],
-      "next_algebraic_test": "Rule out the two-triangle quotient configuration or prove the six-cycle hexagon factor cannot vanish on the actual residual subgroup coordinates; otherwise this is the sharp four-private conic boundary.",
+      "next_algebraic_test": "Rule out the two-triangle quotient configuration or eliminate the six-cycle hexagon branch using quotient-family, Hankel, endpoint, or split-locator constraints.  Subgroup-coordinate hexagon nonvanishing is false.",
       "pair_quadratic_boundary_model": "six selected pair quadratics among the fifteen pairs of six residual coordinates",
       "private_coordinate_count_options": [
         0,
@@ -4836,7 +4896,7 @@
           "residual_budget_bound": 7
         }
       ],
-      "next_algebraic_test": "Rule out the two-triangle quotient configuration or prove the six-cycle hexagon factor cannot vanish on the actual residual subgroup coordinates; otherwise this is the sharp four-private conic boundary.",
+      "next_algebraic_test": "Rule out the two-triangle quotient configuration or eliminate the six-cycle hexagon branch using quotient-family, Hankel, endpoint, or split-locator constraints.  Subgroup-coordinate hexagon nonvanishing is false.",
       "pair_quadratic_boundary_model": "six selected pair quadratics among the fifteen pairs of six residual coordinates",
       "private_coordinate_count_options": [
         0,
@@ -5096,7 +5156,7 @@
           "residual_budget_bound": 7
         }
       ],
-      "next_algebraic_test": "Rule out the two-triangle quotient configuration or prove the six-cycle hexagon factor cannot vanish on the actual residual subgroup coordinates; otherwise this is the sharp four-private conic boundary.",
+      "next_algebraic_test": "Rule out the two-triangle quotient configuration or eliminate the six-cycle hexagon branch using quotient-family, Hankel, endpoint, or split-locator constraints.  Subgroup-coordinate hexagon nonvanishing is false.",
       "pair_quadratic_boundary_model": "six selected pair quadratics among the fifteen pairs of six residual coordinates",
       "private_coordinate_count_options": [
         0,
@@ -5350,7 +5410,7 @@
           "residual_budget_bound": 7
         }
       ],
-      "next_algebraic_test": "Rule out the two-triangle quotient configuration or prove the six-cycle hexagon factor cannot vanish on the actual residual subgroup coordinates; otherwise this is the sharp four-private conic boundary.",
+      "next_algebraic_test": "Rule out the two-triangle quotient configuration or eliminate the six-cycle hexagon branch using quotient-family, Hankel, endpoint, or split-locator constraints.  Subgroup-coordinate hexagon nonvanishing is false.",
       "pair_quadratic_boundary_model": "six selected pair quadratics among the fifteen pairs of six residual coordinates",
       "private_coordinate_count_options": [
         0,
@@ -15713,6 +15773,7 @@
     "does not close line components with forced external split-root core in 72..96 in projective accounting",
     "does not close irreducible conic moving-slope components with forced external split-root core in 69..102 in projective accounting",
     "does not rule out the conic four-private two-triangle or hexagon-factor residuals",
+    "the conic four-private hexagon sharpness witness is not an MCA bad-slope witness",
     "does not prove the high-core quotient split problem is empty or paid",
     "does not claim the punctured tangent numerator at the residual threshold is within the original row budget",
     "does not rule out another independent noncontained vector at the same finite slope",
@@ -20370,7 +20431,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v41",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v42",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -21168,6 +21229,15 @@
       ]
     ],
     "conic_finite_safe_for_external_core_at_most": 76,
+    "conic_four_private_hexagon_sharpness_exponents": [
+      0,
+      255,
+      417,
+      261,
+      6,
+      356
+    ],
+    "conic_four_private_hexagon_sharpness_factor_value": 0,
     "conic_four_private_tail_boundary_core_range": [
       97,
       102
@@ -25661,6 +25731,7 @@
     "cofactor_current_residual_profile": "Applying the cofactor-span top-saturation exclusion to the whole intermediate profile gives the current best projective envelope.  The previously raw one-over tail e_G=120 becomes safe, while e_G=119 becomes the next cofactor-improved tangent-tail one-over core before exact-agreement filtering.  The maximum line bound remains 18, and the maximum conic bound drops from 26 to 25.",
     "cofactor_improved_tangent_tail_profile": "The same cofactor-span obstruction excludes top saturation of the punctured projective tangent bound whenever the residual cofactor degree exceeds the fixed-core quotient-family dimension.  Thus the raw tangent bound r'+1 improves to r' in the high-core line/conic quotient tails until the cofactor degree drops to the ambient family dimension.  In particular e_G=120 is projective-safe for both lines and conics, while e_G=119 is the next cofactor-current one-over tangent-tail core.",
     "conic_e69_pascal_obstruction_profile": "In the extremal conic e_G=69 branch, the K6 and K6-minus-one secant graphs are not arbitrary incidence graphs if they come from six points on an irreducible conic.  Pascal's theorem gives one collinearity relation for every Hamiltonian cycle in the secant graph: 60 relations for K6 and 36 for K6-minus-one.  Failure of these relations in the external root-line arrangement would close the corresponding extremal conic branch.",
+    "conic_four_private_hexagon_sharpness_witness": "The subgroup nonvanishing route for the six-cycle residual is false.  The six order-512 subgroup exponents 0,255,417,261,6,356 give distinct residual coordinates whose affine-normalized hexagon factor is zero.  This is only a coordinate-level sharpness witness, not a split-locator MCA witness.",
     "conic_four_private_tail_boundary_profile": "Conic cores e_G=97..102 reduce to a four-private six-pair boundary.  Root-star Bezout closes all six-edge K6 graphs with max degree at least 3.  The only no-root-star graph types are two disjoint triangles and six-cycles; the two-triangle determinant vanishes identically, and a six-cycle can survive only when the normalized hexagon factor a*b*d-a*c*d+a*c-a*d-b*c+c*d vanishes.",
     "conic_k4_tail_closure_profile": "The K4 signed-edge boundary is impossible for an irreducible conic component.  After factoring the common residual zero set, the six finite classes become the six pair quadratics from four distinct residual coordinates.  The determinant of their six conic-evaluation rows is prod_{i<j}(x_j-x_i)^2, so no projective conic contains all six image points in characteristic 17.",
     "conic_pair_overlap_packing": "On an irreducible conic, two distinct Q-classes can share at most one non-forced external root hyperplane: two shared external roots would give two distinct lines through the same two points.  Thus M valid Q-classes, each requiring R=124-e_G non-forced external roots, force a union of at least M*R-binomial(M,2) external root lines.  Since only 385-e_G are available, six Q-classes are impossible for e_G<=68 and seven are impossible for e_G<=76.",

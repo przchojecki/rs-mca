@@ -17,10 +17,16 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
+from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E402
+    Field,
+    K,
+    MODULUS,
+    N,
+    P,
+)
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v41"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v42"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -979,6 +985,83 @@ def pair_quadratic_k6_hexagon_identities() -> dict[str, Any]:
     }
 
 
+@lru_cache(maxsize=1)
+def subgroup_hexagon_factor_sharpness_witness() -> dict[str, Any]:
+    """A concrete subgroup six-cycle where the hexagon factor vanishes."""
+    field = Field(P, MODULUS)
+    descriptor = load_json(ROW_DESCRIPTOR_REF)
+    domain = descriptor["domain"]["domain_encodings"]
+    domain_set = set(domain)
+    exponents = [0, 255, 417, 261, 6, 356]
+    encodings = [domain[exponent] for exponent in exponents]
+    require(len(set(exponents)) == 6, "hexagon witness exponents should be distinct")
+    require(len(set(encodings)) == 6, "hexagon witness encodings should be distinct")
+    require(all(encoding in domain_set for encoding in encodings), "hexagon witness not in H")
+
+    def add(left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
+        return tuple((a_i + b_i) % P for a_i, b_i in zip(left, right))
+
+    def sub(left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
+        return tuple((a_i - b_i) % P for a_i, b_i in zip(left, right))
+
+    def mul(left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
+        return field.mul(left, right)
+
+    def inv(value: tuple[int, ...]) -> tuple[int, ...]:
+        require(value != field.zero, "cannot invert zero in hexagon witness")
+        return field.pow(value, field.size - 2)
+
+    def div(left: tuple[int, ...], right: tuple[int, ...]) -> tuple[int, ...]:
+        return mul(left, inv(right))
+
+    points = [field.decode(encoding) for encoding in encodings]
+    denominator = sub(points[1], points[0])
+    require(denominator != field.zero, "hexagon affine denominator vanished")
+    normalized = [div(sub(point, points[0]), denominator) for point in points]
+    require(normalized[0] == field.zero, "hexagon normalization should send x0 to 0")
+    require(normalized[1] == field.one, "hexagon normalization should send x1 to 1")
+    a, b, c, d = normalized[2:]
+    hexagon_factor = add(
+        sub(
+            add(
+                sub(
+                    sub(mul(mul(a, b), d), mul(mul(a, c), d)),
+                    mul(a, d),
+                ),
+                mul(a, c),
+            ),
+            mul(b, c),
+        ),
+        mul(c, d),
+    )
+    require(hexagon_factor == field.zero, "subgroup hexagon witness should vanish")
+    return {
+        "status": "COUNTEREXAMPLE_TO_SUBGROUP_HEXAGON_NONVANISHING",
+        "meaning": (
+            "The six-cycle residual cannot be closed by proving the normalized "
+            "hexagon factor is nonzero on the order-512 subgroup."
+        ),
+        "not_an_mca_witness": (
+            "This is only a coordinate-level sharpness witness for the "
+            "four-private boundary model; split-locator noncontainment, quotient "
+            "membership, and endpoint accounting are not asserted."
+        ),
+        "subgroup_exponents": exponents,
+        "subgroup_encodings": encodings,
+        "six_cycle_edges": [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0]],
+        "affine_normalization": "x_i -> (x_i-x_0)/(x_1-x_0)",
+        "normalized_coordinates_encoding": [
+            field.encode(value) for value in normalized
+        ],
+        "hexagon_factor": "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
+        "hexagon_factor_value_encoding": field.encode(hexagon_factor),
+        "next_step": (
+            "Use quotient-family, Hankel, endpoint, or split-locator constraints; "
+            "do not spend effort on a subgroup-coordinate nonvanishing proof."
+        ),
+    }
+
+
 def conic_three_private_tail_closure_row(core: int) -> dict[str, Any]:
     """Close the six-of-ten pair-quadratic obstruction at the three-private tail."""
     row = punctured_tangent_top_saturation_exclusion_row("irreducible_conic", core)
@@ -1091,10 +1174,10 @@ def conic_four_private_tail_boundary_row(core: int) -> dict[str, Any]:
         "closes_branch": False,
         "projective_safe_after_four_private_profile": False,
         "next_algebraic_test": (
-            "Rule out the two-triangle quotient configuration or prove the "
-            "six-cycle hexagon factor cannot vanish on the actual residual "
-            "subgroup coordinates; otherwise this is the sharp four-private "
-            "conic boundary."
+            "Rule out the two-triangle quotient configuration or eliminate "
+            "the six-cycle hexagon branch using quotient-family, Hankel, "
+            "endpoint, or split-locator constraints.  Subgroup-coordinate "
+            "hexagon nonvanishing is false."
         ),
     }
 
@@ -3488,6 +3571,9 @@ def build_certificate() -> dict[str, Any]:
         conic_four_private_tail_boundary_row(core)
         for core in range(line_exact_tail_safe_core_min, conic_three_private_tail_safe_core_min)
     ]
+    conic_four_private_hexagon_sharpness_witness = (
+        subgroup_hexagon_factor_sharpness_witness()
+    )
     line_base_defect_rows = [
         line_base_defect_threshold_row(row) for row in line_survival_rows
     ]
@@ -3960,6 +4046,14 @@ def build_certificate() -> dict[str, Any]:
             for core in range(97, 103)
         ],
         "conic four-private boundary profile changed",
+    )
+    require(
+        conic_four_private_hexagon_sharpness_witness["subgroup_exponents"]
+        == [0, 255, 417, 261, 6, 356]
+        and conic_four_private_hexagon_sharpness_witness["hexagon_factor_value_encoding"] == 0
+        and conic_four_private_hexagon_sharpness_witness["status"]
+        == "COUNTEREXAMPLE_TO_SUBGROUP_HEXAGON_NONVANISHING",
+        "conic four-private hexagon sharpness witness changed",
     )
     require(
         [group for group in line_exact_current_profile_groups if group["one_over_budget"]]
@@ -5318,6 +5412,14 @@ def build_certificate() -> dict[str, Any]:
                 "only when the normalized hexagon factor "
                 "a*b*d-a*c*d+a*c-a*d-b*c+c*d vanishes."
             ),
+            "conic_four_private_hexagon_sharpness_witness": (
+                "The subgroup nonvanishing route for the six-cycle residual is "
+                "false.  The six order-512 subgroup exponents "
+                "0,255,417,261,6,356 give distinct residual coordinates whose "
+                "affine-normalized hexagon factor is zero.  This is only a "
+                "coordinate-level sharpness witness, not a split-locator MCA "
+                "witness."
+            ),
             "single_saving_closure_ledger": (
                 "Every cofactor-current one-over row in the moving-slope packet is "
                 "listed in a single-saving closure ledger.  The ledger covers "
@@ -5512,6 +5614,9 @@ def build_certificate() -> dict[str, Any]:
         "conic_k4_tail_closure_profile": conic_k4_tail_closure_rows,
         "conic_three_private_tail_closure_profile": conic_three_private_tail_closure_rows,
         "conic_four_private_tail_boundary_profile": conic_four_private_tail_boundary_rows,
+        "conic_four_private_hexagon_sharpness_witness": (
+            conic_four_private_hexagon_sharpness_witness
+        ),
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -5728,6 +5833,14 @@ def build_certificate() -> dict[str, Any]:
             "conic_four_private_tail_boundary_hexagon_factor": (
                 conic_four_private_tail_boundary_rows[0]["hexagon_identities"][
                     "six_cycle_hexagon_factor"
+                ]
+            ),
+            "conic_four_private_hexagon_sharpness_exponents": (
+                conic_four_private_hexagon_sharpness_witness["subgroup_exponents"]
+            ),
+            "conic_four_private_hexagon_sharpness_factor_value": (
+                conic_four_private_hexagon_sharpness_witness[
+                    "hexagon_factor_value_encoding"
                 ]
             ),
             "conic_cofactor_improved_tangent_one_over_external_core": (
@@ -5958,12 +6071,14 @@ def build_certificate() -> dict[str, Any]:
             "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
             "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction",
             "conic four-private tail boundary is reduced to two-triangle or hexagon-factor residuals",
+            "subgroup-coordinate hexagon nonvanishing is refuted by a six-cycle witness",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",
             "does not close line components with forced external split-root core in 72..96 in projective accounting",
             "does not close irreducible conic moving-slope components with forced external split-root core in 69..102 in projective accounting",
             "does not rule out the conic four-private two-triangle or hexagon-factor residuals",
+            "the conic four-private hexagon sharpness witness is not an MCA bad-slope witness",
             "does not prove the high-core quotient split problem is empty or paid",
             "does not claim the punctured tangent numerator at the residual threshold is within the original row budget",
             "does not rule out another independent noncontained vector at the same finite slope",

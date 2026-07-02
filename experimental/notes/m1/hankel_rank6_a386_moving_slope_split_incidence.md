@@ -393,6 +393,15 @@ a*b*d-a*c*d+a*c-a*d-b*c+c*d
 vanishes.  Thus this branch is not closed, but it is reduced to two explicit
 quotient residuals.
 
+The packet also records a deterministic subgroup-coordinate sharpness witness
+for the six-cycle residual.  The order-512 subgroup exponents
+`0,255,417,261,6,356`, taken in that cyclic order, are distinct and after
+affine normalization make the same hexagon factor vanish.  Therefore the
+six-cycle residual cannot be closed by proving this factor is nonzero on the
+subgroup.  Any closure must use more structure: quotient-family equations,
+Hankel constraints, endpoint payment, or split-locator noncontainment.  This
+witness is not an MCA bad-slope witness.
+
 Thus the unclosed high-core quotient range is finite:
 
 ```text
