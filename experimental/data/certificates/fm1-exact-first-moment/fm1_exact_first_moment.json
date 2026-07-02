@@ -1,5 +1,51 @@
 {
   "checks": {
+    "f13_joint_rank_formula": {
+      "agreement": 8,
+      "bad_pairs": [],
+      "expected_rank_by_overlap": {
+        "0": {
+          "9": 34650
+        },
+        "1": {
+          "8": 110880
+        },
+        "2": {
+          "7": 83160
+        },
+        "3": {
+          "6": 15840
+        },
+        "4": {
+          "5": 495
+        }
+      },
+      "field": "F_13",
+      "formula": "rank = 2t - max(0,t-j+|R cap T|)",
+      "j": 4,
+      "k": 3,
+      "locator_count": 495,
+      "n": 12,
+      "ordered_pair_count": 245025,
+      "rank_by_overlap": {
+        "0": {
+          "9": 34650
+        },
+        "1": {
+          "8": 110880
+        },
+        "2": {
+          "7": 83160
+        },
+        "3": {
+          "6": 15840
+        },
+        "4": {
+          "5": 495
+        }
+      },
+      "t": 5
+    },
     "f13_surjectivity": {
       "agreement": 8,
       "all_syndrome_maps_surjective": true,
@@ -87,7 +133,7 @@
   "definition": "For a split degree-j locator ell, set a=S_ell(u), b=S_ell(v) in F_q^t. The locator is aligned when b != 0 and a lies in the one-dimensional span of b.",
   "passed": true,
   "schema": "fm1_exact_first_moment_v1",
-  "script_sha256": "251ed015c18493dcec70e0cfe5c360c5c083fa6173a99150a850bf01e4dbb6be",
+  "script_sha256": "cbc2a27d733b8115fcbfe2801c63fa125f758bd9155c4b529919b8e965a4db02",
   "statement": "E[# aligned split locators] = binom(n,j)(1-q^-t)q^(1-t)",
   "status": "PROVED_LOCAL_VERIFICATION"
 }

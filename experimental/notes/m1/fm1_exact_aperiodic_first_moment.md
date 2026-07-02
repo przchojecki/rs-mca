@@ -121,6 +121,76 @@ This is often the right diagnostic for whether a chart is generically empty.
 It does **not** say that every pair has few aligned locators; all safe-side
 work still needs a worst-case theorem or a paid-structure classification.
 
+## Two-locator joint rank
+
+The first step toward a second moment is to understand when two locator
+syndrome maps are independent.  The answer is an exact overlap formula.
+
+Let `R,T subset D` have size `j`, and put
+
+```text
+c = |R cap T|.
+```
+
+Let
+
+```text
+S_{R,T}(w) = (S_R(w), S_T(w)) in F_q^t x F_q^t.
+```
+
+Then
+
+```text
+rank S_{R,T} = 2t - max(0, t-j+c).
+```
+
+Equivalently, the only rank defect comes from the common polynomial identity
+between `ell_R` and `ell_T`, and the defect dimension is
+
+```text
+h(R,T) = max(0, t-j+|R cap T|).
+```
+
+**Proof.**  A linear relation among the rows of the two syndrome matrices has
+the form
+
+```text
+x ell_R(x) A(x) + x ell_T(x) B(x) = 0      for every x in D,
+```
+
+where `deg A, deg B <= t-1`.  Since `D subset F^*`, this is equivalent on `D`
+to
+
+```text
+ell_R A + ell_T B = 0.
+```
+
+The degree of `x(ell_R A + ell_T B)` is at most `j+t=n-k<n`, so vanishing on
+all `n` points of `D` forces the polynomial identity above.
+
+Write `G=gcd(ell_R,ell_T)`, `ell_R=G r`, `ell_T=G s`; then
+`deg G=c` and `r,s` are coprime of degree `j-c`.  The identity is
+
+```text
+r A + s B = 0.
+```
+
+Thus `s | A` and `r | B`, so
+
+```text
+A=sH,       B=-rH,
+```
+
+with `deg H <= t-1-(j-c)`.  The space of such `H` has dimension
+`max(0,t-j+c)`, and there are no other relations.  Since there are `2t` rows,
+the rank formula follows.
+
+In particular, if `t < j-c`, the two locator-syndrome vectors are independent:
+`S_{R,T}` is surjective onto `F_q^{2t}`.  If `t >= j-c`, all dependence is
+explained by the explicit common-multiple family above.  This is the exact
+overlap ledger that a later second-moment or exchange-rigidity calculation
+has to price.
+
 For the finite row
 
 ```text
@@ -153,12 +223,19 @@ sanity check for the M3/M5 chart program, not a replacement for root tables.
 
 ## Verification
 
-The verifier records two checks.
+The verifier records four checks.
 
 1. **Surjectivity check, `F_13`.**  For `D=F_13^*`, `n=12`, `k=3`,
    `A=8`, `t=5`, `j=4`, every one of the `binom(12,4)=495`
    locator-syndrome maps has rank `5`.
-2. **Exact brute-force check, `F_5`.**  For `D=F_5^*`, `n=4`, `k=1`,
+2. **Two-locator joint rank check, `F_13`.**  For the same row, every ordered
+   pair of split locators satisfies
+
+```text
+rank S_{R,T} = 2t - max(0,t-j+|R cap T|).
+```
+
+3. **Exact brute-force check, `F_5`.**  For `D=F_5^*`, `n=4`, `k=1`,
    `A=3`, `t=2`, `j=1`, enumeration over all `5^8` word pairs gives
 
 ```text
@@ -172,7 +249,7 @@ matching the formula
 binom(4,1) * (1 - 5^(-2)) * 5^(-1) = 96/125.
 ```
 
-3. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
+4. **F17 regular-window consumer scale.**  For `F_17^32`, `n=512`, `k=256`,
    the script computes the FM1/Markov one-locator upper bound across
    `385 <= A <= 426` and verifies the endpoint ranges above.
 

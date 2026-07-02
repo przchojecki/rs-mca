@@ -85,14 +85,15 @@ Keep entries concise and link to the relevant files.
   word pairs, the expected number of aligned split locators is exactly
   `binom(n,j)(1-q^-t)q^(1-t)`.  The verifier checks the locator-syndrome
   surjectivity mechanism on the `F_13` toy row and brute-forces the complete
-  `F_5` toy row.  It also records the Markov one-locator consumer bound across
-  the `F_17^32` regular M3 window.
+  `F_5` toy row.  It also proves and verifies the two-locator joint-rank
+  formula `rank(S_R,S_T)=2t-max(0,t-j+|R cap T|)`, and records the Markov
+  one-locator consumer bound across the `F_17^32` regular M3 window.
 - **How it is useful:** FM1 is a key first-moment input for the aperiodic
   safe-side model and the `mca_safe` DAG path.  The note makes clear that this
   is a mean statement, not a worst-case or bad-slope bound.
-- **What to do next:** Use FM1 as an input to concentration/fiber-rigidity work
-  such as Conjecture F reductions, averaged slope conversion, or M5
-  underdetermined chart accounting.
+- **What to do next:** Use FM1 and the joint-rank overlap ledger as inputs to
+  concentration/fiber-rigidity work such as averaged slope conversion,
+  exchange-rigidity, or M5 underdetermined chart accounting.
 
 ### 2026-07-02 - PR sweep: G3 toy evidence, v12 audits, and M5 A384 atlas
 

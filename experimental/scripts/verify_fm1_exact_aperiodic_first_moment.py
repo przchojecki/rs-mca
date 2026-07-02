@@ -8,7 +8,9 @@ It checks the two finite pieces behind the general proof:
 
 1. For every split locator on the F_13 toy row (n=12,k=3,A=8),
    the locator-syndrome map has full rank t=A-k=5.
-2. On the tiny F_5 row (n=4,k=1,A=3), brute-force enumeration over all
+2. For every ordered pair of F_13 split locators, the joint rank is
+   2t - max(0,t-j+|R cap T|).
+3. On the tiny F_5 row (n=4,k=1,A=3), brute-force enumeration over all
    word pairs agrees exactly with
 
        binom(n,j) * (1 - q^-t) * q^(1-t).
@@ -159,6 +161,62 @@ def check_f13_surjectivity() -> tuple[bool, dict]:
     return not bad and hist == {t: comb(n, j)}, data
 
 
+def check_f13_joint_rank_formula() -> tuple[bool, dict]:
+    p, n, k, agreement = 13, 12, 3, 8
+    t, j = agreement - k, n - agreement
+    domain = list(range(1, p))
+    locators = list(itertools.combinations(domain, j))
+    matrices = {
+        roots: syndrome_matrix(domain, roots, t, p)
+        for roots in locators
+    }
+    rank_by_overlap: dict[int, dict[int, int]] = {}
+    bad = []
+    for roots_r in locators:
+        set_r = set(roots_r)
+        matrix_r = matrices[roots_r]
+        for roots_t in locators:
+            c = len(set_r.intersection(roots_t))
+            expected_defect = max(0, t - j + c)
+            expected_rank = 2 * t - expected_defect
+            rank = rank_mod_p(matrix_r + matrices[roots_t], p)
+            rank_by_overlap.setdefault(c, {})
+            rank_by_overlap[c][rank] = rank_by_overlap[c].get(rank, 0) + 1
+            if rank != expected_rank:
+                bad.append({
+                    "R": roots_r,
+                    "T": roots_t,
+                    "overlap": c,
+                    "rank": rank,
+                    "expected_rank": expected_rank,
+                })
+                if len(bad) >= 5:
+                    break
+        if len(bad) >= 5:
+            break
+    expected_hist = {}
+    for c in range(j + 1):
+        count_t = comb(j, c) * comb(n - j, j - c)
+        if count_t:
+            rank = 2 * t - max(0, t - j + c)
+            expected_hist[c] = {rank: len(locators) * count_t}
+    data = {
+        "field": f"F_{p}",
+        "n": n,
+        "k": k,
+        "agreement": agreement,
+        "t": t,
+        "j": j,
+        "locator_count": len(locators),
+        "ordered_pair_count": len(locators) ** 2,
+        "rank_by_overlap": rank_by_overlap,
+        "expected_rank_by_overlap": expected_hist,
+        "bad_pairs": bad,
+        "formula": "rank = 2t - max(0,t-j+|R cap T|)",
+    }
+    return not bad and rank_by_overlap == expected_hist, data
+
+
 def check_f5_bruteforce() -> tuple[bool, dict]:
     p, n, k, agreement = 5, 4, 1, 3
     t, j = agreement - k, n - agreement
@@ -261,6 +319,7 @@ def check_f17_regular_window_tail() -> tuple[bool, dict]:
 
 def build_report() -> dict:
     ok_f13, f13 = check_f13_surjectivity()
+    ok_joint, joint = check_f13_joint_rank_formula()
     ok_f5, f5 = check_f5_bruteforce()
     ok_window, window = check_f17_regular_window_tail()
     source = Path(__file__).read_text()
@@ -275,10 +334,11 @@ def build_report() -> dict:
         ),
         "checks": {
             "f13_surjectivity": f13,
+            "f13_joint_rank_formula": joint,
             "f5_bruteforce": f5,
             "f17_regular_window_markov_tail": window,
         },
-        "passed": ok_f13 and ok_f5 and ok_window,
+        "passed": ok_f13 and ok_joint and ok_f5 and ok_window,
         "script_sha256": sha256_text(source),
     }
 
@@ -300,6 +360,11 @@ def main() -> None:
             )
             ev = data["expected_aligned_locators"]
             print(f"        formula expectation = {ev['numerator']}/{ev['denominator']} = {ev['decimal']:.12f}")
+        elif name == "f13_joint_rank_formula":
+            print(
+                "        {field}: ordered pairs={ordered_pair_count}, "
+                "rank_by_overlap={rank_by_overlap}".format(**data)
+            )
         elif name == "f5_bruteforce":
             print(
                 "        {field}: n={n}, k={k}, A={agreement}, t={t}, j={j}, "
