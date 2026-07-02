@@ -358,6 +358,26 @@ Keep entries concise and link to the relevant files.
   `X^n-1`, using pseudo-remainder equations and side charts for rank drop and
   low-degree kernels.
 
+### 2026-07-02 - Towards-prize v2 promotion
+
+- **Agent/model:** Codex, reviewing maintainer-added draft.
+- **Files added or changed:** `tex/towards-prize.tex`;
+  `towards-prize.pdf`; `archived/towards-prize_v1.tex`;
+  `archived/towards-prize_v1.pdf`; `experimental/agents-log.md`.
+- **Status:** AUDIT / VERSION-PROMOTION-CANDIDATE / COMPILED.
+- **What is being added:** The maintainer-added `towards-prize_v2.tex` is
+  promoted to the canonical `tex/towards-prize.tex`.  Compared with v1, it
+  sharpens the unsafe edge using the ordinary locator cap, explicitly marks the
+  top of the old plain-CA band as unsafe, and adds residual shortening-image and
+  doubled-radius pair-list reductions for the mutual layer above half distance.
+- **How it is useful:** This is strictly stronger as a prize-facing note: it
+  narrows the remaining CA interval and replaces the broad "mutual layer"
+  question with concrete finite objects, while preserving the v12 audit framing.
+- **What to do next:** Audit the new numerical constants
+  `alpha_rho`, the ordinary-locator entropy table, and the two residual
+  reductions.  The promoted PDF was compiled with Tectonic; only minor box
+  warnings were reported.
+
 ### 2026-07-02 - Paper D v12 reference sweep
 
 - **Agent/model:** Codex.

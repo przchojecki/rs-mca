@@ -3,60 +3,99 @@
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
 \usepackage{xcolor}
+\usepackage{aliascnt}
 \usepackage[colorlinks=true,linkcolor=blue!60!black,citecolor=blue!60!black,urlcolor=blue!60!black]{hyperref}
 \usepackage[capitalize]{cleveref}
+\crefname{theorem}{Theorem}{Theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{Lemma}{Lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{proposition}{Proposition}{Propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{corollary}{Corollary}{Corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
 \crefname{problem}{Problem}{Problems}
 \Crefname{problem}{Problem}{Problems}
 
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{problem}[theorem]{Problem}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+\newaliascnt{problem}{theorem}
+\newtheorem{problem}[problem]{Problem}
+\aliascntresetthe{problem}
 \theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
 
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\RS}{\mathrm{RS}}
 \newcommand{\dist}{\operatorname{dist}}
+\newcommand{\supp}{\operatorname{supp}}
 \newcommand{\eca}{\varepsilon_{\mathrm{ca}}}
 \newcommand{\emca}{\varepsilon_{\mathrm{mca}}}
 \newcommand{\Lst}{\Lambda}
 \newcommand{\Hb}{\mathrm{H}_2}
 
-\title{Two-sided bounds for the mutual correlated agreement threshold}
+\title{A Pincer Picture for the Mutual Correlated Agreement Threshold}
+\author{Przemek Chojecki}
+\date{July 2, 2026}
 
 \begin{document}
 
 \begin{abstract}
-For Reed--Solomon codes on smooth multiplicative domains with $k\le2^{40}$ and $|\F|<2^{256}$ --- the parameter box singled out by the Proximity Prize --- we bound the grand mutual correlated agreement threshold $\delta^*_C(2^{-128})$ from both sides. For $|\F|<2^{128}$ the threshold is exactly $0$. For $|\F|\ge2^{128}$ we prove, unconditionally and by elementary self-contained arguments, that at the four challenge rates the threshold lies between one third of the relative minimum distance and $1-\rho-2^{-9}$ (gap $2^{-10}$ at rate $\tfrac1{16}$), so it never reaches capacity; a single classical import, the unique-decoding proximity gap of Ben-Sasson--Carmon--Ishai--Kopparty--Saraf, raises the lower edge to one half of the distance, determining the threshold within a factor smaller than two whenever $|\F|\ge2^{128}n$. Below half the minimum distance we show that mutual and plain correlated agreement coincide up to an explicit tangent term of at most $\lfloor\delta n\rfloor$ slopes, so the remaining gap is a question about plain correlated agreement. We further prove two barriers showing that the mechanisms used here provably cannot close that gap: locator-prefix floors stop at an explicit entropy envelope, and the deep-point conversion cannot certify error beyond $\frac1k$. What remains for an exact determination is isolated as two precise open problems.
+For Reed--Solomon codes with $k\le2^{40}$ and $|\F|<2^{256}$ --- the parameter box singled out by the Proximity Prize --- we give a sharpened pincer picture for the grand mutual correlated agreement threshold $\delta^*_C(2^{-128})$. For $|\F|<2^{128}$ the threshold is exactly $0$. For $|\F|\ge2^{128}$ and the four challenge rates, ordinary locator-prefix floors already force plain correlated-agreement failure from $\delta=1-\rho-s_\rho/n$ up to capacity, where $s_\rho=\lceil\alpha_\rho n\rceil$ and $\alpha_{1/2}=1/300$, $\alpha_{1/4}=3/1000$, $\alpha_{1/8}=41/20000$, $\alpha_{1/16}=3/2500$; in particular the old near-capacity problem has a negative answer on an explicit upper slice of its band. On the safe side, a self-contained theorem gives MCA with error $(\lfloor\delta n\rfloor+1)/q$ below one third of the distance, and the unique-decoding proximity gap of Ben-Sasson--Carmon--Ishai--Kopparty--Saraf raises the safe frontier to one half of the distance whenever $|\F|\ge2^{128}n$. Above half the distance, the extra mutual-only layer is reduced to explicit finite objects: tangent slopes, residual Reed--Solomon shortenings of dimension at most $\max(0,2r-(n-k))$, and equivalently a doubled-radius pair-list obstruction. The half-distance wall is sharp, and the remaining threshold problem is reduced to a middle plain-CA band together with those residual shortening or pair-list images.
 \end{abstract}
 
 \maketitle
 
 \section{Introduction and main result}\label{sec:intro}
 
-The Proximity Prize \cite{ProximityPrize} and the challenge collection of Arnon, Boneh and Fenzi \cite{ABF26} ask for the largest proximity parameter $\delta$ at which mutual correlated agreement (MCA) holds for a Reed--Solomon code with error at most a stated target, and single out one parameter box: \emph{``we are mostly interested in determining $\delta^*_C$ when $L\subseteq\F$ is a smooth domain, $k\le2^{40}$, and $|\F|<2^{256}$.''} This paper is a self-contained two-sided answer for that box. Write $C=\RS[\F,D,k]$ for the code of polynomials of degree less than $k$ evaluated on a domain $D$ of size $n$, $\rho=k/n$, $q=|\F|$, and let $\delta^*_C(\varepsilon^*)$ be the threshold of \cref{def:dstar} below, at the grand challenge target $\varepsilon^*=2^{-128}$.
+The Proximity Prize \cite{ProximityPrize} and the challenge collection of Arnon, Boneh and Fenzi \cite{ABF26} ask for the largest proximity parameter $\delta$ at which mutual correlated agreement (MCA) holds for a Reed--Solomon code with error at most a stated target, and single out one parameter box: \emph{``we are mostly interested in determining $\delta^*_C$ when $L\subseteq\F$ is a smooth domain, $k\le2^{40}$, and $|\F|<2^{256}$.''} This paper gives a pincer answer for that box: a certified safe region, a certified unsafe region strictly below capacity, and an exact formulation of the residual kernel. Write $C=\RS[\F,D,k]$ for the code of polynomials of degree less than $k$ evaluated on a domain $D$ of size $n$, $\rho=k/n$, $q=|\F|$, and let $\delta^*_C(\varepsilon^*)$ be the threshold of \cref{def:dstar} below, at the grand challenge target $\varepsilon^*=2^{-128}$.
 
 \begin{theorem}\label{thm:main}
-Let $D\subseteq\F^\times$ be a coset of a cyclic subgroup of even order $n$, let $C=\RS[\F,D,k]$ with $\rho=k/n\in\{\tfrac12,\tfrac14,\tfrac18,\tfrac1{16}\}$, $k\le2^{40}$ and $n\ge2^{15}$, and put $g:=2^{-9}$ for $\rho\ge\tfrac18$ and $g:=2^{-10}$ for $\rho=\tfrac1{16}$.
+Let $q=|\F|<2^{256}$, let $D\subseteq\F^\times$ be a coset of a cyclic subgroup of even order $n$, and let $C=\RS[\F,D,k]$ with $\rho=k/n\in\{\tfrac12,\tfrac14,\tfrac18,\tfrac1{16}\}$, $k\le2^{40}$ and $n\ge2^{15}$. Put
+\[
+\alpha_\rho:=
+\begin{cases}
+1/300, & \rho=\tfrac12,\\
+3/1000, & \rho=\tfrac14,\\
+41/20000, & \rho=\tfrac18,\\
+3/2500, & \rho=\tfrac1{16},
+\end{cases}
+\qquad s_\rho:=\lceil\alpha_\rho n\rceil,
+\]
+and put $g_\rho:=2^{-9}$ for $\rho\ge\tfrac18$ and $g_\rho:=2^{-10}$ for $\rho=\tfrac1{16}$.
 \begin{enumerate}
 \item If $q<2^{128}$, then $\delta^*_C(2^{-128})=0$.
-\item If $q\ge2^{128}$, then $\delta^*_C(2^{-128})\le1-\rho-g$; in particular the threshold is bounded away from capacity by an absolute constant.
+\item If $q\ge2^{128}$, then
+\[
+\delta^*_C(2^{-128})\le 1-\rho-\frac{s_\rho}{n}.
+\]
+More strongly, $\eca(C,\delta)>2^{-128}$, and hence $\emca(C,\delta)>2^{-128}$, for every $\delta\in[1-\rho-s_\rho/n,1-\rho)$. Since $s_\rho/n\ge\alpha_\rho>g_\rho$, this gives a negative answer to the original plain-CA question on the nonempty upper slice $[1-\rho-s_\rho/n,\,1-\rho-g_\rho)$ of its band.
 \item If moreover $q\ge2^{128}n$, then unconditionally
-$\tfrac1n\bigl\lfloor\tfrac{n-k}3\bigr\rfloor\le\delta^*_C(2^{-128})\le1-\rho-g$,
+$\tfrac1n\bigl\lfloor\tfrac{n-k}3\bigr\rfloor\le\delta^*_C(2^{-128})\le1-\rho-s_\rho/n$,
 a determination within a multiplicative factor smaller than three; and, using additionally the unique-decoding proximity gap of \cite{BCIKS20},
-$\tfrac1n\bigl\lfloor\tfrac{n-k}2\bigr\rfloor\le\delta^*_C(2^{-128})\le1-\rho-g$,
+$\tfrac1n\bigl\lfloor\tfrac{n-k}2\bigr\rfloor\le\delta^*_C(2^{-128})\le1-\rho-s_\rho/n$,
 a determination within a factor smaller than two.
 \item If $2^{128}\le q<2^{128}n$, the same upper bound holds, and the unconditional lower bound is $r^*/n$ with $r^*:=\min\bigl(\lfloor(n-k)/3\rfloor,\lfloor2^{-128}q\rfloor-1\bigr)$, which degrades to $0$ as $q$ approaches $2^{128}$; no factor claim is made in this thin regime.
 \end{enumerate}
 \end{theorem}
 
-Every ingredient except the single import in (3) is proved here from first principles: a graded locator-prefix pigeonhole (\cref{lem:floor}), a deep-point list-to-correlated-agreement conversion (\cref{thm:conversion}), a deep-regime theorem showing MCA \emph{holds} with error $(\lfloor\delta n\rfloor+1)/q$ below one third of the minimum distance for every linear code (\cref{thm:deep}), and a theorem showing that below one half of the distance mutual and plain correlated agreement coincide up to an explicit tangent term (\cref{thm:half}). No value-set counting, exponential-sum estimate, or equidistribution input is used. The one import, \cite[Thm.~4.1]{BCIKS20}, is a published theorem, so clause (3) stands on the literature as stated; we track it separately only to delimit the self-contained core. \Cref{sec:barriers} then proves two barriers --- an entropy envelope past which no prefix floor can certify failure (\cref{prop:envelope-barrier}), and a ceiling of $\frac1k$ on the error certifiable through the conversion (\cref{prop:ceiling}) --- and isolates what remains for an exact determination as \cref{prob:ca,prob:mutual}. Remarks \ref{rem:instantiations}--\ref{rem:small-n} complete the parameter box: characteristic-two additive smooth domains and odd $3$-smooth orders satisfy the same bounds, small $n$ down to $2^{12}$ retains a nonvacuous cap of gap $3/n$, and rates outside the four challenge values are covered by the same finite criterion.
+Every ingredient except the single import in (3) is proved here from first principles: a graded locator-prefix pigeonhole (\cref{lem:floor}), a deep-point list-to-correlated-agreement conversion (\cref{thm:conversion}), an ordinary locator-prefix specialization that resolves the top of the plain-CA band (\cref{cor:ordinary-top}), a deep-regime theorem showing MCA \emph{holds} with error $(\lfloor\delta n\rfloor+1)/q$ below one third of the minimum distance for every linear code (\cref{thm:deep}), and a theorem showing that below one half of the distance mutual and plain correlated agreement coincide up to an explicit tangent term (\cref{thm:half}). No value-set counting, exponential-sum estimate, or equidistribution input is used. The one import, \cite[Thm.~4.1]{BCIKS20}, is a published theorem, so clause (3) stands on the literature as stated; we track it separately only to delimit the self-contained core. \Cref{sec:barriers} then proves two barriers --- an entropy envelope past which no prefix floor can certify failure (\cref{prop:envelope-barrier}), and a ceiling of $\frac1k$ on the error certifiable through the conversion (\cref{prop:ceiling}) --- and states the residual kernel after the two broad band questions are sharpened: a smaller plain-CA interval (\cref{prob:ca}) and the residual shortening or pair-list obstruction (\cref{prob:mutual}). Remarks \ref{rem:instantiations}--\ref{rem:small-n} complete the parameter box: characteristic-two additive smooth domains and odd $3$-smooth orders satisfy the same baseline bounds, small $n$ down to $2^{12}$ retains a nonvacuous cap of gap $3/n$, and rates outside the four challenge values are covered by the same finite criterion.
 
-The upper bounds sharpen, and the composition follows, a line of work on capacity-edge obstructions: the conditional universal cap of \cite{Cho26b} (gap $2^{-11}$ under $|\F|\ge2n$), the locator framework of \cite{Cho26a}, and the conversion perspective of \cite{CS25}; the strongest known positive results for plain correlated agreement are \cite{BCIKS20,BCHKS25}, reaching the Johnson radius. A companion manuscript \cite{Cho26b} develops the deployed-parameter refinements (subfield-pigeonhole floors widening the band to gap $\approx2^{-4.96}$ at $n=2^{21}$, circle and genus-one rows, explicit witnesses) and the structured form of the remaining problem; the present paper is the minimal self-contained core that answers the quoted question.
+The upper bounds sharpen, and the composition follows, a line of work on capacity-edge obstructions: the conditional universal cap of \cite{Cho26b} (gap $2^{-11}$ under $|\F|\ge2n$), the locator framework of \cite{Cho26a}, and the conversion perspective of \cite{CS25}; the strongest known positive results for plain correlated agreement are \cite{BCIKS20,BCHKS25}, reaching the Johnson radius. A companion manuscript \cite{Cho26b} develops the deployed-parameter refinements (subfield-pigeonhole floors widening the unsafe frontier to gap $\approx2^{-4.96}$ at $n=2^{21}$, circle and genus-one rows, explicit witnesses) and the structured form of the remaining problem; the present paper is the minimal self-contained core plus the residual reductions needed to state the current picture.
 
 \section{Definitions}\label{sec:defs}
 
@@ -95,7 +134,7 @@ Indeed, with $p=m/N$, expanding $1=\sum_i\binom Ni p^i(1-p)^{N-i}$ gives the upp
 The failure mechanism has two independent parts: a pigeonhole construction of a single received word carrying an enormous list at an agreement slightly above $k$, and a conversion of any such list into correlated-agreement failure. Neither part uses any arithmetic property of $\F$ beyond its size.
 
 \begin{lemma}[graded prefix floor]\label{lem:floor}
-Let $\varphi\in\F[X]$ have degree $c\ge2$ and suppose the fibers of $\varphi$ inside $D$ are complete and of uniform size $c$: every nonempty set $\varphi^{-1}(y)\cap D$, $y\in Q:=\varphi(D)$, has exactly $c$ elements. Put $N:=n/c$, let $B\subseteq\F$ be any subfield with $D\subseteq B$ and $\varphi\in B[X]$ (always $B=\F$ works), and let $1\le K\le n$ and $\lceil K/c\rceil\le m\le N$, $w:=m-\lceil K/c\rceil$. Then some $B$-valued word $U\colon D\to B$ satisfies
+Let $\varphi\in\F[X]$ have degree $c\ge1$ and suppose the fibers of $\varphi$ inside $D$ are complete and of uniform size $c$: every nonempty set $\varphi^{-1}(y)\cap D$, $y\in Q:=\varphi(D)$, has exactly $c$ elements. Put $N:=n/c$, let $B\subseteq\F$ be any subfield with $D\subseteq B$ and $\varphi\in B[X]$ (always $B=\F$ works), and let $1\le K\le n$ and $\lceil K/c\rceil\le m\le N$, $w:=m-\lceil K/c\rceil$. Then some $B$-valued word $U\colon D\to B$ satisfies
 \[
 \bigl|\Lst\bigl(\RS[\F,D,K],\,1-\tfrac{mc}n,\,U\bigr)\bigr|\ \ge\ \binom Nm\Big/|B|^{\,w}.
 \]
@@ -128,8 +167,41 @@ then for every $\delta\in[1-\frac{mc}n,\,1-\rho)$,
 Every $\delta<1-\rho$ has $\lfloor\delta n\rfloor\le n-k-1$, since $\delta n<n-k$ and distances are integral; so \cref{thm:conversion} applies at every radius in the stated range. The word $U$ of \cref{lem:floor} has $\bigl|\Lst(\RS[\F,D,k+1],\delta,U)\bigr|>\frac qk+1>\frac{q-n}k$ at every $\delta\ge1-\frac{mc}n$, because the $\binom Nm/|B|^w$ listed codewords agree with $U$ on $mc\ge(1-\delta)n$ points. If $\eca(C,\delta)\le\frac1{2k}(1-\frac nq)$, then \cref{thm:conversion} with $\eta=\frac12$ bounds that list by $2q\,\eca(C,\delta)\le\frac{q-n}k$, a contradiction. \Cref{lem:chain} transfers the bound to $\emca$.
 \end{proof}
 
+\begin{corollary}[ordinary locator cap; top of the plain-CA band]\label{cor:ordinary-top}
+Let $D\subseteq\F$ be any set of size $n$, let $C=\RS[\F,D,k]$ with $\rho=k/n\in\{\tfrac12,\tfrac14,\tfrac18,\tfrac1{16}\}$, $k\le2^{40}$ and $n\ge2^{15}$, and assume $n<q<2^{256}$. Define $\alpha_\rho$ and $s_\rho=\lceil\alpha_\rho n\rceil$ as in \cref{thm:main}. Then, for every
+$\delta\in[1-\rho-s_\rho/n,1-\rho)$,
+\[
+\emca(C,\delta)\ge\eca(C,\delta)>\frac1{2k}\Bigl(1-\frac nq\Bigr).
+\]
+In particular, if $q\ge2^{128}$, then $\eca(C,\delta)>2^{-128}$ throughout this interval.
+\end{corollary}
+
+\begin{proof}
+Apply \cref{lem:floor,thm:cap} with the identity map $\varphi=X$, so $c=1$, $N=n$, $B=\F$, $K=k+1$, $m=k+s_\rho$, and $w=s_\rho-1$; here $k+1\le m\le n$ because $s_\rho\ge1$ and $\rho+\alpha_\rho+2^{-15}<1$ in all four cases. The cap criterion becomes
+\[
+\binom n{k+s_\rho}>q^{s_\rho-1}\Bigl(\frac qk+1\Bigr).
+\]
+It is enough to verify this with $q$ replaced by $2^{256}$. Since $k\ge n/16\ge2^{11}$, we have $\log_2(q/k+1)<256$, while \eqref{eq:entropy} gives
+\[
+\log_2\binom n{k+s_\rho}
+\ge n\Hb\Bigl(\rho+\frac{s_\rho}{n}\Bigr)-\log_2(n+1).
+\]
+Because $s_\rho/n\in[\alpha_\rho,\alpha_\rho+2^{-15}]$, the following lower bounds hold on the relevant interval:
+\[
+\begin{array}{c|c|c|c}
+\rho & \alpha_\rho & \min\Hb(\rho+s_\rho/n) & \min\Hb(\rho+s_\rho/n)-256\alpha_\rho\\
+\midrule
+\tfrac12 & 1/300 & 0.9999 & >0.146\\
+\tfrac14 & 3/1000 & 0.8159 & >0.047\\
+\tfrac18 & 41/20000 & 0.5492 & >0.024\\
+\tfrac1{16} & 3/2500 & 0.3419 & >0.034.
+\end{array}
+\]
+Thus $n\Hb(\rho+s_\rho/n)-\log_2(n+1)>256s_\rho$ for every $n\ge2^{15}$, with the tightest case still having more than $500$ bits of slack at $n=2^{15}$. This proves the criterion and hence the displayed lower bound. Finally, if $q\ge2^{128}$ then $n\le16k\le2^{44}$, so $n/q<2^{-84}$ and $\frac1{2k}(1-n/q)>2^{-42}>2^{-128}$.
+\end{proof}
+
 \begin{corollary}[universal cap on the challenge box]\label{cor:envelope}
-Let $D\subseteq\F^\times$ be a coset of a cyclic subgroup of even order $n\ge2^{15}$, let $\rho\in\{\tfrac12,\tfrac14,\tfrac18,\tfrac1{16}\}$ and $n<q<2^{256}$, and let $g$ be as in \cref{thm:main}. Then $\emca(C,\delta)>\frac1{2k}(1-\frac nq)$ for every $\delta\in[1-\rho-g,\,1-\rho)$.
+Let $D\subseteq\F^\times$ be a coset of a cyclic subgroup of even order $n\ge2^{15}$, let $\rho\in\{\tfrac12,\tfrac14,\tfrac18,\tfrac1{16}\}$ and $n<q<2^{256}$, and set $g:=g_\rho$ as in \cref{thm:main}. Then $\emca(C,\delta)>\frac1{2k}(1-\frac nq)$ for every $\delta\in[1-\rho-g,\,1-\rho)$.
 \end{corollary}
 
 \begin{proof}
@@ -195,48 +267,362 @@ Here $w_{\min}=n-k+1$ and $2\lfloor\delta n\rfloor\le n-k=w_{\min}-1$, so \cref{
 
 (1) is \cref{prop:degenerate}: $\emca(C,\delta)\ge1/q>2^{-128}$ at every $\delta$, so the supremum set is empty.
 
-(2) By \cref{cor:envelope}, $\emca(C,\delta)>\frac1{2k}(1-\frac nq)$ for every $\delta\in[1-\rho-g,1-\rho)$. Here $k\le2^{40}$ gives $\frac1{2k}\ge2^{-41}$, and $n\le16k\le2^{44}$ with $q\ge2^{128}$ gives $1-\frac nq\ge\frac12$; so $\emca(C,\delta)>2^{-42}>2^{-128}$ throughout the band, no radius there belongs to the supremum set, every member of that set is below $1-\rho-g$, and $\delta^*_C(2^{-128})\le1-\rho-g$.
+(2) By \cref{cor:ordinary-top}, $\eca(C,\delta)>\frac1{2k}(1-\frac nq)$ for every $\delta\in[1-\rho-s_\rho/n,1-\rho)$. Here $k\le2^{40}$ gives $\frac1{2k}\ge2^{-41}$, and $n\le16k\le2^{44}$ with $q\ge2^{128}$ gives $1-\frac nq>1-2^{-84}>\frac12$; so $\eca(C,\delta)>2^{-42}>2^{-128}$ throughout the interval. By \cref{lem:chain}, the same interval is MCA-unsafe; hence no radius there belongs to the supremum set and $\delta^*_C(2^{-128})\le1-\rho-s_\rho/n$. Finally $s_\rho/n\ge\alpha_\rho>g_\rho$, which places a nonempty CA-failing slice inside the old band $((1-\rho)/2,1-\rho-g_\rho)$.
 
-(3) and (4). Let $r^*:=\min(\lfloor(n-k)/3\rfloor,\lfloor2^{-128}q\rfloor-1)$ and suppose $r^*\ge1$. At $\delta:=r^*/n$ we have $\lfloor\delta n\rfloor=r^*$ and $3r^*\le n-k=w_{\min}-1$, so \cref{thm:deep} gives $\emca(C,\delta)\le(r^*+1)/q\le2^{-128}$, using $r^*+1\le\lfloor2^{-128}q\rfloor$; also $\delta<1-\rho$, so $\delta$ lies in the supremum set and $\delta^*\ge r^*/n$. If $q\ge2^{128}n$ then $\lfloor2^{-128}q\rfloor-1\ge n-1\ge\lfloor(n-k)/3\rfloor$, so $r^*=\lfloor(n-k)/3\rfloor$ and $\delta^*\ge\frac1n\lfloor(n-k)/3\rfloor\ge\frac{1-\rho}3-\frac2{3n}$; against the upper bound $1-\rho-g$ the ratio is at most $2.997$ at the four rates for $n\ge2^{15}$, a factor smaller than three. With the import, take $\delta:=\frac1n\lfloor(n-k)/2\rfloor\le\frac{n-k}{2n}$: \cref{cor:import} gives $\emca\le n/q\le2^{-128}$ when $q\ge2^{128}n$, so $\delta^*\ge\frac{1-\rho}2-\frac1{2n}$, and the ratio to the upper bound is at most $1.998$ at the four rates, a factor smaller than two. In the thin regime $2^{128}\le q<2^{128}n$ only the $r^*$ clause is claimed; as $q\downarrow2^{128}$, $r^*$ reaches $0$ and the lower bound becomes vacuous, as stated. \qed
+(3) and (4). Let $r^*:=\min(\lfloor(n-k)/3\rfloor,\lfloor2^{-128}q\rfloor-1)$ and suppose $r^*\ge1$. At $\delta:=r^*/n$ we have $\lfloor\delta n\rfloor=r^*$ and $3r^*\le n-k=w_{\min}-1$, so \cref{thm:deep} gives $\emca(C,\delta)\le(r^*+1)/q\le2^{-128}$, using $r^*+1\le\lfloor2^{-128}q\rfloor$; also $\delta<1-\rho$, so $\delta$ lies in the supremum set and $\delta^*\ge r^*/n$. If $q\ge2^{128}n$ then $\lfloor2^{-128}q\rfloor-1\ge n-1\ge\lfloor(n-k)/3\rfloor$, so $r^*=\lfloor(n-k)/3\rfloor$ and $\delta^*\ge\frac1n\lfloor(n-k)/3\rfloor\ge\frac{1-\rho}3-\frac2{3n}$; since $s_\rho/n\ge g_\rho$, the earlier ratio estimate against the weaker upper bound $1-\rho-g_\rho$ still gives a factor smaller than three. With the import, take $\delta:=\frac1n\lfloor(n-k)/2\rfloor\le\frac{n-k}{2n}$: \cref{cor:import} gives $\emca\le n/q\le2^{-128}$ when $q\ge2^{128}n$, so $\delta^*\ge\frac{1-\rho}2-\frac1{2n}$, and the same comparison gives a factor smaller than two. In the thin regime $2^{128}\le q<2^{128}n$ only the $r^*$ clause is claimed; as $q\downarrow2^{128}$, $r^*$ reaches $0$ and the lower bound becomes vacuous, as stated. \qed
 
 \medskip
 Two comments on the statement. First, the import in (3) is a published theorem, so the two-sided determination within a factor of two stands on the literature; the unconditional clause records what the present paper proves alone. Second, the case split at $q=2^{128}$ is genuinely necessary at the stated target: below it the threshold degenerates, at it neither degeneracy nor a nontrivial safe radius follows (\cref{prop:degenerate}), and the meaningful question there is posed at a larger target, as the deployed circle-code rows already illustrate \cite{Cho26b}.
 
-\section{Barriers, and what remains}\label{sec:barriers}
 
-The gap between the two edges of \cref{thm:main} is not an artifact of lazy constants: each mechanism above provably stops where it stops.
+\section{Refining the residual band}\label{sec:residual-band}
 
-\begin{proposition}[entropy envelope for prefix floors]\label{prop:envelope-barrier}
-In the setting of \cref{lem:floor}, write $\beta:=\log_2|B|$, $A:=mc$ and $g:=(A-k)/n$, and let $K\le k+1$. If $\Hb(\rho+g)\le\beta\,(g-\tfrac cn)$, then $\binom Nm\le|B|^{\,w}$: the pigeonhole class is not guaranteed to exceed a single codeword, and no certificate of the form of \cref{thm:cap} exists at agreement $A$ and scale $c$. In particular, over any field with no proper subfield containing $D$ and $q\ge2^{128}$ (so $\beta\ge128$), a certificate at scale $c$ requires $g<\frac1{128}+\frac cn$; since a useful certificate also needs $\binom Nm>\frac qk\ge2^{88}$, hence $N\ge89$ and $c\le n/89$, every certified gap is below $\frac1{128}+\frac1{89}<2^{-5.6}$, and at the small scales used above, below $\frac1{128}+\frac2n\approx2^{-7}$. For deployed rows whose domains lie in small subfields ($\beta=31$) the same envelope, now $\Hb(\rho+g^*)=g^*\beta$, is wider, and it is reached and saturated in \cite{Cho26b}.
+The main theorem gives a two-sided pincer but does not by itself determine the
+exact staircase.  The original broad residual questions can be sharpened further.
+First, the top of the old plain-CA band is already unsafe by the ordinary
+locator floor \cref{cor:ordinary-top}, which is stronger than the quadratic
+uniform cap used only to state the smooth-domain envelope.  Second, the mutual
+layer above plain correlated agreement is not mysterious: for column-close
+pairs, every extra MCA slope is forced by either a tangent coordinate or a
+low-weight shortening image.  A second, code-agnostic formulation bounds the same
+extra layer by a doubled-radius pair list.
+
+\subsection{The top of the plain-CA band is already unsafe}
+
+The gap $g_\rho$ in \cref{thm:main} is the clean smooth-domain cap obtained from
+the two-fiber map $X^2$.  The identity map gives a stronger top-edge statement
+for plain CA over arbitrary evaluation sets.
+
+\begin{corollary}[the original plain-CA band is not all safe]\label{cor:old-ca-band-not-safe}
+In the parameter box of \cref{thm:main}, assume $q\ge2^{128}$.  Then
+\[
+        \eca(C,\delta)>2^{-128}
+        \qquad\text{for every}\qquad
+        \delta\in\left[1-\rho-\frac{s_\rho}{n},\,1-\rho\right).
+\]
+Since $s_\rho/n\ge\alpha_\rho>g_\rho$, the upper slice
+\[
+        \left[1-\rho-\frac{s_\rho}{n},\,1-\rho-g_\rho\right)
+\]
+of the previously displayed band is already plain-CA unsafe, and hence MCA
+unsafe.
+\end{corollary}
+
+\begin{proof}
+This is exactly \cref{cor:ordinary-top}, followed by the numerical estimate in
+the proof of \cref{thm:main}(2): $k\le2^{40}$ and $q\ge2^{128}$ imply
+$\frac1{2k}(1-n/q)>2^{-128}$.
+\end{proof}
+
+Thus the remaining plain-CA question starts below the sharper edge
+$1-\rho-s_\rho/n$, not below the coarser edge $1-\rho-g_\rho$.
+
+\subsection{The mutual layer as a residual shortening image}
+
+For a vector $u\in\F^D$ write $\supp(u):=\{x\in D:u(x)\ne0\}$.  Fix an integer
+$r$ and a pair $(f_1,f_2)$ that is $r/n$-close to $C^{\equiv2}$.  Choose one
+explaining pair $(p_1,p_2)\in C^{\equiv2}$ and put
+\[
+        E:=\{x\in D:(f_1(x),f_2(x))\ne(p_1(x),p_2(x))\},
+        \qquad |E|\le r,
+\]
+\[
+        e_i:=f_i-p_i\qquad(i=1,2).
+\]
+A slope is called \emph{$E$-tangent} if
+\[
+        e_1(x)+\gamma e_2(x)=0
+        \quad\text{for some }x\in E.
+\]
+There are at most $|E|\le r$ such slopes, because each coordinate with
+$e_2(x)\ne0$ determines one finite value of $\gamma$, and a coordinate with
+$e_2(x)=0\ne e_1(x)$ determines none.
+
+For this fixed explanation define $R_C(E,e_1,e_2;r)$ to be the set of slopes
+$\gamma\in\F$ for which there are a set $F_0\subseteq D$ with $|F_0|\le r$ and a
+nonzero codeword $d\in C$ such that
+\[
+        \supp(d)\subseteq E\cup F_0,
+        \qquad
+        d(x)=e_1(x)+\gamma e_2(x)
+        \quad\text{for every }x\in E\setminus F_0.
+\]
+Finally put
+\[
+        R_C(r):=\max_{E,e_1,e_2}|R_C(E,e_1,e_2;r)|,
+\]
+where the maximum is over $|E|\le r$ and error pairs supported on $E$.
+
+\begin{theorem}[shortening-image reduction for the mutual layer]
+\label{thm:p2-residual-reduction}
+Let $C\subseteq\F^D$ be linear, let $\delta\in(0,1)$, and put
+$r:=\lfloor\delta n\rfloor$.  Then
+\[
+        \emca(C,\delta)
+        \le
+        \max\left(\eca(C,\delta),\frac{r+R_C(r)}q\right).
+\]
+If $C=\RS[\F,D,k]$, then every nonzero codeword counted in $R_C(r)$ belongs to a
+shortening of dimension at most
+\[
+        \max(0,2r-(n-k)).
+\]
+In particular $R_C(r)=0$ whenever $2r\le n-k$, recovering the half-distance
+reduction \cref{thm:half}.
+\end{theorem}
+
+\begin{proof}
+Fix a pair $(f_1,f_2)$.  If the pair is $\delta$-far from $C^{\equiv2}$, then any
+MCA-bad slope is CA-bad by the proof of \cref{lem:chain}; this gives the first
+term.
+
+Assume instead that the pair is $\delta$-close, and choose $(p_1,p_2)$ and $E$ as
+above.  Let $\gamma$ be MCA-bad, with witness $(c,S)$, $|S|\ge n-r$.  Put
+$F_0:=D\setminus S$, so $|F_0|\le r$, and set
+\[
+        d:=c-(p_1+\gamma p_2)\in C.
+\]
+On $S\setminus E$ the errors vanish and both $c$ and $p_1+\gamma p_2$ agree with
+$f_1+\gamma f_2$, so $d=0$ there.  Hence
+$\supp(d)\subseteq E\cup F_0$.  On $E\setminus F_0=E\cap S$ we have
+\[
+        d=e_1+\gamma e_2 .
+\]
+If $\gamma$ is not $E$-tangent and $d=0$, then $E\cap S=\emptyset$; consequently
+$S\subseteq D\setminus E$, and the original pair $(p_1,p_2)$ explains
+$(f_1,f_2)$ on $S$, contradicting MCA-badness.  Thus every non-tangent MCA-bad
+slope belongs to $R_C(E,e_1,e_2;r)$, while tangent slopes contribute at most $r$.
+Taking the maximum over pairs proves the inequality.
+
+For Reed--Solomon codes, fix $E$ and $F_0$.  The codewords supported in
+$E\cup F_0$ form a shortening on a set of size at most $2r$.  Since
+Reed--Solomon codes are MDS, this shortening has dimension
+\[
+        \max(0,|E\cup F_0|-(n-k))\le\max(0,2r-(n-k)).
+\]
+If $2r\le n-k$, every such shortening is zero, so no residual non-tangent slope
+exists.
+\end{proof}
+
+The next example shows that the shortening term is not an artifact of the proof:
+it appears as soon as the half-distance forcing condition fails.
+
+\begin{proposition}[sharpness of the half-distance wall]
+\label{prop:p2-half-sharp}
+Let $C=\RS[\F,D,k]$ with minimum distance $d=n-k+1$.  Let
+\[
+        \max(2,\lceil d/2\rceil)\le r\le d-2.
+\]
+Then there is a pair $(f_1,f_2)$ with
+$\dist_2((f_1,f_2),C^{\equiv2})\le r/n$ and a slope $\gamma_0$ that is MCA-bad at
+radius $r/n$ but not CA-bad.  Moreover $\gamma_0$ can be chosen non-tangent for a
+nearest explanation of the pair.  Thus the estimate
+$\emca\le\max(\eca,r/q)$ cannot, in general, be extended beyond half the
+distance.
 \end{proposition}
 
 \begin{proof}
-Here $w=m-\lceil K/c\rceil\ge m-(k+c)/c=(A-k-c)/c$, so by \eqref{eq:entropy}, $\log_2\binom Nm\le\frac nc\Hb(A/n)\le\frac nc\cdot\beta(g-\frac cn)=\beta\frac{gn-c}c\le\beta w$. The instantiation takes $\beta=\log_2q\ge128$ and $\Hb\le1$.
+Choose disjoint sets $E,F_0\subseteq D$ with $|E|=r$ and $|F_0|=d-r$, and put
+$W:=E\cup F_0$, so $|W|=d$.  Since $C$ is MDS, there is a nonzero codeword
+$c\in C$ supported exactly on $W$; for Reed--Solomon codes one may take a nonzero
+scalar multiple of
+\[
+        \prod_{x\in D\setminus W}(X-x).
+\]
+Let $S:=D\setminus F_0$, so $|S|=n-d+r\ge n-r$ because $r\ge d/2$.
+Define $f_1$ to equal $c$ on $E$ and $0$ off $E$.  Choose $f_2$ supported on $E$
+whose restriction to $E$ is not a scalar multiple of $c|_E$; this is possible
+because $|E|\ge2$.  The pair is $r/n$-close to $(0,0)\in C^{\equiv2}$.
+
+At slope $\gamma_0=0$, the word $f_1$ agrees with the codeword $c$ on all of
+$S$: on $E$ this is by definition, and on $S\setminus E$ both are zero.  Hence
+$(c,S)$ is a proximity witness.  It is not a mutual witness.  Indeed, any codeword
+agreeing with $f_2$ on $S$ must be supported inside $W$; the shortening of an MDS
+code on a minimum-weight support $W$ is one-dimensional and spanned by $c$, so
+its restriction to $E$ is a scalar multiple of $c|_E$, contrary to the choice of
+$f_2$.  Therefore $\gamma_0$ is MCA-bad.  It is not CA-bad, because the pair is
+already $r/n$-close to $C^{\equiv2}$.  Finally, relative to the nearest
+explanation $(0,0)$, the value $f_1+0\cdot f_2$ is nonzero at every point of $E$,
+so $\gamma_0$ is non-tangent.
+\end{proof}
+
+\subsection{A doubled-radius pair-list formulation}
+
+The shortening term can also be expressed without using the Reed--Solomon MDS
+structure.  For a received pair $f=(f_1,f_2)$ and an integer $s$, define
+\[
+\mathcal L_s^{(2)}(f):=\{(p_1,p_2)\in C^2:
+\#\{x\in D:f_1(x)=p_1(x),\ f_2(x)=p_2(x)\}\ge n-s\},
+\]
+and set
+\[
+        L_s^{(2)}(C):=\max_f|\mathcal L_s^{(2)}(f)|.
+\]
+
+\begin{theorem}[MCA excess is controlled by the doubled-radius pair list]
+\label{thm:mca-excess-pair-list}
+Let $C\subseteq\F^D$ be linear, let $\delta\in(0,1)$, and put
+$r:=\lfloor\delta n\rfloor$.  Then
+\[
+        \emca(C,\delta)
+        \le
+        \max\left(\eca(C,\delta),
+        \frac{1+(r+1)L_{2r}^{(2)}(C)}q\right).
+\]
+\end{theorem}
+
+\begin{proof}
+Fix a pair $f=(f_1,f_2)$.  If $f$ is $\delta$-far from $C^2$ in column distance,
+then every MCA-bad slope is already CA-bad, so this pair contributes at most
+$q\eca(C,\delta)$ slopes.
+
+Suppose therefore that $f$ is $\delta$-close to $C^2$.  Let $B$ be its set of
+MCA-bad slopes.  If $B=\emptyset$ there is nothing to prove.  Choose an anchor
+slope $\gamma_0\in B$ and a non-extending witness $(c_0,S_0)$, so
+$|S_0|\ge n-r$ and
+\[
+        f_1+\gamma_0f_2=c_0\quad\text{on }S_0.
+\]
+For every $\gamma\in B\setminus\{\gamma_0\}$ choose a non-extending witness
+$(c_\gamma,S_\gamma)$ and define
+\[
+        p_2^{(\gamma)}:=\frac{c_\gamma-c_0}{\gamma-\gamma_0},
+        \qquad
+        p_1^{(\gamma)}:=\frac{\gamma c_0-\gamma_0c_\gamma}{\gamma-\gamma_0}.
+\]
+By linearity, $P_\gamma:=(p_1^{(\gamma)},p_2^{(\gamma)})\in C^2$.  On
+$S_0\cap S_\gamma$, whose size is at least $n-2r$, the two line equations solve
+back to $f_1=p_1^{(\gamma)}$ and $f_2=p_2^{(\gamma)}$.  Hence
+$P_\gamma\in\mathcal L_{2r}^{(2)}(f)$.
+
+It remains to bound how many non-anchor slopes can map to the same pair
+$P=(p_1,p_2)\in\mathcal L_{2r}^{(2)}(f)$.  Let
+\[
+        E_P:=\{x\in D:(f_1(x),f_2(x))\ne(p_1(x),p_2(x))\},
+        \qquad t:=|E_P|\le2r.
+\]
+For every slope $\gamma$ mapping to this same $P$, the corresponding witness
+codeword is $p_1+\gamma p_2$, and on its witness set $S_\gamma$ we need
+\[
+        (f_1-p_1)+\gamma(f_2-p_2)=0.
+\]
+Outside $E_P$ this holds automatically.  Inside $E_P$, a coordinate with
+$f_2(x)-p_2(x)\ne0$ determines at most one value of $\gamma$, and a coordinate
+with $f_2(x)-p_2(x)=0\ne f_1(x)-p_1(x)$ determines none.  Distinct finite slopes
+therefore have disjoint vanishing coordinate sets inside $E_P$.
+
+If $t\le r$, then $D\setminus E_P$ has size at least $n-r$ and is a mutual
+extension set for $P$.  A non-extending witness must include at least one
+coordinate of $E_P$ at which the displayed tangent equation vanishes, so there
+are at most $t\le r$ such slopes.  If $r<t\le2r$, a witness of size at least
+$n-r$ must include at least $t-r$ coordinates of $E_P$ at which the tangent
+equation vanishes.  By disjointness, the number of such slopes is at most
+\[
+        \frac{t}{t-r}\le r+1.
+\]
+Thus each pair in the doubled-radius pair list receives at most $r+1$ non-anchor
+slopes.  Adding back the single anchor gives
+$|B|\le1+(r+1)|\mathcal L_{2r}^{(2)}(f)|$, and the stated bound follows after
+maximizing over $f$ and dividing by $q$.
+\end{proof}
+
+\section{Barriers and what remains}\label{sec:barriers}
+
+The pincer above is not limited by lazy constants.  Each mechanism stops for a
+structural reason: prefix floors have an entropy envelope, the deep-point
+conversion has an error ceiling, and the mutual layer has a genuine
+half-distance wall.
+
+\begin{proposition}[entropy envelope for prefix floors]\label{prop:envelope-barrier}
+In the setting of \cref{lem:floor}, write $\beta:=\log_2|B|$, $A:=mc$ and
+$g:=(A-k)/n$, and let $K\le k+1$. If
+$\Hb(\rho+g)\le\beta\,(g-\tfrac cn)$, then $\binom Nm\le|B|^{\,w}$: the
+pigeonhole class is not guaranteed to exceed a single codeword, and no
+certificate of the form of \cref{thm:cap} exists at agreement $A$ and scale $c$.
+In particular, over any field with no proper subfield containing $D$ and
+$q\ge2^{128}$ (so $\beta\ge128$), a certificate at scale $c$ requires
+$g<\frac1{128}+\frac cn$; since a useful certificate also needs
+$\binom Nm>\frac qk\ge2^{88}$, hence $N\ge89$ and $c\le n/89$, every certified
+gap is below $\frac1{128}+\frac1{89}<2^{-5.6}$. At the ordinary scale $c=1$ used
+in \cref{cor:ordinary-top} this says the route cannot pass much beyond
+$1/128$; at the quadratic scale $c=2$ used in \cref{cor:envelope} it gives the
+familiar $1/128+2/n$ envelope. For deployed rows whose domains lie in small
+subfields ($\beta=31$) the same envelope, now $\Hb(\rho+g^*)=g^*\beta$, is wider,
+and it is reached and saturated in \cite{Cho26b}.
+\end{proposition}
+
+\begin{proof}
+Here $w=m-\lceil K/c\rceil\ge m-(k+c)/c=(A-k-c)/c$, so by \eqref{eq:entropy},
+$\log_2\binom Nm\le\frac nc\Hb(A/n)\le\frac nc\cdot\beta(g-\frac cn)=\beta\frac{gn-c}c\le\beta w$. The instantiation takes $\beta=\log_2q\ge128$ and $\Hb\le1$.
 \end{proof}
 
 \begin{proposition}[ceiling of the conversion]\label{prop:ceiling}
-Let $\delta$ be as in \cref{thm:conversion} and $T:=\frac1k(1-\frac nq)$. If some word $u$ has $|\Lst(\RS[\F,D,k+1],\delta,u)|\ge1+\kappa qT$ with $\kappa>0$, then $\eca(C,\delta)\ge\frac{\kappa}{\kappa+1}T$. Conversely, no list bound, however large, certifies $\eca\ge T$ through \cref{thm:conversion}: the certified error tends to $T$ from below as $\kappa\to\infty$.
+Let $\delta$ be as in \cref{thm:conversion} and
+$T:=\frac1k(1-\frac nq)$. If some word $u$ has
+$|\Lst(\RS[\F,D,k+1],\delta,u)|\ge1+\kappa qT$ with $\kappa>0$, then
+$\eca(C,\delta)\ge\frac{\kappa}{\kappa+1}T$. Conversely, no list bound, however
+large, certifies $\eca\ge T$ through \cref{thm:conversion}: the certified error
+tends to $T$ from below as $\kappa\to\infty$.
 \end{proposition}
 
 \begin{proof}
-Put $x:=\eca(C,\delta)$; if $x\ge T$ there is nothing to prove, so let $x<T$ and $\eta:=x/T<1$. \Cref{thm:conversion} applies with this $\eta$ and yields $\kappa qT\le qx/(1-x/T)$, so $\kappa(T-x)=\kappa T(1-x/T)\le x$, i.e.\ $x\ge\kappa T/(\kappa+1)$. The converse direction is read off the same inequality.
+Put $x:=\eca(C,\delta)$; if $x\ge T$ there is nothing to prove, so let
+$x<T$ and $\eta:=x/T<1$. \Cref{thm:conversion} applies with this $\eta$ and
+yields $\kappa qT\le qx/(1-x/T)$, so
+$\kappa(T-x)=\kappa T(1-x/T)\le x$, i.e.\ $x\ge\kappa T/(\kappa+1)$. The converse
+is read from the same inequality.
 \end{proof}
 
 \begin{remark}[why half the distance is a wall]\label{rem:wall}
-The forcing step in \cref{thm:half,thm:deep} --- a codeword vanishing outside a $2r$-set must be zero --- fails precisely when $2r\ge w_{\min}$, and for $C=\RS[\F,D,k]$ it fails with room to spare: the codewords supported inside a fixed set $W$ with $|W|=2r$ are the evaluations of polynomials of degree $<k$ vanishing on the $n-2r$ points off $W$, a space of dimension exactly $\max(0,\,k-n+2r)=\max(0,\,2r-(n-k))$. Just past half the distance this ambiguity space has positive dimension and $q^{2r-(n-k)}$ elements, so witnesses of proximity are no longer forced onto the explanation line and the tangent count breaks down structurally, not numerically.
+The forcing step in \cref{thm:half,thm:deep} --- a codeword vanishing outside a
+$2r$-set must be zero --- fails precisely when $2r\ge w_{\min}$.  For
+$C=\RS[\F,D,k]$ it fails with room to spare: codewords supported inside a fixed
+set $W$ with $|W|=2r$ are evaluations of polynomials of degree $<k$ vanishing on
+the $n-2r$ points off $W$, a space of dimension exactly
+$\max(0,k-n+2r)=\max(0,2r-(n-k))$.  \Cref{prop:p2-half-sharp} shows that this is
+a real MCA obstruction, not merely a proof artifact.
 \end{remark}
 
-By \cref{thm:half}, below half the distance the mutual and plain problems coincide up to $r/q\le2^{-128}$ error at the relevant sizes; so, at the four challenge rates and $q\ge2^{128}n$, the entire remaining content of the committee's question is the following pair of problems, on the interval between the two edges of \cref{thm:main}(3).
+The remaining tasks now have a narrower and more concrete form.
 
-\begin{problem}[plain correlated agreement in the band]\label{prob:ca}
-For $C=\RS[\F,D,k]$ as in \cref{thm:main} with $q\ge2^{128}n$, determine whether $\eca(C,\delta)\le2^{-128}$ for $\delta\in\bigl(\frac{1-\rho}2,\,1-\rho-g\bigr)$ --- equivalently, by \cref{thm:half}, whether $\emca\le2^{-128}$ there. The known positive results \cite{BCIKS20,BCHKS25} reach the Johnson radius $1-\sqrt\rho$; the subinterval $(1-\sqrt\rho,\,1-\rho-g)$ is open even for the list-size question, and \cref{prop:envelope-barrier,prop:ceiling} show the present floors and conversion cannot decide it.
+\begin{problem}[middle plain correlated-agreement band]\label{prob:ca}
+Let $C=\RS[\F,D,k]$ be in the parameter box of \cref{thm:main} with
+$q\ge2^{128}n$. Determine $\eca(C,\delta)$ in the residual interval
+\[
+        1-\sqrt\rho<\delta<1-\rho-\frac{s_\rho}{n}.
+\]
+Equivalently, in the self-contained core without importing the current
+Johnson-radius CA theorems, replace the left endpoint by $(1-\rho)/2$.  The
+original question below the coarse cap edge $1-\rho-g_\rho$ is already negative
+on its upper slice by \cref{cor:old-ca-band-not-safe}, positive for plain CA up
+to the Johnson radius by \cite{BCIKS20,BCHKS25}, and open only in the displayed
+middle range.
 \end{problem}
 
-\begin{problem}[the mutual layer above half the distance]\label{prob:mutual}
-Determine $\emca(C,\delta)-\eca(C,\delta)$ for $\delta\in\bigl(\frac{1-\rho}2,\,1-\rho-g\bigr)$: bound the number of MCA-bad slopes carried by proximity witnesses that do not extend mutually, in the regime where the ambiguity space of \cref{rem:wall} is nontrivial. A polynomial bound here, combined with a resolution of \cref{prob:ca} up to the same radius, would replace both edges of \cref{thm:main}(3) by a single threshold value.
+\begin{problem}[residual shortening and pair-list images]\label{prob:mutual}
+For $r=\lfloor\delta n\rfloor$ in the same middle interval, bound the residual
+term $R_C(r)$ of \cref{thm:p2-residual-reduction}, or equivalently the
+doubled-radius pair-list quantity $L_{2r}^{(2)}(C)$ of
+\cref{thm:mca-excess-pair-list}.  A target-level bound
+\[
+        r+R_C(r)\le2^{-128}q
+\]
+together with a solution of \cref{prob:ca} would close the MCA threshold in the
+middle band.  A polynomial bound $L_{2r}^{(2)}(C)\le n^A$ gives the same
+conclusion for fields satisfying $q\ge2^{128}n^{A+1}$ whenever plain CA is safe.
+In the companion framework \cite{Cho26b}, periodic witnesses are counted by
+quotient and extension ledgers; what remains is the aperiodic Hankel/residue-line
+packing problem.
 \end{problem}
 
-In the companion framework \cite{Cho26b}, \cref{prob:mutual} is organized by a stabilizer partition of witness supports over the divisor lattice of $D$: periodically witnessed bad slopes are counted exactly, and what remains is a single conjecture --- polynomially many aperiodically witnessed bad slopes in the band --- whose truth would let a finite scanner output $\delta^*_C(2^{-128})$ exactly, at a value essentially equal to the unsafe edge produced by the optimized floors ($\approx0.4679$ for the deployed rate-$\tfrac12$ rows). Whether by that route or another, \cref{prob:ca,prob:mutual} are, after this paper, precisely what stands between the box singled out by the committee and its exact answer.
+Thus the current complete picture is this.  Small fields are degenerate.  Large
+fields are safe to one third of the distance by a self-contained theorem and safe
+to one half of the distance with the single BCIKS import.  They are unsafe,
+already for plain correlated agreement, from $1-\rho-s_\rho/n$ to capacity; over
+deployed subfield rows, optimized companion floors push this unsafe frontier much
+farther left.  What remains is not the original broad pair of problems, but the
+middle CA interval of \cref{prob:ca} and the residual shortening or pair-list
+kernel of \cref{prob:mutual}.
 
 \medskip
 \begin{thebibliography}{BCIKS20}
