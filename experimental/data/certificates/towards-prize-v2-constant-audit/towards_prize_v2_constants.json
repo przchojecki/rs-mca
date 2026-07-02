@@ -1,0 +1,41 @@
+{
+  "schema_version": "towards-prize-v2-constants-v1",
+  "source": "tex/towards-prize.tex v2, ordinary locator and quadratic envelope constants",
+  "status": "AUDIT",
+  "n_min": 32768,
+  "q_max_proxy": "2^256 - 1",
+  "rates": [
+    {
+      "rho": "1/2",
+      "alpha": "1/300",
+      "g": "1/512",
+      "ordinary_expected_s": 110,
+      "quadratic_expected_m": 8225,
+      "quadratic_expected_w": 32
+    },
+    {
+      "rho": "1/4",
+      "alpha": "3/1000",
+      "g": "1/512",
+      "ordinary_expected_s": 99,
+      "quadratic_expected_m": 4129,
+      "quadratic_expected_w": 32
+    },
+    {
+      "rho": "1/8",
+      "alpha": "41/20000",
+      "g": "1/512",
+      "ordinary_expected_s": 68,
+      "quadratic_expected_m": 2081,
+      "quadratic_expected_w": 32
+    },
+    {
+      "rho": "1/16",
+      "alpha": "3/2500",
+      "g": "1/1024",
+      "ordinary_expected_s": 40,
+      "quadratic_expected_m": 1041,
+      "quadratic_expected_w": 16
+    }
+  ]
+}

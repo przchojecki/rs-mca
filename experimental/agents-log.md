@@ -52,6 +52,26 @@ Keep entries concise and link to the relevant files.
   `tex/cs25_cap_v12.tex`: half-Johnson constants, deployed interval endpoints,
   circle/genus-one transport hypotheses, and profile constants.
 
+### 2026-07-02 - Towards-prize v2 constant replay
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/data/certificates/towards-prize-v2-constant-audit/`;
+  `experimental/notes/audits/towards_prize_v2_constant_audit.md`;
+  `experimental/scripts/verify_towards_prize_v2_constants.py`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.  Exact arithmetic replay of promoted v2 constants; no
+  theorem-chain promotion.
+- **What is being added:** A packet and verifier for the ordinary-locator
+  constants `alpha_rho`, the quadratic-envelope endpoint checks at
+  `n=2^15`, `q=2^256-1`, and the endpoint error-floor arithmetic used in
+  `tex/towards-prize.tex`.
+- **How it is useful:** Audits the new constants introduced by the
+  `towards-prize` v2 promotion, especially the claim that the ordinary locator
+  cap sharpens the top of the old plain-CA band at all four challenge rates.
+- **What to do next:** Audit the proof-level residual reductions in v2:
+  shortening-image control and the doubled-radius pair-list formulation.
+
 ### 2026-07-02 - Paper D v12 deployed certificate replay
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
