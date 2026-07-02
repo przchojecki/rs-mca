@@ -19,7 +19,7 @@ if str(ROOT) not in sys.path:
 from experimental.scripts.emit_f17_32_hankel_row_descriptor import K, N, P  # noqa: E402
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v19"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v20"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -591,6 +591,110 @@ def tangent_tail_single_saving_closure_row(survival_row: dict[str, Any]) -> dict
             "one slope paid by tangent, quotient, extension, or containment",
         ],
     }
+
+
+def one_over_mechanism_priority_ledger(
+    line_catalog_rows: list[dict[str, Any]],
+    conic_catalog_rows: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Group one-over rows by the kind of saving that can still act first."""
+    line_base_active = [
+        row["forced_external_core_size"]
+        for row in line_catalog_rows
+        if not row["all_histograms_allowed"]
+    ]
+    line_external_only = [
+        row["forced_external_core_size"]
+        for row in line_catalog_rows
+        if row["all_histograms_allowed"]
+    ]
+    conic_base_secant_active = [
+        row["forced_external_core_size"]
+        for row in conic_catalog_rows
+        if not row["all_histograms_allowed"]
+    ]
+    conic_secant_only = [
+        row["forced_external_core_size"]
+        for row in conic_catalog_rows
+        if row["all_histograms_allowed"] and not row["required_pair_overlap_range"] == [0, 0]
+    ]
+    conic_endpoint_only = [
+        row["forced_external_core_size"]
+        for row in conic_catalog_rows
+        if row["all_histograms_allowed"] and row["required_pair_overlap_range"] == [0, 0]
+    ]
+    return [
+        {
+            "mechanism_class": "line_base_splitting_active",
+            "component_type": "line",
+            "external_core_range": [min(line_base_active), max(line_base_active)],
+            "core_count": len(line_base_active),
+            "primary_remaining_savings": [
+                "base-root deficit",
+                "duplicate finite slope",
+                "endpoint paid or absent",
+            ],
+        },
+        {
+            "mechanism_class": "line_external_slack_only",
+            "component_type": "line",
+            "external_core_range": [min(line_external_only), max(line_external_only)],
+            "core_count": len(line_external_only),
+            "primary_remaining_savings": [
+                "duplicate finite slope",
+                "endpoint paid or absent",
+                "paid/absent split class",
+            ],
+        },
+        {
+            "mechanism_class": "conic_base_and_secant_pressure_active",
+            "component_type": "irreducible_conic",
+            "external_core_range": [
+                min(conic_base_secant_active),
+                max(conic_base_secant_active),
+            ],
+            "core_count": len(conic_base_secant_active),
+            "primary_remaining_savings": [
+                "base-root deficit",
+                "too few secants",
+                "duplicate finite slope",
+                "endpoint paid or absent",
+            ],
+        },
+        {
+            "mechanism_class": "conic_secant_pressure_only",
+            "component_type": "irreducible_conic",
+            "external_core_range": [min(conic_secant_only), max(conic_secant_only)],
+            "core_count": len(conic_secant_only),
+            "primary_remaining_savings": [
+                "too few secants",
+                "duplicate finite slope",
+                "endpoint paid or absent",
+            ],
+        },
+        {
+            "mechanism_class": "conic_endpoint_or_duplicate_only",
+            "component_type": "irreducible_conic",
+            "external_core_range": [min(conic_endpoint_only), max(conic_endpoint_only)],
+            "core_count": len(conic_endpoint_only),
+            "primary_remaining_savings": [
+                "duplicate finite slope",
+                "endpoint paid or absent",
+                "paid/absent split class",
+            ],
+        },
+        {
+            "mechanism_class": "punctured_tangent_tail",
+            "component_type": "line_or_irreducible_conic",
+            "external_core_range": [120, 120],
+            "core_count": 2,
+            "primary_remaining_savings": [
+                "punctured tangent slope absent",
+                "duplicate slope after returning to original branch",
+                "slope paid by tangent, quotient, extension, or containment",
+            ],
+        },
+    ]
 
 
 def line_base_defect_threshold_row(survival_row: dict[str, Any]) -> dict[str, Any]:
@@ -1555,6 +1659,10 @@ def build_certificate() -> dict[str, Any]:
             for row in tangent_tail_survival_rows
         ]
     )
+    mechanism_priority_rows = one_over_mechanism_priority_ledger(
+        line_one_over_design_catalog_rows,
+        conic_one_over_design_catalog_rows,
+    )
     require(line_residual_core_threshold == 72, "line residual threshold mismatch")
     require(conic_residual_core_threshold == 69, "conic residual threshold mismatch")
     require(
@@ -2211,6 +2319,31 @@ def build_certificate() -> dict[str, Any]:
         ),
         "single-saving closure ledger should be exactly one over budget",
     )
+    require(
+        [
+            (
+                row["mechanism_class"],
+                row["component_type"],
+                row["external_core_range"],
+                row["core_count"],
+            )
+            for row in mechanism_priority_rows
+        ]
+        == [
+            ("line_base_splitting_active", "line", [72, 74], 3),
+            ("line_external_slack_only", "line", [75, 80], 6),
+            (
+                "conic_base_and_secant_pressure_active",
+                "irreducible_conic",
+                [69, 71],
+                3,
+            ),
+            ("conic_secant_pressure_only", "irreducible_conic", [72, 74], 3),
+            ("conic_endpoint_or_duplicate_only", "irreducible_conic", [75, 76], 2),
+            ("punctured_tangent_tail", "line_or_irreducible_conic", [120, 120], 2),
+        ],
+        "one-over mechanism-priority ledger changed",
+    )
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -2473,6 +2606,13 @@ def build_certificate() -> dict[str, Any]:
                 "punctured-tangent tail at core 120.  In each row, any one listed "
                 "saving lowers the projective count from 7 to the budget 6."
             ),
+            "one_over_mechanism_priority_ledger": (
+                "The one-over rows split into six mechanism classes: line "
+                "base-splitting active (72..74), line external-slack only "
+                "(75..80), conic base+secant pressure active (69..71), conic "
+                "secant-only pressure (72..74), conic endpoint-or-duplicate only "
+                "(75..76), and the punctured tangent tail (120)."
+            ),
         },
         "budget_formula": {
             "locator_degree_j": j_value,
@@ -2577,6 +2717,7 @@ def build_certificate() -> dict[str, Any]:
             ),
         },
         "single_saving_closure_ledger": single_saving_closure_rows,
+        "one_over_mechanism_priority_ledger": mechanism_priority_rows,
         "sampler_denominators": {
             "finite_line": {
                 "denominator": Q_LINE,
@@ -2706,6 +2847,15 @@ def build_certificate() -> dict[str, Any]:
                 "irreducible_conic_pair_overlap": [69, 76],
                 "punctured_tangent_tail": [120, 120],
             },
+            "one_over_mechanism_priority_classes": [
+                {
+                    "mechanism_class": row["mechanism_class"],
+                    "component_type": row["component_type"],
+                    "external_core_range": row["external_core_range"],
+                    "core_count": row["core_count"],
+                }
+                for row in mechanism_priority_rows
+            ],
             "conic_intermediate_max_current_projective_upper_bound": max(
                 row["current_projective_upper_bound"] for row in conic_intermediate_profile_rows
             ),
@@ -2750,6 +2900,7 @@ def build_certificate() -> dict[str, Any]:
             "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
             "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
             "every one-over moving-slope residual row has a single-saving closure ledger entry",
+            "one-over moving-slope residual rows are grouped by the first available saving mechanism",
         ],
         "nonclaims": [
             "does not prove every moving-slope component is a line",

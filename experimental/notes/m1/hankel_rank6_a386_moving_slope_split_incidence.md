@@ -364,6 +364,14 @@ to the budget `6`: one missing split class, one duplicate finite slope, an
 absent/paid endpoint, the relevant incidence/secant deficit, or, at `e_G=120`,
 one missing/paid/duplicated punctured tangent slope.
 
+The same ledger splits the next proof targets by first available mechanism:
+line base-splitting pressure remains only for `e_G=72..74`; line cores
+`75..80` need external-slack, duplicate-slope, endpoint, or paid-class input.
+For conics, base plus secant pressure remains for `e_G=69..71`, secant-only
+pressure remains for `e_G=72..74`, and cores `75,76` need an endpoint,
+duplicate-slope, or paid-class input.  The `e_G=120` rows are isolated as the
+punctured-tangent tail.
+
 Replay:
 
 ```sh

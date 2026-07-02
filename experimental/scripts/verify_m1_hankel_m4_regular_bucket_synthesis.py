@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v19",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v20",
 }
 
 
@@ -726,6 +726,48 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
         },
         "single-saving closure ledger core ranges",
     )
+    require(
+        summary["one_over_mechanism_priority_classes"]
+        == [
+            {
+                "component_type": "line",
+                "core_count": 3,
+                "external_core_range": [72, 74],
+                "mechanism_class": "line_base_splitting_active",
+            },
+            {
+                "component_type": "line",
+                "core_count": 6,
+                "external_core_range": [75, 80],
+                "mechanism_class": "line_external_slack_only",
+            },
+            {
+                "component_type": "irreducible_conic",
+                "core_count": 3,
+                "external_core_range": [69, 71],
+                "mechanism_class": "conic_base_and_secant_pressure_active",
+            },
+            {
+                "component_type": "irreducible_conic",
+                "core_count": 3,
+                "external_core_range": [72, 74],
+                "mechanism_class": "conic_secant_pressure_only",
+            },
+            {
+                "component_type": "irreducible_conic",
+                "core_count": 2,
+                "external_core_range": [75, 76],
+                "mechanism_class": "conic_endpoint_or_duplicate_only",
+            },
+            {
+                "component_type": "line_or_irreducible_conic",
+                "core_count": 2,
+                "external_core_range": [120, 120],
+                "mechanism_class": "punctured_tangent_tail",
+            },
+        ],
+        "one-over mechanism-priority classes",
+    )
     nonclaims = set(data["nonclaims"])
     require(
         "does not claim the punctured tangent numerator at the residual threshold is within the original row budget"
@@ -844,6 +886,7 @@ def build_certificate() -> dict[str, Any]:
                 "local incidence accounting leaves line singleton sequences 52^6 or (53,52^5), and conic secant/singleton profiles (5^6;50^6), ((4,4,5,5,5,5);(51,51,50,50,50,50)), or (5^6;(51,50,50,50,50,50))",
                 "the endpoint-only one-over finite-incidence range has a compact exact catalog: line histogram counts 2,16,27,28^6 across e_G=72..80 and conic counts 2,16,27,28^5 across e_G=69..76",
                 "all nineteen moving-slope one-over residual rows have a single-saving closure ledger entry: line e_G=72..80, conic e_G=69..76, and the punctured-tangent tail e_G=120",
+                "the one-over rows split by first available saving mechanism into line base-active 72..74, line external-slack 75..80, conic base+secant 69..71, conic secant-only 72..74, conic endpoint/duplicate-only 75..76, and punctured-tangent tail 120",
             ],
             "m3_rank_node_dichotomy": [
                 "one full-rank specialization gives a nonzero maximal minor and a nonsingular regular bucket",

@@ -30,6 +30,32 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 one-over mechanism-priority split
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/notes/m1/hankel_rank6_boundary_low_degree_transfer.md`;
+  `experimental/notes/m1/hankel_rank6_a386_slope_free_containment.md`;
+  `experimental/notes/m1/hankel_rank6_a386_global_component_slope_dichotomy.md`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED / AUDIT.
+- **What is being added:** The `A=386` moving-slope packet now groups the
+  one-over residual rows by the first saving mechanism that can still act.
+- **How it is useful:** It separates line base-active cores `72..74`, line
+  external-slack cores `75..80`, conic base+secant cores `69..71`, conic
+  secant-only cores `72..74`, conic endpoint/duplicate-only cores `75..76`,
+  and the punctured-tangent tail `120`.
+- **What to do next:** Choose a closure attack according to the mechanism
+  class: base/secant geometry for the first ranges, endpoint/duplicate/paid
+  structure for the later ranges, and a separate tangent-tail argument for
+  `e_G=120`.
+
 ### 2026-07-02 - A386 single-saving closure ledger
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

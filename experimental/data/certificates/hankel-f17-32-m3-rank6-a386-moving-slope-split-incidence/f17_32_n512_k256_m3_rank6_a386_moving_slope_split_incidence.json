@@ -190,7 +190,8 @@
     "line e=72 and conic e=69 extremal multiplicity profiles are enumerated",
     "line e=72 and conic e=69 extremal local incidence profiles are enumerated",
     "line and conic endpoint-only one-over finite-incidence design catalogs are enumerated",
-    "every one-over moving-slope residual row has a single-saving closure ledger entry"
+    "every one-over moving-slope residual row has a single-saving closure ledger entry",
+    "one-over moving-slope residual rows are grouped by the first available saving mechanism"
   ],
   "conic_pair_overlap_sample_rows": [
     {
@@ -3204,6 +3205,93 @@
       }
     ]
   },
+  "one_over_mechanism_priority_ledger": [
+    {
+      "component_type": "line",
+      "core_count": 3,
+      "external_core_range": [
+        72,
+        74
+      ],
+      "mechanism_class": "line_base_splitting_active",
+      "primary_remaining_savings": [
+        "base-root deficit",
+        "duplicate finite slope",
+        "endpoint paid or absent"
+      ]
+    },
+    {
+      "component_type": "line",
+      "core_count": 6,
+      "external_core_range": [
+        75,
+        80
+      ],
+      "mechanism_class": "line_external_slack_only",
+      "primary_remaining_savings": [
+        "duplicate finite slope",
+        "endpoint paid or absent",
+        "paid/absent split class"
+      ]
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 3,
+      "external_core_range": [
+        69,
+        71
+      ],
+      "mechanism_class": "conic_base_and_secant_pressure_active",
+      "primary_remaining_savings": [
+        "base-root deficit",
+        "too few secants",
+        "duplicate finite slope",
+        "endpoint paid or absent"
+      ]
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 3,
+      "external_core_range": [
+        72,
+        74
+      ],
+      "mechanism_class": "conic_secant_pressure_only",
+      "primary_remaining_savings": [
+        "too few secants",
+        "duplicate finite slope",
+        "endpoint paid or absent"
+      ]
+    },
+    {
+      "component_type": "irreducible_conic",
+      "core_count": 2,
+      "external_core_range": [
+        75,
+        76
+      ],
+      "mechanism_class": "conic_endpoint_or_duplicate_only",
+      "primary_remaining_savings": [
+        "duplicate finite slope",
+        "endpoint paid or absent",
+        "paid/absent split class"
+      ]
+    },
+    {
+      "component_type": "line_or_irreducible_conic",
+      "core_count": 2,
+      "external_core_range": [
+        120,
+        120
+      ],
+      "mechanism_class": "punctured_tangent_tail",
+      "primary_remaining_savings": [
+        "punctured tangent slope absent",
+        "duplicate slope after returning to original branch",
+        "slope paid by tangent, quotient, extension, or containment"
+      ]
+    }
+  ],
   "one_over_saturation_profile": {
     "irreducible_conic_six_finite_saturation_rows": [
       {
@@ -3893,7 +3981,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v19",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v20",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -5058,6 +5146,62 @@
       41
     ],
     "locator_degree_j": 126,
+    "one_over_mechanism_priority_classes": [
+      {
+        "component_type": "line",
+        "core_count": 3,
+        "external_core_range": [
+          72,
+          74
+        ],
+        "mechanism_class": "line_base_splitting_active"
+      },
+      {
+        "component_type": "line",
+        "core_count": 6,
+        "external_core_range": [
+          75,
+          80
+        ],
+        "mechanism_class": "line_external_slack_only"
+      },
+      {
+        "component_type": "irreducible_conic",
+        "core_count": 3,
+        "external_core_range": [
+          69,
+          71
+        ],
+        "mechanism_class": "conic_base_and_secant_pressure_active"
+      },
+      {
+        "component_type": "irreducible_conic",
+        "core_count": 3,
+        "external_core_range": [
+          72,
+          74
+        ],
+        "mechanism_class": "conic_secant_pressure_only"
+      },
+      {
+        "component_type": "irreducible_conic",
+        "core_count": 2,
+        "external_core_range": [
+          75,
+          76
+        ],
+        "mechanism_class": "conic_endpoint_or_duplicate_only"
+      },
+      {
+        "component_type": "line_or_irreducible_conic",
+        "core_count": 2,
+        "external_core_range": [
+          120,
+          120
+        ],
+        "mechanism_class": "punctured_tangent_tail"
+      }
+    ],
     "positive_dimensional_component_forced_core_upper_bound": 125,
     "punctured_tangent_one_over_tail_external_core": 120,
     "remaining_unclosed_residuals": [
@@ -5102,6 +5246,7 @@
     "line_projective_safe_core_threshold": "For a line component c=1, the unrefined all-root budget gives projective safety at r_G<=48.  The base-sharpened external budget improves this: e_G<=71 gives at most five finite Q-classes.  Adding the endpoint-uniform contribution gives projective total at most 6, exactly the projective budget.",
     "no_identically_split_positive_dimensional_component": "A positive-dimensional component cannot have r_G>=j=126.  Otherwise every L_Q on G would be divisible by the same degree-j split locator, hence scalar-multiple to it because deg L_Q<=j, contradicting projective injectivity of Q -> L_Q on G.",
     "one_over_design_catalog": "The whole endpoint-only finite-incidence one-over range now has an exact compact catalog.  Line cores 72,73,74 allow 2,16,27 base-root histograms respectively, and line cores 75..80 allow all 28 histograms with increasing unused external slack.  Conic cores 69,70,71 allow 2,16,27 histograms respectively, while cores 72..76 allow all 28; pair-overlap pressure disappears from cores 75 and 76.",
+    "one_over_mechanism_priority_ledger": "The one-over rows split into six mechanism classes: line base-splitting active (72..74), line external-slack only (75..80), conic base+secant pressure active (69..71), conic secant-only pressure (72..74), conic endpoint-or-duplicate only (75..76), and the punctured tangent tail (120).",
     "one_over_saturation_profile": "If a one-over finite-incidence branch actually reaches six finite Q-classes, the root sets must nearly saturate the incidence inequality.  For line cores e_G=72..80 the six external root sets are pairwise disjoint and have total external excess at most 5e_G-359.  For conic cores e_G=69..76, six classes require at least max(0,359-5e_G) pair-overlap events before any external excess.  The e_G=120 cases are different: they would have to saturate the punctured projective tangent bound itself.",
     "over_budget_survival_profile": "A genuine over-budget witness in a one-over row must saturate the source-class bound, have six distinct finite slopes, and keep the projective endpoint unpaid.  Line cores e_G=72,73,74 also force near-complete, positive, and weak base-splitting pressure respectively.  Conic cores e_G=69,70,71 force almost complete, dense, and nontrivial external-secants respectively.",
     "punctured_high_agreement_tangent_reduction": "Deleting the forced external core E leaves a punctured RS row of length n'=512-|E|, while the same witness has exact agreement 386 and co-support radius r'=126-|E|.  Since r' <= floor((n'-256)/3) for |E|>=61, every remaining high-core branch lies in the very-high-agreement tangent-staircase range of the punctured row.",

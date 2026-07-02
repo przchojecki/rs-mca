@@ -357,6 +357,10 @@ for `e_G=69..76`.
 The packet also records a single-saving closure ledger for all `19` one-over
 moving-slope residual rows: line `e_G=72..80`, conic `e_G=69..76`, and the
 line/conic punctured-tangent tail at `e_G=120`.
+Those rows split by first available saving mechanism into line base-active
+`72..74`, line external-slack `75..80`, conic base+secant `69..71`, conic
+secant-only `72..74`, conic endpoint/duplicate-only `75..76`, and the
+punctured-tangent tail `120`.
 
 The first concrete large-field stress packets for this window are the endpoint
 rank-witness packets
