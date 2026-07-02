@@ -1,6 +1,6 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 17: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 18: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
@@ -13,7 +13,8 @@
   packets is now stated explicitly, and the full-rank low-degree side chart is
   deduped into higher-agreement buckets.  The generic rank-drop side chart is
   reduced to a kernel-pivot divisibility problem; the `F_97/mu_16` side-chart
-  toy now has a replay packet.
+  toy now has a replay packet.  The abstract deficiency-one chart theorem is
+  now extracted as a reusable note.
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -139,7 +140,8 @@ belongs.
 | 5k | low-degree side-chart exact-bucket dedup theorem | **done** |
 | 5l | rank-drop kernel-pivot reduction theorem | **done** |
 | 5m | `F_97/mu_16` side-chart replay packet | **done** |
-| 5n | full `F_17^32` root-table packet for rank-drop / top charts | pending |
+| 5n | abstract deficiency-one chart theorem | **done** |
+| 5o | full `F_17^32` root-table packet for rank-drop / top charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -676,6 +678,36 @@ Thus the toy packet now checks the whole side-chart story independently of
 the top-chart `U1-U5` packet: the low-degree branch is not a new exact-`A`
 contribution, and the generic rank-drop branch is decided by the projective
 kernel-pivot scan.
+
+### Verified in turn 18
+
+**U18, abstract deficiency-one chart theorem.** The reusable theorem is now
+extracted in
+
+```text
+experimental/notes/m5/m5_deficiency_one_chart_theorem.md
+```
+
+It states the complete finite-slope chart partition for any nondegenerate
+deficiency-one `t x (j+1)` Hankel pencil with `t=j`:
+
+```text
+rank-drop chart:         all maximal minors vanish;
+low-degree chart:        full row rank and c_j=0, deduped to higher agreement;
+top pseudo-remainder:    full row rank and c_j!=0, validity L_Z | X^n-1.
+```
+
+The verifier checks the specializations:
+
+```text
+F_97 acid row:       t=j=4,   delta=13,  top degree=52,    resultant degree=64;
+F_17^32 A=384 row:  t=j=128, delta=385, top degree=49280, resultant degree=65536.
+```
+
+It also records the generic rank-drop local bound `n-j+1=385` for the real
+row.  This closes the abstract chart theorem; the remaining hard task is the
+actual `F_17^32` root-table or a labelled residual for the top/rank-drop
+branches.
 
 ## Honest scope
 

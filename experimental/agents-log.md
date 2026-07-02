@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 abstract deficiency-one chart theorem
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_deficiency_one_chart_theorem.md`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  Abstract chart theorem; no
+  threshold or worst-case row claim.
+- **What is being added:** Turn 18 of the `A=384` underdetermined M5 packet:
+  the reusable deficiency-one chart theorem.  It partitions finite slopes into
+  rank-drop, full-rank low-degree, and full-rank top pseudo-remainder charts,
+  proves the low-degree dedup rule, and records the degree bounds for top and
+  generic rank-drop pivots.
+- **How it is useful:** Closes the abstract U1-U5 chart reduction in a
+  reusable form for future M5 packets; the remaining hard work is now exactly
+  the `F_17^32` top/rank-drop root-table or a labelled residual branch.
+- **What to do next:** Compute or honestly label the `F_17^32` top-chart
+  pseudo-remainder root table and rank-drop kernel-pivot branches.
+
 ### 2026-07-02 - M5 A384 toy side-chart replay packet
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

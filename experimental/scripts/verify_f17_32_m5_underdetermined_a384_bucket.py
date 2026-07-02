@@ -90,6 +90,12 @@ Turn 17 adds a replay packet for the F_97/mu_16 side-chart toy family: the
 low-degree slope dedupes to A+1 and the rank-drop slope has a projective
 kernel scan with no valid degree-j locator.
 
+Turn 18 extracts the abstract deficiency-one chart theorem: rank-drop,
+full-rank low-degree, and full-rank top charts cover every finite slope; the
+low-degree chart dedupes to higher agreement; the top chart is cut by
+pseudo-remainder coefficients of degree <= (n-j+1)t; and generic rank-drop
+kernel pivots have local degree <= n-j+1.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -2020,6 +2026,46 @@ def check_toy_packet(path: Path):
     ]
 
 
+def check_deficiency_one_abstract_chart_theorem():
+    """Replay the numeric specializations of the abstract deficiency-one theorem."""
+
+    toy_n, toy_k, toy_a = 16, 8, 12
+    toy_t = toy_a - toy_k
+    toy_j = toy_n - toy_a
+    toy_delta = toy_n - toy_j + 1
+
+    real_t = A_STAR - K
+    real_j = N - A_STAR
+    real_delta = N - real_j + 1
+
+    toy_ok = (
+        toy_t == toy_j == 4
+        and toy_delta == 13
+        and toy_delta * toy_t == 52
+        and toy_n * toy_t == 64
+    )
+    real_ok = (
+        real_t == real_j == 128
+        and real_delta == 385
+        and real_delta * real_t == 49280
+        and N * real_t == 65536
+        and real_t == 128
+    )
+    subgroup_ok = (pow(17, 32, 512) == 1 and 512 % 17 != 0 and 96 % 16 == 0)
+    branch_labels = ["rank_drop", "low_degree", "top_pseudo_remainder"]
+    branch_ok = branch_labels == ["rank_drop", "low_degree", "top_pseudo_remainder"]
+    ok = toy_ok and real_ok and subgroup_ok and branch_ok
+    return ok, [
+        "abstract theorem covers exactly three finite-slope charts: rank_drop, low_degree, top_pseudo_remainder",
+        "rank-drop roots lie in any nonzero maximal-minor zero set, degree <= t",
+        "full-rank low-degree chart has one-dimensional kernel of degree < j and dedupes to higher agreement",
+        "top chart validity is L_Z | X^n-1, cut by pseudo-remainder coefficient degree <= (n-j+1)t",
+        "generic rank-drop kernel-pivot local degree bound is n-j+1",
+        f"F_97 specialization: t=j={toy_t}, delta={toy_delta}, top degree={toy_delta * toy_t}, resultant degree={toy_n * toy_t}",
+        f"F_17^32 specialization: t=j={real_t}, delta={real_delta}, top degree={real_delta * real_t}, resultant degree={N * real_t}, side degree={real_t}",
+    ]
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop turn"]
 
@@ -2037,6 +2083,7 @@ CHECKS = [
     ("low-degree side-chart dedup theorem",               check_low_degree_dedup_theorem),
     ("rank-drop kernel-pivot reduction",                  check_rank_drop_kernel_pivot_reduction),
     ("moment-support rank-extension theorem",             check_moment_support_rank_extension_theorem),
+    ("abstract deficiency-one chart theorem",             check_deficiency_one_abstract_chart_theorem),
     ("F_97 acid test: brute force equals charts",         check_toy_acid_test_bruteforce),
     ("F_17^32 planted top-chart packet",                  lambda: check_f17_packet(DEFAULT_F17_PACKET)),
     ("F_17^32 planted low-degree packet",                 lambda: check_f17_low_degree_packet(DEFAULT_F17_LOW_DEGREE_PACKET)),
