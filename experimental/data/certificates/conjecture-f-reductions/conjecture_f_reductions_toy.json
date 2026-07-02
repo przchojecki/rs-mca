@@ -86,6 +86,16 @@
       "sharp_full_space_hits": 1820,
       "status": "PASS",
       "witness_checks": 953
+    },
+    {
+      "checked_forced_common_root_spaces": 171,
+      "j": 4,
+      "max_forced_common_roots": 2,
+      "max_hits": 455,
+      "n": 16,
+      "name": "common_root_fixed_dimension_bound",
+      "reduction_checks": 13792,
+      "status": "PASS"
     }
   ],
   "domain": {
@@ -114,6 +124,6 @@
     "p": 97
   },
   "schema": "conjecture_f_reduction_toy_v1",
-  "script_sha256": "e1b08541ada24ef182d895a9a29a1589983246a322bf3dbab028942066cb0b1c",
+  "script_sha256": "5463ef6b8c2f429a2cab7e7397abcf18d08d3d0a63b80565fd71be841c9f14eb",
   "status": "EXPERIMENTAL_VERIFICATION_OF_PROVED_LEMMAS"
 }

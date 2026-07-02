@@ -7,7 +7,7 @@
 - **Verifier:** `experimental/scripts/verify_conjecture_f_reductions.py`.
 - **Artifact:** `experimental/data/certificates/conjecture-f-reductions/conjecture_f_reductions_toy.json`.
 
-This note records seven elementary reductions around the fiber-rigidity
+This note records eight elementary reductions around the fiber-rigidity
 statement called Conjecture F in the proof sketch.  They do not prove the
 primitive core.  Their role is to remove two paid structures from the statement
 to settle the dimension-one base case, and to restate the remaining primitive
@@ -334,6 +334,41 @@ points is at most the number of `d`-subsets of `H`.
 For `d=j` and `W=K[X]_{<=j}`, the bound is sharp: every `j`-subset of `H`
 gives its locator.
 
+## Corollary 8: Fixed Dimension After Common-Root Removal
+
+Let `W <= K[X]_{<=j}` have vector dimension `d+1`, and let
+
+```text
+C = {h in H : L(h)=0 for every L in W}
+```
+
+be the common root set of `W` on `H`, with `c=|C|`.  Then
+
+```text
+#(P(W) cap D_j(H)) <= binom(|H|-c,d).
+```
+
+**Proof.**  Let
+
+```text
+G_C(X)=prod_{h in C}(X-h),       H' = H \ C.
+```
+
+Every member of `W` is divisible by `G_C`, and division gives a vector-space
+isomorphism
+
+```text
+W  ->  W' <= K[X]_{<= j-c}.
+```
+
+By maximality of `C`, the reduced space `W'` is gcd-trivial on `H'`.  Also,
+division by `G_C` maps `P(W) cap D_j(H)` injectively into
+`P(W') cap D_{j-c}(H')`.  Applying Lemma 7 to `W'` and `H'` gives the bound.
+
+This packages the common-divisor/tangent branch and the fixed-dimensional
+primitive branch into one reusable statement: after stripping common roots, all
+fixed-dimensional fibers are polynomially bounded.
+
 ## Verification
 
 The verifier checks these lemmas over `F_97` with `H = mu_16`:
@@ -349,5 +384,6 @@ random gcd-trivial pencils, checks the hyperplane-concurrency equivalence on
 deterministic random gcd-trivial projective planes, verifies the vanishing-flat
 dimension bound, verifies the projective-plane pair-counting bound including
 forced repeated-line planes, and verifies the fixed-dimension incidence bound
-on random subspaces plus the sharp full-space case.  The verifier is supporting
-evidence only; the proofs above are the mathematical content.
+on random subspaces plus the sharp full-space case.  It also verifies the
+common-root corollary on forced common-root subspaces.  The verifier is
+supporting evidence only; the proofs above are the mathematical content.

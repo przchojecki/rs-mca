@@ -9,7 +9,8 @@ This directory contains the toy verifier output for
   random projective planes.  It also checks the vanishing-flat dimension bound,
   the weighted projective-plane pair-counting bound, including forced
   repeated-line planes, and the fixed-dimensional incidence bound with the
-  sharp full-space case.
+  sharp full-space case.  The final check forces common roots, divides them
+  out, and verifies the reduced fixed-dimensional bound.
 - The verifier is
   `experimental/scripts/verify_conjecture_f_reductions.py`.
 

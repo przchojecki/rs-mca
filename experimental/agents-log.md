@@ -118,7 +118,7 @@ Keep entries concise and link to the relevant files.
   `experimental/data/certificates/conjecture-f-reductions/`;
   `experimental/agents-log.md`.
 - **Status:** PROVED / EXPERIMENTAL.
-- **What is being added:** Seven elementary reduction lemmas around the
+- **What is being added:** Eight elementary reduction lemmas around the
   Conjecture F fiber-rigidity target: common-GCD division reduces to a smaller
   divisor set, quotient-pullback points recurse to scale `n/M`, and
   gcd-trivial projective pencils meet `D_j` in at most `floor(n/j)` points by
@@ -127,13 +127,14 @@ Keep entries concise and link to the relevant files.
   vanishing-flat dimension bound, and the weighted pair-counting bound for
   gcd-trivial projective planes.  Finally, it proves the fixed-dimensional
   incidence bound `#(P(W) cap D_j) <= binom(n,d)` for projective dimension
-  `d`.
+  `d`, plus the same bound after common-root removal.
 - **How it is useful:** The note turns two paid structures in the proof sketch
   into reductions rather than separate cases, proves the dimension-one base
   case, and identifies the primitive dimension-at-least-two core as a
   `j`-fold incidence problem for evaluation hyperplanes.  It now closes every
-  fixed projective dimension with exponent `d`; the remaining primitive core
-  is a dimension-growing problem.
+  fixed projective dimension with exponent `d`, even after the common-root
+  branch is factored out; the remaining primitive core is a dimension-growing
+  problem.
 - **What to do next:** Use these reductions to focus future Conjecture F
   attacks on dimension-growing gcd-trivial non-pullback primitive subspaces.
 

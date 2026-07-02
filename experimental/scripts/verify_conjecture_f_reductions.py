@@ -14,6 +14,7 @@ the identities over F_97 with H = mu_16:
 * vanishing on m domain points cuts any degree <= j subspace down to dimension
   at most j+1-m.
 * fixed projective dimension d gives #D_j <= binom(n,d).
+* after common-root removal, fixed dimension gives #D_j <= binom(n-c,d).
 """
 from __future__ import annotations
 
@@ -635,6 +636,84 @@ def check_fixed_dimension_incidence_bound(H: list[int]) -> dict:
     }
 
 
+def common_roots_of_space(basis: list[tuple[int, ...]], H: list[int]) -> tuple[int, ...]:
+    return tuple(x for x in H if all(poly_eval(poly, x) == 0 for poly in basis))
+
+
+def check_common_root_fixed_dimension_bound(H: list[int]) -> dict:
+    D = divisor_set(H, J_VOTING)
+    rng = random.Random(SEED + 6)
+    checked_spaces = 0
+    max_hits = 0
+    max_common_roots = 0
+    reduction_checks = 0
+
+    for c in range(1, 3):
+        common = tuple(H[:c])
+        G = locator(common)
+        H_reduced = [x for x in H if x not in common]
+        for d in range(0, J_VOTING - c + 1):
+            for _ in range(25):
+                reduced_basis = random_independent_basis(rng, d + 1, J_VOTING - c)
+                if not gcd_trivial_space(reduced_basis, H_reduced):
+                    continue
+                basis = [poly_mul(G, poly) for poly in reduced_basis]
+                actual_common = common_roots_of_space(basis, H)
+                if set(actual_common) != set(common):
+                    return {
+                        "name": "common_root_fixed_dimension_bound",
+                        "status": "FAIL",
+                        "reason": "forced common-root set changed after lift",
+                        "expected_common_roots": list(common),
+                        "actual_common_roots": list(actual_common),
+                    }
+                hits = []
+                for poly in D:
+                    if in_span(poly, basis, J_VOTING + 1):
+                        reduced = poly_div_exact(poly, G)
+                        if reduced not in divisor_set(H_reduced, J_VOTING - c):
+                            return {
+                                "name": "common_root_fixed_dimension_bound",
+                                "status": "FAIL",
+                                "reason": "hit did not reduce to smaller divisor set",
+                                "common_degree": c,
+                            }
+                        if not in_span(reduced, reduced_basis, J_VOTING - c + 1):
+                            return {
+                                "name": "common_root_fixed_dimension_bound",
+                                "status": "FAIL",
+                                "reason": "reduced hit left reduced span",
+                                "common_degree": c,
+                            }
+                        hits.append(poly)
+                        reduction_checks += 1
+                bound = comb(N - c, d)
+                if len(hits) > bound:
+                    return {
+                        "name": "common_root_fixed_dimension_bound",
+                        "status": "FAIL",
+                        "reason": "hit count exceeded reduced binomial bound",
+                        "common_degree": c,
+                        "d": d,
+                        "hits": len(hits),
+                        "bound": bound,
+                    }
+                max_hits = max(max_hits, len(hits))
+                max_common_roots = max(max_common_roots, len(actual_common))
+                checked_spaces += 1
+
+    return {
+        "name": "common_root_fixed_dimension_bound",
+        "status": "PASS",
+        "n": N,
+        "j": J_VOTING,
+        "checked_forced_common_root_spaces": checked_spaces,
+        "max_forced_common_roots": max_common_roots,
+        "max_hits": max_hits,
+        "reduction_checks": reduction_checks,
+    }
+
+
 def evaluation_lines(basis: list[tuple[int, ...]], H: list[int]) -> list[tuple[int, ...]]:
     lines = []
     for x in H:
@@ -827,6 +906,7 @@ def build_report() -> dict:
         check_vanishing_flat_bound(H),
         check_plane_pair_counting_bound(H),
         check_fixed_dimension_incidence_bound(H),
+        check_common_root_fixed_dimension_bound(H),
     ]
     return {
         "schema": "conjecture_f_reduction_toy_v1",
