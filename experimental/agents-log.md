@@ -52,6 +52,23 @@ Keep entries concise and link to the relevant files.
   `tex/cs25_cap_v12.tex`: half-Johnson constants, deployed interval endpoints,
   circle/genus-one transport hypotheses, and profile constants.
 
+### 2026-07-02 - Towards-prize v2 residual reduction audit
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/audits/towards_prize_v2_residual_reduction_audit.md`;
+  `experimental/agents-log.md`.
+- **Status:** AUDIT.  Proof-logic review; no theorem-chain promotion.
+- **What is being added:** A compact audit of the residual shortening-image
+  reduction, the half-distance sharpness example, and the doubled-radius
+  pair-list reduction in the promoted `tex/towards-prize.tex` v2 note.
+- **How it is useful:** Checks the proof-level reductions that turn the
+  mutual-only layer above half distance into explicit residual objects, after
+  the v2 constants were verified by exact arithmetic.
+- **What to do next:** For concrete rows, bound or witness the residual objects
+  `R_C(r)` and `L_{2r}^{(2)}(C)` rather than treating the mutual layer as a
+  vague obstruction.
+
 ### 2026-07-02 - Towards-prize v2 constant replay
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
