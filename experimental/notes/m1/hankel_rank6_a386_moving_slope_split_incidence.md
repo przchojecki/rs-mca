@@ -355,18 +355,26 @@ This is nonzero in characteristic `17`, so no projective conic can contain all
 six image points.  Hence the conic tangent-tail rows `109<=|E|<=114` are also
 closed.
 
-The conic cores `103<=|E|<=108` remain as a new boundary profile rather than a
-closure.  There the same three-private calculation has rank `3`, equal to the
-irreducible-conic quotient-family dimension.  After reducing to five residual
-coordinates, the verifier classifies the six-of-ten pair-quadratic conic
-evaluation problem: among the `210` six-subsets of the ten pair quadratics,
-`85` have rank `5` and `125` have rank `6` over characteristic `17`.
+The conic cores `103<=|E|<=108` are also closed by a root-star Bezout
+obstruction.  In this three-private branch, the six finite classes become six
+pair quadratics chosen from the ten pairs of five residual coordinates.  Six
+edges on five vertices have degree sum `12`, so some residual coordinate occurs
+in at least three selected pairs.  The corresponding three pair-quadratic
+points are distinct and lie on the root-star line
+
+```text
+x_i^2 X + x_i Y + Z = 0.
+```
+
+An irreducible conic in the quotient plane can meet a line in at most two
+points unless the line is a component, which is impossible for an irreducible
+component.  Hence the conic tangent-tail rows `103<=|E|<=108` close as well.
 
 Thus the unclosed high-core quotient range is finite:
 
 ```text
 line residuals:  72 <= |E| <= 102;
-conic residuals: 69 <= |E| <= 108.
+conic residuals: 69 <= |E| <= 102.
 ```
 
 This uses the projective high-agreement tangent theorem on the punctured row,
@@ -505,10 +513,10 @@ raw punctured-tangent row `e_G=120` for both component types.  In each listed
 finite-incidence row, any one listed saving lowers the projective count from
 `7` to the budget `6`; for `e_G=120` that saving is supplied by the
 cofactor-span obstruction.  The subsequent exact-agreement filter closes the
-cofactor-current tangent-tail rows line `e_G=103..119` and conic
-`e_G=109..119`, while recording conic `e_G=103..108` as the six-of-ten
-pair-quadratic boundary.  Thus the exact-current one-over rows are only the
-finite-incidence ranges.
+cofactor-current tangent-tail rows `e_G=103..119` for both lines and conics,
+using the K4 determinant and three-private root-star arguments on the conic
+side.  Thus the exact-current one-over rows are only the finite-incidence
+ranges.
 
 The packet now records these exact-current rows as a minimal obstruction
 profile.  Any surviving projective over-budget witness must be one of the
@@ -523,10 +531,9 @@ line base-splitting pressure remains only for `e_G=72..74`; line cores
 `75..80` need external-slack, duplicate-slope, endpoint, or paid-class input.
 For conics, base plus secant pressure remains for `e_G=69..71`, secant-only
 pressure remains for `e_G=72..74`, and cores `75,76` need an endpoint,
-duplicate-slope, or paid-class input.  The `e_G=120` and line/conic
-`e_G=109..119` rows are now isolated as closed punctured-tangent tails, while
-the conic `e_G=103..108` three-private branch is isolated as a boundary
-profile rather than a closure.
+duplicate-slope, or paid-class input.  The `e_G=120` tail and the line/conic
+`e_G=103..119` tangent-tail rows are now isolated as closed punctured-tangent
+tails rather than remaining proof targets.
 
 Replay:
 
@@ -540,7 +547,7 @@ Nonclaims:
 ```text
 no proof that every moving-slope component is a line;
 no closure of line components with forced external split-root core in 72..102 in projective accounting;
-no closure of irreducible conic moving-slope components with forced external split-root core in 69..108 in projective accounting;
+no closure of irreducible conic moving-slope components with forced external split-root core in 69..102 in projective accounting;
 no proof that the high-core quotient split problem is empty or paid;
 no claim that the punctured tangent numerator at the residual threshold is within the original row budget;
 no exclusion of another independent noncontained vector at the same finite slope;

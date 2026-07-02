@@ -183,8 +183,7 @@
     "the e=120 punctured tangent tail is projective-safe by the cofactor-span obstruction",
     "cofactor-span top-saturation exclusion improves the high-core tangent bound from r'+1 to r' until the cofactor degree reaches the fixed quotient-family dimension",
     "cofactor-current residual profile makes e=120 safe and exposes e=119 before exact-tail closure",
-    "exact-agreement plus K4 determinant tail closure makes line e=103..119 and conic e=109..119 projective-safe",
-    "conic e=103..108 is recorded as a three-private pair-quadratic boundary profile",
+    "exact-agreement plus K4 and three-private root-star closures make line/conic e=103..119 projective-safe",
     "intermediate high-core residual profile is computed from the best available incidence/packing/tangent bounds",
     "one-over finite-incidence saturation conditions are computed for the endpoint-only subranges",
     "over-budget survival conditions require bound saturation, distinct finite slopes, and an unpaid endpoint",
@@ -4998,17 +4997,20 @@
       "surviving_branch": "d_equals_r_plus_2_two_private_coordinates"
     }
   ],
-  "conic_three_private_tail_boundary_profile": [
+  "conic_three_private_tail_closure_profile": [
     {
+      "bezout_line_intersection_cap_for_irreducible_conic": 2,
       "closed_lower_private_branches": [
         "d<r' gives higher agreement",
         "d=r' is same-support contained at exact A",
         "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3",
         "d=r'+2 is closed by the K4 pair-quadratic determinant"
       ],
-      "closes_branch": false,
+      "closes_branch": true,
       "component_type": "irreducible_conic",
+      "conic_noncontainment_reason": "Among six selected pairs on five residual coordinates, one residual coordinate occurs in at least three pairs.  The corresponding three pair-quadratic points are distinct and lie on the same root-star line.  An irreducible conic in the quotient plane can meet a line in at most two points unless it contains the line, impossible for an irreducible conic component.",
       "dangerous_projective_count": 7,
+      "distinct_points_on_forced_star_line_at_least": 3,
       "finite_component_slope_count_at_least": 6,
       "forced_external_core_size": 103,
       "near_extremizer_common_support_complement_options": [
@@ -5134,7 +5136,7 @@
         }
       ],
       "pair_quadratic_boundary_model": "six selected pair quadratics among the ten pairs of five residual coordinates",
-      "pair_quadratic_conic_rank_distribution": {
+      "pair_quadratic_finite_model_rank_distribution": {
         "coordinate_model": "five distinct residual coordinates normalized to 1,2,3,4,5",
         "dependent_graph_shape_counts": {
           "degrees=(3, 3, 2, 2, 2);triangles=0": 10,
@@ -5157,8 +5159,11 @@
         2,
         3
       ],
+      "projective_safe_after_three_private_conic_obstruction": true,
+      "projective_upper_bound_after_obstruction": 6,
       "punctured_cosupport_radius": 23,
       "rank_three_extremizer_model": "six triples on a five-residual-coordinate active set",
+      "root_star_line_equation": "For residual coordinate x_i, all pair quadratics divisible by (T-x_i) lie on the coefficient-space line x_i^2 X + x_i Y + Z = 0.",
       "signed_rank_lower_bound": 3,
       "signed_rank_two_capacity": {
         "consequence": "six distinct three-private cofactors have span dimension at least three",
@@ -5167,18 +5172,32 @@
         "max_three_private_cofactors": 4,
         "rank_bound": 2
       },
+      "star_pigeonhole": {
+        "edge_universe": "K5",
+        "max_degree_counts": {
+          "3": 135,
+          "4": 75
+        },
+        "minimum_max_vertex_degree": 3,
+        "pigeonhole_reason": "six edges have degree sum 12 over five vertices, so some vertex has degree at least 3",
+        "selected_edge_count": 6,
+        "total_six_edge_subsets": 210
+      },
       "surviving_branch": "d_equals_r_plus_3_three_private_coordinates"
     },
     {
+      "bezout_line_intersection_cap_for_irreducible_conic": 2,
       "closed_lower_private_branches": [
         "d<r' gives higher agreement",
         "d=r' is same-support contained at exact A",
         "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3",
         "d=r'+2 is closed by the K4 pair-quadratic determinant"
       ],
-      "closes_branch": false,
+      "closes_branch": true,
       "component_type": "irreducible_conic",
+      "conic_noncontainment_reason": "Among six selected pairs on five residual coordinates, one residual coordinate occurs in at least three pairs.  The corresponding three pair-quadratic points are distinct and lie on the same root-star line.  An irreducible conic in the quotient plane can meet a line in at most two points unless it contains the line, impossible for an irreducible conic component.",
       "dangerous_projective_count": 7,
+      "distinct_points_on_forced_star_line_at_least": 3,
       "finite_component_slope_count_at_least": 6,
       "forced_external_core_size": 104,
       "near_extremizer_common_support_complement_options": [
@@ -5298,7 +5317,7 @@
         }
       ],
       "pair_quadratic_boundary_model": "six selected pair quadratics among the ten pairs of five residual coordinates",
-      "pair_quadratic_conic_rank_distribution": {
+      "pair_quadratic_finite_model_rank_distribution": {
         "coordinate_model": "five distinct residual coordinates normalized to 1,2,3,4,5",
         "dependent_graph_shape_counts": {
           "degrees=(3, 3, 2, 2, 2);triangles=0": 10,
@@ -5321,8 +5340,11 @@
         2,
         3
       ],
+      "projective_safe_after_three_private_conic_obstruction": true,
+      "projective_upper_bound_after_obstruction": 6,
       "punctured_cosupport_radius": 22,
       "rank_three_extremizer_model": "six triples on a five-residual-coordinate active set",
+      "root_star_line_equation": "For residual coordinate x_i, all pair quadratics divisible by (T-x_i) lie on the coefficient-space line x_i^2 X + x_i Y + Z = 0.",
       "signed_rank_lower_bound": 3,
       "signed_rank_two_capacity": {
         "consequence": "six distinct three-private cofactors have span dimension at least three",
@@ -5331,18 +5353,32 @@
         "max_three_private_cofactors": 4,
         "rank_bound": 2
       },
+      "star_pigeonhole": {
+        "edge_universe": "K5",
+        "max_degree_counts": {
+          "3": 135,
+          "4": 75
+        },
+        "minimum_max_vertex_degree": 3,
+        "pigeonhole_reason": "six edges have degree sum 12 over five vertices, so some vertex has degree at least 3",
+        "selected_edge_count": 6,
+        "total_six_edge_subsets": 210
+      },
       "surviving_branch": "d_equals_r_plus_3_three_private_coordinates"
     },
     {
+      "bezout_line_intersection_cap_for_irreducible_conic": 2,
       "closed_lower_private_branches": [
         "d<r' gives higher agreement",
         "d=r' is same-support contained at exact A",
         "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3",
         "d=r'+2 is closed by the K4 pair-quadratic determinant"
       ],
-      "closes_branch": false,
+      "closes_branch": true,
       "component_type": "irreducible_conic",
+      "conic_noncontainment_reason": "Among six selected pairs on five residual coordinates, one residual coordinate occurs in at least three pairs.  The corresponding three pair-quadratic points are distinct and lie on the same root-star line.  An irreducible conic in the quotient plane can meet a line in at most two points unless it contains the line, impossible for an irreducible conic component.",
       "dangerous_projective_count": 7,
+      "distinct_points_on_forced_star_line_at_least": 3,
       "finite_component_slope_count_at_least": 6,
       "forced_external_core_size": 105,
       "near_extremizer_common_support_complement_options": [
@@ -5456,7 +5492,7 @@
         }
       ],
       "pair_quadratic_boundary_model": "six selected pair quadratics among the ten pairs of five residual coordinates",
-      "pair_quadratic_conic_rank_distribution": {
+      "pair_quadratic_finite_model_rank_distribution": {
         "coordinate_model": "five distinct residual coordinates normalized to 1,2,3,4,5",
         "dependent_graph_shape_counts": {
           "degrees=(3, 3, 2, 2, 2);triangles=0": 10,
@@ -5479,8 +5515,11 @@
         2,
         3
       ],
+      "projective_safe_after_three_private_conic_obstruction": true,
+      "projective_upper_bound_after_obstruction": 6,
       "punctured_cosupport_radius": 21,
       "rank_three_extremizer_model": "six triples on a five-residual-coordinate active set",
+      "root_star_line_equation": "For residual coordinate x_i, all pair quadratics divisible by (T-x_i) lie on the coefficient-space line x_i^2 X + x_i Y + Z = 0.",
       "signed_rank_lower_bound": 3,
       "signed_rank_two_capacity": {
         "consequence": "six distinct three-private cofactors have span dimension at least three",
@@ -5489,18 +5528,32 @@
         "max_three_private_cofactors": 4,
         "rank_bound": 2
       },
+      "star_pigeonhole": {
+        "edge_universe": "K5",
+        "max_degree_counts": {
+          "3": 135,
+          "4": 75
+        },
+        "minimum_max_vertex_degree": 3,
+        "pigeonhole_reason": "six edges have degree sum 12 over five vertices, so some vertex has degree at least 3",
+        "selected_edge_count": 6,
+        "total_six_edge_subsets": 210
+      },
       "surviving_branch": "d_equals_r_plus_3_three_private_coordinates"
     },
     {
+      "bezout_line_intersection_cap_for_irreducible_conic": 2,
       "closed_lower_private_branches": [
         "d<r' gives higher agreement",
         "d=r' is same-support contained at exact A",
         "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3",
         "d=r'+2 is closed by the K4 pair-quadratic determinant"
       ],
-      "closes_branch": false,
+      "closes_branch": true,
       "component_type": "irreducible_conic",
+      "conic_noncontainment_reason": "Among six selected pairs on five residual coordinates, one residual coordinate occurs in at least three pairs.  The corresponding three pair-quadratic points are distinct and lie on the same root-star line.  An irreducible conic in the quotient plane can meet a line in at most two points unless it contains the line, impossible for an irreducible conic component.",
       "dangerous_projective_count": 7,
+      "distinct_points_on_forced_star_line_at_least": 3,
       "finite_component_slope_count_at_least": 6,
       "forced_external_core_size": 106,
       "near_extremizer_common_support_complement_options": [
@@ -5608,7 +5661,7 @@
         }
       ],
       "pair_quadratic_boundary_model": "six selected pair quadratics among the ten pairs of five residual coordinates",
-      "pair_quadratic_conic_rank_distribution": {
+      "pair_quadratic_finite_model_rank_distribution": {
         "coordinate_model": "five distinct residual coordinates normalized to 1,2,3,4,5",
         "dependent_graph_shape_counts": {
           "degrees=(3, 3, 2, 2, 2);triangles=0": 10,
@@ -5631,8 +5684,11 @@
         2,
         3
       ],
+      "projective_safe_after_three_private_conic_obstruction": true,
+      "projective_upper_bound_after_obstruction": 6,
       "punctured_cosupport_radius": 20,
       "rank_three_extremizer_model": "six triples on a five-residual-coordinate active set",
+      "root_star_line_equation": "For residual coordinate x_i, all pair quadratics divisible by (T-x_i) lie on the coefficient-space line x_i^2 X + x_i Y + Z = 0.",
       "signed_rank_lower_bound": 3,
       "signed_rank_two_capacity": {
         "consequence": "six distinct three-private cofactors have span dimension at least three",
@@ -5641,18 +5697,32 @@
         "max_three_private_cofactors": 4,
         "rank_bound": 2
       },
+      "star_pigeonhole": {
+        "edge_universe": "K5",
+        "max_degree_counts": {
+          "3": 135,
+          "4": 75
+        },
+        "minimum_max_vertex_degree": 3,
+        "pigeonhole_reason": "six edges have degree sum 12 over five vertices, so some vertex has degree at least 3",
+        "selected_edge_count": 6,
+        "total_six_edge_subsets": 210
+      },
       "surviving_branch": "d_equals_r_plus_3_three_private_coordinates"
     },
     {
+      "bezout_line_intersection_cap_for_irreducible_conic": 2,
       "closed_lower_private_branches": [
         "d<r' gives higher agreement",
         "d=r' is same-support contained at exact A",
         "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3",
         "d=r'+2 is closed by the K4 pair-quadratic determinant"
       ],
-      "closes_branch": false,
+      "closes_branch": true,
       "component_type": "irreducible_conic",
+      "conic_noncontainment_reason": "Among six selected pairs on five residual coordinates, one residual coordinate occurs in at least three pairs.  The corresponding three pair-quadratic points are distinct and lie on the same root-star line.  An irreducible conic in the quotient plane can meet a line in at most two points unless it contains the line, impossible for an irreducible conic component.",
       "dangerous_projective_count": 7,
+      "distinct_points_on_forced_star_line_at_least": 3,
       "finite_component_slope_count_at_least": 6,
       "forced_external_core_size": 107,
       "near_extremizer_common_support_complement_options": [
@@ -5754,7 +5824,7 @@
         }
       ],
       "pair_quadratic_boundary_model": "six selected pair quadratics among the ten pairs of five residual coordinates",
-      "pair_quadratic_conic_rank_distribution": {
+      "pair_quadratic_finite_model_rank_distribution": {
         "coordinate_model": "five distinct residual coordinates normalized to 1,2,3,4,5",
         "dependent_graph_shape_counts": {
           "degrees=(3, 3, 2, 2, 2);triangles=0": 10,
@@ -5777,8 +5847,11 @@
         2,
         3
       ],
+      "projective_safe_after_three_private_conic_obstruction": true,
+      "projective_upper_bound_after_obstruction": 6,
       "punctured_cosupport_radius": 19,
       "rank_three_extremizer_model": "six triples on a five-residual-coordinate active set",
+      "root_star_line_equation": "For residual coordinate x_i, all pair quadratics divisible by (T-x_i) lie on the coefficient-space line x_i^2 X + x_i Y + Z = 0.",
       "signed_rank_lower_bound": 3,
       "signed_rank_two_capacity": {
         "consequence": "six distinct three-private cofactors have span dimension at least three",
@@ -5787,18 +5860,32 @@
         "max_three_private_cofactors": 4,
         "rank_bound": 2
       },
+      "star_pigeonhole": {
+        "edge_universe": "K5",
+        "max_degree_counts": {
+          "3": 135,
+          "4": 75
+        },
+        "minimum_max_vertex_degree": 3,
+        "pigeonhole_reason": "six edges have degree sum 12 over five vertices, so some vertex has degree at least 3",
+        "selected_edge_count": 6,
+        "total_six_edge_subsets": 210
+      },
       "surviving_branch": "d_equals_r_plus_3_three_private_coordinates"
     },
     {
+      "bezout_line_intersection_cap_for_irreducible_conic": 2,
       "closed_lower_private_branches": [
         "d<r' gives higher agreement",
         "d=r' is same-support contained at exact A",
         "d=r'+1 gives six independent one-private cofactors, exceeding dimension 3",
         "d=r'+2 is closed by the K4 pair-quadratic determinant"
       ],
-      "closes_branch": false,
+      "closes_branch": true,
       "component_type": "irreducible_conic",
+      "conic_noncontainment_reason": "Among six selected pairs on five residual coordinates, one residual coordinate occurs in at least three pairs.  The corresponding three pair-quadratic points are distinct and lie on the same root-star line.  An irreducible conic in the quotient plane can meet a line in at most two points unless it contains the line, impossible for an irreducible conic component.",
       "dangerous_projective_count": 7,
+      "distinct_points_on_forced_star_line_at_least": 3,
       "finite_component_slope_count_at_least": 6,
       "forced_external_core_size": 108,
       "near_extremizer_common_support_complement_options": [
@@ -5894,7 +5981,7 @@
         }
       ],
       "pair_quadratic_boundary_model": "six selected pair quadratics among the ten pairs of five residual coordinates",
-      "pair_quadratic_conic_rank_distribution": {
+      "pair_quadratic_finite_model_rank_distribution": {
         "coordinate_model": "five distinct residual coordinates normalized to 1,2,3,4,5",
         "dependent_graph_shape_counts": {
           "degrees=(3, 3, 2, 2, 2);triangles=0": 10,
@@ -5917,8 +6004,11 @@
         2,
         3
       ],
+      "projective_safe_after_three_private_conic_obstruction": true,
+      "projective_upper_bound_after_obstruction": 6,
       "punctured_cosupport_radius": 18,
       "rank_three_extremizer_model": "six triples on a five-residual-coordinate active set",
+      "root_star_line_equation": "For residual coordinate x_i, all pair quadratics divisible by (T-x_i) lie on the coefficient-space line x_i^2 X + x_i Y + Z = 0.",
       "signed_rank_lower_bound": 3,
       "signed_rank_two_capacity": {
         "consequence": "six distinct three-private cofactors have span dimension at least three",
@@ -5926,6 +6016,17 @@
         "field_characteristic": 17,
         "max_three_private_cofactors": 4,
         "rank_bound": 2
+      },
+      "star_pigeonhole": {
+        "edge_universe": "K5",
+        "max_degree_counts": {
+          "3": 135,
+          "4": 75
+        },
+        "minimum_max_vertex_degree": 3,
+        "pigeonhole_reason": "six edges have degree sum 12 over five vertices, so some vertex has degree at least 3",
+        "selected_edge_count": 6,
+        "total_six_edge_subsets": 210
       },
       "surviving_branch": "d_equals_r_plus_3_three_private_coordinates"
     }
@@ -6252,63 +6353,9 @@
         "projective_safe": false
       },
       {
-        "current_projective_upper_bound": 23,
-        "external_core_range": [
-          103,
-          103
-        ],
-        "one_over_budget": false,
-        "projective_safe": false
-      },
-      {
-        "current_projective_upper_bound": 22,
-        "external_core_range": [
-          104,
-          104
-        ],
-        "one_over_budget": false,
-        "projective_safe": false
-      },
-      {
-        "current_projective_upper_bound": 21,
-        "external_core_range": [
-          105,
-          105
-        ],
-        "one_over_budget": false,
-        "projective_safe": false
-      },
-      {
-        "current_projective_upper_bound": 20,
-        "external_core_range": [
-          106,
-          106
-        ],
-        "one_over_budget": false,
-        "projective_safe": false
-      },
-      {
-        "current_projective_upper_bound": 19,
-        "external_core_range": [
-          107,
-          107
-        ],
-        "one_over_budget": false,
-        "projective_safe": false
-      },
-      {
-        "current_projective_upper_bound": 18,
-        "external_core_range": [
-          108,
-          108
-        ],
-        "one_over_budget": false,
-        "projective_safe": false
-      },
-      {
         "current_projective_upper_bound": 6,
         "external_core_range": [
-          109,
+          103,
           120
         ],
         "one_over_budget": false,
@@ -6828,92 +6875,92 @@
       },
       {
         "active_best_methods": [
-          "cofactor-improved punctured projective tangent"
+          "exact-agreement tangent-tail cofactor closure"
         ],
         "cofactor_improved_projective_tangent_bound": 23,
         "cofactor_top_saturation_excluded": true,
         "component_type": "irreducible_conic",
-        "current_projective_upper_bound": 23,
-        "exact_agreement_tail_closure_applied": false,
+        "current_projective_upper_bound": 6,
+        "exact_agreement_tail_closure_applied": true,
         "forced_external_core_size": 103,
         "incidence_or_pair_projective_bound": null,
         "one_over_budget": false,
-        "projective_safe": false,
+        "projective_safe": true,
         "raw_punctured_projective_tangent_bound": 24
       },
       {
         "active_best_methods": [
-          "cofactor-improved punctured projective tangent"
+          "exact-agreement tangent-tail cofactor closure"
         ],
         "cofactor_improved_projective_tangent_bound": 22,
         "cofactor_top_saturation_excluded": true,
         "component_type": "irreducible_conic",
-        "current_projective_upper_bound": 22,
-        "exact_agreement_tail_closure_applied": false,
+        "current_projective_upper_bound": 6,
+        "exact_agreement_tail_closure_applied": true,
         "forced_external_core_size": 104,
         "incidence_or_pair_projective_bound": null,
         "one_over_budget": false,
-        "projective_safe": false,
+        "projective_safe": true,
         "raw_punctured_projective_tangent_bound": 23
       },
       {
         "active_best_methods": [
-          "cofactor-improved punctured projective tangent"
+          "exact-agreement tangent-tail cofactor closure"
         ],
         "cofactor_improved_projective_tangent_bound": 21,
         "cofactor_top_saturation_excluded": true,
         "component_type": "irreducible_conic",
-        "current_projective_upper_bound": 21,
-        "exact_agreement_tail_closure_applied": false,
+        "current_projective_upper_bound": 6,
+        "exact_agreement_tail_closure_applied": true,
         "forced_external_core_size": 105,
         "incidence_or_pair_projective_bound": null,
         "one_over_budget": false,
-        "projective_safe": false,
+        "projective_safe": true,
         "raw_punctured_projective_tangent_bound": 22
       },
       {
         "active_best_methods": [
-          "cofactor-improved punctured projective tangent"
+          "exact-agreement tangent-tail cofactor closure"
         ],
         "cofactor_improved_projective_tangent_bound": 20,
         "cofactor_top_saturation_excluded": true,
         "component_type": "irreducible_conic",
-        "current_projective_upper_bound": 20,
-        "exact_agreement_tail_closure_applied": false,
+        "current_projective_upper_bound": 6,
+        "exact_agreement_tail_closure_applied": true,
         "forced_external_core_size": 106,
         "incidence_or_pair_projective_bound": null,
         "one_over_budget": false,
-        "projective_safe": false,
+        "projective_safe": true,
         "raw_punctured_projective_tangent_bound": 21
       },
       {
         "active_best_methods": [
-          "cofactor-improved punctured projective tangent"
+          "exact-agreement tangent-tail cofactor closure"
         ],
         "cofactor_improved_projective_tangent_bound": 19,
         "cofactor_top_saturation_excluded": true,
         "component_type": "irreducible_conic",
-        "current_projective_upper_bound": 19,
-        "exact_agreement_tail_closure_applied": false,
+        "current_projective_upper_bound": 6,
+        "exact_agreement_tail_closure_applied": true,
         "forced_external_core_size": 107,
         "incidence_or_pair_projective_bound": null,
         "one_over_budget": false,
-        "projective_safe": false,
+        "projective_safe": true,
         "raw_punctured_projective_tangent_bound": 20
       },
       {
         "active_best_methods": [
-          "cofactor-improved punctured projective tangent"
+          "exact-agreement tangent-tail cofactor closure"
         ],
         "cofactor_improved_projective_tangent_bound": 18,
         "cofactor_top_saturation_excluded": true,
         "component_type": "irreducible_conic",
-        "current_projective_upper_bound": 18,
-        "exact_agreement_tail_closure_applied": false,
+        "current_projective_upper_bound": 6,
+        "exact_agreement_tail_closure_applied": true,
         "forced_external_core_size": 108,
         "incidence_or_pair_projective_bound": null,
         "one_over_budget": false,
-        "projective_safe": false,
+        "projective_safe": true,
         "raw_punctured_projective_tangent_bound": 19
       },
       {
@@ -12692,7 +12739,7 @@
   "nonclaims": [
     "does not prove every moving-slope component is a line",
     "does not close line components with forced external split-root core in 72..102 in projective accounting",
-    "does not close irreducible conic moving-slope components with forced external split-root core in 69..108 in projective accounting",
+    "does not close irreducible conic moving-slope components with forced external split-root core in 69..102 in projective accounting",
     "does not prove the high-core quotient split problem is empty or paid",
     "does not claim the punctured tangent numerator at the residual threshold is within the original row budget",
     "does not rule out another independent noncontained vector at the same finite slope",
@@ -16146,7 +16193,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v37",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v38",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -16795,7 +16842,7 @@
     ],
     "conic_exact_current_safe_external_core_ranges": [
       [
-        109,
+        103,
         120
       ]
     ],
@@ -17048,10 +17095,10 @@
     ],
     "conic_remaining_unclosed_external_core_range": [
       69,
-      108
+      102
     ],
     "conic_residual_projective_safe_after_cofactor_span_for_external_core_at_least": 120,
-    "conic_residual_projective_safe_after_exact_tail_for_external_core_at_least": 109,
+    "conic_residual_projective_safe_after_exact_tail_for_external_core_at_least": 103,
     "conic_residual_projective_safe_after_signed_rank_for_external_core_at_least": 115,
     "conic_residual_projective_safe_by_punctured_tangent_for_external_core_at_least": 121,
     "conic_residual_punctured_tangent_numerator_at_threshold": 58,
@@ -17066,16 +17113,13 @@
       0,
       14
     ],
-    "conic_three_private_tail_boundary_closes_branch": false,
-    "conic_three_private_tail_boundary_core_range": [
+    "conic_three_private_tail_closure_bezout_line_cap": 2,
+    "conic_three_private_tail_closure_closes_branch": true,
+    "conic_three_private_tail_closure_core_range": [
       103,
       108
     ],
-    "conic_three_private_tail_boundary_dependent_count": 85,
-    "conic_three_private_tail_boundary_rank_counts": {
-      "5": 85,
-      "6": 125
-    },
+    "conic_three_private_tail_closure_star_degree_min": 3,
     "exact_current_minimal_obstruction_core_ranges": {
       "irreducible_conic_pair_overlap": [
         69,
@@ -19997,7 +20041,7 @@
     ],
     "remaining_unclosed_residuals": [
       "moving-slope line component with forced external split-root core in 72..102 for projective accounting",
-      "irreducible moving-slope conic component with forced external split-root core in 69..108 for projective accounting",
+      "irreducible moving-slope conic component with forced external split-root core in 69..102 for projective accounting",
       "possible independent noncontained vectors at slopes also admitting a slope-free vector"
     ],
     "single_saving_closure_ledger_core_ranges": {
@@ -20029,10 +20073,10 @@
     "conic_remaining_residual": "Irreducible conics with forced external split-root core e_G>=69 remain residual for a sharper split, paid, or exact-root-table argument.",
     "conic_signed_edge_tail_boundary_profile": "Before the determinant closure, conic tangent-tail cores e_G=109..114 have one possible signed-edge boundary: any seven-projective-slope survivor must lie in the d=r'+2 branch.  The six finite two-private cofactors are signed edge vectors.  Rank at most two supports at most three edges, while rank three supports six edges only in the K4 extremizer.  Hence a survivor must use all six edges on four residual coordinates.",
     "conic_status": "For an irreducible conic c=2, the base-sharpened budget gives six finite Q-classes at e_G=0 and finite safety through e_G<=19, but the projective endpoint still makes total seven at best.  The conic pair-overlap packing lemma below supplies the needed extra saving through e_G<=68.",
-    "conic_three_private_tail_boundary_profile": "Conic cores e_G=103..108 remain a three-private boundary rather than a closure.  In the five-residual-coordinate model, six selected pair quadratics among the ten pairs have rank distribution 85 dependent and 125 independent six-subsets over characteristic 17.",
+    "conic_three_private_tail_closure_profile": "Conic cores e_G=103..108 are closed by a root-star Bezout obstruction.  Six selected pairs on five residual coordinates force three pairs to share one residual coordinate; their pair-quadratic points lie on the same root-star line, which an irreducible conic cannot meet in three distinct points.",
     "defect_threshold_profile": "The survival pressures are converted into exact closure-by-defect thresholds.  At line e_G=72, six finite classes require at least eleven base-root incidences, so all six classes have a base root and at least five have two.  At conic e_G=69, six finite classes require at least fourteen of the fifteen pair secants before external excess, hence at least sixteen secant triangles.",
-    "exact_agreement_tangent_tail_closure": "The cofactor-current tangent tail is closed by exact agreement for line cores e_G=103..119 and, after the K4 determinant closure, conic cores e_G=109..119.  If seven projective slopes survived, they could be sent to seven finite slopes in the punctured row.  For residual radius r'<=23 the tangent-staircase residual-budget proof leaves at most three private residual coordinates beyond the common support complement.  The d=r'+3 branch closes line cores e_G=103..108 because six three-private cofactors span dimension at least 3.  The d=r'+2 branch gives signed-edge cofactors and closes lines while reducing conics e_G=109..114 to the K4 boundary.",
-    "exact_current_minimal_obstruction_profile": "After the exact-agreement plus K4 determinant tail closure, any remaining projective over-budget witness must be an exact-current finite-incidence obstruction: one of the line cores 72..80 or conic cores 69..76, with exactly six finite source classes, six distinct finite slopes, and an unpaid projective endpoint.  The profile records the saturated base-root, external-slack, and secant-overlap conditions that must also hold in each row.",
+    "exact_agreement_tangent_tail_closure": "The cofactor-current tangent tail is closed by exact agreement for line and conic cores e_G=103..119.  If seven projective slopes survived, they could be sent to seven finite slopes in the punctured row.  For residual radius r'<=23 the tangent-staircase residual-budget proof leaves at most three private residual coordinates beyond the common support complement.  The d=r'+3 branch closes line cores by cofactor span and conic cores by the root-star Bezout obstruction.  The d=r'+2 branch gives signed-edge cofactors and closes lines while reducing conics e_G=109..114 to the K4 boundary, which is then closed by the determinant obstruction.",
+    "exact_current_minimal_obstruction_profile": "After the exact-agreement tangent-tail closure, any remaining projective over-budget witness must be an exact-current finite-incidence obstruction: one of the line cores 72..80 or conic cores 69..76, with exactly six finite source classes, six distinct finite slopes, and an unpaid projective endpoint.  The profile records the saturated base-root, external-slack, and secant-overlap conditions that must also hold in each row.",
     "exact_root_budget_alternatives": "Using exact degree-126 split-locator accounting, line e_G=72 has only two alternatives: histogram (0,0,6) leaves exactly one unused nonforced external root line, while histogram (0,1,5) uses all nonforced external root lines.  For conic e_G=69, histogram (0,0,6) requires fourteen pair overlaps and histogram (0,1,5) requires all fifteen pair overlaps.",
     "extremal_design_local_profiles": "Locally, the line designs have singleton-root sequences (52,52,52,52,52,52) or (53,52,52,52,52,52).  The conic designs have secant-degree/singleton pairs (5^6;50^6), ((4,4,5,5,5,5);(51,51,50,50,50,50)), or (5^6;(51,50,50,50,50,50)).",
     "extremal_design_multiplicity_profiles": "The line designs have no pairwise external overlap: their nonforced external roots have multiplicities (zero, one, >=two) equal to (1,312,0) or (0,313,0).  The conic designs have no triple external overlap, and their multiplicities (zero, one, two) are (1,300,15), (0,302,14), or (0,301,15).",
@@ -20043,7 +20087,7 @@
     "high_core_forced_core_structure": "The forced-core condition is a linear condition in the Q-plane.  For a line component P(U), a forced external root is exactly an external evaluation functional that vanishes on U, so C_E is a two-polynomial gcd on the line's underlying vector subspace.  For an irreducible conic, containment in a root hyperplane can only occur when the evaluation functional is zero on the whole Q-plane; hence C_E is a global common divisor of all three basis kernel polynomials.",
     "high_core_quotient_normal_form": "For any remaining high-core line or conic component, let E be the forced external split-root core and C_E(X)=prod_{s in E}(X-s).  Every Q-class on the component has L_Q divisible by C_E.  After factoring, L_Q=C_E R_Q with deg R_Q<=126-|E|, and the split-locator gate is exactly R_Q | (X^512-1)/C_E plus the remaining noncontainment filters.  Thus residual line components reduce to quotient degree <=54, while residual conic components reduce to quotient degree <=57.",
     "incidence_budget": "For r_G<j, each valid degree-j split locator on G needs at least j-r_G additional intersections with non-forced root hyperplanes.  Each non-forced E_s cuts G in length at most c.  Hence the number of valid Q-classes, and therefore the number of finite slopes represented by this component, is at most floor(c*(512-r_G)/(126-r_G)).",
-    "intermediate_residual_profile": "Combining the external-incidence, pair-overlap, and punctured projective tangent bounds gives a sharp current proof envelope for the unresolved intermediate cores.  The one-over-budget finite-incidence subranges are line e_G=72..80 and conic e_G=69..76.  The tangent-tail row e_G=120 is closed by the cofactor-span obstruction, and exact-agreement residual-budget splitting closes the cofactor-current tangent tail e_G=103..119 for lines and e_G=109..119 for irreducible conics, while conic e_G=103..108 is retained as the three-private pair-quadratic boundary; all other intermediate cores need more than a single endpoint/root saving under the present methods.",
+    "intermediate_residual_profile": "Combining the external-incidence, pair-overlap, and punctured projective tangent bounds gives a sharp current proof envelope for the unresolved intermediate cores.  The one-over-budget finite-incidence subranges are line e_G=72..80 and conic e_G=69..76.  The tangent-tail row e_G=120 is closed by the cofactor-span obstruction, and exact-agreement residual-budget splitting closes the cofactor-current tangent tail e_G=103..119 for both lines and irreducible conics, using the K4 determinant and root-star Bezout arguments on the conic side; all other intermediate cores need more than a single endpoint/root saving under the present methods.",
     "line_e72_quotient_pencil_obstruction_profile": "In the extremal line e_G=72 branch, factoring the forced external core leaves a degree-54 quotient pencil.  Any remaining over-budget witness must give six distinct full-degree split members of this pencil: either six fibers with 52 external roots and two base roots each, leaving one nonforced external point unused, or one fiber with 53 external roots and one base root plus five fibers with 52 external roots and two base roots, covering all nonforced external points.",
     "line_projective_safe_core_threshold": "For a line component c=1, the unrefined all-root budget gives projective safety at r_G<=48.  The base-sharpened external budget improves this: e_G<=71 gives at most five finite Q-classes.  Adding the endpoint-uniform contribution gives projective total at most 6, exactly the projective budget.",
     "no_identically_split_positive_dimensional_component": "A positive-dimensional component cannot have r_G>=j=126.  Otherwise every L_Q on G would be divisible by the same degree-j split locator, hence scalar-multiple to it because deg L_Q<=j, contradicting projective injectivity of Q -> L_Q on G.",

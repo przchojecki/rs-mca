@@ -484,7 +484,7 @@
     "n": 512,
     "q_line": 2367911594760467245844106297320951247361
   },
-  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v19",
+  "schema_version": "f17-32-m3-m4-regular-bucket-synthesis-v20",
   "source_artifacts": {
     "f17_32_n512_k256_m3_direction_rank_degree_cap": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-direction-rank-degree-cap/f17_32_n512_k256_m3_direction_rank_degree_cap.json",
@@ -536,7 +536,7 @@
     },
     "f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/f17_32_n512_k256_m3_rank6_a386_moving_slope_split_incidence.json",
-      "sha256": "5ede0dc025fb97574a90eb272f93a4b83ed1bab24170804bd59a4737e75ac61a"
+      "sha256": "3631bac0f9feeebc0a8db151413371e2871996210ad5f0045b87b2df37108887"
     },
     "f17_32_n512_k256_m3_rank_node_dichotomy": {
       "ref": "experimental/data/certificates/hankel-f17-32-m3-rank-node-dichotomy/f17_32_n512_k256_m3_rank_node_dichotomy.json",
@@ -591,8 +591,8 @@
       "the exact-agreement residual-budget split closes the cofactor-current tangent tail e_G=103..119 for lines and e_G=115..119 for irreducible conics by cofactor rank; the d=r'+3 three-private-coordinate branch closes lines e_G=103..108 because six such cofactors span at least dimension 3",
       "the d=r'+2 two-private-coordinate signed-edge branch closes lines and reduces conics e_G=109..114 to a K4 boundary",
       "the K4 conic boundary is also closed: after the common residual core is factored, the six finite members become the six pair quadratics from four residual coordinates, and the determinant of their conic-evaluation matrix is prod_{i<j}(x_j-x_i)^2",
-      "the conic d=r'+3 branch e_G=103..108 reduces to a six-of-ten pair-quadratic boundary on five residual coordinates with 85 dependent and 125 independent six-subsets over characteristic 17; this is recorded as a boundary profile, not a closure",
-      "the still-unclosed high-core quotient ranges are e_G=72..102 for lines and e_G=69..108 for irreducible conics",
+      "the conic d=r'+3 branch e_G=103..108 is closed by a root-star Bezout obstruction: six selected pairs on five residual coordinates force three pair-quadratic points on one root-star line, impossible for an irreducible conic",
+      "the still-unclosed high-core quotient ranges are e_G=72..102 for lines and e_G=69..102 for irreducible conics",
       "within those ranges, the finite-incidence one-over-budget subranges are line e_G=72..80 and conic e_G=69..76; after exact-tail sharpening the worst projective bounds are 18 and 25",
       "six-finite saturation in the endpoint-only incidence ranges has line external slack 1..41 and conic forced pair-overlap demand 0..14; the formerly one-over e_G=120 cases are closed by the cofactor-span contradiction",
       "a genuine over-budget one-over witness must also have six distinct finite slopes and an unpaid endpoint; the strongest remaining pressure is line e_G=72 base splitting and conic e_G=69 almost-complete secants",
@@ -609,7 +609,7 @@
       "abstract incidence-only sharpness witnesses exist for every finite-incidence one-over core, so those rows cannot be closed by sharpening only the current incidence and pair-overlap axioms",
       "the cofactor-current moving-slope one-over residual rows have a single-saving closure ledger entry: line e_G=72..80, conic e_G=69..76, and the punctured-tangent tail e_G=120",
       "after exact-tail closure, the remaining over-budget normal form has exactly 17 finite-incidence rows, each requiring six distinct finite slopes plus an unpaid endpoint",
-      "the finite-incidence one-over rows split by first available saving mechanism into line base-active 72..74, line external-slack 75..80, conic base+secant 69..71, conic secant-only 72..74, and conic endpoint/duplicate-only 75..76; the punctured-tangent tail e_G=120, line e_G=103..119, and conic e_G=109..119 are now closed by cofactor-span, exact-agreement, and K4 determinant arguments"
+      "the finite-incidence one-over rows split by first available saving mechanism into line base-active 72..74, line external-slack 75..80, conic base+secant 69..71, conic secant-only 72..74, and conic endpoint/duplicate-only 75..76; the punctured-tangent tail e_G=120 and line/conic e_G=103..119 are now closed by cofactor-span, exact-agreement, K4 determinant, and three-private root-star arguments"
     ],
     "closed_by_current_lemmas": [
       "zero-v with full-rank H(u): no finite roots, infinity tangent-paid",
@@ -663,7 +663,7 @@
     "still_requires_m5_or_other_ledgers": [
       "rank-deficient finite regular buckets not covered by a paid family",
       "non-proportional direction-rank-6 buckets when the projective endpoint is not empty or paid and the 6x6 compressed exact finite root table has six surviving roots",
-      "the remaining A=386 separated moving-slope intermediate high-core quotient branches e_G=72..102 for lines and e_G=69..108 for irreducible conics",
+      "the remaining A=386 separated moving-slope intermediate high-core quotient branches e_G=72..102 for lines and e_G=69..102 for irreducible conics",
       "non-proportional finite buckets with direction rank > 6 unless exact root tables plus kernel filters improve the bound",
       "quotient, quotient-image, extension, and subfield overlap for future non-proportional root tables"
     ]
