@@ -396,11 +396,13 @@ quotient residuals.
 The packet also records a deterministic subgroup-coordinate sharpness witness
 for the six-cycle residual.  The order-512 subgroup exponents
 `0,255,417,261,6,356`, taken in that cyclic order, are distinct and after
-affine normalization make the same hexagon factor vanish.  Therefore the
-six-cycle residual cannot be closed by proving this factor is nonzero on the
-subgroup.  Any closure must use more structure: quotient-family equations,
-Hankel constraints, endpoint payment, or split-locator noncontainment.  This
-witness is not an MCA bad-slope witness.
+affine normalization make the same hexagon factor vanish.  The same witness
+has nonzero alternating-line factor, so it is not contained in the reducible
+alternating-line subbranch isolated below.  Therefore even the generic
+irreducible hexagon residual cannot be closed by proving this factor is
+nonzero on the subgroup.  Any closure must use more structure: quotient-family
+equations, Hankel constraints, endpoint payment, or split-locator
+noncontainment.  This witness is not an MCA bad-slope witness.
 
 The same symbolic profile splits the six-cycle residual further.  Under the
 hexagon relation and distinct-coordinate assumptions, every possible

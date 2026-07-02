@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - A386 generic hexagon sharpness witness
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/scripts/verify_f17_32_m3_rank6_a386_moving_slope_split_incidence.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-rank6-a386-moving-slope-split-incidence/`;
+  `experimental/scripts/verify_m1_hankel_m4_regular_bucket_synthesis.py`;
+  `experimental/data/certificates/hankel-f17-32-m3-m4-regular-bucket-synthesis/`;
+  `experimental/notes/m1/hankel_rank6_a386_moving_slope_split_incidence.md`;
+  `experimental/notes/m1/hankel_regular_window_plan.md`;
+  `experimental/agents-log.md`.
+- **Status:** COUNTEREXAMPLE.
+- **What is being added:** The deterministic six-cycle subgroup-coordinate
+  witness `0,255,417,261,6,356` now also checks that the alternating-line
+  factor is nonzero.  Thus it lies in the remaining generic irreducible
+  hexagon branch, not in the reducible alternating-line subbranch closed by
+  Bezout.
+- **How it is useful:** This rules out the tempting closure route "prove the
+  hexagon factor is nonzero on subgroup coordinates" even after removing the
+  alternating-line branch.  The generic hexagon residual must be attacked by
+  quotient-family, Hankel, endpoint, or split-locator structure.
+- **What to do next:** Use this as a sharpness guard while attacking the
+  generic irreducible hexagon and two-triangle quotient residuals.
+
 ### 2026-07-02 - A386 six-cycle alternating-line closure
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.
@@ -104,6 +128,9 @@ Keep entries concise and link to the relevant files.
   subgroup-coordinate witness: exponents `0,255,417,261,6,356` make the
   normalized hexagon factor vanish.  This is not an MCA bad-slope witness; it
   says the remaining closure must use quotient/Hankel/split-locator structure.
+  The witness has nonzero alternating-line factor, so it lies in the remaining
+  generic irreducible hexagon branch rather than the closed alternating-line
+  branch.
   The six-cycle residual is now split by one alternating-line factor: away
   from it the conic is irreducible, and on it the conic is the union of the
   two alternating lines through cycle edge triples `0,2,4` and `1,3,5`; the

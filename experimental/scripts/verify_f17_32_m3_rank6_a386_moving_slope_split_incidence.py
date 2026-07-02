@@ -26,7 +26,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v46"
+SCHEMA_VERSION = "f17-32-m3-rank6-a386-moving-slope-split-incidence-v47"
 Q_LINE = 17**32
 TARGET_BITS = 128
 FINITE_BUDGET = Q_LINE // 2**TARGET_BITS
@@ -1189,12 +1189,32 @@ def subgroup_hexagon_factor_sharpness_witness() -> dict[str, Any]:
         ),
         mul(c, d),
     )
+    a_squared = mul(a, a)
+    c_squared = mul(c, c)
+    alternating_line_factor = sub(
+        add(
+            add(
+                sub(
+                    sub(mul(mul(a_squared, b), c), mul(a_squared, b)),
+                    mul(a_squared, c_squared),
+                ),
+                mul(mul(a, b), c),
+            ),
+            mul(a, c_squared),
+        ),
+        mul(b, c_squared),
+    )
     require(hexagon_factor == field.zero, "subgroup hexagon witness should vanish")
+    require(
+        alternating_line_factor != field.zero,
+        "subgroup hexagon witness should avoid the alternating-line branch",
+    )
     return {
-        "status": "COUNTEREXAMPLE_TO_SUBGROUP_HEXAGON_NONVANISHING",
+        "status": "COUNTEREXAMPLE_TO_GENERIC_SUBGROUP_HEXAGON_NONVANISHING",
         "meaning": (
             "The six-cycle residual cannot be closed by proving the normalized "
-            "hexagon factor is nonzero on the order-512 subgroup."
+            "hexagon factor is nonzero on the order-512 subgroup, even after "
+            "removing the alternating-line subbranch."
         ),
         "not_an_mca_witness": (
             "This is only a coordinate-level sharpness witness for the "
@@ -1210,9 +1230,16 @@ def subgroup_hexagon_factor_sharpness_witness() -> dict[str, Any]:
         ],
         "hexagon_factor": "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
         "hexagon_factor_value_encoding": field.encode(hexagon_factor),
+        "alternating_line_factor": (
+            "a^2*b*c-a^2*b-a^2*c^2+a*b*c+a*c^2-b*c^2"
+        ),
+        "alternating_line_factor_value_encoding": field.encode(alternating_line_factor),
+        "alternating_line_factor_value_nonzero": True,
+        "generic_irreducible_hexagon_branch_witness": True,
         "next_step": (
             "Use quotient-family, Hankel, endpoint, or split-locator constraints; "
-            "do not spend effort on a subgroup-coordinate nonvanishing proof."
+            "do not spend effort on a subgroup-coordinate nonvanishing proof, "
+            "even for the generic irreducible hexagon branch."
         ),
     }
 
@@ -4357,8 +4384,14 @@ def build_certificate() -> dict[str, Any]:
         conic_four_private_hexagon_sharpness_witness["subgroup_exponents"]
         == [0, 255, 417, 261, 6, 356]
         and conic_four_private_hexagon_sharpness_witness["hexagon_factor_value_encoding"] == 0
+        and conic_four_private_hexagon_sharpness_witness[
+            "alternating_line_factor_value_nonzero"
+        ]
+        and conic_four_private_hexagon_sharpness_witness[
+            "generic_irreducible_hexagon_branch_witness"
+        ]
         and conic_four_private_hexagon_sharpness_witness["status"]
-        == "COUNTEREXAMPLE_TO_SUBGROUP_HEXAGON_NONVANISHING",
+        == "COUNTEREXAMPLE_TO_GENERIC_SUBGROUP_HEXAGON_NONVANISHING",
         "conic four-private hexagon sharpness witness changed",
     )
     require(
@@ -5756,9 +5789,11 @@ def build_certificate() -> dict[str, Any]:
                 "The subgroup nonvanishing route for the six-cycle residual is "
                 "false.  The six order-512 subgroup exponents "
                 "0,255,417,261,6,356 give distinct residual coordinates whose "
-                "affine-normalized hexagon factor is zero.  This is only a "
-                "coordinate-level sharpness witness, not a split-locator MCA "
-                "witness."
+                "affine-normalized hexagon factor is zero and whose "
+                "alternating-line factor is nonzero.  Thus the remaining generic "
+                "irreducible hexagon branch is sharp at subgroup-coordinate "
+                "level.  This is only a coordinate-level sharpness witness, not "
+                "a split-locator MCA witness."
             ),
             "conic_four_private_two_triangle_family_profile": (
                 "The two-disjoint-triangle residual is a genuine irreducible "
@@ -6219,6 +6254,16 @@ def build_certificate() -> dict[str, Any]:
                     "hexagon_factor_value_encoding"
                 ]
             ),
+            "conic_four_private_hexagon_sharpness_alternating_factor_nonzero": (
+                conic_four_private_hexagon_sharpness_witness[
+                    "alternating_line_factor_value_nonzero"
+                ]
+            ),
+            "conic_four_private_hexagon_sharpness_generic_branch_witness": (
+                conic_four_private_hexagon_sharpness_witness[
+                    "generic_irreducible_hexagon_branch_witness"
+                ]
+            ),
             "conic_four_private_two_triangle_sharpness_exponents": (
                 conic_four_private_two_triangle_sharpness_witness["subgroup_exponents"]
             ),
@@ -6485,7 +6530,7 @@ def build_certificate() -> dict[str, Any]:
             "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
             "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction",
             "conic four-private tail boundary is reduced to two-triangle or hexagon-factor residuals",
-            "subgroup-coordinate hexagon nonvanishing is refuted by a six-cycle witness",
+            "generic subgroup-coordinate hexagon nonvanishing is refuted by a six-cycle witness off the alternating-line factor",
             "two-triangle residual is proved irreducible by root-star incidence for all disjoint residual triples",
             "six-cycle alternating-line subbranch is closed for irreducible conic components",
             "six-cycle residual live irreducible branch is the generic irreducible hexagon branch",

@@ -266,8 +266,10 @@ the only no-root-star survivors are two disjoint triangles or six-cycles, and
 the six-cycle must satisfy the normalized hexagon factor
 `a*b*d-a*c*d+a*c-a*d-b*c+c*d`.  The subgroup-coordinate nonvanishing route for
 the six-cycle is false: exponents `0,255,417,261,6,356` give a deterministic
-order-512 subgroup witness with zero hexagon factor.  The six-cycle branch
-then splits by one alternating-line factor: away from it the conic is
+order-512 subgroup witness with zero hexagon factor and nonzero
+alternating-line factor.  Thus the generic irreducible hexagon branch itself
+is sharp at subgroup-coordinate level.  The six-cycle branch then splits by
+one alternating-line factor: away from it the conic is
 irreducible, while on it the conic is the union of the lines through cycle
 edge triples `0,2,4` and `1,3,5`; the latter subbranch is closed for
 irreducible conics by Bezout.  The two-triangle

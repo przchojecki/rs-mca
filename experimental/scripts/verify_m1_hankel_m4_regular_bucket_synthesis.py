@@ -25,7 +25,7 @@ from experimental.scripts.emit_f17_32_hankel_row_descriptor import (  # noqa: E4
 )
 
 
-SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v28"
+SCHEMA_VERSION = "f17-32-m3-m4-regular-bucket-synthesis-v29"
 Q_LINE = 17**32
 TARGET_BITS = 128
 BUDGET = Q_LINE // 2**TARGET_BITS
@@ -122,7 +122,7 @@ EXPECTED_SCHEMAS = {
     M4_AFFINE_PIVOT_COMPRESSION_REF: "f17-32-m3-m4-affine-pivot-compression-v1",
     M4_AFFINE_PIVOT_GCD_REF: "f17-32-m3-m4-affine-pivot-gcd-equivalence-v1",
     LOWER_RANK_REF: "f17-32-m3-lower-rank-contained-v1",
-    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v46",
+    A386_MOVING_SLOPE_REF: "f17-32-m3-rank6-a386-moving-slope-split-incidence-v47",
 }
 
 
@@ -368,7 +368,9 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
     require(
         summary["conic_four_private_hexagon_sharpness_exponents"]
         == [0, 255, 417, 261, 6, 356]
-        and summary["conic_four_private_hexagon_sharpness_factor_value"] == 0,
+        and summary["conic_four_private_hexagon_sharpness_factor_value"] == 0
+        and summary["conic_four_private_hexagon_sharpness_alternating_factor_nonzero"]
+        and summary["conic_four_private_hexagon_sharpness_generic_branch_witness"],
         "conic four-private hexagon sharpness summary mismatch",
     )
     require(
@@ -1452,9 +1454,12 @@ def check_a386_moving_slope_packet(data: dict[str, Any]) -> None:
     )
     hexagon_sharpness = data["conic_four_private_hexagon_sharpness_witness"]
     require(
-        hexagon_sharpness["status"] == "COUNTEREXAMPLE_TO_SUBGROUP_HEXAGON_NONVANISHING"
+        hexagon_sharpness["status"]
+        == "COUNTEREXAMPLE_TO_GENERIC_SUBGROUP_HEXAGON_NONVANISHING"
         and hexagon_sharpness["subgroup_exponents"] == [0, 255, 417, 261, 6, 356]
         and hexagon_sharpness["hexagon_factor_value_encoding"] == 0
+        and hexagon_sharpness["alternating_line_factor_value_nonzero"]
+        and hexagon_sharpness["generic_irreducible_hexagon_branch_witness"]
         and hexagon_sharpness["not_an_mca_witness"],
         "conic four-private hexagon sharpness witness mismatch",
     )
@@ -1741,7 +1746,7 @@ def build_certificate() -> dict[str, Any]:
                 "the K4 conic boundary is also closed: after the common residual core is factored, the six finite members become the six pair quadratics from four residual coordinates, and the determinant of their conic-evaluation matrix is prod_{i<j}(x_j-x_i)^2",
                 "the conic d=r'+3 branch e_G=103..108 is closed by a root-star Bezout obstruction: six selected pairs on five residual coordinates force three pair-quadratic points on one root-star line, impossible for an irreducible conic",
                 "the conic d=r'+4 branch e_G=97..102 is reduced to two-disjoint-triangle or six-cycle hexagon-factor quotient residuals; all max-degree-at-least-3 graphs close by root-star Bezout",
-                "the six-cycle hexagon residual is real at subgroup-coordinate level: exponents 0,255,417,261,6,356 make the normalized hexagon factor vanish, so closure must use quotient/Hankel/split-locator constraints rather than subgroup nonvanishing",
+                "the generic six-cycle hexagon residual is real at subgroup-coordinate level: exponents 0,255,417,261,6,356 make the normalized hexagon factor vanish while the alternating-line factor is nonzero, so closure must use quotient/Hankel/split-locator constraints rather than subgroup nonvanishing",
                 "within the six-cycle residual, one alternating-line factor separates the generic irreducible conic branch from the reducible branch where cycle edges 0,2,4 and 1,3,5 lie on two lines; that alternating-line subbranch is closed for irreducible conic components by Bezout",
                 "the two-disjoint-triangle residual is a genuine irreducible conic branch for every pair of disjoint residual triples; the six points are co-conic, and reducibility would force a forbidden line through three pair-quadratic points",
                 "the subgroup exponents 0,1,2,3,4,5 give a concrete arithmetic replay of the two-triangle irreducible branch",
@@ -1846,7 +1851,7 @@ def build_certificate() -> dict[str, Any]:
             "translated compressed rank-6 chart polynomials preserve the v10 canonical gcd root set after good pivots",
             "A=386 moving-slope small-core and very-high-core tail branches are recorded as projective-safe; the intermediate high-core quotient ranges remain residual",
             "A=386 conic four-private residuals are reduced to two-triangle or hexagon-factor boundary shapes",
-            "A=386 conic hexagon-factor subgroup nonvanishing is ruled out as a closure route by a deterministic witness",
+            "A=386 generic conic hexagon-factor subgroup nonvanishing is ruled out as a closure route by a deterministic witness off the alternating-line factor",
             "A=386 conic six-cycle alternating-line subbranch is closed for irreducible conic components",
             "A=386 conic six-cycle live irreducible residual is the generic hexagon branch",
             "A=386 conic two-triangle residuals are proved irreducible for all disjoint residual triples",

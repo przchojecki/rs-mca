@@ -204,7 +204,7 @@
     "one-over finite-incidence moving-slope residual rows are grouped by the first available saving mechanism",
     "the e=120 one-over tail is closed by the punctured tangent-star cofactor-span obstruction",
     "conic four-private tail boundary is reduced to two-triangle or hexagon-factor residuals",
-    "subgroup-coordinate hexagon nonvanishing is refuted by a six-cycle witness",
+    "generic subgroup-coordinate hexagon nonvanishing is refuted by a six-cycle witness off the alternating-line factor",
     "two-triangle residual is proved irreducible by root-star incidence for all disjoint residual triples",
     "six-cycle alternating-line subbranch is closed for irreducible conic components",
     "six-cycle residual live irreducible branch is the generic irreducible hexagon branch",
@@ -3757,10 +3757,14 @@
   ],
   "conic_four_private_hexagon_sharpness_witness": {
     "affine_normalization": "x_i -> (x_i-x_0)/(x_1-x_0)",
+    "alternating_line_factor": "a^2*b*c-a^2*b-a^2*c^2+a*b*c+a*c^2-b*c^2",
+    "alternating_line_factor_value_encoding": 1733274020198586835588601640075152326119,
+    "alternating_line_factor_value_nonzero": true,
+    "generic_irreducible_hexagon_branch_witness": true,
     "hexagon_factor": "a*b*d-a*c*d+a*c-a*d-b*c+c*d",
     "hexagon_factor_value_encoding": 0,
-    "meaning": "The six-cycle residual cannot be closed by proving the normalized hexagon factor is nonzero on the order-512 subgroup.",
-    "next_step": "Use quotient-family, Hankel, endpoint, or split-locator constraints; do not spend effort on a subgroup-coordinate nonvanishing proof.",
+    "meaning": "The six-cycle residual cannot be closed by proving the normalized hexagon factor is nonzero on the order-512 subgroup, even after removing the alternating-line subbranch.",
+    "next_step": "Use quotient-family, Hankel, endpoint, or split-locator constraints; do not spend effort on a subgroup-coordinate nonvanishing proof, even for the generic irreducible hexagon branch.",
     "normalized_coordinates_encoding": [
       0,
       1,
@@ -3796,7 +3800,7 @@
         0
       ]
     ],
-    "status": "COUNTEREXAMPLE_TO_SUBGROUP_HEXAGON_NONVANISHING",
+    "status": "COUNTEREXAMPLE_TO_GENERIC_SUBGROUP_HEXAGON_NONVANISHING",
     "subgroup_encodings": [
       1,
       299830421351099739425461514467808717440,
@@ -21034,7 +21038,7 @@
       "denominator_formula": "|P^1(F)| = |F| + 1"
     }
   },
-  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v46",
+  "schema_version": "f17-32-m3-rank6-a386-moving-slope-split-incidence-v47",
   "single_saving_closure_ledger": [
     {
       "component_type": "line",
@@ -21832,6 +21836,7 @@
       ]
     ],
     "conic_finite_safe_for_external_core_at_most": 76,
+    "conic_four_private_hexagon_sharpness_alternating_factor_nonzero": true,
     "conic_four_private_hexagon_sharpness_exponents": [
       0,
       255,
@@ -21841,6 +21846,7 @@
       356
     ],
     "conic_four_private_hexagon_sharpness_factor_value": 0,
+    "conic_four_private_hexagon_sharpness_generic_branch_witness": true,
     "conic_four_private_six_cycle_alternating_line_branch_closes": true,
     "conic_four_private_six_cycle_alternating_line_factor": "a**2*b*c - a**2*b - a**2*c**2 + a*b*c + a*c**2 - b*c**2",
     "conic_four_private_six_cycle_alternating_line_triples": [
@@ -26366,7 +26372,7 @@
     "cofactor_current_residual_profile": "Applying the cofactor-span top-saturation exclusion to the whole intermediate profile gives the current best projective envelope.  The previously raw one-over tail e_G=120 becomes safe, while e_G=119 becomes the next cofactor-improved tangent-tail one-over core before exact-agreement filtering.  The maximum line bound remains 18, and the maximum conic bound drops from 26 to 25.",
     "cofactor_improved_tangent_tail_profile": "The same cofactor-span obstruction excludes top saturation of the punctured projective tangent bound whenever the residual cofactor degree exceeds the fixed-core quotient-family dimension.  Thus the raw tangent bound r'+1 improves to r' in the high-core line/conic quotient tails until the cofactor degree drops to the ambient family dimension.  In particular e_G=120 is projective-safe for both lines and conics, while e_G=119 is the next cofactor-current one-over tangent-tail core.",
     "conic_e69_pascal_obstruction_profile": "In the extremal conic e_G=69 branch, the K6 and K6-minus-one secant graphs are not arbitrary incidence graphs if they come from six points on an irreducible conic.  Pascal's theorem gives one collinearity relation for every Hamiltonian cycle in the secant graph: 60 relations for K6 and 36 for K6-minus-one.  Failure of these relations in the external root-line arrangement would close the corresponding extremal conic branch.",
-    "conic_four_private_hexagon_sharpness_witness": "The subgroup nonvanishing route for the six-cycle residual is false.  The six order-512 subgroup exponents 0,255,417,261,6,356 give distinct residual coordinates whose affine-normalized hexagon factor is zero.  This is only a coordinate-level sharpness witness, not a split-locator MCA witness.",
+    "conic_four_private_hexagon_sharpness_witness": "The subgroup nonvanishing route for the six-cycle residual is false.  The six order-512 subgroup exponents 0,255,417,261,6,356 give distinct residual coordinates whose affine-normalized hexagon factor is zero and whose alternating-line factor is nonzero.  Thus the remaining generic irreducible hexagon branch is sharp at subgroup-coordinate level.  This is only a coordinate-level sharpness witness, not a split-locator MCA witness.",
     "conic_four_private_six_cycle_reducibility_profile": "The six-cycle hexagon residual has an exact reducibility split.  After normalizing coordinates to 0,1,a,b,c,d and using the hexagon relation to eliminate d, every three-point collinearity is forced by coordinate collision except the two alternating triples 0,2,4 and 1,3,5.  These are controlled by one alternating-line factor; off that factor the conic is irreducible, and on it the conic is the union of the two alternating lines.  The alternating-line subbranch is closed for irreducible conic components by Bezout.",
     "conic_four_private_tail_boundary_profile": "Conic cores e_G=97..102 reduce to a four-private six-pair boundary.  Root-star Bezout closes all six-edge K6 graphs with max degree at least 3.  The only no-root-star graph types are two disjoint triangles and six-cycles; the two-triangle determinant vanishes identically, and a six-cycle can survive only when the normalized hexagon factor a*b*d-a*c*d+a*c-a*d-b*c+c*d vanishes.",
     "conic_four_private_two_triangle_family_profile": "The two-disjoint-triangle residual is a genuine irreducible conic branch for every pair of disjoint residual triples.  The six points are co-conic identically.  If that conic were reducible, one component line would contain at least three of the six points; but any three selected points contain two edges from one root triangle, whose line is a root-star line, and the third selected edge does not contain that root.",
