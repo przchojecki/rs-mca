@@ -81,6 +81,13 @@ one-parameter monic locator pencil, each of degree at most `n-j+1` in the
 kernel parameter.  Higher kernel dimension and identically valid pencils are
 honest residual branches.
 
+There is one rank-drop branch that is not a residual.  If the Hankel moment
+window is supported on `s<j` distinct domain roots, then the degree-`s`
+support annihilator already lies in the kernel.  Any degree-`j` split locator
+obtained by multiplying this annihilator by extra domain roots is a contained
+extension: it witnesses agreement at least `n-s`, not a new exact bucket at
+`A=n-j`.
+
 ## Specializations
 
 For the toy acid row `F_97`, `n=16`, `k=8`, `A=12`:
@@ -108,7 +115,8 @@ generic rank-drop local degree bound = 385.
 
 Thus the remaining full-row task is sharply defined: compute or label the
 top-chart pseudo-remainder root table and the rank-drop kernel-pivot branches.
-The low-degree chart is already deduped into higher agreement.
+The low-degree chart and contained moment-support rank-drop branches are
+already deduped into higher agreement.
 
 ## Planted Top-Chart Overlap Pruning
 

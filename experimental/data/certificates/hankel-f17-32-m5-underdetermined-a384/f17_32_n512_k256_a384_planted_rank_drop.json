@@ -12,8 +12,12 @@
     },
     "rank_drop_chart": {
       "chart_status": "rank-drop side chart with valid split locator witness",
+      "contained_branch_deduped": true,
+      "dedup_target_agreement": 386,
       "j": 128,
       "kernel_dimension_at_least": 3,
+      "lower_degree_annihilator_degree": 126,
+      "new_exact_a384_contribution": false,
       "rank": 126,
       "t": 128,
       "valid_degree_128_locator_in_kernel": true

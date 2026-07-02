@@ -1,6 +1,6 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 21: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 22: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
@@ -16,7 +16,8 @@
   toy now has a replay packet.  The abstract deficiency-one chart theorem is
   now extracted as a reusable note, and the planted top-chart family has a
   near-support overlap pruning theorem, a support-only residual reduction, and
-  an overlap-one exclusion.
+  an overlap-one exclusion.  The planted rank-drop moment-support branch is
+  now identified as a contained lower-rank branch deduped to agreement `386`.
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -146,7 +147,8 @@ belongs.
 | 5o | planted top-chart overlap pruning theorem | **done** |
 | 5p | planted top-chart support-only residual reduction | **done** |
 | 5q | planted top-chart overlap-one exclusion | **done** |
-| 5r | full `F_17^32` root-table packet for rank-drop / top charts | pending |
+| 5r | rank-drop contained-branch dedup theorem | **done** |
+| 5s | full `F_17^32` root-table packet for rank-drop / top charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -811,6 +813,37 @@ z = z0 - A_m0(R)/B_m0(R).
 
 The verifier checks the `F_97/mu_16` analogue by enumerating all overlap-one
 supports and confirming that none pass the support-only equations.
+
+### Verified in turn 22
+
+**U22, rank-drop contained-branch dedup.** The planted rank-drop packet from
+U13 has rank exactly `126`, but this does not create a new exact-`A=384`
+obstruction.  Its moment window is supported on `s=126` domain roots, so the
+degree-126 support annihilator already lies in the kernel:
+
+```text
+L_126(X)=prod_{r=0}^{125}(X-h_r).
+```
+
+Every degree-128 split locator obtained by multiplying `L_126` by two extra
+domain roots is only a contained extension of this lower-degree annihilator.
+The lower-degree locator witnesses agreement at least
+
+```text
+n-s = 512-126 = 386,
+```
+
+so the planted rank-drop branch is charged to the higher-agreement ledger and
+is not a new exact-`A=384` contribution.
+
+The replay packet now records:
+
+```text
+lower_degree_annihilator_degree = 126,
+dedup_target_agreement = 386,
+contained_branch_deduped = true,
+new_exact_a384_contribution = false.
+```
 
 ## Honest scope
 

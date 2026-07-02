@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 rank-drop contained-branch dedup
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_deficiency_one_chart_theorem.md`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/f17_32_n512_k256_a384_planted_rank_drop.json`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  Exact-bucket dedup theorem for the
+  planted moment-support rank-drop packet; no worst-case row claim.
+- **What is being added:** Turn 22 of the `A=384` M5 packet: the rank-drop
+  moment-support branch with support size `126` has a degree-126 split
+  annihilator, so degree-128 extensions are contained branches charged to
+  agreement `386`, not new exact-`A=384` contributions.
+- **How it is useful:** Removes the planted rank-drop witness from the
+  residual obstruction list and sharpens what remains to generic rank-drop
+  kernel-pivot branches plus the disjoint top-chart support equations.
+- **What to do next:** Attack the disjoint top support-only residual or the
+  generic rank-drop kernel-pivot root table.
+
 ### 2026-07-02 - M5 A384 planted top overlap-one exclusion
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

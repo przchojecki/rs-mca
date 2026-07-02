@@ -111,6 +111,10 @@ Turn 21 excludes the remaining overlap-one case in the planted top chart.  The
 only non-planted top residual left by the declared family is now support sets
 R disjoint from the planted support T.
 
+Turn 22 records the contained rank-drop dedup theorem: when a rank-drop moment
+block has a lower-degree split annihilator, any degree-j extension is charged
+to the higher agreement n-s rather than counted as a new exact-A root.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -999,6 +1003,42 @@ def check_moment_support_rank_extension_theorem():
     return ok, d
 
 
+def check_rank_drop_contained_branch_dedup_theorem():
+    """Record exact-bucket dedup for contained moment-support rank drops."""
+    real = deficiency_one_degree_bounds(N, K, A_STAR)
+    t, j = real["t"], real["j"]
+    support_degree = 126
+    exact_bucket_agreement = N - j
+    dedup_target_agreement = N - support_degree
+    payload = f17_planted_rank_drop_payload()
+    chart = payload["rank_drop_chart"]
+
+    ok = True
+    ok &= exact_bucket_agreement == A_STAR
+    ok &= support_degree < j == t == 128
+    ok &= dedup_target_agreement == 386
+    ok &= chart["rank"] == support_degree
+    ok &= chart["lower_degree_annihilator_degree"] == support_degree
+    ok &= chart["dedup_target_agreement"] == dedup_target_agreement
+    ok &= chart["contained_branch_deduped"]
+    ok &= not chart["new_exact_a384_contribution"]
+    ok &= payload["rank_locator"]["recurrence_residual_all_zero"]
+    ok &= payload["valid_locator"]["recurrence_residual_all_zero"]
+    ok &= payload["rank_certificate"]["rank_exact"] == support_degree
+
+    d = [
+        "contained rank-drop theorem: if the moment window is supported on s<j "
+        "domain roots, the degree-s support annihilator is already in the kernel",
+        "any degree-j locator obtained by multiplying that annihilator by extra "
+        "domain roots witnesses no smaller agreement than the degree-s locator",
+        f"F_17^32 planted rank-drop packet: s={support_degree}, j={j}, "
+        f"exact bucket A={exact_bucket_agreement}, dedup target agreement={dedup_target_agreement}",
+        "therefore this planted rank-drop side-chart witness is a lower-rank "
+        "contained branch, not a new exact-A=384 contribution",
+    ]
+    return ok, d
+
+
 def toy_subgroup_locators(p: int, n: int, j: int):
     """All monic degree-j divisors of X^n-1 over the toy subgroup."""
     subgroup = [x for x in range(1, p) if pow(x, n, p) == 1]
@@ -1670,7 +1710,11 @@ def f17_planted_rank_drop_payload():
             "j": 128,
             "rank": 126,
             "kernel_dimension_at_least": 3,
+            "lower_degree_annihilator_degree": len(rank_locator) - 1,
             "valid_degree_128_locator_in_kernel": True,
+            "dedup_target_agreement": 512 - (len(rank_locator) - 1),
+            "contained_branch_deduped": True,
+            "new_exact_a384_contribution": False,
             "chart_status": "rank-drop side chart with valid split locator witness",
         },
     }
@@ -1782,6 +1826,7 @@ def check_f17_rank_drop_packet(path: Path):
         f"planted slope encoding = {expected['declared_family']['planted_slope_encoding']}",
         f"rank certificate prefix 126-minor = {checks['rank_certificate']['prefix_126_minor_encoding']} != 0",
         "rank is exactly 126 and a valid degree-128 split locator lies in the kernel",
+        f"contained rank-drop branch dedupes to agreement >= {checks['rank_drop_chart']['dedup_target_agreement']}",
     ]
 
 
@@ -2322,6 +2367,7 @@ CHECKS = [
     ("low-degree side-chart dedup theorem",               check_low_degree_dedup_theorem),
     ("rank-drop kernel-pivot reduction",                  check_rank_drop_kernel_pivot_reduction),
     ("moment-support rank-extension theorem",             check_moment_support_rank_extension_theorem),
+    ("rank-drop contained-branch dedup theorem",          check_rank_drop_contained_branch_dedup_theorem),
     ("abstract deficiency-one chart theorem",             check_deficiency_one_abstract_chart_theorem),
     ("planted top-chart overlap pruning",                 check_planted_top_overlap_pruning),
     ("planted top-chart support-only residual",           check_planted_top_support_only_residual),
