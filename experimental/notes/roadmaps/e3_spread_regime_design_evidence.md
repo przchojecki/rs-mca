@@ -62,6 +62,30 @@ and a constant-slope matrix has row rank at most
 j+t.
 ```
 
+This cap is a proved row-space statement, not a heuristic.  Let
+
+```text
+M_d = (x^d)_{x in D},        1 <= d <= j+t.
+```
+
+The `u`-part of every row lies in `span{M_1,...,M_{j+t}}`, and so does the
+`v`-part.  Hence the row space of a distinct-slope stack lies in
+
+```text
+span{(M_d,0), (0,M_d) : 1 <= d <= j+t},
+```
+
+giving rank at most `2(j+t)`.  If all slopes are the same constant `z`, the
+row space lies in
+
+```text
+span{(M_d,z M_d) : 1 <= d <= j+t},
+```
+
+giving rank at most `j+t`.  The verifier records this as an explicit
+row-space inclusion certificate: for every tested slope mode, appending the
+stacked rows to the corresponding moment basis does not increase its rank.
+
 The verifier therefore compares rank both to the naive `2n` ambient variable
 space and to this degree-moment cap.  The decision rule is:
 

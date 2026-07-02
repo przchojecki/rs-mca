@@ -320,6 +320,55 @@ def slope_sequence(mode: str, count: int, p: int = P) -> list[int]:
     raise ValueError(mode)
 
 
+def moment_row(domain: list[int], degree: int, p: int = P) -> list[int]:
+    return [pow(x, degree, p) for x in domain]
+
+
+def degree_moment_basis(
+    domain: list[int],
+    max_degree: int,
+    slope_mode: str,
+    p: int = P,
+) -> list[list[int]]:
+    n = len(domain)
+    basis: list[list[int]] = []
+    if slope_mode == "constant_one":
+        for degree in range(1, max_degree + 1):
+            row = moment_row(domain, degree, p)
+            basis.append(row + row)
+    else:
+        zeros = [0] * n
+        for degree in range(1, max_degree + 1):
+            row = moment_row(domain, degree, p)
+            basis.append(row + zeros)
+        for degree in range(1, max_degree + 1):
+            row = moment_row(domain, degree, p)
+            basis.append(zeros + row)
+    return basis
+
+
+def degree_moment_inclusion_certificate(
+    domain: list[int],
+    matrix: list[list[int]],
+    max_degree: int,
+    slope_mode: str,
+    p: int = P,
+) -> dict[str, Any]:
+    basis = degree_moment_basis(domain, max_degree, slope_mode, p)
+    basis_rank = rank_mod_p(basis, p)
+    matrix_rank = rank_mod_p(matrix, p)
+    joined_rank = rank_mod_p(basis + matrix, p)
+    included = joined_rank == basis_rank
+    return {
+        "max_degree": max_degree,
+        "basis_rows": len(basis),
+        "basis_rank": basis_rank,
+        "matrix_rank": matrix_rank,
+        "joined_rank": joined_rank,
+        "rowspace_included_in_degree_moment_basis": included,
+    }
+
+
 def nondegeneracy_certificate(
     domain: list[int],
     family: list[tuple[int, ...]],
@@ -405,6 +454,18 @@ def analyze_slope_mode(
     degree_cap_losses = []
     degree_cap_loss_nondegenerate_prefixes = []
     first_degree_cap_prefix = None
+    full_matrix = stacked_alignment_matrix(domain, family, t, full_slopes, p)
+    rowspace_certificate = degree_moment_inclusion_certificate(
+        domain,
+        full_matrix,
+        j + t,
+        name,
+        p,
+    )
+    if not rowspace_certificate["rowspace_included_in_degree_moment_basis"]:
+        raise AssertionError(f"{name} rows are not in the degree-moment basis")
+    if rowspace_certificate["basis_rank"] > degree_cap:
+        raise AssertionError(f"{name} basis rank exceeds declared degree cap")
     largest_nondegenerate_prefix = 0
     largest_nondegenerate_nullity = 0
     for prefix in range(1, len(family) + 1):
@@ -490,6 +551,7 @@ def analyze_slope_mode(
         "degree_moment_rank_cap_formula": (
             "j+t for constant-slope rows; 2(j+t) for distinct-slope rows"
         ),
+        "degree_moment_rowspace_certificate": rowspace_certificate,
         "first_prefix_with_full_ambient_rank": first_saturation,
         "first_prefix_reaching_degree_moment_cap": first_degree_cap_prefix,
         "ambient_bound_prefix_nondegeneracy_certificate": certificate,

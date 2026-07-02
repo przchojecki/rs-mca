@@ -75,6 +75,14 @@
           },
           "degree_moment_rank_cap": 12,
           "degree_moment_rank_cap_formula": "j+t for constant-slope rows; 2(j+t) for distinct-slope rows",
+          "degree_moment_rowspace_certificate": {
+            "basis_rank": 12,
+            "basis_rows": 12,
+            "joined_rank": 12,
+            "matrix_rank": 12,
+            "max_degree": 6,
+            "rowspace_included_in_degree_moment_basis": true
+          },
           "first_prefix_reaching_degree_moment_cap": 7,
           "first_prefix_with_full_ambient_rank": 21,
           "hidden_loss_nondegenerate_prefixes": {
@@ -241,6 +249,14 @@
           },
           "degree_moment_rank_cap": 12,
           "degree_moment_rank_cap_formula": "j+t for constant-slope rows; 2(j+t) for distinct-slope rows",
+          "degree_moment_rowspace_certificate": {
+            "basis_rank": 12,
+            "basis_rows": 12,
+            "joined_rank": 12,
+            "matrix_rank": 12,
+            "max_degree": 6,
+            "rowspace_included_in_degree_moment_basis": true
+          },
           "first_prefix_reaching_degree_moment_cap": 7,
           "first_prefix_with_full_ambient_rank": 21,
           "hidden_loss_nondegenerate_prefixes": {
@@ -402,6 +418,14 @@
           },
           "degree_moment_rank_cap": 6,
           "degree_moment_rank_cap_formula": "j+t for constant-slope rows; 2(j+t) for distinct-slope rows",
+          "degree_moment_rowspace_certificate": {
+            "basis_rank": 6,
+            "basis_rows": 6,
+            "joined_rank": 6,
+            "matrix_rank": 6,
+            "max_degree": 6,
+            "rowspace_included_in_degree_moment_basis": true
+          },
           "first_prefix_reaching_degree_moment_cap": 6,
           "first_prefix_with_full_ambient_rank": 21,
           "hidden_loss_nondegenerate_prefixes": {
@@ -600,6 +624,14 @@
           },
           "degree_moment_rank_cap": 16,
           "degree_moment_rank_cap_formula": "j+t for constant-slope rows; 2(j+t) for distinct-slope rows",
+          "degree_moment_rowspace_certificate": {
+            "basis_rank": 16,
+            "basis_rows": 16,
+            "joined_rank": 16,
+            "matrix_rank": 16,
+            "max_degree": 8,
+            "rowspace_included_in_degree_moment_basis": true
+          },
           "first_prefix_reaching_degree_moment_cap": 6,
           "first_prefix_with_full_ambient_rank": 34,
           "hidden_loss_nondegenerate_prefixes": {
@@ -770,6 +802,14 @@
           },
           "degree_moment_rank_cap": 16,
           "degree_moment_rank_cap_formula": "j+t for constant-slope rows; 2(j+t) for distinct-slope rows",
+          "degree_moment_rowspace_certificate": {
+            "basis_rank": 16,
+            "basis_rows": 16,
+            "joined_rank": 16,
+            "matrix_rank": 16,
+            "max_degree": 8,
+            "rowspace_included_in_degree_moment_basis": true
+          },
           "first_prefix_reaching_degree_moment_cap": 6,
           "first_prefix_with_full_ambient_rank": 34,
           "hidden_loss_nondegenerate_prefixes": {
@@ -927,6 +967,14 @@
           },
           "degree_moment_rank_cap": 8,
           "degree_moment_rank_cap_formula": "j+t for constant-slope rows; 2(j+t) for distinct-slope rows",
+          "degree_moment_rowspace_certificate": {
+            "basis_rank": 8,
+            "basis_rows": 8,
+            "joined_rank": 8,
+            "matrix_rank": 8,
+            "max_degree": 8,
+            "rowspace_included_in_degree_moment_basis": true
+          },
           "first_prefix_reaching_degree_moment_cap": 3,
           "first_prefix_with_full_ambient_rank": 34,
           "hidden_loss_nondegenerate_prefixes": {
@@ -1127,6 +1175,14 @@
           },
           "degree_moment_rank_cap": 18,
           "degree_moment_rank_cap_formula": "j+t for constant-slope rows; 2(j+t) for distinct-slope rows",
+          "degree_moment_rowspace_certificate": {
+            "basis_rank": 18,
+            "basis_rows": 18,
+            "joined_rank": 18,
+            "matrix_rank": 18,
+            "max_degree": 9,
+            "rowspace_included_in_degree_moment_basis": true
+          },
           "first_prefix_reaching_degree_moment_cap": 6,
           "first_prefix_with_full_ambient_rank": 65,
           "hidden_loss_nondegenerate_prefixes": {
@@ -1297,6 +1353,14 @@
           },
           "degree_moment_rank_cap": 18,
           "degree_moment_rank_cap_formula": "j+t for constant-slope rows; 2(j+t) for distinct-slope rows",
+          "degree_moment_rowspace_certificate": {
+            "basis_rank": 18,
+            "basis_rows": 18,
+            "joined_rank": 18,
+            "matrix_rank": 18,
+            "max_degree": 9,
+            "rowspace_included_in_degree_moment_basis": true
+          },
           "first_prefix_reaching_degree_moment_cap": 6,
           "first_prefix_with_full_ambient_rank": 65,
           "hidden_loss_nondegenerate_prefixes": {
@@ -1454,6 +1518,14 @@
           },
           "degree_moment_rank_cap": 9,
           "degree_moment_rank_cap_formula": "j+t for constant-slope rows; 2(j+t) for distinct-slope rows",
+          "degree_moment_rowspace_certificate": {
+            "basis_rank": 9,
+            "basis_rows": 9,
+            "joined_rank": 9,
+            "matrix_rank": 9,
+            "max_degree": 9,
+            "rowspace_included_in_degree_moment_basis": true
+          },
           "first_prefix_reaching_degree_moment_cap": 3,
           "first_prefix_with_full_ambient_rank": 65,
           "hidden_loss_nondegenerate_prefixes": {
@@ -1652,6 +1724,14 @@
           },
           "degree_moment_rank_cap": 20,
           "degree_moment_rank_cap_formula": "j+t for constant-slope rows; 2(j+t) for distinct-slope rows",
+          "degree_moment_rowspace_certificate": {
+            "basis_rank": 20,
+            "basis_rows": 20,
+            "joined_rank": 20,
+            "matrix_rank": 20,
+            "max_degree": 10,
+            "rowspace_included_in_degree_moment_basis": true
+          },
           "first_prefix_reaching_degree_moment_cap": 5,
           "first_prefix_with_full_ambient_rank": 70,
           "hidden_loss_nondegenerate_prefixes": {
@@ -1832,6 +1912,14 @@
           },
           "degree_moment_rank_cap": 20,
           "degree_moment_rank_cap_formula": "j+t for constant-slope rows; 2(j+t) for distinct-slope rows",
+          "degree_moment_rowspace_certificate": {
+            "basis_rank": 20,
+            "basis_rows": 20,
+            "joined_rank": 20,
+            "matrix_rank": 20,
+            "max_degree": 10,
+            "rowspace_included_in_degree_moment_basis": true
+          },
           "first_prefix_reaching_degree_moment_cap": 5,
           "first_prefix_with_full_ambient_rank": 70,
           "hidden_loss_nondegenerate_prefixes": {
@@ -1999,6 +2087,14 @@
           },
           "degree_moment_rank_cap": 10,
           "degree_moment_rank_cap_formula": "j+t for constant-slope rows; 2(j+t) for distinct-slope rows",
+          "degree_moment_rowspace_certificate": {
+            "basis_rank": 10,
+            "basis_rows": 10,
+            "joined_rank": 10,
+            "matrix_rank": 10,
+            "max_degree": 10,
+            "rowspace_included_in_degree_moment_basis": true
+          },
           "first_prefix_reaching_degree_moment_cap": 3,
           "first_prefix_with_full_ambient_rank": 70,
           "hidden_loss_nondegenerate_prefixes": {
@@ -2153,7 +2249,7 @@
   "overall_interpretation": "NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE",
   "pre_registered_question": "Can co-support designs with pairwise support intersections < k create hidden distinct-slope alignment dependencies before the ambient 2n-variable rank limit?",
   "prime": 193,
-  "script_sha256": "4b158c9d1e8d73944c9ad58f92ed772d602c1d06f502f8afe8a269cc760214ef",
+  "script_sha256": "8e3a8e328c243548d444c98eb57e53a8191b98324a349799079c029126f1ac20",
   "seed": 2026070203,
   "status": "EXPERIMENTAL / AUDIT",
   "title": "E3 spread-regime design evidence"

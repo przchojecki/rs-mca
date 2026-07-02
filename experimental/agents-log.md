@@ -86,7 +86,9 @@ Keep entries concise and link to the relevant files.
   families produce no nondegenerate distinct-slope spread counterexample, while
   the constant-slope diagnostic shows why one-slope fibers must be separated
   from many-slope evidence.  The degree-moment cap explains the universal
-  ambient rank loss and prevents misreading it as design-specific evidence.
+  ambient rank loss and prevents misreading it as design-specific evidence;
+  the verifier checks this by appending every stack to the explicit moment
+  basis and confirming the rank does not increase.
 - **What to do next:** Turn the observed pattern into a lemma target:
   higher-order rank loss in spread families should either be bounded-prefix or
   force `v`-syndrome degeneracy.  Broaden the falsifier to larger designs only
