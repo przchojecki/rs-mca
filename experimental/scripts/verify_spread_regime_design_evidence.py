@@ -395,11 +395,16 @@ def analyze_slope_mode(
     p: int = P,
 ) -> dict[str, Any]:
     n = len(domain)
+    j = len(family[0])
+    degree_cap = j + t if name == "constant_one" else min(2 * n, 2 * (j + t))
     full_slopes = slope_sequence(name, len(family), p)
     rows = []
     first_saturation = None
     hidden_losses = []
     hidden_loss_nondegenerate_prefixes = []
+    degree_cap_losses = []
+    degree_cap_loss_nondegenerate_prefixes = []
+    first_degree_cap_prefix = None
     largest_nondegenerate_prefix = 0
     largest_nondegenerate_nullity = 0
     for prefix in range(1, len(family) + 1):
@@ -407,12 +412,18 @@ def analyze_slope_mode(
         rank = rank_mod_p(matrix, p)
         equation_rows = prefix * t
         expected_rank = min(equation_rows, 2 * n)
+        expected_degree_rank = min(equation_rows, degree_cap)
         deficiency = expected_rank - rank
+        degree_deficiency = expected_degree_rank - rank
         nullity = 2 * n - rank
         if first_saturation is None and rank == 2 * n:
             first_saturation = prefix
+        if first_degree_cap_prefix is None and rank == degree_cap:
+            first_degree_cap_prefix = prefix
         if equation_rows <= 2 * n and deficiency:
             hidden_losses.append({"prefix": prefix, "deficiency": deficiency})
+        if equation_rows <= degree_cap and degree_deficiency:
+            degree_cap_losses.append({"prefix": prefix, "deficiency": degree_deficiency})
         cert = nondegeneracy_certificate(
             domain,
             family[:prefix],
@@ -429,12 +440,20 @@ def analyze_slope_mode(
                     "deficiency": deficiency,
                     "nullity": cert["nullity"],
                 })
+            if equation_rows <= degree_cap and degree_deficiency:
+                degree_cap_loss_nondegenerate_prefixes.append({
+                    "prefix": prefix,
+                    "deficiency": degree_deficiency,
+                    "nullity": cert["nullity"],
+                })
         rows.append({
             "prefix_locators": prefix,
             "equation_rows": equation_rows,
             "rank": rank,
             "expected_ambient_rank": expected_rank,
             "deficiency_vs_ambient": deficiency,
+            "expected_degree_cap_rank": expected_degree_rank,
+            "deficiency_vs_degree_cap": degree_deficiency,
             "nullity": nullity,
         })
 
@@ -448,24 +467,41 @@ def analyze_slope_mode(
     )
     if first_saturation is None:
         first_saturation = len(family) + 1
+    if first_degree_cap_prefix is None:
+        first_degree_cap_prefix = len(family) + 1
     if name == "constant_one":
-        classification = "same_slope_diagnostic_not_an_E3_distinct_slope_test"
-    elif hidden_loss_nondegenerate_prefixes:
-        classification = "candidate_nondegenerate_hidden_spread_dependency"
+        classification = (
+            "same_slope_design_specific_degree_loss"
+            if degree_cap_losses
+            else "same_slope_degree_cap_diagnostic_not_an_E3_distinct_slope_test"
+        )
+    elif degree_cap_loss_nondegenerate_prefixes:
+        classification = "candidate_nondegenerate_design_specific_spread_dependency"
+    elif degree_cap_losses:
+        classification = "design_specific_rank_loss_detected_but_degenerate_v_kernel"
     elif hidden_losses:
-        classification = "rank_loss_detected_but_degenerate_v_kernel"
+        classification = "moment_quotient_cap_limited_no_extra_dependency"
     else:
-        classification = "ambient_limited_no_hidden_distinct_slope_rank_loss"
+        classification = "ambient_limited_before_moment_cap"
     return {
         "slope_mode": name,
         "ambient_linear_bound_floor((2n-1)/t)": ambient_linear_bound,
+        "degree_moment_rank_cap": degree_cap,
+        "degree_moment_rank_cap_formula": (
+            "j+t for constant-slope rows; 2(j+t) for distinct-slope rows"
+        ),
         "first_prefix_with_full_ambient_rank": first_saturation,
+        "first_prefix_reaching_degree_moment_cap": first_degree_cap_prefix,
         "ambient_bound_prefix_nondegeneracy_certificate": certificate,
         "largest_nondegenerate_prefix_certified": largest_nondegenerate_prefix,
         "largest_nondegenerate_prefix_nullity": largest_nondegenerate_nullity,
         "hidden_losses_before_ambient_saturation": summarize_prefix_records(hidden_losses),
         "hidden_loss_nondegenerate_prefixes": summarize_prefix_records(
             hidden_loss_nondegenerate_prefixes
+        ),
+        "degree_cap_losses": summarize_prefix_records(degree_cap_losses),
+        "degree_cap_loss_nondegenerate_prefixes": summarize_prefix_records(
+            degree_cap_loss_nondegenerate_prefixes
         ),
         "sampled_prefix_rows": [
             row for row in rows
@@ -474,6 +510,7 @@ def analyze_slope_mode(
                 or row["prefix_locators"] == len(family)
                 or row["prefix_locators"] == ambient_linear_bound
                 or row["prefix_locators"] == first_saturation
+                or row["prefix_locators"] == first_degree_cap_prefix
             )
         ],
         "all_prefix_rows_sha256": sha256_text(json.dumps(rows, sort_keys=True)),
@@ -538,7 +575,7 @@ def analyze_case(case: dict[str, Any]) -> dict[str, Any]:
     distinct_candidates = [
         result for result in mode_results
         if result["slope_mode"] != "constant_one"
-        and result["hidden_loss_nondegenerate_prefixes"]["count"]
+        and result["degree_cap_loss_nondegenerate_prefixes"]["count"]
     ]
     return {
         "name": case["name"],
@@ -578,17 +615,18 @@ def build_report() -> dict[str, Any]:
             "For each design family, stack the linear systems "
             "S_T(u)+z_T S_T(v)=0 over F_193 for distinct slopes z_T. "
             "Pairwise intersections are below the FM1 dependency threshold, "
-            "so any early rank loss is higher-order spread evidence."
+            "The verifier compares rank both to the ambient 2n variable space "
+            "and to the proved degree-moment cap 2(j+t)."
         ),
         "interpretation_table": {
             "NO_NONDEGENERATE_DISTINCT_SPREAD_COUNTEREXAMPLE": (
                 "No tested spread design produced a nondegenerate distinct-slope "
-                "rank-loss prefix. Rank losses that do appear collapse into the "
-                "S_T(v)=0 kernel, so they are not finite-slope mass."
+                "rank-loss prefix beyond the degree-moment cap. Ambient rank "
+                "losses are explained by the universal moment quotient."
             ),
             "CANDIDATE_SPREAD_COUNTEREXAMPLE": (
-                "A nondegenerate distinct-slope rank loss before ambient "
-                "saturation was found; package the minimal case as a "
+                "A nondegenerate distinct-slope rank loss below the "
+                "degree-moment cap was found; package the minimal case as a "
                 "counterexample candidate."
             ),
         },
@@ -628,13 +666,14 @@ def main() -> None:
         for result in case["slope_mode_results"]:
             print(
                 "    {mode}: first full rank prefix={sat}, bound={bound}, "
-                "hidden losses={losses}, hidden+nondeg={hnondeg}, "
+                "degree cap={dcap} at prefix={dpre}, degree losses={dlosses}, "
                 "largest nondeg={nondeg}".format(
                     mode=result["slope_mode"],
                     sat=result["first_prefix_with_full_ambient_rank"],
                     bound=result["ambient_linear_bound_floor((2n-1)/t)"],
-                    losses=result["hidden_losses_before_ambient_saturation"]["count"],
-                    hnondeg=result["hidden_loss_nondegenerate_prefixes"]["count"],
+                    dcap=result["degree_moment_rank_cap"],
+                    dpre=result["first_prefix_reaching_degree_moment_cap"],
+                    dlosses=result["degree_cap_losses"]["count"],
                     nondeg=result["largest_nondegenerate_prefix_certified"],
                 )
             )

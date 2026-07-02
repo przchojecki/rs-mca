@@ -79,13 +79,14 @@ Keep entries concise and link to the relevant files.
 - **What is being added:** A deterministic E3 evidence packet tests spread
   co-support designs with pairwise agreement-support intersections `< k`.
   The verifier stacks distinct-slope split-locator equations and checks
-  whether rank losses before ambient saturation are nondegenerate finite-slope
-  mass or collapse into the `S_T(v)=0` kernel.
+  whether rank losses below the proved degree-moment cap `2(j+t)` are
+  nondegenerate finite-slope mass or collapse into the `S_T(v)=0` kernel.
 - **How it is useful:** This probes the `spread_regime_bound` / `r2_rigidity`
   fork from Fable's evidence plan.  The tested AG(2,4) and greedy packing
   families produce no nondegenerate distinct-slope spread counterexample, while
   the constant-slope diagnostic shows why one-slope fibers must be separated
-  from many-slope evidence.
+  from many-slope evidence.  The degree-moment cap explains the universal
+  ambient rank loss and prevents misreading it as design-specific evidence.
 - **What to do next:** Turn the observed pattern into a lemma target:
   higher-order rank loss in spread families should either be bounded-prefix or
   force `v`-syndrome degeneracy.  Broaden the falsifier to larger designs only
