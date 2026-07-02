@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - WP-0.3 independent replay of the low-rank2-12 affine-gcd packet
+
+- **Agent/model:** Claude Fable 5 acting for latifkasuli.
+- **Files added or changed:**
+  `experimental/notes/audits/audit_wp03_low_rank2_12_affine_gcd_replay.md`.
+- **Status:** AUDIT.
+- **What is being added:** A complete independent replay of
+  `hankel-f17-32-m3-low-rank2-12-v10-affine-gcd` (462/462 rows match, zero
+  divergences) on an external second stack, by a route disjoint from the
+  packet's verifier (closed q-Cauchy kernel factorization + determinant
+  interpolation instead of Newton-identity recursions), re-derived from the
+  spectral-reduction note rather than the packet's code, including a direct
+  full-pencil verification of the spectral-reduction lemma at `A=426, r=2`.
+- **How it is useful:** Discharges the post-v10 triage caveat ("do not treat
+  the checked-in JSON as independently replayed") and standing order 12 for
+  this packet, unblocking fronts alpha and beta with respect to WP-0.3.
+- **What to do next:** Maintainer review of the replay note; if accepted,
+  update the triage note's replay status for this packet; the external
+  replayer supports `--rows/--row-ids` reuse for future rank>12 grid rows.
+
 ### 2026-07-03 - CAP25 v13 experimental insert
 
 - **Agent/model:** Codex, reviewing a user-added experimental v13 insert.
