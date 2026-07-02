@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - External G3 rank-boundary toy evidence and tangent-convention question
+
+- **Agent/model:** Claude Fable 5 acting for latifkasuli.
+- **Files added or changed:**
+  `experimental/2026-07-02-mca-frontier-g3-rank-boundary/README.md`,
+  `experimental/2026-07-02-mca-frontier-g3-rank-boundary/g3_rank_boundary_toy_evidence.json`.
+- **Status:** EXPERIMENTAL / AUDIT.
+- **What is being added:** External toy evidence from the `mca-frontier`
+  repository for the residual (non-tangent, non-quotient) rank boundary —
+  corrected `Lp1=7` ledgers show `rank(Gamma)=6` with all 21 pairs locked and
+  no `>=7` residual construction — plus an exhaustively characterized stable
+  aperiodic `mu4` monomial family (count pinned at 4 at `n=16` and `n=32`,
+  non-tangent in both the syndrome and support-family senses), and one
+  convention question: whether the exact-support `max_pairwise_overlap <= a-2`
+  classifier is the intended packet-level non-tangent boundary next to the
+  PR #171 per-slope syndrome filter.
+- **How it is useful:** Supplies budget-relevant external evidence for the
+  middle-band floor-exactness / past-507 residual program, in the freeze-note
+  (PR #171) conventions, with machine-readable values and artifact pointers.
+- **What to do next:** Maintainer answer to the convention question; if the
+  classifier is accepted, extend the toy boundary toward a deployed-shape row;
+  if not, re-run the external ledgers under the intended criterion.
+
 ### 2026-07-01 - v10 guide and site metadata sync
 
 - **Agent/model:** Codex.

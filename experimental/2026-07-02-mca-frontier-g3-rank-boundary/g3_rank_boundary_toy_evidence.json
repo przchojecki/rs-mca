@@ -1,0 +1,146 @@
+{
+  "conventions": {
+    "conditional_dependency": "match of the support-family classifier to the intended M4 packet-level boundary object",
+    "object": "toy rank-boundary ledger + aperiodic family census",
+    "q_line_toy": 97,
+    "sampler": "finite_affine",
+    "statement_type": "closed-grid toy observations only",
+    "tangent_senses": {
+      "per_slope_syndrome": "z tangent iff Syn(f+zg)=u+zv=0 (PR #171 hankel-f17-32-m3-finite-tangent-overlap)",
+      "support_family": "family tangent iff max_pairwise_overlap >= a-1 on exact-size-a assigned supports; non-tangent guardrail max_pairwise_overlap <= a-2"
+    }
+  },
+  "mu4_family": {
+    "artifacts": [
+      "runs/full_ldsw_l1_monomial_aperiodic_n16_sweep.json",
+      "runs/full_ldsw_l1_monomial_n32_a24_full_grid.json",
+      "runs/full_ldsw_l1_monomial_mu4_n32_exact_sweep.json",
+      "runs/full_ldsw_l1_monomial_mu8_n32_exact_sweep.json",
+      "docs/full-ldsw-mu4-accounting-packet.md"
+    ],
+    "bad_slopes": [
+      1,
+      22,
+      75,
+      96
+    ],
+    "bad_slopes_are": "mu_4(F_97), fourth roots of unity (22^2 = -1 mod 97)",
+    "mechanism": "monomial pairs f=x^u, g=x^v, u,v >= k, nonzero iff u-v = +-n/4",
+    "rows": [
+      {
+        "a": 12,
+        "count_each": 4,
+        "k": 8,
+        "n": 16,
+        "nonzero_pairs": [
+          [
+            9,
+            13
+          ],
+          [
+            13,
+            9
+          ],
+          [
+            11,
+            15
+          ],
+          [
+            15,
+            11
+          ]
+        ],
+        "p": 97,
+        "scope": "all 28 aperiodic pairs exact",
+        "tangent_floor": 5
+      },
+      {
+        "a": 24,
+        "count_each": 4,
+        "k": 16,
+        "n": 32,
+        "nonzero_iff": "u-v = +-8",
+        "nonzero_pair_count": 16,
+        "p": 97,
+        "scope": "full 240-pair two-sided grid exact",
+        "tangent_floor": 9
+      },
+      {
+        "a": 28,
+        "count_each": 0,
+        "k": 16,
+        "n": 32,
+        "p": 97,
+        "scope": "mu8-shaped pairs exact",
+        "tangent_floor": 5
+      }
+    ],
+    "support_family_non_tangent": {
+      "n16_bound_a_minus_2": 10,
+      "n16_max_pairwise_overlap": 8,
+      "n32_bound_a_minus_2": 22,
+      "n32_max_pairwise_overlap": 16
+    },
+    "syndrome_non_tangent": {
+      "checked": "16/16 pair-slope combinations at n=16",
+      "result": "Syn(f+zg) != 0 for every counted slope"
+    }
+  },
+  "open_question": "For residual/aperiodic accounting in the middle band, is the support-family max-pairwise classifier an acceptable packet-level stand-in for the tangent-packet stratum, alongside the per-slope syndrome filter? If not, which convention should external ledgers target?",
+  "rank_boundary": {
+    "artifacts": [
+      "runs/g3_lp7_counterexample_corrected.json",
+      "runs/g3_lp7_boundary_corrected.json",
+      "runs/g3_rankdrop_locus_corrected.json",
+      "runs/g3_partial_theorem_ledger.json"
+    ],
+    "boundary_rank_distribution_extend6_deep": {
+      "6": 74102
+    },
+    "counterexample_found": false,
+    "criterion": "corrected max-pairwise tangent test + distinct-support guards",
+    "determinantal_wall": {
+      "best_deficiency_reached": 0,
+      "best_locked_pairs_of_21": 21,
+      "configs_with_rank_drop_deficiency_ge1": 0
+    },
+    "lock_floor_observations": {
+      "min_rank_at_lp7_genuine_nt": 5,
+      "observed_min_locked_genuine_deficiency": 6,
+      "tier": "verified witnesses; moderate breadth of search"
+    },
+    "nontangent_nonquot_min_rank_seen": 6,
+    "random_baseline_by_degE": {
+      "1": {
+        "min_locked_of_21": 21,
+        "min_rank": 6
+      },
+      "2": {
+        "min_locked_of_21": 21,
+        "min_rank": 6
+      },
+      "3": {
+        "min_locked_of_21": 21,
+        "min_rank": 6
+      },
+      "4": {
+        "min_locked_of_21": 21,
+        "min_rank": 6
+      }
+    },
+    "rank5_nontangent_nonquot_minlocked_across_prongs": 21,
+    "row": {
+      "Lp1": 7,
+      "a": 11,
+      "k": 8,
+      "local_cap_heuristic": 6,
+      "n": 16,
+      "p": 97,
+      "r": 5
+    }
+  },
+  "schema": "mca-frontier.g3-rank-boundary-toy-evidence.v1",
+  "source_commit": "4424823",
+  "source_repository": "github.com/latifkasuli/mca",
+  "status": "EXPERIMENTAL/AUDIT"
+}
