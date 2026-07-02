@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 toy eliminant dichotomy
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  No threshold or worst-case row
+  claim.
+- **What is being added:** Turn 4 of the `A=384` underdetermined M5 packet:
+  the declared `F_97/mu_16` top-chart pseudo-remainder coefficients are
+  interpolated as polynomials in the slope, and their monic gcd is verified to
+  be the constant eliminant `1`.
+- **How it is useful:** This closes the declared toy top chart as empty and
+  exercises the U5 eliminant-or-residual end state before attempting the much
+  larger `F_17^32` family.
+- **What to do next:** Emit a compact packet for the toy U1-U5 replay, then
+  start the declared `F_17^32` family with honest computational or residual
+  labels if full interpolation is too large.
+
 ### 2026-07-02 - M5 A384 toy divisibility gate
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

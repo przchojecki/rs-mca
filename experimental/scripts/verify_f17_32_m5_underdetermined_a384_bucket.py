@@ -180,6 +180,68 @@ def is_zero_poly(poly):
     return all(c == 0 for c in poly)
 
 
+def poly_add_mod(a, b, p):
+    n = max(len(a), len(b))
+    return trim([((a[i] if i < len(a) else 0) + (b[i] if i < len(b) else 0)) % p for i in range(n)])
+
+
+def poly_mul_mod(a, b, p):
+    out = [0] * (len(a) + len(b) - 1)
+    for i, x in enumerate(a):
+        for j, y in enumerate(b):
+            out[i + j] = (out[i + j] + x * y) % p
+    return trim(out)
+
+
+def poly_scale_mod(a, c, p):
+    return trim([(c * x) % p for x in a])
+
+
+def poly_divmod_mod(a, b, p):
+    a = trim([x % p for x in a])
+    b = trim([x % p for x in b])
+    if is_zero_poly(b):
+        raise ZeroDivisionError("polynomial division by zero")
+    q = [0] * max(1, len(a) - len(b) + 1)
+    inv_lc = pow(b[-1], -1, p)
+    while len(a) >= len(b) and not is_zero_poly(a):
+        d = len(a) - len(b)
+        coeff = a[-1] * inv_lc % p
+        q[d] = coeff
+        for i, c in enumerate(b):
+            a[d + i] = (a[d + i] - coeff * c) % p
+        a = trim(a)
+    return trim(q), trim(a)
+
+
+def poly_gcd_monic(a, b, p):
+    a = trim([x % p for x in a])
+    b = trim([x % p for x in b])
+    while not is_zero_poly(b):
+        _, r = poly_divmod_mod(a, b, p)
+        a, b = b, r
+    return poly_scale_mod(a, pow(a[-1], -1, p), p)
+
+
+def interpolate_full_field(values, p):
+    """Interpolate the unique degree < p polynomial with f(z)=values[z]."""
+    result = [0]
+    xs = list(range(p))
+    for a, y in enumerate(values):
+        y %= p
+        if y == 0:
+            continue
+        basis = [1]
+        denom = 1
+        for b in xs:
+            if b == a:
+                continue
+            basis = poly_mul_mod(basis, [(-b) % p, 1], p)
+            denom = denom * ((a - b) % p) % p
+        result = poly_add_mod(result, poly_scale_mod(basis, y * pow(denom, -1, p) % p, p), p)
+    return trim(result)
+
+
 def hankel(window, t, j):
     """Extractor convention: t rows, j+1 cols, entry window[row+col]."""
     return [[window[row + col] for col in range(j + 1)] for row in range(t)]
@@ -388,6 +450,56 @@ def check_divisibility_filter_top_chart():
     return ok, d
 
 
+def check_toy_eliminant_dichotomy():
+    """Verify U5 on the declared F_97 top-chart toy by interpolation.
+
+    The pseudo-remainder coefficients are functions of the slope z.  Interpolate
+    them as polynomials in F_97[Z] and take their monic gcd.  A constant gcd is
+    a nonzero eliminant certifying that the top chart is empty over F_97.
+    """
+    p = 97
+    u = [3, 17, 58, 91, 26, 44, 10, 73]
+    v = [12, 5, 81, 33, 70, 9, 61, 48]
+    f = [p - 1] + [0] * 15 + [1]  # X^16 - 1
+    values = [[] for _ in range(4)]
+    valid_slopes = []
+    for z in range(p):
+        s = [(a + z * b) % p for a, b in zip(u, v)]
+        m = hankel(s, 4, 4)
+        rank, _ = rank_and_kernel_mod_p(m, p)
+        cramer = cramer_kernel_vector(m, p)
+        if rank != 4 or cramer[4] == 0:
+            raise AssertionError("declared U5 toy unexpectedly left the top chart")
+        prem = pseudo_remainder(f, cramer, p)
+        prem = prem + [0] * (4 - len(prem))
+        for i in range(4):
+            values[i].append(prem[i] % p)
+        if is_zero_poly(prem):
+            valid_slopes.append(z)
+
+    coeff_polys = [interpolate_full_field(vs, p) for vs in values]
+    interp_ok = True
+    for i, poly in enumerate(coeff_polys):
+        interp_ok &= all(poly_eval(poly, z, p) == values[i][z] for z in range(p))
+    gcd_poly = None
+    for poly in coeff_polys:
+        if is_zero_poly(poly):
+            continue
+        gcd_poly = poly if gcd_poly is None else poly_gcd_monic(gcd_poly, poly, p)
+    if gcd_poly is None:
+        gcd_poly = [0]
+    roots = [z for z in range(p) if poly_eval(gcd_poly, z, p) == 0]
+    ok = interp_ok and gcd_poly == [1] and roots == valid_slopes == []
+    d = [
+        f"interpolated four pseudo-remainder coefficient polynomials over F_97 with degrees "
+        f"{[len(poly) - 1 for poly in coeff_polys]}",
+        f"interpolation replays all 97 slope values exactly: {interp_ok}",
+        f"monic gcd of coefficient polynomials is {gcd_poly}; roots over F_97 = {roots}",
+        "U5 outcome for this declared top-chart toy: eliminant=1, so the chart is empty",
+    ]
+    return ok, d
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop turn"]
 
@@ -398,7 +510,7 @@ CHECKS = [
     ("deficiency-1 kernel = Cramer minor vector",         check_cramer_kernel_vector),
     ("pencil nondegeneracy of declared toy families",     check_pencil_nondegeneracy_summary),
     ("pivot chart + splitting filter (X^n - 1)",          check_divisibility_filter_top_chart),
-    ("eliminant or certified residual obstruction",       _pending),
+    ("eliminant or certified residual obstruction",       check_toy_eliminant_dichotomy),
     ("packet emission + v1 schema validation",            _pending),
 ]
 

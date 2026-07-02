@@ -1,8 +1,8 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 3: bucket identification,
-  deficiency-one Cramer-kernel chart, and the toy top-chart divisibility /
-  pseudo-remainder gate are done; eliminant machinery remains in progress).
+- **Status:** ACTIVE / EXPERIMENTAL (turn 4: bucket identification,
+  deficiency-one Cramer-kernel chart, toy top-chart divisibility, and the toy
+  top-chart eliminant dichotomy are done; packet emission remains in progress).
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -87,7 +87,7 @@ subtraction deferred to M4 where it belongs.
 | 1 | bucket identification + extractor-convention match + toy dichotomy | **done** |
 | 2 | deficiency-1 kernel = Cramer minor vector (lemma + exact toy verification) | **done** |
 | 3 | pivot chart: divisibility filter into `X^n - 1`, chart ideal + saturation | **done on the F_97 top-chart toy** |
-| 4 | eliminant `Q(Z)` on a declared input family, or certified `residual_obstruction` | pending |
+| 4 | eliminant `Q(Z)` on a declared input family, or certified `residual_obstruction` | **done on the F_97 top-chart toy** |
 | 5 | packet emission under `experimental/data/certificates/hankel-f17-32-m5-underdetermined-a384/`, validated by `scripts/check_aperiodic_eliminant_packet.py` | pending |
 
 ### Verified so far (turn 1)
@@ -178,6 +178,28 @@ For this declared toy family the valid top-chart slope list is empty.  This is
 not used as evidence for the real row; it is an exact acceptance test that the
 divisibility chart is wired correctly before moving to eliminants or larger
 fields.
+
+### Verified in turn 4
+
+**U5, toy eliminant dichotomy.** For the same `F_97/mu_16` top-chart toy, the
+verifier interpolates the four pseudo-remainder coefficient functions as
+polynomials in `F_97[Z]`.  Each has degree `52`, and the interpolation replays
+all `97` slope values exactly.  The monic gcd of the four coefficient
+polynomials is
+
+```text
+1.
+```
+
+Thus the U5 end state for this declared top chart is an eliminant, namely the
+constant eliminant `1`, so the chart is empty over `F_97`.  This is stronger
+than the pointwise valid-slope list: it verifies that the pseudo-remainder
+coefficient equations have no common finite-field root in the declared toy
+family.
+
+The remaining packet-emission step is to package these toy chart checks and
+then start the declared `F_17^32` family with honest computational/residual
+labels if the large pseudo-remainder gcd is not yet feasible.
 
 ## Honest scope
 
