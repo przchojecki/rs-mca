@@ -1,5 +1,14 @@
 # Execution queue — hand-off items derived from the prize DAG
 
+> **MORNING STATE 2026-07-03:** ~20 of the 26 fresh PROVABLE nodes and all
+> wave-1/2 evidence tasks are IN FLIGHT across PRs #180-#206 — check open
+> PRs before claiming anything below. Newly available and NOT yet claimed:
+> the unsafe side of the A=426 second pin (second_pin_a426 — the strongest
+> partial on the board), QF.10 scoped-F proofs for the two audited
+> families, the E12 pivot (multiplicative template compression /
+> difference-set imports), and the QF.5 induction assembly now that E9
+> fixed the case list.
+
 - **Status:** AUDIT / work queue. Derived mechanically from
   `experimental/data/prize-dag/prize_dag.json` (149 nodes @ this writing):
   the RIPE list (requirements met), the PROVABLE tier (routes pinned), the
@@ -524,6 +533,95 @@ QF.10 [fiber-side scoped proof attempt] (M; after QF.9)  The (a)
      branch: Singleton bound for shortened-RS duals + the r-wise
      moment count at r ~ log n. Potentially a complete unconditional
      proof of the fiber-side F instance.
+```
+
+## Tier D — deferred decompositions, unlocked by wave-2 evidence (2026-07-03 am)
+
+```text
+QF.11 [f_descent_termination] (M)  Branch-count bounds for the descent
+      tree from E9's observed sparse-word multiplicities; toy check:
+      no flat at n = 16..32 branches super-poly.
+QX.5  [c_xr_content falsifier] (M)  The full pair-orbit scanner (E11's
+      named next step): stripped top-E_3 orbits vs the fixed-core/
+      fixed-hole class. Grounded-conjecture kill-or-confirm.
+QS.2  [spread_syzygy_circuit_bound] (M)  Count/classify minimal
+      full-support circuits per (n,j) from the proved circuit lemma;
+      price their slope contribution. The exception taxonomy's last
+      observed branch.
+QL.5  [challenger-class arithmetic] (M)  Price the E15 structured
+      challenger class alongside planted counts in
+      list_planted_arithmetic; re-derive the list windows with both
+      columns. The endgame absorbs its first falsification.
+```
+
+## Tier D2 — descent termination, decomposed (2026-07-03 am)
+
+```text
+QF.12 [f_support_lattice] (S)  The accounting identity: tree nodes =
+      closed sets of the sparse-support lattice; chains bounded by
+      dim + degree drop. Defuses the naive 2^depth objection.
+QF.13 [f_termination_mds] (S)  One-paragraph corollary: MDS duals have
+      no sparse words => trivial lattice => immediate moment count.
+QF.14 [f_termination_hankel] (M)  EVIDENCE FIRST: E9-style census
+      restricted to Hankel-kernel flats — record support patterns
+      (predicted: coset unions, per E7's kernel twins). Then the
+      lattice bound via #191's displacement identities.
+```
+
+## Tier D3 — c_xr_content via the KMS engine (2026-07-03 am)
+
+The XR inverse's hard direction = a celebrated proved theorem plus
+bridges: non-expanding Johnson-graph sets correlate with juntas
+(Khot-Minzer-Safra, the 2-to-2 games engine).
+
+```text
+QX.6 [xr_e3_to_expansion] (S)   E_3 = cubed restricted-operator form;
+      large energy => small expansion. Elementary spectral note.
+QX.7 [xr_kms_import] (M)        The import note: KMS/DKKMS statement,
+      conventions matched to the exchange graph, bridge-ledger row.
+QX.8 [xr_junta_to_paid] (S)     Juntas = fixed-core cells = tangent
+      structures; correlation transfer; #191's dictators as base case.
+QX.9 [xr_kms_parameter_matching] (S first step)  The loss-exponent
+      tables vs the FM gap per rate; KLLM global hypercontractivity
+      as the small-set fallback. THE residue — everything else in
+      this tier is bookkeeping around a proved engine.
+```
+
+## Tier D4 — parameter matching via the globalness shortcut (2026-07-03)
+
+The identification: KMS's junta obstruction = our tangent stratum; the
+PROVED payment ledger is the globalness certificate KLLM needs.
+
+```text
+QX.10 [engine comparison + loss tables] (S-M)  Tabulate the exact
+      quantitative statements of KMS (Johnson), DKKMS (Grassmann), and
+      KLLM global hypercontractivity; per rate, compare loss exponents
+      against the available FM gap. The cheap first look that decides
+      whether raw constants ever suffice.
+QX.11 [xr_globalness_from_ledger] (M)  The real math: convert the
+      ledger's per-cell tangent caps into link-density bounds at each
+      core size r; verify they sit below KLLM's globalness threshold.
+      Falsifier: an unpaid tangent leak at some core size.
+QX.12 [xr_small_set_engine import] (M)  The KLLM import note:
+      statement, conventions matched to J(n,j) links = fixed-core
+      cells, bridge-ledger row.
+```
+
+## Tier D5 — syzygy circuits: nongeneric, suppressed, priced (2026-07-03)
+
+```text
+QS.3 [circuit census growth] (S-M)  Extend E13's count (71 at n=32,
+      first 16 blocks) across n = 16..64: the empirical growth
+      exponent calibrates the locus-density prediction. Evidence
+      before assembly.
+QS.4 [circuit_nongeneric + circuit_locus_density] (M, one note)
+      Degree-count the two simultaneous identities => generic kernel
+      zero => explicit determinantal locus; Schwartz-Zippel => q-power
+      suppression. SETTLE the flagged caveat first: do the identities
+      involve (u,v) or locator data only (read the E13 lemma).
+QS.5 [circuit_pricing] (S)  The deficiency-1 reuse: minimal circuit =
+      one-dimensional kernel => the #199 Cramer/eliminant dichotomy
+      applies verbatim; O(1) slopes per circuit or a named paid branch.
 ```
 
 ## Sequencing notes

@@ -44,7 +44,8 @@
    "refs": [
     "proof_sketch/s8_s9_assembly_and_negative.md#1"
    ],
-   "statement": "Compiler emits verdicts under the refusal rule; dossier versions gate-checked; every constant descriptor-generated."
+   "statement": "Compiler emits verdicts under the refusal rule; dossier versions gate-checked; every constant descriptor-generated.",
+   "notes": "MAINTAINER SIGNAL (main commits 9e9bbf8c/0f3f5620): Paper D is framed as the FINAL SUBMISSION SPINE. The packaging tier should target Paper D's certificate grammar and structure directly, not a parallel standalone dossier."
   },
   {
    "id": "s0_zero_open",
@@ -892,7 +893,8 @@
    "refs": [
     "wp_detail/wp7_2_wp7_3_wp7_4_promotion_gates_dossier.md#3"
    ],
-   "statement": "v-PARTIAL assembled and gate-checked: pinned-row note + envelope family + freeze tables + tier-1 Lean certificates + non-claims, S0-conditioned."
+   "statement": "v-PARTIAL assembled and gate-checked: pinned-row note + envelope family + freeze tables + tier-1 Lean certificates + non-claims, S0-conditioned.",
+   "notes": "Align the v-PARTIAL assembly with Paper D as the submission spine (maintainer framing, 2026-07-03) \u2014 the dossier becomes Paper D-attached packets rather than a freestanding document."
   },
   {
    "id": "bridge_ledger",
@@ -909,7 +911,8 @@
    "status": "TARGET",
    "refs": [
     "wp_detail/wp3_1_wp3_3_rows_and_second_pin.md#1"
-   ]
+   ],
+   "notes": "#204's A=426 universal row is the slate's first window-edge exact value."
   },
   {
    "id": "second_pin_or_wall",
@@ -918,7 +921,8 @@
    "gate": "any",
    "refs": [
     "wp_detail/wp3_1_wp3_3_rows_and_second_pin.md#2"
-   ]
+   ],
+   "notes": "MAJOR (#204): universal Hankel-free exact numerator LD_sw(RS[F,D,256],426) = 87 for EVERY field and EVERY 512-point domain, paired with the exact-budget prime p = 22275*2^120+1 giving B* = 87 exactly \u2014 a second pin candidate AT THE WINDOW EDGE A=426, not in the tangent range. The P3 slate delivering; unsafe-side pairing pending."
   },
   {
    "id": "pr172_ladder",
@@ -1038,7 +1042,8 @@
    "status": "PROVABLE",
    "refs": [
     "proof_sketch/s3b_ii_strip_periodic.md#4"
-   ]
+   ],
+   "notes": "IN FLIGHT: #199"
   },
   {
    "id": "spi_exceptional_class",
@@ -1065,7 +1070,8 @@
    "status": "PROVABLE",
    "refs": [
     "proof_sketch/s7_list_side.md#4"
-   ]
+   ],
+   "notes": "IN FLIGHT: #197 | DELIVERED in #197: exact per-layer bounds through e <= 6 with poly lower-cutoff growth rows."
   },
   {
    "id": "petal_mixed_amplification",
@@ -1243,7 +1249,7 @@
    "refs": [
     "wp_detail/wp2_6_underdetermined_program.md"
    ],
-   "notes": "#176 closed-superseded; modular follow-ups begin at #179 (rank-drop split-locator dedup)."
+   "notes": "#176 closed-superseded; modular follow-ups begin at #179 (rank-drop split-locator dedup). | #199 carries SPI + deficiency-one chart LEMMA versions (the modular successor to #176/#179 chain)."
   },
   {
    "id": "u2_nondegeneracy",
@@ -1252,7 +1258,7 @@
    "refs": [
     "wp_detail/wp2_6_underdetermined_program.md"
    ],
-   "notes": "IN FLIGHT: PR #176 (Codex)."
+   "notes": "IN FLIGHT: PR #176 (Codex). | See #199 (modular lemma form)."
   },
   {
    "id": "u3_divisibility",
@@ -1284,7 +1290,8 @@
    "status": "PROVABLE",
    "refs": [
     "proof_sketch/s2_paid_ledger.md#5"
-   ]
+   ],
+   "notes": "IN FLIGHT: #194 (bundle)"
   },
   {
    "id": "paid_quot_fn",
@@ -1293,7 +1300,7 @@
    "refs": [
     "proof_sketch/s2_paid_ledger.md#5"
    ],
-   "notes": "interval-valued form buildable now; POINT values in zone (b) conditional on the collision question"
+   "notes": "interval-valued form buildable now; POINT values in zone (b) conditional on the collision question | IN FLIGHT: #194"
   },
   {
    "id": "paid_ext_fn",
@@ -1301,7 +1308,8 @@
    "status": "PROVABLE",
    "refs": [
     "proof_sketch/s6_extension_lift.md#2"
-   ]
+   ],
+   "notes": "IN FLIGHT: #194"
   },
   {
    "id": "f1_case_pole",
@@ -1435,7 +1443,7 @@
    "refs": [
     "proof_sketch/s2_paid_ledger.md#3"
    ],
-   "notes": "pure divisor-count computation; conj:B's profile hypothesis is unverifiable on official rows without it"
+   "notes": "pure divisor-count computation; conj:B's profile hypothesis is unverifiable on official rows without it | IN FLIGHT: #195 (#205 closed as redundant)"
   },
   {
    "id": "thm_exactslack",
@@ -1629,7 +1637,7 @@
    "refs": [
     "proof_sketch/s3b_iii_2_displacement_spectral.md#3"
    ],
-   "notes": "E2 scaffold caveat (PR #184): frozen full-block quotient fibers have ZERO one-exchange energy \u2014 the inverse test MUST strip paid quotient strata first or use a multi-exchange variant, else designed-in false negative. Structured >> random baseline confirmed on the walk-energy proxy. | K=1 BASE CASE IN FLIGHT (#191): E_1-extremal families are point-dictator/common-root = PAID structures, exactly the 'energy-extremal => paid' shape this node conjectures at k=3. First inverse-flavor theorem on the board."
+   "notes": "E2 scaffold caveat (PR #184): frozen full-block quotient fibers have ZERO one-exchange energy \u2014 the inverse test MUST strip paid quotient strata first or use a multi-exchange variant, else designed-in false negative. Structured >> random baseline confirmed on the walk-energy proxy. | K=1 BASE CASE IN FLIGHT (#191): E_1-extremal families are point-dictator/common-root = PAID structures, exactly the 'energy-extremal => paid' shape this node conjectures at k=3. First inverse-flavor theorem on the board. | E11 (#202): stripped candidate-dictionary scan at J(16,8)/J(32,16) \u2014 post-strip top E_3 candidates are ONLY fixed-core/fixed-hole first-eigenspace structures, consistent with the k=1 dictator extremals. The #184 quotient-pollution caveat confirmed real. Scope: dictionary, not full pair scanner."
   },
   {
    "id": "spi_component_control",
@@ -1678,7 +1686,7 @@
    "refs": [
     "experimental/notes/l1/l1_full_list_quotient_proof_program.md"
    ],
-   "notes": "elementary from the PROVED core-defect lemma; turns the amplification problem into list decoding at degree d"
+   "notes": "elementary from the PROVED core-defect lemma; turns the amplification problem into list decoding at degree d | IN FLIGHT: #197"
   },
   {
    "id": "pma_johnson_regime",
@@ -1687,7 +1695,8 @@
    "statement": "Whenever N^2 > d |T| (T = union of petals, |T| = M(sigma+1)), i.e. petal count M below ~(d+sigma)^2/(d(sigma+1)), the per-D auxiliary list is poly by Guruswami-Sudan \u2014 an unconditional classical import (forward direction; bridge-ledger row).",
    "refs": [
     "experimental/notes/l1/l1_full_list_quotient_proof_program.md"
-   ]
+   ],
+   "notes": "IN FLIGHT: #197"
   },
   {
    "id": "pma_wide_residual",
@@ -1730,7 +1739,7 @@
    "refs": [
     "proof_sketch/s3b_iii_2_displacement_spectral.md#2"
    ],
-   "notes": "E2 scaffold caveat (PR #184): frozen full-block quotient fibers have ZERO one-exchange energy \u2014 the inverse test MUST strip paid quotient strata first or use a multi-exchange variant, else designed-in false negative. Structured >> random baseline confirmed on the walk-energy proxy."
+   "notes": "E2 scaffold caveat (PR #184): frozen full-block quotient fibers have ZERO one-exchange energy \u2014 the inverse test MUST strip paid quotient strata first or use a multi-exchange variant, else designed-in false negative. Structured >> random baseline confirmed on the walk-energy proxy. | DELIVERED (#184 retitled 'prove XR exchange-energy calculus'): flips on integration."
   },
   {
    "id": "xr_inverse_toy",
@@ -1758,7 +1767,7 @@
    "refs": [
     "tex/slackMCA_v4.tex"
    ],
-   "notes": "IN FLIGHT: #180's 'Bound E1 exceptional collision primes' commit (QZ.2 executed)."
+   "notes": "IN FLIGHT: #180's 'Bound E1 exceptional collision primes' commit (QZ.2 executed). | PROVED-IN-FLIGHT: #206 \u2014 with the Markov anchor: at most TWO primes in range can collide >= half of rate-1/2 cell pairs under the height bound"
   },
   {
    "id": "are_subfield_amp",
@@ -1831,13 +1840,13 @@
    "title": "LEAP: below-cap spread exceptions are exactly the finite-geometry class",
    "status": "CONJECTURE",
    "key": true,
-   "statement": "Every below-cap spread rank-loss configuration is (i) an AG(2,q)-type finite-geometry subfamily (nets/affine planes \u2014 the E3 witnesses' shape), bounded in count per (n,j) and payable as a ledger, or (ii) v-syndrome degenerate. PATH: (1) exhaustive small-scale exception census \u2014 do ALL exceptions embed in finite-geometry configurations?; (2) classification via the PROVED row-space cap's kernel structure; (3) pay the bounded class.",
+   "statement": "RESTATED per E13 (second revision, both pre-registered): below-cap spread rank loss is (i) finite-geometry/net shaped (AG census: 373 nondegenerate exceptions, 0 unclassified), (ii) v-syndrome degenerate, or (iii) a full-support sparse-greedy syzygy circuit (all 71 n=32 controls; proved circuit lemma). Three observed branches, each precise; the conjecture is that the list is now complete.",
    "attack_surface": "rung 1 is a computation (extend E3's search to all configurations at n = 16..32); rung 2 uses the cap theorem's span structure; the AG witnesses' rank pattern (11/12, one deficit) suggests a one-relation characterization",
    "falsifier": "an exception at small scale embedding in NO finite-geometry configuration, or a growing-deficit family",
    "refs": [
     "experimental/notes/roadmaps/evidence_plan_codex.md"
    ],
-   "notes": "CALCULATED LEAP grounded in E3 (PR #185): witness shape + proved cap + saturation-degeneracy. Replaces the refuted naive form with a classified-exception form."
+   "notes": "CALCULATED LEAP grounded in E3 (PR #185): witness shape + proved cap + saturation-degeneracy. Replaces the refuted naive form with a classified-exception form. | E13: finite-geometry-only was too narrow \u2014 the syzygy branch is the fix, with its lemma already proved in #185."
   },
   {
    "id": "gap1_product_model",
@@ -1862,7 +1871,7 @@
    "refs": [
     "experimental/notes/roadmaps/evidence_plan_codex.md"
    ],
-   "notes": "CALCULATED LEAP grounded in E7 (PR #183): two independent measurements below floor. If proved at dim 2, F's first open instance closes SHARPLY. | f_dim2_skeleton PROVES the envelope at dim 2 with C = 1 + twin correction \u2014 the leap's base case is now route-pinned."
+   "notes": "CALCULATED LEAP grounded in E7 (PR #183): two independent measurements below floor. If proved at dim 2, F's first open instance closes SHARPLY. | f_dim2_skeleton PROVES the envelope at dim 2 with C = 1 + twin correction \u2014 the leap's base case is now route-pinned. | j=4 data point (#183): 28 < 40 \u2014 the envelope holds at the second dimension tested; j=4 caveat: active quotient orders 2/4, so structured regression evidence."
   },
   {
    "id": "mixed_radix_frontier",
@@ -1908,7 +1917,7 @@
    "refs": [
     "proof_sketch/s2_paid_ledger.md#3"
    ],
-   "notes": "elementary; reframes adjacency_closing from 'no mechanism' to 'decide <= 3 points per rate'"
+   "notes": "elementary; reframes adjacency_closing from 'no mechanism' to 'decide <= 3 points per rate' | IN FLIGHT: #193"
   },
   {
    "id": "staircase_steepness",
@@ -1918,7 +1927,7 @@
    "refs": [
     "proof_sketch/s2_paid_ledger.md#3"
    ],
-   "notes": "the reason the endgame is tractable: steep staircases make comparisons cheap"
+   "notes": "the reason the endgame is tractable: steep staircases make comparisons cheap | IN FLIGHT: #193"
   },
   {
    "id": "aperiodic_zero_at_crossing",
@@ -1993,7 +2002,7 @@
    "refs": [
     "proof_sketch/s2_paid_ledger.md#3"
    ],
-   "notes": "couples the census to certified_valueset_lower parametrically instead of blocking on it"
+   "notes": "couples the census to certified_valueset_lower parametrically instead of blocking on it | IN FLIGHT: #195"
   },
   {
    "id": "census_dodge_selection",
@@ -2003,7 +2012,7 @@
    "refs": [
     "proof_sketch/s2_paid_ledger.md#3"
    ],
-   "notes": "cheap, and upgrades every exhibited-row partial to full adjacency-grade"
+   "notes": "cheap, and upgrades every exhibited-row partial to full adjacency-grade | IN FLIGHT: #195"
   },
   {
    "id": "list_adjacency_closing",
@@ -2031,13 +2040,13 @@
    "title": "LEAP: at the crossing radii the extremal words are the planted sunflower family",
    "status": "CONJECTURE",
    "key": true,
-   "statement": "At the candidate crossing radii, sup_U |Lambda(U, delta)| is attained (up to the integrality margin) by planted sunflower words: |Lambda(U, delta)| <= planted_count(delta) + extras, with extras < 1 under imgfib + integrality. Grounded: the L1 program constructed these AS the extremal candidates; every witness found lives in this family; the fixed-defect layers are proved polynomial.",
+   "statement": "REVISED per the E15 COUNTEREXAMPLE (#197): the naive planted-only form is FALSE \u2014 a structured low-slack NON-planted challenger exists at sigma = 1 in the toy cell. Revised statement: at the crossing radii the sup-over-words list is attained by the planted sunflower family OR the E15 structured challenger class, and list_planted_arithmetic must price BOTH classes exactly. The challenger is structured (not a fifth-mechanism signal); the endgame arithmetic gains one classified column.",
    "attack_surface": "toy probe: search word families at n = 16..64 for lists exceeding the planted count at matched radius; the L1 sunflower machinery prices any challenger's structure",
    "falsifier": "a toy word family beating the planted list at a crossing radius",
    "refs": [
     "proof_sketch/s7_list_side.md"
    ],
-   "notes": "the list endgame's one genuine leap; everything else is arithmetic + already-mapped imgfib"
+   "notes": "the list endgame's one genuine leap; everything else is arithmetic + already-mapped imgfib | First falsification of a roadmap leap \u2014 recorded per protocol, statement enlarged along the observed challenger class; the S9-style fix cost one column, not the endgame."
   },
   {
    "id": "list_planted_arithmetic",
@@ -2047,7 +2056,7 @@
    "refs": [
     "proof_sketch/s7_list_side.md"
    ],
-   "notes": "unsafe witnesses are free (exhibit the plants); the safe certificate is imgfib at the candidates + the FM-style extras table"
+   "notes": "unsafe witnesses are free (exhibit the plants); the safe certificate is imgfib at the candidates + the FM-style extras table | IN FLIGHT: #196 | Must now price the E15 challenger class alongside planted counts (see revised worst_word_planted)."
   },
   {
    "id": "f_dim2_skeleton",
@@ -2060,7 +2069,7 @@
    "refs": [
     "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
    ],
-   "notes": "explains the E7 numbers: 38 <= 40 at j=3 (bound TIGHTER than the packet's floor 60); the kernel excess 13 > 12 is the twin signature | CROSS-POLLINATION: #183's 'Align E7 evidence with fixed-dimension theorem' commit followed this node's publication on the #178 branch \u2014 the census packet is being aligned to the pair-bound frame."
+   "notes": "explains the E7 numbers: 38 <= 40 at j=3 (bound TIGHTER than the packet's floor 60); the kernel excess 13 > 12 is the twin signature | CROSS-POLLINATION: #183's 'Align E7 evidence with fixed-dimension theorem' commit followed this node's publication on the #178 branch \u2014 the census packet is being aligned to the pair-bound frame. | E10 PREDICTION CONFIRMED (#183): 5/5 sampled j=5 top kernel planes contain twins; ZERO twin-free planes above the simple bound 12. Full j=4 Grassmannian census (25,734,890 planes): primitive max 28 vs simple floor 20 vs pair floor 40, all 9 top primitive planes twin-rich (2^8 profile)."
   },
   {
    "id": "f_dim_induction",
@@ -2108,13 +2117,13 @@
    "title": "THE RESIDUE: flats with many sparse dual words are quotient/pullback or tangent structured",
    "status": "CONJECTURE",
    "key": true,
-   "statement": "If P-perp contains many low-weight words (supports not absorbable by O(poly) descent steps), then P is structured: contained in a pullback/quotient stratum or a deep-divisor (tangent) stratum. PROVED CONTAINMENT one way: M-pullback flats have ev_x = ev_y on every M-coset pair \u2014 maximally many weight-2 words; the conjecture is the converse \u2014 nothing UNPAID lives in the many-sparse branch.",
+   "statement": "RESTATED per E9 (#201, outcome (b) of the pre-registered table): many-sparse flats are pullback-structured, tangent-structured, or DESCENT-REDUCIBLE (the census found a large support-3-only third class \u2014 exactly the sparse-dependence branch that f_sparse_descent_step prices). With the descent ledger included BEFORE the primitive residue, the conjecture is: nothing UNPAID survives all three branches.",
    "attack_surface": "coding-theory structure: codes with many minimal low-weight words are classified in known regimes; the coset-support pattern (supports = unions of coset pairs) is the signature to force; toy-enumerable falsifier at n = 16",
    "falsifier": "a toy flat (n = 16 exhaustive over dims 2-3) with many sparse dual words that is neither pullback- nor tangent-classified",
    "refs": [
     "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
    ],
-   "notes": "where ALL the residual risk of the F induction concentrates; the other three parts are elementary"
+   "notes": "where ALL the residual risk of the F induction concentrates; the other three parts are elementary | E9 census (exact, codim-1 flats at j<=4): third class = support-3 words, structured not unstructured \u2014 the revision cost one statement edit because the descent node already existed."
   },
   {
    "id": "safe_assembly_uniformity",
@@ -2137,17 +2146,18 @@
    "statement": "Pairs at swap distance s have e1-difference height <= 2s, norm <= (2s)^{phi(N')}; if (2s)^{phi(N')} < p the pair is collision-free (nonzero by thm:upstairs, norm below p). At N'=128, p ~ 2^250: d* = 7. COROLLARY: when 2l' < p^{1/phi(N')} (true at N' <= 64 for prize p), ALL pairs are certified \u2014 unconditional fullness, the prop:qfloor norm-threshold mechanism restated as certification. Subsumes single_swap_injectivity as the s = 1 case.",
    "refs": [
     "proof_sketch/s2_paid_ledger.md#3"
-   ]
+   ],
+   "notes": "PROVED-IN-FLIGHT: #206 (s=1 rung subsumed; exact norm formula Phi_M(1)^(phi(N)/phi(M)))"
   },
   {
    "id": "height_only_impossibility",
    "title": "IMPOSSIBILITY: pure height certificates cannot reach full strength at N' >= 128",
    "status": "PROVABLE",
-   "statement": "Every pair's difference height is <= 2l' (total budget), so height-only certification caps at diameter p^{1/phi(N')} and, at N' >= 128 with p < (2l')^{phi(N')} ~ 2^449, provably CANNOT certify all pairs. Any full-strength technology must use p-SPECIFIC input beyond archimedean height. Scopes the attack: do not attempt pure-height fullness above the frontier.",
+   "statement": "SHARPENED to the proved form (#206): the pure height gate cannot certify a full quotient cell once (2 s_max)^phi(N') exceeds the field ceiling \u2014 and in the official-rate table N' = 128 already exceeds p < 2^256 for ALL FOUR rates. Any full-strength certification at in-corridor scales must use p-specific input. (Companion anchor, same PR: at most TWO primes in range can collide even half the rate-1/2 cell pairs \u2014 the exceptional set is provably tiny.)",
    "refs": [
     "proof_sketch/s2_paid_ledger.md#3"
    ],
-   "notes": "negative result with queue value \u2014 prevents doomed attempts"
+   "notes": "negative result with queue value \u2014 prevents doomed attempts | PROVED-IN-FLIGHT: #206 \u2014 SHARPER than stated: N'=128 exceeds the p < 2^256 ceiling for ALL FOUR official rates"
   },
   {
    "id": "far_pair_separation",
@@ -2170,7 +2180,7 @@
    "refs": [
     "proof_sketch/s2_paid_ledger.md#3"
    ],
-   "notes": "certification compresses quadratically: pairs -> cluster pairs -> generator checks"
+   "notes": "certification compresses quadratically: pairs -> cluster pairs -> generator checks | PROVED-IN-FLIGHT: #206"
   },
   {
    "id": "generator_economy",
@@ -2182,7 +2192,8 @@
    "falsifier": "n/a (construction); a proof that multiplicative designs cap at size << B*/poly would refocus on p-specific alternatives",
    "refs": [
     "proof_sketch/s2_paid_ledger.md#3"
-   ]
+   ],
+   "notes": "E12 (#203): EARLY-CAP signal \u2014 the cyclic germ lifts to ell-sum orbits (8/16 templates at N=16/32) but plain orbit unions grow only ~linearly in templates. Next attacks: multiplicative template compression or imported abelian difference-set designs. No fiber counts used (guard respected)."
   },
   {
    "id": "xr_anticode_toolkit",
@@ -2205,7 +2216,185 @@
    "refs": [
     "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
    ],
-   "notes": "potentially the largest effective-difficulty reduction on the F front: the fiber side may fall to Singleton + moments outright"
+   "notes": "potentially the largest effective-difficulty reduction on the F front: the fiber side may fall to Singleton + moments outright | A0 AUDIT VERDICT (#200): NO_NOT_GLOBALLY \u2014 coordinate-prefix and Hankel-kernel consumers ARE scoped-treatable (QF.10 remains live for both), but the L1 ImgFib mixed-petal sunflower residual ESCAPES the two families. General F stays critical; no rewiring."
+  },
+  {
+   "id": "a426_universal_numerator",
+   "title": "Universal two-core exact numerator: LD_sw(RS[F,D,256],426) = 87 for EVERY field and 512-domain",
+   "status": "PROVABLE",
+   "statement": "Hankel-free structural theorem (proof written in #204, flips PROVED on integration): for every finite field F and every 512-point D, LD_sw(RS[F,D,256],426) = 87 exactly. Universal in the field AND the domain \u2014 the first exact window-edge value, and domain-universality exceeds anything the tangent-range pin required.",
+   "refs": [
+    "proof_sketch/s3a_regular_window.md"
+   ],
+   "notes": "the P3 slate's qualitative jump: exact numerators exist OUTSIDE the tangent range"
+  },
+  {
+   "id": "second_pin_a426",
+   "title": "Second pin at the window edge: pair the unsafe side at A=425 with the exact-budget prime",
+   "status": "TARGET",
+   "key": true,
+   "statement": "With p = 22275*2^120 + 1 giving B* = 87 = LD_sw(426) exactly (safe side DONE via a426_universal_numerator): prove LD_sw(RS[F_p,D,256],425) > 87 for the chosen row \u2014 completing a second threshold-pinned row, at the window edge rather than the tangent range. A pinned row where quotient/window mechanics (not tangent exactness) govern would be the strongest partial yet.",
+   "attack_surface": "the unsafe side at 425: witness family via the same two-core structure one step down, or the qfloor family at the active scale; the budget prime is already chosen to make the arithmetic exact",
+   "falsifier": "LD_sw(425) <= 87 at the chosen row (would mean the crossing sits deeper \u2014 relocate the budget prime)",
+   "refs": [
+    "proof_sketch/s3a_regular_window.md"
+   ]
+  },
+  {
+   "id": "f_descent_termination",
+   "title": "Descent termination: the sparse-word descent tree is polynomial (census-grounded)",
+   "status": "CONJECTURE",
+   "key": true,
+   "statement": "Iterating the weight-w descents (each drops degree >= w, dimension <= w-1; E9 observed w <= 3 suffices at toy scale) produces a descent tree of TOTAL size poly(n), with the spread/moment base at each leaf. Grounded by E9's census multiplicities. With this, F_r assembles for r = O(log n), and high dimension merges into the fiber machinery.",
+   "attack_surface": "DECOMPOSED by consumer family: MDS-dual flats trivial (f_termination_mds); Hankel-kernel flats via the coset-pattern lattice bound (f_termination_hankel \u2014 the open piece); the escaping sunflower-fiber family is priced by the PMA machinery, NOT by descent (no double-counting). The support-lattice reformulation (f_support_lattice) is what defuses the naive 2^depth danger.",
+   "falsifier": "a toy flat whose descent tree branches super-poly (searchable at n = 16..32)",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ]
+  },
+  {
+   "id": "c_xr_content",
+   "title": "C_XR content at k=3 (grounded): post-strip extremals are fixed-core/fixed-hole structures",
+   "status": "CONJECTURE",
+   "key": true,
+   "statement": "After stripping paid quotient strata, the k=3 inverse class C_XR consists exactly of fixed-core and fixed-hole (first-eigenspace) structures. Grounded by E11's stripped dictionary scan (J(16,8), J(32,16): only such structures top the E_3 lists) and #191's proved k=1 dictator extremals. This SPECIFIES the inverse theorem's target class \u2014 xr_inverse now has a concrete statement to prove rather than an unknown class to discover.",
+   "attack_surface": "DECOMPOSED: two elementary bridges (E_3 <-> expansion; junta <-> paid) + the NAMED literature engine (KMS Johnson-graph structure theorem) + one residue (quantitative matching at FM scale, with KLLM global hypercontractivity as the modern fallback). The pair-orbit scanner (QX.5) remains the empirical falsifier.",
+   "falsifier": "a stripped pair-orbit with top E_3 outside the fixed-core/fixed-hole family",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#3"
+   ]
+  },
+  {
+   "id": "spread_syzygy_circuit_bound",
+   "title": "The syzygy-circuit branch: bound the full-support minimal-circuit exceptions",
+   "status": "TARGET",
+   "key": true,
+   "statement": "E13's 71 non-AG exceptions are ALL one-dimensional full-locator-support syzygy circuits, and the PROVED circuit lemma (row dependencies = exactly two zero-polynomial identities; one-dim full-support dependencies with independent deletions are minimal circuits) makes the branch precise: count/classify minimal full-support circuits per (n, j) and price their slope contribution. The exception taxonomy's third and final observed branch.",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ],
+   "notes": "a precise algebraic proof target per the packet's own framing; the circuit lemma is its proved base",
+   "attack_surface": "DECOMPOSED: nongenericity (degree counting on the two simultaneous identities) -> q-suppressed locus density (Schwartz-Zippel) -> O(1)-per-circuit pricing (deficiency-1 Cramer/eliminant reuse from #199). Assembly: circuits x O(1) <= FM-compatible. Evidence first step: the circuit census's growth rate in n (extends E13's 71-at-n=32 count)."
+  },
+  {
+   "id": "f_support_lattice",
+   "title": "Reformulation: descent-tree size = closed-set count of the sparse-support lattice",
+   "status": "PROVABLE",
+   "statement": "The naive descent tree is binary (2^depth danger), but tree nodes correspond to CLOSED SETS of the lattice generated by sparse-word supports (unions/closures = subflats + residual domains), with chain length <= dim P + deg drop. Tree size <= lattice size \u2014 the accounting identity that makes polynomial termination plausible at all, and the object the family bounds must count.",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ]
+  },
+  {
+   "id": "f_termination_mds",
+   "title": "MDS-dual flats: termination is TRIVIAL (no sparse words exist)",
+   "status": "PROVABLE",
+   "statement": "For coordinate-prefix/fiber flats the dual is (shortened) MDS: no words below the Singleton range, so the support lattice is trivial and the descent tree has size 1. The moment count applies immediately. Corollary of f_consumer_scoped branch (a).",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ],
+   "notes": "provenance: f_consumer_scoped branch (a) \u2014 edge omitted to keep the digraph acyclic"
+  },
+  {
+   "id": "f_termination_hankel",
+   "title": "Hankel-kernel flats: coset-patterned supports => divisor-poset-sized lattice",
+   "status": "CONJECTURE",
+   "key": true,
+   "statement": "For Hankel-pencil kernel flats, displacement structure (V^T D V, #191) forces sparse-word supports into coset patterns \u2014 E7's kernel twins were exactly coset pairs. Then the support lattice embeds in the divisor/coset poset: size poly(n). The one genuinely open family-specific termination bound.",
+   "attack_surface": "first step is EVIDENCE: rerun the E9 census RESTRICTED to Hankel-kernel flats and record the support patterns (predicted: unions of cosets); then the lattice bound via the displacement identities",
+   "falsifier": "a kernel-flat sparse word with non-coset support in the restricted census",
+   "refs": [
+    "proof_sketch/s3b_iii_3_fibers_and_noanchor.md#1"
+   ]
+  },
+  {
+   "id": "xr_e3_to_expansion",
+   "title": "Bridge 1: E_3-large = walk-trapping = non-expanding (elementary spectral bookkeeping)",
+   "status": "PROVABLE",
+   "statement": "E_3(A) = <1_A, (P_A M P_A)^3 1_A> (the cubed restricted one-exchange operator), so E_3 large implies large local spectral radius of M on A, which implies small edge expansion of A in J(n,j) (Courant-Fischer). Connects our energy functional to the expansion language of the literature.",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#3"
+   ]
+  },
+  {
+   "id": "xr_kms_import",
+   "title": "THE ENGINE: Khot-Minzer-Safra Johnson-graph structure theorem (import)",
+   "status": "PROVABLE",
+   "statement": "KMS/DKKMS (proved, 2018-19; the 2-to-2 games engine): non-expanding small sets in Johnson graphs correlate with JUNTAS \u2014 sets determined by membership of a bounded core of coordinates. Import note + bridge-ledger row + convention matching (their J(n,j), our exchange graph \u2014 same object). The XR inverse's stage-2 engine, now NAMED and off-the-shelf.",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#3"
+   ],
+   "notes": "the tightest literature fit in the program: Johnson graphs are literally KMS's domain; j/n ~ 0.4-0.5 within their regime"
+  },
+  {
+   "id": "xr_junta_to_paid",
+   "title": "Bridge 2: juntas = fixed-core families = tangent/common-divisor structures = PAID",
+   "status": "PROVABLE",
+   "statement": "A junta on J(n,j) (membership determined by a bounded core C of domain points) is a union of fixed-core/fixed-hole cells; correlation with a junta transfers to correlation with common-divisor (tangent-type, depth |C|) structure \u2014 landing exactly in the paid taxonomy. The k=1 dictator extremals (#191, proved) are the base case.",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#3"
+   ]
+  },
+  {
+   "id": "xr_kms_parameter_matching",
+   "title": "THE RESIDUE: quantitative regime matching at FM-scale densities",
+   "status": "TARGET",
+   "key": true,
+   "statement": "RESTRUCTURED: primary route = xr_globalness_from_ledger (the proved tangent ledger bounds link densities post-strip) + xr_small_set_engine (KLLM: global sets expand, losses poly in link parameters not 1/mu) + elementary composition arithmetic. The raw-KMS-constants check remains the cheap first look (the loss-exponent table), but the globalness route is expected to carry the FM-scale regime. If both compose, the XR wall's skeleton is an assembly of proved pieces plus one import.",
+   "attack_surface": "parameter tables first (S-sized): tabulate the KMS/KLLM loss exponents against the FM gap per rate; if the exponents eat the gap, the KLLM global-hypercontractivity route is the fallback with sharper small-set constants",
+   "falsifier": "the tables showing BOTH known quantitative forms lose more than the FM gap provides \u2014 would mean the import needs strengthening, not that the route is dead",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#3"
+   ]
+  },
+  {
+   "id": "xr_globalness_from_ledger",
+   "title": "THE SHORTCUT: the proved tangent ledger IS a globalness certificate",
+   "status": "CONJECTURE",
+   "key": true,
+   "statement": "Post-strip alignment sets are GLOBAL in the KLLM sense: their density on every fixed-core link is bounded, because link-concentration = aligned locators sharing the core divisor l_S = exactly the tangent stratum, which the PROVED payment machinery (staircase, common-code-line budget, v8 cap) prices. The paid taxonomy and the junta obstruction are the same object from two fields \u2014 our ledger supplies the hypothesis the general theorem cannot assume.",
+   "attack_surface": "quantify the ledger's per-cell caps as link-density bounds at each core size r; compare against KLLM's globalness threshold (the composition arithmetic); the strip handles the quotient links",
+   "falsifier": "a post-strip alignment set with link density above the paid bound at some core size (would be an unpaid tangent leak \u2014 an R2 problem, not a route problem)",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#3"
+   ]
+  },
+  {
+   "id": "xr_small_set_engine",
+   "title": "Import: global hypercontractivity (KLLM) \u2014 global sets expand, at vanishing measure",
+   "status": "PROVABLE",
+   "statement": "Keevash-Lifshitz-Long-Minzer global hypercontractivity (proved): sets with no density boost on any small link expand almost perfectly, with losses polynomial in the link parameters rather than in 1/mu \u2014 the density-robust engine for our FM-scale (mu ~ q^{1-t}) regime, replacing raw KMS constants where they degrade. Import note + bridge-ledger row + statement matching.",
+   "refs": [
+    "proof_sketch/s3b_iii_2_displacement_spectral.md#3"
+   ]
+  },
+  {
+   "id": "circuit_nongeneric",
+   "title": "Circuits are non-generic: the two-identity syzygy kernel vanishes off a determinantal locus",
+   "status": "PROVABLE",
+   "statement": "The proved circuit lemma (#185) says a dependency = TWO simultaneous zero-polynomial identities. By degree counting, the simultaneous-syzygy kernel is generically zero; full-support minimal circuits exist only on an EXPLICIT determinantal locus of configurations (the two kernels intersecting in exactly dimension 1). Circuits are exceptional by construction, not just empirically.",
+   "refs": [
+    "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#3"
+   ],
+   "notes": "CAVEAT flagged: if the identities involve (u,v) (not just locator data), the locus lives in (u,v)-space \u2014 same argument, different variables; the E13 packet's exact lemma statement settles which"
+  },
+  {
+   "id": "circuit_locus_density",
+   "title": "Schwartz-Zippel on the locus: circuit-carrying configurations are q-power suppressed",
+   "status": "PROVABLE",
+   "statement": "The determinantal locus is cut by explicit determinants of locator-coefficient matrices of bounded degree; Schwartz-Zippel gives density <= deg/q^c per configuration family. Combined with combinatorial support counting: total circuit count <= poly(n) x (configurations / q^c) \u2014 the q-suppression that makes the branch FM-compatible.",
+   "refs": [
+    "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#3"
+   ]
+  },
+  {
+   "id": "circuit_pricing",
+   "title": "Pricing: each minimal circuit contributes O(1) slopes via the deficiency-one machinery (direct reuse)",
+   "status": "PROVABLE",
+   "statement": "A minimal circuit is a ONE-DIMENSIONAL kernel with independent deletions \u2014 exactly the deficiency-1 situation. The U-ladder's Cramer/eliminant dichotomy (u1/u2, in flight in #199) applies verbatim: each circuit yields at most O(1) unpaid slopes (eliminant branch) or lands in a named paid/structured branch (identically-valid branch). The M5 ladder built for A=384 prices the spread exceptions too \u2014 direct machinery reuse across walls.",
+   "refs": [
+    "proof_sketch/s3b_iii_1_divisor_pencil_incidence.md#3"
+   ]
   }
  ],
  "edges": [
@@ -4107,6 +4296,161 @@
   {
    "from": "f_consumer_scoped",
    "to": "imgfib",
+   "kind": "ev"
+  },
+  {
+   "from": "f_sparse_descent_step",
+   "to": "f_many_sparse_structure",
+   "kind": "req"
+  },
+  {
+   "from": "a426_universal_numerator",
+   "to": "second_pin_a426",
+   "kind": "req"
+  },
+  {
+   "from": "second_pin_a426",
+   "to": "second_pin_or_wall",
+   "kind": "req"
+  },
+  {
+   "from": "a426_universal_numerator",
+   "to": "window_program",
+   "kind": "ev"
+  },
+  {
+   "from": "f_descent_termination",
+   "to": "f_dim_induction",
+   "kind": "req"
+  },
+  {
+   "from": "f_sparse_descent_step",
+   "to": "f_descent_termination",
+   "kind": "req"
+  },
+  {
+   "from": "c_xr_content",
+   "to": "xr_inverse",
+   "kind": "req"
+  },
+  {
+   "from": "spread_syzygy_circuit_bound",
+   "to": "spread_exception_classification",
+   "kind": "req"
+  },
+  {
+   "from": "f_support_lattice",
+   "to": "f_descent_termination",
+   "kind": "req"
+  },
+  {
+   "from": "f_termination_mds",
+   "to": "f_descent_termination",
+   "kind": "req"
+  },
+  {
+   "from": "f_termination_hankel",
+   "to": "f_descent_termination",
+   "kind": "req"
+  },
+  {
+   "from": "f_dual_distance_frame",
+   "to": "f_support_lattice",
+   "kind": "req"
+  },
+  {
+   "from": "displacement_uniform",
+   "to": "f_termination_hankel",
+   "kind": "ev"
+  },
+  {
+   "from": "xr_e3_to_expansion",
+   "to": "c_xr_content",
+   "kind": "req"
+  },
+  {
+   "from": "xr_kms_import",
+   "to": "c_xr_content",
+   "kind": "req"
+  },
+  {
+   "from": "xr_junta_to_paid",
+   "to": "c_xr_content",
+   "kind": "req"
+  },
+  {
+   "from": "xr_kms_parameter_matching",
+   "to": "c_xr_content",
+   "kind": "req"
+  },
+  {
+   "from": "johnson_gap",
+   "to": "xr_e3_to_expansion",
+   "kind": "req"
+  },
+  {
+   "from": "xr_kms_import",
+   "to": "bridge_ledger",
+   "kind": "ev"
+  },
+  {
+   "from": "v8_ledger",
+   "to": "xr_junta_to_paid",
+   "kind": "ev"
+  },
+  {
+   "from": "xr_globalness_from_ledger",
+   "to": "xr_kms_parameter_matching",
+   "kind": "req"
+  },
+  {
+   "from": "xr_small_set_engine",
+   "to": "xr_kms_parameter_matching",
+   "kind": "req"
+  },
+  {
+   "from": "common_code_line_budget",
+   "to": "xr_globalness_from_ledger",
+   "kind": "ev"
+  },
+  {
+   "from": "v8_ledger",
+   "to": "xr_globalness_from_ledger",
+   "kind": "ev"
+  },
+  {
+   "from": "strip",
+   "to": "xr_globalness_from_ledger",
+   "kind": "ev"
+  },
+  {
+   "from": "circuit_nongeneric",
+   "to": "spread_syzygy_circuit_bound",
+   "kind": "req"
+  },
+  {
+   "from": "circuit_locus_density",
+   "to": "spread_syzygy_circuit_bound",
+   "kind": "req"
+  },
+  {
+   "from": "circuit_pricing",
+   "to": "spread_syzygy_circuit_bound",
+   "kind": "req"
+  },
+  {
+   "from": "circuit_nongeneric",
+   "to": "circuit_locus_density",
+   "kind": "req"
+  },
+  {
+   "from": "u1_cramer",
+   "to": "circuit_pricing",
+   "kind": "ev"
+  },
+  {
+   "from": "u5_dichotomy",
+   "to": "circuit_pricing",
    "kind": "ev"
   }
  ]
