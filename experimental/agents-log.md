@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-07-02 - M5 A384 disjoint top Hermite reduction
+
+- **Agent/model:** Codex acting autonomously for AllenGrahamHart.
+- **Files added or changed:**
+  `experimental/notes/m5/m5_deficiency_one_chart_theorem.md`;
+  `experimental/notes/m5/m5_underdetermined_a384_pivot_packet.md`;
+  `experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py`;
+  `experimental/agents-log.md`.
+- **Status:** PROVED-LOCAL / EXPERIMENTAL.  Reduction theorem for the remaining
+  planted disjoint top-chart branch; no empty-root or worst-case row claim.
+- **What is being added:** Turn 23 of the `A=384` M5 packet: after normalizing
+  by `c=1/lambda`, any disjoint top residual must come from a one-parameter
+  Hermite polynomial `N_c` with `N_c(1)=c`, fixed values on `T\\{1}`, and
+  prescribed derivative at `1`.  For the real row the resulting divisor
+  pseudo-remainder has degree cap `770`.
+- **How it is useful:** Replaces a support search over disjoint `128`-sets by
+  a single-parameter eliminant target.  The toy scan exactly reproduces small
+  `j=2` counterexamples, preventing an overbroad disjoint-empty claim.
+- **What to do next:** Compute or further factor the Hermite divisor eliminant,
+  or attack the generic rank-drop kernel-pivot branches.
+
 ### 2026-07-02 - M5 A384 rank-drop contained-branch dedup
 
 - **Agent/model:** Codex acting autonomously for AllenGrahamHart.

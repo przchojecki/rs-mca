@@ -256,3 +256,54 @@ z != z0 and valid  ==>  R cap T = empty.
 The verifier checks the `F_97/mu_16` analogue: all overlap-one supports are
 rejected by the support-only equations, and the support-only equations still
 match direct recurrence evaluation.
+
+## Disjoint Hermite Reduction
+
+It remains to describe the fully disjoint branch.  Assume `R cap T = empty`.
+Then `L_R(1) != 0` and the slope offset `lambda` is nonzero.  Normalize
+
+```text
+M(X)=L_R(X)/L_R(1),      c=1/lambda,      N_c(X)=c M(X).
+```
+
+Let `ell_y` denote the Lagrange basis polynomial on `T`.  The support-only
+functional identity is equivalent to the following Hermite data:
+
+```text
+N_c(1) = c,
+N_c(y) = -ell_y'(1)                     for y in T, y != 1,
+N_c'(1) = -c^2 - c(ell_1'(1)+2).
+```
+
+For each `c != 0`, these conditions determine a unique polynomial
+`N_c(X)` of degree at most `j`: interpolate the listed values on `T`, then add
+a multiple of `prod_{x in T}(X-x)` to fix the derivative at `1`.
+
+Thus the remaining disjoint residual is exactly the following one-parameter
+divisor problem:
+
+```text
+exists c != 0 such that N_c(X) | X^n - 1
+and the j roots of N_c are disjoint from T.
+```
+
+The coefficients of `N_c` have degree at most `2` in `c`, and the
+pseudo-division of `X^n-1` by a degree-`j` candidate has `n-j+1` steps.  The
+disjoint top residual is therefore cut by a univariate pseudo-remainder with
+coefficient-degree bound
+
+```text
+2(n-j+1).
+```
+
+For the real `F_17^32`, `A=384` row this gives
+
+```text
+j=128,       n-j+1=385,       degree cap = 770.
+```
+
+This is a strict reduction of the planted disjoint top branch: it replaces a
+support search by a single-parameter Hermite divisor scan.  The verifier checks
+the reduction against direct `F_97/mu_16` brute force.  It also records that
+small `j=2` disjoint counterexamples exist, so the packet does not claim a
+blanket disjoint-empty theorem.

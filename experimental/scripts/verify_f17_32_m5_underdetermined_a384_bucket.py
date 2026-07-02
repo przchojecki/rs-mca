@@ -115,6 +115,10 @@ Turn 22 records the contained rank-drop dedup theorem: when a rank-drop moment
 block has a lower-degree split annihilator, any degree-j extension is charged
 to the higher agreement n-s rather than counted as a new exact-A root.
 
+Turn 23 reduces the remaining disjoint planted top residual to a one-parameter
+Hermite divisor scan.  The F_97 toy scan exactly matches brute force, including
+the small j=2 counterexamples that prevent overclaiming.
+
 Run:  python3 experimental/scripts/verify_f17_32_m5_underdetermined_a384_bucket.py
 Exit non-zero iff any implemented check fails.
 """
@@ -2350,6 +2354,127 @@ def check_planted_top_overlap_one_exclusion():
     ]
 
 
+def poly_derivative_mod(poly, p):
+    """Formal derivative over F_p."""
+    if len(poly) <= 1:
+        return [0]
+    return trim([(index * coeff) % p for index, coeff in enumerate(poly[1:], start=1)])
+
+
+def lagrange_basis_poly(points, index, p):
+    """Lagrange basis polynomial for points[index] over F_p."""
+    basis = [1]
+    denominator = 1
+    x_i = points[index]
+    for other_index, x_j in enumerate(points):
+        if other_index == index:
+            continue
+        basis = poly_mul_mod(basis, [(-x_j) % p, 1], p)
+        denominator = denominator * ((x_i - x_j) % p) % p
+    return poly_scale_mod(basis, pow(denominator, -1, p), p)
+
+
+def hermite_disjoint_candidate_poly(support, c_value, p):
+    """Return the normalized Hermite candidate N_c for the disjoint top residual."""
+    assert support[0] == 1
+    lagrange_basis = [lagrange_basis_poly(support, index, p) for index in range(len(support))]
+    lagrange_derivatives_at_one = [
+        poly_eval(poly_derivative_mod(poly, p), 1, p) for poly in lagrange_basis
+    ]
+    values = [c_value] + [(-value) % p for value in lagrange_derivatives_at_one[1:]]
+    candidate = [0]
+    for value, basis in zip(values, lagrange_basis):
+        candidate = poly_add_mod(candidate, poly_scale_mod(basis, value, p), p)
+
+    support_locator = poly_from_roots_mod(support, p)
+    current_derivative = poly_eval(poly_derivative_mod(candidate, p), 1, p)
+    target_derivative = (
+        -c_value * c_value - c_value * (lagrange_derivatives_at_one[0] + 2)
+    ) % p
+    support_derivative = poly_eval(poly_derivative_mod(support_locator, p), 1, p)
+    correction = (target_derivative - current_derivative) * pow(support_derivative, -1, p) % p
+    return poly_add_mod(candidate, poly_scale_mod(support_locator, correction, p), p)
+
+
+def disjoint_support_only_bruteforce(p, n, j):
+    """Direct disjoint support-only solutions for the planted top toy model."""
+    subgroup = [x for x in range(1, p) if pow(x, n, p) == 1]
+    support = tuple(subgroup[:j])
+    valid = []
+    for roots in combinations(subgroup, j):
+        root_set = set(roots)
+        if set(support) & root_set:
+            continue
+        locator = poly_from_roots_mod(roots, p)
+        l_at_one = poly_eval(locator, 1, p)
+        l_deriv_one = poly_eval(poly_derivative_mod(locator, p), 1, p)
+        a_vals = []
+        b_vals = []
+        for row in range(j):
+            a_vals.append(
+                sum(
+                    pow(x, row, p) * poly_eval(locator, x, p)
+                    for x in support
+                ) % p
+            )
+            b_vals.append((l_at_one * (row + 2) + l_deriv_one) % p)
+        pivot = next((idx for idx, value in enumerate(b_vals) if value), None)
+        if pivot is None:
+            continue
+        lam = (-a_vals[pivot] * pow(b_vals[pivot], -1, p)) % p
+        if all((a_vals[row] + lam * b_vals[row]) % p == 0 for row in range(j)):
+            valid.append((lam, roots))
+    return sorted(valid)
+
+
+def disjoint_hermite_scan(p, n, j):
+    """Hermite one-parameter scan for the disjoint planted top toy model."""
+    subgroup = [x for x in range(1, p) if pow(x, n, p) == 1]
+    support = tuple(subgroup[:j])
+    valid = []
+    for c_value in range(1, p):
+        candidate = hermite_disjoint_candidate_poly(support, c_value, p)
+        roots = tuple(x for x in subgroup if poly_eval(candidate, x, p) == 0)
+        if len(roots) == j and not (set(roots) & set(support)):
+            valid.append((pow(c_value, -1, p), roots))
+    return sorted(valid)
+
+
+def check_planted_top_disjoint_hermite_reduction():
+    """Verify the one-parameter Hermite reduction for the disjoint top residual."""
+    j2_brute = disjoint_support_only_bruteforce(97, 16, 2)
+    j2_hermite = disjoint_hermite_scan(97, 16, 2)
+    j3_brute = disjoint_support_only_bruteforce(97, 16, 3)
+    j3_hermite = disjoint_hermite_scan(97, 16, 3)
+    j4_brute = disjoint_support_only_bruteforce(97, 16, 4)
+    j4_hermite = disjoint_hermite_scan(97, 16, 4)
+
+    real_j = N - A_STAR
+    real_delta = N - real_j + 1
+    coefficient_degree = 2
+    hermite_degree_cap = coefficient_degree * real_delta
+
+    ok = (
+        j2_brute == j2_hermite
+        and len(j2_brute) == 4
+        and j3_brute == j3_hermite == []
+        and j4_brute == j4_hermite == []
+        and real_j == 128
+        and real_delta == 385
+        and hermite_degree_cap == 770
+    )
+    return ok, [
+        "disjoint top residual: after normalizing N_c=(1/lambda)L/L(1), "
+        "N_c is determined by Hermite data on the planted support",
+        "toy Hermite scan exactly matches direct disjoint support-only brute force",
+        f"F_97/mu_16 j=2 counterexamples={j2_brute}; this prevents a blanket disjoint-empty theorem",
+        f"F_97/mu_16 j=3 brute={j3_brute}, Hermite={j3_hermite}",
+        f"F_97/mu_16 j=4 brute={j4_brute}, Hermite={j4_hermite}",
+        f"F_17^32 A={A_STAR}: Hermite candidate coefficients have c-degree <=2, "
+        f"so the disjoint divisor pseudo-remainder has degree cap {hermite_degree_cap}",
+    ]
+
+
 def _pending():
     return None, ["PENDING -- added in a later loop turn"]
 
@@ -2372,6 +2497,7 @@ CHECKS = [
     ("planted top-chart overlap pruning",                 check_planted_top_overlap_pruning),
     ("planted top-chart support-only residual",           check_planted_top_support_only_residual),
     ("planted top-chart overlap-one exclusion",           check_planted_top_overlap_one_exclusion),
+    ("planted top-chart disjoint Hermite reduction",      check_planted_top_disjoint_hermite_reduction),
     ("F_97 acid test: brute force equals charts",         check_toy_acid_test_bruteforce),
     ("F_17^32 planted top-chart packet",                  lambda: check_f17_packet(DEFAULT_F17_PACKET)),
     ("F_17^32 planted low-degree packet",                 lambda: check_f17_low_degree_packet(DEFAULT_F17_LOW_DEGREE_PACKET)),

@@ -1,6 +1,6 @@
 # M5: first singular-bucket pivot packet — the underdetermined boundary A=384
 
-- **Status:** ACTIVE / EXPERIMENTAL (turn 22: bucket identification,
+- **Status:** ACTIVE / EXPERIMENTAL (turn 23: bucket identification,
   deficiency-one Cramer-kernel chart, toy top-chart divisibility, toy
   top-chart eliminant dichotomy, compact toy packet emission, and the
   abstract subgroup-divisibility, degree-budget, and chart-reduction gates for
@@ -18,6 +18,8 @@
   near-support overlap pruning theorem, a support-only residual reduction, and
   an overlap-one exclusion.  The planted rank-drop moment-support branch is
   now identified as a contained lower-rank branch deduped to agreement `386`.
+  The remaining disjoint top branch is reduced to a one-parameter Hermite
+  divisor scan with real-row degree cap `770`.
   No threshold, safety, or worst-case row claim is made.
 - **Lane:** M5 singular-bucket program (`towards-prize.md` §5/M5 and §8 item 6 —
   previously unclaimed). Deliberately **disjoint from PRs #170/#171** (Codex M3:
@@ -148,7 +150,8 @@ belongs.
 | 5p | planted top-chart support-only residual reduction | **done** |
 | 5q | planted top-chart overlap-one exclusion | **done** |
 | 5r | rank-drop contained-branch dedup theorem | **done** |
-| 5s | full `F_17^32` root-table packet for rank-drop / top charts | pending |
+| 5s | planted top-chart disjoint Hermite reduction | **done** |
+| 5t | full `F_17^32` root-table packet for rank-drop / top charts | pending |
 
 ### Verified so far (turn 1)
 
@@ -844,6 +847,50 @@ dedup_target_agreement = 386,
 contained_branch_deduped = true,
 new_exact_a384_contribution = false.
 ```
+
+### Verified in turn 23
+
+**U23, disjoint top-chart Hermite reduction.** After U21, any remaining
+planted top-chart residual has `R cap T = empty`.  In this case
+`L_R(1) != 0` and `lambda=z-z0` is nonzero.  Normalize
+
+```text
+M(X)=L_R(X)/L_R(1),      c=1/lambda,      N_c(X)=cM(X).
+```
+
+The support-only functional identity is then equivalent to Hermite data on
+the planted support:
+
+```text
+N_c(1) = c,
+N_c(y) = -ell_y'(1)                     for y in T, y != 1,
+N_c'(1) = -c^2 - c(ell_1'(1)+2).
+```
+
+For each `c != 0`, these data determine a unique degree-`<=j` polynomial
+`N_c`: interpolate the values on `T`, then add a multiple of
+`prod_{x in T}(X-x)` to fix the derivative at `1`.
+
+Therefore the disjoint planted top residual is now a one-parameter divisor
+problem:
+
+```text
+exists c != 0 such that N_c(X) | X^512 - 1
+and roots(N_c) cap T = empty.
+```
+
+Since the coefficients of `N_c` have `c`-degree at most `2`, the real-row
+pseudo-remainder degree cap is
+
+```text
+2(n-j+1)=2(512-128+1)=770.
+```
+
+The verifier checks this reduction against direct `F_97/mu_16` brute force.
+For `j=2` it exactly reproduces four disjoint counterexamples, showing why a
+blanket disjoint-empty statement would be false.  For the `j=3` and `j=4`
+toy cases checked in the packet, both the brute-force and Hermite scans are
+empty.
 
 ## Honest scope
 
